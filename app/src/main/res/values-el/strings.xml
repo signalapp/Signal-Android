@@ -2138,7 +2138,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Νέα συνομιλία</string>
   <string name="conversation_list_fragment__open_camera_description">Άνοιγμα κάμερας</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Κάνε την αρχή, στείλε μήνυμα σε έναν φίλο ή φίλη σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Κάνε την αρχή, στείλε μήνυμα σε έναν φίλο ή φίλη σου.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Επανεκκίνηση ασφαλούς συνεδρίας</string>
   <!--conversation_muted-->
@@ -2175,8 +2175,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Σύγκριση με το πρόχειρο</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string>
-  <string name="reminder_header_sms_default_text">Πάτα για να κάνεις το Signal την προκαθορισμένη εφαρμογή για τα SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Πάτα για να κάνεις το Signal την προκαθορισμένη εφαρμογή για τα SMS.</string> -->
   <string name="reminder_header_sms_import_title">Εισαγωγή SMS συστήματος</string>
   <string name="reminder_header_sms_import_text">Πάτα για να αντιγράψεις τα μηνύματα SMS του κινητού σου στην κρυπτογραφημένη βάση δεδομένων του Signal.</string>
   <string name="reminder_header_push_title">Ενεργοποίηση των μηνημάτων και κλήσεων Signal</string>
@@ -2372,6 +2372,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Για να ενεργοποιήσεις τα αντίγραφα ασφαλείας, επέλεξε ένα φάκελο. Τα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
   <string name="BackupDialog_choose_folder">Επιλογή φακέλου</string>
   <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <string name="BackupDialog_no_file_picker_available">Δεν υπάρχει διαθέσιμη εφαρμογή επιλογής αρχείων.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Εισάγετε το συνθηματικό αντιγράφου ασφαλείας για επιβεβαίωση</string>
   <string name="BackupDialog_verify">Επιβεβαίωση</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>

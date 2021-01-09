@@ -2149,7 +2149,7 @@ Du er à jour!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Opna kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2186,8 +2186,8 @@ Du er à jour!</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Samanlikn med utklippstavla</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string>
-  <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string> -->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiera telefonen sin SMS-meldingar til Signal sin krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldingar og -samtalar</string>

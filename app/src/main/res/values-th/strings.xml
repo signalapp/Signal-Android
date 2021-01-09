@@ -1586,7 +1586,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">การสนทนาใหม่</string>
   <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ลองเขียนอะไรสักอย่าง เริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ลองเขียนอะไรสักอย่าง เริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">รีเซ็ตเซสชันที่ปลอดภัย</string>
   <!--conversation_muted-->
@@ -1622,8 +1622,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ใช้เป็นแอป SMS หลัก</string>
-  <string name="reminder_header_sms_default_text">แตะเพื่อกำหนดให้ Signal เป็นแอป SMS หลักของคุณ</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ใช้เป็นแอป SMS หลัก</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">แตะเพื่อกำหนดให้ Signal เป็นแอป SMS หลักของคุณ</string> -->
   <string name="reminder_header_sms_import_title">นำเข้า SMS ของระบบ</string>
   <string name="reminder_header_sms_import_text">แตะเพื่อคัดลอกข้อความ SMS ในโทรศัพท์ของคุณมาเก็บไว้ในฐานข้อมูลที่เข้ารหัสของ Signal</string>
   <string name="reminder_header_push_title">เปิดใช้งานข้อความและการโทร Signal</string>

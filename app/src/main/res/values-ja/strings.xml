@@ -2056,7 +2056,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新しい会話</string>
   <string name="conversation_list_fragment__open_camera_description">カメラを開く</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">友達にメッセージを送って始めよう！</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">友達にメッセージを送って始めよう！</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">セキュアセッションをリセット</string>
   <!--conversation_muted-->
@@ -2093,8 +2093,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピー</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">クリップボードと比較</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">既定のSMSアプリにする</string>
-  <string name="reminder_header_sms_default_text">タップしてSignalを規定のSMSアプリにします。</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">既定のSMSアプリにする</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">タップしてSignalを規定のSMSアプリにします。</string> -->
   <string name="reminder_header_sms_import_title">システムSMSのインポート</string>
   <string name="reminder_header_sms_import_text">タップしてこの電話のSMSメッセージをSignalの暗号化されたデータベースにコピーします。</string>
   <string name="reminder_header_push_title">Signalメッセージと通話の有効化</string>

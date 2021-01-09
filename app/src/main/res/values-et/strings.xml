@@ -2142,7 +2142,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uus vestlus</string>
   <string name="conversation_list_fragment__open_camera_description">Ava kaamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Lisa oma postkasti midagi, näiteks alusta sõbraga sõnumite vahetamist.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Lisa oma postkasti midagi, näiteks alusta sõbraga sõnumite vahetamist.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Lähtesta turvaline sessioon</string>
   <!--conversation_muted-->
@@ -2179,8 +2179,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopeeri lõikelauale</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Võrdle lõikelauaga</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Kasuta vaikimisi SMS-rakendusena</string>
-  <string name="reminder_header_sms_default_text">Koputa, et teha Signal SMSi vaikerakenduseks.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Kasuta vaikimisi SMS-rakendusena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Koputa, et teha Signal SMSi vaikerakenduseks.</string> -->
   <string name="reminder_header_sms_import_title">Impordi süsteemi SMSid</string>
   <string name="reminder_header_sms_import_text">Koputa, et kopeerida oma telefoni SMS-sõnumid Signali krüptitud andmebaasi.</string>
   <string name="reminder_header_push_title">Luba Signali sõnumid ja kõned</string>

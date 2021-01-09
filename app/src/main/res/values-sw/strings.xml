@@ -1411,7 +1411,7 @@ nambari yako ya simu</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Mazungumzo mapya</string>
   <string name="conversation_list_fragment__open_camera_description">Fungua Kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kipe kikasha chako kitu cha kujivunia. Anza kwa kumtumia ujumbe rafiki.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kipe kikasha chako kitu cha kujivunia. Anza kwa kumtumia ujumbe rafiki.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Seti upya kikao salama</string>
   <!--conversation_muted-->
@@ -1453,8 +1453,8 @@ nambari yako ya simu</string>
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Toleo lako la Signal litaisha muda leo. Gonga ili usasishe kwa toleo la hivi karibuni.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Toleo lako la Signal limepitwa na wakati.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Jumbe hazitatuma tena kwa mafanikio. Gonga ili usasishe kwa toleo la hivi karibuni.</string> -->
-  <string name="reminder_header_sms_default_title">Tumia kama chaguo msingi programu ya meseji</string>
-  <string name="reminder_header_sms_default_text">Gonga ili kuifanya Signal programu chaguo msingi ya SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Tumia kama chaguo msingi programu ya meseji</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Gonga ili kuifanya Signal programu chaguo msingi ya SMS.</string> -->
   <string name="reminder_header_sms_import_title">Ingiza SMS ya mfumo</string>
   <string name="reminder_header_sms_import_text">Gonga ili kunakili jumbe za SMS za simu yako kwenye hifadhidata iliyosimbwa.</string>
   <string name="reminder_header_push_title">Wezesha jumbe na simu za Signal</string>

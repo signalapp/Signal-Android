@@ -2140,7 +2140,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">مکالمهٔ جدید</string>
   <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. با پیام دادن به یک دوست می‌توانید شروع کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. با پیام دادن به یک دوست می‌توانید شروع کنید.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
   <!--conversation_muted-->
@@ -2177,8 +2177,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">استفاده به صورت برنامهٔ پیش‌فرض پیامک</string>
-  <string name="reminder_header_sms_default_text">برای تبدیل Signal به برنامهٔ پیش‌فرض پیامک خود ضربه بزنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">استفاده به صورت برنامهٔ پیش‌فرض پیامک</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">برای تبدیل Signal به برنامهٔ پیش‌فرض پیامک خود ضربه بزنید.</string> -->
   <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های سیستم</string>
   <string name="reminder_header_sms_import_text">برای کپی کردن پیامک‌های تلفن خود به پایگاه دادهٔ رمزگذاری شدهٔ Signal ضربه بزنید.</string>
   <string name="reminder_header_push_title">فعال‌سازی پیام‌ها و تماس‌های Signal</string>
@@ -2374,6 +2374,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">برای فعال کردن پشتیبان‌ها، یک پوشه انتخاب کنید. پشتیبان‌ها در این محل ذخیره خواهند شد.</string>
   <string name="BackupDialog_choose_folder">انتخاب پوشه</string>
   <string name="BackupDialog_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
+  <string name="BackupDialog_no_file_picker_available">انتخاب کنندهٔ فایل در دسترس نیست.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای تأیید وارد کنید</string>
   <string name="BackupDialog_verify">تآیید</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>

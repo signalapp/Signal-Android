@@ -1699,7 +1699,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ការសន្ទនាថ្មី</string>
   <string name="conversation_list_fragment__open_camera_description">បើកកាមេរ៉ា</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិណាម្នាក់។</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">រៀបរាប់ប្រអប់សំបុត្ររបស់អ្នក។ ចាប់ផ្តើមពីការផ្ញើសារទៅកាន់មិត្តភក្តិណាម្នាក់។</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">កំណត់ឡើងវិញការចូលប្រើប្រាស់សុវត្ថិភាព</string>
   <!--conversation_muted-->
@@ -1735,8 +1735,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ចម្លងទៅ clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ប្រៀបធៀបជាមួយ clipboard</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string>
-  <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ Signal ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ប្រើជាកម្មវិធីផ្ញើសារ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">ចុច ដើម្បីដាក់ Signal ជាកម្មវិធី​ផ្ញើសាររបស់អ្នក​</string> -->
   <string name="reminder_header_sms_import_title">នាំចូលប្រព័ន្ធ SMS</string>
   <string name="reminder_header_sms_import_text">ចុចដើម្បីចម្លងសារក្នុងទូរសព្ទដៃរបស់អ្នកចូលទៅក្នុងមូលដ្ឋានទិន្នន័យដែលកាណាល់កូដសម្ងាត់របស់Signal។</string>
   <string name="reminder_header_push_title">បើកការផ្ញើសារ និងការហៅចេញតាមSignal</string>

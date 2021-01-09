@@ -1715,7 +1715,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ಹೊಸ ಸಂಭಾಷಣೆ</string>
   <string name="conversation_list_fragment__open_camera_description">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ನಿಮ್ಮ ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಹೋಮ್‌ ನಲ್ಲಿ ಬರೆಯುವುದಕ್ಕಾಗಿ ಏನನ್ನಾದರೂ ನೀಡಿ. ಸ್ನೇಹಿತರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸಿ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ನಿಮ್ಮ ಇನ್‌ಬಾಕ್ಸ್‌ಗೆ ಹೋಮ್‌ ನಲ್ಲಿ ಬರೆಯುವುದಕ್ಕಾಗಿ ಏನನ್ನಾದರೂ ನೀಡಿ. ಸ್ನೇಹಿತರಿಗೆ ಸಂದೇಶ ಕಳುಹಿಸುವ ಮೂಲಕ ಪ್ರಾರಂಭಿಸಿ.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">ಸುರಕ್ಷಿತ ಅವಧಿಯನ್ನು ಮರುಹೊಂದಿಸಿ</string>
   <!--conversation_muted-->
@@ -1752,8 +1752,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಗೆ ನಕಲಿಸಿ</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಜೊತೆ ಹೋಲಿಸಿ</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿ ಬಳಸಿ </string>
-  <string name="reminder_header_sms_default_text">Signal ಅನ್ನು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿ ಬಳಸಿ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal ಅನ್ನು ನಿಮ್ಮ ಡೀಫಾಲ್ಟ್ ಎಸ್‌ಎಂಎಸ್ ಆ್ಯಪ್ ಆಗಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string> -->
   <string name="reminder_header_sms_import_title">ಸಿಸ್ಟಂ ಎಸ್‌ಎಂಎಸ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
   <string name="reminder_header_sms_import_text">Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಡೇಟಾಬೇಸ್‌ಗೆ ನಿಮ್ಮ ಫೋನ್ ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ನಕಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="reminder_header_push_title">Signal ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>

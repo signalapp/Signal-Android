@@ -2142,7 +2142,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Giv din indbakke noget at skrive hjem om. Kom i gang - skriv til en ven</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Giv din indbakke noget at skrive hjem om. Kom i gang - skriv til en ven</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Gendan sikker forbindelse</string>
   <!--conversation_muted-->
@@ -2179,8 +2179,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiér til udklipsholder</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Anvend som standard SMS app</string>
-  <string name="reminder_header_sms_default_text">Tap for at gøre Signal til din standard SMS app</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Anvend som standard SMS app</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tap for at gøre Signal til din standard SMS app</string> -->
   <string name="reminder_header_sms_import_title">Importér system SMS\'er</string>
   <string name="reminder_header_sms_import_text">Tap for at kopiere din telefons SMS beskeder, til Signal´s krypterede database</string>
   <string name="reminder_header_push_title">Aktivér Signalbeskeder og -opkald</string>
@@ -2376,6 +2376,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="BackupDialog_to_enable_backups_choose_a_folder">For at aktivere backup´s, vælg en mappe. Backup´s vil blive gemt i denne mappe</string>
   <string name="BackupDialog_choose_folder">Vælg mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
+  <string name="BackupDialog_no_file_picker_available">Ingen filvælger tilgængelig.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv dit kodeord for backup for verificering</string>
   <string name="BackupDialog_verify">Verificér</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Dit kodeord for backup er oprettet</string>

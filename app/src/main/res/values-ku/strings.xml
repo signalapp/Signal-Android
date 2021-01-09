@@ -1117,7 +1117,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Sifir. Tine. Netî. Netiştç\nKarê te nîne!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Gotûbêja nû</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hinek kar bide hatdanka xwe. Bi şandina peyamê hevala xwe dest pê bike.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hinek kar bide hatdanka xwe. Bi şandina peyamê hevala xwe dest pê bike.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Danişîna parastî nûsaz bike</string>
   <!--conversation_muted-->
@@ -1159,8 +1159,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Guhertoya Signala te dê îro kevin bibe. Ji bo wê hildemînî guhertoya herî nû bitepîne.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Guhertoya Signala te êdî kevn bûye!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Êdî peyam nikarin bên şandin. Bo Signalê hildemînî guhertoya herî nû bitepîne.</string> -->
-  <string name="reminder_header_sms_default_title">Wek bernameya SMSê ya jixweber bi kar bîne.</string>
-  <string name="reminder_header_sms_default_text">Ji bo Signalê wek bernameya SMSê ya sereke bi kar bînî bitepîne.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Wek bernameya SMSê ya jixweber bi kar bîne.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Ji bo Signalê wek bernameya SMSê ya sereke bi kar bînî bitepîne.</string> -->
   <string name="reminder_header_sms_import_title">SMSên pergalê bihundirîne</string>
   <string name="reminder_header_sms_import_text">Ji bo peyamên SMSê yên xwe kopî bikî nav agahîdanka şîfrekirî ya Signalê, bitepîne</string>
   <string name="reminder_header_push_title">Peyam û bangên Signalê çalak bike</string>

@@ -1413,6 +1413,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NotificationChannel_other">Annet</string>
   <string name="NotificationChannel_group_messages">Meldinger</string>
   <string name="NotificationChannel_missing_display_name">Ukjent</string>
+  <string name="NotificationChannel_voice_notes">Stemmenotater</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Lagret profilnavnet.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
@@ -1995,7 +1996,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åpne Kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kom i gang ved å sende en melding til en venn.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kom i gang ved å sende en melding til en venn.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2031,8 +2032,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Bruk som forvalgt SMS-program</string>
-  <string name="reminder_header_sms_default_text">Trykk for å gjøre Signal til forvalgt SMS-program.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Bruk som forvalgt SMS-program</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Trykk for å gjøre Signal til forvalgt SMS-program.</string> -->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Signals krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldinger og samtaler</string>

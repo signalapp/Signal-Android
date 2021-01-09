@@ -1398,7 +1398,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">નવો સંવાદ</string>
   <string name="conversation_list_fragment__open_camera_description">કેમેરો ખોલો </string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">તમારા ઈનબોક્સ વિશે ઘર લખવા માટે કંઈક આપો. કોઈ મિત્રને મેસેજ કરીને પ્રારંભ કરો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">તમારા ઈનબોક્સ વિશે ઘર લખવા માટે કંઈક આપો. કોઈ મિત્રને મેસેજ કરીને પ્રારંભ કરો.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">સુરક્ષિત સત્ર ફરીથી સેટ કરો</string>
   <!--conversation_muted-->
@@ -1440,8 +1440,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">તમારું Signal નું વર્ઝન આજે સમાપ્ત થશે. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">તમારું Signal નું વર્ઝન સમાપ્ત થઈ ગયું છે!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">મેસેજ હવે સફળતાપૂર્વક મોકલશે નહીં. સૌથી તાજેતરના વર્ઝન પર અપડેટ કરવા માટે ટેપ કરો.</string> -->
-  <string name="reminder_header_sms_default_title">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string>
-  <string name="reminder_header_sms_default_text">તમારી ડિફોલ્ટ SMS એપ્લિકેશન Signal બનાવવા માટે ટેપ કરો.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ડિફોલ્ટ SMS એપ્લિકેશન તરીકે ઉપયોગ કરો</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">તમારી ડિફોલ્ટ SMS એપ્લિકેશન Signal બનાવવા માટે ટેપ કરો.</string> -->
   <string name="reminder_header_sms_import_title">સિસ્ટમ SMS ઇમ્પોર્ટ કરો</string>
   <string name="reminder_header_sms_import_text">તમારા ફોનના SMS મેસેજ ને Signal ના એન્ક્રિપ્ટેડ ડેટાબેસમાં નકલ કરવા માટે ટેપ કરો.</string>
   <string name="reminder_header_push_title">Signal મેસેજ અને કૉલ્સ સક્ષમ કરો</string>

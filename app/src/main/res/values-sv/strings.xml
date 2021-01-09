@@ -2136,7 +2136,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Starta om säker session</string>
   <!--conversation_muted-->
@@ -2173,8 +2173,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string>
-  <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string> -->
   <string name="reminder_header_sms_import_title">Importera systemets SMS</string>
   <string name="reminder_header_sms_import_text">Tryck för att kopiera din telefons SMS-meddelanden till Signals krypterade databas.</string>
   <string name="reminder_header_push_title">Aktivera Signal-meddelanden och -samtal</string>

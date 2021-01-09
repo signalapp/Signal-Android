@@ -1037,7 +1037,7 @@ a shonrú</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Comhrá nua</string>
   <string name="conversation_list_fragment__open_camera_description">Oscail an Grianghrafadán</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tabhair rud éigin do do bhosca isteach. Tosaigh anois trí theachtaireacht a sheoladh chuig cara.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tabhair rud éigin do do bhosca isteach. Tosaigh anois trí theachtaireacht a sheoladh chuig cara.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Athshocraigh rith teachtaireachta slán</string>
   <!--conversation_muted-->
@@ -1075,8 +1075,8 @@ a shonrú</string>
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Rachaidh do leagan Signal as bhfeidhm inniu. Cnag chun é a nuashonrú chuig an leagan is deanaí.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Tá an leagan de Signal atá agat as feidhm!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Ní sheolfar go rathúil teachtaireachtaí a thuilleadh. Cnag chun é a nuashonrú chuig an leagan is déanaí.</string> -->
-  <string name="reminder_header_sms_default_title">Úsáid mar aip SMS réamhshocrú</string>
-  <string name="reminder_header_sms_default_text">Cnag chun Signal a úsáid mar aip SMS réamhshocrú</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Úsáid mar aip SMS réamhshocrú</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Cnag chun Signal a úsáid mar aip SMS réamhshocrú</string> -->
   <string name="reminder_header_sms_import_title">Tabhair isteach SMS an chórais</string>
   <string name="reminder_header_push_title">Cumasaigh teachtaireachtaí agus glaonna Signal</string>
   <string name="reminder_header_push_text">Feabhsaigh do chumarsáid.</string>

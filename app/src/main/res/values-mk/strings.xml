@@ -539,7 +539,7 @@
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Вашата верзија на Signal е застарена.</string> -->
-  <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string> -->
   <string name="reminder_header_share_title">Покани ги твиоте пријатели!</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зачувај</string>

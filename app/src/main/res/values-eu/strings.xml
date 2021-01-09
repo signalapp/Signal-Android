@@ -2073,7 +2073,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Solasaldi berria</string>
   <string name="conversation_list_fragment__open_camera_description">Ireki kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Jarri zerbait zure sarrerako ontzian lagun bati zerbait idatziz.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Jarri zerbait zure sarrerako ontzian lagun bati zerbait idatziz.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Berrezarri saio segurua </string>
   <!--conversation_muted-->
@@ -2109,8 +2109,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiatu arbelera</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Arbelarekin konparatu</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili</string>
-  <string name="reminder_header_sms_default_text">Ukitu Signal zure SMS aplikazio lehenetsia bihurtzeko</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Lehenetsitako SMS aplikazio gisa erabili</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Ukitu Signal zure SMS aplikazio lehenetsia bihurtzeko</string> -->
   <string name="reminder_header_sms_import_title">Importatu sistemaren SMS mezuak</string>
   <string name="reminder_header_sms_import_text">Ukitu telefonoan diren enkriptatu gabeko SMS mezuak Signal datu-base zifratura kopiatzeko.</string>
   <string name="reminder_header_push_title">Aktibatu Signal mezu eta deiak</string>

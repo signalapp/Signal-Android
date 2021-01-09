@@ -1175,7 +1175,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Bitdi. Heç nə. Sıfır. Qurtardı.\nHamınız tutuldunuz!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni söhbətləşmə</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Təhlükəsiz sessiyanı yenidən başlat</string>
   <!--conversation_muted-->
@@ -1217,8 +1217,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string> -->
-  <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string>
-  <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string> -->
   <string name="reminder_header_sms_import_title">Sistem SMS-ni daxil et</string>
   <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
   <string name="reminder_header_push_title">Signal mesajlarına və zənglərinə icazə ver</string>

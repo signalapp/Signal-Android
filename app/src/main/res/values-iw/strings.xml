@@ -2294,7 +2294,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבה שלך משהו לכתוב עליו בית. התחל ע״י שליחת הודעה לחבר.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבה שלך משהו לכתוב עליו בית. התחל ע״י שליחת הודעה לחבר.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">אפס שיח מאובטח</string>
   <!--conversation_muted-->
@@ -2331,8 +2331,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string>
-  <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string> -->
   <string name="reminder_header_sms_import_title">ייבא מסרוני מערכת</string>
   <string name="reminder_header_sms_import_text">הקש כדי להעתיק את הודעות המסרונים של הטלפון שלך לתוך מסד הנתונים המוצפן של Signal.</string>
   <string name="reminder_header_push_title">אפשר הודעות ושיחות של Signal</string>
@@ -2542,6 +2542,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">כדי לאפשר גיבויים, בחר תיקייה. גיבויים יישמרו במיקום זה.</string>
   <string name="BackupDialog_choose_folder">בחר תיקייה</string>
   <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
+  <string name="BackupDialog_no_file_picker_available">אין בורר קבצים זמין.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">הכנס את משפט־סיסמת הגיבוי שלך כדי לוודא</string>
   <string name="BackupDialog_verify">וודא</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>

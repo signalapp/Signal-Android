@@ -1648,7 +1648,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">নতুন কথোপকথন</string>
   <string name="conversation_list_fragment__open_camera_description">ক্যামেরা চালু করুন</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">আপনার হোমে ইনবক্স বিষয়ে কিছু লেখার জন্য কিছু দিন। একজন বন্ধুকে বার্তা দিয়ে শুরু করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">আপনার হোমে ইনবক্স বিষয়ে কিছু লেখার জন্য কিছু দিন। একজন বন্ধুকে বার্তা দিয়ে শুরু করুন।</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">সুরক্ষিত সেশনটি পুনরায় সেট করুন</string>
   <!--conversation_muted-->
@@ -1684,8 +1684,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ক্লিপবোর্ডের সাথে তুলনা করুন</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string>
-  <string name="reminder_header_sms_default_text">Signal কে আপনার ডিফল্ট এসএমএস অ্যাপ করতে আলতো চাপুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ডিফল্ট এসএমএস অ্যাপ হিসাবে ব্যবহার করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal কে আপনার ডিফল্ট এসএমএস অ্যাপ করতে আলতো চাপুন।</string> -->
   <string name="reminder_header_sms_import_title">সিস্টেম এসএমএস আমদানি করুন</string>
   <string name="reminder_header_sms_import_text">Signal এর এনক্রিপ্ট করা ডাটাবেস এর মধ্যে আপনার ফোনের এসএমএস বার্তাগুলি অনুলিপি করতে আলতো চাপুন।</string>
   <string name="reminder_header_push_title"> Signal বার্তা এবং কল সমূহ সক্ষম করুন</string>

@@ -1517,7 +1517,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ਨਵੀਂ ਗੱਲਬਾਤ</string>
   <string name="conversation_list_fragment__open_camera_description">ਕੈਮਰਾ ਖੋਲ੍ਹੋ</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ਆਪਣੇ ਇਨਬਾਕਸ ਨੂੰ ਕੁਝ ਲਿਖਣ ਲਈ ਕੁਝ ਲਿਖੋ. ਕਿਸੇ ਦੋਸਤ ਨੂੰ ਮੈਸੇਜ਼ ਕਰਨ ਨਾਲ ਸ਼ੁਰੂਆਤ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ਆਪਣੇ ਇਨਬਾਕਸ ਨੂੰ ਕੁਝ ਲਿਖਣ ਲਈ ਕੁਝ ਲਿਖੋ. ਕਿਸੇ ਦੋਸਤ ਨੂੰ ਮੈਸੇਜ਼ ਕਰਨ ਨਾਲ ਸ਼ੁਰੂਆਤ ਕਰੋ</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਰੀਸੈਟ ਕਰੋ</string>
   <!--conversation_muted-->
@@ -1560,8 +1560,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਅੱਜ ਖਤਮ ਹੋ ਜਾਵੇਗਾ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">ਤੁਹਾਡੇ Signal ਦਾ ਵਰਜਨ ਖਤਮ ਹੋ ਗਿਆ ਹੈ!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">ਸੁਨੇਹੇ ਹੁਣ ਸਫਲਤਾਪੂਰਵਕ ਭੇਜੇ ਨਹੀਂ ਜਾਣਗੇ. ਸਭ ਤੋਂ ਤਾਜ਼ਾ ਵਰਜਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string> -->
-  <string name="reminder_header_sms_default_title">ਡਿਫੌਲਟ SMS ਐਪ ਦੇ ਤੌਰ ਤੇ ਉਪਯੋਗ ਕਰੋ</string>
-  <string name="reminder_header_sms_default_text">Signal ਨੂੰ ਆਪਣੀ ਡਿਫੌਲਟ SMS ਐਪ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ਡਿਫੌਲਟ SMS ਐਪ ਦੇ ਤੌਰ ਤੇ ਉਪਯੋਗ ਕਰੋ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal ਨੂੰ ਆਪਣੀ ਡਿਫੌਲਟ SMS ਐਪ ਬਣਾਉਣ ਲਈ ਟੈਪ ਕਰੋ</string> -->
   <string name="reminder_header_sms_import_title">ਸਿਸਟਮ ਐਸਐਮਐਸ ਇੰਪੋਰਟ ਕਰੋ</string>
   <string name="reminder_header_sms_import_text">ਆਪਣੇ ਫੋਨ ਦੇ SMS ਸੁਨੇਹਿਆਂ ਨੂੰ Signal ਦੇ ਏਨਕ੍ਰਿਪਟ ਕੀਤੇ ਡੇਟਾਬੇਸ ਵਿੱਚ ਕਾਪੀ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ.</string>
   <string name="reminder_header_push_title">Signal ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਨੂੰ ਸਮਰੱਥ ਬਣਾਓ</string>

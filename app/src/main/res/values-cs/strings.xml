@@ -2293,7 +2293,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
   <string name="conversation_list_fragment__open_camera_description">Otevřít fotoaparát</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přátelům.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přátelům.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>
   <!--conversation_muted-->
@@ -2330,8 +2330,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Zkopírovat do schránky</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porovnat se schránkou</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string>
-  <string name="reminder_header_sms_default_text">Klepnutím nastavíte Signal jako výchozí SMS aplikaci.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Nastavit jako výchozí aplikaci pro SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Klepnutím nastavíte Signal jako výchozí SMS aplikaci.</string> -->
   <string name="reminder_header_sms_import_title">Importovat SMS ze systému</string>
   <string name="reminder_header_sms_import_text">Klepněte pro zkopírování SMS z telefonu do šifrované databáze Signal.</string>
   <string name="reminder_header_push_title">Povolit Signal zprávy a volání</string>

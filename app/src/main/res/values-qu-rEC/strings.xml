@@ -1088,7 +1088,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
 ¡Kaymi tukuylla!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Mushuk rimariy</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kikinpa chaskik ukupi ñapash kachana killkata wiñachipay. Shinashpa kanpa yupaymashiwan yallichiripay.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kikinpa chaskik ukupi ñapash kachana killkata wiñachipay. Shinashpa kanpa yupaymashiwan yallichiripay.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Kutin wakaychishpa kallarina</string>
   <!--conversation_muted-->
@@ -1130,8 +1130,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Kikinpa Signal kunanmi mawkayan. Mushukyachinkapakka kaypi llapipay.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">¡Kikinpa Signal mawkayashkami!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Chaskikunata mana alli kachayta usharinkachu. Mushukyachinkapakka kaypi llapipay.</string> -->
-  <string name="reminder_header_sms_default_title">Signal aplicacionta, killkashka SMS chaskichun churay</string>
-  <string name="reminder_header_sms_default_text">Signal aplicacionta, killkashka SMS chaskichun llapipay.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Signal aplicacionta, killkashka SMS chaskichun churay</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal aplicacionta, killkashka SMS chaskichun llapipay.</string> -->
   <string name="reminder_header_sms_import_title">SMS killkashkata sistemamanta apamuna</string>
   <string name="reminder_header_sms_import_text">Kikinpa williwillimanta SMS chaski killkashkakunata, chayshina hapinkapak, shinallata Signal ukuman yallichinkapak kaypi llapipay.</string>
   <string name="reminder_header_push_title">Signal chaskikuna shinallata kayachiykunapash ari nipay</string>

@@ -1389,7 +1389,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Obrolan ingkang enggal</string>
   <string name="conversation_list_fragment__open_camera_description">Bikak Kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sukani prakawis ingkang pribadi kangge kothak mlebetipun sampeyan. Awiti kanthi ngirimaken pesen dhateng kanca-kanca.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Sukani prakawis ingkang pribadi kangge kothak mlebetipun sampeyan. Awiti kanthi ngirimaken pesen dhateng kanca-kanca.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Atur malih sesi aman</string>
   <!--conversation_muted-->
@@ -1430,8 +1430,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Versi Signal sampeyan bakal kedaluwarsa dinten niki. Tutul kangge ngenggalaken dados versi paling enggal.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Versi Signal sampeyan sampun kedaluwarsa!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Pesen bakalan mboten saged dipunkirimaken sacara leres. Tutul kangge ngenggalaken dados versi paling enggal.</string> -->
-  <string name="reminder_header_sms_default_title">Ginakaken dados aplikasi SMS default</string>
-  <string name="reminder_header_sms_default_text">Tutul kangge ngginakaken Signal dados aplikasi SMS default.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Ginakaken dados aplikasi SMS default</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tutul kangge ngginakaken Signal dados aplikasi SMS default.</string> -->
   <string name="reminder_header_sms_import_title">Impor SMS sistem</string>
   <string name="reminder_header_sms_import_text">Tutul kangge nyalin pesen SMS ing telepon sampeyan dados database Signal ingkang dipunenkripsi.</string>
   <string name="reminder_header_push_title">Aktifaken telepon lan pesen Signal</string>

@@ -2136,7 +2136,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <string name="conversation_list_fragment__open_camera_description">Obre la càmera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcioneu alguna cosa a la safata d\'entrada perquè us escriguin. Comenceu enviant un missatge a alguna amistat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcioneu alguna cosa a la safata d\'entrada perquè us escriguin. Comenceu enviant un missatge a alguna amistat.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restableix la sessió segura</string>
   <!--conversation_muted-->
@@ -2173,8 +2173,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia al porta-retalls</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compara amb el porta-retalls</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string>
-  <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string> -->
   <string name="reminder_header_sms_import_title">Importació dels SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Premeu per copiar els missatges SMS del telèfon a la base de dades encriptada del Signal.</string>
   <string name="reminder_header_push_title">Activa els missatges i les trucades del Signal</string>

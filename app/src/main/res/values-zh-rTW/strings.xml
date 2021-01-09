@@ -2062,7 +2062,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新對話</string>
   <string name="conversation_list_fragment__open_camera_description">開啟相機</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">何不為你的收件匣添上一筆？就發個訊息給好友開始吧！</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">何不為你的收件匣添上一筆？就發個訊息給好友開始吧！</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重設安全對話</string>
   <!--conversation_muted-->
@@ -2099,8 +2099,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">設定為預設簡訊應用程式</string>
-  <string name="reminder_header_sms_default_text">輕觸將 Signal 設定為預設的簡訊應用程式。</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">設定為預設簡訊應用程式</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">輕觸將 Signal 設定為預設的簡訊應用程式。</string> -->
   <string name="reminder_header_sms_import_title">匯入系統簡訊</string>
   <string name="reminder_header_sms_import_text">按此以複製您手機中的簡訊訊息至 Signal 的加密數據庫中。</string>
   <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>

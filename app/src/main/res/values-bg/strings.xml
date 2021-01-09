@@ -1216,7 +1216,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Никак. Нищо. Нула. Нада.\nНаваксахте!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нов разговор</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Хайде да добавим нещо в пощенската кутия. Започнете като изпратите съобщение на приятел.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Започване на нова сигурна сесия</string>
   <!--conversation_muted-->
@@ -1258,8 +1258,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Вашата версия на Signal ще изтече днес. Натиснете, за да обновите до най-новата версия.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Вашата версия на Signal е изтекла!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Съобщенията няма да бъдат успешно изпращани от сега нататък. Натиснете, за да обновите до най-новата версия.</string> -->
-  <string name="reminder_header_sms_default_title">Използване като SMS програма по подразбиране</string>
-  <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Използване като SMS програма по подразбиране</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Натисни, за да направиш Signal своята SMS програма по подразбиране.</string> -->
   <string name="reminder_header_sms_import_title">Внасяне на системните SMS-и</string>
   <string name="reminder_header_sms_import_text">Натиснете, за да копирате SMS съобщенията от Вашия телефон в криптираната база данни на Signal.</string>
   <string name="reminder_header_push_title">Активирай Signal съобщения и обаждания</string>

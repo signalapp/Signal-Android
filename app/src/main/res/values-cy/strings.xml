@@ -2296,7 +2296,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Sgwrs newydd</string>
   <string name="conversation_list_fragment__open_camera_description">Agor y Camera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Rhowch rywbeth gwerth chweil yn eich blwch derbyn. Dechreuwch trwy negesu ffrind.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Rhowch rywbeth gwerth chweil yn eich blwch derbyn. Dechreuwch trwy negesu ffrind.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Ailosod sesiwn ddiogel</string>
   <!--conversation_muted-->
@@ -2333,8 +2333,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copïo i\'r clipfwrdd</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cymharu â\'r clipfwrdd</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Defnyddio fel yr ap SMS rhagosodedig</string>
-  <string name="reminder_header_sms_default_text">Tapio i wneud Signal eich ap SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Defnyddio fel yr ap SMS rhagosodedig</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tapio i wneud Signal eich ap SMS.</string> -->
   <string name="reminder_header_sms_import_title">Mewnforio SMS y system</string>
   <string name="reminder_header_sms_import_text">Tapio i gopïo negeseuon SMS eich ffôn i gronfa ddata amgryptio Signal.</string>
   <string name="reminder_header_push_title">Galluogi negeseuon a galwadau Signal</string>

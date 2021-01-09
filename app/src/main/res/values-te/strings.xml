@@ -1514,7 +1514,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">కొత్త సంభాషణ</string>
   <string name="conversation_list_fragment__open_camera_description">కెమెరా తెరువు</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">హోమ్ గురించి రాయడానికి మీ ఇన్బాక్స్ ఏదో ఇవ్వండి. స్నేహితుడికి సందేశం పంపడం ద్వారా ప్రారంభించండి.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">హోమ్ గురించి రాయడానికి మీ ఇన్బాక్స్ ఏదో ఇవ్వండి. స్నేహితుడికి సందేశం పంపడం ద్వారా ప్రారంభించండి.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">సురక్షిత  భాగాన్ని మరలా మార్చు</string>
   <!--conversation_muted-->
@@ -1556,8 +1556,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">మీ Signal వెర్షన్ను యొక్క  గడువు నేటితో తీరిపోయింది. ఇటీవల వెర్షన్ కు  నవీకరించడానికి నొక్కండి.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">మీ Signal అనువాదము గడువు ముగిసింది!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">సందేశాలు విజయవంతంగా పంపుతుంది. ఇటీవల సంస్కరణకు అప్డేట్ నొక్కండి.</string> -->
-  <string name="reminder_header_sms_default_title">డిఫాల్ట్ ఎస్ఎంఎస్ అప్లికేషన్ ని  ఉపయోగించండి</string>
-  <string name="reminder_header_sms_default_text">Signal ను  మీ వైఫల్య  యస్  యం యస్ అనువర్తనంగా చేయడానికి నొక్కండి.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">డిఫాల్ట్ ఎస్ఎంఎస్ అప్లికేషన్ ని  ఉపయోగించండి</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal ను  మీ వైఫల్య  యస్  యం యస్ అనువర్తనంగా చేయడానికి నొక్కండి.</string> -->
   <string name="reminder_header_sms_import_title">వ్యవస్థ ఎస్సెమ్మెస్ దిగుమతి</string>
   <string name="reminder_header_sms_import_text">మీ ఫోన్ లో వున్న యెస్.యం.యెస్ సందెశలను Signal యొక్క ఎన్క్రిప్టెడ్ దత్తాంశస్థానం లోకి నకలు చెయ్యలి అంటె ఇక్కడ నొక్కండి</string>
   <string name="reminder_header_push_title">  Signal సందేశాలు మరియు కాల్స్ ని   ప్రారంభించు</string>

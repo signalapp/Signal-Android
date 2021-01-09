@@ -1745,7 +1745,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">새 대화</string>
   <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">외로워 보이네요. 친구들과 이야기를 나눠보면 어떨까요?</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">외로워 보이네요. 친구들과 이야기를 나눠보면 어떨까요?</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">보안 세션 초기화</string>
   <!--conversation_muted-->
@@ -1781,8 +1781,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
-  <string name="reminder_header_sms_default_text">탭하여 Signal을 기본 SMS 앱으로 설정하세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">탭하여 Signal을 기본 SMS 앱으로 설정하세요.</string> -->
   <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
   <string name="reminder_header_sms_import_text">탭하여 휴대 전화의 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오세요.</string>
   <string name="reminder_header_push_title">Signal 메시지 및 전화 활성화</string>

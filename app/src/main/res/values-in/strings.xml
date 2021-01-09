@@ -1874,6 +1874,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Pintasan pengaturan</string>
   <string name="conversation_list_search_description">Pencarian</string>
+  <string name="conversation_list__pinned">Disematkan</string>
   <string name="conversation_list__chats">Obrolan</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Gambar Foto Kontak</string>
@@ -1883,7 +1884,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Percakapan baru</string>
   <string name="conversation_list_fragment__open_camera_description">Buka Kamera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tuliskan pesan melalui kotak pesan Anda. Mulailah dengan mengirim pesan kepada seorang kawan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tuliskan pesan melalui kotak pesan Anda. Mulailah dengan mengirim pesan kepada seorang kawan.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Setel ulang sesi aman</string>
   <!--conversation_muted-->
@@ -1917,8 +1918,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS utama</string>
-  <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS utama</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string> -->
   <string name="reminder_header_sms_import_title">Impor sistem SMS</string>
   <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan telepon Anda ke dalam basis data Signal yang terenkripsi.</string>
   <string name="reminder_header_push_title">Aktifkan pesan dan panggilan Signal</string>
@@ -2179,6 +2180,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="GroupRecipientListItem_admin">Admin</string>
   <string name="GroupRecipientListItem_deny_description">Tolak</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_what_are_legacy_groups">Apakah Grup Warisan itu?</string>
+  <string name="GroupsLearnMore_paragraph_1">Grup Warisan adalah grup yang tidak cocok dengan fitur-fitur Grup Baru seperti admin dan pembaruan grup yang lebih deskriptif.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Bagikan melalui Signal</string>
   <string name="GroupLinkBottomSheet_copy">Salin</string>

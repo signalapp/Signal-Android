@@ -727,8 +727,8 @@ gy\'olonze (%s) sintuufu.</string>
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Version yo eya Sgnal ya kugwako leero.Nyiga ode ku version empya kweyo</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Version ya Signal yo yagwaako!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Obubaka tebujjakusobla kwewereza bukungi.konakookufuna  vazoni empya</string> -->
-  <string name="reminder_header_sms_default_title">gikozese nga app yo gyofunirako obubaka</string>
-  <string name="reminder_header_sms_default_text">konako okuffula Signal app yo gyofunirako obubaka</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">gikozese nga app yo gyofunirako obubaka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">konako okuffula Signal app yo gyofunirako obubaka</string> -->
   <string name="reminder_header_sms_import_title">Yingiza system SMS</string>
   <string name="reminder_header_sms_import_text">koonako okukopa obubaka bwa sms ku kifo kyasigino awaterekebwa bwino</string>
   <string name="reminder_header_push_title">Sobozesa obubaka bwa Signal ne namasimu</string>

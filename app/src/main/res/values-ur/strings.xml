@@ -2133,7 +2133,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">نئی گفتگو</string>
   <string name="conversation_list_fragment__open_camera_description">کیمرہ کھولیں</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ھوم کے بارے میں لکھنے کیلئے اپنے کچھ ان باکس دیں۔ دوست کو پیغام سے شروع کرتے ہیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ھوم کے بارے میں لکھنے کیلئے اپنے کچھ ان باکس دیں۔ دوست کو پیغام سے شروع کرتے ہیں۔</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">محفوظ سیشن کو دوبارہ ترتیب دیں</string>
   <!--conversation_muted-->
@@ -2170,8 +2170,8 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">کلپ بورڈ کے ساتھ موازنہ کریں</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string>
-  <string name="reminder_header_sms_default_text">signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string> -->
   <string name="reminder_header_sms_import_title">ایس ایم ایس نظام درآمد کریں</string>
   <string name="reminder_header_sms_import_text">Signal  کے خفیہ کردہ ڈیٹا بیس میں اپنے فون کے ایس ایم ایس پیغامات کی کاپی کرنے کیلئے ٹیپ کریں۔ </string>
   <string name="reminder_header_push_title">Signal پیغامات اور کالز فعال کریں</string>

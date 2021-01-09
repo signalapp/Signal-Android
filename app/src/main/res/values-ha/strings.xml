@@ -1402,7 +1402,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Sabon hira</string>
   <string name="conversation_list_fragment__open_camera_description">Bude Kyamara</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Maida akwatin sakonka/ki abun yabawa. Fara ta hanyar turawa abokai sako.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Maida akwatin sakonka/ki abun yabawa. Fara ta hanyar turawa abokai sako.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Sake saita tsarin mahadin bayanai.</string>
   <!--conversation_muted-->
@@ -1444,8 +1444,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">Yau ne ranar wa\'adin sigar Signal dinka/ki. Taba domin sabunta zuwa mafi sabon siga.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">Sigar Signal dinka/ki ya zo karshen aiki!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">Za\'a daina samun nasarar aikar da sakonni. Taba domin sabunta zuwa mafi sabon sigar.</string> -->
-  <string name="reminder_header_sms_default_title">Yi amfani dashi a matsayin tanadadden manhajar SMS</string>
-  <string name="reminder_header_sms_default_text">Taba domin mayar da Signal tanadadden manhajarka/ki wajen tura sakonin SMS dinka/ki.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Yi amfani dashi a matsayin tanadadden manhajar SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Taba domin mayar da Signal tanadadden manhajarka/ki wajen tura sakonin SMS dinka/ki.</string> -->
   <string name="reminder_header_sms_import_title">Shigar da SMS din na\'ura</string>
   <string name="reminder_header_sms_import_text">Taba domin kwafa SMS din wayarka/ki zuwa shiryayyen bayanin Signal mai tsaro.</string>
   <string name="reminder_header_push_title">Karfafa kira da sakonnin Signal</string>

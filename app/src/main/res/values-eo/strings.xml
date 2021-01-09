@@ -2141,7 +2141,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova interparolo</string>
   <string name="conversation_list_fragment__open_camera_description">Malfermi la fotilon</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Donu al via ricevujo ion rakonti. Ekmesaĝu amikon!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Donu al via ricevujo ion rakonti. Ekmesaĝu amikon!</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restarigi sekuran seancon</string>
   <!--conversation_muted-->
@@ -2178,8 +2178,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopii al tondujo</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Kompari kun la tondujo</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Uzi kiel defaŭltan SMS-aplikaĵon</string>
-  <string name="reminder_header_sms_default_text">Tuŝetu, por ke Signal estu via defaŭlta SMS-aplikaĵo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Uzi kiel defaŭltan SMS-aplikaĵon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tuŝetu, por ke Signal estu via defaŭlta SMS-aplikaĵo.</string> -->
   <string name="reminder_header_sms_import_title">Importi SMS-ojn el la sistemo</string>
   <string name="reminder_header_sms_import_text">Tuŝetu por kopii viajn telefonajn SMS al ĉifrita Signal-datumbazo.</string>
   <string name="reminder_header_push_title">Ŝalti Signal-ajn mesaĝojn kaj alvokojn</string>

@@ -1410,7 +1410,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">نویں گل بات </string>
   <string name="conversation_list_fragment__open_camera_description">کیمرا کھولو</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">اپنے انباکس نوں کجھ دیو۔ کسے دوست نوں سنیہا گھل کے شروعات کرو۔&lt;/mrk&gt;</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">اپنے انباکس نوں کجھ دیو۔ کسے دوست نوں سنیہا گھل کے شروعات کرو۔&lt;/mrk&gt;</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">محفوظ سیشن نوں ری سیٹ کر دیو</string>
   <!--conversation_muted-->
@@ -1452,8 +1452,8 @@
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build_details_today">تہاڈے Signal دے ورژن دی معیاد اج ختم ہو جائے گی۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build">تہاڈے Signal دے ورژن دی معیاد ختم ہوگئی اے!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_expired_build_details">سنیہے کامیابی نال نئیں گھلے جاسکن گے۔ سب توں نویں ورژن تے اپ ڈیٹ کرن لئی بٹن دبو ۔</string> -->
-  <string name="reminder_header_sms_default_title">ڈیفالٹ SMS ایپ دے طور تے ورتو</string>
-  <string name="reminder_header_sms_default_text">Sgnal نوں اپناں ڈیفالٹ SMS ایپ بنان لئی بٹن دبو ۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">ڈیفالٹ SMS ایپ دے طور تے ورتو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Sgnal نوں اپناں ڈیفالٹ SMS ایپ بنان لئی بٹن دبو ۔</string> -->
   <string name="reminder_header_sms_import_title">درآمد سسٹم SMS</string>
   <string name="reminder_header_sms_import_text">Signal دے خفیہ کیتے ڈیٹا بیس اچ اپنے فون دے SMS سنیہے کاپی کرن لئی بٹن دبو ۔</string>
   <string name="reminder_header_push_title">Signal سنیہے تے کالاں فعال کرو</string>
