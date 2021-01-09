@@ -128,7 +128,7 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
     }
 
     if (DatabaseFactory.getInstance(application).hasTable("dependency_spec")) {
-      Log.i(TAG, "Found old constraint_spec table. Migrating data.");
+      Log.i(TAG, "Found old dependency_spec table. Migrating data.");
       migrateDependencySpecsFromPreviousDatabase(DatabaseFactory.getInstance(application).getRawDatabase(), db);
     }
   }
