@@ -3035,6 +3035,9 @@
     <!-- DeleteAccountCountryPickerFragment -->
     <string name="DeleteAccountCountryPickerFragment__search_countries">Search Countries</string>
 
+    <!-- CreateGroupActivity -->
+    <string name="CreateGroupActivity__skip">Skip</string>
+
     <!-- EOF -->
 
 </resources>

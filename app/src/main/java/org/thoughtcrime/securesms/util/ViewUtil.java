@@ -247,6 +247,22 @@ public final class ViewUtil {
     view.setPadding(padding, padding, padding, padding);
   }
 
+  public static void setPaddingStart(@NonNull View view, int padding) {
+    if (view.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR) {
+      view.setPadding(padding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
+    } else {
+      view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), padding, view.getPaddingBottom());
+    }
+  }
+
+  public static void setPaddingEnd(@NonNull View view, int padding) {
+    if (view.getLayoutDirection() != View.LAYOUT_DIRECTION_LTR) {
+      view.setPadding(padding, view.getPaddingTop(), view.getPaddingRight(), view.getPaddingBottom());
+    } else {
+      view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), padding, view.getPaddingBottom());
+    }
+  }
+
   public static boolean isPointInsideView(@NonNull View view, float x, float y) {
     int[] location = new int[2];
 
