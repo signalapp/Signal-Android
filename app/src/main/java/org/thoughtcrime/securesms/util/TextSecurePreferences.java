@@ -78,9 +78,7 @@ public class TextSecurePreferences {
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
   private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
-  private static final String PROMPTED_DEFAULT_SMS_PREF        = "pref_prompted_default_sms";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
-  private static final String PROMPTED_SHARE_PREF              = "pref_prompted_share";
   private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String UPDATE_APK_REFRESH_TIME_PREF     = "pref_update_apk_refresh_time";
@@ -890,28 +888,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, value);
   }
 
-  public static boolean hasPromptedDefaultSmsProvider(Context context) {
-    return getBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, false);
-  }
-
-  public static void setPromptedDefaultSmsProvider(Context context, boolean value) {
-    setBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, value);
-  }
-
   public static void setPromptedOptimizeDoze(Context context, boolean value) {
     setBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, value);
   }
 
   public static boolean hasPromptedOptimizeDoze(Context context) {
     return getBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, false);
-  }
-
-  public static boolean hasPromptedShare(Context context) {
-    return getBooleanPreference(context, PROMPTED_SHARE_PREF, false);
-  }
-
-  public static void setPromptedShare(Context context, boolean value) {
-    setBooleanPreference(context, PROMPTED_SHARE_PREF, value);
   }
 
   public static boolean isInterceptAllMmsEnabled(Context context) {

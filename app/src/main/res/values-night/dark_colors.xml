@@ -107,6 +107,7 @@
 
     <color name="media_keyboard_button_color">@color/core_grey_25</color>
 
+    <color name="megaphone_background_color">@color/core_grey_85</color>
     <color name="megaphone_body_text_color">@color/core_grey_25</color>
     <color name="megaphone_reactions_shade">@color/core_grey_70</color>
     <color name="megaphone_reactions_close_tint">@color/core_grey_15</color>

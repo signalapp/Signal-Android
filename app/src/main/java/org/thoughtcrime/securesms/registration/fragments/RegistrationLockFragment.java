@@ -304,6 +304,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     long startTime = System.currentTimeMillis();
     SimpleTask.run(() -> {
+      SignalStore.onboarding().clearAll();
       return ApplicationDependencies.getJobManager().runSynchronously(new StorageAccountRestoreJob(), StorageAccountRestoreJob.LIFESPAN);
     }, result -> {
       long elapsedTime = System.currentTimeMillis() - startTime;

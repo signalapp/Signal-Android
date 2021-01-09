@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/megaphone_background_color"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    app:contentPadding="0dp">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/onboarding_megaphone_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@drawable/ic_megaphone_start_group"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/onboarding_megaphone_item_button"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        tools:text="@string/Megaphones_new_group"
+        app:layout_constraintStart_toStartOf="@id/onboarding_megaphone_item_image"
+        app:layout_constraintEnd_toEndOf="@id/onboarding_megaphone_item_image"
+        app:layout_constraintTop_toBottomOf="@id/onboarding_megaphone_item_image"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/onboarding_megaphone_item_close"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        style="@style/Widget.Signal.Button.Icon.Circular.Small"
+        app:backgroundTint="@color/transparent_black_40"
+        app:icon="@drawable/ic_close_14"
+        app:iconTint="@color/core_white"
+        app:rippleColor="@color/core_ultramarine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

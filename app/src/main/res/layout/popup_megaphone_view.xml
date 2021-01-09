@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:clipChildren="false"
+      android:clipToPadding="false"
+      app:cardBackgroundColor="@color/megaphone_background_color"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="6dp"
+      app:cardPreventCornerOverlap="false"
+      app:cardUseCompatPadding="true"
+      app:contentPadding="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,52 +25,54 @@
         android:clickable="true"
         android:paddingBottom="16dp">
 
-        <ImageView
-            android:id="@+id/popup_megaphone_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerInside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+      <ImageView
+          android:id="@+id/popup_megaphone_image"
+          android:layout_width="64dp"
+          android:layout_height="64dp"
+          android:layout_marginStart="16dp"
+          android:layout_marginTop="16dp"
+          android:scaleType="centerInside"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          tools:src="@tools:sample/avatars" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/popup_megaphone_title"
-            style="@style/Signal.Text.Body"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:fontFamily="sans-serif-medium"
-            app:layout_constraintEnd_toStartOf="@id/popup_x"
-            app:layout_constraintStart_toEndOf="@id/popup_megaphone_image"
-            app:layout_constraintTop_toTopOf="@id/popup_megaphone_image"
-            tools:text="Avengers HQ Destroyed!" />
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/popup_megaphone_title"
+          style="@style/Signal.Text.Body"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="12dp"
+          android:fontFamily="sans-serif-medium"
+          app:layout_constraintEnd_toStartOf="@id/popup_x"
+          app:layout_constraintStart_toEndOf="@id/popup_megaphone_image"
+          app:layout_constraintTop_toTopOf="@id/popup_megaphone_image"
+          tools:text="Avengers HQ Destroyed!" />
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/popup_megaphone_body"
-            style="@style/Signal.Text.Preview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/megaphone_body_text_color"
-            app:layout_constraintEnd_toStartOf="@id/popup_x"
-            app:layout_constraintStart_toStartOf="@id/popup_megaphone_title"
-            app:layout_constraintTop_toBottomOf="@id/popup_megaphone_title"
-            tools:text="Where was the 'hero' Spider-Man during the battle?" />
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/popup_megaphone_body"
+          style="@style/Signal.Text.Preview"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:textColor="@color/megaphone_body_text_color"
+          app:layout_constraintEnd_toStartOf="@id/popup_x"
+          app:layout_constraintStart_toStartOf="@id/popup_megaphone_title"
+          app:layout_constraintTop_toBottomOf="@id/popup_megaphone_title"
+          tools:text="Where was the 'hero' Spider-Man during the battle?" />
 
-        <ImageView
-            android:id="@+id/popup_x"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:paddingStart="12.5dp"
-            android:paddingTop="14dp"
-            android:paddingEnd="15.5dp"
-            android:paddingBottom="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_x_20" />
+      <ImageView
+          android:id="@+id/popup_x"
+          android:layout_width="48dp"
+          android:layout_height="48dp"
+          android:paddingStart="12.5dp"
+          android:paddingTop="14dp"
+          android:paddingEnd="15.5dp"
+          android:paddingBottom="14dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_x_20" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.cardview.widget.CardView>
 
 </merge>

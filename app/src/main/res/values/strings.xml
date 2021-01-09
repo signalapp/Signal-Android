@@ -1014,6 +1014,10 @@
     <string name="Megaphones_verify_your_signal_pin">Verify your Signal PIN</string>
     <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">We\'ll occasionally ask you to verify your PIN so that you remember it.</string>
     <string name="Megaphones_verify_pin">Verify PIN</string>
+    <string name="Megaphones_get_started">Get started</string>
+    <string name="Megaphones_new_group">New group</string>
+    <string name="Megaphones_invite_friends">Invite friends</string>
+    <string name="Megaphones_use_sms">Use SMS</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -2558,7 +2562,7 @@
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
     <string name="conversation_list_fragment__open_camera_description">Open Camera</string>
-    <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Give your inbox something to write home about. Get started by messaging a friend.</string>
+    <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">No chats yet.\nGet started by messaging a friend.</string>
 
 
     <!-- conversation_secure_verified -->
@@ -2606,8 +2610,6 @@
     <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compare with clipboard</string>
 
     <!-- reminder_header -->
-    <string name="reminder_header_sms_default_title">Use as default SMS app</string>
-    <string name="reminder_header_sms_default_text">Tap to make Signal your default SMS app.</string>
     <string name="reminder_header_sms_import_title">Import system SMS</string>
     <string name="reminder_header_sms_import_text">Tap to copy your phone\'s SMS messages into Signal\'s encrypted database.</string>
     <string name="reminder_header_push_title">Enable Signal messages and calls</string>

@@ -480,6 +480,14 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
     </style>
 
+    <style name="Widget.Signal.Button.Icon.Circular.Small">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="iconSize">10dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Button.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

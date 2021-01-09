@@ -5,11 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="14dp"
     android:clipChildren="false"
     android:clipToPadding="false"
     tools:parentTag="android.widget.FrameLayout">
 
+  <androidx.cardview.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:clipChildren="false"
+      android:clipToPadding="false"
+      app:cardBackgroundColor="@color/megaphone_background_color"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="6dp"
+      app:cardPreventCornerOverlap="false"
+      app:cardUseCompatPadding="true"
+      app:contentPadding="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,69 +31,70 @@
           android:id="@+id/reactions_megaphone_banner_background"
           android:layout_width="0dp"
           android:layout_height="125dp"
+          android:alpha="0.5"
           android:background="@color/megaphone_reactions_shade"
-          android:scaleType="centerCrop"
           android:paddingStart="16dp"
           android:paddingEnd="16dp"
-          android:alpha="0.5"
-          app:srcCompat="@drawable/reactions_megaphone_background"
-          app:layout_constraintStart_toStartOf="parent"
+          android:scaleType="centerCrop"
           app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="parent"/>
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/reactions_megaphone_background" />
 
       <com.airbnb.lottie.LottieAnimationView
           android:id="@+id/reactions_megaphone_animation"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          app:lottie_rawRes="@raw/lottie_reactions_megaphone"
-          app:lottie_autoPlay="true"
-          app:lottie_repeatCount="3"
-          app:layout_constraintStart_toStartOf="@id/reactions_megaphone_banner_background"
-          app:layout_constraintEnd_toEndOf="@id/reactions_megaphone_banner_background"
-          app:layout_constraintTop_toTopOf="@id/reactions_megaphone_banner_background"
           app:layout_constraintBottom_toBottomOf="@id/reactions_megaphone_banner_background"
-          tools:layout_width="200dp"
-          tools:layout_height="50dp"/>
+          app:layout_constraintEnd_toEndOf="@id/reactions_megaphone_banner_background"
+          app:layout_constraintStart_toStartOf="@id/reactions_megaphone_banner_background"
+          app:layout_constraintTop_toTopOf="@id/reactions_megaphone_banner_background"
+          app:lottie_autoPlay="true"
+          app:lottie_rawRes="@raw/lottie_reactions_megaphone"
+          app:lottie_repeatCount="3"
+          tools:layout_height="50dp"
+          tools:layout_width="200dp" />
 
       <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/reactions_megaphone_x"
           android:layout_width="46dp"
           android:layout_height="46dp"
+          android:background="?selectableItemBackgroundBorderless"
           android:padding="13dp"
           android:tint="@color/megaphone_reactions_close_tint"
-          android:background="?selectableItemBackgroundBorderless"
-          app:srcCompat="@drawable/ic_x"
           app:layout_constraintEnd_toEndOf="@id/reactions_megaphone_banner_background"
-          app:layout_constraintTop_toTopOf="@id/reactions_megaphone_banner_background"/>
+          app:layout_constraintTop_toTopOf="@id/reactions_megaphone_banner_background"
+          app:srcCompat="@drawable/ic_x" />
 
       <TextView
           android:id="@+id/reactions_megaphone_title"
+          style="@style/Signal.Text.Body"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="16dp"
-          android:layout_marginEnd="16dp"
           android:layout_marginTop="14dp"
-          style="@style/Signal.Text.Body"
+          android:layout_marginEnd="16dp"
           android:fontFamily="sans-serif-medium"
           android:text="@string/Megaphones_introducing_reactions"
-          app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/reactions_megaphone_banner_background" />
 
       <TextView
           android:id="@+id/reactions_megaphone_body"
+          style="@style/Signal.Text.Preview"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="16dp"
           android:layout_marginEnd="16dp"
-          android:textColor="@color/megaphone_body_text_color"
-          style="@style/Signal.Text.Preview"
           android:text="@string/Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel"
-          app:layout_constraintStart_toStartOf="parent"
+          android:textColor="@color/megaphone_body_text_color"
           app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/reactions_megaphone_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+  </androidx.cardview.widget.CardView>
 
 </merge>

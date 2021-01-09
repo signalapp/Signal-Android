@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -227,6 +228,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
 
   private void handleSuccess() {
     cancelSpinning(pinButton);
+    SignalStore.onboarding().clearAll();
 
     Activity activity = requireActivity();
 
