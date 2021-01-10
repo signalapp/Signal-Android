@@ -12,6 +12,7 @@
     </style>
 
     <style name="Signal.Text.Headline.Registration">
+        <item name="android:textSize">@dimen/registration_headline_text</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
