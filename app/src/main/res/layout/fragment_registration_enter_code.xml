@@ -88,6 +88,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/verify_header" />
 
+            <LinearLayout
+                android:id="@+id/cell_service_warning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:alpha="0"
+                android:background="@drawable/registration_no_cell_service_warning_border"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="@string/RegistrationActivity_make_sure_your_phone_has_a_cellular_signal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/no_code"
+                tools:alpha="1"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_margin="2dp"
+                    android:background="@drawable/ic_error_outline_14_ultramarine"
+                    android:importantForAccessibility="no" />
+
+                <TextView
+                    style="@style/Signal.Text.Body.Registration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/RegistrationActivity_make_sure_your_phone_has_a_cellular_signal"
+                    android:textAlignment="center"
+                    android:textColor="@color/core_ultramarine"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import android.animation.Animator;
 import android.os.Bundle;
+import android.telephony.PhoneStateListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public final class EnterCodeFragment extends BaseRegistrationFragment {
+public final class EnterCodeFragment extends BaseRegistrationFragment
+                                     implements SignalStrengthPhoneStateListener.Callback
+{
 
   private static final String TAG = Log.tag(EnterCodeFragment.class);
 
@@ -47,7 +51,10 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
   private CallMeCountDownView     callMeCountDown;
   private View                    wrongNumber;
   private View                    noCodeReceivedHelp;
+  private View                    serviceWarning;
   private boolean                 autoCompleting;
+
+  private PhoneStateListener signalStrengthListener;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,6 +74,9 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
     callMeCountDown      = view.findViewById(R.id.call_me_count_down);
     wrongNumber          = view.findViewById(R.id.wrong_number);
     noCodeReceivedHelp   = view.findViewById(R.id.no_code);
+    serviceWarning       = view.findViewById(R.id.cell_service_warning);
+
+    signalStrengthListener = new SignalStrengthPhoneStateListener(this, this);
 
     connectKeyboard(verificationCodeView, keyboard);
 
@@ -318,5 +328,41 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
                                    SupportEmailUtil.getSupportEmailAddress(requireContext()),
                                    getString(R.string.RegistrationActivity_code_support_subject),
                                    body);
+  }
+
+  @Override
+  public void onNoCellSignalPresent() {
+    if (serviceWarning.getVisibility() == View.VISIBLE) {
+      return;
+    }
+    serviceWarning.setVisibility(View.VISIBLE);
+    serviceWarning.animate()
+                  .alpha(1)
+                  .setListener(null)
+                  .start();
+
+    scrollView.postDelayed(() -> {
+      if (serviceWarning.getVisibility() == View.VISIBLE) {
+        scrollView.smoothScrollTo(0, serviceWarning.getBottom());
+      }
+    }, 1000);
+  }
+
+  @Override
+  public void onCellSignalPresent() {
+    if (serviceWarning.getVisibility() != View.VISIBLE) {
+      return;
+    }
+    serviceWarning.animate()
+                  .alpha(0)
+                  .setListener(new Animator.AnimatorListener() {
+                    @Override public void onAnimationEnd(Animator animation) {
+                      serviceWarning.setVisibility(View.GONE);
+                    }
+                    @Override public void onAnimationStart(Animator animation) {}
+                    @Override public void onAnimationCancel(Animator animation) {}
+                    @Override public void onAnimationRepeat(Animator animation) {}
+                  })
+                  .start();
   }
 }
