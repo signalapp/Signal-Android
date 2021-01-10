@@ -81,7 +81,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
   }
 
   @Override
-  protected void onPostSubmitList() {
+  protected void onPostSubmitList(int conversationCount) {
     list.setVisibility(View.VISIBLE);
 
     if (emptyState.resolved()) {
@@ -147,6 +147,11 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
         DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
+  }
+
+  @Override
+  void updateEmptyState(boolean isConversationEmpty) {
+    // Do nothing
   }
 }
 

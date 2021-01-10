@@ -139,7 +139,7 @@
       android:clipToPadding="false"
       android:nextFocusDown="@+id/fab"
       android:nextFocusForward="@+id/fab"
-      android:paddingBottom="150dp"
+      android:paddingBottom="160dp"
       android:scrollbars="vertical"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@id/reminder"
