@@ -134,6 +134,8 @@ public class RecipientDatabase extends Database {
   private static final String IDENTITY_STATUS          = "identity_status";
   private static final String IDENTITY_KEY             = "identity_key";
 
+  private static final String SQLITE_COLLATE_NOCASE = "COLLATE NOCASE";
+
   private static final class Capabilities {
     static final int BIT_LENGTH = 2;
 
@@ -2093,7 +2095,9 @@ public class RecipientDatabase extends Database {
       args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", Recipient.self().getId().serialize() };
     }
 
-    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
+    String   orderBy   = SORT_NAME + " " + SQLITE_COLLATE_NOCASE + ", " + SYSTEM_DISPLAY_NAME + " "
+            + SQLITE_COLLATE_NOCASE + ", " + SEARCH_PROFILE_NAME + " " + SQLITE_COLLATE_NOCASE
+            + ", " + USERNAME + " " + SQLITE_COLLATE_NOCASE + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -2119,7 +2123,9 @@ public class RecipientDatabase extends Database {
       args       = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query, String.valueOf(Recipient.self().getId().toLong()) };
     }
 
-    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SEARCH_PROFILE_NAME + ", " + PHONE;
+    String   orderBy   = SORT_NAME + " " + SQLITE_COLLATE_NOCASE + ", " + SYSTEM_DISPLAY_NAME + " "
+            + SQLITE_COLLATE_NOCASE + ", " + SEARCH_PROFILE_NAME + " " + SQLITE_COLLATE_NOCASE
+            + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -2131,7 +2137,7 @@ public class RecipientDatabase extends Database {
                          SYSTEM_DISPLAY_NAME + " NOT NULL AND " +
                          "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL)";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
-    String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
+    String   orderBy   = SYSTEM_DISPLAY_NAME + " " + SQLITE_COLLATE_NOCASE + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -2150,7 +2156,7 @@ public class RecipientDatabase extends Database {
                            SYSTEM_DISPLAY_NAME + " GLOB ?" +
                          ")";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
-    String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
+    String   orderBy   = SYSTEM_DISPLAY_NAME + " " + SQLITE_COLLATE_NOCASE  + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
