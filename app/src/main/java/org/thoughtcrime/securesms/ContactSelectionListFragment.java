@@ -448,8 +448,11 @@ public final class ContactSelectionListFragment extends LoggingFragment
           swipeRefresh.setVisibility(View.VISIBLE);
           reset();
         } else {
-          Toast.makeText(getContext(), R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection, Toast.LENGTH_LONG).show();
-          initializeNoContactsPermission();
+          Context context = getContext();
+          if (context != null) {
+            Toast.makeText(getContext(), R.string.ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection, Toast.LENGTH_LONG).show();
+            initializeNoContactsPermission();
+          }
         }
       }
     }.execute();
