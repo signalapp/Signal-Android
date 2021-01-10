@@ -739,6 +739,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Päivitä Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Yhdellä tai useammalla linkitetyllä laitteellasi on Signal-versio, joka ei tue ryhmälinkkejä. Päivitä linkitettyjen laitteidesi sovellukset liittyäksesi tähän ryhmään.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ryhmälinkki ei ole kelvollinen</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kutsu ystäviä</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Verkkovirhe.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lisää \"%1$s\" ryhmään?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Hylkää pyyntö käyttäjältä \"%1$s\"?</string>
@@ -836,6 +839,9 @@
   <string name="Megaphones_verify_your_signal_pin">Varmenna Signal PIN-koodisi</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Tulemme toisinaan pyytämään sinua varmentamaan PIN-koodisi, jotta muistat sen.</string>
   <string name="Megaphones_verify_pin">Varmenna PIN</string>
+  <string name="Megaphones_get_started">Aloita</string>
+  <string name="Megaphones_new_group">Uusi ryhmä</string>
+  <string name="Megaphones_invite_friends">Kutsu ystäviä</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
@@ -1623,6 +1629,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_join_call">Liity puheluun</string>
   <string name="ConversationUpdateItem_return_to_call">Palaa puheluun</string>
   <string name="ConversationUpdateItem_call_is_full">Puhelu on täynnä</string>
+  <string name="ConversationUpdateItem_invite_friends">Kutsu ystäviä</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Pelaa … Tauko</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
@@ -2088,7 +2095,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
   <string name="conversation_list_fragment__open_camera_description">Avaa kamera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Anna postilaatikollesi jotain, mistä se voisi olla ylpeä. Aloita lähettämällä viesti ystävälle.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Alusta suojattu istunto</string>
   <!--conversation_muted-->
@@ -2125,8 +2131,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopioi leikepöydälle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vertaa leikepöytään</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Käytä oletuksena tekstiviesteille?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Napauta, jos haluat tehdä Signalista oletustekstiviestisovelluksesi.</string> -->
   <string name="reminder_header_sms_import_title">Tuo järjestelmän tekstiviestit</string>
   <string name="reminder_header_sms_import_text">Napauta, jos haluat kopioida puhelimesi tekstiviestit Signalin salattuun tietokantaan.</string>
   <string name="reminder_header_push_title">Ota käyttöön Signal-viestit ja -puhelut</string>
@@ -2488,5 +2492,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeleteAccountFragment__launch_app_settings">Avaa sovelluksen asetukset</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Hae maa</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Ohita</string>
   <!--EOF-->
 </resources>

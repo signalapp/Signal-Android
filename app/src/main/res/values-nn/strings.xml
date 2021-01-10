@@ -604,6 +604,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="AddGroupDetailsFragment__create_group">Lag gruppe</string>
   <string name="AddGroupDetailsFragment__create">Opprett</string>
   <string name="AddGroupDetailsFragment__members">Medlemmar</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Du kan legga til eller invitera vennar etter at du har oppretta denne gruppa.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenamn (krevst)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Gruppenamn (valfritt)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Dette feltet er påkravd.</string>
@@ -772,6 +773,15 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Ei eller fleire av dei lenka einingane dine køyrer ei utgåve av Signal som ikkje støtter gruppelenker. Oppdater Signal på dei lenka einingane dine for å bli med i gruppa.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelenka er ugyldig</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Inviter vennar</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Del ei lenke med vennar for å la dei enkelt bli med i gruppa.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Skru på og del lenke</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Del lenke</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Klarte ikkje skru på gruppelenka. Prøv igjen seinare.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Fekk ein nettverksfeil.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har ikkje rett til å skru på gruppelenka. Spør ein administrator.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du er ikkje medlem i gruppa no.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Legg til «%1$s» i gruppa?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Avslå førespurnad frå «%1$s»?</string>
@@ -869,6 +879,10 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="Megaphones_verify_your_signal_pin">Godkjenn Signal-PIN-koden din</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Me vil innimellom be deg om å stadfesta PIN-koden din slik at du hugsar han.</string>
   <string name="Megaphones_verify_pin">Stadfest PIN-kode</string>
+  <string name="Megaphones_get_started">Kom i gang</string>
+  <string name="Megaphones_new_group">Ny gruppe</string>
+  <string name="Megaphones_invite_friends">Inviter vennar</string>
+  <string name="Megaphones_use_sms">Bruk SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
@@ -939,6 +953,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du oppretta gruppa.</string>
   <string name="MessageRecord_group_updated">Gruppe oppdatert.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Inviter vennar til denne gruppa med ei gruppelenke</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Du la til %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s la til %2$s</string>
@@ -1681,6 +1696,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ConversationUpdateItem_join_call">Bli med i samtalen</string>
   <string name="ConversationUpdateItem_return_to_call">Tilbake til samtalen</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fylt opp</string>
+  <string name="ConversationUpdateItem_invite_friends">Inviter vennar</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spel … pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -2149,7 +2165,8 @@ Du er à jour!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Opna kamera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gje innboksen din noko å skriva heim om. Kom i gang ved å melda med ein venn.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ingen samtalar enno.
+Kom i gang ved å senda ei melding til ein venn.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2186,8 +2203,6 @@ Du er à jour!</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Samanlikn med utklippstavla</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Bruk som standard SMS-program</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Trykk for å gjera Signal til standard SMS-program.</string> -->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiera telefonen sin SMS-meldingar til Signal sin krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldingar og -samtalar</string>
@@ -2573,5 +2588,7 @@ Du er à jour!</string>
   <string name="DeleteAccountFragment__launch_app_settings">Opna App-innstillingar</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Søk etter land</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Hopp over</string>
   <!--EOF-->
 </resources>

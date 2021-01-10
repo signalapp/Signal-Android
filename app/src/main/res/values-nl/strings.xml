@@ -769,6 +769,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal bijwerken</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Een of meerdere van je gekoppelde apparaten gebruikt een versie van Signal die geen groepsverwijzingen ondersteunt. Werk Signal op die apparaten bij om lid te worden van deze groep.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ongeldige groepsverwijzing</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Kennissen uitnodigen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Er is een netwerkfout opgetreden.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” toevoegen aan de groep?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Verzoek van “%1$s” afwijzen?</string>
@@ -866,6 +869,9 @@
   <string name="Megaphones_verify_your_signal_pin">Weet je je Signal-pincode nog?</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Signal vraagt je af en toe of je je pincode nog weet, zodat je je pincode goed onthoudt.</string>
   <string name="Megaphones_verify_pin">Pincode bevestigen</string>
+  <string name="Megaphones_get_started">Aan de slag</string>
+  <string name="Megaphones_new_group">Nieuwe groep</string>
+  <string name="Megaphones_invite_friends">Kennissen uitnodigen</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -1681,6 +1687,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConversationUpdateItem_join_call">Aan oproep deelnemen</string>
   <string name="ConversationUpdateItem_return_to_call">Naar de oproep terugkeren</string>
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
+  <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
@@ -2148,7 +2155,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nieuw gesprek</string>
   <string name="conversation_list_fragment__open_camera_description">Camera openen</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Geef je postvak iets om over naar huis te schrijven. Begin door een vriend of kennis een bericht te zenden.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Beveiligde sessie opnieuw instellen</string>
   <!--conversation_muted-->
@@ -2185,8 +2191,6 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiëren naar klembord</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Vergelijken met klembord</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Als standaard sms-app gebruiken</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tik hier om van Signal je standaard sms-app te maken.</string> -->
   <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
   <string name="reminder_header_sms_import_text">Tik hier om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Signal.</string>
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
@@ -2571,5 +2575,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Land zoeken</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Overslaan</string>
   <!--EOF-->
 </resources>

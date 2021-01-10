@@ -849,6 +849,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">מכשיר מקושר אחד או יותר שלך מריצים גרסה של Signal שאינה תומכת בקישורי קבוצה. עדכן את Signal במכשירים המקושרים שלך כדי להצטרף אל קבוצה זו.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">הזמן חברים</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">לדחות בקשה מאת ”%1$s“?</string>
@@ -958,6 +961,9 @@
   <string name="Megaphones_verify_your_signal_pin">וודא את Signal PIN שלך</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">נבקש ממך מדי פעם לוודא את ה־PIN שלך כך שתזכור אותו.</string>
   <string name="Megaphones_verify_pin">וודא PIN</string>
+  <string name="Megaphones_get_started">התחל</string>
+  <string name="Megaphones_new_group">קבוצה חדשה</string>
+  <string name="Megaphones_invite_friends">הזמן חברים</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -1813,6 +1819,7 @@
   <string name="ConversationUpdateItem_join_call">הצטרף לשיחה</string>
   <string name="ConversationUpdateItem_return_to_call">חזור לשיחה</string>
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
+  <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -2294,7 +2301,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבה שלך משהו לכתוב עליו בית. התחל ע״י שליחת הודעה לחבר.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">אפס שיח מאובטח</string>
   <!--conversation_muted-->
@@ -2331,8 +2337,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string> -->
   <string name="reminder_header_sms_import_title">ייבא מסרוני מערכת</string>
   <string name="reminder_header_sms_import_text">הקש כדי להעתיק את הודעות המסרונים של הטלפון שלך לתוך מסד הנתונים המוצפן של Signal.</string>
   <string name="reminder_header_push_title">אפשר הודעות ושיחות של Signal</string>
@@ -2735,5 +2739,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">פתח הגדרות יישום</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">חפש מדינות</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">דלג</string>
   <!--EOF-->
 </resources>

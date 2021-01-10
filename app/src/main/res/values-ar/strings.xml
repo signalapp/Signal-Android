@@ -932,6 +932,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قم بتحديث Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">تُشغِّل إحدى أجهزتك المرتبطة إصدار Signal لا يدعم وصلات المجموعات. يُرجى تحديث Signal على أجهزتك المرتبطة للانضمام إلى هذه المجموعة.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">وصلة المجموعة غير صالحة</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">دعوة الأصدقاء</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">إضافة \"%1$s\" إلى المجموعة ؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رفض طلب \"%1$s\" ؟</string>
@@ -1053,6 +1056,9 @@
   <string name="Megaphones_verify_your_signal_pin">إثبات الرقم التعريفي الشخصي ل Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">قد نسألك أحيانا للتحقق من رقمك التعريفي الشخصي لكي تتذكره.</string>
   <string name="Megaphones_verify_pin">التحقق من الرقم التعريفي الشخصي</string>
+  <string name="Megaphones_get_started">لنبدأ</string>
+  <string name="Megaphones_new_group">مجموعة جديدة</string>
+  <string name="Megaphones_invite_friends">دعوة الأصدقاء</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal جارية</string>
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
@@ -1946,6 +1952,7 @@
   <string name="ConversationUpdateItem_join_call">الانضمام للمكالمة</string>
   <string name="ConversationUpdateItem_return_to_call">العودة للمكالمة</string>
   <string name="ConversationUpdateItem_call_is_full">المكالمة ممتلئة</string>
+  <string name="ConversationUpdateItem_invite_friends">دعوة الأصدقاء</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">شغّل … توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
@@ -2445,7 +2452,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">محادثة جديدة</string>
   <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ابدأي أو ابدأ محادثات مع أصدقائك. </string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">إعادة ضبط جلسة آمنة</string>
   <!--conversation_muted-->
@@ -2482,8 +2488,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">الاستخدام كالتطبيق الافتراضي لرسائل SMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">انقر لجعل Signal التطبيق الافتراضي لرسائل SMS.</string> -->
   <string name="reminder_header_sms_import_title">استيراد رسائل SMS من النظام</string>
   <string name="reminder_header_sms_import_text">انقر لنسخ رسائل SMS من على الهاتف إلى قاعدة بيانات Signal المشفرة.</string>
   <string name="reminder_header_push_title">تفعيل رسائل ومكالمات Signal</string>
@@ -2904,5 +2908,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">إعدادات تشغيل التطبيق</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">البحث في البلدان</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">تخطّي</string>
   <!--EOF-->
 </resources>

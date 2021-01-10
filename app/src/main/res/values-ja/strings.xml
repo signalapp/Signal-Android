@@ -726,6 +726,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signalをアップデート</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">リンク済み端末で使用中のSignalがグループリンクをサポートしていません。このグループに参加するには、リンク済み端末のSignalをアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">グループリンクが正しくありません</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">友達を招待</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">「%1$s」をこのグループに追加しますか？</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">「%1$s」からの申請を拒否しますか？</string>
@@ -817,6 +820,9 @@
   <string name="Megaphones_verify_your_signal_pin">Signal PINを確認</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PINを忘れないよう、時々確認を行います。</string>
   <string name="Megaphones_verify_pin">PINの確認</string>
+  <string name="Megaphones_get_started">始めましょう</string>
+  <string name="Megaphones_new_group">新規グループ</string>
+  <string name="Megaphones_invite_friends">友達を招待</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を接続しています</string>
@@ -1599,6 +1605,7 @@
   <string name="ConversationUpdateItem_join_call">通話に参加する</string>
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
+  <string name="ConversationUpdateItem_invite_friends">友達を招待</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -2056,7 +2063,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新しい会話</string>
   <string name="conversation_list_fragment__open_camera_description">カメラを開く</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">友達にメッセージを送って始めよう！</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">セキュアセッションをリセット</string>
   <!--conversation_muted-->
@@ -2093,8 +2099,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">クリップボードにコピー</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">クリップボードと比較</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">既定のSMSアプリにする</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">タップしてSignalを規定のSMSアプリにします。</string> -->
   <string name="reminder_header_sms_import_title">システムSMSのインポート</string>
   <string name="reminder_header_sms_import_text">タップしてこの電話のSMSメッセージをSignalの暗号化されたデータベースにコピーします。</string>
   <string name="reminder_header_push_title">Signalメッセージと通話の有効化</string>
@@ -2469,5 +2473,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">アプリ設定を開く</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">国を検索します</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">スキップする</string>
   <!--EOF-->
 </resources>

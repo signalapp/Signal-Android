@@ -420,7 +420,7 @@
   <string name="DonateMegaphone_donate">Spenden</string>
   <string name="DonateMegaphone_no_thanks">Nein danke</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Einführung von Gruppenanrufen</string>
+  <string name="GroupCallingMegaphone__introducing_group_calls">Neu: Gruppenanrufe</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Öffne eine Gruppe neuen Typs, um einen kostenlosen und verschlüsselten Gruppenanruf zu starten</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für Betrieb ohne Google-Play-Dienste optimieren</string>
@@ -519,7 +519,7 @@
     <item quantity="one">Mitglied hinzufügen</item>
     <item quantity="other">Mitglieder hinzufügen</item>
   </plurals>
-  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nein, danke</string>
+  <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nein danke</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Mitglied hinzufügen?</item>
@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Gruppe erstellen</string>
   <string name="AddGroupDetailsFragment__create">Erstellen</string>
   <string name="AddGroupDetailsFragment__members">Mitglieder</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Nachdem diese Gruppe erstellt wurde, kannst du Freunde hinzufügen oder einladen.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppenname (erforderlich)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Gruppenname (optional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Dieses Feld ist erforderlich.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal aktualisieren</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mindestens ein gekoppeltes Gerät verwendet eine Signal-Version, die keine Gruppen-Links unterstützt. Aktualisiere Signal auf deinen gekoppelten Geräten, um dieser Gruppe beizutreten.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Freunde einladen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile eine Link mit Freunden, damit sie dieser Gruppe einfacher beitreten können.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Link aktivieren und teilen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Link teilen</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Gruppen-Link kann nicht aktiviert werden. Bitte versuche es später erneut.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Dir fehlen die für das Aktivieren des Gruppen-Links erforderlichen Rechte. Bitte frag einen Admin.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du bist derzeit kein Gruppenmitglied.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">%1$s zur Gruppe hinzufügen?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Anfrage von %1$s ablehnen?</string>
@@ -858,12 +868,16 @@
   <string name="MediaOverviewActivity_sent_by_s_to_s">Von %1$s an %2$s gesendet</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Von dir an %1$s gesendet</string>
   <!--Megaphones-->
-  <string name="Megaphones_introducing_reactions">Einführung von Reaktionen</string>
+  <string name="Megaphones_introducing_reactions">Neu: Reaktionen</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Tippe länger auf eine Nachricht, um schnell deine Reaktion mitzuteilen.</string>
   <string name="Megaphones_remind_me_later">Später erinnern</string>
   <string name="Megaphones_verify_your_signal_pin">Überprüfung deiner Signal-PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Wir fragen dich gelegentlich nach deiner PIN, damit du sie nicht vergisst.</string>
   <string name="Megaphones_verify_pin">PIN überprüfen</string>
+  <string name="Megaphones_get_started">Leg los</string>
+  <string name="Megaphones_new_group">Neue Gruppe</string>
+  <string name="Megaphones_invite_friends">Freunde einladen</string>
+  <string name="Megaphones_use_sms">SMS verwenden</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du hast die Gruppe erstellt.</string>
   <string name="MessageRecord_group_updated">Gruppe aktualisiert.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Lade mit einem Gruppen-Link Freunde zu dieser Gruppe ein.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Du hast %1$s hinzugefügt.</string>
   <string name="MessageRecord_s_added_s">%1$s hat %2$s hinzugefügt.</string>
@@ -1245,7 +1260,7 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">»%1$s« ist blockiert</string>
   <string name="CallParticipantView__more_info">Mehr Details</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Weder wirst du Audio- oder Videodaten dieses Teilnehmers empfangen, noch wird er deine empfangen.</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Weder du noch dieser Teilnehmer werden gegenseitig Audio- oder Videodaten empfangen.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Audio- &amp; Videodaten von %1$s können nicht empfangen werden</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Audio- und Videodaten von %1$s können nicht empfangen werden</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dies kann daran liegen, dass der Teilnehmer die Änderung deiner Sicherheitsnummer nicht verifiziert hat, ein Problem mit dessen Gerät besteht oder er dich blockiert.</string>
@@ -1666,6 +1681,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConversationUpdateItem_join_call">Anruf beitreten</string>
   <string name="ConversationUpdateItem_return_to_call">Zurück zum Anruf</string>
   <string name="ConversationUpdateItem_call_is_full">Anruf ist voll</string>
+  <string name="ConversationUpdateItem_invite_friends">Freunde einladen</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
@@ -2131,7 +2147,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
   <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreib einem Freund.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Unterhaltungen.\nLeg los und schreib einem Freund.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Verschlüsselung neu starten</string>
   <!--conversation_muted-->
@@ -2168,8 +2184,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">In Zwischenablage kopieren</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mit Zwischenablage vergleichen</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Als Standard-SMS-App verwenden</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Antippen, um Signal als Standard-SMS-App zu verwenden.</string> -->
   <string name="reminder_header_sms_import_title">System-SMS importieren</string>
   <string name="reminder_header_sms_import_text">Antippen, um auf deinem Telefon gespeicherte SMS-Nachrichten in die verschlüsselte Datenbank von Signal zu importieren.</string>
   <string name="reminder_header_push_title">Signal-Nachrichten und ‑Anrufe aktivieren</string>
@@ -2209,7 +2223,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
   <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
   <string name="InsightsDashboardFragment__send">Senden</string>
-  <string name="InsightsModalFragment__title">Einführung einer Statistik</string>
+  <string name="InsightsModalFragment__title">Neu: Statistiken</string>
   <string name="InsightsModalFragment__description">Finde heraus, wie viele deiner ausgehenden Nachrichten verschlüsselt versendet wurden, und lade dann neue Kontakte ein, um deinen Signal-Prozentwert zu erhöhen.</string>
   <string name="InsightsModalFragment__view_insights">Statistik anzeigen</string>
   <string name="FirstInviteReminder__title">Zu Signal einladen</string>
@@ -2246,7 +2260,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Wiederhole deine PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PIN wird erstellt …</string>
   <!--KbsSplashFragment-->
-  <string name="KbsSplashFragment__introducing_pins">Einführung von PINs</string>
+  <string name="KbsSplashFragment__introducing_pins">Neu: PINs</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="KbsSplashFragment__learn_more">Mehr erfahren</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registrierungssperre = PIN</string>
@@ -2306,7 +2320,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsMegaphone__create_a_pin">Erstelle eine PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs halten deine bei Signal gespeicherten Informationen verschlüsselt.</string>
   <string name="KbsMegaphone__create_pin">PIN erstellen</string>
-  <string name="KbsMegaphone__introducing_pins">Einführung von PINs</string>
+  <string name="KbsMegaphone__introducing_pins">Neu: PINs</string>
   <string name="KbsMegaphone__update_pin">PIN aktualisieren</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Wir erinnern dich später. Das Erstellen einer PIN wird in %1$d Tagen zwingend erforderlich.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Wir erinnern dich später. Das Bestätigen deiner PIN wird in %1$d Tagen zwingend erforderlich.</string>
@@ -2550,9 +2564,11 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="DeleteAccountFragment__are_you_sure">Möchtest du dein Nutzerkonto wirklich löschen?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dies löscht dein Signal-Konto und setzt die App in ihren Ursprungszustand zurück. Die App wird nach Abschluss des Vorgangs geschlossen.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Nutzerkonto konnte nicht gelöscht werden. Besteht eine Netzverbindung?</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In den Androids App-Einstellungen kannst du diese manuell löschen.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Die lokalen Daten konnten nicht gelöscht werden. In Androids App-Einstellungen kannst du sie manuell löschen.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-Einstellungen öffnen</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Länder suchen</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Überspringen</string>
   <!--EOF-->
 </resources>

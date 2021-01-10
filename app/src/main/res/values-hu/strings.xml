@@ -600,6 +600,7 @@
   <string name="AddGroupDetailsFragment__create_group">Csoport létrehozása</string>
   <string name="AddGroupDetailsFragment__create">Létrehozás</string>
   <string name="AddGroupDetailsFragment__members">Tagok</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">A csoport létrehozását követően is meghívhatod vagy hozzáadhatod barátaidat.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Csoport neve (kötelező)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Csoport neve (opcionális)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">A mező kitöltése kötelező.</string>
@@ -768,6 +769,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal frissítése</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Egy vagy több párosított eszközöd a Signal olyan verzióját használja, amely nem támogatja a csoporthivatkozásokat. A belépéshez frissítsd Signalt párosított eszközeiden!</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">A csoporthivatkozás érvénytelen</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Barátok meghívása</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Egy közvetlen hivatkozás megosztásával barátaid gyorsan csatlakozhatnak ehhez a csoporthoz.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Hivatkozás engedélyezése és megosztása</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Hivatkozás megosztása</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nem sikerült engedélyezni a csoporthivatkozást. Kérlek próbáld újra később!</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nincs jogosultságod engedélyezni a csoporthivatkozást. Jelezd igényedet egy adminisztrátornak!</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Jelenleg nem vagy a csoport tagja.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" hozzáadása a csoporthoz?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kérésének elutasítása?</string>
@@ -865,6 +875,10 @@
   <string name="Megaphones_verify_your_signal_pin">Signal PIN kód hitelesítése</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Időnként megkérünk PIN kódod hitelesítésére, hogy biztosan ne felejtsd el.</string>
   <string name="Megaphones_verify_pin">PIN hitelesítése</string>
+  <string name="Megaphones_get_started">Kezdés</string>
+  <string name="Megaphones_new_group">Új csoport</string>
+  <string name="Megaphones_invite_friends">Barátok meghívása</string>
+  <string name="Megaphones_use_sms">SMS használata</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>
@@ -935,6 +949,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Létrehoztad a csoportot.</string>
   <string name="MessageRecord_group_updated">Csoport frissítve. </string>
+  <string name="MessageRecord_invite_friends_to_this_group">Barátok meghívása ebbe a csoportba csoporthivatkozás használatával</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Hozzáadtad %1$s-t.</string>
   <string name="MessageRecord_s_added_s">%1$s hozzáadta %2$s-t.</string>
@@ -1680,6 +1695,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ConversationUpdateItem_join_call">Belépés a hívásba</string>
   <string name="ConversationUpdateItem_return_to_call">Vissza a híváshoz</string>
   <string name="ConversationUpdateItem_call_is_full">A hívás betelt</string>
+  <string name="ConversationUpdateItem_invite_friends">Barátok meghívása</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Lejátszás … Szünet</string>
   <string name="audio_view__download_accessibility_description">Letöltés</string>
@@ -2145,7 +2161,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Új beszélgetés</string>
   <string name="conversation_list_fragment__open_camera_description">Kamera megnyitása</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dobj a postaládádba valamit, hogy ne legyen olyan magányos! Láss hozzá, és üzenj egy barátodnak!</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Még nincsenek beszélgetések.\nÜzenj egy barátodnak!</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Biztonságos munkamenet újraindítása</string>
   <!--conversation_muted-->
@@ -2182,8 +2198,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Másolás vágólapra</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Összehasonlítás vágólappal</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Alapértelmezett SMS alkalmazás</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Koppints a Signal alapértelmezett SMS alkalmazássá tételéhez.</string> -->
   <string name="reminder_header_sms_import_title">SMS-ek importálása</string>
   <string name="reminder_header_sms_import_text">Koppints a telefonod SMS üzeneteinek átmásolásához a Signal titkosított adatbázisába!</string>
   <string name="reminder_header_push_title">Signal üzenetek és hívások engedélyezése</string>
@@ -2379,6 +2393,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="BackupDialog_to_enable_backups_choose_a_folder">A biztonsági mentések engedélyezéséhez válassz egy mappát! A mentések itt lesznek létrehozva.</string>
   <string name="BackupDialog_choose_folder">Mappa kiválasztása</string>
   <string name="BackupDialog_copied_to_clipboard">Vágólapra másolva</string>
+  <string name="BackupDialog_no_file_picker_available">Nem érhető el fájlválasztó alkalmazás.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Add meg megerősítés céljából a biztonsági mentés jelmondatát</string>
   <string name="BackupDialog_verify">Hitelesítés</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">A biztonsági mentés jelmondat megadása sikeres volt</string>
@@ -2567,5 +2582,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="DeleteAccountFragment__launch_app_settings">App beállítások indítása</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ország keresése</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Kihagyás</string>
   <!--EOF-->
 </resources>

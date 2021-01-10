@@ -651,6 +651,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Cập nhật Signal để dùng liên kết nhóm</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Cập nhật Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Đường dẫn nhóm không hợp lệ</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Mời bạn bè</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Thêm \"%1$s\" vào nhóm?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Từ chối yêu cầu tham gia của \"%1$s\"?</string>
@@ -742,6 +745,9 @@
   <string name="Megaphones_verify_your_signal_pin">Xác minh mã PIN Signal của bạn</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Thỉnh thoảng chúng tôi sẽ yêu cầu bạn nhập lại mã PIN để giúp bạn ghi nhớ.</string>
   <string name="Megaphones_verify_pin">Xác minh mã PIN</string>
+  <string name="Megaphones_get_started">Bắt đầu</string>
+  <string name="Megaphones_new_group">Tạo nhóm mới</string>
+  <string name="Megaphones_invite_friends">Mời bạn bè</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
@@ -1434,6 +1440,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Đang tải…</string>
   <string name="ConversationUpdateItem_learn_more">Tìm hiểu thêm</string>
+  <string name="ConversationUpdateItem_invite_friends">Mời bạn bè</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Phát … Tạm dừng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
@@ -1885,7 +1892,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Cuộc trò chuyện mới</string>
   <string name="conversation_list_fragment__open_camera_description">Mở Camera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hãy làm hộp thư đến không còn trống trải. Bắt đầu bằng cách gửi tin nhắn cho một người bạn.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tái thiết lập phiên bảo mật</string>
   <!--conversation_muted-->
@@ -1921,8 +1927,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Sao chép vào clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">So sánh với clipboard</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Nhấn để đặt Signal làm ứng dụng SMS mặc định.</string> -->
   <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
   <string name="reminder_header_sms_import_text">Nhấn để sao chép tin nhắn SMS trên điện thoại vào kho lưu trữ mã hoá của Signal</string>
   <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Signal</string>
@@ -2231,5 +2235,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__are_you_sure">Bạn có chắc muốn xoá tài khoản?</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Bỏ qua</string>
   <!--EOF-->
 </resources>

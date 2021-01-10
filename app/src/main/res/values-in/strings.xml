@@ -711,6 +711,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Perbarui Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Satu atau beberapa perangkat terhubung Anda menggunakan versi Signal yang tidak mendukung tautan grup. Perbarui Signal pada perangkat terhubung Anda untuk bergabung dengan grup ini.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Tautan grup tidak valid</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Undang teman</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Terjadi galat jaringan.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Tambah \"%1$s\" ke dalam grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Tolak permintaan dari \"%1$s\"?</string>
@@ -802,6 +805,9 @@
   <string name="Megaphones_verify_your_signal_pin">Verifikasi PIN Signal Anda</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Kami sesekali akan meminta Anda untuk melakukan verifikasi PIN agar Anda dapat mengingatnya.</string>
   <string name="Megaphones_verify_pin">Verifikasi PIN</string>
+  <string name="Megaphones_get_started">Memulai</string>
+  <string name="Megaphones_new_group">Grup baru</string>
+  <string name="Megaphones_invite_friends">Undang teman</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
@@ -1474,6 +1480,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationUpdateItem_loading">Memuat</string>
   <string name="ConversationUpdateItem_learn_more">Pelajari lebih lanjut</string>
   <string name="ConversationUpdateItem_call_is_full">Panggilan penuh</string>
+  <string name="ConversationUpdateItem_invite_friends">Undang teman</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
   <string name="audio_view__download_accessibility_description">Unduh</string>
@@ -1884,7 +1891,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Percakapan baru</string>
   <string name="conversation_list_fragment__open_camera_description">Buka Kamera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Tuliskan pesan melalui kotak pesan Anda. Mulailah dengan mengirim pesan kepada seorang kawan.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Setel ulang sesi aman</string>
   <!--conversation_muted-->
@@ -1918,8 +1924,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS utama</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string> -->
   <string name="reminder_header_sms_import_title">Impor sistem SMS</string>
   <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan telepon Anda ke dalam basis data Signal yang terenkripsi.</string>
   <string name="reminder_header_push_title">Aktifkan pesan dan panggilan Signal</string>
@@ -2204,5 +2208,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__are_you_sure">Apakah kamu yakin ingin menghapus akun Anda?</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Lewati</string>
   <!--EOF-->
 </resources>

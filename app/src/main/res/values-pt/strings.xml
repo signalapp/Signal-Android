@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Pode adicionar ou convidar amigos depois de criar este grupo.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatório)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nome do grupo (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatório.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mias dos seus dispositivos ligados estão a correr uma versão do Signal que não suporta ligações para grupos. Atualize o Signal nos seus dispositivos ligados para entrar para este grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupo inválido</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convidar amigos</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Partilhe uma ligação com amigos e permita que eles entrem rapidamente para este grupo.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Ativar e partilhar ligação</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Partilhar link</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Impossível ativar o link de grupo. Por favor, tente novamente mais tarde</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Encontrado um erro de rede.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Não tem permissões para ativar o link de grupo. Por favor, peça a um administrador.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Atualmente você já não é um membro do grupo.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adicionar “%1$s” ao grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Negar o pedido de “%1$s”?</string>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">Verifique o seu PIN do Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Iremos ocasionalmente pedir-lhe para verificar o seu PIN para que não se esqueça dele.</string>
   <string name="Megaphones_verify_pin">Verificar PIN</string>
+  <string name="Megaphones_get_started">Começar</string>
+  <string name="Megaphones_new_group">Novo grupo</string>
+  <string name="Megaphones_invite_friends">Convidar amigos</string>
+  <string name="Megaphones_use_sms">Utilizar SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
   <string name="NotificationBarManager__establishing_signal_call">A estabelecer chamada do Signal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Criou o grupo.</string>
   <string name="MessageRecord_group_updated">Grupo atualizado.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Convide amigos para este grupo através do link de grupo</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Adicionou %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s adicionou %2$s.</string>
@@ -1673,6 +1688,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ConversationUpdateItem_join_call">Entrar na chamada</string>
   <string name="ConversationUpdateItem_return_to_call">Regressar à chamada</string>
   <string name="ConversationUpdateItem_call_is_full">A chamada encontra-se cheia</string>
+  <string name="ConversationUpdateItem_invite_friends">Convidar amigos</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Play … Pausa</string>
   <string name="audio_view__download_accessibility_description">Descarregar</string>
@@ -2138,7 +2154,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova conversa</string>
   <string name="conversation_list_fragment__open_camera_description">Abrir câmara</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dê à sua caixa de entrada alguma escrita. Comece por enviar uma mensagem para um amigo.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ainda não existem conversas.\nComece por enviar uma mensagem a um amigo.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sessão segura</string>
   <!--conversation_muted-->
@@ -2175,8 +2191,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar com a área de transferência</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Definir como aplicação de SMS pré-definida</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Toque para tornar o Signal na sua aplicação de SMS pré-definida.</string> -->
   <string name="reminder_header_sms_import_title">Importar as SMS do sistema</string>
   <string name="reminder_header_sms_import_text">Toque para copiar as mensagens SMS do seu telefone para a base de dados encriptada do Signal.</string>
   <string name="reminder_header_push_title">Ative as mensagens e chamadas do Signal</string>
@@ -2372,6 +2386,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar cópias de segurança, escolha uma pasta. As cópias de segurança serão guardadas nesta localização.</string>
   <string name="BackupDialog_choose_folder">Escolher pasta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="BackupDialog_no_file_picker_available">Sem selecionadores de ficheiros disponíveis.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduza a sua frase-passe para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Introduziu com sucesso a sua frase-passe de segurança</string>
@@ -2560,5 +2575,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="DeleteAccountFragment__launch_app_settings">Iniciar as Definições das aplicações</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Ignorar</string>
   <!--EOF-->
 </resources>

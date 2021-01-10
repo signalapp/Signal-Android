@@ -767,6 +767,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഒന്നോ അതിലധികമോ ഉപകരണങ്ങൾ ഗ്രൂപ്പ് ലിങ്കുകളെ പിന്തുണയ്‌ക്കാത്ത Signal(സിഗ്നലി)ന്റെ ഒരു പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ (ഉപകരണങ്ങളിൽ) സിഗ്നൽ അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ഗ്രൂപ്പ് ലിങ്ക് അസാധുവാണ്</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">ഗ്രൂപ്പിലേക്ക് \"%1$s\"-നെ ചേർക്കണോ?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ൽ നിന്നുള്ള അഭ്യർത്ഥന നിരസിക്കണോ?</string>
@@ -864,6 +867,9 @@
   <string name="Megaphones_verify_your_signal_pin">നിങ്ങളുടെ Signal PIN പരിശോധിക്കുക</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">നിങ്ങളുടെ PIN സ്ഥിരീകരിക്കാൻ ഞങ്ങൾ ഇടയ്ക്കിടെ നിങ്ങളോട് ആവശ്യപ്പെടുന്നതിനാൽ നിങ്ങൾ അത് ഓർക്കും.</string>
   <string name="Megaphones_verify_pin">PIN പരിശോധിക്കുക</string>
+  <string name="Megaphones_get_started">ആരംഭിക്കുക</string>
+  <string name="Megaphones_new_group">പുതിയ ഗ്രൂപ്പ്</string>
+  <string name="Megaphones_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal കോൾ പുരോഗതിയിലാണ്</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
@@ -1668,6 +1674,7 @@ grūpp ap‌ḍē</string>
   <string name="ConversationUpdateItem_join_call">കോളിൽ ചേരുക</string>
   <string name="ConversationUpdateItem_return_to_call">കോളിലേക്ക് മടങ്ങുക</string>
   <string name="ConversationUpdateItem_call_is_full">കോൾ നിറഞ്ഞു</string>
+  <string name="ConversationUpdateItem_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">പ്ലേ … പോസ്</string>
   <string name="audio_view__download_accessibility_description">ഡൌൺലോഡ്</string>
@@ -2133,7 +2140,6 @@ grūpp ap‌ḍē</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">പുതിയ സംഭാഷണം</string>
   <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">നിങ്ങളുടെ ഇൻ‌ബോക്സിന് വീട്ടിലേക്ക് എന്തെങ്കിലും എഴുതാൻ ഉപയോഗിക്കൂ. ഒരു സുഹൃത്തിനു മെസേജ് ചെയ്തുകൊണ്ട് തുടങ്ങൂ.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിക്കുക</string>
   <!--conversation_muted-->
@@ -2170,8 +2176,6 @@ grūpp ap‌ḍē</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേയ്ക്ക് പകർത്തുക</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ക്ലിപ്പ്ബോർഡുമായി താരതമ്യം ചെയ്യുക</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">നിങ്ങളുടെ സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷൻ സിഗ്നൽ ആക്കാൻ ടാപ്പുചെയ്യുക.</string> -->
   <string name="reminder_header_sms_import_title">സിസ്റ്റം SMS ഇറക്കുമതി ചെയ്യുക</string>
   <string name="reminder_header_sms_import_text">Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ ഫോണിലേ SMS സന്ദേശങ്ങൾ പകർത്താൻ ടാപ്പുചെയ്യുക.</string>
   <string name="reminder_header_push_title">Signal സന്ദേശങ്ങളും കോളുകളും പ്രാപ്തമാക്കുക</string>
@@ -2556,5 +2560,7 @@ grūpp ap‌ḍē</string>
   <string name="DeleteAccountFragment__launch_app_settings">ആപ്പ് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">രാജ്യങ്ങൾ തിരയുക</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">ഒഴിവാക്കുക</string>
   <!--EOF-->
 </resources>

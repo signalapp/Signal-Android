@@ -849,6 +849,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Vienas ar daugiau iš jūsų susietų įrenginių naudoja Signal versiją, kuri nepalaiko grupės nuorodų. Norėdami prisijungti prie šios grupės, atnaujinkite Signal savo susietame įrenginyje(-iuose).</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupės nuoroda negalioja</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Pakviesti draugus</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridėti „%1$s“ į grupę?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Atmesti prašymą, kurį atsiuntė „%1$s“?</string>
@@ -958,6 +961,9 @@
   <string name="Megaphones_verify_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Retkarčiais, tam kad prisimintumėte savo PIN kodą, prašysime jūsų jį patvirtinti.</string>
   <string name="Megaphones_verify_pin">Patvirtinti PIN kodą</string>
+  <string name="Megaphones_get_started">Darbo pradžia</string>
+  <string name="Megaphones_new_group">Nauja grupė</string>
+  <string name="Megaphones_invite_friends">Pakviesti draugus</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -1813,6 +1819,7 @@
   <string name="ConversationUpdateItem_join_call">Prisijungti prie skambučio</string>
   <string name="ConversationUpdateItem_return_to_call">Grįžti į skambutį</string>
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
+  <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2294,7 +2301,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Naujas pokalbis</string>
   <string name="conversation_list_fragment__open_camera_description">Atverti kamerą</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Pradėkite, bendraudami su draugais.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Atstatyti saugųjį seansą</string>
   <!--conversation_muted-->
@@ -2331,8 +2337,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopijuoti į iškarpinę</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Palyginti su iškarpine</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Naudoti kaip numatytąją SMS programėlę</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Bakstelėkite, kad padarytumėte Signal savo numatytąja SMS programėle.</string> -->
   <string name="reminder_header_sms_import_title">Importuoti sistemos SMS</string>
   <string name="reminder_header_sms_import_text">Bakstelėkite, kad nukopijuotumėte savo telefono SMS į Signal šifruotą duomenų bazę.</string>
   <string name="reminder_header_push_title">Įjungti Signal skambučius ir žinutes</string>
@@ -2735,5 +2739,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Praleisti</string>
   <!--EOF-->
 </resources>

@@ -767,6 +767,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">இணைக்கப்பட்ட சாதனங்களில் ஒன்று அல்லது அதற்கு மேற்பட்டவை, குழு இணைப்புகளை ஆதரிக்காத சிக்னலின் பதிப்பை இயக்குகின்றன. இந்த குழுவில் சேர உங்கள் இணைக்கப்பட்ட சாதனம் (களில்) சிக்னலைப் புதுப்பிக்கவும்.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">குழு இணைப்புகள் செல்லுபடியாகாது.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">நண்பர்களை அழை</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">குழுவில் \"%1$s\" ஐ சேர்க்கவா?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" இன் கோரிக்கையை மறுக்கவா?</string>
@@ -864,6 +867,9 @@
   <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal PIN-ஐ சரிபார்க்கவும்</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் PIN-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
   <string name="Megaphones_verify_pin">பின் சரிபார்க்கவும்</string>
+  <string name="Megaphones_get_started">தொடங்குகள்</string>
+  <string name="Megaphones_new_group">புதிய குழு</string>
+  <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
@@ -1674,6 +1680,7 @@
   <string name="ConversationUpdateItem_join_call">அழைப்பில் சேரவும்</string>
   <string name="ConversationUpdateItem_return_to_call">அழைப்புக்குத் திரும்பு</string>
   <string name="ConversationUpdateItem_call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
+  <string name="ConversationUpdateItem_invite_friends">நண்பர்களை அழை</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -2141,7 +2148,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">உங்கள் இன்பாக்ஸைப் பற்றி வீட்டிற்கு எழுத ஏதாவது கொடுங்கள். நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">பாதுகாப்பான அமர்வை மீட்டமைக்கவும்</string>
   <!--conversation_muted-->
@@ -2178,8 +2184,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">கிளிப்போர்டுடன் ஒப்பிடுக</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal-ஐ இயல்புநிலை SMS பயன்பாடாக தொடவும்</string> -->
   <string name="reminder_header_sms_import_title">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி</string>
   <string name="reminder_header_sms_import_text">உங்கள் தொலைபேசியின் SMS செய்திகளை Signal-இன் மறைகுறியாக்கப்பட்ட தரவுத்தளக்கு நகலெடுக்க தட்டவும்.</string>
   <string name="reminder_header_push_title">Signal செய்திகளையும் அழைப்புகளையும் இயக்கு</string>
@@ -2563,5 +2567,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டைத் தொடங்கவும் அமைப்புகள்</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">தேடு நாடுகள்</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">தவிர்</string>
   <!--EOF-->
 </resources>

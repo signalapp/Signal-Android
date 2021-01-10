@@ -767,6 +767,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'i Güncelle</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Bağlı aygıtlarınızdan bir veya daha fazla grup bağlantılarını desteklemeyen Signal sürümü kullanıyor. Bu gruba katılabilmek için bağlı aygıtlarınızdaki Signal\'i güncelleyin.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grup bağlantısı geçersiz</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Arkadaşlarını davet et</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Bir ağ hatası ile karşılaşıldı.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">\"%1$s\" gruba eklensin mi?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" kişisinin isteği reddedilsin mi?</string>
@@ -864,6 +867,9 @@
   <string name="Megaphones_verify_your_signal_pin">Signal PIN\'inizi doğrulayın</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">PIN\'inizi hatırlamanız için arada sırada doğrulamanızı isteyeceğiz.</string>
   <string name="Megaphones_verify_pin">PIN\'i doğrula</string>
+  <string name="Megaphones_get_started">Kullanmaya başla</string>
+  <string name="Megaphones_new_group">Yeni grup</string>
+  <string name="Megaphones_invite_friends">Arkadaşlarını davet et</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
@@ -1675,6 +1681,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ConversationUpdateItem_join_call">Aramaya katıl</string>
   <string name="ConversationUpdateItem_return_to_call">Aramaya dön</string>
   <string name="ConversationUpdateItem_call_is_full">Arama dolu</string>
+  <string name="ConversationUpdateItem_invite_friends">Arkadaşlarını davet et</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
@@ -2140,7 +2147,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni konuşma</string>
   <string name="conversation_list_fragment__open_camera_description">Kamerayı Aç</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza bir şeyler gelmesini sağlayın. Bir arkadaşınıza ileti göndererek başlayın.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Güvenli oturumu sıfırla</string>
   <!--conversation_muted-->
@@ -2177,8 +2183,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panoya kopyala</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Pano ile karşılaştır</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Varsayılan SMS uygulaması olarak ayarla</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Signal\'i varsayılan SMS uygulaması yapmak için dokunun.</string> -->
   <string name="reminder_header_sms_import_title">Sistem SMS\'lerini içe aktar</string>
   <string name="reminder_header_sms_import_text">Telefonunuzda bulunan SMS iletilerini Signal\'in şifrelenmiş veritabanına kopyalamak için dokunun.</string>
   <string name="reminder_header_push_title">Signal iletilerini ve aramalarını etkinleştir</string>
@@ -2563,5 +2567,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Uygulama Ayarlarını Aç</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ülke Ara</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Atla</string>
   <!--EOF-->
 </resources>

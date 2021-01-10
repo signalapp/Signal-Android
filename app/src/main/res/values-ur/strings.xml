@@ -768,6 +768,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal اپ ڈیٹ کریں</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">آپ  ایک یا زیادہ منسلک آلات Signal کا ایک ورژن چلا رہے ہیں جو گروپ لنکس کو سپورٹ نہیں کرتا ہے۔ اس گروپ میں شامل ہونے کیلئے اپنے منسلک ڈیوائس (ڈیوائسز) پر Signal کو اپ ڈیٹ کریں۔</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">گروپ لنک درست نہیں ہے</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">دوستوں کو مدعو کریں</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">گروپ میں \"%1$s\" شامل کریں؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" سے درخواست کی تردید کریں؟</string>
@@ -865,6 +868,9 @@
   <string name="Megaphones_verify_your_signal_pin">اپنے Signal پن کی تصدیق کریں</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">ہم کبھی کبھار آپ سے اپنے PIN کی تصدیق کرنے کے لئے کہیں گے تاکہ آپ اسے یاد رکھیں۔</string>
   <string name="Megaphones_verify_pin">پن کی تصدیق کریں</string>
+  <string name="Megaphones_get_started">شروع کرتے ہیں</string>
+  <string name="Megaphones_new_group">نیا گروپ</string>
+  <string name="Megaphones_invite_friends">دوستوں کو مدعو کریں</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
@@ -1668,6 +1674,7 @@
   <string name="ConversationUpdateItem_join_call">کال میں شامل ہوں</string>
   <string name="ConversationUpdateItem_return_to_call">کال پر واپس جائیں</string>
   <string name="ConversationUpdateItem_call_is_full">کال پوری ہے</string>
+  <string name="ConversationUpdateItem_invite_friends">دوستوں کو مدعو کریں</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">چلائیں ۔۔۔ روکیں</string>
   <string name="audio_view__download_accessibility_description">ڈاؤن لوڈ کریں</string>
@@ -2133,7 +2140,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">نئی گفتگو</string>
   <string name="conversation_list_fragment__open_camera_description">کیمرہ کھولیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ھوم کے بارے میں لکھنے کیلئے اپنے کچھ ان باکس دیں۔ دوست کو پیغام سے شروع کرتے ہیں۔</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">محفوظ سیشن کو دوبارہ ترتیب دیں</string>
   <!--conversation_muted-->
@@ -2170,8 +2176,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">کلپ بورڈ کے ساتھ موازنہ کریں</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">پہلے سے طے شدہ ایس ایم ایس ایپ استعمال کریں</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">signal کو اپنا پہلے سے موجود ایس ایم ایس ایپ بنانے کیلئے ٹیپ کریں۔</string> -->
   <string name="reminder_header_sms_import_title">ایس ایم ایس نظام درآمد کریں</string>
   <string name="reminder_header_sms_import_text">Signal  کے خفیہ کردہ ڈیٹا بیس میں اپنے فون کے ایس ایم ایس پیغامات کی کاپی کرنے کیلئے ٹیپ کریں۔ </string>
   <string name="reminder_header_push_title">Signal پیغامات اور کالز فعال کریں</string>
@@ -2555,5 +2559,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">ایپ کی ترتیبات لانچ کریں</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">ممالک تلاش کریں</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">چھوڑ دو</string>
   <!--EOF-->
 </resources>

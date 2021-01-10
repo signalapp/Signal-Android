@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">Создать группу</string>
   <string name="AddGroupDetailsFragment__create">Создать</string>
   <string name="AddGroupDetailsFragment__members">Участники</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Вы можете добавить или пригласить друзей после создания этой группы.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Имя группы (обязательно)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Имя группы (необязательно)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Это поле обязательно.</string>
@@ -849,6 +850,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Одно или больше из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на своём(-их) привязанном(-ых) устройстве(-ах), чтобы присоединиться к этой группе.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Пригласить друзей</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Поделитесь ссылкой с друзьями, чтобы они смогли быстро присоединиться к этой группе.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Включить и поделиться</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Поделиться ссылкой</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Не удалось включить ссылку на группу. Пожалуйста, попробуйте ещё раз позже.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">У вас нет права включить ссылку на группу. Пожалуйста, попросите администратора группы.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">В данный момент вы не являетесь участником группы.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Добавить «%1$s» в группу?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Отклонить запрос от «%1$s»?</string>
@@ -958,6 +968,10 @@
   <string name="Megaphones_verify_your_signal_pin">Подтвердите свой PIN-код Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Иногда мы будем просить вас подтвердить свой PIN-код, чтобы вы его не забывали.</string>
   <string name="Megaphones_verify_pin">Подтвердить PIN-код</string>
+  <string name="Megaphones_get_started">Начать</string>
+  <string name="Megaphones_new_group">Новая группа</string>
+  <string name="Megaphones_invite_friends">Пригласить друзей</string>
+  <string name="Megaphones_use_sms">Использовать SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
@@ -1034,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Вы создали группу.</string>
   <string name="MessageRecord_group_updated">Группа обновлена.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Пригласите друзей в эту группу, используя ссылку</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Вы добавили %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s добавил(-а) %2$s.</string>
@@ -1806,6 +1821,7 @@
   <string name="ConversationUpdateItem_join_call">Присоединиться к звонку</string>
   <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
+  <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -2287,7 +2303,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новый разговор</string>
   <string name="conversation_list_fragment__open_camera_description">Открыть камеру</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Наполните этот экран интересными разговорами! Отправьте другу своё первое сообщение.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ещё нет чатов.\nОтправьте другу своё первое сообщение.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Сбросить защищенный сеанс</string>
   <!--conversation_muted-->
@@ -2324,8 +2340,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Использовать для всех SMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Нажмите, чтобы сделать Signal своим приложением для SMS по умолчанию</string> -->
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы</string>
   <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных Signal.</string>
   <string name="reminder_header_push_title">Включить звонки и сообщения Signal</string>
@@ -2728,5 +2742,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Запустить настройки приложения</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Пропустить</string>
   <!--EOF-->
 </resources>

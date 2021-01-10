@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Skapa grupp</string>
   <string name="AddGroupDetailsFragment__create">Skapa</string>
   <string name="AddGroupDetailsFragment__members">Medlemmar</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Du kan lägga till eller bjuda in vänner efter att du har skapat denna grupp.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Gruppnamn (krävs)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Gruppnamn (valfritt)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Detta fält krävs.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flera av dina länkade enheter kör en version av Signal som inte stöder grupplänkar. Uppdatera Signal på dina länkade enheter för att gå med i denna grupp.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Bjud in vänner</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Dela en länk med vänner så att de snabbt kan gå med i denna grupp.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktivera och dela länk</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Dela länk</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Det gick inte att aktivera grupplänken. Vänligen försök igen senare</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Stött på ett nätverksfel.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Du har inte rätt att aktivera grupplänken. Vänligen fråga en administratör.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Du är för närvarande inte medlem i gruppen.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lägg till \"%1$s\" till gruppen?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Avvisa förfrågan från \"%1$s\"?</string>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">Verifiera din Signal PIN-kod</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Vi ber dig ibland att verifiera din PIN-kod så att du kommer ihåg den.</string>
   <string name="Megaphones_verify_pin">Verifiera PIN-kod</string>
+  <string name="Megaphones_get_started">Komma igång</string>
+  <string name="Megaphones_new_group">Ny grupp</string>
+  <string name="Megaphones_invite_friends">Bjud in vänner</string>
+  <string name="Megaphones_use_sms">Använd SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Du skapade gruppen.</string>
   <string name="MessageRecord_group_updated">Gruppen uppdaterad.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Bjud in vänner till denna grupp via en grupplänk</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Du lade till %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s lade till %2$s.</string>
@@ -1671,6 +1686,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ConversationUpdateItem_join_call">Gå med i samtalet</string>
   <string name="ConversationUpdateItem_return_to_call">Återgå till samtal</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalet är fullt</string>
+  <string name="ConversationUpdateItem_invite_friends">Bjud in vänner</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
@@ -2136,7 +2152,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Ge din inkorg något att visa upp. Kom igång genom att skriva till en vän.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga konversationer ännu.\nKom igång genom att skriva till en vän.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Starta om säker session</string>
   <!--conversation_muted-->
@@ -2173,8 +2189,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Jämför med urklipp</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Använd som standardapp för SMS</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Tryck för att göra Signal till din standardapp för SMS.</string> -->
   <string name="reminder_header_sms_import_title">Importera systemets SMS</string>
   <string name="reminder_header_sms_import_text">Tryck för att kopiera din telefons SMS-meddelanden till Signals krypterade databas.</string>
   <string name="reminder_header_push_title">Aktivera Signal-meddelanden och -samtal</string>
@@ -2559,5 +2573,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Starta appinställningar</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Sök länder</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Hoppa över</string>
   <!--EOF-->
 </resources>

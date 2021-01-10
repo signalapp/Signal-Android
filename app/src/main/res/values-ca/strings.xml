@@ -767,6 +767,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualitza el Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un o més dels vostres dispositius enllaçats executen una versió del Signal que no admet enllaços de grup. Actualitzeu el Signal dels dispositius enllaçats per afegir-vos a aquest grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">L\'enllaç de grup no és vàlid.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convideu-hi amistats</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Voleu afegir %1$s al grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Voleu rebutjar la sol·licitud de %1$s?</string>
@@ -864,6 +867,9 @@
   <string name="Megaphones_verify_your_signal_pin">Verifiqueu el PIN del Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">De tant en tant us demanarem de verificar el PIN perquè el recordeu.</string>
   <string name="Megaphones_verify_pin">Verifica el PIN</string>
+  <string name="Megaphones_get_started">Comenceu</string>
+  <string name="Megaphones_new_group">Grup nou</string>
+  <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -1671,6 +1677,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationUpdateItem_join_call">Afegeix-me a la trucada</string>
   <string name="ConversationUpdateItem_return_to_call">Torna a la trucada</string>
   <string name="ConversationUpdateItem_call_is_full">La trucada és plena</string>
+  <string name="ConversationUpdateItem_invite_friends">Convideu-hi amistats</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
@@ -2136,7 +2143,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <string name="conversation_list_fragment__open_camera_description">Obre la càmera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Proporcioneu alguna cosa a la safata d\'entrada perquè us escriguin. Comenceu enviant un missatge a alguna amistat.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restableix la sessió segura</string>
   <!--conversation_muted-->
@@ -2173,8 +2179,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copia al porta-retalls</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compara amb el porta-retalls</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Usa-la com a aplicació d\'SMS predeterminada</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Premeu per establir el Signal com a aplicació predeterminada per a SMS.</string> -->
   <string name="reminder_header_sms_import_title">Importació dels SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Premeu per copiar els missatges SMS del telèfon a la base de dades encriptada del Signal.</string>
   <string name="reminder_header_push_title">Activa els missatges i les trucades del Signal</string>
@@ -2559,5 +2563,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="DeleteAccountFragment__launch_app_settings">Obre la configuració de l\'aplicació</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Cerca països</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Omet</string>
   <!--EOF-->
 </resources>

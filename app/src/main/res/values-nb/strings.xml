@@ -737,6 +737,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Oppdater Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flere av dine koblede enheter kjøre en versjon av Signal som ikke støtter gruppelenker. Oppdater Signal på alle koblede enheter for å bli med i gruppen.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppelenken er ikke gyldig</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Inviter venner</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Det oppstod en nettverksfeil.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">Legg til</string>
   <string name="RequestConfirmationDialog_deny">Avslå</string>
@@ -832,6 +835,9 @@
   <string name="Megaphones_verify_your_signal_pin">Bekreft din Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Noen ganger ber vi deg om å bekrefte PIN-koden din slik at du husker den.</string>
   <string name="Megaphones_verify_pin">Bekreft PIN</string>
+  <string name="Megaphones_get_started">Kom i gang</string>
+  <string name="Megaphones_new_group">Ny gruppe</string>
+  <string name="Megaphones_invite_friends">Inviter venner</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -1560,6 +1566,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_loading">Laster inn</string>
   <string name="ConversationUpdateItem_learn_more">Lær mer</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er full</string>
+  <string name="ConversationUpdateItem_invite_friends">Inviter venner</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
@@ -1996,7 +2003,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åpne Kamera</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kom i gang ved å sende en melding til en venn.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2032,8 +2038,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiere til utklippstavle</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med utklippstavlen</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Bruk som forvalgt SMS-program</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">Trykk for å gjøre Signal til forvalgt SMS-program.</string> -->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Signals krypterte database.</string>
   <string name="reminder_header_push_title">Slå på Signal-meldinger og samtaler</string>
@@ -2353,5 +2357,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">Hopp over</string>
   <!--EOF-->
 </resources>

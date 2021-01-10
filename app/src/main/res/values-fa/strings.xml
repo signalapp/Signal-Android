@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">ایجاد گروه</string>
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">می‌توانید دوستان را بعد از ایجاد این گروه دعوت یا اضافه کنید.</string>
   <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">نام گروه (اختیاری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند‌ داده شدهٔ شما در حال اجرای نسخه‌ای از Signal هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. Signal را بر روی دستگاه‌های پیوند داده شده به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">پیوند گروه معتبر نیست</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">دعوت دوستان</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">یک پیوند با دوستان اشتراک‌گذاری کنید تا به آن‌ها اجازه دهید به این گروه بپیوندند.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">فعال‌سازی و اشتراک‌گذاری پیوند</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">اشتراک‌گذاری پیوند</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">فعال‌سازی پیوند گروه ممکن نبود. لطفاً دوباره امتحان کنید.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">شما اجازهٔ فعال‌سازی پیوند گروه را ندارید. لطفاً از یک مدیر بخواهید.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">شما در حال حاضر عضو این گروه نیستید.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">«%1$s» به گروه اضافه شود؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رد درخواست «%1$s»؟</string>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">پین Signal خود را تأیید کنید</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">پین هرازچندگاهی از شما پرسیده می‌شود تا آن را فراموش نکنید.</string>
   <string name="Megaphones_verify_pin">تأیید پین</string>
+  <string name="Megaphones_get_started">شروع</string>
+  <string name="Megaphones_new_group">گروه جدید</string>
+  <string name="Megaphones_invite_friends">دعوت دوستان</string>
+  <string name="Megaphones_use_sms">استفاده از پیامک</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس Signal در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس Signal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">دعوت دوستان برای پیوستن به این گروه از طریق یک پیوند گروه</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
   <string name="MessageRecord_s_added_s">%1$s %2$s را اضافه کرد.</string>
@@ -1570,7 +1585,7 @@
   <string name="WebRtcCallScreen__answer_without_video">پاسخ دادن بدون تصویر</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">خروجی صدا</string>
-  <string name="WebRtcAudioOutputToggle__phone_earpiece">هدفون گوشی</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece"> بلندگوی گوشی</string>
   <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1675,6 +1690,7 @@
   <string name="ConversationUpdateItem_join_call">پیوستن به تماس</string>
   <string name="ConversationUpdateItem_return_to_call">بازگشت به تماس</string>
   <string name="ConversationUpdateItem_call_is_full">ظرفیت تماس تکمیل است</string>
+  <string name="ConversationUpdateItem_invite_friends">دعوت دوستان</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>
@@ -2140,7 +2156,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">مکالمهٔ جدید</string>
   <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. با پیام دادن به یک دوست می‌توانید شروع کنید.</string> -->
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست آغاز کنید.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
   <!--conversation_muted-->
@@ -2177,8 +2193,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">استفاده به صورت برنامهٔ پیش‌فرض پیامک</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">برای تبدیل Signal به برنامهٔ پیش‌فرض پیامک خود ضربه بزنید.</string> -->
   <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های سیستم</string>
   <string name="reminder_header_sms_import_text">برای کپی کردن پیامک‌های تلفن خود به پایگاه دادهٔ رمزگذاری شدهٔ Signal ضربه بزنید.</string>
   <string name="reminder_header_push_title">فعال‌سازی پیام‌ها و تماس‌های Signal</string>
@@ -2563,5 +2577,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">رد شدن</string>
   <!--EOF-->
 </resources>

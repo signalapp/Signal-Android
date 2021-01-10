@@ -589,6 +589,9 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">그룹 링크를 사용하기 위해서 Signal을 업데이트하세요</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">시그널 업데이트하기</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">그룹 링크가 유효하지 않습니다.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">친구 초대</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s”를 그룹에 추가하시겠습니까?</string>
   <string name="RequestConfirmationDialog_add">추가</string>
@@ -678,6 +681,9 @@
   <string name="Megaphones_verify_your_signal_pin">Signal 번호 인증</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">저희는 사용자가 번호를 기억하실 수 있도록 가끔 번호 인증을 요청합니다.</string>
   <string name="Megaphones_verify_pin">번호 인증</string>
+  <string name="Megaphones_get_started">시작하기</string>
+  <string name="Megaphones_new_group">새 그룹</string>
+  <string name="Megaphones_invite_friends">친구 초대</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 전화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 전화 연결 중</string>
@@ -1318,6 +1324,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">로드 중</string>
   <string name="ConversationUpdateItem_learn_more">더 알아보기</string>
+  <string name="ConversationUpdateItem_invite_friends">친구 초대</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
@@ -1745,7 +1752,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">새 대화</string>
   <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">외로워 보이네요. 친구들과 이야기를 나눠보면 어떨까요?</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">보안 세션 초기화</string>
   <!--conversation_muted-->
@@ -1781,8 +1787,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_text">탭하여 Signal을 기본 SMS 앱으로 설정하세요.</string> -->
   <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
   <string name="reminder_header_sms_import_text">탭하여 휴대 전화의 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오세요.</string>
   <string name="reminder_header_push_title">Signal 메시지 및 전화 활성화</string>
@@ -2083,5 +2087,7 @@
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__are_you_sure">계정을 삭제하시겠습니까?</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <!--CreateGroupActivity-->
+  <string name="CreateGroupActivity__skip">건너뛰기</string>
   <!--EOF-->
 </resources>
