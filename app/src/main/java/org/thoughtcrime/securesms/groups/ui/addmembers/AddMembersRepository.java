@@ -3,22 +3,31 @@ package org.thoughtcrime.securesms.groups.ui.addmembers;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.core.util.Consumer;
+import androidx.annotation.WorkerThread;
 
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
-class AddMembersRepository {
+final class AddMembersRepository {
 
   private final Context context;
+  private final GroupId groupId;
 
-  AddMembersRepository() {
+  AddMembersRepository(@NonNull GroupId groupId) {
+    this.groupId = groupId;
     this.context = ApplicationDependencies.getApplication();
   }
 
-  void getOrCreateRecipientId(@NonNull SelectedContact selectedContact, @NonNull Consumer<RecipientId> consumer) {
-    SignalExecutors.BOUNDED.execute(() -> consumer.accept(selectedContact.getOrCreateRecipientId(context)));
+  @WorkerThread
+  RecipientId getOrCreateRecipientId(@NonNull SelectedContact selectedContact) {
+    return selectedContact.getOrCreateRecipientId(context);
+  }
+
+  @WorkerThread
+  String getGroupTitle() {
+    return DatabaseFactory.getGroupDatabase(context).requireGroup(groupId).getTitle();
   }
 }
