@@ -199,6 +199,9 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {
+    if (expiringMessageManager == null) {
+      initializeExpiringMessageManager();
+    }
     return expiringMessageManager;
   }
 
