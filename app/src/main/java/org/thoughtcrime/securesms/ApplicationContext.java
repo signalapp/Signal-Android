@@ -136,7 +136,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
                             .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
-                            .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
                             .addBlocking("vector-compat", () -> {
                               if (Build.VERSION.SDK_INT < 21) {
@@ -160,6 +159,8 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addPostRender(this::initializeBlobProvider)
                             .addPostRender(() -> NotificationChannels.create(this))
                             .execute();
+
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     Tracer.getInstance().end("Application#onCreate()");
