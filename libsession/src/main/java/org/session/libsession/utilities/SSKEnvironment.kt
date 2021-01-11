@@ -1,6 +1,7 @@
 package org.session.libsession.utilities
 
 import android.content.Context
+import org.session.libsession.messaging.sending_receiving.notifications.NotificationProtocol
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 
@@ -8,7 +9,8 @@ class SSKEnvironment(
         val typingIndicators: TypingIndicatorsProtocol,
         val blockManager: BlockingManagerProtocol,
         val readReceiptManager: ReadReceiptManagerProtocol,
-        val profileManager: ProfileManagerProtocol
+        val profileManager: ProfileManagerProtocol,
+        val notificationManager: NotificationProtocol
 ) {
     interface TypingIndicatorsProtocol {
         fun didReceiveTypingStartedMessage(context: Context, threadId: Long, author: Address, device: Int)
@@ -38,9 +40,10 @@ class SSKEnvironment(
         fun configure(typingIndicators: TypingIndicatorsProtocol,
                       blockManager: BlockingManagerProtocol,
                       readReceiptManager: ReadReceiptManagerProtocol,
-                      profileManager: ProfileManagerProtocol) {
+                      profileManager: ProfileManagerProtocol,
+                      notificationManager: NotificationProtocol) {
             if (Companion::shared.isInitialized) { return }
-            shared = SSKEnvironment(typingIndicators, blockManager, readReceiptManager, profileManager)
+            shared = SSKEnvironment(typingIndicators, blockManager, readReceiptManager, profileManager, notificationManager)
         }
     }
 }
