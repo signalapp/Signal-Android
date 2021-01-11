@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">குழு உருவாக்குக</string>
   <string name="AddGroupDetailsFragment__create">உருவாக்கவும்</string>
   <string name="AddGroupDetailsFragment__members">உறுப்பினர்கள்</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">இந்த குழுவை உருவாக்கிய பிறகு நீங்கள் நண்பர்களைச் சேர்க்கலாம் அல்லது அழைக்கலாம்.</string>
   <string name="AddGroupDetailsFragment__group_name_required">குழு பெயர் (தேவை)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">குழு பெயர் (கட்டாயமற்றது)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
@@ -769,7 +770,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">குழு இணைப்புகள் செல்லுபடியாகாது.</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">நண்பர்களை அழை</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">இந்த குழுவில் விரைவாக சேர நண்பர்களுடன் ஒரு இணைப்பைப் பகிரவும்.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">இணைப்பை இயக்கு மற்றும் பகிரவும்</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">பகிர் இணைப்பு</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">குழு இணைப்பை இயக்க முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">குழு இணைப்பை இயக்க உங்களுக்கு உரிமை இல்லை. ஒரு நிர்வாகியிடம் கேளுங்கள்.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">நீங்கள் தற்போது குழுவில் உறுப்பினராக இல்லை.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">குழுவில் \"%1$s\" ஐ சேர்க்கவா?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" இன் கோரிக்கையை மறுக்கவா?</string>
@@ -870,6 +877,7 @@
   <string name="Megaphones_get_started">தொடங்குகள்</string>
   <string name="Megaphones_new_group">புதிய குழு</string>
   <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
+  <string name="Megaphones_use_sms">எஸ்எம்எஸ் பயன்படுத்தவும்</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
@@ -940,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">நீங்கள் குழுவை உருவாக்கியது.</string>
   <string name="MessageRecord_group_updated">குழு புதுப்பிக்கப்பட்டது.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">குழு இணைப்பு வழியாக இந்த குழுவிற்கு நண்பர்களை அழைக்கவும்</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">நீங்கள் %1$sஐ சேர்த்துள்ளீர்கள் .</string>
   <string name="MessageRecord_s_added_s">%1$s அவர்கள் %2$s சேர்த்தனர். .</string>
@@ -2148,6 +2157,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இன்னும் அரட்டைகள் இல்லை.\n நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">பாதுகாப்பான அமர்வை மீட்டமைக்கவும்</string>
   <!--conversation_muted-->
@@ -2379,6 +2389,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
   <string name="BackupDialog_choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
   <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+  <string name="BackupDialog_no_file_picker_available">கிடைப்பில்கோப்பு தேர்வாளர் கிடைக்கவில்லை.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">சரிபார்க்க உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை உள்ளிடவும்</string>
   <string name="BackupDialog_verify">சரிபார்க்கவும்</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை வெற்றிகரமாக உள்ளிட்டுள்ளீர்கள்</string>

@@ -102,7 +102,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Вы больше не будете получать сообщения и обновления от этой группы, и участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Участники группы смогут снова добавить вас в неё.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, и ваши имя и фото станут доступны этому человеку.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, а ваши имя и фото станут доступны этому контакту.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблокированные люди не смогут звонить вам или отправлять вам сообщения.</string>
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Разблокировать</string>
@@ -143,11 +143,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Удалить фото группы?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Обновите Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Эта версия приложения больше не поддерживается. Чтобы продолжить отправлять и получать сообщения, обновитесь до новейшей версии.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Эта версия приложения больше не поддерживается. Чтобы и далее отправлять и получать сообщения, обновитесь до последней версии.</string>
   <string name="ClientDeprecatedActivity_update">Обновить</string>
   <string name="ClientDeprecatedActivity_dont_update">Не обновлять</string>
   <string name="ClientDeprecatedActivity_warning">Предупреждение</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения до того, как обновитесь.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения, пока не обновитесь.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Браузер не найден.</string>
   <string name="CommunicationActions_no_email_app_found">Приложение электронной почты не найдено.</string>
@@ -232,7 +232,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает предельный размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что вы уже не являетесь её участником.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что уже не являетесь её участником.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запрос на присоединение был отправлен администратору группы. Вы будете уведомлены, когда он примет решение.</string>
   <string name="ConversationActivity_cancel_request">Отменить запрос</string>
@@ -605,7 +605,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Отключить</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Предпросмотр любой ссылки</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете получать предпросмотры ссылок напрямую от любого сайта для сообщений, которые вы отправляете.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь при отправке сообщений вы можете получать предпросмотры ссылок напрямую с любого сайта.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
@@ -968,7 +968,7 @@
   <string name="Megaphones_verify_your_signal_pin">Подтвердите свой PIN-код Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Иногда мы будем просить вас подтвердить свой PIN-код, чтобы вы его не забывали.</string>
   <string name="Megaphones_verify_pin">Подтвердить PIN-код</string>
-  <string name="Megaphones_get_started">Начать</string>
+  <string name="Megaphones_get_started">С чего начать</string>
   <string name="Megaphones_new_group">Новая группа</string>
   <string name="Megaphones_invite_friends">Пригласить друзей</string>
   <string name="Megaphones_use_sms">Использовать SMS</string>
@@ -1314,7 +1314,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупреждение</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом PIN-коде нельзя будет включить блокировку регистрации.</string>
   <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
@@ -2175,7 +2175,7 @@
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__default">По умолчанию</string>
   <string name="preferences__language">Язык (Language)</string>
@@ -2409,7 +2409,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Придумайте более надёжный PIN-код</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>

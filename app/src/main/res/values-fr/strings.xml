@@ -770,13 +770,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Le lien de groupe est invalide</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Inviter des amis</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Partagez un lien avec vos amis pour leur permettre de rejoindre ce groupe.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Partagez un lien avec des amis pour leur permettre de se joindre rapidement à ce groupe.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Activer et partager le lien</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Partager le lien</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Impossible de créer un lien pour le groupe. Veuillez réessayer plus tard</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Impossible d’activer le lien de groupe. Veuillez réessayer plus tard</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Une erreur réseau est survenue.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Vous n\'avez pas le droit d\'activer le lien de groupe. Veuillez contacter un administrateur. </string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Vous n\'êtes pas membre du groupe. </string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Vous n’avez pas le droit d’activer le lien de groupe. Veuillez demander à un administrateur.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Vous n’êtes actuellement pas membre du groupe.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ajouter « %1$s » au groupe ?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Refuser la demande de « %1$s » ?</string>
@@ -877,7 +877,7 @@
   <string name="Megaphones_get_started">Commençons</string>
   <string name="Megaphones_new_group">Nouveau groupe</string>
   <string name="Megaphones_invite_friends">Inviter des amis</string>
-  <string name="Megaphones_use_sms">Utilisez SMS</string>
+  <string name="Megaphones_use_sms">Utiliser les textos</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>
@@ -948,7 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Vous avez créé le groupe.</string>
   <string name="MessageRecord_group_updated">Le groupe a été mis à jour.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Invitez vos amis sur ce groupe, grâce au lien du groupe</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Invitez des amis à ce groupe grâce à un lien de groupe</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Vous avez ajouté %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s a ajouté %2$s.</string>
@@ -2149,7 +2149,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>
   <string name="conversation_list_fragment__open_camera_description">Ouvrir l’appareil photo</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Pas de conversation pour l\'instant. Commencez en envoyant un message à un ami. </string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Aucune conversation pour l’instant.\nCommencez en envoyant un message à un ami.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Réinitialiser la session sécurisée</string>
   <!--conversation_muted-->

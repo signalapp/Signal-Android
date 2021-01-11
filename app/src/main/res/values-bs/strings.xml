@@ -180,7 +180,7 @@
   <string name="ContactShareEditActivity_type_mobile">Mobilni</string>
   <string name="ContactShareEditActivity_type_work">Poslovni</string>
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
-  <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
+  <string name="ContactShareEditActivity_invalid_contact">Označeni kontakt nije valjan</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Nije poslano, dodirnite za detalje</string>
   <string name="ConversationItem_error_partially_not_delivered">Djelimično poslano, dodirnite za detalje</string>
@@ -270,14 +270,14 @@
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Izbrisati odabranu poruku?</item>
-    <item quantity="few">Izbrisati odabrane poruke?</item>
-    <item quantity="other">Izbrisati odabrane poruke?</item>
+    <item quantity="one">Izbrisati označenu poruku?</item>
+    <item quantity="few">Izbrisati označene poruke?</item>
+    <item quantity="other">Izbrisati označene poruke?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Ovo će bespovratno izbrisati odabranu poruku.</item>
-    <item quantity="few">Ovo će bespovratno izbrisati %1$d odabrane poruke.</item>
-    <item quantity="other">Ovo će bespovratno izbrisati svih %1$d odabranih poruka.</item>
+    <item quantity="one">Ovo će bespovratno izbrisati označenu poruku.</item>
+    <item quantity="few">Ovo će bespovratno izbrisati %1$d označene poruke.</item>
+    <item quantity="other">Ovo će bespovratno izbrisati svih %1$d označenih poruka.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Pohraniti u memoriju?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -2211,13 +2211,13 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Izbriši odabrano</string>
+  <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_pin_selected">Istakni označeno</string>
   <string name="conversation_list_batch__menu_unpin_selected">Prestani isticati označeno</string>
   <string name="conversation_list_batch__menu_select_all">Odaberi sve</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Arhiviraj odabrano</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dearhiviraj odabrano</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">Dearhiviraj odabrano</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arhiviraj označeno</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dearhiviraj označeno</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Dearhiviraj označeno</string>
   <string name="conversation_list_batch__menu_mark_as_read">Označi kao pročitano</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Označi kao nepročitano</string>
   <!--conversation_list-->

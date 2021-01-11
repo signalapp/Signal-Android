@@ -337,7 +337,7 @@
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">Izbrišem izbran pogovor?</item>
+    <item quantity="one">Izbrišem izbrani pogovor?</item>
     <item quantity="two">Izbrišem izbrana pogovora?</item>
     <item quantity="few">Izbrišem izbrane pogovore?</item>
     <item quantity="other">Izbrišem izbrane pogovore?</item>

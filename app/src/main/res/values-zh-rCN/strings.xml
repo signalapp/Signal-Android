@@ -568,6 +568,7 @@
   <string name="AddGroupDetailsFragment__create_group">创建群组</string>
   <string name="AddGroupDetailsFragment__create">创建</string>
   <string name="AddGroupDetailsFragment__members">成员</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">您可以在创建此群组后添加或邀请朋友。</string>
   <string name="AddGroupDetailsFragment__group_name_required">群名称（必填）</string>
   <string name="AddGroupDetailsFragment__group_name_optional">群组名称（可选）</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">必须填写此项。</string>
@@ -728,7 +729,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群组链接无效</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">邀请好友</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">通过分享链接来要请朋友们快速加入此群组。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">启用和分享链接</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">分享链接</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">无法启用群组链接，请稍后再试。</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">网络出错。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">您没有取得启用群组链接的权限，请联系群组管理员。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">您当前不是该群组成员。</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">将“%1$s”添加到群组？</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">拒绝“%1$s”的入群申请？</string>
@@ -823,6 +830,7 @@
   <string name="Megaphones_get_started">开始使用</string>
   <string name="Megaphones_new_group">新建群组</string>
   <string name="Megaphones_invite_friends">邀请好友</string>
+  <string name="Megaphones_use_sms">使用短信</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
@@ -890,6 +898,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">您创建了群组</string>
   <string name="MessageRecord_group_updated">群组更新完成。</string>
+  <string name="MessageRecord_invite_friends_to_this_group">通过群组链接邀请好友加入该群组</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">已添加 %1$s。</string>
   <string name="MessageRecord_s_added_s">%1$s 添加了 %2$s。</string>
@@ -2074,6 +2083,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新对话</string>
   <string name="conversation_list_fragment__open_camera_description">打开相机</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">还没有聊天记录。\n开始使用，给朋友发个消息吧。</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重置安全会话</string>
   <!--conversation_muted-->

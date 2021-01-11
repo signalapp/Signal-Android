@@ -879,6 +879,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ನೀವು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌ ನ ಆವೃತ್ತಿಯು ಸರಿಯಾಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿಲ್ಲ. ದಯವಿಟ್ಟು Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ ಹಾಗು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.  </string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">ತಪ್ಪಾದ ಪಿನ್</string>
+  <string name="PinRestoreEntryFragment_need_help">ಸಹಾಯ ಬೇಕೇ?</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">ನಿಮ್ಮ ಪಿನ್ ನಿಮಗೆ ನೆನಪಿಲ್ಲದಿದ್ದರೆ, ನೀವು ಹೊಸದನ್ನು ರಚಿಸಬಹುದು.  ನಿಮ್ಮ ಖಾತೆಯನ್ನು ನೀವು ನೋಂದಾಯಿಸಬಹುದು ಮತ್ತು ಬಳಸಬಹುದು, ಆದರೆ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮಾಹಿತಿಯಂತಹ ಕೆಲವು ಉಳಿಸಿದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತೀರಿ.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">ಹೊಸ ಪಿನ್ ರಚಿಸಿ</string>
   <string name="PinRestoreEntryFragment_contact_support">ಸಂಪರ್ಕ ಬೆಂಬಲ</string>

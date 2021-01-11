@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">ഗ്രൂപ്പ് സൃഷ്ടിക്കുക</string>
   <string name="AddGroupDetailsFragment__create">സൃഷ്ടിക്കുക</string>
   <string name="AddGroupDetailsFragment__members">അംഗങ്ങൾ</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ഈ ഗ്രൂപ്പ് സൃഷ്ടിച്ചതിനുശേഷം നിങ്ങൾക്ക് സുഹൃത്തുക്കളെ ചേർക്കാനോ ക്ഷണിക്കാനോ കഴിയും.</string>
   <string name="AddGroupDetailsFragment__group_name_required">ഗ്രൂപ്പിന്റെ പേര് (ആവശ്യമാണ്)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">ഗ്രൂപ്പിന്റെ പേര് (നിര്‍ബന്ധമല്ല)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">ഈ ഫീൽഡ് പൂരിപ്പിക്കേണ്ടതുണ്ട്.</string>
@@ -769,7 +770,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ഗ്രൂപ്പ് ലിങ്ക് അസാധുവാണ്</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">ഈ ഗ്രൂപ്പിൽ വേഗത്തിൽ ചേരാൻ സുഹൃത്തുക്കളെ അനുവദിക്കുന്നതിന് ഒരു ലിങ്ക് പങ്കിടുക.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">പ്രവർത്തനക്ഷമമാക്കി ലിങ്ക് പങ്കിടുക</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">ലിങ്ക് പങ്കിടുക</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ഗ്രൂപ്പ് ലിങ്ക് പ്രവർത്തനക്ഷമമാക്കാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">ഗ്രൂപ്പ് ലിങ്ക് പ്രവർത്തനക്ഷമമാക്കാൻ നിങ്ങൾക്ക് അവകാശമില്ല. ഒരു അഡ്‌മിനോട് ചോദിക്കുക.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">നിങ്ങൾ നിലവിൽ ഗ്രൂപ്പിൽ അംഗമല്ല.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">ഗ്രൂപ്പിലേക്ക് \"%1$s\"-നെ ചേർക്കണോ?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” ൽ നിന്നുള്ള അഭ്യർത്ഥന നിരസിക്കണോ?</string>
@@ -870,6 +877,7 @@
   <string name="Megaphones_get_started">ആരംഭിക്കുക</string>
   <string name="Megaphones_new_group">പുതിയ ഗ്രൂപ്പ്</string>
   <string name="Megaphones_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+  <string name="Megaphones_use_sms">SMS ഉപയോഗിക്കുക</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal കോൾ പുരോഗതിയിലാണ്</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal കോൾ സ്ഥാപിക്കുന്നു</string>
@@ -940,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">നിങ്ങൾ ഗ്രൂപ്പ് സൃഷ്ടിച്ചു.</string>
   <string name="MessageRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">ഒരു ഗ്രൂപ്പ് ലിങ്ക് വഴി സുഹൃത്തുക്കളെ ഈ ഗ്രൂപ്പിലേക്ക് ക്ഷണിക്കുക</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">നിങ്ങൾ %1$s-നെ ചേർത്തു.</string>
   <string name="MessageRecord_s_added_s">%1$s %2$s-നെ ചേർത്തു</string>
@@ -1229,6 +1238,7 @@
   <string name="WebRtcCallView__start_call">കോൾ ആരംഭിക്കുക</string>
   <string name="WebRtcCallView__join_call">കോളിൽ ചേരുക</string>
   <string name="WebRtcCallView__call_is_full">കോൾ നിറഞ്ഞു</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">ഈ കോളില്‍ പങ്കെടുക്കാന്നാവുന്നവരുടെ പരമാവധി എണ്ണമായ %1$d ആയിരിക്കുന്നു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" ഗ്രൂപ്പ് കോൾ</string>
   <string name="WebRtcCallView__view_participants_list">പങ്കെടുക്കുന്നവരെ കാണുക</string>
   <string name="WebRtcCallView__your_video_is_off">നിങ്ങളുടെ വീഡിയോ ഓഫാണ്</string>
@@ -1563,6 +1573,7 @@ grūpp ap‌ḍē</string>
   <string name="WebRtcCallScreen_new_safety_number_title">പുതിയ സേഫ്റ്റി നമ്പർ </string>
   <string name="WebRtcCallScreen_accept">സ്വീകരിക്കുക</string>
   <string name="WebRtcCallScreen_end_call">കോൾ അവസാനിപ്പിക്കുക</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">ദര്‍ശനരീതി മാറ്റുന്നതിന് മുകളിലേക്ക് സ്വൈപ്പുചെയ്യുക</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">നിരസിക്കുക</string>
   <string name="WebRtcCallScreen__answer">ഉത്തരം</string>
@@ -2140,6 +2151,7 @@ grūpp ap‌ḍē</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">പുതിയ സംഭാഷണം</string>
   <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ഇതുവരെ ചാറ്റുകളൊന്നുമില്ല.\nഒരു സുഹൃത്തിന് സന്ദേശമയച്ചുകൊണ്ട് ആരംഭിക്കുക.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിക്കുക</string>
   <!--conversation_muted-->
@@ -2372,6 +2384,7 @@ grūpp ap‌ḍē</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കാൻ, ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കപ്പെടും.</string>
   <string name="BackupDialog_choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
   <string name="BackupDialog_copied_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി</string>
+  <string name="BackupDialog_no_file_picker_available">ഫയൽ പിക്കറൊന്നും ലഭ്യമല്ല.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">സ്ഥിരീകരിക്കുന്നതിന് നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് വിജയകരമായി നൽകി</string>

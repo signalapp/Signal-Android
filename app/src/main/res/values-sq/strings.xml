@@ -190,7 +190,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> s\’do të fshehtëzohet, ngaqë marrësi s\’është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar?</string>
   <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
   <string name="ConversationItem_copied_text">U kopjua %s</string>
-  <string name="ConversationItem_from_s">nga %s</string>
+  <string name="ConversationItem_from_s">prej %s</string>
   <string name="ConversationItem_to_s">për %s</string>
   <string name="ConversationItem_read_more">  Lexoni Më Tepër</string>
   <string name="ConversationItem_download_more">  Shkarkoni Më Tepër</string>

@@ -948,7 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">دعوت دوستان برای پیوستن به این گروه از طریق یک پیوند گروه</string>
+  <string name="MessageRecord_invite_friends_to_this_group">دعوت دوستان برای پیوستن به این گروه از طریق پیوند گروه</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
   <string name="MessageRecord_s_added_s">%1$s %2$s را اضافه کرد.</string>

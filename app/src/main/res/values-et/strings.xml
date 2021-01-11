@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Loo grupp</string>
   <string name="AddGroupDetailsFragment__create">Loo</string>
   <string name="AddGroupDetailsFragment__members">Liikmed</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Sul on võimalik lisada või kutsuda sõpru pärast grupi loomist.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Grupi nimi (kohustuslik)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Grupi nimi (valikuline)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">See väli on kohustuslik.</string>
@@ -772,7 +773,9 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Jaga linki sõpradega, et võimaldada neil kiiresti selle grupiga liituda.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Luba ja jaga linki</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Jaga linki</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Grupilingi lubamine ei õnnestunud. Palun proovi hiljem uuesti.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Esines võrgutõrge.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Sul pole grupilingi lubamise õigust. Palu administraatorilt abi.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Sa ei ole hetkel selle grupi liige.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Lisad “%1$s” gruppi?</string>

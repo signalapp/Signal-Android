@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">צור קבוצה</string>
   <string name="AddGroupDetailsFragment__create">צור</string>
   <string name="AddGroupDetailsFragment__members">חברי קבוצה</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">אתה יכול להוסיף או להזמין חברים לאחר היצירה של הקבוצה הזאת.</string>
   <string name="AddGroupDetailsFragment__group_name_required">שם קבוצה (דרוש)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">שם קבוצה (רשותי)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">שדה זה דרוש.</string>
@@ -851,7 +852,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">הזמן חברים</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">שתף קישור עם חברים כדי לתת להם להצטרף במהירות אל קבוצה זו.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">אפשר ושתף קישור</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">שתף קישור</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">לא היה ניתן לאפשר את קישור הקבוצה. אנא נסה שוב מאוחר יותר</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">אין לך את הזכות לאפשר את קישור הקבוצה. אנא שאל מנהלן.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">אינך חבר של הקבוצה כרגע.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">לדחות בקשה מאת ”%1$s“?</string>
@@ -964,6 +971,7 @@
   <string name="Megaphones_get_started">התחל</string>
   <string name="Megaphones_new_group">קבוצה חדשה</string>
   <string name="Megaphones_invite_friends">הזמן חברים</string>
+  <string name="Megaphones_use_sms">השתמש במסרון</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -1040,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">יצרת את הקבוצה.</string>
   <string name="MessageRecord_group_updated">קבוצה עודכנה.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">הזמן חברים אל קבוצה זו באמצעות קישור קבוצה</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">הוספת את %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s הוסיף את %2$s.</string>
@@ -2301,6 +2310,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">אין התכתבויות עדיין.\nהתחל ע״י שליחת הודעה אל חבר.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">אפס שיח מאובטח</string>
   <!--conversation_muted-->

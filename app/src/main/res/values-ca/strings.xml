@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Crear un grup</string>
   <string name="AddGroupDetailsFragment__create">Crea</string>
   <string name="AddGroupDetailsFragment__members">Membres</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Podeu afegir o convidar amics després de crear el grup.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nom de grup (necessari)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nom de grup (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Aquest camp és necessari.</string>
@@ -769,7 +770,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">L\'enllaç de grup no és vàlid.</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convideu-hi amistats</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Compartiu un enllaç amb els amics per a facilitar que s\'uneixin a aquest grup.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Habilita i comparteix l\'enllaç</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Compateix l\'enllaç</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">No s\'ha pogut habilitar l\'enllaç del grup. Torneu-ho a intentar més tard.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Hi ha hagut un error de xarxa.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No teniu permís per a habilitar l\'enllaç del grup. Demaneu-ho a un administrador.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Actualment no sou membre del grup.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Voleu afegir %1$s al grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Voleu rebutjar la sol·licitud de %1$s?</string>
@@ -870,6 +877,7 @@
   <string name="Megaphones_get_started">Comenceu</string>
   <string name="Megaphones_new_group">Grup nou</string>
   <string name="Megaphones_invite_friends">Convideu-hi amistats</string>
+  <string name="Megaphones_use_sms">Usa SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -940,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Heu creat el grup.</string>
   <string name="MessageRecord_group_updated">Grup actualitzat</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Convideu amistats a aquest grup amb un enllaç de grup.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Hi heu afegit %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s ha afegit %2$s.</string>
@@ -2143,6 +2152,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversa nova</string>
   <string name="conversation_list_fragment__open_camera_description">Obre la càmera</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Encara no teniu cap conversa.\nComenceu enviant un missatge a algú.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Restableix la sessió segura</string>
   <!--conversation_muted-->

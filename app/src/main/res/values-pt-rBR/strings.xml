@@ -275,8 +275,8 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Salvar no armazenamento?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Salvar este arquivo no armazenamento permitirá que qualquer outro aplicativo no seu dispositivo tenha acesso a ele.\n\nContinuar?</item>
-    <item quantity="other">Salvar estes %1$d arquivos no armazenamento permitirá que qualquer outro aplicativo no seu dispositivo tenha acesso a eles.\n\nContinuar?</item>
+    <item quantity="one">Salvar este arquivo no armazenamento permitirá que qualquer outro aplicativo no seu aparelho tenha acesso a ele.\n\nContinuar?</item>
+    <item quantity="other">Salvar estes %1$d arquivos no armazenamento permitirá que qualquer outro aplicativo no seu aparelho tenha acesso a eles.\n\nContinuar?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Erro ao salvar anexo no armazenamento!</item>
@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Criar grupo</string>
   <string name="AddGroupDetailsFragment__create">Criar</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Você pode adicionar ou convidar amigos(as) após criar esse grupo.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nome do grupo (obrigatório)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nome do grupo (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Este campo é obrigatório.</string>
@@ -768,8 +769,14 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mais de seus dispositivos vinculados estão usando uma versão do Signal que não suporta links de grupos. Atualize o Signal no(s) seu(s) dispositivo(s) vinculado(s) para entrar neste grupo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">O link do grupo não é válido</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convidar amigos</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convidar amigos(as)</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Compartilhe um link com seus(suas) amigos(as) para que eles(elas) entrem rápido no grupo.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Ativar e compartilhar link</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Compartilhar link</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Não foi possível ativar o grupo. Por favor, tente novamente mais tarde</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Ocorreu um erro de rede.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Você não dispõe de privilégios para ativar o link de um grupo. Por favor, peça ajuda ao(à) admin.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Atualmente você não é membro do grupo.</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adicionar “%1$s” ao grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Recusar solicitação de “%1$s”?</string>
@@ -869,7 +876,8 @@
   <string name="Megaphones_verify_pin">Verifique o PIN</string>
   <string name="Megaphones_get_started">Começar</string>
   <string name="Megaphones_new_group">Novo grupo</string>
-  <string name="Megaphones_invite_friends">Convidar amigos</string>
+  <string name="Megaphones_invite_friends">Convidar amigos(as)</string>
+  <string name="Megaphones_use_sms">Usar SMS</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo chamada Signal</string>
@@ -940,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Você criou o grupo.</string>
   <string name="MessageRecord_group_updated">Grupo atualizado.</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Convidar amigas(os) ao grupo via link</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Você adicionou %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s adicionou %2$s.</string>
@@ -1087,7 +1096,7 @@
   <string name="MessageRequestBottomView_delete">Excluir</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Eles não saberão que você viu a mensagem deles até que você aceite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Você aceita que %1$s lhe envie uma mensagem, saiba seu nome e veja sua foto? Essa pessoa não saberá que você viu a mensagem dela ao menos que você aceite.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permita %1$s enviar uma mensagem para você e compartilhar seu nome e foto com outros? Você não receberá nenhumas mensagens até que os desbloqueie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar sua conversa com este grupo e exibir seu nome e foto para os membros?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Atualize este grupo para ativar novos recursos como @menções e administradores. Os membros que não compartilharam seus nomes ou fotos neste grupo serão convidados a participar.</string>
@@ -1173,7 +1182,7 @@
     <item quantity="one">Você tem %1$d tentativas restantes. Se você não acertar, você pode criar um novo PIN. Você pode se registrar e usar sua conta, mas perderá algumas configurações salvas como as informações de seu perfil.</item>
     <item quantity="other">Você tem %1$d tentativas restantes. Se não acertar, pode criar um novo PIN. Você pode se registrar e usar sua conta, mas perderá algumas configurações salvas como as informações do seu perfil.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registro no Signal - Precisa de ajuda com o PIN para Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Registro no Signal - Preciso de ajuda com o PIN para Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Digite o PIN alfanumérico</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Digite o PIN numérico</string>
   <!--PinRestoreLockedFragment-->
@@ -1269,11 +1278,11 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você
         especificou (%s) é inválido.
     </string>
-  <string name="RegistrationActivity_missing_google_play_services">Ausência do Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo não tem Google Play Services. Você ainda pode usar o Signal, mas talvez não consiga a mesma estabilidade e desempenho.\n\nSe você não é um usuário avançado, não está usando uma ROM Android customizada, ou acredita que isto é um erro, fale conosco no endereço support@signal.org para que possamos ajudar a resolver o problema.</string>
+  <string name="RegistrationActivity_missing_google_play_services">Google Play Services está faltando</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este aparelho não tem Google Play Services. Você ainda pode usar o Signal, mas talvez não consiga a mesma estabilidade e desempenho.\n\nSe você não é um(a) usuário(a) avançado(a), não está usando uma ROM Android customizada, ou acredita que isto é um erro, fale conosco no endereço support@signal.org para que possamos ajudar a resolver o problema.</string>
   <string name="RegistrationActivity_i_understand">Entendi</string>
   <string name="RegistrationActivity_play_services_error">Erro no Play Services</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services está sendo atualizado ou temporariamente indisponível. Favor tentar novamente.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services está sendo atualizado ou temporariamente indisponível. Por favor, tente novamente.</string>
   <string name="RegistrationActivity_terms_and_privacy">Termos &amp; Política de Privacidade</string>
   <string name="RegistrationActivity_no_browser">Nenhum navegador foi encontrado para abrir este link.</string>
   <string name="RegistrationActivity_more_information">Mais informações</string>
@@ -1282,10 +1291,10 @@
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">O Signal precisa acessar seus contatos para te conectar com seus amigos, trocar as mensagens, e fazer ligações seguras</string>
   <string name="RegistrationActivity_rate_limited_to_service">Você fez muitas tentativas de registrar este número. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente seu número de telefone, o Signal pode detectar automaticamente seu código de verificação desde que você permita ao Signal acessar suas mensagens SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente seu número de telefone, o Signal pode detectar automaticamente seu código de verificação desde que você permita-lhe acessar suas mensagens SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Você está agora a %d passo de submeter um log de depuração.</item>
-    <item quantity="other">Você está agora a %d passos de submeter um log de depuração</item>
+    <item quantity="one">Você está agora a %d passo de enviar um log de depuração.</item>
+    <item quantity="other">Você está agora a %d passos de enviar um log de depuração</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Precisamos verificar que você é um ser humano.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Falha ao verificar o CAPTCHA</string>
@@ -1303,7 +1312,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Bloqueio de registro?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Bloqueio de registro?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por sete dias.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por 7 dias.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ativar</string>
   <string name="RegistrationLockV2Dialog_turn_off">Desativar</string>
   <!--RevealableMessageView-->
@@ -1683,7 +1692,7 @@
   <string name="ConversationUpdateItem_join_call">Participar da chamada</string>
   <string name="ConversationUpdateItem_return_to_call">Voltar para a chamada</string>
   <string name="ConversationUpdateItem_call_is_full">A chamada está lotada</string>
-  <string name="ConversationUpdateItem_invite_friends">Convidar amigos</string>
+  <string name="ConversationUpdateItem_invite_friends">Convidar amigos(as)</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
@@ -1757,8 +1766,8 @@
   <string name="IdentityUtil_unverified_banner_two">Seus números de segurança com %1$s e %2$s não estão verificados</string>
   <string name="IdentityUtil_unverified_banner_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados</string>
   <string name="IdentityUtil_unverified_dialog_one">Seu número de segurança com %1$s mudou e não está verificado. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %1$s simplesmente reinstalou o Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Seus números de segurança com %1$s e %2$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que eles simplesmente reinstalaram o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Seus números de segurança com %1$s e %2$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que essas pessoas simplesmente reinstalaram o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s não estão verificados. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que essas pessoas simplesmente reinstalaram o Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Seu número de segurança com %s acabou de mudar.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Seus números de segurança com %1$s e %2$s acabaram de mudar.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Seus números de segurança com %1$s, %2$s e %3$s acabaram de mudar.</string>
@@ -1832,9 +1841,9 @@
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELEFONE</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">É fácil se comunicar com o Signal usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o cadastro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">É fácil se comunicar com o Signal usando seu número de telefone e contatos já existentes. Quem já fala com você pelo celular também não terá dificuldade de entrar em contato pelo aplicativo.\n\nDurante o registro, algumas informações de contato são transmitidas para o servidor. Elas não são armazenadas.</string>
   <string name="registration_activity__verify_your_number">Verificar seu número</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Favor inserir seu número de celular para receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
+  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Por favor, insira seu número de celular para receber um código de verificação. Taxas de operadoras podem ser aplicadas.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Digite um nome ou um número</small></string>
   <string name="recipients_panel__add_members">Adicionar membros</string>
@@ -2149,6 +2158,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova conversa</string>
   <string name="conversation_list_fragment__open_camera_description">Abrir câmera</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nenhuma conversa ainda. \nPara começar, envie uma mensagem para alguém.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sessão segura</string>
   <!--conversation_muted-->
@@ -2220,7 +2230,7 @@
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O seu percentual do Insights é calculado com base nas mensagens enviadas nos últimos %1$d dias que não desapareceram ou foram excluídas.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Comece a se comunicar com segurança e habilite novos recursos que vão além das mensagens SMS não criptografadas convidando mais contatos para participar do Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Essas estatísticas foram geradas localmente no seu dispositivo e só podem ser vistas por você. Eles nunca são transmitidas para outros locais.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Essas estatísticas foram geradas localmente no seu aparelho e só podem ser vistas por você. Elas nunca são transmitidas a terceiros.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mensagens criptografadas</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
@@ -2264,8 +2274,8 @@
   <string name="KbsSplashFragment__introducing_pins">Apresentando os PINs</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">O PIN mantém as informações armazenadas no Signal criptografadas, para que somente você possa acessá-las. Seu perfil, configurações e contatos serão restaurados quando você reinstalar. Você não precisará do seu PIN para abrir o aplicativo.</string>
   <string name="KbsSplashFragment__learn_more">Saiba Mais</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">Desbloqueio de Cadastro = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Seu Desbloqueio de Cadastro agora é chamado de PIN, e ele faz mais. Atualize-o agora.</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">Desbloqueio de Registro = PIN</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Seu Desbloqueio de Registro agora é chamado de PIN e tem outras utilidades. Atualize-o agora.</string>
   <string name="KbsSplashFragment__read_more_about_pins">Leia mais sobre PINs.</string>
   <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Criar seu PIN</string>
@@ -2285,7 +2295,7 @@
   <string name="AccountLockedFragment__learn_more">Saiba Mais</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Digite seu PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Digite o PIN que você criou para sua conta. Isso é diferente do seu código de verificação por SMS.</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Digite o PIN que você criou para sua conta. Ele é diferente do seu código de verificação por SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Digite o PIN alfanumérico</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Digite o PIN numérico</string>
   <string name="RegistrationLockFragment__next">Avançar</string>
@@ -2293,10 +2303,10 @@
   <string name="RegistrationLockFragment__forgot_pin">Esqueceu seu PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu seu PIN?</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">Não restam muitas tentativas!</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Restam poucas tentativas!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá verificar novamente via SMS após %1$d dias de inatividade. Nesse caso, sua conta será apagada e todo o conteúdo excluído.</item>
-    <item quantity="other">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá verificar novamente via SMS após %1$d dias de inatividade. Nesse caso, sua conta será apagada e todo o conteúdo excluído.</item>
+    <item quantity="one">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá re-registrar seu número de telefone após %1$d dias de inatividade. Nesse caso, sua conta será suprimida e todo o conteúdo excluído.</item>
+    <item quantity="other">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá re-registrar seu número de telefone após %1$d dias de inatividade. Nesse caso, sua conta será suprimida e todo o conteúdo excluído.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">PIN incorreto. %1$d tentativa restante.</item>
@@ -2354,8 +2364,8 @@
   <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela eu não conseguirei restaurar um backup.</string>
   <string name="registration_activity__restore_backup">Restaurar backup</string>
-  <string name="registration_activity__skip">Pular</string>
-  <string name="registration_activity__register">Cadastrar</string>
+  <string name="registration_activity__skip">Ignorar</string>
+  <string name="registration_activity__register">Registrar-se</string>
   <string name="preferences_chats__chat_backups">Backups de chat</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Fazer backup de chats no armazenamento externo</string>
   <string name="preferences_chats__create_backup">Criar backup</string>
@@ -2363,12 +2373,12 @@
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Teste sua senha de backup e verifique se elas correspondem.</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Digite a frase-chave de backup</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais novas do Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais recentes do Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de backup incorreta</string>
   <string name="RegistrationActivity_checking">Checando…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mensagens até agora…</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurar do backup?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, você não conseguirá restaurar depois.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, não conseguirá restaurar depois.</string>
   <string name="RegistrationActivity_backup_size_s">Tamanho do backup: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Timestamp do backup: %s</string>
   <string name="BackupDialog_enable_local_backups">Habilitar backups locais?</string>
@@ -2380,6 +2390,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Para ativar os backups, escolha uma pasta. Os backups serão salvos neste local.</string>
   <string name="BackupDialog_choose_folder">Escolher pasta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado para a área de transferência</string>
+  <string name="BackupDialog_no_file_picker_available">Nenhum seletor de arquivos disponível.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Digite sua senha de backup para verificação</string>
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Você digitou com sucesso sua senha de backup</string>
@@ -2394,11 +2405,11 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Não há espaço suficiente para armazenar seu backup.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerenciar os backups.</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
+  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, digite o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorreto</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Me liga \n (Disponível em %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Me ligue \n (Disponível em %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Entre em contato com o Suporte do Signal</string>
-  <string name="RegistrationActivity_code_support_subject">Cadastro Signal - Código de verificação para Android</string>
+  <string name="RegistrationActivity_code_support_subject">Registro Signal - Código de verificação para Android</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__see_my_phone_number">Ver meu número de telefone</string>
@@ -2424,41 +2435,41 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Certifique-se de memorizar ou armazenar seu PIN com segurança, pois ele não pode ser recuperado. Se você esquecer seu PIN, poderá perder dados ao recadastrar sua conta do Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao habilitar Bloqueio de registro.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desabilitar Bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Bloqueio de registro.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de Cadastro não é igual ao código de verificação que você acabou de receber. Por favor, insira o PIN definido anteriormente por meio do aplicativo.</string>
-  <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de registro não é o mesmo que o código de verificação que você acabou de receber. Por favor, insira o PIN que você definiu anteriormente no aplicativo.</string>
+  <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de registro</string>
   <string name="registration_activity__forgot_pin">Esqueceu seu PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Um PIN pode ter quatro ou mais dígitos. Se você esquecer seu PIN, ficará sem acesso à conta por até sete dias.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Um PIN pode ter quatro ou mais dígitos. Se você esquecer seu PIN, ficará sem acesso à conta por ao menos 7 dias.</string>
   <string name="registration_lock_dialog_view__enter_pin">Insira o PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">Confirme o PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Insira seu PIN de Desbloqueio de Cadastro</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Insira seu PIN de Desbloqueio de registro</string>
   <string name="registration_lock_reminder_view__enter_pin">Insira o PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilite um PIN de Desbloqueio de Cadastro que seja requerido para recadastrar esse número de telefone no Signal.</string>
-  <string name="preferences_app_protection__registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
-  <string name="preferences_app_protection__registration_lock">Desbloqueio de Cadastro</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Você deve inserir seu PIN de Desbloqueio de Cadastro</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Habilite um PIN de Desbloqueio de registro que será requerido para registrar novamente esse número de telefone no Signal.</string>
+  <string name="preferences_app_protection__registration_lock_pin">PIN de Desbloqueio de registro</string>
+  <string name="preferences_app_protection__registration_lock">Desbloqueio de Registro</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Você deve inserir seu PIN de Desbloqueio de registro</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Seu PIN tem pelo menos %d dígitos ou characteres</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de Desbloqueio de Cadastro incorreto</string>
-  <string name="RegistrationActivity_too_many_attempts">Muitas tentativas</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Você excedeu o número máximo de tentativas para acertar o PIN de Desbloqueio de Cadastro. Por favor, tente novamente daqui a um dia.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Você já fez muitas tentativas. Por favor, tente novamente mais tarde.</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">PIN de Desbloqueio de registro incorreto</string>
+  <string name="RegistrationActivity_too_many_attempts">Excesso de tentativas</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Você excedeu o número máximo de tentativas para acertar o PIN de Desbloqueio de registro. Por favor, tente novamente daqui a um dia.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Você excedeu o número de tentativas permitido. Por favor, tente novamente mais tarde.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Erro na conexão ao serviço</string>
-  <string name="RegistrationActivity_oh_no">Ah não!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Este número de telefone poderá ser cadastrado sem o PIN de Desbloqueio de Cadastro após 7 dias de inatividade no Signal. Restam %d dias.</string>
-  <string name="RegistrationActivity_registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone está com o Desbloqueio de Cadastro ativo. Por favor, insira o PIN de Desbloqueio de Cadastro.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Desbloqueio de Cadastro está ativo para seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de Cadastro, o Signal pedirá que o confirme periodicamente.</string>
+  <string name="RegistrationActivity_oh_no">Ah, não!</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Este número de telefone poderá ser registrado sem o PIN de Desbloqueio de registro após 7 dias de inatividade no Signal. Restam %d dias.</string>
+  <string name="RegistrationActivity_registration_lock_pin">PIN de Desbloqueio de registro</string>
+  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone está com o Desbloqueio de registro habilitado. Por favor, insira o PIN de Desbloqueio de registro.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Desbloqueio de registro está habilitado no seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de registro, o Signal pedirá que o confirme periodicamente.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de registro ajuda a proteger seu número de telefone de tentativas de registro não autorizadas. Essa fução pode ser desabilitada a qualquer instante nas configurações de privacidade do Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de registro</string>
   <string name="RegistrationLockDialog_enable">Habilitar</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de Cadastro deve ter pelo menos %d dígitos.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os PINs inseridos não correspondem.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de registro deve ter pelo menos %d dígitos.</string>
+  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dois PINs inseridos não correspondem.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Erro ao conectar ao serviço</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Desabilitar PIN de Desbloqueio de Cadastro?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Desabilitar PIN de Desbloqueio de registro?</string>
   <string name="RegistrationLockDialog_disable">Desabilitar</string>
   <string name="RegistrationActivity_pin_incorrect">PIN incorreto</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Você tem %d tentativas restantes</string>
@@ -2569,6 +2580,6 @@
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity__skip">Pular</string>
+  <string name="CreateGroupActivity__skip">Ignorar</string>
   <!--EOF-->
 </resources>
