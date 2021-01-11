@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
@@ -94,7 +95,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     slideOutAnimation = loadAnimation(R.anim.slide_to_bottom);
 
     View                 shareButton     = findViewById(R.id.share_button);
-    View                 smsButton       = findViewById(R.id.sms_button);
+    Button               smsButton       = findViewById(R.id.sms_button);
     Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
     ContactFilterToolbar contactFilter   = findViewById(R.id.contact_filter);
 
@@ -107,12 +108,19 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
 
     contactsFragment.setOnContactSelectedListener(this);
-    shareButton.setOnClickListener(new ShareClickListener());
-    smsButton.setOnClickListener(new SmsClickListener());
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
     contactFilter.setNavigationIcon(R.drawable.ic_search_conversation_24);
+
+    if (Util.isDefaultSmsProvider(this)) {
+      shareButton.setOnClickListener(new ShareClickListener());
+      smsButton.setOnClickListener(new SmsClickListener());
+    } else {
+      shareButton.setVisibility(View.GONE);
+      smsButton.setOnClickListener(new ShareClickListener());
+      smsButton.setText(R.string.InviteActivity_share);
+    }
   }
 
   private Animation loadAnimation(@AnimRes int animResId) {
