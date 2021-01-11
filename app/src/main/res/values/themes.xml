@@ -349,6 +349,9 @@
 
         <item name="android:navigationBarColor" tools:ignore="NewApi">@color/white</item>
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">true</item>
+
+        <item name="android:colorForeground">@color/black</item>
+        <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
     </style>
 
     <style name="Theme.Signal.RoundedBottomSheet" parent="Theme.MaterialComponents.BottomSheetDialog">
