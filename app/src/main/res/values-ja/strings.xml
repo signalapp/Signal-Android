@@ -1232,6 +1232,7 @@
   <string name="RegistrationActivity_continue_last_attempt">続ける (最後！)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">あなたにプライバシーを。\nすべてのメッセージで自分らしく。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
+  <string name="RegistrationActivity_enter_your_phone_number">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s に届いたコードを入力してください</string>
   <string name="RegistrationActivity_phone_number_description">電話番号</string>

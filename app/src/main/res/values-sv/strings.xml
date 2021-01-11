@@ -1166,7 +1166,7 @@
   <string name="PlacePickerActivity_drop_pin">Släpp stift</string>
   <string name="PlacePickerActivity_accept_address">Acceptera adress</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster som du har installerat fungerar inte korrekt. Vänligen installera om Google Play-tjänster och försök igen.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster som du har installerad fungerar inte korrekt. Vänligen installera om Google Play-tjänster och försök igen.</string>
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Felaktig PIN-kod</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Hoppa över PIN-kodsposten?</string>
@@ -1300,8 +1300,10 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_continue_last_attempt">Fortsätt (sista försöket!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta med dig sekretess.\nVar dig själv i varje meddelande.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ange ditt telefonnummer för att komma igång</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Ange ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ange koden vi skickade till %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Se till att din telefon har en mobilsignal för att ta emot ditt SMS eller samtal</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landskod</string>
   <string name="RegistrationActivity_call">Ring</string>

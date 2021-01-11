@@ -1304,8 +1304,10 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_continue_last_attempt">Fortsæt (sidste forsøg!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Indtast dit telefonnummer for at komme i gang</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Indtast dit telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra din udbyder kan blive pålagt</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sørg for, at din telefon har et mobilsignal til at modtage SMS eller opkald</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landekode</string>
   <string name="RegistrationActivity_call">Ring op</string>

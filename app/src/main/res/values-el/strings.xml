@@ -804,7 +804,7 @@
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΩΝ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
+    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
@@ -1300,8 +1300,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Συνέχεια (τελευταία προσπάθεια!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Πάρε την ιδιωτικότητα μαζί σου.\nΝα είσαι ο εαυτός σου σε κάθε μήνυμα.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Γράψε τον αριθμό σου για να ξεκινήσεις</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Θα λάβεις έναν κωδικό επιβεβαίωσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Γράψε τον κωδικό που σου στείλαμε στο %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Επιβεβαίωσε πως το τηλέφωνό σου έχει σήμα κινητής για να λάβεις το SMS ή την κλήση</string>
   <string name="RegistrationActivity_phone_number_description">Αριθμός τηλεφώνου</string>
   <string name="RegistrationActivity_country_code_description">Κωδικός χώρας</string>
   <string name="RegistrationActivity_call">Κλήση</string>

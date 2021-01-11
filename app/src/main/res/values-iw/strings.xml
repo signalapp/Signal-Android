@@ -1434,8 +1434,10 @@
   <string name="RegistrationActivity_continue_last_attempt">המשך (ניסיון אחרון!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
+  <string name="RegistrationActivity_enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">וודא שלטלפון שלך יש אות סלולרי לקבל מסרון או שיחה</string>
   <string name="RegistrationActivity_phone_number_description">מספר טלפון</string>
   <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
   <string name="RegistrationActivity_call">התקשר</string>

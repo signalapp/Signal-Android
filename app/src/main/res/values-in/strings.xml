@@ -1120,6 +1120,7 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_less_information">Kurang informasi</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukkan akses ke kontak dan media Anda untuk terkoneksi dengan teman, bertukar pesan, dan membuat panggilan aman</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal memerlukan akses ke kontak Anda untuk terhubung dengan teman, pertukaran pesan, dan membuat panggilan yang aman</string>
+  <string name="RegistrationActivity_rate_limited_to_service">Anda membuat terlalu banyak percobaan untuk mendaftarkan nomor ini. Mohon coba lagi nanti.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Untuk memudahkan verifikasi nomor telepon Anda, Signal dapat secara otomatis mendeteksi kode verifikasi Anda jika Anda mengizinkan Signal untuk melihat pesan SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">

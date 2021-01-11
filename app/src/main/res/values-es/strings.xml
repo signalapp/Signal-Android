@@ -1304,8 +1304,10 @@ número de teléfono
   <string name="RegistrationActivity_continue_last_attempt">Intentar de nuevo (último intento)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Introduce tu número de teléfono</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura celular para recibir tu SMS o llamada</string>
   <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>

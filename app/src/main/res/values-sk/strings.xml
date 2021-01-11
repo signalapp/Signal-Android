@@ -1424,6 +1424,7 @@ telefónne číslo
   <string name="RegistrationActivity_continue_last_attempt">Pokračovať (posledný pokus!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vezmite si súkromie so sebou.\nBuďte sami sebou v každej správe.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby ste mohli začať, zadajte svoje telefónne číslo</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Zadajte svoje telefónne číslo</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Obdržíte overovací kód. Váš mobilný operátor si môže účtovať poplatky.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
   <string name="RegistrationActivity_phone_number_description">Telefónne číslo</string>

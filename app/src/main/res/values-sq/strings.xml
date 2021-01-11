@@ -1306,8 +1306,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_continue_last_attempt">Vazhdoni (prova e fundit!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t\’ia filloni, jepni numrin tuaj të telefonit</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sigurohuni se telefoni juaj ka sinjal celulari për të marrë SMS-në ose thirrjen tuaj</string>
   <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
   <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>

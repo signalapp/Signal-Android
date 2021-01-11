@@ -1305,6 +1305,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_continue_last_attempt">Jarraitu (azkenengo saiakera)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pribatutasuna zurekin eraman.\nZu zeu izan mezu bakoitzean.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Hasteko, zure telefono zenbakia idatzi</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Idatzi zure telefono zenbakia</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %s telefonora bidali dugun kodea.</string>
   <string name="RegistrationActivity_phone_number_description">Telefono zenbakia</string>

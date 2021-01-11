@@ -1564,6 +1564,7 @@
 
 كن على طبيعتك في كل رسالة.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء</string>
+  <string name="RegistrationActivity_enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تحقّق. قد تنطبّق تكلفة من مزوّد الخدمة.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
   <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>

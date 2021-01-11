@@ -1427,8 +1427,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Продолжить (последняя попытка!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Возьмите\nконфиденциальность\nс собой.\nБудьте собой в каждом сообщении.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введите свой номер телефона, чтобы начать</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Введите свой номер телефона</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Вы получите код подтверждения. Вашим оператором может взиматься плата за входящее SMS.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Введите код, который мы отправили на %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Убедитесь, что ваш телефон находится в зоне действия сети и сможет принять SMS или звонок</string>
   <string name="RegistrationActivity_phone_number_description">Номер телефона</string>
   <string name="RegistrationActivity_country_code_description">Код страны</string>
   <string name="RegistrationActivity_call">Позвонить</string>

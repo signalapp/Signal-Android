@@ -1308,8 +1308,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_continue_last_attempt">Doorgaan (laatste poging!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landcode</string>
   <string name="RegistrationActivity_call">Bellen</string>

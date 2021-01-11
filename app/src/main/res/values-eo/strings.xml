@@ -1304,6 +1304,7 @@
   <string name="RegistrationActivity_continue_last_attempt">Plui (lasta provo!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Kunprenu privatecon.\nEstu vi mem en ĉiu mesaĝo.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Entajpu vian telefonnumeron unue</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Entajpu vian telefonnumeron</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vi ricevos konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnumero</string>

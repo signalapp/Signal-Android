@@ -1289,6 +1289,7 @@
   <string name="RegistrationActivity_continue_last_attempt">جاری رکھیں (آخری کوشش!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">اپنے ساتھ رازداری اختیار کریں۔/n ہر پیغام میں اپنے آپ کو سمجھیں۔</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">شروع کرنے کے لیے اپنا فون نمبر داخل کریں</string>
+  <string name="RegistrationActivity_enter_your_phone_number">اپنا فون نمبر درج کریں</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">آپ کو تصدیقی کوڈ وصول ہوگا۔ کیریئر کی درجہ بندی لاگو ہو گی۔</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ہم نے جو کوڈ بھیجا ہے%sداخل کریں</string>
   <string name="RegistrationActivity_phone_number_description">فون نمبر</string>

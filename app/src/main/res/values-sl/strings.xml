@@ -1427,8 +1427,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Nadaljuj (zadnji poskus!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Za začetek vpišite svojo telefonsko številko.</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Vnesite svojo telefonsko številko</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Prepričajte se, če ima vaš telefon dostop do mobilnega signala, da lahko prejmete naš SMS ali klic</string>
   <string name="RegistrationActivity_phone_number_description">Telefonska številka</string>
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>

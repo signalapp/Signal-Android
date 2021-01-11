@@ -923,6 +923,7 @@
   <string name="MessageRecord_missed_audio_call_date">Ubesvart anrop · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Ubesvart videoanrop · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s oppdaterte gruppa.</string>
+  <string name="MessageRecord_s_called_you_date">%1$sringte deg %2$s·</string>
   <string name="MessageRecord_called_s">Ringte %s</string>
   <string name="MessageRecord_s_joined_signal">%s er på Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du deaktiverte forsvinnende meldinger.</string>
@@ -1243,6 +1244,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_continue_last_attempt">Fortsett (siste forsøk!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet med deg.\nVær deg selv i hver melding.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Skriv inn ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %s</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>

@@ -1239,6 +1239,7 @@
   <string name="RegistrationActivity_continue_last_attempt">继续（最后一次！）</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">让隐私与您形影不离。\n在每一条消息中展现真正的自己。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">开始体验，请输入你的手机号码</string>
+  <string name="RegistrationActivity_enter_your_phone_number">输入您的电话号码</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">您将收到验证码，运营商可能收取短信费用。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入 %s 收到的验证码</string>
   <string name="RegistrationActivity_phone_number_description">手机号码</string>

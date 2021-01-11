@@ -1304,8 +1304,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Continuar (última tentativa!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade com você.\nSeja você em cada mensagem.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insira o seu número de telefone para começar</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Digite o seu número de telefone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verifique se o seu telefone está captando sinal de rede para receber SMS ou chamadas</string>
   <string name="RegistrationActivity_phone_number_description">Número de telefone</string>
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>

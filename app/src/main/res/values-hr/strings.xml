@@ -1366,8 +1366,10 @@ broj telefona</string>
   <string name="RegistrationActivity_continue_last_attempt">Nastavi (posljednji pokušaj!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ponesite privatnost sa sobom.\nBudite svoji u svakoj poruci.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Unesite broj telefona za početak</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Unesite vaš broj telefona</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Primiti će te potvrdni kôd. Mogu se primijeniti naknade operatera.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kôd koji smo poslali na %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Provjerite ima li vaš telefon uspostavljenu mobilnu vezu za primanje SMS-a ili poziva</string>
   <string name="RegistrationActivity_phone_number_description">Broj telefona</string>
   <string name="RegistrationActivity_country_code_description">Kôd države</string>
   <string name="RegistrationActivity_call">Nazovi</string>

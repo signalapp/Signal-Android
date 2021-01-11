@@ -1247,6 +1247,7 @@ puhelinnumero</string>
   <string name="RegistrationActivity_continue_last_attempt">Jatka (viimeinen yritys!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ota yksityisyys mukaasi.\nOle itsesi jokaisessa viestissä.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Syötä puhelinnumerosi, jotta pääset alkuun</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Syötä puhelinnumerosi</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
   <string name="RegistrationActivity_phone_number_description">Puhelinnumero</string>

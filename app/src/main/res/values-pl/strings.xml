@@ -1429,8 +1429,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Kontynuuj (ostatnia próba!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Weź prywatność w swoje ręce.\nBądź sobą w każdej wiadomości.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Podaj swój numer telefonu</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Upewnij się, że Twój telefon ma połączenie z siecią komórkową, aby otrzymać wiadomość SMS lub połączenie</string>
   <string name="RegistrationActivity_phone_number_description">Numer telefonu</string>
   <string name="RegistrationActivity_country_code_description">Kod kraju</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>

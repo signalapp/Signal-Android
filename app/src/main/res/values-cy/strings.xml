@@ -1436,6 +1436,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_continue_last_attempt">Parhau (ymgais olaf)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Cymrwch breifatrwydd gyda chi.\nByddwch chi eich hun ymhob neges.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Rhowch eich rhif ffôn i gychwyn arni</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Rhowch eich rhif ffôn</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s</string>
   <string name="RegistrationActivity_phone_number_description">Rhif ffôn</string>

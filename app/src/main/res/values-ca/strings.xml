@@ -1300,6 +1300,7 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_continue_last_attempt">Continua (darrer intent!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porteu a sobre la privadesa.\nSigueu vosaltres mateixos a cada missatge.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, marqueu el número de telèfon.</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Marqueu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Marqueu el codi que hem enviat a %s</string>
   <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>

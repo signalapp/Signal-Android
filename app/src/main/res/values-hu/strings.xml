@@ -1306,6 +1306,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_continue_last_attempt">Folytatás (utolsó próbálkozás)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vidd magaddal az adatvédelmet.\nLégy önmagad minden üzenetben.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Add meg telefonszámodat a kezdéshez</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Add meg a telefonszámod</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
   <string name="RegistrationActivity_phone_number_description">Telefonszám</string>

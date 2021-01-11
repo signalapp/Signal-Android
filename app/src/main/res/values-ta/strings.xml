@@ -1303,6 +1303,7 @@
   <string name="RegistrationActivity_continue_last_attempt">தொடரவும் (கடைசி முயற்சி!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்க உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்</string>
+  <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %s க்கு உள்ளிடவும்</string>
   <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>

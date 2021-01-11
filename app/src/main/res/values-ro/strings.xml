@@ -1314,6 +1314,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_continue_last_attempt">Continuați (ultima încercare!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduceți numărul dvs. de telefon pentru a putea începe</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Introduceți numărul dvs. de telefon</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
   <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>

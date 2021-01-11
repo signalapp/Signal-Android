@@ -1304,8 +1304,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Jätka (viimane katse!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Võta privaatsus endaga kaasa.\nJää iga sõnumiga iseendaks.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Sisesta alustamiseks oma telefoninumber</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Sisesta enda telefoninumber</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mulle saatsime numbrile %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Tee kindlaks, et su telefon oleks levis, et saada SMS-i või kõnet.</string>
   <string name="RegistrationActivity_phone_number_description">Telefoninumber</string>
   <string name="RegistrationActivity_country_code_description">Riigikood</string>
   <string name="RegistrationActivity_call">Helista</string>

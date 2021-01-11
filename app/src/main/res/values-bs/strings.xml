@@ -1369,6 +1369,7 @@
   <string name="RegistrationActivity_continue_last_attempt">Nastavite (zadnji pokušaj!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Privatnost držite uza se.\nBudite svoji u svakoj poruci.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Unesite svoj broj telefona da počnete</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Unesite svoj broj telefona</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Primit ćete kōd za potvrdu. Vaš operater možda naplati uslugu.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kōd koji smo poslali na %s</string>
   <string name="RegistrationActivity_phone_number_description">Broj telefona</string>

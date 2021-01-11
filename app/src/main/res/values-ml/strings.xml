@@ -1298,6 +1298,7 @@
   <string name="RegistrationActivity_continue_last_attempt">തുടരുക (അവസാന ശ്രമം!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ആരംഭിക്കുന്നതിന് വേണ്ടി നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
+  <string name="RegistrationActivity_enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ അയച്ച കോഡ് %s-ലേക്ക്  നൽകുക</string>
   <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
