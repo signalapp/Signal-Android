@@ -56,14 +56,14 @@ object MessageReceiver {
         } else {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER -> {
-                    val decryptionResult = MessageReceiverDecryption.decryptWithSignalProtocol(envelope)
-                    plaintext = decryptionResult.first()
-                    sender = decryptionResult.second()
+                    val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(envelope)
+                    plaintext = decryptionResult.first
+                    sender = decryptionResult.second
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
                     val decryptionResult = MessageReceiverDecryption.decryptWithSharedSenderKeys(envelope)
-                    plaintext = decryptionResult.first()
-                    sender = decryptionResult.second()
+                    plaintext = decryptionResult.first
+                    sender = decryptionResult.second
                 }
                 else -> throw Error.UnknownEnvelopeType
             }

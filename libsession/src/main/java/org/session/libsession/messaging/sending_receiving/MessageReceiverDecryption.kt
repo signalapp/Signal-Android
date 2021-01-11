@@ -7,10 +7,7 @@ import org.session.libsession.utilities.AESGCM
 import org.whispersystems.curve25519.Curve25519
 
 import org.session.libsignal.libsignal.loki.ClosedGroupCiphertextMessage
-import org.session.libsignal.libsignal.util.Pair
-import org.session.libsignal.service.api.crypto.SignalServiceCipher
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
-import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementation
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -20,7 +17,7 @@ import javax.crypto.spec.SecretKeySpec
 
 object MessageReceiverDecryption {
 
-    internal fun decryptWithSignalProtocol(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
+    /*internal fun decryptWithSignalProtocol(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
         val storage = MessagingConfiguration.shared.signalStorage
         val sskDatabase = MessagingConfiguration.shared.sskDatabase
         val sessionResetImp = MessagingConfiguration.shared.sessionResetImp
@@ -32,6 +29,10 @@ object MessageReceiverDecryption {
         val cipher = SignalServiceCipher(localAddress, storage, sskDatabase, sessionResetImp, certificateValidator)
         val result = cipher.decrypt(SignalServiceEnvelope(envelope))
         return Pair(ByteArray(1), result.sender) // TODO: Return real plaintext
+    }*/
+
+    internal fun decryptWithSessionProtocol(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
+        return MessagingConfiguration.shared.sessionProtocol.decrypt(SignalServiceEnvelope(envelope))
     }
 
     internal fun decryptWithSharedSenderKeys(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {

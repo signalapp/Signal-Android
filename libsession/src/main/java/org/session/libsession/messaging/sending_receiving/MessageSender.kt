@@ -116,7 +116,7 @@ object MessageSender {
             }
             val ciphertext: ByteArray
             when (destination) {
-                is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSignalProtocol(plaintext, message, destination.publicKey)
+                is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
                 is Destination.ClosedGroup -> ciphertext = MessageSenderEncryption.encryptWithSharedSenderKeys(plaintext, destination.groupPublicKey)
                 is Destination.OpenGroup -> throw preconditionFailure
             }

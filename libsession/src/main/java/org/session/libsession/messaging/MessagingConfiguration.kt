@@ -5,6 +5,7 @@ import org.session.libsession.database.MessageDataProvider
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.state.*
 import org.session.libsignal.metadata.certificate.CertificateValidator
+import org.session.libsignal.service.loki.api.crypto.SessionProtocol
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 
 class MessagingConfiguration(
@@ -14,6 +15,7 @@ class MessagingConfiguration(
         val sskDatabase: SharedSenderKeysDatabaseProtocol,
         val messageDataProvider: MessageDataProvider,
         val sessionResetImp: SessionResetProtocol,
+        val sessionProtocol: SessionProtocol,
         val certificateValidator: CertificateValidator)
 {
     companion object {
@@ -25,10 +27,11 @@ class MessagingConfiguration(
                       sskDatabase: SharedSenderKeysDatabaseProtocol,
                       messageDataProvider: MessageDataProvider,
                       sessionResetImp: SessionResetProtocol,
+                      sessionProtocol: SessionProtocol,
                       certificateValidator: CertificateValidator
         ) {
             if (Companion::shared.isInitialized) { return }
-            shared = MessagingConfiguration(context, storage, signalStorage, sskDatabase, messageDataProvider, sessionResetImp, certificateValidator)
+            shared = MessagingConfiguration(context, storage, signalStorage, sskDatabase, messageDataProvider, sessionResetImp, sessionProtocol, certificateValidator)
         }
     }
 }

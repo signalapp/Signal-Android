@@ -20,7 +20,7 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 
 object MessageSenderEncryption {
 
-    internal fun encryptWithSignalProtocol(plaintext: ByteArray, message: Message, recipientPublicKey: String): ByteArray{
+    /*internal fun encryptWithSignalProtocol(plaintext: ByteArray, message: Message, recipientPublicKey: String): ByteArray{
         val storage = MessagingConfiguration.shared.signalStorage
         val sskDatabase = MessagingConfiguration.shared.sskDatabase
         val sessionResetImp = MessagingConfiguration.shared.sessionResetImp
@@ -32,6 +32,10 @@ object MessageSenderEncryption {
         val unidentifiedAccess = if (unidentifiedAccessPair != null) unidentifiedAccessPair.targetUnidentifiedAccess else Optional.absent()
         val encryptedMessage = cipher.encrypt(signalProtocolAddress, unidentifiedAccess, plaintext)
         return Base64.decode(encryptedMessage.content)
+    }*/
+
+    internal fun encryptWithSessionProtocol(plaintext: ByteArray, recipientPublicKey: String): ByteArray{
+        return MessagingConfiguration.shared.sessionProtocol.encrypt(plaintext, recipientPublicKey)
     }
 
     internal fun encryptWithSharedSenderKeys(plaintext: ByteArray, groupPublicKey: String): ByteArray {
