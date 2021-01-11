@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal புதுப்பிக்கிறது …</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">சிக்னல் புதுப்பிக்கிறது …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">தற்போது: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet"> நீங்கள் இன்னும் ஒரு கடவுச்சொல்லை அமைக்கவில்லை!</string>
@@ -25,12 +25,12 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">நீக்கு</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">கடவுச்சொல்லை முடக்கு?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">இது நிரந்தரமாக Signal செய்தி அறிவிப்புகளைத் திறக்கும்.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">இது நிரந்தரமாக சிக்னல் செய்தி அறிவிப்புகளைத் திறக்கும்.</string>
   <string name="ApplicationPreferencesActivity_disable">முடக்கு</string>
   <string name="ApplicationPreferencesActivity_unregistering">பதிவுநீக்குதல்</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal குறுஞ்செய்தி மற்றும் அழைப்பு பதிவுநீக்கப்படுகிறது …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal குறுஞ்செய்தி மற்றும் அழைப்பை முடக்கு ?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">சேவையகத்திலிருந்து பதிவுசெய்வதன் மூலம் Signal செய்திகள் மற்றும் அழைப்புகளை முடக்கு. எதிர்காலத்தில் மீண்டும் அவற்றைப் பயன்படுத்த நீங்கள் உங்கள் தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய வேண்டும்.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">சிக்னல் குறுஞ்செய்தி மற்றும் அழைப்பை முடக்கு ?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">சேவையகத்திலிருந்து பதிவுசெய்வதன் மூலம் சிக்னல் செய்திகள் மற்றும் அழைப்புகளை முடக்கு. எதிர்காலத்தில் மீண்டும் அவற்றைப் பயன்படுத்த நீங்கள் உங்கள் தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய வேண்டும்.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">சர்வருடன் இணைவதில் பிழை!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS செயல்படுத்தப்பட்டது</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">இதை உங்கள் இயல்புநிலை SMS மென்பொருளாக்க தொடவும் </string>
@@ -44,9 +44,9 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">திரை பூட்டு %1$s, பதிவு பூட்டு %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">திரை பூட்டு %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">பின்புலத்தோற்றம் %1$s, மொழி %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">பதிவு பூட்டுக்கு PIN தேவை. PIN-ஐ முடக்க, முதலில் பதிவு பூட்டை முடக்கவும்.</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN உருவாக்கப்பட்டது.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN முடக்கப்பட்டது.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">பதிவு பூட்டுக்கு கடவு எண் தேவை. கடவு எண்-ஐ முடக்க, முதலில் பதிவு பூட்டை முடக்கவும்.</string>
+  <string name="ApplicationPreferencesActivity_pin_created">கடவு எண் உருவாக்கப்பட்டது.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">கடவு எண் முடக்கப்பட்டது.</string>
   <string name="ApplicationPreferencesActivity_hide">மறை</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">நினைவூட்டலை மறைக்கவா?</string>
   <!--AppProtectionPreferenceFragment-->
@@ -305,7 +305,7 @@
   <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">விரைவாக பதிலளிக்க எந்த செய்தியிலும் வலதுபுறமாக ஸ்வைப் செய்யலாம்</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் காண்க-ஒருமுறை கோப்புகள் அனுப்பப்பட்ட கடவு எண் தானாகவே அகற்றப்படும்</string>
   <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">இந்த உரையாடலில் உங்களுக்காக குறிப்புகளைச் சேர்க்கலாம். உங்கள் கணக்கில் இணைக்கப்பட்ட பிற சாதனங்கள் இருந்தால், புதிய குறிப்புகள் ஒத்திசைக்கப்படும்.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dகுழு உறுப்பினர்களுக்கு ஒரே பெயர் உண்டு.</string>
@@ -864,9 +864,9 @@
   <string name="Megaphones_introducing_reactions">எதிர்வினைகளை அறிமுகப்படுத்துகிறது</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">நீங்கள் எப்படி உணர்கிறீர்கள் என்பதை விரைவாகப் பகிர எந்த செய்தியையும் தட்டிப் பிடிக்கவும்.</string>
   <string name="Megaphones_remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string>
-  <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal PIN-ஐ சரிபார்க்கவும்</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் PIN-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
-  <string name="Megaphones_verify_pin">பின் சரிபார்க்கவும்</string>
+  <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal கடவு எண்-ஐ சரிபார்க்கவும்</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் கடவு எண்-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
+  <string name="Megaphones_verify_pin">கடவு எண் சரிபார்க்கவும்</string>
   <string name="Megaphones_get_started">தொடங்குகள்</string>
   <string name="Megaphones_new_group">புதிய குழு</string>
   <string name="Megaphones_invite_friends">நண்பர்களை அழை</string>
@@ -1163,27 +1163,27 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">தவறான பின்</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">சிக்னல் பின்னைத் தவிர்க்கவா?</string>
   <string name="PinRestoreEntryFragment_need_help">உங்களுக்கு உதவி வேண்டுமா?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">உங்கள் பின் என்பது நீங்கள் உருவாக்கிய %1$d இலக்கக் குறியீடாகும், இது எண் அல்லது எண்ணெழுத்து ஆகும். உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம். உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">உங்கள் கடவு எண் என்பது நீங்கள் உருவாக்கிய %1$d இலக்கக் குறியீடாகும், இது எண் அல்லது எண்ணெழுத்து ஆகும். உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், புதிய ஒன்றை உருவாக்கலாம். உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">என்றால் நீங்கள் நினைவில் இல்லை உங்கள் பின், நீங்கள் முடியும் உருவாக்கு புதியது. நீங்கள் பதிவு செய்யலாம் மற்றும் பயன்பாடு உங்கள் கணக்கு ஆனால் நீங்கள்சேமித்த சிலவற்றை இழப்பேன் அமைப்புகள் போன்ற உங்கள் சுயவிவரம் தகவல்.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">உருவாக்கு புதியது பின்</string>
   <string name="PinRestoreEntryFragment_contact_support">தொடர்பு ஆதரவு</string>
   <string name="PinRestoreEntryFragment_cancel">ரத்து</string>
   <string name="PinRestoreEntryFragment_skip">தவிர்</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">உங்களிடம் %1$d முயற்சிகள் உள்ளன. உங்கள் வரையறுக்கப்பட்ட முயற்சிகள் முடிந்தால், நீங்கள் ஒரு புதிய பின்னை உருவாக்கலாம். புதிய PIN மூலம் உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</item>
-    <item quantity="other">உங்களிடம் %1$d முயற்சிகள் உள்ளன. நீங்கள் வரையறுக்கப்பட்ட முயற்சிகள் முடிந்தால், நீங்கள் ஒரு புதிய பின்னை உருவாக்கலாம். புதிய PIN மூலம் உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</item>
+    <item quantity="one">உங்களிடம் %1$d முயற்சிகள் உள்ளன. உங்கள் வரையறுக்கப்பட்ட முயற்சிகள் முடிந்தால், நீங்கள் ஒரு புதிய பின்னை உருவாக்கலாம். புதிய கடவு எண் மூலம் உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</item>
+    <item quantity="other">உங்களிடம் %1$d முயற்சிகள் உள்ளன. நீங்கள் வரையறுக்கப்பட்ட முயற்சிகள் முடிந்தால், நீங்கள் ஒரு புதிய பின்னை உருவாக்கலாம். புதிய கடவு எண் மூலம் உங்கள் கணக்கைப் பதிவுசெய்து பயன்படுத்தலாம், ஆனால் உங்கள் சுயவிவரத் தகவல் போன்ற சில சேமிக்கப்பட்ட அமைப்புகளை இழப்பீர்கள்.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal பதிவு - Android க்கான PIN உடன் உதவி தேவை</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal பதிவு - Android க்கான கடவு எண் உடன் உதவி தேவை</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">எண்ணெழுத்து பின்னை உள்ளிடவும்</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">நீங்கள் PIN முயற்சிகளை முடித்துவிட்டீர்கள், ஆனால் புதிய PIN ஐ உருவாக்குவதன் மூலம் உங்கள் சிக்னல் கணக்கை அணுகலாம். உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக சேமிக்கப்பட்ட சுயவிவரத் தகவல் அல்லது அமைப்புகள் இல்லாமல் உங்கள் கணக்கு மீட்டமைக்கப்படும்.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">நீங்கள் கடவு எண் முயற்சிகளை முடித்துவிட்டீர்கள், ஆனால் புதிய கடவு எண் ஐ உருவாக்குவதன் மூலம் உங்கள் சிக்னல் கணக்கை அணுகலாம். உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக சேமிக்கப்பட்ட சுயவிவரத் தகவல் அல்லது அமைப்புகள் இல்லாமல் உங்கள் கணக்கு மீட்டமைக்கப்படும்.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">புதிய பின்னை உருவாக்கவும்</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">எச்சரிக்கை</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
-  <string name="PinOptOutDialog_disable_pin">PIN-ஐ முடக்கு</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் கடவு எண்-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். கடவு எண் முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
+  <string name="PinOptOutDialog_disable_pin">கடவு எண்-ஐ முடக்கு</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
@@ -1302,7 +1302,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">பதிவு பூட்டை இயக்கவா?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">பதிவு பூட்டை அணைக்கவா?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal உடன் மீண்டும் பதிவுசெய்யும்போது உங்கள் Signal PIN-ஐ மறந்துவிட்டால், உங்கள் கணக்கிலிருந்து 7 நாட்களுக்கு பூட்டப்படுவீர்கள்.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal உடன் மீண்டும் பதிவுசெய்யும்போது உங்கள் Signal கடவு எண்-ஐ மறந்துவிட்டால், உங்கள் கணக்கிலிருந்து 7 நாட்களுக்கு பூட்டப்படுவீர்கள்.</string>
   <string name="RegistrationLockV2Dialog_turn_on">இயக்கவும்</string>
   <string name="RegistrationLockV2Dialog_turn_off">அணைக்க</string>
   <!--RevealableMessageView-->
@@ -2017,10 +2017,10 @@
   <string name="preferences__dark_theme">இருட்டு</string>
   <string name="preferences__appearance">தோற்றம்</string>
   <string name="preferences__theme">நிறவடிவமைப்பு</string>
-  <string name="preferences__disable_pin">PIN-ஐ முடக்கு</string>
+  <string name="preferences__disable_pin">கடவு எண்-ஐ முடக்கு</string>
   <string name="preferences__enable_pin">பின்னை மீண்டும் திறக்கவும்</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் Signal PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் PIN தேவைப்படாது.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் Signal கடவு எண்-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். கடவு எண் முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் கடவு எண்-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் கடவு எண் தேவைப்படாது.</string>
   <string name="preferences__system_default">கருவி இயல்புநிலை</string>
   <string name="preferences__default">இயல்புநிலை</string>
   <string name="preferences__language">மொழி</string>
@@ -2243,67 +2243,67 @@
     <item quantity="other">பின் குறைந்தது %1$d எழுத்துக்களாக இருக்க வேண்டும்</item>
   </plurals>
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
-    <item quantity="one">பின் அல்லது கடவுஎண் குறைந்தது %1$d இலக்கங்களாக இருக்க வேண்டும்</item>
-    <item quantity="other">பின் குறைந்தது %1$d இலக்கங்களாக இருக்க வேண்டும்</item>
+    <item quantity="one">பின் அல்லது கடவு எண் குறைந்தது %1$d இலக்கங்களாக இருக்க வேண்டும்</item>
+    <item quantity="other">கடவு எண் குறைந்தது %1$d இலக்கங்களாக இருக்க வேண்டும்</item>
   </plurals>
-  <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">புதிய கடவு எண்ணை உருவாக்கவும்</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் கடவு எண் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
   <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் PIN தேவைப்படாது.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் கடவு எண்-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் கடவு எண் தேவைப்படாது.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">கடவு எண்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
-  <string name="ConfirmKbsPinFragment__pin_created">பின் உருவாக்கப்பட்டது.</string>
-  <string name="ConfirmKbsPinFragment__re_enter_your_pin">உங்கள் பின்னை மீண்டும் உள்ளிடவும்</string>
-  <string name="ConfirmKbsPinFragment__creating_pin">பின் உருவாக்குகிறது…</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">கடவு எண் உருவாக்கம் தோல்வியடைந்தது</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் கடவு எண் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
+  <string name="ConfirmKbsPinFragment__pin_created">கடவு எண் உருவாக்கப்பட்டது.</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">உங்கள் கடவு எண்ணை மீண்டும் உள்ளிடவும்</string>
+  <string name="ConfirmKbsPinFragment__creating_pin">கடவு எண் உருவாக்குகிறது…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் PIN தேவைப்படாது.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் கடவு எண்-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் கடவு எண் தேவைப்படாது.</string>
   <string name="KbsSplashFragment__learn_more">மேலும் அறிக</string>
-  <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = PIN</string>
-  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">உங்கள் பதிவு பூட்டு இப்போது PIN என அழைக்கப்படுகிறது, மேலும் இது மேலும் செய்கிறது. இப்போது புதுப்பிக்கவும்.</string>
+  <string name="KbsSplashFragment__registration_lock_equals_pin">பதிவு பூட்டு = கடவு எண்</string>
+  <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">உங்கள் பதிவு பூட்டு இப்போது கடவு எண் என அழைக்கப்படுகிறது, மேலும் இது மேலும் செய்கிறது. இப்போது புதுப்பிக்கவும்.</string>
   <string name="KbsSplashFragment__read_more_about_pins">பின்ஸைப் பற்றி மேலும் வாசிக்க.</string>
   <string name="KbsSplashFragment__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
   <string name="KbsSplashFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
   <string name="KbsSplashFragment__learn_more_about_pins">பின்கள் பற்றி மேலும் அறிக</string>
-  <string name="KbsSplashFragment__disable_pin">PIN-ஐ முடக்கு</string>
+  <string name="KbsSplashFragment__disable_pin">கடவு எண்-ஐ முடக்கு</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">உங்கள் Signal பின்னை உள்ளிடவும்</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">உங்கள் பின்னை மனப்பாடம் செய்ய உங்களுக்கு உதவ, அதை அவ்வப்போது உள்ளிடுமாறு கேட்டுக்கொள்கிறோம். காலப்போக்கில் நாங்கள் உங்களிடம் குறைவாகக் கேட்கிறோம்.</string>
   <string name="KbsReminderDialog__skip">தவிர்</string>
   <string name="KbsReminderDialog__submit">சமர்ப்பி</string>
-  <string name="KbsReminderDialog__forgot_pin">பின் மறந்துவிட்டீர்களா?</string>
+  <string name="KbsReminderDialog__forgot_pin">கடவு எண் மறந்துவிட்டீர்களா?</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">கணக்கில் பூட்டப்பட்டுள்ளது</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$dநாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் பின் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பைப் பாதுகாக்க உங்கள் கணக்கு பூட்டப்பட்டுள்ளது. உங்கள் கணக்கில் %1$dநாட்கள் செயலற்ற நிலையில் இருந்தபின், உங்கள் கடவு எண் தேவைப்படாமல் இந்த தொலைபேசி எண்ணை மீண்டும் பதிவு செய்ய முடியும். எல்லா உள்ளடக்கமும் நீக்கப்படும்.</string>
   <string name="AccountLockedFragment__next">அடுத்தது</string>
   <string name="AccountLockedFragment__learn_more">மேலும் அறிக</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">உங்கள் பின்னை உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__enter_your_pin">உங்கள் கடவு எண்ணை உள்ளிடவும்</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">உங்கள் கணக்கிற்கு நீங்கள் உருவாக்கிய பின்னை உள்ளிடவும். இது உங்கள் SMS சரிபார்ப்புக் குறியீட்டிலிருந்து வேறுபட்டது.</string>
-  <string name="RegistrationLockFragment__enter_alphanumeric_pin">எண்ணெழுத்து பின்னை உள்ளிடவும்</string>
-  <string name="RegistrationLockFragment__enter_numeric_pin">எண் பின்னை உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__enter_alphanumeric_pin">எண்ணெழுத்துக்கள் உள்ளடக்கிய கடவு எண் உள்ளிடவும்</string>
+  <string name="RegistrationLockFragment__enter_numeric_pin">எண்கள் உள்ளடக்கிய கடவு எண் உள்ளிடவும்</string>
   <string name="RegistrationLockFragment__next">அடுத்தது</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
-  <string name="RegistrationLockFragment__forgot_pin">பின் மறந்துவிட்டீர்களா?</string>
-  <string name="RegistrationLockFragment__incorrect_pin">தவறான பின்</string>
-  <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">பல முயற்சிகள் மீதமில்லை!</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">தவறான கடவு எண், மீண்டும் முயற்சி செய்க.</string>
+  <string name="RegistrationLockFragment__forgot_pin">கடவு எண் மறந்துவிட்டீர்களா?</string>
+  <string name="RegistrationLockFragment__incorrect_pin">தவறான கடவு எண்</string>
+  <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் கடவு எண்ணை மறந்துவிட்டீர்களா?</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">சில முயற்சிகள் மீதமுண்டு!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் எஸ்எம்எஸ் மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
-    <item quantity="other">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS மூலம் மீண்டும் சரிபார்க்கலாம். இந்த நிலையில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்களும் நீக்கப்படும்.</item>
+    <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் கடவு எண்ணை மீட்டெடுக்க வழி இல்லை. உங்கள் கடவு எண்ணை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் எஸ்எம்எஸ் மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
+    <item quantity="other">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் கடவு எண்ணை மீட்டெடுக்க வழி இல்லை. உங்கள் கடவு எண்ணை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் எஸ்.எம்.எஸ். மூலம் மீண்டும் சரிபார்க்கலாம். இந்த நிலையில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்களும் நீக்கப்படும்.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">தவறான பின். %1$d முயற்சிகள் மீதமுள்ளன.</item>
     <item quantity="other">தவறான பின். %1$dமுயற்சிகள் மீதமுள்ளன.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">நீங்கள் முயற்சிகள் முடிந்தால், உங்கள் கணக்கு %1$d நாட்களுக்கு பூட்டப்படும். %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு, உங்கள் பின் இல்லாமல் மீண்டும் பதிவு செய்யலாம். உங்கள் நடப்புக் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
-    <item quantity="other">நீங்கள் முயற்சிகள் முடிந்தால், உங்கள் கணக்கு %1$dநாட்களுக்கு பூட்டப்படும். %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு, உங்கள் பின் இல்லாமல் மீண்டும் பதிவு செய்யலாம். உங்கள் நடப்புக் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
+    <item quantity="one">நீங்கள் முயற்சிகள் முடிந்தால், உங்கள் கணக்கு %1$d நாட்களுக்கு பூட்டப்படும். %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு, உங்கள் கடவு எண் இல்லாமல் மீண்டும் பதிவு செய்யலாம். உங்கள் நடப்புக் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
+    <item quantity="other">நீங்கள் முயற்சிகள் முடிந்தால், உங்கள் கணக்கு %1$dநாட்களுக்கு பூட்டப்படும். %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு, உங்கள் கடவு எண் இல்லாமல் மீண்டும் பதிவு செய்யலாம். உங்கள் நடப்புக் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">உங்களிடம் %1$d முயற்சிகள் மீதமுள்ளது</item>
@@ -2317,13 +2317,13 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">சரி</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s உங்களிடமிருந்து செய்தி கோரிக்கையைப் பெறும். உங்கள் செய்தி கோரிக்கை ஏற்றுக்கொள்ளப்பட்டவுடன் நீங்கள் அழைக்கலாம்.</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__create_a_pin">பின்னை உருவாக்கவும்</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும்.</string>
-  <string name="KbsMegaphone__create_pin">பின் உருவாக்கவும்</string>
-  <string name="KbsMegaphone__introducing_pins">பின்களை  அறிமுகப்படுத்துகிறது</string>
-  <string name="KbsMegaphone__update_pin">பின்னைப் புதுப்பிக்கவும்</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். PIN ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் பின்னை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
+  <string name="KbsMegaphone__create_a_pin">கடவு எண்ணை உருவாக்கவும்</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் கடவு எண்-கள் வைக்கும்.</string>
+  <string name="KbsMegaphone__create_pin">கடவு எண் உருவாக்கவும்</string>
+  <string name="KbsMegaphone__introducing_pins">கடவு எண்களை  அறிமுகப்படுத்துகிறது</string>
+  <string name="KbsMegaphone__update_pin">கடவு எண்ணைப் புதுப்பிக்கவும்</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம். கடவு எண்ணை ஐ உருவாக்குவது %1$dநாட்களில் கட்டாயமாகிவிடும்.</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">நாங்கள் உங்களுக்கு பின்னர் நினைவூட்டுவோம்.%1$dநாட்களில் உங்கள் கடவு எண்ணை உறுதிப்படுத்துவது கட்டாயமாகிவிடும்.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">நீங்கள் என்ன நினைக்கிறீர்கள் என்று Signal லிடம் சொல்லுங்கள்</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">சிக்னலை உலகின் சிறந்த செய்தியிடல் பயன்பாடாக மாற்ற, உங்கள் கருத்தைக் கேட்க நாங்கள் விரும்புகிறோம்.</string>
@@ -2411,55 +2411,55 @@
   <string name="preferences_app_protection__screen_lock">திரை பூட்டு</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">அண்ட்ராய்டு திரை பூட்டு அல்லது கைரேகையுடன் Signal அணுகலைப் பூட்டு</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">திரை பூட்டு செயலற்ற நேரம் முடிந்தது</string>
-  <string name="preferences_app_protection__signal_pin">Signal பின்</string>
+  <string name="preferences_app_protection__signal_pin">Signal கடவு எண்</string>
   <string name="preferences_app_protection__create_a_pin">பின்னை உருவாக்கவும்</string>
-  <string name="preferences_app_protection__change_your_pin">உங்கள் பின்னை மாற்றவும்</string>
-  <string name="preferences_app_protection__pin_reminders">கடவுஎண் பின் நினைவூட்டல்கள்</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும்.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">உங்கள் தொலைபேசி எண்ணை மீண்டும் சிக்னலுடன் பதிவு செய்ய உங்கள் சிக்னல் பின் தேவைப்படுவதன் மூலம் கூடுதல் பாதுகாப்பைச் சேர்க்கவும்.</string>
+  <string name="preferences_app_protection__change_your_pin">உங்கள் கடவு எண்ணை மாற்றவும்</string>
+  <string name="preferences_app_protection__pin_reminders">கடவு எண் நினைவூட்டல்கள்</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் கடவு எண்-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும்.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">உங்கள் தொலைபேசி எண்ணை மீண்டும் சிக்னலுடன் பதிவு செய்ய உங்கள் சிக்னல் கடவு எண் தேவைப்படுவதன் மூலம் கூடுதல் பாதுகாப்பைச் சேர்க்கவும்.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">உங்கள் பின்னை மீட்டெடுக்க முடியாததால் நினைவூட்டல்கள் உங்களுக்கு உதவுகின்றன. காலப்போக்கில் உங்களிடம் குறைவாகவே கேட்கப்படும்.</string>
   <string name="preferences_app_protection__turn_off">அணைக்க</string>
-  <string name="preferences_app_protection__confirm_pin">பின்னை உறுதிப்படுத்தவும்</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">உறுதிப்படுத்தவும் உங்கள் Signal பின்</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">உங்கள் PIN ஐ மீட்டெடுக்க முடியாததால் அதை நினைவில் வைத்துக் கொள்ளுங்கள் அல்லது பாதுகாப்பாக சேமித்து வைக்கவும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் சிக்னல் கணக்கை மீண்டும் பதிவு செய்யும் போது தரவை இழக்க நேரிடும்.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">தவறான பின். மீண்டும் முயற்சி செய்க.</string>
+  <string name="preferences_app_protection__confirm_pin">கடவு எண்ணை உறுதிப்படுத்தவும்</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">உறுதிப்படுத்தவும் உங்கள் Signal கடவு எண்</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">உங்கள் கடவு எண்-ஐ மீட்டெடுக்க முடியாததால் அதை நினைவில் வைத்துக் கொள்ளுங்கள் அல்லது பாதுகாப்பாக சேமித்து வைக்கவும். உங்கள் பின்னை மறந்துவிட்டால், உங்கள் சிக்னல் கணக்கை மீண்டும் பதிவு செய்யும் போது தரவை இழக்க நேரிடும்.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">தவறான கடவு எண். மீண்டும் முயற்சி செய்க.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">பதிவு பூட்டை இயக்குவதில் தோல்வி.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">பதிவு பூட்டை முடக்குவதில் தோல்வி.</string>
   <string name="AppProtectionPreferenceFragment_none">எதுவும் இல்லை</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு பின் நீங்கள் பெற்ற SMS சரிபார்ப்புக் குறியீடு அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>
+  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">பதிவு பூட்டு கடவு எண் நீங்கள் பெற்ற SMS சரிபார்ப்புக் குறியீடு அல்ல. பயன்பாட்டில் நீங்கள் முன்பு கட்டமைத்த பின்னை உள்ளிடவும்.</string>
   <string name="registration_activity__registration_lock_pin">பதிவு பூட்டு பின்</string>
-  <string name="registration_activity__forgot_pin">பின் மறந்துவிட்டீர்களா?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">பின் நான்கு அல்லது அதற்கு மேற்பட்ட இலக்கங்களைக் கொண்டிருக்கலாம். உங்கள் பின்னை மறந்துவிட்டால், ஏழு நாட்கள் வரை உங்கள் கணக்கு லிருந்து பூட்டப்படலாம்.</string>
-  <string name="registration_lock_dialog_view__enter_pin">பின்னை உள்ளிடவும்</string>
-  <string name="registration_lock_dialog_view__confirm_pin">பின்னை உறுதிப்படுத்தவும்</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">உங்கள் பதிவு பூட்டு பின்னை உள்ளிடவும்</string>
-  <string name="registration_lock_reminder_view__enter_pin">பின்னை உள்ளிடவும்</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">இந்த தொலைபேசி எண்ணை மீண்டும் Signal லுடன் பதிவு செய்ய வேண்டிய பதிவு பூட்டு பின்னை இயக்கவும்.</string>
-  <string name="preferences_app_protection__registration_lock_pin">பதிவு பூட்டு பின்</string>
+  <string name="registration_activity__forgot_pin">கடவு எண் மறந்துவிட்டீர்களா?</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">கடவு எண் நான்கு அல்லது அதற்கு மேற்பட்ட இலக்கங்களைக் கொண்டிருக்கலாம். உங்கள் பின்னை மறந்துவிட்டால், ஏழு நாட்கள் வரை உங்கள் கணக்கு லிருந்து பூட்டப்படலாம்.</string>
+  <string name="registration_lock_dialog_view__enter_pin">கடவு எண் உள்ளிடவும்</string>
+  <string name="registration_lock_dialog_view__confirm_pin">கடவு எண் உறுதிப்படுத்தவும்</string>
+  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">உங்கள் பதிவு பூட்டு கடவு எண்ணை உள்ளிடவும்</string>
+  <string name="registration_lock_reminder_view__enter_pin">கடவு எண்ணை உள்ளிடவும்</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">இந்த தொலைபேசி எண்ணை மீண்டும் Signal லுடன் பதிவு செய்ய வேண்டிய பதிவு பூட்டு கடவு எண்ணை இயக்கவும்.</string>
+  <string name="preferences_app_protection__registration_lock_pin">பதிவு பூட்டு கடவு எண்</string>
   <string name="preferences_app_protection__registration_lock">பதிவு பூட்டு</string>
-  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">உங்கள் பதிவு பூட்டு பின்னை உள்ளிட வேண்டும்</string>
-  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">உங்கள் PIN இல் குறைந்தது %d இலக்கங்கள் அல்லது எழுத்துக்கள் இருக்க வேண்டும்</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">தவறான பதிவு பூட்டு பின்</string>
+  <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">உங்கள் பதிவு பூட்டு கடவு எண்ணை உள்ளிட வேண்டும்</string>
+  <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">உங்கள் கடவு எண் இல் குறைந்தது %d இலக்கங்கள் அல்லது எழுத்துக்கள் இருக்க வேண்டும்</string>
+  <string name="RegistrationActivity_incorrect_registration_lock_pin">தவறான பதிவு பூட்டு கடவு எண்</string>
   <string name="RegistrationActivity_too_many_attempts">மிக அதிக முயற்சிகள்</string>
-  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">நீங்கள் பல தவறான பதிவு பூட்டு பின் முயற்சிகளை செய்துள்ளீர்கள். ஒரு நாளில் மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">நீங்கள் பல தவறான பதிவு பூட்டு கடவு எண் முயற்சிகளை செய்துள்ளீர்கள். ஒரு நாளில் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">நீங்கள் பல முயற்சிகள் செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="RegistrationActivity_error_connecting_to_service">சேவைக்கு இணைப்பதில் பிழை</string>
   <string name="RegistrationActivity_oh_no">அச்சச்சோ!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">பதிவு பூட்டு PIN இல்லாமல் இந்த தொலைபேசி எண்ணை பதிவு செய்ய, Signal-இல் இந்த தொலைபேசி எண் கடைசியாக செயலில் இருந்து 7 நாட்கள் கடந்துவிட்ட பின் சாத்தியமாகும். உங்களுக்கு %d நாட்கள் மீதம் உள்ளன.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">பதிவு பூட்டு கடவு எண் இல்லாமல் இந்த தொலைபேசி எண்ணை பதிவு செய்ய, Signal-இல் இந்த தொலைபேசி எண் கடைசியாக செயலில் இருந்து 7 நாட்கள் கடந்துவிட்ட பின் சாத்தியமாகும். உங்களுக்கு %d நாட்கள் மீதம் உள்ளன.</string>
   <string name="RegistrationActivity_registration_lock_pin">பதிவு பூட்டு பின்</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">இந்த தொலைபேசி எண்ணில் பதிவு பூட்டு இயக்கப்பட்டுள்ளது. பதிவு பூட்டு பின்னை உள்ளிடவும்.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">உங்கள் தொலைபேசி எண்ணுக்கு பதிவு பூட்டு இயக்கப்பட்டது. உங்கள் பதிவு பூட்டு PIN-ஐ மனப்பாடம் செய்ய உங்களுக்கு உதவ, Signal அவ்வப்போது அதை உறுதிப்படுத்தும்படி கேட்கும்.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">உங்கள் தொலைபேசி எண்ணுக்கு பதிவு பூட்டு இயக்கப்பட்டது. உங்கள் பதிவு பூட்டு கடவு எண்-ஐ மனப்பாடம் செய்ய உங்களுக்கு உதவ, Signal அவ்வப்போது அதை உறுதிப்படுத்தும்படி கேட்கும்.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">எனது பின்னை மறந்துவிட்டேன்.</string>
   <string name="RegistrationLockDialog_forgotten_pin">பின்னை மறந்துவிட்டர்களா?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">பதிவு பூட்டு உங்கள் தொலைபேசி எண்ணை அங்கீகரிக்கப்படாத பதிவு முயற்சிகளிலிருந்து பாதுகாக்க உதவுகிறது. உங்கள் Signal தனியுரிமை அமைப்புகளில் எந்த நேரத்திலும் இந்த அம்சத்தை முடக்கலாம்</string>
   <string name="RegistrationLockDialog_registration_lock">பதிவு பூட்டு</string>
   <string name="RegistrationLockDialog_enable">செயல்படுத்து</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">பதிவு பூட்டு பின் குறைந்தபட்சம்  %d இலக்கங்கள் இருக்க வேண்டும்.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">பதிவு பூட்டு கடவு எண் குறைந்தபட்சம்  %d இலக்கங்கள் இருக்க வேண்டும்.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">நீங்கள் உள்ளிட்ட இரண்டு பின்களும்  பொருந்தவில்லை.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">சேவைக்கு இணைப்பதில் பிழை</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">பதிவு பூட்டு PIN-ஐ முடக்கவா?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">பதிவு பூட்டு கடவு எண்-ஐ முடக்கவா?</string>
   <string name="RegistrationLockDialog_disable">முடக்கு</string>
-  <string name="RegistrationActivity_pin_incorrect">பின் தவறானது</string>
+  <string name="RegistrationActivity_pin_incorrect">கடவு எண் தவறானது</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">உங்களிடம் %d முயற்சிகள் மீதமுள்ளது </string>
   <string name="preferences_chats__backups">காப்புப் பிரதிகள்</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal பூட்டப்பட்டுள்ளது</string>
