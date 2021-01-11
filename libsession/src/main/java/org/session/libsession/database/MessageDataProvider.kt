@@ -1,8 +1,10 @@
 package org.session.libsession.database
 
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
+import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import java.io.InputStream
 
@@ -27,5 +29,10 @@ interface MessageDataProvider {
 
     @Throws(Exception::class)
     fun uploadAttachment(attachmentId: Long)
+
+    // Quotes
+    fun getMessageForQuote(timestamp: Long, author: Address): Long?
+    fun getAttachmentsWithLinkPreviewFor(messageID: Long): List<Attachment>
+    fun getMessageBodyFor(messageID: Long): String
 
 }

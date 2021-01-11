@@ -1,5 +1,9 @@
 package org.session.libsession.messaging.sending_receiving
 
+import android.text.TextUtils
+import com.annimon.stream.Collectors
+import com.annimon.stream.Stream
+import com.annimon.stream.function.Function
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -11,7 +15,10 @@ import org.session.libsession.messaging.messages.control.ReadReceipt
 import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
@@ -19,7 +26,7 @@ import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.Hex
-
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
@@ -132,20 +139,47 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     // Get or create thread
     val threadID = storage.getOrCreateThreadIdFor(message.sender!!, message.groupPublicKey, openGroupID) ?: throw MessageSender.Error.NoThread
     // Parse quote if needed
+    var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
-        // TODO
+        val quote = proto.dataMessage.quote
+        val author = Address.fromSerialized(quote.author)
+        val messageID = MessagingConfiguration.shared.messageDataProvider.getMessageForQuote(quote.id, author)
+        if (messageID != null) {
+            val attachmentsWithLinkPreview = MessagingConfiguration.shared.messageDataProvider.getAttachmentsWithLinkPreviewFor(messageID)
+            quoteModel = QuoteModel(quote.id, author, MessagingConfiguration.shared.messageDataProvider.getMessageBodyFor(messageID), false, attachmentsWithLinkPreview)
+        } else {
+            quoteModel = QuoteModel(quote.id, author, quote.text, true, PointerAttachment.forPointers(proto.dataMessage.quote.attachmentsList))
+        }
     }
     // Parse link preview if needed
+    val linkPreviews: MutableList<LinkPreview?> = mutableListOf()
     if (message.linkPreview != null && proto.dataMessage.previewCount > 0) {
-        // TODO
+        for (preview in proto.dataMessage.previewList) {
+            val thumbnail = PointerAttachment.forPointer(preview.image)
+            val url = Optional.fromNullable(preview.url)
+            val title = Optional.fromNullable(preview.title)
+            val hasContent = !TextUtils.isEmpty(title.or("")) || thumbnail.isPresent
+            if (hasContent) {
+                val linkPreview = LinkPreview(url.get(), title.or(""), thumbnail)
+                linkPreviews.add(linkPreview)
+            } else {
+                Log.w("Loki", "Discarding an invalid link preview. hasContent: $hasContent")
+            }
+        }
     }
+    // Parse stickers if needed
     // Persist the message
+    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID) ?: throw MessageReceiver.Error.NoThread
     message.threadID = threadID
     // Start attachment downloads if needed
     attachmentsToDownload.forEach { attachmentID ->
-        val downloadJob = AttachmentDownloadJob()
+        val downloadJob = AttachmentDownloadJob(attachmentID, messageID)
+        JobQueue.shared.add(downloadJob)
     }
-    // TODO finish this process
+    // Cancel any typing indicators if needed
+    cancelTypingIndicatorsIfNeeded(message.sender!!)
+    //Notify the user if needed
+    SSKEnvironment.shared.notificationManager.updateNotification(context, threadID)
 }
 
 private fun MessageReceiver.handleClosedGroupUpdate(message: ClosedGroupUpdate) {

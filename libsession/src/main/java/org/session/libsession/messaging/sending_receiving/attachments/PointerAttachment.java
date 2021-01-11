@@ -9,6 +9,7 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsession.utilities.Base64;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -53,11 +54,11 @@ public class PointerAttachment extends Attachment {
     return results;
   }
 
-  public static List<Attachment> forPointers(List<SignalServiceDataMessage.Quote.QuotedAttachment> pointers) {
+  public static List<Attachment> forPointers(List<SignalServiceProtos.DataMessage.Quote.QuotedAttachment> pointers) {
     List<Attachment> results = new LinkedList<>();
 
     if (pointers != null) {
-      for (SignalServiceDataMessage.Quote.QuotedAttachment pointer : pointers) {
+      for (SignalServiceProtos.DataMessage.Quote.QuotedAttachment pointer : pointers) {
         Optional<Attachment> result = forPointer(pointer);
 
         if (result.isPresent()) {
@@ -103,23 +104,41 @@ public class PointerAttachment extends Attachment {
 
   }
 
-  public static Optional<Attachment> forPointer(SignalServiceDataMessage.Quote.QuotedAttachment pointer) {
-    SignalServiceAttachment thumbnail = pointer.getThumbnail();
+  public static Optional<Attachment> forPointer(SignalServiceProtos.AttachmentPointer pointer) {
+    return Optional.of(new PointerAttachment(pointer.getContentType(),
+            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
+            (long)pointer.getSize(),
+            pointer.getFileName(),
+            String.valueOf(pointer != null ? pointer.getId() : 0),
+            pointer.getKey() != null ? Base64.encodeBytes(pointer.getKey().toByteArray()) : null,
+            null,
+            pointer.getDigest().toByteArray(),
+            null,
+            false,
+            pointer.getWidth(),
+            pointer.getHeight(),
+            pointer.getCaption(),
+            null,
+            pointer.getUrl()));
+  }
+
+  public static Optional<Attachment> forPointer(SignalServiceProtos.DataMessage.Quote.QuotedAttachment pointer) {
+    SignalServiceProtos.AttachmentPointer thumbnail = pointer.getThumbnail();
 
     return Optional.of(new PointerAttachment(pointer.getContentType(),
                                              AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
-                                             thumbnail != null ? thumbnail.asPointer().getSize().or(0) : 0,
-                                             pointer.getFileName(),
-                                             String.valueOf(thumbnail != null ? thumbnail.asPointer().getId() : 0),
-                                             thumbnail != null && thumbnail.asPointer().getKey() != null ? Base64.encodeBytes(thumbnail.asPointer().getKey()) : null,
+                                             thumbnail != null ? (long)thumbnail.getSize() : 0,
+                                             thumbnail.getFileName(),
+                                             String.valueOf(thumbnail != null ? thumbnail.getId() : 0),
+                                             thumbnail != null && thumbnail.getKey() != null ? Base64.encodeBytes(thumbnail.getKey().toByteArray()) : null,
                                              null,
-                                             thumbnail != null ? thumbnail.asPointer().getDigest().orNull() : null,
+                                             thumbnail != null ? thumbnail.getDigest().toByteArray() : null,
                                              null,
                                              false,
-                                             thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
-                                             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
+                                             thumbnail != null ? thumbnail.getWidth() : 0,
+                                             thumbnail != null ? thumbnail.getHeight() : 0,
+                                             thumbnail != null ? thumbnail.getCaption() : null,
                                              null,
-                                             thumbnail != null ? thumbnail.asPointer().getUrl() : ""));
+                                             thumbnail != null ? thumbnail.getUrl() : ""));
   }
 }

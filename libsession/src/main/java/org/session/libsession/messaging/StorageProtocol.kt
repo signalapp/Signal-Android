@@ -7,8 +7,11 @@ import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.Attachment
+import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings
@@ -99,9 +102,9 @@ interface StorageProtocol {
     fun setProfileSharing(address: Address, value: Boolean)
 
     // Thread
-    fun getOrCreateThreadIdFor(address: Address): String
-    fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): String?
-    fun getThreadIdFor(address: Address): String?
+    fun getOrCreateThreadIdFor(address: Address): Long
+    fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long?
+    fun getThreadIdFor(address: Address): Long?
 
     // Session Request
     fun getSessionRequestSentTimestamp(publicKey: String): Long?
@@ -120,4 +123,8 @@ interface StorageProtocol {
     // PartAuthority
     fun getAttachmentDataUri(attachmentId: AttachmentId): Uri
     fun getAttachmentThumbnailUri(attachmentId: AttachmentId): Uri
+
+    // Message Handling
+    /// Returns the ID of the `TSIncomingMessage` that was constructed.
+    fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long?
 }
