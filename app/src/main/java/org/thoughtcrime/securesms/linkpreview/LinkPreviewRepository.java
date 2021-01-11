@@ -77,7 +77,7 @@ public class LinkPreviewRepository {
   public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .cache(null)
-                                  .addInterceptor(new UserAgentInterceptor("WhatsApp"))
+                                  .addInterceptor(new UserAgentInterceptor("WhatsApp/2"))
                                   .build();
   }
 
