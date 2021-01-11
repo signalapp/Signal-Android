@@ -39,6 +39,7 @@ public final class LiveRecipient {
   private final AtomicReference<Recipient>    recipient;
   private final RecipientDatabase             recipientDatabase;
   private final GroupDatabase                 groupDatabase;
+  private final MutableLiveData<Object>       refreshForceNotify;
 
   LiveRecipient(@NonNull Context context, @NonNull MutableLiveData<Recipient> liveData, @NonNull Recipient defaultRecipient) {
     this.context           = context.getApplicationContext();
@@ -52,7 +53,10 @@ public final class LiveRecipient {
         o.onRecipientChanged(recipient);
       }
     };
-    this.observableLiveData = LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent);
+    this.refreshForceNotify = new MutableLiveData<>(System.currentTimeMillis());
+    this.observableLiveData = LiveDataUtil.combineLatest(LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent),
+                                                         refreshForceNotify,
+                                                         (recipient, force) -> recipient);
   }
 
   public @NonNull RecipientId getId() {
@@ -172,6 +176,7 @@ public final class LiveRecipient {
     }
 
     set(recipient);
+    refreshForceNotify.postValue(new Object());
   }
 
   public @NonNull LiveData<Recipient> getLiveData() {
