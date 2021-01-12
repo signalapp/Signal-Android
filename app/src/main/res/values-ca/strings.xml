@@ -1303,6 +1303,7 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_enter_your_phone_number">Marqueu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Marqueu el codi que hem enviat a %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Assegureu-vos que el telèfon té cobertura per a rebre missatges SMS o trucades</string>
   <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
@@ -1448,6 +1449,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UsernameEditFragment_username_is_invalid">El nom d\'usuari no és vàlid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Els noms d\'usuari han de tenir entre %1$d i %2$d caràcters.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Els noms d’usuari a Signal són opcionals. Si trieu crear un nom d’usuari, altres usuaris del Signal us podran trobar per aquest nom i contactar-vos sense saber el vostre número de telèfon.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contacte és al Signal!</item>
+    <item quantity="other">%dcontactes són al Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">El vostre contacte està fent servir una versió antiga del Signal. Demaneu-li que l\'actualitzi abans de verificar el número de seguretat.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">El vostre contacte està fent servir una versió nova del Signal amb un format del codi QR no compatible. Actualitzeu-la per comparar-lo.</string>

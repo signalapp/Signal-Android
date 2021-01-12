@@ -1235,6 +1235,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s に届いたコードを入力してください</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">携帯電話が圏内にあり、SMSが受信できるかどうか、確認してください。</string>
   <string name="RegistrationActivity_phone_number_description">電話番号</string>
   <string name="RegistrationActivity_country_code_description">国番号</string>
   <string name="RegistrationActivity_call">通話</string>

@@ -933,6 +933,14 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blitt satt til %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen ble oppdatert til en ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke bli lagt til den nye gruppen og har blitt invitert til å bli med.</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og har blitt invitert til å bli med.</item>
+    <item quantity="other">%1$s medlemmer kunne ikke legges til den Nye Gruppen og har blitt invitert til å bli med.</item>
+  </plurals>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
+    <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og er fjernet.</item>
+    <item quantity="other">%1$s medlemmer kunne ikke legges til i den nye gruppen og er fjernet.</item>
+  </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s byttet profilnavnet sitt til %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s byttet profilnavnet sitt fra %2$s til %3$s.</string>
@@ -989,6 +997,7 @@
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Noen avslo en invitasjon til gruppen.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Du avslo invitasjonen til gruppen.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group"> Invitasjonen din til gruppen ble tilbakekalt av %1$s.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">En administrator har trukket tilbake invitasjonen til gruppen.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">En invitasjon til gruppen ble trukket tilbake.</item>
@@ -1049,7 +1058,10 @@
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">En forespørsel fra %1$s om å bli med i gruppen ble godkjent.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Forespørselen din om å bli med i gruppen ble avslått av en administrator.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">Forespørselen fra %2$s om å bli med i gruppen ble avvist av %1$s.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">En forespørsel fra %1$som å bli med i gruppen har blitt avvist.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Du kansellerte forespørselen din om å bli med i gruppen.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s kansellerte forespørselen sin om å bli med i gruppen.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt for %s er endret.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerte sikkerhetsnummeret for %s som bekreftet</string>
@@ -1057,8 +1069,27 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke bekreftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">Du er i gruppesamtalen · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s og %2$s er i gruppesamtalen · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, og %3$s er i gruppesamtalen · %4$s</string>
+  <string name="MessageRecord_group_call_s">Gruppesamtale · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s startet en gruppesamtale</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s er i gruppesamtalen</string>
   <string name="MessageRecord_you_are_in_the_group_call">Du er med i gruppesamtalen</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s og %2$s er i gruppesamtalen</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, og %3$s er i gruppesamtalen</string>
+  <string name="MessageRecord_group_call">Gruppesamtale</string>
   <string name="MessageRecord_you">Deg</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, og %3$d annen er i gruppesamtalen · %4$s</item>
+    <item quantity="other">%1$s, %2$s, og %3$d andre er i gruppesamtalen · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s, og %3$d annen er i gruppesamtalen</item>
+    <item quantity="other">%1$s, %2$s, og %3$d andre er i gruppesamtalen</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godta</string>
   <string name="MessageRequestBottomView_continue">Fortsett</string>
@@ -1069,6 +1100,8 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">La %1$s sende meldinger til deg, samt dele navn og bilde med dem? Du vil ikke motta noen meldinger fra dem før du fjerner blokkeringen av dem.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsett denne samtalen med denne gruppen og del ditt navn og bilde med gruppens medlemmer?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Oppgrader denne gruppen for å aktivere nye funksjoner som @-omtaler og gruppeadministratorer. Medlemmer som ikke har delt navn eller bilde i gruppen vil bli invitert inn.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denne Legacy gruppen kan ikke lenger benyttes fordi den er for stor. Maksimal gruppestørrelse er %1$d.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsett samtalen med %1$s og del navn og bilde med dem?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli medlem i denne gruppen samt dele navn og bilde med medlemmene? De vil ikke vite at du har sett meldingene før du godtar.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bli med i denne gruppen? De vil ikke se om du har sett meldingene deres før du godtar.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Fjerne blokkering av denne gruppen samt dele navn og bilde med medlemmene? Du vil ikke motta noen meldinger før du fjerner blokkeringen av den.</string>
@@ -1082,6 +1115,10 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d medlem (+%2$d inviterte)</item>
     <item quantity="other">%1$d medlemmer (+%2$d inviterte)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d ytterlig gruppe</item>
+    <item quantity="other">%d ytterligere grupper</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Passordene stemmer ikke overens!</string>
@@ -1113,6 +1150,10 @@
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Oppdater nå</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denne versjonen av Signal går ut på dato i dag. Oppgrader til nyeste versjon.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Denne versjonen av Signal vil utløpe i morgen. Oppdater til den nyeste versjonen.</item>
+    <item quantity="other">Denne versjonen av Signal vil utløpe om %d dager. Oppdater til den nyeste versjonen.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Skriv inn passord</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
@@ -2428,6 +2469,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_request">Se gjennom forespørsel</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørselen er fra, se gjennom kontaktene nedenfor og velg handling.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Ingen grupper til felles.</string>
   <string name="ReviewCardDialogFragment__remove">Fjern</string>
@@ -2436,6 +2478,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReviewCard__request">Forespør</string>
   <string name="ReviewCard__your_contact">Din kontakt</string>
   <string name="ReviewCard__remove_from_group">Fjern fra gruppen</string>
+  <string name="ReviewCard__update_contact">Oppdater kontakt</string>
   <string name="ReviewCard__block">Blokker</string>
   <string name="ReviewCard__delete">Slett</string>
   <!--CallParticipantsListUpdatePopupWindow-->

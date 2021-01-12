@@ -1308,6 +1308,7 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_enter_your_phone_number">Idatzi zure telefono zenbakia</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %s telefonora bidali dugun kodea.</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Ziurtatu zure telefonoa lineara konektatuta dagoela eta SMSak eta dei arruntak jasotzeko gai dela</string>
   <string name="RegistrationActivity_phone_number_description">Telefono zenbakia</string>
   <string name="RegistrationActivity_country_code_description">Herrialde kodea</string>
   <string name="RegistrationActivity_call">Deitu</string>
@@ -1455,6 +1456,10 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="UsernameEditFragment_username_is_invalid">Erabiltzaile izena baliogabea da.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Erabiltzaile izenek %1$d eta %2$d karaktere bitartean egon behar dira.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Erabiltzaile izenak aukerazkoak dira Signal-en. Erabiltzaile bat sortzea erabakitzen baduzu, beste erabiltzaile batzuek topatu ahal izango zaituzte izen hau erabiliz eta zurekin harremanetan jarri ahal izango dira zure telefono zenbakia jakin gabe.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">Kontaktu %d Signalen dago!</item>
+    <item quantity="other">%d kontaktu Signalen daude!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Zure kontaktua Signal-en bertsio zahar bat erabiltzen ari da. Mesedez, eskatu iezaiozu eguneratzeko zure segurtasun zenbaki berria egiaztatu baino lehenago.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Zure kontaktua Signal aplikazioaren bertsio berriago bat erabiltzen ari da eta horrek QR kode formatua eguneratu du. Eguneratu konparazioa egiteko.</string>

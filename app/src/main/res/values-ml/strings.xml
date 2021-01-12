@@ -350,7 +350,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ആദ്യാവസാന എന്‍ക്രിപ്ഷന്‍ ചെയ്തിരിക്കുന്നു. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ഏൻഡ് ടു ഏൻഡ് എൻക്രിപ്റ്റഡാണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യണോ?</string>
@@ -698,10 +698,10 @@
   <string name="ManageRecipientActivity_add_to_a_group">ഒരു ഗ്രൂപ്പിലേക്ക് ചേർക്കുക</string>
   <string name="ManageRecipientActivity_view_all_groups">എല്ലാ ഗ്രൂപ്പുകളും കാണുക</string>
   <string name="ManageRecipientActivity_see_all">എല്ലാം കാണുക</string>
-  <string name="ManageRecipientActivity_no_groups_in_common">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">സാമാന്യമായി ഗ്രൂപ്പുകളൊന്നുമില്ല</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="one">പൊതുവായുള്ള %d ഗ്രൂപ്പ്</item>
-    <item quantity="other">പൊതുവായി %d ഗ്രൂപ്പുകൾ</item>
+    <item quantity="one">സാമാന്യമായി %d ഗ്രൂപ്പ് ഉണ്ട്</item>
+    <item quantity="other">സാമാന്യമായി %d ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
   </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
   <string name="ManageRecipientActivity_message_description">സന്ദേശം</string>
@@ -1301,6 +1301,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ അയച്ച കോഡ് %s-ലേക്ക്  നൽകുക</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">നിങ്ങളുടെ SMS അല്ലെങ്കിൽ കോൾ സ്വീകരിക്കുന്നതിന് നിങ്ങളുടെ ഫോണിന് സെല്ലുലാർ സിഗ്നൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
   <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
   <string name="RegistrationActivity_country_code_description">രാജ്യ കോഡ്</string>
   <string name="RegistrationActivity_call">വിളിക്കുക</string>
@@ -1447,6 +1448,10 @@ grūpp ap‌ḍē</string>
   <string name="UsernameEditFragment_username_is_invalid">യൂസേർനേമ് അസാധുവാണ്.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">യൂസേർനേമ്കൾ %1$d മുതൽ %2$d വരെ പ്രതീകങ്ങൾ ആയിരിക്കണം.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-ഇലെ (സിഗ്നലിലെ) യൂസർനെയ്മുകൾ (ഉപയോക്തൃനാമങ്ങൾ) ഓപ്‌ഷണലാണ്. നിങ്ങൾ ഒരു യൂസർനെയിം സൃഷ്ടിക്കാൻ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, മറ്റ് സിഗ്നൽ ഉപയോക്താക്കൾക്ക് ഈ യൂസർനെയിം ഉപയോഗിച്ച് നിങ്ങളെ കണ്ടെത്താനും നിങ്ങളുടെ ഫോൺ നമ്പർ അറിയാതെ നിങ്ങളെ ബന്ധപ്പെടാനും കഴിയും.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">Signal-ൽ‌ %d കോൺ‌ടാക്റ്റ് ഉണ്ട്!</item>
+    <item quantity="other">Signal-ൽ‌ %d കോൺ‌ടാക്റ്റുകൾ‌ ഉണ്ട്!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ പഴയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. നിങ്ങളുടെ സുരക്ഷാ നമ്പർ പരിശോധിക്കുന്നതിനുമുമ്പ് അപ്‌ഡേറ്റ് ചെയ്യാൻ അവരോട് ആവശ്യപ്പെടുക.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു ഇത് പൊരുത്തപ്പെടാത്ത QR കോഡ് ഫോർ‌മാറ്റാണ്. താരതമ്യം ചെയ്യാൻ അപ്‌ഡേറ്റുചെയ്യുക.</string>
@@ -2141,7 +2146,7 @@ grūpp ap‌ḍē</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ഷോർറ്റ്കറ്റ് ക്രമീകരിക്കുന്നു</string>
   <string name="conversation_list_search_description">തിരയൽ</string>
-  <string name="conversation_list__pinned">പിൻ ചെയ്‌തു</string>
+  <string name="conversation_list__pinned">പിൻ ചെയ്‌തവ</string>
   <string name="conversation_list__chats">ചാറ്റുകൾ</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">നിങ്ങൾക്ക് %1$d ചാറ്റുകൾ വരെ മാത്രമേ പിൻ ചെയ്യാൻ കഴിയൂ</string>
   <!--conversation_list_item_view-->
@@ -2525,15 +2530,15 @@ grūpp ap‌ḍē</string>
   <string name="ReviewCardDialogFragment__review_request">അഭ്യർത്ഥന അവലോകനം ചെയ്യുക</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് സമാന പേരുണ്ട്, ചുവടെയുള്ള അംഗങ്ങളെ അവലോകനം ചെയ്ത് നടപടിയെടുക്കാൻ തിരഞ്ഞെടുക്കുക.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">അഭ്യർത്ഥന ആരാണ് നിങ്ങൾക്ക് അയച്ചതെന്ന് ഉറപ്പില്ലെങ്കിൽ, ചുവടെയുള്ള കോൺടാക്റ്റുകൾ അവലോകനം ചെയ്ത് നടപടിയെടുക്കുക. </string>
-  <string name="ReviewCardDialogFragment__no_other_groups_in_common">പൊതുവായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
-  <string name="ReviewCardDialogFragment__no_groups_in_common">പൊതുവായി ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">സാമാന്യമായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">സാമാന്യമായി ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-    <item quantity="one">%d ഗ്രൂപ്പ് പൊതുവായി ഉണ്ട്</item>
-    <item quantity="other">%d ഗ്രൂപ്പുകൾ പൊതുവായി ഉണ്ട് </item>
+    <item quantity="one">സാമാന്യമായി %d ഗ്രൂപ്പ് ഉണ്ട്</item>
+    <item quantity="other">സാമാന്യമായി %d ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
-    <item quantity="one">%d ഗ്രൂപ്പ് പൊതുവായി ഉണ്ട്</item>
-    <item quantity="other">%d ഗ്രൂപ്പുകൾ പൊതുവായി ഉണ്ട് </item>
+    <item quantity="one">സാമാന്യമായി %d ഗ്രൂപ്പ് ഉണ്ട്</item>
+    <item quantity="other">സാമാന്യമായി %d ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">ഗ്രൂപ്പിൽ നിന്ന് %1$s-നെ നീക്കംചെയ്യണോ?</string>
   <string name="ReviewCardDialogFragment__remove">ഒഴിവാക്കുക</string>

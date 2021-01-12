@@ -1584,6 +1584,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="UsernameEditFragment_username_is_invalid">Uživatelské jméno je neplatné.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uživatelská jména musí mít %1$d až %2$dznaků.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uživatelská jména v Signal jsou volitelná. Pokud si vytvoříte uživatelské jméno, ostatní uživatelé Signal vás budou schopni podle něj najít a kontaktovat bez znalosti vašeho telefonního čísla.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt má Signal!</item>
+    <item quantity="few">%d kontakty mají Signal!</item>
+    <item quantity="many">%d kontaktů má Signal!</item>
+    <item quantity="other">%d kontaktů má Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používá starou verzi aplikace Signal. Před kontrolou bezpečnostního čísla jej prosím požádejte, aby si aplikaci aktualizoval.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používá novější verzi aplikace Signal s nekompatibilním formátem QR kódu. Prosím aktualizujte svou verzi, abyste mohli QR kódy porovnat.</string>
