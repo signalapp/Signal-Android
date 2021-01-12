@@ -178,7 +178,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   @Override
   public void onBackPressed() {
-    if (!enterPipModeIfPossible()) {
+    if (enableVideoIfAvailable) {
+      if (!enterPipModeIfPossible()) {
+        super.onBackPressed();
+      }
+    } else {
       super.onBackPressed();
     }
   }
@@ -194,10 +198,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
       PictureInPictureParams params = new PictureInPictureParams.Builder()
               .setAspectRatio(new Rational(9, 16))
               .build();
-      enterPictureInPictureMode(params);
       CallParticipantsListDialog.dismiss(getSupportFragmentManager());
-
-      return true;
+      return enterPictureInPictureMode(params);
     }
     return false;
   }
@@ -328,6 +330,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void handleSetMuteVideo(boolean muted) {
+    enableVideoIfAvailable = !muted;
     Recipient recipient = viewModel.getRecipient().get();
 
     if (!recipient.equals(Recipient.UNKNOWN)) {
