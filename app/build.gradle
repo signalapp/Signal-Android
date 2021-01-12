@@ -62,14 +62,14 @@ protobuf {
 }
 
 def canonicalVersionCode = 759
-def canonicalVersionName = "5.0.9"
+def canonicalVersionName = "5.0.10"
 
 def postFixSize = 10
-def abiPostFix = ['universal'   : 5,
-                  'armeabi-v7a' : 6,
-                  'arm64-v8a'   : 7,
-                  'x86'         : 8,
-                  'x86_64'      : 9]
+def abiPostFix = ['universal'   : 0,
+                  'armeabi-v7a' : 8,
+                  'arm64-v8a'   : 9,
+                  'x86'         : 1,
+                  'x86_64'      : 2]
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
