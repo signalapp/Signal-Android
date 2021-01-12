@@ -39,9 +39,9 @@ import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.BackupsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.DataAndStoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
@@ -309,7 +309,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
           fragment = new ChatsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_STORAGE:
-          fragment = new StoragePreferenceFragment();
+          fragment = new DataAndStoragePreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_DEVICES:
           Intent intent = new Intent(getActivity(), DeviceActivity.class);

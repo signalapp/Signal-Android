@@ -2375,7 +2375,7 @@
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
-    <string name="preferences__chats">Chats and media</string>
+    <string name="preferences__data_and_storage">Data and Storage</string>
     <string name="preferences__storage">Storage</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
@@ -2440,6 +2440,13 @@
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
     <string name="preferences_chats__chats">Chats</string>
+    <string name="preferences_data_and_storage__manage_storage">Manage storage</string>
+    <string name="preferences_data_and_storage__calls">Calls</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
+    <string name="preferences_data_and_storage__never">Never</string>
+    <string name="preferences_data_and_storage__wifi_and_cellular">WiFi and Cellular</string>
+    <string name="preferences_data_and_storage__cellular_only">Cellular only</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
     <string name="preferences_notifications__in_chat_sounds">In-chat sounds</string>

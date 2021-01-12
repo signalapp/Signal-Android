@@ -152,6 +152,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_FLIP_CAMERA                         = "FLIP_CAMERA";
   public static final String ACTION_BLUETOOTH_CHANGE                    = "BLUETOOTH_CHANGE";
   public static final String ACTION_NETWORK_CHANGE                      = "NETWORK_CHANGE";
+  public static final String ACTION_BANDWIDTH_MODE_UPDATE               = "BANDWIDTH_MODE_UPDATE";
   public static final String ACTION_WIRED_HEADSET_CHANGE                = "WIRED_HEADSET_CHANGE";
   public static final String ACTION_SCREEN_OFF                          = "SCREEN_OFF";
   public static final String ACTION_IS_IN_CALL_QUERY                    = "IS_IN_CALL";
@@ -536,6 +537,9 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       serviceIntent.setAction(ACTION_NETWORK_CHANGE);
       serviceIntent.putExtra(EXTRA_AVAILABLE, activeNetworkInfo != null && activeNetworkInfo.isConnected());
       context.startService(serviceIntent);
+
+      serviceIntent.setAction(ACTION_BANDWIDTH_MODE_UPDATE);
+      context.startService(serviceIntent);
     }
   }
 
@@ -568,6 +572,13 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     Intent intent = new Intent(context, WebRtcCallService.class);
     intent.setAction(ACTION_IS_IN_CALL_QUERY);
     intent.putExtra(EXTRA_RESULT_RECEIVER, resultReceiver);
+
+    context.startService(intent);
+  }
+
+  public static void notifyBandwidthModeUpdated(@NonNull Context context) {
+    Intent intent = new Intent(context, WebRtcCallService.class);
+    intent.setAction(ACTION_BANDWIDTH_MODE_UPDATE);
 
     context.startService(intent);
   }

@@ -107,7 +107,7 @@ public final class StorageGraphView extends View {
       this.totalSize = total;
     }
 
-    long getTotalSize() {
+    public long getTotalSize() {
       return totalSize;
     }
   }

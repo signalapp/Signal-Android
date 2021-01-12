@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 
 import static org.thoughtcrime.securesms.webrtc.CallNotificationBuilder.TYPE_ESTABLISHED;
@@ -62,6 +63,7 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
       callManager.setCommunicationMode();
       callManager.setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
       callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled());
+      callManager.setLowBandwidthMode(NetworkUtil.useLowBandwidthCalling(context));
     } catch (CallException e) {
       return callFailure(currentState, "Enabling audio/video failed: ", e);
     }

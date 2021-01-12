@@ -275,6 +275,12 @@
       <item>documents</item>
   </string-array>
 
+  <string-array name="pref_data_and_storage_call_bandwidth_values">
+      <item>@string/preferences_data_and_storage__never</item>
+      <item>@string/preferences_data_and_storage__cellular_only</item>
+      <item>@string/preferences_data_and_storage__wifi_and_cellular</item>
+  </string-array>
+
   <string-array name="pref_media_download_roaming_default" />
 
     <!-- RedPhone -->
