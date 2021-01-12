@@ -600,6 +600,7 @@
   <string name="AddGroupDetailsFragment__create_group">گروپ بنائیں</string>
   <string name="AddGroupDetailsFragment__create">بنائیں</string>
   <string name="AddGroupDetailsFragment__members">ممبران</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">آپ اس گروپ کو بنانے کے بعد دوستوں کو شامل یا مدعو کرسکتے ہیں۔</string>
   <string name="AddGroupDetailsFragment__group_name_required">گروپ کا نام (ضروری)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">گروپ کا نام (اختیاری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">اس کو پر کرنا ضروری ہے.</string>
@@ -770,7 +771,13 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">گروپ لنک درست نہیں ہے</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">دوستوں کو مدعو کریں</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">دوستوں کے ساتھ ایک لنک شیئر کریں تاکہ وہ اس گروپ میں جلدی سے شامل ہوں۔</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">لنک کو قابل بنائیں اور شئیر کریں</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">لنک شیئر کریں</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">گروپ لنک کو اہل کرنے سے قاصر۔ براہ کرم کچھ دیر بعد کوشش کریں</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">نیٹ ورک کی خرابی کا سامنا کرنا پڑا۔</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">آپ کو گروپ لنک کو فعال کرنے کا حق نہیں ہے۔ برائےکرم منتظم سے پوچھیں</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">آپ فی الحال اس گروپ کے ممبر نہیں ہیں۔</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">گروپ میں \"%1$s\" شامل کریں؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" سے درخواست کی تردید کریں؟</string>
@@ -871,6 +878,7 @@
   <string name="Megaphones_get_started">شروع کرتے ہیں</string>
   <string name="Megaphones_new_group">نیا گروپ</string>
   <string name="Megaphones_invite_friends">دوستوں کو مدعو کریں</string>
+  <string name="Megaphones_use_sms">ایس ایم ایس کا استعمال کریں</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>
@@ -941,6 +949,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">آپ نے گروپ بنایا ہے۔</string>
   <string name="MessageRecord_group_updated">گروپ کی تجدید ہوئی۔</string>
+  <string name="MessageRecord_invite_friends_to_this_group">گروپ لنک کے ذریعے دوستوں کو اس گروپ میں مدعو کریں</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">آپ نے %1$s شامل کیا</string>
   <string name="MessageRecord_s_added_s">%1$s نے %2$s شامل کیا۔</string>
@@ -1292,6 +1301,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">اپنا فون نمبر درج کریں</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">آپ کو تصدیقی کوڈ وصول ہوگا۔ کیریئر کی درجہ بندی لاگو ہو گی۔</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ہم نے جو کوڈ بھیجا ہے%sداخل کریں</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">اس بات کو یقینی بنائیں کہ آپ کے فون میں آپ کے ایس ایم ایس یا کال موصول کرنے کے لئے سیلولر Signal موجود ہے</string>
   <string name="RegistrationActivity_phone_number_description">فون نمبر</string>
   <string name="RegistrationActivity_country_code_description">ملک کا کوڈ</string>
   <string name="RegistrationActivity_call">کال</string>
@@ -1436,6 +1446,10 @@
   <string name="UsernameEditFragment_username_is_invalid">صارف کا نام غلط ہے.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">صارف نام %1$dاور%2$d حرف کے درمیان ہونا چاہئے۔</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal پر صارف نام اختیاری ہیں۔ اگر آپ صارف نام بنانے کا انتخاب کرتے ہیں تو ، دوسرے Signal استعمال کنندہ آپ کو اس صارف نام کے ذریعے تلاش کرسکیں گے اور آپ کا فون نمبر جانے بغیر آپ سے رابطہ کریں گے۔</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d رابطے Signal پر ہیں!</item>
+    <item quantity="other">%d رابطے Signal پر ہیں!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">آپ کا رابطہ Signal کے ایک پرانے ورژن پر چل رہا ہے۔ براہ کرم اپنا حفاظتی نمبر تصدیق کرنے سے پہلے تجدید کا پوچھ لیں۔</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">آپ کا رابطہ غیر متوازن QR کوڈ وضع کے ساتھ Signal کا ایک نیا ورژن چل رہا ہے۔ براہ کرم موازنہ کرنے کے لئے اپ ڈیٹ کریں.</string>
@@ -2141,6 +2155,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">نئی گفتگو</string>
   <string name="conversation_list_fragment__open_camera_description">کیمرہ کھولیں</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ابھی چیٹس نہیں ہیں۔ \ n کسی دوست کو میسج کرکے شروع کریں۔</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">محفوظ سیشن کو دوبارہ ترتیب دیں</string>
   <!--conversation_muted-->
@@ -2372,6 +2387,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">بیک اپ کو فعال کرنے کیلئے ، ایک فولڈر منتخب کریں۔ بیک اپ کو اس جگہ پر محفوظ کرلیا جائے گا۔</string>
   <string name="BackupDialog_choose_folder">فولڈر منتخب کریں</string>
   <string name="BackupDialog_copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
+  <string name="BackupDialog_no_file_picker_available">کوئی file picker دستیاب نہیں ہے۔</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">تصدیق کے لئے اپنا بیک اپ پاس فریز درج کریں</string>
   <string name="BackupDialog_verify">تصدیق کریں</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">آپ نے کامیابی کے ساتھ اپنا بیک اپ پاس فریز درج کیا</string>

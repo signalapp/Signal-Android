@@ -1455,6 +1455,10 @@
   <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Kasutajanimed on Signalis vabatahtlikud. Kui otsustad endale kasutajanime luua, siis saavad teised Signali kasutajad leida sind kasutajanime järgi ja võtta ühendust sinu telefoninumbrit teadmata.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt on Signalis!</item>
+    <item quantity="other">%d kontakti on Signalis!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>

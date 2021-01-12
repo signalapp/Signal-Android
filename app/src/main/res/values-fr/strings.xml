@@ -1301,7 +1301,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">Saisissez votre numéro de téléphone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vous recevrez un code de confirmation. Les frais de l’opérateur peuvent s’appliquer.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisissez le code que nous avons envoyé au %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Assurez vous que votre téléphone soit connecté au réseau cellulaire pour recevoir un message ou un appel</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Afin de recevoir un texto ou un appel, assurez-vous que votre téléphone est connecté au réseau cellulaire</string>
   <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
   <string name="RegistrationActivity_country_code_description">Indicatif de pays</string>
   <string name="RegistrationActivity_call">Appeler</string>
@@ -1447,8 +1447,8 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Les noms d’utilisateur doivent comporter entre %1$d et %2$d caractères.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Sur Signal, les noms d’utilisateur sont facultatifs. Si vous choisissez de créer un nom d’utilisateur, les autres utilisateurs de Signal pourront vous trouver avec ce nom d’utilisateur et vous contacter sans connaître votre numéro de téléphone.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d contact est sur Signal!</item>
-    <item quantity="other">%d contacts sont sur Signal!</item>
+    <item quantity="one">%d contact est sur Signal</item>
+    <item quantity="other">%d contacts sont sur Signal</item>
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Votre contact utilise une ancienne version de Signal. Veuillez lui demander de la mettre à jour avant de confirmer votre numéro de sécurité.</string>
@@ -2199,7 +2199,7 @@
   <string name="reminder_header_invite_title">Inviter à Signal</string>
   <string name="reminder_header_invite_text">Passez votre conversation avec %1$s au niveau supérieur.</string>
   <string name="reminder_header_share_title">Invitez vos amis !</string>
-  <string name="reminder_header_share_text">Plus vos amis utilisent Signal, plus ça devient intéréessant.</string>
+  <string name="reminder_header_share_text">Plus vos amis utilisent Signal, plus ça devient intéressant.</string>
   <string name="reminder_header_service_outage_text">Signal éprouve des difficultés techniques. Nous mettons tout en œuvre pour restaurer le service aussi rapidement que possible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Les dernières fonctions de Signal ne sont pas compatibles avec cette version d’Android. Veuillez mettre cet appareil à niveau afin de recevoir les mises à jour ultérieures de Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>

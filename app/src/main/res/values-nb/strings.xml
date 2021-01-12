@@ -1238,6 +1238,8 @@
   <string name="WebRtcCallView__start_call">Start samtale</string>
   <string name="WebRtcCallView__join_call">Bli med i samtale</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er full</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksgrensen på %1$ddeltakere er nådd for denne samtalen. Prøv igjen senere.</string>
+  <string name="WebRtcCallView__s_group_call">\"%1$s\" Gruppesamtale</string>
   <string name="WebRtcCallView__view_participants_list">Se deltakere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er skrudd av</string>
   <string name="WebRtcCallView__connecting">Kobler til…</string>
@@ -1245,10 +1247,23 @@
   <string name="WebRtcCallView__joining">Blir med…</string>
   <string name="WebRtcCallView__disconnected">Koplet fra</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre er her</string>
+  <string name="WebRtcCallView__s_is_in_this_call">%1$ser i denne samtalen</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen.</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
+    <item quantity="one">%1$s, %2$s og %3$d annen er i denne samtalen.</item>
+    <item quantity="other">%1$s, %2$s og %3$d andre er i denne samtalen  </item>
+  </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">Er i denne samtalen · %1$d person</item>
+    <item quantity="other">Er i denne samtalen · %1$d personer</item>
+  </plurals>
   <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s er blokkert</string>
   <string name="CallParticipantView__more_info">Mer informasjon</string>
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du vil ikke motta deres lyd eller bilde og de vil ikke motta tilsvarende fra deg.</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikke motta lyd &amp; video fra %1$s</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikke motta lyd og video fra %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan være fordi de ikke har verifisert ditt endrede sikkerhetsnummer, fordi det er et problem med enheten deres eller de har blokkert deg.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
@@ -1288,6 +1303,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_enter_your_phone_number">Skriv inn ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pass på at din telefon har dekning for å kunne motta SMS eller samtaler.</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landskode</string>
   <string name="RegistrationActivity_call">Ring</string>
@@ -1432,6 +1448,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukernavn må være mellom %1$d og %2$d tegn.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukernavn på Signal er valgfritt. Dersom du velger å opprette et brukernavn, vil andre Signal-brukere kunne finne deg på dette brukernavnet og kontakte deg uten å kunne telefonnummeret ditt.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt er på Signal!</item>
+    <item quantity="other">%d kontakter er på Signal! </item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
@@ -1442,6 +1463,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ingen sikkerhet nummer å sammenligne ble funnet i utklippstavlen </string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne skanne QR-koder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Du kan ikke skanne en QR-kode når systemet ikke tillater Signal å bruke kameraet</string>
+  <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Du må utveksle meldinger for å se %1$s sitt sikkerhetsnummer.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
@@ -1472,6 +1494,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
   <string name="MediaPreviewActivity_media_no_longer_available">Media er ikke lenger tilgjengelig.</string>
+  <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Kan ikke finne app som er i stand til å dele dette mediet.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -1482,6 +1505,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lest</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Skru av disse varslingene</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
   <string name="MessageNotifier_view_once_photo">Vis en gang bilde</string>
@@ -1501,6 +1525,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte %1$spå engangsmediet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt. </string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varslinger.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -1615,7 +1640,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal-bruker. Kontroller brukernavnet og prøv igjen.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Det er ikke nødvendig å legge deg selv til gruppen</string>
+  <string name="ContactSelectionListFragment_maximum_group_size_reached">Maksimum antall på gruppestørrelse er oppnådd </string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal grupper kan ha maksimum %1$dmedlemmer.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Anbefalt øvre grense for medlemsantall er nådd</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-grupper yter best med %1$d eller færre. Å legge til flere medlemmer vil føre til tregere sending og mottak av meldinger.</string>
+  <plurals name="ContactSelectionListFragment_d_members">
+    <item quantity="one">%1$d medlem</item>
+    <item quantity="other">%1$d medlemmer</item>
+  </plurals>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -2029,14 +2061,18 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__review_storage">Gå gjennom lagring</string>
   <string name="preferences_storage__delete_older_messages">Slett eldre meldinger?</string>
   <string name="preferences_storage__clear_message_history">Slett meldingshistorikk?</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dette vil permanent slette all meldingshistorikk og media som er eldre enn %1$sfra denne din enhet.</string>
+  <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dette vil umiddelbart forkorte alle samtaler til de %1$s siste meldingene.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dette vil permanent slette all meldingshistorikk og media fra denne din enhet.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Er du sikker på at du vil slette all meldingshistorikk?</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">All meldingshistorikk vil bli permanent slettet. Denne handlingen kan ikke angres.</string>
   <string name="preferences_storage__delete_all_now">Slett alt nå</string>
   <string name="preferences_storage__forever">For alltid</string>
   <string name="preferences_storage__one_year">1 år</string>
   <string name="preferences_storage__six_months">6 Måneder</string>
   <string name="preferences_storage__thirty_days">30 Dager</string>
   <string name="preferences_storage__none">Ingen</string>
+  <string name="preferences_storage__s_messages">%1$s meldinger</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
@@ -2064,6 +2100,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer du ikke har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær mer</string>
   <string name="preferences_notifications__mentions">Mentions</string>
+  <string name="preferences_notifications__notify_me">Varsle meg</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Motta varsler når du blir nevnt i dempede samtaler?</string>
   <string name="preferences_setup_a_username">Sette upp brukernavn</string>
   <string name="configurable_single_select__customize_option">Tilpass opsjon</string>
   <!--Internal only preferences-->
@@ -2099,6 +2137,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett valgte</string>
   <string name="conversation_list_batch__menu_pin_selected">Pin valgt</string>
+  <string name="conversation_list_batch__menu_unpin_selected">Løsne valgt</string>
   <string name="conversation_list_batch__menu_select_all">Velg alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angre arkivering av valgte</string>
@@ -2110,6 +2149,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_list_search_description">Søk</string>
   <string name="conversation_list__pinned">Festet</string>
   <string name="conversation_list__chats">Samtaler</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bare feste opp til %1$dsamtaler</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfotobilde</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
@@ -2118,6 +2158,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åpne Kamera</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ingen samtaler enda.\nKom i gang ved å sende en melding til en venn.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
@@ -2296,11 +2337,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Vi vil minne deg på det senere. Bekreftelse av PIN-koden blir obligatorisk om %1$d dager.</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Fortell Signal hva du synes</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Vi trenger dine tilbakemeldinger for å gjøre Signal til den beste meldingsappen i verden.</string>
   <string name="ResearchMegaphone_learn_more">Lær mer</string>
   <string name="ResearchMegaphone_dismiss">Avbryt</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal undersøkelse</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vi har troen på personvern.</b></p><p>Signal sporer ikke deg eller samler ikke inn dataene dine. For å forbedre Signal for alle er vi avhengige av tilbakemeldinger fra brukere, <b>og vi blir svært glade for dine.</b></p><p>Vi kjører en undersøkelse for å forstå hvordan du bruker Signal. Undersøkelsen vår samler ikke inn data som vil identifisere deg. Hvis du er interessert i å dele ytterligere tilbakemeldinger, har du muligheten til å oppgi kontaktinformasjon.</p><p>Hvis du har noen minutter og tilbakemeldinger å tilby, vil vi gjerne høre fra deg.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Gjennomfør brukerundersøkelsen</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Nei takk</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Undersøkelsen gjøres av Alchemer på det sikre domenet surveys.signalusers.org</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Laster…</string>
@@ -2346,6 +2390,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">For å aktivere sikkerhetskopier, velg en mappe. Sikkerhetskopier vil bli lagret der. </string>
   <string name="BackupDialog_choose_folder">Velg mappe</string>
   <string name="BackupDialog_copied_to_clipboard">Kopiert til utklippstavle</string>
+  <string name="BackupDialog_no_file_picker_available">Ingen filvelger tilgjengelig.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Bekreft ved å skrive inn passordfrasen for sikkerhetskopi</string>
   <string name="BackupDialog_verify">Bekreft</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du har bekreftet passordfrasen for sikkerhetskopi</string>
@@ -2356,6 +2401,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhetskopi feilet</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din sikkerhetskopikatalog har blitt slettet eller flyttet.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sikkerhetskopien din er for stor til å lagres på dette volumet.</string>
+  <string name="LocalBackupJobApi29_there_is_not_enough_space">Det er ikke nok plass til å lagre sikkerhetskopien din.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Trykk for å håndtere sikkerhetskopier.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meldinger så langt</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Skriv inn bekreftelseskoden som er sendt til %s.</string>
@@ -2366,9 +2413,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__see_my_phone_number">Se mitt telefonnummer</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">Finn meg via telefonnummer</string>
   <string name="PhoneNumberPrivacy_everyone">Alle</string>
   <string name="PhoneNumberPrivacy_my_contacts">Mine kontakter</string>
   <string name="PhoneNumberPrivacy_nobody">Ingen</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">Telefonnummeret ditt vil være synlig for alle personer og grupper du sender meldinger til.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">Alle som har telefonnummeret ditt i kontaktene sine, vil se deg som en kontakt på Signal. Andre vil kunne finne deg i Søk.</string>
   <string name="PhoneNumberPrivacy_my_contacts_see_description">Bare kontaktene dine vil se telefonnummeret ditt på Signal.</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
@@ -2446,6 +2495,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RecipientBottomSheet_video_call_description">Videoanrop</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Fjerne %1$s som gruppeadministrator?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" vil kunne redigere denne gruppen og dens medlemmer. </string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Fjern %1$s fra gruppen?</string>
   <string name="RecipientBottomSheet_remove">Fjern</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Kopiert til utklippstavle</string>
   <string name="GroupRecipientListItem_admin">Administrator</string>
@@ -2456,6 +2506,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hva er \"legacy\"-grupper?</string>
   <string name="GroupsLearnMore_paragraph_1">\"Legacy\"-grupper er grupper som ikke er kompatible med nye gruppefunksjoner som administrator og mer beskrivende gruppeoppdateringer.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jeg oppgradere en \"Legacy\"-gruppe?</string>
+  <string name="GroupsLearnMore_paragraph_2">\"Legacy\"-grupper kan ikke bli oppgradert til nye grupper enda, men du kan kan lage en ny gruppe med de samme medlemmene om de bruker den nyeste utgaven av Signal.</string>
+  <string name="GroupsLearnMore_paragraph_3">Signal vil tilby en måter å oppgradere \"Legacy\"-grupper i fremtiden.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>
@@ -2466,13 +2518,31 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--VoiceNotePlaybackPreparer-->
   <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Kunne ikke spille av.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
+  <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Lydmelding · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s til %2$s</string>
   <!--StorageUtil-->
+  <string name="StorageUtil__s_s">%1$s/%2$s</string>
+  <string name="BlockedUsersActivity__s_has_been_blocked">\"%1$s\" har blitt blokkert.</string>
+  <string name="BlockedUsersActivity__failed_to_block_s">Klarte ikke blokkere \"%1$s\"</string>
+  <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" har blitt avblokkert.</string>
   <!--ReviewCardDialogFragment-->
+  <string name="ReviewCardDialogFragment__review_members">Gå gjennom medlemmer</string>
   <string name="ReviewCardDialogFragment__review_request">Se gjennom forespørsel</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d gruppemedlemmer har det samme navnet, gå gjennom medlemmene under og velg handling.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørselen er fra, se gjennom kontaktene nedenfor og velg handling.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Ingen andre grupper til felles.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Ingen grupper til felles.</string>
+  <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
+    <item quantity="one">%d gruppe til felles</item>
+    <item quantity="other">%d grupper til felles</item>
+  </plurals>
+  <plurals name="ReviewCardDialogFragment__d_groups_in_common">
+    <item quantity="one">%d gruppe til felles</item>
+    <item quantity="other">%d grupper til felles</item>
+  </plurals>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Fjern %1$s fra gruppen?</string>
   <string name="ReviewCardDialogFragment__remove">Fjern</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Klarte ikke fjerne gruppemedlem.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Medlem</string>
   <string name="ReviewCard__request">Forespør</string>
@@ -2481,17 +2551,34 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReviewCard__update_contact">Oppdater kontakt</string>
   <string name="ReviewCard__block">Blokker</string>
   <string name="ReviewCard__delete">Slett</string>
+  <string name="ReviewCard__recently_changed">Endret nylig profilnavnet fra %1$s til %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s ble med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s og %2$s ble med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s og %3$s ble med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s og %3$d andre ble med</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s forlot</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s forlot</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s og %3$s forlot</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d andre forlot</string>
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annen enhet)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>
   <string name="DeleteAccountFragment__delete_account">Slett konto</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Slett din kontoinformasjon og profilbilde</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Slett alle dine meldinger</string>
   <string name="DeleteAccountFragment__no_country_code">Ingen landskode angitt</string>
   <string name="DeleteAccountFragment__no_number">Ikke noe nummer angitt</string>
+  <string name="DeleteAccountFragment__the_phone_number">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
   <string name="DeleteAccountFragment__are_you_sure">Er du sikker på at du vil slette kontoen din?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal konto og tilbakestille applikasjonen. Appen vil lukkes etter prosessen er fullført.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Klarte ikke slette konto. Har du nettverksforbindelse?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokal data. Du kan manuelt slette den i systemet applikasjonsinnstillinger.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Åpne App Innstillinger</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">Søk Land</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">Hopp over</string>
   <!--EOF-->

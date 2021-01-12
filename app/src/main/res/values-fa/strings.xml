@@ -1453,6 +1453,10 @@
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">نام‌های کاربری در Signal اختیاری هستند. اگر یک نام کاربری ایجاد کنید، دیگر کاربران Signal قادر خواهند بود تا شما را با این نام کاربری پیدا کنند و با شما بدون دانستن شمارهٔ تلفن‌ شما ارتباط برقرار کنند.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d مخاطب در Signal هست!</item>
+    <item quantity="other">%d مخاطب در Signal هستند!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما در حال استفاده از یک نسخهٔ قدیمی Signal است. لطفاً پیش از تأیید شمارهٔ امنیتی شما از او بخواهید به‌روزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما در حال اجرای نسخهٔ جدیدتر Signal با یک کد QR ناسازگار است. لطفاً برای مقایسه به‌روزرسانی کنید.</string>

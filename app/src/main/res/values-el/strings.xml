@@ -713,7 +713,7 @@
     <item quantity="other">Ο/Η %1$s προσκάλεσε %2$d άτομα</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Προσαρμογή ειδοποιήσεων</string>
   <string name="CustomNotificationsDialogFragment__messages">Μηνύματα</string>
   <string name="CustomNotificationsDialogFragment__use_custom_notifications">Χρήση προσαρμοσμένων ειδοποιήσεων</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Ήχος ειδοποίησης</string>
@@ -1450,6 +1450,10 @@
   <string name="UsernameEditFragment_username_is_invalid">Το όνομα χρήστη δεν είναι έγκυρο.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Τα ονόματα χρήστη πρέπει να είναι από %1$d εώς %2$d χαρακτήρες.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Τα ονόματα χρήστη στο Signal είναι προαιρετικά. Αν επιλέξεις να δημιουργήσεις ένα όνομα χρήστη, τότε άλλοι χρήστες του Signal θα μπορούν να σε βρουν με αυτό το όνομα και να επικοινωνήσουν μαζί σου χωρίς να γνωρίζουν τον αριθμό τηλεφώνου σου.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d επαφή είναι στο Signal!</item>
+    <item quantity="other">%d επαφές είναι στο Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σου χρησιμοποιεί παλιά έκδοση του Signal. Παρακαλούμε ζήτα του/της να ανανεώσει την εφαρμογή πριν επιβεβαιώσεις τον αριθμό ασφαλείας.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σου χρησιμοποιεί μια νεότερη έκδοση του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημέρωσε την εφαρμογή.</string>

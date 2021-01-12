@@ -1517,6 +1517,11 @@ broj telefona</string>
   <string name="UsernameEditFragment_username_is_invalid">Korisničko ime je nevažeće.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Korisnička imena moraju imati između %1$d i %2$d znakova.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Korisnička imena na Signalu su neobavezna. Ako odlučite stvoriti korisničko ime, drugi korisnici Signala će vas moći pronaći prema tom korisničkom imenu i kontaktirati vas bez poznavanja vašeg broja telefona.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt je na Signalu!</item>
+    <item quantity="few">%d kontakta su na Signalu!</item>
+    <item quantity="other">%d kontakata je na Signalu!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš kontakt koristi staru verziju Signala. Zamolite ih da ažuriraju aplikaciju prije provjere sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš kontakt koristi noviju verziju Signala s nekompatibilnim formatom QR kôda. Molimo ažurirajte za usporedbu.</string>

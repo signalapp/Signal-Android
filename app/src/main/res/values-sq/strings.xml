@@ -1455,6 +1455,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="UsernameEditFragment_username_is_invalid">Emri i përdoruesit është i pavlefshëm.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Emrat e përdoruesit duhet të jenë mes %1$d dhe %2$d shenjash.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Emrat e përdoruesve në Signal janë opsionalë. Nëse vendosni të krijoni një emër përdoruesi, përdorues të tjerë të Signal-it do të jenë në gjendje t’ju gjejnë me këtë emër përdoruesi dhe të lidhen me ju pa ditur numrin tuaj të telefonit.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt është në Signal!</item>
+    <item quantity="other">%d kontakte janë në Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>

@@ -1307,7 +1307,7 @@ número de teléfono
   <string name="RegistrationActivity_enter_your_phone_number">Introduce tu número de teléfono</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura para recibir tu SMS o llamadas</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura para recibir SMS o llamadas</string>
   <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>
@@ -1456,8 +1456,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari@) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">¡%d contacto está en Signal!</item>
-    <item quantity="other">¡Hay %d contactos en Signal!</item>
+    <item quantity="one">¡%d de tus amistades está en Signal!</item>
+    <item quantity="other">¡%d de tus amistades están en Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>

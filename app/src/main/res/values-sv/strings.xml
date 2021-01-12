@@ -1449,6 +1449,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="UsernameEditFragment_username_is_invalid">Användarnamnet är ogiltigt.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Användarnamn måste vara mellan %1$d och %2$d tecken.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Användarnamn på Signal är valfria. Om du väljer att skapa ett användarnamn kan andra Signal-användare hitta dig med detta användarnamn och kontakta dig utan att veta ditt telefonnummer.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt finns på Signal!</item>
+    <item quantity="other">%d kontakter finns på Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt använder en gammal version av Signal. Vänligen be kontakten att uppdatera innan de verifierar ditt säkerhetsnummer.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt använder en nyare version av Signal med ett inkompatibelt QR-kodformat. Vänligen uppdatera för att jämföra dem.</string>

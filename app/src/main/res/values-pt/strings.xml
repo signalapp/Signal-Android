@@ -1451,6 +1451,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="UsernameEditFragment_username_is_invalid">Nome de utilizador inválido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Os nomes de utilizadores devem ter entre %1$d e %2$d caracteres.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Os nomes de utilizadores no Signal são opcionais. Se escolher criar um nome de utilizador, os outros utilizadores do Signal serão capazes de encontrá-lo através desse nome de utilizador e contactá-lo sem saber o seu número de telemóvel.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contacto está no Signal!</item>
+    <item quantity="other">%d contactos estão no Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">O seu contacto está a utilizar uma versão antiga do Signal. Por favor peça-lhe para actualizar antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">O seu contacto está a utilizar uma versão mais recente do Signal, com um formato de código QR incompatível. Por favor, actualize para comparar.</string>

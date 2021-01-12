@@ -1309,6 +1309,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_enter_your_phone_number">Add meg a telefonszámod</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Gondoskodj róla, hogy a telefonodnak legyen térereje az SMS vagy hívás fogadásához.</string>
   <string name="RegistrationActivity_phone_number_description">Telefonszám</string>
   <string name="RegistrationActivity_country_code_description">Országkód</string>
   <string name="RegistrationActivity_call">Hívás</string>
@@ -1456,6 +1457,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="UsernameEditFragment_username_is_invalid">A felhasználónév érvénytelen.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">A felhasználóneveknek %1$d és %2$d db karakter közé kell esniük.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">A Signalban nem kötelező felhasználónevet választani. Ha mégis beállítod, akkor más felhasználók a telefonszámod ismerete nélkül, akár név alapján is megtalálhatnak.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d ismerős már elérhető Signalon!</item>
+    <item quantity="other">%d ismerős már elérhető Signalon!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítse azt biztonsági számotok ellenőrzése előtt!</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja, amelynek QR kód formátuma nem kompatibilis a te verzióddal. Kérlek frissíts az összehasonlításhoz!</string>

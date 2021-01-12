@@ -1577,6 +1577,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Nazwy użytkowników w Signal są opcjonalne. Jeśli postanowisz dodać nazwę użytkownika, inni użytkownicy Signal będą mogli Cię po niej znaleźć i skontaktować się z Tobą, nie znając Twojego numeru.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%dkontakt jest w Signal!</item>
+    <item quantity="few">%d kontakty są w Signal!</item>
+    <item quantity="many">%d kontaktów jest w Signal!</item>
+    <item quantity="other">%d są w Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>

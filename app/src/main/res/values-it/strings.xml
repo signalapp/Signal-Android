@@ -1455,6 +1455,10 @@
   <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">I nomi utente su Signal sono facoltativi. Se scegli di creare un nome utente, gli altri utenti di Signal potranno trovarti con questo nome utente e contattarti senza conoscere il tuo numero di telefono.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contatto è su Signal!</item>
+    <item quantity="other">%d contatti sono su Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>

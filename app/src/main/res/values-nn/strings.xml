@@ -1313,6 +1313,7 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_enter_your_phone_number">Skriv inn telefonnummeret ditt</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil få ei stadfestingskode. Operatøren din kan ta betalt for meldinga.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Skriv inn koden me sende til %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pass på at telefonen din har mobilsignal for å motta SMS eller ringa</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
   <string name="RegistrationActivity_country_code_description">Landkode</string>
   <string name="RegistrationActivity_call">Ring</string>
@@ -1458,6 +1459,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="UsernameEditFragment_username_is_invalid">Brukarnamnet er ugyldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brukarnamn må vera mellom %1$d og %2$d teikn lange.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Brukarnamn er valfrie på Signal. Viss du vil laga eit brukarnamn, så kan andre Signal-brukarar finna deg med dette og kontakta deg utan å kjenna til telefonnummeret ditt.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakt er på Signal!</item>
+    <item quantity="other">%d kontaktar er på Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten din køyrer ein gammal versjon av Signal. Ver venleg og be dei om å oppdatera før du stadfestar tryggleiksnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten din køyrer ein nyare versjon av Signal med eit inkompatibelt QR-kodeformat. Ver venleg og oppdater for å samanlikna.</string>

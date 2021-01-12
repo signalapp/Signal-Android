@@ -885,6 +885,7 @@
   <string name="PinRestoreEntryFragment_contact_support">ಸಂಪರ್ಕ ಬೆಂಬಲ</string>
   <string name="PinRestoreEntryFragment_cancel">ರದ್ದುಗೊಳಿಸಿ</string>
   <string name="PinRestoreEntryFragment_skip">ಬಿಟ್ಟು ಮುಂದುವರಿಯಿರಿ</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal ನೋಂದಣಿ - Android ಗಾಗಿ ಪಿನ್‌ ಕುರಿತ ಸಹಾಯ ಬೇಕಿದೆ</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಪಿನ್ ನಮೂದಿಸಿ</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin"> ಸಂಖ್ಯಾ ಪಿನ್ ನಮೂದಿಸಿ</string>
   <!--PinRestoreLockedFragment-->
@@ -951,6 +952,8 @@
   <string name="RegistrationActivity_more_information">ಇನ್ನಷ್ಟು ಮಾಹಿತಿ</string>
   <string name="RegistrationActivity_less_information">ಕಡಿಮೆ ಮಾಹಿತಿ</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends"> Signal ಗೆ ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಸಂದೇಶಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು, ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಆಕ್ಸೆಸ್ ಮಾಡುವುದು ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಮೆಸೇಜ್‌ಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ Signal ಪ್ರವೇಶಾವಕಾಶ ಪಡೆಯಬೇ</string>
+  <string name="RegistrationActivity_rate_limited_to_service">ಈ ಸಂಖ್ಯೆಯನ್ನು ರಿಜಿಸ್ಟರ್ ಮಾಡಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು ಪುನಃ </string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸುಲಭವಾಗಿ ದೃಢೀಕರಿಸಲು, ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು Signal ಗೆ ನೀವು ಅನುಮತಿಸಿದರೆ Signal ನಿಮ್ಮ ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆ ಮಾಡುತ್ತದೆ.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -965,12 +968,16 @@
   <string name="RegistrationActivity_continue_last_attempt">ಮುಂದುವರಿಸಿ (ಕೊನೆಯ ಪ್ರಯತ್ನ!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ಖಾಸಗಿತನವನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಇರಿಸಿಕೊಳ್ಳಿ. \nನಿಮ್ಮ ಪ್ರತಿ ಸಂದೇಶದಲ್ಲಿಯೂ ಸ್ವಂತಿಕೆ ಕಾಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ದೂರವಾಣಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ </string>
+  <string name="RegistrationActivity_enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ನೀವು ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ. ಕೆರಿಯರ್ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ಗೆ ನಾವು ಕಳುಹಿಸಿದ ಕೋಡ್ ನಮೂದಿಸಿ</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಅಥಬಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ ಮೊಬೈಲ್ ಸಿಗ್ನಲ್ ಅನ್ನು ನಿಮ್ಮ ಫೋನ್‌ ಹೊಂದಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳ</string>
   <string name="RegistrationActivity_phone_number_description">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
   <string name="RegistrationActivity_country_code_description">ದೇಶದ ಕೋಡ್</string>
   <string name="RegistrationActivity_call">ಕರೆ</string>
   <!--RegistrationLockV2Dialog-->
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್ ಆನ್‌ ಮಾಡುವುದೇ?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್‌ ಆಫ್‌ ಮಾಡುವುದೇ?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Signal ‌ನೊಂದಿಗೆ ಮತ್ತೆ ನೋಂದಾಯಿಸುವಾಗ ನಿಮ್ಮ Signal ಪಿನ್ ಅನ್ನು ನೀವು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು 7 ದಿನಗಳವರೆಗೆ ನಿಮ್ಮ ಖಾತೆಯಿಂದ ಲಾಕ್ ಮಾಡಲಾಗುತ್ತದೆ.</string>
   <string name="RegistrationLockV2Dialog_turn_on">ಆನ್‌ ಮಾಡಿ</string>
   <string name="RegistrationLockV2Dialog_turn_off">ಆಫ್ ಮಾಡಿ</string>
@@ -1046,6 +1053,7 @@
   <string name="SubmitDebugLogActivity_copied_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್ ಲಾಕ್‌:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">ಗುಂಪು ನವೀಕರಿಸಲಾಗಿದೆ</string>
   <string name="ThreadRecord_left_the_group">ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದಾರೆ</string>
@@ -2126,6 +2134,7 @@
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
   <string name="DeleteAccountFragment__are_you_sure">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
   <!--DeleteAccountCountryPickerFragment-->
   <!--CreateGroupActivity-->

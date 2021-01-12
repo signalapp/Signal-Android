@@ -1279,6 +1279,9 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nama pengguna tidak boleh dimulai dengan angka.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nama pengguna tidak valid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nama pengguna harus terdiri antara %1$d dan %2$d karakter.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="other">%d kontak ada di Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keamanan Anda.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
