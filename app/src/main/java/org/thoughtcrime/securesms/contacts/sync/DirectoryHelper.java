@@ -402,8 +402,11 @@ public class DirectoryHelper {
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) && !recipient.isSelf()) {
-        IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
+      if (!SessionUtil.hasSession(context, recipient.getId()) &&
+          !recipient.isSelf()                                 &&
+          recipient.hasAUserSetDisplayName(context))
+      {
+        IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
         Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
         if (insertResult.isPresent()) {
