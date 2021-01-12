@@ -1196,6 +1196,21 @@ public class ThreadDatabase extends Database {
     return Objects.requireNonNull(getThreadRecord(getThreadIdFor(recipient)));
   }
 
+  public @NonNull Set<RecipientId> getAllThreadRecipients() {
+    SQLiteDatabase   db  = databaseHelper.getReadableDatabase();
+    Set<RecipientId> ids = new HashSet<>();
+
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { RECIPIENT_ID }, null, null, null, null, null)) {
+      while (cursor.moveToNext()) {
+        ids.add(RecipientId.from(CursorUtil.requireString(cursor, RECIPIENT_ID)));
+      }
+    }
+
+    return ids;
+  }
+
+
   @NonNull MergeResult merge(@NonNull RecipientId primaryRecipientId, @NonNull RecipientId secondaryRecipientId) {
     if (!databaseHelper.getWritableDatabase().inTransaction()) {
       throw new IllegalStateException("Must be in a transaction!");

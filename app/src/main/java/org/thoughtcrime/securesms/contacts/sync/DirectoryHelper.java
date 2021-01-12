@@ -252,6 +252,8 @@ public class DirectoryHelper {
 
     stopwatch.split("handle-unlisted");
 
+    Set<RecipientId> preExistingRegisteredUsers = new HashSet<>(recipientDatabase.getRegistered());
+
     recipientDatabase.bulkUpdatedRegisteredStatus(uuidMap, inactiveIds);
 
     stopwatch.split("update-registered");
@@ -265,14 +267,13 @@ public class DirectoryHelper {
     }
 
     if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context) && notifyOfNewUsers) {
-      Set<RecipientId>  existingSignalIds = new HashSet<>(recipientDatabase.getRegistered());
-      Set<RecipientId>  existingSystemIds = new HashSet<>(recipientDatabase.getSystemContacts());
-      Set<RecipientId>  newlyActiveIds    = new HashSet<>(activeIds);
+      Set<RecipientId>  systemContacts                = new HashSet<>(recipientDatabase.getSystemContacts());
+      Set<RecipientId>  newlyRegisteredSystemContacts = new HashSet<>(activeIds);
 
-      newlyActiveIds.removeAll(existingSignalIds);
-      newlyActiveIds.retainAll(existingSystemIds);
+      newlyRegisteredSystemContacts.removeAll(preExistingRegisteredUsers);
+      newlyRegisteredSystemContacts.retainAll(systemContacts);
 
-      notifyNewUsers(context, newlyActiveIds);
+      notifyNewUsers(context, newlyRegisteredSystemContacts);
     } else {
       TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
     }

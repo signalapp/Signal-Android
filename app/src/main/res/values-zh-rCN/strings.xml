@@ -1242,6 +1242,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">输入您的电话号码</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">您将收到验证码，运营商可能收取短信费用。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入 %s 收到的验证码</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">请确保你的手机网络信号可接收短信或来电</string>
   <string name="RegistrationActivity_phone_number_description">手机号码</string>
   <string name="RegistrationActivity_country_code_description">国家代码</string>
   <string name="RegistrationActivity_call">呼叫</string>
@@ -1390,6 +1391,9 @@
   <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">用户名所含字符数量必须在 %1$d 与 %2$d 之间。</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal 上的用户名是可选功能。如果您选择创建用户名，其他 Signal 用户无需知道您的电话号码，即可通过此用户名与您取得联系。</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="other">%d 个联系人在使用 Signal！</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">联系人正在使用旧版 Signal。在验证安全码之前，请提示他们升级。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">联系人正在使用较新版本的 Signal，其二维码格式不兼容。请升级并比较。</string>

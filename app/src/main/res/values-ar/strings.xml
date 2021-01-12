@@ -52,7 +52,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">إقفال الشاشة %1$s، إنهاء التسجيل %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل الشاشة %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">يطلب الرقم التعريفي الشخصي من أجل قفل الانخراط. لإلغاء الرقم التعريفي الشخصي، الرجاء إلغاء قفل الانخراط.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">يطلب الرقم التعريفي الشخصي من أجل قفل التسجيل لإلغاء الرقم التعريفي الشخصي، الرجاء إلغاء قفل التسجيل.</string>
   <string name="ApplicationPreferencesActivity_pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">الرقم التعريفي الشخصي غير مفعل.</string>
   <string name="ApplicationPreferencesActivity_hide">إخفاء</string>
@@ -1430,7 +1430,7 @@
     <item quantity="many">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
     <item quantity="other">لديك %1$d محاولات متبقية. إذا انتهت محاولاتك، تستطيع إنشاء رقم تعريفي شخصي جديد. والتسجيل واستخدام حسابك لكنك ستفقد الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي لنظام تشغيل Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي لنظام تشغيل أندرويد</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">أدخل الرقم التعريفي الشخصي بالأحرف والأرقام</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">أدخل الرقم التعريفي الشخصي بالأرقام</string>
   <!--PinRestoreLockedFragment-->
@@ -1567,6 +1567,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تحقّق. قد تنطبّق تكلفة من مزوّد الخدمة.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">يُرجى التأكد من أن هاتفك يلتقط الإشارة الخلوية لتلقي الرسائل القصيرة أو المكالمات</string>
   <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
   <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصال</string>
@@ -1711,6 +1712,14 @@
   <string name="UsernameEditFragment_username_is_invalid">اسم المستخدم غير صالح</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">اسم المستخدم لا بد أن يكون بين %1$d و%2$d رمز.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">إن اسم المستخدم اختياري في Signal. إذا اخترت إنشاء اسم المستخدم، سوف يتمكن المستخدمون الآخرون لـ Signal من العثور عليك بواسطة ذلك الاسم و من ثَمَّ التواصل معك بدون معرفتهم لرقم هاتفك.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="zero">%d جهات اتصال تستخدم Signal</item>
+    <item quantity="one">تستخدم جهة اتصال %d Signal</item>
+    <item quantity="two">%d جهات اتصال تستخدم Signal</item>
+    <item quantity="few">%d جهات اتصال تستخدم Signal</item>
+    <item quantity="many">%d جهات اتصال تستخدم Signal</item>
+    <item quantity="other">%d جهات اتصال تستخدم Signal</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">جهة الاتصال هذه تستخدم إصدار قديم من Signal. اطلب منه تحديث التطبيق قبل التحقق من رقم السلامة.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق Signal وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>

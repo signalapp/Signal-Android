@@ -700,10 +700,10 @@
   <string name="ManageRecipientActivity_add_to_a_group">Aan een groep toevoegen</string>
   <string name="ManageRecipientActivity_view_all_groups">Alle groepen weergeven</string>
   <string name="ManageRecipientActivity_see_all">Alles weergeven</string>
-  <string name="ManageRecipientActivity_no_groups_in_common">Geen overeenkomstige groepen</string>
+  <string name="ManageRecipientActivity_no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="one">%d overeenkomstige groep</item>
-    <item quantity="other">%d overeenkomstige groepen</item>
+    <item quantity="one">%d gemeenschappelijke groep</item>
+    <item quantity="other">%d gemeenschappelijke groepen</item>
   </plurals>
   <string name="ManageRecipientActivity_edit_name_and_picture">Naam en afbeelding aanpassen</string>
   <string name="ManageRecipientActivity_message_description">Bericht</string>
@@ -1459,6 +1459,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit ten minste %1$d en maximaal %2$d karakters bestaan.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Gebruikersnamen in Signal zijn optioneel. Als je een gebruikersnaam aanmaakt zullen andere Signal gebruikers je kunnen vinden met deze naam en contact met je kunnen opnemen zonder je telefoonnummer te kennen.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d persoon is bereikbaar via Signal.</item>
+    <item quantity="other">%d personen zijn bereikbaar via Signal.</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Je contact gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>

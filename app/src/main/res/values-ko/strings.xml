@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">화면 잠금 %1$s, 등록 잠금 %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금에 PIN이 필요합니다. PIN을 끄려면 먼저 등록 잠금을 끄세요.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 중지되었습니다.</string>
   <string name="ApplicationPreferencesActivity_hide">숨기기</string>
@@ -885,6 +886,7 @@
   <string name="PinRestoreEntryFragment_contact_support">지원에 문의</string>
   <string name="PinRestoreEntryFragment_cancel">취소</string>
   <string name="PinRestoreEntryFragment_skip">건너뛰기</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 가입 - Android PIN 도움 요청</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">영숫자 번호 입력</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">숫자 번호 입력</string>
   <!--PinRestoreLockedFragment-->
@@ -968,6 +970,8 @@
   <string name="RegistrationActivity_more_information">더 많은 정보</string>
   <string name="RegistrationActivity_less_information">더 적은 정보</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처와 미디어 권한이 필요합니다.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">친구와 연락하고, 메시지를 주고받으며 안전한 통화를 하기 위해 Signal이 연락처 액세스 권한을 필요로 합니다.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">이 전화번호 가입을 너무 많이 시도하셨습니다. 나중에 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal에 SMS 메시지 접근 권한을 허용하면 휴대 전화에 오는 인증 코드를 자동으로 탐지하여 쉽게 휴대 전화를 인증할 수 있습니다.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -981,8 +985,10 @@
   <string name="RegistrationActivity_continue_last_attempt">계속(마지막 시도!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인 정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">시작하려면 휴대 전화 번호를 입력하세요.</string>
+  <string name="RegistrationActivity_enter_your_phone_number">전화번호 입력</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s 번호로 보낸 코드를 입력해 주세요.</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS 또는 전화를 수신하려면 휴대전화에서 데이터 네트워크가 켜져 있어야 합니다.</string>
   <string name="RegistrationActivity_phone_number_description">전화번호</string>
   <string name="RegistrationActivity_country_code_description">국가 번호</string>
   <string name="RegistrationActivity_call">전화</string>
@@ -1070,6 +1076,7 @@
   <string name="SupportEmailUtil_android_version">안드로이드 버전:</string>
   <string name="SupportEmailUtil_signal_version">Signal 버전:</string>
   <string name="SupportEmailUtil_signal_package">시그널 패키지:</string>
+  <string name="SupportEmailUtil_registration_lock">등록 잠금:</string>
   <string name="SupportEmailUtil_locale">언어:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
@@ -2015,6 +2022,8 @@
   <string name="preferences_app_protection__confirm_pin">번호 확인</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN 번호 확인</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">등록 잠금을 켜는 데 실패했습니다.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">등록 잠금을 끄는 데 실패했습니다.</string>
   <string name="AppProtectionPreferenceFragment_none">없음</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">등록 잠금 번호는 현재 전송된 SMS 인증 코드와는 다릅니다. 이전에 앱에서 설정했던 번호를 입력하세요.</string>
   <string name="registration_activity__registration_lock_pin">등록 잠금 번호</string>
@@ -2109,6 +2118,7 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s님과 %2$s님이 떠났습니다.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s님, %2$s님, %3$s님이 떠났습니다.</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">전화번호 입력</string>
   <string name="DeleteAccountFragment__delete_account">계정 삭제하기</string>
   <string name="DeleteAccountFragment__are_you_sure">계정을 삭제하시겠습니까?</string>
   <!--DeleteAccountCountryPickerFragment-->
