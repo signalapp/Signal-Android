@@ -66,6 +66,7 @@ public final class FeatureFlags {
   private static final String GV1_MIGRATION_JOB            = "android.groupsV1Migration.job";
   private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER           = "android.customVideoMuxer";
+  private static final String CDS_REFRESH_INTERVAL         = "cds.syncInterval.seconds";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -87,7 +88,8 @@ public final class FeatureFlags {
       GV1_FORCED_MIGRATE,
       GROUP_CALLING,
       SEND_VIEWED_RECEIPTS,
-      CUSTOM_VIDEO_MUXER
+      CUSTOM_VIDEO_MUXER,
+      CDS_REFRESH_INTERVAL
   );
 
   @VisibleForTesting
@@ -119,7 +121,8 @@ public final class FeatureFlags {
       CLIENT_EXPIRATION,
       GROUP_CALLING,
       GV1_MIGRATION_JOB,
-      CUSTOM_VIDEO_MUXER
+      CUSTOM_VIDEO_MUXER,
+      CDS_REFRESH_INTERVAL
   );
 
   /**
@@ -268,6 +271,11 @@ public final class FeatureFlags {
   /** Whether to use the custom streaming muxer or built in android muxer. */
   public static boolean useStreamingVideoMuxer() {
     return getBoolean(CUSTOM_VIDEO_MUXER, false);
+  }
+
+  /** The time in between routine CDS refreshes, in seconds. */
+  public static int cdsRefreshIntervalSeconds() {
+    return getInteger(CDS_REFRESH_INTERVAL, (int) TimeUnit.HOURS.toSeconds(48));
   }
 
   /** Only for rendering debug info. */
