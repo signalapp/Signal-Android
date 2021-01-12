@@ -2207,6 +2207,7 @@
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
+    <string name="preferences__chat_wallpaper">Chat wallpaper</string>
     <string name="preferences__disable_pin">Disable PIN</string>
     <string name="preferences__enable_pin">Enable PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Signal unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
@@ -2818,6 +2819,26 @@
 
     <!-- ShareInterstitialActivity -->
     <string name="ShareInterstitialActivity__forward_message">Forward message</string>
+
+    <!-- ChatWallpaperActivity -->
+    <string name="ChatWallpaperActivity__chat_wallpaper">Chat wallpaper</string>
+
+    <!-- ChatWallpaperFragment -->
+    <string name="ChatWallpaperFragment__set_wallpaper">Set wallpaper</string>
+    <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dark theme dims wallpaper</string>
+    <string name="ChatWallpaperFragment__clear_wallpaper">Clear wallpaper</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
+
+    <!-- ChatWallpaperSelectionFragment -->
+    <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choose from photos</string>
+    <string name="ChatWallpaperSelectionFragment__presets">Presets</string>
+
+    <!-- ChatWallpaperPreviewActivity -->
+    <string name="ChatWallpaperPreviewActivity__preview">Preview</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Set wallpaper</string>
+    <string name="ChatWallpaperPreviewActivity__10_49_am">10:49 am</string>
+    <string name="ChatWallpaperPreviewActivity__this_wallpaper_will_be_set_for_all_chats">This wallpaper will be set for all chats</string>
+    <string name="ChatWallpaperPreviewActivity__besides_those_you_manually_override">Besides those you manually override</string>
 
     <!-- EOF -->
 

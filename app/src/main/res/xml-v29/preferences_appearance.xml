@@ -9,6 +9,9 @@
             android:defaultValue="system">
     </org.thoughtcrime.securesms.preferences.widgets.SignalListPreference>
 
+    <Preference android:title="@string/preferences__chat_wallpaper"
+        android:key="pref_wallpaper" />
+
     <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
             android:key="pref_language"
             android:title="@string/preferences__language"
