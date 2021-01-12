@@ -47,7 +47,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:minLines="2"
-                      tools:text="Let's switch to Signal: https://sgnl.link/asdfdfsa"
+                      tools:text="Let's switch to Signal, Let's chat be encrypted: https://sgnl.link/asdfdfsa"
                       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                       android:background="@drawable/invite_edit_text_background"
                       android:paddingTop="10dp"
