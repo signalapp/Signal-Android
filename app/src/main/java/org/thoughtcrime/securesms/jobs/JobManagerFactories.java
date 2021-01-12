@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.ChargingConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
@@ -186,6 +188,7 @@ public final class JobManagerFactories {
       put(NetworkOrCellServiceConstraint.LEGACY_KEY, new NetworkOrCellServiceConstraint.Factory(application));
       put(SqlCipherMigrationConstraint.KEY,          new SqlCipherMigrationConstraint.Factory(application));
       put(DecryptionsDrainedConstraint.KEY,          new DecryptionsDrainedConstraint.Factory());
+      put(NotInCallConstraint.KEY,                   new NotInCallConstraint.Factory());
     }};
   }
 
@@ -194,7 +197,8 @@ public final class JobManagerFactories {
                          new ChargingConstraintObserver(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver(),
-                         new DecryptionsDrainedConstraintObserver());
+                         new DecryptionsDrainedConstraintObserver(),
+                         new NotInCallConstraintObserver());
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {

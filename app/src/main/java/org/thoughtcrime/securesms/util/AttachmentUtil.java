@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Collections;
@@ -46,9 +47,9 @@ public class AttachmentUtil {
     {
       return true;
     } else if (isNonDocumentType(contentType)) {
-      return allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
+      return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains(MediaUtil.getDiscreteMimeType(contentType));
     } else {
-      return allowedTypes.contains("documents");
+      return NotInCallConstraint.isNotInConnectedCall() && allowedTypes.contains("documents");
     }
   }
 
