@@ -340,6 +340,10 @@ public final class PushProcessMessageJob extends BaseJob {
 
       if (content == null || shouldIgnore(content)) {
         log(TAG, content != null ? String.valueOf(content.getTimestamp()) : "null", "Ignoring message.");
+        if (content.getDataMessage().isPresent() && content.isNeedsReceipt()) {
+          log(TAG, content != null ? String.valueOf(content.getTimestamp()) : "null", "Marking ignored message as delivered.");
+          handleNeedsDeliveryReceipt(content, content.getDataMessage().get());
+        }
         return;
       }
 
