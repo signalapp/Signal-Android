@@ -136,13 +136,14 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
                             .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
+                            .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
+                            .addBlocking("message-retriever", this::initializeMessageRetrieval)
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
                             .addBlocking("vector-compat", () -> {
                               if (Build.VERSION.SDK_INT < 21) {
                                 AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
                               }
                             })
-                            .addNonBlocking(this::initializeMessageRetrieval)
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializeGcmCheck)
                             .addNonBlocking(this::initializeSignedPreKeyCheck)
