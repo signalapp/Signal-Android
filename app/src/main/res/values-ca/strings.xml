@@ -5,7 +5,7 @@
   <string name="delete">Suprimeix</string>
   <string name="please_wait">Espereu, si us plau…</string>
   <string name="save">Desa</string>
-  <string name="note_to_self">Notifica-m\'ho</string>
+  <string name="note_to_self">Notes personals</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
   <!--AlbumThumbnailView-->
