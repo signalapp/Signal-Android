@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Δημιουργία ομάδας</string>
   <string name="AddGroupDetailsFragment__create">Δημιουργία</string>
   <string name="AddGroupDetailsFragment__members">Μέλη</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Μπορείς να προσθέσεις ή να προσκαλέσεις φίλους σου αφού δημιουργήσεις την ομάδα.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Όνομα ομάδας (απαιτείται)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Όνομα ομάδας (προαιρετικά)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Αυτό το πεδίο απαιτείται.</string>
@@ -750,7 +751,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Είσαι ήδη μέλος</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Γίνε μέλος</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Αίτηση εισόδου</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αδυναμία εγγραφής στην ομάδα. Προσπαθήστε ξανά αργότερα</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Αποτυχία εισόδου στην ομάδα. Παρακαλώ ξαναπροσπάθησε αργότερα</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ο σύνδεσμος της ομάδας δεν είναι ενεργός</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Δεν μπορέσαμε να λάβουμε τις πληροφορίες της ομάδας, προσπάθησε ξανά αργότερα</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Αναβάθμιση του Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Μια ή παραπάνω από τις συνδεμένες συσκευές σου έχουν κάποια έκδοση του Signal που δεν υποστηρίζει τους συνδέσμους ομάδων. Αναβάθμισε το Signal στη συνδεμένη συσκευή/ές σου για να μπεις σε αυτή την ομάδα.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ο σύνδεσμος ομάδας δεν είναι έγκυρος</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Πρόσκληση φίλων</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Μοιράσου τον σύνδεσμο με τους φίλους σου, για να μπορέσουν να μπουν γρήγορα στην ομάδα.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Ενεργοποίηση και διαμοιρασμός συνδέσμου</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Διαμοιρασμός συνδέσμου</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Αποτυχία ενεργοποίησης του συνδέσμου ομάδας. Παρακαλώ ξαναπροσπάθησε αργότερα.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Υπήρξε σφάλμα δικτύου.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Δεν έχεις το δικαίωμα να ενεργοποιήσεις το σύνδεσμο της ομάδας. Παρακαλώ ζήτα το από κάποιον/α διαχειριστή/τρια.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Δεν είσαι μέλος της ομάδας αυτή τη στιγμή.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Προσθήκη του/της \"%1$s\" στην ομάδα;</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Απόρριψη του αιτήματος του/της \"%1$s\";</string>
@@ -794,7 +804,7 @@
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ SMS ΣΕ %d ΦΙΛΟ/Η</item>
-    <item quantity="other">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΩΝ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
+    <item quantity="other">ΑΠΟΣΤΟΛΗ SMS ΣΕ %d ΦΙΛΟΥΣ/ΕΣ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Αποστολή %d πρόσκλησης με SMS;</item>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">Επιβεβαίωσε το PIN του Signal σου</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Θα σου ζητάμε κάθε τόσο να επιβεβαιώσεις το PIN σου, για να το θυμάσαι.</string>
   <string name="Megaphones_verify_pin">Επιβεβαίωση PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Ξεκινήστε</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Νέα ομάδα</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Πρόσκληση φίλων</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Χρήση SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal σε εξέλιξη</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Δημιούργησες την ομάδα.</string>
   <string name="MessageRecord_group_updated">Η ομάδα ενημερώθηκε.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Προσκάλεσε φίλους/ες στην ομάδα μέσω ενός συνδέσμου της ομάδας</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Πρόσθεσες τον/την %1$s.</string>
   <string name="MessageRecord_s_added_s">Ο/Η %1$s πρόσθεσε τον/την %2$s.</string>
@@ -1285,8 +1300,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Συνέχεια (τελευταία προσπάθεια!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Πάρε την ιδιωτικότητα μαζί σου.\nΝα είσαι ο εαυτός σου σε κάθε μήνυμα.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Γράψε τον αριθμό σου για να ξεκινήσεις</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Θα λάβεις έναν κωδικό επιβεβαίωσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Γράψε τον κωδικό που σου στείλαμε στο %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Επιβεβαίωσε πως το τηλέφωνό σου έχει σήμα κινητής για να λάβεις το SMS ή την κλήση</string> -->
   <string name="RegistrationActivity_phone_number_description">Αριθμός τηλεφώνου</string>
   <string name="RegistrationActivity_country_code_description">Κωδικός χώρας</string>
   <string name="RegistrationActivity_call">Κλήση</string>
@@ -1308,6 +1325,7 @@
   <string name="SearchFragment_header_conversations">Συνομιλίες</string>
   <string name="SearchFragment_header_contacts">Επαφές</string>
   <string name="SearchFragment_header_messages">Μηνύματα</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Προσθήκη στις επαφές</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Πρόσκληση στο Signal</string>
@@ -1671,6 +1689,7 @@
   <string name="ConversationUpdateItem_join_call">Είσοδος στην κλήση</string>
   <string name="ConversationUpdateItem_return_to_call">Επιστροφή στην κλήση</string>
   <string name="ConversationUpdateItem_call_is_full">Η κλήση είναι γεμάτη</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Πρόσκληση φίλων</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
@@ -2137,7 +2156,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Νέα συνομιλία</string>
   <string name="conversation_list_fragment__open_camera_description">Άνοιγμα κάμερας</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Δώσε ζωή στα εισερχόμενά σου! Κάνε την αρχή, στείλε μήνυμα σε έναν φίλο ή φίλη σου.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Δεν υπάρχουν ακόμα συνομιλίες.\nΞεκίνα στέλνοντας μήνυμα σε κάποιον/α φίλο/η σου.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Επανεκκίνηση ασφαλούς συνεδρίας</string>
   <!--conversation_muted-->
@@ -2174,8 +2193,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Σύγκριση με το πρόχειρο</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Χρήση ως προκαθορισμένη εφαρμογή για τα SMS</string>
-  <string name="reminder_header_sms_default_text">Πάτα για να κάνεις το Signal την προκαθορισμένη εφαρμογή για τα SMS.</string>
   <string name="reminder_header_sms_import_title">Εισαγωγή SMS συστήματος</string>
   <string name="reminder_header_sms_import_text">Πάτα για να αντιγράψεις τα μηνύματα SMS του κινητού σου στην κρυπτογραφημένη βάση δεδομένων του Signal.</string>
   <string name="reminder_header_push_title">Ενεργοποίηση των μηνημάτων και κλήσεων Signal</string>
@@ -2371,6 +2388,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Για να ενεργοποιήσεις τα αντίγραφα ασφαλείας, επέλεξε ένα φάκελο. Τα αντίγραφα θα αποθηκεύονται σε αυτή την τοποθεσία.</string>
   <string name="BackupDialog_choose_folder">Επιλογή φακέλου</string>
   <string name="BackupDialog_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Δεν υπάρχει διαθέσιμη εφαρμογή επιλογής αρχείων.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Εισάγετε το συνθηματικό αντιγράφου ασφαλείας για επιβεβαίωση</string>
   <string name="BackupDialog_verify">Επιβεβαίωση</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Εισάγατε το συνθηματικό αντιγράφου ασφαλείας με επιτυχία</string>
@@ -2559,5 +2577,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Άνοιγμα ρυθμίσεων εφαρμογής</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Εύρεση χωρών</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Παράλειψη</string> -->
   <!--EOF-->
 </resources>

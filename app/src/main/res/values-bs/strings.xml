@@ -180,7 +180,7 @@
   <string name="ContactShareEditActivity_type_mobile">Mobilni</string>
   <string name="ContactShareEditActivity_type_work">Poslovni</string>
   <string name="ContactShareEditActivity_type_missing">Ostalo</string>
-  <string name="ContactShareEditActivity_invalid_contact">Odabrani kontakt nije valjan</string>
+  <string name="ContactShareEditActivity_invalid_contact">Označeni kontakt nije valjan</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Nije poslano, dodirnite za detalje</string>
   <string name="ConversationItem_error_partially_not_delivered">Djelimično poslano, dodirnite za detalje</string>
@@ -270,14 +270,14 @@
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Izbrisati odabranu poruku?</item>
-    <item quantity="few">Izbrisati odabrane poruke?</item>
-    <item quantity="other">Izbrisati odabrane poruke?</item>
+    <item quantity="one">Izbrisati označenu poruku?</item>
+    <item quantity="few">Izbrisati označene poruke?</item>
+    <item quantity="other">Izbrisati označene poruke?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Ovo će bespovratno izbrisati odabranu poruku.</item>
-    <item quantity="few">Ovo će bespovratno izbrisati %1$d odabrane poruke.</item>
-    <item quantity="other">Ovo će bespovratno izbrisati svih %1$d odabranih poruka.</item>
+    <item quantity="one">Ovo će bespovratno izbrisati označenu poruku.</item>
+    <item quantity="few">Ovo će bespovratno izbrisati %1$d označene poruke.</item>
+    <item quantity="other">Ovo će bespovratno izbrisati svih %1$d označenih poruka.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Pohraniti u memoriju?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -630,6 +630,7 @@
   <string name="AddGroupDetailsFragment__create_group">Kreiraj grupu</string>
   <string name="AddGroupDetailsFragment__create">Kreiraj</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Možete uvrštavati ili pozivati prijatelje nakon što kreirate grupu.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Naziv grupe (obavezno)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Naziv grupe (neobavezno)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Ovo se polje mora ispuniti.</string>
@@ -808,6 +809,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Ažurirajte Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedan ili više Vaših povezanih uređaja koriste verziju Signala koja ne podržava linkove za grupe. Ažurirajte Signal na svojim povezanim uređajima da biste pristupili ovoj grupi.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link za grupu nije ispravan</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Pozovi prijatelje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Podijelite link s prijateljima da im omogućite brzo pristupanje grupi.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktiviraj i podijeli link</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Podijeli link</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nije moguće aktivirati link za grupu. Molimo, pokušajte kasnije</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Došlo je do greške u mreži.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nemate ovlaštenje da aktivirate link za grupu. Molimo, kontaktirajte administratora.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Trenutno niste član ove grupe.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Uvrstiti “%1$s” u grupu?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odbiti zahtjev “%1$s”?</string>
@@ -911,6 +921,10 @@
   <string name="Megaphones_verify_your_signal_pin">Potvrdite svoj Signal PIN</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Povremeno ćemo od Vas tražiti da potvrdite svoj PIN kako biste ga zapamtili.</string>
   <string name="Megaphones_verify_pin">Potvrdi PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Krenite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Nova grupa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Pozovi prijatelje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Koristi SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
@@ -984,6 +998,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Kreirali ste grupu.</string>
   <string name="MessageRecord_group_updated">Grupa je ažurirana.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Pozovite prijatelje u ovu grupu putem linka za grupu</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Uvrstili ste %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s je uvrstio/la %2$s.</string>
@@ -1138,12 +1153,12 @@
   <string name="MessageRequestBottomView_delete">Izbriši</string>
   <string name="MessageRequestBottomView_block">Blokiraj</string>
   <string name="MessageRequestBottomView_unblock">Deblokiraj</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti %1$s da Vam šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? On ili ona neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Dopustiti da Vam %1$s šalje poruke i vidi Vaše ime i sliku? Nećete primati poruke od njega ili nje dok ih ne prestanete blokirati.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Nastaviti konverzaciju s ovom grupom i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Nadogradite ovu grupu da biste aktivirali mogućnosti poput @spomena i administracije grupe. Članovi koji nisu podijelili svoje ime ili sliku s grupom bit će pozvani da se pridruže.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ova grupa više se ne može koristiti jer je prevelika. Maksimum za grupu iznosi %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Nastaviti konverzaciju sa %1$s i dopustiti da vidi Vaše ime i sliku?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Nastaviti konverzaciju i dopustiti da %1$s vidi Vaše ime i sliku?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi i dopustiti članovima da vide Vaše ime i sliku? Oni neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pristupiti ovoj grupi? Članovi neće znati da ste vidjeli njihove poruke dok ne prihvatite.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Prestati s blokiranjem ove grupe i dopustiti njenim članovima da vide Vaše ime i sliku? Nećete primati poruke dok je ne prestanete blokirati.</string>
@@ -1354,6 +1369,7 @@
   <string name="RegistrationActivity_continue_last_attempt">Nastavite (zadnji pokušaj!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Privatnost držite uza se.\nBudite svoji u svakoj poruci.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Unesite svoj broj telefona da počnete</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Unesite svoj broj telefona</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Primit ćete kōd za potvrdu. Vaš operater možda naplati uslugu.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kōd koji smo poslali na %s</string>
   <string name="RegistrationActivity_phone_number_description">Broj telefona</string>
@@ -1377,6 +1393,7 @@
   <string name="SearchFragment_header_conversations">Konverzacije</string>
   <string name="SearchFragment_header_contacts">Kontakti</string>
   <string name="SearchFragment_header_messages">Poruke</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj među kontakte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pozovite na Signal</string>
@@ -1462,7 +1479,7 @@
   <string name="ThreadRecord_view_once_video">Jednokratni videozapis</string>
   <string name="ThreadRecord_view_once_media">Jednokratni medij</string>
   <string name="ThreadRecord_this_message_was_deleted">Ova je poruka izbrisana.</string>
-  <string name="ThreadRecord_you_deleted_this_message">Obrisali ste ovu poruku.</string>
+  <string name="ThreadRecord_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signalu!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Onemogućene su nestajuće poruke</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme za nestajanje poruka: %s</string>
@@ -1744,6 +1761,7 @@
   <string name="ConversationUpdateItem_join_call">Pridruži se pozivu</string>
   <string name="ConversationUpdateItem_return_to_call">Vrati se pozivu</string>
   <string name="ConversationUpdateItem_call_is_full">Poziv je popunjen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Pozovi prijatelje</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
@@ -2194,13 +2212,13 @@
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Pozovi</string>
   <!--conversation_list_batch-->
-  <string name="conversation_list_batch__menu_delete_selected">Izbriši odabrano</string>
+  <string name="conversation_list_batch__menu_delete_selected">Izbriši označeno</string>
   <string name="conversation_list_batch__menu_pin_selected">Istakni označeno</string>
   <string name="conversation_list_batch__menu_unpin_selected">Prestani isticati označeno</string>
   <string name="conversation_list_batch__menu_select_all">Odaberi sve</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Arhiviraj odabrano</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dearhiviraj odabrano</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">Dearhiviraj odabrano</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Arhiviraj označeno</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dearhiviraj označeno</string>
+  <string name="conversation_list_batch__menu_unarchive_selected">Dearhiviraj označeno</string>
   <string name="conversation_list_batch__menu_mark_as_read">Označi kao pročitano</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Označi kao nepročitano</string>
   <!--conversation_list-->
@@ -2217,7 +2235,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova konverzacija</string>
   <string name="conversation_list_fragment__open_camera_description">Pokreni kameru</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dajte svome sandučiću da se nečim zanima. Počnite pisanjem poruke prijatelju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Još nema konverzacija.\nZapočnite slanjem poruke prijatelju.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Ponovi zaštićenu sesiju</string>
   <!--conversation_muted-->
@@ -2254,8 +2272,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj u međuspremnik</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Uporedi sa međuspremnikom</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Koristi kao glavnu aplikaciju za SMS</string>
-  <string name="reminder_header_sms_default_text">Pritisnite da Signal učinite svojom glavnom aplikacijom za slanje SMS poruka</string>
   <string name="reminder_header_sms_import_title">Unesi sistemske SMS poruke</string>
   <string name="reminder_header_sms_import_text">Pritisnite da kopirate SMS poruke na telefonu u Signalovu šifriranu bazu podataka.</string>
   <string name="reminder_header_push_title">Aktivirajte Signal poruke i pozive</string>
@@ -2458,6 +2474,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste aktivirali kreiranje rezervnih kopija, izaberite direktorij. Rezervne kopije bit će pohranjene na toj lokaciji.</string>
   <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
   <string name="BackupDialog_copied_to_clipboard">Kopirano u međuspremnik</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Nema aplikacije za biranje datoteka.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Unesite svoju lozinku za rezervne kopije da potvrdite</string>
   <string name="BackupDialog_verify">Verifikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspješno ste unijeli svoju lozinku za rezervne kopije</string>
@@ -2648,5 +2665,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Pokreni podešavanja aplikacije</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Traži državu</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Preskoči</string> -->
   <!--EOF-->
 </resources>

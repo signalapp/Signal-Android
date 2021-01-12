@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">Utwórz grupę</string>
   <string name="AddGroupDetailsFragment__create">Utwórz</string>
   <string name="AddGroupDetailsFragment__members">Członkowie</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Możesz dodać lub zaprosić znajomych po utworzeniu tej grupy.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Nazwa grupy (wymagane)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nazwa grupy (opcjonalne)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">To pole jest wymagane.</string>
@@ -849,6 +850,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Zaktualizuj Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno lub więcej z Twoich połączonych urządzeń używa wersji Signal, która nie obsługuje linków do grup. Zaktualizuj aplikację Signal  na swoim połączonym urządzeniu(ach) do najnowszej wersji, aby dołączyć do tej grupy.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupy jest nieprawidłowy</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Zaproś znajomych</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Udostępnij link znajomym, aby mogli szybko dołączyć do tej grupy.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Włącz i udostępnij link</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Udostępnij link</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nie udało się włączyć linku. Spróbuj później.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Wystąpił błąd sieci.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nie masz uprawnień, aby włączyć link. Poproś o to administratora.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">W tej chwili nie jesteś członkiem tej grupy.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Dodać “%1$s” do grupy?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Odrzucić prośbę od “%1$s”?</string>
@@ -958,6 +968,10 @@
   <string name="Megaphones_verify_your_signal_pin">Zweryfikuj swój PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Co jakiś czas będziemy prosić Cię o weryfikację PINu, abyś go zapamiętał(a).</string>
   <string name="Megaphones_verify_pin">Zweryfikuj PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Rozpocznij</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Nowa grupa</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Zaproś znajomych</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Użyj SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Połączenie Signal w toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Nawiązywanie połączenia Signal</string>
@@ -1034,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Utworzyłeś(aś) grupę.</string>
   <string name="MessageRecord_group_updated">Zaktualizowano grupę.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Zaproś znajomych do tej grupy przez link</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Dodałeś(aś) %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s dodał(a) %2$s.</string>
@@ -1414,8 +1429,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Kontynuuj (ostatnia próba!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Weź prywatność w swoje ręce.\nBądź sobą w każdej wiadomości.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Podaj swój numer telefonu</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Upewnij się, że Twój telefon ma połączenie z siecią komórkową, aby otrzymać wiadomość SMS lub połączenie</string> -->
   <string name="RegistrationActivity_phone_number_description">Numer telefonu</string>
   <string name="RegistrationActivity_country_code_description">Kod kraju</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
@@ -1437,6 +1454,7 @@
   <string name="SearchFragment_header_conversations">Rozmowy</string>
   <string name="SearchFragment_header_contacts">Kontakty</string>
   <string name="SearchFragment_header_messages">Wiadomości</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj do kontaktów</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Zaproś do używania Signal</string>
@@ -1804,6 +1822,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ConversationUpdateItem_join_call">Dołącz do rozmowy</string>
   <string name="ConversationUpdateItem_return_to_call">Wróć do rozmowy</string>
   <string name="ConversationUpdateItem_call_is_full">Połączenie jest pełne</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Zaproś znajomych</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
@@ -2285,7 +2304,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nowa konwersacja</string>
   <string name="conversation_list_fragment__open_camera_description">Otwórz aparat</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Daj coś swojej skrzynce na początek. Zacznij od wysłania wiadomości do znajomego.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nie masz jeszcze żadnych rozmów\nZacznij od wysłania wiadomości do znajomego.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reset bezpiecznej sesji</string>
   <!--conversation_muted-->
@@ -2322,8 +2341,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Skopiuj do schowka </string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Porównaj ze schowkiem</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Ustaw jako domyślną aplikację SMS</string>
-  <string name="reminder_header_sms_default_text">Dotknij, aby Signal był Twoją domyślną aplikacją SMS.</string>
   <string name="reminder_header_sms_import_title">Importuj bazę SMS</string>
   <string name="reminder_header_sms_import_text">Dotknij, aby skopiować wiadomości SMS z telefonu do zaszyfrowanej bazy danych Signal.</string>
   <string name="reminder_header_push_title">Włącz wiadomości i połączenia Signal</string>
@@ -2533,6 +2550,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Wybierz folder, aby włączyć kopie zapasowe. Nowe kopie będą zapisywane w wybranym miejscu.</string>
   <string name="BackupDialog_choose_folder">Wybierz folder</string>
   <string name="BackupDialog_copied_to_clipboard">Skopiowane do schowka</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Brak dostępnej aplikacji do wyboru plików.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Wprowadź hasło kopii zapasowej, aby je zweryfikować</string>
   <string name="BackupDialog_verify">Zweryfikuj</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Podałeś(aś) poprawne hasło kopii zapasowej</string>
@@ -2725,5 +2743,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Otwórz Ustawienia aplikacji</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Wybierz kraj</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Pomiń</string> -->
   <!--EOF-->
 </resources>

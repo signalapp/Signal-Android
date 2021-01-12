@@ -208,6 +208,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">பெறுநர் ஒரு செல்லுபடியாகும் SMS அல்லது மின்னஞ்சல் முகவரி அல்ல!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">செய்தி காலியாக உள்ளது!</string>
   <string name="ConversationActivity_group_members">குழு உறுப்பினர்கள்</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">தட்டவும் இங்கே தொடங்க ஒரு குழு அழைப்பு</string>
   <string name="ConversationActivity_invalid_recipient">செல்லாத பெறுநர்!</string>
   <string name="ConversationActivity_added_to_home_screen">முகப்பு திரையில் சேர்க்கப்பட்டது</string>
   <string name="ConversationActivity_calls_not_supported">அழைப்புக்களுக்கு ஆதரவில்லை</string>
@@ -419,6 +420,8 @@
   <string name="DonateMegaphone_donate">நன்கொடை</string>
   <string name="DonateMegaphone_no_thanks">வேண்டாம், நன்றி</string>
   <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">அறிமுகப்படுத்துகிறது குழு அழைப்புகள்</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">திற a புதிய குழு இலவசமாக தொடங்க மறையாக்கப்பட்ட குழு அழைப்பு</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
@@ -596,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">குழு உருவாக்குக</string>
   <string name="AddGroupDetailsFragment__create">உருவாக்கவும்</string>
   <string name="AddGroupDetailsFragment__members">உறுப்பினர்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">இந்த குழுவை உருவாக்கிய பிறகு நீங்கள் நண்பர்களைச் சேர்க்கலாம் அல்லது அழைக்கலாம்.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">குழு பெயர் (தேவை)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">குழு பெயர் (கட்டாயமற்றது)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">இந்த தகவல் தேவை.</string>
@@ -764,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal லைப் புதுப்பிக்கவும்</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">இணைக்கப்பட்ட சாதனங்களில் ஒன்று அல்லது அதற்கு மேற்பட்டவை, குழு இணைப்புகளை ஆதரிக்காத சிக்னலின் பதிப்பை இயக்குகின்றன. இந்த குழுவில் சேர உங்கள் இணைக்கப்பட்ட சாதனம் (களில்) சிக்னலைப் புதுப்பிக்கவும்.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">குழு இணைப்புகள் செல்லுபடியாகாது.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">நண்பர்களை அழை</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">இந்த குழுவில் விரைவாக சேர நண்பர்களுடன் ஒரு இணைப்பைப் பகிரவும்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">இணைப்பை இயக்கு மற்றும் பகிரவும்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">பகிர் இணைப்பு</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">குழு இணைப்பை இயக்க முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">குழு இணைப்பை இயக்க உங்களுக்கு உரிமை இல்லை. ஒரு நிர்வாகியிடம் கேளுங்கள்.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">நீங்கள் தற்போது குழுவில் உறுப்பினராக இல்லை.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">குழுவில் \"%1$s\" ஐ சேர்க்கவா?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">\"%1$s\" இன் கோரிக்கையை மறுக்கவா?</string>
@@ -861,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">உங்கள் Signal PIN-ஐ சரிபார்க்கவும்</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">உங்கள் PIN-ஐ நினைவில் வைத்துக் கொள்ளும்படி நாங்கள் எப்போதாவது உங்களிடம் கேட்போம்.</string>
   <string name="Megaphones_verify_pin">பின் சரிபார்க்கவும்</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">தொடங்குகள்</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">புதிய குழு</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">நண்பர்களை அழை</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">எஸ்எம்எஸ் பயன்படுத்தவும்</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
@@ -931,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">நீங்கள் குழுவை உருவாக்கியது.</string>
   <string name="MessageRecord_group_updated">குழு புதுப்பிக்கப்பட்டது.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">குழு இணைப்பு வழியாக இந்த குழுவிற்கு நண்பர்களை அழைக்கவும்</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">நீங்கள் %1$sஐ சேர்த்துள்ளீர்கள் .</string>
   <string name="MessageRecord_s_added_s">%1$s அவர்கள் %2$s சேர்த்தனர். .</string>
@@ -1221,6 +1239,7 @@
   <string name="WebRtcCallView__start_call">அழைப்பைத் தொடங்கு</string>
   <string name="WebRtcCallView__join_call">அழைப்பில் சேர்</string>
   <string name="WebRtcCallView__call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">அதிகபட்ச எண்ணிக்கை %1$d இந்த அழைப்பிற்கு பங்கேற்பாளர்கள் சென்றடைந்துள்ளனர். பின்னர் மீண்டும் முயற்சிக்கவும்.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\"  குழு அழைப்பு</string>
   <string name="WebRtcCallView__view_participants_list">பங்கேற்பாளர்களைக் காண்க</string>
   <string name="WebRtcCallView__your_video_is_off">உங்கள் வீடியோ முடக்கப்பட்டுள்ளது</string>
@@ -1284,6 +1303,7 @@
   <string name="RegistrationActivity_continue_last_attempt">தொடரவும் (கடைசி முயற்சி!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்க உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %s க்கு உள்ளிடவும்</string>
   <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
@@ -1307,6 +1327,7 @@
   <string name="SearchFragment_header_conversations">உரையாடல்கள்</string>
   <string name="SearchFragment_header_contacts">தொடர்புகள்</string>
   <string name="SearchFragment_header_messages">செய்திகள்</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">தொடர்பு பட்டியலில் சேர்க்க</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signalக்கு அழை</string>
@@ -1557,6 +1578,7 @@
   <string name="WebRtcCallScreen_new_safety_number_title">புதிய பாதுகாப்பு எண்</string>
   <string name="WebRtcCallScreen_accept">ஏற்க</string>
   <string name="WebRtcCallScreen_end_call">அழைப்பைத் துண்டி</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">ஸ்வைப் செய்யவும் அது வரை மாற்றம் காட்சிகள்</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">மறு</string>
   <string name="WebRtcCallScreen__answer">பதில்</string>
@@ -1668,6 +1690,7 @@
   <string name="ConversationUpdateItem_join_call">அழைப்பில் சேரவும்</string>
   <string name="ConversationUpdateItem_return_to_call">அழைப்புக்குத் திரும்பு</string>
   <string name="ConversationUpdateItem_call_is_full">அழைப்பு நிரம்பியுள்ளது</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">நண்பர்களை அழை</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">விளையாடு … இடைநிறுத்து</string>
   <string name="audio_view__download_accessibility_description">பதிவிறக்க</string>
@@ -2015,6 +2038,7 @@
   <string name="preferences__advanced_pin_settings">மேம்பட்ட பின் அமைப்புகள்</string>
   <string name="preferences__free_private_messages_and_calls">Signal பயனர்களுக்கு இலவச தனிப்பட்ட செய்திகள் மற்றும் அழைப்புகள்</string>
   <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
+  <string name="preferences__delete_account">கணக்குகணக்குகணக்கு</string>
   <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">உங்கள் சாதனம் WiFi வழியாக SMS/MMS விநியோகத்தைப் பயன்படுத்தினால் இயக்கவும் (உங்கள் சாதனத்தில் \'WiFI அழைப்பு\' இயக்கப்பட்டால் மட்டுமே இயக்கவும்)</string>
   <string name="preferences__incognito_keyboard">மறைநிலை விசைப்பலகை</string>
@@ -2134,7 +2158,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">உங்கள் இன்பாக்ஸைப் பற்றி வீட்டிற்கு எழுத ஏதாவது கொடுங்கள். நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இன்னும் அரட்டைகள் இல்லை.\n நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">பாதுகாப்பான அமர்வை மீட்டமைக்கவும்</string>
   <!--conversation_muted-->
@@ -2171,8 +2195,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">கிளிப்போர்டுடன் ஒப்பிடுக</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string>
-  <string name="reminder_header_sms_default_text">Signal-ஐ இயல்புநிலை SMS பயன்பாடாக தொடவும்</string>
   <string name="reminder_header_sms_import_title">தொலைபேசியிலுள்ள SMS-களை இறக்குமதி</string>
   <string name="reminder_header_sms_import_text">உங்கள் தொலைபேசியின் SMS செய்திகளை Signal-இன் மறைகுறியாக்கப்பட்ட தரவுத்தளக்கு நகலெடுக்க தட்டவும்.</string>
   <string name="reminder_header_push_title">Signal செய்திகளையும் அழைப்புகளையும் இயக்கு</string>
@@ -2368,6 +2390,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">மறுபிரதிகளை இயக்க, ஒரு கோப்புறையைத் தேர்வுசெய்க. மறுபிரதிகள் இந்த இருப்பிடத்தில் சேமிக்கப்படும்.</string>
   <string name="BackupDialog_choose_folder">கோப்புறையைத் தேர்வுசெய்க</string>
   <string name="BackupDialog_copied_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">கிடைப்பில்கோப்பு தேர்வாளர் கிடைக்கவில்லை.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">சரிபார்க்க உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை உள்ளிடவும்</string>
   <string name="BackupDialog_verify">சரிபார்க்கவும்</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரை வெற்றிகரமாக உள்ளிட்டுள்ளீர்கள்</string>
@@ -2541,7 +2564,22 @@
   <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
+  <string name="DeleteAccountFragment__delete_account">அழி கணக்கு</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் நீக்கு கணக்கு தகவல் மற்றும் சுயவிவரம் புகைப்படம்</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் எல்லா செய்திகளையும் நீக்கு</string>
+  <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>
+  <string name="DeleteAccountFragment__no_number">இல்லை எண் குறிப்பிடப்பட்டுள்ளது</string>
+  <string name="DeleteAccountFragment__the_phone_number">தி தொலைபேசி நீங்கள் உள்ளிட்ட எண் உங்களுடன் பொருந்தவில்லை கணக்கு.</string>
   <string name="DeleteAccountFragment__are_you_sure">உங்கள் கணக்கு நீக்க விரும்புகிறீர்களா?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">இது உங்கள் நீக்கும் Signal கணக்கு மற்றும் மீட்டமைக்கவும் விண்ணப்பம். செயல்முறை முடிந்ததும் பயன்பாடு மூடப்படும்.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">நீக்குவதில் தோல்வி கணக்கு. உங்களிடம் பிணைய இணைப்பு உள்ளதா?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">உள்ளூர் தரவை நீக்குவதில் தோல்வி. நீங்கள் அதை கணினியில் கைமுறையாக அழிக்கலாம்விண்ணப்பம் அமைப்புகள்.</string>
+  <string name="DeleteAccountFragment__launch_app_settings">பயன்பாட்டைத் தொடங்கவும் அமைப்புகள்</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">தேடு நாடுகள்</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">தவிர்</string> -->
   <!--EOF-->
 </resources>

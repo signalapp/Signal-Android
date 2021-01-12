@@ -258,7 +258,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal necesita acceder a tu micrófono y cámara para llamar a %1$s.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del grupo»</string>
   <string name="ConversationActivity_join">Unirse</string>
-  <string name="ConversationActivity_full">Lleno</string>
+  <string name="ConversationActivity_full">Completa</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">Crear grupo</string>
   <string name="AddGroupDetailsFragment__create">Crear</string>
   <string name="AddGroupDetailsFragment__members">Participantes</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Puedes añadir o invitar amistades tras crear este grupo.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Nombre del grupo (necesario)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nombre del grupo (opcional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Este campo es necesario.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Alguno(s) de tus dispositivos enlazados no soporta enlaces para compartir grupos. Actualiza Signal en esos dispositivos para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace a grupo inválido</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invitar amistades</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Comparte con tus amistades el enlace a este grupo para que se unan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Activar y compartir enlace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Compartir enlace</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Fallo al activar el enlace al grupo. Inténtalo más tarde</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No dispones de permisos para activar el enlace al grupo. Solicítalo a un@ admin.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Todavía no participas en este grupo.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">¿Añadir a %1$s al grupo?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">¿Denegar la solicitud de %1$s?</string>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">Verifica tu PIN de Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente para verificar tu PIN y que así lo puedas recordar.</string>
   <string name="Megaphones_verify_pin">Verificar PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Comenzar</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Nuevo grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Invitar amistades</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Usar SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Llamada de Signal en curso</string>
   <string name="NotificationBarManager__establishing_signal_call">Estableciendo llamada de Signal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Has creado el grupo.</string>
   <string name="MessageRecord_group_updated">Grupo actualizado.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Invita amistades a participar en ese grupo vía enlace</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Has añadido a %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s ha añadido a %2$s.</string>
@@ -1289,8 +1304,10 @@ número de teléfono
   <string name="RegistrationActivity_continue_last_attempt">Intentar de nuevo (último intento)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Introduce tu número de teléfono</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura para recibir tu SMS o llamadas</string> -->
   <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>
@@ -1312,6 +1329,7 @@ número de teléfono
   <string name="SearchFragment_header_conversations">Chats</string>
   <string name="SearchFragment_header_contacts">Personas</string>
   <string name="SearchFragment_header_messages">Mensajes</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Añadir a Contactos</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitar a Signal</string>
@@ -1437,6 +1455,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UsernameEditFragment_username_is_invalid">Alias no válido.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">El alias debe contener entre %1$d y %2$d caracteres.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Los alias de Signal (o nombre de usuari@) son opcionales. Si decides crear un alias, otras personas podrán encontrarte en Signal por ese nombre y ponerse en contacto contigo sin conocer tu número de teléfono.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">¡%d contacto está en Signal!</item>
+    <item quantity="other">¡Hay %d contactos en Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Esta persona usa una versión antigua de Signal. Por favor, pídele que actualice antes de verificar tus cifras de seguridad.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Esta persona usa una versión de Signal con un formato de código QR incompatible. Por favor, pídele que actualice para verificar.</string>
@@ -1676,6 +1698,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationUpdateItem_join_call">Unirse a la llamada</string>
   <string name="ConversationUpdateItem_return_to_call">Volver a la llamada</string>
   <string name="ConversationUpdateItem_call_is_full">La llamada está llena</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Invitar personas</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
@@ -2142,7 +2165,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuevo chat</string>
   <string name="conversation_list_fragment__open_camera_description">Abrir cámara</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dale a tu buzón de entrada una razón de ser. Comienza a chatear con tus amistades.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Todavía no hay chats.\nComienza a chatear con tus amistades.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sesión segura</string>
   <!--conversation_muted-->
@@ -2179,8 +2202,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar al portapapeles</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Comparar con el portapapeles</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Usar como aplicación de SMS predeterminada</string>
-  <string name="reminder_header_sms_default_text">Toca para hacer de Signal tu aplicación de SMS predeterminada.</string>
   <string name="reminder_header_sms_import_title">Importar SMS del sistema</string>
   <string name="reminder_header_sms_import_text">Toca para copiar los mensajes SMS de tu teléfono a la base de datos cifrada de Signal.</string>
   <string name="reminder_header_push_title">Activa mensajes y llamadas de Signal</string>
@@ -2188,7 +2209,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="reminder_header_invite_title">Invitar a Signal</string>
   <string name="reminder_header_invite_text">Lleva tu conversación con %1$s al siguiente nivel.</string>
   <string name="reminder_header_share_title">¡Invita a tus amistades!</string>
-  <string name="reminder_header_share_text">Cuantas más amistades usen Signal, mejor será.</string>
+  <string name="reminder_header_share_text">Cuantas más de tus amistades usen Signal, mejor será.</string>
   <string name="reminder_header_service_outage_text">Signal está experimentando dificultades técnicas. Estamos trabajando duro para restablecer el servicio lo antes posible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Las nuevas prestaciones de Signal no funcionan en esta versión de Android. Actualiza este dispositivo para usar todo el potencial de Signal.</string>
   <string name="reminder_header_progress">%1$d%%</string>
@@ -2376,6 +2397,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Selecciona una carpeta para activar las copias de seguridad. Las copias se guardarán en esta carpeta.</string>
   <string name="BackupDialog_choose_folder">Seleccionar carpeta</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado al portapapeles</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Aplicación de archivos no disponible.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduce la clave de la copia de seguridad para verificar</string>
   <string name="BackupDialog_verify">Verificar</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">La clave es correcta</string>
@@ -2564,5 +2586,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="DeleteAccountFragment__launch_app_settings">Ir a los ajustes de aplicaciones</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Buscar país</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Omitir</string> -->
   <!--EOF-->
 </resources>

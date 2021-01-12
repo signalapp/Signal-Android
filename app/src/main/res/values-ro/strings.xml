@@ -55,7 +55,7 @@
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minut</item>
     <item quantity="few">%d minute</item>
-    <item quantity="other">%d minute</item>
+    <item quantity="other">%d de minute</item>
   </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(imagine)</string>
@@ -211,6 +211,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Destinatarul nu este o adresă validă de SMS sau e-mail.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Mesajul este gol!</string>
   <string name="ConversationActivity_group_members">Membrii grupului</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">Atingeți aici pentru a începe un apel de grup</string>
   <string name="ConversationActivity_invalid_recipient">Destinatar invalid!</string>
   <string name="ConversationActivity_added_to_home_screen">Adăugat pe ecranul principal</string>
   <string name="ConversationActivity_calls_not_supported">Nu există suport pentru apeluri</string>
@@ -433,6 +434,8 @@
   <string name="DonateMegaphone_donate">Donați</string>
   <string name="DonateMegaphone_no_thanks">Nu, mulțumesc</string>
   <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">Vă prezentăm apeluri de grup</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">Deschideți un grup nou pentru a începe un apel gratuit de grup criptat</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
@@ -495,6 +498,7 @@
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Ce sunt Noile Grupuri?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Noile grupuri au funcții precum @mențiuni și administratori de grup și vor sprijini mai multe funcții în viitor.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Tot istoricul mesajelor și conținutul media a fost păstrat înainte de actualizare.</string>
+  <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Va trebui să acceptați o invitație pentru a vă alătura din nou acestui grup și nu veți primi mesaje de grup până când nu acceptați.</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Actualizează la noul grup</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Actualizează acest grup</string>
@@ -523,6 +527,16 @@
     <item quantity="one">Adăugați membru</item>
     <item quantity="few">Adăugați membrii</item>
     <item quantity="other">Adăugați membrii</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
+    <item quantity="one">Nu s-a putut adăuga membrul. Încercați mai târziu.</item>
+    <item quantity="few">Nu s-au putut adăuga membri. Încercați mai târziu.</item>
+    <item quantity="other">Nu s-au putut adăuga membri. Încercați mai târziu.</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
+    <item quantity="one">Nu se pot adăuga membrul.</item>
+    <item quantity="few">Nu se pot adăuga membri.</item>
+    <item quantity="other">Nu se pot adăuga membri.</item>
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Părăsiți grupul?</string>
@@ -586,6 +600,7 @@
   <string name="AddGroupDetailsFragment__create_group">Creează grup </string>
   <string name="AddGroupDetailsFragment__create">Creează</string>
   <string name="AddGroupDetailsFragment__members">Membrii</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Puteți adăuga sau invita prieteni după crearea acestui grup.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Nume grup (obligatoriu)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nume grup (opțional)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Acest câmp este obligatoriu.</string>
@@ -593,6 +608,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Crearea grupului a eşuat.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Încercați mai târziu.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Ați selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru dvs.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminați</string>
   <string name="AddGroupDetailsFragment__sms_contact">Contact SMS</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eliminați pe %1$s din acest grup?</string>
@@ -652,6 +668,7 @@
   <string name="ManageGroupActivity_legacy_group_learn_more">Acesta este un grup vechi. Funcții precum administratorii de grup sunt disponibile doar grupurilor noi.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Acesta este un grup vechi. Pentru a accesa funcții precum @mențiuni și administratorii de grup,</string>
   <string name="ManageGroupActivity_upgrade_this_group">actualizați acest grup.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Acesta este un grup MMS nesigur. Pentru a comunica în mod privat invitați-vă contactele la Signal.</string>
   <string name="ManageGroupActivity_invite_now">Invită acum</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru mențiuni</string>
@@ -750,6 +767,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizați Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Unul sau mai multe dintre dispozitivele asociate rulează o versiune de Signal care nu acceptă link-uri către grup. Actualizați Signal pe dispozitivele asociate pentru a vă alătura acestui grup.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Linkul de grup nu este valid</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invită prieteni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Distribuiți un link prietenilor pentru a le permite să se alăture rapid acestui grup.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Activați și distribuiți link-ul</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Distribuiți link-ul</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Linkul de grup nu a putut fi activat. Vă rugăm să încercați din nou mai târziu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">A apărut o eroare de rețea.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nu aveți dreptul să activați linkul de grup. Vă rugăm să întrebați un administrator.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Nu sunteți momentan membru al acestui grup.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Adăugați pe “%1$s” la grup?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Respingeți cererea de la “%1$s”?</string>
@@ -853,6 +879,10 @@
   <string name="Megaphones_verify_your_signal_pin">Verificați PIN-ul dvs. Signal.</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Ocazional vă vom solicita să vă confirmați codul PIN pentru a-l reține mai ușor.</string>
   <string name="Megaphones_verify_pin">Verificați PIN-ul</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Începe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Grup nou</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Invită prieteni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Utilizați SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
@@ -916,6 +946,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Ați creat grupul.</string>
   <string name="MessageRecord_group_updated">Grupul a fost actualizat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Invitați prieteni în acest grup printr-un link de grup</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Ați adăugat pe %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s a adăugat pe %2$s.</string>
@@ -1054,6 +1085,16 @@
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s și %3$s sunt în apelul de grup</string>
   <string name="MessageRecord_group_call">Apel de grup</string>
   <string name="MessageRecord_you">Dvs.</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup · %4$s</item>
+    <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup · %4$s</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s și %3$d sunt în apelul de grup</item>
+    <item quantity="few">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup</item>
+    <item quantity="other">%1$s, %2$s și alte %3$d persoane sunt în apelul de grup</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Acceptați</string>
   <string name="MessageRequestBottomView_continue">Continuă</string>
@@ -1207,6 +1248,8 @@
   <string name="WebRtcCallView__signal_video_call">Apel video Signal…</string>
   <string name="WebRtcCallView__start_call">Începeți apelul</string>
   <string name="WebRtcCallView__join_call">Alătură-te apelului</string>
+  <string name="WebRtcCallView__call_is_full">Numărul maxim de participanți a fost atins</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Numărul maxim de %1$d participanți a fost atins pentru acest apel. Încercați mai târziu. </string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Apel de grup</string>
   <string name="WebRtcCallView__view_participants_list">Vizualizați participanții</string>
   <string name="WebRtcCallView__your_video_is_off">Video-ul dvs. este oprit</string>
@@ -1231,8 +1274,10 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s este blocat</string>
   <string name="CallParticipantView__more_info">Mai multe informații</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Nu-i vei auzi sau vedea pe interlocutorii tăi iar ei nu te vor auzi sau vedea pe tine.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nu se poate primi audio &amp; video de la %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nu se poate primi audio și video de la %1$s</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Acest lucru se poate datora faptului că nu au verificat modificarea numărului dvs. de siguranță, există o problemă cu dispozitivul lor sau v-au blocat.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduceți
@@ -1269,6 +1314,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_continue_last_attempt">Continuați (ultima încercare!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduceți numărul dvs. de telefon pentru a putea începe</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Introduceți numărul dvs. de telefon</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
   <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>
@@ -1292,6 +1338,7 @@ furnizat (%s) este invalid.</string>
   <string name="SearchFragment_header_conversations">Conversații</string>
   <string name="SearchFragment_header_contacts">Contacte</string>
   <string name="SearchFragment_header_messages">Mesaje</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adăugați la contacte</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Invitați la Signal</string>
@@ -1537,6 +1584,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Răspuns de pe un dispozitiv asociat.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Respins de pe un dispozitiv asociat.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Ocupat de pe un dispozitiv asociat.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Cineva s-a alăturat la apel cu un număr de siguranță care s-a schimbat.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
@@ -1656,6 +1704,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationUpdateItem_learn_more">Aflați mai multe</string>
   <string name="ConversationUpdateItem_join_call">Alăturați-vă apelului</string>
   <string name="ConversationUpdateItem_return_to_call">Întoarceți-vă la apel</string>
+  <string name="ConversationUpdateItem_call_is_full">Numărul maxim de participanți a fost atins</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Invită prieteni</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Redare … Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
@@ -1801,6 +1851,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CreateProfileActivity_next">Următorul</string>
   <string name="CreateProfileActivity__username">Nume utilizator</string>
   <string name="CreateProfileActivity__create_a_username">Creați un nume de utilizator</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Numele și fotografiile personalizate ale grupurilor MMS vor fi vizibile numai pentru dvs.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editare nume grup și poză</string>
   <string name="EditProfileFragment__group_name">Nume grup</string>
@@ -2129,7 +2180,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Conversație nouă</string>
   <string name="conversation_list_fragment__open_camera_description">Deschideți camera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Dă-i inbox-ului ceva de scris. Începeți prin a trimite unui prieten un mesaj.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nu există conversații. Începeți prin a trimite unui prieten un mesaj.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetează sesiunea securizată</string>
   <!--conversation_muted-->
@@ -2145,6 +2196,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation__menu_conversation_settings">Setări conversaţie</string>
   <string name="conversation__menu_add_shortcut">Adaugă pe ecranul principal</string>
   <string name="conversation__menu_pending_members">Membrii în așteptare</string>
+  <string name="conversation__menu_create_bubble">Creați bulă</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Extinde popup-ul</string>
   <!--conversation_callable_insecure-->
@@ -2165,8 +2217,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Utilizează ca și aplicație SMS implicită</string>
-  <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>
   <string name="reminder_header_sms_import_text">Apasă pentru a copia mesajele SMS din telefon în baza de date criptată Signal.</string>
   <string name="reminder_header_push_title">Activează mesaje și apeluri Signal</string>
@@ -2369,6 +2419,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Pentru a activa backup-urile, alegeți un folder. Backup-urile vor fi salvate în această locație.</string>
   <string name="BackupDialog_choose_folder">Alege directorul</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Nu este disponibil niciun selector de fișiere.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Introduceți parola dvs. de backup pentru a verifica</string>
   <string name="BackupDialog_verify">Verifică</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Ați introdus cu succes parola dvs. de backup</string>
@@ -2506,6 +2557,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Revizuire membrii</string>
   <string name="ReviewCardDialogFragment__review_request">Revizuire solicitări</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membrii ai grupului au același nume, revizuiți membrii de mai jos și alegeți să luați o decizie.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Dacă nu sunteți sigur de la cine provine solicitarea, consultați persoanele de contact de mai jos și luați o decizie.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2557,5 +2610,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="DeleteAccountFragment__launch_app_settings">Deschideți setările aplicației</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Căutați țări</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Omiteți</string> -->
   <!--EOF-->
 </resources>

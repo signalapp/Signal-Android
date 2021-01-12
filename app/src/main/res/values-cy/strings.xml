@@ -663,6 +663,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="AddGroupDetailsFragment__create_group">Creu grŵp</string>
   <string name="AddGroupDetailsFragment__create">Creu</string>
   <string name="AddGroupDetailsFragment__members">Aelodau</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Gallwch ychwanegu neu wahodd ffrindiau ar ôl creu\'r grŵp hwn.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Enw\'r grŵp (angenrheidiol)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Enw\'r grŵp (dewisol)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Mae angen y maes yma.</string>
@@ -851,6 +852,15 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Diweddaru Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Mae un neu fwy o\'ch dyfeisiau cysylltiedig yn rhedeg fersiwn o Signal nad yw\'n cefnogi cysylltiadau grŵp. Diweddarwch y Signal ar eich dyfais\dyfeisiau cysylltiedig i ymuno â\'r grŵp hwn.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Nid yw\'r cyswllt grŵp yn ddilys</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Gwahodd ffrindiau</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Rhannwch ddolen gyda ffrindiau i adael iddyn nhw ymuno â\'r grŵp hwn yn gyflym.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Galluogi a rhannu dolen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Rhannu dolen</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Methu galluogi dolen grŵp. Ceisiwch eto.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Profwyd gwall rhwydwaith.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Nid oes gennych yr hawl i alluogi\'r ddolen grŵp. Gofynnwch i weinyddwr.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Nid ydych chi\'n aelod o\'r grŵp ar hyn o bryd.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Ychwanegu “%1$s” i\'r grŵp?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Gwrthod cais gan “%1$s”?</string>
@@ -960,6 +970,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="Megaphones_verify_your_signal_pin">Dilyswch eich PIN Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Byddwn yn gofyn i chi o bryd i\'w gilydd i ddilysu eich PIN fel eich bod yn ei gofio.</string>
   <string name="Megaphones_verify_pin">Dilysu\'r PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Dechrau arni</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Grŵp newydd</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Gwahodd ffrindiau</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Defnyddiwch SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
@@ -1036,6 +1050,7 @@ Send neges heb ei ddiogelu?</string>
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Crëwyd y grŵp gennych chi.</string>
   <string name="MessageRecord_group_updated">Grŵp wedi\'i ddiweddaru.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Gwahoddwch ffrindiau i\'r grŵp hwn trwy ddolen grŵp</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Rydych wedi ychwanegu %1$s.</string>
   <string name="MessageRecord_s_added_s">Ychwanegodd %1$s %2$s.</string>
@@ -1421,6 +1436,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_continue_last_attempt">Parhau (ymgais olaf)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Cymrwch breifatrwydd gyda chi.\nByddwch chi eich hun ymhob neges.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Rhowch eich rhif ffôn i gychwyn arni</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Rhowch eich rhif ffôn</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s</string>
   <string name="RegistrationActivity_phone_number_description">Rhif ffôn</string>
@@ -1444,6 +1460,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SearchFragment_header_conversations">Sgyrsiau</string>
   <string name="SearchFragment_header_contacts">Cysylltiadau</string>
   <string name="SearchFragment_header_messages">Negeseuon</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Ychwanegu at Cysylltiadau</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Gwahodd i Signal</string>
@@ -1814,6 +1831,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationUpdateItem_join_call">Ymuno â\'r alwad</string>
   <string name="ConversationUpdateItem_return_to_call">Dychwelwch i\'r alwad</string>
   <string name="ConversationUpdateItem_call_is_full">Mae\'r alwad yn llawn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Gwahodd ffrindiau</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
@@ -2295,7 +2313,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Sgwrs newydd</string>
   <string name="conversation_list_fragment__open_camera_description">Agor y Camera</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Rhowch rywbeth gwerth chweil yn eich blwch derbyn. Dechreuwch trwy negesu ffrind.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Dim sgyrsiau eto.\nCychwynnwch drwy anfon neges at ffrind.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Ailosod sesiwn ddiogel</string>
   <!--conversation_muted-->
@@ -2332,8 +2350,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copïo i\'r clipfwrdd</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Cymharu â\'r clipfwrdd</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Defnyddio fel yr ap SMS rhagosodedig</string>
-  <string name="reminder_header_sms_default_text">Tapio i wneud Signal eich ap SMS.</string>
   <string name="reminder_header_sms_import_title">Mewnforio SMS y system</string>
   <string name="reminder_header_sms_import_text">Tapio i gopïo negeseuon SMS eich ffôn i gronfa ddata amgryptio Signal.</string>
   <string name="reminder_header_push_title">Galluogi negeseuon a galwadau Signal</string>
@@ -2543,6 +2559,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">I alluogi copïau wrth gefn, dewiswch ffolder. Bydd copïau wrth gefn yn cael eu cadw i\'r lleoliad hwn.</string>
   <string name="BackupDialog_choose_folder">Dewisa ffolder</string>
   <string name="BackupDialog_copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Dim dewisydd ffeiliau ar gael.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Rhowch eich cyfrinymadrodd wrth gefn i ddilysu</string>
   <string name="BackupDialog_verify">Dilysu</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Rydych wedi cyflwyno eich cyfrinymadrodd wrth gefn yn llwyddiannus</string>
@@ -2735,5 +2752,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DeleteAccountFragment__launch_app_settings">Agor Gosodiadau\'r Ap</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Chwilio Gwledydd</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Hepgor</string> -->
   <!--EOF-->
 </resources>

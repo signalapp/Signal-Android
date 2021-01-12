@@ -102,7 +102,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Вы больше не будете получать сообщения и обновления от этой группы, и участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Участники группы не смогут снова добавить вас в неё.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Участники группы смогут снова добавить вас в неё.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, и ваши имя и фото станут доступны этому человеку.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Вы сможете отправлять сообщения и звонить друг другу, а ваши имя и фото станут доступны этому контакту.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Заблокированные люди не смогут звонить вам или отправлять вам сообщения.</string>
   <string name="BlockUnblockDialog_unblock_s">Разблокировать %1$s?</string>
   <string name="BlockUnblockDialog_unblock">Разблокировать</string>
@@ -143,11 +143,11 @@
   <string name="ClearProfileActivity_remove_group_photo">Удалить фото группы?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Обновите Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Эта версия приложения больше не поддерживается. Чтобы продолжить отправлять и получать сообщения, обновитесь до новейшей версии.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Эта версия приложения больше не поддерживается. Чтобы и далее отправлять и получать сообщения, обновитесь до последней версии.</string>
   <string name="ClientDeprecatedActivity_update">Обновить</string>
   <string name="ClientDeprecatedActivity_dont_update">Не обновлять</string>
   <string name="ClientDeprecatedActivity_warning">Предупреждение</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения до того, как обновитесь.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Ваша версия Signal устарела. Вы можете просматривать свою историю сообщений, но не сможете отправлять или получать сообщения, пока не обновитесь.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Браузер не найден.</string>
   <string name="CommunicationActions_no_email_app_found">Приложение электронной почты не найдено.</string>
@@ -232,7 +232,7 @@
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вложение превышает предельный размер для того типа сообщения, которое вы отправляете.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
   <string name="ConversationActivity_unable_to_record_audio">Не удалось записать аудио!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что вы уже не являетесь её участником.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Вы не можете отправлять сообщения в этой группе, потому что уже не являетесь её участником.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Ваш запрос на присоединение был отправлен администратору группы. Вы будете уведомлены, когда он примет решение.</string>
   <string name="ConversationActivity_cancel_request">Отменить запрос</string>
@@ -330,7 +330,7 @@
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Вы можете добавлять заметки для себя в этом разговоре.\nЕсли у вашей учётной записи есть привязанные устройства, то новые заметки будут синхронизированы.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя.</string>
   <string name="ConversationFragment__tap_to_review">Нажмите, чтобы проверить</string>
-  <string name="ConversationFragment__review_requests_carefully">Внимательно проверьте запросы</string>
+  <string name="ConversationFragment__review_requests_carefully">Внимательно проверяйте запросы</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal нашёл другого контакта с тем же именем.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
@@ -605,7 +605,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Отключить</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Предпросмотр любой ссылки</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете получать предпросмотры ссылок напрямую от любого сайта для сообщений, которые вы отправляете.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь при отправке сообщений вы можете получать предпросмотры ссылок напрямую с любого сайта.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">Создать группу</string>
   <string name="AddGroupDetailsFragment__create">Создать</string>
   <string name="AddGroupDetailsFragment__members">Участники</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Вы можете добавить или пригласить друзей после создания этой группы.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Имя группы (обязательно)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Имя группы (необязательно)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Это поле обязательно.</string>
@@ -849,6 +850,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Одно или больше из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на своём(-их) привязанном(-ых) устройстве(-ах), чтобы присоединиться к этой группе.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Пригласить друзей</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Поделитесь ссылкой с друзьями, чтобы они смогли быстро присоединиться к этой группе.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Включить и поделиться</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Поделиться ссылкой</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Не удалось включить ссылку на группу. Пожалуйста, попробуйте ещё раз позже.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">У вас нет права включить ссылку на группу. Пожалуйста, попросите администратора группы.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">В данный момент вы не являетесь участником группы.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Добавить «%1$s» в группу?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Отклонить запрос от «%1$s»?</string>
@@ -958,6 +968,10 @@
   <string name="Megaphones_verify_your_signal_pin">Подтвердите свой PIN-код Signal</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Иногда мы будем просить вас подтвердить свой PIN-код, чтобы вы его не забывали.</string>
   <string name="Megaphones_verify_pin">Подтвердить PIN-код</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">С чего начать</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Новая группа</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Пригласить друзей</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Использовать SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок через Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинается звонок через Signal</string>
@@ -1034,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Вы создали группу.</string>
   <string name="MessageRecord_group_updated">Группа обновлена.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Пригласите друзей в эту группу, используя ссылку</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Вы добавили %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s добавил(-а) %2$s.</string>
@@ -1299,7 +1314,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Создать новый PIN-код</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Предупреждение</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то при переустановке Signal потеряете все данные, если заранее вручную не создадите резервную копию. При отключённом PIN-коде нельзя будет включить блокировку регистрации.</string>
   <string name="PinOptOutDialog_disable_pin">Отключить PIN-код</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцените это приложение</string>
@@ -1412,8 +1427,10 @@
   <string name="RegistrationActivity_continue_last_attempt">Продолжить (последняя попытка!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Возьмите\nконфиденциальность\nс собой.\nБудьте собой в каждом сообщении.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введите свой номер телефона, чтобы начать</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Введите свой номер телефона</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Вы получите код подтверждения. Вашим оператором может взиматься плата за входящее SMS.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Введите код, который мы отправили на %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Убедитесь, что ваш телефон находится в зоне действия сети и сможет принять SMS или звонок</string> -->
   <string name="RegistrationActivity_phone_number_description">Номер телефона</string>
   <string name="RegistrationActivity_country_code_description">Код страны</string>
   <string name="RegistrationActivity_call">Позвонить</string>
@@ -1435,6 +1452,7 @@
   <string name="SearchFragment_header_conversations">Разговоры</string>
   <string name="SearchFragment_header_contacts">Контакты</string>
   <string name="SearchFragment_header_messages">Сообщения</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Пригласить в Signal</string>
@@ -1560,6 +1578,12 @@
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Имена пользователей в Signal необязательны. Если вы решите создать имя пользователя, другие пользователи Signal смогут найти вас по этому имени пользователя и связаться с вами, не зная вашего номера телефона.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d контакт теперь в Signal!</item>
+    <item quantity="few">%d контакта теперь Signal!</item>
+    <item quantity="many">%d контактов теперь в Signal!</item>
+    <item quantity="other">%d контактов теперь в Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">У вашего контакта старая версия Signal. Пожалуйста, попросите его обновиться, чтобы подтвердить код безопасности.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">У вашего контакта более новая версия Signal с несовместимым форматом QR-кода. Пожалуйста, обновитесь, чтобы сверить код.</string>
@@ -1805,6 +1829,7 @@
   <string name="ConversationUpdateItem_join_call">Присоединиться к звонку</string>
   <string name="ConversationUpdateItem_return_to_call">Вернуться к звонку</string>
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
@@ -2158,7 +2183,7 @@
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__default">По умолчанию</string>
   <string name="preferences__language">Язык (Language)</string>
@@ -2286,7 +2311,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новый разговор</string>
   <string name="conversation_list_fragment__open_camera_description">Открыть камеру</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Наполните этот экран интересными разговорами! Отправьте другу своё первое сообщение.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ещё нет чатов.\nОтправьте другу своё первое сообщение.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Сбросить защищенный сеанс</string>
   <!--conversation_muted-->
@@ -2323,8 +2348,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копировать в буфер обмена</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Сравнить с буфером обмена</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Использовать для всех SMS</string>
-  <string name="reminder_header_sms_default_text">Нажмите, чтобы сделать Signal своим приложением для SMS по умолчанию</string>
   <string name="reminder_header_sms_import_title">Импортировать SMS из системы</string>
   <string name="reminder_header_sms_import_text">Нажмите, чтобы скопировать SMS с вашего устройства в зашифрованную базу данных Signal.</string>
   <string name="reminder_header_push_title">Включить звонки и сообщения Signal</string>
@@ -2394,7 +2417,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">Создать новый PIN-код</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Вы можете изменить свой PIN-код, пока это устройство зарегистрировано.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Создать PIN-код</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Придумайте более надёжный PIN-код</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-коды не совпадают. Попробуйте ещё раз.</string>
@@ -2534,6 +2557,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом месте.</string>
   <string name="BackupDialog_choose_folder">Выбрать папку</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Нет доступного приложения для выбора файлов.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Введите парольную фразу своей резервной копии, чтобы проверить её</string>
   <string name="BackupDialog_verify">Подтверждение</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Вы успешно ввели парольную фразу своей резервной копии</string>
@@ -2726,5 +2750,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Запустить настройки приложения</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Пропустить</string> -->
   <!--EOF-->
 </resources>

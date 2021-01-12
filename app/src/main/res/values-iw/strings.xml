@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">צור קבוצה</string>
   <string name="AddGroupDetailsFragment__create">צור</string>
   <string name="AddGroupDetailsFragment__members">חברי קבוצה</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">אתה יכול להוסיף או להזמין חברים לאחר היצירה של הקבוצה הזאת.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">שם קבוצה (דרוש)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">שם קבוצה (רשותי)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">שדה זה דרוש.</string>
@@ -849,6 +850,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">עדכן את Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">מכשיר מקושר אחד או יותר שלך מריצים גרסה של Signal שאינה תומכת בקישורי קבוצה. עדכן את Signal במכשירים המקושרים שלך כדי להצטרף אל קבוצה זו.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">קישור הקבוצה בלתי תקף</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">הזמן חברים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">שתף קישור עם חברים כדי לתת להם להצטרף במהירות אל קבוצה זו.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">אפשר ושתף קישור</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">שתף קישור</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">לא היה ניתן לאפשר את קישור הקבוצה. אנא נסה שוב מאוחר יותר</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">אין לך את הזכות לאפשר את קישור הקבוצה. אנא שאל מנהלן.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">אינך חבר של הקבוצה כרגע.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">להוסיף את ”%1$s“ אל הקבוצה?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">לדחות בקשה מאת ”%1$s“?</string>
@@ -958,6 +968,10 @@
   <string name="Megaphones_verify_your_signal_pin">וודא את Signal PIN שלך</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">נבקש ממך מדי פעם לוודא את ה־PIN שלך כך שתזכור אותו.</string>
   <string name="Megaphones_verify_pin">וודא PIN</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">התחל</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">קבוצה חדשה</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">הזמן חברים</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">השתמש במסרון</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -1034,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">יצרת את הקבוצה.</string>
   <string name="MessageRecord_group_updated">קבוצה עודכנה.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">הזמן חברים אל קבוצה זו באמצעות קישור קבוצה</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">הוספת את %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s הוסיף את %2$s.</string>
@@ -1419,8 +1434,10 @@
   <string name="RegistrationActivity_continue_last_attempt">המשך (ניסיון אחרון!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">הכנס את מספר הטלפון שלך</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">וודא שלטלפון שלך יש אות סלולרי לקבל מסרון או שיחה</string> -->
   <string name="RegistrationActivity_phone_number_description">מספר טלפון</string>
   <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
   <string name="RegistrationActivity_call">התקשר</string>
@@ -1442,6 +1459,7 @@
   <string name="SearchFragment_header_conversations">שיחות</string>
   <string name="SearchFragment_header_contacts">אנשי קשר</string>
   <string name="SearchFragment_header_messages">הודעות</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">הוסף לאנשי קשר</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">הזמן אל Signal</string>
@@ -1812,6 +1830,7 @@
   <string name="ConversationUpdateItem_join_call">הצטרף לשיחה</string>
   <string name="ConversationUpdateItem_return_to_call">חזור לשיחה</string>
   <string name="ConversationUpdateItem_call_is_full">השיחה מלאה</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">הזמן חברים</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">נגן … השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
@@ -2293,7 +2312,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבה שלך משהו לכתוב עליו בית. התחל ע״י שליחת הודעה לחבר.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">אין התכתבויות עדיין.\nהתחל ע״י שליחת הודעה אל חבר.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">אפס שיח מאובטח</string>
   <!--conversation_muted-->
@@ -2330,8 +2349,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">העתק ללוח העריכה</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">השווה עם לוח העריכה</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">השתמש כיישום המסרונים ברירת המחדל</string>
-  <string name="reminder_header_sms_default_text">הקש כדי להפוך את Signal ליישום המסרונים ברירת המחדל שלך.</string>
   <string name="reminder_header_sms_import_title">ייבא מסרוני מערכת</string>
   <string name="reminder_header_sms_import_text">הקש כדי להעתיק את הודעות המסרונים של הטלפון שלך לתוך מסד הנתונים המוצפן של Signal.</string>
   <string name="reminder_header_push_title">אפשר הודעות ושיחות של Signal</string>
@@ -2541,6 +2558,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">כדי לאפשר גיבויים, בחר תיקייה. גיבויים יישמרו במיקום זה.</string>
   <string name="BackupDialog_choose_folder">בחר תיקייה</string>
   <string name="BackupDialog_copied_to_clipboard">הועתק ללוח</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">אין בורר קבצים זמין.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">הכנס את משפט־סיסמת הגיבוי שלך כדי לוודא</string>
   <string name="BackupDialog_verify">וודא</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">הכנסת בהצלחה את משפט־סיסמת הגיבוי שלך</string>
@@ -2733,5 +2751,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">פתח הגדרות יישום</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">חפש מדינות</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">דלג</string> -->
   <!--EOF-->
 </resources>

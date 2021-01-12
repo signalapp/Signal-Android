@@ -661,6 +661,7 @@
   <string name="AddGroupDetailsFragment__create_group">Sukurti grupę</string>
   <string name="AddGroupDetailsFragment__create">Sukurti</string>
   <string name="AddGroupDetailsFragment__members">Nariai</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Sukūrę šią grupę, galėsite pridėti ar pakviesti draugus.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">Grupės pavadinimas (būtina)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Grupės pavadinimas (nebūtina)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Šis laukas yra būtinas.</string>
@@ -849,6 +850,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atnaujinti Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Vienas ar daugiau iš jūsų susietų įrenginių naudoja Signal versiją, kuri nepalaiko grupės nuorodų. Norėdami prisijungti prie šios grupės, atnaujinkite Signal savo susietame įrenginyje(-iuose).</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupės nuoroda negalioja</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Pakviesti draugus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Bendrinkite šią nuorodą su draugais, norėdami leisti jiems greitai prisijungti prie šios grupės.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Įjungti ir bendrinti nuorodą</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Bendrinti nuorodą</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nepavyko įjungti grupės nuorodos. Vėliau bandykite dar kartą.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Jūs neturite teisės įjungti grupės nuorodos. Paprašykite administratoriaus.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Šiuo metu nesate grupės narys.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">Pridėti „%1$s“ į grupę?</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">Atmesti prašymą, kurį atsiuntė „%1$s“?</string>
@@ -958,6 +968,10 @@
   <string name="Megaphones_verify_your_signal_pin">Patvirtinkite savo Signal PIN kodą</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Retkarčiais, tam kad prisimintumėte savo PIN kodą, prašysime jūsų jį patvirtinti.</string>
   <string name="Megaphones_verify_pin">Patvirtinti PIN kodą</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">Darbo pradžia</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">Nauja grupė</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">Pakviesti draugus</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">Naudokite SMS</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -1034,6 +1048,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">Pakviesti draugus į šią grupę per grupės nuorodą</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Jūs pridėjote %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s pridėjo naudotoją %2$s.</string>
@@ -1419,6 +1434,7 @@
   <string name="RegistrationActivity_continue_last_attempt">Tęsti (paskutinis bandymas!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pasiimkite privatumą kartu su savimi.\nBūkite savimi kiekvienoje žinutėje.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Norėdami pradėti, įveskite savo telefono numerį</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Įveskite savo telefono numerį</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %s</string>
   <string name="RegistrationActivity_phone_number_description">Telefono numeris</string>
@@ -1442,6 +1458,7 @@
   <string name="SearchFragment_header_conversations">Pokalbiai</string>
   <string name="SearchFragment_header_contacts">Adresatai</string>
   <string name="SearchFragment_header_messages">Žinutės</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Pridėti į adresatus</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Pakviesti į Signal</string>
@@ -1812,6 +1829,7 @@
   <string name="ConversationUpdateItem_join_call">Prisijungti prie skambučio</string>
   <string name="ConversationUpdateItem_return_to_call">Grįžti į skambutį</string>
   <string name="ConversationUpdateItem_call_is_full">Skambutis yra pilnas</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">Pakviesti draugus</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Atkurti … Pristabdyti</string>
   <string name="audio_view__download_accessibility_description">Atsisiųsti</string>
@@ -2293,7 +2311,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Naujas pokalbis</string>
   <string name="conversation_list_fragment__open_camera_description">Atverti kamerą</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Pradėkite, bendraudami su draugais.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Kol kas pokalbių nėra.\nPradėkite, bendraudami su draugais.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Atstatyti saugųjį seansą</string>
   <!--conversation_muted-->
@@ -2330,8 +2348,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopijuoti į iškarpinę</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Palyginti su iškarpine</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">Naudoti kaip numatytąją SMS programėlę</string>
-  <string name="reminder_header_sms_default_text">Bakstelėkite, kad padarytumėte Signal savo numatytąja SMS programėle.</string>
   <string name="reminder_header_sms_import_title">Importuoti sistemos SMS</string>
   <string name="reminder_header_sms_import_text">Bakstelėkite, kad nukopijuotumėte savo telefono SMS į Signal šifruotą duomenų bazę.</string>
   <string name="reminder_header_push_title">Įjungti Signal skambučius ir žinutes</string>
@@ -2541,6 +2557,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Norėdami įjungti atsargines kopijas, pasirinkite aplanką. Atsarginės kopijos bus įrašomos šioje vietoje.</string>
   <string name="BackupDialog_choose_folder">Pasirinkti aplanką</string>
   <string name="BackupDialog_copied_to_clipboard">Nukopijuota į iškarpinę</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">Neprieinamas joks failų parinkiklis.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Norėdami patikrinti, įveskite atsarginės kopijos slaptafrazę</string>
   <string name="BackupDialog_verify">Patvirtinti</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Jūs sėkmingai įvedėte savo atsarginės kopijos slaptafrazę</string>
@@ -2733,5 +2750,7 @@
   <string name="DeleteAccountFragment__launch_app_settings">Paleisti programėlės nustatymus</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Ieškoti šalių</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">Praleisti</string> -->
   <!--EOF-->
 </resources>

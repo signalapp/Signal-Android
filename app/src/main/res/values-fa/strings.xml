@@ -421,7 +421,7 @@
   <string name="DonateMegaphone_no_thanks">نه ،‌ ممنون</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">معرفی تماس‌های گروهی</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع یک تماس گروهیِ رایگان و رمزگذاری شده یک گروه جدید باز کنید</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">برای شروع تماس گروهی رایگان و رمزگذاری شده یک گروه جدید باز کنید</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">بهینه‌سازی به علت ناموجود بودن خدمات Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">این دستگاه از خدمات Play پشتیبانی نمی‌کند. برای غیرفعال کردن بهینه‌سازی باتری سیستم که از دریافت پیام‌ها هنگامی که Signal غیرفعال است ممانعت می‌کند، ضربه بزنید.</string>
@@ -599,6 +599,7 @@
   <string name="AddGroupDetailsFragment__create_group">ایجاد گروه</string>
   <string name="AddGroupDetailsFragment__create">ایجاد</string>
   <string name="AddGroupDetailsFragment__members">اعضا</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">می‌توانید دوستان را بعد از ایجاد این گروه دعوت یا اضافه کنید.</string> -->
   <string name="AddGroupDetailsFragment__group_name_required">نام گروه (ضروری)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">نام گروه (اختیاری)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">پر کردن این قسمت الزامی است.</string>
@@ -767,6 +768,15 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">بروزرسانی Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند‌ داده شدهٔ شما در حال اجرای نسخه‌ای از Signal هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. Signal را بر روی دستگاه‌های پیوند داده شده به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">پیوند گروه معتبر نیست</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">دعوت دوستان</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">یک پیوند با دوستان اشتراک‌گذاری کنید تا به آن‌ها اجازه دهید به این گروه بپیوندند.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">فعال‌سازی و اشتراک‌گذاری پیوند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">اشتراک‌گذاری پیوند</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">فعال‌سازی پیوند گروه ممکن نبود. لطفاً دوباره امتحان کنید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">شما اجازهٔ فعال‌سازی پیوند گروه را ندارید. لطفاً از یک مدیر بخواهید.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">شما در حال حاضر عضو این گروه نیستید.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">«%1$s» به گروه اضافه شود؟</string>
   <string name="RequestConfirmationDialog_deny_request_from_s">رد درخواست «%1$s»؟</string>
@@ -864,6 +874,10 @@
   <string name="Megaphones_verify_your_signal_pin">پین Signal خود را تأیید کنید</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">پین هرازچندگاهی از شما پرسیده می‌شود تا آن را فراموش نکنید.</string>
   <string name="Megaphones_verify_pin">تأیید پین</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">شروع</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">گروه جدید</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">دعوت دوستان</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">استفاده از پیامک</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">تماس Signal در جریان است</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری تماس Signal</string>
@@ -934,6 +948,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">شما گروه را ایجاد کردید.</string>
   <string name="MessageRecord_group_updated">گروه ، به روز رسانی شده است.</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_invite_friends_to_this_group">دعوت دوستان برای پیوستن به این گروه از طریق پیوند گروه</string> -->
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">شما %1$s را اضافه کردید.</string>
   <string name="MessageRecord_s_added_s">%1$s %2$s را اضافه کرد.</string>
@@ -1288,8 +1303,10 @@
   <string name="RegistrationActivity_continue_last_attempt">ادامه (آخرین تلاش)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع شمارهٔ همراه خود را وارد کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">شمارهٔ خود را وارد کنید</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد تأیید دریافت خواهید کرد. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">مطمئن شوید تلفن شما برای دریافت پیامک یا تماس آنتن دهی دارد</string> -->
   <string name="RegistrationActivity_phone_number_description">شمارهٔ همراه</string>
   <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
@@ -1311,6 +1328,7 @@
   <string name="SearchFragment_header_conversations">مکالمه‌ها</string>
   <string name="SearchFragment_header_contacts">مخاطبین</string>
   <string name="SearchFragment_header_messages">پیام‌ها</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبین</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">دعوت به Signal</string>
@@ -1569,7 +1587,7 @@
   <string name="WebRtcCallScreen__answer_without_video">پاسخ دادن بدون تصویر</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">خروجی صدا</string>
-  <string name="WebRtcAudioOutputToggle__phone_earpiece">هدفون گوشی</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece"> بلندگوی گوشی</string>
   <string name="WebRtcAudioOutputToggle__speaker">بلندگو</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <!--WebRtcCallControls-->
@@ -1674,6 +1692,7 @@
   <string name="ConversationUpdateItem_join_call">پیوستن به تماس</string>
   <string name="ConversationUpdateItem_return_to_call">بازگشت به تماس</string>
   <string name="ConversationUpdateItem_call_is_full">ظرفیت تماس تکمیل است</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">دعوت دوستان</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">پخش … وقفه</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>
@@ -2139,7 +2158,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">مکالمهٔ جدید</string>
   <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">صندوق ورودی خود را پر کنید. با پیام دادن به یک دوست می‌توانید شروع کنید.</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست آغاز کنید.</string> -->
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
   <!--conversation_muted-->
@@ -2176,8 +2195,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ بورد</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">مقایسه با کلیپ بورد</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">استفاده به صورت برنامهٔ پیش‌فرض پیامک</string>
-  <string name="reminder_header_sms_default_text">برای تبدیل Signal به برنامهٔ پیش‌فرض پیامک خود ضربه بزنید.</string>
   <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های سیستم</string>
   <string name="reminder_header_sms_import_text">برای کپی کردن پیامک‌های تلفن خود به پایگاه دادهٔ رمزگذاری شدهٔ Signal ضربه بزنید.</string>
   <string name="reminder_header_push_title">فعال‌سازی پیام‌ها و تماس‌های Signal</string>
@@ -2373,6 +2390,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">برای فعال کردن پشتیبان‌ها، یک پوشه انتخاب کنید. پشتیبان‌ها در این محل ذخیره خواهند شد.</string>
   <string name="BackupDialog_choose_folder">انتخاب پوشه</string>
   <string name="BackupDialog_copied_to_clipboard">روی کلیپ بورد کپی شد</string>
+  <!-- Removed by excludeNonTranslatables <string name="BackupDialog_no_file_picker_available">انتخاب کنندهٔ فایل در دسترس نیست.</string> -->
   <string name="BackupDialog_enter_backup_passphrase_to_verify">گذرواژهٔ پشتیبان را برای تأیید وارد کنید</string>
   <string name="BackupDialog_verify">تآیید</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">گذرواژهٔ پشتیبان با موفقیت وارد شد</string>
@@ -2394,7 +2412,7 @@
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام Signal - کد تأیید برای اندروید</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
-  <string name="preferences_app_protection__see_my_phone_number">دیدن شمارهٔ تلفن من</string>
+  <string name="preferences_app_protection__see_my_phone_number">مشاهدهٔ شمارهٔ تلفن من</string>
   <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ تلفن</string>
   <string name="PhoneNumberPrivacy_everyone">همه</string>
   <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
@@ -2428,7 +2446,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">پین را تأیید کنید</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">پین قفل ثبت‌نام خود را وارد کنید</string>
   <string name="registration_lock_reminder_view__enter_pin">پین را وارد کنید</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت نام با این شمارهٔ تلفن در Signal ضروری خواهد بود.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">فعال‌سازی پین قفل ثبت‌نام که بعداً برای ثبت‌نام با این شمارهٔ تلفن در Signal ضروری خواهد بود.</string>
   <string name="preferences_app_protection__registration_lock_pin">پین قفل ثبت‌نام</string>
   <string name="preferences_app_protection__registration_lock">قفل ثبت‌نام</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">شما باید پین قفل ثبت‌نام خود را وارد کنید</string>
@@ -2557,9 +2575,11 @@
   <string name="DeleteAccountFragment__are_you_sure">آیا از پاک کردن حساب کاربری خود اطمینان دارید؟</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری Signal شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
-  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید  آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
   <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">جستجوی کشورها</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">رد شدن</string> -->
   <!--EOF-->
 </resources>

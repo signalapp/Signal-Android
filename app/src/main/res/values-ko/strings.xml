@@ -42,6 +42,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">화면 잠금 %1$s, 등록 잠금 %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">화면 잠금 %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금에 PIN이 필요합니다. PIN을 끄려면 먼저 등록 잠금을 끄세요.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 중지되었습니다.</string>
   <string name="ApplicationPreferencesActivity_hide">숨기기</string>
@@ -81,6 +82,7 @@
   <string name="BlockedUsersActivity__block_user">이 사용자를 차단하시겠습니까?</string>
   <string name="BlockedUsersActivity__block">차단</string>
   <string name="BlockedUsersActivity__unblock_user">이 사용자를 차단 해제하시겠습니까?</string>
+  <string name="BlockedUsersActivity__do_you_want_to_unblock_s">%1$s님을 차단하시겠습니까?</string>
   <string name="BlockedUsersActivity__unblock">차단 해제</string>
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">%1$s를 차단하고 나갈까요?</string>
@@ -246,6 +248,7 @@
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s에게 통화하려면, 시그널에서 마이크와 카메라 권한이 필요합니다.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">더 많은 옵션은 \'그룹 설정\'에서 가능합니다.</string>
   <string name="ConversationActivity_join">참가</string>
+  <string name="ConversationActivity_full">가득 참</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">읽지 않은 메시지 %d개</item>
@@ -381,6 +384,7 @@
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal에 후원</string>
   <string name="DonateMegaphone_donate">기부</string>
+  <string name="DonateMegaphone_no_thanks">괜찮습니다</string>
   <!--GroupCallingMegaphone-->
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">누락된 Play Services에 최적화</string>
@@ -435,6 +439,10 @@
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">새 그룹이 무엇인가요?</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
+  <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">새 그룹으로 업그레이드하기</string>
+  <string name="GroupsV1MigrationInitiation_upgrade_this_group">이 그룹 업그레이드하기</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">예상치 못한 네트워크 오류가 발생했습니다. 나중에 다시 시도해 주세요.</string>
+  <string name="GroupsV1MigrationInitiation_failed_to_upgrade">업그레이드하는 데 실패함</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">그룹 업데이트</string>
@@ -489,6 +497,7 @@
   <string name="AddGroupDetailsFragment__create">생성</string>
   <string name="AddGroupDetailsFragment__members">멤버</string>
   <string name="AddGroupDetailsFragment__group_name_required">그룹 이름(필수)</string>
+  <string name="AddGroupDetailsFragment__group_name_optional">그룹 이름 (선택 사항)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">이 입력창은 필수입니다.</string>
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">그룹은 적어도 두 명 이상의 멤버가 필요합니다.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">그룹 생성 실패</string>
@@ -566,6 +575,7 @@
   <string name="ShareableGroupLinkDialogFragment__share">공유</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">링크 초기화</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">멤버 요청</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">새 멤버 승인하기</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">활성화됨</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">비활성화됨</string>
   <string name="ShareableGroupLinkDialogFragment__default">기본값</string>
@@ -589,6 +599,10 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">그룹 링크를 사용하기 위해서 Signal을 업데이트하세요</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">시그널 업데이트하기</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">그룹 링크가 유효하지 않습니다.</string>
+  <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">친구 초대</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">링크 공유하기</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">네트워크 오류가 발생했습니다.</string> -->
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s”를 그룹에 추가하시겠습니까?</string>
   <string name="RequestConfirmationDialog_add">추가</string>
@@ -678,6 +692,10 @@
   <string name="Megaphones_verify_your_signal_pin">Signal 번호 인증</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">저희는 사용자가 번호를 기억하실 수 있도록 가끔 번호 인증을 요청합니다.</string>
   <string name="Megaphones_verify_pin">번호 인증</string>
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_get_started">시작하기</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_new_group">새 그룹</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_invite_friends">친구 초대</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="Megaphones_use_sms">SMS 사용하기</string> -->
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 전화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 전화 연결 중</string>
@@ -755,6 +773,7 @@
   <string name="MessageRecord_s_is_no_longer_an_admin">더 이상 %1$s는 관리자가 아닙니다.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">당신은 더 이상 관리자가 아닙니다.</string>
   <!--GV2 invitations-->
+  <string name="MessageRecord_you_invited_s_to_the_group">당신은 %1$s님을 그룹에 초대하였습니다.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s가 당신을 그룹에 초대했습니다.</string>
   <string name="MessageRecord_you_were_invited_to_the_group">그룹에 초대되었습니다.</string>
   <!--GV2 invitation revokes-->
@@ -867,6 +886,7 @@
   <string name="PinRestoreEntryFragment_contact_support">지원에 문의</string>
   <string name="PinRestoreEntryFragment_cancel">취소</string>
   <string name="PinRestoreEntryFragment_skip">건너뛰기</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 가입 - Android PIN 도움 요청</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">영숫자 번호 입력</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">숫자 번호 입력</string>
   <!--PinRestoreLockedFragment-->
@@ -950,6 +970,8 @@
   <string name="RegistrationActivity_more_information">더 많은 정보</string>
   <string name="RegistrationActivity_less_information">더 적은 정보</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal에서 친구들과 연락하고, 메시지를 주고받으며 안전하게 전화하기 위해 연락처와 미디어 권한이 필요합니다.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">친구와 연락하고, 메시지를 주고받으며 안전한 통화를 하기 위해 Signal이 연락처 액세스 권한을 필요로 합니다.</string>
+  <string name="RegistrationActivity_rate_limited_to_service">이 전화번호 가입을 너무 많이 시도하셨습니다. 나중에 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">서비스에 연결할 수 없습니다. 네트워크 연결을 확인 후 다시 시도해 주세요.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal에 SMS 메시지 접근 권한을 허용하면 휴대 전화에 오는 인증 코드를 자동으로 탐지하여 쉽게 휴대 전화를 인증할 수 있습니다.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -963,8 +985,10 @@
   <string name="RegistrationActivity_continue_last_attempt">계속(마지막 시도!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인 정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">시작하려면 휴대 전화 번호를 입력하세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">전화번호 입력</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s 번호로 보낸 코드를 입력해 주세요.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS 또는 전화를 수신하려면 휴대전화에서 데이터 네트워크가 켜져 있어야 합니다.</string> -->
   <string name="RegistrationActivity_phone_number_description">전화번호</string>
   <string name="RegistrationActivity_country_code_description">국가 번호</string>
   <string name="RegistrationActivity_call">전화</string>
@@ -986,6 +1010,7 @@
   <string name="SearchFragment_header_conversations">대화</string>
   <string name="SearchFragment_header_contacts">연락처</string>
   <string name="SearchFragment_header_messages">메시지</string>
+  <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">연락처에 추가</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Signal로 초대</string>
@@ -1051,6 +1076,7 @@
   <string name="SupportEmailUtil_android_version">안드로이드 버전:</string>
   <string name="SupportEmailUtil_signal_version">Signal 버전:</string>
   <string name="SupportEmailUtil_signal_package">시그널 패키지:</string>
+  <string name="SupportEmailUtil_registration_lock">등록 잠금:</string>
   <string name="SupportEmailUtil_locale">언어:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">그룹이 업데이트됨</string>
@@ -1317,6 +1343,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">로드 중</string>
   <string name="ConversationUpdateItem_learn_more">더 알아보기</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationUpdateItem_invite_friends">친구 초대</string> -->
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">재생 … 일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
@@ -1633,6 +1660,7 @@
   <string name="preferences__advanced_pin_settings">PIN 고급 설정</string>
   <string name="preferences__free_private_messages_and_calls">Signal 사용자에게 무료 보안 메시지 및 전화 걸기</string>
   <string name="preferences__submit_debug_log">디버그 로그 제출</string>
+  <string name="preferences__delete_account">계정 삭제하기</string>
   <string name="preferences__support_wifi_calling">\'Wi-Fi 전화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">기기에서 \'Wi-Fi 전화\' 사용이 활성화된 경우 Wi-Fi로 SMS/MMS 전송 사용</string>
   <string name="preferences__incognito_keyboard">익명 키보드</string>
@@ -1725,6 +1753,7 @@
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">선택한 대화 삭제</string>
   <string name="conversation_list_batch__menu_pin_selected">PIN이 선택되었습니다.</string>
+  <string name="conversation_list_batch__menu_unpin_selected">선택된 대화 고정 취소</string>
   <string name="conversation_list_batch__menu_select_all">모두 선택</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">선택한 대화 보관</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">선택한 대화 보관 취소</string>
@@ -1744,7 +1773,6 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">새 대화</string>
   <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">외로워 보이네요. 친구들과 이야기를 나눠보면 어떨까요?</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">보안 세션 초기화</string>
   <!--conversation_muted-->
@@ -1760,6 +1788,7 @@
   <string name="conversation__menu_conversation_settings">대화 설정</string>
   <string name="conversation__menu_add_shortcut">홈 화면에 추가</string>
   <string name="conversation__menu_pending_members">대기 중인 멤버들</string>
+  <string name="conversation__menu_create_bubble">버블 만들기</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">팝업 확장</string>
   <!--conversation_callable_insecure-->
@@ -1780,8 +1809,6 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
-  <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
-  <string name="reminder_header_sms_default_text">탭하여 Signal을 기본 SMS 앱으로 설정하세요.</string>
   <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
   <string name="reminder_header_sms_import_text">탭하여 휴대 전화의 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오세요.</string>
   <string name="reminder_header_push_title">Signal 메시지 및 전화 활성화</string>
@@ -1978,6 +2005,8 @@
   <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
   <string name="BackupUtil_never">없음</string>
   <string name="BackupUtil_unknown">알 수 없음</string>
+  <string name="preferences_app_protection__see_my_phone_number">내 전화번호 보기 </string>
+  <string name="preferences_app_protection__find_me_by_phone_number">전화번호로 나를 찾기</string>
   <string name="PhoneNumberPrivacy_everyone">모두</string>
   <string name="PhoneNumberPrivacy_my_contacts">내 연락처</string>
   <string name="PhoneNumberPrivacy_nobody">아무도</string>
@@ -1993,6 +2022,8 @@
   <string name="preferences_app_protection__confirm_pin">번호 확인</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PIN 번호 확인</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">잘못된 번호입니다. 다시 시도해 주세요.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">등록 잠금을 켜는 데 실패했습니다.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">등록 잠금을 끄는 데 실패했습니다.</string>
   <string name="AppProtectionPreferenceFragment_none">없음</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">등록 잠금 번호는 현재 전송된 SMS 인증 코드와는 다릅니다. 이전에 앱에서 설정했던 번호를 입력하세요.</string>
   <string name="registration_activity__registration_lock_pin">등록 잠금 번호</string>
@@ -2074,13 +2105,25 @@
   <string name="ReviewCardDialogFragment__remove">삭제</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">멤버</string>
+  <string name="ReviewCard__your_contact">내 연락처</string>
   <string name="ReviewCard__remove_from_group">그룹에서 제외</string>
   <string name="ReviewCard__update_contact">연락처 업데이트</string>
   <string name="ReviewCard__block">차단</string>
   <string name="ReviewCard__delete">삭제</string>
   <!--CallParticipantsListUpdatePopupWindow-->
+  <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s님이 참여했습니다.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s님과 %2$s이 참여했습니다.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s님, %2$s님, %3$s님이 참여했습니다.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s님이 떠났습니다.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s님과 %2$s님이 떠났습니다.</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s님, %2$s님, %3$s님이 떠났습니다.</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__enter_your_phone_number">전화번호 입력</string>
+  <string name="DeleteAccountFragment__delete_account">계정 삭제하기</string>
   <string name="DeleteAccountFragment__are_you_sure">계정을 삭제하시겠습니까?</string>
   <!--DeleteAccountCountryPickerFragment-->
+  <string name="DeleteAccountCountryPickerFragment__search_countries">국가 선택</string>
+  <!--CreateGroupActivity-->
+  <!-- Removed by excludeNonTranslatables <string name="CreateGroupActivity__skip">건너뛰기</string> -->
   <!--EOF-->
 </resources>
