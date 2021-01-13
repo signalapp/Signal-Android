@@ -122,7 +122,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                          .clearParticipantMap();
 
     for (Recipient recipient : callParticipants) {
-      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false, 0));
+      builder.putParticipant(recipient, CallParticipant.createRemote(new CallParticipantId(recipient), recipient, null, new BroadcastVideoSink(null), true, true, 0, false, 0, CallParticipant.DeviceOrdinal.PRIMARY));
     }
 
     return builder.build();

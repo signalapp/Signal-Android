@@ -25,8 +25,7 @@ public final class CallParticipantViewState extends RecipientMappingModel<CallPa
 
   @Override
   public @NonNull String getName(@NonNull Context context) {
-    return callParticipant.getRecipient().isSelf() ? context.getString(R.string.GroupMembersDialog_you)
-                                                   : super.getName(context);
+    return callParticipant.getRecipientDisplayName(context);
   }
 
   public int getVideoMutedVisibility() {

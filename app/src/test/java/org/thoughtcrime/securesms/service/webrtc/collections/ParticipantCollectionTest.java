@@ -213,6 +213,7 @@ public class ParticipantCollectionTest {
         false,
         lastSpoke,
         false,
-        added);
+        added,
+        CallParticipant.DeviceOrdinal.PRIMARY);
   }
 }

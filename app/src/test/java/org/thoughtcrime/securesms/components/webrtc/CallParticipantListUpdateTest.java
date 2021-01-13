@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import androidx.annotation.NonNull;
+
 import com.annimon.stream.Stream;
 
 import org.hamcrest.Matchers;
@@ -27,9 +29,9 @@ public class CallParticipantListUpdateTest {
   @Test
   public void givenEmptySets_thenExpectNoChanges() {
     // GIVEN
-    Set<CallParticipantListUpdate.Holder> added   = Collections.emptySet();
-    Set<CallParticipantListUpdate.Holder> removed = Collections.emptySet();
-    CallParticipantListUpdate             update  = new CallParticipantListUpdate(added, removed);
+    Set<CallParticipantListUpdate.Wrapper> added   = Collections.emptySet();
+    Set<CallParticipantListUpdate.Wrapper> removed = Collections.emptySet();
+    CallParticipantListUpdate              update  = new CallParticipantListUpdate(added, removed);
 
     // THEN
     assertTrue(update.hasNoChanges());
@@ -39,9 +41,9 @@ public class CallParticipantListUpdateTest {
   @Test
   public void givenOneEmptySet_thenExpectMultipleChanges() {
     // GIVEN
-    Set<CallParticipantListUpdate.Holder> added   = new HashSet<>(Arrays.asList(createHolders(1, 2, 3)));
-    Set<CallParticipantListUpdate.Holder> removed = Collections.emptySet();
-    CallParticipantListUpdate             update  = new CallParticipantListUpdate(added, removed);
+    Set<CallParticipantListUpdate.Wrapper> added   = new HashSet<>(Arrays.asList(createWrappers(1, 2, 3)));
+    Set<CallParticipantListUpdate.Wrapper> removed = Collections.emptySet();
+    CallParticipantListUpdate              update  = new CallParticipantListUpdate(added, removed);
 
     // THEN
     assertFalse(update.hasNoChanges());
@@ -51,9 +53,9 @@ public class CallParticipantListUpdateTest {
   @Test
   public void givenNoEmptySets_thenExpectMultipleChanges() {
     // GIVEN
-    Set<CallParticipantListUpdate.Holder> added   = new HashSet<>(Arrays.asList(createHolders(1, 2, 3)));
-    Set<CallParticipantListUpdate.Holder> removed = new HashSet<>(Arrays.asList(createHolders(4, 5, 6)));
-    CallParticipantListUpdate             update  = new CallParticipantListUpdate(added, removed);
+    Set<CallParticipantListUpdate.Wrapper> added   = new HashSet<>(Arrays.asList(createWrappers(1, 2, 3)));
+    Set<CallParticipantListUpdate.Wrapper> removed = new HashSet<>(Arrays.asList(createWrappers(4, 5, 6)));
+    CallParticipantListUpdate              update  = new CallParticipantListUpdate(added, removed);
 
     // THEN
     assertFalse(update.hasNoChanges());
@@ -63,9 +65,9 @@ public class CallParticipantListUpdateTest {
   @Test
   public void givenOneSetWithSingleItemAndAnEmptySet_thenExpectSingleChange() {
     // GIVEN
-    Set<CallParticipantListUpdate.Holder> added   = new HashSet<>(Arrays.asList(createHolders(1)));
-    Set<CallParticipantListUpdate.Holder> removed = Collections.emptySet();
-    CallParticipantListUpdate             update  = new CallParticipantListUpdate(added, removed);
+    Set<CallParticipantListUpdate.Wrapper> added   = new HashSet<>(Arrays.asList(createWrappers(1)));
+    Set<CallParticipantListUpdate.Wrapper> removed = Collections.emptySet();
+    CallParticipantListUpdate              update  = new CallParticipantListUpdate(added, removed);
 
     // THEN
     assertFalse(update.hasNoChanges());
@@ -83,7 +85,7 @@ public class CallParticipantListUpdateTest {
     // THEN
     assertFalse(update.hasNoChanges());
     assertTrue(update.getRemoved().isEmpty());
-    assertThat(update.getAdded(), Matchers.containsInAnyOrder(createHolders(1, 2, 3, 4, 5)));
+    assertThat(update.getAdded(), Matchers.containsInAnyOrder(createWrappers(1, 2, 3, 4, 5)));
   }
 
   @Test
@@ -121,8 +123,8 @@ public class CallParticipantListUpdateTest {
 
     // THEN
     assertFalse(update.hasNoChanges());
-    assertThat(update.getAdded(), Matchers.containsInAnyOrder(createHolders(6)));
-    assertThat(update.getRemoved(), Matchers.containsInAnyOrder(createHolders(1)));
+    assertThat(update.getAdded(), Matchers.containsInAnyOrder(createWrappers(6)));
+    assertThat(update.getRemoved(), Matchers.containsInAnyOrder(createWrappers(1)));
   }
 
   @Test
@@ -134,17 +136,18 @@ public class CallParticipantListUpdateTest {
     CallParticipantListUpdate update = CallParticipantListUpdate.computeDeltaUpdate(Collections.emptyList(), list);
 
     // THEN
-    List<Boolean> isPrimaryList = Stream.of(update.getAdded()).map(CallParticipantListUpdate.Holder::isPrimary).toList();
+    List<Boolean> isPrimaryList = Stream.of(update.getAdded()).map(wrapper -> wrapper.getCallParticipant().isPrimary()).toList();
     assertThat(isPrimaryList, Matchers.containsInAnyOrder(true, false, false));
   }
 
-  static CallParticipantListUpdate.Holder[] createHolders(long ... recipientIds) {
-    CallParticipantListUpdate.Holder[] ids = new CallParticipantListUpdate.Holder[recipientIds.length];
+  static CallParticipantListUpdate.Wrapper[] createWrappers(long ... recipientIds) {
+    CallParticipantListUpdate.Wrapper[] ids       = new CallParticipantListUpdate.Wrapper[recipientIds.length];
+    Set<Long>                          primaries = new HashSet<>();
 
     for (int i = 0; i < recipientIds.length; i++) {
-      CallParticipant participant = createParticipant(recipientIds[i], recipientIds[i]);
+      CallParticipant participant = createParticipant(recipientIds[i], recipientIds[i], primaries.contains(recipientIds[i]) ? CallParticipant.DeviceOrdinal.SECONDARY : CallParticipant.DeviceOrdinal.PRIMARY);
 
-      ids[i] = CallParticipantListUpdate.createHolder(participant, true);
+      ids[i] = CallParticipantListUpdate.createWrapper(participant);
     }
 
     return ids;
@@ -162,17 +165,20 @@ public class CallParticipantListUpdateTest {
 
   private static List<CallParticipant> createParticipants(long[] recipientIds, long[] placeholderIds) {
     List<CallParticipant> participants = new ArrayList<>(recipientIds.length);
+    Set<Long>             primaries    = new HashSet<>();
+
     for (int i = 0; i < recipientIds.length; i++) {
-      participants.add(createParticipant(recipientIds[i], placeholderIds[i]));
+      participants.add(createParticipant(recipientIds[i], placeholderIds[i], primaries.contains(recipientIds[i]) ? CallParticipant.DeviceOrdinal.SECONDARY : CallParticipant.DeviceOrdinal.PRIMARY));
+      primaries.add(recipientIds[i]);
     }
 
     return participants;
   }
 
-  private static CallParticipant createParticipant(long recipientId, long deMuxId) {
+  private static CallParticipant createParticipant(long recipientId, long deMuxId, @NonNull CallParticipant.DeviceOrdinal deviceOrdinal) {
     Recipient recipient = new Recipient(RecipientId.from(recipientId), mock(RecipientDetails.class), true);
 
-    return CallParticipant.createRemote(new CallParticipantId(deMuxId, recipient.getId()), recipient, null, new BroadcastVideoSink(null), false, false, -1, false, 0);
+    return CallParticipant.createRemote(new CallParticipantId(deMuxId, recipient.getId()), recipient, null, new BroadcastVideoSink(null), false, false, -1, false, 0, deviceOrdinal);
   }
 
 }

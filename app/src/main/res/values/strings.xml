@@ -3040,8 +3040,10 @@
     <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s and %2$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s and %3$s left</string>
     <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and %3$d others left</string>
-    <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">You (on another device)</string>
-    <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (on another device)</string>
+
+    <string name="CallParticipant__you">You</string>
+    <string name="CallParticipant__you_on_another_device">You (on another device)</string>
+    <string name="CallParticipant__s_on_another_device">%1$s (on another device)</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Deleting your account will:</string>
