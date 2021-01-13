@@ -14,6 +14,7 @@ import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import network.loki.messenger.R
+import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -174,8 +176,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         this.members.addAll(members)
         memberListAdapter.setMembers(members)
 
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        memberListAdapter.setLockedMembers(arrayListOf(userPublicKey))
+        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toPhoneString() }.toMutableSet()
+        admins.remove(TextSecurePreferences.getLocalNumber(this))
+        memberListAdapter.setLockedMembers(admins)
 
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
@@ -224,7 +227,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun commitChanges() {
-        val hasMemberListChanges = members != originalMembers
+        val hasMemberListChanges = (members != originalMembers)
 
         if (!hasNameChanged && !hasMemberListChanges) {
             return finish()
@@ -258,16 +261,31 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userAsRecipient = Recipient.from(this, Address.fromSerialized(userPublicKey), false)
+
+        if (!members.contains(userAsRecipient) && !members.map { it.address.toPhoneString() }.containsAll(originalMembers.minus(userPublicKey))) {
+            val message = "Can't leave while adding or removing other members."
+            return Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
+        }
+
         if (isSSKBasedClosedGroup) {
             isLoading = true
             loaderContainer.fadeIn()
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name).successUi {
+            val promise: Promise<Unit, Exception>
+            if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
+                promise = ClosedGroupsProtocolV2.leave(this, groupPublicKey!!)
+            } else {
+                promise = ClosedGroupsProtocolV2.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
+            }
+            promise.successUi {
                 loaderContainer.fadeOut()
                 isLoading = false
                 finish()
             }.failUi { exception ->
                 val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
+                loader.fadeOut()
                 isLoading = false
             }
         } else {

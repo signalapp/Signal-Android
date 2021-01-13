@@ -4,11 +4,15 @@ import android.content.Context
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
+import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -18,12 +22,17 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.InputStream
 
+
 class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), MessageDataProvider {
 
     override fun getAttachmentStream(attachmentId: Long): SessionServiceAttachmentStream? {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
         return databaseAttachment.toAttachmentStream(context)
+    }
+
+    override fun getAttachmentPointer(attachmentID: String): SignalServiceAttachmentPointer? {
+        TODO("Not yet implemented")
     }
 
     override fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer? {
@@ -43,14 +52,36 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         attachmentUploadJob.onRun()
     }
 
-    override fun insertAttachment(messageId: Long, attachmentId: Long, stream : InputStream) {
+    override fun getMessageForQuote(timestamp: Long, author: Address): Long? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAttachmentsWithLinkPreviewFor(messageID: Long): List<Attachment> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMessageBodyFor(messageID: Long): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun insertAttachment(messageId: Long, attachmentId: Long, stream: InputStream) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
-        attachmentDatabase.insertAttachmentsForPlaceholder(messageId, AttachmentId(attachmentId,0), stream)
+        attachmentDatabase.insertAttachmentsForPlaceholder(messageId, AttachmentId(attachmentId, 0), stream)
     }
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
         return smsDatabase.isOutgoingMessage(timestamp)
+    }
+
+    override fun getMessageID(serverID: Long): Long? {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteMessage(messageID: Long) {
+        TODO("Not yet implemented")
+        //val publicChatAPI = ApplicationContext.getInstance(context).publicChatAPI
+        //publicChatAPI?.deleteMessage(messageID)
     }
 
 }

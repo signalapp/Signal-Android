@@ -415,7 +415,8 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_DIGEST)),
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1,
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_URL)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)));
+                              cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)),
+                              cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
     }
 
     @Override

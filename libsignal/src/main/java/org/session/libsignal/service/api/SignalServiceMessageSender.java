@@ -9,6 +9,7 @@ import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.jetbrains.annotations.Nullable;
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.metadata.SealedSessionCipher;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.SessionBuilder;
@@ -95,6 +96,7 @@ import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLin
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 import org.session.libsignal.service.loki.utilities.Broadcaster;
+import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory;
 
 import java.io.IOException;
@@ -115,8 +117,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import nl.komponents.kovenant.Promise;
-
-import static org.session.libsignal.libsignal.SessionCipher.SESSION_LOCK;
 
 /**
  * The main interface for sending Signal Service messages.
@@ -1168,93 +1168,80 @@ public class SignalServiceMessageSender {
   {
     if (recipient.getNumber().equals(userPublicKey)) { return SendMessageResult.success(recipient, false, false); }
     final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
-    try {
-      OutgoingPushMessageList messages = getEncryptedMessages(socket, recipient, unidentifiedAccess, timestamp, content, online, useFallbackEncryption, isClosedGroup);
-      // Loki - Remove this when we have shared sender keys
-      // ========
-      if (messages.getMessages().isEmpty()) {
-          return SendMessageResult.success(recipient, false, false);
-      }
-      // ========
-      Set<String> userLinkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      if (sskDatabase.isSSKBasedClosedGroup(recipient.getNumber())) {
-        Log.d("Loki", "Sending message to closed group.")  ;
-      } else if (recipient.getNumber().equals(userPublicKey)) {
-        Log.d("Loki", "Sending message to self.");
-      } else if (userLinkedDevices.contains(recipient.getNumber())) {
-        Log.d("Loki", "Sending message to linked device.");
-      } else {
-        Log.d("Loki", "Sending message to " + recipient.getNumber() + ".");
-      }
-      OutgoingPushMessage message = messages.getMessages().get(0);
-      final SignalServiceProtos.Envelope.Type type = SignalServiceProtos.Envelope.Type.valueOf(message.type);
-      final String senderID;
-      if (type == SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT) {
-          senderID = recipient.getNumber();
-//      } else if (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) {
-//          senderID = "";
-      } else {
-          senderID = userPublicKey;
-      }
-      final int senderDeviceID = (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) ? 0 : SignalServiceAddress.DEFAULT_DEVICE_ID;
-      // Make sure we have a valid ttl; otherwise default to 2 days
-      if (ttl <= 0) { ttl = TTLUtilities.INSTANCE.getFallbackMessageTTL(); }
-      final int regularMessageTTL = TTLUtilities.getTTL(TTLUtilities.MessageType.Regular);
-      final int __ttl = ttl;
-      final SignalMessageInfo messageInfo = new SignalMessageInfo(type, timestamp, senderID, senderDeviceID, message.content, recipient.getNumber(), ttl, false);
-      SnodeAPI.shared.sendSignalMessage(messageInfo).success(new Function1<Set<Promise<Map<?, ?>, Exception>>, Unit>() {
-
-        @Override
-        public Unit invoke(Set<Promise<Map<?, ?>, Exception>> promises) {
-          final boolean[] isSuccess = { false };
-          final int[] promiseCount = {promises.size()};
-          final int[] errorCount = { 0 };
-          for (Promise<Map<?, ?>, Exception> promise : promises) {
-            promise.success(new Function1<Map<?, ?>, Unit>() {
-
-              @Override
-              public Unit invoke(Map<?, ?> map) {
-                if (isSuccess[0]) { return Unit.INSTANCE; } // Succeed as soon as the first promise succeeds
-                if (__ttl == regularMessageTTL) {
-                  broadcaster.broadcast("messageSent", timestamp);
-                }
-                isSuccess[0] = true;
-                if (notifyPNServer) {
-                    PushNotificationAPI.shared.notify(messageInfo);
-                }
-                @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-                f.set(Unit.INSTANCE);
-                return Unit.INSTANCE;
-              }
-            }).fail(new Function1<Exception, Unit>() {
-
-              @Override
-              public Unit invoke(Exception exception) {
-                errorCount[0] += 1;
-                if (errorCount[0] != promiseCount[0]) { return Unit.INSTANCE; } // Only error out if all promises failed
-                if (__ttl == regularMessageTTL) {
-                    broadcaster.broadcast("messageFailed", timestamp);
-                }
-                @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-                f.setException(exception);
-                return Unit.INSTANCE;
-              }
-            });
-          }
-          return Unit.INSTANCE;
-        }
-      }).fail(new Function1<Exception, Unit>() {
-
-        @Override
-        public Unit invoke(Exception exception) {
-          @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-          f.setException(exception);
-          return Unit.INSTANCE;
-        }
-      });
-    } catch (InvalidKeyException e) {
-      throw new IOException(e);
+    OutgoingPushMessageList messages = getSessionProtocolEncryptedMessage(recipient, timestamp, content);
+    // Loki - Remove this when we have shared sender keys
+    // ========
+    if (messages.getMessages().isEmpty()) {
+      return SendMessageResult.success(recipient, false, false);
     }
+    // ========
+    OutgoingPushMessage message = messages.getMessages().get(0);
+    final SignalServiceProtos.Envelope.Type type = SignalServiceProtos.Envelope.Type.valueOf(message.type);
+    final String senderID;
+    if (type == SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT) {
+      senderID = recipient.getNumber();
+    } else if (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) {
+      senderID = "";
+    } else {
+      senderID = userPublicKey;
+    }
+    final int senderDeviceID = (type == SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER) ? 0 : SignalServiceAddress.DEFAULT_DEVICE_ID;
+    // Make sure we have a valid ttl; otherwise default to 2 days
+    if (ttl <= 0) { ttl = TTLUtilities.INSTANCE.getFallbackMessageTTL(); }
+    final int regularMessageTTL = TTLUtilities.getTTL(TTLUtilities.MessageType.Regular);
+    final int __ttl = ttl;
+    final SignalMessageInfo messageInfo = new SignalMessageInfo(type, timestamp, senderID, senderDeviceID, message.content, recipient.getNumber(), ttl, false);
+    SnodeAPI.shared.sendSignalMessage(messageInfo).success(new Function1<Set<Promise<Map<?, ?>, Exception>>, Unit>() {
+
+      @Override
+      public Unit invoke(Set<Promise<Map<?, ?>, Exception>> promises) {
+        final boolean[] isSuccess = { false };
+        final int[] promiseCount = {promises.size()};
+        final int[] errorCount = { 0 };
+        for (Promise<Map<?, ?>, Exception> promise : promises) {
+          promise.success(new Function1<Map<?, ?>, Unit>() {
+
+            @Override
+            public Unit invoke(Map<?, ?> map) {
+              if (isSuccess[0]) { return Unit.INSTANCE; } // Succeed as soon as the first promise succeeds
+              if (__ttl == regularMessageTTL) {
+                broadcaster.broadcast("messageSent", timestamp);
+              }
+              isSuccess[0] = true;
+              if (notifyPNServer) {
+                PushNotificationAPI.shared.notify(messageInfo);
+              }
+              @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
+              f.set(Unit.INSTANCE);
+              return Unit.INSTANCE;
+            }
+          }).fail(new Function1<Exception, Unit>() {
+
+            @Override
+            public Unit invoke(Exception exception) {
+              errorCount[0] += 1;
+              if (errorCount[0] != promiseCount[0]) { return Unit.INSTANCE; } // Only error out if all promises failed
+              if (__ttl == regularMessageTTL) {
+                broadcaster.broadcast("messageFailed", timestamp);
+              }
+              @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
+              f.setException(exception);
+              return Unit.INSTANCE;
+            }
+          });
+        }
+        return Unit.INSTANCE;
+      }
+    }).fail(new Function1<Exception, Unit>() {
+
+      @Override
+      public Unit invoke(Exception exception) {
+        @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
+        f.setException(exception);
+        return Unit.INSTANCE;
+      }
+    });
+
     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
     try {
       f.get(1, TimeUnit.MINUTES);
@@ -1347,165 +1334,28 @@ public class SignalServiceMessageSender {
     return createAttachmentPointer(pointer);
   }
 
-  private OutgoingPushMessageList getEncryptedMessages(PushServiceSocket            socket,
-                                                       SignalServiceAddress         recipient,
-                                                       Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                       long                         timestamp,
-                                                       byte[]                       plaintext,
-                                                       boolean                      online,
-                                                       boolean                      useFallbackEncryption,
-                                                       boolean                      isClosedGroup)
-      throws IOException, InvalidKeyException, UntrustedIdentityException
-  {
-    List<OutgoingPushMessage> messages = new LinkedList<>();
-
-    // Loki - The way this works is:
-    // • Alice sends a session request (i.e. a pre key bundle) to Bob using fallback encryption.
-    // • She may send any number of subsequent messages also encrypted using fallback encryption.
-    // • When Bob receives the session request, he sets up his Signal cipher session locally and sends back a null message,
-    //   now encrypted using Signal encryption.
-    // • Alice receives this, sets up her Signal cipher session locally, and sends any subsequent messages
-    //   using Signal encryption.
-
-    if (!recipient.equals(localAddress) || unidentifiedAccess.isPresent()) {
-      if (sskDatabase.isSSKBasedClosedGroup(recipient.getNumber()) && unidentifiedAccess.isPresent()) {
-        messages.add(getSSKEncryptedMessage(recipient.getNumber(), unidentifiedAccess.get(), plaintext));
-//      } else if (useFallbackEncryption) {
-//        messages.add(getFallbackCipherEncryptedMessage(recipient.getNumber(), plaintext, unidentifiedAccess));
-//      } else {
-//        OutgoingPushMessage message = getEncryptedMessage(socket, recipient, unidentifiedAccess, plaintext, isClosedGroup);
-//        if (message != null) { // May be null in a closed group context
-//          messages.add(message);
-//        }
-//      }
-      } else {
-        //AC: Use unencrypted messages for private chats.
-        OutgoingPushMessage message = getUnencryptedMessage(plaintext);
-        messages.add(message);
-      }
-    }
-
-    return new OutgoingPushMessageList(recipient.getNumber(), timestamp, messages, online);
-  }
-
-  private OutgoingPushMessageList getSessionProtocolEncryptedMessages(PushServiceSocket            socket,
-                                                                      SignalServiceAddress         recipient,
-                                                                      Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                                      long                         timestamp,
-                                                                      byte[]                       plaintext,
-                                                                      boolean                      online,
-                                                                      boolean                      useFallbackEncryption,
-                                                                      boolean                      isClosedGroup)
+  private OutgoingPushMessageList getSessionProtocolEncryptedMessage(SignalServiceAddress recipient, long timestamp, byte[] plaintext)
   {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
     PushTransportDetails transportDetails = new PushTransportDetails(3);
     String publicKey = recipient.getNumber(); // Could be a contact's public key or the public key of a SSK group
-    byte[] ciphertext = sessionProtocolImpl.encrypt(transportDetails.getPaddedMessageBody(plaintext), publicKey);
-    String body = Base64.encodeBytes(ciphertext);
     boolean isSSKBasedClosedGroup = sskDatabase.isSSKBasedClosedGroup(publicKey);
+    String encryptionPublicKey;
+    if (isSSKBasedClosedGroup) {
+      ECKeyPair encryptionKeyPair = apiDatabase.getLatestClosedGroupEncryptionKeyPair(publicKey);
+      encryptionPublicKey = HexEncodingKt.getHexEncodedPublicKey(encryptionKeyPair);
+    } else {
+      encryptionPublicKey = publicKey;
+    }
+    byte[] ciphertext = sessionProtocolImpl.encrypt(transportDetails.getPaddedMessageBody(plaintext), encryptionPublicKey);
+    String body = Base64.encodeBytes(ciphertext);
     int type = isSSKBasedClosedGroup ? SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE :
             SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
     OutgoingPushMessage message = new OutgoingPushMessage(type, 1, 0, body);
     messages.add(message);
 
-    return new OutgoingPushMessageList(publicKey, timestamp, messages, online);
-  }
-
-  private OutgoingPushMessage getUnencryptedMessage(byte[] plaintext) {
-    Log.d("Loki", "Bypassing cipher and preparing a plaintext message.");
-    int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    PushTransportDetails transportDetails = new PushTransportDetails(FallbackSessionCipher.getSessionVersion());
-    byte[] bytes = transportDetails.getPaddedMessageBody(plaintext);
-    return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
-  }
-
-  private OutgoingPushMessage getFallbackCipherEncryptedMessage(String publicKey, byte[] plaintext, Optional<UnidentifiedAccess> unidentifiedAccess)
-      throws InvalidKeyException
-  {
-    Log.d("Loki", "Using fallback cipher.");
-    int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(publicKey, deviceID);
-    byte[] userPrivateKey = store.getIdentityKeyPair().getPrivateKey().serialize();
-    FallbackSessionCipher cipher = new FallbackSessionCipher(userPrivateKey, publicKey);
-    PushTransportDetails transportDetails = new PushTransportDetails(FallbackSessionCipher.getSessionVersion());
-    byte[] bytes = cipher.encrypt(transportDetails.getPaddedMessageBody(plaintext));
-    if (bytes == null) { bytes = new byte[0]; }
-    if (unidentifiedAccess.isPresent()) {
-      SealedSessionCipher sealedSessionCipher = new SealedSessionCipher(store, null, signalProtocolAddress);
-      FallbackMessage message = new FallbackMessage(bytes);
-      byte[] ciphertext = sealedSessionCipher.encrypt(signalProtocolAddress, unidentifiedAccess.get().getUnidentifiedCertificate(), message);
-      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE, deviceID, 0, Base64.encodeBytes(ciphertext));
-    } else {
-      return new OutgoingPushMessage(SignalServiceProtos.Envelope.Type.FALLBACK_MESSAGE_VALUE, deviceID, 0, Base64.encodeBytes(bytes));
-    }
-  }
-
-  private OutgoingPushMessage getSSKEncryptedMessage(String groupPublicKey, UnidentifiedAccess unidentifiedAccess, byte[] plaintext)
-      throws InvalidKeyException, UntrustedIdentityException, IOException
-  {
-      int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-      SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(groupPublicKey, deviceID);
-      SignalServiceCipher cipher = new SignalServiceCipher(localAddress, store, sskDatabase, sessionResetImpl, sessionProtocolImpl, null);
-      try {
-          return cipher.encrypt(signalProtocolAddress, Optional.of(unidentifiedAccess), plaintext);
-      } catch (org.session.libsignal.libsignal.UntrustedIdentityException e) {
-          throw new UntrustedIdentityException("Untrusted identity", groupPublicKey, e.getUntrustedIdentity());
-      }
-  }
-
-  private OutgoingPushMessage getEncryptedMessage(PushServiceSocket            socket,
-                                                  SignalServiceAddress         recipient,
-                                                  Optional<UnidentifiedAccess> unidentifiedAccess,
-                                                  byte[]                       plaintext,
-                                                  boolean                      isClosedGroup)
-      throws IOException, InvalidKeyException, UntrustedIdentityException
-  {
-    Log.d("Loki", "Using Signal cipher.");
-    int deviceID = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getNumber(), deviceID);
-    SignalServiceCipher cipher = new SignalServiceCipher(localAddress, store, sskDatabase, sessionResetImpl, sessionProtocolImpl, null);
-
-    try {
-      String contactPublicKey = recipient.getNumber();
-      PreKeyBundle preKeyBundle = preKeyBundleDatabase.getPreKeyBundle(contactPublicKey);
-      if (preKeyBundle == null) {
-        if (!store.containsSession(signalProtocolAddress)) {
-          SessionManagementProtocol.shared.repairSessionIfNeeded(recipient, isClosedGroup);
-          // Loki - Remove this when we have shared sender keys
-          // ========
-          if (SessionManagementProtocol.shared.shouldIgnoreMissingPreKeyBundleException(isClosedGroup)) {
-            return null;
-          }
-          // ========
-          throw new InvalidKeyException("Pre key bundle not found for: " + recipient.getNumber() + ".");
-        }
-      } else {
-        try {
-          SignalProtocolAddress address = new SignalProtocolAddress(contactPublicKey, preKeyBundle.getDeviceId());
-          SessionBuilder sessionBuilder = new SessionBuilder(store, address);
-          sessionBuilder.process(preKeyBundle);
-          // Loki - Discard the pre key bundle once the session has been established
-          preKeyBundleDatabase.removePreKeyBundle(contactPublicKey);
-        } catch (org.session.libsignal.libsignal.UntrustedIdentityException e) {
-          throw new UntrustedIdentityException("Untrusted identity key", recipient.getNumber(), preKeyBundle.getIdentityKey());
-        }
-        if (eventListener.isPresent()) {
-          eventListener.get().onSecurityEvent(recipient);
-        }
-      }
-    } catch (InvalidKeyException e) {
-      throw new IOException(e);
-    }
-
-    // Loki - Ensure all session processing has finished
-    synchronized (SESSION_LOCK) {
-      try {
-        return cipher.encrypt(signalProtocolAddress, unidentifiedAccess, plaintext);
-      } catch (org.session.libsignal.libsignal.UntrustedIdentityException e) {
-        throw new UntrustedIdentityException("Untrusted on send", recipient.getNumber(), e.getUntrustedIdentity());
-      }
-    }
+    return new OutgoingPushMessageList(publicKey, timestamp, messages, false);
   }
 
   private Optional<UnidentifiedAccess> getTargetUnidentifiedAccess(Optional<UnidentifiedAccessPair> unidentifiedAccess) {

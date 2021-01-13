@@ -33,10 +33,6 @@ import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
-import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -56,6 +52,8 @@ import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionMana
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.thoughtcrime.securesms.loki.dialogs.*
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
@@ -201,14 +199,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
-        // Clear all data if this is a secondary device
-        if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
-            TextSecurePreferences.setWasUnlinked(this, true)
-            ApplicationContext.getInstance(this).clearAllData()
-        }
-
-        // Perform chat sessions reset if requested (usually happens after backup restoration).
-        scheduleResetAllSessionsIfRequested(this)
     }
 
     override fun onResume() {
@@ -220,6 +210,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
         }
+        showKeyPairMigrationSheetIfNeeded()
+        showKeyPairMigrationSuccessSheetIfNeeded()
+    }
+
+    private fun showKeyPairMigrationSheetIfNeeded() {
+        if (KeyPairUtilities.hasV2KeyPair(this)) { return }
+        val keyPairMigrationSheet = KeyPairMigrationBottomSheet()
+        keyPairMigrationSheet.show(supportFragmentManager, keyPairMigrationSheet.tag)
+    }
+
+    private fun showKeyPairMigrationSuccessSheetIfNeeded() {
+        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) { return }
+        val keyPairMigrationSuccessSheet = KeyPairMigrationSuccessBottomSheet()
+        keyPairMigrationSuccessSheet.show(supportFragmentManager, keyPairMigrationSuccessSheet.tag)
+        TextSecurePreferences.setIsMigratingKeyPair(this, false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -323,13 +328,23 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
+        val isClosedGroup = recipient.address.isClosedGroup
+        val dialogMessage: String
+        if (recipient.isGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
+            if (group != null && group.admins.map { it.toPhoneString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
+                dialogMessage = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
+            } else {
+                dialogMessage = resources.getString(R.string.activity_home_leave_group_dialog_message)
+            }
+        } else {
+            dialogMessage = resources.getString(R.string.activity_home_delete_conversation_dialog_message)
+        }
         val dialog = AlertDialog.Builder(this)
         dialog.setMessage(dialogMessage)
         dialog.setPositiveButton(R.string.yes) { _, _ -> lifecycleScope.launch(Dispatchers.Main) {
             val context = this@HomeActivity as Context
 
-            val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
                 var isSSKBasedClosedGroup: Boolean
@@ -342,7 +357,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     isSSKBasedClosedGroup = false
                 }
                 if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocol.leave(context, groupPublicKey!!)
+                    ClosedGroupsProtocolV2.leave(context, groupPublicKey!!)
                 } else if (!ClosedGroupsProtocol.leaveLegacyGroup(context, recipient)) {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch

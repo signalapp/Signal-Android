@@ -9,6 +9,7 @@ package org.session.libsignal.service.api.crypto;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.InvalidMetadataVersionException;
 import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -84,7 +85,9 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMes
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Verified;
 import org.session.libsignal.service.internal.util.Base64;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
+import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupUtilities;
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
@@ -116,6 +119,7 @@ public class SignalServiceCipher {
   private final SharedSenderKeysDatabaseProtocol sskDatabase;
   private final SignalServiceAddress             localAddress;
   private final SessionProtocol                  sessionProtocolImpl;
+  private final LokiAPIDatabaseProtocol          apiDB;
   private final CertificateValidator             certificateValidator;
 
   public SignalServiceCipher(SignalServiceAddress localAddress,
@@ -123,6 +127,7 @@ public class SignalServiceCipher {
                              SharedSenderKeysDatabaseProtocol sskDatabase,
                              SessionResetProtocol sessionResetProtocol,
                              SessionProtocol sessionProtocolImpl,
+                             LokiAPIDatabaseProtocol apiDB,
                              CertificateValidator certificateValidator)
   {
     this.signalProtocolStore  = signalProtocolStore;
@@ -130,6 +135,7 @@ public class SignalServiceCipher {
     this.sskDatabase          = sskDatabase;
     this.localAddress         = localAddress;
     this.sessionProtocolImpl  = sessionProtocolImpl;
+    this.apiDB                = apiDB;
     this.certificateValidator = certificateValidator;
   }
 
@@ -190,7 +196,7 @@ public class SignalServiceCipher {
       ProtocolUntrustedIdentityException, ProtocolNoSessionException,
       ProtocolInvalidVersionException, ProtocolInvalidMessageException,
       ProtocolInvalidKeyException, ProtocolDuplicateMessageException,
-      SelfSendException, IOException
+      SelfSendException, IOException, SessionProtocol.Exception
 
   {
     try {
@@ -309,7 +315,7 @@ public class SignalServiceCipher {
       ProtocolLegacyMessageException, ProtocolInvalidKeyException,
       ProtocolInvalidVersionException, ProtocolInvalidMessageException,
       ProtocolInvalidKeyIdException, ProtocolNoSessionException,
-      SelfSendException, IOException
+      SelfSendException, IOException, SessionProtocol.Exception
   {
     try {
       SignalProtocolAddress sourceAddress       = new SignalProtocolAddress(envelope.getSource(), envelope.getSourceDevice());
@@ -321,23 +327,13 @@ public class SignalServiceCipher {
       int sessionVersion;
 
       if (envelope.isClosedGroupCiphertext()) {
-        try {
-          // Try the Session protocol
-          kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(envelope);
-          paddedMessage = plaintextAndSenderPublicKey.getFirst();
-          String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-          if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
-          metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-          sessionVersion = sessionCipher.getSessionVersion();
-        } catch (Exception exception) {
-          // Fall back on shared sender keys
-          Pair<byte[], String> plaintextAndSenderPublicKey = ClosedGroupUtilities.decrypt(envelope);
-          String senderPublicKey = plaintextAndSenderPublicKey.second();
-          if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
-          paddedMessage = plaintextAndSenderPublicKey.first();
-          metadata = new Metadata(senderPublicKey, envelope.getSourceDevice(), envelope.getTimestamp(), false);
-          sessionVersion = sessionCipher.getSessionVersion();
-        }
+        String groupPublicKey = envelope.getSource();
+        kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = SessionProtocolUtilities.INSTANCE.decryptClosedGroupCiphertext(ciphertext, groupPublicKey, apiDB, sessionProtocolImpl);
+        paddedMessage = plaintextAndSenderPublicKey.getFirst();
+        String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
+        if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
+        metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
+        sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isPreKeySignalMessage()) {
         paddedMessage  = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
         metadata       = new Metadata(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), false);
@@ -347,21 +343,12 @@ public class SignalServiceCipher {
         metadata       = new Metadata(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isUnidentifiedSender()) {
-        try {
-          // Try the Session protocol
-          kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(envelope);
-          paddedMessage = plaintextAndSenderPublicKey.getFirst();
-          String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-          metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-          sessionVersion = sealedSessionCipher.getSessionVersion(new SignalProtocolAddress(metadata.getSender(), metadata.getSenderDevice()));
-        } catch (Exception exception) {
-          // Fall back on the Signal protocol
-          Pair<SignalProtocolAddress, Pair<Integer, byte[]>> results = sealedSessionCipher.decrypt(certificateValidator, ciphertext, envelope.getServerTimestamp(), envelope.getSource());
-          Pair<Integer, byte[]> data = results.second();
-          paddedMessage = data.second();
-          metadata = new Metadata(results.first().getName(), results.first().getDeviceId(), envelope.getTimestamp(), false);
-          sessionVersion = sealedSessionCipher.getSessionVersion(new SignalProtocolAddress(metadata.getSender(), metadata.getSenderDevice()));
-        }
+        ECKeyPair userX25519KeyPair = apiDB.getUserX25519KeyPair();
+        kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(ciphertext, userX25519KeyPair);
+        paddedMessage = plaintextAndSenderPublicKey.getFirst();
+        String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
+        metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
+        sessionVersion = sealedSessionCipher.getSessionVersion(new SignalProtocolAddress(metadata.getSender(), metadata.getSenderDevice()));
       } else {
         throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());
       }
@@ -400,6 +387,7 @@ public class SignalServiceCipher {
     List<Preview>                  previews                    = createPreviews(content);
     Sticker                        sticker                     = createSticker(content);
     ClosedGroupUpdate              closedGroupUpdate           = content.getClosedGroupUpdate();
+    SignalServiceProtos.ClosedGroupUpdateV2 closedGroupUpdateV2         = content.getClosedGroupUpdateV2();
     boolean                        isDeviceUnlinkingRequest    = ((content.getFlags() & DataMessage.Flags.DEVICE_UNLINKING_REQUEST_VALUE) != 0);
 
     for (AttachmentPointer pointer : content.getAttachmentsList()) {
@@ -428,6 +416,7 @@ public class SignalServiceCipher {
                                         null,
                                         null,
                                         closedGroupUpdate,
+                                        closedGroupUpdateV2,
                                         isDeviceUnlinkingRequest);
   }
 

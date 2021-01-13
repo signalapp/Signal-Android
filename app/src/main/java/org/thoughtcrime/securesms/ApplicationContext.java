@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
 import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.session.libsession.messaging.threads.Address;
@@ -582,24 +583,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     });
   }
 
-  //FIXME AC: Using this method to cleanup app data is unsafe due to potential concurrent
-  // activity that still might be using the data that is being deleted here.
-  // The most reliable and safe way to do this is to use official API call:
-  // https://developer.android.com/reference/android/app/ActivityManager.html#clearApplicationUserData()
-  // The downside is it kills the app in the process and there's no any conventional way to start
-  // another activity when the task is done.
-  // Dev community is in demand for such a feature, so check on it some time in the feature
-  // and replace our implementation with the API call when it's safe to do so.
-  // Here's a feature request related https://issuetracker.google.com/issues/174903931
-  public void clearAllData() {
+  public void clearAllData(boolean isMigratingToV2KeyPair) {
     String token = TextSecurePreferences.getFCMToken(this);
     if (token != null && !token.isEmpty()) {
       LokiPushNotificationManager.unregister(token, this);
     }
-    boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
+    String displayName = TextSecurePreferences.getProfileName(this);
+    boolean isUsingFCM = TextSecurePreferences.isUsingFCM(this);
     TextSecurePreferences.clearAll(this);
-    TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
-//    MasterSecretUtil.clear(this);
+    if (isMigratingToV2KeyPair) {
+      TextSecurePreferences.setIsMigratingKeyPair(this, true);
+      TextSecurePreferences.setIsUsingFCM(this, isUsingFCM);
+      TextSecurePreferences.setProfileName(this, displayName);
+    }
+    MasterSecretUtil.clear(this);
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
     }
@@ -625,38 +622,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   public void sendSessionRequestIfNeeded(@NotNull String publicKey) {
-//    // It's never necessary to establish a session with self
-//    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-//    if (publicKey.equals(userPublicKey)) { return; }
-//    // Check that we don't already have a session
-//    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
-//    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
-//    if (hasSession) { return; }
-//    // Check that we didn't already send a session request
-//    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-//    boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
-//    boolean hasSentSessionRequestExpired = hasSentSessionRequestExpired(publicKey);
-//    if (hasSentSessionRequestExpired) {
-//      apiDB.setSessionRequestSentTimestamp(publicKey, 0);
-//    }
-//    if (hasSentSessionRequest && !hasSentSessionRequestExpired) { return; }
-//    // Send the session request
-//    long timestamp = new Date().getTime();
-//    apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
-//    SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
-//    jobManager.add(job);
 
-
-    // It's never necessary to establish a session with self
-    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (publicKey.equals(userPublicKey)) { return; }
-    // Check that we don't already have a session
-    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
-    TextSecureSessionStore sessionStore = new TextSecureSessionStore(this);
-    boolean hasSession = sessionStore.containsSession(address);
-    if (!hasSession) {
-      sessionStore.storeSession(address, new SessionRecord());
-    }
   }
 
   @Override

@@ -25,7 +25,7 @@ public object TTLUtilities {
         val dayInMs = 24 * hourInMs
         return when (messageType) {
             // Unimportant control messages
-            MessageType.Address, MessageType.Call, MessageType.TypingIndicator, MessageType.Verified -> 1 * minuteInMs
+            MessageType.Address, MessageType.Call, MessageType.TypingIndicator, MessageType.Verified -> 20 * 1000
             // Somewhat important control messages
             MessageType.DeviceLink -> 1 * hourInMs
             // Important control messages
