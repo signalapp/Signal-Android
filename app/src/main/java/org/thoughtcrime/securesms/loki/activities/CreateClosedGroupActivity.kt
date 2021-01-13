@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.lang.ref.WeakReference
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
@@ -122,7 +123,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         isLoading = true
         loaderContainer.fadeIn()
-        ClosedGroupsProtocol.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
+        ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))

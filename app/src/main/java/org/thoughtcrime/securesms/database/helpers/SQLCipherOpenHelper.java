@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -54,12 +55,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV17                          = 38;
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
   //TODO Merge all "refactor" migrations to one before pushing to the main repo.
-  private static final int lokiV19_REFACTOR0                = 40;
+  private static final int lokiV19                          = 40;
   private static final int lokiV19_REFACTOR1                = 41;
   private static final int lokiV19_REFACTOR2                = 42;
 
+
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV19_REFACTOR1;
+  private static final int    DATABASE_VERSION = lokiV19;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -121,6 +123,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateSessionRequestProcessedTimestampTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupPublicKeyTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOpenGroupProfilePictureTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreateClosedGroupEncryptionKeyPairsTable());
+    db.execSQL(LokiAPIDatabase.getCreateClosedGroupPublicKeysTable());
     db.execSQL(LokiMessageDatabase.getCreateMessageIDTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateErrorMessageTableCommand());
@@ -217,8 +221,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       // Many classes were removed. We need to update DB structure and data to match the code changes.
       //TODO Merge "refactor" changes in one migration.
-      if (oldVersion < lokiV19_REFACTOR0) {
-        deleteJobRecords(db, "ServiceOutageDetectionJob");
+      if (oldVersion < lokiV19) {
+        db.execSQL(LokiAPIDatabase.getCreateClosedGroupEncryptionKeyPairsTable());
+        db.execSQL(LokiAPIDatabase.getCreateClosedGroupPublicKeysTable());
+        ClosedGroupsMigration.INSTANCE.perform(db);
       }
       if (oldVersion < lokiV19_REFACTOR1) {
         db.execSQL("DROP TABLE identities");

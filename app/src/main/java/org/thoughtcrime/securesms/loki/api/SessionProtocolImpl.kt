@@ -6,11 +6,13 @@ import com.goterl.lazycode.lazysodium.LazySodiumAndroid
 import com.goterl.lazycode.lazysodium.SodiumAndroid
 import com.goterl.lazycode.lazysodium.interfaces.Box
 import com.goterl.lazycode.lazysodium.interfaces.Sign
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -45,25 +47,10 @@ class SessionProtocolImpl(private val context: Context) : SessionProtocol {
         return ciphertext
     }
 
-    override fun decrypt(envelope: SignalServiceEnvelope): Pair<ByteArray, String> {
-        val ciphertext = envelope.content ?: throw SessionProtocol.Exception.NoData
-        val recipientX25519PrivateKey: ByteArray
-        val recipientX25519PublicKey: ByteArray
-        when (envelope.type) {
-            UNIDENTIFIED_SENDER_VALUE -> {
-                recipientX25519PrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
-                recipientX25519PublicKey = Hex.fromStringCondensed(TextSecurePreferences.getLocalNumber(context).removing05PrefixIfNeeded())
-            }
-            CLOSED_GROUP_CIPHERTEXT_VALUE -> {
-                val hexEncodedGroupPublicKey = envelope.source
-                val sskDB = DatabaseFactory.getSSKDatabase(context)
-                if (!sskDB.isSSKBasedClosedGroup(hexEncodedGroupPublicKey)) { throw SessionProtocol.Exception.InvalidGroupPublicKey }
-                val hexEncodedGroupPrivateKey = sskDB.getClosedGroupPrivateKey(hexEncodedGroupPublicKey) ?: throw SessionProtocol.Exception.NoGroupPrivateKey
-                recipientX25519PrivateKey = Hex.fromStringCondensed(hexEncodedGroupPrivateKey)
-                recipientX25519PublicKey = Hex.fromStringCondensed(hexEncodedGroupPublicKey.removing05PrefixIfNeeded())
-            }
-            else -> throw AssertionError()
-        }
+    override fun decrypt(ciphertext: ByteArray, x25519KeyPair: ECKeyPair): Pair<ByteArray, String> {
+        val recipientX25519PrivateKey = x25519KeyPair.privateKey.serialize()
+        val recipientX25519PublicKey = Hex.fromStringCondensed(x25519KeyPair.hexEncodedPublicKey.removing05PrefixIfNeeded())
+        Log.d("Test", "recipientX25519PublicKey: $recipientX25519PublicKey")
         val sodium = LazySodiumAndroid(SodiumAndroid())
         val signatureSize = Sign.BYTES
         val ed25519PublicKeySize = Sign.PUBLICKEYBYTES

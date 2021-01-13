@@ -412,7 +412,8 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_DIGEST)),
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1,
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_URL)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)));
+                              cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)),
+                              cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
     }
 
     @Override
@@ -437,10 +438,12 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     private final boolean       mms;
     private final String        url;
     private final List<Address> admins;
+    private final long          createdAt;
 
     public GroupRecord(String id, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
-                       String relay, boolean active, byte[] avatarDigest, boolean mms, String url, String admins)
+                       String relay, boolean active, byte[] avatarDigest, boolean mms,
+                       String url, String admins, long createdAt)
     {
       this.id                = id;
       this.title             = title;
@@ -453,6 +456,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
       this.active            = active;
       this.mms               = mms;
       this.url               = url;
+      this.createdAt         = createdAt;
 
       if (!TextUtils.isEmpty(members)) this.members = Address.fromSerializedList(members, ',');
       else                             this.members = new LinkedList<>();
@@ -522,5 +526,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     public String getUrl() { return url; }
 
     public List<Address> getAdmins() { return admins; }
+
+    public long getCreatedAt() { return createdAt; }
   }
 }
