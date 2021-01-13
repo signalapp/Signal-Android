@@ -13,6 +13,8 @@ public final class SettingsValues extends SignalStoreValues {
   public static final String LINK_PREVIEWS          = "settings.link_previews";
   public static final String KEEP_MESSAGES_DURATION = "settings.keep_messages_duration";
 
+  public static final String PREFER_SYSTEM_CONTACT_PHOTOS = "settings.prefer.system.contact.photos";
+
   private static final String SIGNAL_BACKUP_DIRECTORY        = "settings.signal.backup.directory";
   private static final String SIGNAL_LATEST_BACKUP_DIRECTORY = "settings.signal.backup.directory,latest";
 
@@ -67,6 +69,14 @@ public final class SettingsValues extends SignalStoreValues {
   public void setSignalBackupDirectory(@NonNull Uri uri) {
     putString(SIGNAL_BACKUP_DIRECTORY, uri.toString());
     putString(SIGNAL_LATEST_BACKUP_DIRECTORY, uri.toString());
+  }
+
+  public void setPreferSystemContactPhotos(boolean preferSystemContactPhotos) {
+    putBoolean(PREFER_SYSTEM_CONTACT_PHOTOS, preferSystemContactPhotos);
+  }
+
+  public boolean isPreferSystemContactPhotos() {
+    return getBoolean(PREFER_SYSTEM_CONTACT_PHOTOS, false);
   }
 
   public @Nullable Uri getSignalBackupDirectory() {

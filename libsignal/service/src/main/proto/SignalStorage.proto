@@ -134,4 +134,5 @@ message AccountRecord {
            PhoneNumberSharingMode phoneNumberSharingMode = 12;
            bool                   unlistedPhoneNumber    = 13;
   repeated PinnedConversation     pinnedConversations    = 14;
+           bool                   preferContactAvatars   = 15;
 }

@@ -2,29 +2,26 @@ package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.ListPreference;
-import androidx.preference.Preference;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.webrtc.CallBandwidthMode;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 
 public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
+  private static final String PREFER_SYSTEM_CONTACT_PHOTOS = "pref_system_contact_photos";
+
+  private final ThrottledDebouncer refreshDebouncer = new ThrottledDebouncer(500);
+
   @Override
   public void onCreate(Bundle paramBundle) {
     super.onCreate(paramBundle);
@@ -36,6 +33,14 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
       goToBackupsPreferenceFragment();
       return true;
     });
+
+    findPreference(PREFER_SYSTEM_CONTACT_PHOTOS)
+        .setOnPreferenceChangeListener((preference, newValue) -> {
+          SignalStore.settings().setPreferSystemContactPhotos(newValue == Boolean.TRUE);
+          refreshDebouncer.publish(ConversationUtil::refreshRecipientShortcuts);
+          StorageSyncHelper.scheduleSyncForDataChange();
+          return true;
+        });
 
     initializeListSummary((ListPreference) findPreference(TextSecurePreferences.MESSAGE_BODY_TEXT_SIZE_PREF));
   }

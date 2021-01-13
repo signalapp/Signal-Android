@@ -2331,6 +2331,8 @@
     <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use Signal for all incoming multimedia messages</string>
     <string name="preferences__pref_enter_sends_title">Enter key sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
+    <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
+    <string name="preferences__display_contact_photos_from_your_address_book_if_available">Display contact photos from your address book if available</string>
     <string name="preferences__generate_link_previews">Generate link previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__choose_identity">Choose identity</string>

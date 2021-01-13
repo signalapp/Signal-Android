@@ -431,6 +431,7 @@ public final class StorageSyncHelper {
                                                          .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isUnlisted())
                                                          .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                          .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
+                                                         .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -452,6 +453,7 @@ public final class StorageSyncHelper {
     SignalStore.settings().setLinkPreviewsEnabled(update.isLinkPreviewsEnabled());
     SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
     SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getPhoneNumberSharingMode()));
+    SignalStore.settings().setPreferSystemContactPhotos(update.isPreferContactAvatars());
 
     if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));
