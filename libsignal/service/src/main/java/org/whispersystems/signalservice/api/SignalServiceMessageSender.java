@@ -275,20 +275,6 @@ public class SignalServiceMessageSender {
       sendMessage(localAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, null);
     }
 
-    // TODO [greyson][session] Delete this when we delete the button
-    if (message.isEndSession()) {
-      if (recipient.getUuid().isPresent()) {
-        store.deleteAllSessions(recipient.getUuid().get().toString());
-      }
-      if (recipient.getNumber().isPresent()) {
-        store.deleteAllSessions(recipient.getNumber().get());
-      }
-
-      if (eventListener.isPresent()) {
-        eventListener.get().onSecurityEvent(recipient);
-      }
-    }
-
     return result;
   }
 

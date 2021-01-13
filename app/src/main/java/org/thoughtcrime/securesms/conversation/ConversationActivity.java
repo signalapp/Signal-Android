@@ -852,9 +852,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     inflater.inflate(R.menu.conversation, menu);
 
-    if (isSingleConversation() && isSecureText) {
-      inflater.inflate(R.menu.conversation_secure, menu);
-    } else if (isSingleConversation()) {
+    if (isSingleConversation() && !isSecureText) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
@@ -973,7 +971,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
-    case R.id.menu_reset_secure_session:      handleResetSecureSession();                        return true;
     case R.id.menu_group_recipients:          handleDisplayGroupRecipients();                    return true;
     case R.id.menu_distribution_broadcast:    handleDistributionBroadcastEnabled(item);          return true;
     case R.id.menu_distribution_conversation: handleDistributionConversationEnabled(item);       return true;
@@ -1186,36 +1183,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
       intent.putExtra(Intent.EXTRA_TEXT, inviteText);
       startActivity(intent);
     }
-  }
-
-  private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
-    builder.setIcon(R.drawable.ic_warning);
-    builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
-    builder.setPositiveButton(R.string.ConversationActivity_reset, (dialog, which) -> {
-      if (isSingleConversation()) {
-        final Context context = getApplicationContext();
-
-        OutgoingEndSessionMessage endSessionMessage =
-            new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
-
-        new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
-          @Override
-          protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-            return MessageSender.send(context, messages[0], threadId, false, null);
-          }
-
-          @Override
-          protected void onPostExecute(Long result) {
-            sendComplete(result);
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
-      }
-    });
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
   }
 
   private void handleViewMedia() {
