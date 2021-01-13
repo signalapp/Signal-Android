@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Derbyn</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Sgyrsiau diweddar</string>
-  <string name="ContactsCursorLoader_contacts">Cysylltiadau</string>
+  <string name="ContactsCursorLoader_contacts">Cysylltiadau (%d)</string>
   <string name="ContactsCursorLoader_groups">Grwpiau</string>
   <string name="ContactsCursorLoader_phone_number_search">Chwiliad rhif ffôn</string>
   <string name="ContactsCursorLoader_username_search">Chwiliad enw defnyddiwr</string>

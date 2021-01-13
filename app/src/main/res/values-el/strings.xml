@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Αποδοχή</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συνομιλίες</string>
-  <string name="ContactsCursorLoader_contacts">Επαφές</string>
+  <string name="ContactsCursorLoader_contacts">Επαφές (%d)</string>
   <string name="ContactsCursorLoader_groups">Ομάδες</string>
   <string name="ContactsCursorLoader_phone_number_search">Εύρεση τηλεφωνικού αριθμού</string>
   <string name="ContactsCursorLoader_username_search">Εύρεση ονόματος χρήστη</string>

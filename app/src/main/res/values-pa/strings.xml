@@ -138,7 +138,7 @@
   <string name="ConfirmIdentityDialog_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ਹਾਲ ਦੀਆਂ ਗੱਲਾਂ</string>
-  <string name="ContactsCursorLoader_contacts">ਸੰਪਰਕ</string>
+  <string name="ContactsCursorLoader_contacts">ਸੰਪਰਕ (%d)</string>
   <string name="ContactsCursorLoader_groups">ਗਰੁੱਪ</string>
   <string name="ContactsCursorLoader_phone_number_search">ਫੋਨ ਨੰਬਰ ਖੋਜ</string>
   <string name="ContactsCursorLoader_username_search">ਉਪਭੋਗਤਾ ਖੋਜ</string>

@@ -140,7 +140,7 @@
   <string name="ConfirmIdentityDialog_accept">Прихвати</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Недавна ћаскања</string>
-  <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="ContactsCursorLoader_contacts">Контакти (%d)</string>
   <string name="ContactsCursorLoader_groups">Групе</string>
   <string name="ContactsCursorLoader_phone_number_search">Претрага броја телефона</string>
   <string name="ContactsCursorLoader_username_search">Претрага корисничког имена</string>

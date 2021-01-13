@@ -221,7 +221,7 @@ public class ContactsCursorLoader extends CursorLoader {
     RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(getContext());
     Integer contactCount = recipientDatabase != null ? recipientDatabase.getRegistered().size() : 0;
     contactsHeader.addRow(new Object[] { null,
-                                         getContext().getString(R.string.ContactsCursorLoader_contacts, contactCount.toString()),
+                                         getContext().getString(R.string.ContactsCursorLoader_contacts, contactCount),
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",

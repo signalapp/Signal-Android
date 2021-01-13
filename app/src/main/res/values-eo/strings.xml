@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Akcepti</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Lastaj interparoloj</string>
-  <string name="ContactsCursorLoader_contacts">Kontaktaro</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktaro (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupoj</string>
   <string name="ContactsCursorLoader_phone_number_search">Serĉo de telefonnumero</string>
   <string name="ContactsCursorLoader_username_search">Serĉo de uzantnomo</string>

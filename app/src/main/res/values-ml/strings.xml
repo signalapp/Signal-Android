@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">സ്വീകരിക്കുക</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">സമീപകാല ചാറ്റുകൾ</string>
-  <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
+  <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ (%d)</string>
   <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
   <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
   <string name="ContactsCursorLoader_username_search">ഉപയോക്തൃനാമ തിരയൽ</string>

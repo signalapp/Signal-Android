@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Accepta</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Converses recents</string>
-  <string name="ContactsCursorLoader_contacts">Contactes</string>
+  <string name="ContactsCursorLoader_contacts">Contactes (%d)</string>
   <string name="ContactsCursorLoader_groups">Grups</string>
   <string name="ContactsCursorLoader_phone_number_search">Cerca de número de telèfon</string>
   <string name="ContactsCursorLoader_username_search">Cerca de nom d\'usuari</string>

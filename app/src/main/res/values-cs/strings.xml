@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Přijmout</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávné konverzace</string>
-  <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_contacts">Kontakty (%d)</string>
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <string name="ContactsCursorLoader_phone_number_search">Vyhledání telefonního čísla</string>
   <string name="ContactsCursorLoader_username_search">Vyhledání uživatelského jména</string>

@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ಇತ್ತೀಚಿನ ಚಾಟ್‌‌ಗಳು</string>
-  <string name="ContactsCursorLoader_contacts">ಸಂಪರ್ಕಗಳು</string>
+  <string name="ContactsCursorLoader_contacts">ಸಂಪರ್ಕಗಳು (%d)</string>
   <string name="ContactsCursorLoader_groups">ಗುಂಪುಗಳು</string>
   <string name="ContactsCursorLoader_phone_number_search">ದೂರವಾಣಿ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ</string>
   <string name="ContactsCursorLoader_username_search">ಬಳಕೆದಾರಹೆಸರು ಹುಡುಕಾಟ</string>

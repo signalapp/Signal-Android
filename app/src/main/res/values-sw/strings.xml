@@ -126,7 +126,7 @@
   <string name="ConfirmIdentityDialog_accept">Kubali</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Gumzo za hivi karibuni</string>
-  <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
+  <string name="ContactsCursorLoader_contacts">Mawasiliano (%d)</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
   <string name="ContactsCursorLoader_phone_number_search">Utafutaji wa nambari ya simu</string>
   <string name="ContactsCursorLoader_username_search">Utafutaji wa jina la mtumizi</string>

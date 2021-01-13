@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Priimti</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Paskiausi pokalbiai</string>
-  <string name="ContactsCursorLoader_contacts">Adresatai</string>
+  <string name="ContactsCursorLoader_contacts">Adresatai (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupės</string>
   <string name="ContactsCursorLoader_phone_number_search">Ieškoti telefono numerio</string>
   <string name="ContactsCursorLoader_username_search">Ieškoti naudotojo vardo</string>

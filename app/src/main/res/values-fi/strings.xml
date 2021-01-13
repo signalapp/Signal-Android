@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Hyväksy</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
-  <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
+  <string name="ContactsCursorLoader_contacts">Yhteystiedot (%d)</string>
   <string name="ContactsCursorLoader_groups">Ryhmät</string>
   <string name="ContactsCursorLoader_phone_number_search">Puhelinnumerohaku</string>
   <string name="ContactsCursorLoader_username_search">Käyttäjätunnushaku</string>

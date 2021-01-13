@@ -156,7 +156,7 @@
   <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Trò chuyện gần đây</string>
-  <string name="ContactsCursorLoader_contacts">Danh bạ</string>
+  <string name="ContactsCursorLoader_contacts">Danh bạ (%d)</string>
   <string name="ContactsCursorLoader_groups">Nhóm</string>
   <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
   <string name="ContactsCursorLoader_username_search">Tìm kiếm tên người dùng</string>

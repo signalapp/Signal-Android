@@ -143,7 +143,7 @@
   <string name="ConfirmIdentityDialog_accept">Apstiprināt</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nesenās sarunas</string>
-  <string name="ContactsCursorLoader_contacts">Kontakti</string>
+  <string name="ContactsCursorLoader_contacts">Kontakti (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupas</string>
   <string name="ContactsCursorLoader_phone_number_search">Tālruņa numura meklēšana</string>
   <string name="ContactsCursorLoader_username_search">Lietotājvārda meklēšana</string>

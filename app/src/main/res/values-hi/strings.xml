@@ -125,7 +125,7 @@
   <string name="ConfirmIdentityDialog_accept">स्वीकृत </string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">नवीनतम बातचीत </string>
-  <string name="ContactsCursorLoader_contacts">संपर्क</string>
+  <string name="ContactsCursorLoader_contacts">संपर्क (%d)</string>
   <string name="ContactsCursorLoader_groups">समूह </string>
   <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
   <string name="ContactsCursorLoader_username_search">उपयोगकर्ता का नाम खोजें</string>

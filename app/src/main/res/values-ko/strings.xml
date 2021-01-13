@@ -151,7 +151,7 @@
   <string name="ConfirmIdentityDialog_accept">수락</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">최근 대화</string>
-  <string name="ContactsCursorLoader_contacts">연락처</string>
+  <string name="ContactsCursorLoader_contacts">연락처 (%d)</string>
   <string name="ContactsCursorLoader_groups">그룹</string>
   <string name="ContactsCursorLoader_phone_number_search">전화번호 검색</string>
   <string name="ContactsCursorLoader_username_search">사용자 이름 검색</string>

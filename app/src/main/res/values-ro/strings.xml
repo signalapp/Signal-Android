@@ -162,7 +162,7 @@
   <string name="ConfirmIdentityDialog_accept">Acceptați</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Conversații recente</string>
-  <string name="ContactsCursorLoader_contacts">Contacte</string>
+  <string name="ContactsCursorLoader_contacts">Contacte (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupuri</string>
   <string name="ContactsCursorLoader_phone_number_search">Căutare număr de telefon</string>
   <string name="ContactsCursorLoader_username_search">Căutare nume de utilizator</string>

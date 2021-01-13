@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Fjalosje së fundi</string>
-  <string name="ContactsCursorLoader_contacts">Kontakte</string>
+  <string name="ContactsCursorLoader_contacts">Kontakte (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Kërkim numri telefoni</string>
   <string name="ContactsCursorLoader_username_search">Kërkim emri përdoruesit</string>

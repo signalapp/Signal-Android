@@ -136,7 +136,7 @@
   <string name="ConfirmIdentityDialog_accept">అంగీకరించండి</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ఇటీవలి చాట్లు</string>
-  <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
+  <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్ (%d)</string>
   <string name="ContactsCursorLoader_groups">సమూహాలు</string>
   <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
   <string name="ContactsCursorLoader_username_search">వినియోగదారు పేరు శోధన</string>

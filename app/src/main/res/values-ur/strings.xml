@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">قبول کریں</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">موجودہ گفتگو</string>
-  <string name="ContactsCursorLoader_contacts">رابطے</string>
+  <string name="ContactsCursorLoader_contacts">رابطے(%d)</string>
   <string name="ContactsCursorLoader_groups">گروپس</string>
   <string name="ContactsCursorLoader_phone_number_search">فون نمبر تلاش کریں</string>
   <string name="ContactsCursorLoader_username_search">صارف کا نام تلاش کریں</string>

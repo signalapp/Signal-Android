@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Принять</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Недавние чаты</string>
-  <string name="ContactsCursorLoader_contacts">Контакты</string>
+  <string name="ContactsCursorLoader_contacts">Контакты (%d)</string>
   <string name="ContactsCursorLoader_groups">Группы</string>
   <string name="ContactsCursorLoader_phone_number_search">Поиск по номеру телефона</string>
   <string name="ContactsCursorLoader_username_search">Поиск по имени пользователя</string>

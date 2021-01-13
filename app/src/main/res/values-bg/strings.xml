@@ -120,7 +120,7 @@
   <string name="ConfirmIdentityDialog_accept">Приемам</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Последни чатове</string>
-  <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="ContactsCursorLoader_contacts">Контакти (%d)</string>
   <string name="ContactsCursorLoader_groups">Групи</string>
   <string name="ContactsCursorLoader_phone_number_search">Търсене по телефонен номер</string>
   <string name="ContactsCursorLoader_username_search">Търсене по потребтиелско име</string>

@@ -160,7 +160,7 @@
   <string name="ConfirmIdentityDialog_accept">Aanvaarden</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
-  <string name="ContactsCursorLoader_contacts">Contacten</string>
+  <string name="ContactsCursorLoader_contacts">Contacten (%d)</string>
   <string name="ContactsCursorLoader_groups">Groepen</string>
   <string name="ContactsCursorLoader_phone_number_search">Zoeken op telefoonnummer</string>
   <string name="ContactsCursorLoader_username_search">Zoeken op gebruikersnaam</string>

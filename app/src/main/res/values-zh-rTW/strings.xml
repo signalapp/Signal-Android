@@ -156,7 +156,7 @@
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
-  <string name="ContactsCursorLoader_contacts">聯絡人</string>
+  <string name="ContactsCursorLoader_contacts">聯絡人 (%d)</string>
   <string name="ContactsCursorLoader_groups">群組</string>
   <string name="ContactsCursorLoader_phone_number_search">搜尋電話號碼</string>
   <string name="ContactsCursorLoader_username_search">搜尋使用者名稱</string>

@@ -162,7 +162,7 @@
   <string name="ConfirmIdentityDialog_accept">Prihvati</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedavni razgovori</string>
-  <string name="ContactsCursorLoader_contacts">Kontakti</string>
+  <string name="ContactsCursorLoader_contacts">Kontakti (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <string name="ContactsCursorLoader_phone_number_search">Pretraživanje po broju</string>
   <string name="ContactsCursorLoader_username_search">Pretraživanje po korisničkom imenu</string>

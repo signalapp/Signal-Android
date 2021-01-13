@@ -156,7 +156,7 @@
   <string name="ConfirmIdentityDialog_accept">Terima</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Obrolan terbaru</string>
-  <string name="ContactsCursorLoader_contacts">Kontak</string>
+  <string name="ContactsCursorLoader_contacts">Kontak (%d)</string>
   <string name="ContactsCursorLoader_groups">Grup</string>
   <string name="ContactsCursorLoader_phone_number_search">Pencarian nomor telepon</string>
   <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string>

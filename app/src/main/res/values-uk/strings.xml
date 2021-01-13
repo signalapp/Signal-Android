@@ -105,7 +105,7 @@
   <string name="ConfirmIdentityDialog_accept">Прийняти</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Недавні розмови</string>
-  <string name="ContactsCursorLoader_contacts">Контакти</string>
+  <string name="ContactsCursorLoader_contacts">Контакти (%d)</string>
   <string name="ContactsCursorLoader_groups">Групи</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Повідомлення %s</string>

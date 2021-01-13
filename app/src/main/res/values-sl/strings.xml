@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Sprejmi</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedavni pogovori</string>
-  <string name="ContactsCursorLoader_contacts">Stiki</string>
+  <string name="ContactsCursorLoader_contacts">Stiki (%d)</string>
   <string name="ContactsCursorLoader_groups">Skupine</string>
   <string name="ContactsCursorLoader_phone_number_search">Iskanje po telefonskih številkah</string>
   <string name="ContactsCursorLoader_username_search">Iskanje po uporabniških imenih</string>

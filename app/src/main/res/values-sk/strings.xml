@@ -165,7 +165,7 @@
   <string name="ConfirmIdentityDialog_accept">Potvrdiť</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Nedávne chaty</string>
-  <string name="ContactsCursorLoader_contacts">Kontakty</string>
+  <string name="ContactsCursorLoader_contacts">Kontakty (%d)</string>
   <string name="ContactsCursorLoader_groups">Skupiny</string>
   <string name="ContactsCursorLoader_phone_number_search">Vyhľadávanie telefónneho čísla</string>
   <string name="ContactsCursorLoader_username_search">Vyhľadávanie používateľského mena</string>

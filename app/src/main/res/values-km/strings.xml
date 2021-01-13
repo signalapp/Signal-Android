@@ -146,7 +146,7 @@
   <string name="ConfirmIdentityDialog_accept">យល់ព្រម</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
-  <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
+  <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង (%d)</string>
   <string name="ContactsCursorLoader_groups">ក្រុម</string>
   <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
   <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string>

@@ -91,7 +91,7 @@
   <string name="ConfirmIdentityDialog_accept">Baş e</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Gotûbêjên dawî</string>
-  <string name="ContactsCursorLoader_contacts">Navnivîsk</string>
+  <string name="ContactsCursorLoader_contacts">Navnivîsk (%d)</string>
   <string name="ContactsCursorLoader_groups">Kom</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Peyama %s</string>

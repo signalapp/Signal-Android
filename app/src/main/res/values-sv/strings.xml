@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Senaste konversationer</string>
-  <string name="ContactsCursorLoader_contacts">Kontakter</string>
+  <string name="ContactsCursorLoader_contacts">Kontakter (%d)</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefonnummer-sökning</string>
   <string name="ContactsCursorLoader_username_search">Användarnamn-sökning</string>

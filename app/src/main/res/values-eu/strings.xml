@@ -159,7 +159,7 @@
   <string name="ConfirmIdentityDialog_accept">Onartu</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Azken txatak</string>
-  <string name="ContactsCursorLoader_contacts">Kontaktuak</string>
+  <string name="ContactsCursorLoader_contacts">Kontaktuak (%d)</string>
   <string name="ContactsCursorLoader_groups">Taldeak</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefono zenbakia bilatu</string>
   <string name="ContactsCursorLoader_username_search">Erabiltzaile izena bilatu</string>

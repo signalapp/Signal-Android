@@ -171,7 +171,7 @@
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">الدردشات الأحدث</string>
-  <string name="ContactsCursorLoader_contacts">جهات الإتصال</string>
+  <string name="ContactsCursorLoader_contacts">جهات الإتصال(%d)</string>
   <string name="ContactsCursorLoader_groups">مجموعات</string>
   <string name="ContactsCursorLoader_phone_number_search">البحث عن طريق رقم الهاتف</string>
   <string name="ContactsCursorLoader_username_search">البحث عن طريق اسم المستخدم</string>

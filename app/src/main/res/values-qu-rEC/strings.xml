@@ -88,7 +88,7 @@
   <string name="ConfirmIdentityDialog_accept">Arinina</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Chayralla rimarishka</string>
-  <string name="ContactsCursorLoader_contacts">Yupaymashikuna</string>
+  <string name="ContactsCursorLoader_contacts">Yupaymashikuna (%d)</string>
   <string name="ContactsCursorLoader_groups">Tantanakushka mashikuna</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Chaski  %s</string>
