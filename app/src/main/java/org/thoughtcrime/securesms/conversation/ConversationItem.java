@@ -1003,6 +1003,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       //noinspection ConstantConditions
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getDisplayText(), quote.isOriginalMissing(), quote.getAttachment());
       quoteView.setVisibility(View.VISIBLE);
+      quoteView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 
       quoteView.setOnClickListener(view -> {

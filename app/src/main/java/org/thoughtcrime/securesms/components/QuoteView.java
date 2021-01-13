@@ -274,6 +274,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     footerView.setBackgroundColor(author.get().getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
   }
 
+
+  public void setTextSize(int unit, float size) {
+    bodyView.setTextSize(unit, size);
+  }
+
   public long getQuoteId() {
     return id;
   }
