@@ -216,6 +216,14 @@ public final class ConversationUpdateItem extends LinearLayout
           eventListener.onDecryptionFailedLearnMoreClicked();
         }
       });
+    } else if (conversationMessage.getMessageRecord().isIdentityUpdate()) {
+      actionButton.setText(R.string.ConversationUpdateItem_learn_more);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onSafetyNumberLearnMoreClicked(conversationRecipient);
+        }
+      });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
       UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
       Collection<UUID>  uuids             = updateDescription.getMentioned();

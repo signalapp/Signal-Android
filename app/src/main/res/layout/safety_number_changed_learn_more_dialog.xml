@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:importantForAccessibility="no"
+      app:srcCompat="@drawable/safety_number_change_banner" />
+
+  <TextView
+      android:id="@+id/safety_number_learn_more_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      style="@style/Signal.Text.Headline"
+      android:fontFamily="sans-serif-medium"
+      android:textSize="20sp"
+      tools:text="Your safety number with Peter Parker changed"/>
+
+  <TextView
+      android:id="@+id/safety_number_learn_more_body"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      style="@style/Signal.Text.Body"
+      tools:text="Your Safety Number with Peter Parker changed, likely because they reinstalled Signal or changed devices. Tap Verify to confirm the new safety number. This is optional."/>
+
+
+</LinearLayout>
