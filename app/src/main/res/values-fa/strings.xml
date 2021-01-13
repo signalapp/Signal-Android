@@ -37,8 +37,6 @@
   <string name="ApplicationPreferencesActivity_sms_disabled">پیامک غیرفعال شد</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">برای تبدیل Signal به برنامهٔ پیامک پیش‌فرض خود ضربه بزنید</string>
   <string name="ApplicationPreferencesActivity_on">روشن</string>
-  <string name="ApplicationPreferencesActivity_On">روشن</string>
-  <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s، فراپیام %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
