@@ -1489,6 +1489,10 @@
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">The number you
         specified (%s) is invalid.
     </string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to">A verification code will be sent to:</string>
+    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">You\'ll receive a call to verify this number.</string>
+    <string name="RegistrationActivity_is_your_phone_number_above_correct">Is your phone number above correct?</string>
+    <string name="RegistrationActivity_edit_number">Edit number</string>
     <string name="RegistrationActivity_missing_google_play_services">Missing Google Play Services</string>
     <string name="RegistrationActivity_this_device_is_missing_google_play_services">This device is missing Google Play Services. You can still use Signal, but this configuration may result in reduced reliability or performance.\n\nIf you are not an advanced user, are not running an aftermarket Android ROM, or believe that you are seeing this in error, please contact support@signal.org for help troubleshooting.</string>
     <string name="RegistrationActivity_i_understand">I understand</string>

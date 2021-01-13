@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -90,5 +91,19 @@ public class LabeledEditText extends FrameLayout implements View.OnFocusChangeLi
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
     input.setEnabled(enabled);
+  }
+
+  public void focusAndMoveCursorToEndAndOpenKeyboard() {
+    input.requestFocus();
+
+    int numberLength = getText().length();
+    input.setSelection(numberLength, numberLength);
+
+    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+
+    if (!imm.isAcceptingText()) {
+      imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
   }
 }

@@ -147,9 +147,9 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
     PlayServicesUtil.PlayServicesStatus fcmStatus = PlayServicesUtil.getPlayServicesStatus(context);
 
     if (fcmStatus == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
-      handleRequestVerification(context, e164number, true);
+      confirmNumberPrompt(context, e164number, () -> handleRequestVerification(context, e164number, true));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.MISSING) {
-      handlePromptForNoPlayServices(context, e164number);
+      confirmNumberPrompt(context, e164number, () -> handlePromptForNoPlayServices(context, e164number));
     } else if (fcmStatus == PlayServicesUtil.PlayServicesStatus.NEEDS_UPDATE) {
       GoogleApiAvailability.getInstance().getErrorDialog(requireActivity(), ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED, 0).show();
     } else {
@@ -426,5 +426,19 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
                    .setPositiveButton(R.string.RegistrationActivity_i_understand, (dialog1, which) -> handleRequestVerification(context, e164number, false))
                    .setNegativeButton(android.R.string.cancel, null)
                    .show();
+  }
+
+  protected final void confirmNumberPrompt(@NonNull Context context,
+                                           @NonNull String e164number,
+                                           @NonNull Runnable onConfirmed)
+  {
+    showConfirmNumberDialogIfTranslated(context,
+                                        R.string.RegistrationActivity_a_verification_code_will_be_sent_to,
+                                        e164number,
+                                        () -> {
+                                          hideKeyboard(context, number.getInput());
+                                          onConfirmed.run();
+                                        },
+                                        () -> number.focusAndMoveCursorToEndAndOpenKeyboard());
   }
 }
