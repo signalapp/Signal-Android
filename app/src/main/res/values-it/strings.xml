@@ -2164,7 +2164,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuova conversazione</string>
   <string name="conversation_list_fragment__open_camera_description">Apri Fotocamera</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ancora nessuna chat.\nInizia inviando un messaggio ad un amico.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ancora nessuna chat.\nInizia inviando un messaggio a un amico.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Azzera la sessione sicura</string>
   <!--conversation_muted-->

@@ -36,10 +36,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Πάτα για να αλλάξεις την προεπιλεγμένη εφαρμογή για SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS απενεργοποιημένα</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Πάτα για να γίνει το Signal η προκαθορισμένη εφαρμογή SMS</string>
-  <string name="ApplicationPreferencesActivity_on">ενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_On">Ενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_off">απενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_Off">Απενεργοποιημένο</string>
+  <string name="ApplicationPreferencesActivity_on">ενεργό</string>
+  <string name="ApplicationPreferencesActivity_On">Ενεργό</string>
+  <string name="ApplicationPreferencesActivity_off">ανενεργό</string>
+  <string name="ApplicationPreferencesActivity_Off">Ανενεργό</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Κλείδωμα οθόνης %1$s, Κλείδωμα εγγραφής %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Κλείδωμα οθόνης %1$s</string>
@@ -468,7 +468,7 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Οποιοσδήποτε</string>
   <string name="GroupManagement_access_level_all_members">Όλα τα μέλη</string>
-  <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές/τριες</string>
+  <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές</string>
   <string name="GroupManagement_access_level_no_one">Κανένας</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
@@ -543,7 +543,7 @@
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Αποχώρηση απ\' την ομάδα;</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάεις μηνύματα σε αυτήν την ομάδα.</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάβεις μηνύματα σε αυτήν την ομάδα.</string>
   <string name="LeaveGroupDialog_leave">Αποχώρηση</string>
   <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
@@ -645,8 +645,8 @@
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
-  <string name="ManageGroupActivity_off">Απενεργοποιημένο</string>
-  <string name="ManageGroupActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageGroupActivity_off">Ανενεργό</string>
+  <string name="ManageGroupActivity_on">Ενεργό</string>
   <string name="ManageGroupActivity_view_all_members">Προβολή όλων των μελών</string>
   <string name="ManageGroupActivity_see_all">Προβολή όλων</string>
   <string name="ManageGroupActivity_none">Κανένα</string>
@@ -693,8 +693,8 @@
   <string name="ManageRecipientActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageRecipientActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageRecipientActivity_until_s">Μέχρι %1$s</string>
-  <string name="ManageRecipientActivity_off">Απενεργοποιημένο</string>
-  <string name="ManageRecipientActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageRecipientActivity_off">Ανενεργό</string>
+  <string name="ManageRecipientActivity_on">Ενεργό</string>
   <string name="ManageRecipientActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <string name="ManageRecipientActivity_view_all_groups">Προβολή όλων των ομάδων</string>
   <string name="ManageRecipientActivity_see_all">Προβολή όλων</string>
@@ -1735,7 +1735,7 @@
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Προαιρετικά, μπορείς να δεις και να μοιραστείς πότε διαβάστηκαν τα μηνύματα</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ενεργοποίηση αποδεικτικών ανάγνωσης</string>
   <!--expiration-->
-  <string name="expiration_off">Απενεργοποιημένο</string>
+  <string name="expiration_off">Ανενεργό</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d δευτερόλεπτο</item>
     <item quantity="other">%d δευτερόλεπτα</item>

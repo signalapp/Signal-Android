@@ -1307,6 +1307,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">Entajpu vian telefonnumeron</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vi ricevos konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Kontrolu, ĉu via telefono havas ĉelan signalon por ricevi SMS-on aŭ alvokon</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnumero</string>
   <string name="RegistrationActivity_country_code_description">Landokodo</string>
   <string name="RegistrationActivity_call">Alvoko</string>
@@ -1453,6 +1454,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uzantnomoj ĉe Signal malnepras. Se vi kreas uzantnomon, aliaj Signal-uzantoj povos trovi vin per tiu uzantnomo kaj kontakti vin sen kono de via telefonnumero.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakto estas ĉe Signal!</item>
+    <item quantity="other">%d kontaktoj estas ĉe Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Via kontakto uzas malnovan Signal-an version. Bonvolu peti la sendinton ĝisdatigi, antaŭ ol kontroli vian sekurigan numeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Via kontakto uzas pli novan Signal-an version, kiu uzas nekongruan rapidrespondan (QR) kodon. Bonvolu ĝisdatigi por kompari ilin.</string>

@@ -75,7 +75,7 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att ta bilder men den har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Skickar media…</string>
+  <string name="AttachmentUploadJob_uploading_media">Laddar upp media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerar video…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fel vid uppspelning av ljud!</string>
@@ -137,7 +137,7 @@
   <string name="ClearProfileActivity_remove_group_photo">Ta bort gruppfoto?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Uppdatera Signal</string>
-  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Den här versionen av appen stöds inte längre. För att fortsätta skicka och ta emot meddelanden, uppdatera till den senaste versionen.</string>
+  <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Denna version av appen stöds inte längre. För att fortsätta skicka och ta emot meddelanden, uppdatera till den senaste versionen.</string>
   <string name="ClientDeprecatedActivity_update">Uppdatera</string>
   <string name="ClientDeprecatedActivity_dont_update">Uppdatera inte</string>
   <string name="ClientDeprecatedActivity_warning">Varning</string>
@@ -188,18 +188,18 @@
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Använd okrypterat SMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Använd okrypterat MMS istället?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Detta meddelande kommer <b>inte</b> att krypteras eftersom mottagaren inte längre är en Signal-användare. \n\nSkicka osäkert meddelande?</string>
-  <string name="ConversationItem_unable_to_open_media">Det går inte att hitta en app som kan öppna det här mediet.</string>
+  <string name="ConversationItem_unable_to_open_media">Det går inte att hitta en app som kan öppna detta medium.</string>
   <string name="ConversationItem_copied_text">Kopierade %s</string>
   <string name="ConversationItem_from_s">från %s</string>
   <string name="ConversationItem_to_s">till %s</string>
   <string name="ConversationItem_read_more">  Läs mer</string>
   <string name="ConversationItem_download_more">  Hämta mer</string>
   <string name="ConversationItem_pending">  Väntar</string>
-  <string name="ConversationItem_this_message_was_deleted">Det här meddelandet togs bort.</string>
+  <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i den här konversationen. Dina meddelanden kommer att bevaras.</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i denna konversation. Dina meddelanden kommer att bevaras.</string>
   <string name="ConversationActivity_reset">Starta om</string>
   <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
@@ -220,15 +220,15 @@
   <string name="ConversationActivity_specify_recipient">Vänligen välj en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Avblockera denna kontakt?</string>
   <string name="ConversationActivity_unblock_this_group_question">Avblockera denna grupp?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kommer att kunna ta emot meddelanden och samtal från den här kontakten igen.</string>
+  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du kommer att kunna ta emot meddelanden och samtal från denna kontakt igen.</string>
   <string name="ConversationActivity_unblock_this_group_description">Befintliga medlemmar kommer att kunna lägga dig till gruppen igen.</string>
   <string name="ConversationActivity_unblock">Avblockera</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Bilagan överskrider storleksgränserna för den typ av meddelande du skickar.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera otillgänglig</string>
   <string name="ConversationActivity_unable_to_record_audio">Det går inte att spela in ljud!</string>
-  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till den här gruppen eftersom du inte längre är medlem.</string>
-  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app på din enhet som kan hantera den här länken.</string>
-  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när de vidtar åtgärder.</string>
+  <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan inte skicka meddelanden till denna grupp eftersom du inte längre är medlem.</string>
+  <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Det finns ingen app tillgänglig som kan hantera denna länk.</string>
+  <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din förfrågan om att gå med har skickats till gruppadministratören. Du får ett meddelande när administratören vidtar åtgärder.</string>
   <string name="ConversationActivity_cancel_request">Avbryt förfrågan</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">För att skicka ljudmeddelanden, vänligen ge Signal åtkomst till din mikrofon.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal behöver behörigheten Mikrofon för att skicka ljudmeddelanden men den avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Mikrofon\".</string>
@@ -275,7 +275,7 @@
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Spara i lagring?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">Om du sparar det här mediet i lagring kommer alla andra appar på din enhet få åtkomst till den.\n\nFortsätt?</item>
+    <item quantity="one">Om du sparar detta medium i lagring kommer alla andra appar på din enhet få åtkomst till den.\n\nFortsätt?</item>
     <item quantity="other">Om du sparar alla %1$d media i lagring kommer alla andra appar på din enhet att få åtkomst till dem.\n\nFortsätt?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
@@ -299,15 +299,15 @@
   <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
   <string name="ConversationFragment_delete_for_me">Ta bort för mig</string>
   <string name="ConversationFragment_delete_for_everyone">Ta bort för alla</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Det här meddelandet tas bort för alla i konversationen om de har en ny version av Signal. De kommer att kunna se att du har tagit bort ett meddelande.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Detta meddelande tas bort för alla i konversationen om de har en ny version av Signal. De kommer att kunna se att du har tagit bort ett meddelande.</string>
   <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan dra åt höger på ett meddelande för att snabbt svara</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan dra åt vänster på ett meddelande för att snabbt svara</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående visa-en-gång media tas bort automatiskt efter att de har skickats</string>
-  <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett det här meddelandet</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan lägga till anteckningar för dig själv i den här konversationen.\nOm ditt konto har några länkade enheter synkroniseras nya anteckningar.</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett detta meddelande</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Du kan lägga till anteckningar för dig själv i denna konversation.\nOm ditt konto har några länkade enheter synkroniseras nya anteckningar.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d gruppmedlemmar har samma namn.</string>
   <string name="ConversationFragment__tap_to_review">Tryck för att granska</string>
   <string name="ConversationFragment__review_requests_carefully">Granska förfrågningar noggrant</string>
@@ -360,7 +360,7 @@
   <string name="ChooseBackupFragment__learn_more">Läs mer</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Återställningen är klar</string>
-  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på den här platsen.</string>
+  <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Välj en mapp för att fortsätta använda säkerhetskopior. Nya säkerhetskopior sparas på denna plats.</string>
   <string name="RestoreBackupFragment__choose_folder">Välj mapp</string>
   <string name="RestoreBackupFragment__not_now">Inte nu</string>
   <!--BackupsPreferenceFragment-->
@@ -401,7 +401,7 @@
   <string name="DeliveryStatus_read">Läst</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Sluta länka till \"%s\"?</string>
-  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att ta bort länken till den här enheten kommer den inte längre att kunna skicka eller ta emot meddelanden.</string>
+  <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att ta bort länken till denna enhet kommer den inte längre att kunna skicka eller ta emot meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksanslutning misslyckades</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
   <string name="DeviceListActivity_unlinking_device">Sluta länka enhet…</string>
@@ -475,7 +475,7 @@
     <item quantity="one">Inbjudan skickad</item>
     <item quantity="other">%d inbjudningar skickade</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nDe har blivit inbjudna att gå med och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
+  <string name="GroupManagement_invite_single_user">\"%1$s\" kan inte läggas till automatiskt till denna grupp av dig.\n\nPersonen har blivit inbjuden att gå med och kommer inte att se några gruppmeddelanden förrän personen accepterar.</string>
   <string name="GroupManagement_learn_more">Läs mer</string>
   <string name="GroupManagement_invite_multiple_users">Dessa användare kan inte automatiskt läggas till i denna grupp.\n\nDe har blivit inbjudna att gå med i gruppen och kommer inte att se några gruppmeddelanden förrän de accepterar.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
@@ -484,7 +484,7 @@
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">All meddelandehistorik och media har sparats från före uppgraderingen.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Du måste acceptera en inbjudan för att gå med i denna grupp igen och kommer inte att få gruppmeddelanden förrän du accepterar.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+    <item quantity="one">Denna medlem måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän medlemmen accepterar:</item>
     <item quantity="other">Dessa medlemmar måste acceptera en inbjudan att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
@@ -499,7 +499,7 @@
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Påträffade ett nätverksfel. Försök igen senare.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Det gick inte att uppgradera.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-    <item quantity="one">Denna medlem måste acceptera en inbjudan för att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
+    <item quantity="one">Denna medlem måste acceptera en inbjudan för att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän medlemmen accepterar:</item>
     <item quantity="other">Dessa medlemmar måste acceptera en inbjudan för att gå med i gruppen igen och kommer inte att få gruppmeddelanden förrän de accepterar:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
@@ -526,7 +526,7 @@
     <item quantity="other">Lägg till medlemmar?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-    <item quantity="one">Den här medlemmen kunde inte läggas till automatiskt i den Nya gruppen när den uppgraderades:</item>
+    <item quantity="one">Denna medlem kunde inte läggas till automatiskt i den Nya gruppen när den uppgraderades:</item>
     <item quantity="other">Dessa medlemmar kunde inte läggas till automatiskt i den Nya gruppen när den uppgraderades:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
@@ -583,7 +583,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Väntande medlemsförfrågningar</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Inga medlemsförfrågningar att visa.</string>
-  <string name="RequestingMembersFragment_explanation">Personer på den här listan försöker gå med i den här gruppen via grupplänken.</string>
+  <string name="RequestingMembersFragment_explanation">Personer på denna lista försöker gå med i denna grupp via grupplänken.</string>
   <string name="RequestingMembersFragment_added_s">Lade till \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Avvisade \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -613,7 +613,7 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Ta bort %1$s från denna grupp?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d medlem stöder inte nya grupper, så detta kommer att vara en äldre grupp.</item>
-    <item quantity="other">%d medlemmar stöder inte nya grupper, så den här gruppen kommer att vara en äldre grupp.</item>
+    <item quantity="other">%d medlemmar stöder inte nya grupper, så denna grupp kommer att vara en äldre grupp.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d medlem stöder inte Nya grupper, så denna grupp kan inte skapas.</item>
@@ -671,9 +671,9 @@
   <string name="ManageGroupActivity_legacy_group">Äldre grupp</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Detta är en Äldre grupp. Funktioner som gruppadministratörer är endast tillgängliga för Nya grupper.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Detta är en Äldre grupp. För att komma åt nya funktioner som @omnämnanden och administratörer,</string>
-  <string name="ManageGroupActivity_legacy_group_too_large">Den här Äldre gruppen kan inte uppgraderas till en Ny grupp eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Denna Äldre gruppen kan inte uppgraderas till en Ny grupp eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">uppgradera denna grupp.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Det här är en osäker MMS-grupp. Om du vill samtala privat bjuder du in dina kontakter till Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Detta är en osäker MMS-grupp. Om du vill samtala privat bjuder du in dina kontakter till Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meddela mig om omnämnanden</string>
@@ -739,7 +739,7 @@
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Är du säker på att du vill återställa grupplänken? Personer kommer inte längre att kunna gå med i gruppen med den aktuella länken.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-kod</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer som skannar den här koden kan gå med i din grupp. Administratörer måste fortfarande godkänna nya medlemmar om du har aktiverat den inställningen.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Personer som skannar denna kod kan gå med i din grupp. Administratörer måste fortfarande godkänna nya medlemmar om du har aktiverat den inställningen.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Dela kod</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Vill du återkalla inbjudan du skickade till %1$s?</string>
@@ -764,7 +764,7 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Grupplänkar kommer snart</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Uppdatera Signal för att använda grupplänkar</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte den här grupplänken. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Den version av Signal du använder stöder inte denna grupplänk. Uppdatera till den senaste versionen för att gå med i denna grupp via länk.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Uppdatera Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">En eller flera av dina länkade enheter kör en version av Signal som inte stöder grupplänkar. Uppdatera Signal på dina länkade enheter för att gå med i denna grupp.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupplänken är inte giltig</string>
@@ -836,7 +836,7 @@
     <item quantity="other">Ta bort valda objekt?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Detta kommer att ta bort den valda filen permanent. All meddelandetext associerad med det här objektet kommer också att tas bort.</item>
+    <item quantity="one">Detta kommer att ta bort den valda filen permanent. All meddelandetext associerad med detta objekt kommer också att tas bort.</item>
     <item quantity="other">Detta kommer att ta bort alla %1$d valda filer permanent. All meddelandetext associerad med dessa objekt kommer också att tas bort.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Tar bort</string>
@@ -1098,12 +1098,12 @@
   <string name="MessageRequestBottomView_unblock">Avblockera</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Personen vet inte att du har sett personens meddelande förrän du accepterar.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Tillåt att %1$s meddelar dig och dela ditt namn och foto? Du får inte några meddelanden förrän du har avblockerat personen.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med den här gruppen och dela ditt namn och foto med dess medlemmar?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i den här gruppen kommer att inbjudas att gå med.</string>
-  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Den här Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Fortsätta din konversation med denna grupp och dela ditt namn och foto med dess medlemmar?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppgradera denna grupp för att aktivera nya funktioner som @omnämnanden och administratörer. Medlemmar som inte har delat sitt namn eller foto i denna grupp kommer att inbjudas att gå med.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Denna Äldre gruppen kan inte längre användas eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Fortsätt din konversation med %1$s och dela ditt namn och foto?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp och dela ditt namn och foto med dess medlemmar? De kommer inte att veta att du har sett deras meddelanden förrän du accepterar.</string>
-  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i den här gruppen? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Gå med i denna grupp? De vet inte att du har sett deras meddelanden förrän du accepterar det.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Avblockeringen av denna grupp och dela ditt namn och foto med dess medlemmar? Du får inte några meddelanden förrän du har avblockerat dem.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Medlem av %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem av %1$s och %2$s</string>
@@ -1125,7 +1125,7 @@
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Inkorrekt gammalt lösenord!</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">Ange nytt lösenord!</string>
   <!--DeviceProvisioningActivity-->
-  <string name="DeviceProvisioningActivity_link_this_device">Länka den här enheten?</string>
+  <string name="DeviceProvisioningActivity_link_this_device">Länka denna enhet?</string>
   <string name="DeviceProvisioningActivity_continue">FORTSÄTT</string>
   <string name="DeviceProvisioningActivity_content_intro">Den kommer att kunna</string>
   <string name="DeviceProvisioningActivity_content_bullets">
@@ -1138,7 +1138,7 @@
   <string name="DeviceProvisioningActivity_content_progress_network_error">Nätverksfel.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ogiltig QR-kod.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Tyvärr har du för många enheter redan länkade, prova att ta bort en del</string>
-  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, det här är ingen giltig QR-kod för enhetslänkning.</string>
+  <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Tyvärr, detta är ingen giltig QR-kod för enhetslänkning.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">Länka en Signal-enhet?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det verkar som att du försöker länka en Signal-enhet med hjälp av en tredjepartsskanner. För din säkerhet, vänligen skanna koden igen inifrån Signal.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal behöver behörigheten Kamera för att skanna QR-koder men det har avvisats permanent. Vänligen fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
@@ -1146,7 +1146,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Dina meddelanden kommer inte att försvinna.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i den här konversationen kommer att försvinna %s efter att de har setts.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Meddelanden som skickas och tas emot i denna konversation kommer att försvinna %s efter att de har setts.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppdatera nu</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Denna version av Signal går ut idag. Uppdatera till den senaste versionen.</string>
@@ -1194,7 +1194,7 @@
   <string name="PinOptOutDialog_disable_pin">Inaktivera PIN-koden</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Betygsätt denna app</string>
-  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar att använda den här appen, vänligen ta en stund för att hjälpa oss genom att betygsätta den.</string>
+  <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Om du gillar att använda denna app, vänligen ta en stund för att hjälpa oss genom att betygsätta den.</string>
   <string name="RatingManager_rate_now">Betygsätt nu!</string>
   <string name="RatingManager_no_thanks">Nej tack</string>
   <string name="RatingManager_later">Senare</string>
@@ -1275,12 +1275,12 @@ telefonnummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
 angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Den här enheten saknar Google Play-tjänster. Du kan fortfarande använda Signal men den här konfigurationen kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, vänligen kontakta support@signal.org för hjälp med felsökning.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal men denna konfiguration kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, vänligen kontakta support@signal.org för hjälp med felsökning.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
   <string name="RegistrationActivity_play_services_error">Fel på Google Play-tjänster</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjänster uppdateras eller är tillfälligt otillgängliga. Vänligen försök igen senare.</string>
   <string name="RegistrationActivity_terms_and_privacy">Villkor &amp; sekretesspolicy</string>
-  <string name="RegistrationActivity_no_browser">Det går inte att öppna den här länken. Ingen webbläsare hittades.</string>
+  <string name="RegistrationActivity_no_browser">Det går inte att öppna denna länk. Ingen webbläsare hittades.</string>
   <string name="RegistrationActivity_more_information">Mer information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal behöver åtkomst till dina kontakter och media för att få kontakt med vänner, utbyta meddelanden och ringa säkra samtal</string>
@@ -1356,7 +1356,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
-  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Det här meddelandet kunde inte behandlas eftersom det skickades från en nyare version av Signal. Du kan be din kontakt att skicka det här meddelandet igen när du har uppdaterat.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Detta meddelande kunde inte behandlas eftersom det skickades från en nyare version av Signal. Du kan be din kontakt att skicka detta meddelande igen när du har uppdaterat.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Felhantering av inkommande meddelande.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistermärken</string>
@@ -1408,7 +1408,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_view_once_photo">Visa-en-gång foto</string>
   <string name="ThreadRecord_view_once_video">Visa-en-gång video</string>
   <string name="ThreadRecord_view_once_media">Visa-en-gång media</string>
-  <string name="ThreadRecord_this_message_was_deleted">Det här meddelandet togs bort.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ThreadRecord_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
@@ -1524,7 +1524,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagerade %1$s på din ljudfil.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerade %1$s på din visa-en-gång media.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerade %1$s på dina klistermärken.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Det här meddelandet togs bort.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Inaktivera Signal-aviseringar när kontakter ansluter sig? Du kan aktivera dem igen i Signal &gt; Inställningar &gt; Aviseringar.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standard</string>
@@ -1788,18 +1788,18 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="log_submit_activity__button_submit">Skicka</string>
   <string name="log_submit_activity__button_got_it">Uppfattat</string>
   <string name="log_submit_activity__button_compose_email">Skriv e-post</string>
-  <string name="log_submit_activity__this_log_will_be_posted_online">Den här loggen kommer att publiceras på nätet och visas för bidragsgivare. Du kan granska och redigera den innan du skickar.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Denna logg kommer att publiceras på nätet och visas för bidragsgivare. Du kan granska och redigera den innan du skickar.</string>
   <string name="log_submit_activity__loading_logs">Läser in loggar…</string>
-  <string name="log_submit_activity__uploading_logs">Skickar loggar…</string>
+  <string name="log_submit_activity__uploading_logs">Laddar upp loggar…</string>
   <string name="log_submit_activity__choose_email_app">Välj e-post app</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">Vänligen granska den här loggen från min app: %1$s</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">Vänligen granska denna logg från min app: %1$s</string>
   <string name="log_submit_activity__network_failure">Nätverksfel. Vänligen försök igen.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vill du importera dina existerande SMS-meddelanden till Signals krypterade databas?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard systemdatabasen kommer inte att modifieras eller ändras på något sätt.</string>
   <string name="database_migration_activity__skip">Hoppa över</string>
   <string name="database_migration_activity__import">Importera</string>
-  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Det här kan ta ett ögonblick. Vänligen ha tålamod, vi meddelar dig när importen är klar.</string>
+  <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Detta kan ta ett ögonblick. Vänligen ha tålamod, vi meddelar dig när importen är klar.</string>
   <string name="database_migration_activity__importing">IMPORTERAR</string>
   <string name="import_fragment__import_system_sms_database">Importera systemets SMS-databas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importera databasen från standardappen för meddelanden</string>
@@ -1823,8 +1823,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås upp</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kräver MMS-inställningar för att leverera medie- och gruppmeddelanden via din mobiloperatör. Din enhet gör inte den här informationen tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">För att skicka medie- och gruppmeddelande, tryck på \"OK\" och slutför de begärda inställningarna. MMS-inställningarna för din operatör kan i allmänhet hittas genom att söka efter \"din operatör-APN\". Du kommer bara att behöva göra det här en gång.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kräver MMS-inställningar för att leverera medie- och gruppmeddelanden via din mobiloperatör. Din enhet gör inte denna information tillgänglig, vilket ibland stämmer för låsta enheter och andra restriktiva konfigurationer.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">För att skicka medie- och gruppmeddelande, tryck på \"OK\" och slutför de begärda inställningarna. MMS-inställningarna för din operatör kan i allmänhet hittas genom att söka efter \"din operatör-APN\". Du kommer bara att behöva göra detta en gång.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Förnamn (krävs)</string>
   <string name="CreateProfileActivity_last_name_optional">Efternamn (valfritt)</string>
@@ -1904,13 +1904,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="HelpFragment__contact_us">Kontakta oss</string>
   <string name="HelpFragment__tell_us_whats_going_on">Berätta vad som händer</string>
   <string name="HelpFragment__include_debug_log">Inkludera felsökningslogg.</string>
-  <string name="HelpFragment__whats_this">Vad är det här?</string>
+  <string name="HelpFragment__whats_this">Vad är detta?</string>
   <string name="HelpFragment__how_do_you_feel">Hur mår du? (valfritt)</string>
   <string name="HelpFragment__support_info">Supportinformation</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android-supportförfrågan</string>
   <string name="HelpFragment__debug_log">Felsökningslogg:</string>
   <string name="HelpFragment__na">inga</string>
-  <string name="HelpFragment__could_not_upload_logs">Det gick inte att skicka loggar</string>
+  <string name="HelpFragment__could_not_upload_logs">Det gick inte att ladda upp loggar</string>
   <string name="HelpFragment__signal_support">Signal-support</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Vänligen var så beskrivande som möjligt för att hjälpa oss att förstå problemet.</string>
   <string name="HelpFragment__no_email_app_found">Ingen e-postapp hittades.</string>
@@ -2204,7 +2204,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="reminder_header_share_title">Bjud in dina vänner!</string>
   <string name="reminder_header_share_text">Ju fler av dina vänner som använder Signal, desto bättre blir det.</string>
   <string name="reminder_header_service_outage_text">Signal upplever tekniska problem. Vi arbetar för fullt för att återställa tjänsten så snabbt som möjligt.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De senaste Signal-funktionerna kommer inte att fungera på den här versionen av Android. Vänligen uppgradera denna enhet för att få framtida Signal-uppdateringar.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De senaste Signal-funktionerna kommer inte att fungera på denna version av Android. Vänligen uppgradera denna enhet för att få framtida Signal-uppdateringar.</string>
   <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
@@ -2258,7 +2258,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
     <item quantity="other">PIN-koden måste vara minst %1$d siffror</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Skapa en ny PIN-kod</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ändra din PIN-kod så länge den här enheten är registrerad.</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kan ändra din PIN-kod så länge denna enhet är registrerad.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Skapa din PIN-kod</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-koden håller information lagrad med Signal krypterad så att du bara kan komma åt den. Din profil, inställningar och kontakter kommer att återställas när du installerar om. Du behöver inte din PIN-kod för att öppna appen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Välj en starkare PIN-kod</string>
@@ -2290,7 +2290,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">Felaktig PIN-kod. Försök igen.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Kontot är låst</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ditt konto har låsts för att skydda din integritet och säkerhet. Efter %1$d dagar av inaktivitet i ditt konto kommer du att kunna återregistrera det här telefonnumret utan att behöva din PIN-kod. Allt innehåll kommer att tas bort.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Ditt konto har låsts för att skydda din integritet och säkerhet. Efter %1$d dagar av inaktivitet i ditt konto kommer du att kunna återregistrera detta telefonnummer utan att behöva din PIN-kod. Allt innehåll kommer att tas bort.</string>
   <string name="AccountLockedFragment__next">Nästa</string>
   <string name="AccountLockedFragment__learn_more">Läs mer</string>
   <!--KbsLockFragment-->
@@ -2305,8 +2305,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Har du glömt din PIN-kod?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Inte många försök kvar!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
-    <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du återverifiera med SMS efter %1$d dagar av inaktivitet. I det här fallet kommer ditt konto att rensas och allt innehåll tas bort.</item>
+    <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I detta fall kommer ditt konto att rensas och allt innehåll tas bort.</item>
+    <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du återverifiera med SMS efter %1$d dagar av inaktivitet. I detta fall kommer ditt konto att rensas och allt innehåll tas bort.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">Felaktig PIN-kod. %1$d försök kvar.</item>
@@ -2387,7 +2387,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BackupDialog_delete_backups">Ta bort säkerhetskopior?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Inaktivera och ta bort alla lokala säkerhetskopior?</string>
   <string name="BackupDialog_delete_backups_statement">Ta bort säkerhetskopior</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Välj en mapp för att aktivera säkerhetskopior. Säkerhetskopior sparas på den här platsen.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Välj en mapp för att aktivera säkerhetskopior. Säkerhetskopior sparas på denna plats.</string>
   <string name="BackupDialog_choose_folder">Välj mapp</string>
   <string name="BackupDialog_copied_to_clipboard">Kopierade till urklipp</string>
   <string name="BackupDialog_no_file_picker_available">Ingen filväljare tillgänglig.</string>
@@ -2401,7 +2401,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="LocalBackupJob_creating_backup">Skapar säkerhetskopia…</string>
   <string name="LocalBackupJobApi29_backup_failed">Säkerhetskopieringen misslyckades</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din säkerhetskopieringsmapp har tagits bort eller flyttats.</string>
-  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på den här volymen.</string>
+  <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Din säkerhetskopieringsfil är för stor för att lagras på denna volym.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Det finns inte tillräckligt med utrymme för att lagra din säkerhetskopia.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tryck för att hantera säkerhetskopior.</string>
   <string name="ProgressPreference_d_messages_so_far">%d meddelanden än så länge</string>
@@ -2446,7 +2446,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="registration_lock_dialog_view__confirm_pin">Bekräfta PIN-kod</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Ange din PIN-kod för registreringslåset</string>
   <string name="registration_lock_reminder_view__enter_pin">Ange PIN-kod</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Ange en PIN-kod för registreringslåset som kommer att krävas för att registrera det här mobilnumret med Signal igen.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Ange en PIN-kod för registreringslåset som kommer att krävas för att registrera detta mobilnummer med Signal igen.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN-kod för registreringslås</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du måste ange din PIN-kod för registreringslåset</string>
@@ -2527,7 +2527,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" har avblockerats.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Granska medlemmar</string>
-  <string name="ReviewCardDialogFragment__review_request">Granskningsförfrågan</string>
+  <string name="ReviewCardDialogFragment__review_request">Granska förfrågan</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d gruppmedlemmar har samma namn, granska medlemmarna nedan och välj att vidta åtgärder.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Om du inte är säker på vem förfrågan kommer från, granska kontakterna nedan och vidta åtgärder.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Inga andra grupper gemensamt.</string>

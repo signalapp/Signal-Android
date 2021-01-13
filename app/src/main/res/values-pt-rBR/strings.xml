@@ -44,7 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de Tela %1$s, Desbloqueio de Cadastro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de tela %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o bloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o bloqueio de registro.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o desbloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o desbloqueio de registro.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
@@ -1049,11 +1049,11 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via o link do grupo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para entrar no grupo.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via o link do grupo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via link do grupo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou seu pedido de participação no grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de participação no grupo de %2$s.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de participação no grupo de %1$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de %1$s para participar do grupo.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">O seu pedido para entrar no grupo foi aprovado.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O pedido de participação no grupo de %1$s foi aprovado.</string>
   <!--GV2 group link deny-->
@@ -1312,8 +1312,8 @@
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Bloqueio de registro?</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Bloqueio de registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Desbloqueio de registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Desbloqueio de registro?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por 7 dias.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ativar</string>
   <string name="RegistrationLockV2Dialog_turn_off">Desativar</string>
@@ -1398,7 +1398,7 @@
   <string name="SupportEmailUtil_android_version">Versão do Android:</string>
   <string name="SupportEmailUtil_signal_version">Versão do Signal:</string>
   <string name="SupportEmailUtil_signal_package">Arquivo do Signal:</string>
-  <string name="SupportEmailUtil_registration_lock">Bloqueio de Registro:</string>
+  <string name="SupportEmailUtil_registration_lock">Desbloqueio de Registro:</string>
   <string name="SupportEmailUtil_locale">Localidade:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
@@ -2386,7 +2386,7 @@
   <string name="RegistrationActivity_restore_from_backup">Restaurar do backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, não conseguirá restaurar depois.</string>
   <string name="RegistrationActivity_backup_size_s">Tamanho do backup: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Timestamp do backup: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Registro de hora do backup: %s</string>
   <string name="BackupDialog_enable_local_backups">Habilitar backups locais?</string>
   <string name="BackupDialog_enable_backups">Habilitar backups</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Favor confirmar seu entendimento marcando a caixa de verificação.</string>
@@ -2441,8 +2441,8 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Certifique-se de memorizar ou armazenar seu PIN com segurança, pois ele não pode ser recuperado. Se você esquecer seu PIN, poderá perder dados ao recadastrar sua conta do Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Bloqueio de registro.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Desbloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Desbloqueio de registro.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de registro não é o mesmo que o código de verificação que você acabou de receber. Por favor, insira o PIN que você definiu anteriormente no aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de registro</string>
@@ -2470,7 +2470,7 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de registro ajuda a proteger seu número de telefone de tentativas de registro não autorizadas. Essa fução pode ser desabilitada a qualquer instante nas configurações de privacidade do Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Bloqueio de registro</string>
+  <string name="RegistrationLockDialog_registration_lock">Desbloqueio de registro</string>
   <string name="RegistrationLockDialog_enable">Habilitar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de registro deve ter pelo menos %d dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dois PINs inseridos não correspondem.</string>

@@ -1306,6 +1306,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %s க்கு உள்ளிடவும்</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
   <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
   <string name="RegistrationActivity_country_code_description">நாட்டின் குறியீடு</string>
   <string name="RegistrationActivity_call">அழை</string>
@@ -1451,6 +1452,10 @@
   <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-லில் உள்ள பயனர்பெயர்கள் விருப்பத்தேர்வானவை. பயனர்பெயரை உருவாக்க நீங்கள் தேர்வு செய்தால், பிற Signal பயனர்கள் இந்த பயனர்பெயர் மூலம் உங்களை கண்டுபிடித்து, உங்கள் தொலைபேசி எண்ணை அறியாத வகையில் உங்களை தொடர்பு கொள்ள முடியும்.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contact is on Signal!</item>
+    <item quantity="other">%d தொடர்புகள் Signal இல் உள்ளன</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>

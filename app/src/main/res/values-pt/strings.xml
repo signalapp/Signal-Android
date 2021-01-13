@@ -3,7 +3,7 @@
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Eliminar</string>
-  <string name="please_wait">Por favor aguarde…</string>
+  <string name="please_wait">Aguarde, por favor…</string>
   <string name="save">Guardar</string>
   <string name="note_to_self">Nota para mim</string>
   <!--AbstractNotificationBuilder-->

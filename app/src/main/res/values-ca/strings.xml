@@ -2100,7 +2100,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa el remitent segellat per a missatges rebuts de persones que no teniu als contactes o de persones amb qui no heu compartit el vostre perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Més informació</string>
   <string name="preferences_notifications__mentions">Mencions</string>
-  <string name="preferences_notifications__notify_me">Notifica-m\'ho</string>
+  <string name="preferences_notifications__notify_me">Notes personals</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Rebeu notificacions quan us mencionin en converses silenciades.</string>
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>

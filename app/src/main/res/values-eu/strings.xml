@@ -773,7 +773,7 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Gonbidatu lagunak</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Partekatu esteka bat zure lagunen artean talde honetara erraz sartzeko.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Aktibatu eta esteka partekatu</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Esteka partekatu</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Partekatu esteka</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Ezin izan da taldearen lotura aktibatu. Saiatu berriz beranduago</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Sare errore bat izan da.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Ezin duzu taldearen esteka aktibatu. Eskatu kudeatzaile bati.</string>

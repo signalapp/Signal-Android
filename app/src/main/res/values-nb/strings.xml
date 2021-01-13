@@ -1505,7 +1505,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_error_delivering_message">Feil under levering av melding.</string>
   <string name="MessageNotifier_mark_all_as_read">Merk alle som lest</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
-  <string name="MessageNotifier_turn_off_these_notifications">Skru av disse varslingene</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Skru av disse varslene</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
   <string name="MessageNotifier_view_once_photo">Vis en gang bilde</string>
@@ -1525,7 +1525,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagerte %1$spå engangsmediet ditt.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagerte %1$s på klistremerket ditt. </string>
   <string name="MessageNotifier_this_message_was_deleted">Denne meldingen ble slettet.</string>
-  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varslinger.</string>
+  <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Skru av varsling når kontakter tar i bruk Signal? Du kan skru de på igjen i Signal&gt; Innstillinger &gt; Varsler.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Forvalgt</string>
   <string name="NotificationChannel_calls">Samtaler</string>
@@ -2136,7 +2136,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_insecure__invite">Inviter</string>
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Slett valgte</string>
-  <string name="conversation_list_batch__menu_pin_selected">Pin valgt</string>
+  <string name="conversation_list_batch__menu_pin_selected">Feste valgt</string>
   <string name="conversation_list_batch__menu_unpin_selected">Løsne valgt</string>
   <string name="conversation_list_batch__menu_select_all">Velg alle</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver valgte</string>

@@ -187,7 +187,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, സുരക്ഷിതമല്ലാത്ത പക്ഷെ പകരം ഉപയോഗിക്കാവുന്ന പ്രക്രിയയ്ക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം <b>എൻ‌ക്രിപ്റ്റ് ചെയ്യില്ല</b>. പകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. പകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
   <string name="ConversationItem_unable_to_open_media">ഈ മീഡിയ തുറക്കാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
   <string name="ConversationItem_copied_text">%s പകർത്തി</string>
   <string name="ConversationItem_from_s">%s മുതൽ</string>
@@ -641,7 +641,7 @@
   <string name="ManageGroupActivity_block_group">ഗ്രൂപ്പ് തടയുക</string>
   <string name="ManageGroupActivity_unblock_group">ഗ്രൂപ്പ് അൺബ്ലോക്ക് ചെയ്യുക</string>
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
-  <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
+  <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageGroupActivity_mentions">പരാമർശിക്കുന്നു</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
@@ -690,7 +690,7 @@
   <string name="ManageRecipientActivity_block">തടയുക</string>
   <string name="ManageRecipientActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
   <string name="ManageRecipientActivity_view_safety_number">സുരക്ഷാ നമ്പർ കാണുക</string>
-  <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
+  <string name="ManageRecipientActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageRecipientActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
   <string name="ManageRecipientActivity_until_s">%1$s വരെ</string>
   <string name="ManageRecipientActivity_off">ഓഫ്</string>
@@ -1052,14 +1052,14 @@
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">ഗ്രൂപ്പ് ലിങ്ക് വഴി ചേരാൻ %1$s അഭ്യർത്ഥിച്ചു.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">ഗ്രൂപ്പിൽ ചേരാനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന %1$s അംഗീകരിച്ചു.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s - ൽ നിന്ന് ഗ്രൂപ്പിൽ ചേരാനുള്ള അഭ്യർത്ഥന %1$s അംഗീകരിച്ചു</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s - ൽ നിന്ന് ഗ്രൂപ്പിൽ ചേരുന്നതിനുള്ള അഭ്യർത്ഥന നിങ്ങൾ അംഗീകരിച്ചു</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">ഗ്രൂപ്പിൽ ചേരാനുള്ള %2$s-യുടെ അഭ്യർത്ഥന %1$s അംഗീകരിച്ചു.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">ഗ്രൂപ്പിൽ ചേരുന്നതിനുള്ള %1$s--യുടെ അഭ്യർത്ഥന നിങ്ങൾ അംഗീകരിച്ചു</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">ഗ്രൂപ്പിൽ ചേരാനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന അംഗീകരിച്ചു.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s - ൽ നിന്ന് ഗ്രൂപ്പിൽ ചേരുന്നതിനുള്ള അഭ്യർത്ഥന അംഗീകരിച്ചു.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">ഗ്രൂപ്പിൽ ചേരുന്നതിനുള്ള %1$s-യുടെ അഭ്യർത്ഥന അംഗീകരിച്ചു.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">ഗ്രൂപ്പിൽ ചേരാനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന ഒരു അഡ്മിൻ നിരസിച്ചു.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s - ൽ നിന്ന് ഗ്രൂപ്പിൽ ചേരാനുള്ള അഭ്യർത്ഥന %1$s നിഷേധിച്ചു</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s - ൽ നിന്ന് ഗ്രൂപ്പിൽ ചേരാനുള്ള അഭ്യർത്ഥന നിരസിച്ചു.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">ഗ്രൂപ്പിൽ ചേരാനുള്ള %2$s-യുടെ അഭ്യർത്ഥന %1$s നിഷേധിച്ചു.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">ഗ്രൂപ്പിൽ ചേരാനുള്ള %1$s-യുടെ അഭ്യർത്ഥന നിരസിച്ചു.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">ഗ്രൂപ്പിൽ ചേരാനുള്ള നിങ്ങളുടെ അഭ്യർത്ഥന നിങ്ങൾ തന്നെ റദ്ദാക്കി.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">ഗ്രൂപ്പിൽ ചേരാനുള്ള അവരുടെ അഭ്യർത്ഥന %1$s റദ്ദാക്കി.</string>
   <!--End of GV2 specific update messages-->
@@ -1393,8 +1393,7 @@
   <string name="SupportEmailUtil_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക്:</string>
   <string name="SupportEmailUtil_locale">ലൊക്കേഷൻ:</string>
   <!--ThreadRecord-->
-  <string name="ThreadRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു
-grūpp ap‌ḍē</string>
+  <string name="ThreadRecord_group_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു</string>
   <string name="ThreadRecord_left_the_group">ഗ്രൂപ്പ് വിട്ടു</string>
   <string name="ThreadRecord_secure_session_reset">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിച്ചു.</string>
   <string name="ThreadRecord_draft">ഡ്രാഫ്റ്റ്:</string>
@@ -1472,7 +1471,7 @@ grūpp ap‌ḍē</string>
   <string name="MmsMessageRecord_bad_encrypted_mms_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത MMS സന്ദേശം</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി MMS സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
+  <string name="MuteDialog_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">ഇറക്കുമതി പുരോഗതിയിലാണ്</string>
   <string name="ApplicationMigrationService_importing_text_messages">സന്ദേശങ്ങൾ ഇമ്പോർട്ടുചെയ്യുന്നു</string>
@@ -1595,7 +1594,7 @@ grūpp ap‌ḍē</string>
   <string name="WebRtcCallControls_contact_photo_description">കോൺ‌ടാക്റ്റിന്റെ ഫോട്ടോ</string>
   <string name="WebRtcCallControls_speaker_button_description">സ്പീക്കർ</string>
   <string name="WebRtcCallControls_bluetooth_button_description">ബ്ലൂടൂത്ത്</string>
-  <string name="WebRtcCallControls_mute_button_description">മ്യൂറ്റ്</string>
+  <string name="WebRtcCallControls_mute_button_description">നിശബ്ദമാക്കുക</string>
   <string name="WebRtcCallControls_your_camera_button_description">നിങ്ങളുടെ ക്യാമറ</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">റെയർ ക്യാമറയിലേക്ക് മാറുക</string>
   <string name="WebRtcCallControls_answer_call_description">കോൾ സ്വീകരിക്കുക</string>
@@ -1929,11 +1928,11 @@ grūpp ap‌ḍē</string>
   <string name="arrays__import_export">ഇറക്കുമതി ചെയ്യുക</string>
   <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
   <string name="arrays__use_custom">ഇഷ്‌ടാനുസൃതം ഉപയോഗിക്കുക</string>
-  <string name="arrays__mute_for_one_hour">1 മണിക്കൂർ മ്യൂറ്റ് ചെയ്യുക</string>
-  <string name="arrays__mute_for_two_hours">2 മണിക്കൂർ മ്യൂറ്റ് ചെയ്യുക</string>
-  <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
-  <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
-  <string name="arrays__mute_for_one_year">1 വർഷത്തേക്ക് മ്യൂട്ട് ചെയ്യുക</string>
+  <string name="arrays__mute_for_one_hour">1 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__mute_for_two_hours">2 മണിക്കൂറിന് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__mute_for_one_day">1 ദിവസത്തേക്ക്  നിശബ്ദമാക്കുക</string>
+  <string name="arrays__mute_for_seven_days">7 ദിവസത്തേക്ക് നിശബ്ദമാക്കുക</string>
+  <string name="arrays__mute_for_one_year">1 വർഷത്തേക്ക് നിശബ്ദമാക്കുക</string>
   <string name="arrays__settings_default">ക്രമീകരണ സ്ഥിരസ്ഥിതി</string>
   <string name="arrays__enabled">പ്രവർത്തനക്ഷമമാക്കി</string>
   <string name="arrays__disabled">അപ്രാപ്‌തമാക്കി</string>
@@ -2161,9 +2160,9 @@ grūpp ap‌ḍē</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">സുരക്ഷിത സെഷൻ പുനഃക്രമീകരിക്കുക</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">അൺമ്യൂട്ട് ചെയ്യുക</string>
+  <string name="conversation_muted__unmute">ശബ്‌ദിപ്പിക്കുക</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">അറിയിപ്പുകൾ മ്യൂറ്റ്ചെയ്യുക</string>
+  <string name="conversation_unmuted__mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
   <string name="conversation__menu_edit_group">ഗ്രൂപ്പ് എഡിറ്റുചെയ്യുക</string>

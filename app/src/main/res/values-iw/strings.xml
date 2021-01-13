@@ -48,7 +48,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">נעילת מסך %1$s, נעילת הרשמה %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">נעילת מסך %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה נעילת הרשמה.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה את נעילת ההרשמה.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
   <string name="ApplicationPreferencesActivity_hide">הסתר</string>
@@ -185,9 +185,9 @@
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש לפרטים</string>
-  <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש לפרטים</string>
-  <string name="ConversationItem_error_network_not_delivered">שליחה נכשלה</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש כדי לקבל פרטים</string>
+  <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש כדי לקבל פרטים</string>
+  <string name="ConversationItem_error_network_not_delivered">השליחה נכשלה</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">הודעת החלפת מפתחות התקבלה, הקש כדי לעבד.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">שליחה נכשלה, הקש לנסיגה בלתי מאובטחת</string>
@@ -319,7 +319,7 @@
   <string name="ConversationFragment_deleting_messages">מוחק הודעות…</string>
   <string name="ConversationFragment_delete_for_me">מחק עבורי</string>
   <string name="ConversationFragment_delete_for_everyone">מחק עבור כולם</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">הודעה זו תימחק עבור כל אחד שנמצא בשיחה אם הוא משתמש בגרסה מאוחרת של Signal. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">הודעה זו תימחק עבור כל אחד שנמצא בשיחה אם הוא משתמש בגרסה עדכנית של Signal. חברי קבוצה יוכלו לראות שמחקת הודעה.</string>
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ההודעה המקורית אינה זמינה יותר</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>

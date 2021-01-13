@@ -444,7 +444,7 @@
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста. поддержите нас!</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string>
   <string name="DonateMegaphone_donate">Пожертвовать</string>
   <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
   <!--GroupCallingMegaphone-->
@@ -605,7 +605,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Отключить</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Предпросмотр любой ссылки</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь при отправке сообщений вы можете получать предпросмотры ссылок напрямую с любого сайта.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете добавлять в свои сообщения предпросмотры ссылок, которые будут скачиваться напрямую с любого сайта.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
@@ -618,13 +618,13 @@
     <item quantity="other">%1$d участников</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу, ожидающие решения</string>
   <string name="PendingMembersActivity_requests">Запросы</string>
   <string name="PendingMembersActivity_invites">Приглашения</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений в ожидании.</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений, ожидающих решения</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Приглашения от других участников группы</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений в ожидании от других участников группы.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений, ожидающих решения, отправленных другими участниками.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Подробности людей, приглашённых другими участниками группы, не показываются. Информация о приглашённых станет доступна группе только если они решат присоединиться. Приглашённые не увидят сообщений в группе, пока не присоединятся.</string>
   <string name="PendingMembersActivity_revoke_invite">Отозвать приглашение</string>
   <string name="PendingMembersActivity_revoke_invites">Отозвать приглашения</string>
@@ -641,7 +641,7 @@
     <item quantity="other">Ошибка отзыва приглашений</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Ожидающие запросы на участие</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Запросы на участие, ожидающие решения</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Нет запросов на участие.</string>
   <string name="RequestingMembersFragment_explanation">Люди в этом списке пытаются присоединиться к этой группе по ссылке на группу.</string>
   <string name="RequestingMembersFragment_added_s">«%1$s» был(-а) добавлен(-а)</string>
@@ -657,7 +657,7 @@
   </plurals>
   <string name="AddMembersActivity__add">Добавить</string>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Назовите эту группу</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Придумайте имя для группы</string>
   <string name="AddGroupDetailsFragment__create_group">Создать группу</string>
   <string name="AddGroupDetailsFragment__create">Создать</string>
   <string name="AddGroupDetailsFragment__members">Участники</string>
@@ -669,7 +669,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Не удалось создать группу.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Попробуйте ещё раз позже.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Вы выбрали контакт, который не поддерживает группы Signal, поэтому эта группа будет преобразована в MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Пользовательские имена и фото групп MMS будут видны только вам.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и фото MMS-групп будут видны только вам.</string>
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>

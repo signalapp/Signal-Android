@@ -1576,6 +1576,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UsernameEditFragment_username_is_invalid">Uporabniško ime je neveljavno.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uporabniška imena morajo vsebovati od %1$d in%2$d znakov.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uporabniška imena v aplikaciji Signal so izbirna. Če si boste ustvarili uporabniško ime, vas bodo lahko drugi/e uporabniki/ce Signala našli/e po njem in stopili/e v stik z vami tudi brez poznavanja vaše telefonske številke.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d stik je na Signalu!</item>
+    <item quantity="two">%d stika sta na Signalu!</item>
+    <item quantity="few">%d stiki so na Signalu!</item>
+    <item quantity="other">%d stikov je na Signalu!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Za pregled in potrditev varnostnega števila jo bo moral nadgraditi.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš partner uporablja novejšo različico aplikacije Signal z nekompatibilnimi kodami QR. Prosimo, nadgradite svojo aplikacijo.</string>

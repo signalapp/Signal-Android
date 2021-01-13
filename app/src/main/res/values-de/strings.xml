@@ -770,7 +770,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Freunde einladen</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile eine Link mit Freunden, damit sie dieser Gruppe einfacher beitreten können.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile einen Link mit Freunden, damit sie dieser Gruppe einfach beitreten können.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Link aktivieren und teilen</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Link teilen</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Gruppen-Link kann nicht aktiviert werden. Bitte versuche es später erneut.</string>

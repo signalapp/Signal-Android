@@ -1439,6 +1439,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_enter_your_phone_number">Rhowch eich rhif ffôn</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Gwnewch yn siŵr fod gan eich ffôn signal cellol er mwyn derbyn eich SMS neu alwad</string>
   <string name="RegistrationActivity_phone_number_description">Rhif ffôn</string>
   <string name="RegistrationActivity_country_code_description">Cod gwlad</string>
   <string name="RegistrationActivity_call">Galw</string>
@@ -1586,6 +1587,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="UsernameEditFragment_username_is_invalid">Mae\'r enw defnyddiwr yn annilys.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Rhaid i enwau defnyddwyr fod rhwng %1$d a %2$d nod.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Mae enwau defnyddwyr ar Signal yn ddewisol. Os dewiswch greu enw defnyddiwr, bydd defnyddwyr Signal eraill yn gallu dod o hyd i chi yn ôl yr enw defnyddiwr hwn a chysylltu â chi heb wybod eich rhif ffôn.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">Mae %d cysylltiad ar Signal!</item>
+    <item quantity="two">Mae %d cysylltiad ar Signal!</item>
+    <item quantity="many">Mae %d cysylltiad ar Signal!</item>
+    <item quantity="other">Mae %d cysylltiad ar Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Signal. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Signal gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>

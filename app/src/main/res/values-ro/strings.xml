@@ -4,7 +4,7 @@
   <string name="no">Nu</string>
   <string name="delete">Ștergeți</string>
   <string name="please_wait">Vă rugăm să așteptați…</string>
-  <string name="save">Salvați</string>
+  <string name="save">Salvează</string>
   <string name="note_to_self">Notă personală</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
@@ -35,9 +35,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeți pentru a schimba aplicaţia implicită de SMS </string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atinge pentru a schimba aplicaţia implicită de SMS </string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Dezactivat</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Atinge pentru a seta Signal ca şi aplicaţie SMS implicită</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Atinge pentru a seta Signal ca aplicaţie SMS implicită</string>
   <string name="ApplicationPreferencesActivity_on">activată</string>
   <string name="ApplicationPreferencesActivity_On">Activate</string>
   <string name="ApplicationPreferencesActivity_off">dezactivată</string>
