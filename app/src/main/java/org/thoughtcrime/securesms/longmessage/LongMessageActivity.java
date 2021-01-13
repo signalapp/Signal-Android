@@ -22,9 +22,9 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;

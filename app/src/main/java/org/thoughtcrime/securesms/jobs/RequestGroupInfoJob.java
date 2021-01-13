@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
@@ -80,7 +80,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
                                                                .build();
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromExternal(context, source), false)),
                               message);
   }
 

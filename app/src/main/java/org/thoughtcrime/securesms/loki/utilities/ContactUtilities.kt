@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 

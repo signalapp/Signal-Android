@@ -22,11 +22,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;

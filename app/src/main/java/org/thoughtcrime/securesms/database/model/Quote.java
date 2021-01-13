@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.database.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
 public class Quote {

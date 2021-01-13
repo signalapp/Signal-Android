@@ -2,11 +2,11 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.session.libsignal.service.api.messages.SignalServiceContent
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage
@@ -56,7 +56,7 @@ object SessionMetaProtocol {
         val recipient = Recipient.from(context, Address.fromSerialized(content.sender), false)
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, message.profileKey.get())) {
             database.setProfileKey(recipient, message.profileKey.get())
-            database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN)
+            database.setUnidentifiedAccessMode(recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val url = content.senderProfilePictureURL.or("")
             ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
             val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
@@ -71,7 +71,8 @@ object SessionMetaProtocol {
      */
     @JvmStatic
     fun canUserReplyToNotification(recipient: Recipient): Boolean {
-        return !recipient.address.isRSSFeed
+        // TODO return !recipient.address.isRSSFeed
+        return true
     }
 
     @JvmStatic

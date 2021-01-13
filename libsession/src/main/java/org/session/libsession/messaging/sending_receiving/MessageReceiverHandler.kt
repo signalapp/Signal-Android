@@ -27,6 +27,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
@@ -38,7 +39,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 internal fun MessageReceiver.isBlock(publicKey: String): Boolean {
-    return SSKEnvironment.shared.blockManager.isRecipientIdBlocked(publicKey)
+    val context = MessagingConfiguration.shared.context
+    val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
+    return recipient.isBlocked
 }
 
 fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content, openGroupID: String?) {
@@ -46,13 +49,14 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
         is ReadReceipt -> handleReadReceipt(message)
         is TypingIndicator -> handleTypingIndicator(message)
         is ClosedGroupUpdate -> handleClosedGroupUpdate(message)
-        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message)
+        is ExpirationTimerUpdate -> handleExpirationTimerUpdate(message, proto)
         is VisibleMessage -> handleVisibleMessage(message, proto, openGroupID)
     }
 }
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
-    SSKEnvironment.shared.readReceiptManager.processReadReceipts(message.sender!!, message.timestamps!!.asList(), message.receivedTimestamp!!)
+    val context = MessagingConfiguration.shared.context
+    SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!.asList(), message.receivedTimestamp!!)
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {
@@ -83,20 +87,25 @@ fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
     SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID.toLong(), address, 1)
 }
 
-private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate) {
+private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
     if (message.duration!! > 0) {
-        setExpirationTimer(message.duration!!, message.sender!!, message.groupPublicKey)
+        setExpirationTimer(message, proto)
     } else {
-        disableExpirationTimer(message.sender!!, message.groupPublicKey)
+        disableExpirationTimer(message, proto)
     }
 }
 
-fun MessageReceiver.setExpirationTimer(duration: Int, senderPublicKey: String, groupPublicKey: String?) {
-
+fun MessageReceiver.setExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
+    val id = message.id?.toLong()
+    val duration = message.duration!!
+    val senderPublicKey = message.sender!!
+    SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(id, duration, senderPublicKey, proto)
 }
 
-fun MessageReceiver.disableExpirationTimer(senderPublicKey: String, groupPublicKey: String?) {
-
+fun MessageReceiver.disableExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
+    val id = message.id?.toLong()
+    val senderPublicKey = message.sender!!
+    SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(id, senderPublicKey, proto)
 }
 
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
@@ -125,14 +134,14 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             // Update the user's local name if the message came from their master device
             TextSecurePreferences.setProfileName(context, displayName)
         }
-        profileManager.setDisplayName(recipient, displayName)
+        profileManager.setDisplayName(context, recipient, displayName)
         if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, newProfile.profileKey)) {
-            profileManager.setProfileKey(recipient, newProfile.profileKey!!)
-            profileManager.setUnidentifiedAccessMode(recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
+            profileManager.setProfileKey(context, recipient, newProfile.profileKey!!)
+            profileManager.setUnidentifiedAccessMode(context, recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val url = newProfile.profilePictureURL.orEmpty()
-            profileManager.setProfilePictureURL(recipient, url)
+            profileManager.setProfilePictureURL(context, recipient, url)
             if (userPublicKey == message.sender) {
-                profileManager.updateOpenGroupProfilePicturesIfNeeded()
+                profileManager.updateOpenGroupProfilePicturesIfNeeded(context)
             }
         }
     }
@@ -192,6 +201,7 @@ private fun MessageReceiver.handleClosedGroupUpdate(message: ClosedGroupUpdate) 
 }
 
 private fun MessageReceiver.handleNewGroup(message: ClosedGroupUpdate) {
+    val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     val sskDatabase = MessagingConfiguration.shared.sskDatabase
     if (message.kind !is ClosedGroupUpdate.Kind.New) { return }
@@ -241,12 +251,11 @@ private fun MessageReceiver.handleNewGroup(message: ClosedGroupUpdate) {
     // Notify the PN server
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
     // Notify the user
-    /* TODO
-    insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
-    */
+    storage.insertIncomingInfoMessage(context, message.sender!!, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
 }
 
 private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {
+    val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     val sskDatabase = MessagingConfiguration.shared.sskDatabase
     if (message.kind !is ClosedGroupUpdate.Kind.Info) { return }
@@ -272,6 +281,7 @@ private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {
     val oldMembers = group.members.map { it.serialize() }.toSet()
     val userPublicKey = storage.getUserPublicKey()!!
     val wasUserRemoved = !members.contains(userPublicKey)
+    val wasSenderRemoved = !members.contains(message.sender!!)
     if (members.toSet().intersect(oldMembers) != oldMembers.toSet()) {
         val allOldRatchets = sskDatabase.getAllClosedGroupRatchets(groupPublicKey, ClosedGroupRatchetCollectionType.Current)
         for (pair in allOldRatchets) {
@@ -304,9 +314,9 @@ private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {
     storage.updateTitle(groupID, name)
     storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     // Notify the user if needed
-    val infoType = if (wasUserRemoved) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
-    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    // TODO insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
+    val type0 = if (wasSenderRemoved) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
+    val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
+    storage.insertIncomingInfoMessage(context, message.sender!!, groupID, type0, type1, name, members, admins)
 }
 
 private fun MessageReceiver.handleSenderKeyRequest(message: ClosedGroupUpdate) {

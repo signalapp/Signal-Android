@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.loki.api
 
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage

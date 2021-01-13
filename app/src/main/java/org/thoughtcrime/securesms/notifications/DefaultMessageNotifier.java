@@ -38,6 +38,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
 
+import org.jetbrains.annotations.NotNull;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -53,7 +57,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -61,6 +65,7 @@ import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.service.internal.util.Util;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;

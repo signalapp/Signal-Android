@@ -3,6 +3,7 @@ package org.session.libsession.messaging.sending_receiving
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageReceiver.Error
 import org.session.libsession.utilities.AESGCM
+import org.session.libsession.utilities.GroupUtil
 
 import org.whispersystems.curve25519.Curve25519
 
@@ -38,16 +39,16 @@ object MessageReceiverDecryption {
     internal fun decryptWithSharedSenderKeys(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
         // 1. ) Check preconditions
         val groupPublicKey = envelope.source
-        if (!MessagingConfiguration.shared.storage.isClosedGroup(groupPublicKey)) { throw Error.InvalidGroupPublicKey }
+        if (!GroupUtil.isClosedGroup(groupPublicKey)) { throw Error.InvalidGroupPublicKey }
         val data = envelope.content
         if (data.count() == 0) { throw Error.NoData }
-        val groupPrivateKey = MessagingConfiguration.shared.storage.getClosedGroupPrivateKey(groupPublicKey) ?: throw Error.NoGroupPrivateKey
+        val groupPrivateKey = MessagingConfiguration.shared.sskDatabase.getClosedGroupPrivateKey(groupPublicKey) ?: throw Error.NoGroupPrivateKey
         // 2. ) Parse the wrapper
         val wrapper = SignalServiceProtos.ClosedGroupCiphertextMessageWrapper.parseFrom(data)
         val ivAndCiphertext = wrapper.ciphertext.toByteArray()
         val ephemeralPublicKey = wrapper.ephemeralPublicKey.toByteArray()
         // 3. ) Decrypt the data inside
-        val ephemeralSharedSecret = Curve25519.getInstance(Curve25519.BEST).calculateAgreement(ephemeralPublicKey, groupPrivateKey.serialize())
+        val ephemeralSharedSecret = Curve25519.getInstance(Curve25519.BEST).calculateAgreement(ephemeralPublicKey, groupPrivateKey.toByteArray())
         val mac = Mac.getInstance("HmacSHA256")
         mac.init(SecretKeySpec("LOKI".toByteArray(), "HmacSHA256"))
         val symmetricKey = mac.doFinal(ephemeralSharedSecret)

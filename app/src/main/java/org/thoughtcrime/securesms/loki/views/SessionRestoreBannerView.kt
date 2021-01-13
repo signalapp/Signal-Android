@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.session_restore_banner.view.*
 
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 
 class SessionRestoreBannerView : LinearLayout {
   lateinit var recipient: Recipient

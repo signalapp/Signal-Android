@@ -6,13 +6,13 @@ import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.sms.MessageSender

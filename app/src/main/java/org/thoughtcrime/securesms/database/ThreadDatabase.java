@@ -29,11 +29,8 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -42,10 +39,16 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.DelimiterUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.DelimiterUtil;
+
 import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
@@ -553,7 +556,7 @@ public class ThreadDatabase extends Database {
       cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address address = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
         addressCache.put(threadId, address);
         return Recipient.from(context, address, false);
       }
@@ -732,7 +735,7 @@ public class ThreadDatabase extends Database {
     public ThreadRecord getCurrent() {
       long    threadId         = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.ID));
       int     distributionType = cursor.getInt(cursor.getColumnIndexOrThrow(ThreadDatabase.TYPE));
-      Address address          = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
+      Address address          = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.ADDRESS)));
 
       Optional<RecipientSettings> settings;
       Optional<GroupRecord>       groupRecord;

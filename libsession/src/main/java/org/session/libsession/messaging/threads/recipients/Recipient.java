@@ -786,7 +786,7 @@ public class Recipient implements RecipientModifiedListener {
     private final UnidentifiedAccessMode unidentifiedAccessMode;
     private final boolean                forceSmsSelection;
 
-    RecipientSettings(boolean blocked, long muteUntil,
+    public RecipientSettings(boolean blocked, long muteUntil,
                       @NonNull VibrateState messageVibrateState,
                       @NonNull VibrateState callVibrateState,
                       @Nullable Uri messageRingtone,

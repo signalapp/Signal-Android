@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.mms;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 
 import java.util.List;
 

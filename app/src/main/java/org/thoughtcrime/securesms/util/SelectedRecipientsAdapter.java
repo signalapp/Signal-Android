@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Collection;

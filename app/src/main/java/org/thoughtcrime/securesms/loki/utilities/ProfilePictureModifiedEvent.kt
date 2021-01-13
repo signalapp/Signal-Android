@@ -1,5 +1,5 @@
 package org.thoughtcrime.securesms.loki.utilities
 
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 
 data class ProfilePictureModifiedEvent(val recipient: Recipient)

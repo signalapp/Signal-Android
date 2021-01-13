@@ -5,7 +5,10 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Util;
+
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -15,8 +18,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
@@ -132,7 +133,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     @Override
     public @NonNull RetrieveProfileAvatarJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new RetrieveProfileAvatarJob(parameters,
-                                          Recipient.from(application, Address.fromSerialized(data.getString(KEY_ADDRESS)), true),
+                                          Recipient.from(application, Address.Companion.fromSerialized(data.getString(KEY_ADDRESS)), true),
                                           data.getString(KEY_PROFILE_AVATAR));
     }
   }

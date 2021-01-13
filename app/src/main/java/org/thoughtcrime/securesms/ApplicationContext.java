@@ -33,14 +33,18 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
+import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsignal.libsignal.state.SessionRecord;
 import org.signal.aesgcmprovider.AesGcmProvider;
-import org.thoughtcrime.securesms.components.TypingStatusRepository;
+import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
+import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
+import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -71,13 +75,12 @@ import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -148,6 +151,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private TypingStatusRepository  typingStatusRepository;
   private TypingStatusSender      typingStatusSender;
   private JobManager              jobManager;
+  private ReadReceiptManager      readReceiptManager;
+  private ProfileManager          profileManager;
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
@@ -220,10 +225,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
+    initializeReadReceiptManager();
+    initializeProfileManager();
     initializePeriodicTasks();
     initializeWebRtc();
     initializePendingMessages();
     initializeBlobProvider();
+    SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
   }
 
   @Override
@@ -278,6 +286,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public TypingStatusSender getTypingStatusSender() {
     return typingStatusSender;
   }
+
+  public ReadReceiptManager getReadReceiptManager() { return readReceiptManager; }
+
+  public ProfileManager getProfileManager() { return profileManager; }
 
   public boolean isAppVisible() {
     return isAppVisible;
@@ -363,6 +375,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeTypingStatusRepository() {
     this.typingStatusRepository = new TypingStatusRepository();
+  }
+
+  private void initializeReadReceiptManager() {
+    this.readReceiptManager = new ReadReceiptManager();
+  }
+
+  private void initializeProfileManager() {
+    this.profileManager = new ProfileManager();
   }
 
   private void initializeTypingStatusSender() {
@@ -522,7 +542,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
       byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
       try {
-        File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
+        File profilePicture = AvatarHelper.getAvatarFile(this, Address.Companion.fromSerialized(userPublicKey));
         StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
         FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
           TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
@@ -549,7 +569,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String url = TextSecurePreferences.getProfilePictureURL(this);
       String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
       if (userMasterDevice != null) {
-        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.fromSerialized(userMasterDevice), false).resolve();
+        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.Companion.fromSerialized(userMasterDevice), false).resolve();
         profileKey = userMasterDeviceAsRecipient.getProfileKey();
         url = userMasterDeviceAsRecipient.getProfileAvatar();
       }

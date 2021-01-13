@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components;
+package org.thoughtcrime.securesms.sskenvironment;
 
 import android.annotation.SuppressLint;
 import androidx.lifecycle.LiveData;
@@ -9,10 +9,13 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.jetbrains.annotations.NotNull;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsignal.libsignal.logging.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +27,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint("UseSparseArrays")
-public class TypingStatusRepository {
+public class TypingStatusRepository implements SSKEnvironment.TypingIndicatorsProtocol {
 
   private static final String TAG = TypingStatusRepository.class.getSimpleName();
 
@@ -42,13 +45,14 @@ public class TypingStatusRepository {
     this.threadsNotifier = new MutableLiveData<>();
   }
 
-  public synchronized void onTypingStarted(@NonNull Context context, long threadId, @NonNull Recipient author, int device) {
-    if (author.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+  @Override
+  public synchronized void didReceiveTypingStartedMessage(@NotNull Context context, long threadId, @NotNull Address author, int device) {
+    if (author.serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
       return;
     }
 
     Set<Typist> typists = Util.getOrDefault(typistMap, threadId, new LinkedHashSet<>());
-    Typist      typist  = new Typist(author, device, threadId);
+    Typist      typist  = new Typist(Recipient.from(context, author, false), device, threadId);
 
     if (!typists.contains(typist)) {
       typists.add(typist);
@@ -61,18 +65,19 @@ public class TypingStatusRepository {
       Util.cancelRunnableOnMain(timer);
     }
 
-    timer = () -> onTypingStopped(context, threadId, author, device, false);
+    timer = () -> didReceiveTypingStoppedMessage(context, threadId, author, device, false);
     Util.runOnMainDelayed(timer, RECIPIENT_TYPING_TIMEOUT);
     timers.put(typist, timer);
   }
 
-  public synchronized void onTypingStopped(@NonNull Context context, long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
-    if (author.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+  @Override
+  public synchronized void didReceiveTypingStoppedMessage(@NotNull Context context, long threadId, @NotNull Address author, int device, boolean isReplacedByIncomingMessage) {
+    if (author.serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
       return;
     }
 
     Set<Typist> typists = Util.getOrDefault(typistMap, threadId, new LinkedHashSet<>());
-    Typist      typist  = new Typist(author, device, threadId);
+    Typist      typist  = new Typist(Recipient.from(context, author, false), device, threadId);
 
     if (typists.contains(typist)) {
       typists.remove(typist);
@@ -88,6 +93,11 @@ public class TypingStatusRepository {
       Util.cancelRunnableOnMain(timer);
       timers.remove(typist);
     }
+  }
+
+  @Override
+  public synchronized void didReceiveIncomingMessage(@NotNull Context context, long threadId, @NotNull Address author, int device) {
+    didReceiveTypingStoppedMessage(context, threadId, author, device, true);
   }
 
   public synchronized LiveData<TypingState> getTypists(long threadId) {

@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -80,9 +80,9 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
@@ -292,7 +292,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             SessionMetaProtocol.handleProfileKeyUpdate(context, content);
           }
 
-          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.fromSerialized(content.getSender()))) {
+          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.Companion.fromSerialized(content.getSender()))) {
             handleNeedsDeliveryReceipt(content, message);
           }
         }
@@ -324,7 +324,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.w(TAG, "Got unrecognized message...");
       }
 
-      resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
+      resetRecipientToPush(Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false));
 
 //      if (envelope.isPreKeySignalMessage()) {
 //        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
@@ -365,7 +365,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                        @NonNull Optional<Long>       smsMessageId)
   {
     SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
+    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.Companion.fromSerialized(content.getSender()),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
                                                                       "", Optional.absent(), 0,
@@ -528,8 +528,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (message.getMessage().getProfileKey().isPresent()) {
         Recipient recipient = null;
 
-        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
-        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
+        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
 
 
         if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
@@ -933,7 +933,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (canRecoverAutomatically(e)) {
-      Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
+      Recipient recipient = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
       LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
       long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
       threadDB.addSessionRestoreDevice(threadID, sender);
@@ -1017,7 +1017,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
+                      .add(new SendDeliveryReceiptJob(Address.Companion.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1025,9 +1025,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                      @NonNull SignalServiceReceiptMessage message)
   {
     // Redirect message to master device conversation
-    Address masterAddress = Address.fromSerialized(content.getSender());
+    Address masterAddress = Address.Companion.fromSerialized(content.getSender());
 
-    if (masterAddress.isPhone()) {
+    if (masterAddress.isContact()) {
       Recipient masterRecipient = getMessageMasterDestination(content.getSender());
       masterAddress = masterRecipient.getAddress();
     }
@@ -1046,9 +1046,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 
       // Redirect message to master device conversation
-      Address masterAddress = Address.fromSerialized(content.getSender());
+      Address masterAddress = Address.Companion.fromSerialized(content.getSender());
 
-      if (masterAddress.isPhone()) {
+      if (masterAddress.isContact()) {
         Recipient masterRecipient = getMessageMasterDestination(content.getSender());
         masterAddress = masterRecipient.getAddress();
       }
@@ -1069,13 +1069,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    Recipient author = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    Recipient author = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
 
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
       // Typing messages should only apply to closed groups, thus we use `getEncodedId`
-      Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
+      Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
@@ -1092,10 +1092,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (typingMessage.isTypingStarted()) {
       Log.d(TAG, "Typing started on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStarted(context,threadId, author, content.getSenderDevice());
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStartedMessage(context,threadId, author.getAddress(), content.getSenderDevice());
     } else {
       Log.d(TAG, "Typing stopped on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, content.getSenderDevice(), false);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStoppedMessage(context, threadId, author.getAddress(), content.getSenderDevice(), false);
     }
   }
 
@@ -1112,7 +1112,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Optional.absent();
     }
 
-    Address       author  = Address.fromSerialized(quote.get().getAuthor().getNumber());
+    Address       author  = Address.Companion.fromSerialized(quote.get().getAuthor().getNumber());
     MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
     if (message != null) {
@@ -1227,21 +1227,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
-      return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
     }
   }
 
   private Recipient getSyncMessageMasterDestination(SentTranscriptMessage message) {
     if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
       String publicKey = message.getDestination().get();
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
@@ -1250,9 +1250,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
-          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
         } catch (Exception e) {
-          return Recipient.from(context, Address.fromSerialized(publicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
         }
       }
     }
@@ -1260,20 +1260,20 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
-      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, content.getSender()), false);
     }
   }
 
   private Recipient getMessageMasterDestination(String publicKey) {
     if (!PublicKeyValidation.isValid(publicKey)) {
-      return Recipient.from(context, Address.fromSerialized(publicKey), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
@@ -1282,21 +1282,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
-          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
         } catch (Exception e) {
-          return Recipient.from(context, Address.fromSerialized(publicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
         }
       }
     }
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
-    Recipient author   = Recipient.from(context, Address.fromSerialized(sender), false);
+    Recipient author   = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
     long      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, device, true);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStoppedMessage(context, threadId, author.getAddress(), device, true);
     }
   }
 
@@ -1311,7 +1311,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return true;
     }
 
-    Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    Recipient sender = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
 
     if (content.getDeviceLink().isPresent()) {
       return false;

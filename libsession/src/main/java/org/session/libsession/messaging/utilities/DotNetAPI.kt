@@ -82,7 +82,7 @@ open class DotNetAPI {
     private fun requestNewAuthToken(server: String): Promise<String, Exception> {
         Log.d("Loki", "Requesting auth token for server: $server.")
         val userKeyPair = MessagingConfiguration.shared.storage.getUserKeyPair() ?: throw Error.Generic
-        val parameters: Map<String, Any> = mapOf( "pubKey" to userKeyPair.hexEncodedPublicKey )
+        val parameters: Map<String, Any> = mapOf( "pubKey" to userKeyPair.first )
         return execute(HTTPVerb.GET, server, "loki/v1/get_challenge", false, parameters).map(SnodeAPI.sharedContext) { json ->
             try {
                 val base64EncodedChallenge = json["cipherText64"] as String
@@ -95,7 +95,7 @@ open class DotNetAPI {
                     serverPublicKey = Hex.fromStringCondensed(hexEncodedServerPublicKey.removing05PrefixIfNeeded())
                 }
                 // The challenge is prefixed by the 16 bit IV
-                val tokenAsData = DiffieHellman.decrypt(challenge, serverPublicKey, userKeyPair.privateKey.serialize())
+                val tokenAsData = DiffieHellman.decrypt(challenge, serverPublicKey, userKeyPair.second)
                 val token = tokenAsData.toString(Charsets.UTF_8)
                 token
             } catch (exception: Exception) {

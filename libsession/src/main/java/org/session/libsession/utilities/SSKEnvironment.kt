@@ -1,16 +1,17 @@
 package org.session.libsession.utilities
 
 import android.content.Context
-import org.session.libsession.messaging.sending_receiving.notifications.NotificationProtocol
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class SSKEnvironment(
         val typingIndicators: TypingIndicatorsProtocol,
-        val blockManager: BlockingManagerProtocol,
         val readReceiptManager: ReadReceiptManagerProtocol,
         val profileManager: ProfileManagerProtocol,
-        val notificationManager: NotificationProtocol
+        val notificationManager: MessageNotifier,
+        val messageExpirationManager: MessageExpirationManagerProtocol
 ) {
     interface TypingIndicatorsProtocol {
         fun didReceiveTypingStartedMessage(context: Context, threadId: Long, author: Address, device: Int)
@@ -18,32 +19,33 @@ class SSKEnvironment(
         fun didReceiveIncomingMessage(context: Context, threadId: Long, author: Address, device: Int)
     }
 
-    interface BlockingManagerProtocol {
-        fun isRecipientIdBlocked(publicKey: String): Boolean
-    }
-
     interface ReadReceiptManagerProtocol {
-        fun processReadReceipts(fromRecipientId: String, sentTimestamps: List<Long>, readTimestamp: Long)
+        fun processReadReceipts(context: Context, fromRecipientId: String, sentTimestamps: List<Long>, readTimestamp: Long)
     }
 
     interface ProfileManagerProtocol {
-        fun setDisplayName(recipient: Recipient, displayName: String)
-        fun setProfilePictureURL(recipient: Recipient, profilePictureURL: String)
-        fun setProfileKey(recipient: Recipient, profileKey: ByteArray)
-        fun setUnidentifiedAccessMode(recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode)
-        fun updateOpenGroupProfilePicturesIfNeeded()
+        fun setDisplayName(context: Context, recipient: Recipient, displayName: String)
+        fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String)
+        fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray)
+        fun setUnidentifiedAccessMode(context: Context, recipient: Recipient, unidentifiedAccessMode: Recipient.UnidentifiedAccessMode)
+        fun updateOpenGroupProfilePicturesIfNeeded(context: Context)
+    }
+
+    interface MessageExpirationManagerProtocol {
+        fun setExpirationTimer(messageID: Long?, duration: Int, senderPublicKey: String, content: SignalServiceProtos.Content)
+        fun disableExpirationTimer(messageID: Long?, senderPublicKey: String, content: SignalServiceProtos.Content)
     }
 
     companion object {
         lateinit var shared: SSKEnvironment
 
         fun configure(typingIndicators: TypingIndicatorsProtocol,
-                      blockManager: BlockingManagerProtocol,
                       readReceiptManager: ReadReceiptManagerProtocol,
                       profileManager: ProfileManagerProtocol,
-                      notificationManager: NotificationProtocol) {
+                      notificationManager: MessageNotifier,
+                      messageExpirationManager: MessageExpirationManagerProtocol) {
             if (Companion::shared.isInitialized) { return }
-            shared = SSKEnvironment(typingIndicators, blockManager, readReceiptManager, profileManager, notificationManager)
+            shared = SSKEnvironment(typingIndicators, readReceiptManager, profileManager, notificationManager, messageExpirationManager)
         }
     }
 }

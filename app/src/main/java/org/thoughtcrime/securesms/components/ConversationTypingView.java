@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;

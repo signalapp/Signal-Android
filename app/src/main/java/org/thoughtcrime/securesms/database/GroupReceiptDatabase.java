@@ -10,6 +10,8 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
+import org.session.libsession.messaging.threads.Address;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,7 +82,7 @@ public class GroupReceiptDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, null, MMS_ID + " = ?", new String[] {String.valueOf(mmsId)}, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(new GroupReceiptInfo(Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))),
+        results.add(new GroupReceiptInfo(Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(STATUS)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(UNIDENTIFIED)) == 1));

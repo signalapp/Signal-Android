@@ -11,11 +11,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 

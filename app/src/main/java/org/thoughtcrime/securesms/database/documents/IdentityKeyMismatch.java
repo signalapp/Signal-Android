@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.util.Base64;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.InvalidKeyException;
@@ -41,7 +41,7 @@ public class IdentityKeyMismatch {
 
   @JsonIgnore
   public Address getAddress() {
-    return Address.fromSerialized(address);
+    return Address.Companion.fromSerialized(address);
   }
 
   public IdentityKey getIdentityKey() {

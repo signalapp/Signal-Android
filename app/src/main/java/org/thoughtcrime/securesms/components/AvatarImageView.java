@@ -21,12 +21,12 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientExporter;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;

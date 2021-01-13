@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.ContentUris;
 import android.net.Uri;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 
 public class PartUriParser {
 

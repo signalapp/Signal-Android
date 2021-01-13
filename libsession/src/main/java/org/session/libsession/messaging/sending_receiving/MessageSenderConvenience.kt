@@ -27,7 +27,6 @@ fun MessageSender.send(message: Message, address: Address) {
 
 fun MessageSender.sendNonDurably(message: VisibleMessage, attachments: List<SignalServiceAttachment>, address: Address): Promise<Unit, Exception> {
     prep(attachments, message)
-    // TODO: Deal with attachments
     return sendNonDurably(message, address)
 }
 

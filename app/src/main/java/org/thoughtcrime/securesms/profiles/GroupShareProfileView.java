@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class GroupShareProfileView extends FrameLayout {

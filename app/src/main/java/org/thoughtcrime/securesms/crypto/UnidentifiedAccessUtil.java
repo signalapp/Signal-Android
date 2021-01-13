@@ -10,7 +10,7 @@ import org.session.libsignal.metadata.SignalProtos;
 import org.session.libsignal.metadata.certificate.CertificateValidator;
 import org.session.libsignal.metadata.certificate.InvalidCertificateException;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;

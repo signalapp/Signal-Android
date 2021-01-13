@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.search.model;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 
 /**
  * Represents a search result for a message.

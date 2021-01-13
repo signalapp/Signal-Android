@@ -1,8 +1,15 @@
 package org.session.libsession.utilities
 
+import android.content.Context
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import org.session.libsession.messaging.threads.Address
+import org.session.libsignal.libsignal.logging.Log
+import java.io.Closeable
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
@@ -17,6 +24,21 @@ object Util {
     }
 
     @JvmStatic
+    @Throws(IOException::class)
+    fun copy(`in`: InputStream, out: OutputStream): Long {
+        val buffer = ByteArray(8192)
+        var read: Int
+        var total: Long = 0
+        while (`in`.read(buffer).also { read = it } != -1) {
+            out.write(buffer, 0, read)
+            total += read.toLong()
+        }
+        `in`.close()
+        out.close()
+        return total
+    }
+
+    @JvmStatic
     fun uri(uri: String?): Uri? {
         return if (uri == null) null else Uri.parse(uri)
     }
@@ -25,6 +47,16 @@ object Util {
     fun runOnMain(runnable: Runnable) {
         if (isMainThread()) runnable.run()
         else getHandler()?.post(runnable)
+    }
+
+    @JvmStatic
+    fun runOnMainDelayed(runnable: Runnable, delayMillis: Long) {
+        getHandler()?.postDelayed(runnable, delayMillis)
+    }
+
+    @JvmStatic
+    fun cancelRunnableOnMain(runnable: Runnable) {
+        getHandler()?.removeCallbacks(runnable)
     }
 
     private fun getHandler(): Handler? {
@@ -75,6 +107,57 @@ object Util {
     @JvmStatic
     fun hashCode(vararg objects: Any?): Int {
         return Arrays.hashCode(objects)
+    }
+
+    @JvmStatic
+    fun <K, V> getOrDefault(map: Map<K, V>, key: K, defaultValue: V): V? {
+        return if (map.containsKey(key)) map[key] else defaultValue
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun getStreamLength(`in`: InputStream): Long {
+        val buffer = ByteArray(4096)
+        var totalSize = 0
+        var read: Int
+        while (`in`.read(buffer).also { read = it } != -1) {
+            totalSize += read
+        }
+        return totalSize.toLong()
+    }
+
+    @JvmStatic
+    fun toIntExact(value: Long): Int {
+        if (value.toInt().compareTo(value) != 0){
+            throw ArithmeticException("integer overflow")
+        }
+        return value.toInt()
+    }
+
+    @JvmStatic
+    fun close(closeable: Closeable) {
+        try {
+            closeable.close()
+        } catch (e: IOException) {
+            Log.w("Loki", e)
+        }
+    }
+
+    @JvmStatic
+    fun isOwnNumber(context: Context, address: Address): Boolean {
+        return if (address.isGroup) false else TextSecurePreferences.getLocalNumber(context) == address.serialize()
+    }
+
+    @JvmStatic
+    fun <T> partition(list: List<T>, partitionSize: Int): List<List<T>> {
+        val results: MutableList<List<T>> = LinkedList()
+        var index = 0
+        while (index < list.size) {
+            val subListSize = Math.min(partitionSize, list.size - index)
+            results.add(list.subList(index, index + subListSize))
+            index += partitionSize
+        }
+        return results
     }
 
 }

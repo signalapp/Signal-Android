@@ -196,7 +196,7 @@ object OpenGroupAPI: DotNetAPI() {
         val userKeyPair = storage.getUserKeyPair() ?: throw Error.Generic
         val userDisplayName = storage.getUserDisplayName() ?: throw Error.Generic
         Thread {
-            val signedMessage = message.sign(userKeyPair.privateKey.serialize())
+            val signedMessage = message.sign(userKeyPair.second)
             if (signedMessage == null) {
                 deferred.reject(Error.SigningFailed)
             } else {
@@ -212,7 +212,7 @@ object OpenGroupAPI: DotNetAPI() {
                             format.timeZone = TimeZone.getTimeZone("GMT")
                             val dateAsString = data["created_at"] as String
                             val timestamp = format.parse(dateAsString).time
-                            @Suppress("NAME_SHADOWING") val message = OpenGroupMessage(serverID, userKeyPair.hexEncodedPublicKey, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
+                            @Suppress("NAME_SHADOWING") val message = OpenGroupMessage(serverID, userKeyPair.first, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
                             message
                         } catch (exception: Exception) {
                             Log.d("Loki", "Couldn't parse message for open group with ID: $channel on server: $server.")

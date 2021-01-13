@@ -41,7 +41,7 @@ import android.text.style.StyleSpan;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -208,9 +208,8 @@ public class Util {
 
   public static boolean isOwnNumber(Context context, Address address) {
     if (address.isGroup()) return false;
-    if (address.isEmail()) return false;
 
-    return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
+    return TextSecurePreferences.getLocalNumber(context).equals(address.serialize());
   }
 
   public static void readFully(InputStream in, byte[] buffer) throws IOException {

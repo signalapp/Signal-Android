@@ -15,6 +15,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.session.libsignal.libsignal.IdentityKey;
 
+import org.session.libsession.messaging.threads.Address;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;

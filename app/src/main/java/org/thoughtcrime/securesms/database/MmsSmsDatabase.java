@@ -29,6 +29,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.util.Util;
 
+import org.session.libsession.messaging.threads.Address;
+
 import java.util.HashSet;
 import java.util.Set;
 

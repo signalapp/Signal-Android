@@ -27,15 +27,17 @@ import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.session.libsignal.libsignal.logging.Log;
+
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.utilities.Util;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.MemoryFileUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

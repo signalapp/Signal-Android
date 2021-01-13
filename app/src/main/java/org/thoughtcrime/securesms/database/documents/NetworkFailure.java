@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.database.documents;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 
 public class NetworkFailure {
 

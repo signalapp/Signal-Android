@@ -1,6 +1,7 @@
 package org.session.libsession.messaging
 
 
+import android.content.Context
 import android.net.Uri
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
@@ -18,12 +19,14 @@ import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSe
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 interface StorageProtocol {
 
     // General
     fun getUserPublicKey(): String?
-    fun getUserKeyPair(): ECKeyPair?
+    fun getUserKeyPair(): Pair<String, ByteArray>?
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
@@ -33,10 +36,6 @@ interface StorageProtocol {
     // Signal Protocol
 
     fun getOrGenerateRegistrationID(): Int
-
-    // Shared Sender Keys
-    fun getClosedGroupPrivateKey(publicKey: String): ECPrivateKey?
-    fun isClosedGroup(publicKey: String): Boolean
 
     // Jobs
     fun persist(job: Job)
@@ -97,6 +96,11 @@ interface StorageProtocol {
     fun setActive(groupID: String, value: Boolean)
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
+    // Closed Group
+    fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
+                                  name: String, members: Collection<String>, admins: Collection<String>)
+    fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
+                                  members: Collection<String>, admins: Collection<String>, threadID: Long)
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)

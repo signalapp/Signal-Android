@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.loki.SessionResetStatus

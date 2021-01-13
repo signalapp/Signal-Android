@@ -334,6 +334,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, true)
     }
 
+    @JvmStatic
     fun isReadReceiptsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, READ_RECEIPTS_PREF, false)
     }

@@ -12,6 +12,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.SSKEnvironment
 
 
 import org.session.libsignal.libsignal.ecc.Curve
@@ -27,6 +28,7 @@ import java.util.*
 fun MessageSender.createClosedGroup(name: String, members: Collection<String>): Promise<String, Exception> {
     val deferred = deferred<String, Exception>()
     // Prepare
+    val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     val members = members
     val userPublicKey = storage.getUserPublicKey()!!
@@ -64,9 +66,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
     PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
     // Notify the user
     val threadID =storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    /* TODO
-    insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
-     */
+    storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID)
     // Fulfill the promise
     deferred.resolve(groupPublicKey)
     // Return
@@ -75,6 +75,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
 
 fun MessageSender.update(groupPublicKey: String, members: Collection<String>, name: String): Promise<Unit, Exception> {
     val deferred = deferred<Unit, Exception>()
+    val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
     val sskDatabase = MessagingConfiguration.shared.sskDatabase
@@ -197,9 +198,7 @@ fun MessageSender.update(groupPublicKey: String, members: Collection<String>, na
     // Notify the user
     val infoType = if (isUserLeaving) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
     val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    /* TODO
-    insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
-     */
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
     deferred.resolve(Unit)
     return deferred.promise
 }

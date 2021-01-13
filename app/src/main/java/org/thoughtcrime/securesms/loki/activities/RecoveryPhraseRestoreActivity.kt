@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public class OutgoingEncryptedMessage extends OutgoingTextMessage {
 
