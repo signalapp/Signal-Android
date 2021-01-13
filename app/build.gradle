@@ -150,6 +150,8 @@ android {
     compileOptions {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
+
+        coreLibraryDesugaringEnabled true
     }
 
     packagingOptions {
@@ -286,6 +288,8 @@ android {
 
 dependencies {
     lintChecks project(':lintchecks')
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.1'
 
     implementation ('androidx.appcompat:appcompat:1.2.0') {
         force = true
