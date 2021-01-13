@@ -11,7 +11,7 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;

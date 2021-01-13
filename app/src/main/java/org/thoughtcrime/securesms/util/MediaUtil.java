@@ -15,7 +15,7 @@ import android.webkit.MimeTypeMap;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;

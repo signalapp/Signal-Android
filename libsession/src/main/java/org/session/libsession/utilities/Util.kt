@@ -1,15 +1,18 @@
 package org.session.libsession.utilities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import android.provider.Telephony
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.logging.Log
 import java.io.Closeable
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.nio.charset.StandardCharsets
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
@@ -89,6 +92,11 @@ object Util {
     }
 
     @JvmStatic
+    fun join(list: Array<String?>, delimiter: String?): String {
+        return join(Arrays.asList(*list), delimiter)
+    }
+
+    @JvmStatic
     fun join(list: Collection<String?>, delimiter: String?): String {
         val result = StringBuilder()
         var i = 0
@@ -97,6 +105,16 @@ object Util {
             if (++i < list.size) result.append(delimiter)
         }
         return result.toString()
+    }
+
+    @JvmStatic
+    fun join(list: LongArray, delimeter: String?): String {
+        val sb = java.lang.StringBuilder()
+        for (j in list.indices) {
+            if (j != 0) sb.append(delimeter)
+            sb.append(list[j])
+        }
+        return sb.toString()
     }
 
     @JvmStatic
@@ -158,6 +176,27 @@ object Util {
             index += partitionSize
         }
         return results
+    }
+
+    @JvmStatic
+    fun toIsoString(bytes: ByteArray?): String {
+        return String(bytes!!, StandardCharsets.ISO_8859_1)
+    }
+
+    @JvmStatic
+    fun toIsoBytes(isoString: String): ByteArray {
+        return isoString.toByteArray(StandardCharsets.ISO_8859_1)
+    }
+
+    @JvmStatic
+    fun toUtf8Bytes(utf8String: String): ByteArray {
+        return utf8String.toByteArray(StandardCharsets.UTF_8)
+    }
+
+    @JvmStatic
+    @SuppressLint("NewApi")
+    fun isDefaultSmsProvider(context: Context): Boolean {
+        return context.packageName == Telephony.Sms.getDefaultSmsPackage(context)
     }
 
 }

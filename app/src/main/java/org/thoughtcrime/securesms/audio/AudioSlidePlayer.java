@@ -33,7 +33,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import org.jetbrains.annotations.NotNull;
-import org.thoughtcrime.securesms.attachments.AttachmentServer;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentServer;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.util.ServiceUtil;

@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.PartAuthority;

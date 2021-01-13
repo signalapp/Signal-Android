@@ -27,7 +27,7 @@ import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SelfSendException;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;

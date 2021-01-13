@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.contactshare;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;

@@ -7,7 +7,7 @@ import android.net.Uri
 import androidx.annotation.WorkerThread
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream

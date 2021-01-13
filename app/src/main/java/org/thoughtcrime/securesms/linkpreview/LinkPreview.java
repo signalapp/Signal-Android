@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;

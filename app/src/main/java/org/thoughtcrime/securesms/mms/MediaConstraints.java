@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;

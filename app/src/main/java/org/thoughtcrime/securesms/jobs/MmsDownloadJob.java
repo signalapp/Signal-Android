@@ -11,7 +11,7 @@ import com.google.android.mms.pdu_alt.PduPart;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;

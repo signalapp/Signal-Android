@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;

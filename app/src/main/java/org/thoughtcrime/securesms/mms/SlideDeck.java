@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 

@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.mms;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.contactshare.Contact;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.session.libsession.messaging.threads.Address;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
@@ -79,7 +79,7 @@ public class IncomingMediaMessage {
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
-    if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get()));
+    if (group.isPresent()) this.groupId = Address.Companion.fromSerialized(GroupUtil.INSTANCE.getEncodedId(group.get()));
     else                   this.groupId = null;
 
     this.attachments.addAll(PointerAttachment.forPointers(attachments));

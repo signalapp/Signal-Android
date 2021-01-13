@@ -22,12 +22,12 @@ import androidx.annotation.Nullable;
 import android.text.SpannableString;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.contactshare.Contact;
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 

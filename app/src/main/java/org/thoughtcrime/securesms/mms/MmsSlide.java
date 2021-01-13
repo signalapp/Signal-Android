@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 public class MmsSlide extends ImageSlide {
 

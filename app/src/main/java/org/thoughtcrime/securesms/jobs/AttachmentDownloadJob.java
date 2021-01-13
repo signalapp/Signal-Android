@@ -14,8 +14,8 @@ import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCo
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 import org.session.libsignal.service.loki.utilities.DownloadUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

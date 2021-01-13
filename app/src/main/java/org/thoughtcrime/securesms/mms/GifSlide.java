@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class GifSlide extends ImageSlide {

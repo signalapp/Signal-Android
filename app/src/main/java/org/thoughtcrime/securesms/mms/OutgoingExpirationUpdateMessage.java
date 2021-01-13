@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mms;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
