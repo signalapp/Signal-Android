@@ -218,8 +218,15 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getContactsHeaderCursor() {
     MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    StringBuilder header = new StringBuilder(getContext().getString(R.string.ContactsCursorLoader_contacts));
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(getContext());
+    if (recipientDatabase != null) {
+      header.append(" (")
+              .append(recipientDatabase.getRegistered().size())
+              .append(")");
+    }
     contactsHeader.addRow(new Object[] { null,
-                                         getContext().getString(R.string.ContactsCursorLoader_contacts),
+                                         header.toString(),
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",
