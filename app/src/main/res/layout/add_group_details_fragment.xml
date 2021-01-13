@@ -33,7 +33,6 @@
         android:background="@null"
         android:hint="@string/AddGroupDetailsFragment__group_name_required"
         android:inputType="text"
-        android:maxLength="34"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@id/group_avatar"
         app:layout_constraintEnd_toEndOf="parent"
