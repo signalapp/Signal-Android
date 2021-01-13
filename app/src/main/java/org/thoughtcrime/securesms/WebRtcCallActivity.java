@@ -718,5 +718,10 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
       viewModel.setIsViewingFocusedParticipant(page);
     }
+
+    @Override
+    public void onLocalPictureInPictureClicked() {
+      viewModel.onLocalPictureInPictureClicked();
+    }
   }
 }

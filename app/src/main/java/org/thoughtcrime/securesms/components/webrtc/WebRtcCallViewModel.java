@@ -135,6 +135,16 @@ public class WebRtcCallViewModel extends ViewModel {
     participantsState.setValue(CallParticipantsState.update(participantsState.getValue(), page));
   }
 
+  public void onLocalPictureInPictureClicked() {
+    CallParticipantsState state = participantsState.getValue();
+    if (state.getGroupCallState() != WebRtcViewModel.GroupCallState.IDLE) {
+      return;
+    }
+
+    participantsState.setValue(CallParticipantsState.setExpanded(participantsState.getValue(),
+                                                                 state.getLocalRenderState() != WebRtcLocalRenderState.EXPANDED));
+  }
+
   public void onDismissedVideoTooltip() {
     canDisplayTooltipIfNeeded = false;
   }

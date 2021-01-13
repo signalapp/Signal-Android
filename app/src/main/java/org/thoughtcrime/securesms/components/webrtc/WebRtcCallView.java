@@ -1,5 +1,9 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
@@ -8,7 +12,13 @@ import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -102,6 +112,8 @@ public class WebRtcCallView extends FrameLayout {
 
   private WebRtcCallParticipantsPagerAdapter    pagerAdapter;
   private WebRtcCallParticipantsRecyclerAdapter recyclerAdapter;
+  private PictureInPictureExpansionHelper       pictureInPictureExpansionHelper;
+
 
   private final Set<View> incomingCallViews    = new HashSet<>();
   private final Set<View> topViews             = new HashSet<>();
@@ -211,7 +223,14 @@ public class WebRtcCallView extends FrameLayout {
     answer.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallPressed));
     answerWithAudio.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onAcceptCallWithVoiceOnlyPressed));
 
-    pictureInPictureGestureHelper = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
+    pictureInPictureGestureHelper   = PictureInPictureGestureHelper.applyTo(smallLocalRenderFrame);
+    pictureInPictureExpansionHelper = new PictureInPictureExpansionHelper();
+
+    smallLocalRenderFrame.setOnClickListener(v -> {
+      if (controlsListener != null) {
+        controlsListener.onLocalPictureInPictureClicked();
+      }
+    });
 
     startCall.setOnClickListener(v -> {
       if (controlsListener != null) {
@@ -301,7 +320,7 @@ public class WebRtcCallView extends FrameLayout {
 
     pagerAdapter.submitList(pages);
     recyclerAdapter.submitList(state.getListParticipants());
-    updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant());
+    updateLocalCallParticipant(state.getLocalRenderState(), state.getLocalParticipant(), state.getFocusedParticipant());
 
     if (state.isLargeVideoGroup() && !state.isInPipMode()) {
       layoutParticipantsForLargeCount();
@@ -310,7 +329,7 @@ public class WebRtcCallView extends FrameLayout {
     }
   }
 
-  public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant) {
+  public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant, @NonNull CallParticipant focusedParticipant) {
     smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
     largeLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
@@ -321,9 +340,18 @@ public class WebRtcCallView extends FrameLayout {
       largeLocalRender.init(localCallParticipant.getVideoSink().getEglBase());
     }
 
-    smallLocalRender.setCallParticipant(localCallParticipant);
-    smallLocalRender.setRenderInPip(true);
     videoToggle.setChecked(localCallParticipant.isVideoEnabled(), false);
+    smallLocalRender.setRenderInPip(true);
+
+    if (state == WebRtcLocalRenderState.EXPANDED) {
+      expandPip(localCallParticipant, focusedParticipant);
+      return;
+    } else if (state == WebRtcLocalRenderState.SMALL_RECTANGLE && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
+      shrinkPip(localCallParticipant);
+      return;
+    } else {
+      smallLocalRender.setCallParticipant(localCallParticipant);
+    }
 
     switch (state) {
       case GONE:
@@ -559,6 +587,54 @@ public class WebRtcCallView extends FrameLayout {
     }
   }
 
+  private void expandPip(@NonNull CallParticipant localCallParticipant, @NonNull CallParticipant focusedParticipant) {
+    pictureInPictureExpansionHelper.expand(smallLocalRenderFrame, new PictureInPictureExpansionHelper.Callback() {
+      @Override
+      public void onAnimationWillStart() {
+        largeLocalRender.attachBroadcastVideoSink(localCallParticipant.getVideoSink());
+      }
+
+      @Override
+      public void onPictureInPictureExpanded() {
+        largeLocalRenderFrame.setVisibility(View.VISIBLE);
+      }
+
+      @Override
+      public void onPictureInPictureNotVisible() {
+        smallLocalRender.setCallParticipant(focusedParticipant);
+      }
+
+      @Override
+      public void onAnimationHasFinished() {
+        pictureInPictureGestureHelper.adjustPip();
+      }
+    });
+  }
+
+  private void shrinkPip(@NonNull CallParticipant localCallParticipant) {
+    pictureInPictureExpansionHelper.shrink(smallLocalRenderFrame, new PictureInPictureExpansionHelper.Callback() {
+      @Override
+      public void onAnimationWillStart() {
+      }
+
+      @Override
+      public void onPictureInPictureExpanded() {
+        largeLocalRenderFrame.setVisibility(View.GONE);
+        largeLocalRender.attachBroadcastVideoSink(null);
+      }
+
+      @Override
+      public void onPictureInPictureNotVisible() {
+        smallLocalRender.setCallParticipant(localCallParticipant);
+      }
+
+      @Override
+      public void onAnimationHasFinished() {
+        pictureInPictureGestureHelper.adjustPip();
+      }
+    });
+  }
+
   private void animatePipToLargeRectangle() {
     ResizeAnimation animation = new ResizeAnimation(smallLocalRenderFrame, ViewUtil.dpToPx(90), ViewUtil.dpToPx(160));
     animation.setDuration(PIP_RESIZE_DURATION);
@@ -753,5 +829,6 @@ public class WebRtcCallView extends FrameLayout {
     void onAcceptCallPressed();
     void onShowParticipantsList();
     void onPageChanged(@NonNull CallParticipantsState.SelectedPage page);
+    void onLocalPictureInPictureClicked();
   }
 }

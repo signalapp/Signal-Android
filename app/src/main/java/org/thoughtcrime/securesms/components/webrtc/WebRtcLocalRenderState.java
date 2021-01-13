@@ -5,5 +5,6 @@ public enum WebRtcLocalRenderState {
   SMALL_RECTANGLE,
   SMALLER_RECTANGLE,
   LARGE,
-  LARGE_NO_VIDEO
+  LARGE_NO_VIDEO,
+  EXPANDED
 }

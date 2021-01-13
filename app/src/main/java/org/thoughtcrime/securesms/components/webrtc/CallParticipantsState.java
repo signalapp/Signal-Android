@@ -181,7 +181,8 @@ public final class CallParticipantsState {
                                                                        webRtcViewModel.getGroupState().isNotIdle(),
                                                                        webRtcViewModel.getState(),
                                                                        webRtcViewModel.getRemoteParticipants().size(),
-                                                                       oldState.isViewingFocusedParticipant);
+                                                                       oldState.isViewingFocusedParticipant,
+                                                                       oldState.getLocalRenderState() == WebRtcLocalRenderState.EXPANDED);
 
     List<CallParticipant> participantsByLastSpoke = new ArrayList<>(webRtcViewModel.getRemoteParticipants());
     Collections.sort(participantsByLastSpoke, ComparatorCompat.reversed((p1, p2) -> Long.compare(p1.getLastSpoke(), p2.getLastSpoke())));
@@ -207,7 +208,8 @@ public final class CallParticipantsState {
                                                                        oldState.getGroupCallState().isNotIdle(),
                                                                        oldState.callState,
                                                                        oldState.getAllRemoteParticipants().size(),
-                                                                       oldState.isViewingFocusedParticipant);
+                                                                       oldState.isViewingFocusedParticipant,
+                                                                       oldState.getLocalRenderState() == WebRtcLocalRenderState.EXPANDED);
 
     CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
 
@@ -223,6 +225,28 @@ public final class CallParticipantsState {
                                      oldState.remoteDevicesCount);
   }
 
+  public static @NonNull CallParticipantsState setExpanded(@NonNull CallParticipantsState oldState, boolean expanded) {
+    WebRtcLocalRenderState localRenderState = determineLocalRenderMode(oldState.localParticipant,
+                                                                       oldState.isInPipMode,
+                                                                       oldState.showVideoForOutgoing,
+                                                                       oldState.getGroupCallState().isNotIdle(),
+                                                                       oldState.callState,
+                                                                       oldState.getAllRemoteParticipants().size(),
+                                                                       oldState.isViewingFocusedParticipant,
+                                                                       expanded);
+
+    return new CallParticipantsState(oldState.callState,
+                                     oldState.groupCallState,
+                                     oldState.remoteParticipants,
+                                     oldState.localParticipant,
+                                     oldState.focusedParticipant,
+                                     localRenderState,
+                                     oldState.isInPipMode,
+                                     oldState.showVideoForOutgoing,
+                                     oldState.isViewingFocusedParticipant,
+                                     oldState.remoteDevicesCount);
+  }
+
   public static @NonNull CallParticipantsState update(@NonNull CallParticipantsState oldState, @NonNull SelectedPage selectedPage) {
     CallParticipant focused = oldState.remoteParticipants.isEmpty() ? null : oldState.remoteParticipants.get(0);
 
@@ -232,7 +256,8 @@ public final class CallParticipantsState {
                                                                        oldState.getGroupCallState().isNotIdle(),
                                                                        oldState.callState,
                                                                        oldState.getAllRemoteParticipants().size(),
-                                                                       selectedPage == SelectedPage.FOCUSED);
+                                                                       selectedPage == SelectedPage.FOCUSED,
+                                                                       oldState.getLocalRenderState() == WebRtcLocalRenderState.EXPANDED);
 
     return new CallParticipantsState(oldState.callState,
                                      oldState.groupCallState,
@@ -252,12 +277,15 @@ public final class CallParticipantsState {
                                                                           boolean isNonIdleGroupCall,
                                                                           @NonNull WebRtcViewModel.State callState,
                                                                           int numberOfRemoteParticipants,
-                                                                          boolean isViewingFocusedParticipant)
+                                                                          boolean isViewingFocusedParticipant,
+                                                                          boolean isExpanded)
   {
     boolean                displayLocal     = (numberOfRemoteParticipants == 0 || !isInPip) && (isNonIdleGroupCall || localParticipant.isVideoEnabled());
     WebRtcLocalRenderState localRenderState = WebRtcLocalRenderState.GONE;
 
-    if (displayLocal || showVideoForOutgoing) {
+    if (isExpanded && (localParticipant.isVideoEnabled() || isNonIdleGroupCall)) {
+      return WebRtcLocalRenderState.EXPANDED;
+    } else if (displayLocal || showVideoForOutgoing) {
       if (callState == WebRtcViewModel.State.CALL_CONNECTED) {
         if (isViewingFocusedParticipant || numberOfRemoteParticipants > 1) {
           localRenderState = WebRtcLocalRenderState.SMALLER_RECTANGLE;

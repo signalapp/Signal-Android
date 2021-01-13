@@ -95,10 +95,8 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/call_screen_pip"
@@ -110,7 +108,8 @@
                 android:translationY="100000dp"
                 android:visibility="gone"
                 app:cardCornerRadius="8dp"
-                tools:background="@color/red"
+                tools:translationX="0dp"
+                tools:translationY="0dp"
                 tools:visibility="visible">
 
                 <include
