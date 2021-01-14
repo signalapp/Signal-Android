@@ -4,6 +4,7 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.sending_receiving.MessageReceiver.Error
 import org.session.libsession.utilities.AESGCM
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 
 import org.whispersystems.curve25519.Curve25519
 
@@ -32,11 +33,11 @@ object MessageReceiverDecryption {
         return Pair(ByteArray(1), result.sender) // TODO: Return real plaintext
     }*/
 
-    internal fun decryptWithSessionProtocol(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
-        return MessagingConfiguration.shared.sessionProtocol.decrypt(SignalServiceEnvelope(envelope))
+    internal fun decryptWithSessionProtocol(ciphertext: ByteArray, x25519KeyPair: ECKeyPair): Pair<ByteArray, String> {
+        return MessagingConfiguration.shared.sessionProtocol.decrypt(ciphertext, x25519KeyPair)
     }
 
-    internal fun decryptWithSharedSenderKeys(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
+    /*internal fun decryptWithSharedSenderKeys(envelope: SignalServiceProtos.Envelope): Pair<ByteArray, String> {
         // 1. ) Check preconditions
         val groupPublicKey = envelope.source
         if (!GroupUtil.isClosedGroup(groupPublicKey)) { throw Error.InvalidGroupPublicKey }
@@ -61,5 +62,5 @@ object MessageReceiverDecryption {
         val plaintext = SharedSenderKeysImplementation.shared.decrypt(closedGroupCiphertextMessage.ivAndCiphertext, groupPublicKey, senderPublicKey, closedGroupCiphertextMessage.keyIndex)
         // 6. ) Return
         return Pair(plaintext, senderPublicKey)
-    }
+    }*/
 }

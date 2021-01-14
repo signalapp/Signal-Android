@@ -7,8 +7,10 @@ import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.control.ReadReceipt
 import org.session.libsession.messaging.messages.control.TypingIndicator
 import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import java.lang.Error
 
 object MessageReceiver {
     internal sealed class Error(val description: String) : Exception() {
@@ -16,7 +18,8 @@ object MessageReceiver {
         object InvalidMessage: Error("Invalid message.")
         object UnknownMessage: Error("Unknown message type.")
         object UnknownEnvelopeType: Error("Unknown envelope type.")
-        object NoUserPublicKey: Error("Couldn't find user key pair.")
+        object NoUserX25519KeyPair: Error("Couldn't find user X25519 key pair.")
+        object NoUserED25519KeyPair: Error("Couldn't find user ED25519 key pair.")
         object NoData: Error("Received an empty envelope.")
         object SenderBlocked: Error("Received a message from a blocked user.")
         object NoThread: Error("Couldn't find thread for message.")
@@ -24,7 +27,7 @@ object MessageReceiver {
         object ParsingFailed : Error("Couldn't parse ciphertext message.")
         // Shared sender keys
         object InvalidGroupPublicKey: Error("Invalid group public key.")
-        object NoGroupPrivateKey: Error("Missing group private key.")
+        object NoGroupKeyPair: Error("Missing group key pair.")
         object SharedSecretGenerationFailed: Error("Couldn't generate a shared secret.")
 
         internal val isRetryable: Boolean = when (this) {
@@ -47,8 +50,9 @@ object MessageReceiver {
         if (storage.getReceivedMessageTimestamps().contains(envelope.timestamp)) throw Error.DuplicateMessage
         storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Decrypt the contents
-        val plaintext: ByteArray
-        val sender: String
+        val ciphertext = envelope.content ?: throw Error.NoData
+        var plaintext: ByteArray? = null
+        var sender: String? = null
         var groupPublicKey: String? = null
         if (isOpenGroupMessage) {
             plaintext = envelope.content.toByteArray()
@@ -56,20 +60,43 @@ object MessageReceiver {
         } else {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER -> {
-                    val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(envelope)
+                    val userX25519KeyPair = MessagingConfiguration.shared.storage.getUserX25519KeyPair() ?: throw Error.NoUserX25519KeyPair
+                    val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), userX25519KeyPair)
                     plaintext = decryptionResult.first
                     sender = decryptionResult.second
                 }
                 SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT -> {
-                    val decryptionResult = MessageReceiverDecryption.decryptWithSharedSenderKeys(envelope)
-                    plaintext = decryptionResult.first
-                    sender = decryptionResult.second
+                    val hexEncodedGroupPublicKey = envelope.source
+                    if (hexEncodedGroupPublicKey == null || MessagingConfiguration.shared.storage.isClosedGroup(hexEncodedGroupPublicKey)) {
+                        throw Error.InvalidGroupPublicKey
+                    }
+                    val encryptionKeyPairs = MessagingConfiguration.shared.storage.getClosedGroupEncryptionKeyPairs(hexEncodedGroupPublicKey)
+                    if (encryptionKeyPairs.isEmpty()) { throw Error.NoGroupKeyPair }
+                    // Loop through all known group key pairs in reverse order (i.e. try the latest key pair first (which'll more than
+                    // likely be the one we want) but try older ones in case that didn't work)
+                    var encryptionKeyPair = encryptionKeyPairs.removeLast()
+                    fun decrypt() {
+                        try {
+                            val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), encryptionKeyPair)
+                            plaintext = decryptionResult.first
+                            sender = decryptionResult.second
+                        } catch (e: Exception) {
+                            if (encryptionKeyPairs.isNotEmpty()) {
+                                encryptionKeyPair = encryptionKeyPairs.removeLast()
+                                decrypt()
+                            } else {
+                                throw e
+                            }
+                        }
+                    }
+                    decrypt()
+                    groupPublicKey = envelope.source
                 }
                 else -> throw Error.UnknownEnvelopeType
             }
         }
         // Don't process the envelope any further if the sender is blocked
-        if (isBlock(sender)) throw Error.SenderBlocked
+        if (isBlock(sender!!)) throw Error.SenderBlocked
         // Ignore self sends
         if (sender == userPublicKey) throw Error.SelfSend
         // Parse the proto

@@ -18,12 +18,14 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
@@ -39,6 +41,10 @@ class Storage(val context: Context): StorageProtocol {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return null
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
         return Pair(userPublicKey, userPrivateKey)
+    }
+
+    override fun getUserX25519KeyPair(): ECKeyPair {
+        return DatabaseFactory.getLokiAPIDatabase(context).getUserX25519KeyPair()
     }
 
     override fun getUserDisplayName(): String? {
@@ -256,6 +262,14 @@ class Storage(val context: Context): StorageProtocol {
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
         mmsDB.markAsSent(infoMessageID, true)
+    }
+
+    override fun isClosedGroup(publicKey: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> {
+        TODO("Not yet implemented")
     }
 
     override fun setProfileSharing(address: Address, value: Boolean) {

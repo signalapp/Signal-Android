@@ -27,6 +27,7 @@ interface StorageProtocol {
     // General
     fun getUserPublicKey(): String?
     fun getUserKeyPair(): Pair<String, ByteArray>?
+    fun getUserX25519KeyPair(): ECKeyPair
     fun getUserDisplayName(): String?
     fun getUserProfileKey(): ByteArray?
     fun getUserProfilePictureURL(): String?
@@ -101,6 +102,8 @@ interface StorageProtocol {
                                   name: String, members: Collection<String>, admins: Collection<String>)
     fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
                                   members: Collection<String>, admins: Collection<String>, threadID: Long)
+    fun isClosedGroup(publicKey: String): Boolean //TODO
+    fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> //TODO
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)
