@@ -131,6 +131,22 @@
               android:noHistory="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+
+
+        <receiver android:name=".thoughtcrime.securesms.messagedetails.MessageRecordLiveData"
+            tools:ignore="MissingClass"></receiver>
+
+        <activity android:name=".thoughtcrime.securesms.messagedetails.MessageRecordLiveData"
+            android:theme="@style/TextSecure.DarkNoActionBar"
+            android:screenOrientation="portrait"
+            android:noHistory="true"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+
+            tools:ignore="MissingClass" />
+
+
+
+
     <activity android:name=".InviteActivity"
               android:theme="@style/Signal.Light.NoActionBar.Invite"
               android:windowSoftInputMode="stateHidden"
@@ -412,7 +428,8 @@
               android:theme="@style/TextSecure.DialogActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".SmsSendtoActivity">
+    <activity android:name=".SmsSendtoActivity"
+        tools:ignore="AppLinkUrlError">
         <intent-filter>
             <action android:name="android.intent.action.SENDTO" />
             <action android:name="android.intent.action.VIEW" />
@@ -434,7 +451,8 @@
               android:excludeFromRecents="true"
               android:theme="@style/NoAnimation.Theme.BlackScreen"
               android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+        tools:ignore="AppLinkUrlError">
 
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
