@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.messagedetails;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -22,7 +23,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
   private final String          type;
   private final Long            messageId;
   private final ContentObserver obs;
-
+  PowerManager.WakeLock wakeLock;
   private @Nullable Cursor cursor;
 
   MessageRecordLiveData(Context context, String type, Long messageId) {
@@ -34,6 +35,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
       @Override
       public void onChange(boolean selfChange) {
         SignalExecutors.BOUNDED.execute(() -> resetCursor());
+
       }
     };
   }
@@ -64,6 +66,8 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
   @WorkerThread
   private synchronized void resetCursor() {
     destroyCursor();
+
+
     retrieveMessageRecord();
   }
 
@@ -89,11 +93,22 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
     final MessageDatabase db     = DatabaseFactory.getSmsDatabase(context);
     final Cursor          cursor = db.getVerboseMessageCursor(messageId);
     final MessageRecord   record = SmsDatabase.readerFor(cursor).getNext();
+//wake_Lock
+    PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+   wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+            "MyApp::WakelockTag");
+    wakeLock.acquire();
+
 
     postValue(record);
     cursor.registerContentObserver(obs);
     this.cursor = cursor;
+    wakeLock.acquire();
   }
+
+
+
+
 
   @WorkerThread
   private synchronized void handleMms() {
