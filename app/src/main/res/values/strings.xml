@@ -358,7 +358,7 @@
     <string name="ConversationFragment_verify">Verify</string>
     <string name="ConversationFragment_not_now">Not now</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">Your safety number with %s changed</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Your Safety Number with %s changed, likely because they reinstalled Signal or changed devices. Tap Verify to confirm the new safety number. This is optional.</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Your safety number with %s changed, likely because they reinstalled Signal or changed devices. Tap Verify to confirm the new safety number. This is optional.</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -2389,7 +2389,7 @@
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
-    <string name="preferences__data_and_storage">Data and Storage</string>
+    <string name="preferences__data_and_storage">Data and storage</string>
     <string name="preferences__storage">Storage</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
