@@ -23,6 +23,7 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
 
 object MessageSender {
@@ -32,7 +33,10 @@ object MessageSender {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
         object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
-        object NoUserPublicKey : Error("Couldn't find user key pair.")
+        object NoUserX25519KeyPair : Error("Couldn't find user X25519 key pair.")
+        object NoUserED25519KeyPair : Error("Couldn't find user ED25519 key pair.")
+        object SigningFailed : Error("Couldn't sign message.")
+        object EncryptionFailed : Error("Couldn't encrypt message.")
 
         // Closed groups
         object NoThread : Error("Couldn't find a thread associated with the given group public key.")
@@ -71,7 +75,7 @@ object MessageSender {
         var snodeMessage: SnodeMessage? = null
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
-        message.sender = storage.getUserPublicKey()
+        message.sender = userPublicKey
         try {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
@@ -117,7 +121,10 @@ object MessageSender {
             val ciphertext: ByteArray
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
-                is Destination.ClosedGroup -> ciphertext = MessageSenderEncryption.encryptWithSharedSenderKeys(plaintext, destination.groupPublicKey)
+                is Destination.ClosedGroup -> {
+                    val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)
+                    ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
+                }
                 is Destination.OpenGroup -> throw preconditionFailure
             }
             // Wrap the result

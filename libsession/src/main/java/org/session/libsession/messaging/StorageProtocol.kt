@@ -104,6 +104,7 @@ interface StorageProtocol {
                                   members: Collection<String>, admins: Collection<String>, threadID: Long)
     fun isClosedGroup(publicKey: String): Boolean //TODO
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> //TODO
+    fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair //TODO
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)

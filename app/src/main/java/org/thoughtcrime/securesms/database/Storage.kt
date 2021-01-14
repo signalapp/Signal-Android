@@ -272,6 +272,10 @@ class Storage(val context: Context): StorageProtocol {
         TODO("Not yet implemented")
     }
 
+    override fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair {
+        TODO("Not yet implemented")
+    }
+
     override fun setProfileSharing(address: Address, value: Boolean) {
         val recipient = Recipient.from(context, address, false)
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, value)
