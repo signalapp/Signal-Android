@@ -107,20 +107,20 @@ public final class CallParticipantsState {
         return context.getString(R.string.WebRtcCallView__no_one_else_is_here);
       case 1:
         if (callState == WebRtcViewModel.State.CALL_PRE_JOIN && groupCallState.isNotIdle()) {
-          return context.getString(R.string.WebRtcCallView__s_is_in_this_call, remoteParticipants.get(0).getRecipient().getShortDisplayName(context));
+          return context.getString(R.string.WebRtcCallView__s_is_in_this_call, remoteParticipants.get(0).getShortRecipientDisplayName(context));
         } else {
-          return remoteParticipants.get(0).getRecipient().getDisplayName(context);
+          return remoteParticipants.get(0).getRecipientDisplayName(context);
         }
       case 2:
         return context.getString(R.string.WebRtcCallView__s_and_s_are_in_this_call,
-                                 remoteParticipants.get(0).getRecipient().getShortDisplayName(context),
-                                 remoteParticipants.get(1).getRecipient().getShortDisplayName(context));
+                                 remoteParticipants.get(0).getShortRecipientDisplayName(context),
+                                 remoteParticipants.get(1).getShortRecipientDisplayName(context));
       default:
         int others = remoteParticipants.size() - 2;
         return context.getResources().getQuantityString(R.plurals.WebRtcCallView__s_s_and_d_others_are_in_this_call,
                                                         others,
-                                                        remoteParticipants.get(0).getRecipient().getShortDisplayName(context),
-                                                        remoteParticipants.get(1).getRecipient().getShortDisplayName(context),
+                                                        remoteParticipants.get(0).getShortRecipientDisplayName(context),
+                                                        remoteParticipants.get(1).getShortRecipientDisplayName(context),
                                                         others);
     }
   }

@@ -113,6 +113,18 @@ public final class CallParticipant {
     }
   }
 
+  public @NonNull String getShortRecipientDisplayName(@NonNull Context context) {
+    if (recipient.isSelf() && isPrimary()) {
+      return context.getString(R.string.CallParticipant__you);
+    } else if (recipient.isSelf()) {
+      return context.getString(R.string.CallParticipant__you_on_another_device);
+    } else if (isPrimary()) {
+      return recipient.getShortDisplayName(context);
+    } else {
+      return context.getString(R.string.CallParticipant__s_on_another_device, recipient.getShortDisplayName(context));
+    }
+  }
+
   public @Nullable IdentityKey getIdentityKey() {
     return identityKey;
   }
