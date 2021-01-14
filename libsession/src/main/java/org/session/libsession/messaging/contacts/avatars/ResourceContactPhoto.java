@@ -53,11 +53,6 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
     return new ExpandingLayerDrawable(new Drawable[] {background, foreground, gradient});
   }
 
-  @Override
-  public Drawable asCallCard(Context context) {
-    return AppCompatResources.getDrawable(context, callCardResourceId);
-  }
-
   private static class ExpandingLayerDrawable extends LayerDrawable {
     public ExpandingLayerDrawable(Drawable[] layers) {
       super(layers);

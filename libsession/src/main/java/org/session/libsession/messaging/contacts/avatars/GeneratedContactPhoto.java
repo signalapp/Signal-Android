@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
@@ -81,11 +80,5 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
     } else {
       return builder.toString();
     }
-  }
-
-  @Override
-  public Drawable asCallCard(Context context) {
-    return AppCompatResources.getDrawable(context, R.drawable.ic_person_large);
-
   }
 }

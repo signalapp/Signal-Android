@@ -33,7 +33,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
                 if(MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId) != null) {
                     // Wait for it to finish
                 } else {
-                    val job = AttachmentUploadJob(it.attachmentId, message.threadID!!, message, id!!)
+                    val job = AttachmentUploadJob(it.attachmentId, message.threadID!!.toString(), message, id!!)
                     JobQueue.shared.add(job)
                 }
             }

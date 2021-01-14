@@ -35,10 +35,8 @@ public final class RecipientExporter {
   }
 
   private static void addAddressToIntent(Intent intent, Address address) {
-    if (address.isPhone()) {
-      intent.putExtra(ContactsContract.Intents.Insert.PHONE, address.toPhoneString());
-    } else if (address.isEmail()) {
-      intent.putExtra(ContactsContract.Intents.Insert.EMAIL, address.toEmailString());
+    if (address.isContact()) {
+      intent.putExtra(ContactsContract.Intents.Insert.PHONE, address.toString());
     } else {
       throw new RuntimeException("Cannot export Recipient with neither phone nor email");
     }
