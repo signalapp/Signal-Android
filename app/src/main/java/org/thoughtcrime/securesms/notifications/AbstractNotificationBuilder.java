@@ -11,9 +11,9 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient.*;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -46,15 +46,15 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
     return builder;
   }
 
-  public void setAlarms(@Nullable Uri ringtone, RecipientDatabase.VibrateState vibrate) {
+  public void setAlarms(@Nullable Uri ringtone, VibrateState vibrate) {
     Uri     defaultRingtone = NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context) : TextSecurePreferences.getNotificationRingtone(context);
     boolean defaultVibrate  = NotificationChannels.supported() ? NotificationChannels.getMessageVibrate(context)  : TextSecurePreferences.isNotificationVibrateEnabled(context);
 
     if      (ringtone == null && !TextUtils.isEmpty(defaultRingtone.toString())) setSound(defaultRingtone);
     else if (ringtone != null && !ringtone.toString().isEmpty())                 setSound(ringtone);
 
-    if (vibrate == RecipientDatabase.VibrateState.ENABLED ||
-        (vibrate == RecipientDatabase.VibrateState.DEFAULT && defaultVibrate))
+    if (vibrate == VibrateState.ENABLED ||
+        (vibrate == VibrateState.DEFAULT && defaultVibrate))
     {
       setDefaults(Notification.DEFAULT_VIBRATE);
     }
