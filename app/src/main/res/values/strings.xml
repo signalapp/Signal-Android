@@ -2398,7 +2398,9 @@
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__delete_account">Delete account</string>
     <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
+    <string name="preferences__disable_mms">Prevent Signal from sending MMS</string>
     <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
+    <string name="preferences__disable_mms_to_avoid_of_additional_expense">The mobile operators charge additional fees for MMS while not allowing you to disable the service. Enable this option to prevent Signal from accidentally sending MMS.</string>
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>

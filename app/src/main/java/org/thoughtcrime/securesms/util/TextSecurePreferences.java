@@ -93,6 +93,7 @@ public class TextSecurePreferences {
   private static final String LOCAL_REGISTRATION_ID_PREF       = "pref_local_registration_id";
   private static final String SIGNED_PREKEY_REGISTERED_PREF    = "pref_signed_prekey_registered";
   private static final String WIFI_SMS_PREF                    = "pref_wifi_sms";
+  private static final String DISABLE_MMS_PREF                 = "pref_disable_mms";
 
   private static final String GCM_DISABLED_PREF                = "pref_gcm_disabled";
   private static final String GCM_REGISTRATION_ID_PREF         = "pref_gcm_registration_id";
@@ -519,6 +520,10 @@ public class TextSecurePreferences {
 
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
+  }
+
+  public static boolean isMMSDisabled(Context context) {
+    return getBooleanPreference(context, DISABLE_MMS_PREF, false);
   }
 
   public static int getRepeatAlertsCount(Context context) {

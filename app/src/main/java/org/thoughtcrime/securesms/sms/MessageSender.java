@@ -359,7 +359,9 @@ public class MessageSender {
     } else if (!forceSms && isPushMediaSend(context, recipient)) {
       sendMediaPush(context, recipient, messageId, uploadJobIds);
     } else {
-      sendMms(context, messageId);
+        if (!TextSecurePreferences.isMMSDisabled(context)) {
+              sendMms(context, messageId);
+        }
     }
   }
 
