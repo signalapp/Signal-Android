@@ -38,7 +38,7 @@ object MessageSenderEncryption {
         return MessagingConfiguration.shared.sessionProtocol.encrypt(plaintext, recipientPublicKey)
     }
 
-    internal fun encryptWithSharedSenderKeys(plaintext: ByteArray, groupPublicKey: String): ByteArray {
+    /*internal fun encryptWithSharedSenderKeys(plaintext: ByteArray, groupPublicKey: String): ByteArray {
         // 1. ) Encrypt the data with the user's sender key
         val userPublicKey = MessagingConfiguration.shared.storage.getUserPublicKey() ?: throw Error.NoUserPublicKey
         val ciphertextAndKeyIndex = SharedSenderKeysImplementation.shared.encrypt(plaintext, groupPublicKey, userPublicKey)
@@ -52,5 +52,5 @@ object MessageSenderEncryption {
                 .setCiphertext(ByteString.copyFrom(intermediate.ciphertext))
                 .setEphemeralPublicKey(ByteString.copyFrom(intermediate.ephemeralPublicKey))
                 .build().toByteArray()
-    }
+    }*/
 }
