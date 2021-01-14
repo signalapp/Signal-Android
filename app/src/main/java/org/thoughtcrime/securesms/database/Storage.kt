@@ -23,14 +23,19 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.loki.utilities.get
+import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.util.GroupUtil
 
-class Storage(val context: Context): StorageProtocol {
+class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
         return TextSecurePreferences.getLocalNumber(context)
     }
@@ -122,11 +127,18 @@ class Storage(val context: Context): StorageProtocol {
     }
 
     override fun getOpenGroup(threadID: String): OpenGroup? {
-        TODO("Not yet implemented")
+        if (threadID.toInt() < 0) { return null }
+        val database = databaseHelper.readableDatabase
+        return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf( threadID )) { cursor ->
+            val publicChatAsJSON = cursor.getString(LokiThreadDatabase.publicChat)
+            OpenGroup.fromJSON(publicChatAsJSON)
+        }
     }
 
-    override fun getThreadID(openGroupID: String): String? {
-        TODO("Not yet implemented")
+    override fun getThreadID(openGroupID: String): String {
+        val address = Address.fromSerialized(openGroupID)
+        val recipient = Recipient.from(context, address, false)
+        return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient).toString()
     }
 
     override fun getOpenGroupPublicKey(server: String): String? {

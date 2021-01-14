@@ -161,6 +161,8 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                     if (quote.quotedMessageBody != quote.quotedMessageTimestamp.toString()) { quoteProto.setText(quote.quotedMessageBody) }
                     dataMessageProto.setQuote(quoteProto.build())
                 }
+                val messageServerID = message.serverID
+                /* TODO: the signal service proto needs to be synced with iOS
                 // Profile
                 val profileProto = DataMessage.LokiProfile.newBuilder()
                 profileProto.setDisplayName(message.displayName)
@@ -171,12 +173,12 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                 }
                 dataMessageProto.setProfile(profileProto.build())
                 // Open group info
-                val messageServerID = message.serverID
                 if (messageServerID != null) {
                     val openGroupProto = PublicChatInfo.newBuilder()
                     openGroupProto.setServerID(messageServerID)
                     dataMessageProto.setPublicChatInfo(openGroupProto.build())
                 }
+                */
                 // Signal group context
                 val groupProto = GroupContext.newBuilder()
                 groupProto.setId(ByteString.copyFrom(id))
