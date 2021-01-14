@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <string name="ConversationItem_you_deleted_this_message">Você apagou essa mensagem.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string> -->
   <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
@@ -1473,7 +1473,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem com erro de criptografia </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem com erro de criptografia </string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem criptografada para sessão inexistente </string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem de MMS com erro de criptografia</string>
@@ -2023,7 +2023,7 @@
   <string name="preferences__mmsc_password">Senha do MMSC</string>
   <string name="preferences__sms_delivery_reports">Avisos de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicite um aviso de entrega para cada SMS enviado</string>
-  <string name="preferences__chats">Chats e mídia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chats e mídia</string> -->
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__keep_messages">Manter as mensagens</string>
@@ -2567,8 +2567,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s saíram</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s saíram</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e %3$d outras pessoas saíram</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Você (em outro aparelho)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (em outro dispositivo)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Você (em outro aparelho)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (em outro dispositivo)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Excluir sua conta vai:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Digite o seu número de telefone</string>

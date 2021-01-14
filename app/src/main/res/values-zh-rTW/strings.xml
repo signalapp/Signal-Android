@@ -195,8 +195,8 @@
   <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">你已刪除此訊息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string> -->
   <string name="ConversationActivity_reset">重設</string>
   <string name="ConversationActivity_add_attachment">新增附檔</string>
   <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
@@ -1403,7 +1403,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">損毀的加密多媒體訊息</string>
@@ -1942,7 +1942,7 @@
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
-  <string name="preferences__chats">聊天與媒體</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">聊天與媒體</string> -->
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__keep_messages">保留訊息</string>
@@ -2477,8 +2477,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 和 %2$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 和 %3$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 和 %3$d 及其他人已離開</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>

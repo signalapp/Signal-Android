@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
   <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज हटाया है</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करें?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">अगर आपको इस संवाद में एन्क्रिप्शन समस्याएं आ रही हैं तो इससे मदद मिल सकती है। आपके मेसेज रखे जाएंगे।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करें?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">अगर आपको इस संवाद में एन्क्रिप्शन समस्याएं आ रही हैं तो इससे मदद मिल सकती है। आपके मेसेज रखे जाएंगे।</string> -->
   <string name="ConversationActivity_reset">फिर से स्थापित करना</string>
   <string name="ConversationActivity_add_attachment">अटैचमेंट जोड़ें</string>
   <string name="ConversationActivity_select_contact_info">संपर्क जानकारी का चयन करें</string>
@@ -1432,7 +1432,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड मेसेज</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड मेसेज</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए मेसेज एन्क्रिप्ट किया गया</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">खराब एन्क्रिप्टेड MMS मेसेज</string>
@@ -1982,7 +1982,7 @@
   <string name="preferences__mmsc_password">MMSC पासवर्ड</string>
   <string name="preferences__sms_delivery_reports">SMS वितरण रिपोर्ट</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपके द्वारा भेजे जाने वाले प्रत्येक SMS मेसेज के लिए डिलीवरी रिपोर्ट का अनुरोध करें</string>
-  <string name="preferences__chats">चैट और मीडिया</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">चैट और मीडिया</string> -->
   <string name="preferences__storage">स्टॉरेज </string>
   <string name="preferences__conversation_length_limit">वार्तालाप लंबाई सीमा</string>
   <string name="preferences__keep_messages">मेसेज रखें</string>
@@ -2516,8 +2516,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$sऔर %2$s समूह छोड़ गए  </string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s और %3$s समूह छोड़ गए </string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s और %3$d अन्यउपयोगकर्ता समूह छोड़ गए </string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">आप (दूसरे डिवाइस से)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (अन्य डिवाइस से)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">आप (दूसरे डिवाइस से)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (अन्य डिवाइस से)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
   <string name="DeleteAccountFragment__delete_account">खाता मिटाएँ</string>

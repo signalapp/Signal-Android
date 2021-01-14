@@ -199,8 +199,8 @@
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht gewist.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie opnieuw instellen?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Beveiligde sessie opnieuw instellen?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dit kan helpen wanneer je versleutelingsproblemen hebt met dit gesprek. Je berichten blijven behouden.</string> -->
   <string name="ConversationActivity_reset">Opnieuw instellen</string>
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Selecteer contactinformatie</string>
@@ -1477,7 +1477,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Bericht kan niet worden ontsleuteld</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Bericht kan niet worden ontsleuteld</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Fout: Dit bericht is versleuteld voor een niet-bestaande sessie</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mms-bericht kan niet worden ontsleuteld</string>
@@ -2029,7 +2029,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__mmsc_password">MMSC-wachtwoord</string>
   <string name="preferences__sms_delivery_reports">Sms-ontvangstbevestigingen</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
-  <string name="preferences__chats">Gesprekken en media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Gesprekken en media</string> -->
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
   <string name="preferences__keep_messages">Berichten bewaren</string>
@@ -2573,8 +2573,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s en %2$s hebben de oproep verlaten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s en %3$s hebben de oproep verlaten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s en %3$d andere hebben de oproep verlaten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jij (vanaf een ander apparaat)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (vanaf een ander apparaat)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jij (vanaf een ander apparaat)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (vanaf een ander apparaat)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>

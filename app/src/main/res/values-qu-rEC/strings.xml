@@ -118,8 +118,8 @@
   <string name="ConversationItem_from_s">paypakmanta %s</string>
   <string name="ConversationItem_to_s">payman %s</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Kutin wakaychishpa kallarinayanchu</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Pakashka rimaywan llaki apakukpika kayka yanapayta ushanmi. Kikinpa chaski mana picharinkachu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kutin wakaychishpa kallarinayanchu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Pakashka rimaywan llaki apakukpika kayka yanapayta ushanmi. Kikinpa chaski mana picharinkachu.</string> -->
   <string name="ConversationActivity_reset">Kutin kallaripay</string>
   <string name="ConversationActivity_add_attachment">Shuk imaykunata kimichipay</string>
   <string name="ConversationActivity_select_contact_info">Yupaymashipa willayta akllapay</string>
@@ -579,7 +579,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR unanchata mana rikuyta ushankichu, shuyurikchata manara ari nishpaka.</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mana alli chaski pakashka</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mana alli chaski pakashka</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Chaski pakakurka  shuk  illak paskashkapa</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Killkana MMS pakalla wakllimi kan</string>
@@ -1003,7 +1003,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS killkashka chayashkata yachankapak, tukuylla SMS kachashkakunapak willachichun mañay.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Yallishka chaskikuna paymanta picharichun, rimarikuna yapata huntakpi</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Ñawpa chaskikunata anchuchina</string> -->
-  <string name="preferences__chats">Rimariy shinallata uyayrikuchikpash</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Rimariy shinallata uyayrikuchikpash</string> -->
   <string name="preferences__conversation_length_limit">Chaykamanlla rimarikuna</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Rimarikunata pichana</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Tukuy rimarikuna riksishpa chaykamanlla rimana.</string> -->

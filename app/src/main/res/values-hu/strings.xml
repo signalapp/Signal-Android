@@ -199,8 +199,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="ConversationItem_you_deleted_this_message">Általad törölt üzenet.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string> -->
   <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string>
   <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
   <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
@@ -1475,7 +1475,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet nem létező munkamenethez lett titkosítva</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Hibás titkosított MMS üzenet</string>
@@ -2026,7 +2026,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__mmsc_password">MMSC jelszó</string>
   <string name="preferences__sms_delivery_reports">SMS kézbesítési jelentések</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése az összes elküldött SMS-ről</string>
-  <string name="preferences__chats">Csevegések és média</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Csevegések és média</string> -->
   <string name="preferences__storage">Tárolás</string>
   <string name="preferences__conversation_length_limit">Beszélgetés hosszának korlátja</string>
   <string name="preferences__keep_messages">Üzenetek megtartása</string>
@@ -2570,8 +2570,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s és %2$s kilépett</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s és %3$s kilépett</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s és %3$d másik személy kilépett</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Te (másik eszközön)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (másik eszközön)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Te (másik eszközön)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (másik eszközön)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">A fiók törlése a következőket jelenti:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Add meg a telefonszámod</string>

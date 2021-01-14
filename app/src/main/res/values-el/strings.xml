@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string> -->
   <string name="ConversationActivity_reset">Επαναφορά</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
@@ -1468,7 +1468,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχουσα συνεδρία</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Μήνυμα MMS με πρόβλημα στην κρυπτογράφησή του</string>
@@ -2018,7 +2018,7 @@
   <string name="preferences__mmsc_password">Κωδικός MMSC</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
-  <string name="preferences__chats">Συνομιλίες και πολυμέσα</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Συνομιλίες και πολυμέσα</string> -->
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2409,7 +2409,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Παρακαλώ γράψε τον κωδικό επιβεβαίωσης που στάλθηκε στο %s.</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με  \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επιβεβαίωσης για Android</string>
   <string name="BackupUtil_never">Ποτέ</string>
@@ -2563,8 +2563,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Οι %1$s και %2$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Οι %1$s, %2$s και %3$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>

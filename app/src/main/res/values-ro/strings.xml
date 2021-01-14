@@ -201,8 +201,8 @@
   <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="ConversationItem_you_deleted_this_message">Ați șters acest mesaj.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string> -->
   <string name="ConversationActivity_reset">Resetare</string>
   <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
@@ -1477,7 +1477,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect</string>
@@ -2038,7 +2038,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__mmsc_password">Parolă MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmări de livrare SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
-  <string name="preferences__chats">Conversaţii şi media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Conversaţii şi media</string> -->
   <string name="preferences__storage">Spaţiu stocare</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__keep_messages">Păstrare mesaje</string>
@@ -2592,8 +2592,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s și %2$s au ieșit</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s și %3$s au ieșit</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s și %3$d alții au ieșit</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (pe alt dispozitiv)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (pe alt dispozitiv)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (pe alt dispozitiv)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (pe alt dispozitiv)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ștergerea contului dvs. implică:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Introduceți numărul dvs. de telefon</string>

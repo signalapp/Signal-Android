@@ -199,8 +199,8 @@
   <string name="ConversationItem_this_message_was_deleted">Beskeden blev slettet</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettede beskeden</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Reset sikker forbindelse?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med samtalen. Dine beskeder bevares</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Reset sikker forbindelse?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med samtalen. Dine beskeder bevares</string> -->
   <string name="ConversationActivity_reset">Nulstil</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
   <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
@@ -1473,7 +1473,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Beskeden er krypteret til en session der ikke findes</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig krypteret MMS besked</string>
@@ -2023,7 +2023,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__mmsc_password">MMSC Kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapporter for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for hver SMS besked du sender</string>
-  <string name="preferences__chats">Chat og medier</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chat og medier</string> -->
   <string name="preferences__storage">Hukommelse</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
   <string name="preferences__keep_messages">Bevar beskeder</string>
@@ -2568,8 +2568,8 @@ Der er %d dage tilbage</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s gik</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s og %2$s og %3$s gik</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d andre gik</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Dig (på en anden enhed)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en anden enhed)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Dig (på en anden enhed)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en anden enhed)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletning af din konto vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Indtast dit telefonnummer</string>

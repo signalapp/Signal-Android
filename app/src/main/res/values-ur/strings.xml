@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <string name="ConversationItem_you_deleted_this_message">آپ نے یہ پیغام حذف کردیا۔</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string> -->
   <string name="ConversationActivity_reset">دوبارہ بحال کریں</string>
   <string name="ConversationActivity_add_attachment">اٹیچمنٹ شامل کریں</string>
   <string name="ConversationActivity_select_contact_info">رابطے کی معلومات منتخب کریں</string>
@@ -1464,7 +1464,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">خفیہ کردہ خراب پیغام </string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">خفیہ کردہ خراب پیغام </string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">غیر موجود سیشن کیلئے خفیہ کردہ پیغام</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">خفیہ کردہ برا ایم ایم ایس پیغام</string>
@@ -2014,7 +2014,7 @@
   <string name="preferences__mmsc_password">ایم ایم ایس سی پاسورڈ</string>
   <string name="preferences__sms_delivery_reports">ایس ایم ایس کی ترسیل کی رپورٹ</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">اپنے بھیجنے والے ہر ایس ایم ایس پیغام کے لئے ڈیلیوری رپورٹ کی درخواست کریں</string>
-  <string name="preferences__chats">باتیں اور میڈیا </string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">باتیں اور میڈیا </string> -->
   <string name="preferences__storage">اسٹوریج </string>
   <string name="preferences__conversation_length_limit">گفتگو کی لمبائی کی حد</string>
   <string name="preferences__keep_messages">پیغامات رکھیں</string>
@@ -2558,8 +2558,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s اور %2$s چلے گئے</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s،%2$s اور%3$s  چلے گئے</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s،%2$s اور%3$d دوسرے چلے گئے</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">آپ (دوسرے آلے پر)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (دوسرے آلے پر)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">آپ (دوسرے آلے پر)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (دوسرے آلے پر)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">آپ کا اکاؤنٹ حذف کرنے سے یہ ہوگا:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">اپنا فون نمبر درج کریں</string>

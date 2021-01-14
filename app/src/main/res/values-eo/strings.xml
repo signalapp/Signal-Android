@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <string name="ConversationItem_you_deleted_this_message">Vi forviŝis tiun mesaĝon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string> -->
   <string name="ConversationActivity_reset">Restarigi</string>
   <string name="ConversationActivity_add_attachment">Aldoni kunsendaĵon</string>
   <string name="ConversationActivity_select_contact_info">Elekti kontaktinformon</string>
@@ -1472,7 +1472,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaĝo ĉifrita por neekzistanta seanco</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Malbone ĉifrita MMS-mesaĝo</string>
@@ -2022,7 +2022,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__mmsc_password">MMSC-pasvorto</string>
   <string name="preferences__sms_delivery_reports">SMS-a livero-raportoj</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Peti livero-raporton por ĉiu SMS-mesaĝo, kiun vi sendas</string>
-  <string name="preferences__chats">Interparoloj kaj aŭdvidaĵoj</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Interparoloj kaj aŭdvidaĵoj</string> -->
   <string name="preferences__storage">Konservejo</string>
   <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
   <string name="preferences__keep_messages">Konservi mesaĝojn</string>
@@ -2566,8 +2566,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s kaj %2$s eliris</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s kaj %3$s eliris</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s kaj %3$d aliaj eliris</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (ĉe alia aparato)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ĉe alia aparato)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (ĉe alia aparato)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ĉe alia aparato)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Konsekvenco de la forviŝado de via konto:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Entajpu vian telefonnumeron</string>

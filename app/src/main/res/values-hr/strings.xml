@@ -201,8 +201,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ova poruka je izbrisana.</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Poništi sigurnu sesiju?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može pomoći ako imate problema s šifriranjem u ovom razgovoru. Vaše će se poruke čuvati.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Poništi sigurnu sesiju?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može pomoći ako imate problema s šifriranjem u ovom razgovoru. Vaše će se poruke čuvati.</string> -->
   <string name="ConversationActivity_reset">Poništi</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije o kontaktu</string>
@@ -1536,7 +1536,7 @@ broj telefona</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Loše šifrirana poruka</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Loše šifrirana poruka</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka je šifrirana za nepostojeću sesiju</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Loše šifrirana MMS poruka</string>
@@ -2098,7 +2098,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences__mmsc_password">MMSC lozinka</string>
   <string name="preferences__sms_delivery_reports">SMS potvrde isporuke</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži potvrdu isporuke za svaki poslani SMS</string>
-  <string name="preferences__chats">Razgovori i medijski zapisi</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Razgovori i medijski zapisi</string> -->
   <string name="preferences__storage">Prostor za pohranu</string>
   <string name="preferences__conversation_length_limit">Maksimalna duljina razgovora</string>
   <string name="preferences__keep_messages">Zadrži poruke</string>
@@ -2651,8 +2651,8 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s je napustio/la</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s je napustio/la</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d osoba je napustilo</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na drugom uređaju)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na drugom uređaju)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Brisanje vašeg računa će:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Unesite vaš broj telefona</string>

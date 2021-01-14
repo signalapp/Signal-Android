@@ -211,8 +211,8 @@
   <string name="ConversationItem_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string> -->
   <string name="ConversationActivity_reset">إعادة ضبط</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
@@ -1735,7 +1735,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة سيئة</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة سيئة</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمّ تشفير الرسالة لجلسة غير موجودة </string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مشفرة سيئة</string>
@@ -2331,7 +2331,7 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
-  <string name="preferences__chats">المحادثات والوسائط</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">المحادثات والوسائط</string> -->
   <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__keep_messages">احتفظ بالرسائل</string>
@@ -2912,8 +2912,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">غادر %1$s و %2$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">غادر %1$s، %2$s و%3$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">غادر %1$s، %2$s و%3$d أخرون</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">أنت (في جهاز آخر)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (في جهاز آخر)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">أنت (في جهاز آخر)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (في جهاز آخر)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">سيؤدي حذف حسابك إلى :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>

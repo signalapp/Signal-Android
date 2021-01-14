@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string> -->
   <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
@@ -1462,7 +1462,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht bestehende sichere Sitzung verschlüsselt</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS</string>
@@ -2012,7 +2012,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
-  <string name="preferences__chats">Unterhaltungen und Medieninhalte</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Unterhaltungen und Medieninhalte</string> -->
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__keep_messages">Nachrichten behalten</string>
@@ -2556,8 +2556,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s und %2$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d Weitere sind ausgetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (auf einem anderen Gerät)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (auf einem anderen Gerät)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (auf einem anderen Gerät)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Das Löschen deines Nutzerkontos wird:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Rufnummer ein</string>

@@ -195,8 +195,8 @@
   <string name="ConversationItem_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string> -->
   <string name="ConversationActivity_reset">초기화</string>
   <string name="ConversationActivity_add_attachment">파일 첨부</string>
   <string name="ConversationActivity_select_contact_info">연락처 정보 선택</string>
@@ -1407,7 +1407,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">잘못된 암호화 메시지</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">잘못된 암호화 메시지</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">존재하지 않는 세션의 암호화 메시지</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">잘못된 암호화 MMS 메시지</string>
@@ -1946,7 +1946,7 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
-  <string name="preferences__chats">대화 및 미디어</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">대화 및 미디어</string> -->
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
@@ -2481,8 +2481,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 및 %2$s 남음</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 및 %3$s 남음</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 및 %3$d명 남음</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">나(다른 기기에서)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s(다른 기기에서)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">나(다른 기기에서)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s(다른 기기에서)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제하면:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요.</string>

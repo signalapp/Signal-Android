@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
   <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string> -->
   <string name="ConversationActivity_reset">மீட்டமைக்க</string>
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
@@ -1470,7 +1470,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">தவறாக மறையாக்கப்பட்ட செய்தி</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">தவறாக மறையாக்கப்பட்ட செய்தி</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு மறையாக்கப்பட்ட செய்தி</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">தவறாக மறையாக்கப்பட்ட MMS செய்தி</string>
@@ -2022,7 +2022,7 @@
   <string name="preferences__mmsc_password">MMSC கடவுச்சொல்</string>
   <string name="preferences__sms_delivery_reports">SMS விநியோக அறிக்கைகள்</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-க்கும் விநியோக அறிக்கைகளை கோரவும்</string>
-  <string name="preferences__chats">அரட்டைகள் மற்றும் ஊடகங்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">அரட்டைகள் மற்றும் ஊடகங்கள்</string> -->
   <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
@@ -2566,8 +2566,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s மற்றும் %2$s வெளியேறினர்</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s மற்றும் %3$sவெளியேறினர்</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and மேலும்%3$d வெளியேறினர்</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>

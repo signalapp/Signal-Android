@@ -204,8 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ta wiadomość została usunięta.</string>
   <string name="ConversationItem_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string> -->
   <string name="ConversationActivity_reset">Reset</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
@@ -1597,7 +1597,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Wiadomość zaszyfrowana dla nieistniejącej sesji</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Źle zaszyfrowana wiadomość MMS</string>
@@ -2169,7 +2169,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__mmsc_password">Hasło MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporty dostarczenia SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Żądaj raportu dostarczenia każdej wysłanej wiadomości SMS</string>
-  <string name="preferences__chats">Rozmowy i multimedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Rozmowy i multimedia</string> -->
   <string name="preferences__storage">Pamięć</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__keep_messages">Zachowuj wiadomości</string>
@@ -2731,8 +2731,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s opuścii(ły) rozmowę</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s opuścili(ły) rozmowę</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d innych opuściło rozmowę</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ty (na innym urządzeniu)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na innym urządzeniu)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ty (na innym urządzeniu)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na innym urządzeniu)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Usunięcie Twojego konta spowoduje:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Podaj swój numer telefonu</string>

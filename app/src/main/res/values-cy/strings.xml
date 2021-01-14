@@ -206,8 +206,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationItem_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="ConversationItem_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ailosod sesiwn ddiogel?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi\'n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ailosod sesiwn ddiogel?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi\'n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string> -->
   <string name="ConversationActivity_reset">Ailosod</string>
   <string name="ConversationActivity_add_attachment">Ychwanegu atodiad</string>
   <string name="ConversationActivity_select_contact_info">Dewis manylion cyswllt</string>
@@ -1607,7 +1607,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Neges wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Neges MMS amgryptio gwael</string>
@@ -2179,7 +2179,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__mmsc_password">Cyfrinair MMSC</string>
   <string name="preferences__sms_delivery_reports">Adroddiadau trosglwyddo SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gofyn am adroddiad trosglwyddo pob neges SMS rydych chi\'n ei anfon</string>
-  <string name="preferences__chats">Sgyrsiau a chyfryngau</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Sgyrsiau a chyfryngau</string> -->
   <string name="preferences__storage">Storfa</string>
   <string name="preferences__conversation_length_limit">Maint uchaf sgyrsiau</string>
   <string name="preferences__keep_messages">Cadw negeseuon</string>
@@ -2741,8 +2741,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Gadawodd %1$s a %2$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Gadawodd %1$s, %2$s a %3$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Gadawodd %1$s, %2$s a %3$d eraill</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Chi (ar ddyfais arall)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ar ddyfais arall)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Chi (ar ddyfais arall)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ar ddyfais arall)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Bydd dileu eich cyfrif yn:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Rhowch eich rhif ffôn</string>

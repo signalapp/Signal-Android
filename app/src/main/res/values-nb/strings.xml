@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string> -->
   <string name="ConversationActivity_reset">Tilbakestill</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
@@ -1467,7 +1467,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS</string>
@@ -2017,7 +2017,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__mmsc_password">MMSC-passord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveringsrapporter </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
-  <string name="preferences__chats">Samtaler og medier</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Samtaler og medier</string> -->
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
   <string name="preferences__keep_messages">Behold meldinger</string>
@@ -2561,8 +2561,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s forlot</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s og %3$s forlot</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d andre forlot</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annen enhet)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annen enhet)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>

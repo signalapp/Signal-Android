@@ -48,7 +48,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">נעילת מסך %1$s, נעילת הרשמה %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">נעילת מסך %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ערכת נושא %1$s, שפה %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה את נעילת ההרשמה.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">קודי PIN נדרשים עבור נעילת הרשמה. כדי להשבית קודי PIN, אנא השבת תחילה נעילת הרשמה.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN נוצר.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN הושבת.</string>
   <string name="ApplicationPreferencesActivity_hide">הסתר</string>
@@ -185,8 +185,8 @@
   <string name="ContactShareEditActivity_type_missing">אחר</string>
   <string name="ContactShareEditActivity_invalid_contact">איש קשר נבחר היה בלתי תקף</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש כדי לקבל פרטים</string>
-  <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש כדי לקבל פרטים</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">לא נשלח, הקש לפרטים</string>
+  <string name="ConversationItem_error_partially_not_delivered">נשלח חלקית, הקש לפרטים</string>
   <string name="ConversationItem_error_network_not_delivered">השליחה נכשלה</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">הודעת החלפת מפתחות התקבלה, הקש כדי לעבד.</string>
   <string name="ConversationItem_group_action_left">%1$s עזב את הקבוצה.</string>
@@ -204,8 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">הודעה זו נמחקה.</string>
   <string name="ConversationItem_you_deleted_this_message">מחקת הודעה זו.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">לאפס שיח מאובטח?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יעזור אם יש לך חווה בעיות הצפנה בשיחה זו. ההודעות שלך יישמרו.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">לאפס שיח מאובטח?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יעזור אם יש לך חווה בעיות הצפנה בשיחה זו. ההודעות שלך יישמרו.</string> -->
   <string name="ConversationActivity_reset">אפס</string>
   <string name="ConversationActivity_add_attachment">הוסף צרופה</string>
   <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
@@ -1605,7 +1605,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת באופן גרוע</string>
@@ -2177,7 +2177,7 @@
   <string name="preferences__mmsc_password">סיסמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דוחות מסירת מסרונים</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">בקש דוח מסירה לכל מסרון שאתה שולח</string>
-  <string name="preferences__chats">התכתבויות ומדיה</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">התכתבויות ומדיה</string> -->
   <string name="preferences__storage">אחסון</string>
   <string name="preferences__conversation_length_limit">מגבלת אורך שיחה</string>
   <string name="preferences__keep_messages">שמור הודעות</string>
@@ -2739,8 +2739,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s וגם %2$s עזבו</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s וגם %3$s עזבו</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ועוד %3$d אחרים עזבו</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">את/ה (במכשיר אחר)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (במכשיר אחר)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">את/ה (במכשיר אחר)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (במכשיר אחר)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>

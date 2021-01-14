@@ -185,8 +185,8 @@
   <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
   <string name="ConversationItem_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">កំណត់ការប្រើប្រាស់សុវត្ថិភាពឡើងវិញ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">នេះប្រហែលអាចជួយបាន បើអ្នកមានបញ្ហាកាណាល់កូដក្នុងការសន្ទនានេះ។ សាររបស់អ្នកនឹងត្រូវរក្សាទុក។</string> -->
   <string name="ConversationActivity_reset">កំណត់ឡើងវិញ</string>
   <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
   <string name="ConversationActivity_select_contact_info">ជ្រើសរើសព័ត៌មានលេខទំនាក់ទំនង</string>
@@ -1095,7 +1095,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">សារត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ការណាល់កូដសម្ងាត់សារMMS​ មិនត្រឹមត្រូវ</string>
@@ -1601,7 +1601,7 @@
   <string name="preferences__mmsc_password">ពាក្យសម្ងាត់ MMSC</string>
   <string name="preferences__sms_delivery_reports">របាយការណ៍បញ្ជូនSMS </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ស្នើសុំរបាយការណ៍បញ្ជូនសម្រាប់សារSMSមួយៗដែលអ្នកផ្ញើ</string>
-  <string name="preferences__chats">ជជែក និងឯកសារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ជជែក និងឯកសារ</string> -->
   <string name="preferences__storage">ឧបករណ៍ផ្ទុក</string>
   <string name="preferences__conversation_length_limit">ប្រវែងការសន្ទនាមានកំណត់</string>
   <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>

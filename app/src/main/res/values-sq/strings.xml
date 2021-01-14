@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ConversationItem_you_deleted_this_message">E fshitë këtë mesazh.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string> -->
   <string name="ConversationActivity_reset">Riktheje</string>
   <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitje</string>
   <string name="ConversationActivity_select_contact_info">Përzgjidhni të dhëna kontakti</string>
@@ -1473,7 +1473,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesazh MMS i fshehtëzuar keq</string>
@@ -2023,7 +2023,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
-  <string name="preferences__chats">Fjalosje dhe media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Fjalosje dhe media</string> -->
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
@@ -2571,8 +2571,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s dhe %2$s ikën</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s dhe %3$s ikën</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s dhe %3$d të tjerë ikën</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>

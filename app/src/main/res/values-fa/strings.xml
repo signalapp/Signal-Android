@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
   <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">بازنشانی نشست امن؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این گزینه ممکن است کمک کند. پیام‌های شما حفظ خواهند شد.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">بازنشانی نشست امن؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر در این مکالمه با مشکلات رمزگذاری روبرو هستید این گزینه ممکن است کمک کند. پیام‌های شما حفظ خواهند شد.</string> -->
   <string name="ConversationActivity_reset">بازنشانی</string>
   <string name="ConversationActivity_add_attachment">افزودن پیوست</string>
   <string name="ConversationActivity_select_contact_info">انتخاب اطلاعات مخاطب</string>
@@ -1471,7 +1471,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام برای نشست ناموجود رمزگذاری شد</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">فراپیام بد رمزگذاری شده</string>
@@ -2021,7 +2021,7 @@
   <string name="preferences__mmsc_password">رمز عبور MMSC</string>
   <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامکی که ارسال می‌کنید</string>
-  <string name="preferences__chats">گفتگوها و رسانه‌ها</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">گفتگوها و رسانه‌ها</string> -->
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>
@@ -2565,8 +2565,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s و %2$s ترک کردند</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s، %2$s و %3$s ترک کردند</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s، %2$s و %3$d نفر دیگر ترک کردند</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">شما (روی دستگاه دیگر)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (روی دستگاه دیگر)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">شما (روی دستگاه دیگر)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (روی دستگاه دیگر)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">حذف حساب کاربری شما:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">شمارهٔ خود را وارد کنید</string>

@@ -204,8 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="ConversationItem_you_deleted_this_message">Smazali jste tuto zprávu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetovat zabezpečenou konverzaci?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Může to pomoct, pokud máte problém s šifrováním této konverzace. Vaše zprávy zůstanou zachovány.</string> -->
   <string name="ConversationActivity_reset">Reset</string>
   <string name="ConversationActivity_add_attachment">Přidat přílohu</string>
   <string name="ConversationActivity_select_contact_info">Vybrat informace o kontaktu</string>
@@ -1604,7 +1604,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Zpráva zašifrována pro neexistující konverzaci</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Chybně zašifrovaná MMS zpráva</string>
@@ -2176,7 +2176,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__mmsc_password">MMSC Heslo</string>
   <string name="preferences__sms_delivery_reports">Doručenky SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">U každé odeslané zprávy požadovat potvrzení o doručení</string>
-  <string name="preferences__chats">Konverzace a média</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Konverzace a média</string> -->
   <string name="preferences__storage">Úložiště</string>
   <string name="preferences__conversation_length_limit">Limit délky konverzací</string>
   <string name="preferences__keep_messages">Zachovat zprávy</string>
@@ -2738,8 +2738,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s a %2$s odešli</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s a %3$s odešli</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ,%3$d a další odešli</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na jiném zařízení)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na jiném zařízení)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na jiném zařízení)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na jiném zařízení)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Vymazání vašeho účtu způsobí:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Zadejte vaše tel. číslo</string>

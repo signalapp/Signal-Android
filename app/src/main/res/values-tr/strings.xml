@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu iletiyi sildiniz.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu konuşmada şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu konuşmada şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string> -->
   <string name="ConversationActivity_reset">Sıfırla</string>
   <string name="ConversationActivity_add_attachment">Eklenti ekle</string>
   <string name="ConversationActivity_select_contact_info">Kişi bilgisi seç</string>
@@ -1471,7 +1471,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş ileti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş ileti</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">İleti var olmayan bir oturum için şifrelenmiş</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Bozuk şifrelenmiş MMS iletisi</string>
@@ -2021,7 +2021,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__mmsc_password">MMSC Parolası</string>
   <string name="preferences__sms_delivery_reports">SMS iletim raporları</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu istensin</string>
-  <string name="preferences__chats">Konuşmalar ve içerik</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Konuşmalar ve içerik</string> -->
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>
@@ -2565,8 +2565,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ve %2$s ayrıldı</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ve %3$s ayrıldı</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ve %3$d diğer kişi ayrıldı</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Siz (başka bir cihazda)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (diğer cihazda)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Siz (başka bir cihazda)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (diğer cihazda)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Hesabınızı silmek:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Telefon numaranızı girin</string>

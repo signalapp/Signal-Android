@@ -179,8 +179,8 @@
   <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
   <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटविला.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करायचे?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">जर या संभाषणात आपल्याला एन्क्रिप्शन समस्या येत असतील तर हे मदत करू शकते. आपले संदेश ठेवले जातील.</string> -->
   <string name="ConversationActivity_reset">रीसेट करा</string>
   <string name="ConversationActivity_add_attachment">संलग्न जोडा</string>
   <string name="ConversationActivity_select_contact_info">संपर्क माहिती जोडा</string>
@@ -905,7 +905,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">अस्तित्वात नसलेल्या सत्रा करिता संदेश एन्क्रिप्टेड आहे</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">खराब एन्क्रिप्टेड MMS संदेश</string>
@@ -1377,7 +1377,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपण पाठविणाऱ्या प्रत्येक संदेशावर पोचवणी अहवालाची विनंती करा</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">एकदा संभाषण एका निर्दिष्ट लांबीच्या पुढे गेले की स्वयंचलितपणे जुने संदेश हटवा</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">जुने संदेश हटवा</string> -->
-  <string name="preferences__chats">चॅट आणि मिडिया</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">चॅट आणि मिडिया</string> -->
   <string name="preferences__storage">संचयन</string>
   <string name="preferences__conversation_length_limit">संभाषण लांबी मर्यादा</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">आता संभाषण ट्रिम करा</string> -->

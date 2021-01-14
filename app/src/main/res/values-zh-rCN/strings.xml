@@ -195,8 +195,8 @@
   <string name="ConversationItem_this_message_was_deleted">消息已删除。</string>
   <string name="ConversationItem_you_deleted_this_message">您删除了此消息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string> -->
   <string name="ConversationActivity_reset">重置</string>
   <string name="ConversationActivity_add_attachment">添加附件</string>
   <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
@@ -1408,7 +1408,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">不良加密消息</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">不良加密消息</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">加密消息的对话不存在</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">不良加密彩信</string>
@@ -1947,7 +1947,7 @@
   <string name="preferences__mmsc_password">MMSC 密码</string>
   <string name="preferences__sms_delivery_reports">短信送达报告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">为每一条发送的短信请求送达报告</string>
-  <string name="preferences__chats">聊天和媒体</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">聊天和媒体</string> -->
   <string name="preferences__storage">存储</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
   <string name="preferences__keep_messages">保留消息</string>
@@ -2482,8 +2482,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s和%2$s已离开</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s、%2$s和%3$s已离开</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s、%2$s 及其它 %3$d 位用户已离开</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">您（其它设备）</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s（其它设备）</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">您（其它设备）</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s（其它设备）</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">删除您的帐户后将会：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">输入您的电话号码</string>

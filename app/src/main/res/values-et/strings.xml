@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="ConversationItem_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string> -->
   <string name="ConversationActivity_reset">Lähtesta</string>
   <string name="ConversationActivity_add_attachment">Lisa manus</string>
   <string name="ConversationActivity_select_contact_info">Vali kontaktandmed</string>
@@ -1473,7 +1473,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Halb krüptitud MSS sõnum</string>
@@ -2023,7 +2023,7 @@
   <string name="preferences__mmsc_password">MMSC parool</string>
   <string name="preferences__sms_delivery_reports">SMSi kohaletoimetamise rapordid</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Taotle kohaletoimetamise raporti iga SMS-sõnumi kohta, mida saadad</string>
-  <string name="preferences__chats">Vestlused ja meedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Vestlused ja meedia</string> -->
   <string name="preferences__storage">Mäluruum</string>
   <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
   <string name="preferences__keep_messages">Säilita sõnumid</string>
@@ -2567,8 +2567,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ja %2$s lahkusid</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ja %3$s lahkusid</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ja %3$d teist lahkusid</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Sina (teisest seadmest)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (teises seadmes)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Sina (teisest seadmest)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (teises seadmes)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sinu konto kustutamine tähendab:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Sisesta enda telefoninumber</string>

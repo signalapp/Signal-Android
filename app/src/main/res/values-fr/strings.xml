@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
   <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Réinitialiser la session sécurisée ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Cela peut aider si vous éprouvez des problèmes de chiffrement dans cette conversation. Vos messages seront conservés.</string> -->
   <string name="ConversationActivity_reset">Réinitialiser</string>
   <string name="ConversationActivity_add_attachment">Ajouter un fichier joint</string>
   <string name="ConversationActivity_select_contact_info">Sélectionner les renseignements du contact</string>
@@ -1464,7 +1464,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mauvais message chiffré</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mauvais message chiffré</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message chiffré pour une session non existante</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mauvais message multimédia chiffré</string>
@@ -2014,7 +2014,7 @@
   <string name="preferences__mmsc_password">Mot de passe MMSC</string>
   <string name="preferences__sms_delivery_reports">Relevés de remise des textos</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
-  <string name="preferences__chats">Conversations et médias</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Conversations et médias</string> -->
   <string name="preferences__storage">Mémoire</string>
   <string name="preferences__conversation_length_limit">Limite de taille des conversations</string>
   <string name="preferences__keep_messages">Conserver les messages</string>
@@ -2558,8 +2558,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s et %2$s ont quitté l’appel</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s et %3$s ont quitté l’appel</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s et %3$d autres ont quitté l’appel</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (sur un autre appareil)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vous (sur un autre appareil)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (sur un autre appareil)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Supprimer votre compte implique :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Saisissez votre numéro de téléphone</string>

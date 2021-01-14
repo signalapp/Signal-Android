@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="ConversationItem_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string> -->
   <string name="ConversationActivity_reset">Berrabiarazi</string>
   <string name="ConversationActivity_add_attachment">Eranskina gehitu</string>
   <string name="ConversationActivity_select_contact_info">Kontaktuaren informazioa aukeratu</string>
@@ -1474,7 +1474,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Gaizki enkriptatuko mezua</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Gaizki enkriptatuko mezua</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Existitzen ez den bertsio baterako enkriptatutako mezua</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Gaizki enkriptatutako MMS mezua…</string>
@@ -2024,7 +2024,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__mmsc_password">MMSC Pasaesaldia</string>
   <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
-  <string name="preferences__chats">Txatak eta multimedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Txatak eta multimedia</string> -->
   <string name="preferences__storage">Biltegia</string>
   <string name="preferences__conversation_length_limit">Solasaldiaren luzera muga</string>
   <string name="preferences__keep_messages">Mezuak gorde</string>
@@ -2568,8 +2568,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s eta %2$s joan dira</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s eta %3$s joan dira</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s eta beste %3$d joan dira</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Zu (beste gailu batean)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (beste gailu baten)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Zu (beste gailu batean)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (beste gailu baten)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>

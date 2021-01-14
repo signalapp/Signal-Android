@@ -156,8 +156,8 @@
   <string name="ConversationItem_this_message_was_deleted">Pesen niki sampun dibrusak</string>
   <string name="ConversationItem_you_deleted_this_message">Sampeyan sampun mbrusak pesen niki.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur malih sesi aman?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tumindak niki bakal mbiantu menawi sampeyan gadhah masalah enkripsi ing obrolan niki. Pesen sampeyan bakal disimpen.</string> -->
   <string name="ConversationActivity_reset">Atur malih</string>
   <string name="ConversationActivity_add_attachment">Minggahaken lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pileh informasi kontak</string>
@@ -817,7 +817,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Pesen ingkang dipunekripsi sacara awon</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Pesen ingkang dipunekripsi sacara awon</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesen dipunenkripsi kangge sesi ingkang mboten enten</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Pesen MMS ingkang dipunenkripsi sacara awon</string>
@@ -1285,7 +1285,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Tedhaken laporan kangge saben SMS ingkang dipunkirimaken</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Brusak pesen ingkang dangu sacara otomatis kala obrolan sampun langkung wates ingkang dipuntetapaken</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Brusak pesen-pesen dangu</string> -->
-  <string name="preferences__chats">Obrolan lan media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Obrolan lan media</string> -->
   <string name="preferences__storage">Penyimpenan</string>
   <string name="preferences__conversation_length_limit">Wates panjangipun obrolan</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Kirangi sedaya obrolan sakmenika</string> -->

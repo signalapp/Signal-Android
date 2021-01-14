@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Este mensaje ha sido eliminado.</string>
   <string name="ConversationItem_you_deleted_this_message">Has eliminado este mensaje.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">¿Reiniciar sesión segura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Esto puede ayudar si estás teniendo problemas de cifrado con este chat. Tus mensajes se mantendrán.</string> -->
   <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Añadir archivo adjunto</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
@@ -1473,7 +1473,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">El mensaje ha sido cifrado para una sesión inexistente</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaje MMS cifrado erróneo</string>
@@ -2023,7 +2023,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__mmsc_password">Contraseña de MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmación de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita la confirmación de entrega de SMS para todos los SMS enviados.</string>
-  <string name="preferences__chats">Chats y adjuntos</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chats y adjuntos</string> -->
   <string name="preferences__storage">Almacenamiento</string>
   <string name="preferences__conversation_length_limit">Límite de longitud de chat</string>
   <string name="preferences__keep_messages">Preservar mensajes</string>
@@ -2568,8 +2568,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s y %2$s se han ido</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s y %3$s se han ido</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s y %3$d más se han ido</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tú (en otro dispositivo)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en otro dispositivo)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tú (en otro dispositivo)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en otro dispositivo)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eliminar tu cuenta significa:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Introduce tu número de teléfono</string>

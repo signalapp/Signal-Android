@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Aquest missatge s\'ha suprimit.</string>
   <string name="ConversationItem_you_deleted_this_message">Heu suprimit aquest missatge.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Voleu restablir la sessió segura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Això pot ajudar si teniu problemes d\'encriptació en aquesta conversa. Els missatges es mantindran.</string> -->
   <string name="ConversationActivity_reset">Restableix</string>
   <string name="ConversationActivity_add_attachment">Afegeix un adjunt</string>
   <string name="ConversationActivity_select_contact_info">Seleccioneu informació del contacte</string>
@@ -1467,7 +1467,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Missatge mal encriptat</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Missatge encriptat per a una sessió que no existeix</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Missatge MMS mal encriptat</string>
@@ -2017,7 +2017,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__mmsc_password">Contrasenya de MMSC</string>
   <string name="preferences__sms_delivery_reports">Informes de lliurament d\'SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demana un informe de lliurament per cada missatge SMS que envieu.</string>
-  <string name="preferences__chats">Converses i multimèdia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Converses i multimèdia</string> -->
   <string name="preferences__storage">Emmagatzematge</string>
   <string name="preferences__conversation_length_limit">Límit de la mida de la conversa</string>
   <string name="preferences__keep_messages">Mantén els missatges</string>
@@ -2561,8 +2561,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s n\'han sortit.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s n\'han sortit.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d més n\'han sortit.</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vós (en un altre dispositiu)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en un altre dispositiu)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vós (en un altre dispositiu)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (en un altre dispositiu)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Suprimir el compte comportarà el següent:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Marqueu el número de telèfon.</string>

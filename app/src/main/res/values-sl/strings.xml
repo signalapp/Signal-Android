@@ -204,8 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste to sporočilo.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string> -->
   <string name="ConversationActivity_reset">Ponastavi</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o uporabniku/ci</string>
@@ -1596,7 +1596,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Napačno šifrirano sporočilo</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Napačno šifrirano sporočilo</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Napačno šifrirano sporočilo MMS</string>
@@ -2168,7 +2168,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__mmsc_password">Geslo MMSC</string>
   <string name="preferences__sms_delivery_reports">Potrdila o prejemu SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Za vsako poslano sporočilo SMS zahtevaj potrdilo o prejemu</string>
-  <string name="preferences__chats">Pogovori in večpredstavnost</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Pogovori in večpredstavnost</string> -->
   <string name="preferences__storage">Pomnilnik</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__keep_messages">Hramba sporočil</string>
@@ -2730,8 +2730,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Uporabnika/ci %1$s in %2$s sta odšla/i</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Uporabniki/ce %1$s, %2$s in %3$s so odšli</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Uporabnika %1$s, %2$s in še %3$d drugi/h so odšli</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugi napravi)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">Uporabnik/ca %1$s (na drugi napravi)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugi napravi)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">Uporabnik/ca %1$s (na drugi napravi)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Z izbrisom vašega računa boste:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Vnesite svojo telefonsko številko</string>

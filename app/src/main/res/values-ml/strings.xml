@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string> -->
   <string name="ConversationActivity_reset">പുനഃസജ്ജമാക്കുക</string>
   <string name="ConversationActivity_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
   <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
@@ -1465,7 +1465,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശം</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശം</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത MMS സന്ദേശം</string>
@@ -2015,7 +2015,7 @@
   <string name="preferences__mmsc_password">MMSC പാസ്‌വേഡ്</string>
   <string name="preferences__sms_delivery_reports">SMS ഡെലിവറി റിപ്പോർട്ടുകൾ</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">നിങ്ങൾ അയയ്ക്കുന്ന ഓരോ SMS സന്ദേശത്തിനും ഒരു ഡെലിവറി റിപ്പോർട്ട് അഭ്യർത്ഥിക്കുക</string>
-  <string name="preferences__chats">ചാറ്റുകളും മീഡിയയും</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ചാറ്റുകളും മീഡിയയും</string> -->
   <string name="preferences__storage">സ്റ്റോറേജ്</string>
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
@@ -2560,8 +2560,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s-ഉം %2$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s-ഉം, %2$s-ഉം %3$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s-ഉം, %2$s-ഉം  %3$d-ഉം  മറ്റുള്ളവരും ഇറങ്ങി പോയിട്ടുണ്ട്</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>

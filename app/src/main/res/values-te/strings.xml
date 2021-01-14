@@ -172,8 +172,8 @@
   <string name="ConversationItem_pending">  పెండింగ్</string>
   <string name="ConversationItem_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question"> సురక్షిత  సెషన్ పునరుద్ధరించు ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">మీకు ఈ సంభాషణ లో ఎన్క్రిప్షన్ సమస్యలు ఉన్నట్లయితే ఇది సహాయపడవచ్చు. మీ సందేశాలు ఉంచబడతాయి.</string> -->
   <string name="ConversationActivity_reset">పునరుద్ధరించు</string>
   <string name="ConversationActivity_add_attachment">అటాచ్మెంట్ జోడించండి</string>
   <string name="ConversationActivity_select_contact_info">సంప్రదింపు సమాచారం ఎంచుకొండి</string>
@@ -937,7 +937,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">సరికాని గుప్తీకరించిన సందేశం</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">సందేశం</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">చెడు ఎన్క్రిప్టెడ్ ఎంఎంఎస్ సందేశాన్ని</string>
@@ -1409,7 +1409,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">మీరు పంపే ప్రతి SMS కోసం బట్వాడా నివేదికను అభ్యర్థించండి</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ఒక సంభాషణ ఒక పేర్కొన్న పొడవు మించితె స్వయంచాలకంగా పాత సందేశాలను తొలగించు</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">పాత సందేశాలను తొలగించు</string> -->
-  <string name="preferences__chats">ముచ్చట్లు మరియు ప్రసార మాధ్యమం</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ముచ్చట్లు మరియు ప్రసార మాధ్యమం</string> -->
   <string name="preferences__storage">నిల్వ</string>
   <string name="preferences__conversation_length_limit">సంభాషణ విస్తృతికి పరిమితి</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">ఇప్పుడు అన్ని సంభాషణలు  కత్తిరించి సరి చేయుట </string> -->

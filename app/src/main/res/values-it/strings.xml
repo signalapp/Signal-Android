@@ -198,8 +198,8 @@
   <string name="ConversationItem_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
   <string name="ConversationItem_you_deleted_this_message">Hai eliminato questo messaggio.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Resettare la sessione sicura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Questo potrebbe aiutare se stai avendo problemi di crittografia in questa conversazione. I tuoi messaggi verranno conservati.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resettare la sessione sicura?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Questo potrebbe aiutare se stai avendo problemi di crittografia in questa conversazione. I tuoi messaggi verranno conservati.</string> -->
   <string name="ConversationActivity_reset">Resetta</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
@@ -1473,7 +1473,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Crittografia messaggio non valida</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Crittografia messaggio non valida</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio criptato per una sessione non esistente</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Crittografia MMS non valida</string>
@@ -2023,7 +2023,7 @@
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
-  <string name="preferences__chats">Chat e download</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chat e download</string> -->
   <string name="preferences__storage">Memoria</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
   <string name="preferences__keep_messages">Conserva i messaggi</string>
@@ -2567,8 +2567,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s hanno abbandonato</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s hanno abbandonato</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e altri %3$d hanno abbandonato</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (su un altro dispositivo)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (su un altro dispositivo)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (su un altro dispositivo)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (su un altro dispositivo)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>

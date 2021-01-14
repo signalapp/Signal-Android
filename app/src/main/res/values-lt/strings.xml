@@ -204,8 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string> -->
   <string name="ConversationActivity_reset">Atstatyti</string>
   <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
   <string name="ConversationActivity_select_contact_info">Pasirinkti adresato informaciją</string>
@@ -1598,7 +1598,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Žinutė šifruota seansui, kurio nėra</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Blogai šifruota MMS žinutė</string>
@@ -2170,7 +2170,7 @@
   <string name="preferences__mmsc_password">MMSC slaptažodis</string>
   <string name="preferences__sms_delivery_reports">SMS pristatymo ataskaitos</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Reikalauti pristatymo ataskaitos kiekvienai jūsų siunčiamai SMS žinutei</string>
-  <string name="preferences__chats">Pokalbiai ir medija</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Pokalbiai ir medija</string> -->
   <string name="preferences__storage">Saugykla</string>
   <string name="preferences__conversation_length_limit">Pokalbio ilgio riba</string>
   <string name="preferences__keep_messages">Saugoti žinutes</string>
@@ -2732,8 +2732,8 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ir %2$s išėjo</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ir %3$s išėjo</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ir dar %3$d žmonės(-ių) išėjo</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jūs (kitame įrenginyje)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (kitame įrenginyje)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jūs (kitame įrenginyje)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (kitame įrenginyje)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ištrinant jūsų paskyrą bus:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Įveskite savo telefono numerį</string>

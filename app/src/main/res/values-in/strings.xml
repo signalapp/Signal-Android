@@ -195,8 +195,8 @@
   <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
   <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atur kembali sesi aman?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hal ini dapat membantu jika Anda mengalami masalah enkripsi dalam percakapan ini. Pesan Anda akan disimpan.</string> -->
   <string name="ConversationActivity_reset">Atur ulang</string>
   <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
   <string name="ConversationActivity_select_contact_info">Pilih info kontak</string>
@@ -1347,7 +1347,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Pesan terenkripsi dengan buruk</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Pesan terenkripsi dengan buruk</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Pesan dienkripsi untuk sesi yang tidak ada</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Pesan MMS terenkripsi dengan buruk</string>
@@ -1875,7 +1875,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__mmsc_password">Kata Sandi MMSC</string>
   <string name="preferences__sms_delivery_reports">Laporan pengiriman SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan pengiriman untuk tiap SMS yang dikirim</string>
-  <string name="preferences__chats">Obrolan dan media</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Obrolan dan media</string> -->
   <string name="preferences__storage">Penyimpanan</string>
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
   <string name="preferences__linked_devices">Perangkat terhubung</string>
@@ -2312,7 +2312,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ReviewCard__block">Blokir</string>
   <string name="ReviewCard__delete">Hapus</string>
   <!--CallParticipantsListUpdatePopupWindow-->
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Anda (di perangkat lain)</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Anda (di perangkat lain)</string> -->
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">Masukkan nomor telepon Anda</string>
   <string name="DeleteAccountFragment__delete_account">Hapus akun</string>
