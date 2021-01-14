@@ -802,7 +802,16 @@
     <string name="GroupMentionSettingDialog_default_dont_notify_me">Default (Don\'t notify me)</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Always notify me</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Don\'t notify me</string>
-    
+
+    <!-- ManageProfileFragment -->
+    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_write_a_few_words_about_yourself">Write a few words about yourself</string>
+    <string name="ManageProfileFragment_your_name">Your name</string>
+    <string name="ManageProfileFragment_your_username">Your username</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
     <string name="ManageRecipientActivity_this_person_is_in_your_contacts">This person is in your contacts</string>
@@ -2176,6 +2185,12 @@
     <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>
     <string name="EditProfileFragment__group_name">Group name</string>
     <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+
+    <!-- EditProfileNameFragment -->
+    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_save">Save</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Shared media</string>

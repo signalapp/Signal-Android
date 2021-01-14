@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
+import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CachedInflater;
@@ -345,7 +346,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     private class ProfileClickListener implements Preference.OnPreferenceClickListener {
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        requireActivity().startActivity(EditProfileActivity.getIntentForUserProfileEdit(preference.getContext()));
+        requireActivity().startActivity(ManageProfileActivity.getIntent(requireActivity()));
         return true;
       }
     }
@@ -353,7 +354,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     private class UsernameClickListener implements Preference.OnPreferenceClickListener {
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        requireActivity().startActivity(EditProfileActivity.getIntentForUsernameEdit(preference.getContext()));
+        requireActivity().startActivity(ManageProfileActivity.getIntentForUsernameEdit(preference.getContext()));
         return true;
       }
     }

@@ -639,7 +639,7 @@ public class SignalServiceAccountManager {
   {
     if (name == null) name = "";
 
-    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.NAME_PADDED_LENGTH);
+    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.getTargetNameLength(name));
     boolean           hasAvatar         = avatar != null;
     ProfileAvatarData profileAvatarData = null;
 

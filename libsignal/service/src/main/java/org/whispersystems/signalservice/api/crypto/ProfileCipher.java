@@ -5,6 +5,7 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -20,7 +21,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ProfileCipher {
 
-  public static final int NAME_PADDED_LENGTH = 53;
+  private static final int NAME_PADDED_LENGTH_1 = 53;
+  private static final int NAME_PADDED_LENGTH_2 = 257;
+
+  public static final int MAX_POSSIBLE_NAME_LENGTH = NAME_PADDED_LENGTH_2;
 
   private final ProfileKey key;
 
@@ -99,4 +103,13 @@ public class ProfileCipher {
     }
   }
 
+  public static int getTargetNameLength(String name) {
+    int nameLength = name.getBytes(StandardCharsets.UTF_8).length;
+
+    if (nameLength <= NAME_PADDED_LENGTH_1) {
+      return NAME_PADDED_LENGTH_1;
+    } else {
+      return NAME_PADDED_LENGTH_2;
+    }
+  }
 }
