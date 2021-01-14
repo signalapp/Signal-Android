@@ -88,6 +88,37 @@ public class ParticipantCollectionTest {
   }
 
   @Test
+  public void givenACollection_whenSomeoneLeaves_thenIDoNotExpectToSeeThemInTheNewList() {
+    // GIVEN
+    List<CallParticipant> initial           = Arrays.asList(participant(1, 1, 2), participant(2, 1, 3), participant(3, 1, 4));
+    ParticipantCollection initialCollection = testSubject.getNext(initial);
+    List<CallParticipant> next              = Arrays.asList(participant(2, 2, 3), participant(3, 1, 4));
+
+    // WHEN
+    ParticipantCollection result = initialCollection.getNext(next);
+
+    // THEN
+    assertThat(result.getGridParticipants(), Matchers.contains(id(2), id(3)));
+  }
+
+  @Test
+  public void givenACollection_whenMultipleLeave_thenIDoNotExpectToSeeThemInTheNewList() {
+    // GIVEN
+    ParticipantCollection testSubject       = new ParticipantCollection(4);
+    List<CallParticipant> initial           = Arrays.asList(participant(1, 1, 2), participant(2, 1, 3), participant(3, 1, 4), participant(4, 1, 5));
+    ParticipantCollection initialCollection = testSubject.getNext(initial);
+    List<CallParticipant> next              = Arrays.asList(participant(3, 1, 4), participant(2, 1, 3));
+
+    // WHEN
+    ParticipantCollection result = initialCollection.getNext(next);
+
+    // THEN
+    assertThat(result.getGridParticipants(), Matchers.contains(id(2), id(3)));
+  }
+
+
+
+  @Test
   public void bigTest() {
 
     // Welcome to the Thunder dome. 10 people enter...

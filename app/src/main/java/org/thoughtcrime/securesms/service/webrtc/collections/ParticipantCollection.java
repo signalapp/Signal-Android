@@ -62,7 +62,7 @@ public class ParticipantCollection {
                              .indexOf(oldId);
 
         if (newIndex != -1 && newIndex != i) {
-          Collections.swap(newParticipants, newIndex, i);
+          Collections.swap(newParticipants, newIndex, Math.min(i, newParticipants.size() - 1));
         }
       }
 
