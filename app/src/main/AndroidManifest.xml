@@ -9,9 +9,6 @@
                 android:label="Access to TextSecure Secrets"
                 android:protectionLevel="signature" />
 
-
-
-
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
     <uses-feature android:name="android.hardware.location" android:required="false"/>
@@ -128,27 +125,11 @@
               android:taskAffinity=".calling"
               android:launchMode="singleTask"/>
 
-
     <activity android:name=".messagerequests.CalleeMustAcceptMessageRequestActivity"
               android:theme="@style/TextSecure.DarkNoActionBar"
               android:screenOrientation="portrait"
               android:noHistory="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-
-        <receiver android:name=".thoughtcrime.securesms.messagedetails.MessageRecordLiveData"
-            tools:ignore="MissingClass"></receiver>
-
-        <activity android:name=".thoughtcrime.securesms.messagedetails.MessageRecordLiveData"
-            android:theme="@style/TextSecure.DarkNoActionBar"
-            android:screenOrientation="portrait"
-            android:noHistory="true"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-
-            tools:ignore="MissingClass" />
-
-
-
 
     <activity android:name=".InviteActivity"
               android:theme="@style/Signal.Light.NoActionBar.Invite"
@@ -442,7 +423,7 @@
             <data android:scheme="mms" />
             <data android:scheme="mmsto" />
         </intent-filter>
-        <intent-filter tools:ignore="AppLinkUrlError">
+        <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact" />
@@ -455,7 +436,7 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
 
-        <intent-filter tools:ignore="AppLinkUrlError">
+        <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <data android:mimeType="vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call" />

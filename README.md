@@ -35,6 +35,8 @@ For larger changes and feature ideas, we ask that you propose it on the [unoffic
 ## Contributing Ideas
 Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
+Help
+====
 ## Support
 For troubleshooting and questions, please visit our support center!
 
@@ -45,6 +47,7 @@ Looking for documentation? Check out the wiki!
 
 https://github.com/signalapp/Signal-Android/wiki
 
+# Legal things
 ## Cryptography Notice
 
 This distribution includes cryptographic software. The country in which you currently reside may have restrictions on the import, possession, use, and/or re-export to another country, of encryption software.
