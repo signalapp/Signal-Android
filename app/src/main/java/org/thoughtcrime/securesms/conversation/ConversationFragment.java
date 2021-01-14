@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -1438,6 +1437,10 @@ public class ConversationFragment extends LoggingFragment {
 
     @Override
     public void onSafetyNumberLearnMoreClicked(@NonNull Recipient recipient) {
+      if (recipient.isGroup()) {
+        throw new AssertionError("Must be individual");
+      }
+
       AlertDialog dialog = new AlertDialog.Builder(requireContext())
                                           .setView(R.layout.safety_number_changed_learn_more_dialog)
                                           .setPositiveButton(R.string.ConversationFragment_verify, (d, w) -> {
