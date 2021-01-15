@@ -1,1 +1,3 @@
-//this file will contain the list of dependencies and tools required to deploy the application
+//this file contains the list of dependencies and tools required to deploy the application
+
+<Add actual dependencies and requirements>
