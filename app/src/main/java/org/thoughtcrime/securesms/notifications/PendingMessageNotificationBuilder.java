@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -30,7 +30,7 @@ public class PendingMessageNotificationBuilder extends AbstractNotificationBuild
 
     setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
     setAutoCancel(true);
-    setAlarms(null, RecipientDatabase.VibrateState.DEFAULT);
+    setAlarms(null, Recipient.VibrateState.DEFAULT);
 
     if (!NotificationChannels.supported()) {
       setPriority(TextSecurePreferences.getNotificationPriority(context));

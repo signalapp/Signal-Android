@@ -12,8 +12,8 @@ import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordRead
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.List;

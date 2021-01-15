@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;

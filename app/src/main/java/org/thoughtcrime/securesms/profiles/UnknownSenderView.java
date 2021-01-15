@@ -11,7 +11,7 @@ import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientExporter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 public class UnknownSenderView extends FrameLayout {
 

@@ -227,7 +227,7 @@ public class MessageSender {
       MmsDatabase            mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
       OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
-      SyncMessageId          syncId             = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getSentTimeMillis());
+      SyncMessageId          syncId             = new SyncMessageId(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getSentTimeMillis());
 
       for (Attachment attachment : message.getAttachments()) {
         attachmentDatabase.markAttachmentUploaded(messageId, attachment);
@@ -254,7 +254,7 @@ public class MessageSender {
       SmsDatabase            smsDatabase       = DatabaseFactory.getSmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
       SmsMessageRecord       message           = smsDatabase.getMessage(messageId);
-      SyncMessageId          syncId            = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getDateSent());
+      SyncMessageId          syncId            = new SyncMessageId(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getDateSent());
 
       smsDatabase.markAsSent(messageId, true);
       smsDatabase.markUnidentified(messageId, true);

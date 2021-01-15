@@ -37,7 +37,7 @@ import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
 
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
-import org.thoughtcrime.securesms.color.MaterialColor;
+import org.session.libsession.utilities.color.MaterialColor;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -55,8 +55,8 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.ExpirationUtil;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 

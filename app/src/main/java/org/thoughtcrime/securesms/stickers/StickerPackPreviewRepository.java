@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;

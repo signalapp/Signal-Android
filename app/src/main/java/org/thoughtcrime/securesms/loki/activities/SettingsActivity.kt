@@ -40,11 +40,11 @@ import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.session.libsession.messaging.contacts.avatars.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.crypto.ProfileCipher
 import org.session.libsignal.service.api.util.StreamDetails
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI

@@ -1,11 +1,9 @@
 package org.session.libsession.utilities
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.hardware.Camera
 import android.net.Uri
-import android.os.Build
-import android.preference.PreferenceManager.*
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.provider.Settings
 import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
@@ -167,18 +165,23 @@ object TextSecurePreferences {
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
     private const val HAS_SEEN_PN_MODE_SHEET = "pref_has_seen_pn_mode_sheet"
 
+
+    @JvmStatic
     fun isUsingFCM(context: Context): Boolean {
         return getBooleanPreference(context, IS_USING_FCM, false)
     }
 
+    @JvmStatic
     fun setIsUsingFCM(context: Context, value: Boolean) {
         setBooleanPreference(context, IS_USING_FCM, value)
     }
 
+    @JvmStatic
     fun getFCMToken(context: Context): String? {
         return getStringPreference(context, FCM_TOKEN, "")
     }
 
+    @JvmStatic
     fun setFCMToken(context: Context, value: String) {
         setStringPreference(context, FCM_TOKEN, value)
     }
@@ -192,6 +195,7 @@ object TextSecurePreferences {
     }
 
     // endregion
+    @JvmStatic
     fun isScreenLockEnabled(context: Context): Boolean {
         return getBooleanPreference(context, SCREEN_LOCK, false)
     }
@@ -349,6 +353,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, TYPING_INDICATORS, false)
     }
 
+    @JvmStatic
     fun setTypingIndicatorsEnabled(context: Context, enabled: Boolean) {
         setBooleanPreference(context, TYPING_INDICATORS, enabled)
     }
@@ -380,6 +385,7 @@ object TextSecurePreferences {
         setStringPreference(context, PROFILE_KEY_PREF, key)
     }
 
+    @JvmStatic
     fun setProfileName(context: Context, name: String?) {
         setStringPreference(context, PROFILE_NAME_PREF, name)
     }
@@ -389,6 +395,7 @@ object TextSecurePreferences {
         return getStringPreference(context, PROFILE_NAME_PREF, null)
     }
 
+    @JvmStatic
     fun setProfileAvatarId(context: Context, id: Int) {
         setIntegerPrefrence(context, PROFILE_AVATAR_ID_PREF, id)
     }
@@ -402,6 +409,7 @@ object TextSecurePreferences {
         setStringPreference(context, PROFILE_AVATAR_URL_PREF, url)
     }
 
+    @JvmStatic
     fun getProfilePictureURL(context: Context): String? {
         return getStringPreference(context, PROFILE_AVATAR_URL_PREF, null)
     }
@@ -765,6 +773,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, SCREEN_SECURITY_PREF, value)
     }
 
+    @JvmStatic
     fun isScreenSecurityEnabled(context: Context): Boolean {
         return getBooleanPreference(context, SCREEN_SECURITY_PREF, true)
     }
@@ -851,6 +860,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false)
     }
 
+    @JvmStatic
     fun hasSeenWelcomeScreen(context: Context): Boolean {
         return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true)
     }
@@ -1026,10 +1036,12 @@ object TextSecurePreferences {
         setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
     }
 
+    @JvmStatic
     fun getNeedsMessagePull(context: Context): Boolean {
         return getBooleanPreference(context, NEEDS_MESSAGE_PULL, false)
     }
 
+    @JvmStatic
     fun setNeedsMessagePull(context: Context, needsMessagePull: Boolean) {
         setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull)
     }
@@ -1183,10 +1195,12 @@ object TextSecurePreferences {
         setBooleanPreference(context, "has_seen_open_group_suggestion_sheet", true)
     }
 
+    @JvmStatic
     fun getLastProfilePictureUpload(context: Context): Long {
         return getLongPreference(context, "last_profile_picture_upload", 0)
     }
 
+    @JvmStatic
     fun setLastProfilePictureUpload(context: Context, newValue: Long) {
         setLongPreference(context, "last_profile_picture_upload", newValue)
     }
@@ -1199,6 +1213,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, "has_seen_gif_metadata_warning", true)
     }
 
+    @JvmStatic
     fun clearAll(context: Context) {
         getDefaultSharedPreferences(context).edit().clear().commit()
     }
@@ -1217,6 +1232,31 @@ object TextSecurePreferences {
 
     fun setHasSeenLightThemeIntroSheet(context: Context) {
         setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true)
+    }
+
+    fun getLastSnodePoolRefreshDate(context: Context?): Long {
+        return getLongPreference(context!!, "last_snode_pool_refresh_date", 0)
+    }
+
+    fun setLastSnodePoolRefreshDate(context: Context?, date: Date) {
+        setLongPreference(context!!, "last_snode_pool_refresh_date", date.time)
+    }
+
+    fun getLastKeyPairMigrationNudge(context: Context?): Long {
+        return getLongPreference(context!!, "last_key_pair_migration_nudge", 0)
+    }
+
+    fun setLastKeyPairMigrationNudge(context: Context?, newValue: Long) {
+        setLongPreference(context!!, "last_key_pair_migration_nudge", newValue)
+    }
+
+    fun getIsMigratingKeyPair(context: Context?): Boolean {
+        return getBooleanPreference(context!!, "is_migrating_key_pair", false)
+    }
+
+    @JvmStatic
+    fun setIsMigratingKeyPair(context: Context?, newValue: Boolean) {
+        setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
     }
 
     // endregion

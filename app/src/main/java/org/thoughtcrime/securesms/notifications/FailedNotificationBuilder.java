@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 
 public class FailedNotificationBuilder extends AbstractNotificationBuilder {
@@ -22,7 +22,7 @@ public class FailedNotificationBuilder extends AbstractNotificationBuilder {
     setTicker(context.getString(R.string.MessageNotifier_error_delivering_message));
     setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));
     setAutoCancel(true);
-    setAlarms(null, RecipientDatabase.VibrateState.DEFAULT);
+    setAlarms(null, Recipient.VibrateState.DEFAULT);
     setChannelId(NotificationChannels.FAILURES);
   }
 

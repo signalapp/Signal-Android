@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.session.libsession.utilities;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;

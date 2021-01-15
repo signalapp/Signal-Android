@@ -47,9 +47,9 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;

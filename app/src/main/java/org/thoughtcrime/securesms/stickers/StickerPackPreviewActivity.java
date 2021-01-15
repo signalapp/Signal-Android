@@ -27,7 +27,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.session.libsession.utilities.concurrent.SimpleTask;
 
 import network.loki.messenger.R;
 

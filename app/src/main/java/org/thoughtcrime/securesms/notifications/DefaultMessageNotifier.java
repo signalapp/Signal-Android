@@ -43,7 +43,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.MessageN
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.contactshare.Contact;
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

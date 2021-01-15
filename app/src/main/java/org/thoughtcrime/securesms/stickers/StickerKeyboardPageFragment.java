@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 import network.loki.messenger.R;
 

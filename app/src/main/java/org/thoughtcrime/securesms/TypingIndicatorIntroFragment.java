@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import network.loki.messenger.R;
 

@@ -11,9 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import android.view.KeyEvent;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageActivityHelper;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageActivityHelper;
+import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import network.loki.messenger.R;
 

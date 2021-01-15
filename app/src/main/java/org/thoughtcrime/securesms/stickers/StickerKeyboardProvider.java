@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardPageFragment.EventListener;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardRepository.PackListResult;
 import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.session.libsession.utilities.ThemeUtil;
 import org.thoughtcrime.securesms.util.Throttler;
 
 import java.util.ArrayList;

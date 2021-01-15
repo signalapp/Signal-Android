@@ -87,7 +87,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
       // Loki - Take into account multi device
       Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
       for (String device : linkedDevices) {
-        Address deviceAsAddress = Address.fromExternal(context, device);
+        Address deviceAsAddress = Address.Companion.fromExternal(context, device);
         ApplicationContext.getInstance(context)
                           .getJobManager()
                           .add(new SendReadReceiptJob(deviceAsAddress, timestamps));

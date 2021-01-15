@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.views.UserView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.session.libsession.utilities.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

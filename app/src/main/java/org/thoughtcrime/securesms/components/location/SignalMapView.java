@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.session.libsession.utilities.concurrent.ListenableFuture;
+import org.session.libsession.utilities.concurrent.SettableFuture;
 
 import org.session.libsession.utilities.ViewUtil;
 

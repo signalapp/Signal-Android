@@ -4,6 +4,8 @@ import android.content.Context
 import java.io.IOException
 import java.lang.RuntimeException
 
+import org.session.libsession.utilities.TextSecurePreferences
+
 object VersionTracker {
 
     @JvmStatic

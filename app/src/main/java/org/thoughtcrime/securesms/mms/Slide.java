@@ -22,13 +22,15 @@ import android.net.Uri;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
+
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
+import org.session.libsession.utilities.Util;
 
 import java.security.SecureRandom;
 

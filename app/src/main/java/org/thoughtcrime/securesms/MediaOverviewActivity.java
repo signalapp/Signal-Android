@@ -64,8 +64,8 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
 import java.util.Collection;
@@ -198,7 +198,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       if (address == null)      throw new AssertionError();
       if (locale == null)       throw new AssertionError();
 
-      this.recipient    = Recipient.from(getContext(), Address.fromSerialized(address), true);
+      this.recipient    = Recipient.from(getContext(), Address.Companion.fromSerialized(address), true);
       this.locale       = locale;
 
       getLoaderManager().initLoader(0, null, this);
