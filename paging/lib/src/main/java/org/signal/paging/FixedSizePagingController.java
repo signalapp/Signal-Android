@@ -84,6 +84,11 @@ class FixedSizePagingController<E> implements PagingController {
       return;
     }
 
+    if (loadStart > aroundIndex || loadEnd < aroundIndex) {
+      if (DEBUG) Log.i(TAG, buildLog(aroundIndex, "loadStart > aroundIndex || loadEnd < aroundIndex, loadStart: " + loadStart + ", aroundIndex: " + aroundIndex + ", loadEnd: " + loadEnd));
+      return;
+    }
+
     int totalSize = loadState.size();
 
     loadState.markRange(loadStart, loadEnd);
