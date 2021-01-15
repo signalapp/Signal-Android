@@ -48,7 +48,7 @@ class Quote() {
         quoteProto.id = timestamp
         quoteProto.author = publicKey
         text?.let { quoteProto.text = text }
-        addAttachmentsIfNeeded(quoteProto, MessagingConfiguration.shared.messageDataProvider)
+        addAttachmentsIfNeeded(quoteProto)
         // Build
         try {
             return quoteProto.build()
@@ -58,9 +58,9 @@ class Quote() {
         }
     }
 
-    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder, messageDataProvider: MessageDataProvider) {
+    private fun addAttachmentsIfNeeded(quoteProto: SignalServiceProtos.DataMessage.Quote.Builder) {
         val attachmentID = attachmentID ?: return
-        val attachmentProto = messageDataProvider.getAttachmentStream(attachmentID)
+        val attachmentProto = MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(attachmentID)
         if (attachmentProto == null) {
             Log.w(TAG, "Ignoring invalid attachment for quoted message.")
             return
