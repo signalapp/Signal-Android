@@ -71,12 +71,10 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.SoftHashMap;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
 
-import java.util.Map;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -105,18 +103,15 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private static final String EMOJI_REPLACEMENT_STRING  = "__EMOJI__";
   private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
-  private static final long   MIN_AUDIBLE_GROUP_PERIOD_MILLIS = TimeUnit.MINUTES.toMillis(10);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
-  
+
   private volatile long                     visibleThread                = -1;
   private volatile long                     lastDesktopActivityTimestamp = -1;
   private volatile long                     lastAudibleNotification      = -1;
-  private static   final Map<Long, Long>    lastAudibleNotificationsPerThread = new SoftHashMap<>();
   private          final CancelableExecutor executor                     = new CancelableExecutor();
 
   @Override
   public void setVisibleThread(long threadId) {
-    lastAudibleNotificationsPerThread.remove(threadId);
     visibleThread = threadId;
   }
 
@@ -307,19 +302,12 @@ public class DefaultMessageNotifier implements MessageNotifier {
         if (Build.VERSION.SDK_INT >= 23) {
           for (long threadId : notificationState.getThreads()) {
             if (targetThread < 1 || targetThread == threadId) {
-              Long lastNotificationTimestamp = lastAudibleNotificationsPerThread.get(threadId);
-
-              if (lastNotificationTimestamp != null && (System.currentTimeMillis() - lastNotificationTimestamp) < MIN_AUDIBLE_GROUP_PERIOD_MILLIS) {
-                signal = false;
-              } else {
-                lastAudibleNotificationsPerThread.put(threadId, System.currentTimeMillis());
-                sendSingleThreadNotification(context,
-                        new NotificationState(notificationState.getNotificationsForThread(threadId)),
-                        signal && (threadId == targetThread),
-                        true,
-                        isReminder,
-                        (threadId == targetThread) ? defaultBubbleState : BubbleUtil.BubbleState.HIDDEN);
-              }
+              sendSingleThreadNotification(context,
+                                           new NotificationState(notificationState.getNotificationsForThread(threadId)),
+                                           signal && (threadId == targetThread),
+                                           true,
+                                           isReminder,
+                                           (threadId == targetThread) ? defaultBubbleState : BubbleUtil.BubbleState.HIDDEN);
             }
           }
         }
@@ -328,16 +316,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
       } else {
         long                   thread      = notificationState.getNotifications().isEmpty() ? -1 : notificationState.getNotifications().get(0).getThreadId();
         BubbleUtil.BubbleState bubbleState = thread == targetThread ? defaultBubbleState : BubbleUtil.BubbleState.HIDDEN;
-        Long lastNotificationTimestamp = lastAudibleNotificationsPerThread.get(thread);
 
-        if (lastNotificationTimestamp != null && (System.currentTimeMillis() - lastNotificationTimestamp) < MIN_AUDIBLE_GROUP_PERIOD_MILLIS) {
-          signal = false;
-        } else {
-          lastAudibleNotificationsPerThread.put(thread, System.currentTimeMillis());
-          shouldScheduleReminder = sendSingleThreadNotification(context, notificationState, signal, false, isReminder, bubbleState);
-          if (isDisplayingSummaryNotification(context)) {
-            sendMultipleThreadNotification(context, notificationState, false);
-          }
+        shouldScheduleReminder = sendSingleThreadNotification(context, notificationState, signal, false, isReminder, bubbleState);
+
+        if (isDisplayingSummaryNotification(context)) {
+          sendMultipleThreadNotification(context, notificationState, false);
         }
       }
 
@@ -442,7 +425,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     if (Build.VERSION.SDK_INT >= 23) {
       builder.setGroup(NOTIFICATION_GROUP);
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     }
 
     Notification notification = builder.build();
@@ -485,7 +468,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     if (Build.VERSION.SDK_INT >= 23) {
       builder.setGroup(NOTIFICATION_GROUP);
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
     }
 
     long timestamp = notifications.get(0).getTimestamp();
