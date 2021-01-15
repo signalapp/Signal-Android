@@ -54,12 +54,14 @@ public class SubmitDebugLogRepository {
   private static final List<LogSection> SECTIONS = new ArrayList<LogSection>() {{
     add(new LogSectionSystemInfo());
     add(new LogSectionJobs());
+    add(new LogSectionConstraints());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
     }
     add(new LogSectionPin());
     add(new LogSectionCapabilities());
     add(new LogSectionFeatureFlags());
+    add(new LogSectionKeyPreferences());
     add(new LogSectionPermissions());
     add(new LogSectionTrace());
     add(new LogSectionThreads());

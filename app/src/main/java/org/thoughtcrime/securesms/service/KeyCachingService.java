@@ -80,7 +80,13 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    return masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
+    boolean locked = masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
+
+    if (locked) {
+      Log.d(TAG, "Locked! PasswordDisabled: " + TextSecurePreferences.isPasswordDisabled(context) + ", ScreenLock: " + TextSecurePreferences.isScreenLockEnabled(context));
+    }
+
+    return locked;
   }
 
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {

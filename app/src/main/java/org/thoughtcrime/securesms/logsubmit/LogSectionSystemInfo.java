@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -60,6 +61,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Locale        : ").append(Locale.getDefault().toString()).append("\n");
     builder.append("Linked Devices: ").append(TextSecurePreferences.isMultiDevice(context)).append("\n");
     builder.append("First Version : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
+    builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
     builder.append("App           : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))

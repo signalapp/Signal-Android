@@ -232,8 +232,10 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     this.clearKeyReceiver = new BroadcastReceiver() {
       @Override
       public void onReceive(Context context, Intent intent) {
-        Log.i(TAG, "onReceive() for clear key event");
-        onMasterSecretCleared();
+        Log.i(TAG, "onReceive() for clear key event. PasswordDisabled: " + TextSecurePreferences.isPasswordDisabled(context) + ", ScreenLock: " + TextSecurePreferences.isScreenLockEnabled(context));
+        if (TextSecurePreferences.isScreenLockEnabled(context) || !TextSecurePreferences.isPasswordDisabled(context)) {
+          onMasterSecretCleared();
+        }
       }
     };
 
