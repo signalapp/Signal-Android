@@ -1,6 +1,14 @@
 package org.session.libsession.utilities
 
+import android.content.Context
+import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener
+import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext
+import java.io.IOException
+import java.util.*
 
 object GroupUtil {
     const val CLOSED_GROUP_PREFIX = "__textsecure_group__!"
@@ -31,6 +39,7 @@ object GroupUtil {
         return (MMS_GROUP_PREFIX + groupID).toByteArray()
     }
 
+    @JvmStatic
     fun getEncodedId(group: SignalServiceGroup): String? {
         val groupId = group.groupId
         if (group.groupType == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
@@ -39,6 +48,7 @@ object GroupUtil {
         return getEncodedGroupID(groupId)
     }
 
+    @JvmStatic
     fun getEncodedGroupID(groupID: ByteArray): String {
         return groupID.toString()
     }

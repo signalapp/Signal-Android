@@ -115,7 +115,6 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
@@ -131,7 +130,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
@@ -166,7 +164,6 @@ import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
-import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
@@ -192,18 +189,23 @@ import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.thoughtcrime.securesms.util.views.Stub;
+
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.ExpirationUtil;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.ViewUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -219,8 +221,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -674,7 +674,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    boolean isOpenGroupOrRSSFeed = recipient.getAddress().isOpenGroup() || recipient.getAddress().isRSSFeed();
+    boolean isOpenGroupOrRSSFeed = recipient.getAddress().isOpenGroup();
 
     if (isOpenGroupOrRSSFeed) {
       if (recipient.getExpireMessages() > 0) {
@@ -1005,7 +1005,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleCopySessionID() {
     if (recipient.isGroupRecipient()) { return; }
-    String sessionID = recipient.getAddress().toPhoneString();
+    String sessionID = recipient.getAddress().toString();
     ClipboardManager clipboard = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
     ClipData clip = ClipData.newPlainText("Session ID", sessionID);
     clipboard.setPrimaryClip(clip);
@@ -1087,7 +1087,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     String message = getString(R.string.ConversationActivity_are_you_sure_you_want_to_leave_this_group);
     for (Address admin : admins) {
-      if (admin.toPhoneString().equals(userPublicKey)) {
+      if (admin.toString().equals(userPublicKey)) {
         message = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone.";
       }
     }
@@ -1808,7 +1808,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isOpenGroup() && !recipient.getAddress().isRSSFeed()) {
+    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isOpenGroup()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.GONE); // Loki - Always hide for now
     } else if (groupShareProfileView.resolved()) {
@@ -1841,7 +1841,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private boolean isActiveGroup() {
-    if (!isGroupConversation() || recipient.getAddress().isRSSFeed()) return false;
+    if (!isGroupConversation()) return false;
 
     Optional<GroupRecord> record = DatabaseFactory.getGroupDatabase(this).getGroup(getRecipient().getAddress().toGroupString());
     return record.isPresent() && record.get().isActive();
@@ -1987,7 +1987,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean         needsSplit     = message.length() > characterCalculator.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
                                        recipient.isGroupRecipient()                   ||
-                                       recipient.getAddress().isEmail()               ||
                                        inputPanel.getQuote().isPresent()              ||
                                        linkPreviewViewModel.hasLinkPreview()          ||
                                        LinkPreviewUtil.isValidMediaUrl(message) || // Loki - Send GIFs as media messages
@@ -2516,7 +2515,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Recipient author;
 
     if (messageRecord.isOutgoing()) {
-      author = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
+      author = Recipient.from(this, Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
     } else {
       author = messageRecord.getIndividualRecipient();
     }

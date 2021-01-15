@@ -4,7 +4,7 @@ import android.content.Context
 import nl.komponents.kovenant.functional.map
 import okhttp3.*
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.PushNotificationAPI
@@ -54,7 +54,7 @@ object LokiPushNotificationManager {
         }
         // Unsubscribe from all closed groups
         val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(context, ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
         }

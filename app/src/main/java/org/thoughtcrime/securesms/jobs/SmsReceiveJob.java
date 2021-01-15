@@ -15,8 +15,10 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import org.session.libsession.utilities.Base64;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;

@@ -8,7 +8,9 @@ import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.threads.Address;
+
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import java.util.List;
@@ -106,7 +108,7 @@ public class MediaDatabase extends Database {
       Address                  address            = null;
 
       if (serializedAddress != null) {
-        address = Address.fromSerialized(serializedAddress);
+        address = Address.Companion.fromSerialized(serializedAddress);
       }
 
       long date;

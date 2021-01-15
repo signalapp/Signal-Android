@@ -17,14 +17,15 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
+import org.thoughtcrime.securesms.loki.utilities.GroupDescription;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.utilities.ExpirationUtil;
+import org.session.libsession.utilities.Util;
 
 import java.util.Locale;
 import java.util.Set;
@@ -173,7 +174,7 @@ public class ConversationUpdateItem extends LinearLayout
     icon.setImageResource(R.drawable.ic_group_grey600_24dp);
     icon.clearColorFilter();
 
-    GroupUtil.getDescription(getContext(), messageRecord.getBody()).addListener(this);
+    GroupDescription.Companion.getDescription(getContext(), messageRecord.getBody()).addListener(this);
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);

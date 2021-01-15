@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.net.GiphyLoader;
 import org.thoughtcrime.securesms.giph.util.InfiniteScrollListener;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.util.LinkedList;
 import java.util.List;

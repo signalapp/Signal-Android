@@ -20,8 +20,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.JsonUtils;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.FileInputStream;
 import java.io.IOException;

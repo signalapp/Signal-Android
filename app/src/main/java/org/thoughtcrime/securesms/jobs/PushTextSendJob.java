@@ -3,24 +3,25 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient.UnidentifiedAccessMode;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
@@ -152,7 +153,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Couldn't send message due to error: ", e);
       if (messageId >= 0) {
-        database.addMismatchedIdentity(record.getId(), Address.fromSerialized(e.getE164Number()), e.getIdentityKey());
+        database.addMismatchedIdentity(record.getId(), Address.Companion.fromSerialized(e.getE164Number()), e.getIdentityKey());
         database.markAsSentFailed(record.getId());
         database.markAsPush(record.getId());
       }
@@ -240,7 +241,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushTextSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushTextSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

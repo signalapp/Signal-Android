@@ -89,7 +89,7 @@ public class TypingStatusSender {
     if (recipient == null) { return; }
     Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
     for (String device : linkedDevices) {
-      Recipient deviceAsRecipient = Recipient.from(context, Address.fromSerialized(device), false);
+      Recipient deviceAsRecipient = Recipient.from(context, Address.Companion.fromSerialized(device), false);
       long deviceThreadID = threadDatabase.getOrCreateThreadIdFor(deviceAsRecipient);
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
     }

@@ -4,10 +4,7 @@ import android.content.Context
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
-import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentPointer
-import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
+import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment

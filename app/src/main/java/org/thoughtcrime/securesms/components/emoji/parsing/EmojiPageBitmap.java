@@ -10,9 +10,10 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.ListenableFutureTask;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.io.InputStream;

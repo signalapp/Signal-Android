@@ -10,7 +10,7 @@ import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
+import org.session.libsession.messaging.contacts.avatars.ProfileContactPhoto
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator

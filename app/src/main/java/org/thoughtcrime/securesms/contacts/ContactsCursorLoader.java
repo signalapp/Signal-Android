@@ -31,7 +31,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.util.NumberUtil;
+
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,7 +214,7 @@ public class ContactsCursorLoader extends CursorLoader {
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = new MatrixCursor(CONTACT_PROJECTION);
     try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
-      GroupDatabase.GroupRecord groupRecord;
+      GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getTitle(),
                                             groupRecord.getEncodedId(),

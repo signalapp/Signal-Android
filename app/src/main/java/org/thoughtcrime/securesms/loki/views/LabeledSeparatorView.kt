@@ -10,7 +10,7 @@ import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.view_separator.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.thoughtcrime.securesms.util.ThemeUtil
+import org.session.libsession.utilities.ThemeUtil
 
 class LabeledSeparatorView : RelativeLayout {
 

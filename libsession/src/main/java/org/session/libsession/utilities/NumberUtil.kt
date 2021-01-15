@@ -13,6 +13,7 @@ object NumberUtil {
         return matcher.matches()
     }
 
+    @JvmStatic
     fun isValidSmsOrEmail(number: String): Boolean {
         return PhoneNumberUtils.isWellFormedSmsAddress(number) || isValidEmail(number)
     }

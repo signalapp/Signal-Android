@@ -6,16 +6,18 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.threads.recipients.Recipient.UnidentifiedAccessMode;
+import org.session.libsession.utilities.TextSecurePreferences;
+
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -29,7 +31,6 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
@@ -210,7 +211,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
       if (messageId >= 0) {
-        database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
+        database.addMismatchedIdentity(messageId, Address.Companion.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
         database.markAsSentFailed(messageId);
       }
     } catch (SnodeAPI.Error e) {
@@ -297,7 +298,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushMediaSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushMediaSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

@@ -16,18 +16,20 @@ import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.Hex
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
+
 import java.io.IOException
 import java.util.*
 import kotlin.jvm.Throws
@@ -45,7 +47,7 @@ object ClosedGroupsProtocolV2 {
         val deferred = deferred<String, Exception>()
         Thread {
             // Prepare
-            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
             val membersAsData = members.map { Hex.fromStringCondensed(it) }
             val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
             // Generate the group's public key
@@ -85,7 +87,7 @@ object ClosedGroupsProtocolV2 {
 
     @JvmStatic
     public fun leave(context: Context, groupPublicKey: String): Promise<Unit, Exception> {
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
@@ -96,7 +98,7 @@ object ClosedGroupsProtocolV2 {
         val name = group.title
         val oldMembers = group.members.map { it.serialize() }.toSet()
         val newMembers: Set<String>
-        val isCurrentUserAdmin = group.admins.map { it.toPhoneString() }.contains(userPublicKey)
+        val isCurrentUserAdmin = group.admins.map { it.toString() }.contains(userPublicKey)
         if (!isCurrentUserAdmin) {
             newMembers = oldMembers.minus(userPublicKey)
         } else {
@@ -108,7 +110,7 @@ object ClosedGroupsProtocolV2 {
     public fun update(context: Context, groupPublicKey: String, members: Collection<String>, name: String): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         Thread {
-            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
             val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
             val groupDB = DatabaseFactory.getGroupDatabase(context)
             val groupID = doubleEncodeGroupID(groupPublicKey)
@@ -197,7 +199,7 @@ object ClosedGroupsProtocolV2 {
             Log.d("Loki", "Can't update nonexistent closed group.")
             return
         }
-        if (!group.admins.map { it.toPhoneString() }.contains(userPublicKey)) {
+        if (!group.admins.map { it.toString() }.contains(userPublicKey)) {
             Log.d("Loki", "Can't distribute new encryption key pair as non-admin.")
             return
         }
@@ -248,7 +250,7 @@ object ClosedGroupsProtocolV2 {
 
     public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, senderPublicKey: String) {
         // Prepare
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         // Unwrap the message
         val groupPublicKey = closedGroupUpdate.publicKey.toByteArray().toHexString()
@@ -281,7 +283,7 @@ object ClosedGroupsProtocolV2 {
 
     public fun handleClosedGroupUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         // Prepare
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         // Unwrap the message
         val name = closedGroupUpdate.name
@@ -296,7 +298,7 @@ object ClosedGroupsProtocolV2 {
         val oldMembers = group.members.map { it.serialize() }
         val newMembers = members.toSet().minus(oldMembers)
         // Check that the message isn't from before the group was created
-        if (group.createdAt > sentTimestamp) {
+        if (group.createAt > sentTimestamp) {
             Log.d("Loki", "Ignoring closed group update from before thread was created.")
             return
         }
@@ -306,7 +308,7 @@ object ClosedGroupsProtocolV2 {
             return
         }
         // Check that the admin wasn't removed unless the group was destroyed entirely
-        if (!members.contains(group.admins.first().toPhoneString()) && members.isNotEmpty()) {
+        if (!members.contains(group.admins.first().toString()) && members.isNotEmpty()) {
             Log.d("Loki", "Ignoring invalid closed group update message.")
             return
         }
@@ -324,7 +326,7 @@ object ClosedGroupsProtocolV2 {
         }
         // Generate and distribute a new encryption key pair if needed
         val wasAnyUserRemoved = (members.toSet().intersect(oldMembers) != oldMembers.toSet())
-        val isCurrentUserAdmin = group.admins.map { it.toPhoneString() }.contains(userPublicKey)
+        val isCurrentUserAdmin = group.admins.map { it.toString() }.contains(userPublicKey)
         if (wasAnyUserRemoved && isCurrentUserAdmin) {
             generateAndSendNewEncryptionKeyPair(context, groupPublicKey, members.minus(newMembers))
         }
@@ -338,7 +340,7 @@ object ClosedGroupsProtocolV2 {
         val wasSenderRemoved = !members.contains(senderPublicKey)
         val type0 = if (wasSenderRemoved) SignalServiceProtos.GroupContext.Type.QUIT else SignalServiceProtos.GroupContext.Type.UPDATE
         val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toPhoneString() })
+        insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toString() })
     }
 
     private fun handleGroupEncryptionKeyPair(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, groupPublicKey: String, senderPublicKey: String) {
@@ -354,7 +356,7 @@ object ClosedGroupsProtocolV2 {
             Log.d("Loki", "Ignoring closed group encryption key pair message for nonexistent group.")
             return
         }
-        if (!group.admins.map { it.toPhoneString() }.contains(senderPublicKey)) {
+        if (!group.admins.map { it.toString() }.contains(senderPublicKey)) {
             Log.d("Loki", "Ignoring closed group encryption key pair from non-admin.")
             return
         }
@@ -373,12 +375,12 @@ object ClosedGroupsProtocolV2 {
     private fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
                                           name: String, members: Collection<String>, admins: Collection<String>) {
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupID)))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
                 .setType(type0)
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedId(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
@@ -389,7 +391,7 @@ object ClosedGroupsProtocolV2 {
                                           members: Collection<String>, admins: Collection<String>, threadID: Long) {
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupID)))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
                 .setType(type)
                 .setName(name)
                 .addAllMembers(members)
@@ -405,12 +407,12 @@ object ClosedGroupsProtocolV2 {
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleEncodeGroupID(groupPublicKey: String): String {
-        return GroupUtil.getEncodedId(GroupUtil.getEncodedId(Hex.fromStringCondensed(groupPublicKey), false).toByteArray(), false)
+        return GroupUtil.getEncodedGroupID(GroupUtil.getEncodedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray())
     }
 
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleDecodeGroupID(groupID: String): ByteArray {
-        return GroupUtil.getDecodedId(GroupUtil.getDecodedStringId(groupID))
+        return GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()))
     }
 }

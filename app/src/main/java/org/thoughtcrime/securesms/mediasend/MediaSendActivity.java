@@ -22,15 +22,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -124,7 +125,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     cameraButton    = findViewById(R.id.mediasend_camera_button);
 
     viewModel = new ViewModelProvider(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
-    recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
+    recipient = Recipient.from(this, Address.Companion.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
 
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 

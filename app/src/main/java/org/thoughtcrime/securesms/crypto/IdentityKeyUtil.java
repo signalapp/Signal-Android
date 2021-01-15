@@ -24,13 +24,14 @@ import androidx.annotation.NonNull;
 
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.thoughtcrime.securesms.backup.BackupProtos;
-import org.thoughtcrime.securesms.util.Base64;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.IdentityKeyPair;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPrivateKey;
+
+import org.session.libsession.utilities.Base64;
 
 import java.io.IOException;
 import java.util.LinkedList;

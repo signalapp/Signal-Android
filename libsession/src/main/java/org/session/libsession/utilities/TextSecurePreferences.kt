@@ -278,6 +278,7 @@ object TextSecurePreferences {
 //        org.greenrobot.eventbus.EventBus.getDefault().post(SqlCipherNeedsMigrationEvent())
 //    }
 
+    @JvmStatic
     fun getNeedsSqlCipherMigration(context: Context): Boolean {
         return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false)
     }
@@ -343,6 +344,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, READ_RECEIPTS_PREF, enabled)
     }
 
+    @JvmStatic
     fun isTypingIndicatorsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, TYPING_INDICATORS, false)
     }
@@ -359,6 +361,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, LINK_PREVIEWS, enabled)
     }
 
+    @JvmStatic
     fun isGifSearchInGridLayout(context: Context): Boolean {
         return getBooleanPreference(context, GIF_GRID_LAYOUT, false)
     }
@@ -367,10 +370,12 @@ object TextSecurePreferences {
         setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid)
     }
 
+    @JvmStatic
     fun getProfileKey(context: Context): String? {
         return getStringPreference(context, PROFILE_KEY_PREF, null)
     }
 
+    @JvmStatic
     fun setProfileKey(context: Context, key: String?) {
         setStringPreference(context, PROFILE_KEY_PREF, key)
     }
@@ -379,6 +384,7 @@ object TextSecurePreferences {
         setStringPreference(context, PROFILE_NAME_PREF, name)
     }
 
+    @JvmStatic
     fun getProfileName(context: Context): String? {
         return getStringPreference(context, PROFILE_NAME_PREF, null)
     }
@@ -404,6 +410,7 @@ object TextSecurePreferences {
         return getStringPreference(context, NOTIFICATION_PRIORITY_PREF, NotificationCompat.PRIORITY_HIGH.toString())!!.toInt()
     }
 
+    @JvmStatic
     fun getMessageBodyTextSize(context: Context): Int {
         return getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16")!!.toInt()
     }
@@ -485,6 +492,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered)
     }
 
+    @JvmStatic
     fun isWifiSmsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, WIFI_SMS_PREF, false)
     }
@@ -562,6 +570,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, enabled)
     }
 
+    @JvmStatic
     fun isUnidentifiedDeliveryEnabled(context: Context): Boolean {
         // Loki - Always enable unidentified sender
         return true
@@ -592,18 +601,22 @@ object TextSecurePreferences {
         setLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, value)
     }
 
+    @JvmStatic
     fun setUpdateApkDownloadId(context: Context, value: Long) {
         setLongPreference(context, UPDATE_APK_DOWNLOAD_ID, value)
     }
 
+    @JvmStatic
     fun getUpdateApkDownloadId(context: Context): Long {
         return getLongPreference(context, UPDATE_APK_DOWNLOAD_ID, -1)
     }
 
+    @JvmStatic
     fun setUpdateApkDigest(context: Context, value: String?) {
         setStringPreference(context, UPDATE_APK_DIGEST, value)
     }
 
+    @JvmStatic
     fun getUpdateApkDigest(context: Context): String? {
         return getStringPreference(context, UPDATE_APK_DIGEST, null)
     }
@@ -637,6 +650,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, ENTER_PRESENT_PREF, false)
     }
 
+    @JvmStatic
     fun isEnterSendsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, ENTER_SENDS_PREF, false)
     }
@@ -832,6 +846,7 @@ object TextSecurePreferences {
         setStringPreference(context, LANGUAGE_PREF, language)
     }
 
+    @JvmStatic
     fun isSmsDeliveryReportsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false)
     }
@@ -928,10 +943,12 @@ object TextSecurePreferences {
         setStringPreference(context, LED_BLINK_PREF_CUSTOM, pattern)
     }
 
+    @JvmStatic
     fun isThreadLengthTrimmingEnabled(context: Context): Boolean {
         return getBooleanPreference(context, THREAD_TRIM_ENABLED, false)
     }
 
+    @JvmStatic
     fun getThreadTrimLength(context: Context): Int {
         return getStringPreference(context, THREAD_TRIM_LENGTH, "500")!!.toInt()
     }
@@ -973,18 +990,22 @@ object TextSecurePreferences {
         setBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, needsSync)
     }
 
+    @JvmStatic
     fun setLogEncryptedSecret(context: Context, base64Secret: String?) {
         setStringPreference(context, LOG_ENCRYPTED_SECRET, base64Secret)
     }
 
+    @JvmStatic
     fun getLogEncryptedSecret(context: Context): String? {
         return getStringPreference(context, LOG_ENCRYPTED_SECRET, null)
     }
 
+    @JvmStatic
     fun setLogUnencryptedSecret(context: Context, base64Secret: String?) {
         setStringPreference(context, LOG_UNENCRYPTED_SECRET, base64Secret)
     }
 
+    @JvmStatic
     fun getLogUnencryptedSecret(context: Context): String? {
         return getStringPreference(context, LOG_UNENCRYPTED_SECRET, null)
     }

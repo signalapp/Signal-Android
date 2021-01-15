@@ -22,13 +22,14 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
+
+import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.views.Stub;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.ThemeUtil;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.views.Stub;
 
 import java.util.Locale;
 

@@ -12,7 +12,8 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.JsonUtils;
+
+import org.session.libsession.utilities.JsonUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -22,7 +22,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.util.ArrayList;
 import java.util.List;

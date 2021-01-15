@@ -10,7 +10,7 @@ class EditClosedGroupLoader(context: Context, val groupID: String) : AsyncLoader
     override fun loadInBackground(): List<String> {
         val members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, true)
         return members.map {
-            it.address.toPhoneString()
+            it.address.toString()
         }
     }
 }

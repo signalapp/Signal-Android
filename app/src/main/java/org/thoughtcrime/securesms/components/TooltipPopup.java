@@ -16,7 +16,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+
+import org.session.libsession.utilities.ThemeUtil;
 
 import network.loki.messenger.R;
 

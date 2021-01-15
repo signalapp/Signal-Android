@@ -21,7 +21,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
+
+import org.session.libsession.utilities.ViewUtil;
 
 import network.loki.messenger.R;
 

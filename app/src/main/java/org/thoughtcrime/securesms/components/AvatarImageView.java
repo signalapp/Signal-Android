@@ -18,16 +18,17 @@ import android.view.ViewOutlineProvider;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+
+import org.session.libsession.messaging.contacts.avatars.ContactColors;
+import org.session.libsession.messaging.contacts.avatars.ContactPhoto;
+import org.session.libsession.messaging.contacts.avatars.ResourceContactPhoto;
+import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientExporter;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.session.libsession.utilities.ThemeUtil;
 
 import java.util.Objects;
 
@@ -111,7 +112,7 @@ public class AvatarImageView extends AppCompatImageView {
   }
 
   public void update(String hexEncodedPublicKey) {
-    Address address = Address.fromSerialized(hexEncodedPublicKey);
+    Address address = Address.Companion.fromSerialized(hexEncodedPublicKey);
     Recipient recipient = Recipient.from(getContext(), address, false);
     updateAvatar(recipient);
   }
