@@ -8,11 +8,15 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.utilities.Base64;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.TextSecureExpiredException;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.session.libsession.messaging.threads.Address;
@@ -25,13 +29,10 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -98,7 +99,7 @@ public abstract class PushSendJob extends SendJob {
 
   protected SignalServiceAddress getPushAddress(Address address) {
     String relay = null;
-    return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
+    return new SignalServiceAddress(address.toString(), Optional.fromNullable(relay));
   }
 
   protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {

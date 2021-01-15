@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.ThemeUtil
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.ThemeUtil
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -176,7 +176,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         this.members.addAll(members)
         memberListAdapter.setMembers(members)
 
-        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toPhoneString() }.toMutableSet()
+        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toString() }.toMutableSet()
         admins.remove(TextSecurePreferences.getLocalNumber(this))
         memberListAdapter.setLockedMembers(admins)
 
@@ -261,10 +261,10 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         val userAsRecipient = Recipient.from(this, Address.fromSerialized(userPublicKey), false)
 
-        if (!members.contains(userAsRecipient) && !members.map { it.address.toPhoneString() }.containsAll(originalMembers.minus(userPublicKey))) {
+        if (!members.contains(userAsRecipient) && !members.map { it.address.toString() }.containsAll(originalMembers.minus(userPublicKey))) {
             val message = "Can't leave while adding or removing other members."
             return Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
         }

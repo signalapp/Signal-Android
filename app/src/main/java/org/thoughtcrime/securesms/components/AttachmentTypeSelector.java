@@ -27,7 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 import network.loki.messenger.R;
 

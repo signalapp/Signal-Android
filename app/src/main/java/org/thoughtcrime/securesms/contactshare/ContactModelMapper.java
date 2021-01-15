@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.contactshare;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 
@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.thoughtcrime.securesms.contactshare.Contact.*;
+import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import static org.session.libsession.messaging.sending_receiving.contacts.Contact.*;
 
 public class ContactModelMapper {
 

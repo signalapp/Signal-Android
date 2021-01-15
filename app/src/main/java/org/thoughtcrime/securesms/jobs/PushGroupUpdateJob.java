@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.session.libsession.messaging.threads.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -114,7 +114,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(groupId, false));
+    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedId(groupId, false));
     Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
@@ -124,7 +124,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                                .build();
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(source), false)),
                               message);
   }
 

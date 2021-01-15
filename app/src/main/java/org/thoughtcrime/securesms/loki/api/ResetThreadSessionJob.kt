@@ -63,7 +63,7 @@ class ResetThreadSessionJob private constructor(
     class Factory : Job.Factory<ResetThreadSessionJob> {
 
         override fun create(parameters: Parameters, data: Data): ResetThreadSessionJob {
-            val address = data.getParcelable(DATA_KEY_ADDRESS, Address.CREATOR)
+            val address = data.getParcelable(DATA_KEY_ADDRESS, Address.CREATOR)!!
             val threadId = data.getLong(DATA_KEY_THREAD_ID)
             return ResetThreadSessionJob(parameters, address, threadId)
         }

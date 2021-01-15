@@ -8,12 +8,12 @@ import org.thoughtcrime.securesms.loki.utilities.getAll
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 import org.thoughtcrime.securesms.util.Hex
-import org.whispersystems.libsignal.ecc.DjbECPrivateKey
-import org.whispersystems.libsignal.ecc.DjbECPublicKey
-import org.whispersystems.libsignal.ecc.ECKeyPair
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
-import org.whispersystems.signalservice.loki.utilities.removing05PrefixIfNeeded
-import org.whispersystems.signalservice.loki.utilities.toHexString
+import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
+import org.session.libsignal.libsignal.ecc.DjbECPublicKey
+import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.service.loki.utilities.toHexString
 import java.util.*
 
 object ClosedGroupsMigration {

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import com.google.protobuf.ByteString;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -48,7 +48,7 @@ public class GroupManager {
   }
 
   public static long getThreadIDFromGroupID(String groupID, @NonNull  Context context) {
-    final Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupID), false);
+    final Recipient groupRecipient = Recipient.from(context, Address.Companion.fromSerialized(groupID), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
   }
 
@@ -75,14 +75,14 @@ public class GroupManager {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
     final String        groupId         = GroupUtil.getEncodedId(id.getBytes(), mms);
-    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Recipient     groupRecipient  = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
     String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
     String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
 
-    memberAddresses.add(Address.fromSerialized(masterPublicKey));
+    memberAddresses.add(Address.Companion.fromSerialized(masterPublicKey));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {
@@ -121,10 +121,10 @@ public class GroupManager {
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
-    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Recipient     groupRecipient  = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = new HashSet<>();
 
-    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    memberAddresses.add(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>());
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
@@ -139,7 +139,7 @@ public class GroupManager {
   {
     final GroupDatabase  groupDatabase  = DatabaseFactory.getGroupDatabase(context);
     final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    final Recipient      groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Recipient      groupRecipient = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
 
     if (!groupDatabase.getGroup(groupId).isPresent()) {
       return false;
@@ -166,7 +166,7 @@ public class GroupManager {
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
 
-    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    memberAddresses.add(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
     groupDatabase.updateAdmins(groupId, new LinkedList<>(adminAddresses));
     groupDatabase.updateTitle(groupId, name);
@@ -175,7 +175,7 @@ public class GroupManager {
     if (!GroupUtil.isMmsGroup(groupId)) {
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
-      Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
+      Recipient groupRecipient = Recipient.from(context, Address.Companion.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(groupRecipient);
       return new GroupActionResult(groupRecipient, threadId);
     }
@@ -190,7 +190,7 @@ public class GroupManager {
   {
     try {
       Attachment avatarAttachment = null;
-      Address    groupAddress     = Address.fromSerialized(groupId);
+      Address    groupAddress     = Address.Companion.fromSerialized(groupId);
       Recipient  groupRecipient   = Recipient.from(context, groupAddress, false);
 
       List<String> numbers = new LinkedList<>();

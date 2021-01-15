@@ -31,7 +31,6 @@ import android.widget.TextView;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.BindableConversationItem;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.FastCursorRecyclerViewAdapter;
@@ -43,13 +42,15 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.utilities.Conversions;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.Util;
 
 import java.lang.ref.SoftReference;
 import java.security.MessageDigest;

@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.session.libsession.utilities.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

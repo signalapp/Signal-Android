@@ -146,19 +146,21 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getOpenGroupPublicKey(server: String): String? {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getLokiAPIDatabase(context).getOpenGroupPublicKey(server)
     }
 
     override fun setOpenGroupPublicKey(server: String, newValue: String) {
-        TODO("Not yet implemented")
+        DatabaseFactory.getLokiAPIDatabase(context).setOpenGroupPublicKey(server, newValue)
     }
 
     override fun setOpenGroupDisplayName(publicKey: String, channel: Long, server: String, displayName: String) {
-        TODO("Not yet implemented")
+        val groupID = "$server.$channel"
+        DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(groupID, publicKey, displayName)
     }
 
     override fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String? {
-        TODO("Not yet implemented")
+        val groupID = "$server.$channel"
+        return DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(groupID, publicKey)
     }
 
     override fun getLastMessageServerID(group: Long, server: String): Long? {

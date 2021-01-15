@@ -73,7 +73,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
     List<Address> addresses = new LinkedList<>();
 
     for (String number : numbers) {
-      addresses.add(Address.fromExternal(context, number));
+      addresses.add(Address.Companion.fromExternal(context, number));
     }
 
     return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(addresses);

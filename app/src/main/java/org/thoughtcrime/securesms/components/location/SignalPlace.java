@@ -9,7 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.JsonUtils;
+
+import org.session.libsession.utilities.JsonUtils;
 
 import java.io.IOException;
 

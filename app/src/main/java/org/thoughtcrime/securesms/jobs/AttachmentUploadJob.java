@@ -5,8 +5,8 @@ import androidx.annotation.NonNull;
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -162,7 +162,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {
     @Override
     public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.fromSerialized(data.getString(KEY_DESTINATION)));
+      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.Companion.fromSerialized(data.getString(KEY_DESTINATION)));
     }
   }
 }

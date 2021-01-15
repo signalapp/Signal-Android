@@ -40,9 +40,9 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.NumberUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.NumberUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

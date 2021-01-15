@@ -187,7 +187,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
             !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave
         }.map {
-            it.recipient.address.toPhoneString()
+            it.recipient.address.toString()
         }.toSet()
         FileServerAPI.shared.getDeviceLinks(publicKeys)
         // Observe blocked contacts changed events
@@ -269,7 +269,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             bottomSheet.dismiss()
             val userDetailsBottomSheet = UserDetailsBottomSheet()
             val bundle = Bundle()
-            bundle.putString("publicKey", thread.recipient.address.toPhoneString())
+            bundle.putString("publicKey", thread.recipient.address.toString())
             userDetailsBottomSheet.arguments = bundle
             userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
         }
@@ -332,7 +332,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val dialogMessage: String
         if (recipient.isGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
-            if (group != null && group.admins.map { it.toPhoneString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
+            if (group != null && group.admins.map { it.toString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
                 dialogMessage = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
             } else {
                 dialogMessage = resources.getString(R.string.activity_home_leave_group_dialog_message)

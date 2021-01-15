@@ -8,7 +8,7 @@ import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase
-import org.thoughtcrime.securesms.loki.utilities.successBackground
+import org.session.libsession.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.SnodeAPI

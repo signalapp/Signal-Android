@@ -6,13 +6,12 @@ import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.Telephony
+import android.text.TextUtils
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.logging.Log
-import java.io.Closeable
-import java.io.IOException
-import java.io.InputStream
-import java.io.OutputStream
+import java.io.*
 import java.nio.charset.StandardCharsets
+import java.security.SecureRandom
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
@@ -24,6 +23,13 @@ object Util {
 
     fun isMainThread(): Boolean {
         return Looper.myLooper() == Looper.getMainLooper()
+    }
+
+    @JvmStatic
+    fun assertMainThread() {
+        if (!isMainThread()) {
+            throw java.lang.AssertionError("Main-thread assertion failed.")
+        }
     }
 
     @JvmStatic
@@ -197,6 +203,70 @@ object Util {
     @SuppressLint("NewApi")
     fun isDefaultSmsProvider(context: Context): Boolean {
         return context.packageName == Telephony.Sms.getDefaultSmsPackage(context)
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun readFully(`in`: InputStream?, buffer: ByteArray) {
+        if (`in` == null) return
+        readFully(`in`, buffer, buffer.size)
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun readFully(`in`: InputStream, buffer: ByteArray?, len: Int) {
+        var offset = 0
+        while (true) {
+            val read = `in`.read(buffer, offset, len - offset)
+            if (read == -1) throw EOFException("Stream ended early")
+            offset += if (read + offset < len) read else return
+        }
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun readFully(`in`: InputStream): ByteArray? {
+        val bout = ByteArrayOutputStream()
+        val buffer = ByteArray(4096)
+        var read: Int
+        while (`in`.read(buffer).also { read = it } != -1) {
+            bout.write(buffer, 0, read)
+        }
+        `in`.close()
+        return bout.toByteArray()
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun readFullyAsString(`in`: InputStream): String? {
+        return String(readFully(`in`)!!)
+    }
+
+    @JvmStatic
+    fun getSecret(size: Int): String? {
+        val secret = getSecretBytes(size)
+        return Base64.encodeBytes(secret)
+    }
+
+    fun getSecretBytes(size: Int): ByteArray {
+        val secret = ByteArray(size)
+        getSecureRandom().nextBytes(secret)
+        return secret
+    }
+
+    @JvmStatic
+    fun getSecureRandom(): SecureRandom {
+        return SecureRandom()
+    }
+
+    @JvmStatic
+    fun getFirstNonEmpty(vararg values: String?): String? {
+        for (value in values) {
+            if (!TextUtils.isEmpty(value)) {
+                return value
+            }
+        }
+        return ""
     }
 
 }

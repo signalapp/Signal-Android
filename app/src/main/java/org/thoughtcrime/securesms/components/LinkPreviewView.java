@@ -12,10 +12,11 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 
 import network.loki.messenger.R;
 import okhttp3.HttpUrl;

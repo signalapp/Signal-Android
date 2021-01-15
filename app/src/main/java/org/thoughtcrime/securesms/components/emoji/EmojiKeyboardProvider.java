@@ -13,7 +13,8 @@ import android.widget.ImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+
+import org.session.libsession.utilities.ThemeUtil;
 
 import java.util.LinkedList;
 import java.util.List;

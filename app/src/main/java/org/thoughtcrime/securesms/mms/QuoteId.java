@@ -50,7 +50,7 @@ public class QuoteId {
   public static @Nullable QuoteId deserialize(@NonNull String serialized) {
     try {
       JSONObject json = new JSONObject(serialized);
-      return new QuoteId(json.getLong(ID), Address.fromSerialized(json.getString(AUTHOR)));
+      return new QuoteId(json.getLong(ID), Address.Companion.fromSerialized(json.getString(AUTHOR)));
     } catch (JSONException e) {
       Log.e(TAG, "Failed to deserialize from json", e);
       return null;

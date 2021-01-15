@@ -23,8 +23,9 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiPageBitmap;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.FutureTaskListener;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.Pair;
 
 import java.util.List;

@@ -27,13 +27,13 @@ class ClearAllDataDialog : DialogFragment() {
 
     private fun clearAllData() {
         if (KeyPairUtilities.hasV2KeyPair(requireContext())) {
-            ApplicationContext.getInstance(context).clearAllData()
+            ApplicationContext.getInstance(context).clearAllData(false)
         } else {
             val dialog = AlertDialog.Builder(requireContext())
             val message = "We’ve upgraded the way Session IDs are generated, so you will be unable to restore your current Session ID."
             dialog.setMessage(message)
             dialog.setPositiveButton("Yes") { _, _ ->
-                ApplicationContext.getInstance(context).clearAllData()
+                ApplicationContext.getInstance(context).clearAllData(false)
             }
             dialog.setNegativeButton("Cancel") { _, _ ->
                 // Do nothing

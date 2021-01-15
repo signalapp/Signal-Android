@@ -20,7 +20,8 @@ import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+
+import org.session.libsession.utilities.ViewUtil;
 
 public class ThreadPhotoRailView extends FrameLayout {
 

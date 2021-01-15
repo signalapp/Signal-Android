@@ -83,7 +83,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
+import static org.session.libsession.messaging.sending_receiving.contacts.Contact.Avatar;
 
 public class MmsDatabase extends MessagingDatabase {
 
@@ -864,7 +864,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(QUOTE_ID, retrieved.getQuote().getId());
       contentValues.put(QUOTE_BODY, retrieved.getQuote().getText());
       contentValues.put(QUOTE_AUTHOR, retrieved.getQuote().getAuthor().serialize());
-      contentValues.put(QUOTE_MISSING, retrieved.getQuote().isOriginalMissing() ? 1 : 0);
+      contentValues.put(QUOTE_MISSING, retrieved.getQuote().getMissing() ? 1 : 0);
 
       quoteAttachments = retrieved.getQuote().getAttachments();
     }

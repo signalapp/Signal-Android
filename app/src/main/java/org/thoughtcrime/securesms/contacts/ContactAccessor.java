@@ -30,7 +30,7 @@ import java.util.List;
 
 import network.loki.messenger.R;
 
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.session.libsession.messaging.threads.GroupRecord;
 
 /**
  * This class was originally a layer of indirection between

@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
@@ -90,7 +90,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.READ, messageIds, timestamp);
 
     messageSender.sendReceipt(remoteAddress,
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(address), false)),
                               receiptMessage);
   }
 
@@ -108,7 +108,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<SendReadReceiptJob> {
     @Override
     public @NonNull SendReadReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      Address    address    = Address.fromSerialized(data.getString(KEY_ADDRESS));
+      Address    address    = Address.Companion.fromSerialized(data.getString(KEY_ADDRESS));
       long       timestamp  = data.getLong(KEY_TIMESTAMP);
       long[]     ids        = data.hasLongArray(KEY_MESSAGE_IDS) ? data.getLongArray(KEY_MESSAGE_IDS) : new long[0];
       List<Long> messageIds = new ArrayList<>(ids.length);

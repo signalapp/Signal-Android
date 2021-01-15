@@ -74,7 +74,6 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -92,14 +91,16 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
+
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -487,7 +488,7 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleCopyPublicKey(MessageRecord messageRecord) {
-    String sessionID = messageRecord.getRecipient().getAddress().toPhoneString();
+    String sessionID = messageRecord.getRecipient().getAddress().toString();
     android.content.ClipboardManager clipboard = (android.content.ClipboardManager)requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
     ClipData clip = ClipData.newPlainText("Session ID", sessionID);
     clipboard.setPrimaryClip(clip);
@@ -725,7 +726,7 @@ public class ConversationFragment extends Fragment
       setLastSeen(loader.getLastSeen());
     }
 
-    if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+    if (!loader.hasSent() && !recipient.isSystemContact() && !recipient.isGroupRecipient() && recipient.getRegistered() == Recipient.RegisteredState.REGISTERED) {
 //      adapter.setHeaderView(unknownSenderView);
     } else {
       clearHeaderIfNotTyping(adapter);

@@ -12,7 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 public class AnimatingToggle extends FrameLayout {
 

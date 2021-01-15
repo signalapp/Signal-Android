@@ -7,7 +7,7 @@ import androidx.annotation.RequiresApi
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.thoughtcrime.securesms.attachments.DatabaseAttachmentAudioExtras
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job

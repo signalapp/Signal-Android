@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsession.utilities.JsonUtils;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;

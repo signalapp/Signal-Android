@@ -18,7 +18,7 @@ public class NetworkFailure {
 
   @JsonIgnore
   public Address getAddress() {
-    return Address.fromSerialized(address);
+    return Address.Companion.fromSerialized(address);
   }
 
   @Override

@@ -22,7 +22,8 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import org.session.libsession.utilities.TextSecurePreferences;
 
 public class TrimThreadJob extends BaseJob {
 

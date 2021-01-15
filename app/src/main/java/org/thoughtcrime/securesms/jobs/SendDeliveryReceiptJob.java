@@ -85,7 +85,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
                                                                                  timestamp);
 
     messageSender.sendReceipt(remoteAddress,
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(address), false)),
                               receiptMessage);
   }
 
@@ -104,7 +104,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
     @Override
     public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new SendDeliveryReceiptJob(parameters,
-                                        Address.fromSerialized(data.getString(KEY_ADDRESS)),
+                                        Address.Companion.fromSerialized(data.getString(KEY_ADDRESS)),
                                         data.getLong(KEY_MESSAGE_ID),
                                         data.getLong(KEY_TIMESTAMP));
     }

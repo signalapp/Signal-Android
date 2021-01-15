@@ -10,7 +10,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -85,7 +85,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     super(parameters);
 
     this.messageId     = messageId;
-    this.filterAddress = filterAddress == null ? null :filterAddress.toPhoneString();
+    this.filterAddress = filterAddress == null ? null :filterAddress.toString();
   }
 
   @WorkerThread
@@ -152,14 +152,14 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       List<Address> targets;
 
-      if      (filterAddress != null)              targets = Collections.singletonList(Address.fromSerialized(filterAddress));
+      if      (filterAddress != null)              targets = Collections.singletonList(Address.Companion.fromSerialized(filterAddress));
       else if (!existingNetworkFailures.isEmpty()) targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
       else                                         targets = ClosedGroupsProtocol.getMessageDestinations(context, message.getRecipient().getAddress().toGroupString());
 
       List<SendMessageResult>   results                  = deliver(message, targets);
-      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
-      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
-      Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());
+      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.Companion.fromSerialized(result.getAddress().getNumber()))).toList();
+      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.Companion.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
+      Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.Companion.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());
       List<NetworkFailure>      resolvedNetworkFailures  = Stream.of(existingNetworkFailures).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
       List<IdentityKeyMismatch> resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
       List<SendMessageResult>   successes                = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
@@ -183,7 +183,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       for (SendMessageResult success : successes) {
-        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Address.fromSerialized(success.getAddress().getNumber()),
+        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Address.Companion.fromSerialized(success.getAddress().getNumber()),
                                                                          messageId,
                                                                          success.getSuccess().isUnidentified());
       }
@@ -229,13 +229,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
     // Loki - The user shouldn't be able to message RSS feeds
     Address address = message.getRecipient().getAddress();
-    if (address.isRSSFeed()) {
-      List<SendMessageResult> results = new ArrayList<>();
-      for (Address destination : destinations) {
-        results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
-      }
-      return results;
-    }
+//    if (address.isRSSFeed()) {
+//      List<SendMessageResult> results = new ArrayList<>();
+//      for (Address destination : destinations) {
+//        results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
+//      }
+//      return results;
+//    }
 
     String                                     groupId            = address.toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
@@ -248,7 +248,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
 
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
-                                                                      .map(a -> Address.fromSerialized(a.getNumber()))
+                                                                      .map(a -> Address.Companion.fromSerialized(a.getNumber()))
                                                                       .map(a -> Recipient.from(context, a, false))
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
@@ -293,7 +293,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     @Override
     public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
       String  address = data.getString(KEY_FILTER_ADDRESS);
-      Address filter  = address != null ? Address.fromSerialized(data.getString(KEY_FILTER_ADDRESS)) : null;
+      Address filter  = address != null ? Address.Companion.fromSerialized(data.getString(KEY_FILTER_ADDRESS)) : null;
 
       return new PushGroupSendJob(parameters, data.getLong(KEY_MESSAGE_ID), filter);
     }

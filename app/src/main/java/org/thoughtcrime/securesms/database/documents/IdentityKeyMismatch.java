@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.session.libsession.messaging.threads.Address;
-import org.thoughtcrime.securesms.util.Base64;
+import org.session.libsession.utilities.Base64;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.InvalidKeyException;
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 
-import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.session.libsession.utilities.ThemeUtil;
 
 import network.loki.messenger.R;
 
