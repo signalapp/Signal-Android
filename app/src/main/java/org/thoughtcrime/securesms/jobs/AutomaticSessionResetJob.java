@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -82,9 +83,13 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    SessionUtil.archiveSession(context, recipientId, deviceId);
-    insertLocalMessage();
-    sendNullMessage();
+    if (FeatureFlags.automaticSessionReset()) {
+      SessionUtil.archiveSession(context, recipientId, deviceId);
+      insertLocalMessage();
+      sendNullMessage();
+    } else {
+      insertLocalMessage();
+    }
   }
 
   @Override
