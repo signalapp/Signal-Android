@@ -233,6 +233,8 @@
     <string name="ConversationItem_you_deleted_this_message">You deleted this message.</string>
 
     <!-- ConversationActivity -->
+    <string name="ConversationActivity_reset_secure_session_question">Reset secure session?</string>
+    <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">This may help if you\'re having encryption problems in this conversation. Your messages will be kept.</string>
     <string name="ConversationActivity_reset">Reset</string>
     <string name="ConversationActivity_add_attachment">Add attachment</string>
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
