@@ -233,14 +233,17 @@ public class PushServiceSocket {
   private final String                           signalAgent;
   private final SecureRandom                     random;
   private final ClientZkProfileOperations        clientZkProfileOperations;
+  private final boolean                          automaticNetworkRetry;
 
   public PushServiceSocket(SignalServiceConfiguration configuration,
                            CredentialsProvider credentialsProvider,
                            String signalAgent,
-                           ClientZkProfileOperations clientZkProfileOperations)
+                           ClientZkProfileOperations clientZkProfileOperations,
+                           boolean automaticNetworkRetry)
   {
     this.credentialsProvider       = credentialsProvider;
     this.signalAgent               = signalAgent;
+    this.automaticNetworkRetry     = automaticNetworkRetry;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
@@ -1477,6 +1480,7 @@ public class PushServiceSocket {
     return baseClient.newBuilder()
                      .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                      .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                     .retryOnConnectionFailure(automaticNetworkRetry)
                      .build();
   }
 

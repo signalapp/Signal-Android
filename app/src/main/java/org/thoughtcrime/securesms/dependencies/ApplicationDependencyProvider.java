@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -94,7 +95,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
                                            new DynamicCredentialsProvider(context),
                                            BuildConfig.SIGNAL_AGENT,
-                                           provideGroupsV2Operations());
+                                           provideGroupsV2Operations(),
+                                           FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
@@ -109,7 +111,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16),
-                                            ByteUnit.KILOBYTES.toBytes(512));
+                                            ByteUnit.KILOBYTES.toBytes(512),
+                                            FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
@@ -121,7 +124,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             BuildConfig.SIGNAL_AGENT,
                                             new PipeConnectivityListener(),
                                             sleepTimer,
-                                            provideClientZkOperations().getProfileOperations());
+                                            provideClientZkOperations().getProfileOperations(),
+                                            FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override

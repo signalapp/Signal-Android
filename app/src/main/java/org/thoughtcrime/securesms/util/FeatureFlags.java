@@ -70,6 +70,7 @@ public final class FeatureFlags {
   private static final String AUTOMATIC_SESSION_RESET      = "android.automaticSessionReset.2";
   private static final String AUTOMATIC_SESSION_INTERVAL   = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
+  private static final String OKHTTP_AUTOMATIC_RETRY       = "android.okhttpAutomaticRetry";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -96,7 +97,8 @@ public final class FeatureFlags {
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
-      DEFAULT_MAX_BACKOFF
+      DEFAULT_MAX_BACKOFF,
+      OKHTTP_AUTOMATIC_RETRY
   );
 
   @VisibleForTesting
@@ -133,7 +135,8 @@ public final class FeatureFlags {
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
-      DEFAULT_MAX_BACKOFF
+      DEFAULT_MAX_BACKOFF,
+      OKHTTP_AUTOMATIC_RETRY
   );
 
   /**
@@ -306,6 +309,11 @@ public final class FeatureFlags {
 
   public static int getDefaultMaxBackoffSeconds() {
     return getInteger(DEFAULT_MAX_BACKOFF, 60);
+  }
+
+  /** Whether or not to allow automatic retries from OkHttp */
+  public static boolean okHttpAutomaticRetry() {
+    return getBoolean(OKHTTP_AUTOMATIC_RETRY, false);
   }
 
   /** Only for rendering debug info. */
