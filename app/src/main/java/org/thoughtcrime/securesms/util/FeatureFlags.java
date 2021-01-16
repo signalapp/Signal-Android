@@ -68,6 +68,7 @@ public final class FeatureFlags {
   private static final String CUSTOM_VIDEO_MUXER           = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL         = "cds.syncInterval.seconds";
   private static final String AUTOMATIC_SESSION_RESET      = "android.automaticSessionReset";
+  private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -92,7 +93,8 @@ public final class FeatureFlags {
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
-      AUTOMATIC_SESSION_RESET
+      AUTOMATIC_SESSION_RESET,
+      DEFAULT_MAX_BACKOFF
   );
 
   @VisibleForTesting
@@ -127,7 +129,8 @@ public final class FeatureFlags {
       CUSTOM_VIDEO_MUXER,
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
-      AUTOMATIC_SESSION_RESET
+      AUTOMATIC_SESSION_RESET,
+      DEFAULT_MAX_BACKOFF
   );
 
   /**
@@ -291,6 +294,10 @@ public final class FeatureFlags {
   /** Whether or not to allow automatic session resets. */
   public static boolean automaticSessionReset() {
     return getBoolean(AUTOMATIC_SESSION_RESET, true);
+  }
+
+  public static int getDefaultMaxBackoffSeconds() {
+    return getInteger(DEFAULT_MAX_BACKOFF, 60);
   }
 
   /** Only for rendering debug info. */
