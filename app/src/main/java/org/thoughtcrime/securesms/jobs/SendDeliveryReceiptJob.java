@@ -43,6 +43,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
+                           .setQueue(recipientId.toQueueKey())
                            .build(),
          recipientId,
          messageId,
