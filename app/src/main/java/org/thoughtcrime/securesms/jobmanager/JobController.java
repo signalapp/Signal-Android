@@ -453,9 +453,12 @@ class JobController {
   }
 
   private long calculateNextRunAttemptTime(long currentTime, int nextAttempt, long maxBackoff) {
-    int  boundedAttempt     = Math.min(nextAttempt, 30);
-    long exponentialBackoff = (long) Math.pow(2, boundedAttempt) * 1000;
-    long actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
+    int    boundedAttempt     = Math.min(nextAttempt, 30);
+    long   exponentialBackoff = (long) Math.pow(2, boundedAttempt) * 1000;
+    long   actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
+    double jitter             = 0.75 + (Math.random() * 0.5);
+
+    actualBackoff = (long) (actualBackoff * jitter);
 
     return currentTime + actualBackoff;
   }
