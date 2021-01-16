@@ -63,6 +63,7 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
@@ -1434,6 +1435,9 @@ public class PushServiceSocket {
                                   basicStorageCredentials);
       case 499:
         throw new DeprecatedVersionException();
+
+      case 508:
+        throw new ServerRejectedException();
     }
 
     if (responseCode != 200 && responseCode != 204) {
