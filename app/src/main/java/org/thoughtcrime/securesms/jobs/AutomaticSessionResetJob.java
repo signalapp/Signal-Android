@@ -7,6 +7,8 @@ import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -23,6 +25,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * - Archives the session associated with the specified device
@@ -83,18 +86,35 @@ public class AutomaticSessionResetJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
+    SessionUtil.archiveSession(context, recipientId, deviceId);
+    insertLocalMessage();
+
     if (FeatureFlags.automaticSessionReset()) {
-      SessionUtil.archiveSession(context, recipientId, deviceId);
-      insertLocalMessage();
-      sendNullMessage();
+      long                resetInterval      = TimeUnit.SECONDS.toMillis(FeatureFlags.automaticSessionResetIntervalSeconds());
+      DeviceLastResetTime resetTimes         = DatabaseFactory.getRecipientDatabase(context).getLastSessionResetTimes(recipientId);
+      long                timeSinceLastReset = System.currentTimeMillis() - getLastResetTime(resetTimes, deviceId);
+
+      Log.i(TAG, "DeviceId: " + deviceId + ", Reset interval: " + resetInterval + ", Time since last reset: " + timeSinceLastReset);
+
+      if (timeSinceLastReset > resetInterval) {
+        Log.i(TAG, "We're good! Sending a null message.");
+
+        DatabaseFactory.getRecipientDatabase(context).setLastSessionResetTime(recipientId, setLastResetTime(resetTimes, deviceId, System.currentTimeMillis()));
+        Log.i(TAG, "Marked last reset time: " + System.currentTimeMillis());
+
+        sendNullMessage();
+        Log.i(TAG, "Successfully sent!");
+      } else {
+        Log.w(TAG, "Too soon! Time since last reset: " + timeSinceLastReset);
+      }
     } else {
-      insertLocalMessage();
+      Log.w(TAG, "Automatic session reset send disabled!");
     }
   }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof RetryLaterException;
+    return false;
   }
 
   @Override
@@ -117,6 +137,29 @@ public class AutomaticSessionResetJob extends BaseJob {
     } catch (UntrustedIdentityException e) {
       Log.w(TAG, "Unable to send null message.");
     }
+  }
+
+  private long getLastResetTime(@NonNull DeviceLastResetTime resetTimes, int deviceId) {
+    for (DeviceLastResetTime.Pair pair : resetTimes.getResetTimeList()) {
+      if (pair.getDeviceId() == deviceId) {
+        return pair.getLastResetTime();
+      }
+    }
+    return 0;
+  }
+
+  private @NonNull DeviceLastResetTime setLastResetTime(@NonNull DeviceLastResetTime resetTimes, int deviceId, long time) {
+    DeviceLastResetTime.Builder builder = DeviceLastResetTime.newBuilder();
+
+    for (DeviceLastResetTime.Pair pair : resetTimes.getResetTimeList()) {
+      if (pair.getDeviceId() != deviceId) {
+        builder.addResetTime(pair);
+      }
+    }
+
+    builder.addResetTime(DeviceLastResetTime.Pair.newBuilder().setDeviceId(deviceId).setLastResetTime(time));
+
+    return builder.build();
   }
 
   public static final class Factory implements Job.Factory<AutomaticSessionResetJob> {

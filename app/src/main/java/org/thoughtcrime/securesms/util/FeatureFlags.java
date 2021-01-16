@@ -67,7 +67,8 @@ public final class FeatureFlags {
   private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
   private static final String CUSTOM_VIDEO_MUXER           = "android.customVideoMuxer";
   private static final String CDS_REFRESH_INTERVAL         = "cds.syncInterval.seconds";
-  private static final String AUTOMATIC_SESSION_RESET      = "android.automaticSessionReset";
+  private static final String AUTOMATIC_SESSION_RESET      = "android.automaticSessionReset.2";
+  private static final String AUTOMATIC_SESSION_INTERVAL   = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
 
   /**
@@ -94,6 +95,7 @@ public final class FeatureFlags {
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
+      AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF
   );
 
@@ -130,6 +132,7 @@ public final class FeatureFlags {
       CDS_REFRESH_INTERVAL,
       GROUP_NAME_MAX_LENGTH,
       AUTOMATIC_SESSION_RESET,
+      AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF
   );
 
@@ -294,6 +297,11 @@ public final class FeatureFlags {
   /** Whether or not to allow automatic session resets. */
   public static boolean automaticSessionReset() {
     return getBoolean(AUTOMATIC_SESSION_RESET, true);
+  }
+
+  /** How often we allow an automatic session reset. */
+  public static int automaticSessionResetIntervalSeconds() {
+    return getInteger(AUTOMATIC_SESSION_RESET, (int) TimeUnit.HOURS.toSeconds(1));
   }
 
   public static int getDefaultMaxBackoffSeconds() {
