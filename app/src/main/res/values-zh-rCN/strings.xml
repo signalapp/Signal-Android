@@ -195,8 +195,6 @@
   <string name="ConversationItem_this_message_was_deleted">消息已删除。</string>
   <string name="ConversationItem_you_deleted_this_message">您删除了此消息。</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">重置安全会话？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">对话出现加密问题时，可尝试重置。重置不会删除你的消息。</string> -->
   <string name="ConversationActivity_reset">重置</string>
   <string name="ConversationActivity_add_attachment">添加附件</string>
   <string name="ConversationActivity_select_contact_info">选择联系人信息</string>
@@ -302,6 +300,11 @@
   <string name="ConversationFragment__tap_to_review">点击开始审核</string>
   <string name="ConversationFragment__review_requests_carefully">请仔细审核请求</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal 碰到了一个同名的联系人。</string>
+  <string name="ConversationFragment_contact_us">联系我们</string>
+  <string name="ConversationFragment_verify">验证</string>
+  <string name="ConversationFragment_not_now">稍后再说</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">您与 %s 的安全码已更改</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">您与 %s 的安全码已更改，很可能是因为他们重新安装了 Signal 或更改了设备。点击“验证”以确认新的安全码。该操作可选。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">设备上没有安装浏览器。</string>
   <!--ConversationListFragment-->
@@ -380,6 +383,9 @@
   <string name="DateUtils_minutes_ago">%d 分钟</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">聊天会话已刷新</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal 使用端对端加密，有时可能需刷新聊天会话。虽然这并不影响聊天的安全性，但可能错过该联系人的消息。您可请求他们重新发送。</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">正在发送</string>
   <string name="DeliveryStatus_sent">发送</string>
@@ -885,6 +891,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">阅后即焚消息的销毁时间被设置为 %1$s。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">此群已升级为新版群组。</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">您被邀请重新加入之前无法加入的新版群组。</string>
+  <string name="MessageRecord_chat_session_refreshed">聊天会话已刷新</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">%1$s 位无法加入新版群组，已向其发送入群邀请。</item>
   </plurals>
@@ -1214,6 +1221,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定的号码
         (%s) 无效。
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">验证码已发送至：</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">您将收到来电以验证该数字。</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">上方的电话号码是否正确？</string>
+  <string name="RegistrationActivity_edit_number">编辑号码</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play 服务缺失</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">设备缺少 Google Play 服务框架，可使用 Signal，但功能与稳定性将受到影响。\n\n如果您不是高级用户，或者运行的为原厂安卓系统，或者认为该提示有误，请联系 support@signal.org 获取帮助。</string>
   <string name="RegistrationActivity_i_understand">我明白。</string>
@@ -1369,6 +1380,7 @@
   <string name="ThreadRecord_contact">联系人</string>
   <string name="ThreadRecord_file">文件</string>
   <string name="ThreadRecord_video">视频</string>
+  <string name="ThreadRecord_chat_session_refreshed">聊天会话已刷新</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal 新版本可用，点击升级</string>
@@ -1408,7 +1420,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">不良加密消息</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">加密消息的对话不存在</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">不良加密彩信</string>
@@ -1895,6 +1906,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收全部彩信。</string>
   <string name="preferences__pref_enter_sends_title">按回车发送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按回车键发送短信</string>
+  <string name="preferences__pref_use_address_book_photos">使用通讯录图片</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">显示通讯录中联系人图片（若可用）</string>
   <string name="preferences__generate_link_previews">生成链接预览</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接从您发送的链接网站中生成预览。</string>
   <string name="preferences__choose_identity">选择联系人</string>
@@ -1947,7 +1960,7 @@
   <string name="preferences__mmsc_password">MMSC 密码</string>
   <string name="preferences__sms_delivery_reports">短信送达报告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">为每一条发送的短信请求送达报告</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">聊天和媒体</string> -->
+  <string name="preferences__data_and_storage">数据和存储</string>
   <string name="preferences__storage">存储</string>
   <string name="preferences__conversation_length_limit">对话长度限制</string>
   <string name="preferences__keep_messages">保留消息</string>
@@ -2012,6 +2025,13 @@
   <string name="preferences_app_protection__app_access">应用访问</string>
   <string name="preferences_app_protection__communication">通信</string>
   <string name="preferences_chats__chats">聊天</string>
+  <string name="preferences_data_and_storage__manage_storage">管理存储</string>
+  <string name="preferences_data_and_storage__calls">通话</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">通话使用更少数据</string>
+  <string name="preferences_data_and_storage__never">永不</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi 和电话网络</string>
+  <string name="preferences_data_and_storage__cellular_only">仅电话网路</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">网络较差时，使用更少数据可能改善通话</string>
   <string name="preferences_notifications__messages">消息</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
@@ -2482,8 +2502,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s和%2$s已离开</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s、%2$s和%3$s已离开</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s、%2$s 及其它 %3$d 位用户已离开</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">您（其它设备）</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s（其它设备）</string> -->
+  <string name="CallParticipant__you">您</string>
+  <string name="CallParticipant__you_on_another_device">您（其它设备）</string>
+  <string name="CallParticipant__s_on_another_device">%1$s（其它设备）</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">删除您的帐户后将会：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">输入您的电话号码</string>

@@ -195,8 +195,6 @@
   <string name="ConversationItem_this_message_was_deleted">본 메세지는 삭제되었습니다.&lt;br&gt;</string>
   <string name="ConversationItem_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">보안 세션을 초기화하시겠습니까?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">대화에서 암호화 문제가 발생할 경우 해당 기능이 도움이 될 수 있습니다. 메시지는 저장됩니다.</string> -->
   <string name="ConversationActivity_reset">초기화</string>
   <string name="ConversationActivity_add_attachment">파일 첨부</string>
   <string name="ConversationActivity_select_contact_info">연락처 정보 선택</string>
@@ -302,6 +300,9 @@
   <string name="ConversationFragment__tap_to_review">탭하여 검토하세요.</string>
   <string name="ConversationFragment__review_requests_carefully">신중하게 요청을 검토하세요.</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal이 같은 이름의 다른 연락처를 찾았습니다.</string>
+  <string name="ConversationFragment_contact_us">문의하기</string>
+  <string name="ConversationFragment_verify">검증</string>
+  <string name="ConversationFragment_not_now">나중에</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">기기에 설치된 브라우저가 없습니다.</string>
   <!--ConversationListFragment-->
@@ -380,6 +381,7 @@
   <string name="DateUtils_minutes_ago">%d분</string>
   <string name="DateUtils_today">오늘</string>
   <string name="DateUtils_yesterday">어제</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">보내는 중</string>
   <string name="DeliveryStatus_sent">보낸 시간</string>
@@ -1214,6 +1216,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호
         (%s)가 잘못되었습니다.
     </string>
+  <string name="RegistrationActivity_edit_number">전화번호 수정</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services가 설치되어 있지 않음</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">기기에 Google Play Services가 없습니다. Signal을 사용할 수는 있지만, 안정성이나 성능이 떨어질 수 있습니다.\n\n맞춤형 안드로이드 ROM을 사용하는 고급 사용자가 아니거나, 이 메시지가 오류라고 생각한다면 문제 해결을 위해 이메일로 support@signal.org에 문의해 주세요.</string>
   <string name="RegistrationActivity_i_understand">이해했습니다.</string>
@@ -1407,7 +1410,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">잘못된 암호화 메시지</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">존재하지 않는 세션의 암호화 메시지</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">잘못된 암호화 MMS 메시지</string>
@@ -1946,7 +1948,6 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">대화 및 미디어</string> -->
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
@@ -2011,6 +2012,8 @@
   <string name="preferences_app_protection__app_access">앱 액세스</string>
   <string name="preferences_app_protection__communication">연결</string>
   <string name="preferences_chats__chats">대화</string>
+  <string name="preferences_data_and_storage__calls">전화</string>
+  <string name="preferences_data_and_storage__never">없음</string>
   <string name="preferences_notifications__messages">메시지</string>
   <string name="preferences_notifications__events">이벤트</string>
   <string name="preferences_notifications__in_chat_sounds">대화 내 사운드</string>
@@ -2481,8 +2484,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 및 %2$s 남음</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 및 %3$s 남음</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 및 %3$d명 남음</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">나(다른 기기에서)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s(다른 기기에서)</string> -->
+  <string name="CallParticipant__you">나</string>
+  <string name="CallParticipant__you_on_another_device">나(다른 기기에서)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s(다른 기기에서)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">계정을 삭제하면:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">전화번호를 입력하세요.</string>

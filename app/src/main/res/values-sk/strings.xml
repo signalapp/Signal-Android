@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">Táto správa bola zmazaná.</string>
   <string name="ConversationItem_you_deleted_this_message">Vymazali ste túto správu.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetovať zabezpečenú reláciu?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Toto vám môže pomôcť pri problémoch so šifrovaním v tejto konverzácii. Vaše správy budú zachované.</string> -->
   <string name="ConversationActivity_reset">Resetovať</string>
   <string name="ConversationActivity_add_attachment">Pridať prílohu</string>
   <string name="ConversationActivity_select_contact_info">Vyberte kontaktné informácie </string>
@@ -332,6 +330,11 @@
   <string name="ConversationFragment__tap_to_review">Ťuknite pre kontrolu</string>
   <string name="ConversationFragment__review_requests_carefully">Požiadavky pozorne overte</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal našiel ďalší kontakt s rovnakým menom.</string>
+  <string name="ConversationFragment_contact_us">Kontaktujte nás</string>
+  <string name="ConversationFragment_verify">Overiť</string>
+  <string name="ConversationFragment_not_now">Teraz nie</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Vaše bezpečnostné číslo s %s sa zmenilo.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Vaše bezpečnostné číslo s %s sa zmenilo, zrejme preto, že si preinštalovali Signal alebo vymenili zariadenie. Ťuknite Overiť pre potvrdenie nového bezpečnostného čísla. Je to nepovinné.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte nainštalovaný žiadny prehliadač.</string>
   <!--ConversationListFragment-->
@@ -422,6 +425,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Dnes</string>
   <string name="DateUtils_yesterday">Včera</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Chatové stretnutie obnovené</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal používa koncové šifrovanie a občas môže potrebovať obnoviť vašu chatovú reláciu. Toto nemá vplyv na bezpečnosť vášho chatu, ale mohla by vám uniknúť správa od tohto kontaktu a môžete používateľa požiadať, aby vám ju poslal znovu.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Odosiela sa</string>
   <string name="DeliveryStatus_sent">Odoslané</string>
@@ -1029,6 +1035,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač miznúcich správ bol nastavený na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Táto skupina bola modernizovaná na Novú skupinu.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nepodarilo sa vás pridať do Novej skupiny a boli ste do nej pozvaný.</string>
+  <string name="MessageRecord_chat_session_refreshed">Chatové stretnutie obnovené</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Jedného člena sa nepodarilo pridať do Novej skupiny a bol do nej pozvaný.</item>
     <item quantity="few">%1$s členov nemohlo byť pridaných do Novej skupiny a boli do nej pozvaní.</item>
@@ -1405,6 +1412,10 @@ telefónne číslo
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Vami zadané telefónne číslo
 (%s) je neplatné.
 </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Overovací kód bude zaslaný na:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Obdržíte hovor na overenie tohto čísla.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Je vaše telefónne číslo, uvedené vyššie, správne?</string>
+  <string name="RegistrationActivity_edit_number">Úprav číslo</string>
   <string name="RegistrationActivity_missing_google_play_services">Chýba služba Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">V tomto zariadení chýba služba Google Play. Signal môžete používať aj tak, ale táto konfigurácia môže mať za následok nespoľahlivosť a nižší výkon.\n\nAk nie ste pokročilý užívateľ, nepoužívate neoficiálny ROM telefónu alebo si myslíte, že sa vám toto hlásenie nemalo zobrazovať, kontaktujte nás na support@signal.org pre vyriešenie problému.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
@@ -1562,6 +1573,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Súbor</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Chatové stretnutie obnovené</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizácia Signalu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">K dispozícii je nová verzia Signalu, ťuknutím aktualizujte</string>
@@ -1604,7 +1616,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Zlá šifrovaná správa</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa šifrovaná pre neexistujúcu reláciu</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Zlá šifrovaná MMS správa</string>
@@ -2124,6 +2135,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Signal pre všetky prichádzajúce multimediálne správy</string>
   <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
+  <string name="preferences__pref_use_address_book_photos">Použiť fotky zo zoznamu kontaktov</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Zobraziť fotky zo zoznamu kontaktov, ak sú dostupné</string>
   <string name="preferences__generate_link_previews">Generovať náhľady stránok</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Získať ukážky stránok priamo z webových prepojení pre správy, ktoré odošlete.</string>
   <string name="preferences__choose_identity">Vyberať identitu</string>
@@ -2176,7 +2189,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__mmsc_password">MMSC heslo</string>
   <string name="preferences__sms_delivery_reports">Správy o doručení SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pre každú odoslanú SMS vyžiadať správu o doručení</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chat a médiá</string> -->
+  <string name="preferences__data_and_storage">Dáta a Úložisko</string>
   <string name="preferences__storage">Úložisko</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="preferences__keep_messages">Ponechať správy</string>
@@ -2241,6 +2254,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
   <string name="preferences_app_protection__communication">Komunikácia</string>
   <string name="preferences_chats__chats">Chat</string>
+  <string name="preferences_data_and_storage__manage_storage">Spravovať úložisko</string>
+  <string name="preferences_data_and_storage__calls">Volania</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Využívať menej dát na hovory</string>
+  <string name="preferences_data_and_storage__never">Nikdy</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi a Mobilné siete</string>
+  <string name="preferences_data_and_storage__cellular_only">Iba mobilné</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
   <string name="preferences_notifications__messages">Správy</string>
   <string name="preferences_notifications__events">Udalosti</string>
   <string name="preferences_notifications__in_chat_sounds">Zvuky v chate</string>
@@ -2738,8 +2758,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s a %2$s opustili hovor</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s a %3$s opustili hovor</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s a %3$d ďalší opusili hovor  </string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vy (na inom zariadení)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na inom zariadení)</string> -->
+  <string name="CallParticipant__you">Vy</string>
+  <string name="CallParticipant__you_on_another_device">Vy (na inom zariadení)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (na inom zariadení)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Vymazanie účtu spôsobí:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Zadajte svoje telefónne číslo</string>

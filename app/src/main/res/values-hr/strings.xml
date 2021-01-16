@@ -201,8 +201,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ova poruka je izbrisana.</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Poništi sigurnu sesiju?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ovo može pomoći ako imate problema s šifriranjem u ovom razgovoru. Vaše će se poruke čuvati.</string> -->
   <string name="ConversationActivity_reset">Poništi</string>
   <string name="ConversationActivity_add_attachment">Dodaj privitak</string>
   <string name="ConversationActivity_select_contact_info">Odaberite informacije o kontaktu</string>
@@ -322,6 +320,11 @@
   <string name="ConversationFragment__tap_to_review">Pritisnite za pregled</string>
   <string name="ConversationFragment__review_requests_carefully">Pažljivo pregledajte zahtjeve</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal je pronašao drugi kontakt s istim imenom.</string>
+  <string name="ConversationFragment_contact_us">Kontaktirajte nas</string>
+  <string name="ConversationFragment_verify">Potvrdi</string>
+  <string name="ConversationFragment_not_now">Ne sada</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Vaš sigurnosni broj s %s je promijenjen</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Vaš sigurnosni broj s %s je promijenjen, vjerojatno zato što su ponovo instalirali Signal ili promijenili uređaje. Pritisnite Potvrdi da biste potvrdili novi sigurnosni broj. Ovo nije obavezno.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na vašem uređaju nije instaliran preglednik.</string>
   <!--ConversationListFragment-->
@@ -408,6 +411,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Danas</string>
   <string name="DateUtils_yesterday">Jučer</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sesija razgovora je osvježena</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal koristi end-to-end šifriranje i možda će ponekad trebati osvježiti sesiju razgovora. To ne utječe na sigurnost vašeg razgovora, ali ste možda propustili poruku od ovog kontakta i možete zatražiti da je ponovno pošalje.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Slanje</string>
   <string name="DeliveryStatus_sent">Poslano</string>
@@ -981,6 +987,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Postavljeno je da poruke nestaju za %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ova grupa je ažurirana u Novu grupu.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ne možete biti dodani u Novu grupu, ali ste pozvani da se pridružite.</string>
+  <string name="MessageRecord_chat_session_refreshed">Sesija razgovora je osvježena</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Nije moguće dodati člana u Novu grupu, ali je pozvan je da se pridruži</item>
     <item quantity="few">%1$s člana nije moguće dodati u Novu grupu i pozvani su da se pridruže.</item>
@@ -1339,6 +1346,10 @@ broj telefona</string>
   <string name="RegistrationActivity_invalid_number">Nevažeći broj</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broj koji ste unijeli
 (%s) je nevažeći.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Potvrdni kôd će biti poslan na:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Primiti će te poziv za potvrdu ovog broja telefona.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Je li točan vaš navedeni broj telefona?</string>
+  <string name="RegistrationActivity_edit_number">Uredi broj</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services nije dostupno</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ovom uređaju nedostaje Google Play Services. I dalje možete koristiti Signal, ali ova konfiguracija može rezultirati smanjenom pouzdanošću ili performansama.\n\nAko niste napredni korisnik, ili ne koristite prilagođeni Android ROM ili vjerujete da ovo greškom vidite, kontaktirajte nas na support@signal.org za pomoć u rješavanju problema.</string>
   <string name="RegistrationActivity_i_understand">Shvaćam</string>
@@ -1495,6 +1506,7 @@ broj telefona</string>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Datoteka</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sesija razgovora je osvježena</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal ažuriranje</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostupna je nova verzija Signala, pritisnite za ažurirati</string>
@@ -1536,7 +1548,6 @@ broj telefona</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Loše šifrirana poruka</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka je šifrirana za nepostojeću sesiju</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Loše šifrirana MMS poruka</string>
@@ -2046,6 +2057,8 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Koristi Signal za sve dolazne poruke s medijskim zapisima</string>
   <string name="preferences__pref_enter_sends_title">Tipka Enter šalje poruku</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pritiskom na tipku Enter poslat će se tekstualne poruke</string>
+  <string name="preferences__pref_use_address_book_photos">Koristi fotografije iz imenika</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prikaži fotografije kontakata iz imenika ako su dostupne</string>
   <string name="preferences__generate_link_previews">Stvori preglede poveznica</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Preuzmite preglede poveznica izravno s web stranica za poruke koje šaljete.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
@@ -2098,7 +2111,7 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences__mmsc_password">MMSC lozinka</string>
   <string name="preferences__sms_delivery_reports">SMS potvrde isporuke</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži potvrdu isporuke za svaki poslani SMS</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Razgovori i medijski zapisi</string> -->
+  <string name="preferences__data_and_storage">Mobilni podaci i prostor za pohranu</string>
   <string name="preferences__storage">Prostor za pohranu</string>
   <string name="preferences__conversation_length_limit">Maksimalna duljina razgovora</string>
   <string name="preferences__keep_messages">Zadrži poruke</string>
@@ -2163,6 +2176,13 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="preferences_app_protection__app_access">Pristup aplikaciji</string>
   <string name="preferences_app_protection__communication">Komunikacija</string>
   <string name="preferences_chats__chats">Razgovori</string>
+  <string name="preferences_data_and_storage__manage_storage">Upravljanje prostorom za pohranu</string>
+  <string name="preferences_data_and_storage__calls">Pozivi</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manje mobilnih podataka za pozive</string>
+  <string name="preferences_data_and_storage__never">Nikada</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i mobilni podaci</string>
+  <string name="preferences_data_and_storage__cellular_only">Samo mobilni podaci</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje mobilnih podataka mogu se poboljšati pozivi na lošim mrežama</string>
   <string name="preferences_notifications__messages">Poruke</string>
   <string name="preferences_notifications__events">Događaji</string>
   <string name="preferences_notifications__in_chat_sounds">Zvukovi unutar razgovora</string>
@@ -2651,8 +2671,9 @@ Uvezi sigurnosnu kopiju običnog teksta. Kompatibilno s \'SMSBackup And Restore\
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s je napustio/la</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s je napustio/la</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d osoba je napustilo</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (na drugom uređaju)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na drugom uređaju)</string> -->
+  <string name="CallParticipant__you">Vi</string>
+  <string name="CallParticipant__you_on_another_device">Vi (na drugom uređaju)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (na drugom uređaju)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Brisanje vašeg računa će:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Unesite vaš broj telefona</string>

@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tämä viesti poistettiin.</string>
   <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Alusta suojattu istunto?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tämä saattaa auttaa, jos tässä keskustelussa on ilmennyt salaukseen liittyviä ongelmia. Huom. tämä ei poista eikä muokkaa mitenkään olemassa olevia viestejä.</string> -->
   <string name="ConversationActivity_reset">Alusta</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Napauta tarkistaaksesi</string>
   <string name="ConversationFragment__review_requests_carefully">Tarkista pyynnöt huolellisesti</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal löysi toisen yhteystiedon samalla nimellä.</string>
+  <string name="ConversationFragment_contact_us">Ota meihin yhteyttä</string>
+  <string name="ConversationFragment_verify">Vahvista</string>
+  <string name="ConversationFragment_not_now">Ei nyt</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Turvanumerosi yhteystiedon %s kanssa on vaihtunut</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi yhteystiedon %s kanssa on vaihtunut, luultavasti koska hän asensi Signalin uudelleen tai vaihtoi käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla Vahvista- Toiminto on valinnnainen.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">tänään</string>
   <string name="DateUtils_yesterday">eilen</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal käyttää päästä päähän -salausta, ja ajoittain keskustelu voidaan joutua virkistämään. Se ei vaikuta keskustelun turvallisuuteen, mutta tämän yhteyshenkilön viimeisin viesti ei välttämättä näy, ja voit pyytää häntä lähettämään sen uudelleen.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Lähetetään</string>
   <string name="DeliveryStatus_sent">Lähetetty</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Katoavien viestien ajaksi asetettiin %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Tämä ryhmä päivitettiin uudeksi ryhmäksi.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Sinua ei pystytty lisäämään uuteen ryhmään ja sait siihen kutsun.</string>
+  <string name="MessageRecord_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one"> Jäsentä ei pystytty lisäämään uuteen ryhmään ja hänelle on lähetetty kutsu. </item>
     <item quantity="other">%1$s jäsentä ei pystytty lisäämään uuteen ryhmään ja heille on lähetetty kutsu. </item>
@@ -1274,6 +1281,10 @@ puhelinnumero</string>
   <string name="RegistrationActivity_invalid_number">Virheellinen numero</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Antamasi puhelinnumero
 (%s) on virheellinen.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Vahvistuskoodin vastaanottaja:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Saat puhelun, jolla voit vahvistaa tämän puhelinnumeron.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Onko yllä oleva puhelinnumero oikea?</string>
+  <string name="RegistrationActivity_edit_number">Muokkaa numeroa</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services puuttuu</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Tästä laitteesta puuttuu Google Play Services. Signal toimii myös ilman sitä, mutta kaikki ominaisuudet eivät välttämättä toimi yhtä hyvin tai luotettavasti.\n\nJos et ole edistyneempi käyttäjä, et käytä kolmannen osapuolen Android ROM:ia tai uskot, että näet tämän ilmoituksen virheellisesti, ota yhteyttä support@signal.org saadaksesi apua.</string>
   <string name="RegistrationActivity_i_understand">Ymmärrän</string>
@@ -1427,6 +1438,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_contact">Yhteystieto</string>
   <string name="ThreadRecord_file">Tiedosto</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Keskustelutuokio on virkistetty</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uusi versio Signalista on saatavilla. Päivitä napauttamalla.</string>
@@ -1467,7 +1479,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Viestin salaus on kelvoton</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu olemattomalle istunnolle</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMS-viestin salaus on kelvoton</string>
@@ -1965,6 +1976,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Käytä Signalia kaikkiin saapuviin multimediaviesteihin</string>
   <string name="preferences__pref_enter_sends_title">Rivinvaihto lähettää</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
+  <string name="preferences__pref_use_address_book_photos">Käytä osoitekirjan valokuvia</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Näytä yhteystietojen valokuvat osoitekirjasta, mikäli saatavilla</string>
   <string name="preferences__generate_link_previews">Luo esikatselukuvia linkeistä</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hae linkkien esikatselut suoraan verkkosivustoilta lähettämiisi viesteihin.</string>
   <string name="preferences__choose_identity">Valitse identiteetti</string>
@@ -2017,7 +2030,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__mmsc_password">MMSC-salasana</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Keskustelut ja liitetiedostot</string> -->
+  <string name="preferences__data_and_storage">Data ja tallennustila</string>
   <string name="preferences__storage">Tallennustila</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
   <string name="preferences__keep_messages">Säilytä viestit</string>
@@ -2082,6 +2095,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_app_protection__app_access">Sovelluksen käyttö</string>
   <string name="preferences_app_protection__communication">Kommunikointi</string>
   <string name="preferences_chats__chats">Keskustelut</string>
+  <string name="preferences_data_and_storage__manage_storage">Tallennustilan hallinta</string>
+  <string name="preferences_data_and_storage__calls">Puhelut</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Käytä vähemmän dataa puheluihin</string>
+  <string name="preferences_data_and_storage__never">ei koskaan</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ja mobiili</string>
+  <string name="preferences_data_and_storage__cellular_only">Vain mobiili</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Alempi datankäyttö voi parantaa puheluja heikoissa verkkoyhteyksissä</string>
   <string name="preferences_notifications__messages">Viestit</string>
   <string name="preferences_notifications__events">Huomautukset</string>
   <string name="preferences_notifications__in_chat_sounds">Keskustelun sisäiset äänet</string>
@@ -2561,8 +2581,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ja %2$s poistuivat</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ja %3$s poistuivat</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ja %3$d muuta poistuivat</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Sinä (toisella laitteella)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (toisella laitteella)</string> -->
+  <string name="CallParticipant__you">Sinä</string>
+  <string name="CallParticipant__you_on_another_device">Sinä (toisella laitteella)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (toisella laitteella)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Tilisi poistaminen tulee:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>

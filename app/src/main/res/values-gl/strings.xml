@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Eliminouse a mensaxe.</string>
   <string name="ConversationItem_you_deleted_this_message">Eliminaches esta mensaxe.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Restablecer sesión segura?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode resultar de axuda en caso de haber problemas de cifraxe nesta conversa. As mensaxes manteranse.</string> -->
   <string name="ConversationActivity_reset">Restablecer</string>
   <string name="ConversationActivity_add_attachment">Engadir anexo</string>
   <string name="ConversationActivity_select_contact_info">Seleccionar información de contacto</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Toca para revisar</string>
   <string name="ConversationFragment__review_requests_carefully">Revisa as solicitudes con atención</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal atopou outro conctacto co mesmo nome.</string>
+  <string name="ConversationFragment_contact_us">Contacto</string>
+  <string name="ConversationFragment_verify">Comprobar</string>
+  <string name="ConversationFragment_not_now">Agora non</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">O teu número de seguridade con %s cambiou</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O teu Número de Seguridade con %s cambiou, probablemente porque reinstalou Signal ou cambiou de dispositivo. Toca en Verificar para confirmar o novo número de seguridade. Esto é optativo.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Hoxe</string>
   <string name="DateUtils_yesterday">Onte</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sesión de conversa actualizada</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utiliza cifrado de extremo-a-extremo e podería precisar actualizar a sesión de conversa ocasionalmente. Esto non afecta á seguridade da conversa, pero poderías ter perdido algunha mensaxe deste contacto, polo que igual ten que volver a enviarcho.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Enviando</string>
   <string name="DeliveryStatus_sent">Enviada</string>
@@ -475,7 +481,9 @@
     <item quantity="one">Convite enviado</item>
     <item quantity="other">%d convites enviados</item>
   </plurals>
+  <string name="GroupManagement_invite_single_user">«%1$s» non pode ser engadido automaticamente a este grupo por vostede.\n\nForon convidados da participar e non verán ningunha mensaxe do grupo ata que acepten.</string>
   <string name="GroupManagement_learn_more">Saber máis</string>
+  <string name="GroupManagement_invite_multiple_users">Eses usuarios non os pode ser engadir automaticamente a este grupo.\n\nForon convidados a participar no grupo e non verán ningunha mensaxe do grupo ata que acepten.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Que son os Novos grupos?</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Os Novos Grupos teñen características como as @mencións e administradores do grupo, e no futuro terán aínda máis ferramentas.</string>
@@ -496,10 +504,23 @@
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Todo o historial e multimedia vaise gardar antes de actualizar.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Atopamos un fallo na rede. Inténtao máis tarde.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Fallo ó actualizar.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">Este membro ten que aceptar o convite para unirse ó grupo outra vez e non recibirá mensaxes do grupo ata que acepte:</item>
+    <item quantity="other">Estos membros teñen que aceptar o convite para unirse novamente ó grupo e non recibirán mensaxes do grupo ata que acepten:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">Este membro non pode unirse a Grupos Novos, e vai ser eliminado do grupo:</item>
+    <item quantity="other">Estos membros non poden unirse ós Grupos Novos, e van ser eliminados do grupo:</item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a novas características como @mencións e admins, actualiza este grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora non</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizar grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
+  <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
+    <item quantity="one">%1$d membro non puido ser engadido ó Novo Grupo. Queres engadilo agora?</item>
+    <item quantity="other">%1$d membros non puideron ser engadidos de novo ó Novo Grupo. Queres engadilos agora?</item>
+  </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Engadir un membro</item>
     <item quantity="other">Engadir membros</item>
@@ -509,6 +530,10 @@
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Engadir un membro?</item>
     <item quantity="other">Engadir membros?</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
+    <item quantity="one">Este membro non puido ser automáticamente engadido ó Novo Grupo cando foi actualizado:</item>
+    <item quantity="other">Estos membros non puideron ser engadidos automáticamente ó Novo Grupo cando foi actualizado:</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Engadir un membro</item>
@@ -535,6 +560,7 @@
   <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Podes obter directamente vistas previas das ligazóns a sitios web para as mensaxes que envías.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Vista previa non dispoñible</string>
+  <string name="LinkPreviewView_this_group_link_is_not_active">A ligazón deste grupo non está activa</string>
   <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
@@ -543,15 +569,39 @@
   </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">Convites de grupo pendentes</string>
+  <string name="PendingMembersActivity_requests">Solicitudes</string>
+  <string name="PendingMembersActivity_invites">Convites</string>
   <string name="PendingMembersActivity_people_you_invited">Persoas que convidaches</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Non tes convites pendentes.</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Convites doutros membros do grupo</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Non hai convites pendentes doutros membros do grupo.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Non se amosan os detalles de xente convidada por outros membros do grupo. Se os convidados escollen participar, a súa información compartirase co grupo nese momento. Non verán ningunha mensaxe no grupo ata que se incorporen.</string>
+  <string name="PendingMembersActivity_revoke_invite">Revogar o convite</string>
+  <string name="PendingMembersActivity_revoke_invites">Revogar os convites</string>
+  <plurals name="PendingMembersActivity_revoke_d_invites">
+    <item quantity="one">Revogar o convite</item>
+    <item quantity="other">Revogar %1$d convites</item>
+  </plurals>
+  <plurals name="PendingMembersActivity_error_revoking_invite">
+    <item quantity="one">Produciuse un erro ao revogar convite</item>
+    <item quantity="other">Produciuse un erro ao revogar convites</item>
+  </plurals>
   <!--RequestingMembersFragment-->
+  <string name="RequestingMembersFragment_pending_member_requests">Solicitudes pendentes</string>
+  <string name="RequestingMembersFragment_no_member_requests_to_show">Non hai solicitudes que mostrar.</string>
   <string name="RequestingMembersFragment_explanation">As persoas desta listaxe queren unirse a este grupo a través da ligazón ó grupo.</string>
+  <string name="RequestingMembersFragment_added_s">Engadido \"%1$s\"</string>
+  <string name="RequestingMembersFragment_denied_s">Rexeitado \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Feito</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta persoa non pode ser engadia ós grupos clásicos.</string>
+  <plurals name="AddMembersActivity__add_d_members_to_s">
+    <item quantity="one">Engadir «%1$s» a «%2$s»?</item>
+    <item quantity="other">Engadir %3$d membros a «%2$s»?</item>
+  </plurals>
   <string name="AddMembersActivity__add">Engadir</string>
   <!--AddGroupDetailsFragment-->
+  <string name="AddGroupDetailsFragment__name_this_group">Nomear este grupo</string>
   <string name="AddGroupDetailsFragment__create_group">Crear grupo</string>
   <string name="AddGroupDetailsFragment__create">Crear</string>
   <string name="AddGroupDetailsFragment__members">Membros</string>
@@ -562,10 +612,18 @@
   <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Os grupos deben ter ao menos dous membros.</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">Erro ao crear o grupo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Volver tentar máis tarde.</string>
+  <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Seleccionou un contacto que non é compatíbel con grupos Signal, así que este grupo será MMS.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Os nomes de grupos MMS personalizados e fotos só serán visibles para ti.</string>
   <string name="AddGroupDetailsFragment__remove">Eliminar</string>
+  <string name="AddGroupDetailsFragment__sms_contact">Contacto SMS</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Retirar %1$s deste grupo?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%dmembro non pode usar Novos Grupos, así que este seguirá sendo un Grupo Clásico.</item>
     <item quantity="other">%dmembros non poden usar os Novos Grupos, así que este grupo permanecerá como un Grupo Clásico.</item>
+  </plurals>
+  <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
+    <item quantity="one">%d membro non ten soporte de Novos Grupos, polo que non se pode crear o grupo.</item>
+    <item quantity="other">%d membros non teñen soporte para Novos Grupos, polo que non se pode crear o grupo.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Crearase un Grupo Clásico porque \"%1$s\" está usando unha versión antiga de Signal. Podes crear un Novo Grupo mellorado cando actualice Signal, ou eliminalo do grupo antes de crealo.</string>
@@ -573,24 +631,44 @@
     <item quantity="one">Vaise crear un Grupo Clásico porque %1$d membro está usando unha versión antiga de Signal. Podes crear un Novo Grupo mellorado cando actualice Signal, ou eliminalo antes de crear o grupo.</item>
     <item quantity="other">Vaise crear un Grupo Clásico porque %1$d membros están usando unha versión antiga de Signal. Podes crear un Novo Grupo mellorado con eles cando actualicen Signal, ou eliminalos antes de crear o grupo.</item>
   </plurals>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Este grupo non se creou porque \"%1$s\" está utilizando unha versión antiga de Signal. Tes que eliminalo antes de crear o grupo.</string>
+  <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
+    <item quantity="one">Este grupo non pode ser creado porque %1$d membro está utilizando unha versión antiga de Signal. Tes que eliminalo antes de poder crear o grupo.</item>
+    <item quantity="other">Este grupo non pode ser creado porque %1$d membros están utilizando unha versión antiga de Signal. Tes que eliminalos antes de poder crear o grupo.</item>
+  </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Desaparición das mensaxes</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Solicitudes de membresía &amp; convites</string>
   <string name="ManageGroupActivity_add_members">Engadir membros</string>
+  <string name="ManageGroupActivity_edit_group_info">Editar a info do grupo</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Quen pode engadir novos membros?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Quen pode editar a info deste grupo?</string>
   <string name="ManageGroupActivity_group_link">Ligazón do grupo</string>
+  <string name="ManageGroupActivity_block_group">Bloquear un grupo</string>
+  <string name="ManageGroupActivity_unblock_group">Desbloquear un grupo</string>
   <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificacións</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificacións</string>
   <string name="ManageGroupActivity_mentions">Mencións</string>
+  <string name="ManageGroupActivity_until_s">Ata %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
   <string name="ManageGroupActivity_see_all">Ver todo</string>
   <string name="ManageGroupActivity_none">Ningún</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d convidado</item>
+    <item quantity="other">%d convidados</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d membro engadido</item>
+    <item quantity="other">%d membros engadidos</item>
+  </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Só a administración pode activar ou desactivar a ligazón pública ó grupo.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Só a administración pode activar ou desactivar a opción de aprobar novos membros.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Só a administración restablecer a ligazón ó grupo.</string>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Non ten os permisos para facer isto</string>
+  <string name="ManageGroupActivity_not_capable">Alguén que engadiu non admite novos grupos e necesita un Signal actualizado</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Erro ao actualizar o grupo</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Non es membro deste grupo</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Erro ao actualizar o grupo; téntao máis tarde</string>
@@ -604,7 +682,14 @@
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Este é un Grupo MMS Inseguro. Para conversar privadamente, convida ós teus contactos a Signal.</string>
   <string name="ManageGroupActivity_invite_now">Convidar</string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notifíqueme as mencións</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Recibir notificacións cando sexa mencionado en chats silenciados?</string>
+  <string name="GroupMentionSettingDialog_default_notify_me">Predeterminado (Notifíqueme)</string>
+  <string name="GroupMentionSettingDialog_default_dont_notify_me">Predeterminado (Non me notifique)</string>
+  <string name="GroupMentionSettingDialog_always_notify_me">Notifíqueme sempre</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">Non me notifique</string>
   <!--ManageRecipientActivity-->
+  <string name="ManageRecipientActivity_add_to_system_contacts">Engadir aos contactos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persoa é un dos teus contactos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Desaparición das mensaxes</string>
   <string name="ManageRecipientActivity_chat_color">Cor do chat</string>
@@ -613,6 +698,7 @@
   <string name="ManageRecipientActivity_view_safety_number">Ver número de seguranza</string>
   <string name="ManageRecipientActivity_mute_notifications">Silenciar notificacións</string>
   <string name="ManageRecipientActivity_custom_notifications">Personalizar notificacións</string>
+  <string name="ManageRecipientActivity_until_s">Ata %1$s</string>
   <string name="ManageRecipientActivity_off">Off</string>
   <string name="ManageRecipientActivity_on">On</string>
   <string name="ManageRecipientActivity_add_to_a_group">Engadir ao grupo</string>
@@ -626,10 +712,16 @@
   <string name="ManageRecipientActivity_edit_name_and_picture">Editar nome e imaxe</string>
   <string name="ManageRecipientActivity_message_description">Mensaxe</string>
   <string name="ManageRecipientActivity_voice_call_description">Chamada de voz</string>
+  <string name="ManageRecipientActivity_insecure_voice_call_description">Chamada de voz insegura</string>
   <string name="ManageRecipientActivity_video_call_description">Videochamada</string>
+  <plurals name="GroupMemberList_invited">
+    <item quantity="one">%1$s convidou a 1 persoa</item>
+    <item quantity="other">%1$s convidou %2$d persoas</item>
+  </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Personalizar notificacións</string>
   <string name="CustomNotificationsDialogFragment__messages">Mensaxes</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Utilice notificacións personalizadas</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Son das notificacións</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Vibrar</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Axustes de chamada</string>
@@ -638,22 +730,50 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desactivado</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--ShareableGroupLinkDialogFragment-->
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Ligazon pública ó grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Xestionar &amp; compartir</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Ligazón do grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer ligazón</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Solicitudes de membros</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobar novos membros</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">Activado</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">Desactivado</string>
   <string name="ShareableGroupLinkDialogFragment__default">Por defecto</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Restablecer ligazón ó grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Requerir que un admin aprobe os novos membros que acceden desde a ligazón.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tes a certeza de querer restablecer a ligazón ó grupo? As persoas non poderán unirse ó grupo a través da ligazón actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">As persoas que escaneen este código poderá unirse ó teu grupo. Admins terán que aprobar os novos membros se tes activada esta opción.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Compartir código</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Quere revogar o convite que enviou a %1$s?</string>
+  <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
+    <item quantity="one">Quere revogar o convite enviado por %1$s?</item>
+    <item quantity="other">Quere revogar %2$d convites enviados por %1$s?</item>
+  </plurals>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Xa es membro</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Únete</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Solicitar participar</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Non te puideches unir ó grupo, inténtao máis tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Houbo un fallo na rede.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">A ligazón deste grupo non está activa</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Non se puido obter información do grupo, ténteo de novo máis adiante</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Quere participar neste grupo e compartir o seu nome e foto cos seus membros?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un admin deste grupo debe aprobar a súa petición antes de poder incorporarse. Cando solicite participar, o seu nome e foto compartiranse cos seus membros.</string>
+  <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
+    <item quantity="one">Grupo · %1$d membro</item>
+    <item quantity="other">Grupo · %1$d membros</item>
+  </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Axiña van chegar as ligazóns a grupos</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizar Signal para utilizar ligazóns de grupos</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versión de Signal que estás a utilizar non soporta esta ligazón ó grupo. Actualiza á última versión e únete ó grupo a través da ligazón.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualizar Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Un ou máis dos teus dispositivos están utilizando unha versión de Signal que non ten soporte para ligazóns a grupos. Actualiza Signal nos teu dispositivo ligado(s) para unirte a este grupo.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">A ligazón ó grupo non é válida</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Convidar amizades</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Comparte a ligazón coas amizades para que se unan fácilmente ó grupo.</string>
@@ -664,11 +784,18 @@
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">Non tes permiso para activar a ligazón ó grupo. Pídello a un administrador.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Actualmente non es membro do grupo.</string>
   <!--GV2 Request confirmation dialog-->
+  <string name="RequestConfirmationDialog_add_s_to_the_group">Engadir a \"%1$s\" ó grupo?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">Rexeitar a solicitude de \"%1$s\"?</string>
   <string name="RequestConfirmationDialog_add">Engadir</string>
+  <string name="RequestConfirmationDialog_deny">Rexeitar</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">Avatar do grupo</string>
   <string name="CropImageActivity_profile_avatar">Avatar</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Difuminar caras</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: Difuminar caras ou debuxar por calquera parte para difuminar</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Debuxar por calquera parte para difuminar</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Debuxar para difuminar máis caras ou áreas</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca e mantén premido para gravar unha mensaxe de voz; solta para enviar</string>
   <!--InviteActivity-->
@@ -710,13 +837,30 @@
   <string name="MediaOverviewActivity_Files">Ficheiros</string>
   <string name="MediaOverviewActivity_Audio">Audio</string>
   <string name="MediaOverviewActivity_All">Todo</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Eliminar o elemento seleccionado?</item>
+    <item quantity="other">Eliminar os elementos seleccionados?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Isto eliminará permanentemente ficheiros seleccionados. Calquera mensaxe de texto asociado con este elemento tamén se eliminará.</item>
+    <item quantity="other">Isto eliminará permanentemente todos os %1$d ficheiros seleccionados. Calquera mensaxe de texto asociado con estes elementos tamén se eliminará.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Borrando</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensaxes…</string>
   <string name="MediaOverviewActivity_Select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recompilando anexos…</string>
   <string name="MediaOverviewActivity_Sort_by">Ordenar por</string>
+  <string name="MediaOverviewActivity_Newest">Novos</string>
+  <string name="MediaOverviewActivity_Oldest">Vellos</string>
   <string name="MediaOverviewActivity_Storage_used">Almacenamento utilizado</string>
   <string name="MediaOverviewActivity_All_storage_use">Uso total do almacenamento</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Vista de grella</string>
+  <string name="MediaOverviewActivity_List_view_description">Vista de lista</string>
+  <string name="MediaOverviewActivity_Selected_description">Seleccionado</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d elemento %2$s</item>
+    <item quantity="other">%1$d elementos %2$s</item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$d elemento</item>
     <item quantity="other">%1$d elementos</item>
@@ -725,6 +869,9 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
   <string name="MediaOverviewActivity_image">Imaxe</string>
+  <string name="MediaOverviewActivity_sent_by_s">Enviado por %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Enviado por vostede</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Enviado por%1$s a %2$s</string>
   <string name="MediaOverviewActivity_sent_by_you_to_s">Enviado por ti a %1$s</string>
   <!--Megaphones-->
   <string name="Megaphones_remind_me_later">Lembrarmo máis tarde</string>
@@ -787,6 +934,12 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Estableciches a desaparición das mensaxes en %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s estableceu a desaparición das mensaxes en %2$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Actualizouse o grupo a Novo Grupo</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non te puideron engadir ó Novo Grupo e fuches convidado a unirte.</string>
+  <string name="MessageRecord_chat_session_refreshed">Sesión de conversa actualizada</string>
+  <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
+    <item quantity="one">Un membro non puido ser engadido ó Novo Grupo e foi convidado a unirse.</item>
+    <item quantity="other">%1$s membros non puideron ser engadidos ó Novo Grupo e foron convidados a unirse</item>
+  </plurals>
   <!--Profile change updates-->
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Creaches o grupo.</string>
@@ -822,6 +975,9 @@
   <!--GV2 attribute access level change-->
   <!--GV2 membership access level change-->
   <!--GV2 group link invite access level change-->
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Activaches a ligazón ó grupo con aprobación por admin desactivada.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Activaches a ligazón ó grupo con aprobación por admin activada.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Desactivaches a ligazón ó grupo.</string>
   <!--GV2 group link reset-->
   <!--GV2 group link joins-->
   <!--GV2 group link requests-->
@@ -972,6 +1128,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número
         especifcado (%s) non é válido.
     </string>
+  <string name="RegistrationActivity_edit_number">Editar número</string>
   <string name="RegistrationActivity_missing_google_play_services">Falta Servizos de Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este dispositivo non dispón de Servizos de Google Play. Podes continuar a usar Signal, mais é posible que o seu rendemento ou fiabilidade se vexan reducidos.\n\nSe non es un usuario avanzado, se non estás a executar unha ROM de Android modificada ou pensas que isto é un erro, contacta con support@signal.org para che axudar a solucionalo.</string>
   <string name="RegistrationActivity_i_understand">Entendo</string>
@@ -1100,6 +1257,7 @@
   <string name="ThreadRecord_contact">Contacto</string>
   <string name="ThreadRecord_file">Ficheiro</string>
   <string name="ThreadRecord_video">Vídeo</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sesión de conversa actualizada</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizar Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Hai dispoñible unha nova versión de Signal; toca para actualizar</string>
@@ -1134,7 +1292,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mensaxe mal cifrada</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaxe cifrada para unha sesión que non existe</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensaxe MMS mal cifrada</string>
@@ -1459,6 +1616,7 @@
   <string name="CreateProfileActivity_next">Seguinte</string>
   <string name="CreateProfileActivity__username">Nome de usuario</string>
   <string name="CreateProfileActivity__create_a_username">Crear nome de usuario</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Os nomes de grupos MMS personalizados e fotos só serán visibles para ti.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome do grupo e fotografía</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
@@ -1627,7 +1785,6 @@
   <string name="preferences__mmsc_password">Contrasinal de MMSC</string>
   <string name="preferences__sms_delivery_reports">Informes de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicita un informe de entrega para cada SMS que envías</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Conversas e multimedia</string> -->
   <string name="preferences__storage">Almacenamento</string>
   <string name="preferences__conversation_length_limit">Lonxitude máxima das conversas</string>
   <string name="preferences__keep_messages">Manter as mensaxes</string>
@@ -1686,6 +1843,8 @@
   <string name="preferences_app_protection__app_access">Acceso á aplicación</string>
   <string name="preferences_app_protection__communication">Comunicacións</string>
   <string name="preferences_chats__chats">Conversas</string>
+  <string name="preferences_data_and_storage__calls">Chamadas</string>
+  <string name="preferences_data_and_storage__never">Nunca</string>
   <string name="preferences_notifications__messages">Mensaxes</string>
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons durante a conversa</string>
@@ -2038,9 +2197,11 @@
   <string name="RecipientBottomSheet_view_safety_number">Ver número de seguranza</string>
   <string name="RecipientBottomSheet_message_description">Mensaxe</string>
   <string name="RecipientBottomSheet_voice_call_description">Chamada de voz</string>
+  <string name="RecipientBottomSheet_insecure_voice_call_description">Chamada de voz insegura</string>
   <string name="RecipientBottomSheet_video_call_description">Videochamada</string>
   <string name="RecipientBottomSheet_remove">Eliminar</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Copiado ao portapapeis</string>
+  <string name="GroupRecipientListItem_deny_description">Rexeitar</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Clásicos vs. Novos Grupos</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Que son os Grupos Clásicos?</string>
@@ -2071,8 +2232,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s saíron</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s saíron</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e outros %3$d saíron</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ti (noutro dispositivo)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (noutro dispositivo)</string> -->
+  <string name="CallParticipant__you">Ti</string>
+  <string name="CallParticipant__you_on_another_device">Ti (noutro dispositivo)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (noutro dispositivo)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ao eliminar a conta:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Escribe o teu número de teléfono</string>

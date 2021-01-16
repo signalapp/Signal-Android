@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">یہ پیغام حذف کردیا گیا تھا۔</string>
   <string name="ConversationItem_you_deleted_this_message">آپ نے یہ پیغام حذف کردیا۔</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">محفوظ سیشن دوبارہ بحال کریں؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">اگر اس گفتگو کی اینکرپشن میں کوئی مسئلہ ہے تو اس سے آپ کو مدد مل سکتی ہے۔ آپ کا پیغام اسی میں رہے گا۔</string> -->
   <string name="ConversationActivity_reset">دوبارہ بحال کریں</string>
   <string name="ConversationActivity_add_attachment">اٹیچمنٹ شامل کریں</string>
   <string name="ConversationActivity_select_contact_info">رابطے کی معلومات منتخب کریں</string>
@@ -313,6 +311,9 @@
   <string name="ConversationFragment__tap_to_review">جائزہ لینے کے لئے ٹیپ کریں</string>
   <string name="ConversationFragment__review_requests_carefully">درخواستوں کا بغور جائزہ لیں</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal کو اسی نام سے دوسرا رابطہ ملا۔</string>
+  <string name="ConversationFragment_contact_us">ہم سے رابطہ کریں</string>
+  <string name="ConversationFragment_verify">تصدیق کریں</string>
+  <string name="ConversationFragment_not_now">ابھی نہیں</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">آپ کی ڈیوائس پر کوئی براؤزر نصب نہیں ہوا۔</string>
   <!--ConversationListFragment-->
@@ -395,6 +396,7 @@
   <string name="DateUtils_minutes_ago">%dایم</string>
   <string name="DateUtils_today">آج</string>
   <string name="DateUtils_yesterday">کل</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">بھیج رہا ہے</string>
   <string name="DeliveryStatus_sent">بھیجا گیا</string>
@@ -1464,7 +1466,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">خفیہ کردہ خراب پیغام </string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">غیر موجود سیشن کیلئے خفیہ کردہ پیغام</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">خفیہ کردہ برا ایم ایم ایس پیغام</string>
@@ -2014,7 +2015,6 @@
   <string name="preferences__mmsc_password">ایم ایم ایس سی پاسورڈ</string>
   <string name="preferences__sms_delivery_reports">ایس ایم ایس کی ترسیل کی رپورٹ</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">اپنے بھیجنے والے ہر ایس ایم ایس پیغام کے لئے ڈیلیوری رپورٹ کی درخواست کریں</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">باتیں اور میڈیا </string> -->
   <string name="preferences__storage">اسٹوریج </string>
   <string name="preferences__conversation_length_limit">گفتگو کی لمبائی کی حد</string>
   <string name="preferences__keep_messages">پیغامات رکھیں</string>
@@ -2079,6 +2079,8 @@
   <string name="preferences_app_protection__app_access">ایپ تک رسائی</string>
   <string name="preferences_app_protection__communication">مواصلات</string>
   <string name="preferences_chats__chats">باتیں</string>
+  <string name="preferences_data_and_storage__calls">کالز</string>
+  <string name="preferences_data_and_storage__never">کبھی نہیں</string>
   <string name="preferences_notifications__messages">پیغامات</string>
   <string name="preferences_notifications__events">تقریبات</string>
   <string name="preferences_notifications__in_chat_sounds">باتوں کی آواز میں</string>
@@ -2558,8 +2560,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s اور %2$s چلے گئے</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s،%2$s اور%3$s  چلے گئے</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s،%2$s اور%3$d دوسرے چلے گئے</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">آپ (دوسرے آلے پر)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (دوسرے آلے پر)</string> -->
+  <string name="CallParticipant__you">آپ</string>
+  <string name="CallParticipant__you_on_another_device">آپ (دوسرے آلے پر)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (دوسرے آلے پر)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">آپ کا اکاؤنٹ حذف کرنے سے یہ ہوگا:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">اپنا فون نمبر درج کریں</string>

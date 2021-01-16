@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Vil du tilbakestille sikker økt?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette kan hjelpe hvis du har krypteringsproblemer med samtalen. Meldinger blir beholdt.</string> -->
   <string name="ConversationActivity_reset">Tilbakestill</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Trykk for å gå gjennom</string>
   <string name="ConversationFragment__review_requests_carefully">Gjennomgå forespørsler grundig</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal fant en annen kontakt med samme navn.</string>
+  <string name="ConversationFragment_contact_us">Kontakt oss</string>
+  <string name="ConversationFragment_verify">Bekreft</string>
+  <string name="ConversationFragment_not_now">Ikke nå</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Sikkerhetsnummeret for %s har endret seg</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Sikkerhetsnummeret for %s har endret seg, sannsynligvis fordi de har installert Signal på nytt eller byttet enhet. Trykk Bekreft for å bekrefte det nye sikkerhetsnummeret. Dette er valgfritt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">I dag</string>
   <string name="DateUtils_yesterday">I går</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal benytter seg av ende-til-ende-kryptering og det kan av og til være nødvendig å laste inn samtaleøkten din på nytt. Dette påvirker ikke din samtales sikkerhet, men du kan ha gått glipp av en melding fra din samtalepartner og må be dem om å sende den på nytt.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Sender</string>
   <string name="DeliveryStatus_sent">Sendt</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Utløpstid for meldinger er blitt satt til %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen ble oppdatert til en ny gruppe.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke bli lagt til den nye gruppen og har blitt invitert til å bli med.</string>
+  <string name="MessageRecord_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Et medlem kunne ikke legges til i den nye gruppen og har blitt invitert til å bli med.</item>
     <item quantity="other">%1$s medlemmer kunne ikke legges til den Nye Gruppen og har blitt invitert til å bli med.</item>
@@ -1274,6 +1281,10 @@ telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ugyldig nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nummeret du
 skrev inn (%s) er ugyldig.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">En bekreftelseskode vil bli sendt til:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du vil motta et taleanrop for å bekrefte dette nummeret.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Er telefonnummeret ditt ovenfor korrekt?</string>
+  <string name="RegistrationActivity_edit_number">Rediger nummer</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play tjenester</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denne enheten mangler Google Play-tjenester. Du kan fremdeles bruke Signal, men det kan oppføre seg ustabilit eller gi dårlig ytelse.\n\nHvis du ikke er en avansert bruker, ikke kjører en egeninstallert Android-fastvare, eller du mener at du har Google Play-tjenester installert, ber vi deg om å kontakte support@signal.org så vi kan hjelpe deg med feilsøking.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
@@ -1427,6 +1438,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Samtaleøkt lastet inn på nytt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal oppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny versjon av Signal er tilgjengelig, trykk for å oppdatere</string>
@@ -1467,7 +1479,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig kryptert melding</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS</string>
@@ -1965,6 +1976,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
+  <string name="preferences__pref_use_address_book_photos">Benytt adressebokbilder</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis adressebokbilder hvis tilgjengelig</string>
   <string name="preferences__generate_link_previews">Lag lenkeforhåndsvisninger</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger av lenker direkte fra nettsteder for meldinger du sender.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
@@ -2017,7 +2030,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__mmsc_password">MMSC-passord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveringsrapporter </string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Be om leveringsrapport når du sender SMS</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Samtaler og medier</string> -->
+  <string name="preferences__data_and_storage">Data og lagring</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Lengdegrense for samtaler</string>
   <string name="preferences__keep_messages">Behold meldinger</string>
@@ -2082,6 +2095,13 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>
   <string name="preferences_app_protection__communication">Kommunikasjon</string>
   <string name="preferences_chats__chats">Samtaler</string>
+  <string name="preferences_data_and_storage__manage_storage">Håndter lagring</string>
+  <string name="preferences_data_and_storage__calls">Samtaler</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
+  <string name="preferences_data_and_storage__never">Aldri</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi og mobildata</string>
+  <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre anrop på dårlige nettverk</string>
   <string name="preferences_notifications__messages">Meldinger</string>
   <string name="preferences_notifications__events">Hendelser</string>
   <string name="preferences_notifications__in_chat_sounds">Samtalelyder</string>
@@ -2561,8 +2581,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s forlot</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s og %3$s forlot</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d andre forlot</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Deg (på en annen enhet)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annen enhet)</string> -->
+  <string name="CallParticipant__you">Deg</string>
+  <string name="CallParticipant__you_on_another_device">Deg (på en annen enhet)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (på en annen enhet)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletting av kontoen din vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Skriv inn ditt telefonnummer</string>

@@ -199,8 +199,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
   <string name="ConversationItem_you_deleted_this_message">Általad törölt üzenet.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Újraindítod a biztonsági munkamenetet?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ez akkor segíthet, ha titkosítással kapcsolatos problémák léptek fel ebben a beszélgetésben. Az üzeneteid meg lesznek tartva.</string> -->
   <string name="ConversationActivity_reset">Alaphelyzetbe állítás</string>
   <string name="ConversationActivity_add_attachment">Melléklet csatolása</string>
   <string name="ConversationActivity_select_contact_info">Válassz kontakt infót</string>
@@ -313,6 +311,11 @@
   <string name="ConversationFragment__tap_to_review">Koppints az áttekintéshez</string>
   <string name="ConversationFragment__review_requests_carefully">Gondosan nézd át a kéréseket</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">A Signal talált egy másik, azonos nevű kontaktot.</string>
+  <string name="ConversationFragment_contact_us">Kapcsolat</string>
+  <string name="ConversationFragment_verify">Hitelesítés</string>
+  <string name="ConversationFragment_not_now">Most nem</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Megváltozott a biztonsági számod vele: %s</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Biztonsági számod %s nevű partnereddel megváltozott. Ennek valószínűleg az az oka, hogy újratelepítette a Signalt, vagy lecserélte eszközést. Koppints ide, hogy megerősítsd az új biztonsági számotokat. Ez a művelet opcionális.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
@@ -395,6 +398,9 @@
   <string name="DateUtils_minutes_ago">%dp</string>
   <string name="DateUtils_today">Ma</string>
   <string name="DateUtils_yesterday">Tegnap</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">A munkamenet alaphelyzetbe állt</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">A Signal végpontok közti titkosítást használ és nagy ritkán újra be kell állítania a két végpont közti titkosítás munkamenetét. Ennek nincs hatása a biztonságra, de előfordulhat, hogy pont ezalatt nem kaptál meg egy üzenetet ettől a kontakttól. Ilyenkor az újraküldés kérése ajánlott.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Küldés folyamatban</string>
   <string name="DeliveryStatus_sent">Elküldve</string>
@@ -772,7 +778,7 @@
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Barátok meghívása</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Egy közvetlen hivatkozás megosztásával barátaid gyorsan csatlakozhatnak ehhez a csoporthoz.</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Hivatkozás engedélyezése és megosztása</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Hivatkozás használata</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Hivatkozás megosztása</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nem sikerült engedélyezni a csoporthivatkozást. Kérlek próbáld újra később!</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Hálózati hiba történt.</string>
@@ -934,6 +940,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Az eltűnő üzenetek új beállítása: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ez a csoport új típusú csoporttá lett alakítva.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nem tudtak közvetlenül hozzáadni az új típusú csoporthoz, ezért helyette meghívót kaptál.</string>
+  <string name="MessageRecord_chat_session_refreshed">A munkamenet alaphelyzetbe állt</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Egy tagot nem lehetett közvetlenül hozzáadni az új csoporthoz, ezért meg lett hívva.</item>
     <item quantity="other">%1$s tagot nem lehetett közvetlenül hozzáadni az új csoporthoz, ezért meg lettek hívva.</item>
@@ -1280,6 +1287,10 @@ telefonszámodat!
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Az általad megadott
 szám (%s) érvénytelen.
  </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Az ellenőrzőkód erre a számra lesz kiküldve:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">A számod megerősítése érdekében hamarosan egy hívást indítunk a megadott számra.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Helyes a megadott telefonszám?</string>
+  <string name="RegistrationActivity_edit_number">Szám szerkesztése</string>
   <string name="RegistrationActivity_missing_google_play_services">Hiányzó Google Play Szolgáltatások</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ezen a készüléken hiányzik a Google Play Szolgáltatások. Továbbra is használhatod a Signal-t, de ez a konfiguráció csökkent megbízhatóságot vagy teljesítményt eredményezhet.\n\nHa nem egy hozzáértő felhasználó vagy, aki egy utángyártott Android ROM-ot futtat, vagy ez egy hibának tűnik neked, akkor kérlek vedd fel a kapcsolatot a probléma megoldása érdekében a support@signal.org -gal.</string>
   <string name="RegistrationActivity_i_understand">Megértettem</string>
@@ -1435,6 +1446,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_contact">Névjegy</string>
   <string name="ThreadRecord_file">Fájl</string>
   <string name="ThreadRecord_video">Videó</string>
+  <string name="ThreadRecord_chat_session_refreshed">A munkamenet alaphelyzetbe állt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal frissítés</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">A Signal egy új verziója érhető el, koppints a frissítéshez</string>
@@ -1475,7 +1487,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet nem létező munkamenethez lett titkosítva</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Hibás titkosított MMS üzenet</string>
@@ -1974,6 +1985,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal használata minden bejövő multimédia üzenethez</string>
   <string name="preferences__pref_enter_sends_title">Küldés az Enter lenyomásával</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Az Enter billentyű megnyomása elküldi a szöveges üzeneteket</string>
+  <string name="preferences__pref_use_address_book_photos">Profilképek használata a telefon névjegyzékéből</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">A telefon névjegyzékében tárolt profilképek használata, amennyiben elérhető ilyen</string>
   <string name="preferences__generate_link_previews">Hivatkozások előnézeti képének generálása</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Előnézeti képek lekérése közvetlenül a weboldalról az elküldendő üzenetekhez.</string>
   <string name="preferences__choose_identity">Azonosító választása</string>
@@ -2026,7 +2039,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__mmsc_password">MMSC jelszó</string>
   <string name="preferences__sms_delivery_reports">SMS kézbesítési jelentések</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kézbesítési jelentés kérése az összes elküldött SMS-ről</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Csevegések és média</string> -->
+  <string name="preferences__data_and_storage">Adat és tárolás</string>
   <string name="preferences__storage">Tárolás</string>
   <string name="preferences__conversation_length_limit">Beszélgetés hosszának korlátja</string>
   <string name="preferences__keep_messages">Üzenetek megtartása</string>
@@ -2091,6 +2104,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_app_protection__app_access">Hozzáférés az alkalmazáshoz</string>
   <string name="preferences_app_protection__communication">Kommunikáció</string>
   <string name="preferences_chats__chats">Csevegések</string>
+  <string name="preferences_data_and_storage__manage_storage">Tárhely kezelése</string>
+  <string name="preferences_data_and_storage__calls">Hívások</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Kevesebb adat használata hívásokhoz</string>
+  <string name="preferences_data_and_storage__never">Soha</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi és mobiladat</string>
+  <string name="preferences_data_and_storage__cellular_only">Csak mobiladat</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A kevesebb adat használatának beállítása javíthatja a hívások minőségét gyenge hálózatokon</string>
   <string name="preferences_notifications__messages">Üzenetek</string>
   <string name="preferences_notifications__events">Események</string>
   <string name="preferences_notifications__in_chat_sounds">Csevegésen belüli hangok</string>
@@ -2570,8 +2590,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s és %2$s kilépett</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s és %3$s kilépett</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s és %3$d másik személy kilépett</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Te (másik eszközön)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (másik eszközön)</string> -->
+  <string name="CallParticipant__you">Te</string>
+  <string name="CallParticipant__you_on_another_device">Te (másik eszközön)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (másik eszközön)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">A fiók törlése a következőket jelenti:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Add meg a telefonszámod</string>

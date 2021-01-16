@@ -199,8 +199,6 @@
   <string name="ConversationItem_this_message_was_deleted">Beskeden blev slettet</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettede beskeden</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Reset sikker forbindelse?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Dette vil muligvis hjælpe hvis du oplever krypteringsproblemer med samtalen. Dine beskeder bevares</string> -->
   <string name="ConversationActivity_reset">Nulstil</string>
   <string name="ConversationActivity_add_attachment">Vedhæft fil</string>
   <string name="ConversationActivity_select_contact_info">Vælg kontaktinformation</string>
@@ -313,6 +311,11 @@
   <string name="ConversationFragment__tap_to_review">Tap for at gennemgå</string>
   <string name="ConversationFragment__review_requests_carefully">Gennemgå anmodninger omhyggeligt</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal fandt en anden kontakt med samme navn</string>
+  <string name="ConversationFragment_contact_us">Kontakt os</string>
+  <string name="ConversationFragment_verify">Verificér</string>
+  <string name="ConversationFragment_not_now">Ikke nu</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Dit sikkerhedsnummer med %s er ændret</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Dit sikkerhedsnummer med %s er ændret, sandsynligvis fordi de geninstallerede Signal eller ændrede enheder. Tryk på Bekræft for at bekræfte det nye sikkerhedsnummer. Dette er valgfrit.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -395,6 +398,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">I dag</string>
   <string name="DateUtils_yesterday">I går</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Chatsession opdateret</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal bruger end-to-end kryptering, og det kan undertiden være nødvendigt at opdatere din chatsession. Dette påvirker ikke din chats sikkerhed, men du har muligvis gået glip af en besked fra denne kontakt, og du kan bede dem om at sende det igen.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Sender</string>
   <string name="DeliveryStatus_sent">Sendt</string>
@@ -934,6 +940,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Beskeder med tidsudløb blev tidsindstilet til %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke blive tilføjet til gruppen og er blevet inviteret til at deltage.</string>
+  <string name="MessageRecord_chat_session_refreshed">Chatsession opdateret</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">En bruger kunne ikke blive tilføjet til den nye gruppe og er blevet inviteret til at deltage.</item>
     <item quantity="other">%1$s medlemmer kunne ikke blive tilføjet til den nye gruppe og er blevet inviteret til at deltage.</item>
@@ -1278,6 +1285,10 @@ telefonnummer
   <string name="RegistrationActivity_invalid_number">Ugyldigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det indtastede
 nummer (%s) er ugyldigt</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">En bekræftelseskode sendes til:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du vil modtage et opkald for at bekræfte dette nummer.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Er dit telefonnummer ovenfor korrekt?</string>
+  <string name="RegistrationActivity_edit_number">Redigér nummer</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler at have Google Play Service installeret. Du kan stadig bruge Signal, men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller mener du ser denne besked ved en fejl, bedes du kontakte support@signal.org på engelsk for hjælp</string>
   <string name="RegistrationActivity_i_understand">Forstået</string>
@@ -1433,6 +1444,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Chatsession opdateret</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
@@ -1473,7 +1485,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Beskeden er krypteret til en session der ikke findes</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig krypteret MMS besked</string>
@@ -1971,6 +1982,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal til alle indgående MMS\'er</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
+  <string name="preferences__pref_use_address_book_photos">Brug fotos i adressebogen</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige</string>
   <string name="preferences__generate_link_previews">Genererer eksempelvisning af link</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent eksempelvisninger af links direkte fra websteder til beskeder, som du sender</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
@@ -2023,7 +2036,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__mmsc_password">MMSC Kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapporter for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for hver SMS besked du sender</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chat og medier</string> -->
+  <string name="preferences__data_and_storage">Data og lagring</string>
   <string name="preferences__storage">Hukommelse</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
   <string name="preferences__keep_messages">Bevar beskeder</string>
@@ -2088,6 +2101,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__app_access">App adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_data_and_storage__manage_storage">Håndtér lagring</string>
+  <string name="preferences_data_and_storage__calls">Opkald</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
+  <string name="preferences_data_and_storage__never">Aldrig</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wifi og mobildata</string>
+  <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>
   <string name="preferences_notifications__events">Begivenheder</string>
   <string name="preferences_notifications__in_chat_sounds">Chat lyde</string>
@@ -2568,8 +2588,9 @@ Der er %d dage tilbage</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s og %2$s gik</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s og %2$s og %3$s gik</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s og %3$d andre gik</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Dig (på en anden enhed)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en anden enhed)</string> -->
+  <string name="CallParticipant__you">Dig</string>
+  <string name="CallParticipant__you_on_another_device">Dig (på en anden enhed)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (på en anden enhed)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sletning af din konto vil:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Indtast dit telefonnummer</string>

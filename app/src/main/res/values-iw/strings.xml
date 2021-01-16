@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">הודעה זו נמחקה.</string>
   <string name="ConversationItem_you_deleted_this_message">מחקת הודעה זו.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">לאפס שיח מאובטח?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">זה יעזור אם יש לך חווה בעיות הצפנה בשיחה זו. ההודעות שלך יישמרו.</string> -->
   <string name="ConversationActivity_reset">אפס</string>
   <string name="ConversationActivity_add_attachment">הוסף צרופה</string>
   <string name="ConversationActivity_select_contact_info">בחר מידע של איש קשר</string>
@@ -332,6 +330,11 @@
   <string name="ConversationFragment__tap_to_review">הקש כדי לסקור</string>
   <string name="ConversationFragment__review_requests_carefully">סקור בקשות בזהירות</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal מצא איש קשר אחר עם אותו שם.</string>
+  <string name="ConversationFragment_contact_us">צור קשר</string>
+  <string name="ConversationFragment_verify">וודא</string>
+  <string name="ConversationFragment_not_now">לא עכשיו</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">מספר הביטחון שלך עם %s השתנה</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">מספר הביטחון שלך עם %s השתנה, כנראה מאחר שהוא/היא התקין/ה מחדש את Signal או שינה/שינתה מכשירים. הקש וודא כדי לאשר את המספר החדש של הביטחון. זה רשותי.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">אין דפדפן מותקן במכשיר שלך.</string>
   <!--ConversationListFragment-->
@@ -422,6 +425,9 @@
   <string name="DateUtils_minutes_ago">%d ד\'</string>
   <string name="DateUtils_today">היום</string>
   <string name="DateUtils_yesterday">אתמול</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">שיח התכתבות רוענן</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal משתמש בהצפנה מקצה־אל־קצה והוא עשוי להצטרך לרענן את שיח ההתכתבות שלך לפעמים. זה לא משפיע על אבטחת ההתכתבות שלך אבל ייתכן שהחמצת הודעה מאיש קשר זה, ואתה יכול לבקש ממנו לשלוח אותה מחדש.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">שולח</string>
   <string name="DeliveryStatus_sent">נשלח</string>
@@ -1029,6 +1035,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">קוצב הזמן של ההודעות הנעלמות הוגדר אל %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">קבוצה זו עודכנה אל קבוצה חדשה.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">לא יכולת להתווסף אל הקבוצה החדשה והוזמנת להצטרף.</string>
+  <string name="MessageRecord_chat_session_refreshed">שיח התכתבות רוענן</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">חבר קבוצה לא היה יכול להתווסף אל הקבוצה החדשה והוא הוזמן להצטרף.</item>
     <item quantity="two">%1$s חברי קבוצה לא יכלו להתווסף אל הקבוצה החדשה והם הוזמנו להצטרף.</item>
@@ -1406,6 +1413,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">המספר
         שציינת (%s) אינו תקף.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">קוד וידוא יישלח אל:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">תקבל שיחה כדי לוודא מספר זה.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">האם מספר הטלפון שלך למעלה נכון?</string>
+  <string name="RegistrationActivity_edit_number">עריכת המספר</string>
   <string name="RegistrationActivity_missing_google_play_services">שירותי Google Play חסרים</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">במכשיר זה חסרים שירותי Google Play. אתה יכול עדין להשתמש ב־Signal, אבל תצורה זו עשויה לגרום לאמינות מופחתת או לביצועים מופחתים.\n\nאם אינך משתמש מתקדם, אינך מריץ ROM של Android שהותקן לאחר רכישה, או שאתה מאמין שאתה רואה זאת בטעות, אנא צור קשר עם support@signal.org לעזרה באיתור תקלות.</string>
   <string name="RegistrationActivity_i_understand">אני מבין</string>
@@ -1563,6 +1574,7 @@
   <string name="ThreadRecord_contact">איש קשר</string>
   <string name="ThreadRecord_file">קובץ</string>
   <string name="ThreadRecord_video">סרטון</string>
+  <string name="ThreadRecord_chat_session_refreshed">שיח התכתבות רוענן</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">עדכון Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">גרסה חדשה של Signal זמינה, הקש כדי לעדכן</string>
@@ -1605,7 +1617,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">הודעת MMS מוצפנת באופן גרוע</string>
@@ -2125,6 +2136,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">השתמש ב־Signal עבור כל הודעות המולטימדיה הנכנסות</string>
   <string name="preferences__pref_enter_sends_title">מקש Enter שולח</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">לחיצה על מקש Enter תישלח הודעות טקסט</string>
+  <string name="preferences__pref_use_address_book_photos">השתמש בתמונות של פנקס הכתובות</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">הצג תמונות אנשי קשר מפנקס הכתובות אם זמינות</string>
   <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">אחזר תצוגות מקדימות של קישורים ישירות מאתרים עבור הודעות שאתה שולח.</string>
   <string name="preferences__choose_identity">בחר זהות</string>
@@ -2177,7 +2190,7 @@
   <string name="preferences__mmsc_password">סיסמת MMSC</string>
   <string name="preferences__sms_delivery_reports">דוחות מסירת מסרונים</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">בקש דוח מסירה לכל מסרון שאתה שולח</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">התכתבויות ומדיה</string> -->
+  <string name="preferences__data_and_storage">נתונים ואחסון</string>
   <string name="preferences__storage">אחסון</string>
   <string name="preferences__conversation_length_limit">מגבלת אורך שיחה</string>
   <string name="preferences__keep_messages">שמור הודעות</string>
@@ -2242,6 +2255,13 @@
   <string name="preferences_app_protection__app_access">גישת יישום</string>
   <string name="preferences_app_protection__communication">תקשורת</string>
   <string name="preferences_chats__chats">התכתבויות</string>
+  <string name="preferences_data_and_storage__manage_storage">נהל אחסון</string>
+  <string name="preferences_data_and_storage__calls">שיחות</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">השתמש בפחות נתונים עבור שיחות</string>
+  <string name="preferences_data_and_storage__never">אף פעם</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi וסלולרי</string>
+  <string name="preferences_data_and_storage__cellular_only">סלולרי בלבד</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות</string>
   <string name="preferences_notifications__messages">הודעות</string>
   <string name="preferences_notifications__events">אירועים</string>
   <string name="preferences_notifications__in_chat_sounds">צלילים בתוך התכתבויות</string>
@@ -2739,8 +2759,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s וגם %2$s עזבו</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s וגם %3$s עזבו</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ועוד %3$d אחרים עזבו</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">את/ה (במכשיר אחר)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (במכשיר אחר)</string> -->
+  <string name="CallParticipant__you">את/ה</string>
+  <string name="CallParticipant__you_on_another_device">את/ה (במכשיר אחר)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (במכשיר אחר)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">מחיקת החשבון שלך:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">הכנס את מספר הטלפון שלך</string>

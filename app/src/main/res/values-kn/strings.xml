@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಮರು ಪ್ರಾರಂಭಿಸಿ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ನೀವು ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸಹಾಯ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲಾಗುವುದು.</string> -->
   <string name="ConversationActivity_reset">ಮರುಹೊಂದಿಸಿ</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -314,6 +312,10 @@
   <string name="ConversationFragment__tap_to_review">ಪರೀಕ್ಷಿಸಲು ಇಲ್ಲಿ ಒತ್ತಿ</string>
   <string name="ConversationFragment__review_requests_carefully">ಕೋರಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ಒಂದೇ ಹೆಸರಿನ ಇನ್ನೊಂದು ಸಂಪರ್ಕವನ್ನು ಕಂಡುಹಿಡಿಯಿತು</string>
+  <string name="ConversationFragment_contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+  <string name="ConversationFragment_verify">ದೃಢೀಕರಿಸಿ</string>
+  <string name="ConversationFragment_not_now">ಈಗಲ್ಲ</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ನಿಮ್ಮ ಸಾಧನ ಯಾವುದೇ ಬ್ರೌಸರ್ ಅನ್ನು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ.</string>
   <!--ConversationListFragment-->
@@ -398,6 +400,7 @@
   <string name="DateUtils_minutes_ago">%dನಿ</string>
   <string name="DateUtils_today">ಇಂದು</string>
   <string name="DateUtils_yesterday">ನಿನ್ನೆ</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="DeliveryStatus_sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
@@ -1135,7 +1138,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">ಕೆಟ್ಟದಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿರುವ ಸಂದೇಶ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲದ ಅವಧಿಗಾಗಿ ಸಂದೇಶ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ಕೆಟ್ಟದಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿರುವ ಎಸ್‌ಎಂಎಸ್‌ ಸಂದೇಶ</string>
@@ -1519,6 +1521,7 @@
   <!--HelpFragment-->
   <string name="HelpFragment__help">ಸಹಾಯ</string>
   <string name="HelpFragment__next">ಮುಂದೆ</string>
+  <string name="HelpFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="HelpFragment__signal_support">Signal ಬೆಂಬಲ</string>
   <string name="HelpFragment__no_email_app_found">ಯಾವುದೇ ಈಮೇಲ್‌ ಇಲ್ಲ</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1611,7 +1614,6 @@
   <string name="preferences__mmsc_password">ಎಂಎಂಎಸ್‌ಸಿ ಪಾಸ್ವರ್ಡ್</string>
   <string name="preferences__sms_delivery_reports">ಎಸ್‌ಎಂಎಸ್ ಡೆಲಿವರಿ ವರದಿಗಳು</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ಚಾಟ್‌‌ ಗಳು ಹಾಗೂ ಮೀಡಿಯಾ</string> -->
   <string name="preferences__storage">ಸ್ಟೊರೇಜ್</string>
   <string name="preferences__conversation_length_limit">ಸಂಭಾಷಣೆಯ ಉದ್ದ ಮಿತಿ</string>
   <string name="preferences__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
@@ -1673,6 +1675,8 @@
   <string name="preferences_app_protection__app_access">ಅಪ್ಲಿಕೇಶನ್ ಪ್ರವೇಶ</string>
   <string name="preferences_app_protection__communication">ಸಂವಹನ</string>
   <string name="preferences_chats__chats">ಚಾಟ್‌‌ ಗಳು</string>
+  <string name="preferences_data_and_storage__calls">ಕರೆಗಳು</string>
+  <string name="preferences_data_and_storage__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
   <string name="preferences_notifications__messages">ಸಂದೇಶಗಳು</string>
   <string name="preferences_notifications__events">ಕಾರ್ಯಕ್ರಮಗಳು</string>
   <string name="preferences_notifications__in_chat_sounds">ಚಾಟ್‌ ನಲ್ಲಿನ ಶಬ್ದಗಳು</string>
@@ -2149,8 +2153,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ಹಾಗು %2$s ಉಳಿದಿದ್ದಾರೆ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ಹಾಗು %3$s ಉಳಿದಿದ್ದಾರೆ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ಹಾಗು %3$d ಇನ್ನಿತರು ಉಳಿದಿದ್ದಾರೆ</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string> -->
+  <string name="CallParticipant__you">ನೀವು</string>
+  <string name="CallParticipant__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
   <string name="DeleteAccountFragment__are_you_sure">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>

@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Mezu hau ezabatu da.</string>
   <string name="ConversationItem_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Saio segurua berrabiarazi?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Agian honek lagunduko du enkriptatzeko arazorik baldin baduzu. Zure mezuak mantenduko dira.</string> -->
   <string name="ConversationActivity_reset">Berrabiarazi</string>
   <string name="ConversationActivity_add_attachment">Eranskina gehitu</string>
   <string name="ConversationActivity_select_contact_info">Kontaktuaren informazioa aukeratu</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Ukitu berrikusteko</string>
   <string name="ConversationFragment__review_requests_carefully">Berrikusi eskaerak kontu handiz</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal-ek izen bera duen beste kontaktu bat topatu du.</string>
+  <string name="ConversationFragment_contact_us">Harremanetan jarri gurekin</string>
+  <string name="ConversationFragment_verify">Baieztatu</string>
+  <string name="ConversationFragment_not_now">Orain ez</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s erabiltzailearekin duzun segurtasun-zenbakia aldatu egin da.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s erabiltzailearekin duzun segurtasun-zenbakia aldatu egin da seguraski Signal berrinstalatu duelako edo gailua aldatu duelako. Sakatu Egiaztatu segurtasun-zenbaki berria egiaztatzeko. Hau hautazkoa da.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Zure gailuan ez dago nabigatzailerik instalatuta.</string>
   <!--ConversationListFragment-->
@@ -395,6 +398,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Gaur</string>
   <string name="DateUtils_yesterday">Atzo</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalek muturretik-muturrerako zifratzea erabiltzen dut eta noizbehinka txataren sesioa eguneratu beharko duzu. Honek ez du zure txataren segurtasunean eraginik baina agian kontaktu horren mezuren bat galdu egingo zenuen eta berriz bidaltzeko eskatu beharko zenioke zure kontaktuari.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Bidaltzen</string>
   <string name="DeliveryStatus_sent">Bidalita</string>
@@ -934,6 +940,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Desagertzen diren mezuen tenporizadorea honela ezarri da: %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Talde hau eguneratu da eta Talde Berria bilakatu da.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ezin izan zaituzte Talde Berrira gehitu eta taldean sartzeko gonbidapena bidali zaizu.</string>
+  <string name="MessageRecord_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Kide bat ezin izan da Talde Berrira gehitu eta sartzeko gonbidapena bidali zaio.</item>
     <item quantity="other">%1$s kide ezin izan dira Talde Berrira gehitu eta sartzeko gonbidapena bidali zaie.</item>
@@ -1279,6 +1286,10 @@ zehaztu behar duzu
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zehaztu duzun 
 zenbakia (%s) baliogabea da.
 </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Egiaztapen-kodea hona bidaliko da:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Zenbaki hau egiaztatzeko deia jasoko duzu.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Zure telefono zenbaki hori zuzena da?</string>
+  <string name="RegistrationActivity_edit_number">Zenbakia editatu</string>
   <string name="RegistrationActivity_missing_google_play_services">Ez dira topatzen Google Play-ren zerbitzuak </string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Ez dago Google Play Services-ik gailu honetan. Signal erabili dezakezu, baina konfigurazio honek fidagarritasuna edo errendimendua gutxiagotu dezake.\n\nErabiltzaile aurreratua ez bazara, jatorrizkoa ez den Android ROM bat erabiltzen ari ez bazara edo hau errore bat dela uste baduzu, mesedez jarri zaitez harremanetan support@signal.org helbidean.</string>
   <string name="RegistrationActivity_i_understand">Ulertzen dut</string>
@@ -1434,6 +1445,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_contact">Kontaktua</string>
   <string name="ThreadRecord_file">Artxiboa</string>
   <string name="ThreadRecord_video">Bideoa</string>
+  <string name="ThreadRecord_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal eguneratu</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signalaren bertsio berria dago, sakatu eguneratzeko</string>
@@ -1474,7 +1486,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Gaizki enkriptatuko mezua</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Existitzen ez den bertsio baterako enkriptatutako mezua</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Gaizki enkriptatutako MMS mezua…</string>
@@ -1972,6 +1983,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Erabili Signal etorriko diren multimedia mezu guztiak jasotzeko</string>
   <string name="preferences__pref_enter_sends_title">Enter tekla sakatutakoan</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tekla sakatzeak testu mezuak bidaliko ditu</string>
+  <string name="preferences__pref_use_address_book_photos">Erabili kontaktuen-zerrendako irudiak</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Erakutsi sistemaren kontaktuen irudiak, baldin badaude</string>
   <string name="preferences__generate_link_previews">Sortu esteken aurrebistak</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Eskuratu esteken aurrebistak zuzenean webguneetatik eta erabili bidaltzen dituzun mezuetan.</string>
   <string name="preferences__choose_identity">Aukeratu nortasuna</string>
@@ -2024,7 +2037,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__mmsc_password">MMSC Pasaesaldia</string>
   <string name="preferences__sms_delivery_reports">SMS banaketaren txostenak</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Bidaltzen duzun SMS mezu bakoitzeko banaketa txosten bat eskatu</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Txatak eta multimedia</string> -->
+  <string name="preferences__data_and_storage">Datuak eta Biltegiratzea</string>
   <string name="preferences__storage">Biltegia</string>
   <string name="preferences__conversation_length_limit">Solasaldiaren luzera muga</string>
   <string name="preferences__keep_messages">Mezuak gorde</string>
@@ -2089,6 +2102,13 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences_app_protection__app_access">App-erako sarrera</string>
   <string name="preferences_app_protection__communication">Komunikazioa</string>
   <string name="preferences_chats__chats">Txatak</string>
+  <string name="preferences_data_and_storage__manage_storage">Kudeatu biltegiratzea</string>
+  <string name="preferences_data_and_storage__calls">Deiak</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Deientzat datu gutxiago erabili</string>
+  <string name="preferences_data_and_storage__never">Inoiz ez</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi eta Telefonoa</string>
+  <string name="preferences_data_and_storage__cellular_only">Telefonoa bakarrik</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Datu gutxiago erabiltzeak sare txarretan deiak hobetzea ekarri dezake</string>
   <string name="preferences_notifications__messages">Mezuak</string>
   <string name="preferences_notifications__events">Gertaerak</string>
   <string name="preferences_notifications__in_chat_sounds">Txat barruko soinuak</string>
@@ -2568,8 +2588,9 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s eta %2$s joan dira</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s eta %3$s joan dira</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s eta beste %3$d joan dira</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Zu (beste gailu batean)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (beste gailu baten)</string> -->
+  <string name="CallParticipant__you">Zu</string>
+  <string name="CallParticipant__you_on_another_device">Zu (beste gailu batean)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (beste gailu baten)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Zure kontua ezabatzean zera gertatuko da:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Idatzi zure telefono zenbakia</string>

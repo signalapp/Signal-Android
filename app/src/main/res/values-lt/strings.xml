@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ši žinutė buvo ištrinta.</string>
   <string name="ConversationItem_you_deleted_this_message">Jūs ištrynėte šią žinutę.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatyti saugųjį seansą?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tai gali padėti, jeigu turite problemų su šifravimu. Jūsų žinutės bus išsaugotos.</string> -->
   <string name="ConversationActivity_reset">Atstatyti</string>
   <string name="ConversationActivity_add_attachment">Pridėti priedą</string>
   <string name="ConversationActivity_select_contact_info">Pasirinkti adresato informaciją</string>
@@ -332,6 +330,9 @@
   <string name="ConversationFragment__tap_to_review">Bakstelėkite, norėdami peržiūrėti</string>
   <string name="ConversationFragment__review_requests_carefully">Atidžiai peržiūrėkite prašymus</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal rado kitą adresatą tokiu pačiu vardu.</string>
+  <string name="ConversationFragment_contact_us">Susisiekite su mumis</string>
+  <string name="ConversationFragment_verify">Patvirtinti</string>
+  <string name="ConversationFragment_not_now">Ne dabar</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -422,6 +423,7 @@
   <string name="DateUtils_minutes_ago">%d min.</string>
   <string name="DateUtils_today">Šiandien</string>
   <string name="DateUtils_yesterday">Vakar</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Siunčiama</string>
   <string name="DeliveryStatus_sent">Išsiųsta</string>
@@ -1598,7 +1600,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Žinutė šifruota seansui, kurio nėra</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Blogai šifruota MMS žinutė</string>
@@ -2170,7 +2171,6 @@
   <string name="preferences__mmsc_password">MMSC slaptažodis</string>
   <string name="preferences__sms_delivery_reports">SMS pristatymo ataskaitos</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Reikalauti pristatymo ataskaitos kiekvienai jūsų siunčiamai SMS žinutei</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Pokalbiai ir medija</string> -->
   <string name="preferences__storage">Saugykla</string>
   <string name="preferences__conversation_length_limit">Pokalbio ilgio riba</string>
   <string name="preferences__keep_messages">Saugoti žinutes</string>
@@ -2235,6 +2235,8 @@
   <string name="preferences_app_protection__app_access">Programėlės prieiga</string>
   <string name="preferences_app_protection__communication">Susisiekimas</string>
   <string name="preferences_chats__chats">Pokalbiai</string>
+  <string name="preferences_data_and_storage__calls">Skambučiai</string>
+  <string name="preferences_data_and_storage__never">Niekada</string>
   <string name="preferences_notifications__messages">Žinutės</string>
   <string name="preferences_notifications__events">Įvykiai</string>
   <string name="preferences_notifications__in_chat_sounds">Garsai pokalbiuose</string>
@@ -2732,8 +2734,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ir %2$s išėjo</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ir %3$s išėjo</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ir dar %3$d žmonės(-ių) išėjo</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Jūs (kitame įrenginyje)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (kitame įrenginyje)</string> -->
+  <string name="CallParticipant__you">Jūs</string>
+  <string name="CallParticipant__you_on_another_device">Jūs (kitame įrenginyje)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (kitame įrenginyje)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ištrinant jūsų paskyrą bus:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Įveskite savo telefono numerį</string>

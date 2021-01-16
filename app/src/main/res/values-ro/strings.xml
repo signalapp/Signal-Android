@@ -201,8 +201,6 @@
   <string name="ConversationItem_this_message_was_deleted">Acest mesaj a fost șters.</string>
   <string name="ConversationItem_you_deleted_this_message">Ați șters acest mesaj.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resetez sesiunea securizată?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Această acțiune poate ajuta dacă ai probleme de criptare în conversația curentă. Mesajele dvs. vor fi păstrate.</string> -->
   <string name="ConversationActivity_reset">Resetare</string>
   <string name="ConversationActivity_add_attachment">Adăugați atașament</string>
   <string name="ConversationActivity_select_contact_info">Selectează informații de contact</string>
@@ -322,6 +320,9 @@
   <string name="ConversationFragment__tap_to_review">Atingeți pentru examinare</string>
   <string name="ConversationFragment__review_requests_carefully">Examinați cu atenție solicitările</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal a găsit un alt contact cu același nume.</string>
+  <string name="ConversationFragment_contact_us">Contactați-ne</string>
+  <string name="ConversationFragment_verify">Verifică</string>
+  <string name="ConversationFragment_not_now">Nu acum</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -408,6 +409,8 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Azi</string>
   <string name="DateUtils_yesterday">Ieri</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Se trimite</string>
   <string name="DeliveryStatus_sent">Trimis</string>
@@ -939,6 +942,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Timpul setat pentru dispariția mesajele a fost setat la %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Acest grup a fost actualizat la Noul Grup.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nu ai putut fi adăugat la noul grup și ai fost invitat să te înscrii.</string>
+  <string name="MessageRecord_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s și-a schimbat numele profilului în %2$s.</string>
   <string name="MessageRecord_changed_their_profile_name_from_to">%1$s și-a schimbat numele profilul din %2$s în %3$s.</string>
@@ -1287,6 +1291,7 @@ numărul dvs. de telefon</string>
   <string name="RegistrationActivity_invalid_number">Număr invalid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
 furnizat (%s) este invalid.</string>
+  <string name="RegistrationActivity_edit_number">Editează număr</string>
   <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te rog contactează support@signal.org pentru ajutor la depanare.</string>
   <string name="RegistrationActivity_i_understand">Am înțeles</string>
@@ -1441,6 +1446,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_contact">Contact</string>
   <string name="ThreadRecord_file">Fișier</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Actualizare Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">O nouă versiune de Signal este disponibilă, apasă pentru actualizare</string>
@@ -1463,6 +1469,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UsernameEditFragment_username_is_invalid">Numele de utilizator este invalid.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Numele de utilizator trebuie să aibă între %1$d și %2$d caractere.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Numele de utilizator pe Signal sunt opționale. Dacă alegeți să creați un nume de utilizator, alți utilizatori de Signal vă vor putea găsi prin acest nume de utilizator și vă vor contacta fără să vă știe numărul dvs. de telefon.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contact este pe Signal!</item>
+    <item quantity="few">%d contacte sunt pe Signal!</item>
+    <item quantity="other">%d contacte sunt pe Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
@@ -1477,7 +1488,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesaj MMS criptat incorect</string>
@@ -1986,6 +1996,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__pref_enter_sends_title">Trimitere cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Afișează fotografiile contactelor din sistem dacă sunt disponibile</string>
   <string name="preferences__generate_link_previews">Generați previzualizări ale linkurilor</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obțineți previzualizările link-urilor direct de pe site-urile web pentru mesajele pe care le trimiteți.</string>
   <string name="preferences__choose_identity">Selectează identitatea</string>
@@ -2038,7 +2049,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__mmsc_password">Parolă MMSC</string>
   <string name="preferences__sms_delivery_reports">Confirmări de livrare SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Cere o confirmare de livrare pentru fiecare SMS trimis</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Conversaţii şi media</string> -->
+  <string name="preferences__data_and_storage">Date și stocare</string>
   <string name="preferences__storage">Spaţiu stocare</string>
   <string name="preferences__conversation_length_limit">Limita mărime conversație</string>
   <string name="preferences__keep_messages">Păstrare mesaje</string>
@@ -2104,6 +2115,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_app_protection__app_access">Acces aplicație</string>
   <string name="preferences_app_protection__communication">Comunicare</string>
   <string name="preferences_chats__chats">Conversații</string>
+  <string name="preferences_data_and_storage__manage_storage">Administrare stocare</string>
+  <string name="preferences_data_and_storage__calls">Apeluri</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizare date mai puține pentru apeluri</string>
+  <string name="preferences_data_and_storage__never">Niciodată</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi și date celulare</string>
+  <string name="preferences_data_and_storage__cellular_only">Doar date celulare</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Folosind mai puține date, se pot îmbunătăți apelurile în rețelele cu probleme</string>
   <string name="preferences_notifications__messages">Mesaje</string>
   <string name="preferences_notifications__events">Evenimente</string>
   <string name="preferences_notifications__in_chat_sounds">Sunete în conversații</string>
@@ -2592,8 +2610,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s și %2$s au ieșit</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s și %3$s au ieșit</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s și %3$d alții au ieșit</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (pe alt dispozitiv)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (pe alt dispozitiv)</string> -->
+  <string name="CallParticipant__you">Dvs.</string>
+  <string name="CallParticipant__you_on_another_device">Tu (pe alt dispozitiv)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (pe alt dispozitiv)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Ștergerea contului dvs. implică:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Introduceți numărul dvs. de telefon</string>

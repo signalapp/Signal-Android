@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ta wiadomość została usunięta.</string>
   <string name="ConversationItem_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Zresetować bezpieczną sesję?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To może pomóc jeśli masz problemy z szyfrowaniem w tej konwersacji. Twoje wiadomości będą zachowane.</string> -->
   <string name="ConversationActivity_reset">Reset</string>
   <string name="ConversationActivity_add_attachment">Dodaj załącznik</string>
   <string name="ConversationActivity_select_contact_info">Wybierz dane kontaktowe</string>
@@ -332,6 +330,11 @@
   <string name="ConversationFragment__tap_to_review">Stuknij, aby przejrzeć</string>
   <string name="ConversationFragment__review_requests_carefully">Przejrzyj uważnie wszystkie prośby</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal znalazł inny kontakt z tym samym imieniem.</string>
+  <string name="ConversationFragment_contact_us">Skontaktuj się z nami</string>
+  <string name="ConversationFragment_verify">Zweryfikuj</string>
+  <string name="ConversationFragment_not_now">Nie teraz</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Twój numer bezpieczeństwa dla %s zmienił się</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Twój numer bezpieczeństwa dla %s zmienił się. Ten kontakt prawdopodobnie ponownie zainstalował Signal, lub zmienił urządzenie. Stuknij Zweryfikuj, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
@@ -422,6 +425,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Dzisiaj</string>
   <string name="DateUtils_yesterday">Wczoraj</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sesja rozmowy odświeżona</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal używa szyfrowania metodą end-to-end i czasem może potrzebować odświeżenia sesji rozmowy. To nie wpłynie na bezpieczeństwo Twojej rozmowy, ale możesz przegapić wiadomość od tego kontaktu. Możesz go wtedy poprosić o ponowne przesłanie tej wiadomości.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Wysyłanie</string>
   <string name="DeliveryStatus_sent">Wysłano</string>
@@ -1029,6 +1035,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Czas znikania wiadomości został ustawiony na %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ta grupa została zaktualizowana do Nowej grupy.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Nie mogłeś(aś) zostać dodany(a) do Nowej grupy i zostałeś(aś) do niej zaproszony(a).</string>
+  <string name="MessageRecord_chat_session_refreshed">Sesja rozmowy odświeżona</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Członek nie mógł zostać dodany do Nowej grupy i został do niej zaproszony.</item>
     <item quantity="few">%1$s członków nie mogło zostać dodanych do Nowej grupy i zostało do niej zaproszonych.</item>
@@ -1401,6 +1408,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Podany numer
         (%s) jest niepoprawny.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Kod weryfikacyjny zostanie wysłany do:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Otrzymasz telefon, aby zweryfikować ten numer.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Czy powyższy numer jest poprawny?</string>
+  <string name="RegistrationActivity_edit_number">Edytuj numer</string>
   <string name="RegistrationActivity_missing_google_play_services">Brak Usług Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Brak Usług Google Play na tym urządzeniu. Nadal możesz używać Signal, lecz ta konfiguracja może powodować mniejszą niezawodność i wydajność\n\nJeśli nie jesteś zaawansowanym użytkownikiem, nie korzystasz ze zmodyfikowanego systemu Android, lub sądzisz, że to błąd, wyślij e-mail na adres support@signal.org, aby otrzymać pomoc.</string>
   <string name="RegistrationActivity_i_understand">Rozumiem</string>
@@ -1555,6 +1566,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Plik</string>
   <string name="ThreadRecord_video">Wideo</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sesja rozmowy odświeżona</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aktualizacja Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Dostępna jest nowa wersja Signal. Dotknij, aby zaktualizować</string>
@@ -1597,7 +1609,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Źle zaszyfrowana wiadomość</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Wiadomość zaszyfrowana dla nieistniejącej sesji</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Źle zaszyfrowana wiadomość MMS</string>
@@ -2117,6 +2128,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Używaj Signal dla wszystkich wiadomości multimedialnych</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
+  <string name="preferences__pref_use_address_book_photos">Użyj zdjęć z kontaktów systemu</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Wyświetl zdjęcia kontaktów z książki telefonicznej, jeśli dostępne</string>
   <string name="preferences__generate_link_previews">Twórz podglądy linków</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pobieraj podglądy linków we wiadomościach bezpośrednio ze stron internetowych.</string>
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
@@ -2169,7 +2182,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__mmsc_password">Hasło MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporty dostarczenia SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Żądaj raportu dostarczenia każdej wysłanej wiadomości SMS</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Rozmowy i multimedia</string> -->
+  <string name="preferences__data_and_storage">Dane i pamięć</string>
   <string name="preferences__storage">Pamięć</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__keep_messages">Zachowuj wiadomości</string>
@@ -2234,6 +2247,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_app_protection__app_access">Dostęp aplikacji</string>
   <string name="preferences_app_protection__communication">Komunikacja</string>
   <string name="preferences_chats__chats">Rozmowy</string>
+  <string name="preferences_data_and_storage__manage_storage">Zarządzaj pamięcią</string>
+  <string name="preferences_data_and_storage__calls">Połączenia</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Używaj mniej danych dla połączeń</string>
+  <string name="preferences_data_and_storage__never">Nigdy</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i sieć komórkowa</string>
+  <string name="preferences_data_and_storage__cellular_only">Tylko sieć komórkowa</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Używanie mniejszej ilości danych może poprawić połączenie w słabych sieciach</string>
   <string name="preferences_notifications__messages">Wiadomości</string>
   <string name="preferences_notifications__events">Zdarzenia</string>
   <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas rozmowy</string>
@@ -2731,8 +2751,9 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s i %2$s opuścii(ły) rozmowę</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s i %3$s opuścili(ły) rozmowę</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s i %3$d innych opuściło rozmowę</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ty (na innym urządzeniu)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (na innym urządzeniu)</string> -->
+  <string name="CallParticipant__you">Ty</string>
+  <string name="CallParticipant__you_on_another_device">Ty (na innym urządzeniu)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (na innym urządzeniu)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Usunięcie Twojego konta spowoduje:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Podaj swój numer telefonu</string>

@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">यह मेसेज हटा दिया गया है।</string>
   <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज हटाया है</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">सुरक्षित सत्र रीसेट करें?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">अगर आपको इस संवाद में एन्क्रिप्शन समस्याएं आ रही हैं तो इससे मदद मिल सकती है। आपके मेसेज रखे जाएंगे।</string> -->
   <string name="ConversationActivity_reset">फिर से स्थापित करना</string>
   <string name="ConversationActivity_add_attachment">अटैचमेंट जोड़ें</string>
   <string name="ConversationActivity_select_contact_info">संपर्क जानकारी का चयन करें</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">समीक्षा के लिए टैप करें</string>
   <string name="ConversationFragment__review_requests_carefully">अनुरोधों की सावधानीपूर्वक समीक्षा करें</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal को एक ही नाम वाला एक और संपर्क मिला।</string>
+  <string name="ConversationFragment_contact_us">हमसे संपर्क करें</string>
+  <string name="ConversationFragment_verify">सत्यापित करें</string>
+  <string name="ConversationFragment_not_now">अभी नहीं</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s के साथ आपका सुरक्षा नंबर बदल गया है</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s के साथ आपका सुरक्षा नंबर बदल गया है, संभव रूप से इसलिए क्योंकि उन्होंने Signal को रीइंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर टैप करें। यह वैकल्पिक है।</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपके डिवाइस पर कोई ब्राउज़र इंस्टॉल नहीं है।</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">आज</string>
   <string name="DateUtils_yesterday">कल</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal एंड-टू-एंड एन्क्रिप्शन का उपयोग करता है और इसे कभी-कभी आपके चैट सेशन को रीफ्रेश करने की ज़रूरत हो सकती है। इससे आपकी चैट की सुरक्षा प्रभावित नहीं होती, पर हो सकता है कि इस संपर्क से कोई मेसेज छूट गया हो, और आप उन्हें इसे दोबारा भेजने के लिए कह सकते हैं।</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">भेजा जा रहा है</string>
   <string name="DeliveryStatus_sent"> भेजा गया </string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">गायब होने वाले मेसेज के टाइमर को %1$s पर सेट किया गया है।</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">इस ग्रुप को एक नए ग्रुप में अपडेट किया गया था।</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">आपको नए ग्रुप में शमिल नहीं किया जा सका और आपको शामिल होने के लिए आमंत्रित किया गया है।</string>
+  <string name="MessageRecord_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">एक मेंबर को नए ग्रुप में शमिल नहीं किया जा सका और उसे शामिल होने के लिए आमंत्रित किया गया है।</item>
     <item quantity="other">%1$s मेंबर्स को नए ग्रुप में शमिल नहीं किया जा सका और उन्हें शामिल होने के लिए आमंत्रित किया गया है।</item>
@@ -1059,6 +1066,9 @@
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">एडमिन ने आपका इस ग्रुप से जुड़ने का निवेदन खरिज कर दिया है। </string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ने %2$s के  ग्रुप से जुड़ने का निवेदन खरिज कर दिया है। </string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied"> %1$s से ग्रुप में जुड़ने के अनुरोध को अस्वीकार किया गया है।</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">आपने ग्रुप में जुड़ने के अपने अनुरोध को रद्द कर दिया।</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ने ग्रुप में जुड़ने के उनके अनुरोध को रद्द कर दिया।</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s के साथ आपका सुरक्षा नंबर बदल गया है।</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">आपने %s के साथ अपना सुरक्षा नंबर सत्यापित मार्क करा हुआ है </string>
@@ -1066,13 +1076,35 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s ने एक ग्रुप कॉल शुरू की · %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s ग्रुप कॉल में है · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">आप ग्रुप कॉल में हैं · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s और %2$s ग्रुप कॉल में हैं · %3$s</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, और %3$s ग्रुप कॉल में हैं · %4$s</string>
+  <string name="MessageRecord_group_call_s">ग्रुप कॉल · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s ने एक ग्रुप कॉल शुरू की</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s ग्रुप कॉल में है</string>
+  <string name="MessageRecord_you_are_in_the_group_call">आप ग्रुप कॉल मे हैं</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s और %2$s ग्रुप कॉल में हैं</string>
+  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, और %3$s ग्रुप कॉल में हैं</string>
+  <string name="MessageRecord_group_call">ग्रुप कॉल</string>
   <string name="MessageRecord_you">आप</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s, और %3$d अन्य लोग ग्रुप कॉल में हैं · %4$s</item>
+    <item quantity="other">%1$s, %2$s, और %3$d अन्य लोग ग्रुप कॉल में हैं · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s, और %3$d अन्य लोग ग्रुप कॉल में हैं</item>
+    <item quantity="other">%1$s, %2$s, और %3$d अन्य लोग ग्रुप कॉल में हैं</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">स्वीकृत </string>
   <string name="MessageRequestBottomView_continue">आगे </string>
   <string name="MessageRequestBottomView_delete">हटाए </string>
   <string name="MessageRequestBottomView_block">ब्लॉक</string>
   <string name="MessageRequestBottomView_unblock">अनब्लॉक करें</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनका मेसेज देख लिया है जब तक आप स्वीकार नहीं करते।</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">इस ग्रुप के साथ अपना संवाद जारी रखना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">नए फ़ीचर्स जैसे कि @mentions और एडमिन को एक्टिवेट करने के लिए इस ग्रुप को अपग्रेड करें। वे मेंबर जिन्होंने इस ग्रुप में अपना नाम और तस्वीर शेयर नहीं की है, उन्हें शामिल होने के लिए आमंत्रित किया जाएगा।</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस लेगेसी ग्रुप को अब उपयोग नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
@@ -1229,8 +1261,16 @@
     <item quantity="other">%1$s, %2$s, और %3$d अन्य लोग इस कॉल में हैं</item>
   </plurals>
   <!--CallParticipantsListDialog-->
+  <plurals name="CallParticipantsListDialog_in_this_call_d_people">
+    <item quantity="one">इस कॉल में · %1$d व्यक्ति</item>
+    <item quantity="other">इस कॉल में · %1$d लोग</item>
+  </plurals>
   <!--CallParticipantView-->
+  <string name="CallParticipantView__s_is_blocked">%1$s ब्लॉक है</string>
   <string name="CallParticipantView__more_info">औेर जानकारी</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">आपको उनके ऑडियो या वीडियो प्राप्त नहीं होंगे और उन्हें आपके नहीं।</string>
+  <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
+  <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
@@ -1238,6 +1278,10 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">आपको अपना फोन नंबर निर्दिष्ट करना होगा</string>
   <string name="RegistrationActivity_invalid_number">अवैध नंबर</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%s) अमान्य है।</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">वेरीफिकेशन कोड यहाँ पर भेजा जाएगा:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">इस नंबर को वेरिफाई करने के लिए आपको एक कॉल आएगी।</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">क्या ऊपर दिया आपका फोन नंबर सही है?</string>
+  <string name="RegistrationActivity_edit_number">नंबर संपादित करें</string>
   <string name="RegistrationActivity_missing_google_play_services">लापता Google Play Services</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">इस डिवाइस में Google Play सेवाएं अनुपलब्ध हैं। आप अभी भी Signal का उपयोग कर सकते हैं, लेकिन इस कॉन्फ़िगरेशन के परिणामस्वरूप कम विश्वसनीयता या प्रदर्शन हो सकता है। \n\n अगर आप एक उन्नत उपयोगकर्ता नहीं हैं, बाद वाले Android ROM नहीं चला रहे हैं, या मानते हैं कि आप इसे गलती से देख रहे हैं, तो कृपया support@signal.org पर निवारण कीजिए </string>
   <string name="RegistrationActivity_i_understand">मै समझता हुँ…</string>
@@ -1392,6 +1436,7 @@
   <string name="ThreadRecord_contact">संपर्क</string>
   <string name="ThreadRecord_file">फ़ाइल</string>
   <string name="ThreadRecord_video">वीडियो</string>
+  <string name="ThreadRecord_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal अपडेट</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal का एक नया वर्ज़न उपलब्ध है, अपडेट करने के लिए टैप करें</string>
@@ -1432,7 +1477,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड मेसेज</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए मेसेज एन्क्रिप्ट किया गया</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">खराब एन्क्रिप्टेड MMS मेसेज</string>
@@ -1930,6 +1974,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सभी आने वाले मल्टीमीडिया मेसेज के लिए Signal का उपयोग करें</string>
   <string name="preferences__pref_enter_sends_title">दर्ज की भेजता है</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">एंटर कुंजी दबाकर टेक्स्ट मेसेज भेजे जाएंगे</string>
+  <string name="preferences__pref_use_address_book_photos">एडरेस बुक की तस्वीरें उपयोग करें</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">यदि उपलब्ध हो तो अपनी पता पुस्तिका से संपर्क तस्वीरें प्रदर्शित करें</string>
   <string name="preferences__generate_link_previews">लिंक प्रिव्यु बनाएँ</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">आप जो मेसेज भेजते हैं, उनके लिए आप वेबसाइट से सीधा लिंक प्रिव्यु प्राप्त कर सकते हैं।</string>
   <string name="preferences__choose_identity">पहचान का चयन करें</string>
@@ -1982,7 +2028,7 @@
   <string name="preferences__mmsc_password">MMSC पासवर्ड</string>
   <string name="preferences__sms_delivery_reports">SMS वितरण रिपोर्ट</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">आपके द्वारा भेजे जाने वाले प्रत्येक SMS मेसेज के लिए डिलीवरी रिपोर्ट का अनुरोध करें</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">चैट और मीडिया</string> -->
+  <string name="preferences__data_and_storage">डेटा और भंडारण</string>
   <string name="preferences__storage">स्टॉरेज </string>
   <string name="preferences__conversation_length_limit">वार्तालाप लंबाई सीमा</string>
   <string name="preferences__keep_messages">मेसेज रखें</string>
@@ -2047,6 +2093,13 @@
   <string name="preferences_app_protection__app_access">ऐप का उपयोग</string>
   <string name="preferences_app_protection__communication">संचार</string>
   <string name="preferences_chats__chats">चैट</string>
+  <string name="preferences_data_and_storage__manage_storage">भंडारण प्रबंधित करें</string>
+  <string name="preferences_data_and_storage__calls">कॉल</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">कॉल के लिए कम डेटा का उपयोग करें</string>
+  <string name="preferences_data_and_storage__never">कभी नहीं</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">वाईफाई और सेलुलर</string>
+  <string name="preferences_data_and_storage__cellular_only">केवल सेलुलर</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">कम डेटा का उपयोग करने से खराब नेटवर्क पर कॉल में सुधार हो सकता है</string>
   <string name="preferences_notifications__messages">मेसेज</string>
   <string name="preferences_notifications__events">आयोजन</string>
   <string name="preferences_notifications__in_chat_sounds">चैट में आवाज</string>
@@ -2291,14 +2344,22 @@
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ठीक है</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$sको आपसे एक मेसेज रिक्वेस्ट मिलेगी। आपका मेसेज अनुरोध स्वीकार होने के बाद आप कॉल कर सकते हैं।</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">पिेन बनाएँ</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs वह जानकारी रखते हैं जो Signal एन्क्रिप्टेड के साथ संग्रहीत होती है।</string>
   <string name="KbsMegaphone__create_pin">पिेन बनाएँ</string>
   <string name="KbsMegaphone__introducing_pins">पेश है, पिन</string>
   <string name="KbsMegaphone__update_pin">पिन अपडेट करें</string>
+  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">हम आपको बाद में याद दिलाएँगे। PIN बनाना %1$d दिनों में अनिवार्य हो जाएगा।</string>
+  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">हम आपको बाद में याद दिलाएँगे। आपके पिन की पुष्टि करना %1$d दिनों में अनिवार्य हो जाएगा।</string>
   <!--Research Megaphone-->
+  <string name="ResearchMegaphone_tell_signal_what_you_think">Signal को बताइए जो आप सोचते है </string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal को विश्व में सबसे अच्छा संदेश देने वाला ऐप बनाने के लिए, हमें आपकी feedback सुनना अच्छा लगेगा।</string>
   <string name="ResearchMegaphone_learn_more">अधिक जानें</string>
   <string name="ResearchMegaphone_dismiss">हटाएँ</string>
+  <string name="ResearchMegaphoneDialog_signal_research">Signal अनुसंधान</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>हमारा विश्वास गोपनीयता में है।</p><p>Signal आपको ट्रैक नहीं करता या आपके डेटा को एकत्र नहीं करता। सभी के लिए Signal को बेहतर बनाने के लिए, हम उपयोगकर्ता फीडबैक पर निर्भर करते हैं, <b>और हमें आपका फीडबैक पाकर खुशी होगी।</b></p><p>आप Signal का उपयोग कैसे करते हैं, यह समझने के लिए हम एक सर्वेक्षण करवा रहे हैं। हमारा सर्वेक्षण आपकी पहचान करने वाले किसी भी डेटा को एकत्र नहीं करेगा। यदि आपको अतिरिक्त फीडबैक शेयर करने में दिलचस्पी है, तो आपके पास संपर्क जानकारी प्रदान करने का विकल्प होगा।</p><p>यदि आपके पास कुछ मिनट का समय और देने के लिए कोई फीडबैक है, तो हमें आपसे जानकर खुशी होगी।</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">सर्वेक्षण का जवाब दें </string>
   <string name="ResearchMegaphoneDialog_no_thanks">नहीं धन्यवाद </string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">यह सर्वे अल्केमर द्वारा सुरक्षित डोमेन surveys.signalusers.org पर संचालित किया जा रहा है </string>
@@ -2347,6 +2408,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">बैकअप सक्षम करने के लिए, फोल्डर का चुनाव करें। बैकअप इस जगह पर संगृहीत किया जाएगा। </string>
   <string name="BackupDialog_choose_folder">फोल्डर को चुनो</string>
   <string name="BackupDialog_copied_to_clipboard">क्लिपबोर्ड पर कॉपी किया गया है</string>
+  <string name="BackupDialog_no_file_picker_available">कोई फाइल पिकर उपल्बध नहीं है।</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">सत्यापन के लिए अपना बैकअप पासफ्रेज दर्ज करें </string>
   <string name="BackupDialog_verify">सत्यापित करें</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">आप अपना बैकअप पासफ्रेज दर्ज करने में सफल रहे हैं </string>
@@ -2460,6 +2522,7 @@
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">लेगेसी बनाम नये समूह </string>
   <string name="GroupsLearnMore_what_are_legacy_groups">लेगेसी समूह क्या होते हैं?</string>
+  <string name="GroupsLearnMore_paragraph_1">लेगेसी ग्रुप्स वे ग्रुप्स हैं जो नए ग्रुप फ़ीचर्स जैसे कि एडमिन और अधिक विस्तृत ग्रुप अपडेट के साथ संगत नहीं हैं।</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">क्या किसी लेगेसी समूह को अपग्रेड किया जा सकता है? </string>
   <string name="GroupsLearnMore_paragraph_2">लिगेसी समूहों को नये समूहों में फिलहाल बदला नहीं जा सकता, लेकिन अगर उन सदस्यों के पास Signal का नवीनतम वर्ज़न है तो आप उन्हीं सदस्यों का एक नया समूह बना सकते हैं.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal भविष्य में लेगेसी समूहों को अपडेट करने का तरीका उपलब्ध करायेगा।</string>
@@ -2516,12 +2579,23 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$sऔर %2$s समूह छोड़ गए  </string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s और %3$s समूह छोड़ गए </string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s और %3$d अन्यउपयोगकर्ता समूह छोड़ गए </string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">आप (दूसरे डिवाइस से)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (अन्य डिवाइस से)</string> -->
+  <string name="CallParticipant__you">आप</string>
+  <string name="CallParticipant__you_on_another_device">आप (दूसरे डिवाइस से)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (अन्य डिवाइस से)</string>
   <!--DeleteAccountFragment-->
+  <string name="DeleteAccountFragment__deleting_your_account_will">अपना खाता मिटाने से:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
   <string name="DeleteAccountFragment__delete_account">खाता मिटाएँ</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">अपने खाते की जानकारी और प्रोफाइल तस्वीर मिटाएँ</string>
+  <string name="DeleteAccountFragment__delete_all_your_messages">अपने सभी मेसेज मिटाएँ</string>
+  <string name="DeleteAccountFragment__no_country_code">कोई देश कोड निर्दिष्ट नहीं</string>
+  <string name="DeleteAccountFragment__no_number">कोई नंबर निर्दिष्ट नहीं</string>
+  <string name="DeleteAccountFragment__the_phone_number">आपने जो फोन नंबर दर्ज किया है, वह आपके खाते के फोन नंबर से मेल नहीं खाता।</string>
   <string name="DeleteAccountFragment__are_you_sure">क्या आपको यकीन है कि आप अपना ख़ाता खत्म करना चाहते हैं?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">इससे आपका Signal का खाता मिटा जाएगा और एप्लिकेशन रीसेट हो जाएगी। प्रक्रिया पूरी होने के बाद ऐप बंद हो जाएगी।</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">खाता मिटा पाना असफल रहा। क्या आपके पास नेटवर्क कनेक्शन है?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानीय डेटा को मिटा पाना असफल रहा। आप इसे स्वंय सिस्टम एप्लिकेशन सेटिंग्स में साफ कर सकते हैं।</string>
+  <string name="DeleteAccountFragment__launch_app_settings">ऐप सेटिंग्स लांच करें</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">देश खोजें</string>
   <!--CreateGroupActivity-->

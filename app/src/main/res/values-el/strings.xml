@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string> -->
   <string name="ConversationActivity_reset">Επαναφορά</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Πάτα για ανασκόπηση</string>
   <string name="ConversationFragment__review_requests_carefully">Έλεγξε τα αιτήματα προσεκτικά</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Το Signal βρήκε και άλλη επαφή με το ίδιο όνομα.</string>
+  <string name="ConversationFragment_contact_us">Επικοινώνησε μαζί μας</string>
+  <string name="ConversationFragment_verify">Επιβεβαίωση</string>
+  <string name="ConversationFragment_not_now">Όχι τώρα</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ο κωδικός ασφαλείας σου με τον/την %s άλλαξε</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ο αριθμός ασφαλείας σου με τον/την %s άλλαξε, πιθανώς επειδή επανεγκατέστησε το Signal ή άλλαξε συσκευή. Πάτα Επιβεβαίωση για να επιβεβαιώσεις τον νέο αριθμό ασφαλείας. Αυτό είναι προαιρετικό.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dλ</string>
   <string name="DateUtils_today">Σήμερα</string>
   <string name="DateUtils_yesterday">Χθες</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Το Signal χρησιμοποιεί κρυπτογράφηση από άκρο σε άκρο και ίσως χρειάζεται να ανανεώσει τη συνέδρια της συνομιλίας σου μερικές φορές. Αυτό δεν επηρεάζει την ασφάλεια της συνομιλίας, αλλά ίσως χάσεις κάποιο μήνυμα από αυτή την επαφή, οπότε μπορείς να του/της ζητήσεις να το ξαναστείλει.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Αποστέλλεται</string>
   <string name="DeliveryStatus_sent">Στάλθηκε στις</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ορίστηκε σε %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Αυτή η ομάδα αναβαθμίστηκε σε Ομάδα νέου τύπου.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Δεν μπόρεσες να προστεθείς στην Ομάδα νέου τύπου, και προσκλήθηκες να μπεις.</string>
+  <string name="MessageRecord_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου και προσκλήθηκε να μπει.</item>
     <item quantity="other">%1$s μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και προσκλήθηκαν να μπουν.</item>
@@ -1274,6 +1281,10 @@
   <string name="RegistrationActivity_invalid_number">Μη έγκυρος αριθμός</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που έγραψες (%s)
 δεν είναι έγκυρος.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Θα σταλεί κωδικός επαλήθευσης στο:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Θα λάβεις μια κλήση για την επιβεβαίωση αυτού του αριθμού.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Είναι ο παραπάνω αριθμός τηλεφώνου σωστός;</string>
+  <string name="RegistrationActivity_edit_number">Επεξεργασία αριθμού</string>
   <string name="RegistrationActivity_missing_google_play_services">Υπηρεσίες Google Play που λείπουν</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν νομίζεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
   <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
@@ -1428,6 +1439,7 @@
   <string name="ThreadRecord_contact">Επαφή</string>
   <string name="ThreadRecord_file">Αρχείο</string>
   <string name="ThreadRecord_video">Βίντεο</string>
+  <string name="ThreadRecord_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πάτα για αναβάθμιση</string>
@@ -1468,7 +1480,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχουσα συνεδρία</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Μήνυμα MMS με πρόβλημα στην κρυπτογράφησή του</string>
@@ -1672,7 +1683,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Εναλλαγή συρταριού συνημμένων κάμερας</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ηχογράφησε και στείλε το συνημμένο αρχείο ήχου</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Κλείδωσε την ηχογράφηση του συνημμένου αρχείου ήχου</string>
-  <string name="conversation_activity__enable_signal_for_sms">Ενεργοποίηση το Signal για SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Χρήση του Signal για SMS</string>
   <string name="conversation_activity__message_could_not_be_sent">Το μήνυμα δεν στάλθηκε. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Σύρε για ακύρωση</string>
@@ -1966,6 +1977,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση του Signal για όλα τα εισερχόμενα μηνύματα πολυμέσων</string>
   <string name="preferences__pref_enter_sends_title">Το Enter στέλνει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα στέλνονται με το πάτημα του Enter</string>
+  <string name="preferences__pref_use_address_book_photos">Χρήση φωτογραφιών λίστας επαφών</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Εμφάνιση φωτογραφιών επαφών από τη λίστα επαφών αν είναι διαθέσιμες</string>
   <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
   <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
@@ -2018,7 +2031,7 @@
   <string name="preferences__mmsc_password">Κωδικός MMSC</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Συνομιλίες και πολυμέσα</string> -->
+  <string name="preferences__data_and_storage">Δεδομένα και χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2083,6 +2096,13 @@
   <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
   <string name="preferences_app_protection__communication">Επικοινωνία</string>
   <string name="preferences_chats__chats">Συνομιλίες</string>
+  <string name="preferences_data_and_storage__manage_storage">Διαχείριση χώρου αποθήκευσης</string>
+  <string name="preferences_data_and_storage__calls">Κλήσεις</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
+  <string name="preferences_data_and_storage__never">Ποτέ</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi και δεδομένα κινητής</string>
+  <string name="preferences_data_and_storage__cellular_only">Μόνο δεδομένα κινητής</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
   <string name="preferences_notifications__messages">Μηνύματα</string>
   <string name="preferences_notifications__events">Συμβάντα</string>
   <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
@@ -2563,8 +2583,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Οι %1$s και %2$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Οι %1$s, %2$s και %3$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string> -->
+  <string name="CallParticipant__you">Εσύ</string>
+  <string name="CallParticipant__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (από άλλη συσκευή)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>

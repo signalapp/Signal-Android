@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新中…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">你還沒有建立密碼！</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">每個對話上限 %d 則訊息</item>
   </plurals>
@@ -28,10 +28,10 @@
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">正在取消註冊 Signal 訊息和通話…    </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上取消你的註冊並停用 Signal 訊息和通話。日後如果想再次使用，則需要重新註冊你的電話號碼。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">簡訊功能已啟動</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按此以變更您預設的簡訊應用程式</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">輕觸以變更你預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">簡訊功能已停用</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">按這裡將 Signal 設定為預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_on">開啟</string>
@@ -151,7 +151,7 @@
   <string name="CommunicationActions_insecure_call">不安全的電話</string>
   <string name="CommunicationActions_carrier_charges_may_apply">電信商可能會收取額外的費用。你撥出的號碼未在Signal中註冊。 該電話將通過你的電信商撥出，而不是通過網際網路撥出。</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">你與 %1$s 的安全碼產生變動。這可能是有不明人士試圖攔截你的通訊，或是因為 %2$s 重新安裝了 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsCursorLoader-->
@@ -195,8 +195,6 @@
   <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">你已刪除此訊息。</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string> -->
   <string name="ConversationActivity_reset">重設</string>
   <string name="ConversationActivity_add_attachment">新增附檔</string>
   <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
@@ -302,6 +300,11 @@
   <string name="ConversationFragment__tap_to_review">點按以查看</string>
   <string name="ConversationFragment__review_requests_carefully">仔細審核請求</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal找到了另一個同名聯絡人。</string>
+  <string name="ConversationFragment_contact_us">與我們聯繫</string>
+  <string name="ConversationFragment_verify">驗證</string>
+  <string name="ConversationFragment_not_now">稍後</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">你與 %s 的安全碼已變更</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">你與 %s 的安全碼已變更，可能是因為他們重新安裝了Signal或更換了裝置。 點擊驗證以確認新的安全碼。 這是可選的。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的裝置上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->
@@ -327,7 +330,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已驗證</string>
-  <string name="ConversationTitleView_you">您</string>
+  <string name="ConversationTitleView_you">你</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">某些聯絡人不能在舊群組中。</string>
   <!--CreateProfileActivity-->
@@ -380,6 +383,9 @@
   <string name="DateUtils_minutes_ago">%d 分鐘前</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">聊天會話已刷新</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal使用點對點加密，有時可能需要刷新你的聊天對話。 這不會影響你聊天的安全性，但是你可能錯過了此聯絡人的訊息，可以要求他們重新傳送。</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">傳送中</string>
   <string name="DeliveryStatus_sent">已傳送</string>
@@ -449,7 +455,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">你想讓這個群組中，目前及未來的成員，都能夠看見你個人資訊中的名字及頭像照片？</string>
   <string name="GroupShareProfileView_make_visible">可看見的</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_you">您</string>
+  <string name="GroupMembersDialog_you">你</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">任何人</string>
   <string name="GroupManagement_access_level_all_members">所有成員</string>
@@ -885,6 +891,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">自動銷毀訊息時間已經被設為%1$s。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">該群組已更新為新群組。</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">你無法新增到新版群組中，但已被邀請加入。</string>
+  <string name="MessageRecord_chat_session_refreshed">聊天會話已刷新</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">%1$s 個成員無法被新增到新版群組中，但已被邀請加入。</item>
   </plurals>
@@ -919,8 +926,8 @@
   <string name="MessageRecord_s_made_you_an_admin">%1$s將你設為管理員。</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">你撤銷了%1$s的管理員權限。</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 撤銷了你的管理員權限。</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s從%2$s撤銷了管理員權限。</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s現在是管理者。</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 撤銷了 %2$s 的管理員權限。</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s 現在是管理員。</string>
   <string name="MessageRecord_you_are_now_an_admin">你現在是管理員。</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s 不再是管理員。</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">你已不再是管理員。</string>
@@ -970,8 +977,8 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s變更了誰可以編輯群駔成員資格為\"%2$s\"。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已打開群組連結，但尚未獲得管理員批准。</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用管理員批准的群組連結。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已啟用群組連結（毋需管理員批准）。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用群組連結（需經管理員批准）。</string>
   <string name="MessageRecord_you_turned_off_the_group_link">你關閉了群組連結。</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 開啟了群組連結，但未獲得管理員批准。</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 開啟了具有管理員批准功能的群組連結。</string>
@@ -1016,7 +1023,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">你正在群組通話中· %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">你正在群組通話中 · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 和 %2$s 在群組通話中 · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s、%2$s 和 %3$s 在群組通話中 · %4$s</string>
   <string name="MessageRecord_group_call_s">群組通話 · %1$s</string>
@@ -1026,7 +1033,7 @@
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s 及 %2$s 在群組通話中</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, 及 %3$s 在群組通話中</string>
   <string name="MessageRecord_group_call">群組通話</string>
-  <string name="MessageRecord_you">您</string>
+  <string name="MessageRecord_you">你</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s、%2$s 和另外 %3$d 人在群組通話中 · %4$s</item>
   </plurals>
@@ -1142,7 +1149,7 @@
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
-  <string name="ReactionsRecipientAdapter_you">您</string>
+  <string name="ReactionsRecipientAdapter_you">你</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">離開群組時發生錯誤</string>
@@ -1211,6 +1218,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">您輸入的
         號碼 (%s) 是無效的
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">驗證碼將傳送至：</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">你會接到電話驗證此號碼。</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">你的電話號碼正確嗎？</string>
+  <string name="RegistrationActivity_edit_number">輸入號碼</string>
   <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Signal，但是此設定可能會降低可靠性或效能。\n\n如果你不是個進階使用者，不是正在執行原廠的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯絡 support@signal.org 來協助你排除故障。</string>
   <string name="RegistrationActivity_i_understand">我了解</string>
@@ -1229,7 +1240,7 @@
     <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我們必須驗證你是人類。</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證CAPTCHA 失敗</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證 CAPTCHA 失敗</string>
   <string name="RegistrationActivity_next">下一步</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_continue_d_attempts_left">繼續(只剩%d次嘗試次數)</string>
@@ -1364,6 +1375,7 @@
   <string name="ThreadRecord_contact">聯絡人</string>
   <string name="ThreadRecord_file">檔案</string>
   <string name="ThreadRecord_video">影片</string>
+  <string name="ThreadRecord_chat_session_refreshed">聊天會話已刷新</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
@@ -1403,7 +1415,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">損毀的加密多媒體訊息</string>
@@ -1421,7 +1432,7 @@
   <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>
   <string name="KeyCachingService_lock">鎖定 Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">您</string>
+  <string name="MediaPreviewActivity_you">你</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
@@ -1636,7 +1647,7 @@
   <string name="QuoteView_view_once_media">一次性多媒體檔案</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_document">文件</string>
-  <string name="QuoteView_you">您</string>
+  <string name="QuoteView_you">你</string>
   <string name="QuoteView_original_missing">無法找到原始訊息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
@@ -1700,7 +1711,7 @@
   <string name="IdentityUtil_untrusted_dialog_two">你與 %1$s 及 %2$s 的安全碼剛剛已改變。</string>
   <string name="IdentityUtil_untrusted_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼剛剛已改變。</string>
   <plurals name="identity_others">
-    <item quantity="other">%d 其他人</item>
+    <item quantity="other">另 %d 人</item>
   </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
@@ -1876,7 +1887,7 @@
   <string name="arrays__large">大</string>
   <string name="arrays__extra_large">特大</string>
   <string name="arrays__default">預設</string>
-  <string name="arrays__high">高的</string>
+  <string name="arrays__high">高</string>
   <string name="arrays__max">最高</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -1890,8 +1901,10 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收所有多媒體訊息</string>
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
+  <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">可用時顯示通訊錄中的聯絡人照片</string>
   <string name="preferences__generate_link_previews">建立連結預覽</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接從網站上檢索你傳送的訊息的連結預覽。</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">為你傳送的訊息中所包含的連結直接從網站檢索預覽。</string>
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
@@ -1942,7 +1955,7 @@
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">聊天與媒體</string> -->
+  <string name="preferences__data_and_storage">數據與儲存空間</string>
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__keep_messages">保留訊息</string>
@@ -2007,6 +2020,13 @@
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
   <string name="preferences_chats__chats">聊天</string>
+  <string name="preferences_data_and_storage__manage_storage">管理儲存空間</string>
+  <string name="preferences_data_and_storage__calls">通話</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">使用更少的數據進行通話</string>
+  <string name="preferences_data_and_storage__never">永不</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi和行動通訊</string>
+  <string name="preferences_data_and_storage__cellular_only">僅行動通訊</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
   <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
@@ -2163,8 +2183,8 @@
   <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高 Signal 比例。</string>
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
-  <string name="FirstInviteReminder__description">你可以透過%1$d%%來增加你傳送加密訊息的數量</string>
-  <string name="SecondInviteReminder__title">加速你的 Signal</string>
+  <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
+  <string name="SecondInviteReminder__title">提升你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
@@ -2477,8 +2497,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 和 %2$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 和 %3$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 和 %3$d 及其他人已離開</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string> -->
+  <string name="CallParticipant__you">你</string>
+  <string name="CallParticipant__you_on_another_device">你 (在其他的裝置上)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (在另一台裝置上)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>

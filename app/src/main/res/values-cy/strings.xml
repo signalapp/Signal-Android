@@ -206,8 +206,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationItem_this_message_was_deleted">Cafodd y neges hon ei dileu.</string>
   <string name="ConversationItem_you_deleted_this_message">Chi wnaeth ddileu\'r neges hon.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Ailosod sesiwn ddiogel?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Gall hyn helpu os ydych chi\'n cael problemau amgryptio yn y sgwrs hon. Bydd eich negeseuon yn cael eu cadw.</string> -->
   <string name="ConversationActivity_reset">Ailosod</string>
   <string name="ConversationActivity_add_attachment">Ychwanegu atodiad</string>
   <string name="ConversationActivity_select_contact_info">Dewis manylion cyswllt</string>
@@ -334,6 +332,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment__tap_to_review">Tapio i adolygu</string>
   <string name="ConversationFragment__review_requests_carefully">Adolygu ceisiadau yn ofalus</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Daeth Signal o hyd i gyswllt arall gyda\'r un enw.</string>
+  <string name="ConversationFragment_contact_us">Cysylltu â ni</string>
+  <string name="ConversationFragment_verify">Dilysu</string>
+  <string name="ConversationFragment_not_now">Nid nawr</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nid oes porwr wedi\'i osod ar eich dyfais.</string>
   <!--ConversationListFragment-->
@@ -424,6 +425,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Heddiw</string>
   <string name="DateUtils_yesterday">Ddoe</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Anfon</string>
   <string name="DeliveryStatus_sent">Anfonwyd</string>
@@ -1408,6 +1410,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Mae\'r rhif rydych wedi
        ei bennu ( %s) yn annilys.
     </string>
+  <string name="RegistrationActivity_edit_number">Golygu\'r rhif</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services Coll</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Nid yw Google Play Services ar y ddyfais hon. Gallwch barhau i ddefnyddio Signal, ond gall y ffurfweddiad hwn arwain at lai o ddibynadwyedd neu berfformiad. \n\nOs nad ydych chi\'n ddefnyddiwr uwch, nac yn rhedeg ROM Android amgen, neu os ydych chi\'n credu eich bod yn gweld hyn trwy gamgymeriad, cysylltwch â support@signal.org er mwyn datrys problemau.</string>
   <string name="RegistrationActivity_i_understand">Rwy\'n deall</string>
@@ -1607,7 +1610,6 @@ Send neges heb ei ddiogelu?</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Neges wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Neges MMS amgryptio gwael</string>
@@ -2179,7 +2181,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__mmsc_password">Cyfrinair MMSC</string>
   <string name="preferences__sms_delivery_reports">Adroddiadau trosglwyddo SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gofyn am adroddiad trosglwyddo pob neges SMS rydych chi\'n ei anfon</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Sgyrsiau a chyfryngau</string> -->
   <string name="preferences__storage">Storfa</string>
   <string name="preferences__conversation_length_limit">Maint uchaf sgyrsiau</string>
   <string name="preferences__keep_messages">Cadw negeseuon</string>
@@ -2244,6 +2245,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_app_protection__app_access">Mynediad i ap</string>
   <string name="preferences_app_protection__communication">Cyfathrebu</string>
   <string name="preferences_chats__chats">Sgyrsiau</string>
+  <string name="preferences_data_and_storage__calls">Galwadau</string>
+  <string name="preferences_data_and_storage__never">Byth</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Efallai bydd defnyddio llai o ddata yn gwella galwadau ar rhai rhwydweithiau</string>
   <string name="preferences_notifications__messages">Negeseuon</string>
   <string name="preferences_notifications__events">Digwyddiadau</string>
   <string name="preferences_notifications__in_chat_sounds">Seiniau wrth sgwrsio</string>
@@ -2741,8 +2745,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Gadawodd %1$s a %2$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Gadawodd %1$s, %2$s a %3$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Gadawodd %1$s, %2$s a %3$d eraill</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Chi (ar ddyfais arall)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ar ddyfais arall)</string> -->
+  <string name="CallParticipant__you">Chi</string>
+  <string name="CallParticipant__you_on_another_device">Chi (ar ddyfais arall)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (ar ddyfais arall)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Bydd dileu eich cyfrif yn:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Rhowch eich rhif ffôn</string>

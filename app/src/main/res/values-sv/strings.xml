@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
   <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Starta om säker session?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Detta kan hjälpa om du har krypteringsproblem i denna konversation. Dina meddelanden kommer att bevaras.</string> -->
   <string name="ConversationActivity_reset">Starta om</string>
   <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
   <string name="ConversationActivity_select_contact_info">Välj kontaktinformation</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Tryck för att granska</string>
   <string name="ConversationFragment__review_requests_carefully">Granska förfrågningar noggrant</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal hittade en annan kontakt med samma namn.</string>
+  <string name="ConversationFragment_contact_us">Kontakta oss</string>
+  <string name="ConversationFragment_verify">Verifiera</string>
+  <string name="ConversationFragment_not_now">Inte nu</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ditt säkerhetsnummer med %s har ändrats</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ditt säkerhetsnummer med %s har ändrats, troligtvis för att de installerade om Signal eller bytte enheter. Tryck på Verifiera för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Idag</string>
   <string name="DateUtils_yesterday">Igår</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Konversationssessionen uppdaterad</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal använder ände-till-ände-kryptering och det kan behöva uppdateras din konversationssession ibland. Detta påverkar inte din konversations säkerhet, men du kan ha missat ett meddelande från den här kontakten och du kan behöva be dem skicka det igen.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Skickar</string>
   <string name="DeliveryStatus_sent">Skickat</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
+  <string name="MessageRecord_chat_session_refreshed">Konversationssessionen uppdaterad</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">En medlem kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</item>
     <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har blivit inbjudna att gå med.</item>
@@ -1274,6 +1281,10 @@ telefonnummer</string>
   <string name="RegistrationActivity_invalid_number">Ogiltigt nummer</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numret du
 angav (%s) är ogiltigt.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">En verifieringskod skickas till:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du får ett samtal för att verifiera detta nummer.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Är ditt telefonnummer ovan korrekt?</string>
+  <string name="RegistrationActivity_edit_number">Ändra nummer</string>
   <string name="RegistrationActivity_missing_google_play_services">Saknar Google Play-tjänster</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Denna enhet saknar Google Play-tjänster. Du kan fortfarande använda Signal men denna konfiguration kan leda till minskad tillförlitlighet eller prestanda.\n\nOm du inte är en avancerad användare, inte använder en egenhändigt modifierad Android ROM eller tror att du ser detta på grund av ett fel, vänligen kontakta support@signal.org för hjälp med felsökning.</string>
   <string name="RegistrationActivity_i_understand">Jag förstår</string>
@@ -1427,6 +1438,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Konversationssessionen uppdaterad</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
@@ -1467,7 +1479,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Felkrypterat meddelande</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande som krypterats för obefintlig session</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Felkrypterat MMS</string>
@@ -1965,6 +1976,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimediameddelanden</string>
   <string name="preferences__pref_enter_sends_title">Returtangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på returtangenten skickas textmeddelanden</string>
+  <string name="preferences__pref_use_address_book_photos">Använd foton i adressboken</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Visa kontaktfoton från din adressbok om tillgängliga</string>
   <string name="preferences__generate_link_previews">Generera länkförhandsvisningar</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hämta länkförhandsvisningar direkt från webbplatser för meddelanden du skickar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
@@ -2017,7 +2030,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__mmsc_password">MMSC Lösenord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveransrapporter</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS-meddelande du skickar</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Konversationer och media</string> -->
+  <string name="preferences__data_and_storage">Data och lagring</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
@@ -2082,6 +2095,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__app_access">Appåtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Konversationer</string>
+  <string name="preferences_data_and_storage__manage_storage">Hantera lagring</string>
+  <string name="preferences_data_and_storage__calls">Samtal</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Använd mindre data för samtal</string>
+  <string name="preferences_data_and_storage__never">Aldrig</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi och mobildata</string>
+  <string name="preferences_data_and_storage__cellular_only">Endast mobildata</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Att använda mindre data kan förbättra samtal på dåliga nätverk</string>
   <string name="preferences_notifications__messages">Meddelanden</string>
   <string name="preferences_notifications__events">Händelser</string>
   <string name="preferences_notifications__in_chat_sounds">Ljud i konversationer</string>
@@ -2561,8 +2581,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s och %2$s lämnade</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s och %3$s lämnade</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s och %3$d andra lämnade</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (på en annan enhet)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (på en annan enhet)</string> -->
+  <string name="CallParticipant__you">Du</string>
+  <string name="CallParticipant__you_on_another_device">Du (på en annan enhet)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (på en annan enhet)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Om du tar bort ditt konto kommer du att:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Ange ditt telefonnummer</string>

@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Сбросить защищенный сеанс?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string> -->
   <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
@@ -332,6 +330,11 @@
   <string name="ConversationFragment__tap_to_review">Нажмите, чтобы проверить</string>
   <string name="ConversationFragment__review_requests_carefully">Внимательно проверяйте запросы</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal нашёл другой контакт с тем же именем.</string>
+  <string name="ConversationFragment_contact_us">Связаться с нами</string>
+  <string name="ConversationFragment_verify">Подтверждение</string>
+  <string name="ConversationFragment_not_now">Не сейчас</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безопасности с %s изменился</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтверждение», чтобы проверить новый код безопасности. Это необязательно.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
@@ -422,6 +425,9 @@
   <string name="DateUtils_minutes_ago">%dм</string>
   <string name="DateUtils_today">Сегодня</string>
   <string name="DateUtils_yesterday">Вчера</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Сессия чата обновлена</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal использует сквозное шифрование, и ему иногда может быть необходимо обновить сессию вашего чата. Это не затрагивает безопасность чата, но вы могли пропустить сообщение от этого собеседника. Вы можете попросить его отправить сообщение заново.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Отправляем</string>
   <string name="DeliveryStatus_sent">Отправлено</string>
@@ -848,7 +854,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает эту ссылку на группу. Обновитесь до последней версии, чтобы присоединиться к этой группе по ссылке.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Как минимум одно из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на привязанных устройствах, чтобы присоединиться к этой группе.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Как минимум одно из ваших привязанных устройств использует версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на привязанных устройствах, чтобы присоединиться к этой группе.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Пригласить друзей</string>
@@ -1028,18 +1034,19 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Таймер исчезновения сообщений установлен в %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Эта группа была обновлена до Новой группы.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вы не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вас невозможно было добавить в Новую группу, поэтому вы получили приглашение присоединиться.</string>
+  <string name="MessageRecord_chat_session_refreshed">Сессия чата обновлена</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был приглашён присоединиться.</item>
-    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
-    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
-    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
+    <item quantity="one">Одного из участников невозможно было добавить в Новую группу, и ему было отправлено приглашение.</item>
+    <item quantity="few">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
+    <item quantity="many">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
+    <item quantity="other">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был удалён из группы.</item>
-    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
-    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
-    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
+    <item quantity="one">Одного из участников невозможно было добавить в Новую группу, и он был удалён.</item>
+    <item quantity="few">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
+    <item quantity="many">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
+    <item quantity="other">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s изменил(-а) своё имя профиля на %2$s.</string>
@@ -1399,6 +1406,10 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Необходимо указать номер телефона</string>
   <string name="RegistrationActivity_invalid_number">Неверный номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами номер (%s) недействителен.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Код подтверждения будет отправлен на:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Вы получите звонок, чтобы проверить этот номер.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Правильный ли ваш номер телефона выше?</string>
+  <string name="RegistrationActivity_edit_number">Изменить номер</string>
   <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы можете продолжить использование Signal, но надёжность или производительность могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android или считаете, что видите это сообщение по ошибке, обратитесь в службу поддержки по адресу support@signal.org для помощи с устранением неполадок.</string>
   <string name="RegistrationActivity_i_understand">Я понимаю</string>
@@ -1556,6 +1567,7 @@
   <string name="ThreadRecord_contact">Контакт</string>
   <string name="ThreadRecord_file">Файл</string>
   <string name="ThreadRecord_video">Видео</string>
+  <string name="ThreadRecord_chat_session_refreshed">Сессия чата обновлена</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Обновиться?</string>
@@ -1598,7 +1610,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Неверное зашифрованное сообщение</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Неверное зашифрованное MMS-сообщение</string>
@@ -2118,6 +2129,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих MMS-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
+  <string name="preferences__pref_use_address_book_photos">Фотографии из адресной книги</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Отображать фотографии контактов из вашей адресной книги, если они доступны</string>
   <string name="preferences__generate_link_previews">Создавать предпросмотры ссылок</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Получать предпросмотры ссылок напрямую от сайтов для сообщений, которые вы отправляете.</string>
   <string name="preferences__choose_identity">Выберите личность</string>
@@ -2170,7 +2183,7 @@
   <string name="preferences__mmsc_password">Пароль MMSC</string>
   <string name="preferences__sms_delivery_reports">Отчеты о доставке SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчет о доставке для каждого отправленного SMS-сообщения</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Чаты и медиа</string> -->
+  <string name="preferences__data_and_storage">Данные и хранилище</string>
   <string name="preferences__storage">Хранилище</string>
   <string name="preferences__conversation_length_limit">Предел длины разговора</string>
   <string name="preferences__keep_messages">Хранить сообщения</string>
@@ -2235,6 +2248,13 @@
   <string name="preferences_app_protection__app_access">Доступ к приложению</string>
   <string name="preferences_app_protection__communication">Связь</string>
   <string name="preferences_chats__chats">Чаты</string>
+  <string name="preferences_data_and_storage__manage_storage">Управлять хранилищем</string>
+  <string name="preferences_data_and_storage__calls">Звонки</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Использовать меньше данных для звонков</string>
+  <string name="preferences_data_and_storage__never">Никогда</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильный интернет</string>
+  <string name="preferences_data_and_storage__cellular_only">Только мобильный интернет</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Использование меньшего количества данных может улучшить звонки при плохой связи</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки внутри чата</string>
@@ -2732,8 +2752,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s и %2$s покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d человек(-а) покинули звонок</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Вы (на другом устройстве)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (на другом устройстве)</string> -->
+  <string name="CallParticipant__you">Вы</string>
+  <string name="CallParticipant__you_on_another_device">Вы (на другом устройстве)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (на другом устройстве)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Удаление вашей учётной записи приведёт к:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Введите свой номер телефона</string>

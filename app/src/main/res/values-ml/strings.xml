@@ -25,7 +25,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">ഇല്ലാതാക്കുക </string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാക്ക് പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത് Signal, സന്ദേശ അറിയിപ്പുകൾ എന്നിവ ശാശ്വതമായി അൺലോക്കുചെയ്യും.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal, സന്ദേശ അറിയിപ്പുകളെ എന്നന്നേയ്ക്കുമായി അൺലോക്കുചെയ്യും.</string>
   <string name="ApplicationPreferencesActivity_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
   <string name="ApplicationPreferencesActivity_unregistering">അൺരെജിസ്റ്റർ ചെയ്യുന്നു</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal സന്ദേശങ്ങളിൽ നിന്നും കോളുകളിൽ നിന്നും അൺരജിസ്റ്റർ ചെയ്യുന്നു…</string>
@@ -141,7 +141,7 @@
   <string name="ClientDeprecatedActivity_update">അപ്‌ഡേറ്റ്</string>
   <string name="ClientDeprecatedActivity_dont_update">അപ്ഡേറ്റ് ചെയ്യരുത്</string>
   <string name="ClientDeprecatedActivity_warning">മുന്നറിയിപ്പ്</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">നിങ്ങളുടെ Signal(സിഗ്നല്‍) പതിപ്പ് കാലഹരണപ്പെട്ടിരിക്കുന്നു. നിങ്ങളുടെ സന്ദേശ ചരിത്രം നിങ്ങൾക്ക് കാണാൻ കഴിയും, പക്ഷേ നിങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നതുവരെ നിങ്ങൾക്ക് സന്ദേശങ്ങൾ അയയ്‌ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">നിങ്ങളുടെ Signal പതിപ്പ് കാലഹരണപ്പെട്ടിരിക്കുന്നു. നിങ്ങളുടെ സന്ദേശ ചരിത്രം നിങ്ങൾക്ക് കാണാൻ കഴിയും, പക്ഷേ നിങ്ങൾ അപ്‌ഡേറ്റ് ചെയ്യുന്നതുവരെ നിങ്ങൾക്ക് സന്ദേശങ്ങൾ അയയ്‌ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">വെബ്‌ബ്രൗസറൊന്നും കണ്ടെത്തിയില്ല.</string>
   <string name="CommunicationActions_no_email_app_found">ഇമെയിൽ അപ്ലിക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല.</string>
@@ -155,7 +155,7 @@
   <string name="CommunicationActions_carrier_charges_may_apply">കാരിയർ നിരക്കുകൾ ബാധകം. നിങ്ങൾ വിളിക്കുന്ന നമ്പർ Signal-ൽ രജിസ്റ്റർ ചെയ്തിട്ടില്ല. ഈ കോൾ ഇൻറർനെറ്റിലൂടെയല്ല, നിങ്ങളുടെ മൊബൈൽ കാരിയർ വഴിയാണ് നടത്തുക.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. നിങ്ങളുടെ ആശയവിനിമയം ആരെങ്കിലും തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുകയാണെന്നോ അല്ലെങ്കിൽ %2$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതാണെന്നോ ആണ് ഇതിനർത്ഥം.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ വെരിഫിക്കേഷന്‍ ചെയ്യാന്‍ നിങ്ങൾ ആഗ്രഹമുണ്ടോ.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ ഉറപ്പാക്കാം.</string>
   <string name="ConfirmIdentityDialog_accept">സ്വീകരിക്കുക</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">സമീപകാല ചാറ്റുകൾ</string>
@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <string name="ConversationItem_you_deleted_this_message">നിങ്ങൾ ഈ സന്ദേശം ഇല്ലാതാക്കി.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">സുരക്ഷിത സെഷൻ പുനഃസജ്ജമാക്കണോ?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ഈ സംഭാഷണത്തിൽ നിങ്ങൾക്ക് എൻ‌ക്രിപ്ഷൻ പ്രശ്‌നങ്ങളുണ്ടെങ്കിൽ ഇത് സഹായിച്ചേക്കാം. നിങ്ങളുടെ സന്ദേശങ്ങൾ സൂക്ഷിക്കും.</string> -->
   <string name="ConversationActivity_reset">പുനഃസജ്ജമാക്കുക</string>
   <string name="ConversationActivity_add_attachment">അറ്റാച്മെന്റ്‌  ചേർക്കുക</string>
   <string name="ConversationActivity_select_contact_info">കോൺ‌ടാക്റ്റ് വിവരം തിരഞ്ഞെടുക്കുക</string>
@@ -299,7 +297,7 @@
   <string name="ConversationFragment_deleting_messages">സന്ദേശങ്ങൾ ഇല്ലാതാക്കുന്നു…</string>
   <string name="ConversationFragment_delete_for_me">എനിക്കായി ഇല്ലാതാക്കുക</string>
   <string name="ConversationFragment_delete_for_everyone">എല്ലാവർക്കുമായി ഇല്ലാതാക്കുക</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">സംഭാഷണത്തിലെ എല്ലാവർ‌ക്കും അവർ‌ Signal(സിഗ്‌നലി)ന്റെ സമീപകാല പതിപ്പിലാണെങ്കിൽ‌ ഈ സന്ദേശം ഇല്ലാതാക്കും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയത് അവർക്ക് കാണാൻ കഴിയും.</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">സംഭാഷണത്തിലെ എല്ലാവർ‌ക്കും അവർ‌ Signal-ന്റെ സമീപകാല പതിപ്പിലാണെങ്കിൽ‌ ഈ സന്ദേശം ഇല്ലാതാക്കും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയത് അവർക്ക് കാണാൻ കഴിയും.</string>
   <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
   <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">അവലോകനം ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
   <string name="ConversationFragment__review_requests_carefully">അഭ്യർത്ഥനകൾ ശ്രദ്ധാപൂർവ്വം അവലോകനം ചെയ്യുക</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ഇതേ പേരിൽ മറ്റൊരു കോൺ‌ടാക്റ്റ് കണ്ടെത്തി.</string>
+  <string name="ConversationFragment_contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
+  <string name="ConversationFragment_verify">ഉറപ്പാക്കു</string>
+  <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%sമായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവണമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'പരിശോധിക്കുക\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഒരു ബ്രൌസർ ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">ഇന്ന്</string>
   <string name="DateUtils_yesterday">ഇന്നലെ</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ആദ്യാവസാന-എൻക്രിപ്ഷൻ ഉപയോക്കുന്നതിനാൽ ചിലപ്പോൾ മുമ്പത്തെ ചാറ്റുകൾ പുതുക്കേണ്ടി വരും. ഇത് ചാറ്റിന്റെ സുരക്ഷയെ ബാധിക്കില്ല, പക്ഷെ ഈ കോണ്ടാക്ടിൽ നിന്നുള്ളൊരു മെസ്സേജ്  നിങ്ങൾക്ക് നഷ്ടപെട്ടിരിക്കാം, എങ്കിൽ അതവരോട് നിങ്ങൾക്ക് വീണ്ടുമയക്കാൻ പറയാം.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">അയയ്ക്കുന്നു</string>
   <string name="DeliveryStatus_sent">അയച്ചു</string>
@@ -431,7 +437,7 @@
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
     <item quantity="one"> %d തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥന.</item>
-    <item quantity="other">%d തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥനകള്‍.</item>
+    <item quantity="other">%d തീർപ്പുകൽപ്പിക്കാത്ത അംഗ അഭ്യര്‍ത്ഥനകള്‍.</item>
   </plurals>
   <string name="PendingGroupJoinRequestsReminder_view">കാണുക</string>
   <!--ShareActivity-->
@@ -564,7 +570,7 @@
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">ശേഷിക്കുന്ന ഗ്രൂപ്പ് ക്ഷണങ്ങൾ</string>
   <string name="PendingMembersActivity_requests">അഭ്യർത്ഥനകൾ</string>
-  <string name="PendingMembersActivity_invites">കഷണങ്ങൾ </string>
+  <string name="PendingMembersActivity_invites">ക്ഷണങ്ങൾ </string>
   <string name="PendingMembersActivity_people_you_invited">നിങ്ങൾ ക്ഷണിച്ച ആളുകൾ</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">നിങ്ങൾക്ക് തീർപ്പുകൽപ്പിക്കാത്ത ക്ഷണങ്ങളൊന്നുമില്ല.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">മറ്റ് ഗ്രൂപ്പ് അംഗങ്ങളുടെ ക്ഷണങ്ങൾ</string>
@@ -581,7 +587,7 @@
     <item quantity="other">ക്ഷണങ്ങൾ റദ്ദാക്കുന്നതിൽ പിശക്</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">തീർപ്പുകൽപ്പിക്കാത്ത അംഗത അഭ്യര്‍ത്ഥനകള്‍.</string>
+  <string name="RequestingMembersFragment_pending_member_requests">തീർപ്പുകൽപ്പിക്കാത്ത അംഗ അഭ്യര്‍ത്ഥനകള്‍.</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">കാണിക്കാൻ അംഗ അഭ്യർത്ഥനകളൊന്നുമില്ല.</string>
   <string name="RequestingMembersFragment_explanation">ഈ പട്ടികയിലുള്ള ആളുകൾ ഗ്രൂപ്പ് ലിങ്ക് വഴി ഈ ഗ്രൂപ്പിൽ ചേരാൻ ശ്രമിക്കുന്നു.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\"--നെ ചേർത്തു</string>
@@ -643,7 +649,7 @@
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
-  <string name="ManageGroupActivity_mentions">പരാമർശിക്കുന്നു</string>
+  <string name="ManageGroupActivity_mentions">പരാമർശങ്ങൾ</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
   <string name="ManageGroupActivity_on">ഓൺ</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">അപ്രത്യക്ഷമാകുന്ന സന്ദേശ ടൈമർ %1$s ആയി സജ്ജമാക്കി.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">ഈ ഗ്രൂപ്പ് ഒരു പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">നിങ്ങളെ പുതിയ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിഞ്ഞില്ല ഒപ്പം ചേരാൻ ക്ഷണിക്കുകയും ചെയ്തിട്ടുണ്ട്.</string>
+  <string name="MessageRecord_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">ഒരു അംഗത്തെ പുതിയ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിഞ്ഞില്ല, ഒപ്പം ചേരാൻ ക്ഷണിക്കുകയും ചെയ്തിട്ടുണ്ട്.</item>
     <item quantity="other">%1$s അംഗങ്ങളെ പുതിയ ഗ്രൂപ്പിലേക്ക് ചേർക്കാൻ കഴിഞ്ഞില്ല, ഒപ്പം ചേരാൻ ക്ഷണിക്കുകയും ചെയ്തിട്ടുണ്ട്.</item>
@@ -1261,7 +1268,7 @@
   <!--CallParticipantView-->
   <string name="CallParticipantView__s_is_blocked">%1$s - നെ തടഞ്ഞിരിക്കുന്നു</string>
   <string name="CallParticipantView__more_info">കൂടുതൽ വിവരങ്ങൾ</string>
-  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">നിങ്ങൾക്ക് അവരുടെ ഓഡിയോ വീഡിയോയോ എന്നിവ ലഭിക്കില്ല, അവർക്ക് നിങ്ങളുടേതും .</string>
+  <string name="CallParticipantView__you_wont_receive_their_audio_or_video">നിങ്ങൾക്ക് അവരുടെ ഓഡിയോ വീഡിയോ ലഭിക്കില്ല, അവർക്ക് നിങ്ങളുടേതും .</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s നിന്ന് ഓഡിയോയും വീഡിയോയും സ്വീകരിക്കാൻ കഴിയുന്നില്ല </string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറ്റം അവർ സ്ഥിരീകരിക്കാത്തതിനാലോ അവരുടെ ഉപകരണത്തിൽ ഒരു പ്രശ്നമുണ്ടായതിനാലോ അവർ നിങ്ങളെ തടഞ്ഞതിനാലോ ആയിരിക്കാം ഇത്.</string>
@@ -1272,6 +1279,10 @@
   <string name="RegistrationActivity_invalid_number">അസാധുവായ നമ്പർ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ
         (%s) അസാധുവാണ്.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">പരിശോധന കോഡ് അയക്കുന്നത്:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ഈ നമ്പർ പരിശോധിക്കാൻ വേണ്ടി നിങ്ങൾക്ക് ഒരു കോൾ വരും.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">മുകളിലുള്ള നിങ്ങളുടെ ഫോൺ നമ്പർ ശരിയാണോ?</string>
+  <string name="RegistrationActivity_edit_number">നമ്പർ തിരുത്തുക</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services കാണുന്നില്ല</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">ഈ ഉപകരണത്തിന് Google Play Services കാണുന്നില്ല. നിങ്ങൾക്ക് ഇപ്പോഴും Signal ഉപയോഗിക്കാം, പക്ഷേ ഈ കോൺഫിഗറേഷൻ വിശ്വാസ്യതയോ പ്രകടനമോ കുറയാൻ കാരണമായേക്കാം.\n\nനിങ്ങൾ ഒരു നൂതന ഉപയോക്താവല്ലെങ്കിൽ, അഥവാ ഒരു വിപണനാനന്തര Android റോം പ്രവർത്തിപ്പിക്കുന്നില്ല, അല്ലെങ്കിൽ നിങ്ങൾ ഇത് തെറ്റായി കാണുന്നുവെന്ന് വിശ്വസിക്കുന്നുവെങ്കിൽ, പ്രശ്‌നപരിഹാരത്തിന്ദ യവായി  support@signal.org-നെ ബന്ധപ്പെടുക.</string>
   <string name="RegistrationActivity_i_understand">എനിക്ക് മനസിലായി</string>
@@ -1326,12 +1337,12 @@
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Signalലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
   <string name="SharedContactDetailsActivity_signal_message">Signal സന്ദേശം</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal കോൾ</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">കോൺ‌ടാക്റ്റുകളിലേക്ക് ചേർക്കുക</string>
-  <string name="SharedContactView_invite_to_signal">Signalലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="SharedContactView_invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
   <string name="SharedContactView_message">Signal സന്ദേശം</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">ഞങ്ങൾ നിങ്ങളെ പിന്നീട് ഓർമ്മപ്പെടുത്തും.</string>
@@ -1425,6 +1436,7 @@
   <string name="ThreadRecord_contact">കോൺ‌ടാക്ട്</string>
   <string name="ThreadRecord_file">ഫയൽ</string>
   <string name="ThreadRecord_video">വീഡിയോ</string>
+  <string name="ThreadRecord_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
@@ -1465,7 +1477,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത സന്ദേശം</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത MMS സന്ദേശം</string>
@@ -1501,8 +1512,8 @@
   <string name="MessageNotifier_message_delivery_failed">സന്ദേശ വിതരണം പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_failed_to_deliver_message">സന്ദേശം കൈമാറുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_error_delivering_message">സന്ദേശം കൈമാറുന്നതിൽ പിശക്.</string>
-  <string name="MessageNotifier_mark_all_as_read">എല്ലാം വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
-  <string name="MessageNotifier_mark_read">വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
+  <string name="MessageNotifier_mark_all_as_read">എല്ലാം വായിച്ചതായി കാണിക്കുക</string>
+  <string name="MessageNotifier_mark_read">വായിച്ചതായി കാണിക്കുക</string>
   <string name="MessageNotifier_turn_off_these_notifications">ഈ അറിയിപ്പുകൾ ഓഫ് ആക്കുക</string>
   <string name="MessageNotifier_media_message">മീഡിയ സന്ദേശം</string>
   <string name="MessageNotifier_sticker">സ്റ്റിക്കർ</string>
@@ -1840,7 +1851,7 @@
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ഫോൺ നമ്പർ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">നിങ്ങളുടെ നിലവിലുള്ള ഫോൺ നമ്പറും വിലാസ പുസ്തകവും ഉപയോഗിച്ച് സിഗ്നൽ ആശയവിനിമയം എളുപ്പമാക്കുന്നു. ഫോണിലൂടെ നിങ്ങളെ എങ്ങനെ ബന്ധപ്പെടാമെന്ന് ഇതിനകം അറിയുന്ന സുഹൃത്തുക്കൾക്കും കോൺടാക്റ്റുകൾക്കും സിഗ്നൽ വഴി എളുപ്പത്തിൽ ബന്ധപ്പെടാൻ കഴിയും. \ N \ n രജിസ്ട്രേഷൻ ചില കോൺടാക്റ്റ് വിവരങ്ങൾ സെർവറിലേക്ക് കൈമാറുന്നു. ഇത് സംഭരിക്കില്ല.</string>
-  <string name="registration_activity__verify_your_number">നിങ്ങളുടെ നമ്പർ പരിശോധിക്കുക</string>
+  <string name="registration_activity__verify_your_number">നിങ്ങളുടെ നമ്പർ ഉറപ്പാക്കു</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കുന്നതിന് ദയവായി നിങ്ങളുടെ മൊബൈൽ നമ്പർ നൽകുക. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ഒരു പേരോ നമ്പറോ നൽകുക</small></string>
@@ -1880,7 +1891,7 @@
   <string name="AndroidManifest__create_passphrase">പാസ്‌ഫ്രെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
   <string name="AndroidManifest__select_contacts">കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക</string>
   <string name="AndroidManifest__change_passphrase">പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
-  <string name="AndroidManifest__verify_safety_number">സുരക്ഷാ നമ്പർ പരിശോധിക്കുക</string>
+  <string name="AndroidManifest__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
   <string name="AndroidManifest__log_submit">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="AndroidManifest__media_preview">മീഡിയ പ്രിവ്യൂ</string>
   <string name="AndroidManifest__message_details">സന്ദേശ വിശദാംശങ്ങൾ</string>
@@ -1963,6 +1974,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">എല്ലാ ഇൻകമിംഗ് മൾട്ടിമീഡിയ സന്ദേശങ്ങൾക്കും സിഗ്നൽ ഉപയോഗിക്കുക</string>
   <string name="preferences__pref_enter_sends_title">എന്റർ കീ അയയ്‌ക്കൽ</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">എന്റർ കീ അമർത്തുന്നത് വാചക സന്ദേശങ്ങൾ അയയ്‌ക്കും</string>
+  <string name="preferences__pref_use_address_book_photos">അഡ്രസ്സ് ബുക്കിലെ ഫോട്ടോകൾ ഉപയോഗിക്കുക</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">നിങ്ങളുടെ അഡ്രസ്സ് ബുക്കിൽ നിന്നുള്ള ഫോട്ടോസ് ലഭ്യമെങ്കിൽ ഡിസ്പ്ളേ ചെയ്യുക </string>
   <string name="preferences__generate_link_previews">ലിങ്ക് പ്രിവ്യൂകൾ സൃഷ്ടിക്കുക</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശങ്ങൾക്കായി വെബ്‌സൈറ്റുകളിൽ നിന്ന് ലിങ്ക് പ്രിവ്യൂകൾ നേരിട്ട് വീണ്ടെടുക്കുക.</string>
   <string name="preferences__choose_identity">ഐഡന്റിറ്റി തിരഞ്ഞെടുക്കുക</string>
@@ -2015,7 +2028,7 @@
   <string name="preferences__mmsc_password">MMSC പാസ്‌വേഡ്</string>
   <string name="preferences__sms_delivery_reports">SMS ഡെലിവറി റിപ്പോർട്ടുകൾ</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">നിങ്ങൾ അയയ്ക്കുന്ന ഓരോ SMS സന്ദേശത്തിനും ഒരു ഡെലിവറി റിപ്പോർട്ട് അഭ്യർത്ഥിക്കുക</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ചാറ്റുകളും മീഡിയയും</string> -->
+  <string name="preferences__data_and_storage">ഡാറ്റ &amp; സ്റ്റോറേജ് </string>
   <string name="preferences__storage">സ്റ്റോറേജ്</string>
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
@@ -2080,6 +2093,13 @@
   <string name="preferences_app_protection__app_access">അപ്ലിക്കേഷൻ ആക്‌സസ്സ്</string>
   <string name="preferences_app_protection__communication">ആശയവിനിമയം</string>
   <string name="preferences_chats__chats">ചാറ്റുകൾ</string>
+  <string name="preferences_data_and_storage__manage_storage">സ്റ്റോറേജ് ക്രമീകരിക്കുക</string>
+  <string name="preferences_data_and_storage__calls">കോളുകൾ</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">കോളുകള്ക്ക് കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുക</string>
+  <string name="preferences_data_and_storage__never">ഒരിക്കലും വേണ്ട</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">വൈഫൈ &amp; സെല്ലുലാർ</string>
+  <string name="preferences_data_and_storage__cellular_only">സെല്ലുലാർ മാത്രം</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">കുറഞ്ഞ ഡാറ്റ ഉപയോഗിക്കുന്നത് ബലഹീന നെറ്വർക്കിൽ ഗുണമേന്മ ഉയർത്തിയേക്കാം.</string>
   <string name="preferences_notifications__messages">സന്ദേശങ്ങൾ</string>
   <string name="preferences_notifications__events">ഇവന്റുകൾ</string>
   <string name="preferences_notifications__in_chat_sounds">ഇൻ-ചാറ്റ് ശബ്‌ദങ്ങള്‍</string>
@@ -2097,7 +2117,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ആരിൽ നിന്നും അനുവദിക്കുക</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">കോൺടാക്ടുകൾ അല്ലാത്തവരിൽ നിന്നും നിങ്ങളുടെ പ്രൊഫൈൽ പങ്കിടാത്തവരായ ആളുകളിൽ നിന്നും വരുന്ന സന്ദേശങ്ങൾക്കായി സീൽഡ് സെൻഡർ പ്രാപ്തമാക്കുക.</string>
   <string name="preferences_communication__sealed_sender_learn_more">കൂടുതൽ അറിയുക</string>
-  <string name="preferences_notifications__mentions">പരാമർശിക്കുന്നു</string>
+  <string name="preferences_notifications__mentions">പരാമർശങ്ങൾ</string>
   <string name="preferences_notifications__notify_me">എന്നെ അറിയിക്കുക</string>
   <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">നിശബ്ദമാക്കിയ ചാറ്റുകളിൽ നിങ്ങളെ പരാമർശിക്കുമ്പോൾ അറിയിപ്പുകൾ സ്വീകരിക്കുക</string>
   <string name="preferences_setup_a_username">ഒരു ഉപയോക്തൃനാമം/യൂസർ നെയിം  സജ്ജമാക്കുക</string>
@@ -2140,8 +2160,8 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">തിരഞ്ഞെടുത്തത് ആർക്കൈവ് ചെയ്യുക</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">തിരഞ്ഞെടുത്തത് അനാർക്കൈവ് ചെയ്യുക</string>
   <string name="conversation_list_batch__menu_unarchive_selected">അനാർക്കൈവ് തിരഞ്ഞെടുത്തു</string>
-  <string name="conversation_list_batch__menu_mark_as_read">വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
-  <string name="conversation_list_batch__menu_mark_as_unread">വായിച്ചിട്ടില്ല എന്ന് അടയാളപ്പെടുത്തുക</string>
+  <string name="conversation_list_batch__menu_mark_as_read">വായിച്ചതായി കാണിക്കുക</string>
+  <string name="conversation_list_batch__menu_mark_as_unread">വായിച്ചിട്ടില്ല എന്ന് കാണിക്കുക</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ഷോർറ്റ്കറ്റ് ക്രമീകരിക്കുന്നു</string>
   <string name="conversation_list_search_description">തിരയൽ</string>
@@ -2186,7 +2206,7 @@
   <string name="text_secure_normal__menu_new_group">പുതിയ ഗ്രൂപ്പ്</string>
   <string name="text_secure_normal__menu_settings">ക്രമീകരണങ്ങൾ</string>
   <string name="text_secure_normal__menu_clear_passphrase">ലോക്ക്</string>
-  <string name="text_secure_normal__mark_all_as_read">എല്ലാം വായിച്ചതായി അടയാളപ്പെടുത്തുക</string>
+  <string name="text_secure_normal__mark_all_as_read">എല്ലാം വായിച്ചതായി കാണിക്കുക</string>
   <string name="text_secure_normal__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="text_secure_normal__help">സഹായം</string>
   <!--verify_display_fragment-->
@@ -2197,7 +2217,7 @@
   <string name="reminder_header_sms_import_text">Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ ഫോണിലേ SMS സന്ദേശങ്ങൾ പകർത്താൻ ടാപ്പുചെയ്യുക.</string>
   <string name="reminder_header_push_title">Signal സന്ദേശങ്ങളും കോളുകളും പ്രാപ്തമാക്കുക</string>
   <string name="reminder_header_push_text">നിങ്ങളുടെ ആശയവിനിമയ അനുഭവം അപ്‌ഗ്രേഡുചെയ്യു.</string>
-  <string name="reminder_header_invite_title">Signalലേക്ക് ക്ഷണിക്കുക</string>
+  <string name="reminder_header_invite_title">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
   <string name="reminder_header_invite_text">%1$s-മായുള്ള നിങ്ങളുടെ സംഭാഷണം അടുത്ത ഘട്ടത്തിലേക്ക് കൊണ്ടുപോകുക.</string>
   <string name="reminder_header_share_title">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക!</string>
   <string name="reminder_header_share_text">കൂടുതൽ‌ ചങ്ങാതിമാർ‌ Signal ഉപയോഗിക്കുമ്പോൾ‌, അത് കൂടുതൽ‌ മികച്ചതാവും.</string>
@@ -2368,7 +2388,7 @@
   <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ബാഹ്യ സ്റ്റോറേജിലെക് ചാറ്റുകൾ ബാക്കപ്പ്  ചെയ്യുക</string>
   <string name="preferences_chats__create_backup">ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
-  <string name="preferences_chats__verify_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിക്കുക</string>
+  <string name="preferences_chats__verify_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് ഉറപ്പാക്കു</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="RegistrationActivity_restore">റിസ്റ്റോർ</string>
@@ -2560,8 +2580,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s-ഉം %2$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s-ഉം, %2$s-ഉം %3$s-ഉം ഇറങ്ങി പോയിട്ടുണ്ട്</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s-ഉം, %2$s-ഉം  %3$d-ഉം  മറ്റുള്ളവരും ഇറങ്ങി പോയിട്ടുണ്ട്</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string> -->
+  <string name="CallParticipant__you">നിങ്ങൾ</string>
+  <string name="CallParticipant__you_on_another_device">നിങ്ങൾ (മറ്റൊരു ഉപകരണത്തിൽ)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (മറ്റൊരു ഉപകരണത്തിൽ)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുന്നത്:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>

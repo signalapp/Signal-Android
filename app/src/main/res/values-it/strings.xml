@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
   <string name="ConversationItem_you_deleted_this_message">Hai eliminato questo messaggio.</string>
   <!--ConversationActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Resettare la sessione sicura?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Questo potrebbe aiutare se stai avendo problemi di crittografia in questa conversazione. I tuoi messaggi verranno conservati.</string> -->
   <string name="ConversationActivity_reset">Resetta</string>
   <string name="ConversationActivity_add_attachment">Aggiungi allegato</string>
   <string name="ConversationActivity_select_contact_info">Seleziona informazioni dei contatti</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Clicca per controllare</string>
   <string name="ConversationFragment__review_requests_carefully">Controlla attentamente le richieste</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ha trovato un altro contatto con lo stesso nome.</string>
+  <string name="ConversationFragment_contact_us">Contattaci</string>
+  <string name="ConversationFragment_verify">Verifica</string>
+  <string name="ConversationFragment_not_now">Non ora</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Il tuo codice di sicurezza con %s è cambiato</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Il tuo codice di sicurezza con %s è cambiato, probabilmente perché ha reinstallato Signal o cambiato dispositivo. Tocca Verifica per confermare il nuovo codice di sicurezza. Questo è facoltativo.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sul tuo dispositivo non ci sono browser installati.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dmin</string>
   <string name="DateUtils_today">Oggi</string>
   <string name="DateUtils_yesterday">Ieri</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sessione di chat aggiornata</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utilizza la crittografia end-to-end e potrebbe essere necessario aggiornare la tua sessione di chat a volte. Ciò non influisce sulla sicurezza della tua chat, ma potresti aver perso un messaggio da questo contatto e puoi chiedere loro di inviarlo di nuovo.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Invio</string>
   <string name="DeliveryStatus_sent">Inviato</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Il timer dei messaggi a scomparsa è stato impostato a %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Questo gruppo è stato aggiornato a un Nuovo Gruppo.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Non è stato possibile aggiungerti al Nuovo Gruppo e sei stato invitato a unirti.</string>
+  <string name="MessageRecord_chat_session_refreshed">Sessione di chat aggiornata</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Un membro non può essere aggiunto al Nuovo Gruppo ed è stato invitato a unirsi.</item>
     <item quantity="other">%1$s membri non possono essere aggiunti al Nuovo Gruppo e sono stati invitati a unirsi.</item>
@@ -1278,6 +1285,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Il numero specificato
 (%s) non è valido.
 </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Un codice di verifica sarà inviato a:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Riceverai una chiamata per verificare questo numero.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Il tuo numero di telefono sopra è corretto?</string>
+  <string name="RegistrationActivity_edit_number">Modifica numero</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services mancanti</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Il dispositivo non ha Google Play Services. Puoi comunque usare Signal, ma questa configurazione potrebbe essere meno affidabile o performante.\n\nSe non sei un utente avanzato, non usi una ROM Android alternativa o credi che questo messaggio sia un errore, contatta support@signal.org per ricevere aiuto.</string>
   <string name="RegistrationActivity_i_understand">Ho capito</string>
@@ -1433,6 +1444,7 @@
   <string name="ThreadRecord_contact">Contatto</string>
   <string name="ThreadRecord_file">File</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sessione di chat aggiornata</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Aggiornamento Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">È disponibile una nuova versione di Signal, tocca per aggiornare</string>
@@ -1473,7 +1485,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Crittografia messaggio non valida</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio criptato per una sessione non esistente</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Crittografia MMS non valida</string>
@@ -1971,6 +1982,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Usa Signal per tutti i messaggi multimediali in arrivo</string>
   <string name="preferences__pref_enter_sends_title">Spedisci premendo Invio</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
+  <string name="preferences__pref_use_address_book_photos">Usa le foto della rubrica</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostra le foto dei contatti dalla tua rubrica se disponibili</string>
   <string name="preferences__generate_link_previews">Genera anteprime dei link</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
   <string name="preferences__choose_identity">Scegli identità</string>
@@ -2023,7 +2036,7 @@
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Richiedi un rapporto di consegna per ogni SMS inviato</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Chat e download</string> -->
+  <string name="preferences__data_and_storage">Dati e memoria</string>
   <string name="preferences__storage">Memoria</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
   <string name="preferences__keep_messages">Conserva i messaggi</string>
@@ -2088,6 +2101,13 @@
   <string name="preferences_app_protection__app_access">Accesso app</string>
   <string name="preferences_app_protection__communication">Comunicazione</string>
   <string name="preferences_chats__chats">Conversazioni</string>
+  <string name="preferences_data_and_storage__manage_storage">Gestisci memoria</string>
+  <string name="preferences_data_and_storage__calls">Chiamate</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizza meno dati per le chiamate</string>
+  <string name="preferences_data_and_storage__never">Mai</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi e rete cellulare</string>
+  <string name="preferences_data_and_storage__cellular_only">Solo rete cellulare</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'utilizzo di meno dati può migliorare le chiamate su reti lente</string>
   <string name="preferences_notifications__messages">Messaggi</string>
   <string name="preferences_notifications__events">Eventi</string>
   <string name="preferences_notifications__in_chat_sounds">Suoni in chat</string>
@@ -2567,8 +2587,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s hanno abbandonato</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s hanno abbandonato</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e altri %3$d hanno abbandonato</string>
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Tu (su un altro dispositivo)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (su un altro dispositivo)</string> -->
+  <string name="CallParticipant__you">Tu</string>
+  <string name="CallParticipant__you_on_another_device">Tu (su un altro dispositivo)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (su un altro dispositivo)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Eliminando il tuo account verranno:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Inserisci il tuo numero di telefono</string>
