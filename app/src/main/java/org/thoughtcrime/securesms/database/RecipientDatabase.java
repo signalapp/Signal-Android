@@ -1529,7 +1529,12 @@ public class RecipientDatabase extends Database {
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {LAST_SESSION_RESET}, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
       if (cursor.moveToFirst()) {
         try {
-          return DeviceLastResetTime.parseFrom(CursorUtil.requireBlob(cursor, LAST_SESSION_RESET));
+          byte[] serialized = CursorUtil.requireBlob(cursor, LAST_SESSION_RESET);
+          if (serialized != null) {
+            return DeviceLastResetTime.parseFrom(serialized);
+          } else {
+            return DeviceLastResetTime.newBuilder().build();
+          }
         } catch (InvalidProtocolBufferException | SQLException e) {
           Log.w(TAG, e);
           return DeviceLastResetTime.newBuilder().build();
