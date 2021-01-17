@@ -21,7 +21,7 @@ dependencies {
     api 'com.googlecode.libphonenumber:libphonenumber:8.12.6'
     api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
 
-    api 'org.whispersystems:signal-client-java:0.1.4'
+    api 'org.whispersystems:signal-client-java:0.1.5'
     api 'com.squareup.okhttp3:okhttp:3.12.10'
     implementation 'org.threeten:threetenbp:1.3.6'
 
