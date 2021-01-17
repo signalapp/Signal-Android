@@ -4,16 +4,16 @@ contact_links:
     url: https://support.signal.org/
     about: Find answers to many common questions.
   - name: ✨ Feature request
-    url: https://community.signalusers.org/c/feature-requests/
+    url: https://community.signalusers.org/c/feature-requests/android-feature-requests/18
     about: Missing something in Signal? Let us know.
   - name: 💬 Community support
-    url: https://community.signalusers.org/c/support/
+    url: https://community.signalusers.org/c/support/android-support/11
     about: Feel free to ask anything.
   - name: 📖 Developer documentation
     url: https://signal.org/docs/
     about: Official Signal developer documentation.
   - name: 📚 Translation feedback.
-    url: https://community.signalusers.org/c/translation-feedback/
+    url: https://community.signalusers.org/c/translation-feedback/27
     about: Share feedback on translations.
   - name: ❓ Other issue?
     url: https://community.signalusers.org/
