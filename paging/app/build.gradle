@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         applicationId "org.signal.pagingtest"
         versionCode 1
         versionName "1.0"
 
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
     }
 
     compileOptions {
@@ -20,11 +20,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-
-    testImplementation 'junit:junit:4.12'
-
+    implementation libraries.appcompat
+    implementation libraries.constraintLayout
+    implementation libraries.material
     implementation project(':paging')
+
+    testImplementation testLibraries.junit
 }
