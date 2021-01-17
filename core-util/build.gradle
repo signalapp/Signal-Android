@@ -4,12 +4,12 @@ apply plugin: 'witness'
 apply from: 'witness-verifications.gradle'
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
     }
 
     compileOptions {
@@ -24,7 +24,7 @@ dependencyVerification {
 
 protobuf {
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.10.0'
+        artifact = compileLibraries.protobuf
     }
     generateProtoTasks {
         all().each { task ->
@@ -40,9 +40,9 @@ protobuf {
 dependencies {
     lintChecks project(':lintchecks')
 
-    api 'androidx.annotation:annotation:1.1.0'
+    api annotationProcessors.annotations
 
-    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+    api libraries.protobufLite
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation testLibraries.junit
 }
