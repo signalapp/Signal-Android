@@ -1310,7 +1310,7 @@
   <string name="preferences__free_private_messages_and_calls">મફત ખાનગી મેસેજ અને Signal વપરાશકર્તાઓને કૉલ્સ</string>
   <string name="preferences__submit_debug_log">ડિબગ લૉગ સબમિટ કરો</string>
   <string name="preferences__support_wifi_calling">\'વાઇફાઇ કૉલિંગ\' સુસંગતતા મોડ</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">જો તમારું ડિવાઇસ WiFi પર SMS/MMS ડિલિવરીનો ઉપયોગ કરે છે તો સક્ષમ કરો (ફક્ત ત્યારે જ સક્ષમ કરો જ્યારે તમારા ડિવાઇસ પર \'વાઇફાઇ કૉલિંગ\' સક્ષમ હોય)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">જો તમારું ડિવાઇસ Wi-Fi પર SMS/MMS ડિલિવરીનો ઉપયોગ કરે છે તો સક્ષમ કરો (ફક્ત ત્યારે જ સક્ષમ કરો જ્યારે તમારા ડિવાઇસ પર \'વાઇફાઇ કૉલિંગ\' સક્ષમ હોય)</string>
   <string name="preferences__incognito_keyboard">ઈનકોગ્નિટો કીબોર્ડ</string>
   <string name="preferences__read_receipts">રિડ રિસિપ્ટ</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">જો રિડ રિસિપ્ટ અક્ષમ કરવામાં આવે છે, તો તમે અન્ય લોકો પાસેથી વાંચેલી રિડ રિસિપ્ટ જોઈ શકશો નહીં.</string>

@@ -2206,7 +2206,7 @@
   <string name="preferences__submit_debug_log">Отправить журнал отладки</string>
   <string name="preferences__delete_account">Удалить учётную запись</string>
   <string name="preferences__support_wifi_calling">Совместимость с Wi-Fi звонками</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS и MMS через WiFi (включайте, только если «Звонки по WiFi» включены на вашем устройстве)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Включите, если ваше устройство отправляет и принимает SMS и MMS через Wi-Fi (включайте, только если «Звонки по Wi-Fi» включены на вашем устройстве)</string>
   <string name="preferences__incognito_keyboard">Инкогнито-клавиатура</string>
   <string name="preferences__read_receipts">Уведомления о прочтении</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете видеть уведомления о прочтении от других пользователей.</string>

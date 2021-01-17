@@ -1172,7 +1172,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="preferences__free_private_messages_and_calls">Mesej dan panggilan sulit percuma kepada pengguna Signal</string>
   <string name="preferences__submit_debug_log">Menghantar log debug</string>
   <string name="preferences__support_wifi_calling">Mod keserasian \'Panggilan WiFI\' </string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Dayakan jika peranti anda menggunakan penghantaran SMS/MMS melalui WiFi (hanya dayakan apabila \'Panggilan WiFi\' diaktifkan pada peranti anda)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Dayakan jika peranti anda menggunakan penghantaran SMS/MMS melalui Wi-Fi (hanya dayakan apabila \'Panggilan Wi-Fi\' diaktifkan pada peranti anda)</string>
   <string name="preferences__incognito_keyboard">Papan kekunci incognito</string>
   <string name="preferences__read_receipts">Resit dibaca</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jika resit baca dinyahdayakan, anda tidak akan dapat melihat resit baca dari orang lain.</string>

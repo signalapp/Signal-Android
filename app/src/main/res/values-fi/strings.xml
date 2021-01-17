@@ -2052,8 +2052,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__free_private_messages_and_calls">Ilmaiset ja yksityiset viestit sekä puhelut Signalin käyttäjille</string>
   <string name="preferences__submit_debug_log">Lähetä virheenkorjausloki</string>
   <string name="preferences__delete_account">Poista tili</string>
-  <string name="preferences__support_wifi_calling">\"WiFi Calling\" -yhteensopiva tila</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit WiFi-yhteyden kautta. (Ota käyttöön vain, kun \"WiFi Calling\" on käytössä laitteessasi.)</string>
+  <string name="preferences__support_wifi_calling">\"Wi-Fi Calling\" -yhteensopiva tila</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ota käyttöön, jos laitteesi lähettää SMS- ja MMS-viestit Wi-Fi-yhteyden kautta. (Ota käyttöön vain, kun \"Wi-Fi Calling\" on käytössä laitteessasi.)</string>
   <string name="preferences__incognito_keyboard">Yksityinen näppäimistö</string>
   <string name="preferences__read_receipts">Lukukuittaukset</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jos lukukuittauksia ei ole otettu käyttöön, et tule näkemään lukukuittauksia muilta.</string>
@@ -2099,7 +2099,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_data_and_storage__calls">Puhelut</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Käytä vähemmän dataa puheluihin</string>
   <string name="preferences_data_and_storage__never">ei koskaan</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ja mobiili</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi ja mobiili</string>
   <string name="preferences_data_and_storage__cellular_only">Vain mobiili</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Alempi datankäyttö voi parantaa puheluja heikoissa verkkoyhteyksissä</string>
   <string name="preferences_notifications__messages">Viestit</string>

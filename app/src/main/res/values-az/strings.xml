@@ -1097,8 +1097,8 @@
   <string name="preferences__signal_messages_and_calls">Signal mesajları və zəngləri</string>
   <string name="preferences__free_private_messages_and_calls">Signal istifadəçilərinə ödənişsiz mesaj və zənglər</string>
   <string name="preferences__submit_debug_log">Xəta sorğusu təqdim et</string>
-  <string name="preferences__support_wifi_calling">\'WiFi Zəng\' uyğunluq rejimi</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Sənin cihazın WiFi üzərindən SMS/MMS çatdırılmasını həyata keçirə bilirsə, aktivləşdir (yalnız cihazında \'WiFi Zəng\' aktiv edildikdə istifadə et)</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi Zəng\' uyğunluq rejimi</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Sənin cihazın Wi-Fi üzərindən SMS/MMS çatdırılmasını həyata keçirə bilirsə, aktivləşdir (yalnız cihazında \'Wi-Fi Zəng\' aktiv edildikdə istifadə et)</string>
   <string name="preferences__incognito_keyboard">Gözəgörünməz klaviatura</string>
   <string name="preferences__read_receipts">Oxunmuşlar haqqında məlumat</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Oxunmuşlar haqqında məlumat xidməti deaktiv edilsə, başqa şəxs mesajı oxuduqda məlumat almayacaqsan.</string>

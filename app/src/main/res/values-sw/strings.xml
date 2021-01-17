@@ -1323,7 +1323,7 @@ nambari yako ya simu</string>
   <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na simu kwa watumiaji wa Signal</string>
   <string name="preferences__submit_debug_log">Wasilisha tunzakumbukumbu ya ueuaji</string>
   <string name="preferences__support_wifi_calling">\'\'Simu ya Wi-Fi\' aina ya utangamano</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wezesha iwapo kifaa chako kinatumia uwasilishaji wa SMS / MMS juu ya WiFi (wezesha tu wakati \"Simu ya WiFi\" imewezeshwa kwenye kifaa chako)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wezesha iwapo kifaa chako kinatumia uwasilishaji wa SMS / MMS juu ya Wi-Fi (wezesha tu wakati \"Simu ya Wi-Fi\" imewezeshwa kwenye kifaa chako)</string>
   <string name="preferences__incognito_keyboard">Baobonye isiyotambulika</string>
   <string name="preferences__read_receipts">Jumbe zilizosomwa</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ikiwa jumbe zilizosomwa zimemalemezwa, hutaweza kuona jumbe zilizosomwa kutoka kwa wengine</string>
@@ -1332,7 +1332,7 @@ nambari yako ya simu</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Omba kibaobonye kulemaza kujifunza kwa kibinafsi</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Wawasiliani waliozuiliwa</string> -->
   <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
-  <string name="preferences_chats__when_using_wifi">Wakati unatumia WiFi</string>
+  <string name="preferences_chats__when_using_wifi">Wakati unatumia Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Wakati unarandaranda </string>
   <string name="preferences_chats__media_auto_download">Media kupakua kiotomatiki</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_chats__message_trimming">Upunguzaji ujumbe </string> -->

@@ -2050,8 +2050,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__free_private_messages_and_calls">Missatges i trucades privades gratuïtes per als usuaris del Signal </string>
   <string name="preferences__submit_debug_log">Envia un registre de depuració</string>
   <string name="preferences__delete_account">Suprimeix el compte</string>
-  <string name="preferences__support_wifi_calling">Compatibilitat «Trucada per WiFi»</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per WiFi (feu-ho només si la «Trucada per WiFi» està activada al dispositiu)</string>
+  <string name="preferences__support_wifi_calling">Compatibilitat «Trucada per Wi-Fi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Activeu-ho si el dispositiu fa servir SMS / MMS per Wi-Fi (feu-ho només si la «Trucada per Wi-Fi» està activada al dispositiu)</string>
   <string name="preferences__incognito_keyboard">Teclat d\'incògnit</string>
   <string name="preferences__read_receipts">Confirmació de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
@@ -2097,7 +2097,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_data_and_storage__calls">Trucades</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Usa menys dades per a les trucades</string>
   <string name="preferences_data_and_storage__never">Mai</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi i dades mòbils</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i dades mòbils</string>
   <string name="preferences_data_and_storage__cellular_only">Només dades mòbils</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'ús de menys dades pot millorar les trucades en xarxes amb poca capacitat.</string>
   <string name="preferences_notifications__messages">Missatges</string>

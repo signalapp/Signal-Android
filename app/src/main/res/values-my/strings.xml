@@ -986,8 +986,8 @@
   <string name="preferences__signal_messages_and_calls">Signal စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="preferences__free_private_messages_and_calls">Signal အသုံးပြုသူများအတွက် အခမဲ့စာများနှင့် ဖုန်းခေါ်ဆိုမှုများ</string>
   <string name="preferences__submit_debug_log">Debug log ကို တင်ပြပါ</string>
-  <string name="preferences__support_wifi_calling">\'WiFi Calling\' လိုက်လျောညီထွေမှု ရှိသည့် ပုံစံ</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">သင့်ဖုန်းမှ ဝိုင်ဖိုင် အသုံးပြု၍ SMS/MMS ပေးပို့ခြင်းကို အသုံးပြုပါက လုပ်ဆောင်ချက်ကို ဖွင့်ပါ (\'WiFi Calling\'လုပ်ဆောင်ချက်ကို သင့်ဖုန်းက ဖွင့်ထားမှသာ လုပ်ဆောင်ပါ)</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' လိုက်လျောညီထွေမှု ရှိသည့် ပုံစံ</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">သင့်ဖုန်းမှ ဝိုင်ဖိုင် အသုံးပြု၍ SMS/MMS ပေးပို့ခြင်းကို အသုံးပြုပါက လုပ်ဆောင်ချက်ကို ဖွင့်ပါ (\'Wi-Fi Calling\'လုပ်ဆောင်ချက်ကို သင့်ဖုန်းက ဖွင့်ထားမှသာ လုပ်ဆောင်ပါ)</string>
   <string name="preferences__incognito_keyboard">နောက်ယောင်ခံမှု မရှိသည့် ကီးဘုတ်</string>
   <string name="preferences__read_receipts">ဖတ်ပြီးပြီ</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">စာဖတ်ပြီး​ကြောင်းပြသည်ကို ပိတ်ထားပါက တခြားသူများထံမှ ဖတ်ပြီး​ကြောင်းပြသည်ကိုလည်း မြင်ရမည်မဟုတ်ပါ။</string>

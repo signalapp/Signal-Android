@@ -2022,7 +2022,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_data_and_storage__calls">Cuộc gọi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Sử dụng ít lưu lượng data hơn khi gọi</string>
   <string name="preferences_data_and_storage__never">Không bao giờ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wifi và Mạng di động</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi và Mạng di động</string>
   <string name="preferences_data_and_storage__cellular_only">Chỉ dùng mạng di động</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Sử dụng ít lưu lượng data có thể cải thiện chất lượng cuộc gọi trong môi trường mạng kém</string>
   <string name="preferences_notifications__messages">Tin nhắn</string>

@@ -2212,8 +2212,8 @@
   <string name="preferences__free_private_messages_and_calls">הודעות ושיחות פרטיות חינמיות אל משתמשי Signal</string>
   <string name="preferences__submit_debug_log">הגש יומן ניפוי תקלים</string>
   <string name="preferences__delete_account">מחק חשבון</string>
-  <string name="preferences__support_wifi_calling">מצב תאימות \'התקשרות WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">אפשר אם המכשיר שלך משתמש במשלוח של מסרונים או MMS על גבי WiFi (אפשר רק כאשר \'התקשרות WiFi\' מאופשרת במכשיר שלך)</string>
+  <string name="preferences__support_wifi_calling">מצב תאימות \'התקשרות Wi-Fi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">אפשר אם המכשיר שלך משתמש במשלוח של מסרונים או MMS על גבי Wi-Fi (אפשר רק כאשר \'התקשרות Wi-Fi\' מאופשרת במכשיר שלך)</string>
   <string name="preferences__incognito_keyboard">מקלדת סמויה</string>
   <string name="preferences__read_receipts">אישורי קריאה</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
@@ -2259,7 +2259,7 @@
   <string name="preferences_data_and_storage__calls">שיחות</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">השתמש בפחות נתונים עבור שיחות</string>
   <string name="preferences_data_and_storage__never">אף פעם</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi וסלולרי</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi וסלולרי</string>
   <string name="preferences_data_and_storage__cellular_only">סלולרי בלבד</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">שימוש בפחות נתונים עשוי לשפר שיחות על רשתות גרועות</string>
   <string name="preferences_notifications__messages">הודעות</string>

@@ -2211,8 +2211,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__free_private_messages_and_calls">Svobodné šifrované zprávy a volání uživatelům Signal</string>
   <string name="preferences__submit_debug_log">Odeslat ladicí log</string>
   <string name="preferences__delete_account">Smazat účet</string>
-  <string name="preferences__support_wifi_calling">Režim kompatibility \"WiFi volání\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit, pokud vaše zařízení používá doručování SMS/MMS přes WiFi (povolte pouze, když vaše zařízení umožňuje \"WiFi volání\")</string>
+  <string name="preferences__support_wifi_calling">Režim kompatibility \"Wi-Fi volání\"</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Povolit, pokud vaše zařízení používá doručování SMS/MMS přes Wi-Fi (povolte pouze, když vaše zařízení umožňuje \"Wi-Fi volání\")</string>
   <string name="preferences__incognito_keyboard">Inkognito klávesnice</string>
   <string name="preferences__read_receipts">Potvrzení o přečtení</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže zakážete posílání potvrzení o přečtení zpráv, nebudete vidět tato potvrzení ani od ostatních.</string>
@@ -2221,7 +2221,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžádat klávesnici s vypnutým učením</string>
   <string name="preferences_app_protection__blocked_users">Zablokovaní uživatelé</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
-  <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
+  <string name="preferences_chats__when_using_wifi">Při použití Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Při roamingu</string>
   <string name="preferences_chats__media_auto_download">Automatické stahování multimédií</string>
   <string name="preferences_chats__message_history">Historie zpráv</string>
@@ -2258,7 +2258,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_data_and_storage__calls">Volání</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Šetřit data při hovorech</string>
   <string name="preferences_data_and_storage__never">Nikdy</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi a mobilní připojení</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi a mobilní připojení</string>
   <string name="preferences_data_and_storage__cellular_only">Pouze mobilní připojení</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Úspora dat může vylepšit kvalitu hovoru při špatném signálu</string>
   <string name="preferences_notifications__messages">Zprávy</string>

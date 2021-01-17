@@ -95,7 +95,7 @@ public abstract class LegacyMmsConnection {
   }
 
   protected boolean isDirectConnect() {
-    // We think Sprint supports direct connection over wifi/data, but not Verizon
+    // We think Sprint supports direct connection over Wi-Fi/data, but not Verizon
     Set<String> sprintMccMncs = new HashSet<String>() {{
       add("312530");
       add("311880");

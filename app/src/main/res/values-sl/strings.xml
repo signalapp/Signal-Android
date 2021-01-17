@@ -2203,8 +2203,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__free_private_messages_and_calls">Brezplačna zasebna sporočila in klici uporabnikom/cam aplikacije Signal</string>
   <string name="preferences__submit_debug_log">Oddaj sistemsko zabeležbo</string>
   <string name="preferences__delete_account">Izbris računa</string>
-  <string name="preferences__support_wifi_calling">\'WiFi calling\' združljivostni način</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave WiFi (samo, če imate vklopljeno WiFi klicanje/WiFi Calling)</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi calling\' združljivostni način</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte, če dostava SMS/MMS sporočil na vaši napravi poteka preko povezave Wi-Fi (samo, če imate vklopljeno Wi-Fi klicanje/Wi-Fi Calling)</string>
   <string name="preferences__incognito_keyboard">Inkognito tipkovnica</string>
   <string name="preferences__read_receipts">Potrdila o ogledu</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>
@@ -2250,7 +2250,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_data_and_storage__calls">Klici</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Porabi manj podatkov za klice</string>
   <string name="preferences_data_and_storage__never">Nikoli</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi in mobilni podatki</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi in mobilni podatki</string>
   <string name="preferences_data_and_storage__cellular_only">Samo mobilni podatki</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Poraba manj podatkov pri klicih lahko izboljša zanesljivost klicov v slabih omrežjih</string>
   <string name="preferences_notifications__messages">Sporočila</string>

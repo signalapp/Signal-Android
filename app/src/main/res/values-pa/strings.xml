@@ -1430,7 +1430,7 @@
   <string name="preferences__free_private_messages_and_calls">Signal ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਮੁਫਤ ਗੁਪਤ ਸੰਦੇਸ਼ ਅਤੇ ਕਾਲਾਂ</string>
   <string name="preferences__submit_debug_log">ਡੀਬੱਗ ਲਾਗ ਜਮ੍ਹਾਂ ਕਰੋ</string>
   <string name="preferences__support_wifi_calling">\'ਵਾਈਫਾਈ ਕਾਲਿੰਗ\' ਅਨੁਕੂਲਤਾ ਮੋਡ</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ਜੇਕਰ ਤੁਹਾਡੀ ਡਿਵਾਈਸ WiFi ਦੀ ਜਗਾਹ SMS / MMS ਡਿਲਵਰੀ ਵਰਤਦੀ ਹੈ ਤਾਂ ਸਮਰੱਥ ਬਣਾਓ (ਕੇਵਲ ਉਦੋਂ ਸਮਰੱਥ ਕਰੋ ਜਦੋਂ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ\' WiFi Calling \'ਸਮਰਥਿਤ ਹੋਵੇ)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">ਜੇਕਰ ਤੁਹਾਡੀ ਡਿਵਾਈਸ Wi-Fi ਦੀ ਜਗਾਹ SMS / MMS ਡਿਲਵਰੀ ਵਰਤਦੀ ਹੈ ਤਾਂ ਸਮਰੱਥ ਬਣਾਓ (ਕੇਵਲ ਉਦੋਂ ਸਮਰੱਥ ਕਰੋ ਜਦੋਂ ਤੁਹਾਡੀ ਡਿਵਾਈਸ ਤੇ\' Wi-Fi Calling \'ਸਮਰਥਿਤ ਹੋਵੇ)</string>
   <string name="preferences__incognito_keyboard">ਗੁਮਨਾਮ ਕੀਬੋਰਡ</string>
   <string name="preferences__read_receipts">ਪੜ੍ਹੀਆਂ ਹੋਇਆਂ ਰਸੀਦਾਂ</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ਜੇਕਰ ਰਸੀਦਾਂ ਦੀਆਂ ਰਸੀਦਾਂ ਅਯੋਗ ਹਨ, ਤਾਂ ਤੁਸੀਂ ਹੋਰਨਾਂ ਤੋਂ ਪੜ੍ਹੀਆਂ ਰਸੀਦਾਂ ਵੇਖ ਨਹੀਂ ਸਕੋਗੇ</string>

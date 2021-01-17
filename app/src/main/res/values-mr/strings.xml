@@ -1392,8 +1392,8 @@
   <string name="preferences__signal_messages_and_calls">Signal संदेश आणि कॉल</string>
   <string name="preferences__free_private_messages_and_calls">Signal वापरकर्त्यांना विनामुल्य खाजगी संदेश आणि कॉल</string>
   <string name="preferences__submit_debug_log">डीबग लॉग प्रविष्ट करा</string>
-  <string name="preferences__support_wifi_calling">\'WiFi कॉलिंग\' सुसंगतता मोड</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">जर आपला डिव्हाईस WiFi वर SMS/MMS पोहचवत असेल तर सक्षम करा(फक्त \'WiFi कॉलिंग\' सक्षम असल्यावरच सक्षम करा)</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi कॉलिंग\' सुसंगतता मोड</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">जर आपला डिव्हाईस Wi-Fi वर SMS/MMS पोहचवत असेल तर सक्षम करा(फक्त \'Wi-Fi कॉलिंग\' सक्षम असल्यावरच सक्षम करा)</string>
   <string name="preferences__incognito_keyboard">इनकॉग्निटो कीबोर्ड</string>
   <string name="preferences__read_receipts">वाचले पावत्या</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">जर आपल्या वाचल्याचा पावत्या अक्षम असतील तर आपल्याला इतरांकडूनही त्या मिळणार नाहीत.</string>

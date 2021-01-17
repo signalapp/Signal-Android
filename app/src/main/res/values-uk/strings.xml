@@ -1101,8 +1101,8 @@
   <string name="preferences__signal_messages_and_calls">Повідомлення та виклики Signal</string>
   <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
   <string name="preferences__submit_debug_log">Надіслати журнал відлагодження</string>
-  <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнені на вашому пристрої)</string>
+  <string name="preferences__support_wifi_calling">Режим сумісності \'Wi-Fi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через Wi-Fi (вмикайте лише якщо «Wi-Fi Calling» увімкнені на вашому пристрої)</string>
   <string name="preferences__incognito_keyboard">Клавіатура в режимі \"інкогніто\"</string>
   <string name="preferences__read_receipts">Звіти про прочитання</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Якщо звіти про прочитання вимкнено, ви не зможете отримувати звіти від інших.</string>

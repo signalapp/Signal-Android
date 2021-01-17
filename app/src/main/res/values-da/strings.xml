@@ -2105,7 +2105,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wifi og mobildata</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi og mobildata</string>
   <string name="preferences_data_and_storage__cellular_only">Kun mobildata</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Brug af færre data kan forbedre opkald på dårlige netværk</string>
   <string name="preferences_notifications__messages">Beskeder</string>

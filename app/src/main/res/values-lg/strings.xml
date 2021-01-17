@@ -388,7 +388,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="MessageNotifier_reply">ddamu</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">wifi calling compatiblity mode</string>
+  <string name="NotificationChannel_messages">Wi-Fi calling compatiblity mode</string>
   <string name="NotificationChannel_missing_display_name">Tekimanyikiddwa</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">okudamu okwangu tekubawo nga amayengo gasibidwa</string>
@@ -644,13 +644,13 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__dark_theme">Kizikiza</string>
   <string name="preferences__appearance">ndabika</string>
   <string name="preferences__theme">omulamwa</string>
-  <string name="preferences__default">wifi calling compatiblity mode</string>
+  <string name="preferences__default">Wi-Fi calling compatiblity mode</string>
   <string name="preferences__language">Lulimi</string>
   <string name="preferences__signal_messages_and_calls">Obubaka na massinu ga Signal</string>
   <string name="preferences__free_private_messages_and_calls">Obubaka obwekyama na massimu ku bakozesa ba Signal</string>
   <string name="preferences__submit_debug_log">Waayo olukalala bili kibaddewo</string>
-  <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' compatibility mode</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over Wi-Fi (only enable when \'Wi-Fi Calling\' is enabled on your device)</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__blocked_contacts">Kuziyiza contact</string> -->
   <string name="preferences_chats__when_using_mobile_data">Bwoba okozesa dat we ssimu</string>
   <string name="preferences_chats__when_using_wifi">Bwoba okozesa WI-Fi</string>

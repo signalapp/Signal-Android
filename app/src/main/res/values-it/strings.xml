@@ -2058,8 +2058,8 @@
   <string name="preferences__free_private_messages_and_calls">Messaggi e chiamate private e gratuite verso gli utenti Signal</string>
   <string name="preferences__submit_debug_log">Invia log di debug</string>
   <string name="preferences__delete_account">Elimina account</string>
-  <string name="preferences__support_wifi_calling">Modalità di compatibilità \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMS/MMS via WiFi (abilita solo quando \"WiFi Calling\" è abilitato per il tuo dispositivo)</string>
+  <string name="preferences__support_wifi_calling">Modalità di compatibilità \'Wi-Fi Calling\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Abilitare se il tuo device spedisce gli SMS/MMS via Wi-Fi (abilita solo quando \"Wi-Fi Calling\" è abilitato per il tuo dispositivo)</string>
   <string name="preferences__incognito_keyboard">Tastiera in incognito</string>
   <string name="preferences__read_receipts">Conferme di lettura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
@@ -2105,7 +2105,7 @@
   <string name="preferences_data_and_storage__calls">Chiamate</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizza meno dati per le chiamate</string>
   <string name="preferences_data_and_storage__never">Mai</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi e rete cellulare</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e rete cellulare</string>
   <string name="preferences_data_and_storage__cellular_only">Solo rete cellulare</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">L\'utilizzo di meno dati può migliorare le chiamate su reti lente</string>
   <string name="preferences_notifications__messages">Messaggi</string>

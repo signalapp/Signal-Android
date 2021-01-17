@@ -2135,8 +2135,8 @@
   <string name="preferences__free_private_messages_and_calls">Besplatne privatne poruke i pozivi za korisnike Signala</string>
   <string name="preferences__submit_debug_log">Pošaljite zapis za ispravljanje grešaka</string>
   <string name="preferences__delete_account">Izbriši račun</string>
-  <string name="preferences__support_wifi_calling">\'WiFi pozivanje\' kompatibilni način rada</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte ukoliko Vaš uređaj isporučuje SMS/MMS poruke preko WiFi-a (aktivirajte samo kad je na Vašem uređaju aktivno i \'WiFi pozivanje\')</string>
+  <string name="preferences__support_wifi_calling">\'Wi-Fi pozivanje\' kompatibilni način rada</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte ukoliko Vaš uređaj isporučuje SMS/MMS poruke preko Wi-Fi-a (aktivirajte samo kad je na Vašem uređaju aktivno i \'Wi-Fi pozivanje\')</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatura</string>
   <string name="preferences__read_receipts">Potvrda čitanja</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja onemogućena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
@@ -2182,7 +2182,7 @@
   <string name="preferences_data_and_storage__calls">Pozivi</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Koristi manju količinu podataka za pozive</string>
   <string name="preferences_data_and_storage__never">Nikad</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi i mobilna mreža</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi i mobilna mreža</string>
   <string name="preferences_data_and_storage__cellular_only">Samo mobilna mreža</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Korištenjem manje količine podataka može se poboljšati kvalitet poziva na lošim mrežama</string>
   <string name="preferences_notifications__messages">Poruke</string>

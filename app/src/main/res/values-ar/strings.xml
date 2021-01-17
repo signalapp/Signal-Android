@@ -2365,7 +2365,7 @@
   <string name="preferences__submit_debug_log">إرسال سجل التصحيح</string>
   <string name="preferences__delete_account">حذف الحساب</string>
   <string name="preferences__support_wifi_calling">وضع التوافق مع \'مكالمات الواي فاي\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية WiFi Calling لتسليم الرسائل القصيرة والرسائل متعددة الوسائط MMS/SMS ( قم بالتفعيل فقط في حال تفعيل WiFi Calling بهاتفك)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">يمكنك تفعيل الخاصية إذا كان هاتفك يدعم خاصية Wi-Fi Calling لتسليم الرسائل القصيرة والرسائل متعددة الوسائط MMS/SMS ( قم بالتفعيل فقط في حال تفعيل Wi-Fi Calling بهاتفك)</string>
   <string name="preferences__incognito_keyboard">وضع التخفّي للوحة المفاتيح</string>
   <string name="preferences__read_receipts">قراءة وصولات القراءة</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة  رسائلك.</string>
@@ -2411,7 +2411,7 @@
   <string name="preferences_data_and_storage__calls">المُكالمات</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
   <string name="preferences_data_and_storage__never">أبداً</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">شبكة WiFi والشبكة الخلوية</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">شبكة Wi-Fi والشبكة الخلوية</string>
   <string name="preferences_data_and_storage__cellular_only">الشبكة الخلوية فقط</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
   <string name="preferences_notifications__messages">الرسائل</string>

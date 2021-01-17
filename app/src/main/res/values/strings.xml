@@ -2413,8 +2413,8 @@
     <string name="preferences__free_private_messages_and_calls">Free private messages and calls to Signal users</string>
     <string name="preferences__submit_debug_log">Submit debug log</string>
     <string name="preferences__delete_account">Delete account</string>
-    <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
-    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
+    <string name="preferences__support_wifi_calling">\'Wi-Fi Calling\' compatibility mode</string>
+    <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over Wi-Fi (only enable when \'Wi-Fi Calling\' is enabled on your device)</string>
     <string name="preferences__incognito_keyboard">Incognito keyboard</string>
     <string name="preferences__read_receipts">Read receipts</string>
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
@@ -2460,7 +2460,7 @@
     <string name="preferences_data_and_storage__calls">Calls</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_cellular">WiFi and Cellular</string>
+    <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi and Cellular</string>
     <string name="preferences_data_and_storage__cellular_only">Cellular only</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
     <string name="preferences_notifications__messages">Messages</string>

@@ -2209,8 +2209,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__free_private_messages_and_calls">Bezplatné zabezpečené správy a hovory medzi užívateľmi Signalu</string>
   <string name="preferences__submit_debug_log">Odoslať ladiaci záznam</string>
   <string name="preferences__delete_account">Vymazať účet</string>
-  <string name="preferences__support_wifi_calling">Režim kompatibility \'WiFi volania\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Zapnite ak vaše zariadenie používa doručenie SMS/MMS cez WiFi (zapnite len ak sú \"WiFi volania\" zapnuté na vašom zariadení)</string>
+  <string name="preferences__support_wifi_calling">Režim kompatibility \'Wi-Fi volania\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Zapnite ak vaše zariadenie používa doručenie SMS/MMS cez Wi-Fi (zapnite len ak sú \"Wi-Fi volania\" zapnuté na vašom zariadení)</string>
   <string name="preferences__incognito_keyboard">Inkognito klávesnica</string>
   <string name="preferences__read_receipts">Potvrdenia o prečítaní</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Keď máte vypnuté potvrdenia o prečítaní, nebudete dostávať potvrdenia ani od ostatných.</string>

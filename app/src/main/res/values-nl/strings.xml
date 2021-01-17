@@ -2064,8 +2064,8 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__free_private_messages_and_calls">Gratis privéberichten en bellen met Signal-gebruikers</string>
   <string name="preferences__submit_debug_log">Foutopsporingslog indienen</string>
   <string name="preferences__delete_account">Al je gegevens wissen</string>
-  <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
+  <string name="preferences__support_wifi_calling">‘Bellen via Wi-Fi’-compatibiliteitsmodus</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over Wi-Fi (schakel dit alleen in als ook ‘Bellen via Wi-Fi’ is ingeschakeld op je apparaat)</string>
   <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
@@ -2074,7 +2074,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Voorkom gepersonaliseerd leren door het toetsenbord</string>
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
   <string name="preferences_chats__when_using_mobile_data">Bij mobielegegevensoverdracht</string>
-  <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
+  <string name="preferences_chats__when_using_wifi">Bij Wi-Fi-verbinding</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_history">Gespreksgeschiedenis</string>
@@ -2111,7 +2111,7 @@ Signal zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_data_and_storage__calls">Oproepen</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Minder gegevensoverdracht bij oproepen</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Bij wifi en mobiele-gegevensoverdracht</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Bij Wi-Fi en mobiele-gegevensoverdracht</string>
   <string name="preferences_data_and_storage__cellular_only">Alleen bij mobiele-gegevensoverdracht</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder gegevensoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>

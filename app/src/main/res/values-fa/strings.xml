@@ -2054,8 +2054,8 @@
   <string name="preferences__free_private_messages_and_calls">تماس‌ها و پیام‌های خصوصی رایگان برای کاربران سیگنال</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
   <string name="preferences__delete_account">حذف حساب کاربری</string>
-  <string name="preferences__support_wifi_calling">حالت سازگاری «تماس WiFi»</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/فراپیام بر روی شبکهٔ WiFi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس WiFi» بر روی دستگاه شما فعال است)</string>
+  <string name="preferences__support_wifi_calling">حالت سازگاری «تماس Wi-Fi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل پیامک/فراپیام بر روی شبکهٔ Wi-Fi استفاده می‌کند، این گزینه را فعال کنید (فقط زمانی فعال کنید، که «تماس Wi-Fi» بر روی دستگاه شما فعال است)</string>
   <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
   <string name="preferences__read_receipts">رسیدهای خوانده شدن</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
@@ -2101,7 +2101,7 @@
   <string name="preferences_data_and_storage__calls">تماس‌ها</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استفاده از کمتر از داده‌ها برای تماس‌ها</string>
   <string name="preferences_data_and_storage__never">هرگز</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi و شبکهٔ تلفن همراه</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi و شبکهٔ تلفن همراه</string>
   <string name="preferences_data_and_storage__cellular_only">فقط شبکهٔ تلفن ‌همراه</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفاده کمتر از داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد </string>
   <string name="preferences_notifications__messages">پیام‌ها</string>

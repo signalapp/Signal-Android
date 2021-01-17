@@ -1493,8 +1493,8 @@
   <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Signal</string>
   <string name="preferences__free_private_messages_and_calls">โทรและส่งข้อความส่วนตัวถึงผู้ใช้ Signal ฟรี</string>
   <string name="preferences__submit_debug_log">ส่งปูมดีบัก</string>
-  <string name="preferences__support_wifi_calling">โหมดที่เข้ากันได้กับ \'โทรผ่าน WiFi\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">เปิดใช้งานถ้าอุปกรณ์ของคุณใช้การส่ง SMS/MMS ผ่าน WiFi (จะเปิดใช้งานได้ก็ต่อเมื่อ \'โทรผ่าน WiFi\' ถูกเปิดใช้งานบนอุปกรณ์ของคุณ)</string>
+  <string name="preferences__support_wifi_calling">โหมดที่เข้ากันได้กับ \'โทรผ่าน Wi-Fi\'</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">เปิดใช้งานถ้าอุปกรณ์ของคุณใช้การส่ง SMS/MMS ผ่าน Wi-Fi (จะเปิดใช้งานได้ก็ต่อเมื่อ \'โทรผ่าน Wi-Fi\' ถูกเปิดใช้งานบนอุปกรณ์ของคุณ)</string>
   <string name="preferences__incognito_keyboard">แป้นพิมพ์แบบลับ</string>
   <string name="preferences__read_receipts">ใบตอบรับเมื่ออ่าน</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ถ้าใบตอบรับเมื่ออ่านถูกปิดใช้งาน คุณจะไม่เห็นใบตอบรับเมื่ออ่านที่ส่งมาจากผู้อื่น</string>

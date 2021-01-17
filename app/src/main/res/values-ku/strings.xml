@@ -1445,7 +1445,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilîde veke</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Ji bo şandina medya û peyamên komê ser WiFi, Signal şikila MMS dixwaze. Vê agahî ser cihazê te bêfêde ye, belkî amûr biqif e, an şikil gelek astengker e.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Ji bo şandina medya û peyamên komê ser Wi-Fi, Signal şikila MMS dixwaze. Vê agahî ser cihazê te bêfêde ye, belkî amûr biqif e, an şikil gelek astengker e.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Ji bo şandina medya û peyamên komê, \'OK\' lêxe û şikila pêwîst xelas bike. Şikila MMS ji bo şirketa torrê di normal de dikare bê peydakirin bi lêgerrina \'your carrier APN\'. Pêwîst ku tu tenê carek wisa bikî.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Nav (hewce)</string>
@@ -1643,7 +1643,7 @@
   <string name="preferences__submit_debug_log">Tomara pînekirina çewtiyan bişîne</string>
   <string name="preferences__delete_account">Hesêb jê be</string>
   <string name="preferences__support_wifi_calling">Moda hevahengiya \'Bangewaziyên WiFiyê\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Eger amûra te gihandina SMS/MMSê ya ji ser \'WiFi\'yê bi kar bîne, rê bide (tenê dema \'Lêgerîna WiFiyê\' ser amûra te vekirî be bila çalak be)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Eger amûra te gihandina SMS/MMSê ya ji ser \'Wi-Fi\'yê bi kar bîne, rê bide (tenê dema \'Lêgerîna WiFiyê\' ser amûra te vekirî be bila çalak be)</string>
   <string name="preferences__incognito_keyboard">Klavyeya veşartî</string>
   <string name="preferences__read_receipts">Hat xwendin</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Heger xwendina reçete qedexe be tu nikarî reçete ji kesên din bixwînî.</string>
@@ -1683,7 +1683,7 @@
   <string name="preferences_data_and_storage__manage_storage">Bîrgehê birêve bibe</string>
   <string name="preferences_data_and_storage__calls">Gerîn</string>
   <string name="preferences_data_and_storage__never">Qet</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi û Hucreyî</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi û Hucreyî</string>
   <string name="preferences_data_and_storage__cellular_only">Tenê hucreyî</string>
   <string name="preferences_notifications__messages">Peyam</string>
   <string name="preferences_notifications__events">Çalakî</string>

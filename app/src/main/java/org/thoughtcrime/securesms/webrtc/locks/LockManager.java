@@ -71,7 +71,7 @@ public class LockManager {
 
   private boolean isWifiPowerActiveModeEnabled(Context context) {
     int wifi_pwr_active_mode = Settings.Secure.getInt(context.getContentResolver(), "wifi_pwr_active_mode", -1);
-    Log.d(TAG, "Wifi Activity Policy: " + wifi_pwr_active_mode);
+    Log.d(TAG, "Wi-Fi Activity Policy: " + wifi_pwr_active_mode);
 
     if (wifi_pwr_active_mode == 0) {
       return false;

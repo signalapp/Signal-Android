@@ -2053,8 +2053,8 @@
   <string name="preferences__free_private_messages_and_calls">Δωρεάν προσωπικά μηνύματα και κλήσεις προς τους χρήστες και τις χρήστριες του Signal</string>
   <string name="preferences__submit_debug_log">Αποστολή αρχείου συμβάντων αποσφαλμάτωσης</string>
   <string name="preferences__delete_account">Διαγραφή λογαριασμού</string>
-  <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"WiFi Calling\' </string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίησέ το αν η συσκευή σου χρησιμοποιεί παράδοση SMS/MMS μέσω WiFi (ενεργοποίηση μόνο αν το \'WiFi Calling\' είναι ενεργοποιημένο στη συσκευή σου)</string>
+  <string name="preferences__support_wifi_calling">Λειτουργία συμβατότητας \"Wi-Fi Calling\' </string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ενεργοποίησέ το αν η συσκευή σου χρησιμοποιεί παράδοση SMS/MMS μέσω Wi-Fi (ενεργοποίηση μόνο αν το \'Wi-Fi Calling\' είναι ενεργοποιημένο στη συσκευή σου)</string>
   <string name="preferences__incognito_keyboard">Κρυφό πληκτρολόγιο</string>
   <string name="preferences__read_receipts">Αποδεικτικά ανάγνωσης</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείς να δεις αποδεικτικά ανάγνωσης από άλλους/ες.</string>
@@ -2063,7 +2063,7 @@
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Αίτηση πληκτρολογίου για να απενεργοποιηθεί η προσωποποιημένη εκμάθηση</string>
   <string name="preferences_app_protection__blocked_users">Φραγμένοι χρήστες/τριες</string>
   <string name="preferences_chats__when_using_mobile_data">Όταν χρησιμοποιούνται δεδομένα</string>
-  <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
+  <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται Wi-Fi</string>
   <string name="preferences_chats__when_roaming">Κατά το roaming</string>
   <string name="preferences_chats__media_auto_download">Αυτόματη λήψη πολυμέσων</string>
   <string name="preferences_chats__message_history">Ιστορικό μηνυμάτων</string>
@@ -2100,7 +2100,7 @@
   <string name="preferences_data_and_storage__calls">Κλήσεις</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
   <string name="preferences_data_and_storage__never">Ποτέ</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi και δεδομένα κινητής</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi και δεδομένα κινητής</string>
   <string name="preferences_data_and_storage__cellular_only">Μόνο δεδομένα κινητής</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
   <string name="preferences_notifications__messages">Μηνύματα</string>
