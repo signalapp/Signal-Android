@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">Verificar</string>
   <string name="ConversationFragment_not_now">Agora não</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">O seu número de segurança com %s mudou.</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O seu número de segurança  com %s foi alterado, provavelmente porque ele reinstalou o Signal ou alterou os dispositivos. Toque em \'Verificar\' para confirmar o novo número de segurança. Isso é opcional.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O seu número de segurança  com %s foi alterado, provavelmente porque ele reinstalou o Signal ou alterou os dispositivos. Toque em \'Verificar\' para confirmar o novo número de segurança (Isto é opcional).</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -1103,8 +1103,8 @@
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não saberão que viu a mensagem deles até que aceite.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe enviem mensagens e que seja partilhado o seu nome e fotografia com eles? Eles não irão receber nenhuma mensagem até que os desbloqueie.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permite que %1$s lhe envie mensagens e que seja partilhado o seu nome e fotografia com ele(a)? Ele(a) não saberá que viu a mensagem dele(a) até que aceite.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Permite que %1$s lhe envie mensagens e que seja partilhado o seu nome e fotografia com ele(a)? Ele(a) não irá receber nenhuma mensagem até que o(a) desbloqueie.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Continuar a sua conversa com este grupo e partilhar o seu nome e fotografia com os seus membros?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Faça o upgrade deste grupo para ativar os recursos novos como @menções e os administradores. Os membros que não partilharam os seus nomes ou fotografias neste grupo serão convidados a juntarem-se.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este \'Grupo legado\' deixou de poder ser utilizado porque é demasiadamente grande. O tamanho máximo do grupo é de %1$d.</string>

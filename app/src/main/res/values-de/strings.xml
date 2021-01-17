@@ -184,7 +184,7 @@
   <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Senden gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da der Empfänger Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>
@@ -401,8 +401,8 @@
   <string name="DecryptionFailedDialog_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal verwendet Ende-zu-Ende-Verschlüsselung und muss gelegentlich deine Unterhaltungssitzung aktualisieren. Dies beeinflusst nicht die Sicherheit deiner Unterhaltungen, aber es besteht die Möglichkeit, dass du eine Nachricht von diesem Kontakt verpasst hast. Du kannst ihn bitten, die Nachricht erneut zu senden.</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Wird gesendet</string>
-  <string name="DeliveryStatus_sent">Gesendet</string>
+  <string name="DeliveryStatus_sending">Wird versendet</string>
+  <string name="DeliveryStatus_sent">Versendet</string>
   <string name="DeliveryStatus_delivered">Zugestellt</string>
   <string name="DeliveryStatus_read">Gelesen</string>
   <!--DeviceListActivity-->
@@ -804,7 +804,7 @@
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
   <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Wird gesendet …</string>
+  <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -1876,8 +1876,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_details_header__via">Über</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ausstehend</string>
-  <string name="message_details_recipient_header__sent_to">Gesendet an</string>
-  <string name="message_details_recipient_header__sent_from">Gesendet von</string>
+  <string name="message_details_recipient_header__sent_to">Versendet an</string>
+  <string name="message_details_recipient_header__sent_from">Versendet von</string>
   <string name="message_details_recipient_header__delivered_to">Zugestellt an</string>
   <string name="message_details_recipient_header__read_by">Gelesen von</string>
   <string name="message_details_recipient_header__not_sent">Nicht gesendet</string>

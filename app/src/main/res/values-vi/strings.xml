@@ -304,7 +304,7 @@
   <string name="ConversationFragment_verify">Kiểm chứng</string>
   <string name="ConversationFragment_not_now">Để sau</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Mã an toàn của bạn với %s thay đổi</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Mã an toàn của bạn với %s thay đổi, có thể bởi vì họ đã cài đặt lại Signal hoặc thay đổi thiết bị. Nhấn để xác nhận mã an toàn mới. Việc này không bắt buộc.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Số an toàn của bạn với %s đã thay đổi, khả năng cao là vì họ đã cài lại Signal hoặc đổi thiết bị. Nhấn Xác minh để xác nhận lại số an toàn mới. Việc này là không bắt buộc.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->
@@ -1953,7 +1953,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__mmsc_password">Mật khẩu MMSC</string>
   <string name="preferences__sms_delivery_reports">Báo cáo đã gửi SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Yêu cầu báo cáo đã gửi cho từng tin nhắn SMS gửi đi</string>
-  <string name="preferences__data_and_storage">Dữ liệu và Bộ nhớ</string>
+  <string name="preferences__data_and_storage">Dữ liệu và lưu trữ</string>
   <string name="preferences__storage">Lưu trữ</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string>
   <string name="preferences__keep_messages">Giữ tin nhắn</string>

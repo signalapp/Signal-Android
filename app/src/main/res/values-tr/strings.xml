@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">Doğrula</string>
   <string name="ConversationFragment_not_now">Şimdi değil</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s ile olan güvenlik numaranız değişti</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ile olan Güvenlik Numaranız değişti, bunun sebebi Signal\'i yeniden yüklemeleri veya cihaz değiştirmeleri olabilir. Yeni güvenlik numarasını onaylamak için Doğrula\'ya dokunun. Bu eylem isteğe bağlıdır.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ile olan güvenlik numaranız değişti, bunun sebebi Signal\'i yeniden yüklemeleri veya cihaz değiştirmeleri olabilir. Yeni güvenlik numarasını onaylamak için Doğrula\'ya dokunun. Bu eylem isteğe bağlıdır.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -2034,7 +2034,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__mmsc_password">MMSC Parolası</string>
   <string name="preferences__sms_delivery_reports">SMS iletim raporları</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu istensin</string>
-  <string name="preferences__data_and_storage">Veri ve Depolama</string>
+  <string name="preferences__data_and_storage">Veri ve depolama</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>

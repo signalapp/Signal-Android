@@ -314,7 +314,6 @@
   <string name="ConversationFragment_verify">Comprobar</string>
   <string name="ConversationFragment_not_now">Agora non</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">O teu número de seguridade con %s cambiou</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">O teu Número de Seguridade con %s cambiou, probablemente porque reinstalou Signal ou cambiou de dispositivo. Toca en Verificar para confirmar o novo número de seguridade. Esto é optativo.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -1975,7 +1974,7 @@
   <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O teu porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminados.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Comunícate de xeito seguro e activa novas características que van máis alá das limitacións das mensaxes SMS sen cifrar convidando ós teus contactos a que se utilicen Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Comunícate de xeito seguro e activa novas características que van máis alá das limitacións das mensaxes SMS sen cifrar. Convida ós teus contactos a que utilicen Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas créanse localmente no teu dispositivo e só as ves ti. Non son transmitidas a ningún lugar.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mensaxes cifradas</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>

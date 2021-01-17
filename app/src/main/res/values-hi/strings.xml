@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">सत्यापित करें</string>
   <string name="ConversationFragment_not_now">अभी नहीं</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s के साथ आपका सुरक्षा नंबर बदल गया है</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s के साथ आपका सुरक्षा नंबर बदल गया है, संभव रूप से इसलिए क्योंकि उन्होंने Signal को रीइंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर टैप करें। यह वैकल्पिक है।</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s के साथ आपकी सुरक्षा संख्या बदल गई, संभावना है कि उन्होंने Signal को फिर से इंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर क्लिक करें। यह वैकल्पिक है।</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपके डिवाइस पर कोई ब्राउज़र इंस्टॉल नहीं है।</string>
   <!--ConversationListFragment-->
@@ -568,7 +568,7 @@
     <item quantity="other">%1$d मेंबर्स</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">लेंबित ग्रुप आमंत्रण</string>
+  <string name="PendingMembersActivity_pending_group_invites">लंंबित ग्रुप आमंत्रण</string>
   <string name="PendingMembersActivity_requests">अनुरोध</string>
   <string name="PendingMembersActivity_invites">आमंत्रण</string>
   <string name="PendingMembersActivity_people_you_invited">आपके द्वारा आमंत्रित लोग</string>
@@ -955,7 +955,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">यह ग्रूप आपने बनाया है।</string>
   <string name="MessageRecord_group_updated">ग्रुप अपडेट हो गया है।</string>
-  <string name="MessageRecord_invite_friends_to_this_group">एक ग्रुप लिंक के माध्यम से मित्रों को आमंत्रित करें।</string>
+  <string name="MessageRecord_invite_friends_to_this_group">एक ग्रुप लिंक के माध्यम से मित्रों को इस ग्रुप में आमंत्रित करें।</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">आपने %1$s को शामिल किया।</string>
   <string name="MessageRecord_s_added_s">%1$s ने %2$s को शामिल किया।</string>
@@ -1039,7 +1039,7 @@
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने एडमिन की एप्रूवल के साथ ग्रुप लिंक को चालू कर दिया है।</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s ने ग्रुप लिंक को बंद कर दिया।</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ग्रुप लिंक को एडमिन की एप्रूवल के बिना चालू कर दिया गया है।</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ग्रुप लिंक को एडमिन की एप्रूवल के साथ चालू कर दिया  गया है।</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ग्रुप लिंक को एडमिन की एप्रूवल के साथ चालू कर दिया गया है।</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">इस ग्रुप कि लिंक बंद कर दी गयी है </string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपने ग्रुप लिंक के लिए एडमिन एप्रूवल को बंद कर दिया है।</string>
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने ग्रुप लिंक के लिए एडमिन एप्रूवल को बंद कर दिया है।</string>
@@ -2524,7 +2524,7 @@
   <string name="GroupsLearnMore_what_are_legacy_groups">लेगेसी समूह क्या होते हैं?</string>
   <string name="GroupsLearnMore_paragraph_1">लेगेसी ग्रुप्स वे ग्रुप्स हैं जो नए ग्रुप फ़ीचर्स जैसे कि एडमिन और अधिक विस्तृत ग्रुप अपडेट के साथ संगत नहीं हैं।</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">क्या किसी लेगेसी समूह को अपग्रेड किया जा सकता है? </string>
-  <string name="GroupsLearnMore_paragraph_2">लिगेसी समूहों को नये समूहों में फिलहाल बदला नहीं जा सकता, लेकिन अगर उन सदस्यों के पास Signal का नवीनतम वर्ज़न है तो आप उन्हीं सदस्यों का एक नया समूह बना सकते हैं.</string>
+  <string name="GroupsLearnMore_paragraph_2">लिगेसी समूहों को नये समूहों में फिलहाल बदला नहीं जा सकता, लेकिन अगर उन सदस्यों के पास Signal का नवीनतम वर्ज़न है तो आप उन्हीं सदस्यों का एक नया समूह बना सकते हैं।</string>
   <string name="GroupsLearnMore_paragraph_3">Signal भविष्य में लेगेसी समूहों को अपडेट करने का तरीका उपलब्ध करायेगा।</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Signal के ज़रिये शेयर करें </string>

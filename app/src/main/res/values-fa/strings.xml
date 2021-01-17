@@ -314,7 +314,6 @@
   <string name="ConversationFragment_verify">تآیید</string>
   <string name="ConversationFragment_not_now">حالا نه</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">شمارهٔ امنیتی شما با %s تغییر یافت</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">شمارهٔ امنیتی شما با %s تغییر یافت، احتمالاً به این خاطر که آن‌ها سیگنال را دوباره نصب کرد‌ند یا دستگاهشان را تغییر دادند. برای تصدیق شمارهٔ امنیتی جدید روی تأیید ضربه بزنید.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">هیچ مرورگری بر روی دستگاه شما نصب نیست.</string>
   <!--ConversationListFragment-->
@@ -1868,7 +1867,7 @@
   <string name="unknown_sender_view__add_to_contacts">افزودن به مخاطبین</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">اضافه نکن، اما پروفایل من را قابل مشاهده قرار بده</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تأیید کنید، عدد بالا را با عدد روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی گوشی آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزگذاری خود را با %s تأیید کنید، ارقام بالا را با ارقام روی دستگاه آن‌ها مقایسه کنید. در غیر این صورت، می‌توانید کد روی گوشی آن‌ها را اسکن کرده یا از آن‌ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای اسکن کردن ضربه بزنید</string>
   <string name="verify_display_fragment__loading">در حال بارگذاری…</string>
   <string name="verify_display_fragment__verified">تأیید شده</string>
@@ -2034,7 +2033,6 @@
   <string name="preferences__mmsc_password">رمز عبور MMSC</string>
   <string name="preferences__sms_delivery_reports">گزارش‌های تحویل پیامک</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیامکی که ارسال می‌کنید</string>
-  <string name="preferences__data_and_storage">داده‌ها و حافظه</string>
   <string name="preferences__storage">حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول مکالمه</string>
   <string name="preferences__keep_messages">نگاه داشتن پیام‌ها</string>

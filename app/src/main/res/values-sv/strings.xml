@@ -158,7 +158,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du kan vilja verifiera säkerhetsnummer med denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Senaste konversationer</string>
+  <string name="ContactsCursorLoader_recent_chats">Senaste chattar</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <string name="ContactsCursorLoader_phone_number_search">Telefonnummer-sökning</string>
@@ -314,7 +314,6 @@
   <string name="ConversationFragment_verify">Verifiera</string>
   <string name="ConversationFragment_not_now">Inte nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Ditt säkerhetsnummer med %s har ändrats</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ditt säkerhetsnummer med %s har ändrats, troligtvis för att de installerade om Signal eller bytte enheter. Tryck på Verifiera för att bekräfta det nya säkerhetsnumret. Detta är valfritt.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -367,7 +366,7 @@
   <string name="RestoreBackupFragment__choose_folder">Välj mapp</string>
   <string name="RestoreBackupFragment__not_now">Inte nu</string>
   <!--BackupsPreferenceFragment-->
-  <string name="BackupsPreferenceFragment__chat_backups">Säkerhetskopior av konversationer</string>
+  <string name="BackupsPreferenceFragment__chat_backups">Säkerhetskopior av chattar</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Säkerhetskopior krypteras med ett lösenord och lagras på din enhet.</string>
   <string name="BackupsPreferenceFragment__create_backup">Skapa säkerhetskopia</string>
   <string name="BackupsPreferenceFragment__last_backup">Senaste säkerhetskopia: %1$s</string>
@@ -398,8 +397,8 @@
   <string name="DateUtils_today">Idag</string>
   <string name="DateUtils_yesterday">Igår</string>
   <!--DecryptionFailedDialog-->
-  <string name="DecryptionFailedDialog_chat_session_refreshed">Konversationssessionen uppdaterad</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal använder ände-till-ände-kryptering och det kan behöva uppdateras din konversationssession ibland. Detta påverkar inte din konversations säkerhet, men du kan ha missat ett meddelande från den här kontakten och du kan behöva be dem skicka det igen.</string>
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Chattsessionen uppdaterad</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal använder ände-till-ände-kryptering och det kan behöva uppdateras din chattsession ibland. Detta påverkar inte din chatts säkerhet, men du kan ha missat ett meddelande från den här kontakten och du kan behöva be dem skicka det igen.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Skickar</string>
   <string name="DeliveryStatus_sent">Skickat</string>
@@ -679,11 +678,11 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Detta är en Äldre grupp. För att komma åt nya funktioner som @omnämnanden och administratörer,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Denna Äldre gruppen kan inte uppgraderas till en Ny grupp eftersom den är för stor. Den största gruppstorleken är %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">uppgradera denna grupp.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Detta är en osäker MMS-grupp. Om du vill samtala privat bjuder du in dina kontakter till Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Detta är en osäker MMS-grupp. Om du vill chatta privat bjuder du in dina kontakter till Signal.</string>
   <string name="ManageGroupActivity_invite_now">Bjud in nu</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meddela mig om omnämnanden</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade konversationer?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade chattar?</string>
   <string name="GroupMentionSettingDialog_default_notify_me">Standard (meddela mig)</string>
   <string name="GroupMentionSettingDialog_default_dont_notify_me">Standard (meddela mig inte)</string>
   <string name="GroupMentionSettingDialog_always_notify_me">Meddela mig alltid</string>
@@ -692,7 +691,7 @@
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person är i dina kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
-  <string name="ManageRecipientActivity_chat_color">Konversationsfärg</string>
+  <string name="ManageRecipientActivity_chat_color">Chattfärg</string>
   <string name="ManageRecipientActivity_block">Blockera</string>
   <string name="ManageRecipientActivity_unblock">Avblockera</string>
   <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string>
@@ -818,7 +817,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Låt oss använda Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Verkar som att du inte har några appar att dela till.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra prata okrypterat.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vänner låter inte varandra chatta okrypterat.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Arbetar i bakgrunden…</string>
   <!--LearnMoreTextView-->
@@ -939,7 +938,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Den försvinnande meddelandetidtagaren har ställts in till %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Denna grupp uppdaterades till en Ny grupp.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</string>
-  <string name="MessageRecord_chat_session_refreshed">Konversationssessionen uppdaterad</string>
+  <string name="MessageRecord_chat_session_refreshed">Chattsessionen uppdaterad</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">En medlem kunde inte läggas till i den Nya gruppen och har blivit inbjuden att gå med.</item>
     <item quantity="other">%1$s medlemmar kunde inte läggas till i den Nya gruppen och har blivit inbjudna att gå med.</item>
@@ -1438,7 +1437,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Konversationssessionen uppdaterad</string>
+  <string name="ThreadRecord_chat_session_refreshed">Chattsessionen uppdaterad</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-uppdatering</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version av Signal finns tillgänglig, tryck för att uppdatera</string>
@@ -2030,7 +2029,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__mmsc_password">MMSC Lösenord</string>
   <string name="preferences__sms_delivery_reports">SMS-leveransrapporter</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Begär en leveransrapport för varje SMS-meddelande du skickar</string>
-  <string name="preferences__data_and_storage">Data och lagring</string>
   <string name="preferences__storage">Lagring</string>
   <string name="preferences__conversation_length_limit">Gräns för konversationslängd</string>
   <string name="preferences__keep_messages">Spara meddelanden</string>
@@ -2094,7 +2092,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__who_can">Vem kan…</string>
   <string name="preferences_app_protection__app_access">Appåtkomst</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
-  <string name="preferences_chats__chats">Konversationer</string>
+  <string name="preferences_chats__chats">Chattar</string>
   <string name="preferences_data_and_storage__manage_storage">Hantera lagring</string>
   <string name="preferences_data_and_storage__calls">Samtal</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Använd mindre data för samtal</string>
@@ -2104,7 +2102,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Att använda mindre data kan förbättra samtal på dåliga nätverk</string>
   <string name="preferences_notifications__messages">Meddelanden</string>
   <string name="preferences_notifications__events">Händelser</string>
-  <string name="preferences_notifications__in_chat_sounds">Ljud i konversationer</string>
+  <string name="preferences_notifications__in_chat_sounds">Ljud i chattar</string>
   <string name="preferences_notifications__show">Visa</string>
   <string name="preferences_notifications__calls">Samtal</string>
   <string name="preferences_notifications__ringtone">Rington</string>
@@ -2121,7 +2119,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Läs mer</string>
   <string name="preferences_notifications__mentions">Omnämnanden</string>
   <string name="preferences_notifications__notify_me">Meddela mig</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade konversationer</string>
+  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Få aviseringar när du omnämns i tystade chattar</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
@@ -2168,8 +2166,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="conversation_list_settings_shortcut">Genvägsinställningar</string>
   <string name="conversation_list_search_description">Sök</string>
   <string name="conversation_list__pinned">Fästa</string>
-  <string name="conversation_list__chats">Konversationer</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d konversationer</string>
+  <string name="conversation_list__chats">Chattar</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Du kan bara fästa %1$d chattar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkiverad</string>
@@ -2178,7 +2176,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny konversation</string>
   <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga konversationer ännu.\nKom igång genom att skriva till en vän.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga chattar ännu.\nKom igång genom att skriva till en vän.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Starta om säker session</string>
   <!--conversation_muted-->
@@ -2386,8 +2384,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="registration_activity__restore_backup">Återställ säkerhetskopia</string>
   <string name="registration_activity__skip">Hoppa över</string>
   <string name="registration_activity__register">Registrera</string>
-  <string name="preferences_chats__chat_backups">Säkerhetskopior av konversationer</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Säkerhetskopiera konversationer till externt lagringsutrymme</string>
+  <string name="preferences_chats__chat_backups">Säkerhetskopior av chattar</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Säkerhetskopiera chattar till externt lagringsutrymme</string>
   <string name="preferences_chats__create_backup">Skapa säkerhetskopia</string>
   <string name="preferences_chats__verify_backup_passphrase">Verifiera säkerhetskopians lösenord</string>
   <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Testa ditt lösenord för säkerhetskopian och kontrollera att den matchar</string>

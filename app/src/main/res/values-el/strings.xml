@@ -144,7 +144,7 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Η έκδοση του Signal σου έχει λήξει. Μπορείς να δεις το ιστορικό μηνυμάτων αλλά δεν θα μπορείς να στείλεις ή να λάβεις μηνύματα μέχρι να το αναβαθμίσεις.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
-  <string name="CommunicationActions_no_email_app_found">Δεν βρέθηκε εφαρμογή email.</string>
+  <string name="CommunicationActions_no_email_app_found">Δε βρέθηκε εφαρμογή email.</string>
   <string name="CommunicationActions_send_email">Αποστολή email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Κάποια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
   <string name="CommunicationActions_start_video_call">Έναρξη βιντεοκλήσης;</string>
@@ -462,7 +462,7 @@
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
   <string name="AddToGroupActivity_add">Προσθήκη</string>
   <!--ChooseNewAdminActivity-->
-  <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="ChooseNewAdminActivity_done">Τέλος</string>
   <string name="ChooseNewAdminActivity_you_left">Έφυγες από \"%1$s\".</string>
   <!--GroupShareProfileView-->
@@ -551,7 +551,7 @@
   <string name="LeaveGroupDialog_leave_group">Αποχώρηση απ\' την ομάδα;</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάβεις μηνύματα σε αυτήν την ομάδα.</string>
   <string name="LeaveGroupDialog_leave">Αποχώρηση</string>
-  <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
   <string name="LeaveGroupDialog_choose_admin">Επιλογή διαχειριστή</string>
   <!--LinkPreviewsMegaphone-->
@@ -971,16 +971,16 @@
   <string name="MessageRecord_you_are_no_longer_in_the_group">Δεν είσαι στην ομάδα πια.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">Ο/Η %1$s δεν είναι στην ομάδα πια.</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">Έκανες τον/την %1$s διαχειριστή/τρια.</string>
-  <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή/τρια.</string>
-  <string name="MessageRecord_s_made_you_an_admin">Ο/Η %1$s σε έκανε διαχειριστή/τρια.</string>
+  <string name="MessageRecord_you_made_s_an_admin">Έκανες τον/την %1$s διαχειριστή.</string>
+  <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή.</string>
+  <string name="MessageRecord_s_made_you_an_admin">Ο/Η %1$s σε έκανε διαχειριστή.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Αφαίρεσες τα δικαιώματα διαχείρισης από τον/την %1$s</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισής σου.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισης του/της %2$s.</string>
-  <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής/τρια.</string>
-  <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής/τρια.</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">Ο/Η %1$s δεν είναι πια διαχειριστής/τρια.</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">Δεν είσαι πια διαχειριστής/τρια.</string>
+  <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">Ο/Η %1$s δεν είναι πια διαχειριστής.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Δεν είσαι πια διαχειριστής.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Προσκάλεσες τον/την %1$s στην ομάδα.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Ο/Η %1$s σε προσκάλεσε στην ομάδα.</string>
@@ -1005,7 +1005,7 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Κάποιος απέρριψε μια πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Απέρριψες την πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Ο/Η %1$s ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ένας διαχειριστής/τρια ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ένας διαχειριστής ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Μια πρόσκληση στην ομάδα ανακλήθηκε.</item>
     <item quantity="other">%1$d προσκλήσεις στην ομάδα ανακλήθηκαν.</item>
@@ -1064,7 +1064,7 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Το αίτημά σου για να μπεις στην ομάδα εγκρίθηκε.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Το αίτημα του/της %1$s να μπει στην ομάδα εγκρίθηκε.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Το αίτημά σου να μπεις στην ομάδα απορρίφθηκε από κάποιον διαχειριστή/τρια.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Το αίτημά σου να μπεις στην ομάδα απορρίφθηκε από κάποιον διαχειριστή.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">Ο/Η %1$s απέρριψε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Το αίτημα του/της %1$s να μπει στην ομάδα απορρίφθηκε.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Ακύρωσες το αίτημά σου για είσοδο στην ομάδα.</string>
@@ -1197,7 +1197,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Προσοχή</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="PinOptOutDialog_disable_pin">Απενεργοποίηση PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Αξιολόγησε αυτή την εφαρμογή</string>
@@ -1392,7 +1392,7 @@
   <string name="SubmitDebugLogActivity_done">Τέλος</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Πάτα πάνω σε μία γραμμή για να τη διαγράψεις</string>
   <string name="SubmitDebugLogActivity_submit">Αποστολή</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Αποτυχία αποθήκευσης αρχείων καταγραφής</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Αποτυχία υποβολής αρχείων καταγραφής</string>
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
@@ -2031,7 +2031,7 @@
   <string name="preferences__mmsc_password">Κωδικός MMSC</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
-  <string name="preferences__data_and_storage">Δεδομένα και χώρος</string>
+  <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2043,7 +2043,7 @@
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
   <string name="preferences__system_default">Προκαθορισμένο του συστήματος</string>
   <string name="preferences__default">Προκαθορισμένο</string>
@@ -2508,8 +2508,8 @@
   <string name="RecipientBottomSheet_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <string name="RecipientBottomSheet_add_to_another_group">Προσθήκη σε άλλη ομάδα</string>
   <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
-  <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή/τρια ομάδας</string>
-  <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή/τριας</string>
+  <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή ομάδας</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή</string>
   <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
   <string name="RecipientBottomSheet_message_description">Μήνυμα</string>
   <string name="RecipientBottomSheet_voice_call_description">Βιντεοκλήση</string>

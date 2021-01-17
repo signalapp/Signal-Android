@@ -313,6 +313,8 @@
   <string name="ConversationFragment_contact_us">Kontaktu nin</string>
   <string name="ConversationFragment_verify">Kontroli</string>
   <string name="ConversationFragment_not_now">Ne nun</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Via sekuriga numero kun %s ŝanĝiĝis</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Via sekuriga numero kun %s ŝanĝiĝis, probable ĉar ŝi aŭ li reinstalis Signal-on aŭ ŝanĝis sian aparaton. Tuŝetu „Kontroli“ por konfirmi la novan sekurigan numeron. Tio estas malnepra.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->

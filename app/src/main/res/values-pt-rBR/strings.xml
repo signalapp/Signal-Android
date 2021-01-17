@@ -2080,9 +2080,9 @@
   <string name="preferences_storage__review_storage">Checar armazenamento</string>
   <string name="preferences_storage__delete_older_messages">Apagar as mensagens mais antigas?</string>
   <string name="preferences_storage__clear_message_history">Excluir o histórico de mensagens?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídia do seu dispositivo que são mais antigos que %1$s serão apagados permanentemente.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídias do seu dispositivo que são mais antigos que %1$s serão excluídos permanentemente.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Todas as conversas serão excluídas permanentemente, exceto %1$s mensagens mais recentes.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídia do seu dispositivo serão apagados permanentemente.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídias do seu dispositivo serão excluídos permanentemente.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer apagar todo o histórico de mensagens?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
   <string name="preferences_storage__delete_all_now">Apagar tudo agora</string>
@@ -2102,7 +2102,7 @@
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Chats</string>
   <string name="preferences_data_and_storage__manage_storage">Gerenciar armazenamento</string>
-  <string name="preferences_data_and_storage__calls">Ligações</string>
+  <string name="preferences_data_and_storage__calls">Chamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Usar menos dados em chamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e dados móveis</string>
@@ -2589,7 +2589,7 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e %3$d outras pessoas saíram</string>
   <string name="CallParticipant__you">Você</string>
   <string name="CallParticipant__you_on_another_device">Você (em outro aparelho)</string>
-  <string name="CallParticipant__s_on_another_device">%1$s (em outro dispositivo)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (em outro aparelho)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Excluir sua conta vai:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Digite o seu número de telefone</string>

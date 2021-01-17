@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">சரிபார்க்கவும்</string>
   <string name="ConversationFragment_not_now">இப்போது இல்லை</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed"> %s உடனான உங்கள் பாதுகாப்பு எண் மாறிவிட்டது.</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Signal மீண்டும் நிறுவியதால் அல்லது சாதனங்கள் மாற்றப்பட்டதால், %s உடனான உங்கள் பாதுகாப்பு எண் மாற்றப்பட்டுள்ளது. புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்த சரிபார்க்க தட்டவும். இது விருப்பத்தேர்வு.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Signal மீண்டும் நிறுவியிருப்பதாலோ அல்லது  சாதனங்கள் மாற்றப்பட்டதாலோ, உங்கள் பாதுகாப்பு எண் %s உடன்  மாற்றப்பட்டது. சரிபார்க்க என்பதை தட்டி புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்தவும். இது விருப்பத்தேர்வு.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->

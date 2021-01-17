@@ -323,6 +323,8 @@
   <string name="ConversationFragment_contact_us">Contactați-ne</string>
   <string name="ConversationFragment_verify">Verifică</string>
   <string name="ConversationFragment_not_now">Nu acum</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Numărul dvs. de siguranță pentru %s s-a schimbat</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numărul dvs. de siguranță pentru %s s-a schimbat, probabil pentru că au reinstalat Signal sau au schimbat dispozitivele. Atingeți Verificare pentru a confirma noul număr de siguranță. Acest lucru este opțional.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -411,6 +413,7 @@
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Sesiunea conversației a fost resetată</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal folosește criptare integrală și câteodată va avea nevoie să reîmprospăteze sesiunile de conversație. Acest lucru nu va afecta securitatea conversațiilor dar s-ar putea să fi ratat un mesaj de la acest contact și ai putea să-l rogi să-l retrimită. </string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Se trimite</string>
   <string name="DeliveryStatus_sent">Trimis</string>
@@ -1291,6 +1294,9 @@ numărul dvs. de telefon</string>
   <string name="RegistrationActivity_invalid_number">Număr invalid</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
 furnizat (%s) este invalid.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Un cod de verificare va fi trimis la:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Veți primi un apel pentru a verifica acest număr.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Numărul dvs. de telefon de mai sus este corect?</string>
   <string name="RegistrationActivity_edit_number">Editează număr</string>
   <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te rog contactează support@signal.org pentru ajutor la depanare.</string>
@@ -1322,6 +1328,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_enter_your_phone_number">Introduceți numărul dvs. de telefon</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asigurați-vă că telefonul dvs. are semnal celular pentru a putea primi SMS-ul sau apelul</string>
   <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>
   <string name="RegistrationActivity_country_code_description">Prefixul țării</string>
   <string name="RegistrationActivity_call">Apelează</string>
@@ -1996,6 +2003,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__pref_enter_sends_title">Trimitere cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
+  <string name="preferences__pref_use_address_book_photos">Folosește pozele din agendă</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Afișează fotografiile contactelor din sistem dacă sunt disponibile</string>
   <string name="preferences__generate_link_previews">Generați previzualizări ale linkurilor</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Obțineți previzualizările link-urilor direct de pe site-urile web pentru mesajele pe care le trimiteți.</string>

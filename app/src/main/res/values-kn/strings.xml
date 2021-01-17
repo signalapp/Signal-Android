@@ -621,6 +621,14 @@
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
   <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
+    <item quantity="other">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
+    <item quantity="other">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
+  </plurals>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ಇದನ್ನು  ಮಾಡಲು  ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ </string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ನೀವು  ಈ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ </string>
   <!--GroupMentionSettingDialog-->
@@ -963,6 +971,10 @@
   <string name="RegistrationActivity_invalid_number">ಅಮಾನ್ಯವಾದ ಸಂಖ್ಯೆ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ನೀವು ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ 
 ಸಂಖ್ಯೆ (%s) ಅಮಾನ್ಯವಾಗಿದೆ. </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">ಪರಿಶೀಲನೆ ಕೋಡ್ ಅನ್ನು ಇದಕ್ಕೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ಈ ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲನೆ ಮಾಡಲು ನಿಮಗೆ ಒಂದು ಕರೆ ಬರುತ್ತದೆ.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">ಈ ಮೇಲಿನ ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್‌ ಸರಿಯಾಗಿದೆಯೇ?</string>
+  <string name="RegistrationActivity_edit_number">ನಂಬರ್ ಎಡಿಟ್ ಮಾಡಿ</string>
   <string name="RegistrationActivity_missing_google_play_services">Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌‌ಗಳು ಕಾಣೆಯಾಗಿದೆ</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">ಈ ಸಾಧನದಲ್ಲಿ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಕಾಣುತ್ತಿಲ್ಲ. ನೀವು ಇನ್ನೂ Signal ಅನ್ನು ಬಳಸಬಹುದು, ಆದರೆ ಈ ಕಾನ್ಫಿಗರೇಶನ್ ವಿಶ್ವಾಸಾರ್ಹತೆ ಅಥವಾ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.\n\nನೀವು ಸುಧಾರಿತ ಬಳಕೆದಾರರು ಅಲ್ಲದೇ ಇದ್ದಲ್ಲಿ, ನೀವು ಆಫ್ಟರ್ ಮಾರ್ಕೆಟ್ ಆಂಡ್ರಾಯ್ಡ್ ರಾಮ್ ಅನ್ನು ರನ್ ಮಾಡುತ್ತಿರುವುದಿಲ್ಲ ಅಥವಾ ನೀವಿದನ್ನು ದೋಷಗಳಲ್ಲಿ ಕಾಣುತ್ತಿದ್ದಲ್ಲಿ support@signal.org ಗೆ ಟ್ರಬಲ್‌ಶೂಟಿಂಗ್‌ಗಾಗಿ ದಯವಿಟ್ಟು ಸಂಪರ್ಕಿಸಿ, </string>
   <string name="RegistrationActivity_i_understand">ನನಗೆ ಅರ್ಥವಾಯಿತು</string>

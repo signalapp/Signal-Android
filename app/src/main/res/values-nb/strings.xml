@@ -28,9 +28,9 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil låse opp Signal og meldingsvarsler permanent.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og samtaler…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-meldinger og samtaler?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-meldinger og samtaler ved å registrere deg fra serveren. Du må registrere ditt telefonnummer på nytt for å bruke dem igjen i fremtiden.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og -samtaler…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-meldinger og -samtaler?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-meldinger og -samtaler ved å registrere deg fra serveren. Du må registrere ditt telefonnummer på nytt for å bruke dem igjen i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktivert</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Trykk for å endre standard SMS-appen din</string>
@@ -447,7 +447,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og -samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Feil under henting av GIF</string>
   <!--GiphyFragmentPageAdapter-->
@@ -615,7 +615,7 @@
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Du har valgt en kontakt som ikke støtter Signal-grupper. Denne gruppa blir derfor en MMS-gruppe.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Selvvalgte MMS-gruppenavn og -gruppebilder er kun synlige for deg.</string>
   <string name="AddGroupDetailsFragment__remove">Fjern</string>
-  <string name="AddGroupDetailsFragment__sms_contact">SMS kontakt</string>
+  <string name="AddGroupDetailsFragment__sms_contact">SMS-kontakt</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Fjern %1$s fra denne gruppen?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d medlem støtter ikke nye grupper, så dette vil bli en \"legacy\"-gruppe.</item>
@@ -893,7 +893,7 @@
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediemelding</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">Multimediamelding</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
   <!--MediaPickerActivity-->
@@ -1245,9 +1245,9 @@
   <string name="WebRtcCallView__start_call">Start samtale</string>
   <string name="WebRtcCallView__join_call">Bli med i samtale</string>
   <string name="WebRtcCallView__call_is_full">Samtalen er full</string>
-  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksgrensen på %1$ddeltakere er nådd for denne samtalen. Prøv igjen senere.</string>
+  <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Maksgrensen på %1$ddeltagere er nådd for denne samtalen. Prøv igjen senere.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Gruppesamtale</string>
-  <string name="WebRtcCallView__view_participants_list">Se deltakere</string>
+  <string name="WebRtcCallView__view_participants_list">Se deltagere</string>
   <string name="WebRtcCallView__your_video_is_off">Din video er skrudd av</string>
   <string name="WebRtcCallView__connecting">Kobler til…</string>
   <string name="WebRtcCallView__reconnecting">Kobler til på nytt…</string>
@@ -1290,7 +1290,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_i_understand">Jeg forstår</string>
   <string name="RegistrationActivity_play_services_error">Play Tjenester Feil</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play-tjenester er opptatt eller midlertidig utilgjengelig. Vent litt, og prøv på nytt.</string>
-  <string name="RegistrationActivity_terms_and_privacy">Vilkår og personvernregler</string>
+  <string name="RegistrationActivity_terms_and_privacy">Vilkår og personvernerklæring</string>
   <string name="RegistrationActivity_no_browser">Klarte ikke å åpne lenke. Fant ingen nettleser.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
@@ -1973,12 +1973,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__pref_all_sms_title">Ta imot alle SMS</string>
   <string name="preferences__pref_all_mms_title">Ta imot alle MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bruk Signal for alle innkommende tekstmeldinger </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediemeldinger </string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bruk Signal for alle innkommende multimediameldinger </string>
   <string name="preferences__pref_enter_sends_title">Send med enter-tast</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Bruk Enter-tasten for å sende tekstmeldinger</string>
   <string name="preferences__pref_use_address_book_photos">Benytt adressebokbilder</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis adressebokbilder hvis tilgjengelig</string>
-  <string name="preferences__generate_link_previews">Lag lenkeforhåndsvisninger</string>
+  <string name="preferences__generate_link_previews">Forhåndsvis nettsteder</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent forhåndsvisninger av lenker direkte fra nettsteder for meldinger du sender.</string>
   <string name="preferences__choose_identity">Velg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Velg kontakt fra kontaktliste.</string>
@@ -2047,7 +2047,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__system_default">System standard</string>
   <string name="preferences__default">Forvalgt</string>
   <string name="preferences__language">Språk</string>
-  <string name="preferences__signal_messages_and_calls">Signal-meldinger og samtaler</string>
+  <string name="preferences__signal_messages_and_calls">Signal-meldinger og -samtaler</string>
   <string name="preferences__advanced_pin_settings">Avanserte PIN-kode instillinger</string>
   <string name="preferences__free_private_messages_and_calls">Gratis private meldinger og samtaler til Signal-brukere</string>
   <string name="preferences__submit_debug_log">Send inn feilsøkingslogg</string>
@@ -2217,7 +2217,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">Importer system-SMS</string>
   <string name="reminder_header_sms_import_text">Trykk for å kopiere telefonens SMS-meldinger til Signals krypterte database.</string>
-  <string name="reminder_header_push_title">Slå på Signal-meldinger og samtaler</string>
+  <string name="reminder_header_push_title">Slå på Signal-meldinger og -samtaler</string>
   <string name="reminder_header_push_text">Oppgrader kommunikasjonsopplevelsen.</string>
   <string name="reminder_header_invite_title">Inviter til Signal</string>
   <string name="reminder_header_invite_text">Ta samtalen med %1$s til neste nivå.</string>

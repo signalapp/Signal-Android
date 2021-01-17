@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">Verifikoje</string>
   <string name="ConversationFragment_not_now">Jo tani</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Numri juaj i sigurisë me %s ndryshoi</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numri juaj i Sigurisë me %s ndryshoi, gjasat janë ngaqë ai riinstaloi Signal-in ose ndërroi pajisjet. Prekni mbi ap Verifikoje që të ripohoni numrin e ri të sigurisë. Kjo është opsionale.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numri juaj i aigurisë me %s ndryshoi, gjasat janë ngaqë ai riinstaloi Signal-in ose ndërroi pajisjet. Prekni mbi Verifikoje që të ripohoni numrin e ri të sigurisë. Kjo është opsionale.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -2036,7 +2036,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
-  <string name="preferences__data_and_storage">Të dhëna dhe Depozitim</string>
+  <string name="preferences__data_and_storage">Të dhëna dhe depozitim</string>
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>

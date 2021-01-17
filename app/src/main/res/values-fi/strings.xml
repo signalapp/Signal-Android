@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">Vahvista</string>
   <string name="ConversationFragment_not_now">Ei nyt</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Turvanumerosi yhteystiedon %s kanssa on vaihtunut</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi yhteystiedon %s kanssa on vaihtunut, luultavasti koska hän asensi Signalin uudelleen tai vaihtoi käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla Vahvista- Toiminto on valinnnainen.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi kontaktin %s kanssa on vaihtunut, luultavasti koska hän on uudelleenasentanut Signalin tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla \'Vahvista\'. Toiminto on valinnainen.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
@@ -605,7 +605,7 @@
   <string name="AddGroupDetailsFragment__create_group">Luo ryhmä</string>
   <string name="AddGroupDetailsFragment__create">Luo</string>
   <string name="AddGroupDetailsFragment__members">Jäsenet</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Voit lisätä tai kutsua kavereitasi tämän ryhmän luomisen jälkeen.</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Voit lisätä tai kutsua kavereitasi ryhmän luomisen jälkeen.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Ryhmän nimi (pakollinen)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Ryhmän nimi (valinnainen)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Tämä kenttä on pakollinen.</string>
@@ -2432,13 +2432,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti - vahvistuskoodi Androidille</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
-  <string name="preferences_app_protection__see_my_phone_number">Nähdä minun puhelinnumero</string>
+  <string name="preferences_app_protection__see_my_phone_number">Nähdä minun puhelinnumeroni</string>
   <string name="preferences_app_protection__find_me_by_phone_number">Löytää minut puhelinnumeron perusteella</string>
   <string name="PhoneNumberPrivacy_everyone">Kaikki</string>
   <string name="PhoneNumberPrivacy_my_contacts">Yhteystietoni</string>
   <string name="PhoneNumberPrivacy_nobody">Ei kukaan</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Puhelinnumerosi näkyy kaikille ihmisille ja ryhmille, joille lähetät viestejä.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">Jokainen, jolla on puhelinnumerosi yhteystiedoissa, näkee sinut yhteystietona Signalissa. Muut voivat löytää sinut haun kautta.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">Jokainen, jolla on puhelinnumerosi yhteystiedoissa, näkee sinut kontaktina Signalissa. Muut voivat löytää sinut haun kautta.</string>
   <string name="PhoneNumberPrivacy_my_contacts_see_description">Vain yhteystietosi näkevät puhelinnumerosi Signalissa.</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lukitse Signal Androidin näytön lukituksella tai sormenjäljellä</string>
@@ -2461,7 +2461,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Rekisteröinnin lukituksen PIN-koodi ei ole sama kuin se vahvistustekstiviesti, jonka juuri sait. Syötä se PIN-koodi, jonka aikaisemmin asetit ohjelmassa.</string>
   <string name="registration_activity__registration_lock_pin">Rekisteröinnin lukituksen PIN-koodi</string>
   <string name="registration_activity__forgot_pin">Unohditko PIN-koodin?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koodissa on neljä tai useampi numero. Jos unohdat PIN-koodisi, on mahdollista, ettet voi käyttää tiliäsi seitsemän päivän ajan.</string>
+  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koodissa on vähintään neljä numeroa. Jos unohdat PIN-koodisi, on mahdollista, ettet voi käyttää tiliäsi seitsemän päivän ajan.</string>
   <string name="registration_lock_dialog_view__enter_pin">Syötä PIN</string>
   <string name="registration_lock_dialog_view__confirm_pin">Vahvista PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Syötä rekisteröinnin lukituksen PIN-koodi</string>
@@ -2486,10 +2486,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Rekisteröinnin lukitus auttaa suojaamaan puhelinnumeroasi luvattomilta rekisteröintiyrityksiltä. Voit ottaa tämän ominaisuuden pois käytöstä milloin tahansa Signalin yksityisyysasetuksista.</string>
   <string name="RegistrationLockDialog_registration_lock">Rekisteröinnin lukitus</string>
   <string name="RegistrationLockDialog_enable">Ota käyttöön</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Rekisteröinnin lukituksen PIN-koodi on oltava vähintään %d numeroa.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Rekisteröinnin lukituksen PIN-koodin on oltava vähintään %d numeroa.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Syöttämäsi PIN-koodit eivät täsmää.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Virhe yhdistettäessä palveluun</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Otetaanko rekisteröinnin lukituksen PIN-koodi pois käytöstä?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Poistetaanko rekisteröinnin lukituksen PIN-koodi käytöstä?</string>
   <string name="RegistrationLockDialog_disable">Poista käytöstä</string>
   <string name="RegistrationActivity_pin_incorrect">Väärä PIN</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Sinulla on %d yritystä jäljellä</string>
@@ -2566,7 +2566,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ReviewCard-->
   <string name="ReviewCard__member">Jäsen</string>
   <string name="ReviewCard__request">Pyyntö</string>
-  <string name="ReviewCard__your_contact">Sinun yhteystieto</string>
+  <string name="ReviewCard__your_contact">Sinun yhteystietosi</string>
   <string name="ReviewCard__remove_from_group">Poista ryhmästä</string>
   <string name="ReviewCard__update_contact">Päivitä yhteystieto</string>
   <string name="ReviewCard__block">Estä</string>

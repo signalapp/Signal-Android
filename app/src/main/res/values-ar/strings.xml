@@ -356,7 +356,6 @@
   <string name="ConversationFragment_verify">تحقق</string>
   <string name="ConversationFragment_not_now">ليس الآن</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">لقد تغير رقم أمانك مع %s</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">لقد تغير رقم أمانك مع %s، من المحتمل أن يكون ذلك الشخص قد أعاد تثبيت Signal أو قام بتغيير الأجهزة. يُرجى اللمس لتأكيد رقم الأمان الجديد. هذا اﻹجراء اختياري.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح مثبّت في جهازك.</string>
   <!--ConversationListFragment-->
@@ -892,7 +891,7 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">الإدارة والمشاركة</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">وصلة المجموعة</string>
   <string name="ShareableGroupLinkDialogFragment__share">شارك</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة التعيين الوصلة</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة تعيين الوصلة</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">طلبات الأعضاء</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">الموافقة على الأعضاء الجدد</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">مفعل</string>
@@ -1605,12 +1604,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">رسالة Signal</string>
+  <string name="SharedContactDetailsActivity_signal_message">‫رسالة Signal‬</string>
   <string name="SharedContactDetailsActivity_signal_call">مكالمة Signal</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactView_invite_to_signal">الدعوة إلى Signal</string>
-  <string name="SharedContactView_message">رسالة Signal</string>
+  <string name="SharedContactView_message">‫رسالة Signal‬</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">سنعيد تذكيرك لاحقاً.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">سنعيد تذكيرك غداً.</string>
@@ -1790,9 +1789,9 @@
   <string name="MessageNotifier_view_once_photo">صورة لمشاهدة-واحدة</string>
   <string name="MessageNotifier_view_once_video">فيديو لمشاهدة-واحدة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
-  <string name="MessageNotifier_signal_message">رسالة Signal</string>
-  <string name="MessageNotifier_unsecured_sms">رسائل SMS غير مؤمّنة</string>
-  <string name="MessageNotifier_you_may_have_new_messages">قد يكون لديك رسائل جديدة</string>
+  <string name="MessageNotifier_signal_message">‫رسالة Signal‬</string>
+  <string name="MessageNotifier_unsecured_sms">رسائل SMS غير مُؤمَّنة</string>
+  <string name="MessageNotifier_you_may_have_new_messages">قد تكون لديك رسائل جديدة</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">افتح Signal للتحقق من الإشعارات الأخيرة.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">جهة اتصال</string>
@@ -1950,7 +1949,7 @@
     <item quantity="other">%1$dأعضاء</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">رسالة من Signal</string>
+  <string name="conversation_activity__type_message_push">‫رسالة Signal‬</string>
   <string name="conversation_activity__type_message_sms_insecure">رسائل SMS غير مؤمّنة</string>
   <string name="conversation_activity__type_message_mms_insecure">رسالة متعدّدة الوسائط غير مؤمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
@@ -2344,7 +2343,6 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
-  <string name="preferences__data_and_storage">البيانات والتخزين</string>
   <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__keep_messages">احتفظ بالرسائل</string>
@@ -2541,9 +2539,9 @@
   <string name="reminder_header_the_latest_signal_features_wont_work">خصائص Signal الأحدث لن تعمل على هذا الإصدار من Android، يرجى تحديث  الجهاز لتمكين استقبال تحديثات Signal القادمة.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">أحفظ</string>
+  <string name="media_preview__save_title">حفظ</string>
   <string name="media_preview__forward_title">إعادة توجيه</string>
-  <string name="media_preview__share_title">شارك</string>
+  <string name="media_preview__share_title">مشاركة</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">لمحة عن الوسائط</string>

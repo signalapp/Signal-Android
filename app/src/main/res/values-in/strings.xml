@@ -304,7 +304,6 @@
   <string name="ConversationFragment_verify">Memeriksa</string>
   <string name="ConversationFragment_not_now">Nanti saja</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Angka keamanan Anda dengan %s berubah</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Angka Keamanan Anda dengan %s berubah, bisa disebabkan karena mereka memasang ulang Signal atau berganti perangkat. Tekan Verifikasi untuk mengonfirmasi angka keamanan baru. Ini opsional.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Tidak ada peramban yang terpasang pada perangkat Anda.</string>
   <!--ConversationListFragment-->
@@ -1931,7 +1930,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__mmsc_password">Kata Sandi MMSC</string>
   <string name="preferences__sms_delivery_reports">Laporan pengiriman SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan pengiriman untuk tiap SMS yang dikirim</string>
-  <string name="preferences__data_and_storage">Data dan Penyimpanan</string>
   <string name="preferences__storage">Penyimpanan</string>
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
   <string name="preferences__keep_messages">Simpan pesan</string>

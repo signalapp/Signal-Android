@@ -333,6 +333,7 @@
   <string name="ConversationFragment_contact_us">Susisiekite su mumis</string>
   <string name="ConversationFragment_verify">Patvirtinti</string>
   <string name="ConversationFragment_not_now">Ne dabar</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Jūsų saugumo numeris su %s pasikeitė</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -1408,6 +1409,9 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numeris, kurį jūs
         nurodėte (%s) yra neteisingas.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Patvirtinimo kodas bus išsiųstas į:</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Ar jūsų telefono numeris aukščiau yra teisingas?</string>
+  <string name="RegistrationActivity_edit_number">Taisyti numerį</string>
   <string name="RegistrationActivity_missing_google_play_services">Trūksta „Google Play“ paslaugų</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Šiame įrenginyje nėra „Google Play“ paslaugų. Jūs vis tiek galite naudoti Signal, tačiau tokia konfigūracija gali sąlygoti mažesnį patikimumą ir našumą.\n\nJeigu jūs nesate pažengęs naudotojas, nenaudojate atsarginių dalių Android ROM ar manote, jog matote tai per klaidą, tuomet pagalbai ir nesklandumų šalinimui susisiekite su support@signal.org.</string>
   <string name="RegistrationActivity_i_understand">Aš suprantu</string>
@@ -2119,6 +2123,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Naudoti Signal visoms gaunamosioms multimedijos žinutėms</string>
   <string name="preferences__pref_enter_sends_title">„Enter“ (Įvedimo) klavišas išsiunčia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">„Enter“ (Įvedimo) klavišo paspaudimas išsiųs tekstines žinutes</string>
+  <string name="preferences__pref_use_address_book_photos">Naudoti adresų knygos nuotraukas</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Jei prieinama, rodyti adresatų nuotraukas iš jūsų adresų knygos</string>
   <string name="preferences__generate_link_previews">Generuoti nuorodų peržiūras</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gauti savo siunčiamoms žinutėms nuorodų peržiūras tiesiogiai iš internetinių svetainių.</string>
   <string name="preferences__choose_identity">Pasirinkti tapatybę</string>
@@ -2171,6 +2177,7 @@
   <string name="preferences__mmsc_password">MMSC slaptažodis</string>
   <string name="preferences__sms_delivery_reports">SMS pristatymo ataskaitos</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Reikalauti pristatymo ataskaitos kiekvienai jūsų siunčiamai SMS žinutei</string>
+  <string name="preferences__data_and_storage">Duomenys ir saugykla</string>
   <string name="preferences__storage">Saugykla</string>
   <string name="preferences__conversation_length_limit">Pokalbio ilgio riba</string>
   <string name="preferences__keep_messages">Saugoti žinutes</string>
@@ -2235,6 +2242,7 @@
   <string name="preferences_app_protection__app_access">Programėlės prieiga</string>
   <string name="preferences_app_protection__communication">Susisiekimas</string>
   <string name="preferences_chats__chats">Pokalbiai</string>
+  <string name="preferences_data_and_storage__manage_storage">Tvarkyti saugyklą</string>
   <string name="preferences_data_and_storage__calls">Skambučiai</string>
   <string name="preferences_data_and_storage__never">Niekada</string>
   <string name="preferences_notifications__messages">Žinutės</string>

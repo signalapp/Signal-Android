@@ -314,7 +314,7 @@
   <string name="ConversationFragment_verify">Verificar</string>
   <string name="ConversationFragment_not_now">Ahora no</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Tus cifras de seguridad con %s han cambiado</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Tus cifras de seguridad con %s han cambiado. Probablemente porque ha reinstalado Signal o cambiado de dispositivo. Toca para verificar las nuevas cifras de seguridad. Esta verificación es opcional.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Tus cifras de seguridad con %s han cambiado. Probablemente porque esta persona ha reinstalado Signal o cambiado de dispositivo. Toca para verificar las nuevas cifras de seguridad. Esta verificación es opcional.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado</string>
   <!--ConversationListFragment-->
@@ -2105,8 +2105,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_data_and_storage__calls">Llamadas</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos en llamadas</string>
   <string name="preferences_data_and_storage__never">Nunca</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi y datos móviles</string>
-  <string name="preferences_data_and_storage__cellular_only">Sólo datos móviles</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi y red móvil</string>
+  <string name="preferences_data_and_storage__cellular_only">Sólo red móvil</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Al ahorrar datos, mejora la calidad de las llamadas en redes móviles con mala cobertura</string>
   <string name="preferences_notifications__messages">Mensajes</string>
   <string name="preferences_notifications__events">Eventos</string>
