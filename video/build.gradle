@@ -3,12 +3,12 @@ apply plugin: 'witness'
 apply from: 'witness-verifications.gradle'
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
-    compileSdkVersion COMPILE_SDK
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
-        minSdkVersion MINIMUM_SDK
-        targetSdkVersion TARGET_SDK
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
     }
 
     compileOptions {
@@ -24,13 +24,12 @@ dependencyVerification {
 dependencies {
     lintChecks project(':lintchecks')
 
-    api 'androidx.annotation:annotation:1.1.0'
+    api annotationProcessors.annotations
 
-    implementation project(':core-util')
-
-    implementation 'org.mp4parser:isoparser:1.9.39'
-    implementation 'org.mp4parser:streaming:1.9.39'
-    implementation('org.mp4parser:muxer:1.9.39') {
+    implementation libraries.mp4isoparser
+    implementation libraries.mp4streaming
+    implementation(libraries.mp4muxer) {
         exclude group: 'junit', module: 'junit'
     }
+    implementation project(':core-util')
 }
