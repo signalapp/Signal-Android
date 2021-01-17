@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
   <string name="ConversationItem_you_deleted_this_message">Vi forviŝis tiun mesaĝon.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Ĉu restarigi sekuran seancon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Ĉi tio eble helpos, se vi havas ĉifrajn problemojn en ĉi tiu interparolo. Viaj mesaĝoj konserviĝos.</string>
   <string name="ConversationActivity_reset">Restarigi</string>
   <string name="ConversationActivity_add_attachment">Aldoni kunsendaĵon</string>
   <string name="ConversationActivity_select_contact_info">Elekti kontaktinformon</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Tuŝeti por kontroli</string>
   <string name="ConversationFragment__review_requests_carefully">Kontroli la petojn zorgeme</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal trovis plian kontakton kun la sama nomo.</string>
+  <string name="ConversationFragment_contact_us">Kontaktu nin</string>
+  <string name="ConversationFragment_verify">Kontroli</string>
+  <string name="ConversationFragment_not_now">Ne nun</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Via sekuriga numero kun %s ŝanĝiĝis</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Via sekuriga numero kun %s ŝanĝiĝis, probable ĉar ŝi aŭ li reinstalis Signal-on aŭ ŝanĝis sian aparaton. Tuŝetu „Kontroli“ por konfirmi la novan sekurigan numeron. Tio estas malnepra.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,7 @@
   <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Hodiaŭ</string>
   <string name="DateUtils_yesterday">Hieraŭ</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Sendado</string>
   <string name="DeliveryStatus_sent">Sendita</string>
@@ -1307,6 +1311,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">Entajpu vian telefonnumeron</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vi ricevos konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Kontrolu, ĉu via telefono havas ĉelan signalon por ricevi SMS-on aŭ alvokon</string>
   <string name="RegistrationActivity_phone_number_description">Telefonnumero</string>
   <string name="RegistrationActivity_country_code_description">Landokodo</string>
   <string name="RegistrationActivity_call">Alvoko</string>
@@ -1453,6 +1458,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Uzantnomoj ĉe Signal malnepras. Se vi kreas uzantnomon, aliaj Signal-uzantoj povos trovi vin per tiu uzantnomo kaj kontakti vin sen kono de via telefonnumero.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d kontakto estas ĉe Signal!</item>
+    <item quantity="other">%d kontaktoj estas ĉe Signal!</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Via kontakto uzas malnovan Signal-an version. Bonvolu peti la sendinton ĝisdatigi, antaŭ ol kontroli vian sekurigan numeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Via kontakto uzas pli novan Signal-an version, kiu uzas nekongruan rapidrespondan (QR) kodon. Bonvolu ĝisdatigi por kompari ilin.</string>
@@ -1467,7 +1476,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaĝo ĉifrita por neekzistanta seanco</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Malbone ĉifrita MMS-mesaĝo</string>
@@ -2017,7 +2025,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__mmsc_password">MMSC-pasvorto</string>
   <string name="preferences__sms_delivery_reports">SMS-a livero-raportoj</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Peti livero-raporton por ĉiu SMS-mesaĝo, kiun vi sendas</string>
-  <string name="preferences__chats">Interparoloj kaj aŭdvidaĵoj</string>
   <string name="preferences__storage">Konservejo</string>
   <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
   <string name="preferences__keep_messages">Konservi mesaĝojn</string>
@@ -2082,6 +2089,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_app_protection__app_access">Aliro al aplikaĵo</string>
   <string name="preferences_app_protection__communication">Komunikado</string>
   <string name="preferences_chats__chats">Interparoloj</string>
+  <string name="preferences_data_and_storage__calls">Alvokoj</string>
+  <string name="preferences_data_and_storage__never">Neniam</string>
   <string name="preferences_notifications__messages">Mesaĝoj</string>
   <string name="preferences_notifications__events">Eventoj</string>
   <string name="preferences_notifications__in_chat_sounds">Sonoj dum interparolado</string>
@@ -2561,8 +2570,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s kaj %2$s eliris</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s kaj %3$s eliris</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s kaj %3$d aliaj eliris</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Vi (ĉe alia aparato)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ĉe alia aparato)</string>
+  <string name="CallParticipant__you">Vi</string>
+  <string name="CallParticipant__you_on_another_device">Vi (ĉe alia aparato)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (ĉe alia aparato)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Konsekvenco de la forviŝado de via konto:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Entajpu vian telefonnumeron</string>

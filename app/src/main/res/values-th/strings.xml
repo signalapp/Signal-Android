@@ -174,8 +174,8 @@
   <string name="ConversationItem_pending">อยู่ระหว่างดำเนินการ</string>
   <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ต้องการรีเซ็ตเซสชันที่ปลอดภัยหรือไม่?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">นี่อาจจะช่วยได้ หากคุณมีปัญหากับการเข้ารหัสข้อความในการสนทนานี้ ข้อความของคุณจะถูกเก็บไว้</string> -->
   <string name="ConversationActivity_reset">รีเซ็ต</string>
   <string name="ConversationActivity_add_attachment">เพิ่มแฟ้มแนบ</string>
   <string name="ConversationActivity_select_contact_info">เลือกข้อมูลผู้ติดต่อ</string>
@@ -986,7 +986,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ข้อความ MMS ที่เข้ารหัสมีความผิดปกติ</string>
@@ -1479,7 +1479,7 @@
   <string name="preferences__mmsc_password">รหัสผ่าน MMSC</string>
   <string name="preferences__sms_delivery_reports">รายงานการส่ง SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ร้องขอรายงานสำหรับแต่ละข้อความ SMS ที่คุณส่ง</string>
-  <string name="preferences__chats">การพูดคุยและสื่อ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">การพูดคุยและสื่อ</string> -->
   <string name="preferences__storage">พื้นที่จัดเก็บ</string>
   <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
   <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>

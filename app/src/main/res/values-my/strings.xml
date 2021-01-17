@@ -132,8 +132,8 @@
   <string name="ConversationItem_download_more">download ဆွဲရန်</string>
   <string name="ConversationItem_pending">လုပ်ဆောင်နေဆဲ</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင် စပါ</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်သတင်းစကားကို သိမ်းထားပါမည်။ </string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင် စပါ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်သတင်းစကားကို သိမ်းထားပါမည်။ </string> -->
   <string name="ConversationActivity_reset">မူလအတိုင်းပြန်လုပ်မည် </string>
   <string name="ConversationActivity_add_attachment">ပူးတွဲဖိုင် ထည့်ရန်</string>
   <string name="ConversationActivity_select_contact_info">ဆက်သွယ်မည့်သူအချက်အလက်ရွေးချယ်ပါ </string>
@@ -575,7 +575,7 @@
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">မှားယွင်းစွာ encrypt လုပ်ထားသောစာ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">မှားယွင်းစွာ encrypt လုပ်ထားသောစာ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် စာများကို encrpyt လုပ်ထားပါသည်။</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">မှားယွင်းစာ encrpyt လုပ်ထားသော MMS စာ</string>
@@ -971,7 +971,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS တစ်ခုပို့ပြီးတိုင်း ပို့ပြီးကြောင်း အသိပေးပါ။</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">စကားဝိုင်းမှ သတ်မှတ်ထားသည့် ပမာဏကျော်သည်နှင့် တစ်ပြိုင်နက် စာအဟောင်းများကို အလိုအလျောက် ဖျက်ပါ</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">စာတိုအဟောင်းများကို ဖျက်ပါ။</string> -->
-  <string name="preferences__chats">စကားစမြည်များနှင့် ရုပ်/သံ/ပုံများ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">စကားစမြည်များနှင့် ရုပ်/သံ/ပုံများ</string> -->
   <string name="preferences__storage">သိမ်းဆည်းရာ</string>
   <string name="preferences__conversation_length_limit">စာလုံးရေ အကန့်အသတ်</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">စကားဝိုင်းများအားလုံးကို အခု ညှိပါ</string> -->

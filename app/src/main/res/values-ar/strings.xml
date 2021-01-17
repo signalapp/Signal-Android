@@ -50,13 +50,14 @@
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل MMS %1$s SMS%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">إقفال الشاشة %1$s، إنهاء التسجيل %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل الشاشة %1$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل الشاشة
+%1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">يطلب الرقم التعريفي الشخصي من أجل قفل التسجيل لإلغاء الرقم التعريفي الشخصي، الرجاء إلغاء قفل التسجيل.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">يوجد رقم تعريفي شخصي (PIN) لحماية التسجيل مصاحب لهذا الرقم. الرجاء إدخاله.</string>
   <string name="ApplicationPreferencesActivity_pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">الرقم التعريفي الشخصي غير مفعل.</string>
   <string name="ApplicationPreferencesActivity_hide">إخفاء</string>
-  <string name="ApplicationPreferencesActivity_hide_reminder">إخفاء التذكير ؟</string>
+  <string name="ApplicationPreferencesActivity_hide_reminder">إخفاء التذكير؟</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="zero">%d دقيقة</item>
@@ -77,7 +78,7 @@
   <string name="AttachmentKeyboard_gif">صورة GIF</string>
   <string name="AttachmentKeyboard_file">ملف</string>
   <string name="AttachmentKeyboard_contact">جهة الاتصال</string>
-  <string name="AttachmentKeyboard_location">موقع جغرافي</string>
+  <string name="AttachmentKeyboard_location">الموقع الجغرافي</string>
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">يحتاج Signal إلى إذن لإظهار الصور ومقاطع الفيديو الخاصة بك.</string>
   <string name="AttachmentKeyboard_give_access">منح الصلاحيات</string>
   <!--AttachmentManager-->
@@ -197,9 +198,9 @@
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">تم استلام رسالة تبادل مفاتيح، أنقر للمتابعة.</string>
   <string name="ConversationItem_group_action_left">%1$s تَرك المجموعة.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">فشل الإرسال، انقر للاستعاضة بارسال غير آمن</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مشفرة؟</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مشفرة؟</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مشفرة لأن المستلم لم يعد مستخدم سيجنال. .\n\nهل ترغب في إرسالها غير مشفرة؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">الاستعاضة برسالة SMS غير مُعمَّاة؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">الاستعاضة برسالة وسائط متعددة غير مُعمَّاة؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مٌعمَّاة لأن المستلم لم يعد مستخدم ‏Signal‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة ؟</string>
   <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
   <string name="ConversationItem_copied_text">تم نسخ %s</string>
   <string name="ConversationItem_from_s">من %s</string>
@@ -210,8 +211,6 @@
   <string name="ConversationItem_this_message_was_deleted">تم حذف هذه الرسالة.</string>
   <string name="ConversationItem_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">إعادة ضبط جلسة آمنة؟</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">سوف يتم الاحتفاظ برسائلك. هذا قد يساعد في حال وجود مشاكل في التشفير بهذه المحادثة.</string>
   <string name="ConversationActivity_reset">إعادة ضبط</string>
   <string name="ConversationActivity_add_attachment">إضافة مرفقات</string>
   <string name="ConversationActivity_select_contact_info">أختر بيانات جهة الاتصال</string>
@@ -353,6 +352,10 @@
   <string name="ConversationFragment__tap_to_review">يُرجى اللمس للمراجعة</string>
   <string name="ConversationFragment__review_requests_carefully">مراجعة الطلبات بعناية</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">وجد Signal جهة اتصال أخرى بنفس الاسم.</string>
+  <string name="ConversationFragment_contact_us">تواصل معنا</string>
+  <string name="ConversationFragment_verify">تحقق</string>
+  <string name="ConversationFragment_not_now">ليس الآن</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">لقد تغير رقم أمانك مع %s</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح مثبّت في جهازك.</string>
   <!--ConversationListFragment-->
@@ -407,7 +410,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_profile_photo">صورة الملف الشخصي</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">صفحة حسابك الشخصي مشفرة بالتشفير التام. وأيّة تغيير سيكون ظاهراً لجهات اتصالك، بعد أن تقبل طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">صفحة حسابك الشخصي مشفرة بالتغمية من طرف لطرف. وأيّة تغيير سيكون ظاهراً لجهات اتصالك، بعد أن تقبل طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
   <string name="CreateProfileActivity_set_avatar_description">اختيار صورة ملفك الشخصي</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">الاستعادة مِن نسخة احتياطية؟</string>
@@ -444,13 +447,16 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">إلتقاط صورة</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">اختيار من الاستديو</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف الصورة</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">يتطلب التقاط صورة إذن الوصول إلى الكاميرا.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">عرض معرض صورك يتطلب إذن التخزين.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">أخذ صورة يتطلب إذن بالتخزين.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">عرض معرض صورك يتطلب إذن بالتخزين.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">الآن</string>
   <string name="DateUtils_minutes_ago">%d دقيقة</string>
   <string name="DateUtils_today">اليوم</string>
   <string name="DateUtils_yesterday">البارحة</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يستخدم Signal التعمية من طرف لطرف ويحتاج بعض اﻷحيان لإنعاش جلسات المحادثات. إن هذا لا يؤثر على أمان محادثتك، لكن قد تفوتك رسالة من جهة الاتصال تلك، لكن يمكن الطلب منها إعادة إرسالها.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">جار الإرسال</string>
   <string name="DeliveryStatus_sent">تمّ الإرسال </string>
@@ -653,7 +659,7 @@
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">ترك المجموعة؟</string>
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">لن تتمكن من إرسال أو استقبال رسائل في هذه المجموعة بعد اﻵن.</string>
-  <string name="LeaveGroupDialog_leave">غادر</string>
+  <string name="LeaveGroupDialog_leave">مغادرة</string>
   <string name="LeaveGroupDialog_choose_new_admin">اختر مشرفا جديدا</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">قبل أن تغادر، يجب عليك أن تختار على الأقل مشرف واحد لهذه المجموعة.  </string>
   <string name="LeaveGroupDialog_choose_admin">اختر المشرف</string>
@@ -885,7 +891,7 @@
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">الإدارة والمشاركة</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">وصلة المجموعة</string>
   <string name="ShareableGroupLinkDialogFragment__share">شارك</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة التعيين الوصلة</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة تعيين الوصلة</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">طلبات الأعضاء</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">الموافقة على الأعضاء الجدد</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">مفعل</string>
@@ -985,7 +991,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">هيا ننتقل إلى Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">الأصدقاء لا يتركون بعضهم يجرون محادثات غير مشفرة.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">الأصدقاء لا يتركون بعضهم يجرون محادثات غير مُعمَّاة.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">جار العمل في الخلفية…</string>
   <!--LearnMoreTextView-->
@@ -1108,7 +1114,7 @@
   <string name="MediaRepository__camera">الكاميرا</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">مجهول</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مشفرة من نسخة Signal قديمة وتوقف دعمها. يرجى أن تطلب من المرسل تحديث نسخة التطبيق ومن ثمّ إعادة إرسال الرسالة.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">لقد استلمت رسالة مُعمَّاة من نسخة Signal قديمة وتوقف دعمها. يرجى أن تطلب من المرسل تحديث نسخة التطبيق ومن ثمّ إعادة إرسال الرسالة.</string>
   <string name="MessageRecord_left_group">لقد تركت المجموعة.</string>
   <string name="MessageRecord_you_updated_group">قمت بتحديث المجموعة.</string>
   <string name="MessageRecord_the_group_was_updated">تم تحديث المجموعة بنجاح.</string>
@@ -1126,6 +1132,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">تم وضع مؤقت الرسالة مختفية إلى %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">حُدّثت هذه المجموعة إلى مجموعة جديدة.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">تعذرت إضافتك إلى المجموعات الجديدة وقد تمت دعوتك الآن.</string>
+  <string name="MessageRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="zero">تعذرت إضافة %1$s عضو إلى المجموعات الجديدة وقد تمت دعوته للانضمام.</item>
     <item quantity="one">تعذرت إضافة عضو إلى المجموعات الجديدة وقد تمت دعوته للانضمام.</item>
@@ -1530,6 +1537,10 @@
 رقم الهاتف الخاص بك</string>
   <string name="RegistrationActivity_invalid_number">الرقم غير صحيح</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">الرقم الذي حددته (%s) غير صحيح.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">سيُرسَل رمز التحقق إلى :</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ستأتيك مكالمة هاتفية للتحقق من هذا الرقم.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">هل رقم هاتفك في الأعلى صحيح ؟</string>
+  <string name="RegistrationActivity_edit_number">تعديل الرقم</string>
   <string name="RegistrationActivity_missing_google_play_services">خدمات Google Play غير موجودة</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">خدمات Google Play غير موجودة في هذا الجهاز. لا زال بإمكانك استخدام Signal، ولكن هذا الضبط قد يؤدي إلى ضعف في موثوقية  أو أداء البرنامج
 
@@ -1593,12 +1604,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">الدعوة إلى Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">رسالة Signal</string>
+  <string name="SharedContactDetailsActivity_signal_message">‫رسالة Signal‬</string>
   <string name="SharedContactDetailsActivity_signal_call">مكالمة Signal</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">الإضافة إلى جهات الاتصال</string>
   <string name="SharedContactView_invite_to_signal">الدعوة إلى Signal</string>
-  <string name="SharedContactView_message">رسالة Signal</string>
+  <string name="SharedContactView_message">‫رسالة Signal‬</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">سنعيد تذكيرك لاحقاً.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">سنعيد تذكيرك غداً.</string>
@@ -1690,6 +1701,7 @@
   <string name="ThreadRecord_contact">جهة اتصال</string>
   <string name="ThreadRecord_file">ملف</string>
   <string name="ThreadRecord_video">فيديو</string>
+  <string name="ThreadRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">إصدار جديد لـ Signal متوفر، أنقر للتحديث</string>
@@ -1734,11 +1746,10 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة سيئة</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمّ تشفير الرسالة لجلسة غير موجودة </string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">عُميَّت الرسالة لجلسة غير موجودة </string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مشفرة سيئة</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">تم تشفير الرسالة متعدّدة الوسائط لجلسة غير موجودة…</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة متعددة الوسائط مُعمَّاة بطريقة سيئة</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">عُميَّت الرسالة متعدّدة الوسائط لجلسة غير موجودة…</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--ApplicationMigrationService-->
@@ -1778,9 +1789,9 @@
   <string name="MessageNotifier_view_once_photo">صورة لمشاهدة-واحدة</string>
   <string name="MessageNotifier_view_once_video">فيديو لمشاهدة-واحدة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
-  <string name="MessageNotifier_signal_message">رسالة Signal</string>
-  <string name="MessageNotifier_unsecured_sms">رسائل SMS غير مؤمّنة</string>
-  <string name="MessageNotifier_you_may_have_new_messages">قد يكون لديك رسائل جديدة</string>
+  <string name="MessageNotifier_signal_message">‫رسالة Signal‬</string>
+  <string name="MessageNotifier_unsecured_sms">رسائل SMS غير مُؤمَّنة</string>
+  <string name="MessageNotifier_you_may_have_new_messages">قد تكون لديك رسائل جديدة</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">افتح Signal للتحقق من الإشعارات الأخيرة.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">جهة اتصال</string>
@@ -1938,7 +1949,7 @@
     <item quantity="other">%1$dأعضاء</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">رسالة من Signal</string>
+  <string name="conversation_activity__type_message_push">‫رسالة Signal‬</string>
   <string name="conversation_activity__type_message_sms_insecure">رسائل SMS غير مؤمّنة</string>
   <string name="conversation_activity__type_message_mms_insecure">رسالة متعدّدة الوسائط غير مؤمنة</string>
   <string name="conversation_activity__from_sim_name">من %1$s</string>
@@ -2098,7 +2109,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">الرّجاء مراجعة هذا السجلّ من تطبيقي: %1$s</string>
   <string name="log_submit_activity__network_failure">فشل في الشبكة. الرجاء المحاولة مرة أخرى.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المشفرة؟</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ألديك الرغبة في استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المُعمَّاة ؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
   <string name="database_migration_activity__skip">تخطى</string>
   <string name="database_migration_activity__import">استيراد</string>
@@ -2162,7 +2173,7 @@
   <string name="unknown_sender_view__add_to_contacts">أضف إلى جهات الإتصال</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">لا تضفه، و لكن أظهر ملفي الشخصي له</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[اذا كنت ترغب فى التحقق من أمان التشفير مع %s، قارن الرقم بالأعلى بالرقم الموجود على جهازهم. أو يمكنك المسح التصويري للرمز الموجود على هاتفهم، أو أن تطلب منهم مسح رمزك. <a href="https://signal.org/redirect/safety-numbers">اعرف المزيد</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت في التحقق من أمان التعمية مع %s، يجب مقارنة الرقم بالأعلى بالرقم الموجود في جهاز ذلك الشخص. أو يمكنك المسح التصويري للرمز الموجود في هاتفه، أو أن تطلب منه مسح رمزك. <a href="https://signal.org/redirect/safety-numbers">التعرف على المزيد</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
   <string name="verify_display_fragment__loading">قيد التحميل…</string>
   <string name="verify_display_fragment__verified"> تمّ التحقق </string>
@@ -2278,6 +2289,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استخدم Signal لجميع رسائل الوسائط المتعددة الواردة</string>
   <string name="preferences__pref_enter_sends_title">مفتاح الدخول يقوم بالإرسال</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">الضغط على مفتاح الدخول سيقوم بإرسال الرسالة</string>
+  <string name="preferences__pref_use_address_book_photos">استخدام صور دفتر العناوين</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">عرض صور جهات الاتصال من دفتر عناوينك إذا كان متاحا</string>
   <string name="preferences__generate_link_previews">إنشاء استعراض للروابط</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">جلب استعراض للروابط للرسائل التي ترسلها من المواقع مباشرةً.</string>
   <string name="preferences__choose_identity">اختيار الهوية</string>
@@ -2330,7 +2343,6 @@
   <string name="preferences__mmsc_password">كلمة السر MMSC</string>
   <string name="preferences__sms_delivery_reports">تقارير تسليم رسائل SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">طلب تقرير تسليم لكل رسالة SMS ترسلها</string>
-  <string name="preferences__chats">المحادثات والوسائط</string>
   <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__keep_messages">احتفظ بالرسائل</string>
@@ -2343,7 +2355,7 @@
   <string name="preferences__disable_pin">إلغاء الرقم التعريفي الشخصي</string>
   <string name="preferences__enable_pin">فعّل الرقم التعريفي الشخصي</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستفقد جميع البيانات عندما تقوم بإعادة التسجيل إلى Signal إلّا إذا قمت باسترجاع بالنسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">الرموز التعريفي الشخصية تبقي المعلومات المحفوظة في Signal مشفرة حتى لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع صفحة حسابك الشخصي، إعداداتك، وجهات اتصالك عندما تعيد تثبيت التطبيق. لن تحتاج إلى الرمز التعريفي الشخصي لفتح التطبيق.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">الرموز التعريفي الشخصية تبقي المعلومات المحفوظة في Signal مُعمَّاة حتى لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع صفحة حسابك الشخصي، إعداداتك، وجهات اتصالك عندما تعيد تثبيت التطبيق. لن تحتاج إلى الرمز التعريفي الشخصي لفتح التطبيق.</string>
   <string name="preferences__system_default">افتراضيات النظام</string>
   <string name="preferences__default">افتراضي</string>
   <string name="preferences__language">اللغة</string>
@@ -2395,6 +2407,13 @@
   <string name="preferences_app_protection__app_access">الوصول إلى البرنامج</string>
   <string name="preferences_app_protection__communication">اتصال</string>
   <string name="preferences_chats__chats">دردشة</string>
+  <string name="preferences_data_and_storage__manage_storage">إدارة سعة التخزين</string>
+  <string name="preferences_data_and_storage__calls">المُكالمات</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
+  <string name="preferences_data_and_storage__never">أبداً</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">شبكة WiFi والشبكة الخلوية</string>
+  <string name="preferences_data_and_storage__cellular_only">الشبكة الخلوية فقط</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">يُحسِّن استخدام بيانات أقل جودة المكالمات في الشبكات الضعيفة</string>
   <string name="preferences_notifications__messages">الرسائل</string>
   <string name="preferences_notifications__events">الأحداث</string>
   <string name="preferences_notifications__in_chat_sounds">أصوات خلال الدردشة</string>
@@ -2509,7 +2528,7 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">استيراد رسائل SMS من النظام</string>
-  <string name="reminder_header_sms_import_text">انقر لنسخ رسائل SMS من على الهاتف إلى قاعدة بيانات Signal المشفرة.</string>
+  <string name="reminder_header_sms_import_text">يُرجى اللمس لنسخ رسائل SMS من على الهاتف إلى قاعدة بيانات Signal المُعمَّاة.</string>
   <string name="reminder_header_push_title">تفعيل رسائل ومكالمات Signal</string>
   <string name="reminder_header_push_text">ترقية التطبيق من أجل تواصل أفضل.</string>
   <string name="reminder_header_invite_title">دعوة إلى Signal</string>
@@ -2520,9 +2539,9 @@
   <string name="reminder_header_the_latest_signal_features_wont_work">خصائص Signal الأحدث لن تعمل على هذا الإصدار من Android، يرجى تحديث  الجهاز لتمكين استقبال تحديثات Signal القادمة.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">أحفظ</string>
+  <string name="media_preview__save_title">حفظ</string>
   <string name="media_preview__forward_title">إعادة توجيه</string>
-  <string name="media_preview__share_title">شارك</string>
+  <string name="media_preview__share_title">مشاركة</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">لمحة عن الوسائط</string>
@@ -2537,21 +2556,21 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">رؤى</string>
   <string name="InsightsDashboardFragment__title">رؤى</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بمحماية  %1$d%% من رسائلك الصاردة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مشفرة دائما من طرف إلى طرف.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol أو بروتوكول سيجنال قام بحماية  %1$d%% من رسائلك الصادرة خلال %2$d يوما الماضية. المحادثات بين مستخدمي Signal مُعمَّاة دائما من طرف إلى طرف.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">تقوية Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">لا يوجد بيانات كافية</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">نسبة الرؤى الخاصة بك يتم حسابها بناءً على الرسائل المرسلة خلال %1$d يوما الماضية والتي لم تختفي أو يتم حذفها.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">ابدأ محادثة</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">ابدؤا التواصل بأمان وقوموا بتفعيل الخصائص الجديدة التى تتعدى الحدود التى تفرضها رسائل SMS مشفّرة وذلك عن طريق دعوة المزيد من جهات الاتصال لديكم للانضمام إلى Signal.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">ابدؤوا بالتواصل بأمان وقوموا بتفعيل الخصائص الجديدة التي تتعدى الحدود التي تفرضها رسائل SMS المُعمَّاة وذلك عن طريق دعوة المزيد من جهات اتصالكم للانضمام إلى Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">تم توليد هذه الإحصائيات محليّاً على جهازك وأنت الوحيد الذى يستطيع رؤيتها. لا يتم نقلها أبدا إلى أي مكان.</string>
-  <string name="InsightsDashboardFragment__encrypted_messages">الرسائل المشفّرة</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">الرسائل المُعمَّاة</string>
   <string name="InsightsDashboardFragment__cancel">إلغاء</string>
   <string name="InsightsDashboardFragment__send">أرسل</string>
   <string name="InsightsModalFragment__title">نقدم لكم الرؤى</string>
   <string name="InsightsModalFragment__description">اكتشف عدد رسائلك الصاردة التى تم إرسالها بأمان، ثم قم بسرعة بدعوة جهات اتصال جديدة لتقوية نسبة Signal لديك.</string>
   <string name="InsightsModalFragment__view_insights">اعرض الرؤى</string>
   <string name="FirstInviteReminder__title">ادعُ إلى Signal</string>
-  <string name="FirstInviteReminder__description">يمكنك أن تزيد عدد الرسائل المشفرة التى ترسلها بنسبة %1$d%%</string>
+  <string name="FirstInviteReminder__description">يمكنك زيادة عدد الرسائل المُعمَّاة التي ترسلها بنسبة %1$d%%</string>
   <string name="SecondInviteReminder__title">قم بتقوية Signal</string>
   <string name="SecondInviteReminder__description">أرسل دعوة لِ %1$s</string>
   <string name="InsightsReminder__view_insights">اعرض الرؤى</string>
@@ -2581,7 +2600,7 @@
   <string name="CreateKbsPinFragment__create_a_new_pin">إنشاء رقم تعريفي شخصي جديد</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">يمكنك تغيير الرقم التعريفي الشخصي في أي وقت طالما بقي هذا الجهاز مسجلا.</string>
   <string name="CreateKbsPinFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في مخدمات Signal مشفرة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع صفحة حسابك الشخصي و إعداداتك وجهات اتصالك عندما تعيد تثبيت Signal. لن تحتاج الرقم التعريفي لفتح واستخدام التطبيق.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في Signal مُعمَّاة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع صفحة حسابك الشخصي و إعداداتك وجهات اتصالك عندما يُغاد تثبيت Signal. لن تكون لك الحاجة إلى الرقم التعريفي لفتح واستخدام التطبيق.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">اختر رقما تعريفيا شخصيا أمتن.</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">الأرقام التعريفية الشخصية غير متطابقة. يرجى المحاولة ثانية.</string>
@@ -2593,7 +2612,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">جاري إنشاء الرقم التعريفي الشخصي</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية أو PINs</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في مخدمات Signal مشفرة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع صفحة حسابك الشخصي و إعداداتك وجهات اتصالك عندما تعيد تثبيت Signal. لن تحتاج الرقم التعريفي لفتح واستخدام التطبيق.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">الأرقام التعريفية الشخصية تجعل المعلومات المحفوظة في Signal مُعمَّاة، ولا يمكن لأحد سواك أن يصل إليها. سيتم استرجاع صفحة حسابك الشخصي و إعداداتك وجهات اتصالك عندما يُعاد تثبيت Signal. لن تكون لك الحاجة إلى الرقم التعريفي لفتح واستخدام التطبيق.</string>
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمى الآن رقم التعريف الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
@@ -2670,7 +2689,7 @@
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">سيتلقى %1$sطلب للتراسل منك. ويمكنك الاتصال بهم عندما يقبل طلب المراسلة الخاص بك.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
-  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المخزّنة مع Signal مشفرة.</string>
+  <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المُخزَّنة مع Signal مُعمَّاة.</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية </string>
   <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string>
@@ -2700,7 +2719,7 @@
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">فك القفل لعرض الرسائل المعلّقة</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">العبارة السرّية للنسخة الإحتياطية</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتم حفظ النسخ الاحتياطية في سعة التخزين الخارجيّة وستكون مشفرة بالعبارة السرية أدناه.  من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطيّة. </string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">سيتم حفظ النسخ الاحتياطية في سعة التخزين الخارجية وستكون مُعمَّاة بالعبارة السرية أدناه. من الضروري حفظ هذه العبارة من أجل استعادة أي نسخة احتياطية. </string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">يجب أن تكون لديك عبارة السر هذه لاستعادة نسخة احتياطية.</string>
   <string name="backup_enable_dialog__folder">المجلد</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
@@ -2769,7 +2788,7 @@
   <string name="preferences_app_protection__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="preferences_app_protection__change_your_pin">غيِّر رقم التعريف الشخصي الخاص بك</string>
   <string name="preferences_app_protection__pin_reminders">تذكيرات الرقم التعريفي الشخصي</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">يمكِّنك الرقم التعريفي الشخصي من حفظ معلوماتك بشكل مُعمَّى في Signal بحيث يمكنك الوصول إليها وحدك. سوف تتم استعادة حسابك وإعداداتك و جهات اتصالك عند إعادة تثبيت Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">قم بزيادة الأمان، من خلال إضافة كلمة سر رقمية والتي تطلب عند إعادة تسجيل رقمك مجدداً</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">تساعدك التذكيرات في تذكر رقم التعريف الشخصي لأنه لا يمكن استرداده. سيُطلب منك أقل مرات بمرور الوقت.</string>
   <string name="preferences_app_protection__turn_off">أطفىء</string>
@@ -2911,8 +2930,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">غادر %1$s و %2$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">غادر %1$s، %2$s و%3$s</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">غادر %1$s، %2$s و%3$d أخرون</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">أنت (في جهاز آخر)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (في جهاز آخر)</string>
+  <string name="CallParticipant__you">أنت</string>
+  <string name="CallParticipant__you_on_another_device">أنت (في جهاز آخر)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (في جهاز آخر)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">سيؤدي حذف حسابك إلى :</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>

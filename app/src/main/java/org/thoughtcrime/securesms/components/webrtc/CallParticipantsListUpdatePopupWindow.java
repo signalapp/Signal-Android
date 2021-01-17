@@ -31,8 +31,8 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
   private final AvatarImageView avatarImageView;
   private final TextView        descriptionTextView;
 
-  private final Set<CallParticipantListUpdate.Holder> pendingAdditions = new HashSet<>();
-  private final Set<CallParticipantListUpdate.Holder> pendingRemovals  = new HashSet<>();
+  private final Set<CallParticipantListUpdate.Wrapper> pendingAdditions = new HashSet<>();
+  private final Set<CallParticipantListUpdate.Wrapper> pendingRemovals  = new HashSet<>();
 
   private boolean isEnabled = true;
 
@@ -112,18 +112,18 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     avatarImageView.setVisibility(recipient == null ? View.GONE : View.VISIBLE);
   }
 
-  private void setDescription(@NonNull Set<CallParticipantListUpdate.Holder> holders, boolean isAdded) {
-    if (holders.isEmpty()) {
+  private void setDescription(@NonNull Set<CallParticipantListUpdate.Wrapper> wrappers, boolean isAdded) {
+    if (wrappers.isEmpty()) {
       descriptionTextView.setText("");
     } else {
-      setDescriptionForRecipients(holders, isAdded);
+      setDescriptionForRecipients(wrappers, isAdded);
     }
   }
 
-  private void setDescriptionForRecipients(@NonNull Set<CallParticipantListUpdate.Holder> recipients, boolean isAdded) {
-    Iterator<CallParticipantListUpdate.Holder> iterator = recipients.iterator();
-    Context                                    context  = getContentView().getContext();
-    String                                     description;
+  private void setDescriptionForRecipients(@NonNull Set<CallParticipantListUpdate.Wrapper> recipients, boolean isAdded) {
+    Iterator<CallParticipantListUpdate.Wrapper> iterator = recipients.iterator();
+    Context                                     context  = getContentView().getContext();
+    String                                      description;
 
     switch (recipients.size()) {
       case 0:
@@ -144,22 +144,14 @@ public class CallParticipantsListUpdatePopupWindow extends PopupWindow {
     descriptionTextView.setText(description);
   }
 
-  private @NonNull Recipient getNextRecipient(@NonNull Iterator<CallParticipantListUpdate.Holder> holderIterator) {
-    return holderIterator.next().getRecipient();
+  private @NonNull Recipient getNextRecipient(@NonNull Iterator<CallParticipantListUpdate.Wrapper> wrapperIterator) {
+    return wrapperIterator.next().getCallParticipant().getRecipient();
   }
 
-  private @NonNull String getNextDisplayName(@NonNull Iterator<CallParticipantListUpdate.Holder> holderIterator) {
-    CallParticipantListUpdate.Holder holder    = holderIterator.next();
-    Recipient                        recipient = holder.getRecipient();
+  private @NonNull String getNextDisplayName(@NonNull Iterator<CallParticipantListUpdate.Wrapper> wrapperIterator) {
+    CallParticipantListUpdate.Wrapper wrapper   = wrapperIterator.next();
 
-    if (recipient.isSelf()) {
-      return getContentView().getContext().getString(R.string.CallParticipantsListUpdatePopupWindow__you_on_another_device);
-    } else if (holder.isPrimary()) {
-      return recipient.getDisplayName(getContentView().getContext());
-    } else {
-      return getContentView().getContext().getString(R.string.CallParticipantsListUpdatePopupWindow__s_on_another_device,
-                                                     recipient.getDisplayName(getContentView().getContext()));
-    }
+    return wrapper.getCallParticipant().getRecipientDisplayName(getContentView().getContext());
   }
 
   private static @StringRes int getOneMemberDescriptionResourceId(boolean isAdded) {

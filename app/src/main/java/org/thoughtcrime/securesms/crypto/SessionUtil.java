@@ -29,4 +29,7 @@ public class SessionUtil {
     new TextSecureSessionStore(context).archiveAllSessions();
   }
 
+  public static void archiveSession(Context context, RecipientId recipientId, int deviceId) {
+    new TextSecureSessionStore(context).archiveSession(recipientId, deviceId);
+  }
 }

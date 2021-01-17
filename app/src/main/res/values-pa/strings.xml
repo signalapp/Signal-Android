@@ -176,8 +176,8 @@
   <string name="ConversationItem_this_message_was_deleted">ਇਹ ਸੁਨੇਹਾ ਮਿਟਾਇਆ ਗਿਆ ਸੀ.</string>
   <string name="ConversationItem_you_deleted_this_message">ਤੁਸੀਂ ਇਸ ਸੰਦੇਸ਼ ਨੂੰ ਮਿਟਾ ਦਿੱਤਾ ਹੈ.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਨੂੰ ਦੋਬਾਰਾ ਬਣਾਓ ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਐਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਹੋਣ ਤਾਂ ਇਸ ਨਾਲ ਸਹਾਇਤਾ ਹੋ ਸਕਦੀ ਹੈ | ਤੁਹਾਡੇ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">ਸੁਰੱਖਿਅਤ ਸੈਸ਼ਨ ਨੂੰ ਦੋਬਾਰਾ ਬਣਾਓ ?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ਜੇ ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਗੱਲਬਾਤ ਵਿੱਚ ਐਨਕ੍ਰਿਪਸ਼ਨ ਸਮੱਸਿਆਵਾਂ ਹੋਣ ਤਾਂ ਇਸ ਨਾਲ ਸਹਾਇਤਾ ਹੋ ਸਕਦੀ ਹੈ | ਤੁਹਾਡੇ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਰੱਖਿਆ ਜਾਵੇਗਾ.</string> -->
   <string name="ConversationActivity_reset">ਦੋਬਾਰਾ ਬਣਾਓ </string>
   <string name="ConversationActivity_add_attachment">ਅਟੈਚਮੈਂਟ ਨੂੰ ਜੋੜੋ</string>
   <string name="ConversationActivity_select_contact_info">ਸੰਪਰਕ ਦੀ ਜਾਣਕਾਰੀ ਨੂੰ ਚੁਣੋ</string>
@@ -956,7 +956,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">ਗਲਤ ਏਨਕ੍ਰਿਪਟ ਸੁਨੇਹਾ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">ਗਲਤ ਏਨਕ੍ਰਿਪਟ ਸੁਨੇਹਾ</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ਗੈਰ-ਮੌਜੂਦ ਸੈਸ਼ਨ ਲਈ ਇਨਕਰਿਪਟਡ ਸੁਨੇਹਾ</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ਗਲਤ ਏਨਕ੍ਰਿਪਟ ਕੀਤਾ ਐਮਐਮਐਸ ਸੁਨੇਹਾ</string>
@@ -1413,7 +1413,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ਤੁਸੀਂ ਭੇਜਣ ਵਾਲੇ ਹਰੇਕ SMS ਸੁਨੇਹੇ ਲਈ ਡਿਲੀਵਰੀ ਰਿਪੋਰਟ ਦੀ ਬੇਨਤੀ ਕਰੋ</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">ਗੱਲਬਾਤ ਇੱਕ ਖਾਸ ਲੰਬਾਈ ਤੋਂ ਵੱਧ ਗਈ ਤਾਂ ਆਟੋਮੈਟਿਕ ਹੀ ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਹਟਾਓ</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਮਿਟਾਓ </string> -->
-  <string name="preferences__chats">ਗੱਲਬਾਤ ਅਤੇ ਮੀਡੀਆ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">ਗੱਲਬਾਤ ਅਤੇ ਮੀਡੀਆ</string> -->
   <string name="preferences__storage">ਸਟੋਰੇਜ਼</string>
   <string name="preferences__conversation_length_limit">ਗੱਲਬਾਤ ਦੀ ਲੰਬਾਈ ਸੀਮਾ</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">ਹੁਣ ਸਭ ਗੱਲਬਾਤ ਵੱਢੋ</string> -->

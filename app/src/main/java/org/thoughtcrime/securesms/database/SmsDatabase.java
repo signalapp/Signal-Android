@@ -1038,7 +1038,7 @@ public class SmsDatabase extends MessageDatabase {
     if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
-    ContentValues values = new ContentValues(6);
+    ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
@@ -1091,6 +1091,36 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+  }
+
+  @Override
+  public @NonNull InsertResult insertDecryptionFailedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    long           threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.resolved(recipientId));
+    long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
+
+    type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;
+
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, recipientId.serialize());
+    values.put(ADDRESS_DEVICE_ID,  senderDeviceId);
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_SENT, sentTimestamp);
+    values.put(DATE_SERVER, -1);
+    values.put(READ, 0);
+    values.put(TYPE, type);
+    values.put(THREAD_ID, threadId);
+
+    long messageId = db.insert(TABLE_NAME, null, values);
+
+    DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+
+    notifyConversationListeners(threadId);
+
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+
+    return new InsertResult(messageId, threadId);
   }
 
   @Override

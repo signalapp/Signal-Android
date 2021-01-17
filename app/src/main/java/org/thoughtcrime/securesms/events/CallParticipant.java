@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms.events;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
@@ -12,7 +15,7 @@ import java.util.Objects;
 
 public final class CallParticipant {
 
-  public static final CallParticipant EMPTY = createRemote(new CallParticipantId(Recipient.UNKNOWN), Recipient.UNKNOWN, null, new BroadcastVideoSink(null), false, false, 0, true, 0);
+  public static final CallParticipant EMPTY = createRemote(new CallParticipantId(Recipient.UNKNOWN), Recipient.UNKNOWN, null, new BroadcastVideoSink(null), false, false, 0, true, 0, DeviceOrdinal.PRIMARY);
 
   private final @NonNull  CallParticipantId  callParticipantId;
   private final @NonNull  CameraState        cameraState;
@@ -24,6 +27,7 @@ public final class CallParticipant {
   private final           long               lastSpoke;
   private final           boolean            mediaKeysReceived;
   private final           long               addedToCallTime;
+  private final @NonNull  DeviceOrdinal      deviceOrdinal;
 
   public static @NonNull CallParticipant createLocal(@NonNull CameraState cameraState,
                                                      @NonNull BroadcastVideoSink renderer,
@@ -38,7 +42,8 @@ public final class CallParticipant {
                                microphoneEnabled,
                                0,
                                true,
-                               0);
+                               0,
+                               DeviceOrdinal.PRIMARY);
   }
 
   public static @NonNull CallParticipant createRemote(@NonNull CallParticipantId callParticipantId,
@@ -49,9 +54,10 @@ public final class CallParticipant {
                                                       boolean videoEnabled,
                                                       long lastSpoke,
                                                       boolean mediaKeysReceived,
-                                                      long addedToCallTime)
+                                                      long addedToCallTime,
+                                                      @NonNull DeviceOrdinal deviceOrdinal)
   {
-    return new CallParticipant(callParticipantId, recipient, identityKey, renderer, CameraState.UNKNOWN, videoEnabled, audioEnabled, lastSpoke, mediaKeysReceived, addedToCallTime);
+    return new CallParticipant(callParticipantId, recipient, identityKey, renderer, CameraState.UNKNOWN, videoEnabled, audioEnabled, lastSpoke, mediaKeysReceived, addedToCallTime, deviceOrdinal);
   }
 
   private CallParticipant(@NonNull CallParticipantId callParticipantId,
@@ -63,7 +69,8 @@ public final class CallParticipant {
                           boolean microphoneEnabled,
                           long lastSpoke,
                           boolean mediaKeysReceived,
-                          long addedToCallTime)
+                          long addedToCallTime,
+                          @NonNull DeviceOrdinal deviceOrdinal)
   {
     this.callParticipantId = callParticipantId;
     this.recipient         = recipient;
@@ -75,14 +82,15 @@ public final class CallParticipant {
     this.lastSpoke         = lastSpoke;
     this.mediaKeysReceived = mediaKeysReceived;
     this.addedToCallTime   = addedToCallTime;
+    this.deviceOrdinal     = deviceOrdinal;
   }
 
   public @NonNull CallParticipant withIdentityKey(@NonNull IdentityKey identityKey) {
-    return new CallParticipant(callParticipantId, recipient, identityKey, videoSink, cameraState, videoEnabled, microphoneEnabled, lastSpoke, mediaKeysReceived, addedToCallTime);
+    return new CallParticipant(callParticipantId, recipient, identityKey, videoSink, cameraState, videoEnabled, microphoneEnabled, lastSpoke, mediaKeysReceived, addedToCallTime, deviceOrdinal);
   }
 
   public @NonNull CallParticipant withVideoEnabled(boolean videoEnabled) {
-    return new CallParticipant(callParticipantId, recipient, identityKey, videoSink, cameraState, videoEnabled, microphoneEnabled, lastSpoke, mediaKeysReceived, addedToCallTime);
+    return new CallParticipant(callParticipantId, recipient, identityKey, videoSink, cameraState, videoEnabled, microphoneEnabled, lastSpoke, mediaKeysReceived, addedToCallTime, deviceOrdinal);
   }
 
   public @NonNull CallParticipantId getCallParticipantId() {
@@ -91,6 +99,30 @@ public final class CallParticipant {
 
   public @NonNull Recipient getRecipient() {
     return recipient;
+  }
+
+  public @NonNull String getRecipientDisplayName(@NonNull Context context) {
+    if (recipient.isSelf() && isPrimary()) {
+      return context.getString(R.string.CallParticipant__you);
+    } else if (recipient.isSelf()) {
+      return context.getString(R.string.CallParticipant__you_on_another_device);
+    } else if (isPrimary()) {
+      return recipient.getDisplayName(context);
+    } else {
+      return context.getString(R.string.CallParticipant__s_on_another_device, recipient.getDisplayName(context));
+    }
+  }
+
+  public @NonNull String getShortRecipientDisplayName(@NonNull Context context) {
+    if (recipient.isSelf() && isPrimary()) {
+      return context.getString(R.string.CallParticipant__you);
+    } else if (recipient.isSelf()) {
+      return context.getString(R.string.CallParticipant__you_on_another_device);
+    } else if (isPrimary()) {
+      return recipient.getShortDisplayName(context);
+    } else {
+      return context.getString(R.string.CallParticipant__s_on_another_device, recipient.getShortDisplayName(context));
+    }
   }
 
   public @Nullable IdentityKey getIdentityKey() {
@@ -136,6 +168,10 @@ public final class CallParticipant {
     return addedToCallTime;
   }
 
+  public boolean isPrimary() {
+    return deviceOrdinal == DeviceOrdinal.PRIMARY;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -171,5 +207,10 @@ public final class CallParticipant {
            ", mediaKeysReceived=" + mediaKeysReceived +
            ", addedToCallTime=" + addedToCallTime +
            '}';
+  }
+
+  public enum DeviceOrdinal {
+    PRIMARY,
+    SECONDARY
   }
 }

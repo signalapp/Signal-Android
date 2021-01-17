@@ -110,8 +110,12 @@ public class UserNotificationMigrationJob extends MigrationJob {
                                                       .setContentIntent(pendingIntent)
                                                       .build();
 
-    NotificationManagerCompat.from(context)
-                             .notify(NotificationIds.USER_NOTIFICATION_MIGRATION, notification);
+    try {
+      NotificationManagerCompat.from(context)
+                               .notify(NotificationIds.USER_NOTIFICATION_MIGRATION, notification);
+    } catch (Throwable t) {
+      Log.w(TAG, "Failed to notify!", t);
+    }
   }
 
   @Override

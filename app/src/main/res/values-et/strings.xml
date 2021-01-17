@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">See sõnum kustutati.</string>
   <string name="ConversationItem_you_deleted_this_message">Sina kustutasid selle teate.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Lähtesta turvaline sessioon?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">See võib aidata, kui sul on selles vestluses krüptimisprobleemid. Sinu sõnumid jäävad alles.</string>
   <string name="ConversationActivity_reset">Lähtesta</string>
   <string name="ConversationActivity_add_attachment">Lisa manus</string>
   <string name="ConversationActivity_select_contact_info">Vali kontaktandmed</string>
@@ -312,6 +310,10 @@
   <string name="ConversationFragment__tap_to_review">Üle vaatamiseks koputa</string>
   <string name="ConversationFragment__review_requests_carefully">Vaata taotlused tähelepanelikult üle</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal leidis teise samanimelise kontakti</string>
+  <string name="ConversationFragment_contact_us">Võta meiega ühendust</string>
+  <string name="ConversationFragment_verify">Kinnita</string>
+  <string name="ConversationFragment_not_now">Mitte praegu</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Sinu turvanumber kasutajaga %s on muutunud</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -394,6 +396,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Täna</string>
   <string name="DateUtils_yesterday">Eile</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Vestluse seanss on värskendatud</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal kasutab otspunkt krüptimist ja see võib mõnikord vajada vestluse seansi värskendamist. See ei mõjuta vestluse turvalisust, aga sa võisid mõnest selle kontakti sõnumist ilma jääda, seepärast palu neil vajadusel need uuesti saata.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Saatmine</string>
   <string name="DeliveryStatus_sent">Saadetud</string>
@@ -933,6 +938,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Kaduvate sõnumite ajaks seadistati %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">See grupp on uueks grupiks täiendatud.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Sind polnud võimalik uude gruppi lisada ja oled kutsutud grupiga liituma.</string>
+  <string name="MessageRecord_chat_session_refreshed">Vestluse seanss on värskendatud</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Liiget polnud võimalik uude gruppi lisada ja neid kutsuti liituma.</item>
     <item quantity="other">%1$s liiget polnud võimalik uude gruppi lisada ja neid kutsuti liituma.</item>
@@ -1278,6 +1284,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Määratud number
         (%s) on sobimatu.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Kinnituskood saadetakse numbrile:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Selle numbri kinnitamiseks tehakse sulle kõne.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Kas sinu telefoninumber ülevalpool on korrektne?</string>
+  <string name="RegistrationActivity_edit_number">Muuda numbrit</string>
   <string name="RegistrationActivity_missing_google_play_services">Puuduvad Google Play teenused</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Seadmest puuduvad Google Play teenused. Sa saad siiski Signalit kasutada, kuid see konfiguratsioon võib põhjustada vähendatud stabiilsust või jõudlust.\n\nKui sa pole edasijõudnud kasutaja, ei käita järelturu Androidi ROMi või arvad, et see on viga, palun kontakteeru support@signal.org, et saada abi probleemi lahendamisel.</string>
   <string name="RegistrationActivity_i_understand">Saan aru</string>
@@ -1433,6 +1443,7 @@
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Fail</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Vestluse seanss on värskendatud</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signali uuendus</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uus Signali versioon on saadaval, koputa uuendamiseks</string>
@@ -1473,7 +1484,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Halb krüptitud MSS sõnum</string>
@@ -1971,6 +1981,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Kasuta Signalit kõigi sissetulevate multimeediasõnumite jaoks</string>
   <string name="preferences__pref_enter_sends_title">Sisestusklahv saadab</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Sisestusklahvi vajutamine saadab tekstsõnumeid</string>
+  <string name="preferences__pref_use_address_book_photos">Kasuta telefoniraamatu fotosid</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kuva kontaktide fotosid telefoniraamatust, kui olemas</string>
   <string name="preferences__generate_link_previews">Genereeri lingieelvaateid</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hangib lingieelvaated otse saitidelt, mida sõnumina saadad.</string>
   <string name="preferences__choose_identity">Vali identiteet</string>
@@ -2023,7 +2035,6 @@
   <string name="preferences__mmsc_password">MMSC parool</string>
   <string name="preferences__sms_delivery_reports">SMSi kohaletoimetamise rapordid</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Taotle kohaletoimetamise raporti iga SMS-sõnumi kohta, mida saadad</string>
-  <string name="preferences__chats">Vestlused ja meedia</string>
   <string name="preferences__storage">Mäluruum</string>
   <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
   <string name="preferences__keep_messages">Säilita sõnumid</string>
@@ -2088,6 +2099,13 @@
   <string name="preferences_app_protection__app_access">Rakenduse ligipääs</string>
   <string name="preferences_app_protection__communication">Suhtlus</string>
   <string name="preferences_chats__chats">Vestlused</string>
+  <string name="preferences_data_and_storage__manage_storage">Halda salvestusruumi</string>
+  <string name="preferences_data_and_storage__calls">Kõned</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Kasuta kõnede jaoks vähem andmesidet</string>
+  <string name="preferences_data_and_storage__never">Mitte kunagi</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi ja mobiilside</string>
+  <string name="preferences_data_and_storage__cellular_only">Ainult mobiilside</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Väiksema andmemahu kasutamine võib kehvades võrkudes parendada kõnekvaliteeti.</string>
   <string name="preferences_notifications__messages">Sõnumid</string>
   <string name="preferences_notifications__events">Sündmused</string>
   <string name="preferences_notifications__in_chat_sounds">Vestlusesisesed helid</string>
@@ -2567,8 +2585,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ja %2$s lahkusid</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ja %3$s lahkusid</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ja %3$d teist lahkusid</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Sina (teisest seadmest)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (teises seadmes)</string>
+  <string name="CallParticipant__you">Sina</string>
+  <string name="CallParticipant__you_on_another_device">Sina (teisest seadmest)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (teises seadmes)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Sinu konto kustutamine tähendab:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Sisesta enda telefoninumber</string>

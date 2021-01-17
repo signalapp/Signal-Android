@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಮರು ಪ್ರಾರಂಭಿಸಿ?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ನೀವು ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸಹಾಯ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲಾಗುವುದು.</string>
   <string name="ConversationActivity_reset">ಮರುಹೊಂದಿಸಿ</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -208,6 +206,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">ಸ್ವೀಕರಿಸುವವರ ಎಸ್‌‌ಎಂಸ್ ಅಥವಾ ಇಮೇಲ್ ವಿಳಾಸ ಮಾನ್ಯವಾದುದಲ್ಲ!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">ಸಂದೇಶ ಖಾಲಿಯಾಗಿದೆ!</string>
   <string name="ConversationActivity_group_members">ಗುಂಪಿನ ಸದಸ್ಯರು</string>
+  <string name="ConversationActivity__tap_here_to_start_a_group_call">ಕರೆ ಮಾಡುವುದಕ್ಕೆ ಇಲ್ಲಿ  ಒತ್ತಿ </string>
   <string name="ConversationActivity_invalid_recipient">ಅಮಾನ್ಯ ಸ್ವೀಕೃತಿದಾರರು!</string>
   <string name="ConversationActivity_added_to_home_screen"> ಹೋಮ್‌ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ConversationActivity_calls_not_supported">ಕರೆಗಳ ಬೆಂಬಲವಿರುವುದಿಲ್ಲ</string>
@@ -313,6 +312,10 @@
   <string name="ConversationFragment__tap_to_review">ಪರೀಕ್ಷಿಸಲು ಇಲ್ಲಿ ಒತ್ತಿ</string>
   <string name="ConversationFragment__review_requests_carefully">ಕೋರಿಕೆಯನ್ನು ಪರಿಶೀಲಿಸಿ</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal ಒಂದೇ ಹೆಸರಿನ ಇನ್ನೊಂದು ಸಂಪರ್ಕವನ್ನು ಕಂಡುಹಿಡಿಯಿತು</string>
+  <string name="ConversationFragment_contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
+  <string name="ConversationFragment_verify">ದೃಢೀಕರಿಸಿ</string>
+  <string name="ConversationFragment_not_now">ಈಗಲ್ಲ</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ನಿಮ್ಮ ಸಾಧನ ಯಾವುದೇ ಬ್ರೌಸರ್ ಅನ್ನು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ.</string>
   <!--ConversationListFragment-->
@@ -397,6 +400,7 @@
   <string name="DateUtils_minutes_ago">%dನಿ</string>
   <string name="DateUtils_today">ಇಂದು</string>
   <string name="DateUtils_yesterday">ನಿನ್ನೆ</string>
+  <!--DecryptionFailedDialog-->
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ</string>
   <string name="DeliveryStatus_sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
@@ -423,6 +427,7 @@
   <string name="DonateMegaphone_donate">ದಾನ</string>
   <string name="DonateMegaphone_no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
   <!--GroupCallingMegaphone-->
+  <string name="GroupCallingMegaphone__introducing_group_calls">ಗುಂಪು  ಕರೆಗಳನ್ನು  ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ  </string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ಕಾಣೆಯಾದ ಪ್ಲೇ ಸೇವೆಗಳನ್ನು ಅತ್ಯುತ್ತಮವಾಗಿಸಿ</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ಈ ಸಾಧನವು ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ. ನಿಷ್ಕ್ರಿಯವಾಗಿದ್ದಾಗ Signal ಸಂದೇಶಗಳನ್ನು ಹಿಂದಕ್ಕೆ ಪಡೆಯದಂತೆ ತಡೆಯಲು ಸಿಸ್ಟಂ ಬ್ಯಾಟರಿ ಆಪ್ಟಿಮೈಸೇಶನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ ಅನ್ನು ಒತ್ತಿ.</string>
@@ -492,8 +497,18 @@
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">ಹೊಸ ಗುಂಪಿಗೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ಈ ಗುಂಪನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">ಹೊಸ ಗುಂಪುಗಳು @ಉಲ್ಲೇಖಗಳು ಮತ್ತು ಗುಂಪು ನಿರ್ವಾಹಕರಂತಹ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಹೊಂದಿವೆ, ಮತ್ತು ಭವಿಷ್ಯದಲ್ಲಿ ಹೆಚ್ಚಿನ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಬೆಂಬಲಿಸುತ್ತದೆ.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ತಾತ್ಕಾಲಿಕ ನೆಟ್ವರ್ಕ್ ತೊಂದರೆ ಉಂಟಾಯಿತು . ನಂತರ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ . </string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ.</string>
+  <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
+    <item quantity="one">ಈ ಸದಸ್ಯರು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನವನ್ನು ಸ್ವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ:</item>
+    <item quantity="other">ಈ ಸದಸ್ಯರು ಮತ್ತೆ ಈ ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನವನ್ನು ಸ್ವೀಕರಿಸುವ ಅಗತ್ಯವಿದೆ ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ:</item>
+  </plurals>
+  <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
+    <item quantity="one">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ . ಆದ್ದರಿಂದ ಈ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆಯಲಾಗುವುದು </item>
+    <item quantity="other">ಈ ಸದಸ್ಯರು ಹೊಸ ಗುಂಪುಗಳನ್ನು ಸೇರಲು ಅರ್ಹರಿಲ್ಲ . ಆದ್ದರಿಂದ ಈ ಗುಂಪಿನಿಂದ ಅವರನ್ನು ತೆಗೆಯಲಾಗುವುದು </item>
+  </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ಹೊಸ ವೈಶಿಷ್ಟ್ಯ ಗಳಾದ  @ಉಲ್ಲೇಖಗಳು ಮತ್ತು ಗುಂಪು  ನಿರ್ವಾಹಕರಂತಹ  ಲಕ್ಷಣಗಳನ್ನು  ಪಡೆಯಲು ಈ ಗುಂಪನ್ನು ಸುಧಾರಿಸಿ </string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ಈಗಲ್ಲ</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">ಗುಂಪನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಿ</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -524,6 +539,7 @@
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">ಈ ಗುಂಪಿನಿಂದ ನಿಮಗೆ ಇನ್ನು ಮುಂದೆ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಸ್ವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="LeaveGroupDialog_leave">ತೊರೆಯಿರಿ </string>
   <string name="LeaveGroupDialog_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ನೀವು ತೊರೆಯುವ ಮೊದಲು, ಈ ಗುಂಪಿಗೆ ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ.</string>
   <string name="LeaveGroupDialog_choose_admin">ನಿರ್ವಾಹಕರನ್ನು ಆರಿಸಿ</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -559,6 +575,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">ಸದಸ್ಯರ ವಿನಂತಿಗಳು ಬಾಕಿ ಉಳಿದಿದೆ.</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">ತೋರಿಸಲು ಯಾವುದೇ ಸದಸ್ಯರ ವಿನಂತಿಗಳಿಲ್ಲ.</string>
+  <string name="RequestingMembersFragment_explanation">ಈ ಪಟ್ಟಿಯಲ್ಲಿರುವವರು ಗುಂಪಿನ ಕೊಂಡಿಯ ಮೂಲಕ ಈ ಗುಂಪಿಗೆ ಸೇರಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದಾರೆ</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" ನಿರಾಕರಿಸಲಾಗಿದೆ</string>
   <!--AddMembersActivity-->
@@ -604,7 +621,19 @@
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
   <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
+  <plurals name="ManageGroupActivity_invited">
+    <item quantity="one">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
+    <item quantity="other">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
+  </plurals>
+  <plurals name="ManageGroupActivity_added">
+    <item quantity="one">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
+    <item quantity="other">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
+  </plurals>
+  <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">ಇದನ್ನು  ಮಾಡಲು  ನಿಮಗೆ ಅನುಮತಿ ಇಲ್ಲ </string>
+  <string name="ManageGroupActivity_youre_not_a_member_of_the_group">ನೀವು  ಈ ಗುಂಪಿನ ಸದಸ್ಯರಲ್ಲ </string>
   <!--GroupMentionSettingDialog-->
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ  ಎಚ್ಚರಿಸು </string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -942,6 +971,10 @@
   <string name="RegistrationActivity_invalid_number">ಅಮಾನ್ಯವಾದ ಸಂಖ್ಯೆ</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ನೀವು ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ 
 ಸಂಖ್ಯೆ (%s) ಅಮಾನ್ಯವಾಗಿದೆ. </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">ಪರಿಶೀಲನೆ ಕೋಡ್ ಅನ್ನು ಇದಕ್ಕೆ ಕಳುಹಿಸಲಾಗುತ್ತದೆ:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">ಈ ಸಂಖ್ಯೆಯನ್ನು ಪರಿಶೀಲನೆ ಮಾಡಲು ನಿಮಗೆ ಒಂದು ಕರೆ ಬರುತ್ತದೆ.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">ಈ ಮೇಲಿನ ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್‌ ಸರಿಯಾಗಿದೆಯೇ?</string>
+  <string name="RegistrationActivity_edit_number">ನಂಬರ್ ಎಡಿಟ್ ಮಾಡಿ</string>
   <string name="RegistrationActivity_missing_google_play_services">Google ಪ್ಲೇ ಸರ್ವೀಸಸ್‌‌ಗಳು ಕಾಣೆಯಾಗಿದೆ</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">ಈ ಸಾಧನದಲ್ಲಿ Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಕಾಣುತ್ತಿಲ್ಲ. ನೀವು ಇನ್ನೂ Signal ಅನ್ನು ಬಳಸಬಹುದು, ಆದರೆ ಈ ಕಾನ್ಫಿಗರೇಶನ್ ವಿಶ್ವಾಸಾರ್ಹತೆ ಅಥವಾ ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಕಡಿಮೆ ಮಾಡುತ್ತದೆ.\n\nನೀವು ಸುಧಾರಿತ ಬಳಕೆದಾರರು ಅಲ್ಲದೇ ಇದ್ದಲ್ಲಿ, ನೀವು ಆಫ್ಟರ್ ಮಾರ್ಕೆಟ್ ಆಂಡ್ರಾಯ್ಡ್ ರಾಮ್ ಅನ್ನು ರನ್ ಮಾಡುತ್ತಿರುವುದಿಲ್ಲ ಅಥವಾ ನೀವಿದನ್ನು ದೋಷಗಳಲ್ಲಿ ಕಾಣುತ್ತಿದ್ದಲ್ಲಿ support@signal.org ಗೆ ಟ್ರಬಲ್‌ಶೂಟಿಂಗ್‌ಗಾಗಿ ದಯವಿಟ್ಟು ಸಂಪರ್ಕಿಸಿ, </string>
   <string name="RegistrationActivity_i_understand">ನನಗೆ ಅರ್ಥವಾಯಿತು</string>
@@ -1117,7 +1150,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">ಕೆಟ್ಟದಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿರುವ ಸಂದೇಶ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲದ ಅವಧಿಗಾಗಿ ಸಂದೇಶ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿದೆ</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">ಕೆಟ್ಟದಾಗಿ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಲಾಗಿರುವ ಎಸ್‌ಎಂಎಸ್‌ ಸಂದೇಶ</string>
@@ -1501,6 +1533,7 @@
   <!--HelpFragment-->
   <string name="HelpFragment__help">ಸಹಾಯ</string>
   <string name="HelpFragment__next">ಮುಂದೆ</string>
+  <string name="HelpFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
   <string name="HelpFragment__signal_support">Signal ಬೆಂಬಲ</string>
   <string name="HelpFragment__no_email_app_found">ಯಾವುದೇ ಈಮೇಲ್‌ ಇಲ್ಲ</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -1593,7 +1626,6 @@
   <string name="preferences__mmsc_password">ಎಂಎಂಎಸ್‌ಸಿ ಪಾಸ್ವರ್ಡ್</string>
   <string name="preferences__sms_delivery_reports">ಎಸ್‌ಎಂಎಸ್ ಡೆಲಿವರಿ ವರದಿಗಳು</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ನೀವು ಕಳುಹಿಸುವ ಪ್ರತಿ ಎಸ್.ಎಮ್.ಎಸ್ ಸಂದೇಶಕ್ಕೂ ವಿತರಣಾ ವರದಿಯನ್ನು ವಿನಂತಿಸಿ</string>
-  <string name="preferences__chats">ಚಾಟ್‌‌ ಗಳು ಹಾಗೂ ಮೀಡಿಯಾ</string>
   <string name="preferences__storage">ಸ್ಟೊರೇಜ್</string>
   <string name="preferences__conversation_length_limit">ಸಂಭಾಷಣೆಯ ಉದ್ದ ಮಿತಿ</string>
   <string name="preferences__keep_messages">ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿ</string>
@@ -1655,6 +1687,8 @@
   <string name="preferences_app_protection__app_access">ಅಪ್ಲಿಕೇಶನ್ ಪ್ರವೇಶ</string>
   <string name="preferences_app_protection__communication">ಸಂವಹನ</string>
   <string name="preferences_chats__chats">ಚಾಟ್‌‌ ಗಳು</string>
+  <string name="preferences_data_and_storage__calls">ಕರೆಗಳು</string>
+  <string name="preferences_data_and_storage__never">ಎಂದಿಗೂ ಇಲ್ಲ</string>
   <string name="preferences_notifications__messages">ಸಂದೇಶಗಳು</string>
   <string name="preferences_notifications__events">ಕಾರ್ಯಕ್ರಮಗಳು</string>
   <string name="preferences_notifications__in_chat_sounds">ಚಾಟ್‌ ನಲ್ಲಿನ ಶಬ್ದಗಳು</string>
@@ -2131,8 +2165,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ಹಾಗು %2$s ಉಳಿದಿದ್ದಾರೆ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ಹಾಗು %3$s ಉಳಿದಿದ್ದಾರೆ</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ಹಾಗು %3$d ಇನ್ನಿತರು ಉಳಿದಿದ್ದಾರೆ</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
+  <string name="CallParticipant__you">ನೀವು</string>
+  <string name="CallParticipant__you_on_another_device">ನೀವು (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (ಮತ್ತೊಂದು  ಸಾಧನದಲ್ಲಿ)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
   <string name="DeleteAccountFragment__are_you_sure">ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>

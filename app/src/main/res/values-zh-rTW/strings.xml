@@ -13,7 +13,7 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新中…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">你還沒有建立密碼！</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="other">每個對話上限 %d 則訊息</item>
   </plurals>
@@ -28,10 +28,10 @@
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">正在取消註冊 Signal 訊息和通話…    </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上取消你的註冊並停用 Signal 訊息和通話。日後如果想再次使用，則需要重新註冊你的電話號碼。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">簡訊功能已啟動</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按此以變更您預設的簡訊應用程式</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">輕觸以變更你預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">簡訊功能已停用</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">按這裡將 Signal 設定為預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_on">開啟</string>
@@ -151,7 +151,7 @@
   <string name="CommunicationActions_insecure_call">不安全的電話</string>
   <string name="CommunicationActions_carrier_charges_may_apply">電信商可能會收取額外的費用。你撥出的號碼未在Signal中註冊。 該電話將通過你的電信商撥出，而不是通過網際網路撥出。</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">你與 %1$s 的安全碼產生變動。這可能是有不明人士試圖攔截你的通訊，或是因為 %2$s 重新安裝了 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsCursorLoader-->
@@ -195,8 +195,6 @@
   <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
   <string name="ConversationItem_you_deleted_this_message">你已刪除此訊息。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">重設安全對話？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">該選項將會有助於解決您在對話中遇到的加密問題。您的訊息將被保留。</string>
   <string name="ConversationActivity_reset">重設</string>
   <string name="ConversationActivity_add_attachment">新增附檔</string>
   <string name="ConversationActivity_select_contact_info">選擇聯絡人資訊</string>
@@ -302,6 +300,11 @@
   <string name="ConversationFragment__tap_to_review">點按以查看</string>
   <string name="ConversationFragment__review_requests_carefully">仔細審核請求</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal找到了另一個同名聯絡人。</string>
+  <string name="ConversationFragment_contact_us">與我們聯繫</string>
+  <string name="ConversationFragment_verify">驗證</string>
+  <string name="ConversationFragment_not_now">稍後</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">你與 %s 的安全碼已變更</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">你與 %s 的安全碼已變更，可能是因為對方重新安裝了 Signal 或更換了裝置。輕觸「驗證」以確認新的安全碼。這是可選的。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的裝置上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->
@@ -327,7 +330,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">已驗證</string>
-  <string name="ConversationTitleView_you">您</string>
+  <string name="ConversationTitleView_you">你</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">某些聯絡人不能在舊群組中。</string>
   <!--CreateProfileActivity-->
@@ -380,6 +383,9 @@
   <string name="DateUtils_minutes_ago">%d 分鐘前</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">聊天會話已刷新</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal使用點對點加密，有時可能需要刷新你的聊天對話。 這不會影響你聊天的安全性，但是你可能錯過了此聯絡人的訊息，可以要求他們重新傳送。</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">傳送中</string>
   <string name="DeliveryStatus_sent">已傳送</string>
@@ -449,7 +455,7 @@
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">你想讓這個群組中，目前及未來的成員，都能夠看見你個人資訊中的名字及頭像照片？</string>
   <string name="GroupShareProfileView_make_visible">可看見的</string>
   <!--GroupMembersDialog-->
-  <string name="GroupMembersDialog_you">您</string>
+  <string name="GroupMembersDialog_you">你</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">任何人</string>
   <string name="GroupManagement_access_level_all_members">所有成員</string>
@@ -885,6 +891,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">自動銷毀訊息時間已經被設為%1$s。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">該群組已更新為新群組。</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">你無法新增到新版群組中，但已被邀請加入。</string>
+  <string name="MessageRecord_chat_session_refreshed">聊天會話已刷新</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">%1$s 個成員無法被新增到新版群組中，但已被邀請加入。</item>
   </plurals>
@@ -919,8 +926,8 @@
   <string name="MessageRecord_s_made_you_an_admin">%1$s將你設為管理員。</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">你撤銷了%1$s的管理員權限。</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s 撤銷了你的管理員權限。</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s從%2$s撤銷了管理員權限。</string>
-  <string name="MessageRecord_s_is_now_an_admin">%1$s現在是管理者。</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s 撤銷了 %2$s 的管理員權限。</string>
+  <string name="MessageRecord_s_is_now_an_admin">%1$s 現在是管理員。</string>
   <string name="MessageRecord_you_are_now_an_admin">你現在是管理員。</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s 不再是管理員。</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">你已不再是管理員。</string>
@@ -970,8 +977,8 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s變更了誰可以編輯群駔成員資格為\"%2$s\"。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">誰可以編輯群成員已變更為\"%1$s\"。</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已打開群組連結，但尚未獲得管理員批准。</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用管理員批准的群組連結。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">你已啟用群組連結（毋需管理員批准）。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">你已啟用群組連結（需經管理員批准）。</string>
   <string name="MessageRecord_you_turned_off_the_group_link">你關閉了群組連結。</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s 開啟了群組連結，但未獲得管理員批准。</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s 開啟了具有管理員批准功能的群組連結。</string>
@@ -1016,7 +1023,7 @@
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s 已開始群組通話 · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s 在群組通話中 · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">你正在群組通話中· %1$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">你正在群組通話中 · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s 和 %2$s 在群組通話中 · %3$s</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s、%2$s 和 %3$s 在群組通話中 · %4$s</string>
   <string name="MessageRecord_group_call_s">群組通話 · %1$s</string>
@@ -1026,7 +1033,7 @@
   <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s 及 %2$s 在群組通話中</string>
   <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, 及 %3$s 在群組通話中</string>
   <string name="MessageRecord_group_call">群組通話</string>
-  <string name="MessageRecord_you">您</string>
+  <string name="MessageRecord_you">你</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="other">%1$s、%2$s 和另外 %3$d 人在群組通話中 · %4$s</item>
   </plurals>
@@ -1119,13 +1126,13 @@
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="other">你還有%1$d次嘗試的次數。 如果嘗試次數用完，則可以建立一個新的PIN碼。你可以註冊和使用帳號，但會遺失一些已儲存的設定，例如個人訊息資料。</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 - 在Android上需要的PIN碼協助</string>
-  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">輸入字母數字PIN碼</string>
-  <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字PIN碼</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal 註冊 - 在 Android 上需要 PIN 碼協助</string>
+  <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">輸入字母數字 PIN 碼</string>
+  <string name="PinRestoreEntryFragment_enter_numeric_pin">輸入數字 PIN 碼</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">建立你的 PIN 碼</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">你的PIN碼猜測用完了，但是你仍然可以通過建立新的PIN碼來連結Signal帳號。 為了你的隱私和安全，你的帳號將被回復，而不會保存任何個人資料訊息或設定。</string>
-  <string name="PinRestoreLockedFragment_create_new_pin">建立新的PIN碼</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
   <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
@@ -1142,7 +1149,7 @@
   <!--ReactionsConversationView-->
   <string name="ReactionsConversationView_plus">+%1$d</string>
   <!--ReactionsRecipientAdapter-->
-  <string name="ReactionsRecipientAdapter_you">您</string>
+  <string name="ReactionsRecipientAdapter_you">你</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">封鎖</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">離開群組時發生錯誤</string>
@@ -1211,6 +1218,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">您輸入的
         號碼 (%s) 是無效的
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">驗證碼將傳送至：</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">你會接到電話驗證此號碼。</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">你的電話號碼正確嗎？</string>
+  <string name="RegistrationActivity_edit_number">輸入號碼</string>
   <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Signal，但是此設定可能會降低可靠性或效能。\n\n如果你不是個進階使用者，不是正在執行原廠的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯絡 support@signal.org 來協助你排除故障。</string>
   <string name="RegistrationActivity_i_understand">我了解</string>
@@ -1229,7 +1240,7 @@
     <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">我們必須驗證你是人類。</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證CAPTCHA 失敗</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證 CAPTCHA 失敗</string>
   <string name="RegistrationActivity_next">下一步</string>
   <string name="RegistrationActivity_continue">繼續</string>
   <string name="RegistrationActivity_continue_d_attempts_left">繼續(只剩%d次嘗試次數)</string>
@@ -1364,6 +1375,7 @@
   <string name="ThreadRecord_contact">聯絡人</string>
   <string name="ThreadRecord_file">檔案</string>
   <string name="ThreadRecord_video">影片</string>
+  <string name="ThreadRecord_chat_session_refreshed">聊天會話已刷新</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
@@ -1403,7 +1415,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">損毀的加密多媒體訊息</string>
@@ -1421,7 +1432,7 @@
   <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>
   <string name="KeyCachingService_lock">鎖定 Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">您</string>
+  <string name="MediaPreviewActivity_you">你</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
@@ -1636,7 +1647,7 @@
   <string name="QuoteView_view_once_media">一次性多媒體檔案</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_document">文件</string>
-  <string name="QuoteView_you">您</string>
+  <string name="QuoteView_you">你</string>
   <string name="QuoteView_original_missing">無法找到原始訊息</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
@@ -1700,7 +1711,7 @@
   <string name="IdentityUtil_untrusted_dialog_two">你與 %1$s 及 %2$s 的安全碼剛剛已改變。</string>
   <string name="IdentityUtil_untrusted_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼剛剛已改變。</string>
   <plurals name="identity_others">
-    <item quantity="other">%d 其他人</item>
+    <item quantity="other">另 %d 人</item>
   </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">搜尋動態圖檔與貼圖</string>
@@ -1876,7 +1887,7 @@
   <string name="arrays__large">大</string>
   <string name="arrays__extra_large">特大</string>
   <string name="arrays__default">預設</string>
-  <string name="arrays__high">高的</string>
+  <string name="arrays__high">高</string>
   <string name="arrays__max">最高</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
@@ -1890,8 +1901,10 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收所有多媒體訊息</string>
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
+  <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">可用時顯示通訊錄中的聯絡人照片</string>
   <string name="preferences__generate_link_previews">建立連結預覽</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">直接從網站上檢索你傳送的訊息的連結預覽。</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">為你傳送的訊息中所包含的連結直接從網站檢索預覽。</string>
   <string name="preferences__choose_identity">選擇身分</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從您的聯絡人清單中選擇聯絡人項目。</string>
   <string name="preferences__change_passphrase">變更自訂密碼</string>
@@ -1942,7 +1955,7 @@
   <string name="preferences__mmsc_password">MMSC 密碼</string>
   <string name="preferences__sms_delivery_reports">手機簡訊傳送狀態報告</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">針對每則手機簡訊都要求回覆傳送報告</string>
-  <string name="preferences__chats">聊天與媒體</string>
+  <string name="preferences__data_and_storage">數據與儲存空間</string>
   <string name="preferences__storage">儲存空間</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__keep_messages">保留訊息</string>
@@ -1953,7 +1966,7 @@
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__disable_pin">停用PIN碼</string>
-  <string name="preferences__enable_pin">啟用PIN碼</string>
+  <string name="preferences__enable_pin">啟用 PIN 碼</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
   <string name="preferences__system_default">系統預設</string>
@@ -2007,6 +2020,13 @@
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
   <string name="preferences_chats__chats">聊天</string>
+  <string name="preferences_data_and_storage__manage_storage">管理儲存空間</string>
+  <string name="preferences_data_and_storage__calls">通話</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">使用更少的數據進行通話</string>
+  <string name="preferences_data_and_storage__never">永不</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi和行動通訊</string>
+  <string name="preferences_data_and_storage__cellular_only">僅行動通訊</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">使用較少的數據可能改善不良網路上的通話</string>
   <string name="preferences_notifications__messages">訊息</string>
   <string name="preferences_notifications__events">事件</string>
   <string name="preferences_notifications__in_chat_sounds">聊天音效</string>
@@ -2163,16 +2183,16 @@
   <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高 Signal 比例。</string>
   <string name="InsightsModalFragment__view_insights">檢視 統計</string>
   <string name="FirstInviteReminder__title">邀請至 Signal</string>
-  <string name="FirstInviteReminder__description">你可以透過%1$d%%來增加你傳送加密訊息的數量</string>
-  <string name="SecondInviteReminder__title">加速你的 Signal</string>
+  <string name="FirstInviteReminder__description">你傳送的加密訊息數量可以增加多達 %1$d%%</string>
+  <string name="SecondInviteReminder__title">提升你的 Signal</string>
   <string name="SecondInviteReminder__description">邀請 %1$s</string>
   <string name="InsightsReminder__view_insights">檢視 統計</string>
   <string name="InsightsReminder__invite">邀請</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">下一步</string>
-  <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字PIN碼</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">建立數字PIN碼</string>
+  <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字 PIN 碼</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="other">PIN碼必須至少%1$d個字母</item>
@@ -2181,17 +2201,17 @@
     <item quantity="other">PIN碼必需至少%1$d個字元</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新 PIN 碼</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要註冊了此裝置，你就可以變更PIN碼。</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要此裝置仍保持註冊，你隨時可變更 PIN 碼。</string>
   <string name="CreateKbsPinFragment__create_your_pin">建立你的 PIN 碼</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存訊息，因此只有你可以讀取。 重新安裝後，你的個人資料，設定和聯絡人將回復。 你不需要PIN碼即可開啟應用程式。</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">請選擇強度較強的PIN碼</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">PIN碼不符合。請重試一次。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">確認你的 PIN 碼。</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN碼建立失敗</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">你的PIN碼還沒被儲存。我們稍後會提示你建立PIN碼。</string>
-  <string name="ConfirmKbsPinFragment__pin_created">PIN碼已建立。</string>
-  <string name="ConfirmKbsPinFragment__re_enter_your_pin">重新輸入你的PIN碼</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 碼建立失敗</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">你的 PIN 碼未儲存。我們稍後會提示你建立 PIN 碼。</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN 碼已建立。</string>
+  <string name="ConfirmKbsPinFragment__re_enter_your_pin">重新輸入你的 PIN 碼</string>
   <string name="ConfirmKbsPinFragment__creating_pin">建立PIN碼中…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">介紹 PIN 碼</string>
@@ -2200,17 +2220,17 @@
   <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖 = PIN 碼</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖現在稱為PIN碼，並且功能更多。 請立即更新。</string>
   <string name="KbsSplashFragment__read_more_about_pins">了解更多有關PIN碼。</string>
-  <string name="KbsSplashFragment__update_pin">升級PIN碼</string>
+  <string name="KbsSplashFragment__update_pin">更新 PIN 碼</string>
   <string name="KbsSplashFragment__create_your_pin">建立你的 PIN 碼</string>
   <string name="KbsSplashFragment__learn_more_about_pins">了解更多有關 PIN 碼</string>
-  <string name="KbsSplashFragment__disable_pin">停用PIN碼</string>
+  <string name="KbsSplashFragment__disable_pin">停用 PIN 碼</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">輸入你的 Signal PIN 碼</string>
   <string name="KbsReminderDialog__to_help_you_memorize_your_pin">為了幫助你記住PIN碼，我們會要求你定期輸入。 我們會漸漸地減少要求。</string>
   <string name="KbsReminderDialog__skip">略過</string>
   <string name="KbsReminderDialog__submit">確定</string>
   <string name="KbsReminderDialog__forgot_pin">忘記 PIN 碼？</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">不正確的PIN碼。請再試一次。</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帳號已被鎖定</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">你的帳號已被鎖定，以保護你的隱私和安全。 帳號停用%1$d天後，你無需密碼即可重新註冊該電話號碼。 所有內容將被刪除。</string>
@@ -2248,9 +2268,9 @@
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">建立一個PIN碼</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN碼可保存使用Signal加密儲存的資訊。</string>
-  <string name="KbsMegaphone__create_pin">建立PIN碼</string>
+  <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
   <string name="KbsMegaphone__introducing_pins">介紹 PIN 碼</string>
-  <string name="KbsMegaphone__update_pin">升級PIN碼</string>
+  <string name="KbsMegaphone__update_pin">更新 PIN 碼</string>
   <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">我們稍後會提醒你。 建立PIN碼將在%1$d天之內成為強制性的。</string>
   <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">我們稍後會提醒你。 在%1$d天之內，必須確認你的PIN碼。</string>
   <!--Research Megaphone-->
@@ -2341,18 +2361,18 @@
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">以 Android 螢幕鎖定或指紋來鎖定 Signal 存取</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">螢幕鎖定閒置逾時</string>
-  <string name="preferences_app_protection__signal_pin">Signal PIN碼</string>
-  <string name="preferences_app_protection__create_a_pin">建立 PIN碼</string>
-  <string name="preferences_app_protection__change_your_pin">變更 PIN碼</string>
-  <string name="preferences_app_protection__pin_reminders">PIN碼提示器</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN 碼</string>
+  <string name="preferences_app_protection__create_a_pin">建立 PIN 碼</string>
+  <string name="preferences_app_protection__change_your_pin">變更你的 PIN 碼</string>
+  <string name="preferences_app_protection__pin_reminders">PIN 碼提示器</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN碼會以Signal加密方式儲存資訊，因此只有你可以讀取。 重新安裝Signal時，你的個人資料，設定和聯絡人將復元。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">透過要求你的Signal PIN碼重新在Signal上註冊你的電話號碼來增加安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">提醒可以幫助你記住你的PIN碼，因為它無法回復。 隨著時間的過去，你的詢問頻率會降低。</string>
   <string name="preferences_app_protection__turn_off">關閉</string>
   <string name="preferences_app_protection__confirm_pin">確認 PIN 碼</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">確認你的 Signal PIN碼</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">確認你的 Signal PIN 碼</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">確保你記住或安全地儲存了PIN碼，因為它無法回復。 如果你忘記了PIN碼，則在重新註冊Signal帳號時可能會遺失資料。</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">不正確的PIN碼。請再試一次。</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">PIN 碼不正確。請再試一次。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">無法啟用註冊鎖。</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">無法停用註冊鎖。</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>
@@ -2477,8 +2497,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s 和 %2$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s 和 %3$s 已離開</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s 和 %3$d 及其他人已離開</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">你 (在其他的裝置上)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (在另一台裝置上)</string>
+  <string name="CallParticipant__you">你</string>
+  <string name="CallParticipant__you_on_another_device">你 (在其他的裝置上)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (在另一台裝置上)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">刪除你的帳戶將：</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">輸入你的電話號碼</string>

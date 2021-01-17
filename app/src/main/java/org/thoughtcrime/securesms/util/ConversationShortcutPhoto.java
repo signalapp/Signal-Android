@@ -22,7 +22,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -42,12 +44,14 @@ public final class ConversationShortcutPhoto implements Key {
   public ConversationShortcutPhoto(@NonNull Recipient recipient) {
     this.recipient    = recipient.resolve();
     this.avatarObject = Util.firstNonNull(recipient.getProfileAvatar(), "");
+
   }
 
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(recipient.getDisplayName(ApplicationDependencies.getApplication()).getBytes());
     messageDigest.update(avatarObject.getBytes());
+    messageDigest.update(isSystemContactPhoto() ? (byte) 1 : (byte) 0);
     messageDigest.update(ByteUtil.longToByteArray(getFileLastModified()));
   }
 
@@ -56,14 +60,19 @@ public final class ConversationShortcutPhoto implements Key {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ConversationShortcutPhoto that = (ConversationShortcutPhoto) o;
-    return Objects.equals(recipient, that.recipient) &&
-           Objects.equals(avatarObject, that.avatarObject) &&
+    return Objects.equals(recipient, that.recipient)             &&
+           Objects.equals(avatarObject, that.avatarObject)       &&
+           isSystemContactPhoto() == that.isSystemContactPhoto() &&
            getFileLastModified() == that.getFileLastModified();
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(recipient, avatarObject, getFileLastModified());
+    return Objects.hash(recipient, avatarObject, isSystemContactPhoto(), getFileLastModified());
+  }
+
+  private boolean isSystemContactPhoto() {
+    return recipient.getContactPhoto() instanceof SystemContactPhoto;
   }
 
   private long getFileLastModified() {

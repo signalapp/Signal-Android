@@ -1089,6 +1089,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
+    final long thread = this.threadId;
+
     ExpirationDialog.show(this, recipient.get().getExpireMessages(),
       expirationTime ->
         SimpleTask.run(
@@ -1104,7 +1106,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
             } else {
               DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient.getId(), expirationTime);
               OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
-              MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
+              MessageSender.send(ConversationActivity.this, outgoingMessage, thread, false, null);
             }
             return GroupChangeResult.SUCCESS;
           },
@@ -2677,13 +2679,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
+    long                 thread        = this.threadId;
     long                 expiresIn     = recipient.get().getExpireMessages() * 1000L;
     QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orNull();
     List<Mention>        mentions      = new ArrayList<>(result.getMentions());
     OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, quote, Collections.emptyList(), Collections.emptyList(), mentions);
     OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
 
-    ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
+    ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
 
     inputPanel.clearQuote();
     attachmentManager.clear(glideRequests, false);
@@ -2692,7 +2695,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long id = fragment.stageOutgoingMessage(message);
 
     SimpleTask.run(() -> {
-      long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), threadId, () -> fragment.releaseOutgoingMessage(id));
+      long resultId = MessageSender.sendPushWithPreUploadedMedia(this, secureMessage, result.getPreUploadResults(), thread, () -> fragment.releaseOutgoingMessage(id));
 
       int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
@@ -2737,6 +2740,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return new SettableFuture<>(null);
     }
 
+    final long thread = this.threadId;
+
     if (isSecureText && !forceSms) {
       MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(this, body, sendButton.getSelectedTransport().calculateCharacters(body).maxPrimaryMessageSize);
       body = splitMessage.getBody();
@@ -2755,7 +2760,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isSecureText && !forceSms) {
       outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
-      ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
+      ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
       outgoingMessage = outgoingMessageCandidate;
     }
@@ -2774,7 +2779,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                   return MessageSender.send(context, outgoingMessage, thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
                  }, result -> {
                    sendComplete(result);
                    future.set(null);
@@ -2794,6 +2799,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
+    final long    thread      = this.threadId;
     final Context context     = getApplicationContext();
     final String  messageBody = getMessage();
 
@@ -2801,7 +2807,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     if (isSecureText && !forceSms) {
       message = new OutgoingEncryptedMessage(recipient.get(), messageBody, expiresIn);
-      ApplicationDependencies.getTypingStatusSender().onTypingStopped(threadId);
+      ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
       message = new OutgoingTextMessage(recipient.get(), messageBody, expiresIn, subscriptionId);
     }
@@ -2817,7 +2823,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  new AsyncTask<OutgoingTextMessage, Void, Long>() {
                    @Override
                    protected Long doInBackground(OutgoingTextMessage... messages) {
-                     return MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                     return MessageSender.send(context, messages[0], thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
                    }
 
                    @Override

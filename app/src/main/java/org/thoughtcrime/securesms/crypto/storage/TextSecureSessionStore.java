@@ -103,6 +103,16 @@ public class TextSecureSessionStore implements SessionStore {
     }
   }
 
+  public void archiveSession(@NonNull RecipientId recipientId, int deviceId) {
+    synchronized (FILE_LOCK) {
+      SessionRecord session = DatabaseFactory.getSessionDatabase(context).load(recipientId, deviceId);
+      if (session != null) {
+        session.archiveCurrentState();
+        DatabaseFactory.getSessionDatabase(context).store(recipientId, deviceId, session);
+      }
+    }
+  }
+
   public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
       if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {

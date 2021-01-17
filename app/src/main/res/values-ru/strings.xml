@@ -204,8 +204,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищенный сеанс?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
   <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
@@ -332,6 +330,11 @@
   <string name="ConversationFragment__tap_to_review">Нажмите, чтобы проверить</string>
   <string name="ConversationFragment__review_requests_carefully">Внимательно проверяйте запросы</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal нашёл другой контакт с тем же именем.</string>
+  <string name="ConversationFragment_contact_us">Связаться с нами</string>
+  <string name="ConversationFragment_verify">Подтверждение</string>
+  <string name="ConversationFragment_not_now">Не сейчас</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безопасности с %s изменился</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтверждение», чтобы проверить новый код безопасности. Это необязательно.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
@@ -422,6 +425,9 @@
   <string name="DateUtils_minutes_ago">%dм</string>
   <string name="DateUtils_today">Сегодня</string>
   <string name="DateUtils_yesterday">Вчера</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Сессия чата обновлена</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal использует сквозное шифрование, и ему иногда может быть необходимо обновить сессию вашего чата. Это не затрагивает безопасность чата, но вы могли пропустить сообщение от этого собеседника. Вы можете попросить его отправить сообщение заново.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Отправляем</string>
   <string name="DeliveryStatus_sent">Отправлено</string>
@@ -444,7 +450,7 @@
   <string name="DocumentView_unnamed_file">Безымянный файл</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Поддержать Signal</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста. поддержите нас!</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal существует благодаря таким людям, как вы. Пожалуйста, поддержите нас!</string>
   <string name="DonateMegaphone_donate">Пожертвовать</string>
   <string name="DonateMegaphone_no_thanks">Нет, спасибо</string>
   <!--GroupCallingMegaphone-->
@@ -605,7 +611,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Отключить</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Предпросмотр любой ссылки</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь при отправке сообщений вы можете получать предпросмотры ссылок напрямую с любого сайта.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Теперь вы можете добавлять в свои сообщения предпросмотры ссылок, которые будут скачиваться напрямую с любого сайта.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Нет предпросмотра ссылки</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
@@ -618,13 +624,13 @@
     <item quantity="other">%1$d участников</item>
   </plurals>
   <!--PendingMembersActivity-->
-  <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу в ожидании</string>
+  <string name="PendingMembersActivity_pending_group_invites">Приглашения в группу</string>
   <string name="PendingMembersActivity_requests">Запросы</string>
   <string name="PendingMembersActivity_invites">Приглашения</string>
   <string name="PendingMembersActivity_people_you_invited">Люди, которых пригласили вы</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений в ожидании.</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">У вас нет приглашений, ожидающих решения</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Приглашения от других участников группы</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений в ожидании от других участников группы.</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Нет приглашений, ожидающих решения, отправленных другими участниками.</string>
   <string name="PendingMembersActivity_missing_detail_explanation">Подробности людей, приглашённых другими участниками группы, не показываются. Информация о приглашённых станет доступна группе только если они решат присоединиться. Приглашённые не увидят сообщений в группе, пока не присоединятся.</string>
   <string name="PendingMembersActivity_revoke_invite">Отозвать приглашение</string>
   <string name="PendingMembersActivity_revoke_invites">Отозвать приглашения</string>
@@ -641,7 +647,7 @@
     <item quantity="other">Ошибка отзыва приглашений</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Ожидающие запросы на участие</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Запросы на участие, ожидающие решения</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Нет запросов на участие.</string>
   <string name="RequestingMembersFragment_explanation">Люди в этом списке пытаются присоединиться к этой группе по ссылке на группу.</string>
   <string name="RequestingMembersFragment_added_s">«%1$s» был(-а) добавлен(-а)</string>
@@ -657,7 +663,7 @@
   </plurals>
   <string name="AddMembersActivity__add">Добавить</string>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Назовите эту группу</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Придумайте имя для группы</string>
   <string name="AddGroupDetailsFragment__create_group">Создать группу</string>
   <string name="AddGroupDetailsFragment__create">Создать</string>
   <string name="AddGroupDetailsFragment__members">Участники</string>
@@ -669,7 +675,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">Не удалось создать группу.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Попробуйте ещё раз позже.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Вы выбрали контакт, который не поддерживает группы Signal, поэтому эта группа будет преобразована в MMS.</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Пользовательские имена и фото групп MMS будут видны только вам.</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и фото MMS-групп будут видны только вам.</string>
   <string name="AddGroupDetailsFragment__remove">Удалить</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS-контакт</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Удалить %1$s из этой группы?</string>
@@ -686,19 +692,19 @@
     <item quantity="other">%d участников не поддерживают Новые группы, поэтому эта группа не может быть создана.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует старую версию Signal. Вы можете создать группу нового типа с этим человеком после того, как он обновит Signal, или убрать его до создания группы.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Будет создана Старая группа, потому что «%1$s» использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как этот человек обновит Signal. Либо вы можете удалить его перед созданием группы.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">Будет создана Старая группа, потому что %1$d участник использует старую версию Signal. Вы можете создать группу нового типа с этим человеком после того, как он обновит Signal, или убрать его до создания группы.</item>
-    <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
-    <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
-    <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют старую версию Signal. Вы можете создать группу нового типа с ними после того, как они обновят Signal, или убрать их до создания группы.</item>
+    <item quantity="one">Будет создана Старая группа, потому что %1$d участник использует устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
+    <item quantity="few">Будет создана Старая группа, потому что %1$d участника используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
+    <item quantity="many">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
+    <item quantity="other">Будет создана Старая группа, потому что %1$d участников используют устаревшую версию Signal. Вы сможете создать группу нового типа после того, как они обновят Signal. Либо вы можете удалить их перед созданием группы.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует старую версию Signal. Вы должны удалить этого участника перед созданием группы.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Эта группа не может быть создана, потому что «%1$s» использует устаревшую версию Signal. Вы должны удалить этого участника перед созданием группы.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
-    <item quantity="one">Эта группа не может быть создана, потому что %1$d участник использует старую версию Signal. Вы должны удалить этого участника перед созданием группы.</item>
-    <item quantity="few">Эта группа не может быть создана, потому что %1$d участника используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
-    <item quantity="many">Эта группа не может быть создана, потому что %1$d участников используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
-    <item quantity="other">Эта группа не может быть создана, потому что %1$d участников используют старую версию Signal. Вы должны удалить этих участников перед созданием группы.</item>
+    <item quantity="one">Эта группа не может быть создана, потому что %1$d участник использует устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
+    <item quantity="few">Эта группа не может быть создана, потому что %1$d участника используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
+    <item quantity="many">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
+    <item quantity="other">Эта группа не может быть создана, потому что %1$d участников используют устаревшую версию Signal. Вы должны удалить их перед созданием группы.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_disappearing_messages">Исчезающие сообщения</string>
@@ -706,7 +712,7 @@
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_edit_group_info">Редактировать информацию</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кто может добавлять новых участников?</string>
-  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кто может редактировать информацию этой группы?</string>
+  <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
   <string name="ManageGroupActivity_group_link">Ссылка на группу</string>
   <string name="ManageGroupActivity_block_group">Заблокировать группу</string>
   <string name="ManageGroupActivity_unblock_group">Разблокировать группу</string>
@@ -747,7 +753,7 @@
   <string name="ManageGroupActivity_legacy_group_upgrade">Это Старая группа. Чтобы получить доступ к таким функциям, как @упоминания и администраторы групп,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Эта Старая группа не может быть обновлена до Новой группы, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">обновите эту группу.</string>
-  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это небезопасная группа MMS. Чтобы общаться конфиденциально, пригласите своих контактов в Signal.</string>
+  <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Это незащищённая MMS-группа. Чтобы общаться конфиденциально, пригласите своих контактов в Signal.</string>
   <string name="ManageGroupActivity_invite_now">Пригласить сейчас</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Уведомлять меня об упоминаниях</string>
@@ -765,7 +771,7 @@
   <string name="ManageRecipientActivity_unblock">Разблокировать</string>
   <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string>
   <string name="ManageRecipientActivity_mute_notifications">Отключить уведомления</string>
-  <string name="ManageRecipientActivity_custom_notifications">Пользовательские уведомления</string>
+  <string name="ManageRecipientActivity_custom_notifications">Индивидуальные уведомления</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
   <string name="ManageRecipientActivity_off">Отключено</string>
   <string name="ManageRecipientActivity_on">Включено</string>
@@ -791,9 +797,9 @@
     <item quantity="other">%1$s пригласил(-а) %2$d людей</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
-  <string name="CustomNotificationsDialogFragment__custom_notifications">Пользовательские уведомления</string>
+  <string name="CustomNotificationsDialogFragment__custom_notifications">Индивидуальные уведомления</string>
   <string name="CustomNotificationsDialogFragment__messages">Сообщения</string>
-  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Использовать пользовательские уведомления</string>
+  <string name="CustomNotificationsDialogFragment__use_custom_notifications">Использовать индивидуальные уведомления</string>
   <string name="CustomNotificationsDialogFragment__notification_sound">Звук уведомления</string>
   <string name="CustomNotificationsDialogFragment__vibrate">Вибрация</string>
   <string name="CustomNotificationsDialogFragment__call_settings">Настройки звонков</string>
@@ -802,7 +808,7 @@
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Общедоступная ссылка на группу</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Ссылка на группу</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управлять и поделиться</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Ссылка на группу</string>
   <string name="ShareableGroupLinkDialogFragment__share">Поделиться</string>
@@ -813,11 +819,11 @@
   <string name="ShareableGroupLinkDialogFragment__disabled">Отключена</string>
   <string name="ShareableGroupLinkDialogFragment__default">По умолчанию</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ссылка на группа была сброшена</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Требовать принятия администратором новых участников, присоединяющихся по ссылке на группу.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Вы уверены, что хотите сбросить ссылку на группу? Люди больше не смогут присоединиться к группе, используя текущую ссылку.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Администратор должен будет одобрять новых участников, присоединяющихся по ссылке на группу.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Вы уверены, что хотите сбросить ссылку на группу? Больше никто не сможет присоединиться к группе по текущей ссылке.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-код</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Люди, которые сканируют этот код, смогут присоединиться к вашей группе. Администраторам всё равно будет необходимо принять новых участников, если у вас включена та настройка.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Любой, кто просканирует этот код, сможет присоединиться к вашей группе. Администраторам всё равно нужно будет одобрять новых участников, если у вас включена та настройка.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Поделиться кодом</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Вы хотите отозвать своё приглашение для %1$s?</string>
@@ -835,7 +841,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Произошла ошибка сети.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Эта ссылка на группу неактивна</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Не удалось получить информацию группы. Пожалуйста, попробуйте ещё раз позже</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и поделиться своими именем и фото с её участниками?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Вы хотите присоединиться к этой группе и открыть своё имя и фото её участникам?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Администратор этой группы должен принять ваш запрос, прежде чем вы сможете присоединиться к ней. Когда вы отправите запрос, ваши имя и фото станут доступны участникам этой группы.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Группа · %1$d участник</item>
@@ -846,9 +852,9 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Ссылки на группы будут скоро доступны</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Обновите Signal, чтобы использовать ссылки на группы</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает эту ссылку на группу. Обновитесь до новейшей версии, чтобы присоединиться к этой группе по ссылке.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Версия Signal, которую вы используете, не поддерживает эту ссылку на группу. Обновитесь до последней версии, чтобы присоединиться к этой группе по ссылке.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Обновить Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Одно или больше из ваших привязанных устройств используют версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на своём(-их) привязанном(-ых) устройстве(-ах), чтобы присоединиться к этой группе.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Как минимум одно из ваших привязанных устройств использует версию Signal, которая не поддерживает ссылки на группы. Обновите Signal на привязанных устройствах, чтобы присоединиться к этой группе.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Ссылка на группу недействительна</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Пригласить друзей</string>
@@ -869,8 +875,8 @@
   <string name="CropImageActivity_profile_avatar">Аватар</string>
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Размыть лица</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Новинка: размойте лица или рисуйте, чтобы размыть</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Рисуйте в любом месте, чтобы размыть</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Новинка: размытие лиц и любых других фрагментов</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Зарисуйте участок, чтобы размыть его</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Рисуйте, чтобы размыть другие лица или области</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Удерживайте, чтобы записать голосовое сообщение; отпустите, чтобы отправить</string>
@@ -1026,20 +1032,21 @@
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s отключил(-а) исчезающие сообщения.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили время исчезновения сообщений в %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) время исчезновения сообщений в%2$s.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">Было установлено время исчезновения сообщений — %1$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Таймер исчезновения сообщений установлен в %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Эта группа была обновлена до Новой группы.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вы не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Вас невозможно было добавить в Новую группу, поэтому вы получили приглашение присоединиться.</string>
+  <string name="MessageRecord_chat_session_refreshed">Сессия чата обновлена</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был приглашён присоединиться.</item>
-    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
-    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
-    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были приглашены присоединиться.</item>
+    <item quantity="one">Одного из участников невозможно было добавить в Новую группу, и ему было отправлено приглашение.</item>
+    <item quantity="few">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
+    <item quantity="many">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
+    <item quantity="other">%1$s участников невозможно было добавить в Новую группу, и им было отправлено приглашение.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="one">Один из участников не мог быть добавлен в Новую группу, поэтому был удалён из группы.</item>
-    <item quantity="few">%1$s участника не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
-    <item quantity="many">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
-    <item quantity="other">%1$s участников не могли быть добавлены в Новую группу, поэтому были удалены из группы.</item>
+    <item quantity="one">Одного из участников невозможно было добавить в Новую группу, и он был удалён.</item>
+    <item quantity="few">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
+    <item quantity="many">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
+    <item quantity="other">%1$s участников невозможно было добавить в Новую группу, и они были удалены.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s изменил(-а) своё имя профиля на %2$s.</string>
@@ -1399,6 +1406,10 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">Необходимо указать номер телефона</string>
   <string name="RegistrationActivity_invalid_number">Неверный номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами номер (%s) недействителен.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Код подтверждения будет отправлен на:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Вы получите звонок, чтобы проверить этот номер.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Правильный ли ваш номер телефона выше?</string>
+  <string name="RegistrationActivity_edit_number">Изменить номер</string>
   <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы можете продолжить использование Signal, но надёжность или производительность могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android или считаете, что видите это сообщение по ошибке, обратитесь в службу поддержки по адресу support@signal.org для помощи с устранением неполадок.</string>
   <string name="RegistrationActivity_i_understand">Я понимаю</string>
@@ -1556,6 +1567,7 @@
   <string name="ThreadRecord_contact">Контакт</string>
   <string name="ThreadRecord_file">Файл</string>
   <string name="ThreadRecord_video">Видео</string>
+  <string name="ThreadRecord_chat_session_refreshed">Сессия чата обновлена</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Обновление Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Доступна новая версия Signal. Обновиться?</string>
@@ -1598,7 +1610,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Неверное зашифрованное сообщение</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Сообщение зашифровано для несуществующей сессии</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Неверное зашифрованное MMS-сообщение</string>
@@ -2118,6 +2129,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Использовать Signal для всех входящих MMS-сообщений</string>
   <string name="preferences__pref_enter_sends_title">Отправка клавишей «Ввод»</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Нажатие клавиши ввода будет отправлять текстовые сообщения</string>
+  <string name="preferences__pref_use_address_book_photos">Фотографии из адресной книги</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Отображать фотографии контактов из вашей адресной книги, если они доступны</string>
   <string name="preferences__generate_link_previews">Создавать предпросмотры ссылок</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Получать предпросмотры ссылок напрямую от сайтов для сообщений, которые вы отправляете.</string>
   <string name="preferences__choose_identity">Выберите личность</string>
@@ -2170,7 +2183,7 @@
   <string name="preferences__mmsc_password">Пароль MMSC</string>
   <string name="preferences__sms_delivery_reports">Отчеты о доставке SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Запрашивать отчет о доставке для каждого отправленного SMS-сообщения</string>
-  <string name="preferences__chats">Чаты и медиа</string>
+  <string name="preferences__data_and_storage">Данные и хранилище</string>
   <string name="preferences__storage">Хранилище</string>
   <string name="preferences__conversation_length_limit">Предел длины разговора</string>
   <string name="preferences__keep_messages">Хранить сообщения</string>
@@ -2235,6 +2248,13 @@
   <string name="preferences_app_protection__app_access">Доступ к приложению</string>
   <string name="preferences_app_protection__communication">Связь</string>
   <string name="preferences_chats__chats">Чаты</string>
+  <string name="preferences_data_and_storage__manage_storage">Управлять хранилищем</string>
+  <string name="preferences_data_and_storage__calls">Звонки</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Использовать меньше данных для звонков</string>
+  <string name="preferences_data_and_storage__never">Никогда</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильный интернет</string>
+  <string name="preferences_data_and_storage__cellular_only">Только мобильный интернет</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Использование меньшего количества данных может улучшить звонки при плохой связи</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки внутри чата</string>
@@ -2732,8 +2752,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s и %2$s покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d человек(-а) покинули звонок</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Вы (на другом устройстве)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (на другом устройстве)</string>
+  <string name="CallParticipant__you">Вы</string>
+  <string name="CallParticipant__you_on_another_device">Вы (на другом устройстве)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (на другом устройстве)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Удаление вашей учётной записи приведёт к:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Введите свой номер телефона</string>

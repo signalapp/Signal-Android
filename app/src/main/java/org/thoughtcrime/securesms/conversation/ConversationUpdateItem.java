@@ -206,6 +206,24 @@ public final class ConversationUpdateItem extends LinearLayout
           eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationMembershipChanges());
         }
       });
+    } else if (conversationMessage.getMessageRecord().isFailedDecryptionType() &&
+              (!nextMessageRecord.isPresent() || !nextMessageRecord.get().isFailedDecryptionType()))
+    {
+      actionButton.setText(R.string.ConversationUpdateItem_learn_more);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onDecryptionFailedLearnMoreClicked();
+        }
+      });
+    } else if (conversationMessage.getMessageRecord().isIdentityUpdate()) {
+      actionButton.setText(R.string.ConversationUpdateItem_learn_more);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onSafetyNumberLearnMoreClicked(conversationMessage.getMessageRecord().getIndividualRecipient());
+        }
+      });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
       UpdateDescription updateDescription = MessageRecord.getGroupCallUpdateDescription(getContext(), conversationMessage.getMessageRecord().getBody(), true);
       Collection<UUID>  uuids             = updateDescription.getMentioned();

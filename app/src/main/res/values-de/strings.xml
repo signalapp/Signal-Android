@@ -184,7 +184,7 @@
   <string name="ConversationItem_error_network_not_delivered">Versand gescheitert</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Schlüsselaustausch-Nachricht empfangen. Zum Fortfahren antippen.</string>
   <string name="ConversationItem_group_action_left">%1$s hat die Gruppe verlassen.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">Senden gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">Versand gescheitert. Für Rückgriff auf unverschlüsselten Versand antippen.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Rückgriff auf unverschlüsselte SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Rückgriff auf unverschlüsselte MMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Diese Nachricht wird <b>nicht</b> verschlüsselt, da der Empfänger Signal nicht mehr verwendet.\n\nUnverschlüsselte Nachricht senden?</string>
@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Diese Nachricht wurde gelöscht.</string>
   <string name="ConversationItem_you_deleted_this_message">Du hast diese Nachricht gelöscht.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Verschlüsselung neu starten?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Hilfreich bei Problemen mit der Verschlüsselung in dieser Unterhaltung. Deine Nachrichten bleiben erhalten.</string>
   <string name="ConversationActivity_reset">Neu starten</string>
   <string name="ConversationActivity_add_attachment">Anhang hinzufügen</string>
   <string name="ConversationActivity_select_contact_info">Kontaktinfo wählen</string>
@@ -223,7 +221,7 @@
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Du wirst wieder Nachrichten und Anrufe von diesem Kontakt erhalten können.</string>
   <string name="ConversationActivity_unblock_this_group_description">Vorhandene Mitglieder können dich wieder zur Gruppe hinzufügen.</string>
   <string name="ConversationActivity_unblock">Freigeben</string>
-  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die gesendete Nachrichtenart.</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Anhang zu groß für die zu sendende Nachrichtenart.</string>
   <string name="ConversationActivity_quick_camera_unavailable">Kamera nicht verfügbar</string>
   <string name="ConversationActivity_unable_to_record_audio">Audioaufnahme nicht möglich!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kannst keine Nachrichten an diese Gruppe versenden, da du kein Gruppenmitglied mehr bist.</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Zum Prüfen antippen</string>
   <string name="ConversationFragment__review_requests_carefully">Prüfe Anfragen sorgfältig</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal hat einen weiteren Kontakt mit demselben Namen gefunden.</string>
+  <string name="ConversationFragment_contact_us">Kontaktiere uns</string>
+  <string name="ConversationFragment_verify">Verifizieren</string>
+  <string name="ConversationFragment_not_now">Jetzt nicht</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Deine gemeinsame Sicherheitsnummer mit %s hat sich geändert, vermutlich weil dein Kontakt Signal erneut installiert oder sein Gerät gewechselt hat. Tippe auf »Verifizieren«, um die neue Sicherheitsnummer zu bestätigen. Dies ist optional.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
@@ -394,9 +397,12 @@
   <string name="DateUtils_minutes_ago">%dmin</string>
   <string name="DateUtils_today">Heute</string>
   <string name="DateUtils_yesterday">Gestern</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal verwendet Ende-zu-Ende-Verschlüsselung und muss gelegentlich deine Unterhaltungssitzung aktualisieren. Dies beeinflusst nicht die Sicherheit deiner Unterhaltungen, aber es besteht die Möglichkeit, dass du eine Nachricht von diesem Kontakt verpasst hast. Du kannst ihn bitten, die Nachricht erneut zu senden.</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Wird gesendet</string>
-  <string name="DeliveryStatus_sent">Gesendet</string>
+  <string name="DeliveryStatus_sending">Wird versendet</string>
+  <string name="DeliveryStatus_sent">Versendet</string>
   <string name="DeliveryStatus_delivered">Zugestellt</string>
   <string name="DeliveryStatus_read">Gelesen</string>
   <!--DeviceListActivity-->
@@ -770,7 +776,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Gruppen-Link ist ungültig</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Freunde einladen</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile eine Link mit Freunden, damit sie dieser Gruppe einfacher beitreten können.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Teile einen Link mit Freunden, damit sie dieser Gruppe einfach beitreten können.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Link aktivieren und teilen</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Link teilen</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Gruppen-Link kann nicht aktiviert werden. Bitte versuche es später erneut.</string>
@@ -798,7 +804,7 @@
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
   <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Wird gesendet …</string>
+  <string name="InviteActivity_sending">Wird versendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Die Ablaufzeit für verschwindende Nachrichten wurde auf %1$s festgelegt.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Diese Gruppe wurde auf eine Gruppe neuen Typs aktualisiert.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du konntest der Gruppe neuen Typs nicht hinzugefügt werden und wurdest daher eingeladen, beizutreten.</string>
+  <string name="MessageRecord_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Ein Mitglied konnte der Gruppe neuen Typs nicht hinzugefügt werden und wurde daher eingeladen, beizutreten.</item>
     <item quantity="other">%1$s Mitglieder konnten der Gruppe neuen Typs nicht hinzugefügt werden und wurden daher eingeladen, beizutreten.</item>
@@ -1267,9 +1274,13 @@
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Wähle dein Land aus</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du musst deine Landesvorwahl angeben</string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du must deine Rufnummer angeben</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">Du musst deine Rufnummer angeben</string>
   <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
-  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufummer (%s) ist ungültig.</string>
+  <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufnummer (%s) ist ungültig.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Ein Verifikationscode wird gesendet an:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Du erhälst einen Anruf zur Verifikation dieser Rufnummer.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Ist deine angezeigte Rufnummer korrekt?</string>
+  <string name="RegistrationActivity_edit_number">Rufnummer bearbeiten</string>
   <string name="RegistrationActivity_missing_google_play_services">Fehlende Google-Play-Dienste</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
@@ -1348,8 +1359,8 @@
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
 Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Nachricht mit neuer Sicherheitsnummer empfangen. Zum Verarbeiten und Anzeigen antippen.</string>
-  <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet.</string>
+  <string name="SmsMessageRecord_secure_session_reset">Du hast die sichere Sitzung zurückgesetzt.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s hat die sichere Sitzung zurückgesetzt.</string>
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Diese Nachricht konnte nicht verarbeitet werden, da sie von einer neueren Signal-Version versendet wurde. Aktualisiere Signal und bitte danach deinen Kontakt, die Nachricht erneut zu senden.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Fehler bei eingehender Nachricht.</string>
@@ -1392,7 +1403,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
   <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
-  <string name="ThreadRecord_secure_session_reset">Verschlüsselung wurde neu gestartet.</string>
+  <string name="ThreadRecord_secure_session_reset">Sichere Sitzung wurde zurückgesetzt.</string>
   <string name="ThreadRecord_draft">Entwurf:</string>
   <string name="ThreadRecord_called">Ausgehender Anruf</string>
   <string name="ThreadRecord_called_you">Empfangener Anruf</string>
@@ -1422,6 +1433,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Datei</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Unterhaltungssitzung aktualisiert</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Signal-Version ist verfügbar. Zum Aktualisieren antippen.</string>
@@ -1462,7 +1474,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht bestehende sichere Sitzung verschlüsselt</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Fehlerhaft verschlüsselte MMS</string>
@@ -1819,7 +1830,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__unlock">Entsperren</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal benötigt MMS-Einstellungen, um Nachrichten mit Medieninhalten und Gruppennachrichten über deinen Mobilfunkanbieter zu versenden. Dein Gerät stellt diese Informationen nicht zur Verfügung, was gelegentlich bei gesperrten oder anderweitig restriktiv konfigurierten Geräten der Fall ist.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Tippe zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »O. K.« an und vervollständige die geforderten Einstellungen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« deines Anbieters gefunden werden.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Tippe zum Versenden von Nachrichten mit Medieninhalten und Gruppennachrichten bitte »OK« an und vervollständige die geforderten Einstellungen. Die MMS-Einstellungen deines Mobilfunkanbieters können normalerweise durch eine Internetsuche nach dem »APN« deines Anbieters gefunden werden.</string>
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">Vorname (erforderlich)</string>
   <string name="CreateProfileActivity_last_name_optional">Nachname (optional)</string>
@@ -1865,8 +1876,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_details_header__via">Über</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Ausstehend</string>
-  <string name="message_details_recipient_header__sent_to">Gesendet an</string>
-  <string name="message_details_recipient_header__sent_from">Gesendet von</string>
+  <string name="message_details_recipient_header__sent_to">Versendet an</string>
+  <string name="message_details_recipient_header__sent_from">Versendet von</string>
   <string name="message_details_recipient_header__delivered_to">Zugestellt an</string>
   <string name="message_details_recipient_header__read_by">Gelesen von</string>
   <string name="message_details_recipient_header__not_sent">Nicht gesendet</string>
@@ -1960,6 +1971,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Signal für alle eingehenden MMS verwenden</string>
   <string name="preferences__pref_enter_sends_title">Eingabetaste sendet</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Antippen der Eingabetaste versendet Nachrichten sofort</string>
+  <string name="preferences__pref_use_address_book_photos">Fotos aus Adressbuch verwenden</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Kontaktfotos aus deinem Adressbuch anzeigen, falls verfügbar</string>
   <string name="preferences__generate_link_previews">Link-Vorschau erzeugen</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Rufe für zu versendende Nachrichten Link-Vorschauen direkt von Webseiten ab.</string>
   <string name="preferences__choose_identity">Kontakt auswählen</string>
@@ -2012,7 +2025,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__mmsc_password">MMSC-Passwort</string>
   <string name="preferences__sms_delivery_reports">SMS-Zustellberichte</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Zustellbericht für jede gesendete SMS anfordern</string>
-  <string name="preferences__chats">Unterhaltungen und Medieninhalte</string>
+  <string name="preferences__data_and_storage">Daten und Speicher</string>
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__keep_messages">Nachrichten behalten</string>
@@ -2077,6 +2090,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__app_access">App-Zugriff</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Unterhaltungen</string>
+  <string name="preferences_data_and_storage__manage_storage">Speicher verwalten</string>
+  <string name="preferences_data_and_storage__calls">Anrufe</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Datenverbrauch für Anrufe reduzieren</string>
+  <string name="preferences_data_and_storage__never">Nie</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WLAN und Mobilfunk</string>
+  <string name="preferences_data_and_storage__cellular_only">Nur Mobilfunk</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Das Reduzieren des Datenverbrauchs kann Anrufe bei schlechtem Netz verbessern</string>
   <string name="preferences_notifications__messages">Nachrichten</string>
   <string name="preferences_notifications__events">Ereignisse</string>
   <string name="preferences_notifications__in_chat_sounds">Töne während Unterhaltung</string>
@@ -2155,7 +2175,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Unterhaltungen.\nLeg los und schreib einem Freund.</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">Verschlüsselung neu starten</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">Sichere Sitzung zurücksetzen</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">Stummschaltung aufheben</string>
   <!--conversation_unmuted-->
@@ -2320,7 +2340,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">%1$d verbleibende Versuche.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">O. K.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">OK</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s wird von dir eine Unterhaltungsanfrage erhalten. Du kannst anrufen, sobald diese angenommen wurde.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Erstelle eine PIN</string>
@@ -2556,8 +2576,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s und %2$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s und %3$s sind ausgetreten</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s und %3$d Weitere sind ausgetreten</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Du (auf einem anderen Gerät)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
+  <string name="CallParticipant__you">Du</string>
+  <string name="CallParticipant__you_on_another_device">Du (auf einem anderen Gerät)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (auf einem anderen Gerät)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Das Löschen deines Nutzerkontos wird:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Gib deine Rufnummer ein</string>

@@ -13,6 +13,7 @@ import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteConstraintException;
 
 import org.signal.core.util.logging.Log;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCredentialColumnData;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -128,6 +130,7 @@ public class RecipientDatabase extends Database {
   private static final String MENTION_SETTING           = "mention_setting";
   private static final String STORAGE_PROTO             = "storage_proto";
   private static final String LAST_GV1_MIGRATE_REMINDER = "last_gv1_migrate_reminder";
+  private static final String LAST_SESSION_RESET        = "last_session_reset";
 
   public  static final String SEARCH_PROFILE_NAME      = "search_signal_profile";
   private static final String SORT_NAME                = "sort_name";
@@ -346,7 +349,8 @@ public class RecipientDatabase extends Database {
                                             MENTION_SETTING           + " INTEGER DEFAULT " + MentionSetting.ALWAYS_NOTIFY.getId() + ", " +
                                             STORAGE_PROTO             + " TEXT DEFAULT NULL, " +
                                             CAPABILITIES              + " INTEGER DEFAULT 0, " +
-                                            LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0);";
+                                            LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0, " +
+                                            LAST_SESSION_RESET        + " BLOB DEFAULT NULL);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1510,6 +1514,35 @@ public class RecipientDatabase extends Database {
     }
 
     return 0;
+  }
+
+
+  public void setLastSessionResetTime(@NonNull RecipientId id, DeviceLastResetTime lastResetTime) {
+    ContentValues values = new ContentValues(1);
+    values.put(LAST_SESSION_RESET, lastResetTime.toByteArray());
+    update(id, values);
+  }
+
+  public @NonNull DeviceLastResetTime getLastSessionResetTimes(@NonNull RecipientId id) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {LAST_SESSION_RESET}, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        try {
+          byte[] serialized = CursorUtil.requireBlob(cursor, LAST_SESSION_RESET);
+          if (serialized != null) {
+            return DeviceLastResetTime.parseFrom(serialized);
+          } else {
+            return DeviceLastResetTime.newBuilder().build();
+          }
+        } catch (InvalidProtocolBufferException | SQLException e) {
+          Log.w(TAG, e);
+          return DeviceLastResetTime.newBuilder().build();
+        }
+      }
+    }
+
+    return DeviceLastResetTime.newBuilder().build();
   }
 
   public void setCapabilities(@NonNull RecipientId id, @NonNull SignalServiceProfile.Capabilities capabilities) {

@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">இந்த செய்தி நீக்கப்பட்டது.</string>
   <string name="ConversationItem_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">பாதுகாப்பான அமர்வை மீட்டமைக்க?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">இந்த உரையாடலில் குறியாக்க சிக்கல்கள் இருந்தால் இது உதவக்கூடும். உங்கள் செய்திகள் வைக்கப்படும்.</string>
   <string name="ConversationActivity_reset">மீட்டமைக்க</string>
   <string name="ConversationActivity_add_attachment">இணைப்பு சேர்க்க</string>
   <string name="ConversationActivity_select_contact_info">தொடர்பு தகவலை தேர்ந்தெடுக்கவும்</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">மதிப்பாய்வு செய்ய தட்டவும்</string>
   <string name="ConversationFragment__review_requests_carefully">கோரிக்கைகளை கவனமாக மதிப்பாய்வு செய்யவும்</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">அதே பெயருடன் மற்றொரு தொடர்பை Signal கண்டறிந்தது.</string>
+  <string name="ConversationFragment_contact_us">எங்களை தொடர்பு கொள்ள</string>
+  <string name="ConversationFragment_verify">சரிபார்க்கவும்</string>
+  <string name="ConversationFragment_not_now">இப்போது இல்லை</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed"> %s உடனான உங்கள் பாதுகாப்பு எண் மாறிவிட்டது.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Signal மீண்டும் நிறுவியிருப்பதாலோ அல்லது  சாதனங்கள் மாற்றப்பட்டதாலோ, உங்கள் பாதுகாப்பு எண் %s உடன்  மாற்றப்பட்டது. சரிபார்க்க என்பதை தட்டி புதிய பாதுகாப்பு எண்ணை உறுதிப்படுத்தவும். இது விருப்பத்தேர்வு.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%d மீ</string>
   <string name="DateUtils_today">இன்று</string>
   <string name="DateUtils_yesterday">நேற்று</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">அரட்டை அமர்வு புதுப்பிக்கப்பட்டது</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal E2EE - இருமுனை குறியாக்கத்தைப்  பயன்படுத்துகிறது, மேலும் இது சில நேரங்களில் உங்கள் அரட்டை அமர்வை புதுப்பிக்க வேண்டியிருக்கும். இது உங்கள் அரட்டையின் பாதுகாப்பைப் பாதிக்காது, ஆனால் இந்த தொடர்பிலிருந்து நீங்கள் ஒரு செய்தியைத் தவறவிட்டிருக்கலாம், மேலும் அதை மீண்டும் அனுப்புமாறு அவர்களிடம் கேட்கலாம்.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">அனுப்புகிறது</string>
   <string name="DeliveryStatus_sent">அனுப்பபட்டது</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">காணாமல் போகக்கூடிய செய்தி டைமர் %1$s நேரத்தில் அமைக்கப்பட்டுள்ளது .</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">இந்த குழு புதிய குழுவாக புதுப்பிக்கப்பட்டது.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">நீங்கள் புதிய குழுவில் சேர்க்கப்படவில்லை. நீங்கள் இந்தக் குழுவில் சேருவதற்கு அழைக்கப்பட்டுள்ளீர்கள்</string>
+  <string name="MessageRecord_chat_session_refreshed">அரட்டை அமர்வு புதுப்பிக்கப்பட்டது</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரை சேர்க்க முடியவில்லை. அவர் குழுவில் சேர அழைக்கப்பட்டுள்ளார்.</item>
     <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களை சேர்க்க முடியவில்லை. அவர்கள் குழுவில் சேர அழைக்கப்பட்டுள்ளனர்.</item>
@@ -1277,6 +1284,10 @@
   <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட 
 எண் (%s) செல்லாது.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">சரிபார்ப்புக் குறியீடு இதற்கு அனுப்பப்படும்:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">இந்த எண்ணை சரிபார்க்க உங்களுக்கு அழைப்பு வரும்.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">மேலே உங்கள் தொலைபேசி எண் சரியானதா?</string>
+  <string name="RegistrationActivity_edit_number">எண்ணை தொகுக்க</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play சேவைகளைக் காணவில்லை</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">இந்த சாதனத்தில்  Google Play சேவைகள் இல்லை . இருந்தும் நீங்கள் Signal ஐ பயன்படுத்தலாம் , ஆனால் இந்த உள்ளமைவு நம்பகத்தன்மை அல்லது செயல்திறனைக் குறைக்கலாம். \n\n நீங்கள் ஒரு மேம்பட்ட பயனராக இல்லாவிட்டால், சந்தைக்குப்பிறகான அண்ட்ராய்டு ROM ஐ இயக்கவில்லை அல்லது இதை பிழையாகப் பார்க்கிறீர்கள் என்று நம்பினால், தயவுசெய்து ஆதரவைத் தொடர்பு கொள்ளவும் @ சிக்கல்  support@signal.org.</string>
   <string name="RegistrationActivity_i_understand">எனக்கு புரிகிறது</string>
@@ -1306,6 +1317,7 @@
   <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %s க்கு உள்ளிடவும்</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
   <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
   <string name="RegistrationActivity_country_code_description">நாட்டின் குறியீடு</string>
   <string name="RegistrationActivity_call">அழை</string>
@@ -1429,6 +1441,7 @@
   <string name="ThreadRecord_contact">தொடர்பு</string>
   <string name="ThreadRecord_file">கோப்பு</string>
   <string name="ThreadRecord_video">காணொளி</string>
+  <string name="ThreadRecord_chat_session_refreshed">அரட்டை அமர்வு புதுப்பிக்கப்பட்டது</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
@@ -1451,6 +1464,10 @@
   <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-லில் உள்ள பயனர்பெயர்கள் விருப்பத்தேர்வானவை. பயனர்பெயரை உருவாக்க நீங்கள் தேர்வு செய்தால், பிற Signal பயனர்கள் இந்த பயனர்பெயர் மூலம் உங்களை கண்டுபிடித்து, உங்கள் தொலைபேசி எண்ணை அறியாத வகையில் உங்களை தொடர்பு கொள்ள முடியும்.</string>
+  <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
+    <item quantity="one">%d contact is on Signal!</item>
+    <item quantity="other">%d தொடர்புகள் Signal இல் உள்ளன</item>
+  </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>
@@ -1465,7 +1482,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">தவறாக மறையாக்கப்பட்ட செய்தி</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு மறையாக்கப்பட்ட செய்தி</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">தவறாக மறையாக்கப்பட்ட MMS செய்தி</string>
@@ -1964,6 +1980,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">உள்வரும் அனைத்து மல்டிமீடியா செய்திகளுக்கும் Signal பயன்படுத்தவும்</string>
   <string name="preferences__pref_enter_sends_title">பதிவு விசை அனுப்பும்</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">உள்ளீட்டு விசையை அழுத்துவது செய்தியை அனுப்பும் </string>
+  <string name="preferences__pref_use_address_book_photos">முகவரி புத்தக புகைப்படங்களைப் பயன்படுத்தவும்</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">உங்கள் முகவரி புத்தகத்திலிருந்து தொடர்பு புகைப்படங்கள் இருந்தால் காண்பி</string>
   <string name="preferences__generate_link_previews">இணைப்பு மாதிரிக்காட்சிகளை உருவாக்கவும்</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">நீங்கள் அனுப்பும் செய்திகளுக்கு வலைத்தளங்களிலிருந்து இணைப்பு முன்னோட்டங்களை நேரடியாக மீட்டெடுக்கவும்.</string>
   <string name="preferences__choose_identity">அடையாள தேர்வு.
@@ -2017,7 +2035,7 @@
   <string name="preferences__mmsc_password">MMSC கடவுச்சொல்</string>
   <string name="preferences__sms_delivery_reports">SMS விநியோக அறிக்கைகள்</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">நீங்கள் அனுப்பும் அனைத்து SMS-க்கும் விநியோக அறிக்கைகளை கோரவும்</string>
-  <string name="preferences__chats">அரட்டைகள் மற்றும் ஊடகங்கள்</string>
+  <string name="preferences__data_and_storage">தரவு மற்றும் சேமிப்பு</string>
   <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__keep_messages">செய்திகள் வைப்பு</string>
@@ -2082,6 +2100,13 @@
   <string name="preferences_app_protection__app_access">பயன்பாடு அணுகல்</string>
   <string name="preferences_app_protection__communication">தொடர்பாடல்</string>
   <string name="preferences_chats__chats">அரட்டைகள்</string>
+  <string name="preferences_data_and_storage__manage_storage">சேமிப்பிடத்தை நிர்வகிக்கவும்</string>
+  <string name="preferences_data_and_storage__calls">அழைப்புகள்</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">அழைப்புகளுக்கு குறைந்த தரவைப் பயன்படும்</string>
+  <string name="preferences_data_and_storage__never">ஒருபோதுமில்லை</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">அருகலை மற்றும் அலைபேசி</string>
+  <string name="preferences_data_and_storage__cellular_only">அருகலை மட்டுமே</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">குறைந்த தரவைப் பயன்படுத்துவது மோசமான நெட்வொர்க்குகளில் அழைப்புகளை மேம்படுத்தலாம்</string>
   <string name="preferences_notifications__messages">செய்திகள்</string>
   <string name="preferences_notifications__events">நிகழ்வுகள்</string>
   <string name="preferences_notifications__in_chat_sounds">உள்-அரட்டை ஒலிகள் </string>
@@ -2561,8 +2586,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s மற்றும் %2$s வெளியேறினர்</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s மற்றும் %3$sவெளியேறினர்</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s and மேலும்%3$d வெளியேறினர்</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
+  <string name="CallParticipant__you">நீங்கள்</string>
+  <string name="CallParticipant__you_on_another_device">நீங்கள் (மற்றொரு சாதனத்தில்)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s  (மற்றொரு சாதனத்தில்)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>

@@ -483,16 +483,6 @@ public final class PushProcessMessageJob extends BaseJob {
         handleInvalidVersionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
         break;
 
-      case CORRUPT_MESSAGE:
-        warn(TAG, String.valueOf(timestamp), "Handling corrupt message.");
-        handleCorruptMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
-        break;
-
-      case NO_SESSION:
-        warn(TAG, String.valueOf(timestamp), "Handling no session.");
-        handleNoSessionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
-        break;
-
       case LEGACY_MESSAGE:
         warn(TAG, String.valueOf(timestamp), "Handling legacy message.");
         handleLegacyMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
@@ -505,6 +495,12 @@ public final class PushProcessMessageJob extends BaseJob {
       case UNSUPPORTED_DATA_MESSAGE:
         warn(TAG, String.valueOf(timestamp), "Handling unsupported data message.");
         handleUnsupportedDataMessage(e.sender, e.senderDevice, Optional.fromNullable(e.groupId), timestamp, smsMessageId);
+        break;
+
+      case CORRUPT_MESSAGE:
+      case NO_SESSION:
+        warn(TAG, String.valueOf(timestamp), "Discovered old enqueued bad encrypted message. Scheduling reset.");
+        ApplicationDependencies.getJobManager().add(new AutomaticSessionResetJob(Recipient.external(context, e.sender).getId(), e.senderDevice, timestamp));
         break;
 
       default:
@@ -1474,23 +1470,6 @@ public final class PushProcessMessageJob extends BaseJob {
     }
   }
 
-  private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    MessageDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-
-    if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-        ApplicationDependencies.getMessageNotifier().updateNotification(context, insertResult.get().getThreadId());
-      }
-    } else {
-      smsDatabase.markAsNoSession(smsMessageId.get());
-    }
-  }
-
   private void handleUnsupportedDataMessage(@NonNull String sender,
                                             int senderDevice,
                                             @NonNull Optional<GroupId> groupId,
@@ -2049,8 +2028,8 @@ public final class PushProcessMessageJob extends BaseJob {
   public enum MessageState {
     DECRYPTED_OK,
     INVALID_VERSION,
-    CORRUPT_MESSAGE,
-    NO_SESSION,
+    CORRUPT_MESSAGE, // Not used, but can't remove due to serialization
+    NO_SESSION,      // Not used, but can't remove due to serialization
     LEGACY_MESSAGE,
     DUPLICATE_MESSAGE,
     UNSUPPORTED_DATA_MESSAGE

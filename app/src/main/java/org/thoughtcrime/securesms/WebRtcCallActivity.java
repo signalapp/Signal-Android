@@ -27,7 +27,9 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.transition.Transition;
+import androidx.transition.TransitionListenerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,8 +62,10 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -80,6 +86,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
 
+  private FullscreenHelper    fullscreenHelper;
   private WebRtcCallView      callScreen;
   private TooltipPopup        videoTooltip;
   private WebRtcCallViewModel viewModel;
@@ -100,8 +107,8 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
-    //noinspection ConstantConditions
-    getSupportActionBar().hide();
+
+    fullscreenHelper = new FullscreenHelper(this);
 
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 
@@ -637,6 +644,16 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     }
 
     @Override
+    public void showSystemUI() {
+      fullscreenHelper.showSystemUI();
+    }
+
+    @Override
+    public void hideSystemUI() {
+      fullscreenHelper.hideSystemUI();
+    }
+
+    @Override
     public void onAudioOutputChanged(@NonNull WebRtcAudioOutput audioOutput) {
       switch (audioOutput) {
         case HANDSET:
@@ -700,6 +717,11 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     @Override
     public void onPageChanged(@NonNull CallParticipantsState.SelectedPage page) {
       viewModel.setIsViewingFocusedParticipant(page);
+    }
+
+    @Override
+    public void onLocalPictureInPictureClicked() {
+      viewModel.onLocalPictureInPictureClicked();
     }
   }
 }

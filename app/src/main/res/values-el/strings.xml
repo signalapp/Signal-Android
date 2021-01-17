@@ -36,10 +36,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Πάτα για να αλλάξεις την προεπιλεγμένη εφαρμογή για SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS απενεργοποιημένα</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Πάτα για να γίνει το Signal η προκαθορισμένη εφαρμογή SMS</string>
-  <string name="ApplicationPreferencesActivity_on">ενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_On">Ενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_off">απενεργοποιημένο</string>
-  <string name="ApplicationPreferencesActivity_Off">Απενεργοποιημένο</string>
+  <string name="ApplicationPreferencesActivity_on">ενεργό</string>
+  <string name="ApplicationPreferencesActivity_On">Ενεργό</string>
+  <string name="ApplicationPreferencesActivity_off">ανενεργό</string>
+  <string name="ApplicationPreferencesActivity_Off">Ανενεργό</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Κλείδωμα οθόνης %1$s, Κλείδωμα εγγραφής %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Κλείδωμα οθόνης %1$s</string>
@@ -144,7 +144,7 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Η έκδοση του Signal σου έχει λήξει. Μπορείς να δεις το ιστορικό μηνυμάτων αλλά δεν θα μπορείς να στείλεις ή να λάβεις μηνύματα μέχρι να το αναβαθμίσεις.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
-  <string name="CommunicationActions_no_email_app_found">Δεν βρέθηκε εφαρμογή email.</string>
+  <string name="CommunicationActions_no_email_app_found">Δε βρέθηκε εφαρμογή email.</string>
   <string name="CommunicationActions_send_email">Αποστολή email</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Κάποια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
   <string name="CommunicationActions_start_video_call">Έναρξη βιντεοκλήσης;</string>
@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
   <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Επανεκκίνηση ασφαλούς συνεδρίας;</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Αυτό ίσως βοηθήσει αν έχεις πρόβλημα με την κρυπτογράφηση σε αυτή τη συνομιλία. Τα μηνύματα δε θα σβηστούν.</string>
   <string name="ConversationActivity_reset">Επαναφορά</string>
   <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
   <string name="ConversationActivity_select_contact_info">Επιλογή πληροφοριών επαφής</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Πάτα για ανασκόπηση</string>
   <string name="ConversationFragment__review_requests_carefully">Έλεγξε τα αιτήματα προσεκτικά</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Το Signal βρήκε και άλλη επαφή με το ίδιο όνομα.</string>
+  <string name="ConversationFragment_contact_us">Επικοινώνησε μαζί μας</string>
+  <string name="ConversationFragment_verify">Επιβεβαίωση</string>
+  <string name="ConversationFragment_not_now">Όχι τώρα</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ο κωδικός ασφαλείας σου με τον/την %s άλλαξε</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ο αριθμός ασφαλείας σου με τον/την %s άλλαξε, πιθανώς επειδή επανεγκατέστησε το Signal ή άλλαξε συσκευή. Πάτα Επιβεβαίωση για να επιβεβαιώσεις τον νέο αριθμό ασφαλείας. Αυτό είναι προαιρετικό.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Δεν υπάρχει εγκατεστημένο πρόγραμμα περιήγησης στη συσκευή σου.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dλ</string>
   <string name="DateUtils_today">Σήμερα</string>
   <string name="DateUtils_yesterday">Χθες</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Το Signal χρησιμοποιεί κρυπτογράφηση από άκρο σε άκρο και ίσως χρειάζεται να ανανεώσει τη συνέδρια της συνομιλίας σου μερικές φορές. Αυτό δεν επηρεάζει την ασφάλεια της συνομιλίας, αλλά ίσως χάσεις κάποιο μήνυμα από αυτή την επαφή, οπότε μπορείς να του/της ζητήσεις να το ξαναστείλει.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Αποστέλλεται</string>
   <string name="DeliveryStatus_sent">Στάλθηκε στις</string>
@@ -456,7 +462,7 @@
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Αυτό το άτομο δεν μπορεί να προστεθεί σε ομάδες παλαιού τύπου.</string>
   <string name="AddToGroupActivity_add">Προσθήκη</string>
   <!--ChooseNewAdminActivity-->
-  <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="ChooseNewAdminActivity_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="ChooseNewAdminActivity_done">Τέλος</string>
   <string name="ChooseNewAdminActivity_you_left">Έφυγες από \"%1$s\".</string>
   <!--GroupShareProfileView-->
@@ -468,7 +474,7 @@
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Οποιοσδήποτε</string>
   <string name="GroupManagement_access_level_all_members">Όλα τα μέλη</string>
-  <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές/τριες</string>
+  <string name="GroupManagement_access_level_only_admins">Μόνο διαχειριστές</string>
   <string name="GroupManagement_access_level_no_one">Κανένας</string>
   <!--GV2 invites sent-->
   <plurals name="GroupManagement_invitation_sent">
@@ -543,9 +549,9 @@
   </plurals>
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">Αποχώρηση απ\' την ομάδα;</string>
-  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάεις μηνύματα σε αυτήν την ομάδα.</string>
+  <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Δε θα μπορείς πια να στείλεις ή να λάβεις μηνύματα σε αυτήν την ομάδα.</string>
   <string name="LeaveGroupDialog_leave">Αποχώρηση</string>
-  <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή/τριας</string>
+  <string name="LeaveGroupDialog_choose_new_admin">Επιλογή νέου διαχειριστή</string>
   <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Πριν αποχωρήσεις, θα πρέπει να επιλέξεις τουλάχιστον έναν νέο διαχειριστή ή διαχειρίστρια για την ομάδα.</string>
   <string name="LeaveGroupDialog_choose_admin">Επιλογή διαχειριστή</string>
   <!--LinkPreviewsMegaphone-->
@@ -645,8 +651,8 @@
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
-  <string name="ManageGroupActivity_off">Απενεργοποιημένο</string>
-  <string name="ManageGroupActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageGroupActivity_off">Ανενεργό</string>
+  <string name="ManageGroupActivity_on">Ενεργό</string>
   <string name="ManageGroupActivity_view_all_members">Προβολή όλων των μελών</string>
   <string name="ManageGroupActivity_see_all">Προβολή όλων</string>
   <string name="ManageGroupActivity_none">Κανένα</string>
@@ -693,8 +699,8 @@
   <string name="ManageRecipientActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageRecipientActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageRecipientActivity_until_s">Μέχρι %1$s</string>
-  <string name="ManageRecipientActivity_off">Απενεργοποιημένο</string>
-  <string name="ManageRecipientActivity_on">Ενεργοποιημένο</string>
+  <string name="ManageRecipientActivity_off">Ανενεργό</string>
+  <string name="ManageRecipientActivity_on">Ενεργό</string>
   <string name="ManageRecipientActivity_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <string name="ManageRecipientActivity_view_all_groups">Προβολή όλων των ομάδων</string>
   <string name="ManageRecipientActivity_see_all">Προβολή όλων</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ορίστηκε σε %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Αυτή η ομάδα αναβαθμίστηκε σε Ομάδα νέου τύπου.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Δεν μπόρεσες να προστεθείς στην Ομάδα νέου τύπου, και προσκλήθηκες να μπεις.</string>
+  <string name="MessageRecord_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Ένα μέλος δεν μπόρεσε να προστεθεί στην Ομάδα νέου τύπου και προσκλήθηκε να μπει.</item>
     <item quantity="other">%1$s μέλη δεν μπόρεσαν να προστεθούν στην Ομάδα νέου τύπου, και προσκλήθηκαν να μπουν.</item>
@@ -964,16 +971,16 @@
   <string name="MessageRecord_you_are_no_longer_in_the_group">Δεν είσαι στην ομάδα πια.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">Ο/Η %1$s δεν είναι στην ομάδα πια.</string>
   <!--GV2 role change-->
-  <string name="MessageRecord_you_made_s_an_admin">Έκανες τον/την %1$s διαχειριστή/τρια.</string>
-  <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή/τρια.</string>
-  <string name="MessageRecord_s_made_you_an_admin">Ο/Η %1$s σε έκανε διαχειριστή/τρια.</string>
+  <string name="MessageRecord_you_made_s_an_admin">Έκανες τον/την %1$s διαχειριστή.</string>
+  <string name="MessageRecord_s_made_s_an_admin">Ο/Η %1$s έκανε τον/την %2$s διαχειριστή.</string>
+  <string name="MessageRecord_s_made_you_an_admin">Ο/Η %1$s σε έκανε διαχειριστή.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Αφαίρεσες τα δικαιώματα διαχείρισης από τον/την %1$s</string>
   <string name="MessageRecord_s_revoked_your_admin_privileges">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισής σου.</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">Ο/Η %1$s αφαίρεσε τα δικαιώματα διαχείρισης του/της %2$s.</string>
-  <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής/τρια.</string>
-  <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής/τρια.</string>
-  <string name="MessageRecord_s_is_no_longer_an_admin">Ο/Η %1$s δεν είναι πια διαχειριστής/τρια.</string>
-  <string name="MessageRecord_you_are_no_longer_an_admin">Δεν είσαι πια διαχειριστής/τρια.</string>
+  <string name="MessageRecord_s_is_now_an_admin">Ο/Η %1$s έγινε διαχειριστής.</string>
+  <string name="MessageRecord_you_are_now_an_admin">Είσαι πλέον διαχειριστής.</string>
+  <string name="MessageRecord_s_is_no_longer_an_admin">Ο/Η %1$s δεν είναι πια διαχειριστής.</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">Δεν είσαι πια διαχειριστής.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Προσκάλεσες τον/την %1$s στην ομάδα.</string>
   <string name="MessageRecord_s_invited_you_to_the_group">Ο/Η %1$s σε προσκάλεσε στην ομάδα.</string>
@@ -998,7 +1005,7 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Κάποιος απέρριψε μια πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Απέρριψες την πρόσκληση στην ομάδα.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">Ο/Η %1$s ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ένας διαχειριστής/τρια ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Ένας διαχειριστής ανακάλεσε την πρόσκλησή σου στην ομάδα.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Μια πρόσκληση στην ομάδα ανακλήθηκε.</item>
     <item quantity="other">%1$d προσκλήσεις στην ομάδα ανακλήθηκαν.</item>
@@ -1057,7 +1064,7 @@
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Το αίτημά σου για να μπεις στην ομάδα εγκρίθηκε.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Το αίτημα του/της %1$s να μπει στην ομάδα εγκρίθηκε.</string>
   <!--GV2 group link deny-->
-  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Το αίτημά σου να μπεις στην ομάδα απορρίφθηκε από κάποιον διαχειριστή/τρια.</string>
+  <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Το αίτημά σου να μπεις στην ομάδα απορρίφθηκε από κάποιον διαχειριστή.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">Ο/Η %1$s απέρριψε το αίτημα του/της %2$s να μπει στην ομάδα.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">Το αίτημα του/της %1$s να μπει στην ομάδα απορρίφθηκε.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Ακύρωσες το αίτημά σου για είσοδο στην ομάδα.</string>
@@ -1190,7 +1197,7 @@
   <string name="PinRestoreLockedFragment_create_new_pin">Δημιουργία νέου PIN</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Προσοχή</string>
-  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+  <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="PinOptOutDialog_disable_pin">Απενεργοποίηση PIN</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Αξιολόγησε αυτή την εφαρμογή</string>
@@ -1274,6 +1281,10 @@
   <string name="RegistrationActivity_invalid_number">Μη έγκυρος αριθμός</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που έγραψες (%s)
 δεν είναι έγκυρος.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Θα σταλεί κωδικός επαλήθευσης στο:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Θα λάβεις μια κλήση για την επιβεβαίωση αυτού του αριθμού.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Είναι ο παραπάνω αριθμός τηλεφώνου σωστός;</string>
+  <string name="RegistrationActivity_edit_number">Επεξεργασία αριθμού</string>
   <string name="RegistrationActivity_missing_google_play_services">Υπηρεσίες Google Play που λείπουν</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Αυτή η συσκευή δεν έχει τις Υπηρεσίες Google Play. Μπορείς και πάλι να χρησιμοποιήσεις το Signal, αλλά αυτή η διαμόρφωση μπορεί να οδηγήσει σε μειωμένη αξιοπιστία και επιδόσεις.\n\nΑν δεν είσαι προηγμένος/η χρήστης, αν δεν έχεις εγκαταστήσει κάποιο εναλλακτικό Android ROM, ή αν νομίζεις πως βλέπεις αυτό το μήνυμα από λάθος, παρακαλώ επικοινώνησε με το support@signal.org για να σε βοηθήσουμε με την αποσφαλμάτωση.</string>
   <string name="RegistrationActivity_i_understand">Καταλαβαίνω</string>
@@ -1381,7 +1392,7 @@
   <string name="SubmitDebugLogActivity_done">Τέλος</string>
   <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Πάτα πάνω σε μία γραμμή για να τη διαγράψεις</string>
   <string name="SubmitDebugLogActivity_submit">Αποστολή</string>
-  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Αποτυχία αποθήκευσης αρχείων καταγραφής</string>
+  <string name="SubmitDebugLogActivity_failed_to_submit_logs">Αποτυχία υποβολής αρχείων καταγραφής</string>
   <string name="SubmitDebugLogActivity_success">Επιτυχία!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_copied_to_clipboard">Αντιγράφηκε στο πρόχειρο</string>
@@ -1428,6 +1439,7 @@
   <string name="ThreadRecord_contact">Επαφή</string>
   <string name="ThreadRecord_file">Αρχείο</string>
   <string name="ThreadRecord_video">Βίντεο</string>
+  <string name="ThreadRecord_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πάτα για αναβάθμιση</string>
@@ -1468,7 +1480,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχουσα συνεδρία</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Μήνυμα MMS με πρόβλημα στην κρυπτογράφησή του</string>
@@ -1672,7 +1683,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Εναλλαγή συρταριού συνημμένων κάμερας</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Ηχογράφησε και στείλε το συνημμένο αρχείο ήχου</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Κλείδωσε την ηχογράφηση του συνημμένου αρχείου ήχου</string>
-  <string name="conversation_activity__enable_signal_for_sms">Ενεργοποίηση το Signal για SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Χρήση του Signal για SMS</string>
   <string name="conversation_activity__message_could_not_be_sent">Το μήνυμα δεν στάλθηκε. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Σύρε για ακύρωση</string>
@@ -1735,7 +1746,7 @@
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Προαιρετικά, μπορείς να δεις και να μοιραστείς πότε διαβάστηκαν τα μηνύματα</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Ενεργοποίηση αποδεικτικών ανάγνωσης</string>
   <!--expiration-->
-  <string name="expiration_off">Απενεργοποιημένο</string>
+  <string name="expiration_off">Ανενεργό</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d δευτερόλεπτο</item>
     <item quantity="other">%d δευτερόλεπτα</item>
@@ -1966,6 +1977,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Χρήση του Signal για όλα τα εισερχόμενα μηνύματα πολυμέσων</string>
   <string name="preferences__pref_enter_sends_title">Το Enter στέλνει</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα στέλνονται με το πάτημα του Enter</string>
+  <string name="preferences__pref_use_address_book_photos">Χρήση φωτογραφιών λίστας επαφών</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Εμφάνιση φωτογραφιών επαφών από τη λίστα επαφών αν είναι διαθέσιμες</string>
   <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
   <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
@@ -2018,7 +2031,7 @@
   <string name="preferences__mmsc_password">Κωδικός MMSC</string>
   <string name="preferences__sms_delivery_reports">Αναφορές παράδοσης SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Αίτημα αναφοράς παράδοσης για κάθε SMS που στέλνεις</string>
-  <string name="preferences__chats">Συνομιλίες και πολυμέσα</string>
+  <string name="preferences__data_and_storage">Δεδομένα και αποθηκευτικός χώρος</string>
   <string name="preferences__storage">Αποθηκευτικός χώρος</string>
   <string name="preferences__conversation_length_limit">Όριο μεγέθους συνομιλίας</string>
   <string name="preferences__keep_messages">Διατήρηση μηνυμάτων</string>
@@ -2030,7 +2043,7 @@
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Εάν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Τα PIN κρατούν τις πληροφορίες που αποθηκεύονται στο Signal κρυπτογραφημένες, οπότε μόνο εσύ έχεις πρόσβαση σε αυτές. Το προφίλ σου, οι ρυθμίσεις και οι επαφές να επαναφερθούν όταν επανεγκαταστήσεις το Signal. Δεν θα χρειάζεται να γράψεις το PIN για να ανοίξεις την εφαρμογή.</string>
   <string name="preferences__system_default">Προκαθορισμένο του συστήματος</string>
   <string name="preferences__default">Προκαθορισμένο</string>
@@ -2083,6 +2096,13 @@
   <string name="preferences_app_protection__app_access">Πρόσβαση εφαρμογής</string>
   <string name="preferences_app_protection__communication">Επικοινωνία</string>
   <string name="preferences_chats__chats">Συνομιλίες</string>
+  <string name="preferences_data_and_storage__manage_storage">Διαχείριση χώρου αποθήκευσης</string>
+  <string name="preferences_data_and_storage__calls">Κλήσεις</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Χρήση λιγότερων δεδομένων για τις κλήσεις</string>
+  <string name="preferences_data_and_storage__never">Ποτέ</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi και δεδομένα κινητής</string>
+  <string name="preferences_data_and_storage__cellular_only">Μόνο δεδομένα κινητής</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Η χρήση λιγότερων δεδομένων ίσως βελτιώσει τη ποιότητα των κλήσεων σε δίκτυα με κακή σύνδεση</string>
   <string name="preferences_notifications__messages">Μηνύματα</string>
   <string name="preferences_notifications__events">Συμβάντα</string>
   <string name="preferences_notifications__in_chat_sounds">Ήχοι μέσα στη συνομιλία</string>
@@ -2409,7 +2429,7 @@
   <string name="ProgressPreference_d_messages_so_far">%d μηνύματα μέχρι τώρα</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Παρακαλώ γράψε τον κωδικό επιβεβαίωσης που στάλθηκε στο %s.</string>
   <string name="RegistrationActivity_wrong_number">Λάθος αριθμός</string>
-  <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με  \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
   <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επιβεβαίωσης για Android</string>
   <string name="BackupUtil_never">Ποτέ</string>
@@ -2488,8 +2508,8 @@
   <string name="RecipientBottomSheet_add_to_a_group">Προσθήκη σε μια ομάδα</string>
   <string name="RecipientBottomSheet_add_to_another_group">Προσθήκη σε άλλη ομάδα</string>
   <string name="RecipientBottomSheet_view_safety_number">Προβολή αριθμού ασφαλείας</string>
-  <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή/τρια ομάδας</string>
-  <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή/τριας</string>
+  <string name="RecipientBottomSheet_make_group_admin">Ορισμός ως διαχειριστή ομάδας</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Αφαίρεση διαχειριστή</string>
   <string name="RecipientBottomSheet_remove_from_group">Αφαίρεση απ\' την ομάδα</string>
   <string name="RecipientBottomSheet_message_description">Μήνυμα</string>
   <string name="RecipientBottomSheet_voice_call_description">Βιντεοκλήση</string>
@@ -2563,8 +2583,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">Οι %1$s και %2$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">Οι %1$s, %2$s και %3$s έφυγαν</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">Οι %1$s, %2$s και %3$d ακόμα έφυγαν</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (από άλλη συσκευή)</string>
+  <string name="CallParticipant__you">Εσύ</string>
+  <string name="CallParticipant__you_on_another_device">Εσύ (από άλλη συσκευή)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (από άλλη συσκευή)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Με τη διαγραφή του λογαριασμού σου θα γίνουν τα εξής:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Εισαγωγή αριθμού τηλεφώνου</string>

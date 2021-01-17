@@ -121,21 +121,23 @@ public class SignalServiceAccountManager {
    */
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      UUID uuid, String e164, String password,
-                                     String signalAgent)
+                                     String signalAgent, boolean automaticNetworkRetry)
   {
     this(configuration,
          new StaticCredentialsProvider(uuid, e164, password, null),
          signalAgent,
-         new GroupsV2Operations(ClientZkOperations.create(configuration)));
+         new GroupsV2Operations(ClientZkOperations.create(configuration)),
+         automaticNetworkRetry);
   }
 
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      CredentialsProvider credentialsProvider,
                                      String signalAgent,
-                                     GroupsV2Operations groupsV2Operations)
+                                     GroupsV2Operations groupsV2Operations,
+                                     boolean automaticNetworkRetry)
   {
     this.groupsV2Operations = groupsV2Operations;
-    this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations());
+    this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry);
     this.credentials        = credentialsProvider;
     this.userAgent          = signalAgent;
   }

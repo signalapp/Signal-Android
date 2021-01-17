@@ -41,6 +41,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Pr
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.FileNotFoundException;
@@ -235,6 +236,8 @@ public class PushMediaSendJob extends PushSendJob {
       throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
+      throw new UndeliverableMessageException(e);
+    } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     } catch (IOException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);

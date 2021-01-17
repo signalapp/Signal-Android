@@ -179,8 +179,8 @@
   <string name="ConversationItem_this_message_was_deleted">Ziņojums ir izdzēsts.</string>
   <string name="ConversationItem_you_deleted_this_message">Ziņa dzēsta.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Atstatīt šifrēto sarakstes sesiju?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Tas var palīdzēt, ja sarakstē saskaraties ar šifrēšanas problēmām. Jūsu ziņas tiks saglabātas.</string> -->
   <string name="ConversationActivity_reset">Atstatīt</string>
   <string name="ConversationActivity_add_attachment">Pievienot pielikumu</string>
   <string name="ConversationActivity_select_contact_info">Izvēlēties kontaktinformāciju</string>
@@ -1020,7 +1020,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Slikta šifrētā ziņa</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Slikta šifrētā ziņa</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ziņa šifrēta neeksistējošai sesijai</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Slikti šifrēta MMS ziņa</string>
@@ -1537,7 +1537,7 @@ Saņemts nederīgas protokola versijas atslēgas apmaiņas ziņojums.
   <string name="preferences__mmsc_password">MMSC Parole</string>
   <string name="preferences__sms_delivery_reports">SMS piegādes atskaites</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pieprasīt piegādes atskaiti par katru nosūtīto īsziņu</string>
-  <string name="preferences__chats">Tērzēšana un multivide</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Tērzēšana un multivide</string> -->
   <string name="preferences__storage">Krātuve</string>
   <string name="preferences__conversation_length_limit">Sarunu garuma limits</string>
   <string name="preferences__linked_devices">Piesaistās ierīces</string>

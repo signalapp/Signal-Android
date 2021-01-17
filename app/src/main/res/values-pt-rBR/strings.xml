@@ -44,7 +44,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de Tela %1$s, Desbloqueio de Cadastro %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Bloqueio de tela %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
-  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o bloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o bloqueio de registro.</string>
+  <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Um PIN é necessário para o desbloqueio de registro. Para desabilitar o PIN, por favor, primeiro desabilite o desbloqueio de registro.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
   <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Essa mensagem foi suprimida.</string>
   <string name="ConversationItem_you_deleted_this_message">Você apagou essa mensagem.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Reiniciar sessão segura?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Isto pode ajudar se você está tendo problemas de criptografia nesta conversa. Suas mensagens serão mantidas.</string>
   <string name="ConversationActivity_reset">Reiniciar</string>
   <string name="ConversationActivity_add_attachment">Adicionar anexo</string>
   <string name="ConversationActivity_select_contact_info">Selecionar informações de contato</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Toque para revisar</string>
   <string name="ConversationFragment__review_requests_carefully">Analisar os pedidos com atenção</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">O Signal encontrou outro contato com o mesmo nome.</string>
+  <string name="ConversationFragment_contact_us">Entre em contato</string>
+  <string name="ConversationFragment_verify">Verificar</string>
+  <string name="ConversationFragment_not_now">Agora não</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Seu número de segurança com %s mudou</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Seu número de segurança com %s mudou, provavelmente porque ela/ele reinstalou o Signal ou mudou de aparelho. Toque em Verificar para confirmar o novo número de segurança. Isso é opcional.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não há nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dmin</string>
   <string name="DateUtils_today">Hoje</string>
   <string name="DateUtils_yesterday">Ontem</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">A sessão da conversa foi reiniciada</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">O Signal usa criptografia de ponta a ponta e pode precisar reiniciar a sessão da sua conversa, às vezes. Isso não afeta a segurança da sua conversa, mas pode ser que você tenha perdido uma mensagem desse contato e você terá que pedir para ela ser enviada novamente.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Enviando</string>
   <string name="DeliveryStatus_sent">Enviada</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">O cronômetro de mensagem efêmera foi definido para %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Este grupo foi atualizado para um Novo Grupo.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Você não pôde ser adicionado ao Novo Grupo e foi convidado a entrar.</string>
+  <string name="MessageRecord_chat_session_refreshed">A sessão da conversa foi reiniciada</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Um membro não pôde ser adicionado ao Novo Grupo e foi convidado a entrar.</item>
     <item quantity="other">%1$s membros não puderam ser adicionados ao Novo Grupo e foram convidados a entrar.</item>
@@ -1049,11 +1056,11 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via o link do grupo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para entrar no grupo.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via o link do grupo.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via link do grupo.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou seu pedido de participação no grupo.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de participação no grupo de %2$s.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de participação no grupo de %1$s.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de %1$s para participar do grupo.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">O seu pedido para entrar no grupo foi aprovado.</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O pedido de participação no grupo de %1$s foi aprovado.</string>
   <!--GV2 group link deny-->
@@ -1278,6 +1285,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você
         especificou (%s) é inválido.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Um código de verificação será enviado para:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Você receberá uma chamada para verificar esse número.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">O seu número de telefone acima está correto?</string>
+  <string name="RegistrationActivity_edit_number">Editar número</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services está faltando</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Este aparelho não tem Google Play Services. Você ainda pode usar o Signal, mas talvez não consiga a mesma estabilidade e desempenho.\n\nSe você não é um(a) usuário(a) avançado(a), não está usando uma ROM Android customizada, ou acredita que isto é um erro, fale conosco no endereço support@signal.org para que possamos ajudar a resolver o problema.</string>
   <string name="RegistrationActivity_i_understand">Entendi</string>
@@ -1312,8 +1323,8 @@
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Bloqueio de registro?</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Bloqueio de registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Habilitar Desbloqueio de registro?</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desabilitar Desbloqueio de registro?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se você esquecer seu PIN ao se registrar novamente no Signal, ficará sem acesso à sua conta por 7 dias.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Ativar</string>
   <string name="RegistrationLockV2Dialog_turn_off">Desativar</string>
@@ -1398,7 +1409,7 @@
   <string name="SupportEmailUtil_android_version">Versão do Android:</string>
   <string name="SupportEmailUtil_signal_version">Versão do Signal:</string>
   <string name="SupportEmailUtil_signal_package">Arquivo do Signal:</string>
-  <string name="SupportEmailUtil_registration_lock">Bloqueio de Registro:</string>
+  <string name="SupportEmailUtil_registration_lock">Desbloqueio de Registro:</string>
   <string name="SupportEmailUtil_locale">Localidade:</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
@@ -1433,6 +1444,7 @@
   <string name="ThreadRecord_contact">Contato</string>
   <string name="ThreadRecord_file">Arquivo</string>
   <string name="ThreadRecord_video">Vídeo</string>
+  <string name="ThreadRecord_chat_session_refreshed">A sessão da conversa foi reiniciada</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, toque para atualizar</string>
@@ -1473,7 +1485,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem com erro de criptografia </string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem criptografada para sessão inexistente </string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mensagem de MMS com erro de criptografia</string>
@@ -1971,6 +1982,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Use o Signal para receber todas as mensagens multimídia</string>
   <string name="preferences__pref_enter_sends_title">Tecla Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter enviará mensagens de texto</string>
+  <string name="preferences__pref_use_address_book_photos">Usar fotos da lista de contatos do aparelho</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Exibir fotos de contatos oriundas da lista de contatos do aparelho, se disponíveis</string>
   <string name="preferences__generate_link_previews">Gerar pré-visualização de links</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Carregar pré-visualizações de links diretamente dos sites em mensagens que você envia.</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
@@ -2023,7 +2036,7 @@
   <string name="preferences__mmsc_password">Senha do MMSC</string>
   <string name="preferences__sms_delivery_reports">Avisos de entrega de SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Solicite um aviso de entrega para cada SMS enviado</string>
-  <string name="preferences__chats">Chats e mídia</string>
+  <string name="preferences__data_and_storage">Dados e armazenamento</string>
   <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__keep_messages">Manter as mensagens</string>
@@ -2067,9 +2080,9 @@
   <string name="preferences_storage__review_storage">Checar armazenamento</string>
   <string name="preferences_storage__delete_older_messages">Apagar as mensagens mais antigas?</string>
   <string name="preferences_storage__clear_message_history">Excluir o histórico de mensagens?</string>
-  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídia do seu dispositivo que são mais antigos que %1$s serão apagados permanentemente.</string>
+  <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Todo o histórico de mensagens e mídias do seu dispositivo que são mais antigos que %1$s serão excluídos permanentemente.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Todas as conversas serão excluídas permanentemente, exceto %1$s mensagens mais recentes.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídia do seu dispositivo serão apagados permanentemente.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Todo o histórico de mensagens e mídias do seu dispositivo serão excluídos permanentemente.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Tem certeza que quer apagar todo o histórico de mensagens?</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Todo o histórico de mensagens será excluído permanentemente. Esta ação não pode ser desfeita.</string>
   <string name="preferences_storage__delete_all_now">Apagar tudo agora</string>
@@ -2088,6 +2101,13 @@
   <string name="preferences_app_protection__app_access">Acesso ao aplicativo</string>
   <string name="preferences_app_protection__communication">Comunicação</string>
   <string name="preferences_chats__chats">Chats</string>
+  <string name="preferences_data_and_storage__manage_storage">Gerenciar armazenamento</string>
+  <string name="preferences_data_and_storage__calls">Chamadas</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Usar menos dados em chamadas</string>
+  <string name="preferences_data_and_storage__never">Nunca</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi e dados móveis</string>
+  <string name="preferences_data_and_storage__cellular_only">Somente dados móveis</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Usar menos dados pode melhorar as chamadas em redes ruins</string>
   <string name="preferences_notifications__messages">Mensagens</string>
   <string name="preferences_notifications__events">Eventos</string>
   <string name="preferences_notifications__in_chat_sounds">Sons no chat</string>
@@ -2386,7 +2406,7 @@
   <string name="RegistrationActivity_restore_from_backup">Restaurar do backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, não conseguirá restaurar depois.</string>
   <string name="RegistrationActivity_backup_size_s">Tamanho do backup: %s</string>
-  <string name="RegistrationActivity_backup_timestamp_s">Timestamp do backup: %s</string>
+  <string name="RegistrationActivity_backup_timestamp_s">Registro de hora do backup: %s</string>
   <string name="BackupDialog_enable_local_backups">Habilitar backups locais?</string>
   <string name="BackupDialog_enable_backups">Habilitar backups</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Favor confirmar seu entendimento marcando a caixa de verificação.</string>
@@ -2441,8 +2461,8 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Certifique-se de memorizar ou armazenar seu PIN com segurança, pois ele não pode ser recuperado. Se você esquecer seu PIN, poderá perder dados ao recadastrar sua conta do Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN incorreto. Tente novamente.</string>
-  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Bloqueio de registro.</string>
-  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Bloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_enable_registration_lock">Falha ao ativar o Desbloqueio de registro.</string>
+  <string name="preferences_app_protection__failed_to_disable_registration_lock">Falha ao desativar o Desbloqueio de registro.</string>
   <string name="AppProtectionPreferenceFragment_none">Nenhuma</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">O PIN de Desbloqueio de registro não é o mesmo que o código de verificação que você acabou de receber. Por favor, insira o PIN que você definiu anteriormente no aplicativo.</string>
   <string name="registration_activity__registration_lock_pin">PIN de Desbloqueio de registro</string>
@@ -2470,7 +2490,7 @@
   <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Desbloqueio de registro ajuda a proteger seu número de telefone de tentativas de registro não autorizadas. Essa fução pode ser desabilitada a qualquer instante nas configurações de privacidade do Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Bloqueio de registro</string>
+  <string name="RegistrationLockDialog_registration_lock">Desbloqueio de registro</string>
   <string name="RegistrationLockDialog_enable">Habilitar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">O PIN de Desbloqueio de registro deve ter pelo menos %d dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os dois PINs inseridos não correspondem.</string>
@@ -2567,8 +2587,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s e %2$s saíram</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s e %3$s saíram</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s e %3$d outras pessoas saíram</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Você (em outro aparelho)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (em outro dispositivo)</string>
+  <string name="CallParticipant__you">Você</string>
+  <string name="CallParticipant__you_on_another_device">Você (em outro aparelho)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (em outro aparelho)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Excluir sua conta vai:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Digite o seu número de telefone</string>

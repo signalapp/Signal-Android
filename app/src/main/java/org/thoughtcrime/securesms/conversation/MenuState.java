@@ -131,7 +131,8 @@ final class MenuState {
            messageRecord.isIdentityUpdate()        ||
            messageRecord.isIdentityVerified()      ||
            messageRecord.isIdentityDefault()       ||
-           messageRecord.isProfileChange();
+           messageRecord.isProfileChange()         ||
+           messageRecord.isFailedDecryptionType();
   }
 
   private final static class Builder {

@@ -37,7 +37,6 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(Job.Parameters.IMMORTAL)
                        .setMaxAttempts(Job.Parameters.UNLIMITED)
-                       .setMaxBackoff(TimeUnit.HOURS.toMillis(2))
                        .build());
   }
 

@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Bu ileti silindi.</string>
   <string name="ConversationItem_you_deleted_this_message">Bu iletiyi sildiniz.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Güvenli oturumu sıfırla?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Bu konuşmada şifreleme sorunları yaşıyorsanız bu işlem yardımcı olabilir. İletileriniz saklanacaktır.</string>
   <string name="ConversationActivity_reset">Sıfırla</string>
   <string name="ConversationActivity_add_attachment">Eklenti ekle</string>
   <string name="ConversationActivity_select_contact_info">Kişi bilgisi seç</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Gözden geçirmek için dokunun</string>
   <string name="ConversationFragment__review_requests_carefully">İstekleri dikkatlice inceleyin</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal aynı isimde başka bir kişi buldu.</string>
+  <string name="ConversationFragment_contact_us">Bizimle iletişime geçin</string>
+  <string name="ConversationFragment_verify">Doğrula</string>
+  <string name="ConversationFragment_not_now">Şimdi değil</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s ile olan güvenlik numaranız değişti</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s ile olan güvenlik numaranız değişti, bunun sebebi Signal\'i yeniden yüklemeleri veya cihaz değiştirmeleri olabilir. Yeni güvenlik numarasını onaylamak için Doğrula\'ya dokunun. Bu eylem isteğe bağlıdır.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dd</string>
   <string name="DateUtils_today">Bugün</string>
   <string name="DateUtils_yesterday">Dün</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Konuşma oturumu yenilendi</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uçtan uca şifreleme kullanır ve bazen sohbet oturumunu yenilemesi gerekebilir. Bu, sohbetinizin güvenliğini etkilemez, ancak bu kişiden gelen mesajları kaçırmış olabilirsiniz, bu durumda yeniden göndermelerini isteyebilirsiniz.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Gönderiliyor</string>
   <string name="DeliveryStatus_sent">Gönderildi</string>
@@ -933,6 +939,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Kaybolan ileti süresi %1$s olarak ayarlandı.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Bu grup Yeni Gruba yükseltildi.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Yeni gruba eklenemediğiniz için davet edildiniz.</string>
+  <string name="MessageRecord_chat_session_refreshed">Konuşma oturumu yenilendi</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Bir üye Yeni Gruba eklenemedi ve gruba katılmaya davet edildi.</item>
     <item quantity="other">%1$s üye Yeni Gruba eklenemedi ve gruba katılmaya davet edildi.</item>
@@ -1278,6 +1285,10 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Girdiğiniz numara
         (%s) geçersiz.
     </string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Belirtilen numaraya doğrulama kodu gönderilecektir:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Bu numarayı doğrulamak için bir arama alacaksınız.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Yukarıdaki telefon numaranız doğru mu?</string>
+  <string name="RegistrationActivity_edit_number">Numarayı düzenle</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Hizmetleri eksik</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Hizmetleri bulunmamakta. Signal\'i kullanmaya devam edebilirsiniz ancak bu yapılandırma şekli azaltılmış güvenirlik veya performans gibi sonuçları doğurabilir. \n\nEğer ileri düzey kullanıcı değilseniz, alternatif Android ROM kullanmıyorsanız, veya bunu bir hata olarak görüyorsanız, lütfen sorun giderme konusunda yardım almak için support@signal.org adresinden iletişime geçiniz</string>
   <string name="RegistrationActivity_i_understand">Anladım</string>
@@ -1431,6 +1442,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_contact">Kişi</string>
   <string name="ThreadRecord_file">Dosya</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Konuşma oturumu yenilendi</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal güncellemesi</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal\'in yeni sürümü mevcut, güncellemek için dokunun</string>
@@ -1471,7 +1483,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş ileti</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">İleti var olmayan bir oturum için şifrelenmiş</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Bozuk şifrelenmiş MMS iletisi</string>
@@ -1969,6 +1980,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gelen tüm içerik iletileri için Signal kullanın</string>
   <string name="preferences__pref_enter_sends_title">Enter tuşu ile gönder</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter tuşuna basmak metin iletilerini gönderecektir</string>
+  <string name="preferences__pref_use_address_book_photos">Rehber fotoğraflarını kullan</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Eğer varsa rehberdeki kişi fotoğraflarını göster</string>
   <string name="preferences__generate_link_previews">Bağlantı önizlemelerini oluştur</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Gönderdiğiniz iletiler için doğrudan web sitelerinden bağlantı önizlemelerini al.</string>
   <string name="preferences__choose_identity">Kimlik seçin</string>
@@ -2021,7 +2034,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__mmsc_password">MMSC Parolası</string>
   <string name="preferences__sms_delivery_reports">SMS iletim raporları</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Gönderdiğiniz her SMS için iletim raporu istensin</string>
-  <string name="preferences__chats">Konuşmalar ve içerik</string>
+  <string name="preferences__data_and_storage">Veri ve depolama</string>
   <string name="preferences__storage">Depolama</string>
   <string name="preferences__conversation_length_limit">Konuşma uzunluk sınırı</string>
   <string name="preferences__keep_messages">İletileri sakla</string>
@@ -2086,6 +2099,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_app_protection__app_access">Uygulama erişimi</string>
   <string name="preferences_app_protection__communication">İletişim</string>
   <string name="preferences_chats__chats">Konuşmalar</string>
+  <string name="preferences_data_and_storage__manage_storage">Depolamayı yönet</string>
+  <string name="preferences_data_and_storage__calls">Aramalar</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Aramalarda daha az veri kullan</string>
+  <string name="preferences_data_and_storage__never">Asla</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Kablosuz Ağ ve Hücresel</string>
+  <string name="preferences_data_and_storage__cellular_only">Yalnızca hücresel</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kötü ağ koşullarında daha az veri kullanmak arama kalitesini arttırabilir</string>
   <string name="preferences_notifications__messages">İletiler</string>
   <string name="preferences_notifications__events">Etkinlikler</string>
   <string name="preferences_notifications__in_chat_sounds">Konuşma içi sesler</string>
@@ -2565,8 +2585,9 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s ve %2$s ayrıldı</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s ve %3$s ayrıldı</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ve %3$d diğer kişi ayrıldı</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Siz (başka bir cihazda)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (diğer cihazda)</string>
+  <string name="CallParticipant__you">Siz</string>
+  <string name="CallParticipant__you_on_another_device">Siz (başka bir cihazda)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (diğer cihazda)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Hesabınızı silmek:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Telefon numaranızı girin</string>

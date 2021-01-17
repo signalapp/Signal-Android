@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dd.CircularProgressButton;
 
+import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
@@ -104,6 +105,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
     avatar.setOnClickListener(v -> showAvatarSelectionBottomSheet());
     members.setRecipientClickListener(this::handleRecipientClick);
+    EditTextUtil.addGraphemeClusterLimitFilter(name, FeatureFlags.getMaxGroupNameGraphemeLength());
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());

@@ -69,7 +69,7 @@
   <string name="ConversationItem_from_s">okuvva %s</string>
   <string name="ConversationItem_to_s">okutuka %s</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Damu ekitundu ekikumibwa?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Damu ekitundu ekikumibwa?</string> -->
   <string name="ConversationActivity_reset">Reset</string>
   <string name="ConversationActivity_add_attachment">Gatako ekigatiddwako</string>
   <string name="ConversationActivity_select_contact_info">Londako obuubaka bwa kontakiti</string>
@@ -634,7 +634,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">saba ekiraga nti bulu bubaka bwowereza butuuse</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">buterevu sagula obubaka mu mboozi kasita buyitirira</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">sagula obubaka obukadde</string> -->
-  <string name="preferences__chats">emboozi nebifannyi,vidiyo</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">emboozi nebifannyi,vidiyo</string> -->
   <string name="preferences__conversation_length_limit">Ekkomo ku mboozi</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">sala ku mboozi zona kati</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">yita mu mboozi zonna otekeko ekkomo ku buwanvu bwazo.</string> -->

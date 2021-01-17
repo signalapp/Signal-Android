@@ -195,8 +195,6 @@
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
   <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">セキュアセッションをリセットしますか？</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">この会話の暗号化に問題がある場合、改善に役立つ可能性があります。メッセージは削除されません。</string>
   <string name="ConversationActivity_reset">リセットする</string>
   <string name="ConversationActivity_add_attachment">添付ファイルを追加</string>
   <string name="ConversationActivity_select_contact_info">連絡先情報を選択</string>
@@ -302,6 +300,10 @@
   <string name="ConversationFragment__tap_to_review">タップして確認</string>
   <string name="ConversationFragment__review_requests_carefully">慎重に申請を確認してください</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signalは同じ名前で別の連絡先を見つけました。</string>
+  <string name="ConversationFragment_contact_us">お問い合わせ</string>
+  <string name="ConversationFragment_verify">検証する</string>
+  <string name="ConversationFragment_not_now">今はしない</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">%s に対する安全番号が変わりました</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -380,6 +382,9 @@
   <string name="DateUtils_minutes_ago">%d分</string>
   <string name="DateUtils_today">今日</string>
   <string name="DateUtils_yesterday">昨日</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">セッションが更新されました</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signalはエンドツーエンドの暗号化を使用しており、時々セッションの更新が必要な場合があります。これはチャットのセキュリティには影響しませんが、この連絡先からのメッセージを失った可能性があるため、再送を依頼することができます。</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">送信中</string>
   <string name="DeliveryStatus_sent">送信</string>
@@ -622,7 +627,7 @@
     <item quantity="other">%d人のメンバーを追加しました。</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">管理者のみがグループリンクの有効、無効を切り替えられます。</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">管理者のみが新メンバーの承認制を切り替えできます。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">管理者のみが新メンバー参加の承認制を切り替えできます。</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">管理者のみがグループリンクをリセットできます。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">これを実行する権限がありません</string>
   <string name="ManageGroupActivity_not_capable">あなたが追加した相手は新しいグループに対応していないので、Signalをアップデートする必要があります</string>
@@ -691,12 +696,12 @@
   <string name="ShareableGroupLinkDialogFragment__share">共有する</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセットする</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">メンバー申請</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認する</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認制にする</string>
   <string name="ShareableGroupLinkDialogFragment__enabled">有効</string>
   <string name="ShareableGroupLinkDialogFragment__disabled">無効</string>
   <string name="ShareableGroupLinkDialogFragment__default">既定</string>
   <string name="ShareableGroupLinkDialogFragment__group_link_reset">グループリンクのリセット</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバー参加時に、管理者の承認を要求します。</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバーの参加時に、管理者の承認を要求します。</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">本当にグループリンクをリセットしますか？リセットすると現在のリンクからグループに参加できなくなります。</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QRコード</string>
@@ -885,6 +890,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">消えるメッセージのタイマーが%1$sに設定されました。</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">このグループは新しいグループにアップデートされました。</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">あなたを新しいグループに追加できなかったため、招待を送信しました。</string>
+  <string name="MessageRecord_chat_session_refreshed">セッションが更新されました</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">%1$s人のメンバーを新しいグループに追加できなかったため、招待を送信しました。</item>
   </plurals>
@@ -1207,6 +1213,10 @@
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力してください</string>
   <string name="RegistrationActivity_invalid_number">無効な番号</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号 (%s) は無効です。</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">以下に認証コードが送付されます:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">この番号を認証するため、通話が着信します。</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">あなたの電話番号はこれで合っていますか？</string>
+  <string name="RegistrationActivity_edit_number">番号を編集する</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">この端末にはGoogle Play開発者サービスがありません。Signalは使用できますが、信頼性や性能は下がる可能性があります。\n\n上級者でない方や、メーカー公式のAndroidをご利用の方、何かの間違いだと思う方などは support@signal.org まで連絡してください。</string>
   <string name="RegistrationActivity_i_understand">分かりました</string>
@@ -1358,6 +1368,7 @@
   <string name="ThreadRecord_contact">連絡先</string>
   <string name="ThreadRecord_file">ファイル</string>
   <string name="ThreadRecord_video">動画</string>
+  <string name="ThreadRecord_chat_session_refreshed">セッションが更新されました</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signalアップデート</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">新バージョンのSignalを利用できます。タップしてアップデートします。</string>
@@ -1397,7 +1408,6 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が正しくありません</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">MMSメッセージの暗号化が正しくありません</string>
@@ -1884,6 +1894,8 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">マルチメディアメッセージの受信はすべてSignalで行う</string>
   <string name="preferences__pref_enter_sends_title">エンターキーで送信する</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーでテキストメッセージを送信します</string>
+  <string name="preferences__pref_use_address_book_photos">アドレス帳の写真を使用する</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">可能であれば連絡先の表示にアドレス帳の写真を使用します</string>
   <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューをウェブサイトから直接取得します。</string>
   <string name="preferences__choose_identity">アイデンティティを選択</string>
@@ -1936,7 +1948,6 @@
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信レポート</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSで配信レポートを要求します</string>
-  <string name="preferences__chats">チャットとメディア</string>
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
@@ -1986,7 +1997,7 @@
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">本当にすべてのメッセージ履歴を削除しますか？</string>
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">すべてのメッセージ履歴を完全に削除します。取り消しはできません。</string>
   <string name="preferences_storage__delete_all_now">すべて削除する</string>
-  <string name="preferences_storage__forever">永久</string>
+  <string name="preferences_storage__forever">無期限</string>
   <string name="preferences_storage__one_year">1年</string>
   <string name="preferences_storage__six_months">6か月</string>
   <string name="preferences_storage__thirty_days">30日</string>
@@ -2001,6 +2012,13 @@
   <string name="preferences_app_protection__app_access">アプリのアクセス</string>
   <string name="preferences_app_protection__communication">通信</string>
   <string name="preferences_chats__chats">チャット</string>
+  <string name="preferences_data_and_storage__manage_storage">ストレージの管理</string>
+  <string name="preferences_data_and_storage__calls">通話</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">通話でのデータ通信量を抑える</string>
+  <string name="preferences_data_and_storage__never">なし</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFiと携帯電話回線</string>
+  <string name="preferences_data_and_storage__cellular_only">携帯電話回線のみ</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">データ通信量を抑えて低品質なネットワーク上での通話を改善します</string>
   <string name="preferences_notifications__messages">メッセージ</string>
   <string name="preferences_notifications__events">イベント</string>
   <string name="preferences_notifications__in_chat_sounds">チャット中の着信音</string>
@@ -2471,8 +2489,9 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s と %2$s が退出しました</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s および %3$s が退出しました</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s ほか%3$d名が退出しました</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">あなた (別端末)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (別端末)</string>
+  <string name="CallParticipant__you">あなた</string>
+  <string name="CallParticipant__you_on_another_device">あなた (別端末)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (別端末)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">アカウントを削除すると:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">あなたの電話番号を入力してください</string>

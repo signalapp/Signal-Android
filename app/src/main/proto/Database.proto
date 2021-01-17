@@ -82,3 +82,12 @@ message ProfileKeyCredentialColumnData {
     bytes profileKey           = 1;
     bytes profileKeyCredential = 2;
 }
+
+message DeviceLastResetTime {
+    message Pair {
+        int32 deviceId      = 1;
+        int64 lastResetTime = 2;
+    }
+
+    repeated Pair resetTime = 1;
+}

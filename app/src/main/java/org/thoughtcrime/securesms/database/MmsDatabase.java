@@ -1384,6 +1384,11 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public @NonNull InsertResult insertDecryptionFailedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public void markIncomingNotificationReceived(long threadId) {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);

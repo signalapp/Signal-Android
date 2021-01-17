@@ -79,10 +79,11 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
     signalStrengthListener = new SignalStrengthPhoneStateListener(this, this);
 
     connectKeyboard(verificationCodeView, keyboard);
+    hideKeyboard(requireContext(), view);
 
     setOnCodeFullyEnteredListener(verificationCodeView);
 
-    wrongNumber.setOnClickListener(v -> Navigation.findNavController(view).navigate(EnterCodeFragmentDirections.actionWrongNumber()));
+    wrongNumber.setOnClickListener(v -> onWrongNumber());
 
     callMeCountDown.setOnClickListener(v -> handlePhoneCallRequest());
 
@@ -104,6 +105,11 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
     });
 
     model.onStartEnterCode();
+  }
+
+  private void onWrongNumber() {
+    Navigation.findNavController(requireView())
+              .navigate(EnterCodeFragmentDirections.actionWrongNumber());
   }
 
   private void setOnCodeFullyEnteredListener(VerificationCodeView verificationCodeView) {
@@ -261,6 +267,14 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
   }
 
   private void handlePhoneCallRequest() {
+    showConfirmNumberDialogIfTranslated(requireContext(),
+                                        R.string.RegistrationActivity_you_will_receive_a_call_to_verify_this_number,
+                                        getModel().getNumber().getE164Number(),
+                                        this::handlePhoneCallRequestAfterConfirm,
+                                        this::onWrongNumber);
+  }
+
+  private void handlePhoneCallRequestAfterConfirm() {
     RegistrationViewModel model   = getModel();
     String                captcha = model.getCaptchaToken();
     model.clearCaptchaResponse();

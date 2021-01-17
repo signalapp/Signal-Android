@@ -198,8 +198,6 @@
   <string name="ConversationItem_this_message_was_deleted">Ky mesazh u fshi.</string>
   <string name="ConversationItem_you_deleted_this_message">E fshitë këtë mesazh.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Të rikthehet te parazgjedhjet sesioni i sigurt?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Kjo mund të ndihmojë nëse keni probleme fshehtëzimi në këtë bisedë. Mesazhet tuaja do të ruhen.</string>
   <string name="ConversationActivity_reset">Riktheje</string>
   <string name="ConversationActivity_add_attachment">Shtoni bashkëngjitje</string>
   <string name="ConversationActivity_select_contact_info">Përzgjidhni të dhëna kontakti</string>
@@ -312,6 +310,11 @@
   <string name="ConversationFragment__tap_to_review">Prekeni që ta shqyrtoni</string>
   <string name="ConversationFragment__review_requests_carefully">Shqyrtojini me kujdes kërkesat</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal-i gjeti një tjetër kontakt me të njëjtin emër.</string>
+  <string name="ConversationFragment_contact_us">Lidhuni me ne</string>
+  <string name="ConversationFragment_verify">Verifikoje</string>
+  <string name="ConversationFragment_not_now">Jo tani</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Numri juaj i sigurisë me %s ndryshoi</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Numri juaj i aigurisë me %s ndryshoi, gjasat janë ngaqë ai riinstaloi Signal-in ose ndërroi pajisjet. Prekni mbi Verifikoje që të ripohoni numrin e ri të sigurisë. Kjo është opsionale.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -394,6 +397,9 @@
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Sot</string>
   <string name="DateUtils_yesterday">Dje</string>
+  <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal-i përdor fshehtëzim skaj-më-skaj dhe ndonjëherë mund të jetë e nevojshme të rifreskoni sesionin e fjalosjes tuaj. Kjo nuk prek sigurinë e fjalosjes tuaj, por mund të keni humbur një mesazh prej këtij kontakti dhe mund t’i kërkoni ta ridërgojë.</string>
   <!--DeliveryStatus-->
   <string name="DeliveryStatus_sending">Po dërgohet</string>
   <string name="DeliveryStatus_sent">U dërgua</string>
@@ -937,6 +943,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Koha për zhdukje mesazhesh është vënë %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Ky grup u përditësua si një Grup i Ri.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">S’u shtuat dot te Grupi i Ri dhe u ftuat të bëheni pjesë.</string>
+  <string name="MessageRecord_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Një anëtar s’u shtua dot te Grupi i Ri dhe është ftuar të bëhet pjesë e tij.</item>
     <item quantity="other">%1$s anëtarë s’u shtuan dot te Grupi i Ri dhe janë ftuar të bëhen pjesë e tij.</item>
@@ -1280,6 +1287,10 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_invalid_number">Numër i pavlefshëm</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që specifikuat
          (%s) është i pavlefshëm.</string>
+  <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Do të dërgohet një kod verifikimi te:</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Do t’ju vijë një thirrje për të verifikuar këtë numër.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">A është i saktë numri juaj i telefonit më sipër?</string>
+  <string name="RegistrationActivity_edit_number">Modifiko numrin</string>
   <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Në këtë pajisje mungojnë Shërbimet Google Play. Mundeni prapëseprapë ta përdorni Signal-in, por ky formësim mund të sjellë qëndrueshmëri ose funksionim të reduktuar.\n\nNëse s\’jeni përdorues i përparuar, s\’po përdorni një ROM Android të modifikuar, ose besoni se po  e shihni gabimisht këtë, ju lutemi, lidhuni me support@signal.org për ndihmë në diagnostikikim.</string>
   <string name="RegistrationActivity_i_understand">E kuptoj</string>
@@ -1433,6 +1444,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ThreadRecord_contact">Kontakt</string>
   <string name="ThreadRecord_file">Kartelë</string>
   <string name="ThreadRecord_video">Video</string>
+  <string name="ThreadRecord_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
@@ -1473,7 +1485,6 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Mesazh MMS i fshehtëzuar keq</string>
@@ -1971,6 +1982,8 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Signal për krejt mesazhet multimedia ardhëse</string>
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
+  <string name="preferences__pref_use_address_book_photos">Përdor foto libri adresash</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Shfaqni foto kontaktesh prej librit tuaj të adresave, në pastë</string>
   <string name="preferences__generate_link_previews">Prodho lidhje për paraparje</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Merrni, për mesazhet që dërgoni, paraparje lidhjesh drejt e nga sajtet.</string>
   <string name="preferences__choose_identity">Zgjidhni identitet</string>
@@ -2023,7 +2036,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__mmsc_password">Fjalëkalim MMSC</string>
   <string name="preferences__sms_delivery_reports">Raporte dërgimi SMS-sh</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Kërko raport dorëzimi për çdo mesazh SMS që dërgoni</string>
-  <string name="preferences__chats">Fjalosje dhe media</string>
+  <string name="preferences__data_and_storage">Të dhëna dhe depozitim</string>
   <string name="preferences__storage">Hapësirë</string>
   <string name="preferences__conversation_length_limit">Kufi gjatësie bisedash</string>
   <string name="preferences__keep_messages">Mbaji mesazhet</string>
@@ -2090,6 +2103,13 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_app_protection__app_access">Hyrje aplikacioni</string>
   <string name="preferences_app_protection__communication">Komunikim</string>
   <string name="preferences_chats__chats">Fjalosje</string>
+  <string name="preferences_data_and_storage__manage_storage">Administroni depozitim</string>
+  <string name="preferences_data_and_storage__calls">Thirrje</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Përdor më pak të dhënë për thirrjet</string>
+  <string name="preferences_data_and_storage__never">Kurrë</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">WiFi dhe Celulare</string>
+  <string name="preferences_data_and_storage__cellular_only">Vetëm celulare</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Përdorim i më pak të dhënave mund të përmirësojë thirrjet në rrjete të dobët</string>
   <string name="preferences_notifications__messages">Mesazhe</string>
   <string name="preferences_notifications__events">Veprimtari</string>
   <string name="preferences_notifications__in_chat_sounds">Tinguj në fjalosje</string>
@@ -2571,8 +2591,9 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s dhe %2$s ikën</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s dhe %3$s ikën</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s dhe %3$d të tjerë ikën</string>
-  <string name="CallParticipantsListUpdatePopupWindow__you_on_another_device">Ju (në një tjetër pajisje)</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_on_another_device">%1$s (në tjetër pajisje)</string>
+  <string name="CallParticipant__you">Ju</string>
+  <string name="CallParticipant__you_on_another_device">Ju (në një tjetër pajisje)</string>
+  <string name="CallParticipant__s_on_another_device">%1$s (në tjetër pajisje)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">Fshirja e llogarisë tuaj do të:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Jepni numrin e telefonit tuaj</string>

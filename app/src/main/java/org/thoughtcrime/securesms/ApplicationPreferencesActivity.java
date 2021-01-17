@@ -39,9 +39,9 @@ import org.thoughtcrime.securesms.preferences.AppearancePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.BackupsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
+import org.thoughtcrime.securesms.preferences.DataAndStoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
-import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
@@ -65,6 +65,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
   public static final String LAUNCH_TO_BACKUPS_FRAGMENT = "launch.to.backups.fragment";
+  public static final String LAUNCH_TO_HELP_FRAGMENT    = "launch.to.help.fragment";
 
   @SuppressWarnings("unused")
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
@@ -104,6 +105,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       initFragment(android.R.id.content, new NotificationsPreferenceFragment());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_BACKUPS_FRAGMENT, false)) {
       initFragment(android.R.id.content, new BackupsPreferenceFragment());
+    } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_HELP_FRAGMENT, false)) {
+      initFragment(android.R.id.content, new HelpFragment());
     } else if (icicle == null) {
       initFragment(android.R.id.content, new ApplicationPreferenceFragment());
     } else {
@@ -309,7 +312,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
           fragment = new ChatsPreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_STORAGE:
-          fragment = new StoragePreferenceFragment();
+          fragment = new DataAndStoragePreferenceFragment();
           break;
         case PREFERENCE_CATEGORY_DEVICES:
           Intent intent = new Intent(getActivity(), DeviceActivity.class);

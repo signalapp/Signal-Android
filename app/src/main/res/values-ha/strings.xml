@@ -158,8 +158,8 @@
   <string name="ConversationItem_pending">  Yana tafiya</string>
   <string name="ConversationItem_this_message_was_deleted">An goge sakon</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Kara saitin mahajin bayanai masu tsaro?</string>
-  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Wannan zai iya taimakawa idan akasamu matsala da tsaro a wannan hiran. Ba zaka/ki rasa sakwanninka ba.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_reset_secure_session_question">Kara saitin mahajin bayanai masu tsaro?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Wannan zai iya taimakawa idan akasamu matsala da tsaro a wannan hiran. Ba zaka/ki rasa sakwanninka ba.</string> -->
   <string name="ConversationActivity_reset">Maimaita saiti</string>
   <string name="ConversationActivity_add_attachment">Kara abun makallawa</string>
   <string name="ConversationActivity_select_contact_info">Zabi lambar sadarwa.</string>
@@ -826,7 +826,7 @@
   <!--ViewOnceMessageActivity-->
   <!--AudioView-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Sako mai tsari mara kyau</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageDisplayHelper_bad_encrypted_message">Sako mai tsari mara kyau</string> -->
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">An tsare sako don mahadin bayanai da babu shi </string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">Sakon MMS mara kyakkyawan tsari</string>
@@ -1298,7 +1298,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Tambayi sakamakon ko wanne sakon SMS da ka/kika tura.</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Sarrafa gogewar tsofaffin sakonni da kansu da zarar yafi tsawon da aka tsara</string> -->
   <!-- Removed by excludeNonTranslatables <string name="preferences__delete_old_messages">Goge tsofaffin sakonni</string> -->
-  <string name="preferences__chats">Hira da midiya</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__chats">Hira da midiya</string> -->
   <string name="preferences__storage">Ajiya</string>
   <string name="preferences__conversation_length_limit">Adadin tsahon hira</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences__trim_all_conversations_now">Rage ko wanne hira yanzu</string> -->
