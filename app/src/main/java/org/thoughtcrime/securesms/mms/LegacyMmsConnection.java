@@ -45,9 +45,10 @@ import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;

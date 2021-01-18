@@ -756,6 +756,7 @@ object TextSecurePreferences {
         setStringPreference(context, MMSC_PASSWORD_PREF, value)
     }
 
+    @JvmStatic
     fun getMmsUserAgent(context: Context, defaultUserAgent: String): String {
         val useCustom: Boolean = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false)
         return if (useCustom) getStringPreference(context, MMS_USER_AGENT, defaultUserAgent)!! else defaultUserAgent
