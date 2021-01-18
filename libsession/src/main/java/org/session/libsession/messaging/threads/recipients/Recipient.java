@@ -18,6 +18,7 @@
 package org.session.libsession.messaging.threads.recipients;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 
@@ -28,6 +29,7 @@ import com.annimon.stream.function.Consumer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.contacts.avatars.TransparentContactPhoto;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.messaging.threads.recipients.RecipientProvider.RecipientDetails;
@@ -454,6 +456,17 @@ public class Recipient implements RecipientModifiedListener {
     String name = getName();
     return (name != null ? name : address.serialize());
   }
+
+  public synchronized @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
+    return (new TransparentContactPhoto()).asDrawable(context, getColor().toAvatarColor(context), inverted);
+  }
+
+//  public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
+//    // TODO: I believe this is now completely unused
+//    if      (isResolving())            return new TransparentContactPhoto();
+//    else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
+//    else { return new TransparentContactPhoto(); }
+//  }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {
     if      (isLocalNumber)                               return new ProfileContactPhoto(address, String.valueOf(TextSecurePreferences.getProfileAvatarId(context)));

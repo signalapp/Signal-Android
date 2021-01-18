@@ -14,6 +14,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.Set;

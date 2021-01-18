@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.loki.SessionResetStatus
 import org.session.libsignal.service.api.messages.SignalServiceContent
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol

@@ -7,6 +7,8 @@ import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.provider.Settings
 import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
+import org.session.libsession.R
+import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.Medium
 import org.session.libsignal.service.internal.util.Base64
@@ -200,14 +202,17 @@ object TextSecurePreferences {
         return getBooleanPreference(context, SCREEN_LOCK, false)
     }
 
+    @JvmStatic
     fun setScreenLockEnabled(context: Context, value: Boolean) {
         setBooleanPreference(context, SCREEN_LOCK, value)
     }
 
+    @JvmStatic
     fun getScreenLockTimeout(context: Context): Long {
         return getLongPreference(context, SCREEN_LOCK_TIMEOUT, 0)
     }
 
+    @JvmStatic
     fun setScreenLockTimeout(context: Context, value: Long) {
         setLongPreference(context, SCREEN_LOCK_TIMEOUT, value)
     }
@@ -236,14 +241,17 @@ object TextSecurePreferences {
         setBooleanPreference(context, BACKUP_ENABLED, value)
     }
 
+    @JvmStatic
     fun isBackupEnabled(context: Context): Boolean {
         return getBooleanPreference(context, BACKUP_ENABLED, false)
     }
 
+    @JvmStatic
     fun setNextBackupTime(context: Context, time: Long) {
         setLongPreference(context, BACKUP_TIME, time)
     }
 
+    @JvmStatic
     fun getNextBackupTime(context: Context): Long {
         return getLongPreference(context, BACKUP_TIME, -1)
     }
@@ -377,6 +385,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, LINK_PREVIEWS, false)
     }
 
+    @JvmStatic
     fun setLinkPreviewsEnabled(context: Context, enabled: Boolean) {
         setBooleanPreference(context, LINK_PREVIEWS, enabled)
     }
@@ -430,6 +439,7 @@ object TextSecurePreferences {
         return getStringPreference(context, PROFILE_AVATAR_URL_PREF, null)
     }
 
+    @JvmStatic
     fun getNotificationPriority(context: Context): Int {
         return getStringPreference(context, NOTIFICATION_PRIORITY_PREF, NotificationCompat.PRIORITY_HIGH.toString())!!.toInt()
     }
@@ -487,10 +497,10 @@ object TextSecurePreferences {
         return getIntegerPreference(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, 0)
     }
 
-    // TODO
-//    fun getNotificationPrivacy(context: Context): NotificationPrivacyPreference {
-//        return NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"))
-//    }
+    @JvmStatic
+    fun getNotificationPrivacy(context: Context): NotificationPrivacyPreference {
+        return NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"))
+    }
 
     fun isNewContactsNotificationEnabled(context: Context): Boolean {
         return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, true)
@@ -512,6 +522,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, RATING_ENABLED_PREF, enabled)
     }
 
+    @JvmStatic
     fun isWebsocketRegistered(context: Context): Boolean {
         return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false)
     }
@@ -525,6 +536,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, WIFI_SMS_PREF, false)
     }
 
+    @JvmStatic
     fun getRepeatAlertsCount(context: Context): Int {
         return try {
             getStringPreference(context, REPEAT_ALERTS_PREF, "0")!!.toInt()
@@ -558,6 +570,7 @@ object TextSecurePreferences {
         removePreference(context, LOCAL_REGISTRATION_ID_PREF)
     }
 
+    @JvmStatic
     fun isInThreadNotifications(context: Context): Boolean {
         return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true)
     }
@@ -622,10 +635,12 @@ object TextSecurePreferences {
         setLongPreference(context, DIRECTORY_FRESH_TIME_PREF, value)
     }
 
+    @JvmStatic
     fun getUpdateApkRefreshTime(context: Context): Long {
         return getLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, 0L)
     }
 
+    @JvmStatic
     fun setUpdateApkRefreshTime(context: Context, value: Long) {
         setLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, value)
     }
@@ -686,6 +701,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, ENTER_SENDS_PREF, false)
     }
 
+    @JvmStatic
     fun isPasswordDisabled(context: Context): Boolean {
         return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, false)
     }
@@ -847,6 +863,7 @@ object TextSecurePreferences {
         return getStringPreference(context, THEME_PREF, "light")
     }
 
+    @JvmStatic
     fun isVerifying(context: Context): Boolean {
         return getBooleanPreference(context, VERIFYING_STATE_PREF, false)
     }
@@ -869,10 +886,12 @@ object TextSecurePreferences {
         return getBooleanPreference(context, SHOW_INVITE_REMINDER_PREF, true)
     }
 
+    @JvmStatic
     fun isPassphraseTimeoutEnabled(context: Context): Boolean {
         return getBooleanPreference(context, PASSPHRASE_TIMEOUT_PREF, false)
     }
 
+    @JvmStatic
     fun getPassphraseTimeoutInterval(context: Context): Int {
         return getIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, 5 * 60)
     }
@@ -944,10 +963,12 @@ object TextSecurePreferences {
         return getBooleanPreference(context, ALL_SMS_PREF, true)
     }
 
+    @JvmStatic
     fun isNotificationsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, NOTIFICATION_PREF, true)
     }
 
+    @JvmStatic
     fun getNotificationRingtone(context: Context): Uri {
         var result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString())
         if (result != null && result.startsWith("file:")) {
@@ -956,30 +977,37 @@ object TextSecurePreferences {
         return Uri.parse(result)
     }
 
+    @JvmStatic
     fun removeNotificationRingtone(context: Context) {
         removePreference(context, RINGTONE_PREF)
     }
 
+    @JvmStatic
     fun setNotificationRingtone(context: Context, ringtone: String?) {
         setStringPreference(context, RINGTONE_PREF, ringtone)
     }
 
+    @JvmStatic
     fun setNotificationVibrateEnabled(context: Context, enabled: Boolean) {
         setBooleanPreference(context, VIBRATE_PREF, enabled)
     }
 
+    @JvmStatic
     fun isNotificationVibrateEnabled(context: Context): Boolean {
         return getBooleanPreference(context, VIBRATE_PREF, true)
     }
 
+    @JvmStatic
     fun getNotificationLedColor(context: Context): String? {
         return getStringPreference(context, LED_COLOR_PREF, "blue")
     }
 
+    @JvmStatic
     fun getNotificationLedPattern(context: Context): String? {
         return getStringPreference(context, LED_BLINK_PREF, "500,2000")
     }
 
+    @JvmStatic
     fun getNotificationLedPatternCustom(context: Context): String? {
         return getStringPreference(context, LED_BLINK_PREF_CUSTOM, "500,2000")
     }
@@ -1003,18 +1031,20 @@ object TextSecurePreferences {
         return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false)
     }
 
-    // TODO
-//    fun getMobileMediaDownloadAllowed(context: Context): Set<String> {
-//        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_MOBILE_PREF, R.array.pref_media_download_mobile_data_default)
-//    }
-//
-//    fun getWifiMediaDownloadAllowed(context: Context): Set<String> {
-//        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_WIFI_PREF, R.array.pref_media_download_wifi_default)
-//    }
-//
-//    fun getRoamingMediaDownloadAllowed(context: Context): Set<String> {
-//        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, R.array.pref_media_download_roaming_default)
-//    }
+    @JvmStatic
+    fun getMobileMediaDownloadAllowed(context: Context): Set<String>? {
+        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_MOBILE_PREF, R.array.pref_media_download_mobile_data_default)
+    }
+
+    @JvmStatic
+    fun getWifiMediaDownloadAllowed(context: Context): Set<String>? {
+        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_WIFI_PREF, R.array.pref_media_download_wifi_default)
+    }
+
+    @JvmStatic
+    fun getRoamingMediaDownloadAllowed(context: Context): Set<String>? {
+        return getMediaDownloadAllowed(context, MEDIA_DOWNLOAD_ROAMING_PREF, R.array.pref_media_download_roaming_default)
+    }
 
     private fun getMediaDownloadAllowed(context: Context, key: String, @ArrayRes defaultValuesRes: Int): Set<String>? {
         return getStringSetPreference(context, key, HashSet(Arrays.asList(*context.resources.getStringArray(defaultValuesRes))))
@@ -1056,18 +1086,22 @@ object TextSecurePreferences {
         return getStringPreference(context, LOG_UNENCRYPTED_SECRET, null)
     }
 
+    @JvmStatic
     fun getNotificationChannelVersion(context: Context): Int {
         return getIntegerPreference(context, NOTIFICATION_CHANNEL_VERSION, 1)
     }
 
+    @JvmStatic
     fun setNotificationChannelVersion(context: Context, version: Int) {
         setIntegerPrefrence(context, NOTIFICATION_CHANNEL_VERSION, version)
     }
 
+    @JvmStatic
     fun getNotificationMessagesChannelVersion(context: Context): Int {
         return getIntegerPreference(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, 1)
     }
 
+    @JvmStatic
     fun setNotificationMessagesChannelVersion(context: Context, version: Int) {
         setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
     }

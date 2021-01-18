@@ -4,13 +4,17 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.ActivityManager
 import android.content.Context
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Handler
 import android.os.Looper
 import android.provider.Telephony
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextUtils
+import android.text.style.StyleSpan
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.logging.Log
 import java.io.*
@@ -312,6 +316,15 @@ object Util {
     @JvmStatic
     fun <T> getRandomElement(elements: Array<T>): T {
         return elements[SecureRandom().nextInt(elements.size)]
+    }
+
+    @JvmStatic
+    fun getBoldedString(value: String?): CharSequence {
+        val spanned = SpannableString(value)
+        spanned.setSpan(StyleSpan(Typeface.BOLD), 0,
+                spanned.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        return spanned
     }
 
 }

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.InvalidVersionException;
 import org.session.libsignal.service.api.SignalServiceMessagePipe;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;

@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.preferences.widgets;
+package org.session.libsession.utilities.preferences;
 
 public class NotificationPrivacyPreference {
 

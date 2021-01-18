@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 
 import network.loki.messenger.R;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
 
 public class FailedNotificationBuilder extends AbstractNotificationBuilder {
 

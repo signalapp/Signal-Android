@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.jobs.UpdateApkJob;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
 

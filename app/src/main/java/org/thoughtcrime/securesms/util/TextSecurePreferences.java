@@ -1,38 +1,8 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.hardware.Camera.CameraInfo;
-import android.net.Uri;
-import android.os.Build;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import androidx.annotation.ArrayRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
-import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.backup.BackupProtos;
-import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
-import org.session.libsignal.libsignal.util.Medium;
-
-import java.io.IOException;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
-import network.loki.messenger.R;
-
-import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_BOOLEAN;
-import static org.thoughtcrime.securesms.backup.FullBackupImporter.PREF_PREFIX_TYPE_INT;
+import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
 
 public class TextSecurePreferences {
   // TODO: Remove this file

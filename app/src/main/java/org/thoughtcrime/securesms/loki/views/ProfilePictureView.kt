@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
@@ -80,7 +80,7 @@ class ProfilePictureView : RelativeLayout {
             }
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
-                val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
                 randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
             }
             val pk = randomUsers.getOrNull(0) ?: ""

@@ -11,11 +11,11 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.Recipient.*;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 public abstract class AbstractNotificationBuilder extends NotificationCompat.Builder {
 
