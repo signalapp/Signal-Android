@@ -41,10 +41,10 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.TextSecurePreferences.getBooleanPreference
-import org.thoughtcrime.securesms.util.TextSecurePreferences.setBooleanPreference
-import org.thoughtcrime.securesms.util.Util
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
+import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
+import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
@@ -89,7 +89,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     private val publicKey: String
         get() {
             val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
             return masterPublicKey ?: userPublicKey
         }
 

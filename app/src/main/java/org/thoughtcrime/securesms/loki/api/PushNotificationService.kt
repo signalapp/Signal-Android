@@ -6,7 +6,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.notifications.NotificationChannels
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.internal.util.Base64
@@ -50,7 +50,7 @@ class PushNotificationService : FirebaseMessagingService() {
     override fun onDeletedMessages() {
         org.thoughtcrime.securesms.logging.Log.d("Loki", "Called onDeletedMessages.")
         super.onDeletedMessages()
-        val token = TextSecurePreferences.getFCMToken(this)
+        val token = TextSecurePreferences.getFCMToken(this)!!
         val userPublicKey = TextSecurePreferences.getLocalNumber(this) ?: return
         LokiPushNotificationManager.register(token, userPublicKey, this, true)
     }

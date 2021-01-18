@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.fragment_key_pair_migration_success_bottom_sheet.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 
 class KeyPairMigrationSuccessBottomSheet : BottomSheetDialogFragment() {
 

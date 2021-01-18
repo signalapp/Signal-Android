@@ -25,7 +25,7 @@ import androidx.core.view.inputmethod.InputContentInfoCompat;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 public class ComposeText extends EmojiEditText {
 

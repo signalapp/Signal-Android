@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.contacts.avatars.AvatarHelper;
 import org.session.libsession.utilities.Util;
 
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 

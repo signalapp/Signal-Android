@@ -13,8 +13,8 @@ import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.CloseableLiveData;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.Closeable;
 import java.util.List;

@@ -11,9 +11,6 @@ import com.google.android.mms.pdu_alt.PduPart;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -27,16 +24,20 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.DuplicateMessageException;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.LegacyMessageException;
 import org.session.libsignal.libsignal.NoSessionException;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

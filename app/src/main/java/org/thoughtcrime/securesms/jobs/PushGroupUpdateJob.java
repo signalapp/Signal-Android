@@ -3,18 +3,19 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.GroupUtil;
+
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.session.libsession.messaging.threads.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
@@ -68,7 +69,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source)
-                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
+                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedGroupID(groupId))
                              .build();
   }
 
@@ -80,7 +81,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
     GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedId(groupId, false));
+    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedGroupID(groupId));
     SignalServiceAttachment avatar        = null;
 
     if (record == null) {
@@ -114,7 +115,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedId(groupId, false));
+    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedGroupID(groupId));
     Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
@@ -142,13 +143,9 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<PushGroupUpdateJob> {
     @Override
     public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      try {
-        return new PushGroupUpdateJob(parameters,
-                                      data.getString(KEY_SOURCE),
-                                      GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
+      return new PushGroupUpdateJob(parameters,
+                                    data.getString(KEY_SOURCE),
+                                    GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID).getBytes()));
     }
   }
 }

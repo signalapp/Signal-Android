@@ -12,8 +12,9 @@ import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.views.FakeChatView
 import org.thoughtcrime.securesms.service.KeyCachingService
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+
+import org.session.libsession.utilities.TextSecurePreferences
 
 class LandingActivity : BaseActionBarActivity() {
 

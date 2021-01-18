@@ -15,6 +15,7 @@ object GroupUtil {
     const val MMS_GROUP_PREFIX = "__signal_mms_group__!"
     const val OPEN_GROUP_PREFIX = "__loki_public_chat_group__!"
 
+    @JvmStatic
     fun getEncodedOpenGroupID(groupID: String): String {
         return OPEN_GROUP_PREFIX + groupID
     }
@@ -53,6 +54,7 @@ object GroupUtil {
         return groupID.toString()
     }
 
+    @JvmStatic
     fun getDecodedGroupID(groupID: ByteArray): String {
         val encodedGroupID = groupID.toString()
         if (encodedGroupID.split("!").count() > 1) {
@@ -61,6 +63,7 @@ object GroupUtil {
         return encodedGroupID.split("!")[0]
     }
 
+    @JvmStatic
     fun getDecodedGroupIDAsData(groupID: ByteArray): ByteArray {
         return getDecodedGroupID(groupID).toByteArray()
     }
@@ -69,6 +72,7 @@ object GroupUtil {
         return groupId.startsWith(CLOSED_GROUP_PREFIX) || groupId.startsWith(MMS_GROUP_PREFIX) || groupId.startsWith(OPEN_GROUP_PREFIX)
     }
 
+    @JvmStatic
     fun isMmsGroup(groupId: String): Boolean {
         return groupId.startsWith(MMS_GROUP_PREFIX)
     }

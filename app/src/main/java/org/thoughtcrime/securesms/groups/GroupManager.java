@@ -12,18 +12,19 @@ import com.google.protobuf.ByteString;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.service.api.util.InvalidNumberException;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
@@ -38,12 +39,7 @@ import java.util.Set;
 public class GroupManager {
 
   public static long getOpenGroupThreadID(String id, @NonNull  Context context) {
-    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
-    return getThreadIDFromGroupID(groupID, context);
-  }
-
-  public static long getRSSFeedThreadID(String id, @NonNull  Context context) {
-    final String groupID = GroupUtil.getEncodedRSSFeedId(id.getBytes());
+    final String groupID = GroupUtil.getEncodedOpenGroupID(id);
     return getThreadIDFromGroupID(groupID, context);
   }
 
@@ -60,7 +56,7 @@ public class GroupManager {
                                                        @NonNull  Set<Recipient> admins)
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    String id = GroupUtil.getEncodedId(database.allocateGroupId(), mms);
+    String id = GroupUtil.getEncodedGroupID(database.allocateGroupId());
     return createGroup(id, context, members, avatar, name, mms, admins);
   }
 
@@ -74,7 +70,7 @@ public class GroupManager {
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
-    final String        groupId         = GroupUtil.getEncodedId(id.getBytes(), mms);
+    final String        groupId         = GroupUtil.getEncodedGroupID(id.getBytes());
     final Recipient     groupRecipient  = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
@@ -101,16 +97,7 @@ public class GroupManager {
                                                            @Nullable Bitmap  avatar,
                                                            @Nullable String  name)
   {
-    final String groupID = GroupUtil.getEncodedOpenGroupId(id.getBytes());
-    return createLokiGroup(groupID, context, avatar, name);
-  }
-
-  public static @NonNull GroupActionResult createRSSFeed(@NonNull  String  id,
-                                                         @NonNull  Context context,
-                                                         @Nullable Bitmap  avatar,
-                                                         @Nullable String  name)
-  {
-    final String groupID = GroupUtil.getEncodedRSSFeedId(id.getBytes());
+    final String groupID = GroupUtil.getEncodedOpenGroupID(id);
     return createLokiGroup(groupID, context, avatar, name);
   }
 
@@ -188,41 +175,37 @@ public class GroupManager {
                                                    @Nullable byte[]       avatar,
                                                    @NonNull  Set<Address> admins)
   {
-    try {
-      Attachment avatarAttachment = null;
-      Address    groupAddress     = Address.Companion.fromSerialized(groupId);
-      Recipient  groupRecipient   = Recipient.from(context, groupAddress, false);
+    Attachment avatarAttachment = null;
+    Address    groupAddress     = Address.Companion.fromSerialized(groupId);
+    Recipient  groupRecipient   = Recipient.from(context, groupAddress, false);
 
-      List<String> numbers = new LinkedList<>();
-      for (Address member : members) {
-        numbers.add(member.serialize());
-      }
-
-      List<String> adminNumbers = new LinkedList<>();
-      for (Address admin : admins) {
-        adminNumbers.add(admin.serialize());
-      }
-
-      GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
-                                                             .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupId)))
-                                                             .setType(GroupContext.Type.UPDATE)
-                                                             .addAllMembers(numbers)
-                                                             .addAllAdmins(adminNumbers);
-      if (groupName != null) groupContextBuilder.setName(groupName);
-      GroupContext groupContext = groupContextBuilder.build();
-
-      if (avatar != null) {
-        Uri avatarUri = BlobProvider.getInstance().forData(avatar).createForSingleUseInMemory();
-        avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null, null);
-      }
-
-      OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList());
-      long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
-
-      return new GroupActionResult(groupRecipient, threadId);
-    } catch (IOException e) {
-      throw new AssertionError(e);
+    List<String> numbers = new LinkedList<>();
+    for (Address member : members) {
+      numbers.add(member.serialize());
     }
+
+    List<String> adminNumbers = new LinkedList<>();
+    for (Address admin : admins) {
+      adminNumbers.add(admin.serialize());
+    }
+
+    GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
+                                                           .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupId.getBytes())))
+                                                           .setType(GroupContext.Type.UPDATE)
+                                                           .addAllMembers(numbers)
+                                                           .addAllAdmins(adminNumbers);
+    if (groupName != null) groupContextBuilder.setName(groupName);
+    GroupContext groupContext = groupContextBuilder.build();
+
+    if (avatar != null) {
+      Uri avatarUri = BlobProvider.getInstance().forData(avatar).createForSingleUseInMemory();
+      avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null, null);
+    }
+
+    OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList());
+    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null);
+
+    return new GroupActionResult(groupRecipient, threadId);
   }
 
   private static Set<Address> getMemberAddresses(Collection<Recipient> recipients) {

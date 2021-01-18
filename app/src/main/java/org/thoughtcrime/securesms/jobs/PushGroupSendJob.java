@@ -8,11 +8,14 @@ import androidx.annotation.WorkerThread;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.GroupUtil;
+
+import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -28,10 +31,8 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
@@ -261,7 +262,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       GroupContext              groupContext     = groupMessage.getGroupContext();
       SignalServiceAttachment   avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupType, groupContext.getName(), groupContext.getMembersList(), avatar, groupContext.getAdminsList());
+      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedGroupIDAsData(groupId.getBytes()), groupType, groupContext.getName(), groupContext.getMembersList(), avatar, groupContext.getAdminsList());
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())
@@ -270,7 +271,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupDataMessage);
     } else {
-      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId), groupType);
+      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupId.getBytes()), groupType);
       SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withTimestamp(message.getSentTimeMillis())
                                                                       .asGroupMessage(group)

@@ -19,13 +19,10 @@ import com.goterl.lazycode.lazysodium.utils.KeyPair
 import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.session.libsession.messaging.threads.Address
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey

@@ -97,7 +97,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SearchUtil;
@@ -107,6 +106,7 @@ import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPrevie
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.views.Stub;
 
@@ -900,7 +900,7 @@ public class ConversationItem extends LinearLayout
       // Show custom display names for group chats
       String displayName = recipient.toShortString();
       try {
-        String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
+        String serverId = GroupUtil.getDecodedGroupID(conversationRecipient.getAddress().serialize().getBytes());
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
         if (senderDisplayName != null) { displayName = senderDisplayName; }
       } catch (Exception e) {

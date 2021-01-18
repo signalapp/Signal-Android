@@ -25,8 +25,8 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.mms.LegacyMmsConnection.Apn;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.File;

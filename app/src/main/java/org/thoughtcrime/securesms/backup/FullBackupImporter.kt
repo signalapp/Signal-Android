@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.util.BackupUtil
 
+import org.session.libsession.messaging.contacts.avatars.AvatarHelper
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.Conversions

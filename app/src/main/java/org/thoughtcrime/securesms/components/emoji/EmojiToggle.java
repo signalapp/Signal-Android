@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import network.loki.messenger.R;
 

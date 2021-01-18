@@ -24,13 +24,14 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.util.ByteBufferUtil;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+
+import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;

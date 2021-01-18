@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PNModeView
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 
 class PNModeActivity : BaseActionBarActivity() {
     private var selectedOptionView: PNModeView? = null

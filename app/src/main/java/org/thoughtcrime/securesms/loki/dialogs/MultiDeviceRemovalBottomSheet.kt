@@ -16,7 +16,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.fragment_multi_device_removal_bottom_sheet.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import java.text.SimpleDateFormat
 import java.util.*
 

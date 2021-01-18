@@ -10,7 +10,11 @@ import com.annimon.stream.function.Predicate
 import com.google.protobuf.ByteString
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
+
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.contacts.avatars.AvatarHelper
+import org.session.libsession.utilities.Conversions
+
 import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
@@ -20,10 +24,7 @@ import org.thoughtcrime.securesms.database.*
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase
-import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.util.BackupUtil
-import org.thoughtcrime.securesms.util.Conversions
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.session.libsignal.libsignal.kdf.HKDFv3
 import org.session.libsignal.libsignal.util.ByteUtil
@@ -100,7 +101,7 @@ object FullBackupExporter {
                     EventBus.getDefault().post(BackupEvent.createProgress(++count))
                     outputStream.writePreferenceEntry(preference)
                 }
-                for (preference in TextSecurePreferences.getBackupRecords(context)) {
+                for (preference in BackupPreferences.getBackupRecords(context)) {
                     EventBus.getDefault().post(BackupEvent.createProgress(++count))
                     outputStream.writePreferenceEntry(preference)
                 }

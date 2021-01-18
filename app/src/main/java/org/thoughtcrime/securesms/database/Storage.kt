@@ -18,6 +18,7 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
@@ -33,7 +34,6 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.thoughtcrime.securesms.util.GroupUtil
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -250,12 +250,12 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type, name: String, members: Collection<String>, admins: Collection<String>) {
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupID)))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
                 .setType(type0)
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedId(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
@@ -265,7 +265,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String, members: Collection<String>, admins: Collection<String>, threadID: Long) {
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupID)))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
                 .setType(type)
                 .setName(name)
                 .addAllMembers(members)

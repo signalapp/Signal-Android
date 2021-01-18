@@ -19,11 +19,11 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.GroupDescription;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
 

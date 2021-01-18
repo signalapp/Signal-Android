@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -38,6 +37,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

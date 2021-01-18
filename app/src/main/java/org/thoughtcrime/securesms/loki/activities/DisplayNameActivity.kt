@@ -12,7 +12,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.crypto.ProfileCipher
 
 class DisplayNameActivity : BaseActionBarActivity() {

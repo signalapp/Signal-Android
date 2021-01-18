@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.session.libsession.utilities.successBackground
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceContent
@@ -40,7 +40,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
     public var isCaughtUp = false
 
     // region Convenience
-    private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+    private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)!!
     private var displayNameUpdatees = setOf<String>()
 
     private val api: PublicChatAPI

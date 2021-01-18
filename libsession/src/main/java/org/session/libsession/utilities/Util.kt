@@ -1,8 +1,12 @@
 package org.session.libsession.utilities
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.app.ActivityManager
 import android.content.Context
 import android.net.Uri
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Handler
 import android.os.Looper
 import android.provider.Telephony
@@ -13,6 +17,7 @@ import java.io.*
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
 import java.util.*
+import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
@@ -61,6 +66,27 @@ object Util {
     @JvmStatic
     fun runOnMainDelayed(runnable: Runnable, delayMillis: Long) {
         getHandler()?.postDelayed(runnable, delayMillis)
+    }
+
+    @JvmStatic
+    fun runOnMainSync(runnable: Runnable) {
+        if (isMainThread()) {
+            runnable.run()
+        } else {
+            val sync = CountDownLatch(1)
+            runOnMain(Runnable {
+                try {
+                    runnable.run()
+                } finally {
+                    sync.countDown()
+                }
+            })
+            try {
+                sync.await()
+            } catch (ie: InterruptedException) {
+                throw java.lang.AssertionError(ie)
+            }
+        }
     }
 
     @JvmStatic
@@ -248,6 +274,7 @@ object Util {
         return Base64.encodeBytes(secret)
     }
 
+    @JvmStatic
     fun getSecretBytes(size: Int): ByteArray {
         val secret = ByteArray(size)
         getSecureRandom().nextBytes(secret)
@@ -272,6 +299,19 @@ object Util {
     @JvmStatic
     fun isEmpty(collection: Collection<*>?): Boolean {
         return collection == null || collection.isEmpty()
+    }
+
+    @JvmStatic
+    @TargetApi(VERSION_CODES.KITKAT)
+    fun isLowMemory(context: Context): Boolean {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        return VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice ||
+                activityManager.largeMemoryClass <= 64
+    }
+
+    @JvmStatic
+    fun <T> getRandomElement(elements: Array<T>): T {
+        return elements[SecureRandom().nextInt(elements.size)]
     }
 
 }

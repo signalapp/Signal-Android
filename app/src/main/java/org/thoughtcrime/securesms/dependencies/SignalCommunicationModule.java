@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import dagger.Module;
 import dagger.Provides;

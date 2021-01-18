@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.insertOrUpdate
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
 
 class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiUserDatabaseProtocol {

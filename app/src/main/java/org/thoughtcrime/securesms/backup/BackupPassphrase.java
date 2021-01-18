@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.KeyStoreHelper;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 /**
  * Allows the getting and setting of the backup passphrase, which is stored encrypted on API >= 23.

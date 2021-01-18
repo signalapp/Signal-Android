@@ -56,7 +56,7 @@ object TextSecurePreferences {
     const val MMS_USER_AGENT = "pref_mms_user_agent"
     private const val MMS_CUSTOM_USER_AGENT = "pref_custom_mms_user_agent"
     private const val THREAD_TRIM_ENABLED = "pref_trim_threads"
-    private const val LOCAL_NUMBER_PREF = "pref_local_number"
+    const val LOCAL_NUMBER_PREF = "pref_local_number"
     private const val VERIFYING_STATE_PREF = "pref_verifying"
     const val REGISTERED_GCM_PREF = "pref_gcm_registered"
     private const val GCM_PASSWORD_PREF = "pref_gcm_password"
@@ -76,7 +76,7 @@ object TextSecurePreferences {
     private const val SHOW_INVITE_REMINDER_PREF = "pref_show_invite_reminder"
     const val MESSAGE_BODY_TEXT_SIZE_PREF = "pref_message_body_text_size"
 
-    private const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
+    const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
     private const val SIGNED_PREKEY_REGISTERED_PREF = "pref_signed_prekey_registered"
     private const val WIFI_SMS_PREF = "pref_wifi_sms"
 
@@ -103,10 +103,10 @@ object TextSecurePreferences {
     private const val MULTI_DEVICE_PROVISIONED_PREF = "pref_multi_device"
     const val DIRECT_CAPTURE_CAMERA_ID = "pref_direct_capture_camera_id"
     private const val ALWAYS_RELAY_CALLS_PREF = "pref_turn_only"
-    private const val PROFILE_KEY_PREF = "pref_profile_key"
-    private const val PROFILE_NAME_PREF = "pref_profile_name"
-    private const val PROFILE_AVATAR_ID_PREF = "pref_profile_avatar_id"
-    private const val PROFILE_AVATAR_URL_PREF = "pref_profile_avatar_url"
+    const val PROFILE_KEY_PREF = "pref_profile_key"
+    const val PROFILE_NAME_PREF = "pref_profile_name"
+    const val PROFILE_AVATAR_ID_PREF = "pref_profile_avatar_id"
+    const val PROFILE_AVATAR_URL_PREF = "pref_profile_avatar_url"
     const val READ_RECEIPTS_PREF = "pref_read_receipts"
     const val INCOGNITO_KEYBORAD_PREF = "pref_incognito_keyboard"
     private const val UNAUTHORIZED_RECEIVED = "pref_unauthorized_received"
@@ -160,7 +160,7 @@ object TextSecurePreferences {
     private const val MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode"
 
     // region FCM
-    private const val IS_USING_FCM = "pref_is_using_fcm"
+    const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
     private const val HAS_SEEN_PN_MODE_SHEET = "pref_has_seen_pn_mode_sheet"
@@ -212,18 +212,22 @@ object TextSecurePreferences {
         setLongPreference(context, SCREEN_LOCK_TIMEOUT, value)
     }
 
+    @JvmStatic
     fun setBackupPassphrase(context: Context, passphrase: String?) {
         setStringPreference(context, BACKUP_PASSPHRASE, passphrase)
     }
 
+    @JvmStatic
     fun getBackupPassphrase(context: Context): String? {
         return getStringPreference(context, BACKUP_PASSPHRASE, null)
     }
 
+    @JvmStatic
     fun setEncryptedBackupPassphrase(context: Context, encryptedPassphrase: String?) {
         setStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, encryptedPassphrase)
     }
 
+    @JvmStatic
     fun getEncryptedBackupPassphrase(context: Context): String? {
         return getStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, null)
     }
@@ -287,34 +291,42 @@ object TextSecurePreferences {
         return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false)
     }
 
+    @JvmStatic
     fun setAttachmentEncryptedSecret(context: Context, secret: String) {
         setStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, secret)
     }
 
+    @JvmStatic
     fun setAttachmentUnencryptedSecret(context: Context, secret: String?) {
         setStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, secret)
     }
 
+    @JvmStatic
     fun getAttachmentEncryptedSecret(context: Context): String? {
         return getStringPreference(context, ATTACHMENT_ENCRYPTED_SECRET, null)
     }
 
+    @JvmStatic
     fun getAttachmentUnencryptedSecret(context: Context): String? {
         return getStringPreference(context, ATTACHMENT_UNENCRYPTED_SECRET, null)
     }
 
+    @JvmStatic
     fun setDatabaseEncryptedSecret(context: Context, secret: String) {
         setStringPreference(context, DATABASE_ENCRYPTED_SECRET, secret)
     }
 
+    @JvmStatic
     fun setDatabaseUnencryptedSecret(context: Context, secret: String?) {
         setStringPreference(context, DATABASE_UNENCRYPTED_SECRET, secret)
     }
 
+    @JvmStatic
     fun getDatabaseUnencryptedSecret(context: Context): String? {
         return getStringPreference(context, DATABASE_UNENCRYPTED_SECRET, null)
     }
 
+    @JvmStatic
     fun getDatabaseEncryptedSecret(context: Context): String? {
         return getStringPreference(context, DATABASE_ENCRYPTED_SECRET, null)
     }
@@ -327,6 +339,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, false)
     }
 
+    @JvmStatic
     fun setUnauthorizedReceived(context: Context, value: Boolean) {
         setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value)
     }
@@ -335,6 +348,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false)
     }
 
+    @JvmStatic
     fun isIncognitoKeyboardEnabled(context: Context): Boolean {
         return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, true)
     }
@@ -358,6 +372,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, TYPING_INDICATORS, enabled)
     }
 
+    @JvmStatic
     fun isLinkPreviewsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, LINK_PREVIEWS, false)
     }
@@ -371,6 +386,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, GIF_GRID_LAYOUT, false)
     }
 
+    @JvmStatic
     fun setIsGifSearchInGridLayout(context: Context, isGrid: Boolean) {
         setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid)
     }
@@ -427,6 +443,7 @@ object TextSecurePreferences {
         return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false)
     }
 
+    @JvmStatic
     fun isFcmDisabled(context: Context): Boolean {
         return getBooleanPreference(context, GCM_DISABLED_PREF, false)
     }
@@ -443,10 +460,12 @@ object TextSecurePreferences {
         setBooleanPreference(context, WEBRTC_CALLING_PREF, enabled)
     }
 
+    @JvmStatic
     fun setDirectCaptureCameraId(context: Context, value: Int) {
         setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value)
     }
 
+    @JvmStatic
     fun getDirectCaptureCameraId(context: Context): Int {
         return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT)
     }
@@ -455,6 +474,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value)
     }
 
+    @JvmStatic
     fun isMultiDevice(context: Context): Boolean {
         return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false)
     }
@@ -566,6 +586,7 @@ object TextSecurePreferences {
         return null
     }
 
+    @JvmStatic
     fun isUniversalUnidentifiedAccess(context: Context): Boolean {
         return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false)
     }
@@ -642,6 +663,7 @@ object TextSecurePreferences {
         removePreference(context, LOCAL_NUMBER_PREF)
     }
 
+    @JvmStatic
     fun getPushServerPassword(context: Context): String? {
         return getStringPreference(context, GCM_PASSWORD_PREF, null)
     }
@@ -650,6 +672,7 @@ object TextSecurePreferences {
         setStringPreference(context, GCM_PASSWORD_PREF, password)
     }
 
+    @JvmStatic
     fun getSignalingKey(context: Context): String? {
         return getStringPreference(context, SIGNALING_KEY_PREF, null)
     }
@@ -671,6 +694,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, DISABLE_PASSPHRASE_PREF, disabled)
     }
 
+    @JvmStatic
     fun getUseCustomMmsc(context: Context): Boolean {
         val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
         return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy)
@@ -680,6 +704,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, value)
     }
 
+    @JvmStatic
     fun getMmscUrl(context: Context): String? {
         return getStringPreference(context, MMSC_HOST_PREF, "")
     }
@@ -688,6 +713,7 @@ object TextSecurePreferences {
         setStringPreference(context, MMSC_HOST_PREF, mmsc)
     }
 
+    @JvmStatic
     fun getUseCustomMmscProxy(context: Context): Boolean {
         val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
         return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy)
@@ -697,6 +723,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, value)
     }
 
+    @JvmStatic
     fun getMmscProxy(context: Context): String? {
         return getStringPreference(context, MMSC_PROXY_HOST_PREF, "")
     }
@@ -705,6 +732,7 @@ object TextSecurePreferences {
         setStringPreference(context, MMSC_PROXY_HOST_PREF, value)
     }
 
+    @JvmStatic
     fun getUseCustomMmscProxyPort(context: Context): Boolean {
         val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
         return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy)
@@ -714,6 +742,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, value)
     }
 
+    @JvmStatic
     fun getMmscProxyPort(context: Context): String? {
         return getStringPreference(context, MMSC_PROXY_PORT_PREF, "")
     }
@@ -722,6 +751,7 @@ object TextSecurePreferences {
         setStringPreference(context, MMSC_PROXY_PORT_PREF, value)
     }
 
+    @JvmStatic
     fun getUseCustomMmscUsername(context: Context): Boolean {
         val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
         return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy)
@@ -731,6 +761,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, value)
     }
 
+    @JvmStatic
     fun getMmscUsername(context: Context): String? {
         return getStringPreference(context, MMSC_USERNAME_PREF, "")
     }
@@ -739,6 +770,7 @@ object TextSecurePreferences {
         setStringPreference(context, MMSC_USERNAME_PREF, value)
     }
 
+    @JvmStatic
     fun getUseCustomMmscPassword(context: Context): Boolean {
         val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
         return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy)
@@ -748,6 +780,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, value)
     }
 
+    @JvmStatic
     fun getMmscPassword(context: Context): String? {
         return getStringPreference(context, MMSC_PASSWORD_PREF, "")
     }
@@ -822,6 +855,7 @@ object TextSecurePreferences {
         setBooleanPreference(context, VERIFYING_STATE_PREF, verifying)
     }
 
+    @JvmStatic
     fun isPushRegistered(context: Context): Boolean {
         return getBooleanPreference(context, REGISTERED_GCM_PREF, false)
     }
@@ -1048,35 +1082,43 @@ object TextSecurePreferences {
         setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull)
     }
 
+    @JvmStatic
     fun hasSeenStickerIntroTooltip(context: Context): Boolean {
         return getBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, false)
     }
 
+    @JvmStatic
     fun setHasSeenStickerIntroTooltip(context: Context, seenStickerTooltip: Boolean) {
         setBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, seenStickerTooltip)
     }
 
+    @JvmStatic
     fun setMediaKeyboardMode(context: Context, mode: MediaKeyboardMode) {
         setStringPreference(context, MEDIA_KEYBOARD_MODE, mode.name)
     }
 
+    @JvmStatic
     fun getMediaKeyboardMode(context: Context): MediaKeyboardMode {
         val name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name)!!
         return MediaKeyboardMode.valueOf(name)
     }
 
+    @JvmStatic
     fun setBooleanPreference(context: Context, key: String?, value: Boolean) {
         getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply()
     }
 
+    @JvmStatic
     fun getBooleanPreference(context: Context, key: String?, defaultValue: Boolean): Boolean {
         return getDefaultSharedPreferences(context).getBoolean(key, defaultValue)
     }
 
+    @JvmStatic
     fun setStringPreference(context: Context, key: String?, value: String?) {
         getDefaultSharedPreferences(context).edit().putString(key, value).apply()
     }
 
+    @JvmStatic
     fun getStringPreference(context: Context, key: String, defaultValue: String?): String? {
         return getDefaultSharedPreferences(context).getString(key, defaultValue)
     }
@@ -1207,10 +1249,12 @@ object TextSecurePreferences {
         setLongPreference(context, "last_profile_picture_upload", newValue)
     }
 
+    @JvmStatic
     fun hasSeenGIFMetaDataWarning(context: Context): Boolean {
         return getBooleanPreference(context, "has_seen_gif_metadata_warning", false)
     }
 
+    @JvmStatic
     fun setHasSeenGIFMetaDataWarning(context: Context) {
         setBooleanPreference(context, "has_seen_gif_metadata_warning", true)
     }
@@ -1262,94 +1306,7 @@ object TextSecurePreferences {
     }
 
     // endregion
-    /* TODO
-    // region Backup related
-    fun getBackupRecords(context: Context): List<SharedPreference> {
-        val preferences = getDefaultSharedPreferences(context)
-        val prefsFileName: String
-        prefsFileName = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            getDefaultSharedPreferencesName(context)
-        } else {
-            context.packageName + "_preferences"
-        }
-        val prefList: LinkedList<SharedPreference> = LinkedList<SharedPreference>()
-        addBackupEntryInt(prefList, preferences, prefsFileName, LOCAL_REGISTRATION_ID_PREF)
-        addBackupEntryString(prefList, preferences, prefsFileName, LOCAL_NUMBER_PREF)
-        addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_NAME_PREF)
-        addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_AVATAR_URL_PREF)
-        addBackupEntryInt(prefList, preferences, prefsFileName, PROFILE_AVATAR_ID_PREF)
-        addBackupEntryString(prefList, preferences, prefsFileName, PROFILE_KEY_PREF)
-        addBackupEntryBoolean(prefList, preferences, prefsFileName, IS_USING_FCM)
-        return prefList
-    }
 
-    private fun addBackupEntryString(
-            outPrefList: MutableList<SharedPreference>,
-            prefs: SharedPreferences,
-            prefFileName: String,
-            prefKey: String,
-    ) {
-        val value = prefs.getString(prefKey, null)
-        if (value == null) {
-            logBackupEntry(prefKey, false)
-            return
-        }
-        outPrefList.add(BackupProtos.SharedPreference.newBuilder()
-                .setFile(prefFileName)
-                .setKey(prefKey)
-                .setValue(value)
-                .build())
-        logBackupEntry(prefKey, true)
-    }
-
-    private fun addBackupEntryInt(
-            outPrefList: MutableList<SharedPreference>,
-            prefs: SharedPreferences,
-            prefFileName: String,
-            prefKey: String,
-    ) {
-        val value = prefs.getInt(prefKey, -1)
-        if (value == -1) {
-            logBackupEntry(prefKey, false)
-            return
-        }
-        outPrefList.add(BackupProtos.SharedPreference.newBuilder()
-                .setFile(prefFileName)
-                .setKey(PREF_PREFIX_TYPE_INT + prefKey) // The prefix denotes the type of the preference.
-                .setValue(value.toString())
-                .build())
-        logBackupEntry(prefKey, true)
-    }
-
-    private fun addBackupEntryBoolean(
-            outPrefList: MutableList<SharedPreference>,
-            prefs: SharedPreferences,
-            prefFileName: String,
-            prefKey: String,
-    ) {
-        if (!prefs.contains(prefKey)) {
-            logBackupEntry(prefKey, false)
-            return
-        }
-        outPrefList.add(BackupProtos.SharedPreference.newBuilder()
-                .setFile(prefFileName)
-                .setKey(PREF_PREFIX_TYPE_BOOLEAN + prefKey) // The prefix denotes the type of the preference.
-                .setValue(prefs.getBoolean(prefKey, false).toString())
-                .build())
-        logBackupEntry(prefKey, true)
-    }
-
-    private fun logBackupEntry(prefName: String, wasIncluded: Boolean) {
-        val sb = StringBuilder()
-        sb.append("Backup preference ")
-        sb.append(if (wasIncluded) "+ " else "- ")
-        sb.append('\"').append(prefName).append("\" ")
-        if (!wasIncluded) {
-            sb.append("(is empty and not included)")
-        }
-        Log.d(TAG, sb.toString())
-    } // endregion
-     */
 
     // NEVER rename these -- they're persisted by name
     enum class MediaKeyboardMode {

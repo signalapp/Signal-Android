@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 
 public class EmojiEditText extends AppCompatEditText {

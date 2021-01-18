@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.CustomDefaultPreference.CustomDefaultPreferenceDialogFragmentCompat.CustomPreferenceValidator;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.net.URI;
 import java.net.URISyntaxException;

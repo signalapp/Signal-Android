@@ -10,8 +10,8 @@ import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.BitmapUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.api.opengroups.PublicChatInfo
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import kotlin.jvm.Throws
