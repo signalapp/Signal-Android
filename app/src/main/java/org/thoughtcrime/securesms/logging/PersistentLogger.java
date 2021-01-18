@@ -5,8 +5,9 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+
+import org.session.libsession.utilities.concurrent.ListenableFuture;
+import org.session.libsession.utilities.concurrent.SettableFuture;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

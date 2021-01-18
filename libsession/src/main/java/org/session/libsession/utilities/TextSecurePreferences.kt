@@ -963,6 +963,7 @@ object TextSecurePreferences {
         return getStringPreference(context, THREAD_TRIM_LENGTH, "500")!!.toInt()
     }
 
+    @JvmStatic
     fun isSystemEmojiPreferred(context: Context): Boolean {
         return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false)
     }

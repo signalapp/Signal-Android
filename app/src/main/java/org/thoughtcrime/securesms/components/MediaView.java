@@ -15,8 +15,9 @@ import android.widget.FrameLayout;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.video.VideoPlayer;
+
+import org.session.libsession.utilities.views.Stub;
 
 import java.io.IOException;
 

@@ -11,10 +11,11 @@ import android.util.Pair;
 
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
+
 import org.session.libsession.utilities.ThreadUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.ListenableFuture;
+import org.session.libsession.utilities.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;

@@ -269,4 +269,9 @@ object Util {
         return ""
     }
 
+    @JvmStatic
+    fun isEmpty(collection: Collection<*>?): Boolean {
+        return collection == null || collection.isEmpty()
+    }
+
 }

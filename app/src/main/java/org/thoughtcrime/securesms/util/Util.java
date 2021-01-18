@@ -40,6 +40,9 @@ import android.text.style.StyleSpan;
 
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 
+import org.session.libsession.utilities.Base64;
+import org.session.libsession.utilities.LinkedBlockingLifoQueue;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.logging.Log;
