@@ -143,6 +143,9 @@ public class CommunicationActions {
     try {
       Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
       context.startActivity(intent);
+      Bundle b = new Bundle();
+      b.putBoolean("new_window", true); //sets new window
+      intent.putExtras(b);
     } catch (ActivityNotFoundException e) {
       Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
     }
