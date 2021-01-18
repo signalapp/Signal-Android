@@ -87,9 +87,6 @@ dependencyVerification {
         ['androidx.interpolator:interpolator:1.0.0',
          '33193135a64fe21fa2c35eec6688f1a76e512606c0fc83dc1b689e37add7732a'],
 
-        ['androidx.legacy:legacy-preference-v14:1.0.0',
-         'd6d11913e56b8f2d14fd560bd1ad6d7fd5624a15dd4ec073b2d9188205f86280'],
-
         ['androidx.legacy:legacy-support-core-ui:1.0.0',
          '0d1260c6e7e6a337f875df71b516931e703f716e90889817cd3a20fa5ac3d947'],
 
@@ -105,14 +102,14 @@ dependencyVerification {
         ['androidx.lifecycle:lifecycle-common-java8:2.1.0',
          'a1ec63c1bb973443cb731d78ec336c5e20e7ee35c89cbb32d36f92c55bb02542'],
 
-        ['androidx.lifecycle:lifecycle-common:2.2.0-alpha05',
+        ['androidx.lifecycle:lifecycle-common:2.2.0',
          '63898dabf7cfe5ec5d7ed8b8c2564c1427be876e1496ead95c2703cf59d3734b'],
 
         ['androidx.lifecycle:lifecycle-extensions:2.1.0',
          'bd53c64b038585215b4959c1a388437a3ad525608a31c58e4283c3e371727d4d'],
 
-        ['androidx.lifecycle:lifecycle-livedata-core:2.2.0-alpha05',
-         '6df2bcbf3be50a5fa29e9aa09d39437f2d61d17c2c46ef618d65bbac4a4a99fc'],
+        ['androidx.lifecycle:lifecycle-livedata-core:2.2.0',
+         '556c1f3af90aa9d7d0d330565adbf6da71b2429148bac91e07c485f4f9abf614'],
 
         ['androidx.lifecycle:lifecycle-livedata:2.1.0',
          '242e446bed3db36f0df0aab0cb7f91060bd2dab7adcad1117adf54e724cd1d26'],
@@ -126,11 +123,11 @@ dependencyVerification {
         ['androidx.lifecycle:lifecycle-service:2.1.0',
          '23516745f34f16ff7850bb1eadd55cf193dd789cba428de4bca120433e3bfd69'],
 
-        ['androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha05',
-         'f503b53f50c4e6c1f9a3d698c4733df6e7a44049fe477ad0b85cc2f460401fbc'],
+        ['androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0',
+         'f4cceafbf86acfc7f3ba6a61d6dc6842a6738c1274610767d3ab8f8a114cba97'],
 
-        ['androidx.lifecycle:lifecycle-viewmodel:2.2.0-alpha05',
-         '7725715491963440ee483e46526cd4f83af1c758e072e97b3eab2115c6f4db35'],
+        ['androidx.lifecycle:lifecycle-viewmodel:2.2.0',
+         '967efab24d6c49dd414a8c0ac4a1cd09b018f0b8bb43b739ad360c4158ebde27'],
 
         ['androidx.loader:loader:1.0.0',
          '11f735cb3b55c458d470bed9e25254375b518b4b1bad6926783a7026db0f5025'],
@@ -237,14 +234,14 @@ dependencyVerification {
         ['com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2',
          '8dc6a29a5a8db7b2ad5a9a7fda1dc9ae0893f4c8f0545732b2c63854ea693e8e'],
 
-        ['com.google.android.datatransport:transport-api:2.2.0',
-         '576514f8b75d8ae32897f1b9b031f88b00465bf6e0996e227d09af688195f71e'],
+        ['com.google.android.datatransport:transport-api:2.2.1',
+         'e62f73ba1c7f5d15f5d86d8e9a298c42ccd0648e7ce60b9e312f2ecd123b5ed0'],
 
-        ['com.google.android.datatransport:transport-backend-cct:2.2.0',
-         '33abba2b7749479ae397176ae482b1807010b2bb331d61264bbdcc799eb398cd'],
+        ['com.google.android.datatransport:transport-backend-cct:2.3.3',
+         'b22a14d560a590dc875e902424b29a13a02d1faf297b7c39a9007967ffadccbd'],
 
-        ['com.google.android.datatransport:transport-runtime:2.2.0',
-         'e72912014b67151b689a7e820d3f1edf12fe2af5fbc308ab196ac392436ab771'],
+        ['com.google.android.datatransport:transport-runtime:2.2.5',
+         'a00159158918ae582c2c859df1f43af9ab322346a293ebab5f65f0e5e4bdc865'],
 
         ['com.google.android.exoplayer:exoplayer-core:2.9.1',
          'b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0'],
@@ -255,14 +252,14 @@ dependencyVerification {
         ['com.google.android.exoplayer:extension-mediasession:2.9.1',
          'a7dff433b41b714c6584d925f1438ca890eaa16d66a47c3fb9ce88b39dcf3d52'],
 
-        ['com.google.android.gms:play-services-auth-api-phone:16.0.0',
-         '19365818b9ceb048ef48db12b5ffadd5eb86dbeb2c7c7b823bfdd89c665f42e5'],
+        ['com.google.android.gms:play-services-auth-api-phone:17.0.0',
+         'e13f76de5abf796342c7baea802abb5e46c1a383de1b7edf006aed0f5f28db8e'],
 
         ['com.google.android.gms:play-services-auth-base:17.0.0',
          'c494d23d5cdc7e4c33721877592868d3dc16085cab535c3f589c03052524f737'],
 
-        ['com.google.android.gms:play-services-auth:16.0.1',
-         'aec9e1c584d442cb9f59481a50b2c66dc191872607c04d97ecb82dd0eb5149ec'],
+        ['com.google.android.gms:play-services-auth:17.0.0',
+         'd49edca886336fde63bc4e5c8959ce62657c1df9ce52e204eb6f93b5a2d6031e'],
 
         ['com.google.android.gms:play-services-base:17.0.0',
          'dd0980edf729e0d346e2b58e70801dc237c1aed0c7ab274fa3f1c8c8efc64cc7'],
@@ -273,11 +270,14 @@ dependencyVerification {
         ['com.google.android.gms:play-services-clearcut:17.0.0',
          'cce72073c269c2b4cff301304751f2faa2cd1b0344fef581a59da63665f9a4b4'],
 
+        ['com.google.android.gms:play-services-cloud-messaging:16.0.0',
+         '3a5000df3d6b91f9b8b681b29331b4680d30c140f693b1c5d2969755b6fc4cf9'],
+
         ['com.google.android.gms:play-services-flags:17.0.0',
          '746e66b850c5d2b3a0c73871d3fe71ad1b98b62abc0625bbd5badabb73c82cf2'],
 
-        ['com.google.android.gms:play-services-maps:16.1.0',
-         'ff50cae9e4059416202375597d99cdc8ddefd9cea3f1dc2ff53779a3a12eb480'],
+        ['com.google.android.gms:play-services-maps:17.0.0',
+         'f9e479bc57ff423959c6dd9d08d463c677f440e29d90de795418ea27da6c67fb'],
 
         ['com.google.android.gms:play-services-phenotype:17.0.0',
          '53d40a205e48ad4e35923a01f04d9850acbd7403b3d30fb388e586fad1540ece'],
@@ -306,38 +306,41 @@ dependencyVerification {
         ['com.google.android:flexbox:0.3.0',
          'a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935'],
 
-        ['com.google.auto.value:auto-value-annotations:1.6.5',
-         '3677f725f5b1b6cd6a4cc8aa8cf8f5fd2b76d170205cbdc3e9bfd9b58f934b3b'],
+        ['com.google.auto.value:auto-value-annotations:1.6.3',
+         '0e951fee8c31f60270bc46553a8586001b7b93dbb12aec06373aa99a150392c0'],
 
-        ['com.google.dagger:dagger:2.24',
-         '550a6e46a6dfcdf1d764887b6090cea94f783327e50e5c73754f18facfc70b64'],
+        ['com.google.firebase:firebase-annotations:16.0.0',
+         '8830f2e8a5e434cbc5e4bd18133073b6e8518a8ce8ec2ce6f3b273c91d9664c2'],
 
-        ['com.google.firebase:firebase-common:19.3.0',
-         '7bd7971470ff943e3c3abb1d7809ef5cb4b81f1996be0867714372b3efa7405a'],
+        ['com.google.firebase:firebase-common:19.5.0',
+         '53e85b573f56fe306ddbf1f1f890a9d5465701b3016f14ad28086749d7b90c73'],
 
-        ['com.google.firebase:firebase-components:16.0.0',
-         '8ef43b412de4ec3e36a87c66d8a0a14a3de0a2e8566946da6a0e799b7fdd8ec9'],
+        ['com.google.firebase:firebase-components:16.1.0',
+         '82e91aa5ed186eedaf1f2210f5d241ba6e4456cf0c32949d5cdbe152b0e2e88b'],
 
-        ['com.google.firebase:firebase-datatransport:17.0.3',
-         '10c9f65c4f897ea33d028e46226daaabdfee43ac712559e5570d21b6b58a067e'],
+        ['com.google.firebase:firebase-datatransport:17.0.10',
+         '64ffee3612bcedb69aacce3f30f20df990684997759f856a3a9b2b21126a3fa5'],
 
-        ['com.google.firebase:firebase-encoders-json:16.0.0',
-         'd1769fcec2a424ee7f92b9996c4b5c1dff0dfa27ceed28981b857b144fb5ec49'],
+        ['com.google.firebase:firebase-encoders-json:17.1.0',
+         '8295c755bcadc87a2aaee5b9e568f27fd138fd45ff1159a8ee747cf4c3a38d85'],
+
+        ['com.google.firebase:firebase-encoders:16.1.0',
+         '8f89a74298bbccc2c543385208a2f0c67f603ce67e6ec21cc772e98e688f7cf5'],
 
         ['com.google.firebase:firebase-iid-interop:17.0.0',
          'b6f4ad581eb489370be3bf38a4bdabfc6ea3d4e716234c625a0f42516c53523c'],
 
-        ['com.google.firebase:firebase-iid:20.2.0',
-         '1b6977f8ce19becd20b5a1055347e085490d556b4ef98f6666cb25af1d74ff9b'],
+        ['com.google.firebase:firebase-iid:21.0.1',
+         '9f13cb1a0bb297a706d8564aa9a2923ad14292406d6abc8f5405aaaadcb001ea'],
 
-        ['com.google.firebase:firebase-installations-interop:16.0.0',
-         'd498fe20e7d2c65fc8f7124f1c1791d2828bebdf6bf06ab4cdee13e7fe9ccaa2'],
+        ['com.google.firebase:firebase-installations-interop:16.0.1',
+         'b792e522d912a5eba48d1b6185b5486ab8c4b5a1d5a2783dc91e27333d1ffc3c'],
 
-        ['com.google.firebase:firebase-installations:16.3.1',
-         '20427c6899bcbc0390988c958ab7da0352ba84a869817cb6ae9da3b19892af9f'],
+        ['com.google.firebase:firebase-installations:16.3.5',
+         'a4be68f304ab86c8447f97c23e79314408bb986de6e566a8dab2b133c3b77ce3'],
 
-        ['com.google.firebase:firebase-messaging:20.2.0',
-         'f49cfba49ab33c6fb7436fe9b790b16d3f1265a29955b48fccc1fb1f231da2d8'],
+        ['com.google.firebase:firebase-messaging:21.0.1',
+         '6217d4a52419348002804e1043b224adb71d63010dd3c05c635ecf7f508a33b1'],
 
         ['com.google.firebase:firebase-ml-common:22.1.1',
          '74ac365da2578a07b7dd5cd6ca4ae6d7279c7010153025d081afa5db0dce6d57'],
@@ -354,8 +357,8 @@ dependencyVerification {
         ['com.google.protobuf:protobuf-javalite:3.10.0',
          '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
 
-        ['com.google.zxing:android-integration:3.1.0',
-         '89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4'],
+        ['com.google.zxing:android-integration:3.2.1',
+         'b492d7e8f2fa1cd499020596839f9dc4482ecebf4f8635ffaa9f407f7da534d8'],
 
         ['com.google.zxing:core:3.2.1',
          'b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259'],
