@@ -142,6 +142,9 @@ public class CommunicationActions {
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {
     try {
       Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+      Bundle b = new Bundle();
+      b.putBoolean("new_window", true); //sets new window
+      intent.putExtras(b);
       context.startActivity(intent);
     } catch (ActivityNotFoundException e) {
       Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
