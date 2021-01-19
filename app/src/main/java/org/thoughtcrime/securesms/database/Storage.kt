@@ -17,11 +17,12 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
@@ -87,7 +89,43 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long? {
-        TODO("Not yet implemented")
+        var messageID: Long? = null
+        val address = Address.fromSerialized(message.sender!!)
+        val recipient = Recipient.from(context, address, false)
+        val body: Optional<String> = if (message.text != null) Optional.of(message.text) else Optional.absent()
+        var group: Optional<SignalServiceGroup> = Optional.absent()
+        if (openGroupID != null) {
+            group = Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
+        } else if (groupPublicKey != null) {
+            group = Optional.of(SignalServiceGroup(groupPublicKey.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
+        }
+        if (message.isMediaMessage()) {
+            val attachments: Optional<List<SignalServiceAttachment>> = Optional.absent() // TODO figure out how to get SignalServiceAttachment with attachmentID
+            val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
+            val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
+            val mediaMessage = IncomingMediaMessage(address, message.receivedTimestamp!!, -1, recipient.expireMessages * 1000L, false, false, body, group, attachments, quote, Optional.absent(), linkPreviews, Optional.absent())
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.beginTransaction()
+            val insertResult: Optional<MessagingDatabase.InsertResult>
+            if (group.isPresent) {
+                insertResult = mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!);
+            } else {
+                insertResult = mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1)
+            }
+            if (insertResult.isPresent) {
+                mmsDatabase.setTransactionSuccessful()
+                messageID = insertResult.get().messageId
+            }
+            mmsDatabase.endTransaction()
+        } else {
+            val textMessage = IncomingTextMessage(address, 1, message.receivedTimestamp!!, body.get(), group, recipient.expireMessages * 1000L, false)
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            val insertResult = smsDatabase.insertMessageInbox(textMessage)
+            if (insertResult.isPresent) {
+                messageID = insertResult.get().messageId
+            }
+        }
+        return messageID
     }
 
     override fun markJobAsSucceeded(job: Job) {
@@ -133,7 +171,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     override fun getOpenGroup(threadID: String): OpenGroup? {
         if (threadID.toInt() < 0) { return null }
         val database = databaseHelper.readableDatabase
-        return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf( threadID )) { cursor ->
+        return database.get(LokiThreadDatabase.publicChatTable, "${LokiThreadDatabase.threadID} = ?", arrayOf(threadID)) { cursor ->
             val publicChatAsJSON = cursor.getString(LokiThreadDatabase.publicChat)
             OpenGroup.fromJSON(publicChatAsJSON)
         }
@@ -300,6 +338,13 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long? {
         TODO("Not yet implemented")
+        if (!openGroupID.isNullOrEmpty()) {
+
+        } else if (!groupPublicKey.isNullOrEmpty()) {
+
+        } else {
+
+        }
     }
 
     override fun getThreadIdFor(address: Address): Long? {

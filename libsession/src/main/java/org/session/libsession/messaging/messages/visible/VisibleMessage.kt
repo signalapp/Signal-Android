@@ -42,6 +42,10 @@ class VisibleMessage : Message()  {
         }
     }
 
+    fun isMediaMessage(): Boolean {
+        return attachmentIDs.isNotEmpty() || quote != null || linkPreview != null || contact != null
+    }
+
     // validation
     override fun isValid(): Boolean {
         if (!super.isValid()) return false
