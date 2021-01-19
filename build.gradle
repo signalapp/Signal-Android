@@ -18,16 +18,6 @@ buildscript {
     }
 }
 
-ext {
-    BUILD_TOOL_VERSION = '30.0.2'
-
-    COMPILE_SDK = 30
-    TARGET_SDK = 30
-    MINIMUM_SDK = 19
-
-    JAVA_VERSION = JavaVersion.VERSION_1_8
-}
-
 wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
