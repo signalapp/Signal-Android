@@ -8,8 +8,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
-import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -26,10 +24,6 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
         return databaseAttachment.toAttachmentStream(context)
-    }
-
-    override fun getAttachmentPointer(attachmentID: String): SignalServiceAttachmentPointer? {
-        TODO("Not yet implemented")
     }
 
     override fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer? {
@@ -50,15 +44,18 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun getMessageForQuote(timestamp: Long, author: Address): Long? {
-        TODO("Not yet implemented")
+        val messagingDatabase = DatabaseFactory.getMmsSmsDatabase(context)
+        return messagingDatabase.getMessageFor(timestamp, author)?.id
     }
 
-    override fun getAttachmentsWithLinkPreviewFor(messageID: Long): List<Attachment> {
-        TODO("Not yet implemented")
+    override fun getAttachmentsAndLinkPreviewFor(messageID: Long): List<Attachment> {
+        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
+        return attachmentDatabase.getAttachmentsForMessage(messageID)
     }
 
     override fun getMessageBodyFor(messageID: Long): String {
-        TODO("Not yet implemented")
+        val messagingDatabase = DatabaseFactory.getSmsDatabase(context)
+        return messagingDatabase.getMessage(messageID).body
     }
 
     override fun insertAttachment(messageId: Long, attachmentId: Long, stream: InputStream) {
@@ -72,13 +69,13 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun getMessageID(serverID: Long): Long? {
-        TODO("Not yet implemented")
+        val openGroupMessagingDatabase = DatabaseFactory.getLokiMessageDatabase(context)
+        return openGroupMessagingDatabase.getMessageID(serverID)
     }
 
     override fun deleteMessage(messageID: Long) {
-        TODO("Not yet implemented")
-        //val publicChatAPI = ApplicationContext.getInstance(context).publicChatAPI
-        //publicChatAPI?.deleteMessage(messageID)
+        val messagingDatabase = DatabaseFactory.getSmsDatabase(context)
+        messagingDatabase.deleteMessage(messageID)
     }
 
 }

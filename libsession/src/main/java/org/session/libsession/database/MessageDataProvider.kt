@@ -10,10 +10,6 @@ import java.io.InputStream
 
 interface MessageDataProvider {
 
-    //fun getAttachment(attachmentId: Long): SignalServiceAttachmentStream?
-
-    fun getAttachmentPointer(attachmentID: String): SignalServiceAttachmentPointer?
-
     fun getMessageID(serverID: Long): Long?
     fun deleteMessage(messageID: Long)
 
@@ -32,7 +28,7 @@ interface MessageDataProvider {
 
     // Quotes
     fun getMessageForQuote(timestamp: Long, author: Address): Long?
-    fun getAttachmentsWithLinkPreviewFor(messageID: Long): List<Attachment>
+    fun getAttachmentsAndLinkPreviewFor(messageID: Long): List<Attachment>
     fun getMessageBodyFor(messageID: Long): String
 
 }
