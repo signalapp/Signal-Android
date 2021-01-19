@@ -108,7 +108,7 @@ public class SearchRepository {
 
       Future<List<Recipient>>     contacts        = parallelExecutor.submit(() -> queryContacts(cleanQuery));
       Future<List<ThreadRecord>>  conversations   = parallelExecutor.submit(() -> queryConversations(cleanQuery));
-      Future<List<MessageResult>> messages        = parallelExecutor.submit(() -> queryMessages(cleanQuery));
+      Future<List<MessageResult>> messages        = parallelExecutor.submit(() -> queryMessages(query));
       Future<List<MessageResult>> mentionMessages = parallelExecutor.submit(() -> queryMentions(sanitizeQueryAsTokens(query)));
 
       try {
@@ -133,7 +133,7 @@ public class SearchRepository {
 
     serialExecutor.execute(() -> {
       long                startTime       = System.currentTimeMillis();
-      List<MessageResult> messages        = queryMessages(sanitizeQuery(query), threadId);
+      List<MessageResult> messages        = queryMessages(query, threadId);
       List<MessageResult> mentionMessages = queryMentions(sanitizeQueryAsTokens(query), threadId);
 
       Log.d(TAG, "[ConversationQuery] " + (System.currentTimeMillis() - startTime) + " ms");
@@ -169,9 +169,15 @@ public class SearchRepository {
   }
 
   private @NonNull List<MessageResult> queryMessages(@NonNull String query) {
-    List<MessageResult> results;
-    try (Cursor cursor = searchDatabase.queryMessages(query)) {
-      results = readToList(cursor, new MessageModelBuilder());
+    List<MessageResult> results = new ArrayList<>(), tempResults;
+    String cleanQuery = sanitizeQuery(query);
+    try (Cursor cursor = searchDatabase.queryMessages(cleanQuery)) {
+      tempResults = readToList(cursor, new MessageModelBuilder());
+      for (MessageResult result: tempResults) {
+        if (result.body.toLowerCase().contains(query.toLowerCase())) {
+          results.add(result);
+        }
+      }
     }
 
     List<Long> messageIds = new LinkedList<>();
@@ -241,8 +247,16 @@ public class SearchRepository {
   }
 
   private @NonNull List<MessageResult> queryMessages(@NonNull String query, long threadId) {
-    try (Cursor cursor = searchDatabase.queryMessages(query, threadId)) {
-      return readToList(cursor, new MessageModelBuilder());
+    String cleanQuery = sanitizeQuery(query);
+    try (Cursor cursor = searchDatabase.queryMessages(cleanQuery, threadId)) {
+      List<MessageResult> results = new ArrayList<>(), tempResults;
+      tempResults = readToList(cursor, new MessageModelBuilder());
+      for (MessageResult result: tempResults) {
+        if (result.body.toLowerCase().contains(query.toLowerCase())) {
+          results.add(result);
+        }
+      }
+      return results;
     }
   }
 
@@ -349,9 +363,7 @@ public class SearchRepository {
   /**
    * Unfortunately {@link DatabaseUtils#sqlEscapeString(String)} is not sufficient for our purposes.
    * MATCH queries have a separate format of their own that disallow most "special" characters.
-   *
-   * Also, SQLite can't search for apostrophes, meaning we can't normally find words like "I'm".
-   * However, if we replace the apostrophe with a space, then the query will find the match.
+   * However replacing them with a space can match the query.
    */
   private String sanitizeQuery(@NonNull String query) {
     StringBuilder out = new StringBuilder();
@@ -360,7 +372,7 @@ public class SearchRepository {
       char c = query.charAt(i);
       if (!BANNED_CHARACTERS.contains(c)) {
         out.append(c);
-      } else if (c == '\'') {
+      } else {
         out.append(' ');
       }
     }
