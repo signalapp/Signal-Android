@@ -1641,7 +1641,7 @@
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
-    <string name="SupportEmailUtil_subject">Subject:</string>
+    <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_signal_android_support_request">Signal Android Support Request</string>
     <string name="SupportEmailUtil_device_info">Device info:</string>
     <string name="SupportEmailUtil_android_version">Android version:</string>

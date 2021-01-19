@@ -335,7 +335,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
 
   private void sendEmailToSupport() {
     String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
-                                                            getString(R.string.RegistrationActivity_code_support_subject),
+                                                            R.string.RegistrationActivity_code_support_subject,
                                                             null,
                                                             null);
     CommunicationActions.openEmail(requireContext(),

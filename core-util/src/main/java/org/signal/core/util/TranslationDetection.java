@@ -24,11 +24,7 @@ public final class TranslationDetection {
   public TranslationDetection(@NonNull Context context) {
     this.resourcesLocal     = context.getResources();
     this.configurationLocal = resourcesLocal.getConfiguration();
-
-    Configuration configurationEn = new Configuration(configurationLocal);
-    configurationEn.setLocale(Locale.ENGLISH);
-
-    this.resourcesEn = context.createConfigurationContext(configurationEn).getResources();
+    this.resourcesEn        = EnglishResourceUtil.getEnglishResources(context);
   }
 
   /**
