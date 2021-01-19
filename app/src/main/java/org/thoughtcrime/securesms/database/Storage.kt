@@ -315,7 +315,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun isClosedGroup(publicKey: String): Boolean {
-        TODO("Not yet implemented")
+        val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(publicKey)
+        val address = Address.fromSerialized(publicKey)
+        return address.isClosedGroup || isSSKBasedClosedGroup
     }
 
     override fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> {
@@ -336,14 +338,17 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
     }
 
-    override fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long? {
-        TODO("Not yet implemented")
+    override fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long {
+        val database = DatabaseFactory.getThreadDatabase(context)
         if (!openGroupID.isNullOrEmpty()) {
-
+            val recipient = Recipient.from(context, Address.fromSerialized(openGroupID), false)
+            return database.getOrCreateThreadIdFor(recipient)
         } else if (!groupPublicKey.isNullOrEmpty()) {
-
+            val recipient = Recipient.from(context, Address.fromSerialized(groupPublicKey), false)
+            return database.getOrCreateThreadIdFor(recipient)
         } else {
-
+            val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
+            return database.getOrCreateThreadIdFor(recipient)
         }
     }
 

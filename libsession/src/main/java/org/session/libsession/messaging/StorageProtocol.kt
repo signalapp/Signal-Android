@@ -102,7 +102,7 @@ interface StorageProtocol {
                                   name: String, members: Collection<String>, admins: Collection<String>)
     fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
                                   members: Collection<String>, admins: Collection<String>, threadID: Long)
-    fun isClosedGroup(publicKey: String): Boolean //TODO
+    fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> //TODO
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair //TODO
 
@@ -111,7 +111,7 @@ interface StorageProtocol {
 
     // Thread
     fun getOrCreateThreadIdFor(address: Address): Long
-    fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long?
+    fun getOrCreateThreadIdFor(publicKey: String, groupPublicKey: String?, openGroupID: String?): Long
     fun getThreadIdFor(address: Address): Long?
 
     // Session Request

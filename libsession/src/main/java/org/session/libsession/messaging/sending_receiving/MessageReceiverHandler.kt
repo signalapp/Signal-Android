@@ -146,7 +146,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     // Get or create thread
-    val threadID = storage.getOrCreateThreadIdFor(message.sender!!, message.groupPublicKey, openGroupID) ?: throw MessageSender.Error.NoThread
+    val threadID = storage.getOrCreateThreadIdFor(message.sender!!, message.groupPublicKey, openGroupID)
     // Parse quote if needed
     var quoteModel: QuoteModel? = null
     if (message.quote != null && proto.dataMessage.hasQuote()) {
