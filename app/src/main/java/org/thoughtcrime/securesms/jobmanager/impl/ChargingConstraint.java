@@ -33,6 +33,11 @@ public class ChargingConstraint implements Constraint {
     jobInfoBuilder.setRequiresCharging(true);
   }
 
+  @Override
+  public String getJobSchedulerKeyPart() {
+    return "CHARGING";
+  }
+
   public static final class Factory implements Constraint.Factory<ChargingConstraint> {
 
     @Override
