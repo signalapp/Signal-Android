@@ -321,11 +321,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getLokiAPIDatabase(context).getClosedGroupEncryptionKeyPairs(groupPublicKey).toMutableList()
     }
 
-    override fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair {
-        TODO("Not yet implemented")
+    override fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair? {
+        return DatabaseFactory.getLokiAPIDatabase(context).getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
     }
 
     override fun setProfileSharing(address: Address, value: Boolean) {

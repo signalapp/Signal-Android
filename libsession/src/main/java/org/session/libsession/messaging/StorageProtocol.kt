@@ -103,8 +103,8 @@ interface StorageProtocol {
     fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
                                   members: Collection<String>, admins: Collection<String>, threadID: Long)
     fun isClosedGroup(publicKey: String): Boolean
-    fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> //TODO
-    fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair //TODO
+    fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
+    fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)
