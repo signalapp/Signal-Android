@@ -287,8 +287,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
     }
 
-    override fun setErrorMessage(message: Message, error: Exception) {
-        TODO("Not yet implemented")
+    override fun setErrorMessage(messageID: Long, error: Exception) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val messageRecord = database.getMessageFor(messageID) ?: return
+        if (messageRecord.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markAsSentFailed(messageID)
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markAsSentFailed(messageID)
+        }
     }
 
     override fun getGroup(groupID: String): GroupRecord? {

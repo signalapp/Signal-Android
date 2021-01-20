@@ -272,6 +272,8 @@ object MessageSender {
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
-        MessagingConfiguration.shared.storage.setErrorMessage(message, error)
+        val storage = MessagingConfiguration.shared.storage
+        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
+        storage.setErrorMessage(messageId, error)
     }
 }
