@@ -117,4 +117,6 @@
     <color name="sticker_management_action_button_color">@color/core_grey_90</color>
 
     <color name="tooltip_default_color">@color/core_white</color>
+
+    <color name="wallpaper_preview_background">@color/transparent_white_30</color>
 </resources>

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.wallpaper;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +19,11 @@ import com.google.android.flexbox.JustifyContent;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
+import org.thoughtcrime.securesms.wallpaper.crop.WallpaperImageSelectionActivity;
 
 public class ChatWallpaperSelectionFragment extends Fragment {
 
-  private static final short CHOOSE_PHOTO = 1;
-  private static final short PREVIEW      = 2;
+  private static final short CHOOSE_WALLPAPER = 1;
 
   private ChatWallpaperViewModel viewModel;
 
@@ -40,13 +39,12 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
 
     chooseFromPhotos.setOnClickListener(unused -> {
-      // Navigate to photo selection (akin to what we did for profile avatar selection.)
-      //startActivityForResult(..., CHOOSE_PHOTO);
+      startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
     });
 
     @SuppressWarnings("CodeBlock2Expr")
     ChatWallpaperSelectionAdapter adapter = new ChatWallpaperSelectionAdapter(chatWallpaper -> {
-      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getDimInDarkTheme().getValue()), PREVIEW);
+      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getDimInDarkTheme().getValue()), CHOOSE_WALLPAPER);
       ActivityTransitionUtil.setSlideInTransition(requireActivity());
     });
 
@@ -60,17 +58,7 @@ public class ChatWallpaperSelectionFragment extends Fragment {
 
   @Override
   public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-    if (requestCode == CHOOSE_PHOTO && resultCode == Activity.RESULT_OK && data != null) {
-      Uri uri = data.getData();
-      if (uri == null || uri == Uri.EMPTY) {
-        throw new AssertionError("Should never have an empty uri.");
-      } else {
-        ChatWallpaper wallpaper = ChatWallpaperFactory.create(uri);
-        viewModel.setWallpaper(wallpaper);
-        viewModel.saveWallpaperSelection();
-        Navigation.findNavController(requireView()).popBackStack();
-      }
-    } else if (requestCode == PREVIEW && resultCode == Activity.RESULT_OK && data != null) {
+    if (requestCode == CHOOSE_WALLPAPER && resultCode == Activity.RESULT_OK && data != null) {
       ChatWallpaper chatWallpaper = data.getParcelableExtra(ChatWallpaperPreviewActivity.EXTRA_CHAT_WALLPAPER);
       viewModel.setWallpaper(chatWallpaper);
       viewModel.saveWallpaperSelection();
