@@ -3,23 +3,22 @@ package org.session.libsession.messaging.sending_receiving
 import android.util.Size
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
-import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.Profile
+import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeMessage
-
+import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -215,7 +214,6 @@ object MessageSender {
     // Open Groups
     fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
-        val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
@@ -233,7 +231,7 @@ object MessageSender {
                 }
             }
             // Set the failure handler (need it here already for precondition failure handling)
-            fun handleFailure(error: Exception,) {
+            fun handleFailure(error: Exception) {
                 handleFailedMessageSend(message, error)
                 deferred.reject(error)
             }
@@ -263,8 +261,14 @@ object MessageSender {
 
     // Result Handling
     fun handleSuccessfulMessageSend(message: Message, destination: Destination) {
-        MessagingConfiguration.shared.storage.insertMessageOutbox(message)
-        // TODO
+        val storage = MessagingConfiguration.shared.storage
+        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
+        if (message.openGroupServerMessageID != null) {
+            storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
+        }
+        storage.markAsSent(messageId)
+        storage.markUnidentified(messageId)
+        SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(messageId)
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {

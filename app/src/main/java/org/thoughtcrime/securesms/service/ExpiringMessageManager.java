@@ -103,6 +103,21 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
     setExpirationTimer(messageID, 0, senderPublicKey, content);
   }
 
+  @Override
+  public void startAnyExpiration(long messageID) {
+    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(messageID);
+    if (messageRecord != null) {
+      boolean mms = messageRecord.isMms();
+      Recipient recipient = messageRecord.getRecipient();
+      if (mms) {
+        mmsDatabase.markExpireStarted(messageID);
+      } else {
+        smsDatabase.markExpireStarted(messageID);
+      }
+      scheduleDeletion(messageID, mms, recipient.getExpireMessages());
+    }
+  }
+
   private class LoadTask implements Runnable {
     public void run() {
       SmsDatabase.Reader smsReader = smsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());

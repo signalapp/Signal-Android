@@ -4,7 +4,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 abstract class Message {
 
-    var id: String? = null
+    var id: Long? = null
     var threadID: Long? = null
     var sentTimestamp: Long? = null
     var receivedTimestamp: Long? = null

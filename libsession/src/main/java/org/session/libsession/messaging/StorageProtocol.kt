@@ -87,13 +87,16 @@ interface StorageProtocol {
     fun addReceivedMessageTimestamp(timestamp: Long)
     // Returns the IDs of the saved attachments.
     fun persist(attachments: List<Attachment>): List<Long>
-    fun insertMessageOutbox(message: Message)
-    fun insertMessageInbox(message: Message)
+
+    fun getMessageIdInDatabase(timestamp: Long, author: String): Long?
+    fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
+    fun markAsSent(messageID: Long)
+    fun markUnidentified(messageID: Long)
     fun setErrorMessage(message: Message, error: Exception)
 
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?
-    fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>)
+    fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>)
     fun setActive(groupID: String, value: Boolean)
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)

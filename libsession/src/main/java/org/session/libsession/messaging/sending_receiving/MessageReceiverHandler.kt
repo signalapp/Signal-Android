@@ -70,21 +70,21 @@ fun MessageReceiver.showTypingIndicatorIfNeeded(senderPublicKey: String) {
     val context = MessagingConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
     val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
-    SSKEnvironment.shared.typingIndicators.didReceiveTypingStartedMessage(context, threadID.toLong(), address, 1)
+    SSKEnvironment.shared.typingIndicators.didReceiveTypingStartedMessage(context, threadID, address, 1)
 }
 
 fun MessageReceiver.hideTypingIndicatorIfNeeded(senderPublicKey: String) {
     val context = MessagingConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
     val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
-    SSKEnvironment.shared.typingIndicators.didReceiveTypingStoppedMessage(context, threadID.toLong(), address, 1, false)
+    SSKEnvironment.shared.typingIndicators.didReceiveTypingStoppedMessage(context, threadID, address, 1, false)
 }
 
 fun MessageReceiver.cancelTypingIndicatorsIfNeeded(senderPublicKey: String) {
     val context = MessagingConfiguration.shared.context
     val address = Address.fromSerialized(senderPublicKey)
     val threadID = MessagingConfiguration.shared.storage.getThreadIdFor(address) ?: return
-    SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID.toLong(), address, 1)
+    SSKEnvironment.shared.typingIndicators.didReceiveIncomingMessage(context, threadID, address, 1)
 }
 
 private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
@@ -96,14 +96,14 @@ private fun MessageReceiver.handleExpirationTimerUpdate(message: ExpirationTimer
 }
 
 fun MessageReceiver.setExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id?.toLong()
+    val id = message.id
     val duration = message.duration!!
     val senderPublicKey = message.sender!!
     SSKEnvironment.shared.messageExpirationManager.setExpirationTimer(id, duration, senderPublicKey, proto)
 }
 
 fun MessageReceiver.disableExpirationTimer(message: ExpirationTimerUpdate, proto: SignalServiceProtos.Content) {
-    val id = message.id?.toLong()
+    val id = message.id
     val senderPublicKey = message.sender!!
     SSKEnvironment.shared.messageExpirationManager.disableExpirationTimer(id, senderPublicKey, proto)
 }

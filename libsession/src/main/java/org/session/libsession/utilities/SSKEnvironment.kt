@@ -34,6 +34,7 @@ class SSKEnvironment(
     interface MessageExpirationManagerProtocol {
         fun setExpirationTimer(messageID: Long?, duration: Int, senderPublicKey: String, content: SignalServiceProtos.Content)
         fun disableExpirationTimer(messageID: Long?, senderPublicKey: String, content: SignalServiceProtos.Content)
+        fun startAnyExpiration(messageID: Long)
     }
 
     companion object {

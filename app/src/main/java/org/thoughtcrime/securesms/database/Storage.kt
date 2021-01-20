@@ -253,12 +253,38 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         TODO("Not yet implemented")
     }
 
-    override fun insertMessageOutbox(message: Message) {
-        TODO("Not yet implemented")
+    override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val address = Address.fromSerialized(author)
+        return database.getMessageFor(timestamp, address)?.getId()
     }
 
-    override fun insertMessageInbox(message: Message) {
-        TODO("Not yet implemented")
+    override fun setOpenGroupServerMessageID(messageID: Long, serverID: Long) {
+        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
+    }
+
+    override fun markAsSent(messageID: Long) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val messageRecord = database.getMessageFor(messageID)!!
+        if (messageRecord.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markAsSent(messageRecord.getId(), true)
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markAsSent(messageRecord.getId(), true)
+        }
+    }
+
+    override fun markUnidentified(messageID: Long) {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        val messageRecord = database.getMessageFor(messageID)!!
+        if (messageRecord.isMms) {
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+            mmsDatabase.markUnidentified(messageRecord.getId(), true)
+        } else {
+            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            smsDatabase.markUnidentified(messageRecord.getId(), true)
+        }
     }
 
     override fun setErrorMessage(message: Message, error: Exception) {
