@@ -65,6 +65,7 @@ import org.whispersystems.signalservice.api.storage.SignalGroupV2Record;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -960,6 +961,19 @@ public class ThreadDatabase extends Database {
         return -1;
       }
     }
+  }
+
+  public Map<RecipientId, Long> getThreadIdsIfExistsFor(@NonNull RecipientId ... recipientIds) {
+    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
+    SqlUtil.Query  query         = SqlUtil.buildCollectionQuery(RECIPIENT_ID, Arrays.asList(recipientIds));
+
+    Map<RecipientId, Long> results = new HashMap<>();
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{ ID, RECIPIENT_ID }, query.getWhere(), query.getWhereArgs(), null, null, null, "1")) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.put(RecipientId.from(CursorUtil.requireString(cursor, RECIPIENT_ID)), CursorUtil.requireLong(cursor, ID));
+      }
+    }
+    return results;
   }
 
   public long getOrCreateValidThreadId(@NonNull Recipient recipient, long candidateId) {

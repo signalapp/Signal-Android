@@ -3087,6 +3087,18 @@
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Skip</string>
 
+    <!-- ShareActivity -->
+    <string name="ShareActivity__share">Share</string>
+    <string name="ShareActivity__send">Send</string>
+    <string name="ShareActivity__s_comma">%1$s,</string>
+
+    <!-- MultiShareDialogs -->
+    <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">You can only share with up to %1$d chats</string>
+
+    <!-- ShareInterstitialActivity -->
+    <string name="ShareInterstitialActivity__forward_message">Forward message</string>
+
     <!-- EOF -->
 
 </resources>

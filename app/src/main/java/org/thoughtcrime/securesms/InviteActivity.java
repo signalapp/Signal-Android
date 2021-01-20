@@ -107,7 +107,6 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
 
-    contactsFragment.setOnContactSelectedListener(this);
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());

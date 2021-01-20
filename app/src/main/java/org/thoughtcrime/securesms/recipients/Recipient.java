@@ -499,6 +499,15 @@ public class Recipient {
     return StringUtil.isolateBidi(name);
   }
 
+  public @NonNull String getShortDisplayNameIncludingUsername(@NonNull Context context) {
+    String name = Util.getFirstNonEmpty(getName(context),
+                                        getProfileName().getGivenName(),
+                                        getDisplayName(context),
+                                        getUsername().orNull());
+
+    return StringUtil.isolateBidi(name);
+  }
+
   public @NonNull MaterialColor getColor() {
     if (isGroupInternal()) {
       return MaterialColor.GROUP;
