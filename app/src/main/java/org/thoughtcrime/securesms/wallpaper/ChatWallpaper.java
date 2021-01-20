@@ -5,6 +5,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,4 +28,6 @@ public interface ChatWallpaper extends Parcelable {
                                                GradientChatWallpaper.GRADIENT_2);
 
   void loadInto(@NonNull ImageView imageView);
+
+  @NonNull Wallpaper serialize();
 }

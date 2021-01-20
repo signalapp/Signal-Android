@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -79,6 +81,25 @@ final class GradientChatWallpaper implements ChatWallpaper, Parcelable {
   @Override
   public void loadInto(@NonNull ImageView imageView) {
     imageView.setImageDrawable(buildDrawable());
+  }
+
+  @Override
+  public @NonNull Wallpaper serialize() {
+    Wallpaper.LinearGradient.Builder builder = Wallpaper.LinearGradient.newBuilder();
+
+    builder.setRotation(degrees);
+
+    for (int color : colors) {
+      builder.addColors(color);
+    }
+
+    for (float position : positions) {
+      builder.addPositions(position);
+    }
+
+    return Wallpaper.newBuilder()
+                    .setLinearGradient(builder)
+                    .build();
   }
 
   @Override

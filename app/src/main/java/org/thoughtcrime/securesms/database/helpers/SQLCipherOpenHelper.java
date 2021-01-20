@@ -169,8 +169,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int GV1_MIGRATION_REFACTOR           = 85;
   private static final int CLEAR_PROFILE_KEY_CREDENTIALS    = 86;
   private static final int LAST_RESET_SESSION_TIME          = 87;
+  private static final int WALLPAPER                        = 88;
 
-  private static final int    DATABASE_VERSION = 87;
+  private static final int    DATABASE_VERSION = 88;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1244,6 +1245,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
 
       if (oldVersion < LAST_RESET_SESSION_TIME) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN last_session_reset BLOB DEFAULT NULL");
+      }
+
+      if (oldVersion < WALLPAPER) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN wallpaper BLOB DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN wallpaper_file TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

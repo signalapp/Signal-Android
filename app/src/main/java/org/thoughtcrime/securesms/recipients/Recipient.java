@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
@@ -106,6 +107,7 @@ public class Recipient {
   private final InsightsBannerTier     insightsBannerTier;
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
+  private final ChatWallpaper          wallpaper;
 
 
   /**
@@ -339,6 +341,7 @@ public class Recipient {
     this.groupsV1MigrationCapability = Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
+    this.wallpaper                   = null;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -381,6 +384,7 @@ public class Recipient {
     this.groupsV1MigrationCapability = details.groupsV1MigrationCapability;
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
+    this.wallpaper                   = details.wallpaper;
   }
 
   public @NonNull RecipientId getId() {
@@ -843,6 +847,10 @@ public class Recipient {
     return unidentifiedAccessMode;
   }
 
+  public @Nullable ChatWallpaper getWallpaper() {
+    return wallpaper;
+  }
+
   public boolean isSystemContact() {
     return contactUri != null;
   }
@@ -961,7 +969,8 @@ public class Recipient {
            groupsV1MigrationCapability == other.groupsV1MigrationCapability &&
            insightsBannerTier == other.insightsBannerTier &&
            Arrays.equals(storageId, other.storageId) &&
-           mentionSetting == other.mentionSetting;
+           mentionSetting == other.mentionSetting &&
+           Objects.equals(wallpaper, other.wallpaper);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {
@@ -999,7 +1008,6 @@ public class Recipient {
     public @NonNull FallbackContactPhoto getPhotoForRecipientWithoutName() {
       return new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_profile_outline_48);
     }
-
   }
 
   private static class MissingAddressError extends AssertionError {

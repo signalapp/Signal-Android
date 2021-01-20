@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceDataStore;
 
+import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
@@ -28,6 +29,7 @@ public final class SignalStore {
   private final CertificateValues        certificateValues;
   private final PhoneNumberPrivacyValues phoneNumberPrivacyValues;
   private final OnboardingValues         onboardingValues;
+  private final WallpaperValues          wallpaperValues;
 
   private SignalStore() {
     this.store                    = new KeyValueStore(ApplicationDependencies.getApplication());
@@ -45,6 +47,7 @@ public final class SignalStore {
     this.certificateValues        = new CertificateValues(store);
     this.phoneNumberPrivacyValues = new PhoneNumberPrivacyValues(store);
     this.onboardingValues         = new OnboardingValues(store);
+    this.wallpaperValues          = new WallpaperValues(store);
   }
 
   public static void onFirstEverAppLaunch() {
@@ -61,6 +64,7 @@ public final class SignalStore {
     certificateValues().onFirstEverAppLaunch();
     phoneNumberPrivacy().onFirstEverAppLaunch();
     onboarding().onFirstEverAppLaunch();
+    wallpaper().onFirstEverAppLaunch();
   }
 
   public static @NonNull KbsValues kbsValues() {
@@ -117,6 +121,10 @@ public final class SignalStore {
 
   public static @NonNull OnboardingValues onboarding() {
     return INSTANCE.onboardingValues;
+  }
+
+  public static @NonNull WallpaperValues wallpaper() {
+    return INSTANCE.wallpaperValues;
   }
 
   public static @NonNull GroupsV2AuthorizationSignalStoreCache groupsV2AuthorizationCache() {

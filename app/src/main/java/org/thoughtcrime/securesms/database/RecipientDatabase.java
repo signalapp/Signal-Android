@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileKeyCredentialColumnData;
+import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet;
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
+import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -53,6 +55,9 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory;
+import org.thoughtcrime.securesms.wallpaper.WallpaperStorage;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.Pair;
@@ -131,6 +136,8 @@ public class RecipientDatabase extends Database {
   private static final String STORAGE_PROTO             = "storage_proto";
   private static final String LAST_GV1_MIGRATE_REMINDER = "last_gv1_migrate_reminder";
   private static final String LAST_SESSION_RESET        = "last_session_reset";
+  private static final String WALLPAPER                 = "wallpaper";
+  private static final String WALLPAPER_URI             = "wallpaper_file";
 
   public  static final String SEARCH_PROFILE_NAME      = "search_signal_profile";
   private static final String SORT_NAME                = "sort_name";
@@ -155,7 +162,7 @@ public class RecipientDatabase extends Database {
       FORCE_SMS_SELECTION,
       CAPABILITIES,
       STORAGE_SERVICE_ID, DIRTY,
-      MENTION_SETTING
+      MENTION_SETTING, WALLPAPER, WALLPAPER_URI
   };
 
   private static final String[] ID_PROJECTION              = new String[]{ID};
@@ -350,7 +357,9 @@ public class RecipientDatabase extends Database {
                                             STORAGE_PROTO             + " TEXT DEFAULT NULL, " +
                                             CAPABILITIES              + " INTEGER DEFAULT 0, " +
                                             LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0, " +
-                                            LAST_SESSION_RESET        + " BLOB DEFAULT NULL);";
+                                            LAST_SESSION_RESET        + " BLOB DEFAULT NULL, " +
+                                            WALLPAPER                 + " BLOB DEFAULT NULL, " +
+          WALLPAPER_URI + " TEXT DEFAULT NULL);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1264,6 +1273,7 @@ public class RecipientDatabase extends Database {
     long    capabilities               = CursorUtil.requireLong(cursor, CAPABILITIES);
     String  storageKeyRaw              = CursorUtil.requireString(cursor, STORAGE_SERVICE_ID);
     int     mentionSettingId           = CursorUtil.requireInt(cursor, MENTION_SETTING);
+    byte[]  wallpaper                  = CursorUtil.requireBlob(cursor, WALLPAPER);
 
     MaterialColor        color;
     byte[]               profileKey           = null;
@@ -1303,6 +1313,16 @@ public class RecipientDatabase extends Database {
 
     byte[] storageKey = storageKeyRaw != null ? Base64.decodeOrThrow(storageKeyRaw) : null;
 
+    ChatWallpaper chatWallpaper = null;
+
+    if (wallpaper != null) {
+      try {
+        chatWallpaper = ChatWallpaperFactory.create(Wallpaper.parseFrom(wallpaper));
+      } catch (InvalidProtocolBufferException e) {
+        Log.w(TAG, "Failed to parse wallpaper.", e);
+      }
+    }
+
     return new RecipientSettings(RecipientId.from(id),
                                  uuid,
                                  username,
@@ -1338,6 +1358,7 @@ public class RecipientDatabase extends Database {
                                  InsightsBannerTier.fromId(insightsBannerTier),
                                  storageKey,
                                  MentionSetting.fromId(mentionSettingId),
+                                 chatWallpaper,
                                  getSyncExtras(cursor));
   }
 
@@ -1776,6 +1797,60 @@ public class RecipientDatabase extends Database {
     if (update(id, contentValues)) {
       Recipient.live(id).refresh();
     }
+  }
+
+  public void setWallpaper(@NonNull RecipientId id, @NonNull ChatWallpaper chatWallpaper) {
+    Wallpaper wallpaper            = chatWallpaper.serialize();
+    Uri       existingWallpaperUri = getWallpaperUri(id);
+
+    ContentValues values = new ContentValues();
+    values.put(WALLPAPER, wallpaper.toByteArray());
+
+    if (wallpaper.hasFile()) {
+      values.put(WALLPAPER_URI, wallpaper.getFile().getUri());
+    } else {
+      values.putNull(WALLPAPER_URI);
+    }
+
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
+
+    if (existingWallpaperUri != null) {
+      WallpaperStorage.onWallpaperDeselected(context, existingWallpaperUri);
+    }
+  }
+
+  private @Nullable Uri getWallpaperUri(@NonNull RecipientId id) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {WALLPAPER_URI}, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
+      if (cursor.moveToFirst()) {
+        String raw = CursorUtil.requireString(cursor, WALLPAPER_URI);
+
+        if (raw != null) {
+          return Uri.parse(raw);
+        } else {
+          return null;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  public int getWallpaperUriUsageCount(@NonNull Uri uri) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = WALLPAPER_URI + " = ?";
+    String[]       args  = SqlUtil.buildArgs(uri);
+
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "COUNT(*)"}, query, args, null, null, null)) {
+      if (cursor.moveToFirst()) {
+        return cursor.getInt(0);
+      }
+    }
+
+    return 0;
   }
 
   /**
@@ -2788,6 +2863,7 @@ public class RecipientDatabase extends Database {
     private final InsightsBannerTier              insightsBannerTier;
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
+    private final ChatWallpaper                   wallpaper;
     private final SyncExtras                      syncExtras;
 
     RecipientSettings(@NonNull RecipientId id,
@@ -2825,6 +2901,7 @@ public class RecipientDatabase extends Database {
                       @NonNull InsightsBannerTier insightsBannerTier,
                       @Nullable byte[] storageId,
                       @NonNull MentionSetting mentionSetting,
+                      @Nullable ChatWallpaper wallpaper,
                       @NonNull SyncExtras syncExtras)
     {
       this.id                          = id;
@@ -2864,6 +2941,7 @@ public class RecipientDatabase extends Database {
       this.insightsBannerTier          = insightsBannerTier;
       this.storageId                   = storageId;
       this.mentionSetting              = mentionSetting;
+      this.wallpaper                   = wallpaper;
       this.syncExtras                  = syncExtras;
     }
 
@@ -3009,6 +3087,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull MentionSetting getMentionSetting() {
       return mentionSetting;
+    }
+
+    public @Nullable ChatWallpaper getWallpaper() {
+      return wallpaper;
     }
 
     public @NonNull SyncExtras getSyncExtras() {

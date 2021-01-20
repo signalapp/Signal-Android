@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -65,6 +66,7 @@ public class RecipientDetails {
   final InsightsBannerTier     insightsBannerTier;
   final byte[]                 storageId;
   final MentionSetting         mentionSetting;
+  final ChatWallpaper          wallpaper;
 
   public RecipientDetails(@Nullable String name,
                           @NonNull Optional<Long> groupAvatarId,
@@ -110,6 +112,7 @@ public class RecipientDetails {
     this.insightsBannerTier          = settings.getInsightsBannerTier();
     this.storageId                   = settings.getStorageId();
     this.mentionSetting              = settings.getMentionSetting();
+    this.wallpaper                   = settings.getWallpaper();
 
     if (name == null) this.name = settings.getSystemDisplayName();
     else              this.name = name;
@@ -157,6 +160,7 @@ public class RecipientDetails {
     this.groupsV1MigrationCapability = Recipient.Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
+    this.wallpaper                   = null;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
