@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
+import android.util.Size
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 
@@ -10,6 +11,7 @@ import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
+import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.Profile
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
@@ -54,7 +56,25 @@ object MessageSender {
 
     // Preparation
     fun prep(signalAttachments: List<SignalServiceAttachment>, message: VisibleMessage) {
-        // TODO: Deal with attachments
+        // TODO: Deal with SignalServiceAttachmentStream
+        val attachments = mutableListOf<Attachment>()
+        for (signalAttachment in signalAttachments) {
+            val attachment = Attachment()
+            if (signalAttachment.isPointer) {
+                val signalAttachmentPointer = signalAttachment.asPointer()
+                attachment.fileName = signalAttachmentPointer.fileName.orNull()
+                attachment.caption = signalAttachmentPointer.caption.orNull()
+                attachment.contentType = signalAttachmentPointer.contentType
+                attachment.digest = signalAttachmentPointer.digest.orNull()
+                attachment.key = signalAttachmentPointer.key
+                attachment.sizeInBytes = signalAttachmentPointer.size.orNull()
+                attachment.url = signalAttachmentPointer.url
+                attachment.size = Size(signalAttachmentPointer.width, signalAttachmentPointer.height)
+                attachments.add(attachment)
+            }
+        }
+        val attachmentIDs = MessagingConfiguration.shared.storage.persist(attachments)
+        message.attachmentIDs.addAll(attachmentIDs)
     }
 
     // Convenience
@@ -122,7 +142,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
                 is Destination.ClosedGroup -> {
-                    val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)
+                    val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
                 is Destination.OpenGroup -> throw preconditionFailure
