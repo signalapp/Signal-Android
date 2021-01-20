@@ -33,7 +33,7 @@ final class WallpaperCropRepository {
   @WorkerThread
   @NonNull ChatWallpaper setWallPaper(byte[] bytes) throws IOException {
     try (InputStream inputStream = new ByteArrayInputStream(bytes)) {
-      ChatWallpaper wallpaper = WallpaperStorage.save(context, inputStream);
+      ChatWallpaper wallpaper = WallpaperStorage.save(context, inputStream, "webp");
 
       if (recipientId != null) {
         Log.i(TAG, "Setting image wallpaper for " + recipientId);

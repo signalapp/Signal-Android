@@ -19,7 +19,11 @@ import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaRepository;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.List;
@@ -41,6 +45,8 @@ class ConversationViewModel extends ViewModel {
   private final LiveData<Boolean>                   canShowAsBubble;
   private final ProxyPagingController               pagingController;
   private final DatabaseObserver.Observer           messageObserver;
+  private final MutableLiveData<RecipientId>        recipientId;
+  private final LiveData<ChatWallpaper>             wallpaper;
 
   private ConversationIntents.Args args;
   private int                      jumpToPosition;
@@ -53,6 +59,7 @@ class ConversationViewModel extends ViewModel {
     this.threadId               = new MutableLiveData<>();
     this.showScrollButtons      = new MutableLiveData<>(false);
     this.hasUnreadMentions      = new MutableLiveData<>(false);
+    this.recipientId            = new MutableLiveData<>();
     this.pagingController       = new ProxyPagingController();
     this.messageObserver        = pagingController::onDataInvalidated;
 
@@ -97,6 +104,9 @@ class ConversationViewModel extends ViewModel {
 
     conversationMetadata = Transformations.switchMap(messages, m -> metadata);
     canShowAsBubble      = LiveDataUtil.mapAsync(threadId, conversationRepository::canShowAsBubble);
+    wallpaper            = Transformations.distinctUntilChanged(Transformations.map(Transformations.switchMap(recipientId,
+                                                                                                              id -> Recipient.live(id).getLiveData()),
+                                                                                    Recipient::getWallpaper));
   }
 
   void onAttachmentKeyboardOpen() {
@@ -104,11 +114,12 @@ class ConversationViewModel extends ViewModel {
   }
 
   @MainThread
-  void onConversationDataAvailable(long threadId, int startingPosition) {
+  void onConversationDataAvailable(@NonNull RecipientId recipientId, long threadId, int startingPosition) {
     Log.d(TAG, "[onConversationDataAvailable] threadId: " + threadId + ", startingPosition: " + startingPosition);
     this.jumpToPosition = startingPosition;
 
     this.threadId.setValue(threadId);
+    this.recipientId.setValue(recipientId);
   }
 
   void clearThreadId() {
@@ -126,6 +137,10 @@ class ConversationViewModel extends ViewModel {
 
   @NonNull LiveData<Boolean> getShowMentionsButton() {
     return Transformations.distinctUntilChanged(LiveDataUtil.combineLatest(showScrollButtons, hasUnreadMentions, (a, b) -> a && b));
+  }
+
+  @NonNull LiveData<ChatWallpaper> getWallpaper() {
+    return wallpaper;
   }
 
   void setHasUnreadMentions(boolean hasUnreadMentions) {

@@ -429,6 +429,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     setContentView(R.layout.conversation_activity);
 
     getWindow().getDecorView().setBackgroundResource(R.color.signal_background_primary);
+    WindowUtil.setLightNavigationBar(getWindow());
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
 
@@ -1989,6 +1990,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   }
 
   private void updateWallpaper(@Nullable ChatWallpaper chatWallpaper) {
+    Log.d(TAG, "Setting wallpaper.");
     if (chatWallpaper != null) {
       chatWallpaper.loadInto(wallpaper);
       ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(wallpaperDim, chatWallpaper);
@@ -1996,6 +1998,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
     }
+    fragment.onWallpaperChanged(chatWallpaper);
   }
 
   protected void initializeActionBar() {
@@ -2105,6 +2108,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     this.viewModel = ViewModelProviders.of(this, new ConversationViewModel.Factory()).get(ConversationViewModel.class);
 
     this.viewModel.setArgs(args);
+    this.viewModel.getWallpaper().observe(this, this::updateWallpaper);
   }
 
   private void initializeGroupViewModel() {
@@ -2290,7 +2294,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
-    updateWallpaper(recipient.getWallpaper());
 
     if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
       invalidateOptionsMenu();

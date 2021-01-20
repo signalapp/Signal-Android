@@ -266,12 +266,12 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   }
 
   @Override
-  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.contact_selection_recyclerview_header, parent, false));
   }
 
   @Override
-  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position, int type) {
     ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position));
   }
 

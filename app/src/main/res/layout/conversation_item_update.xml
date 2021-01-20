@@ -8,14 +8,17 @@
     android:background="@drawable/conversation_item_background"
     android:focusable="true"
     android:paddingStart="26dp"
-    android:paddingEnd="26dp">
+    android:paddingEnd="26dp"
+    android:clipToPadding="false"
+    android:clipChildren="false">
 
     <LinearLayout
         android:id="@+id/conversation_update_background"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:orientation="vertical"
         android:gravity="center"
         android:paddingTop="8dp"

@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -60,6 +61,12 @@ public final class WallpaperCropActivity extends BaseActivity {
     intent.putExtra(EXTRA_RECIPIENT_ID, recipientId);
     intent.putExtra(EXTRA_IMAGE_URI, Objects.requireNonNull(imageUri));
     return intent;
+  }
+
+  @Override
+  protected void attachBaseContext(@NonNull Context newBase) {
+    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+    super.attachBaseContext(newBase);
   }
 
   @Override

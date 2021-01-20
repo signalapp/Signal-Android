@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.wallpaper.crop;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -23,6 +25,7 @@ public final class WallpaperImageSelectionActivity extends AppCompatActivity
   private static final String EXTRA_RECIPIENT_ID = "RECIPIENT_ID";
   private static final int    CROP               = 901;
 
+  @RequiresPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
   public static Intent getIntent(@NonNull Context context,
                                  @Nullable RecipientId recipientId)
   {

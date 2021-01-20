@@ -142,7 +142,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   public void setListVerticalTranslation(float translationY) {
-    maskView.setTargetParentTranslationY(translationY);
+    maskView.setTargetParentTranslationY(translationY - ViewUtil.getStatusBarHeight(maskView));
   }
 
   public void show(@NonNull Activity activity,

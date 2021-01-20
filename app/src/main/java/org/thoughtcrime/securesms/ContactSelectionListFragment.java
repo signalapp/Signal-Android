@@ -309,7 +309,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
     }
 
     recyclerView.setAdapter(concatenateAdapter);
-    recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true));
+    recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true, 0));
     recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {

@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.wallpaper;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,10 +16,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.wallpaper.crop.WallpaperImageSelectionActivity;
 
@@ -39,21 +43,28 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     FlexboxLayoutManager flexboxLayoutManager = new FlexboxLayoutManager(requireContext());
 
     chooseFromPhotos.setOnClickListener(unused -> {
-      startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
+      askForPermissionIfNeededAndLaunchPhotoSelection();
     });
 
     @SuppressWarnings("CodeBlock2Expr")
     ChatWallpaperSelectionAdapter adapter = new ChatWallpaperSelectionAdapter(chatWallpaper -> {
-      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getDimInDarkTheme().getValue()), CHOOSE_WALLPAPER);
+      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getRecipientId(), viewModel.getDimInDarkTheme().getValue()), CHOOSE_WALLPAPER);
       ActivityTransitionUtil.setSlideInTransition(requireActivity());
     });
 
-    flexboxLayoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
+    flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
     recyclerView.setLayoutManager(flexboxLayoutManager);
     recyclerView.setAdapter(adapter);
+    recyclerView.addItemDecoration(new ChatWallpaperAlignmentDecoration());
 
     viewModel = ViewModelProviders.of(requireActivity()).get(ChatWallpaperViewModel.class);
     viewModel.getWallpapers().observe(getViewLifecycleOwner(), adapter::submitList);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    viewModel.refreshWallpaper();
   }
 
   @Override
@@ -66,5 +77,18 @@ public class ChatWallpaperSelectionFragment extends Fragment {
     } else {
       super.onActivityResult(requestCode, resultCode, data);
     }
+  }
+
+  private void askForPermissionIfNeededAndLaunchPhotoSelection() {
+    Permissions.with(this)
+               .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .onAllGranted(() -> {
+                 startActivityForResult(WallpaperImageSelectionActivity.getIntent(requireContext(), viewModel.getRecipientId()), CHOOSE_WALLPAPER);
+                 ActivityTransitionUtil.setSlideInTransition(requireActivity());
+               })
+               .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission, Toast.LENGTH_SHORT)
+                                       .show())
+               .execute();
   }
 }

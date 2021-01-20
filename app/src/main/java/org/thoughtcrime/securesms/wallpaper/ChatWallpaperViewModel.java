@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.MappingModel;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -19,10 +21,11 @@ import java.util.Objects;
 
 public class ChatWallpaperViewModel extends ViewModel {
 
-  private final ChatWallpaperRepository                  repository    = new ChatWallpaperRepository();
-  private final MutableLiveData<Optional<ChatWallpaper>> wallpaper     = new MutableLiveData<>();
-  private final MutableLiveData<List<ChatWallpaper>>     builtins      = new MutableLiveData<>();
-  private final MutableLiveData<Boolean> dimInDarkTheme = new MutableLiveData<>();
+  private final ChatWallpaperRepository                  repository              = new ChatWallpaperRepository();
+  private final MutableLiveData<Optional<ChatWallpaper>> wallpaper               = new MutableLiveData<>();
+  private final MutableLiveData<List<ChatWallpaper>>     builtins                = new MutableLiveData<>();
+  private final MutableLiveData<Boolean>                 dimInDarkTheme          = new MutableLiveData<>();
+  private final MutableLiveData<Boolean>                 enableWallpaperControls = new MutableLiveData<>();
   private final RecipientId                              recipientId;
 
   private ChatWallpaperViewModel(@Nullable RecipientId recipientId) {
@@ -30,7 +33,11 @@ public class ChatWallpaperViewModel extends ViewModel {
 
     ChatWallpaper currentWallpaper = repository.getCurrentWallpaper(recipientId);
     dimInDarkTheme.setValue(currentWallpaper != null && currentWallpaper.getDimLevelForDarkTheme() > 0f);
+    enableWallpaperControls.setValue(hasClearableWallpaper());
     wallpaper.setValue(Optional.fromNullable(currentWallpaper));
+  }
+
+  void refreshWallpaper() {
     repository.getAllWallpaper(builtins::postValue);
   }
 
@@ -53,7 +60,18 @@ public class ChatWallpaperViewModel extends ViewModel {
 
     if (!wallpaper.isPresent()) {
       repository.saveWallpaper(recipientId, null);
+
+      if (recipientId != null) {
+        ChatWallpaper globalWallpaper = SignalStore.wallpaper().getWallpaper();
+
+        this.wallpaper.setValue(Optional.fromNullable(globalWallpaper));
+        this.dimInDarkTheme.setValue(globalWallpaper != null && globalWallpaper.getDimLevelForDarkTheme() > 0);
+      }
+
+      enableWallpaperControls.setValue(false);
       return;
+    } else {
+      enableWallpaperControls.setValue(true);
     }
 
     Optional<ChatWallpaper> updated = wallpaper.transform(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f));
@@ -67,28 +85,37 @@ public class ChatWallpaperViewModel extends ViewModel {
     repository.resetAllWallpaper();
   }
 
-  public @Nullable RecipientId getRecipientId() {
+  @Nullable RecipientId getRecipientId() {
     return recipientId;
   }
 
-  LiveData<Optional<ChatWallpaper>> getCurrentWallpaper() {
+  @NonNull LiveData<Optional<ChatWallpaper>> getCurrentWallpaper() {
     return wallpaper;
   }
 
-  LiveData<List<MappingModel<?>>> getWallpapers() {
+  @NonNull LiveData<List<MappingModel<?>>> getWallpapers() {
     return LiveDataUtil.combineLatest(builtins, dimInDarkTheme, (wallpapers, dimInDarkMode) ->
       Stream.of(wallpapers)
-            .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? 1f : 0f))
+            .map(paper -> ChatWallpaperFactory.updateWithDimming(paper, dimInDarkMode ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0f))
             .<MappingModel<?>>map(ChatWallpaperSelectionMappingModel::new).toList()
     );
   }
 
-  LiveData<Boolean> getDimInDarkTheme() {
+  @NonNull LiveData<Boolean> getDimInDarkTheme() {
     return dimInDarkTheme;
+  }
+
+  @NonNull LiveData<Boolean> getEnableWallpaperControls() {
+    return enableWallpaperControls;
   }
 
   boolean isGlobal() {
     return recipientId == null;
+  }
+
+  private boolean hasClearableWallpaper() {
+    return (isGlobal() && SignalStore.wallpaper().hasWallpaperSet()) ||
+           (recipientId != null && Recipient.live(recipientId).get().hasOwnWallpaper());
   }
 
   public static class Factory implements ViewModelProvider.Factory {

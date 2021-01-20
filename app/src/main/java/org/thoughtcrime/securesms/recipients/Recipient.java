@@ -855,6 +855,10 @@ public class Recipient {
     }
   }
 
+  public boolean hasOwnWallpaper() {
+    return wallpaper != null;
+  }
+
   /**
    * A cheap way to check if wallpaper is set without doing any unnecessary proto parsing.
    */

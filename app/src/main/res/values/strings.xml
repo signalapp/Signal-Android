@@ -2829,7 +2829,12 @@
     <string name="ChatWallpaperFragment__set_wallpaper">Set wallpaper</string>
     <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dark theme dims wallpaper</string>
     <string name="ChatWallpaperFragment__clear_wallpaper">Clear wallpaper</string>
+    <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Clear wallpaper?</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Reset all wallpapers?</string>
+    <string name="ChatWallpaperFragment__contact_name">Contact name</string>
+    <string name="ChatWallpaperFragment__reset">Reset</string>
+    <string name="ChatWallpaperFragment__clear">Clear</string>
 
     <!-- ChatWallpaperSelectionFragment -->
     <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choose from photos</string>
@@ -2838,9 +2843,10 @@
     <!-- ChatWallpaperPreviewActivity -->
     <string name="ChatWallpaperPreviewActivity__preview">Preview</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Set wallpaper</string>
-    <string name="ChatWallpaperPreviewActivity__10_49_am">10:49 am</string>
-    <string name="ChatWallpaperPreviewActivity__this_wallpaper_will_be_set_for_all_chats">This wallpaper will be set for all chats</string>
-    <string name="ChatWallpaperPreviewActivity__besides_those_you_manually_override">Besides those you manually override</string>
+    <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Swipe to preview more wallpapers</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Set wallpaper for all chats</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Set wallpaper for %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Viewing your gallery requires the storage permission.</string>
 
     <!-- WallpaperImageSelectionActivity -->
     <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Choose wallpaper image</string>

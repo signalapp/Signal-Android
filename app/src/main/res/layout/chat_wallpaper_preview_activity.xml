@@ -65,14 +65,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ChatWallpaperPreviewActivity__this_wallpaper_will_be_set_for_all_chats"
+            android:maxWidth="194dp"
+            android:text="@string/ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ChatWallpaperPreviewActivity__10_49_am"
+            android:text="@string/DateUtils_just_now"
             android:textAppearance="@style/Signal.Text.Caption"
             android:textColor="@color/transparent_white_80" />
 
@@ -95,10 +96,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/preview_bubble_1">
 
-        <TextView
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/preview_bubble_2_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ChatWallpaperPreviewActivity__besides_those_you_manually_override"
+            android:maxWidth="194dp"
+            android:text="@string/ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/signal_text_primary" />
 
@@ -107,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:drawablePadding="4dp"
-            android:text="@string/ChatWallpaperPreviewActivity__10_49_am"
+            android:text="@string/DateUtils_just_now"
             android:textAppearance="@style/Signal.Text.Caption"
             android:textColor="@color/signal_text_secondary"
             app:drawableEndCompat="@drawable/ic_delivery_status_read"

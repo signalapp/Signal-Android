@@ -73,6 +73,10 @@ public class ConversationAdapter
 
   private static final String TAG = Log.tag(ConversationAdapter.class);
 
+  public static final int HEADER_TYPE_POPOVER_DATE = 1;
+  public static final int HEADER_TYPE_INLINE_DATE  = 2;
+  public static final int HEADER_TYPE_LAST_SEEN    = 3;
+
   private static final int MESSAGE_TYPE_OUTGOING_MULTIMEDIA = 0;
   private static final int MESSAGE_TYPE_OUTGOING_TEXT       = 1;
   private static final int MESSAGE_TYPE_INCOMING_MULTIMEDIA = 2;
@@ -102,6 +106,7 @@ public class ConversationAdapter
   private View                headerView;
   private View                footerView;
   private PagingController    pagingController;
+  private boolean             hasWallpaper;
 
   ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
@@ -132,6 +137,7 @@ public class ConversationAdapter
     this.releasedFastRecords = new HashSet<>();
     this.calendar            = Calendar.getInstance();
     this.digest              = getMessageDigestOrThrow();
+    this.hasWallpaper        = recipient.hasWallpaper();
 
     setHasStableIds(true);
   }
@@ -243,7 +249,7 @@ public class ConversationAdapter
                                                   recipient,
                                                   searchQuery,
                                                   conversationMessage == recordToPulse,
-                                                  recipient.hasWallpaper());
+                                                  hasWallpaper);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -290,19 +296,27 @@ public class ConversationAdapter
   }
 
   @Override
-  public StickyHeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
+  public StickyHeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new StickyHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_item_header, parent, false));
   }
 
   @Override
-  public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position) {
+  public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position, int type) {
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
     viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
 
-    if (recipient.hasWallpaper()) {
-      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
-    } else {
-      viewHolder.clearBackground();
+    if (type == HEADER_TYPE_POPOVER_DATE) {
+      if (hasWallpaper) {
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      } else {
+        viewHolder.setBackgroundRes(R.drawable.sticky_date_header_background);
+      }
+    } else if (type == HEADER_TYPE_INLINE_DATE) {
+      if (hasWallpaper) {
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      } else {
+        viewHolder.clearBackground();
+      }
     }
   }
 
@@ -334,7 +348,7 @@ public class ConversationAdapter
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
 
-    if (recipient.hasWallpaper()) {
+    if (hasWallpaper) {
       viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
     } else {
       viewHolder.clearBackground();
@@ -433,6 +447,17 @@ public class ConversationAdapter
   void onSearchQueryUpdated(String query) {
     this.searchQuery = query;
     notifyDataSetChanged();
+  }
+
+  /**
+   * Lets the adapter know that the wallpaper state has changed.
+   */
+  void onHasWallpaperChanged(boolean hasWallpaper) {
+    if (this.hasWallpaper != hasWallpaper) {
+      Log.d(TAG, "Resetting adapter due to wallpaper change.");
+      this.hasWallpaper = hasWallpaper;
+      notifyDataSetChanged();
+    }
   }
 
   /**

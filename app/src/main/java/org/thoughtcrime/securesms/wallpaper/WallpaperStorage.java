@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,9 +40,9 @@ public final class WallpaperStorage {
    * Saves the provided input stream as a new wallpaper file.
    */
   @WorkerThread
-  public static @NonNull ChatWallpaper save(@NonNull Context context, @NonNull InputStream wallpaperStream) throws IOException {
+  public static @NonNull ChatWallpaper save(@NonNull Context context, @NonNull InputStream wallpaperStream, @NonNull String extension) throws IOException {
     File directory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    File file      = File.createTempFile(FILENAME_BASE, "", directory);
+    File file      = File.createTempFile(FILENAME_BASE, "." + extension, directory);
 
     StreamUtil.copy(wallpaperStream, getOutputStream(context, file));
 
@@ -61,11 +62,15 @@ public final class WallpaperStorage {
     File   directory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
     File[] allFiles  = directory.listFiles(pathname -> pathname.getName().contains(FILENAME_BASE));
 
-    return Stream.of(allFiles)
-                 .map(File::getName)
-                 .map(PartAuthority::getWallpaperUri)
-                 .map(ChatWallpaperFactory::create)
-                 .toList();
+    if (allFiles != null) {
+      return Stream.of(allFiles)
+                   .map(File::getName)
+                   .map(PartAuthority::getWallpaperUri)
+                   .map(ChatWallpaperFactory::create)
+                   .toList();
+    } else {
+      return Collections.emptyList();
+    }
   }
 
   /**

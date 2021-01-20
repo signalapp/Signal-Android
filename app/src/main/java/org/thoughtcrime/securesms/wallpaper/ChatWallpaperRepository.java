@@ -14,6 +14,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
@@ -24,14 +26,19 @@ class ChatWallpaperRepository {
   @MainThread
   @Nullable ChatWallpaper getCurrentWallpaper(@Nullable RecipientId recipientId) {
     if (recipientId != null) {
-      return Recipient.resolved(recipientId).getWallpaper();
+      return Recipient.live(recipientId).get().getWallpaper();
     } else {
       return SignalStore.wallpaper().getWallpaper();
     }
   }
 
   void getAllWallpaper(@NonNull Consumer<List<ChatWallpaper>> consumer) {
-    consumer.accept(ChatWallpaper.BUILTINS);
+    EXECUTOR.execute(() -> {
+      List<ChatWallpaper> wallpapers = new ArrayList<>(ChatWallpaper.BUILTINS);
+
+      wallpapers.addAll(WallpaperStorage.getAll(ApplicationDependencies.getApplication()));
+      consumer.accept(wallpapers);
+    });
   }
 
   void saveWallpaper(@Nullable RecipientId recipientId, @Nullable ChatWallpaper chatWallpaper) {
@@ -52,10 +59,21 @@ class ChatWallpaperRepository {
     });
   }
 
-  void setDimInDarkTheme(@NonNull RecipientId recipientId, boolean dimInDarkTheme) {
+  void setDimInDarkTheme(@Nullable RecipientId recipientId, boolean dimInDarkTheme) {
     if (recipientId != null) {
       EXECUTOR.execute(() -> {
-        DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setDimWallpaperInDarkTheme(recipientId, dimInDarkTheme);
+        Recipient recipient = Recipient.resolved(recipientId);
+        if (recipient.hasOwnWallpaper()) {
+          DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication()).setDimWallpaperInDarkTheme(recipientId, dimInDarkTheme);
+        } else if (recipient.hasWallpaper()) {
+          DatabaseFactory.getRecipientDatabase(ApplicationDependencies.getApplication())
+                         .setWallpaper(recipientId,
+                                       ChatWallpaperFactory.updateWithDimming(recipient.getWallpaper(),
+                                                                              dimInDarkTheme ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME
+                                                                                             : 0f));
+        } else {
+          throw new IllegalStateException("Unexpected call to setDimInDarkTheme, no wallpaper has been set on the given recipient or globally.");
+        }
       });
     } else {
       SignalStore.wallpaper().setDimInDarkTheme(dimInDarkTheme);
