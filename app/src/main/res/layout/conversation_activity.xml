@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.InsetAwareConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/system_ui_guidelines" />
+
+    <ImageView
+        android:importantForAccessibility="no"
+        android:id="@+id/conversation_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/conversation_wallpaper_dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone"
+        tools:alpha="0.2f"
+        tools:visibility="visible" />
+
     <com.google.android.material.appbar.AppBarLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -56,7 +76,9 @@
     <org.thoughtcrime.securesms.components.InputAwareLayout
         android:id="@+id/layout_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/status_bar_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/navigation_bar_guideline">
 
         <LinearLayout
             android:id="@+id/conversation_container"
@@ -196,4 +218,4 @@
     </org.thoughtcrime.securesms.components.InputAwareLayout>
 
     <include layout="@layout/conversation_reaction_scrubber" />
-</FrameLayout>
+</org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>

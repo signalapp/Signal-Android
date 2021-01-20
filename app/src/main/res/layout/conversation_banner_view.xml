@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="24dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/message_request_avatar"
         android:layout_width="112dp"
         android:layout_height="112dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,8 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,10 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

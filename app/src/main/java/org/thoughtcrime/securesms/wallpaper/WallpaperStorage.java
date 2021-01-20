@@ -74,7 +74,7 @@ public final class WallpaperStorage {
    */
   @WorkerThread
   public static void onWallpaperDeselected(@NonNull Context context, @NonNull Uri uri) {
-    Uri globalUri = SignalStore.wallpaper().getCurrentWallpaperUri();
+    Uri globalUri = SignalStore.wallpaper().getWallpaperUri();
     if (Objects.equals(uri, globalUri)) {
       return;
     }

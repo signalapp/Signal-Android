@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -23,11 +24,11 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
-  public static @NonNull Intent getIntent(@NonNull Context context) {
-    return getIntent(context, null);
+  public static @NonNull Intent createIntent(@NonNull Context context) {
+    return createIntent(context, null);
   }
 
-  public static @NonNull Intent getIntent(@NonNull Context context, @Nullable RecipientId recipientId) {
+  public static @NonNull Intent createIntent(@NonNull Context context, @Nullable RecipientId recipientId) {
     Intent intent = new Intent(context, ChatWallpaperActivity.class);
     intent.putExtra(EXTRA_RECIPIENT_ID, recipientId);
     return intent;
@@ -35,8 +36,7 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
-    ChatWallpaperViewModel.Factory factory = new ChatWallpaperViewModel.Factory(getIntent(this).getParcelableExtra(EXTRA_RECIPIENT_ID));
-
+    ChatWallpaperViewModel.Factory factory = new ChatWallpaperViewModel.Factory(getIntent().getParcelableExtra(EXTRA_RECIPIENT_ID));
     ViewModelProviders.of(this, factory).get(ChatWallpaperViewModel.class);
 
     dynamicTheme.onCreate(this);
@@ -47,6 +47,7 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
     toolbar.setNavigationOnClickListener(unused -> {
       if (!Navigation.findNavController(this, R.id.nav_host_fragment).popBackStack()) {
         finish();
+        ActivityTransitionUtil.setSlideOutTransition(this);
       }
     });
 
@@ -56,6 +57,12 @@ public final class ChatWallpaperActivity extends PassphraseRequiredActivity {
 
       Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
     }
+  }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    ActivityTransitionUtil.setSlideOutTransition(this);
   }
 
   @Override

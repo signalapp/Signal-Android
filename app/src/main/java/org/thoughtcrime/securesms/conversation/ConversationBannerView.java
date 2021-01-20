@@ -62,6 +62,14 @@ public class ConversationBannerView extends ConstraintLayout {
     contactDescription.setText(description);
   }
 
+  public void showBackgroundBubble(boolean enabled) {
+    if (enabled) {
+      setBackgroundResource(R.drawable.wallpaper_bubble_background_12);
+    } else {
+      setBackground(null);
+    }
+  }
+
   public void hideSubtitle() {
     contactSubtitle.setVisibility(View.GONE);
   }

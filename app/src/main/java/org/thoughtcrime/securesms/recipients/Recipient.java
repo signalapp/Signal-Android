@@ -848,7 +848,18 @@ public class Recipient {
   }
 
   public @Nullable ChatWallpaper getWallpaper() {
-    return wallpaper;
+    if (wallpaper != null) {
+      return wallpaper;
+    } else {
+      return SignalStore.wallpaper().getWallpaper();
+    }
+  }
+
+  /**
+   * A cheap way to check if wallpaper is set without doing any unnecessary proto parsing.
+   */
+  public boolean hasWallpaper() {
+    return wallpaper != null || SignalStore.wallpaper().hasWallpaperSet();
   }
 
   public boolean isSystemContact() {

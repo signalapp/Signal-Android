@@ -5,19 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/status_bar_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_constraintGuide_begin="48dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/navigation_bar_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:layout_constraintGuide_end="48dp" />
+    <include layout="@layout/system_ui_guidelines" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/preview_pager"

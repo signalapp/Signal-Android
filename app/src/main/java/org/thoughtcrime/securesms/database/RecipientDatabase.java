@@ -359,7 +359,7 @@ public class RecipientDatabase extends Database {
                                             LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0, " +
                                             LAST_SESSION_RESET        + " BLOB DEFAULT NULL, " +
                                             WALLPAPER                 + " BLOB DEFAULT NULL, " +
-          WALLPAPER_URI + " TEXT DEFAULT NULL);";
+                                            WALLPAPER_URI             + " TEXT DEFAULT NULL);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1799,14 +1799,60 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public void setWallpaper(@NonNull RecipientId id, @NonNull ChatWallpaper chatWallpaper) {
-    Wallpaper wallpaper            = chatWallpaper.serialize();
-    Uri       existingWallpaperUri = getWallpaperUri(id);
+  public void resetAllWallpaper() {
+    SQLiteDatabase                  database      = databaseHelper.getWritableDatabase();
+    String[]                        selection     = SqlUtil.buildArgs(ID, WALLPAPER_URI);
+    String                          where         = WALLPAPER + " IS NOT NULL";
+    List<Pair<RecipientId, String>> idWithWallpaper = new LinkedList<>();
+
+    database.beginTransaction();
+
+    try {
+      try (Cursor cursor = database.query(TABLE_NAME, selection, where, null, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          idWithWallpaper.add(new Pair<>(RecipientId.from(CursorUtil.requireInt(cursor, ID)),
+                              CursorUtil.getString(cursor, WALLPAPER_URI).orNull()));
+        }
+      }
+
+      if (idWithWallpaper.isEmpty()) {
+        return;
+      }
+
+      ContentValues values = new ContentValues(2);
+      values.put(WALLPAPER_URI, (String) null);
+      values.put(WALLPAPER, (byte[]) null);
+
+      int rowsUpdated = database.update(TABLE_NAME, values, where, null);
+      if (rowsUpdated == idWithWallpaper.size()) {
+        for (Pair<RecipientId, String> pair : idWithWallpaper) {
+          Recipient.live(pair.first()).refresh();
+          if (pair.second() != null) {
+            WallpaperStorage.onWallpaperDeselected(context, Uri.parse(pair.second()));
+          }
+        }
+      } else {
+        throw new AssertionError("expected " + idWithWallpaper.size() + " but got " + rowsUpdated);
+      }
+
+    } finally {
+      database.setTransactionSuccessful();
+      database.endTransaction();
+    }
+
+  }
+
+  public void setWallpaper(@NonNull RecipientId id, @Nullable ChatWallpaper chatWallpaper) {
+    setWallpaper(id, chatWallpaper != null ? chatWallpaper.serialize() : null);
+  }
+
+  private void setWallpaper(@NonNull RecipientId id, @Nullable Wallpaper wallpaper) {
+    Uri existingWallpaperUri = getWallpaperUri(id);
 
     ContentValues values = new ContentValues();
-    values.put(WALLPAPER, wallpaper.toByteArray());
+    values.put(WALLPAPER, wallpaper != null ? wallpaper.toByteArray() : null);
 
-    if (wallpaper.hasFile()) {
+    if (wallpaper != null && wallpaper.hasFile()) {
       values.put(WALLPAPER_URI, wallpaper.getFile().getUri());
     } else {
       values.putNull(WALLPAPER_URI);
@@ -1821,15 +1867,33 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  private @Nullable Uri getWallpaperUri(@NonNull RecipientId id) {
+  public void setDimWallpaperInDarkTheme(@NonNull RecipientId id, boolean enabled) {
+    Wallpaper wallpaper = getWallpaper(id);
+
+    if (wallpaper == null) {
+      throw new IllegalStateException("No wallpaper set for " + id);
+    }
+
+    Wallpaper updated = wallpaper.toBuilder()
+                                 .setDimLevelInDarkTheme(enabled ? ChatWallpaper.FIXED_DIM_LEVEL_FOR_DARK_THEME : 0)
+                                 .build();
+
+    setWallpaper(id, updated);
+  }
+
+  private @Nullable Wallpaper getWallpaper(@NonNull RecipientId id) {
     SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {WALLPAPER_URI}, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] {WALLPAPER}, ID_WHERE, SqlUtil.buildArgs(id), null, null, null)) {
       if (cursor.moveToFirst()) {
-        String raw = CursorUtil.requireString(cursor, WALLPAPER_URI);
+        byte[] raw = CursorUtil.requireBlob(cursor, WALLPAPER);
 
         if (raw != null) {
-          return Uri.parse(raw);
+          try {
+            return Wallpaper.parseFrom(raw);
+          } catch (InvalidProtocolBufferException e) {
+            return null;
+          }
         } else {
           return null;
         }
@@ -1839,12 +1903,22 @@ public class RecipientDatabase extends Database {
     return null;
   }
 
+  private @Nullable Uri getWallpaperUri(@NonNull RecipientId id) {
+    Wallpaper wallpaper = getWallpaper(id);
+
+    if (wallpaper != null && wallpaper.hasFile()) {
+      return Uri.parse(wallpaper.getFile().getUri());
+    } else {
+      return null;
+    }
+  }
+
   public int getWallpaperUriUsageCount(@NonNull Uri uri) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
     String         query = WALLPAPER_URI + " = ?";
     String[]       args  = SqlUtil.buildArgs(uri);
 
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "COUNT(*)"}, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { "COUNT(*)" }, query, args, null, null, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0);
       }

@@ -11,21 +11,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.MappingAdapter;
 import org.thoughtcrime.securesms.util.MappingViewHolder;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 class ChatWallpaperViewHolder extends MappingViewHolder<ChatWallpaperSelectionMappingModel> {
 
   private final ImageView     preview;
+  private final View          dimmer;
   private final EventListener eventListener;
 
   public ChatWallpaperViewHolder(@NonNull View itemView, @Nullable EventListener eventListener) {
     super(itemView);
     this.preview       = itemView.findViewById(R.id.chat_wallpaper_preview);
+    this.dimmer        = itemView.findViewById(R.id.chat_wallpaper_dim);
     this.eventListener = eventListener;
   }
 
   @Override
   public void bind(@NonNull ChatWallpaperSelectionMappingModel model) {
     model.loadInto(preview);
+
+    ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(dimmer, model.getWallpaper());
 
     if (eventListener != null) {
       preview.setOnClickListener(unused -> {

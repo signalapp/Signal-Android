@@ -8,6 +8,7 @@ import androidx.preference.ListPreference;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
@@ -24,7 +25,8 @@ public class AppearancePreferenceFragment extends ListSummaryPreferenceFragment 
     this.findPreference(TextSecurePreferences.THEME_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(TextSecurePreferences.LANGUAGE_PREF).setOnPreferenceChangeListener(new ListSummaryListener());
     this.findPreference(WALLPAPER_PREF).setOnPreferenceClickListener(preference -> {
-      startActivity(ChatWallpaperActivity.getIntent(requireContext()));
+      startActivity(ChatWallpaperActivity.createIntent(requireContext()));
+      ActivityTransitionUtil.setSlideInTransition(requireActivity());
       return true;
     });
     initializeListSummary((ListPreference)findPreference(TextSecurePreferences.THEME_PREF));

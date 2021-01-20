@@ -61,6 +61,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -258,6 +259,7 @@ import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
@@ -267,6 +269,7 @@ import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
@@ -275,6 +278,8 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -375,6 +380,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   Stub<View>               mentionsSuggestions;
   private   MaterialButton           joinGroupCallButton;
   private   boolean                  callingTooltipShown;
+  private   ImageView                wallpaper;
+  private   View                     wallpaperDim;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -414,6 +421,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
+    new FullscreenHelper(this).showSystemUI();
+
     ConversationIntents.Args args = ConversationIntents.Args.from(getIntent());
 
     reportShortcutLaunch(args.getRecipientId());
@@ -426,6 +435,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     initializeReceivers();
     initializeActionBar();
     initializeViews();
+    updateWallpaper(args.getWallpaper());
     initializeResources(args);
     initializeLinkPreviewObserver();
     initializeSearchObserver();
@@ -1910,6 +1920,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     messageRequestBottomView = findViewById(R.id.conversation_activity_message_request_bottom_bar);
     reactionOverlay          = findViewById(R.id.conversation_reaction_scrubber);
     mentionsSuggestions      = ViewUtil.findStubById(this, R.id.conversation_mention_suggestions_stub);
+    wallpaper                = findViewById(R.id.conversation_wallpaper);
+    wallpaperDim             = findViewById(R.id.conversation_wallpaper_dim);
 
     ImageButton quickCameraToggle      = findViewById(R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = findViewById(R.id.inline_attachment_button);
@@ -1974,6 +1986,16 @@ public class ConversationActivity extends PassphraseRequiredActivity
     reactionOverlay.setOnReactionSelectedListener(this);
 
     joinGroupCallButton.setOnClickListener(v -> handleVideo(getRecipient()));
+  }
+
+  private void updateWallpaper(@Nullable ChatWallpaper chatWallpaper) {
+    if (chatWallpaper != null) {
+      chatWallpaper.loadInto(wallpaper);
+      ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(wallpaperDim, chatWallpaper);
+    } else {
+      wallpaper.setImageDrawable(null);
+      wallpaperDim.setVisibility(View.GONE);
+    }
   }
 
   protected void initializeActionBar() {
@@ -2268,6 +2290,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
+    updateWallpaper(recipient.getWallpaper());
 
     if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
       invalidateOptionsMenu();

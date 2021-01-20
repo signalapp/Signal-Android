@@ -329,6 +329,18 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:id="@+id/chat_wallpaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageGroupActivity_chat_wallpaper"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body"/>
+
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

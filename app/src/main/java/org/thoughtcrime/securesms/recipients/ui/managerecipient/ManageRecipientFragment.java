@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -105,6 +106,7 @@ public class ManageRecipientFragment extends LoggingFragment {
   private View                                   secureCallButton;
   private View                                   insecureCallButton;
   private View                                   secureVideoCallButton;
+  private View                                   chatWallpaperButton;
 
   static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId, boolean fromConversation) {
     ManageRecipientFragment fragment = new ManageRecipientFragment();
@@ -161,6 +163,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     secureCallButton            = view.findViewById(R.id.recipient_voice_call);
     insecureCallButton          = view.findViewById(R.id.recipient_insecure_voice_call);
     secureVideoCallButton       = view.findViewById(R.id.recipient_video_call);
+    chatWallpaperButton         = view.findViewById(R.id.chat_wallpaper);
 
     return view;
   }
@@ -270,6 +273,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     secureCallButton.setOnClickListener(v -> viewModel.onSecureCall(requireActivity()));
     insecureCallButton.setOnClickListener(v -> viewModel.onInsecureCall(requireActivity()));
     secureVideoCallButton.setOnClickListener(v -> viewModel.onSecureVideoCall(requireActivity()));
+    chatWallpaperButton.setOnClickListener(v -> startActivity(ChatWallpaperActivity.createIntent(requireContext(), recipientId)));
   }
 
   @Override

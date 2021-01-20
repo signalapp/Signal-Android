@@ -19,6 +19,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ActivityTransitionUtil;
 
 public class ChatWallpaperSelectionFragment extends Fragment {
 
@@ -45,7 +46,8 @@ public class ChatWallpaperSelectionFragment extends Fragment {
 
     @SuppressWarnings("CodeBlock2Expr")
     ChatWallpaperSelectionAdapter adapter = new ChatWallpaperSelectionAdapter(chatWallpaper -> {
-      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getRecipientId()), PREVIEW);
+      startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getDimInDarkTheme().getValue()), PREVIEW);
+      ActivityTransitionUtil.setSlideInTransition(requireActivity());
     });
 
     flexboxLayoutManager.setJustifyContent(JustifyContent.SPACE_AROUND);
@@ -63,9 +65,15 @@ public class ChatWallpaperSelectionFragment extends Fragment {
       if (uri == null || uri == Uri.EMPTY) {
         throw new AssertionError("Should never have an empty uri.");
       } else {
-        startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), new UriChatWallpaper(uri), viewModel.getRecipientId()), PREVIEW);
+        ChatWallpaper wallpaper = ChatWallpaperFactory.create(uri);
+        viewModel.setWallpaper(wallpaper);
+        viewModel.saveWallpaperSelection();
+        Navigation.findNavController(requireView()).popBackStack();
       }
-    } else if (requestCode == PREVIEW && resultCode == Activity.RESULT_OK) {
+    } else if (requestCode == PREVIEW && resultCode == Activity.RESULT_OK && data != null) {
+      ChatWallpaper chatWallpaper = data.getParcelableExtra(ChatWallpaperPreviewActivity.EXTRA_CHAT_WALLPAPER);
+      viewModel.setWallpaper(chatWallpaper);
+      viewModel.saveWallpaperSelection();
       Navigation.findNavController(requireView()).popBackStack();
     } else {
       super.onActivityResult(requestCode, resultCode, data);

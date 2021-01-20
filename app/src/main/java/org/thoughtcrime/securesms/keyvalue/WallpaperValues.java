@@ -27,7 +27,6 @@ public final class WallpaperValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
-
   }
 
   public void setWallpaper(@NonNull Context context, @Nullable ChatWallpaper wallpaper) {
@@ -44,7 +43,9 @@ public final class WallpaperValues extends SignalStoreValues {
       getStore().beginWrite().remove(KEY_WALLPAPER).apply();
     }
 
-    WallpaperStorage.onWallpaperDeselected(context, currentUri);
+    if (currentUri != null) {
+      WallpaperStorage.onWallpaperDeselected(context, currentUri);
+    }
   }
 
   public @Nullable ChatWallpaper getWallpaper() {
@@ -57,7 +58,30 @@ public final class WallpaperValues extends SignalStoreValues {
     }
   }
 
-  public @Nullable Uri getCurrentWallpaperUri() {
+  public boolean hasWallpaperSet() {
+    return getStore().getBlob(KEY_WALLPAPER, null) != null;
+  }
+
+  public void setDimInDarkTheme(boolean enabled) {
+    Wallpaper currentWallpaper = getCurrentWallpaper();
+
+    if (currentWallpaper != null) {
+      putBlob(KEY_WALLPAPER,
+              currentWallpaper.toBuilder()
+                              .setDimLevelInDarkTheme(enabled ? 0.2f : 0)
+                              .build()
+                              .toByteArray());
+    } else {
+      throw new IllegalStateException("No wallpaper currently set!");
+    }
+  }
+
+
+  /**
+   * Retrieves the URI of the current wallpaper. Note that this will only return a value if the
+   * wallpaper is both set *and* it's an image.
+   */
+  public @Nullable Uri getWallpaperUri() {
     Wallpaper currentWallpaper = getCurrentWallpaper();
 
     if (currentWallpaper != null && currentWallpaper.hasFile()) {

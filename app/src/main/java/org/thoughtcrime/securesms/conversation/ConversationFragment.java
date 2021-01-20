@@ -422,6 +422,7 @@ public class ConversationFragment extends LoggingFragment {
 
     if (recipient != null) {
       conversationBanner.setAvatar(GlideApp.with(context), recipient);
+      conversationBanner.showBackgroundBubble(recipient.hasWallpaper());
 
       String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(context);
       conversationBanner.setTitle(title);

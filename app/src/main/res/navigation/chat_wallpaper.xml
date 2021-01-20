@@ -13,7 +13,11 @@
 
         <action
             android:id="@+id/action_chatWallpaperFragment_to_chatWallpaperSelectionFragment"
-            app:destination="@id/chatWallpaperSelectionFragment" />
+            app:destination="@id/chatWallpaperSelectionFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
     </fragment>
     <fragment
         android:id="@+id/chatWallpaperSelectionFragment"

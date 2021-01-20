@@ -96,11 +96,13 @@ message Wallpaper {
     message SingleColor {
         int32 color = 1;
     }
+
     message LinearGradient {
                  float rotation  = 1;
         repeated int32 colors    = 2;
         repeated float positions = 3;
     }
+
     message File {
         string uri = 1;
     }
@@ -111,5 +113,5 @@ message Wallpaper {
         File           file           = 3;
     }
 
-    float dimLevelInDarkMode = 4;
+    float dimLevelInDarkTheme = 4;
 }

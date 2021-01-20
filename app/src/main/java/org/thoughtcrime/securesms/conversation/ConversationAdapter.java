@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -241,7 +242,8 @@ public class ConversationAdapter
                                                   selected,
                                                   recipient,
                                                   searchQuery,
-                                                  conversationMessage == recordToPulse);
+                                                  conversationMessage == recordToPulse,
+                                                  recipient.hasWallpaper());
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -296,6 +298,12 @@ public class ConversationAdapter
   public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
     viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
+
+    if (recipient.hasWallpaper()) {
+      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+    } else {
+      viewHolder.clearBackground();
+    }
   }
 
   public @Nullable ConversationMessage getItem(int position) {
@@ -325,6 +333,12 @@ public class ConversationAdapter
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+
+    if (recipient.hasWallpaper()) {
+      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+    } else {
+      viewHolder.clearBackground();
+    }
   }
 
   boolean hasNoConversationMessages() {
@@ -562,6 +576,14 @@ public class ConversationAdapter
 
     public void setText(CharSequence text) {
       textView.setText(text);
+    }
+
+    public void setBackgroundRes(@DrawableRes int resId) {
+      textView.setBackgroundResource(resId);
+    }
+
+    public void clearBackground() {
+      textView.setBackground(null);
     }
   }
 
