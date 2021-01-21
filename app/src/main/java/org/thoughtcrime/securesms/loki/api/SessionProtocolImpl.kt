@@ -8,17 +8,11 @@ import com.goterl.lazycode.lazysodium.interfaces.Box
 import com.goterl.lazycode.lazysodium.interfaces.Sign
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.Hex
-import org.session.libsignal.service.api.messages.SignalServiceEnvelope
-import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE
-import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
-import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class SessionProtocolImpl(private val context: Context) : SessionProtocol {
 

@@ -11,27 +11,21 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 class MessagingConfiguration(
         val context: Context,
         val storage: StorageProtocol,
-        val signalStorage: SignalProtocolStore,
         val sskDatabase: SharedSenderKeysDatabaseProtocol,
         val messageDataProvider: MessageDataProvider,
-        val sessionResetImp: SessionResetProtocol,
-        val sessionProtocol: SessionProtocol,
-        val certificateValidator: CertificateValidator)
+        val sessionProtocol: SessionProtocol)
 {
     companion object {
         lateinit var shared: MessagingConfiguration
 
         fun configure(context: Context,
                       storage: StorageProtocol,
-                      signalStorage: SignalProtocolStore,
                       sskDatabase: SharedSenderKeysDatabaseProtocol,
                       messageDataProvider: MessageDataProvider,
-                      sessionResetImp: SessionResetProtocol,
-                      sessionProtocol: SessionProtocol,
-                      certificateValidator: CertificateValidator
+                      sessionProtocol: SessionProtocol
         ) {
             if (Companion::shared.isInitialized) { return }
-            shared = MessagingConfiguration(context, storage, signalStorage, sskDatabase, messageDataProvider, sessionResetImp, sessionProtocol, certificateValidator)
+            shared = MessagingConfiguration(context, storage, sskDatabase, messageDataProvider, sessionProtocol)
         }
     }
 }
