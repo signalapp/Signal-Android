@@ -40,6 +40,7 @@ import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWr
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 
+import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsignal.libsignal.state.SessionRecord;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
@@ -91,6 +92,7 @@ import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.util.dynamiclanguage.LocaleParseHelper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
@@ -273,6 +275,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
   }
 
+  public void initializeLocaleParser() {
+    LocaleParser.Companion.configure(new LocaleParseHelper());
+  }
+
   public JobManager getJobManager() {
     return jobManager;
   }
@@ -451,6 +457,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   protected void attachBaseContext(Context base) {
+    initializeLocaleParser();
     super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
   }
 
