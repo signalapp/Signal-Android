@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
@@ -46,11 +46,14 @@ public class ChatWallpaperSelectionFragment extends Fragment {
       askForPermissionIfNeededAndLaunchPhotoSelection();
     });
 
+    DisplayMetrics displayMetrics = new DisplayMetrics();
+    requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
     @SuppressWarnings("CodeBlock2Expr")
     ChatWallpaperSelectionAdapter adapter = new ChatWallpaperSelectionAdapter(chatWallpaper -> {
       startActivityForResult(ChatWallpaperPreviewActivity.create(requireActivity(), chatWallpaper, viewModel.getRecipientId(), viewModel.getDimInDarkTheme().getValue()), CHOOSE_WALLPAPER);
       ActivityTransitionUtil.setSlideInTransition(requireActivity());
-    });
+    }, displayMetrics);
 
     flexboxLayoutManager.setJustifyContent(JustifyContent.CENTER);
     recyclerView.setLayoutManager(flexboxLayoutManager);

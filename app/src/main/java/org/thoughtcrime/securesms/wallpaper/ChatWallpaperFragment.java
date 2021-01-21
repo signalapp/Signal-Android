@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.wallpaper;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.DisplayMetricsUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class ChatWallpaperFragment extends Fragment {
@@ -42,6 +44,8 @@ public class ChatWallpaperFragment extends Fragment {
     clearWallpaper       = view.findViewById(R.id.chat_wallpaper_clear_wallpaper);
     resetAllWallpaper    = view.findViewById(R.id.chat_wallpaper_reset_all_wallpapers);
     divider              = view.findViewById(R.id.chat_wallpaper_divider);
+
+    forceAspectRatioToScreenByAdjustingHeight(chatWallpaperPreview);
 
     viewModel.getCurrentWallpaper().observe(getViewLifecycleOwner(), wallpaper -> {
       if (wallpaper.isPresent()) {
@@ -123,5 +127,11 @@ public class ChatWallpaperFragment extends Fragment {
                    })
                    .setCancelable(true)
                    .show();
+  }
+
+  private void forceAspectRatioToScreenByAdjustingHeight(@NonNull View view) {
+    DisplayMetrics displayMetrics = new DisplayMetrics();
+    requireActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    DisplayMetricsUtil.forceAspectRatioToScreenByAdjustingHeight(displayMetrics, view);
   }
 }

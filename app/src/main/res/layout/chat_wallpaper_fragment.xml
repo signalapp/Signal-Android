@@ -13,20 +13,21 @@
         <View
             android:id="@+id/chat_wallpaper_preview_lightbox"
             android:layout_width="0dp"
-            android:layout_height="320dp"
+            android:layout_height="0dp"
             android:background="@color/signal_background_tertiary"
-            app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_background"
+            app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_space"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/chat_wallpaper_preview_background" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/chat_wallpaper_preview_background"
             android:layout_width="156dp"
             android:layout_height="288dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@color/signal_background_primary"
-            android:importantForAccessibility="no"
+            android:contentDescription="@string/ChatWallpaperFragment__wallpaper_preview_description"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -122,6 +123,13 @@
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Space
+            android:id="@+id/chat_wallpaper_space"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_bottom_bar" />
 
         <View
             android:id="@+id/chat_wallpaper_preview_bottom_bar_input"
@@ -227,12 +235,12 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:visibility="gone"
-            tools:visibility="visible"
             android:background="@color/signal_inverse_transparent_15"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_dark_theme_dims_wallpaper" />
+            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_dark_theme_dims_wallpaper"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/chat_wallpaper_clear_wallpaper"

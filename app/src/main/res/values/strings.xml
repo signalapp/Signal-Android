@@ -2840,6 +2840,7 @@
     <string name="ChatWallpaperFragment__contact_name">Contact name</string>
     <string name="ChatWallpaperFragment__reset">Reset</string>
     <string name="ChatWallpaperFragment__clear">Clear</string>
+    <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
 
     <!-- ChatWallpaperSelectionFragment -->
     <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choose from photos</string>
