@@ -19,12 +19,14 @@ public final class BlessedPacks {
   public static final Pack BANDIT      = new Pack("9acc9e8aba563d26a4994e69263e3b25", "5a6dff3948c28efb9b7aaf93ecc375c69fc316e78077ed26867a14d10a0f6a12");
   public static final Pack SWOON_HANDS = new Pack("e61fa0867031597467ccc036cc65d403", "13ae7b1a7407318280e9b38c1261ded38e0e7138b9f964a6ccbb73e40f737a9b");
   public static final Pack SWOON_FACES = new Pack("cca32f5b905208b7d0f1e17f23fdc185", "8bf8e95f7a45bdeafe0c8f5b002ef01ab95b8f1b5baac4019ccd6b6be0b1837a");
+  public static final Pack DAY_BY_DAY  = new Pack("cfc50156556893ef9838069d3890fe49", "5f5beab7d382443cb00a1e48eb95297b6b8cadfd0631e5d0d9dc949e6999ff4b");
 
   private static final Set<String> BLESSED_PACK_IDS = new HashSet<String>() {{
     add(ZOZO.getPackId());
     add(BANDIT.getPackId());
     add(SWOON_HANDS.getPackId());
     add(SWOON_FACES.getPackId());
+    add(DAY_BY_DAY.getPackId());
   }};
 
   public static boolean contains(@NonNull String packId) {
