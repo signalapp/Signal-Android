@@ -64,6 +64,11 @@
         android:key="pref_incognito_keyboard"
         android:summary="@string/preferences__request_keyboard_to_disable_personalized_learning"
         android:title="@string/preferences__incognito_keyboard" />
+
+    <Preference
+        android:key="pref_incognito_learn_more"
+        android:layout="@layout/incognito_learn_more" />
+
   </PreferenceCategory>
 
   <PreferenceCategory android:layout="@layout/preference_divider" />
