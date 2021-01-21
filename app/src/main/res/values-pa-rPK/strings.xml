@@ -14,16 +14,16 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ہونڑی: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">تسیں اجے تائیں پاس فریز مقرر نئیں کیتا اے!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">ہر گل بات %d سنیہا</item>
     <item quantity="other">ہر گل بات %d سنیہے</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پرانے سارے سنیہے ہونڑی مٹا دئی اے؟</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پرانے سارے سنیہے ہونڑی مٹا دئی اے؟</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one"> ایہدے نال ساری گل بات تازہ ترین سنیہے تے فوری طور تے مختصر ہوجاوے گی۔</item>
     <item quantity="other">ایہدے نال ساری گل بات %d تازہ ترین سنیہیاں تے فوری طور تے مختصر ہوجاوے گی۔</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">مٹا دیو</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">مٹا دیو</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">پاس فریز غیر فعال کردئی اے ؟</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications"> ایہدے نال Signalتے سنیہیاں دی اطلاعواں بمیشاں لئی ان لاک ہو جان گیاں۔</string>
   <string name="ApplicationPreferencesActivity_disable">غیر فعال کرو</string>
@@ -42,7 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">آف</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s، MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">اسکرین لاک %1$s، رجسٹریشن لاک %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">سکریں لاک %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">سکریں لاک %1$s</string> -->
   <string name="ApplicationPreferencesActivity_appearance_summary">تھیم %1$s، زبان %2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">پن بن گیا اے۔</string>
   <!--AppProtectionPreferenceFragment-->
@@ -69,17 +69,17 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">تصویراں، ویڈیو، یاں آڈیو نوں منسلک کرن لئی Signal نوں اسٹوریج اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں دے مینیو اچ جاری رکھو، \"اجازتاں\" چنو، تے \"اسٹوریج\" فعال کرو۔</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">رابطے دی معلومات منسلک کرن لئی Signal نوں رابطے دی اجازت دی لوڑھ ہندی ہ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں دے مینیو تے جاری رکھو، \"اجازتاں\" چن، تے \"رابطے\" فعال کرو۔</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">اک تھاں منسلک کرن لئی Signal نوں تھاں دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں دے مینیو تے جاری رکھو، \"اجازتاں\" منتخب کرو، تے \"تھاں\" فعال کرو۔</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">تصویراں لین لئی Signal نوں کمیرے دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں دے مینیو تے جاری رکھو، \"اجازتاں\" چن، تے \"کیمرہ\" فعال کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">تصویراں لین لئی Signal نوں کمیرے دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں دے مینیو تے جاری رکھو، \"اجازتاں\" چن، تے \"کیمرہ\" فعال کرو۔</string> -->
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">میڈیا اپ لوڈ کر رئیا اے…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ویڈیو سکیڑ رئیا اے…</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">آڈیو چلان اچ نقص اے!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">آڈیو چلان اچ نقص اے!</string> -->
   <!--BlockedContactsActivity-->
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts"> بلاک کیتے گئے رابطے</string> -->
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">گروپ اراکین تساں نوں ایس گروپ اچ دوبارہ شامل کرن دے اہل ہون گے۔</string>
-  <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">ان بلاک کرو</string> -->
   <string name="BlockUnblockDialog_block">بلاک کرو</string>
   <string name="BlockUnblockDialog_block_and_delete">بلاک تے حذف کرو</string>
   <!--BucketedThreadMedia-->
@@ -91,9 +91,9 @@
   <string name="BucketedThreadMedia_Medium">درمیانہ</string>
   <string name="BucketedThreadMedia_Small">نکا</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">آن آلی کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">آن آلی کال</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">تصویر محفوظ کرن اچ ناکام ہویا۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">تصویر محفوظ کرن اچ ناکام ہویا۔</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">تصویر لئی بٹن دبو ، ویڈیو لئی پھڑ کے رکھو</string>
   <string name="CameraXFragment_capture_description">کیپچر کرو</string>
@@ -116,7 +116,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">کوئی ویب براؤزر نئیں لبھیا۔</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">اک سیلولر کال پہلاں توں چلدی پئی اے۔</string>
-  <string name="CommunicationActions_start_video_call">ویڈیو کال شروع کردئی اے؟</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_start_video_call">ویڈیو کال شروع کردئی اے؟</string> -->
   <string name="CommunicationActions_start_voice_call">آڈیوکال شروع کردئی اے؟</string>
   <string name="CommunicationActions_cancel">منسوخ کرو</string>
   <string name="CommunicationActions_call">کال کرو</string>
@@ -183,13 +183,13 @@
   <string name="ConversationActivity_transport_signal"> Signal </string>
   <string name="ConversationActivity_lets_switch_to_signal">آؤ Signal %1$s تے تبدیل کردئی اے</string>
   <string name="ConversationActivity_specify_recipient">مہربانی کر کے اک رابطہ چنو </string>
-  <string name="ConversationActivity_unblock_this_contact_question">ایس رابطے نوں ان بلاک کردئی اے ؟</string>
-  <string name="ConversationActivity_unblock_this_group_question">ایس گروپ نوں ان بلاک کر دئی اے ؟</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">تسیں اک واری فیر ایس رابطے توں سنیہے تے کال وصول کر سکو گے۔</string>
-  <string name="ConversationActivity_unblock_this_group_description">موجودہ اراکین تہانوں فیر گروپ اچ شامل کر سکن گے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">ایس رابطے نوں ان بلاک کردئی اے ؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">ایس گروپ نوں ان بلاک کر دئی اے ؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">تسیں اک واری فیر ایس رابطے توں سنیہے تے کال وصول کر سکو گے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">موجودہ اراکین تہانوں فیر گروپ اچ شامل کر سکن گے۔</string> -->
   <string name="ConversationActivity_unblock"> ان بلاک کرو</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">تسیں جس قسم دا سنیہا گھل رئے او، اوہدے لئی اٹیچمنٹ دا سائز حد توں ودھ گیا اے۔</string>
-  <string name="ConversationActivity_quick_camera_unavailable">کیمرا دستیاب نئیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">کیمرا دستیاب نئیں</string> -->
   <string name="ConversationActivity_unable_to_record_audio">آڈیو ریکارڈ کرن دے قابل نئیں!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">تہاڈے آلے تے ایس لنک نوں سنبھالن لئی کوئی ایپ دستیاب نئیں اے۔</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">آڈیو سنیہے گھلن لئی، Signal نوں اپنے مائیکروفون تائیں رسائی دی اجازت دیوو۔</string>
@@ -223,10 +223,10 @@
     <item quantity="one"> چنیا گیا سنیہا مثا دئیے؟</item>
     <item quantity="other"> چنے گئے سنیہے مٹا د‏‏‏ئیے؟</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one"> ایہدے نال چنیا گیا سنیہا ہمیش لئی مٹا دتا جاوے گا۔</item>
     <item quantity="other"> ایہدے نال چنے گئے سارے %1$d سنیہے ہمیش لئی مٹ جان گے۔</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">اسٹوریج اچ محفوظ کردئی اے؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">ایس میڈیا نوں اسٹوریج اچ محفوظ کرن نال تہاڈے آلے تے کسے دوجی ایپ نوں ایس تائیں رسائی دی اجازت مل جاوے گی۔\n\nجاری رکھیے ؟</item>
@@ -259,9 +259,9 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">باہر جان آلیاں اک واری ویکھیاں جان آلیاں میڈیا فائلاں گھلن توں بعد آپوں آپ مٹ جاندیاں نیں</string>
   <string name="ConversationFragment_you_already_viewed_this_message">تسیں ایہہ سنیہا پہلاں ای ویکھ چکے او</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">تہاڈے آلے تے کوئی براؤزر نصب نئیں اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">تہاڈے آلے تے کوئی براؤزر نصب نئیں اے۔</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' لئی کوئی نتیجے نئیں لبھے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' لئی کوئی نتیجے نئیں لبھے</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one"> چنی گئی گل بات مٹا دئی اے ؟</item>
     <item quantity="other"> چنی گئی گل بات مٹا د‏ئی اے ؟</item>
@@ -293,7 +293,7 @@
   <string name="CreateProfileActivity__profile">پروفائل</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">پروفائل فوٹو ترتیب دین اچ نقص</string>
   <string name="CreateProfileActivity_problem_setting_profile">پروفائل ترتیب دین اچ مسئلہ</string>
-  <string name="CreateProfileActivity_profile_photo">پروفائل فوٹو</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">پروفائل فوٹو</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">اپنا پروفائل ترتیب دیو</string>
   <string name="CreateProfileActivity_set_avatar_description">اواتار سیٹ کرو</string>
   <!--CustomDefaultPreference-->
@@ -308,10 +308,10 @@
   <string name="DateUtils_today">اج</string>
   <string name="DateUtils_yesterday">کل</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending"> گھل رئیا اے</string>
-  <string name="DeliveryStatus_sent">گھلیا گیا </string>
-  <string name="DeliveryStatus_delivered"> پوہنچ گیا اے</string>
-  <string name="DeliveryStatus_read">پڑھو</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending"> گھل رئیا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">گھلیا گیا </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered"> پوہنچ گیا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">پڑھو</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' غیر منسلک کرئیے؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ایس آلے نوں غیر منسلک کرن نال ، ایہہ ہور سنیہے گھلن یاں وصول کرن دے قابل نئیں ہووے گا۔</string>
@@ -333,7 +333,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ایہدے نال سانجھا کرو</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">اک سنیہا بازیافت کر رئیا اے…</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">اک سنیہا بازیافت کر رئیا اے…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal مواصلت اچ مستقل ناکامی!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal گوگل پلے سروسز نال رجسٹر نئیں کر سکیا سی۔ Signal سنیہے تے کالاں غیر فعال کیتیاں گئیاں نیں، مہربانی کر کے ترتیباں تے ایڈوانسڈ اچ فیر رجسٹر کرن دی کوشش کرو۔</string>
@@ -347,14 +347,14 @@
   <string name="ChooseNewAdminActivity_choose_new_admin">نواں ایڈمن منتخب کرو</string>
   <string name="ChooseNewAdminActivity_done">ہو گیا</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ایس گروپ نال تہاڈا پروفائل ناں تے تصویر سانچھی کر‏‏ئی اے دا؟</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیہ تسیں ایس گروپ دے موجودہ تے آن آلیاں ممبراں نوں اپناں پروفائل ناں تے تصویر وکھانا چاہندے او؟</string>
-  <string name="GroupShareProfileView_make_visible">ظاہر کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ایس گروپ نال تہاڈا پروفائل ناں تے تصویر سانچھی کر‏‏ئی اے دا؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">کیہ تسیں ایس گروپ دے موجودہ تے آن آلیاں ممبراں نوں اپناں پروفائل ناں تے تصویر وکھانا چاہندے او؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">ظاہر کرو</string> -->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">تسیں</string>
   <!--GV2 access levels-->
   <!--GV2 invites sent-->
-  <string name="GroupManagement_learn_more">ہور جانو</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">ہور جانو</string> -->
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_people_you_invited">لوکی جیہڑے تساں نے مدعو کیتے</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">دوجے گروپ دے رکناں دے ولوں دعوت نامے</string>
@@ -368,7 +368,7 @@
   <string name="AddGroupDetailsFragment__remove">ہٹاؤ</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_disappearing_messages">غائب ہون آلے سنیہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_disappearing_messages">غائب ہون آلے سنیہے</string> -->
   <string name="ManageGroupActivity_add_members">ممبر شامل کرو</string>
   <string name="ManageGroupActivity_leave_group">گروپ چھڈو</string>
   <string name="ManageGroupActivity_mute_notifications">اطلاعواں خموش کرو</string>
@@ -376,7 +376,7 @@
   <string name="ManageGroupActivity_off">آف</string>
   <string name="ManageGroupActivity_on">آن</string>
   <string name="ManageGroupActivity_view_all_members">سارے رکناں نوں ویکھو</string>
-  <string name="ManageGroupActivity_none">کوئی نئیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">کوئی نئیں</string> -->
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">غائب ہون آلے سنیہے</string>
@@ -400,19 +400,19 @@
   <string name="CustomNotificationsDialogFragment__default">طے شدہ</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">گروپ اوتار</string>
-  <string name="CropImageActivity_profile_avatar">اوتار</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">گروپ اوتار</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">اوتار</string> -->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">اک صوتی سنیہا ریکارڈ کرن لئی بٹن دبو تے پھڑ کے رکھو، گھلن لئی چھڈ دیو</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">سانجھا کرو</string>
-  <string name="InviteActivity_choose_contacts">رابطے منتخب کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">رابطے منتخب کرو</string> -->
   <string name="InviteActivity_share_with_contacts">رابطے نال سانجھا کرو</string>
   <string name="InviteActivity_choose_how_to_share">سانجھا کرن دا طریقہ منتخب کرو</string>
   <string name="InviteActivity_cancel">منسوخ کرو</string>
   <string name="InviteActivity_sending">گھل رئیا اے…</string>
-  <string name="InviteActivity_heart_content_description">دل</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">دل</string> -->
   <string name="InviteActivity_invitations_sent">دعوت نامے گھل دتے!</string>
   <string name="InviteActivity_invite_to_signal">Signal تے سدھو</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -427,7 +427,7 @@
   <string name="InviteActivity_no_app_to_share_to">انج لگدا اے کہ سانجھا کرن لئی تہاڈے کول ایپ نئیں۔</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست دوستاں دی چیٹ نوں بغیر خفیہ کیتے نئیں چھڈدے نیں۔</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">پس منظر اچ کم کرنا…</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">پس منظر اچ کم کرنا…</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ہور جانو</string>
   <!--LongMessageActivity-->
@@ -502,7 +502,7 @@
   <string name="MediaPickerActivity_send_to">%s تے گھلو</string>
   <string name="MediaPickerActivity__menu_open_camera">کیمرا کھولو</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select"> چنن لئی بٹن دبو </string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select"> چنن لئی بٹن دبو </string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">اک عنوان شامل کرو…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">اک آئیٹم ہٹا دتا گیا کیوں جے ایہہ سائز دی حد توں ودھ گیا سی</string>
@@ -530,7 +530,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">مسڈ کال</string> -->
   <string name="MessageRecord_s_updated_group">%s نے گروپ اپ ڈیٹ کیتا۔</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s نے تہانوں کال کیتی</string> -->
-  <string name="MessageRecord_called_s">%s کال کیتی</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">%s کال کیتی</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s دی طرفوں مسڈ کال</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal تے اے!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">تسیں غائب ہون آلے سنیہیاں نوں غیر فعال کیتا اے۔</string>
@@ -605,7 +605,7 @@
   <string name="PassphrasePromptActivity_unlock_signal">Signal غیرمقفل کرو</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشہ</string>
-  <string name="PlacePickerActivity_not_a_valid_address"> درست پتہ نئیں اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="PlacePickerActivity_not_a_valid_address"> درست پتہ نئیں اے</string> -->
   <string name="PlacePickerActivity_drop_pin">ڈراپ پن</string>
   <string name="PlacePickerActivity_accept_address">پتہ قبول کرو</string>
   <!--PlayServicesProblemFragment-->
@@ -636,20 +636,20 @@
   <string name="ReactionsRecipientAdapter_you">تسیں</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block"> بلاک کرو</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">گروپ چھڈن اچ نقص اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">گروپ چھڈن اچ نقص اے</string> -->
   <string name="RecipientPreferenceActivity_unblock">ان بلاک کرو</string>
-  <string name="RecipientPreferenceActivity_enabled">فعال کیتا</string>
-  <string name="RecipientPreferenceActivity_disabled">غیرفعال کیتا</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">اک واری سنیہا گھلن یاں موصول ہون دے بعد دستیاب ہندا اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">فعال کیتا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">غیرفعال کیتا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">اک واری سنیہا گھلن یاں موصول ہون دے بعد دستیاب ہندا اے۔</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">بنا ناں دا گروپ</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">جواب دینا</string>
   <string name="RedPhone_ending_call">کال ختم کرنا</string>
-  <string name="RedPhone_dialing">ڈائل کرنا</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">ڈائل کرنا</string> -->
   <string name="RedPhone_ringing">بجنا</string>
   <string name="RedPhone_busy">مصروف</string>
-  <string name="RedPhone_connected">منسلک ہویا</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">منسلک ہویا</string> -->
   <string name="RedPhone_recipient_unavailable">وصول کنندہ دستیاب نئیں</string>
   <string name="RedPhone_network_failed">نیٹ ورک ناکام ہویا!</string>
   <string name="RedPhone_number_not_registered">نمبر رجسٹرڈ نئیں!</string>
@@ -673,22 +673,22 @@
   <string name="RegistrationActivity_play_services_error">پلے سروسز اچ نقص</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">گوگل پلے سروسز اپ ڈیٹ ہو رئی اے یاں عارضی طور تے دستیاب نئی۔ مہربانی کرکے فیر کوشش کرو۔</string>
   <string name="RegistrationActivity_terms_and_privacy">شرائط تے رازداری دی پالیسی</string>
-  <string name="RegistrationActivity_no_browser">ایس لنک نوں کھول نئیں سکدا ۔ کوئی ویب براؤزر نئیں لبھیا۔</string>
-  <string name="RegistrationActivity_more_information">ہور معلومات</string>
-  <string name="RegistrationActivity_less_information">گھٹ معلومات</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">ایس لنک نوں کھول نئیں سکدا ۔ کوئی ویب براؤزر نئیں لبھیا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">ہور معلومات</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">گھٹ معلومات</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">دوستاں نال رابطہ کرن، سنیہیاں دا تبادلہ کرن تے محفوظ کالاں کرن لئی Signal نوں تہاڈے رابطیاں تے میڈیا تائیں رسائی دی لوڑھ ہندی اے</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">سروس نال نئیں جوڑ سکدا۔ مہربانی کر کے نیٹ ورک کنکشن دی جانچ کرو تے فیر کوشش کرو۔</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">آپنے فون نمبر دی اسانی نال توثیق کرن لئی،جے تسیںSignal نوں SMS سنیہے ویکھن دی اجازت دیندے او تاں سگنل آپوں آپ تہاڈے توثیقی کوڈ دا پتہ لا سکدا اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">آپنے فون نمبر دی اسانی نال توثیق کرن لئی،جے تسیںSignal نوں SMS سنیہے ویکھن دی اجازت دیندے او تاں سگنل آپوں آپ تہاڈے توثیقی کوڈ دا پتہ لا سکدا اے۔</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ہن تسیں اک ڈیبگ لاگ جمع کران توں %d قدم دور او۔</item>
     <item quantity="other"> ہن تسیں اک ڈیبگ لاگ جمع کران توں %d قدم دور او۔</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">سانوں تصدیق کرن دی لوڑھ اے کہ تسیں انسان او۔</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">کیپچا دی تصدیق کرنے اچ ناکام ہویا</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">کیپچا دی تصدیق کرنے اچ ناکام ہویا</string> -->
   <string name="RegistrationActivity_next">اگلا</string>
   <string name="RegistrationActivity_continue">جاری رکھو</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">جاری رکھو (%d کوششاں باقی نیں)</string>
-  <string name="RegistrationActivity_continue_last_attempt">جاری رکھو (آخری کوشش!)</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_d_attempts_left">جاری رکھو (%d کوششاں باقی نیں)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_last_attempt">جاری رکھو (آخری کوشش!)</string> -->
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"> رازداری اختیار کرو۔\nہر سنیہے اچ اپنے ورگے بنو۔</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">شروع کرن لئی اپناں فون نمبر درج کرو</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">تہانوں اک توثیقی کوڈ موصول ہوئے گا۔ کیریئر دیاں شرحاں لاگو ہو سکدیاں نیں۔</string>
@@ -704,7 +704,7 @@
   <string name="RevealableMessageView_viewed">ویکھیا</string>
   <string name="RevealableMessageView_media">میڈیا</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">تصویری تبدیلیاں محفوظ کرن اچ ناکام ہویا</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">تصویری تبدیلیاں محفوظ کرن اچ ناکام ہویا</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' لئی کوئی نتیجے نئیں لبھے</string>
   <string name="SearchFragment_header_conversations">گل باتاں</string>
@@ -758,7 +758,7 @@
   <string name="SubmitDebugLogActivity_done">ہو گیا</string>
   <string name="SubmitDebugLogActivity_submit">جمع کراؤ</string>
   <string name="SubmitDebugLogActivity_success">کامیابی!</string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">کلپ بورڈ تے کاپی کیتا</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_copied_to_clipboard">کلپ بورڈ تے کاپی کیتا</string> -->
   <string name="SubmitDebugLogActivity_share">سانجھا کرو</string>
   <!--SupportEmailUtil-->
   <!--ThreadRecord-->
@@ -787,7 +787,7 @@
   <string name="ThreadRecord_photo">تصویر</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">وائس سنیہا</string>
-  <string name="ThreadRecord_contact">رابطہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_contact">رابطہ</string> -->
   <string name="ThreadRecord_file">فائل</string>
   <string name="ThreadRecord_video">ویڈیو</string>
   <!--UpdateApkReadyListener-->
@@ -848,7 +848,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">سسٹم ڈیٹا بیس درآمد مکمل اے۔</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">کھولن لئی ٹچ کرو۔</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">کھولن لئی ٹچ کرو، یا بند کرن لئی لاک نوں ٹچ کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">کھولن لئی ٹچ کرو، یا بند کرن لئی لاک نوں ٹچ کرو۔</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal غیرمقفل اے</string>
   <string name="KeyCachingService_lock">Signal نوں لاک کرو</string>
   <!--MediaPreviewActivity-->
@@ -864,14 +864,14 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d گل بات اچ %1$d نویں سنیہے</string>
   <string name="MessageNotifier_most_recent_from_s">ولوں سبھ توں نواں: %1$s</string>
   <string name="MessageNotifier_locked_message">مقفل کیتا سنیہا </string>
-  <string name="MessageNotifier_media_message_with_text">میڈیا سنیہا: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">میڈیا سنیہا: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">سنیہا پہنچان اچ ناکامی</string>
   <string name="MessageNotifier_failed_to_deliver_message"> سنیہا پہنچان اچ ناکام ہویا۔</string>
   <string name="MessageNotifier_error_delivering_message"> سنیہا پہنچان اچ نقص۔</string>
   <string name="MessageNotifier_mark_all_as_read">ساریاں نوں پڑھیا ہویا نشان زد کرو</string>
   <string name="MessageNotifier_mark_read"> پڑھیا ہویا نشان زد کرو</string>
-  <string name="MessageNotifier_media_message">میڈیا سنیہا</string>
-  <string name="MessageNotifier_sticker">اسٹیکر</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">میڈیا سنیہا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">اسٹیکر</string> -->
   <string name="MessageNotifier_view_once_photo">اک واری نظر آن آلی فوٹو</string>
   <string name="MessageNotifier_view_once_video">اک واری نظر آن آلی ویڈیو</string>
   <string name="MessageNotifier_reply">جواب دیو</string>
@@ -901,8 +901,8 @@
   <string name="NotificationChannel_group_messages">سنیہے</string>
   <string name="NotificationChannel_missing_display_name">نامعلوم</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">پروفائل ناں کامیابی نال ترتیب دیتا۔</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">نیٹ ورک نقص دا سامنا کرنا پیا اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">پروفائل ناں کامیابی نال ترتیب دیتا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_encountered_a_network_error">نیٹ ورک نقص دا سامنا کرنا پیا اے۔</string> -->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal مقفل ہون تے فوری جواب دستیاب نئیں ہندا اے!</string>
   <string name="QuickResponseService_problem_sending_message"> سنیہا گھلن اچ مسئلہ!</string>
@@ -929,48 +929,48 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">آلہ ہن رجسٹر نئیں </string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ہو سکدا اے ایہہ ایس لئی ہوئے کہ تسیںSignal نال اپناں فون نمبر کسے دوجے آلے تے رجسٹر کیتا ہوئے۔ فیر رجسٹر کرن لئی بٹن دبو۔</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">ویڈیو چلان اچ نقص</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">ویڈیو چلان اچ نقص</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s دی کال دا جواب دین لئی، Signal نوں اپنے مائیکروفون تائیں رسائی دیو۔</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">کال کرن یاں وصول کرن لئیSignal نوں مائیکروفون تے کیمرا دی اجازتاں دی لوڑھ ہندی اے، پر ایہناں توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"مائیکروفون\" تے \"کیمرہ\" فعال کرو۔</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s نال تہادی گل بات دا سیفٹی نمبر بدل گیا اے۔ ایدا ایہہ مطلب ہوسکدا اے کہ کوئی تہاڈی مواصلت اچ مداخلت کرن دی کوشش کر رئیا اے، یاں فیر ایہ کہ %2$s نے Signal فیر انسٹال کیتا اے۔</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ہو سکدا اے تسیں ایس رابطے نال اپنے حفاظتی نمبر دی تصدیق کرنا چاہوو ۔</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">نواں سیفٹی نمبر</string>
-  <string name="WebRtcCallScreen_accept">قبول کرو</string>
-  <string name="WebRtcCallScreen_end_call">کال ختم کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">%1$s نال تہادی گل بات دا سیفٹی نمبر بدل گیا اے۔ ایدا ایہہ مطلب ہوسکدا اے کہ کوئی تہاڈی مواصلت اچ مداخلت کرن دی کوشش کر رئیا اے، یاں فیر ایہ کہ %2$s نے Signal فیر انسٹال کیتا اے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ہو سکدا اے تسیں ایس رابطے نال اپنے حفاظتی نمبر دی تصدیق کرنا چاہوو ۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">نواں سیفٹی نمبر</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">قبول کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">کال ختم کرو</string> -->
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">جواب</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">اسپیکر</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوٹوتھ</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">اپنی ویڈیو فعال کرن لئی بٹن دبو </string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">اپنی ویڈیو فعال کرن لئی بٹن دبو </string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">رابطہ فوٹو</string>
-  <string name="WebRtcCallControls_speaker_button_description">اسپیکر</string>
-  <string name="WebRtcCallControls_bluetooth_button_description">بلوٹوتھ</string>
-  <string name="WebRtcCallControls_mute_button_description">خموش</string>
-  <string name="WebRtcCallControls_your_camera_button_description">تہاڈا کیمرا</string>
-  <string name="WebRtcCallControls_switch_to_rear_camera_button_description"> پچھلے کیمرے تے بدلو</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">رابطہ فوٹو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">اسپیکر</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_bluetooth_button_description">بلوٹوتھ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">خموش</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_your_camera_button_description">تہاڈا کیمرا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_switch_to_rear_camera_button_description"> پچھلے کیمرے تے بدلو</string> -->
   <string name="WebRtcCallControls_answer_call_description">کال دا جواب دیو</string>
   <string name="WebRtcCallControls_reject_call_description">کال مسترد کرو</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">آڈیو</string>
-  <string name="attachment_type_selector__audio_description">آڈیو</string>
-  <string name="attachment_type_selector__contact">رابطہ</string>
-  <string name="attachment_type_selector__contact_description">رابطہ</string>
-  <string name="attachment_type_selector__camera">کیمرہ</string>
-  <string name="attachment_type_selector__camera_description">کیمرہ</string>
-  <string name="attachment_type_selector__location">تھاں</string>
-  <string name="attachment_type_selector__location_description">تھاں</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">تصویر یا ویڈیو</string>
-  <string name="attachment_type_selector__file_description">فائل</string>
-  <string name="attachment_type_selector__gallery">گیلری</string>
-  <string name="attachment_type_selector__file">فائل</string>
-  <string name="attachment_type_selector__drawer_description">منسلکہ دراز تبدیل کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">آڈیو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">آڈیو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">رابطہ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">رابطہ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">کیمرہ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">کیمرہ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">تھاں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">تھاں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">Gif</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">تصویر یا ویڈیو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">فائل</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">گیلری</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">فائل</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">منسلکہ دراز تبدیل کرو</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">پرانا پاس فریز</string>
   <string name="change_passphrase_activity__new_passphrase">نواں پاس فریز</string>
@@ -995,7 +995,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" اکSignal صارف نئیں اے۔ مہربانی کر کے صارف ناں دی پڑتال کرو تے فیر کوشش کرو۔</string>
   <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">ٹھیک اے</string> -->
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">کوئی مسدود کیتے رابطے نئیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">کوئی مسدود کیتے رابطے نئیں</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal نوں تہادے رابطے وکھان لئی اوہناں تائیں رسائی دی لوڑھ اے۔</string>
   <string name="contact_selection_list_fragment__show_contacts">رابطے وکھاؤ</string>
@@ -1036,7 +1036,7 @@
   <string name="QuoteView_photo">تصویر</string>
   <string name="QuoteView_view_once_media">اک واری نظر آن آلا میڈیا</string>
   <string name="QuoteView_sticker">اسٹیکر</string>
-  <string name="QuoteView_document">دستاویز</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">دستاویز</string> -->
   <string name="QuoteView_you">تسیں</string>
   <string name="QuoteView_original_missing">اصل سنیہا نئیں لبھیا</string>
   <!--conversation_fragment-->
@@ -1053,10 +1053,10 @@
   <string name="device_list_fragment__no_devices_linked">کوئی آلے منسلک نئیں</string>
   <string name="device_list_fragment__link_new_device">نواں آلہ منسلک کرو</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">جاری رکھو</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here"> پڑھیاں سنیہاں دیاں رسیداں ایتھے نیں</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">جدوں سنیہے پڑھے جان تاں اختیاری طور تے ویکھو تے سانجھے کرو</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts"> رسیداں پڑھنا فعال کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">جاری رکھو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here"> پڑھیاں سنیہاں دیاں رسیداں ایتھے نیں</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">جدوں سنیہے پڑھے جان تاں اختیاری طور تے ویکھو تے سانجھے کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts"> رسیداں پڑھنا فعال کرو</string> -->
   <!--expiration-->
   <string name="expiration_off">آف</string>
   <plurals name="expiration_seconds">
@@ -1104,20 +1104,20 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">کجھ نئیں لبھیا</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">تہاڈے آلے تے لاگ نئیں پڑھ سکیا۔ تسیں فیر وی ایہدی تھاں تے ڈیبگ لاگ حاصل کرن لئی ADB استعمال کرسکدے او۔</string>
-  <string name="log_submit_activity__thanks">تہاڈی مدد لئی شکریہ!</string>
-  <string name="log_submit_activity__submitting">جمع کرانا</string>
-  <string name="log_submit_activity__no_browser_installed">کوئی براؤزر نصب نئیں اے</string>
-  <string name="log_submit_activity__button_dont_submit">جمع نہ کرو</string>
-  <string name="log_submit_activity__button_submit">جمع کرو</string>
-  <string name="log_submit_activity__button_got_it">سمجھ آگیا</string>
-  <string name="log_submit_activity__button_compose_email">ای میل لکھو</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">تہاڈے آلے تے لاگ نئیں پڑھ سکیا۔ تسیں فیر وی ایہدی تھاں تے ڈیبگ لاگ حاصل کرن لئی ADB استعمال کرسکدے او۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">تہاڈی مدد لئی شکریہ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">جمع کرانا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">کوئی براؤزر نصب نئیں اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">جمع نہ کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">جمع کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">سمجھ آگیا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">ای میل لکھو</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">اے لاگ مضمون نگاراں دے ویکھن لئی عوامی طور تے آن لائن شائع کیتا جائے گا، تسیں گھلن توں پہلاں جانچ تے ترمیم کرسکدے او۔</string>
-  <string name="log_submit_activity__loading_logs">لاگ لوڈ کر رئیا اے…</string>
-  <string name="log_submit_activity__uploading_logs">لاگز اپ لوڈ کر رئیا اے…</string>
-  <string name="log_submit_activity__choose_email_app">ای میل ایپ دا انتخاب کرو</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">مہربانی کر کے میری ایپ توں ایس لاگ دا جائزہ لو: %1$s</string>
-  <string name="log_submit_activity__network_failure">نیٹ ورک دی ناکامی۔ مہربانی کرکے فیر کوشش کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">لاگ لوڈ کر رئیا اے…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">لاگز اپ لوڈ کر رئیا اے…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ای میل ایپ دا انتخاب کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">مہربانی کر کے میری ایپ توں ایس لاگ دا جائزہ لو: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">نیٹ ورک دی ناکامی۔ مہربانی کرکے فیر کوشش کرو۔</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">کیہ تسیں اپنے موجودہ متن سنیہےزSignal دے خفیہ کیتے ڈیٹا بیس اچ درآمد کرنا چاہوs گے؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">طے شدہ نظام دے ڈیٹا بیس اچ کسے وی طرح ترمیم یا تبدیلی نئیں ہووے گی۔</string>
@@ -1125,10 +1125,10 @@
   <string name="database_migration_activity__import">درآمد کرو</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ایہدے اچ تھوڑا وقت لگ سکدا اے۔ مہربانی کر کے تحمل کرو، درآمد مکمل ہون تے اسیں تہانوں اطلاع کر داں گے۔</string>
   <string name="database_migration_activity__importing">درآمد کرنا</string>
-  <string name="import_fragment__import_system_sms_database">سسٹم SMS ڈیٹا بیس درآمد کرو</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">ڈیفالٹ سسٹم میسنجر ایپ توں درآمد کرو</string>
-  <string name="import_fragment__import_plaintext_backup">سادہ متن بیک اپ درآمد کرو</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">اک سادہ متن بیک اپ فائل درآمد کرو۔ \'SMS بیک اپ تے ری اسٹور نال ہم آہنگ۔\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">سسٹم SMS ڈیٹا بیس درآمد کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">ڈیفالٹ سسٹم میسنجر ایپ توں درآمد کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">سادہ متن بیک اپ درآمد کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">اک سادہ متن بیک اپ فائل درآمد کرو۔ \'SMS بیک اپ تے ری اسٹور نال ہم آہنگ۔\'</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">پوری گل بات ویکھو</string>
   <string name="load_more_header__loading">لوڈ ہو رئیا اے</string>
@@ -1137,7 +1137,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ویکھو</string>
   <string name="message_recipients_list_item__resend">فیر گھلو</string>
-  <string name="message_recipients_list_item__resending">فیر گھل رئیا اے…</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">فیر گھل رئیا اے…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s گروپ اچ شامل ہویا اے۔</item>
@@ -1162,20 +1162,20 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">مشترکہ میڈیا</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal کال</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Signal کال</string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">فون نمبر</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal تہاڈے موجودہ فون نمبر تے ایڈریس بک نوں ورتدے ہوئے مواصلت نوں اسان بناندا اے۔ دوست تے رابطے جیہڑے پہلاں توں جاندے نیں کہ تہانوں فون دے ذریعے کس طراں رابطہ کرنا اے اوہ Signal دے راہیں اسانی نال رابطہ کر سکن گے۔\n\nرجسٹریشن رابطے دی کجھ معلومات سرور نوں منتقل کردی اے۔ ایہہ اسٹور نئیں اے۔</string>
-  <string name="registration_activity__verify_your_number">اپنے نمبر دی تصدیق کرو</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">توثیقی کوڈ حاصل کرن لئی مہربانی کر کے اپناں موبائل نمبر درج کرو۔ کیریئر دیاں شرحاں لاگو ہو سکدیاں نیں۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">فون نمبر</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal تہاڈے موجودہ فون نمبر تے ایڈریس بک نوں ورتدے ہوئے مواصلت نوں اسان بناندا اے۔ دوست تے رابطے جیہڑے پہلاں توں جاندے نیں کہ تہانوں فون دے ذریعے کس طراں رابطہ کرنا اے اوہ Signal دے راہیں اسانی نال رابطہ کر سکن گے۔\n\nرجسٹریشن رابطے دی کجھ معلومات سرور نوں منتقل کردی اے۔ ایہہ اسٹور نئیں اے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">اپنے نمبر دی تصدیق کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">توثیقی کوڈ حاصل کرن لئی مہربانی کر کے اپناں موبائل نمبر درج کرو۔ کیریئر دیاں شرحاں لاگو ہو سکدیاں نیں۔</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>اک ناں یاں نمبر درج کرو</small></string>
-  <string name="recipients_panel__add_members"> ممبر شامل کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members"> ممبر شامل کرو</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list"> سنیہا گھلن آلا تہاڈی رابطہ فہرست اچ نئیں اے</string>
-  <string name="unknown_sender_view__block"> بلاک کرو</string>
-  <string name="unknown_sender_view__add_to_contacts"> رابطے اچ شامل کرو</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">شامل نہ کرو، پر میری پروفائل نوں ظاہر کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list"> سنیہا گھلن آلا تہاڈی رابطہ فہرست اچ نئیں اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block"> بلاک کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts"> رابطے اچ شامل کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">شامل نہ کرو، پر میری پروفائل نوں ظاہر کرو</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[جے تسیں اپنی خفیہ کاری دے تحفظ دی %s دے نال تصدیق کرانا چاہندے او، تے اتے دتے گئےا نمبر دا اوہناں دے آلے دے نمبر دے نال موازنہ کرو۔ متبادل دے طور تے، تسیں اوہناں دے فون تے کوڈ اسکین کرسکدے او، یاں فیر اوہناں نوں اپناں کوڈ اسکین کرن دا کہہ سکدے او۔ <a href="https://signal.org/redirect/safety-numbers">ہور جانو۔</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">اسکین کرن لئی بٹن دبو</string>
@@ -1210,11 +1210,11 @@
   <string name="AndroidManifest_remove_photo">تصویر ہٹاؤ</string>
   <!--Message Requests Megaphone-->
   <!--HelpFragment-->
-  <string name="HelpFragment__help">مدد</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__help">مدد</string> -->
   <string name="HelpFragment__next">اگلا</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
-  <string name="arrays__import_export">درآمد کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">درآمد کرو</string> -->
   <string name="arrays__use_default">ڈیفالٹ ورتو</string>
   <string name="arrays__use_custom">حسب ضرورت ورتو</string>
   <string name="arrays__mute_for_one_hour">1 گھنٹے لئی خموش کرو</string>
@@ -1266,7 +1266,7 @@
   <string name="preferences__inactivity_timeout_passphrase">غیر فعالیت دا ویلا مکن دا پاس فریز</string>
   <string name="preferences__inactivity_timeout_interval">غیر فعالیت دا ویلا مکن دا وقفہ</string>
   <string name="preferences__notifications">اطلاعواں</string>
-  <string name="preferences__system_notification_settings">سسٹم اطلاع دیاں ترتیباں</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">سسٹم اطلاع دیاں ترتیباں</string> -->
   <string name="preferences__led_color">LED رنگ</string>
   <string name="preferences__led_color_unknown">نامعلوم</string>
   <string name="preferences__pref_led_blink_title">LED بلنک پیٹرن</string>
@@ -1315,7 +1315,7 @@
   <string name="preferences__dark_theme">گہرا</string>
   <string name="preferences__appearance">شباہت</string>
   <string name="preferences__theme">تھیم</string>
-  <string name="preferences__default">طے شدہ</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">طے شدہ</string> -->
   <string name="preferences__language">زبان</string>
   <string name="preferences__signal_messages_and_calls">Signal سنیہے تے کالاں</string>
   <string name="preferences__free_private_messages_and_calls">Signal صارفین نوں مفت نجی سنیہے تے کالاں</string>
@@ -1389,7 +1389,7 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">غائب ہون آلے سنیہے</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">سنیہیاں دی میعاد مکنا </string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">سنیہیاں دی میعاد مکنا </string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite"> سدھو</string>
   <!--conversation_list_batch-->
@@ -1397,16 +1397,16 @@
   <string name="conversation_list_batch__menu_select_all">سارے چنو</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">چنیاں ہوئیاں نوں آرکائیو کرو </string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">چنیاں ہوئیاں نوں غیر آرکائیو کرو </string>
-  <string name="conversation_list_batch__menu_unarchive_selected">چنیاں ہوئیاں نوں غیر آرکائیو کرو </string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_batch__menu_unarchive_selected">چنیاں ہوئیاں نوں غیر آرکائیو کرو </string> -->
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ترتیباں دا شارٹ کٹ</string>
   <string name="conversation_list_search_description">لبھو</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">رابطہ تصویر شبیہہ</string>
   <string name="conversation_list_item_view__archived">آرکائیو کیتا</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">انباکس زیرو</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">زپ۔ زلچ۔ زیرو۔
-تسی شامل ہوگئے او!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">انباکس زیرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">زپ۔ زلچ۔ زیرو۔
+تسی شامل ہوگئے او!</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">نویں گل بات </string>
   <string name="conversation_list_fragment__open_camera_description">کیمرا کھولو</string>
@@ -1418,8 +1418,8 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">اطلاعواں خموش کرو</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">اٹیچمنٹ شامل کرو</string>
-  <string name="conversation__menu_edit_group">گروپ اچ ترمیم کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">اٹیچمنٹ شامل کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">گروپ اچ ترمیم کرو</string> -->
   <string name="conversation__menu_leave_group">گروپ چھڈو</string>
   <string name="conversation__menu_view_all_media">سارا میڈیا</string>
   <string name="conversation__menu_conversation_settings">گل بات دیاں ترتیباں</string>
@@ -1439,7 +1439,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">مقفل</string>
   <string name="text_secure_normal__mark_all_as_read">ساریاں نوں پڑھے ہوئے نشان زد کرو</string>
   <string name="text_secure_normal__invite_friends">دوستاں نوں سدھو</string>
-  <string name="text_secure_normal__help">مدد</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">مدد</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">کلپ بورڈ تے کاپی کرو</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">کلپ بورڈ نال موازنہ کرو</string>
@@ -1458,12 +1458,12 @@
   <string name="reminder_header_sms_import_text">Signal دے خفیہ کیتے ڈیٹا بیس اچ اپنے فون دے SMS سنیہے کاپی کرن لئی بٹن دبو ۔</string>
   <string name="reminder_header_push_title">Signal سنیہے تے کالاں فعال کرو</string>
   <string name="reminder_header_push_text">اپناں مواصلت دا تجربہ اپ گریڈ کرو۔</string>
-  <string name="reminder_header_invite_title">Signal تے سدھو</string>
-  <string name="reminder_header_invite_text">%1$s نال اپنی گل بات نوں اگلے درجے تائیں لے جاؤ۔</string>
-  <string name="reminder_header_share_title"> اپنیاںسجن بیلیاں نوں سدھو !</string>
-  <string name="reminder_header_share_text">سجن جنے ودھ کہ Signal ورتن گے، ایہہ اوہنا ای چنگا ہوندا جاوے گا۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Signal تے سدھو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">%1$s نال اپنی گل بات نوں اگلے درجے تائیں لے جاؤ۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title"> اپنیاںسجن بیلیاں نوں سدھو !</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">سجن جنے ودھ کہ Signal ورتن گے، ایہہ اوہنا ای چنگا ہوندا جاوے گا۔</string> -->
   <string name="reminder_header_service_outage_text">Signal تکنیکی اوکڑاں دا سامنا کر رئیا اے۔ اسیں چھیتی توں چھیتی سروس بحال کرن دی پوری کوشش کر رئے آں۔</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Signal دی تازہ ترین خصوصیات اینڈرائیڈ دے ایس ورژن تے کم نئیں کرن گیاں۔ مستقبل اچ Signal اپ ڈیٹس حاصل کرن لئی مہربانی کر کے ایس الے نوں اپ گریڈ کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">Signal دی تازہ ترین خصوصیات اینڈرائیڈ دے ایس ورژن تے کم نئیں کرن گیاں۔ مستقبل اچ Signal اپ ڈیٹس حاصل کرن لئی مہربانی کر کے ایس الے نوں اپ گریڈ کرو۔</string> -->
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">محفوظ کرو</string>
@@ -1475,9 +1475,9 @@
   <string name="new_conversation_activity__refresh">ریفریش کرو</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">مٹاؤنا</string>
-  <string name="trimmer__deleting_old_messages">پرانے سنیہے مٹا رئیا اے…</string>
-  <string name="trimmer__old_messages_successfully_deleted">پرانے سنیہے کامیابی نال مٹا دتے نیں </string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">مٹاؤنا</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">پرانے سنیہے مٹا رئیا اے…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">پرانے سنیہے کامیابی نال مٹا دتے نیں </string> -->
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">بصیرتاں</string>
@@ -1531,7 +1531,7 @@
   <string name="KbsSplashFragment__learn_more">ہور جانو</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک = پن</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">تہاڈے رجسٹریشن لاک نوں ہن پن آکھیا جاندا اے، اور ایہہ ہور وی بوہت کجھ کردا اے۔ ایہنوں ہنڑی اپ ڈیٹ کرو۔</string>
-  <string name="KbsSplashFragment__read_more_about_pins">پناں دے بارے اچ ہور پڑھو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_about_pins">پناں دے بارے اچ ہور پڑھو۔</string> -->
   <string name="KbsSplashFragment__update_pin">پن نوں اپ ڈیٹ کرو</string>
   <string name="KbsSplashFragment__create_your_pin">آپناں پن بناوو</string>
   <string name="KbsSplashFragment__learn_more_about_pins">پن دے بارے اچ ہور جانیں</string>
@@ -1552,7 +1552,7 @@
   <string name="RegistrationLockFragment__enter_the_pin_you_created">آپناں اوہ پن درج کرو جہڑا تسیں آپنے اکاؤنٹ لئی بنایا سی۔ ایہہ تہاڈے توثیقی SMS کوڈ نال نئیں رل رئیا۔</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">نمبراں تے ہندسیاں تے مشتمل پن درج کرو</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">ہندسیاں تے مشتمل پن درج کرو</string>
-  <string name="RegistrationLockFragment__next">اگلا</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">اگلا</string> -->
   <string name="RegistrationLockFragment__incorrect_pin_try_again">غلط پن۔ فیر کوشش کرو</string>
   <string name="RegistrationLockFragment__forgot_pin">پن بھل گیا اے؟</string>
   <string name="RegistrationLockFragment__incorrect_pin">غلط پن۔</string>
@@ -1579,14 +1579,14 @@
     <item quantity="other">%1$d کوششاں باقی نیں۔</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ٹھیک اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ٹھیک اے</string> -->
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">اک پن بناوو</string>
   <string name="KbsMegaphone__create_pin">اک پن بناوو</string>
-  <string name="KbsMegaphone__introducing_pins">پناں متعارف کرا رئیا اے</string>
-  <string name="KbsMegaphone__update_pin">پن نوں اپ ڈیٹ کرو</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ %1$d دناں مگروں پن بناناں لازمی ہو جاوے گا۔</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ آپنے پن دی تصدیق %1$d دناں مگروں لازمی ہو جاوے گی۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__introducing_pins">پناں متعارف کرا رئیا اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__update_pin">پن نوں اپ ڈیٹ کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ %1$d دناں مگروں پن بناناں لازمی ہو جاوے گا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">اسیں تہانوں بعد اچ چیتا کرا دئیاں گے۔ آپنے پن دی تصدیق %1$d دناں مگروں لازمی ہو جاوے گی۔</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
   <string name="ConversationListFragment_loading">لوڈ کر رئیا اے…</string>
@@ -1595,7 +1595,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS گھلن لئی Signal نوں SMS اجازت دی لوڑھ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو تے \"SMS\" فعال کرو۔</string>
   <string name="Permissions_continue">جاری رکھو</string>
   <string name="Permissions_not_now">اجے نئیں</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">تہاڈے رابطے لبھن لئی Signal نوں رابطیاں دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"رابطے\" فعال کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">تہاڈے رابطے لبھن لئی Signal نوں رابطیاں دی اجازت دی لوڑھ ہندی اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"رابطے\" فعال کرو۔</string> -->
   <string name="conversation_activity__enable_signal_messages">Signal سنیہے فعال کرو</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ڈیٹا بیس منتقل کرنا</string>
   <string name="PushDecryptJob_new_locked_message">نواں مقفل سنیہا</string>
@@ -1605,12 +1605,12 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">میں اے پاس فریز لکھ لیا اے۔ ایہدے توں بغیر، میں بیک اپ بحال نئیں کر سکاں گا۔</string>
   <string name="registration_activity__restore_backup">بیک اپ بحال کرو</string>
   <string name="registration_activity__skip">چھڈ دیو</string>
-  <string name="registration_activity__register">رجسٹر کرو</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">رجسٹر کرو</string> -->
   <string name="preferences_chats__chat_backups">چیٹ بیک اپس</string>
   <string name="preferences_chats__backup_chats_to_external_storage">بیرونی اسٹوریج اچ بیک اپ چیٹس</string>
-  <string name="preferences_chats__create_backup">بیک اپ بناؤ</string>
-  <string name="preferences_chats__verify_backup_passphrase">بیک اپ پاس فریز دی توثیق کرو</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">آپنے بیک اپ پاس فریز نوں ازماؤ تے توثیق کرو کہ ایہہ رلدا اے۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">بیک اپ بناؤ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__verify_backup_passphrase">بیک اپ پاس فریز دی توثیق کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">آپنے بیک اپ پاس فریز نوں ازماؤ تے توثیق کرو کہ ایہہ رلدا اے۔</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">بیک اپ پاس فریز درج کرو</string>
   <string name="RegistrationActivity_restore">بحال کرو</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal دے نویں ورژن توں بیک اپ درآمد نئیں کیتا جا سکدا</string>
@@ -1632,12 +1632,12 @@
   <string name="BackupDialog_verify">تصدیق کرو</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">تسیں کامیابی نال آپناں پاس فریز درج کر دتا اے۔</string>
   <string name="BackupDialog_passphrase_was_not_correct">پاس فریز درست نئیں سی۔</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">بیک اپس بنان لئی Signal نوں بیرونی اسٹوریج دی اجازت دی لوڑھ ہندی ہ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"اسٹوریج\" فعال کرو۔</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">آخری بیک اپ: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">جاری اے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">بیک اپس بنان لئی Signal نوں بیرونی اسٹوریج دی اجازت دی لوڑھ ہندی ہ اے، پر ایہدے توں ہمیشاں لئی منع کیتا گیا اے۔ مہربانی کر کے ایپ دیاں ترتیباں تے جاری رکھو، \"اجازتاں\" چنو، تے \"اسٹوریج\" فعال کرو۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">آخری بیک اپ: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">جاری اے</string> -->
   <string name="LocalBackupJob_creating_backup">بیک اپ بنا رئیا اے…</string>
   <string name="ProgressPreference_d_messages_so_far">ہن تیکر%d سنیہے </string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">مہربانی کر کے%s نوں گھلیا گیا توثیقی کوڈ درج کرو۔</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">مہربانی کر کے%s نوں گھلیا گیا توثیقی کوڈ درج کرو۔</string> -->
   <string name="RegistrationActivity_wrong_number">غلط نمبر</string>
   <string name="RegistrationActivity_call_me_instead_available_in"> ایہدی بجائے مینوں کال کرو \n (%1$02d:%2$02d اچ دستیاب اے)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal معاونت نال رابطہ کرو</string>
@@ -1655,44 +1655,44 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">اپنی Signal پن دی تصدیق کرو</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">غلط پن۔ فیر کوشش کرو</string>
   <string name="AppProtectionPreferenceFragment_none">کوئی نئیں</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن تے تہانوں ہنی موصول ہویا SMS تصدیقی کوڈ اک ورگا نئیں اے۔ مہربانی کر کے درخاست اچ اپناں پہلاں تشکیل دتا ہویا پن درج کرو۔</string>
-  <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string>
-  <string name="registration_activity__forgot_pin">پن بھل گئے؟</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">پن چار یاں ودھ ہندسیاں تے مشتمل ہوسکدی اے۔ \"&gt;جے تسیں اپناں پن بھل جاندے او، تے تہاڈا اکاؤنٹ ست دناں تیکر بند کیتا جاسکدا اے۔</string>
-  <string name="registration_lock_dialog_view__enter_pin">پن درج کرو</string>
-  <string name="registration_lock_dialog_view__confirm_pin">پن دی تصدیق کرو</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">اپناں رجسٹریشن لاک پن درج کرو</string>
-  <string name="registration_lock_reminder_view__enter_pin">پن درج کرو</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">رجسٹریشن لاک پن فعال کرو جہدی Signal نال دوبارہ فون نمبر رجسٹر کرن ویلے لوڑھ پئیے گی۔</string>
-  <string name="preferences_app_protection__registration_lock_pin">رجسٹریشن لاک پن</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">رجسٹریشن لاک پن تے تہانوں ہنی موصول ہویا SMS تصدیقی کوڈ اک ورگا نئیں اے۔ مہربانی کر کے درخاست اچ اپناں پہلاں تشکیل دتا ہویا پن درج کرو۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">رجسٹریشن لاک پن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">پن بھل گئے؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">پن چار یاں ودھ ہندسیاں تے مشتمل ہوسکدی اے۔ \"&gt;جے تسیں اپناں پن بھل جاندے او، تے تہاڈا اکاؤنٹ ست دناں تیکر بند کیتا جاسکدا اے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">پن درج کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">پن دی تصدیق کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">اپناں رجسٹریشن لاک پن درج کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">پن درج کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">رجسٹریشن لاک پن فعال کرو جہدی Signal نال دوبارہ فون نمبر رجسٹر کرن ویلے لوڑھ پئیے گی۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">رجسٹریشن لاک پن</string> -->
   <string name="preferences_app_protection__registration_lock">رجسٹریشن لاک</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">تہانوں اپناں رجسٹریشن لاک پن داخل کرناں لازمی اے</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">تہاڈے پن اچ گھٹ توں گھٹ %d ہندسے یاں حرف نیں۔</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">غلط رجسٹریشن لاک پن</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">غلط رجسٹریشن لاک پن</string> -->
   <string name="RegistrationActivity_too_many_attempts"> حد توں ودھ کوششاں</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">تسیں رجسٹریشن لاک پن دیاں حد توں ودھ غلط کوششاں کیتیاں نیں۔ مہربانی کر کے اک دن اچ دوبارہ کوشش کرو۔</string>
   <string name="RegistrationActivity_error_connecting_to_service">سروس توں منسلک کرن اچ نقص</string>
-  <string name="RegistrationActivity_oh_no">اوہ نئیں!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">ایس فون نمبر دی رجسٹریشن Signal تے فون نمبر آخری واری فعال ہون دے ست دناں بعد تہاڈے رجسٹریشن لاک پن دے بغیر ممکن ہووے گی۔ تہاڈے کول %d دن باقی نیں۔</string>
-  <string name="RegistrationActivity_registration_lock_pin">رجسٹریشن لاک پن</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">ایس فون نمبر تے رجسٹریشن لاک فعال کیتی ہوئی اے۔ مہربانی کر کے رجسٹریشن لاک پن درج کرو۔</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">رجسٹریشن لاک تہاڈے فون نمبر لئی فعال کیتی ہوئی اے۔  رجسٹریشن لاک پن یاد کرن اچ تہاڈی مدد لئی، Signal وقتاً فوقتاً تہانوں ایہدی تصدیق کرن دا کہے گا۔</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">میںوں اپنی پن بھل گئی اے</string>
-  <string name="RegistrationLockDialog_forgotten_pin">پن بھل گیا اے؟</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">رجسٹریشن لاک تہاڈے فون نمبر نوں غیر مجاز رجسٹریشن دی کوششاں توں بچان اچ مدد کردا اے۔ ایہہ خصوصیت تہاڈے Signal دی رازداری دی ترتیباں اچ جا کے کسے وی ویلے غیر فعال کیتی جا سکدی اے</string>
-  <string name="RegistrationLockDialog_enable">فعال کرو</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">رجسٹریشن لاک پن نوں گھٹ توں گھٹ %d ہندسیاں دا ہوناں چاہیدا اے۔</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">تہاڈیاں درج کیتیاں دونویں پن اکو جیہیاں نئیں۔</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">سروس توں منسلک ہون اچ نقص</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">رجسٹریشن لاک پن غیر فعال کر دئی اے ؟</string>
-  <string name="RegistrationLockDialog_disable">غیر فعال کرو</string>
-  <string name="RegistrationActivity_pin_incorrect">پن غلط</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">تہاڈیاں %d کوششاں باقی نیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">اوہ نئیں!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">ایس فون نمبر دی رجسٹریشن Signal تے فون نمبر آخری واری فعال ہون دے ست دناں بعد تہاڈے رجسٹریشن لاک پن دے بغیر ممکن ہووے گی۔ تہاڈے کول %d دن باقی نیں۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">رجسٹریشن لاک پن</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">ایس فون نمبر تے رجسٹریشن لاک فعال کیتی ہوئی اے۔ مہربانی کر کے رجسٹریشن لاک پن درج کرو۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">رجسٹریشن لاک تہاڈے فون نمبر لئی فعال کیتی ہوئی اے۔  رجسٹریشن لاک پن یاد کرن اچ تہاڈی مدد لئی، Signal وقتاً فوقتاً تہانوں ایہدی تصدیق کرن دا کہے گا۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">میںوں اپنی پن بھل گئی اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">پن بھل گیا اے؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">رجسٹریشن لاک تہاڈے فون نمبر نوں غیر مجاز رجسٹریشن دی کوششاں توں بچان اچ مدد کردا اے۔ ایہہ خصوصیت تہاڈے Signal دی رازداری دی ترتیباں اچ جا کے کسے وی ویلے غیر فعال کیتی جا سکدی اے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">فعال کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">رجسٹریشن لاک پن نوں گھٹ توں گھٹ %d ہندسیاں دا ہوناں چاہیدا اے۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">تہاڈیاں درج کیتیاں دونویں پن اکو جیہیاں نئیں۔</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">سروس توں منسلک ہون اچ نقص</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">رجسٹریشن لاک پن غیر فعال کر دئی اے ؟</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">غیر فعال کرو</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_pin_incorrect">پن غلط</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_you_have_d_tries_remaining">تہاڈیاں %d کوششاں باقی نیں</string> -->
   <string name="preferences_chats__backups">بیک اپس</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal مقفل اے</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">غیرمقفل کرن لئی بٹن دبو</string>
-  <string name="RegistrationLockDialog_reminder">یاد دہانی:</string>
-  <string name="recipient_preferences__about">متعلق</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">یاد دہانی:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">متعلق</string> -->
   <string name="Recipient_unknown">نامعلوم</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">بلاک کرو</string>
