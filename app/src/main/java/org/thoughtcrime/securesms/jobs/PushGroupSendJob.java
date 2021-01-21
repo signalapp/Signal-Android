@@ -232,7 +232,7 @@ public final class PushGroupSendJob extends PushSendJob {
       if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
         database.markAsSent(messageId, true);
 
-        markAttachmentsUploaded(messageId, message.getAttachments());
+        markAttachmentsUploaded(messageId, message);
 
         if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
           database.markExpireStarted(messageId);
