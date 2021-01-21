@@ -122,19 +122,20 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     return new Reader(cursor);
   }
 
-  public String getOrCreateGroupForMembers(List<Address> members, boolean mms, List<Address> admins) {
+  // This function always creates a mms group
+  public String getOrCreateGroupForMembers(List<Address> members, List<Address> admins) {
     Collections.sort(members);
     Collections.sort(admins);
 
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
                                                                MEMBERS + " = ? AND " + MMS + " = ?",
-                                                               new String[] {Address.Companion.toSerializedList(members, ','), mms ? "1" : "0"},
+                                                               new String[] {Address.Companion.toSerializedList(members, ','), "1"},
                                                                null, null, null);
     try {
       if (cursor != null && cursor.moveToNext()) {
         return cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
       } else {
-        String groupId = GroupUtil.INSTANCE.getEncodedGroupID(allocateGroupId());
+        String groupId = GroupUtil.getEncodedMMSGroupID(allocateGroupId());
         create(groupId, null, members, null, null, admins);
         return groupId;
       }

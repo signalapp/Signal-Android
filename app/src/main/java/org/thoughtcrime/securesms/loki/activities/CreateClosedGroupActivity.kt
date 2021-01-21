@@ -170,7 +170,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 
         override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
             val activity = activity.get() ?: return Optional.absent()
-            return Optional.of(GroupManager.createGroup(activity, members, profilePicture, name, false, admins))
+            return Optional.of(GroupManager.createGroup(activity, members, profilePicture, name, admins))
         }
 
         override fun onPostExecute(result: Optional<GroupManager.GroupActionResult>) {

@@ -69,7 +69,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source)
-                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedGroupID(groupId))
+                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedClosedGroupID(groupId))
                              .build();
   }
 
@@ -81,7 +81,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
     GroupDatabase           groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedGroupID(groupId));
+    Optional<GroupRecord>   record        = groupDatabase.getGroup(GroupUtil.getEncodedClosedGroupID(groupId));
     SignalServiceAttachment avatar        = null;
 
     if (record == null) {
@@ -115,7 +115,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedGroupID(groupId));
+    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedClosedGroupID(groupId));
     Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
@@ -145,7 +145,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
     public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
       return new PushGroupUpdateJob(parameters,
                                     data.getString(KEY_SOURCE),
-                                    GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID).getBytes()));
+                                    GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID)));
     }
   }
 }

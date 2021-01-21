@@ -90,7 +90,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
     if (recipient.isGroupRecipient()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-      groupId    = Optional.of(GroupUtil.getDecodedGroupIDAsData(recipient.getAddress().toGroupString().getBytes()));
+      groupId    = Optional.of(GroupUtil.getDecodedGroupIDAsData(recipient.getAddress().toGroupString()));
     }
 
     List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();

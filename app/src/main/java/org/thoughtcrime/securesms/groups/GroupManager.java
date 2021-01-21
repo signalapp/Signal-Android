@@ -52,12 +52,11 @@ public class GroupManager {
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
                                                        @Nullable String         name,
-                                                                 boolean        mms,
                                                        @NonNull  Set<Recipient> admins)
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    String id = GroupUtil.getEncodedGroupID(database.allocateGroupId());
-    return createGroup(id, context, members, avatar, name, mms, admins);
+    String id = GroupUtil.getEncodedClosedGroupID(database.allocateGroupId()); // TODO: The group id is double encoded here 1
+    return createGroup(id, context, members, avatar, name, admins);
   }
 
   public static @NonNull GroupActionResult createGroup(@NonNull  String         id,
@@ -65,12 +64,11 @@ public class GroupManager {
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
                                                        @Nullable String         name,
-                                                                 boolean        mms,
                                                        @NonNull  Set<Recipient> admins)
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
-    final String        groupId         = GroupUtil.getEncodedGroupID(id.getBytes());
+    final String        groupId         = GroupUtil.getEncodedClosedGroupID(id.getBytes()); // TODO: The group id is double encoded here 2
     final Recipient     groupRecipient  = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
@@ -81,15 +79,9 @@ public class GroupManager {
     memberAddresses.add(Address.Companion.fromSerialized(masterPublicKey));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
-    if (!mms) {
-      groupDatabase.updateProfilePicture(groupId, avatarBytes);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
-      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
-    } else {
-      long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(
-              groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
-      return new GroupActionResult(groupRecipient, threadId);
-    }
+    groupDatabase.updateProfilePicture(groupId, avatarBytes);
+    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
+    return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
   }
 
   public static @NonNull GroupActionResult createOpenGroup(@NonNull  String  id,
@@ -190,7 +182,7 @@ public class GroupManager {
     }
 
     GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
-                                                           .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupId.getBytes())))
+                                                           .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupId)))
                                                            .setType(GroupContext.Type.UPDATE)
                                                            .addAllMembers(numbers)
                                                            .addAllAdmins(adminNumbers);

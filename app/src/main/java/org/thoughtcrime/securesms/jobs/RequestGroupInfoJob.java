@@ -60,7 +60,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source)
-                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedGroupID(groupId))
+                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedClosedGroupID(groupId))
                              .build();
   }
 
@@ -101,7 +101,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
     public @NonNull RequestGroupInfoJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new RequestGroupInfoJob(parameters,
                                      data.getString(KEY_SOURCE),
-                                     GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID).getBytes()));
+                                     GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID)));
     }
   }
 }

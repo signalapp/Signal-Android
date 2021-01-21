@@ -248,7 +248,7 @@ public class MmsDownloadJob extends BaseJob {
     }
 
     if (members.size() > 2) {
-      group = Optional.of(Address.Companion.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true, new LinkedList<>())));
+      group = Optional.of(Address.Companion.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), new LinkedList<>())));
     }
 
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);

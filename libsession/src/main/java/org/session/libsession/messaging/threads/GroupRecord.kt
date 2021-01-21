@@ -14,7 +14,7 @@ class GroupRecord(
     var admins: List<Address> = LinkedList<Address>()
     fun getId(): ByteArray {
         return try {
-            GroupUtil.getDecodedGroupIDAsData(encodedId.toByteArray())
+            GroupUtil.getDecodedGroupIDAsData(encodedId)
         } catch (ioe: IOException) {
             throw AssertionError(ioe)
         }

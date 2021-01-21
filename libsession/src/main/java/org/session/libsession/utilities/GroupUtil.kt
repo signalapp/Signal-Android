@@ -5,6 +5,7 @@ import org.session.libsession.messaging.threads.Address.Companion.fromSerialized
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener
 import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext
 import java.io.IOException
@@ -21,7 +22,12 @@ object GroupUtil {
     }
 
     fun getEncodedOpenGroupIDAsData(groupID: String): ByteArray {
-        return (OPEN_GROUP_PREFIX + groupID).toByteArray()
+        return Hex.fromStringCondensed(getEncodedOpenGroupID(groupID))
+    }
+
+    @JvmStatic
+    fun getEncodedClosedGroupID(groupID: ByteArray): String {
+        return getEncodedClosedGroupID(Hex.toStringCondensed(groupID))
     }
 
     fun getEncodedClosedGroupID(groupID: String): String {
@@ -29,7 +35,12 @@ object GroupUtil {
     }
 
     fun getEncodedClosedGroupIDAsData(groupID: String): ByteArray {
-        return (CLOSED_GROUP_PREFIX + groupID).toByteArray()
+        return Hex.fromStringCondensed(getEncodedClosedGroupID(groupID))
+    }
+
+    @JvmStatic
+    fun getEncodedMMSGroupID(groupID: ByteArray): String {
+        return getEncodedMMSGroupID(Hex.toStringCondensed(groupID))
     }
 
     fun getEncodedMMSGroupID(groupID: String): String {
@@ -41,31 +52,31 @@ object GroupUtil {
     }
 
     @JvmStatic
-    fun getEncodedId(group: SignalServiceGroup): String? {
+    fun getEncodedId(group: SignalServiceGroup): String {
         val groupId = group.groupId
         if (group.groupType == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
             return getEncodedOpenGroupID(groupId.toString())
         }
-        return getEncodedGroupID(groupId)
+        return getEncodedClosedGroupID(Hex.toStringCondensed(groupId))
     }
 
     @JvmStatic
-    fun getEncodedGroupID(groupID: ByteArray): String {
-        return groupID.toString()
+    fun getDecodedGroupID(groupID: String): String {
+        if (groupID.split("!").count() > 1) {
+            return groupID.split("!")[1]
+        }
+        return groupID.split("!")[0]
     }
 
     @JvmStatic
     fun getDecodedGroupID(groupID: ByteArray): String {
-        val encodedGroupID = groupID.toString()
-        if (encodedGroupID.split("!").count() > 1) {
-            return encodedGroupID.split("!")[1]
-        }
-        return encodedGroupID.split("!")[0]
+        val encodedGroupID = Hex.toStringCondensed(groupID)
+        return getDecodedGroupID(encodedGroupID)
     }
 
     @JvmStatic
-    fun getDecodedGroupIDAsData(groupID: ByteArray): ByteArray {
-        return getDecodedGroupID(groupID).toByteArray()
+    fun getDecodedGroupIDAsData(groupID: String): ByteArray {
+        return Hex.fromStringCondensed(getDecodedGroupID(groupID))
     }
 
     fun isEncodedGroup(groupId: String): Boolean {

@@ -549,12 +549,12 @@ object ClosedGroupsProtocol {
     private fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: GroupContext.Type, type1: SignalServiceGroup.Type,
                                           name: String, members: Collection<String>, admins: Collection<String>) {
         val groupContextBuilder = GroupContext.newBuilder()
-            .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
+            .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
             .setType(type0)
             .setName(name)
             .addAllMembers(members)
             .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()), GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
@@ -565,7 +565,7 @@ object ClosedGroupsProtocol {
                                           members: Collection<String>, admins: Collection<String>, threadID: Long) {
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = GroupContext.newBuilder()
-            .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
+            .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
             .setType(type)
             .setName(name)
             .addAllMembers(members)
@@ -581,13 +581,13 @@ object ClosedGroupsProtocol {
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleEncodeGroupID(groupPublicKey: String): String {
-        return GroupUtil.getEncodedGroupID(GroupUtil.getEncodedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray())
+        return GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(groupPublicKey))
     }
 
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleDecodeGroupID(groupID: String): ByteArray {
-        return GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()))
+        return GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupID(groupID))
     }
 
     @WorkerThread
@@ -600,7 +600,7 @@ object ClosedGroupsProtocol {
         }
         val decodedGroupId: ByteString
         try {
-            decodedGroupId = ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(encodedGroupId.toByteArray()))
+            decodedGroupId = ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(encodedGroupId))
         } catch (e: IOException) {
             Log.w("Loki", "Failed to decode group ID.", e)
             return null

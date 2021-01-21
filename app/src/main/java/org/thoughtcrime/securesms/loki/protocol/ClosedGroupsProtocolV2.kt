@@ -375,12 +375,12 @@ object ClosedGroupsProtocolV2 {
     private fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
                                           name: String, members: Collection<String>, admins: Collection<String>) {
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
                 .setType(type0)
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
+        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
         val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, System.currentTimeMillis(), "", Optional.of(group), 0, true)
         val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
         val smsDB = DatabaseFactory.getSmsDatabase(context)
@@ -391,7 +391,7 @@ object ClosedGroupsProtocolV2 {
                                           members: Collection<String>, admins: Collection<String>, threadID: Long) {
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = SignalServiceProtos.GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray())))
+                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
                 .setType(type)
                 .setName(name)
                 .addAllMembers(members)
@@ -407,12 +407,12 @@ object ClosedGroupsProtocolV2 {
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleEncodeGroupID(groupPublicKey: String): String {
-        return GroupUtil.getEncodedGroupID(GroupUtil.getEncodedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray())
+        return GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(groupPublicKey))
     }
 
     @JvmStatic
     @Throws(IOException::class)
     public fun doubleDecodeGroupID(groupID: String): ByteArray {
-        return GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupIDAsData(groupID.toByteArray()))
+        return GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupID(groupID))
     }
 }

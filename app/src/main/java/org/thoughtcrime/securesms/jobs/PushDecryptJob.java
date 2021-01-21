@@ -1082,7 +1082,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (typingMessage.getGroupId().isPresent()) {
       // Typing messages should only apply to closed groups, thus we use `getEncodedId`
-      Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedGroupID(typingMessage.getGroupId().get()));
+      Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedClosedGroupID(typingMessage.getGroupId().get()));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
@@ -1267,7 +1267,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedGroupID(message.getGroupInfo().get().getGroupId())), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedClosedGroupID(message.getGroupInfo().get().getGroupId())), false);
     } else {
       return Recipient.from(context, Address.Companion.fromExternal(context, content.getSender()), false);
     }
