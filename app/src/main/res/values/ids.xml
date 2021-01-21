@@ -14,4 +14,7 @@
 
     <item name="reminder_action_gv1_initiation_not_now" type="id" />
     <item name="reminder_action_gv1_initiation_update_group" type="id" />
+
+    <item name="status_bar_guideline" type="id" />
+    <item name="navigation_bar_guideline" type="id" />
 </resources>

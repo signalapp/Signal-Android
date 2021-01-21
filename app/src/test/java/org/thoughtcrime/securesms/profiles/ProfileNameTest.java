@@ -167,10 +167,10 @@ public final class ProfileNameTest {
 
   @Test
   public void fromParts_with_long_name_parts() {
-    ProfileName name = ProfileName.fromParts("GivenSomeVeryLongNameSomeVeryLongName", "FamilySomeVeryLongNameSomeVeryLongName");
+    ProfileName name = ProfileName.fromParts("GivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongName", "FamilySomeVeryLongNameSomeVeryLongName");
 
-    assertEquals("GivenSomeVeryLongNameSomeV", name.getGivenName());
-    assertEquals("FamilySomeVeryLongNameSome", name.getFamilyName());
+    assertEquals("GivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLong", name.getGivenName());
+    assertEquals("FamilySomeVeryLongNameSomeVeryLongName", name.getFamilyName());
   }
 
   @Test

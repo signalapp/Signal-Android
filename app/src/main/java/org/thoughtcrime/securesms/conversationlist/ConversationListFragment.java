@@ -481,7 +481,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void initializeListAdapters() {
     defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
     searchAdapter           = new ConversationListSearchAdapter(GlideApp.with(this), this, Locale.getDefault());
-    searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false);
+    searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false, 0);
 
     setAdapter(defaultAdapter);
 

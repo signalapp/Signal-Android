@@ -32,15 +32,13 @@ final class ReactWithAnyEmojiRepository {
 
   private static final String TAG = Log.tag(ReactWithAnyEmojiRepository.class);
 
-  private static final String RECENT_STORAGE_KEY = "reactions_recent_emoji";
-
-  private final Context              context;
-  private final RecentEmojiPageModel recentEmojiPageModel;
+  private final Context                     context;
+  private final RecentEmojiPageModel        recentEmojiPageModel;
   private final List<ReactWithAnyEmojiPage> emojiPages;
 
-  ReactWithAnyEmojiRepository(@NonNull Context context) {
+  ReactWithAnyEmojiRepository(@NonNull Context context, @NonNull String storageKey) {
     this.context              = context;
-    this.recentEmojiPageModel = new RecentEmojiPageModel(context, RECENT_STORAGE_KEY);
+    this.recentEmojiPageModel = new RecentEmojiPageModel(context, storageKey);
     this.emojiPages           = new LinkedList<>();
 
     emojiPages.addAll(Stream.of(EmojiUtil.getDisplayPages())

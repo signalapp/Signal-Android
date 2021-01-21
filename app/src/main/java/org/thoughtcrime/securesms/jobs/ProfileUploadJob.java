@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
@@ -58,10 +59,12 @@ public final class ProfileUploadJob extends BaseJob {
 
     ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
     ProfileName profileName = Recipient.self().getProfileName();
+    String      about       = Optional.fromNullable(Recipient.self().getAbout()).or("");
+    String      aboutEmoji  = Optional.fromNullable(Recipient.self().getAboutEmoji()).or("");
     String      avatarPath;
 
     try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar).orNull();
+      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
     }
 
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);

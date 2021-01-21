@@ -42,6 +42,25 @@
         <!-- leave empty to allow overriding -->
     </style>
 
+    <style name="Theme.Signal.WallpaperCropper" parent="@style/TextSecure.DarkNoActionBar">
+        <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
+    <style name="Theme.Signal.WallpaperCropper.Light" parent="@style/TextSecure.LightNoActionBar">
+        <item name="colorPrimary">@color/wallpaper_preview_background</item>
+        <item name="colorPrimaryDark">@color/wallpaper_preview_background</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/wallpaper_preview_background</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+    </style>
+
     <style name="TextSecure.BaseDarkNoActionBar" parent="@style/TextSecure.BaseDarkTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -302,13 +321,21 @@
 
     <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">

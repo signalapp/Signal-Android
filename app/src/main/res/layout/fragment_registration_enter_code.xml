@@ -116,8 +116,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_margin="2dp"
-                    android:background="@drawable/ic_error_outline_14_ultramarine"
-                    android:importantForAccessibility="no" />
+                    android:importantForAccessibility="no"
+                    app:srcCompat="@drawable/ic_error_outline_14_ultramarine" />
 
                 <TextView
                     style="@style/Signal.Text.Body.Registration"

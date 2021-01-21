@@ -5,7 +5,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,7 +41,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-public final class ConversationUpdateItem extends LinearLayout
+public final class ConversationUpdateItem extends FrameLayout
                                           implements BindableConversationItem
 {
   private static final String TAG = ConversationUpdateItem.class.getSimpleName();
@@ -50,6 +50,7 @@ public final class ConversationUpdateItem extends LinearLayout
 
   private TextView                body;
   private TextView                actionButton;
+  private View                    background;
   private ConversationMessage     conversationMessage;
   private Recipient               conversationRecipient;
   private Optional<MessageRecord> nextMessageRecord;
@@ -76,6 +77,7 @@ public final class ConversationUpdateItem extends LinearLayout
     super.onFinishInflate();
     this.body         = findViewById(R.id.conversation_update_body);
     this.actionButton = findViewById(R.id.conversation_update_action);
+    this.background   = findViewById(R.id.conversation_update_background);
 
     this.setOnClickListener(new InternalClickListener(null));
   }
@@ -90,11 +92,12 @@ public final class ConversationUpdateItem extends LinearLayout
                    @NonNull Set<ConversationMessage> batchSelected,
                    @NonNull Recipient conversationRecipient,
                    @Nullable String searchQuery,
-                   boolean pulseMention)
+                   boolean pulseMention,
+                   boolean hasWallpaper)
   {
     this.batchSelected = batchSelected;
 
-    bind(lifecycleOwner, conversationMessage, nextMessageRecord, conversationRecipient);
+    bind(lifecycleOwner, conversationMessage, nextMessageRecord, conversationRecipient, hasWallpaper);
   }
 
   @Override
@@ -110,7 +113,8 @@ public final class ConversationUpdateItem extends LinearLayout
   private void bind(@NonNull LifecycleOwner lifecycleOwner,
                     @NonNull ConversationMessage conversationMessage,
                     @NonNull Optional<MessageRecord> nextMessageRecord,
-                    @NonNull Recipient conversationRecipient)
+                    @NonNull Recipient conversationRecipient,
+                    boolean hasWallpaper)
   {
     this.conversationMessage   = conversationMessage;
     this.messageRecord         = conversationMessage.getMessageRecord();
@@ -123,6 +127,12 @@ public final class ConversationUpdateItem extends LinearLayout
       groupObserver.observe(lifecycleOwner, conversationRecipient);
     } else {
       groupObserver.observe(lifecycleOwner, null);
+    }
+
+    if (hasWallpaper) {
+      background.setBackgroundResource(R.drawable.wallpaper_bubble_background_12);
+    } else {
+      background.setBackground(null);
     }
 
     UpdateDescription   updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));

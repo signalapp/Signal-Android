@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="24dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/message_request_avatar"
         android:layout_width="112dp"
         android:layout_height="112dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,18 +29,27 @@
         app:layout_constraintTop_toBottomOf="@id/message_request_avatar"
         tools:text="Cayce Pollard" />
 
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/message_request_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
+        tools:text="Hangin' on the web"
+        app:layout_constraintTop_toBottomOf="@id/message_request_title" />
+
     <TextView
         android:id="@+id/message_request_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:layout_constraintTop_toBottomOf="@id/message_request_about"
         tools:text="\@caycepollard" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -48,10 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
         android:gravity="center"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

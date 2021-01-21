@@ -30,6 +30,7 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
@@ -49,6 +50,20 @@ import org.thoughtcrime.securesms.util.views.Stub;
 public final class ViewUtil {
 
   private ViewUtil() {
+  }
+
+  public static void focusAndMoveCursorToEndAndOpenKeyboard(@NonNull EditText input) {
+    input.requestFocus();
+
+    int numberLength = input.getText().length();
+    input.setSelection(numberLength, numberLength);
+
+    InputMethodManager imm = (InputMethodManager) input.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
+
+    if (!imm.isAcceptingText()) {
+      imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
   }
 
   public static void focusAndShowKeyboard(@NonNull View view) {

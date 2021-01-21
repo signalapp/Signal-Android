@@ -99,7 +99,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
 
   private void initializeResources() {
     contactsFragment = (ContactSelectionListFragment) getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
-    contactsFragment.setOnContactSelectedListener(this);
     contactsFragment.setOnRefreshListener(this);
   }
 

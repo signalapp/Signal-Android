@@ -41,12 +41,15 @@ import java.util.concurrent.ExecutionException;
  *
  * The image can be encrypted.
  */
-final class UriGlideRenderer implements Renderer {
+public final class UriGlideRenderer implements Renderer {
 
   private static final String TAG = Log.tag(UriGlideRenderer.class);
 
   private static final int PREVIEW_DIMENSION_LIMIT = 2048;
   private static final int MAX_BLUR_DIMENSION      = 300;
+
+  public static final float WEAK_BLUR   = 3f;
+  public static final float STRONG_BLUR = 25f;
 
   private final Uri     imageUri;
   private final Paint   paint                 = new Paint();
@@ -56,16 +59,22 @@ final class UriGlideRenderer implements Renderer {
   private final boolean decryptable;
   private final int     maxWidth;
   private final int     maxHeight;
+  private final float   blurRadius;
 
-  @Nullable private Bitmap         bitmap;
-  @Nullable private Bitmap         blurredBitmap;
-  @Nullable private Paint          blurPaint;
+  @Nullable private Bitmap bitmap;
+  @Nullable private Bitmap blurredBitmap;
+  @Nullable private Paint  blurPaint;
 
-  UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight) {
+  public UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight) {
+    this(imageUri, decryptable, maxWidth, maxHeight, STRONG_BLUR);
+  }
+
+  public UriGlideRenderer(@NonNull Uri imageUri, boolean decryptable, int maxWidth, int maxHeight, float blurRadius) {
     this.imageUri    = imageUri;
     this.decryptable = decryptable;
     this.maxWidth    = maxWidth;
     this.maxHeight   = maxHeight;
+    this.blurRadius  = blurRadius;
     paint.setAntiAlias(true);
     paint.setFilterBitmap(true);
     paint.setDither(true);
@@ -148,7 +157,7 @@ final class UriGlideRenderer implements Renderer {
       blurPaint.setMaskFilter(null);
 
       if (blurredBitmap == null) {
-        blurredBitmap = blur(bitmap, rendererContext.context);
+        blurredBitmap = blur(bitmap, rendererContext.context, blurRadius);
 
         blurScaleMatrix.setRectToRect(new RectF(0, 0, blurredBitmap.getWidth(), blurredBitmap.getHeight()),
                                       new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight()),
@@ -235,7 +244,7 @@ final class UriGlideRenderer implements Renderer {
     return matrix;
   }
 
-  private static @NonNull Bitmap blur(Bitmap bitmap, Context context) {
+  private static @NonNull Bitmap blur(Bitmap bitmap, Context context, float blurRadius) {
     Point  previewSize = scaleKeepingAspectRatio(new Point(bitmap.getWidth(), bitmap.getHeight()), PREVIEW_DIMENSION_LIMIT);
     Point  blurSize    = scaleKeepingAspectRatio(new Point(previewSize.x / 2, previewSize.y / 2 ), MAX_BLUR_DIMENSION);
     Bitmap small       = BitmapUtil.createScaledBitmap(bitmap, blurSize.x, blurSize.y);
@@ -247,7 +256,7 @@ final class UriGlideRenderer implements Renderer {
     Allocation          output = Allocation.createTyped(rs, input.getType());
     ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
 
-    script.setRadius(25f);
+    script.setRadius(blurRadius);
     script.setInput(input);
     script.forEach(output);
 
@@ -283,7 +292,8 @@ final class UriGlideRenderer implements Renderer {
       return new UriGlideRenderer(Uri.parse(in.readString()),
                                   in.readInt() == 1,
                                   in.readInt(),
-                                  in.readInt()
+                                  in.readInt(),
+                                  in.readFloat()
                                  );
     }
 
@@ -304,5 +314,6 @@ final class UriGlideRenderer implements Renderer {
     dest.writeInt(decryptable ? 1 : 0);
     dest.writeInt(maxWidth);
     dest.writeInt(maxHeight);
+    dest.writeFloat(blurRadius);
   }
 }

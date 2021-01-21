@@ -14,16 +14,16 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sa ngayon nasa: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Hindi ka pa nagset ng passphrase!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%dmensahe kada pag-uusap</item>
     <item quantity="other">%d mensahe kada pag-uusap</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Burahin ngayon ang lahat ng lumang mensahe?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Burahin ngayon ang lahat ng lumang mensahe?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Daglian nitong tatabasin ang lahat ng mga pag-uusap sa pinakabagong mensahe.</item>
     <item quantity="other">Papaikliin kaagad nito ang lahat ng pag-uusap sa %d pinakabagong mensahe.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Burahin</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">Burahin</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">I-disable ang passphrase?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Permanente nitong ia-unlock ang Signal at mga notipikasyong pangmensahe.</string>
   <string name="ApplicationPreferencesActivity_disable">I-disable</string>
@@ -42,7 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">Off</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Lock ng screen %1$s, Lock ng pagpaparehistro %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Lock ng screen %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Lock ng screen %1$s</string> -->
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Wika%2$s</string>
   <string name="ApplicationPreferencesActivity_pin_created">Nalikha na ang PIN.</string>
   <!--AppProtectionPreferenceFragment-->
@@ -69,12 +69,12 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Kailangan ng Signal ng pahintulot sa Storage upang makapaglakip ng mga larawan, video, o audio, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Storage\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng pahintulot sa Mga Kontak upang makapaglakip ng impormasyon ng kontak, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"mga Pahintulot\", at i-enable ang \"Mga Kontak\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapaglakip ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Lokasyon\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Kailangan ng Signal ng pahintulot sa Camera upang makakuha ng mga larawan, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Kailangan ng Signal ng pahintulot sa Camera upang makakuha ng mga larawan, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Camera\".</string> -->
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Nagko-compress ng video…</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Nagka-error sa pagpapatugtog ng audio!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">Nagka-error sa pagpapatugtog ng audio!</string> -->
   <!--BlockedContactsActivity-->
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Mga naka-block na kontak</string> -->
   <!--BlockUnblockDialog-->
@@ -82,7 +82,7 @@
   <string name="BlockUnblockDialog_block_s">I-block ang %1$s?</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Ang mga kasapi ng grupong ito ay maaaring isali kang muli sa grupong ito.</string>
   <string name="BlockUnblockDialog_unblock_s">I-unblock ang %1$s?</string>
-  <string name="BlockUnblockDialog_unblock">I-unblock</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">I-unblock</string> -->
   <string name="BlockUnblockDialog_block">I-block</string>
   <string name="BlockUnblockDialog_block_and_delete">I-block at Burahin</string>
   <!--BucketedThreadMedia-->
@@ -94,9 +94,9 @@
   <string name="BucketedThreadMedia_Medium">Katamtaman</string>
   <string name="BucketedThreadMedia_Small">Maliit</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Papasok na tawag</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">Papasok na tawag</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">Nabigong i-save ang imahe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">Nabigong i-save ang imahe.</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">I-tap para sa larawan, huwag bitiwan para video</string>
   <string name="CameraXFragment_capture_description">Kunan</string>
@@ -118,9 +118,9 @@
   <string name="ClearProfileActivity_remove_profile_photo">Tanggalin ang profile photo?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Walang mahanap na web browser.</string>
-  <string name="CommunicationActions_no_email_app_found">Walang nahanap na app na pang-email.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_no_email_app_found">Walang nahanap na app na pang-email.</string> -->
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">May isinasagawa nang cellular na tawag.</string>
-  <string name="CommunicationActions_start_video_call">Simulan ang video call?</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_start_video_call">Simulan ang video call?</string> -->
   <string name="CommunicationActions_start_voice_call">Simulan ang voice na tawag?</string>
   <string name="CommunicationActions_cancel">Kanselahin</string>
   <string name="CommunicationActions_call">Tawagan</string>
@@ -190,13 +190,13 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lumipat tayo sa Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Pumili ng kontak</string>
-  <string name="ConversationActivity_unblock_this_contact_question">I-unblock ang kontak na ito?</string>
-  <string name="ConversationActivity_unblock_this_group_question">I-unblock ang grupong ito?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Makakatanggap kang muli ng mga mensahe at tawag mula sa kontak na ito.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Maidaragdag kang muli sa grupo ng mga kasalukuyang kasapi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">I-unblock ang kontak na ito?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">I-unblock ang grupong ito?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Makakatanggap kang muli ng mga mensahe at tawag mula sa kontak na ito.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">Maidaragdag kang muli sa grupo ng mga kasalukuyang kasapi.</string> -->
   <string name="ConversationActivity_unblock">I-unblock</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Ang kalakip ay lampas sa limitasyon ng laki para sa uri ng mensahe na ipinapadala mo.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Hindi available ang camera</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">Hindi available ang camera</string> -->
   <string name="ConversationActivity_unable_to_record_audio">Hindi makapag-record ng audio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Walang available na app upang i-handle ang link na ito sa iyong device.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Upang magpadala ng mensaheng audio, payagan ang Signal na magamit ang iyong mikropono.</string>
@@ -233,10 +233,10 @@
     <item quantity="one">Burahin ang piniling mga mensahe?</item>
     <item quantity="other">Burahin ang mga piniling mensahe?</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Permanente nitong buburahin ang piniling mensahe.</item>
     <item quantity="other">Permanente nitong buburahin ang lahat sa %1$d piniling mensahe.</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">I-save sa storage?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Mahahayaan ang alinmang iba pang mga app sa iyong device na magamit ang media na ito kung ise-save ito sa storage.\n\nIpagpatuloy?</item>
@@ -270,9 +270,9 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Ang mga papalabas na view-once na media file ay awtomatikong matatanggal matapos ipadala ang mga ito</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Natingnan mo na ang mensaheng ito</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Walang naka-install na browser sa iyong device.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Walang naka-install na browser sa iyong device.</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Walang nahanap na resulta para sa \'%s\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">Walang nahanap na resulta para sa \'%s\'</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Burahin ang piniling pag-uusap?</item>
     <item quantity="other">Burahin ang mga piniling pag-uusap?</item>
@@ -304,7 +304,7 @@
   <string name="CreateProfileActivity__profile">Profile</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Nagka-error sa pagtatakda ng iyong profile photo</string>
   <string name="CreateProfileActivity_problem_setting_profile">May problema sa pagtatakda ng iyong profile</string>
-  <string name="CreateProfileActivity_profile_photo">Profile photo</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">Profile photo</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">I-set up ang iyong profile</string>
   <string name="CreateProfileActivity_set_avatar_description">Itakda ang avatar</string>
   <!--CustomDefaultPreference-->
@@ -322,10 +322,10 @@
   <string name="DateUtils_today">Ngayong araw</string>
   <string name="DateUtils_yesterday">Kahapon</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Ipinapadala</string>
-  <string name="DeliveryStatus_sent">Naipadala na</string>
-  <string name="DeliveryStatus_delivered">Naihatid na</string>
-  <string name="DeliveryStatus_read">Nabasa na</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">Ipinapadala</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">Naipadala na</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">Naihatid na</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">Nabasa na</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">I-unlik ang \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Sa pamamagitan ng pag-unlink sa device na ito, hindi na ito makakapagpadala o makakatanggap ng mga mensahe.</string>
@@ -348,7 +348,7 @@
   <string name="ShareActivity_share_with">Ibahagi kay</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Ang maramihang kalakip ay suportado lamang para sa mga imahe at videos</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">May kinukuhang mensahe…</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">May kinukuhang mensahe…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanenteng kabiguan ng Signal sa komunikasyon!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Hindi nagawang magparehistro ng Signal sa Google Play Services. Ang mga mensahe at tawag sa Signal ay na-disable, subukang muling magparehistro sa Settings &gt; Advanced.</string>
@@ -362,14 +362,14 @@
   <string name="ChooseNewAdminActivity_choose_new_admin">Pumili ng bagong admin</string>
   <string name="ChooseNewAdminActivity_done">Tapos na</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ang profile name at photo mo ba ay gusto mong gawing nakikita ng lahat ng kasapi ng grupong ito sa kasalukuyan at hinaharap?</string>
-  <string name="GroupShareProfileView_make_visible">Gawing nakikita</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Ibahagi ang iyong profile name at photo sa grupong ito?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Ang profile name at photo mo ba ay gusto mong gawing nakikita ng lahat ng kasapi ng grupong ito sa kasalukuyan at hinaharap?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">Gawing nakikita</string> -->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Ikaw</string>
   <!--GV2 access levels-->
   <!--GV2 invites sent-->
-  <string name="GroupManagement_learn_more">Matuto pa</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">Matuto pa</string> -->
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Huwag Paganahin</string>
   <!--LinkPreviewView-->
@@ -386,7 +386,7 @@
   <string name="AddGroupDetailsFragment__remove">Tanggalin</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_disappearing_messages">Mga naglalahong mensahe</string> -->
   <string name="ManageGroupActivity_add_members">Magdagdag ng mga kasapi</string>
   <string name="ManageGroupActivity_leave_group">Umalis sa grupo</string>
   <string name="ManageGroupActivity_mute_notifications">Patahimikin ang mga notipikasyon</string>
@@ -394,7 +394,7 @@
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
   <string name="ManageGroupActivity_view_all_members">Tignan ang lahat ng mga kasapi</string>
-  <string name="ManageGroupActivity_none">Wala</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Wala</string> -->
   <!--GroupMentionSettingDialog-->
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">Mga naglalahong mensahe</string>
@@ -420,19 +420,19 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Avatar ng grupo</string>
-  <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">Avatar ng grupo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">Avatar</string> -->
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Pindutin at huwag bitawan upang mag-record ng voice message, bitawan upang ipadala</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Ibahagi</string>
-  <string name="InviteActivity_choose_contacts">Pumili ng mga kontak</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Pumili ng mga kontak</string> -->
   <string name="InviteActivity_share_with_contacts">Ibahagi sa mga kontak</string>
   <string name="InviteActivity_choose_how_to_share">Piliin kung paano ibabahagi</string>
   <string name="InviteActivity_cancel">Kanselahin</string>
   <string name="InviteActivity_sending">Ipinapadala…</string>
-  <string name="InviteActivity_heart_content_description">Puso</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Puso</string> -->
   <string name="InviteActivity_invitations_sent">Naipadala na ang mga imbitasyon!</string>
   <string name="InviteActivity_invite_to_signal">Imbitahan sa Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -447,7 +447,7 @@
   <string name="InviteActivity_no_app_to_share_to">Mukhang wala kang anumang app na maaaring bahaginan.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Hindi hinahayaan ng magkakaibigan na mag-chat ang mga kaibigan nang unencrypted.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Gumagana sa background…</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Gumagana sa background…</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Matuto pa</string>
   <!--LongMessageActivity-->
@@ -523,7 +523,7 @@
   <string name="MediaPickerActivity_send_to">Ipadala kay %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Buksan ang camera</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Pindutin upang piliin</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">Pindutin upang piliin</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Magdagdag ng caption…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">May item na tinanggal dahil lumampas ito sa limitasyon ng laki</string>
@@ -551,7 +551,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Hindi nasagot na tawag</string> -->
   <string name="MessageRecord_s_updated_group">In-update ni %s ang grupo.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">Tinawagan ka ni %s</string> -->
-  <string name="MessageRecord_called_s">Tinawagan si %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">Tinawagan si %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Hindi ang tawag ni %s</string> -->
   <string name="MessageRecord_s_joined_signal">Nasa Signal si %s!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Dinisable mo ang mga naglalahong mensahe.</string>
@@ -640,7 +640,7 @@
   <string name="PassphrasePromptActivity_unlock_signal">I-unlock ang Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
-  <string name="PlacePickerActivity_not_a_valid_address">Hindi valid na Address</string>
+  <!-- Removed by excludeNonTranslatables <string name="PlacePickerActivity_not_a_valid_address">Hindi valid na Address</string> -->
   <string name="PlacePickerActivity_drop_pin">Maglagay ng pin</string>
   <string name="PlacePickerActivity_accept_address">Tanggapin ang address</string>
   <!--PlayServicesProblemFragment-->
@@ -672,17 +672,17 @@
   <string name="ReactionsRecipientAdapter_you">Ikaw</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">I-block</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">Nagka-error sa pag-alis sa grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">Nagka-error sa pag-alis sa grupo</string> -->
   <string name="RecipientPreferenceActivity_unblock">I-unblock</string>
-  <string name="RecipientPreferenceActivity_enabled">Naka-enable</string>
-  <string name="RecipientPreferenceActivity_disabled">Naka-disable</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Magiging available kapag may naipadala o natanggap na mensahe.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">Naka-enable</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">Naka-disable</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Magiging available kapag may naipadala o natanggap na mensahe.</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Grupong walang pangalan</string>
   <!--RedPhone-->
   <string name="RedPhone_ringing">Nagri-ring…</string>
   <string name="RedPhone_busy">Busy</string>
-  <string name="RedPhone_connected">Konektado</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">Konektado</string> -->
   <string name="RedPhone_recipient_unavailable">Ang tatanggap ay hindi available</string>
   <string name="RedPhone_network_failed">Nabigo ang network!</string>
   <string name="RedPhone_number_not_registered">Hindi rehistrado ang numero!</string>
@@ -709,22 +709,22 @@
   <string name="RegistrationActivity_play_services_error">Nagka-error sa Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Ang Google Play Services ay nag-u-update o kaya\'y pansamantalang hindi available. Pakisubukang muli. </string>
   <string name="RegistrationActivity_terms_and_privacy">Mga Tutunin at Patakaran sa Privacy</string>
-  <string name="RegistrationActivity_no_browser">Hindi mabuksan ang link na ito. Walang mahanap na web browser.</string>
-  <string name="RegistrationActivity_more_information">Mas maraming impormasyon</string>
-  <string name="RegistrationActivity_less_information">Mas kaunting impormasyon</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">Hindi mabuksan ang link na ito. Walang mahanap na web browser.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">Mas maraming impormasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">Mas kaunting impormasyon</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Kailangan ng Signal ng access sa iyong mga kontak at media upang makaugnayan ang mga kaibigan, makipagpalitan ng mga mensahe, at makagawa ng ligtas na mga tawag</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Hindi makakonekta sa serbisyo. Pakisuri ang koneksyon ng network at subukang muli.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Upang madaling iberipika ang numero ng iyong telepono, maaaring awtomatiko i-detect ng Signal ang iyong verification code kung papayagan mo ang Signal na makita ang mga mensaheng SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Upang madaling iberipika ang numero ng iyong telepono, maaaring awtomatiko i-detect ng Signal ang iyong verification code kung papayagan mo ang Signal na makita ang mga mensaheng SMS.</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ikaw ngayon ay %d layong-hakbang na lang sa pagsusumite ng debug log. </item>
     <item quantity="other">%d hakbang ka pa para makapagsumite ng debug log.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Kailangan naming beripikahing tao ka.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">Nabigong beripikahin ang CAPTCHA</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">Nabigong beripikahin ang CAPTCHA</string> -->
   <string name="RegistrationActivity_next">Susunod</string>
   <string name="RegistrationActivity_continue">Magpatuloy</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">Magpatuloy (%d pagtatangka pa)</string>
-  <string name="RegistrationActivity_continue_last_attempt">Magpatuloy (huling pagtatangka!)</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_d_attempts_left">Magpatuloy (%d pagtatangka pa)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_last_attempt">Magpatuloy (huling pagtatangka!)</string> -->
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Dalhin ang privacy kahit saan.\nMaging ikaw sa bawat mensahe.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ilagay ang numero ng iyong telepono upang makapagsimula</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Makakatanggap ka ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string>
@@ -740,7 +740,7 @@
   <string name="RevealableMessageView_viewed">Nakita na</string>
   <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Nabigong i-save ang mga pagbabago sa imahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">Nabigong i-save ang mga pagbabago sa imahe</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">Walang nakitang resulta para sa \'%s\'</string>
   <string name="SearchFragment_header_conversations">Mga Pag-uusap</string>
@@ -803,11 +803,11 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Bigo na ipadala ang mga log</string>
   <string name="SubmitDebugLogActivity_success">Tagumpay!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopyahin ang URL at idagdag ito sa iyong ulat na isyu o support email:\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">Nakopya na sa clipboard</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_copied_to_clipboard">Nakopya na sa clipboard</string> -->
   <string name="SubmitDebugLogActivity_share">Ibahagi</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_subject">Paksa:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Signal Android na pangsuportang hiling</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_subject">Paksa:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_android_support_request">Signal Android na pangsuportang hiling</string> -->
   <string name="SupportEmailUtil_device_info">Impormasyon ng device:</string>
   <string name="SupportEmailUtil_android_version">Bersyon ng Android:</string>
   <string name="SupportEmailUtil_signal_version">Bersyon ng Signal:</string>
@@ -836,11 +836,11 @@
   <string name="ThreadRecord_you_marked_unverified">Minarkahan mong hindi beripikado</string>
   <string name="ThreadRecord_message_could_not_be_processed">Hindi maiproseso ang mensahe</string>
   <string name="ThreadRecord_message_request">Pangmensaheng hiling</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">Idinagdag ka sa grupo ni %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_added_you_to_the_group">Idinagdag ka sa grupo ni %1$s</string> -->
   <string name="ThreadRecord_photo">Larawan</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Voice na Mensahe</string>
-  <string name="ThreadRecord_contact">Kontak</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_contact">Kontak</string> -->
   <string name="ThreadRecord_file">File</string>
   <string name="ThreadRecord_video">Video</string>
   <!--UpdateApkReadyListener-->
@@ -899,7 +899,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">Tapos na ang pag-import ng database ng sistema.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Pindutin upang buksan</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pindutin upang buksan, o kaya\'y pindutin ang lock para isara.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">Pindutin upang buksan, o kaya\'y pindutin ang lock para isara.</string> -->
   <string name="KeyCachingService_passphrase_cached">Naka-unlock ang Signal</string>
   <string name="KeyCachingService_lock">I-lock ang Signal</string>
   <!--MediaPreviewActivity-->
@@ -915,14 +915,14 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d bagong mensahe sa %2$d pag-uusap</string>
   <string name="MessageNotifier_most_recent_from_s">Pinakabago mula: %1$s</string>
   <string name="MessageNotifier_locked_message">Naka-lock na mensahe</string>
-  <string name="MessageNotifier_media_message_with_text">Mensaheng media: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">Mensaheng media: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">Nabigo ang paghahatid ng mensahe.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Nabigong ihatid ang mensahe.</string>
   <string name="MessageNotifier_error_delivering_message">Nagka-error sa paghahatid ng mensahe.</string>
   <string name="MessageNotifier_mark_all_as_read">Markahan ang lahat na nabasa na</string>
   <string name="MessageNotifier_mark_read">Markahang nabasa na</string>
-  <string name="MessageNotifier_media_message">Mensaheng media</string>
-  <string name="MessageNotifier_sticker">Sticker</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">Mensaheng media</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">Sticker</string> -->
   <string name="MessageNotifier_view_once_photo">View-once na larawan</string>
   <string name="MessageNotifier_view_once_video">View-once na video</string>
   <string name="MessageNotifier_reply">Tugon</string>
@@ -952,8 +952,8 @@
   <string name="NotificationChannel_group_messages">Mga mensahe</string>
   <string name="NotificationChannel_missing_display_name">Hindi alam</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">Matagumpay na naitakda ang pangalan ng profile.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">Nakatagpo ng error sa network.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Matagumpay na naitakda ang pangalan ng profile.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_encountered_a_network_error">Nakatagpo ng error sa network.</string> -->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Ang mabilisang tugon ay hindi gagana kapag naka-lock ang Signal!</string>
   <string name="QuickResponseService_problem_sending_message">May problema sa pagpapadala ng mensahe!</string>
@@ -980,48 +980,48 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Ang device ay hindi na rehistrado</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Malamang na ito ay dahil inirehistro mo ang numero ng iyong telepono sa Signal sa ibang device. Pumindot para magparehistrong muli.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Nagka-error sa pagpe-play ng video</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">Nagka-error sa pagpe-play ng video</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para masagot ang tawag mula kay %s, bigyan ang Signal ng access sa iyong mikropono.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Kailangan ng Signal ang pahintulot sa Mikropono at Camera upang tumawag at sumagot ng tawag, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mikropono\" at \"Camera\".  </string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Ang numerong pangkaligtasan para sa iyong pakikipag-usap kay %1$s ay nagbago na. Posibleng ang ibig sabihin nito\'y may nagtatangkang manghimasok sa inyong komunikasyon, o kaya\'y nag-reinstall lamang si %2$s ng Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Maaari mong hilinging beripikahin ang iyong numerong pangkaligtasan sa kontak na ito.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Bagong numerong pangkaligtasan</string>
-  <string name="WebRtcCallScreen_accept">Tanggapin</string>
-  <string name="WebRtcCallScreen_end_call">Tapusin ang tawag</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">Ang numerong pangkaligtasan para sa iyong pakikipag-usap kay %1$s ay nagbago na. Posibleng ang ibig sabihin nito\'y may nagtatangkang manghimasok sa inyong komunikasyon, o kaya\'y nag-reinstall lamang si %2$s ng Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Maaari mong hilinging beripikahin ang iyong numerong pangkaligtasan sa kontak na ito.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">Bagong numerong pangkaligtasan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">Tanggapin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">Tapusin ang tawag</string> -->
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">Sagutin</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">Speaker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">Pindutin upang i-enable ang iyong video</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">Pindutin upang i-enable ang iyong video</string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">Larawan ng kontak</string>
-  <string name="WebRtcCallControls_speaker_button_description">Speaker</string>
-  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
-  <string name="WebRtcCallControls_mute_button_description">Patahimikin</string>
-  <string name="WebRtcCallControls_your_camera_button_description">Iyong camera</string>
-  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Lumipat sa camera sa likod</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">Larawan ng kontak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">Speaker</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">Patahimikin</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_your_camera_button_description">Iyong camera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Lumipat sa camera sa likod</string> -->
   <string name="WebRtcCallControls_answer_call_description">Sagutin ang tawag</string>
   <string name="WebRtcCallControls_reject_call_description">Tanggihan ang tawag</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Audio</string>
-  <string name="attachment_type_selector__audio_description">Audio</string>
-  <string name="attachment_type_selector__contact">Kontak</string>
-  <string name="attachment_type_selector__contact_description">Kontak</string>
-  <string name="attachment_type_selector__camera">Camera</string>
-  <string name="attachment_type_selector__camera_description">Camera</string>
-  <string name="attachment_type_selector__location">Lokasyon</string>
-  <string name="attachment_type_selector__location_description">Lokasyon</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">Imahe o video</string>
-  <string name="attachment_type_selector__file_description">File</string>
-  <string name="attachment_type_selector__gallery">Gallery</string>
-  <string name="attachment_type_selector__file">File</string>
-  <string name="attachment_type_selector__drawer_description">I-toggle ang attachment drawer</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">Audio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">Audio</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">Kontak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">Kontak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">Camera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">Camera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">Lokasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">Lokasyon</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">Gif</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">Imahe o video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">File</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">Gallery</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">File</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">I-toggle ang attachment drawer</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Lumang passphrase</string>
   <string name="change_passphrase_activity__new_passphrase">Bagong passphrase</string>
@@ -1046,7 +1046,7 @@
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">Hindi gumagamit ng Signal si \"%1$s\" . Pakisuri ang username at subukang muli.</string>
   <!-- Removed by excludeNonTranslatables <string name="ContactSelectionListFragment_okay">Okay</string> -->
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Walang naka-block na kontak</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">Walang naka-block na kontak</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Kailangan ng Signal ng access sa iyong mga kontak upang maipakita ang mga ito.</string>
   <string name="contact_selection_list_fragment__show_contacts">Ipakita ang mga kontak</string>
@@ -1087,7 +1087,7 @@
   <string name="QuoteView_photo">Larawan</string>
   <string name="QuoteView_view_once_media">View-once na media</string>
   <string name="QuoteView_sticker">Sticker</string>
-  <string name="QuoteView_document">Dokumento</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">Dokumento</string> -->
   <string name="QuoteView_you">Ikaw</string>
   <string name="QuoteView_original_missing">Hindi makita ang orihinal na mensahe</string>
   <!--conversation_fragment-->
@@ -1104,10 +1104,10 @@
   <string name="device_list_fragment__no_devices_linked">Walang naka-link na device</string>
   <string name="device_list_fragment__link_new_device">Mag-link ng bagong device</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">magpatuloy</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Narito na ang read receipts</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Piliin kung gustong makita at ipaalam kung nabasa na ang mga mensahe</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">I-enable ang read receipts</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">magpatuloy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Narito na ang read receipts</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Piliin kung gustong makita at ipaalam kung nabasa na ang mga mensahe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">I-enable ang read receipts</string> -->
   <!--expiration-->
   <string name="expiration_off">Off</string>
   <plurals name="expiration_seconds">
@@ -1155,20 +1155,20 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Walang nahanap</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Hindi mabasa ang log sa iyong device. Sa halip ay maaari mo pa ring gamitin ang ADB para makakuha ng debug log.</string>
-  <string name="log_submit_activity__thanks">Salamat sa iyong tulong!</string>
-  <string name="log_submit_activity__submitting">Isinusumite</string>
-  <string name="log_submit_activity__no_browser_installed">Walang browser na naka-install</string>
-  <string name="log_submit_activity__button_dont_submit">Huwag isumite</string>
-  <string name="log_submit_activity__button_submit">Isumite</string>
-  <string name="log_submit_activity__button_got_it">OK</string>
-  <string name="log_submit_activity__button_compose_email">Magsulat ng email</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">Hindi mabasa ang log sa iyong device. Sa halip ay maaari mo pa ring gamitin ang ADB para makakuha ng debug log.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">Salamat sa iyong tulong!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">Isinusumite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">Walang browser na naka-install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">Huwag isumite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Isumite</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">OK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Magsulat ng email</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">Pampublikong ipapaskil online ang log na ito para makita ng mga contributor, puwede mo itong suriin at i-edit bago isumite.</string>
-  <string name="log_submit_activity__loading_logs">Inilo-load ang mga log…</string>
-  <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log…</string>
-  <string name="log_submit_activity__choose_email_app">Pumili ng app na pang-email</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">Pakisuri ang log na ito mula sa aking app: %1$s</string>
-  <string name="log_submit_activity__network_failure">Nabigo ang network. Pakisubukang muli.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Inilo-load ang mga log…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Ina-upload ang mga log…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Pumili ng app na pang-email</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">Pakisuri ang log na ito mula sa aking app: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">Nabigo ang network. Pakisubukang muli.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gusto mo bang i-import ang mga kasalukuyan mong text message sa encrypted na database ng Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Ang default na pang-sistemang database ay hindi mababago o mapakikialaman sa anumang paraan.</string>
@@ -1176,10 +1176,10 @@
   <string name="database_migration_activity__import">I-import</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Maaaring tumagal ito nang ilang sandali. Maghintay lang, ipapaalam namin sa iyo kapag tapos na ang pag-import.</string>
   <string name="database_migration_activity__importing">INI-IMPORT</string>
-  <string name="import_fragment__import_system_sms_database">I-import ang database ng system SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">I-import ang database mula sa default na app na pang-mensahe ng sistema</string>
-  <string name="import_fragment__import_plaintext_backup">I-import ang plaintext na backup</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Mag-import ng plaintext na backup file. Tumutugma sa \'SMS Backup &amp; Restore.\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">I-import ang database ng system SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">I-import ang database mula sa default na app na pang-mensahe ng sistema</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">I-import ang plaintext na backup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">Mag-import ng plaintext na backup file. Tumutugma sa \'SMS Backup &amp; Restore.\'</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Tingnan ang buong pag-uusap</string>
   <string name="load_more_header__loading">Naglo-load</string>
@@ -1188,7 +1188,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">TINGNAN</string>
   <string name="message_recipients_list_item__resend">IPADALANG MULI</string>
-  <string name="message_recipients_list_item__resending">Ipinapadalang muli…</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">Ipinapadalang muli…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ay sumali sa grupo.</item>
@@ -1213,20 +1213,20 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Ibinahaging media</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Tawag sa Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Tawag sa Signal</string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">NUMERO NG TELEPONO</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pinadadali ni Signal ang pakikipag-ugnayan gamit ang iyong kasalukuyang numero ng telepono at libro ng address. Gamit ang Signal, madaling makipag-ugnayan sa mga kaibigan at kontak na nakakaalam na kung paano ka ikontak sa pamamagitan ng telepono.\n\nAng pagpaparehistro ay magpapadala ng ilang impormasyon ng kontak sa server. Hindi ito maiimbak.</string>
-  <string name="registration_activity__verify_your_number">Beripikahin ang Iyong Numero</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Pakilagay ang numero ng iyong mobile upang makatanggap ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">NUMERO NG TELEPONO</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Pinadadali ni Signal ang pakikipag-ugnayan gamit ang iyong kasalukuyang numero ng telepono at libro ng address. Gamit ang Signal, madaling makipag-ugnayan sa mga kaibigan at kontak na nakakaalam na kung paano ka ikontak sa pamamagitan ng telepono.\n\nAng pagpaparehistro ay magpapadala ng ilang impormasyon ng kontak sa server. Hindi ito maiimbak.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">Beripikahin ang Iyong Numero</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Pakilagay ang numero ng iyong mobile upang makatanggap ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Maglagay ng pangalan o numero</small></string>
-  <string name="recipients_panel__add_members">Magdagdag ng mga kasapi</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">Magdagdag ng mga kasapi</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Ang nagpadala ay wala sa listahan mo ng kontak</string>
-  <string name="unknown_sender_view__block">I-BLOCK</string>
-  <string name="unknown_sender_view__add_to_contacts">IDAGDAG SA MGA KONTAK</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">HUWAG IDAGDAG, NGUNIT HAYAANG MAKITA ANG AKING PROFILE</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Ang nagpadala ay wala sa listahan mo ng kontak</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">I-BLOCK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">IDAGDAG SA MGA KONTAK</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">HUWAG IDAGDAG, NGUNIT HAYAANG MAKITA ANG AKING PROFILE</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Kung gusto mong iberipika ang seguridad ng iyong encryption kay %s, ikumpara ang numero sa itaas sa numero sa kanyang device. Isang alternatibo dito, maaari mong i-scan ang code sa kanyang telepono, o hilingin sa kanyang i-scan ang iyong code. <a href="https://signal.org/redirect/safety-numbers">Matuto pa.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pindutin para mag-scan</string>
@@ -1263,11 +1263,11 @@
   <string name="MessageRequestsMegaphone__message_requests">Mga pangmensaheng hiling</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Magagawa na ngayon ng mga user na tanggapin ang isang bagong pag-uusap. Ang mga profile na pangalan ay nagpapaalam sa mga tao kung sino ang nagmemensahe sa kanila. </string>
   <string name="MessageRequestsMegaphone__add_profile_name">Magdagdag ng profile na pangalan</string>
-  <string name="MessageRequestsMegaphone__new_message_requests">Bago: Mag pangmensaheng hiling</string>
-  <string name="MessageRequestsMegaphone__add_name">Magdagdag ng pangalan</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Maaari mo nang piliin kung nais mong tanggapin ang isang bagong pag-uusp. Makikita mo ang mga mapagpipiliang \"Tanggapin,\" \"Burahin,\" o \"Harangin.\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__new_message_requests">Bago: Mag pangmensaheng hiling</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__add_name">Magdagdag ng pangalan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Maaari mo nang piliin kung nais mong tanggapin ang isang bagong pag-uusp. Makikita mo ang mga mapagpipiliang \"Tanggapin,\" \"Burahin,\" o \"Harangin.\"</string> -->
   <!--HelpFragment-->
-  <string name="HelpFragment__help">Tulong</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__help">Tulong</string> -->
   <string name="HelpFragment__have_you_read_our_faq_yet">Nabasa mo na ba ang ating FAQ?</string>
   <string name="HelpFragment__next">Susunod</string>
   <string name="HelpFragment__contact_us">Kontakin kami</string>
@@ -1278,18 +1278,18 @@
   <string name="HelpFragment__support_info">Pangsuportang impormasyon</string>
   <string name="HelpFragment__signal_android_support_request">Signal Android na pangsuportang hiling</string>
   <string name="HelpFragment__debug_log">Debug Log:</string>
-  <string name="HelpFragment__na">n/a</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__na">n/a</string> -->
   <string name="HelpFragment__could_not_upload_logs">Hindi mai-upload ang mga log</string>
-  <string name="HelpFragment__signal_support">Suporta sa Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__signal_support">Suporta sa Signal</string> -->
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pakiusap na hangga\'t maaari ay ipaliwanag ng mabuti upang matulungan kaming maunawaan ang isyu.</string>
-  <string name="HelpFragment__no_email_app_found">Walang nahanap na app na pang-email.</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__no_email_app_found">Walang nahanap na app na pang-email.</string> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Mga Aktibidad</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Mga Bagay</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Mga Simbulo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Mga Watawat</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">I-import</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">I-import</string> -->
   <string name="arrays__use_default">Gamitin ang default</string>
   <string name="arrays__use_custom">Gumamit ng custom</string>
   <string name="arrays__mute_for_one_hour">Patahimikin nang 1 oras</string>
@@ -1339,7 +1339,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Passphrase para sa timeout dahil sa kawalang-aktibidad</string>
   <string name="preferences__inactivity_timeout_interval">Tagal ng timeout para sa kawalang-aktibidad</string>
   <string name="preferences__notifications">Mga Notipikasyon</string>
-  <string name="preferences__system_notification_settings">Mga setting ng pang-sistemang notipikasyon</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">Mga setting ng pang-sistemang notipikasyon</string> -->
   <string name="preferences__led_color">Kulay ng LED</string>
   <string name="preferences__led_color_unknown">Hindi alam</string>
   <string name="preferences__pref_led_blink_title">Pattern ng pagpatay-sindi ng LED</string>
@@ -1389,7 +1389,7 @@
   <string name="preferences__appearance">Hitsura</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__system_default">Default ng sistema</string>
-  <string name="preferences__default">Default</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">Default</string> -->
   <string name="preferences__language">Wika</string>
   <string name="preferences__signal_messages_and_calls">Mga mensahe at tawag sa Signal</string>
   <string name="preferences__free_private_messages_and_calls">Mga libreng pribadong mensahe at tawag para sa mga gumagamit ng Signal</string>
@@ -1463,7 +1463,7 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Mga naglalahong mensahe</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Mag-e-expire na ang mga mensahe</string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">Mag-e-expire na ang mga mensahe</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Imbitahan</string>
   <!--conversation_list_batch-->
@@ -1471,7 +1471,7 @@
   <string name="conversation_list_batch__menu_select_all">Piliin lahat</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">I-archive ang pinili</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Tanggalin sa archive ang pinili</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">Tanggalin sa archive ang pinili</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_batch__menu_unarchive_selected">Tanggalin sa archive ang pinili</string> -->
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shortcut ng settings</string>
   <string name="conversation_list_search_description">Maghanap</string>
@@ -1479,8 +1479,8 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Larawang Imahe ng Kontak</string>
   <string name="conversation_list_item_view__archived">Nai-archive</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Walang laman ang inbooox</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada. Wala.\nNarating mo na ang dulo!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Walang laman ang inbooox</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada. Wala.\nNarating mo na ang dulo!</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Bagong pag-uusap</string>
   <string name="conversation_list_fragment__open_camera_description">Buksan ang Camera</string>
@@ -1492,8 +1492,8 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Patahimikin ang mga notipikasyon</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Magdagdag ng kalakip</string>
-  <string name="conversation__menu_edit_group">I-edit ang grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">Magdagdag ng kalakip</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">I-edit ang grupo</string> -->
   <string name="conversation__menu_leave_group">Umalis sa grupo</string>
   <string name="conversation__menu_view_all_media">Lahat ng media</string>
   <string name="conversation__menu_conversation_settings">Settings ng pag-uusap</string>
@@ -1513,7 +1513,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">I-lock</string>
   <string name="text_secure_normal__mark_all_as_read">Markahan ang lahat na nabasa na</string>
   <string name="text_secure_normal__invite_friends">Imbitahan ang mga kaibigan</string>
-  <string name="text_secure_normal__help">Tulong</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">Tulong</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopyahin sa clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Ikumpara sa clipboard</string>
@@ -1532,12 +1532,12 @@
   <string name="reminder_header_sms_import_text">Pindutin upang kopyahin ang mga SMS na mensahe ng iyong telepono papunta sa encrypted na database ng Signal.</string>
   <string name="reminder_header_push_title">I-enable ang mga mensahe at tawag sa Signal</string>
   <string name="reminder_header_push_text">I-upgrade ang iyong karanasang pang-komunikasyon.</string>
-  <string name="reminder_header_invite_title">Imbitahan sa Signal</string>
-  <string name="reminder_header_invite_text">I-level up ang pag-uusap ninyo ni %1$s.</string>
-  <string name="reminder_header_share_title">Imbitahan ang iyong mga kaibigan!</string>
-  <string name="reminder_header_share_text">Mas maraming kaibigang gumagamit ng Signal, mas maganda.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Imbitahan sa Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">I-level up ang pag-uusap ninyo ni %1$s.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">Imbitahan ang iyong mga kaibigan!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">Mas maraming kaibigang gumagamit ng Signal, mas maganda.</string> -->
   <string name="reminder_header_service_outage_text">Nakakaranas ng mga teknikal na problema ang Signal. Nagsisikap kaming ibalik ang serbisyo sa lalong madaling panahon.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Ang pinakabagong mga feature ng Signal ay hindi gagana sa besyong ito ng Android. Paki-upgrade ang device na ito upang makatangap ng mga update sa Signal sa hinaharap.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">Ang pinakabagong mga feature ng Signal ay hindi gagana sa besyong ito ng Android. Paki-upgrade ang device na ito upang makatangap ng mga update sa Signal sa hinaharap.</string> -->
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">I-save</string>
@@ -1549,9 +1549,9 @@
   <string name="new_conversation_activity__refresh">I-refresh</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Binubura</string>
-  <string name="trimmer__deleting_old_messages">Binubura ang mga lumang mensahe…</string>
-  <string name="trimmer__old_messages_successfully_deleted">Ang mga lumang mensahe ay matagumpay na nabura</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">Binubura</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">Binubura ang mga lumang mensahe…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">Ang mga lumang mensahe ay matagumpay na nabura</string> -->
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Insights</string>
@@ -1605,7 +1605,7 @@
   <string name="KbsSplashFragment__learn_more">Matuto pa</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Lock sa Pagpaparehistro = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Ang iyong Lock sa Pagpaparehistro ay tinatawag na ngayong PIN, at mas marami itong nagagawa. I-update ito ngayon.</string>
-  <string name="KbsSplashFragment__read_more_about_pins">Magbasa pa tungkol sa mga PIN.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_about_pins">Magbasa pa tungkol sa mga PIN.</string> -->
   <string name="KbsSplashFragment__update_pin">I-update ang PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Likhain ang iyong PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Magdagdag ng kaalaman tungkol sa mga PIN</string>
@@ -1626,7 +1626,7 @@
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Ipasok ang PIN na iyong nilikha para sa iyong account. Ito ay iba sa iyong SMS verification code.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Ilagay ang alphanumeric na PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Ilagay ang numeric na PIN</string>
-  <string name="RegistrationLockFragment__next">Susunod</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">Susunod</string> -->
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
   <string name="RegistrationLockFragment__forgot_pin">Nakalimutan ang PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Hindi tama ang PIN</string>
@@ -1653,14 +1653,14 @@
     <item quantity="other">%1$d pagtatangkang natitira.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okay</string>
+  <!-- Removed by excludeNonTranslatables <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okay</string> -->
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Lumikha ng PIN</string>
   <string name="KbsMegaphone__create_pin">Lumikha ng PIN</string>
-  <string name="KbsMegaphone__introducing_pins">Ipinakikilala ang mga PIN</string>
-  <string name="KbsMegaphone__update_pin">I-update ang PIN</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Paaalalahanan ka namin kinalaunan. Ang paglikha ng PIN ay magiging sapilitan sa loob ng %1$d araw.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Paaalalahanan ka namin kinalaunan. Ang pagkumpirma ng iyong PIN ay magiging sapilitan sa loob ng %1$d araw.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__introducing_pins">Ipinakikilala ang mga PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__update_pin">I-update ang PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Paaalalahanan ka namin kinalaunan. Ang paglikha ng PIN ay magiging sapilitan sa loob ng %1$d araw.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Paaalalahanan ka namin kinalaunan. Ang pagkumpirma ng iyong PIN ay magiging sapilitan sa loob ng %1$d araw.</string> -->
   <!--Mention Megaphone-->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icon ng transportasyon</string>
@@ -1670,7 +1670,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Kailangan ng Signal ang pahintulot sa SMS upang makapagpadala ng SMS, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang  \"SMS\".</string>
   <string name="Permissions_continue">Magpatuloy</string>
   <string name="Permissions_not_now">Hindi ngayon</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Kailangan ng Signal ang pahintulot sa Mga Kontak upang maghanap sa iyong mga kontak, ngunit permanente itong ipinagbabawal.  Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mga Kontak\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Kailangan ng Signal ang pahintulot sa Mga Kontak upang maghanap sa iyong mga kontak, ngunit permanente itong ipinagbabawal.  Pumunta sa app settings, piliin ang \"Mga Pahintulot\", at i-enable ang \"Mga Kontak\".</string> -->
   <string name="conversation_activity__enable_signal_messages">I-ENABLE ANG MGA MENSAHE SA SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Inililipat ang database ng Signal</string>
   <string name="PushDecryptJob_new_locked_message">Bagong naka-lock na mensahe</string>
@@ -1680,12 +1680,12 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Naisulat ko na ang passphrase na ito. Kung wala ito, hindi ako makakapag-restore ng backup. </string>
   <string name="registration_activity__restore_backup">Mag-restore ng backup</string>
   <string name="registration_activity__skip">Laktawan</string>
-  <string name="registration_activity__register">Magparehistro</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">Magparehistro</string> -->
   <string name="preferences_chats__chat_backups">Mga backup ng chat</string>
   <string name="preferences_chats__backup_chats_to_external_storage">I-backup ang mga chat sa panlabas na storage</string>
-  <string name="preferences_chats__create_backup">Lumikha ng backup</string>
-  <string name="preferences_chats__verify_backup_passphrase">Iberipika ang passphrase ng backup</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Subukan ang iyong passphrase ng backup at iberipika na magkatulad ito</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">Lumikha ng backup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__verify_backup_passphrase">Iberipika ang passphrase ng backup</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Subukan ang iyong passphrase ng backup at iberipika na magkatulad ito</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">Ilagay ang passphrase ng backup</string>
   <string name="RegistrationActivity_restore">I-restore</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Hindi makakapag-import ng mga backup mula sa mga mas bagong bersyon ng Signal</string>
@@ -1707,12 +1707,12 @@
   <string name="BackupDialog_verify">Iberipika</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Matagumpay mong nailagay ang passphrase ng backup</string>
   <string name="BackupDialog_passphrase_was_not_correct">Ang passphrase ay hindi tama</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Kailangan ng Signal ng pahintulot sa paggamit ng panlabas na storage upang makalikha ng mga backup, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Storage\". </string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Huling backup: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">Isinasagawa</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Kailangan ng Signal ng pahintulot sa paggamit ng panlabas na storage upang makalikha ng mga backup, ngunit ito ay permanenteng ipinagbabawal. Pumunta sa app settings, piliin ang \"Pahintulot\", at i-enable ang \"Storage\". </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Huling backup: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Isinasagawa</string> -->
   <string name="LocalBackupJob_creating_backup">Lumilikha ng backup…</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensahe sa ngayon</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Pakilagay ang verification code na ipinadala kay %s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Pakilagay ang verification code na ipinadala kay %s.</string> -->
   <string name="RegistrationActivity_wrong_number">Mali ang numero</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Sa halip ay tawagan ako \n (Maaari sa %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Makipag-ugnayan sa Suporta ng Signal</string>
@@ -1730,44 +1730,44 @@
   <string name="preferences_app_protection__confirm_your_signal_pin">Kumpirmahin ang PIN ng iyong Signal</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Hindi tama ang PIN. Subukang muli.</string>
   <string name="AppProtectionPreferenceFragment_none">Wala</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Ang Lock PIN sa Pagpaparehistro ay hindi kapareho ng verification code sa SMS na iyong natanggap. Pakilagay ang PIN na nakaraan mong na-configure sa application.</string>
-  <string name="registration_activity__registration_lock_pin">Lock PIN sa Pagpaparehistro</string>
-  <string name="registration_activity__forgot_pin">Nakalimutan ang PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Ang PIN ay maaaring maglaman ng apat o higit pang numero. Kung makalimutan mo ang iyong PIN, maaari kang ma-lock out sa iyong account nang hanggang pitong araw. </string>
-  <string name="registration_lock_dialog_view__enter_pin">Ilagay ang PIN</string>
-  <string name="registration_lock_dialog_view__confirm_pin">Kumpirmahin ang PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Ilagay ang Lock PIN sa Pagpaparehistro</string>
-  <string name="registration_lock_reminder_view__enter_pin">Ilagay ang PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Mag-enable ng Lock PIN sa Pagpaparehistro na kakailanganin upang mairehistrong muli ang numero ng teleponong ito sa Signal.</string>
-  <string name="preferences_app_protection__registration_lock_pin">Lock PIN sa Pagpaparehistro</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Ang Lock PIN sa Pagpaparehistro ay hindi kapareho ng verification code sa SMS na iyong natanggap. Pakilagay ang PIN na nakaraan mong na-configure sa application.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">Lock PIN sa Pagpaparehistro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">Nakalimutan ang PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Ang PIN ay maaaring maglaman ng apat o higit pang numero. Kung makalimutan mo ang iyong PIN, maaari kang ma-lock out sa iyong account nang hanggang pitong araw. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">Ilagay ang PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">Kumpirmahin ang PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Ilagay ang Lock PIN sa Pagpaparehistro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">Ilagay ang PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Mag-enable ng Lock PIN sa Pagpaparehistro na kakailanganin upang mairehistrong muli ang numero ng teleponong ito sa Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">Lock PIN sa Pagpaparehistro</string> -->
   <string name="preferences_app_protection__registration_lock">Lock sa Pagpaparehistro</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Kailangan mong ilagay ang iyong Lock PIN sa Pagpaparehistro</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Ang iyong PIN ay may bilang na hindi bababa sa %d numero o mga character</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Hindi tama ang Lock PIN sa Pagpaparehistro</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">Hindi tama ang Lock PIN sa Pagpaparehistro</string> -->
   <string name="RegistrationActivity_too_many_attempts">Masyadong maraming pagtatangka</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Masyado kang maraming maling pagtatangka ng Lock PIN sa Pagpaparehistro. Pakisubukan ulit sa loob ng isang araw.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Nagka-error sa pagkonekta sa serbisyo</string>
-  <string name="RegistrationActivity_oh_no">O hindi!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ang pagpaparehistro ng numero ng teleponong ito ay magiging posible nang wala ang iyong Lock PIN sa Pagpaparehistro pagkalipas ng 7 araw mula noong huling aktibo ang numero ng teleponong ito sa Signal. May %d ka pang araw.</string>
-  <string name="RegistrationActivity_registration_lock_pin">Lock PIN sa Pagpaparehistro</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Naka-enable ang Lock sa Pagpaparehistro ng numero ng teleponong ito. Pakilagay ang Lock PIN sa Pagpaparehistro. </string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Naka-enable ang Lock sa Pagpaparehistro para sa numero ng iyong telepono. Upang matulungan kang kabisaduhin ang iyong Lock PIN sa Pagpaparehistro, pana-panahong hihilingin ng Signal na kumpirmahin mo ito.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Nakalimutan ko ang aking PIN</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Nakalimutang PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Tumutulong ang Lock sa Pagpaparehistro na protektahan ang numero ng iyong telepono mula sa walang pahintulot na tangkang pagpaparehistro. Ang feature na ito ay maaaring i-disable anumang oras sa settings ng privacy ng iyong Signal. </string>
-  <string name="RegistrationLockDialog_enable">I-enable</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Ang Lock PIN sa Pagpaparehistro ay kailangang hindi bababa sa %d numero.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Hindi tugma ang dalawang PIN na inilagay mo.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Nagka-error sa pagkonekta sa serbisyo</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">I-disable ang Lock PIN sa Pagpaparehistro?</string>
-  <string name="RegistrationLockDialog_disable">I-disable</string>
-  <string name="RegistrationActivity_pin_incorrect">Hindi tama ang PIN</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">May %d ka pang pagtatangka</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">O hindi!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Ang pagpaparehistro ng numero ng teleponong ito ay magiging posible nang wala ang iyong Lock PIN sa Pagpaparehistro pagkalipas ng 7 araw mula noong huling aktibo ang numero ng teleponong ito sa Signal. May %d ka pang araw.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">Lock PIN sa Pagpaparehistro</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Naka-enable ang Lock sa Pagpaparehistro ng numero ng teleponong ito. Pakilagay ang Lock PIN sa Pagpaparehistro. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Naka-enable ang Lock sa Pagpaparehistro para sa numero ng iyong telepono. Upang matulungan kang kabisaduhin ang iyong Lock PIN sa Pagpaparehistro, pana-panahong hihilingin ng Signal na kumpirmahin mo ito.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">Nakalimutan ko ang aking PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">Nakalimutang PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Tumutulong ang Lock sa Pagpaparehistro na protektahan ang numero ng iyong telepono mula sa walang pahintulot na tangkang pagpaparehistro. Ang feature na ito ay maaaring i-disable anumang oras sa settings ng privacy ng iyong Signal. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">I-enable</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">Ang Lock PIN sa Pagpaparehistro ay kailangang hindi bababa sa %d numero.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Hindi tugma ang dalawang PIN na inilagay mo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">Nagka-error sa pagkonekta sa serbisyo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">I-disable ang Lock PIN sa Pagpaparehistro?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">I-disable</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_pin_incorrect">Hindi tama ang PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_you_have_d_tries_remaining">May %d ka pang pagtatangka</string> -->
   <string name="preferences_chats__backups">Mga backup</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Naka-lock ang Signal</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PINDUTIN PARA I-UNLOCK</string>
-  <string name="RegistrationLockDialog_reminder">Paalala:</string>
-  <string name="recipient_preferences__about">Tungkol dito</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">Paalala:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">Tungkol dito</string> -->
   <string name="Recipient_unknown">Hindi alam</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">I-block</string>

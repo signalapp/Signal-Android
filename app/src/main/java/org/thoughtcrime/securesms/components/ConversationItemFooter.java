@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -128,6 +129,20 @@ public class ConversationItemFooter extends LinearLayout {
   public void setOnlyShowSendingStatus(boolean onlyShowSending, MessageRecord messageRecord) {
     this.onlyShowSendingStatus = onlyShowSending;
     presentDeliveryStatus(messageRecord);
+  }
+
+  public void enableBubbleBackground(@DrawableRes int drawableRes, @Nullable Integer tint) {
+    setBackgroundResource(drawableRes);
+
+    if (tint != null) {
+      getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
+    } else {
+      getBackground().clearColorFilter();
+    }
+  }
+
+  public void disableBubbleBackground() {
+    setBackground(null);
   }
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {

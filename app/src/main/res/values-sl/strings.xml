@@ -14,20 +14,20 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d sporočilo na pogovor</item>
     <item quantity="two">%d sporočili na pogovor</item>
     <item quantity="few">%d sporočila na pogovor</item>
     <item quantity="other">%d sporočil na pogovor</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Izbrišem stara sporočila?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">To bo nemudoma obrezalo vse pogovore na zadnjega.</item>
     <item quantity="two">To bo nemudoma obrezalo vse pogovore na %d nedavna.</item>
     <item quantity="few">To bo nemudoma obrezalo vse pogovore na %d nedavne.</item>
     <item quantity="other">To bo nemudoma obrezalo vse pogovore na %d nedavnih.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Izbriši</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">Izbriši</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">Izključim geslo?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">S tem boste odklenili aplikacijo Signal in obvestila o sporočilih.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogoči</string>
@@ -46,7 +46,7 @@
   <string name="ApplicationPreferencesActivity_Off">Izklopljena</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Zaklep zaslona %1$s, Zaklep prijave %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zaklep zaslona %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Zaklep zaslona %1$s</string> -->
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema: %1$s, Jezik: %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN je potreben za zaklep registracije. Če ga želite odstraniti, morate najprej izklopiti zaklep registracije.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN je bil ustvarjen.</string>
@@ -79,12 +79,12 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemskega pomnilnika za pripenjanje fotografij, videa in zvoka k sporočilom. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov, kadar želite sporočilom pripeti podatke oseb iz svojega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Dostop do lokacije je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do lokacije, kadar želite k sporočilom dodati podatek o svoji trenutni lokaciji. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Lokacija\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal za zajemanje fotografij potrebuje dovoljenje za dostop do kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal za zajemanje fotografij potrebuje dovoljenje za dostop do kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string> -->
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Prenos multimedijske datoteke …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Kompresija videa …</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string> -->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani/e uporabniki/ce</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranega uporabnika/co</string>
@@ -105,7 +105,7 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Lahko si bosta pošiljala sporočila, se klicala in si delila ime in fotografijo.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blokirani uporabniki/ce vas ne bodo mogli klicati ali vam pošiljati sporočil.</string>
   <string name="BlockUnblockDialog_unblock_s">Odblokiram uporabnika/co %1$s?</string>
-  <string name="BlockUnblockDialog_unblock">Odblokiraj</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">Odblokiraj</string> -->
   <string name="BlockUnblockDialog_block">Blokiraj</string>
   <string name="BlockUnblockDialog_block_and_leave">Blokiraj in zapusti</string>
   <string name="BlockUnblockDialog_block_and_delete">Blokiraj in izbriši</string>
@@ -118,9 +118,9 @@
   <string name="BucketedThreadMedia_Medium">Srednje</string>
   <string name="BucketedThreadMedia_Small">Majhne</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Dohodni klic</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">Dohodni klic</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Tapnite za fotografijo, zadržite za video</string>
   <string name="CameraXFragment_capture_description">Zajemi</string>
@@ -150,10 +150,10 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Različica aplikacije Signal na vaši napravi je potekla. Še vedno lahko pregledujete zgodovino svojih sporočil, ne morete pa jih pošiljati ali prejemati dokler je ne nadgradite.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
-  <string name="CommunicationActions_no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string> -->
   <string name="CommunicationActions_send_email">Pošlji e-pošto</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski klic je že v teku.</string>
-  <string name="CommunicationActions_start_video_call">Začetek video klica?</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_start_video_call">Začetek video klica?</string> -->
   <string name="CommunicationActions_start_voice_call">Začetek glasovnega klica?</string>
   <string name="CommunicationActions_cancel">Prekliči</string>
   <string name="CommunicationActions_call">Kliči</string>
@@ -189,7 +189,7 @@
   <string name="ConversationItem_error_partially_not_delivered">Delno poslano. Tapnite za več informacij</string>
   <string name="ConversationItem_error_network_not_delivered">Pošiljanje ni uspelo</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Prejeta informacija o izmenjavi ključev. Kliknite za obdelavo.</string>
-  <string name="ConversationItem_group_action_left">Oseba %1$s je zapustila skupino.</string>
+  <string name="ConversationItem_group_action_left">Uporabnik/ca %1$s je zapustil/a skupino.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Pošiljanje ni uspelo, tapnite za nezavarovan SMS</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Preklopim na nešifriran SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Preklopim na nešifriran MMS?</string>
@@ -204,6 +204,8 @@
   <string name="ConversationItem_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
   <string name="ConversationItem_you_deleted_this_message">Izbrisali ste to sporočilo.</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">Ponastavim varno sejo?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">To lahko pomaga pri težavah s šifriranjem med pogovorom. Vaša sporočila bodo ohranjena.</string>
   <string name="ConversationActivity_reset">Ponastavi</string>
   <string name="ConversationActivity_add_attachment">Dodaj priponko</string>
   <string name="ConversationActivity_select_contact_info">Izberi podatke o uporabniku/ci</string>
@@ -222,13 +224,13 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Začni uporabljati aplikacijo Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Prosimo, izberite uporabnika/co</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Odblokiram uporabnika/co?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Odblokiram skupino?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice uporabnika/ce.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Obstoječi/e člani/ce vas bodo lahko ponovno dodali/e v skupino.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">Odblokiram uporabnika/co?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">Odblokiram skupino?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Zopet boste lahko prejemali sporočila in klice uporabnika/ce.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">Obstoječi/e člani/ce vas bodo lahko ponovno dodali/e v skupino.</string> -->
   <string name="ConversationActivity_unblock">Odblokiraj</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Velikost priponke presega omejitev velikosti za ta tip sporočil.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">Kamera ni na voljo</string> -->
   <string name="ConversationActivity_unable_to_record_audio">Snemanje zvoka ni mogoče!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Niste več član/ica te skupine, zato ji tudi ne morete več pošiljati sporočil.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na svoji napravi nimate nameščene aplikacije, ki bi odpirala to povezavo.</string>
@@ -259,7 +261,7 @@
   <string name="ConversationActivity_delete">Izbriši</string>
   <string name="ConversationActivity_delete_and_leave">Izbriši in zapusti</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do mikrofona</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do mikrofona in kamere.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do mikrofona in kamere.</string> -->
   <string name="ConversationActivity__more_options_now_in_group_settings">Več možnosti odslej v \"Nastavitvah skupine\"</string>
   <string name="ConversationActivity_join">Pridruži se</string>
   <string name="ConversationActivity_full">Polno</string>
@@ -277,12 +279,12 @@
     <item quantity="few">Izbrišem izbrana sporočila?</item>
     <item quantity="other">Izbrišem izbrana sporočila?</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">S tem boste nepovratno izbrisali izbrano sporočilo.</item>
     <item quantity="two">S tem boste nepovratno izbrisali %1$d izbrani sporočili.</item>
     <item quantity="few">S tem boste nepovratno izbrisali vsa %1$d izbrana sporočila.</item>
     <item quantity="other">S tem boste nepovratno izbrisali vseh %1$d izbranih sporočil.</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">Shranim v sistemsko shrambo?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Shranitev datoteke v sistemsko shrambo bo omogočila dostop do nje vsaki aplikaciji na vaši napravi.\n\nNadaljujem?</item>
@@ -333,12 +335,12 @@
   <string name="ConversationFragment_contact_us">Kontaktirajte nas</string>
   <string name="ConversationFragment_verify">Potrdi</string>
   <string name="ConversationFragment_not_now">Ne zdaj</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">Vaše varnostno število z uporabnikom/co %s je spremenjeno</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Vaše varnostno število z uporabnikom/co %s changed, je bilo spremenjeno, najverjetneje zato, ker si je ponovno namestil/a Signal ali pa je zamenjal/a telefon. Za potrditev varnostnega števila tapnite \'Potrdi\'. Potrditev ni obvezna.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Vaše varnostno število z uporabnikom/co %s je bilo spremenjeno</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Vaše varnostno število z uporabnikom/co %s je bilo spremenjeno, najverjetneje zato, ker si je ponovno namestil/a Signal ali pa je zamenjal/a telefon. Za potrditev varnostnega števila tapnite \'potrdi\'. Potrditev ni obvezna.</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Izbrišem izbrani pogovor?</item>
     <item quantity="two">Izbrišem izbrana pogovora?</item>
@@ -379,7 +381,7 @@
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Napaka pri pošiljanju predstavitvene fotografije</string>
   <string name="CreateProfileActivity_problem_setting_profile">Napaka pri nastavljanju profila</string>
-  <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">Predstavitvena fotografija</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Nastavite svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Vaš profil je šifriran od-konca-do-konca. Skupaj s spremembami na njem bo viden vašim stikom, kadar boste začeli oziroma sprejeli nov pogovor, in ko se boste pridružili skupini.</string>
   <string name="CreateProfileActivity_set_avatar_description">Določi avatar</string>
@@ -429,10 +431,10 @@
   <string name="DecryptionFailedDialog_chat_session_refreshed">Seja klepeta je bila osvežena</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal uporablja šifriranje od-pošiljetalja-do-naslovnika, zato je včasih potrebna osvežitev seje klepeta. To ne bo vplivalo na varnost, lahko pa se bo izgubilo kakšno sporočilo s tem stikom in ga/jo boste morali prositi, da ga pošlje znova.</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Pošiljam</string>
-  <string name="DeliveryStatus_sent">Poslano:</string>
-  <string name="DeliveryStatus_delivered">Dostavljeno</string>
-  <string name="DeliveryStatus_read">Prebrano</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">Pošiljam</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">Poslano:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">Dostavljeno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">Prebrano</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Odstranim \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Z odstranitvijo naprave ta ne bo več mogla pošiljati ali prejemati sporočil.</string>
@@ -474,7 +476,7 @@
   <string name="ShareActivity_share_with">Deli z</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Več priponk je možnih le pri slikah in videu</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila …</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila …</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Trajna okvara pri komunikaciji aplikacije Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Registracija z Google Play Services ni bila uspešna. Podatkovna komunikacija je izklopljena, prosimo, poskusite s ponovno registracijo v meniju Nastavive &gt; Napredno.</string>
@@ -496,9 +498,9 @@
   <string name="ChooseNewAdminActivity_done">OK</string>
   <string name="ChooseNewAdminActivity_you_left">Zapustili ste skupino \"%1$s.\"</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite deliti ime svojega profila in predstavitveno fotografijo s to skupino?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite, da sta ime vašega profila in predstavitvena fotografija vidna sedanjim in bodočim članom/icam te skupine?</string>
-  <string name="GroupShareProfileView_make_visible">Naredi vidno</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Želite deliti ime svojega profila in predstavitveno fotografijo s to skupino?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Želite, da sta ime vašega profila in predstavitvena fotografija vidna sedanjim in bodočim članom/icam te skupine?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">Naredi vidno</string> -->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">Vi</string>
   <!--GV2 access levels-->
@@ -514,7 +516,7 @@
     <item quantity="other">%d vabil poslanih</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">Uporabnika/ce “%1$s” ne morete avtomatično dodati k skupini.\n\nPoslano mu/ji je bilo vabilo in dokler ga ne potrdi, ne bo videl/a sporočil skupine.</string>
-  <string name="GroupManagement_learn_more">Izvedite več</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">Izvedite več</string> -->
   <string name="GroupManagement_invite_multiple_users">Teh uporabnikov/ic ne morete avtomatično dodati v skupino.\n\nPoslano jim je bilo vabilo in dokler ga ne potrdijo, ne bodo videli/e sporočil skupine.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Kaj so Nove skupine?</string>
@@ -671,7 +673,7 @@
   <string name="AddGroupDetailsFragment__group_name_required">Ime skupine (zahtevano)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Ime skupine (neobvezno)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">To polje je obvezno.</string>
-  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Skupine morajo vsebovati vsaj po dva/dve člana/ici.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Skupine morajo vsebovati vsaj po dva/dve člana/ici.</string> -->
   <string name="AddGroupDetailsFragment__group_creation_failed">Kreiranje skupine ni uspelo.</string>
   <string name="AddGroupDetailsFragment__try_again_later">Poskusite znova kasneje.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Izbrali ste stik, ki ne uporablja skupin Signal, zato bo to skupina MMS</string>
@@ -707,7 +709,7 @@
     <item quantity="other">Skupina ne more biti ustvarjena, ker %1$d članov/ic uporablja zastarelo različico aplikacije Signal. Če želite ustvariti skupino, jih morate najprej odstarniti.</item>
   </plurals>
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_disappearing_messages">Izginjajoča sporočila</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">Vabila in prošnje za članstvo</string>
   <string name="ManageGroupActivity_add_members">Dodajanje članov/ic</string>
   <string name="ManageGroupActivity_edit_group_info">Urejanje podatkov o skupini</string>
@@ -725,13 +727,13 @@
   <string name="ManageGroupActivity_on">Vklopljena</string>
   <string name="ManageGroupActivity_view_all_members">Poglej vse člane</string>
   <string name="ManageGroupActivity_see_all">Prikaz vseh</string>
-  <string name="ManageGroupActivity_none">Brez</string>
-  <plurals name="ManageGroupActivity_invited">
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">Brez</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d povabljen</item>
     <item quantity="two">%d povabljena</item>
     <item quantity="few">%d povabljeni</item>
     <item quantity="other">%d povabljenih</item>
-  </plurals>
+  </plurals> -->
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">Dodan/a je bil/a %d član/ica.</item>
     <item quantity="two">Dodana/i sta bila/i %d člana/ici.</item>
@@ -758,8 +760,8 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščajte me o omembah</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Želite prejemati obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali?</string>
-  <string name="GroupMentionSettingDialog_default_notify_me">Privzeto (obveščaj me)</string>
-  <string name="GroupMentionSettingDialog_default_dont_notify_me">Privzeto (ne obveščaj me)</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupMentionSettingDialog_default_notify_me">Privzeto (obveščaj me)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupMentionSettingDialog_default_dont_notify_me">Privzeto (ne obveščaj me)</string> -->
   <string name="GroupMentionSettingDialog_always_notify_me">Vedno me obveščaj</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne obveščaj me</string>
   <!--ManageRecipientActivity-->
@@ -785,7 +787,7 @@
     <item quantity="few">%d skupne skupine</item>
     <item quantity="other">%d skupnih skupin</item>
   </plurals>
-  <string name="ManageRecipientActivity_edit_name_and_picture">Uredi ime in sliko</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_edit_name_and_picture">Uredi ime in sliko</string> -->
   <string name="ManageRecipientActivity_message_description">Sporočilo</string>
   <string name="ManageRecipientActivity_voice_call_description">Zvočni klic</string>
   <string name="ManageRecipientActivity_insecure_voice_call_description">Nezavarovan zvočni klic</string>
@@ -815,10 +817,10 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Ponastavi povezavo</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Prošnje za članstvo</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Odobritev novih članov/ic</string>
-  <string name="ShareableGroupLinkDialogFragment__enabled">Izklopljena</string>
-  <string name="ShareableGroupLinkDialogFragment__disabled">Vklopljena</string>
-  <string name="ShareableGroupLinkDialogFragment__default">Privzeto</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ponastavitev povezave do skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__enabled">Izklopljena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__disabled">Vklopljena</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__default">Privzeto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__group_link_reset">Ponastavitev povezave do skupine</string> -->
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Za pridružitev tej skupini preko deljene povezave je zahtevana odobritev skrbnika/ce.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste prepričani, da želite ponastaviti povezavo do skupine? Uporabiki/ce se več ne bodo mogli/e pridružiti skupini preko sedanje povezave.</string>
   <!--GroupLinkShareQrDialogFragment-->
@@ -850,7 +852,7 @@
     <item quantity="other">Skupina · %1$d članov</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Kmalu na voljo: povezave do skupin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">Kmalu na voljo: povezave do skupin</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Za povezave do skupine nadgradite Signal</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Različica aplikacije Signal, ki jo uporabljate, ne podpira te povezave do skupine. Za priključitev skupini preko povezave jo morate nadgraditi.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Posodobite aplikacijo Signal</string>
@@ -871,8 +873,8 @@
   <string name="RequestConfirmationDialog_add">Dodaj</string>
   <string name="RequestConfirmationDialog_deny">Zavrni</string>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Avatar skupine</string>
-  <string name="CropImageActivity_profile_avatar">Avatar</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">Avatar skupine</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">Avatar</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Zabris obrazov</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novo: zabrišite obraze ali s potegom prsta katerikoli del slike</string>
@@ -882,12 +884,12 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Za snemanje glasovnega sporočila se dotaknite in držite, za pošiljanje spustite</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Deli</string>
-  <string name="InviteActivity_choose_contacts">Izberi uporabnike/ce</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Izberi uporabnike/ce</string> -->
   <string name="InviteActivity_share_with_contacts">Deli s stiki</string>
   <string name="InviteActivity_choose_how_to_share">Izbira načina deljenja</string>
   <string name="InviteActivity_cancel">Prekliči</string>
   <string name="InviteActivity_sending">Pošiljanje …</string>
-  <string name="InviteActivity_heart_content_description">Srce</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Srce</string> -->
   <string name="InviteActivity_invitations_sent">Vabila so bila poslana!</string>
   <string name="InviteActivity_invite_to_signal">Povabi k uporabi</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -906,7 +908,7 @@
   <string name="InviteActivity_no_app_to_share_to">Kaže, da nimate nameščene nobene primerne aplikacije.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Pametni ljudje uporabljajo šifrirano komunikacijo!</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Delovanje v ozadju …</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Delovanje v ozadju …</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Izvedite več</string>
   <!--LongMessageActivity-->
@@ -994,7 +996,7 @@
   <string name="MediaPickerActivity_send_to">Pošlji %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Odpri kamero</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Dodajanje besedila …</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Predmet je bil odstranjen, ker je presegel omejitev velikosti.</string>
@@ -1024,9 +1026,9 @@
   <string name="MessageRecord_you_called_date">Klicali ste · %1$s</string>
   <string name="MessageRecord_missed_audio_call_date">Zamujen zvočni klic · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Zamujen video klic · %1$s</string>
-  <string name="MessageRecord_s_updated_group">Oseba %s je posodobila skupino.</string>
+  <string name="MessageRecord_s_updated_group">Uporabnik/ca %s je posodobil/a skupino.</string>
   <string name="MessageRecord_s_called_you_date">Uporabnik/ca %1$s vas je klical/a · %2$s</string>
-  <string name="MessageRecord_called_s">Klicali ste: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">Klicali ste: %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s uporablja Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Izklopili ste izginjajoča sporočila</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">Uporabnik/ca %1$s je izklopil/a izginjajoča sporočila.</string>
@@ -1067,7 +1069,7 @@
   <string name="MessageRecord_s_removed_s">Oseba %1$s je odstranila uporabnika/co %2$s.</string>
   <string name="MessageRecord_s_removed_you_from_the_group">Oseba %1$s vas je odstranila iz skupine.</string>
   <string name="MessageRecord_you_left_the_group">Zapustili ste skupino.</string>
-  <string name="MessageRecord_s_left_the_group">Oseba %1$s je zapustila skupino.</string>
+  <string name="MessageRecord_s_left_the_group">Uporabnik/ca %1$s je zapustil/a skupino.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Niste več v skupini.</string>
   <string name="MessageRecord_s_is_no_longer_in_the_group">Uporabnik/ca %1$s ni več v skupini.</string>
   <!--GV2 role change-->
@@ -1152,7 +1154,7 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Vklopljena je bila povezava do skupine z obveznim skrbniškim potrjevanjem novih članov/ic.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Povezava do skupine je bila izklopljena.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Izklopili ste potrjevanje povezave do skupine s strani skrbnika/ce.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">Član/ica %1$s je izklopil/a potrjevanje povezave do skupine s strani skrbnika/ce.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">Uporabnik/ca %1$s je izklopil/a potrjevanje povezave do skupine s strani skrbnika/ce.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Potrjevanje povezave do skupine s strani skrbnika/ce je bilo izklopljeno.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Vklopili ste potrjevanje povezave do skupine s strani skrbnika/ce.</string>
   <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">Član/ica %1$s je vklopil/a potrjevanje povezave do skupine s strani skrbnika/ce.</string>
@@ -1190,13 +1192,13 @@
   <string name="MessageRecord_s_is_in_the_group_call_s">Uporabnik/ca %1$s je v skupinskem klicu. · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">Ste v skupinskem klicu · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">Uporabnika/ci %1$s in %2$s sta skupinskem klicu · %3$s</string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Uporabniki/ce %1$s, %2$s, in %3$s so v skupinskem klicu · %4$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">Uporabniki/ce %1$s, %2$s, in %3$s so v skupinskem klicu · %4$s</string> -->
   <string name="MessageRecord_group_call_s">Skupinski klic · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">Uporabnik/ca %1$s je začel/a skupinski klic</string>
   <string name="MessageRecord_s_is_in_the_group_call">Uporabnik/ca %1$s je v skupinskem klicu.</string>
   <string name="MessageRecord_you_are_in_the_group_call">Ste v skupinskem klicu</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">Uporabnika/ci %1$s in %2$s sta v skupinskem klicu </string>
-  <string name="MessageRecord_s_s_and_s_are_in_the_group_call">Uporabniki/ce %1$s, %2$s, in %3$s so v skupinskem klicu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_s_and_s_are_in_the_group_call">Uporabniki/ce %1$s, %2$s, in %3$s so v skupinskem klicu</string> -->
   <string name="MessageRecord_group_call">Skupinski klic</string>
   <string name="MessageRecord_you">Vi</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
@@ -1291,7 +1293,7 @@
   <string name="PassphrasePromptActivity_unlock_signal">Odkleni Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Zemljevid</string>
-  <string name="PlacePickerActivity_not_a_valid_address">Neveljaven naslov</string>
+  <!-- Removed by excludeNonTranslatables <string name="PlacePickerActivity_not_a_valid_address">Neveljaven naslov</string> -->
   <string name="PlacePickerActivity_drop_pin">Izpusti</string>
   <string name="PlacePickerActivity_accept_address">Sprejmi naslov</string>
   <!--PlayServicesProblemFragment-->
@@ -1338,20 +1340,20 @@
   <string name="ReactionsRecipientAdapter_you">Vi</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">Blokiraj</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">Napaka ob zapuščanju skupine</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">Napaka ob zapuščanju skupine</string> -->
   <string name="RecipientPreferenceActivity_unblock">Odblokiraj</string>
-  <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string>
-  <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Na voljo šele po prvi izmenjavi sporočil</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">Vklopljeno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">Izklopljeno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Na voljo šele po prvi izmenjavi sporočil</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Nepoimenovana skupina</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Sprejemanje …</string>
   <string name="RedPhone_ending_call">Zaključevanje klica …</string>
-  <string name="RedPhone_dialing">Klicanje …</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">Klicanje …</string> -->
   <string name="RedPhone_ringing">Zvoni…</string>
   <string name="RedPhone_busy">Zasedeno</string>
-  <string name="RedPhone_connected">Povezano</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">Povezano</string> -->
   <string name="RedPhone_recipient_unavailable">Prejemnik ni na voljo</string>
   <string name="RedPhone_network_failed">Napaka omrežja!</string>
   <string name="RedPhone_number_not_registered">Številka ni registrirana!</string>
@@ -1362,7 +1364,7 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Za klic uporabnika/ce %1$s, potrebuje Signal dostop do kamere</string>
   <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
   <string name="WebRtcCallActivity__calling">Klicanje …</string>
-  <string name="WebRtcCallActivity__group_call">Skupinski klic</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallActivity__group_call">Skupinski klic</string> -->
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Zvočni klic Signal …</string>
   <string name="WebRtcCallView__signal_video_call">Video klic Signal …</string>
@@ -1373,7 +1375,7 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" Skupinski klic</string>
   <string name="WebRtcCallView__view_participants_list">Prikaži sodelujoče</string>
   <string name="WebRtcCallView__your_video_is_off">Vaš video je izključen</string>
-  <string name="WebRtcCallView__connecting">Povezovanje …</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__connecting">Povezovanje …</string> -->
   <string name="WebRtcCallView__reconnecting">Ponovno povezovanje …</string>
   <string name="WebRtcCallView__joining">Pridruževanje …</string>
   <string name="WebRtcCallView__disconnected">Povezava je prekinjena</string>
@@ -1416,14 +1418,14 @@
   <string name="RegistrationActivity_play_services_error">Napaka Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Aplikacija Google Play Services se posodablja ali pa je začasno nedosegljiva. Poskusite znova.</string>
   <string name="RegistrationActivity_terms_and_privacy">Pogoji &amp; politika zasebnosti</string>
-  <string name="RegistrationActivity_no_browser">Ne morem odpreti te povezave. Na tej napravi ni nameščen internetni brskalnik.</string>
-  <string name="RegistrationActivity_more_information">Več informacij</string>
-  <string name="RegistrationActivity_less_information">Manj informacij</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">Ne morem odpreti te povezave. Na tej napravi ni nameščen internetni brskalnik.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">Več informacij</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">Manj informacij</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Aplikacija Signal potrebuje dovoljenje za dostop do vaših stikov in medijskih vsebin za povezavo s prijatelji/cami, izmenjavo sporočil in opravljanje varnih klicev.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Za povezavo s prijatelji/cami, izmenjavo sporočil in opravljanje varnih klicev potrebuje aplikacija Signal dovoljenje za dostop do vaših stikov.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Preveč neuspešnih poskusov registracije te telefonske številke. Prosimo poskusite znova kasneje.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Povezava s storitvijo ni mogoča. Preverite omrežje in poskusite znova.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Aplikacija Signal lahko avtomatsko zazna prejeto kodo za verifikacijo vaše telefonske številke. Za to potrebuje vaše dovoljenje za branje sporočil SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Aplikacija Signal lahko avtomatsko zazna prejeto kodo za verifikacijo vaše telefonske številke. Za to potrebuje vaše dovoljenje za branje sporočil SMS.</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ste %d korak pred oddajo sistemske zabeležbe.</item>
     <item quantity="two">Ste %d koraka pred oddajo sistemske zabeležbe.</item>
@@ -1431,14 +1433,14 @@
     <item quantity="other">Ste %d korakov pred oddajo sistemske zabeležbe.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Preveriti moramo, če ste človek.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">Preverba CAPTCHA ni bila uspešna</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">Preverba CAPTCHA ni bila uspešna</string> -->
   <string name="RegistrationActivity_next">Naprej</string>
   <string name="RegistrationActivity_continue">Nadaljuj</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">Nadaljuj (število preostalih poskusov:%d)</string>
-  <string name="RegistrationActivity_continue_last_attempt">Nadaljuj (zadnji poskus!)</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_d_attempts_left">Nadaljuj (število preostalih poskusov:%d)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_last_attempt">Nadaljuj (zadnji poskus!)</string> -->
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Za začetek vpišite svojo telefonsko številko.</string>
-  <string name="RegistrationActivity_enter_your_phone_number">Vnesite svojo telefonsko številko</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">Vnesite svojo telefonsko številko</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Prepričajte se, če ima vaš telefon dostop do mobilnega signala, da lahko prejmete naš SMS ali klic</string>
@@ -1457,7 +1459,7 @@
   <string name="RevealableMessageView_viewed">Ogledano</string>
   <string name="RevealableMessageView_media">Medijske datoteke</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">Iskanje po \'%s\' ni vrnilo nobenega rezultata.</string>
   <string name="SearchFragment_header_conversations">Pogovori</string>
@@ -1521,11 +1523,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">Oddaja sistemske zabeležke ni uspela</string>
   <string name="SubmitDebugLogActivity_success">Uspešno opravljeno!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Prekopirajte naslov URL in ga dodajte k prijavi napake ali v elektronsko sporočilo za tehnično podporo:\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano v odložišče</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_copied_to_clipboard">Kopirano v odložišče</string> -->
   <string name="SubmitDebugLogActivity_share">Deli</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_subject">Predmet:</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Zahteva za podporo Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_subject">Predmet:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_android_support_request">Zahteva za podporo Signal Android</string> -->
   <string name="SupportEmailUtil_device_info">Podatki o napravi:</string>
   <string name="SupportEmailUtil_android_version">Različica Android:</string>
   <string name="SupportEmailUtil_signal_version">Različica Signal:</string>
@@ -1557,12 +1559,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_you_marked_unverified">Označili ste kot nepotrjeno</string>
   <string name="ThreadRecord_message_could_not_be_processed">Sporočilo ni moglo biti obdelano</string>
   <string name="ThreadRecord_message_request">Prošnja za pogovor</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">Uporabnik/ca %1$s vas je dodal/a v skupino</string>
-  <string name="ThreadRecord_s_invited_you_to_the_group">Uporabnik/ca %1$s vas je povabil/a v skupino</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_added_you_to_the_group">Uporabnik/ca %1$s vas je dodal/a v skupino</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_invited_you_to_the_group">Uporabnik/ca %1$s vas je povabil/a v skupino</string> -->
   <string name="ThreadRecord_photo">Slika</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Glasovno sporočilo</string>
-  <string name="ThreadRecord_contact">Stik</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_contact">Stik</string> -->
   <string name="ThreadRecord_file">Datoteka</string>
   <string name="ThreadRecord_video">Video</string>
   <string name="ThreadRecord_chat_session_refreshed">Seja klepeta je bila osvežena</string>
@@ -1621,7 +1623,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ApplicationMigrationService_system_database_import_is_complete">Uvoz iz sistemske zbirke je končan.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tapnite za vstop.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tapnite za vstop, za zaklep tapnite ključavnico.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tapnite za vstop, za zaklep tapnite ključavnico.</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal je odklenjen</string>
   <string name="KeyCachingService_lock">Zakleni Signal</string>
   <!--MediaPreviewActivity-->
@@ -1639,15 +1641,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
   <string name="MessageNotifier_most_recent_from_s">Zadnje sporočilo od: %1$s</string>
   <string name="MessageNotifier_locked_message">Zaklenjeno sporočilo</string>
-  <string name="MessageNotifier_media_message_with_text">Večpredstavno sporočilo: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">Večpredstavno sporočilo: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">Dostava sporočila ni uspela.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Neuspešna dostava sporočila.</string>
   <string name="MessageNotifier_error_delivering_message">Napaka pri dostavi sporočila.</string>
   <string name="MessageNotifier_mark_all_as_read">Označi vse kot prebrano</string>
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_turn_off_these_notifications">Izklopi ta obvestila</string>
-  <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
-  <string name="MessageNotifier_sticker">Nalepka</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">Nalepka</string> -->
   <string name="MessageNotifier_view_once_photo">Slika za enkraten ogled</string>
   <string name="MessageNotifier_view_once_video">Video za enkraten ogled</string>
   <string name="MessageNotifier_reply">Odgovor</string>
@@ -1678,8 +1680,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="NotificationChannel_missing_display_name">Neznano</string>
   <string name="NotificationChannel_voice_notes">Glasovna sporočila</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">Uspešno ste določili naziv svojega profila.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">Prišlo je do napake na omrežju.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">Uspešno ste določili naziv svojega profila.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_encountered_a_network_error">Prišlo je do napake na omrežju.</string> -->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
@@ -1708,7 +1710,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="UnauthorizedReminder_device_no_longer_registered">Naprava ni več registrirana</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Najbrž ste registrirali vašo telefonsko številko na drugi napravi. Tapnite za ponovno registracijo.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Napaka pri predvajanju videa</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">Napaka pri predvajanju videa</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Za prevzem klica uporabnika/ce %somogočite aplikaciji Signal dostop do mikrofona naprave.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do mikrofona in kamere za klicanje. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
@@ -1717,11 +1719,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Zasedeno na povezani napravi.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Klicu se je pridružil nekdo s spremenjenim varnostnim številom.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom/co %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil/a aplikacijo Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Novo varnostno število</string>
-  <string name="WebRtcCallScreen_accept">Sprejmi</string>
-  <string name="WebRtcCallScreen_end_call">Zaključi klic</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom/co %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil/a aplikacijo Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">Novo varnostno število</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">Sprejmi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">Zaključi klic</string> -->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">Za spremembo pogleda podrsajte navzgor</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Zavrni</string>
@@ -1733,32 +1735,32 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcAudioOutputToggle__speaker">Zvočnik</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">Fotografija stika</string>
-  <string name="WebRtcCallControls_speaker_button_description">Zvočnik</string>
-  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
-  <string name="WebRtcCallControls_mute_button_description">Utišaj</string>
-  <string name="WebRtcCallControls_your_camera_button_description">Vaša kamera</string>
-  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Preklop na zadnjo kamero</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">Fotografija stika</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">Zvočnik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">Utišaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_your_camera_button_description">Vaša kamera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Preklop na zadnjo kamero</string> -->
   <string name="WebRtcCallControls_answer_call_description">Sprejmi klic</string>
   <string name="WebRtcCallControls_reject_call_description">Zavrni klic</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Zvok</string>
-  <string name="attachment_type_selector__audio_description">Zvok</string>
-  <string name="attachment_type_selector__contact">Stik</string>
-  <string name="attachment_type_selector__contact_description">Stik</string>
-  <string name="attachment_type_selector__camera">Kamera</string>
-  <string name="attachment_type_selector__camera_description">Kamera</string>
-  <string name="attachment_type_selector__location">Lokacija</string>
-  <string name="attachment_type_selector__location_description">Lokacija</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">Slika ali video</string>
-  <string name="attachment_type_selector__file_description">Datoteka</string>
-  <string name="attachment_type_selector__gallery">Galerija</string>
-  <string name="attachment_type_selector__file">Datoteka</string>
-  <string name="attachment_type_selector__drawer_description">Vklopi poteznik za priponke</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">Zvok</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">Zvok</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">Stik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">Stik</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">Kamera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">Kamera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">Lokacija</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">Lokacija</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">Gif</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">Slika ali video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">Datoteka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">Galerija</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">Datoteka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">Vklopi poteznik za priponke</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Staro geslo</string>
   <string name="change_passphrase_activity__new_passphrase">Novo geslo</string>
@@ -1793,7 +1795,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">%1$d članov/ic</item>
   </plurals>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov/ic</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">Ni blokiranih uporabnikov/ic</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Za prikaz imen iz vašega imenika potrebuje aplikacija Signal dostop do stikov.</string>
   <string name="contact_selection_list_fragment__show_contacts">Prikaži stike</string>
@@ -1848,7 +1850,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_photo">Fotografija</string>
   <string name="QuoteView_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="QuoteView_sticker">Nalepka</string>
-  <string name="QuoteView_document">Dokument</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">Dokument</string> -->
   <string name="QuoteView_you">Vi</string>
   <string name="QuoteView_original_missing">Izvorno sporočilo ni bilo najdeno</string>
   <!--conversation_fragment-->
@@ -1875,10 +1877,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="device_list_fragment__no_devices_linked">Ni povezanih naprav</string>
   <string name="device_list_fragment__link_new_device">Poveži z novo napravo</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">nadaljuj</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Novo: potrdila o ogledu sporočil</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Izberete lahko ali bosta vi in vaš partner pri pogovoru obveščena o ogledu poslanih sporočil</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Vklopi potrdila o ogledu</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">nadaljuj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Novo: potrdila o ogledu sporočil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Izberete lahko ali bosta vi in vaš partner pri pogovoru obveščena o ogledu poslanih sporočil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">Vklopi potrdila o ogledu</string> -->
   <!--expiration-->
   <string name="expiration_off">Izklopljena</string>
   <plurals name="expiration_seconds">
@@ -1938,20 +1940,20 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nič ni bilo najdeno</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string>
-  <string name="log_submit_activity__thanks">Hvala za pomoč!</string>
-  <string name="log_submit_activity__submitting">Oddajam</string>
-  <string name="log_submit_activity__no_browser_installed">Ni nameščenega brskalnika</string>
-  <string name="log_submit_activity__button_dont_submit">Ne oddaj</string>
-  <string name="log_submit_activity__button_submit">Oddaj</string>
-  <string name="log_submit_activity__button_got_it">Razumem</string>
-  <string name="log_submit_activity__button_compose_email">Sestavi elektronsko sporočilo</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">Sistemski dnevnik vaše naprave ni dostopen. Za oddajo sistemske zabeležbe lahko uporabite ADB.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">Hvala za pomoč!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">Oddajam</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">Ni nameščenega brskalnika</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">Ne oddaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Oddaj</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Razumem</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Sestavi elektronsko sporočilo</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">Ta zabeležba bo javno objavljena na spletu in v ogled razvijalcem aplikacije. Pred oddajo jo lahko pregledate in popravite.</string>
-  <string name="log_submit_activity__loading_logs">Nalagam sistemske zabaležbe …</string>
-  <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe …</string>
-  <string name="log_submit_activity__choose_email_app">Izberite odjemalca za e-pošto</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">Prosim preglejte to sistemsko zabeležbo mojega odjemalca: %1$s</string>
-  <string name="log_submit_activity__network_failure">Napaka omrežja. Poskusite znova.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Nalagam sistemske zabaležbe …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Prenašam sistemske zabeležbe …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Izberite odjemalca za e-pošto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">Prosim preglejte to sistemsko zabeležbo mojega odjemalca: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">Napaka omrežja. Poskusite znova.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Želite uvoziti obstoječa sporočila SMS v šifrirano zbirko aplikacije Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Osnovna SMS podatkovna zbirka bo ostala nespremenjena.</string>
@@ -1959,10 +1961,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="database_migration_activity__import">Uvoz</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Bodite potrpežljivi; ko bo uvoz končan, boste o tem obveščeni.</string>
   <string name="database_migration_activity__importing">UVAŽANJE</string>
-  <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Uvoz zbirke sporočil iz sistemsko privzete aplikacije SMS.</string>
-  <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Uvoz iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">Uvoz zbirke sporočil iz sistemsko privzete aplikacije SMS.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">Uvoz iz datoteke z nešifrirano varnostno kopijo. Združljivo s sistemskimi varnostnimi kopijami sporočil SMS.</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Celoten pogovor</string>
   <string name="load_more_header__loading">Nalagam</string>
@@ -1971,7 +1973,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">PREGLED</string>
   <string name="message_recipients_list_item__resend">PONOVNO POŠLJI</string>
-  <string name="message_recipients_list_item__resending">Ponovno pošiljanje …</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">Ponovno pošiljanje …</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s stik se je priključil skupini.</item>
@@ -1998,20 +2000,20 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Deljene datoteke</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Klic Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Klic Signal</string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Uporaba aplikacije Signal naredi komunikacijo z osebami shranjenimi v vašem imeniku izjemno preprosto. Prijatelji/ce in druge osebe, ki že poznajo vašo telefonsko številko, bodo takoj vedeli/e, da lahko odslej komunicirajo z vami tudi preko aplikacije Signal.\n\nOb registraciji se nekateri podatki o vaših stikih začasno posredujejo na strežnik.</string>
-  <string name="registration_activity__verify_your_number">Potrdite svojo telefonsko številko</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Prosimo, vnesite svojo telefonsko številko, da prejmete potrditveno kodo. Stroški za poslano sporočilo so odvisni od vašega naročniškega razmerja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Uporaba aplikacije Signal naredi komunikacijo z osebami shranjenimi v vašem imeniku izjemno preprosto. Prijatelji/ce in druge osebe, ki že poznajo vašo telefonsko številko, bodo takoj vedeli/e, da lahko odslej komunicirajo z vami tudi preko aplikacije Signal.\n\nOb registraciji se nekateri podatki o vaših stikih začasno posredujejo na strežnik.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">Potrdite svojo telefonsko številko</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Prosimo, vnesite svojo telefonsko številko, da prejmete potrditveno kodo. Stroški za poslano sporočilo so odvisni od vašega naročniškega razmerja.</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Vnesite ime ali številko</small></string>
-  <string name="recipients_panel__add_members">Dodaj člane/ice</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">Dodaj člane/ice</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Uporabnika/ce ni med vašimi stiki</string>
-  <string name="unknown_sender_view__block">BLOKIRAJ</string>
-  <string name="unknown_sender_view__add_to_contacts">DODAJ MED STIKE</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE DODAJ, A NAREDI MOJ PROFIL VIDEN</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Uporabnika/ce ni med vašimi stiki</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">BLOKIRAJ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">DODAJ MED STIKE</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NE DODAJ, A NAREDI MOJ PROFIL VIDEN</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Če želite preveriti zasebnost vaše komunikacije z uporabnikom/co %s, primerjajte gornje število s številom na njegovi/njeni napravi. Lahko tudi skenirate kodo na njegovi/njeni napravi ali ga/jo prosite, naj skenira vašo. <a href="https://signal.org/redirect/safety-numbers">Več.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tapnite za skeniranje</string>
@@ -2054,11 +2056,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageRequestsMegaphone__message_requests">Prošnje za pogovor</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Uporabniki/ce lahko odslej izbirajo ali želijo sodelovarti v pogovoru ali ne. Profilna imena so tu zato, da prejemnik/ca ve, kdo mu/ji pošilja sporočilo.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Dodaj ime profila</string>
-  <string name="MessageRequestsMegaphone__new_message_requests">Novo: Prošnje za pogovor</string>
-  <string name="MessageRequestsMegaphone__add_name">Dodaj ime</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Odslej lahko izbirate ali želite sodelovati v novem pogovoru. Imeli boste tri možnosti: \"Sprejmi\", \"Zavrni\", ali \"Blokiraj.\"</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__new_message_requests">Novo: Prošnje za pogovor</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__add_name">Dodaj ime</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">Odslej lahko izbirate ali želite sodelovati v novem pogovoru. Imeli boste tri možnosti: \"Sprejmi\", \"Zavrni\", ali \"Blokiraj.\"</string> -->
   <!--HelpFragment-->
-  <string name="HelpFragment__help">Pomoč</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__help">Pomoč</string> -->
   <string name="HelpFragment__have_you_read_our_faq_yet">Ste že prebrali pogosta vprašanja in odgovore?</string>
   <string name="HelpFragment__next">Naprej</string>
   <string name="HelpFragment__contact_us">Kontaktirajte nas</string>
@@ -2069,11 +2071,11 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="HelpFragment__support_info">Podporne informacije</string>
   <string name="HelpFragment__signal_android_support_request">Zahteva za podporo Signal Android</string>
   <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
-  <string name="HelpFragment__na">ni na voljo</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__na">ni na voljo</string> -->
   <string name="HelpFragment__could_not_upload_logs">Sistemska zabeležba ni bila prenešena</string>
-  <string name="HelpFragment__signal_support">Podpora Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__signal_support">Podpora Signal</string> -->
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Pri opisu napake bodite čim bolj natančni, da bomo lažje razumeli za kaj gre.</string>
-  <string name="HelpFragment__no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__no_email_app_found">Nismo našli nobene aplikacije za e-pošto.</string> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
@@ -2087,7 +2089,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Zastave</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emotikoni</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Uvoz</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">Uvoz</string> -->
   <string name="arrays__use_default">Uporabi prednastavljeno</string>
   <string name="arrays__use_custom">Uporabi po meri</string>
   <string name="arrays__mute_for_one_hour">Izklopi za 1 uro</string>
@@ -2143,7 +2145,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__inactivity_timeout_passphrase">Geslo za zaklep aplikacije</string>
   <string name="preferences__inactivity_timeout_interval">Časovni interval za zaklep aplikacije</string>
   <string name="preferences__notifications">Obvestila</string>
-  <string name="preferences__system_notification_settings">Nastavitve za sistemska obvestila</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">Nastavitve za sistemska obvestila</string> -->
   <string name="preferences__led_color">Barva LED</string>
   <string name="preferences__led_color_unknown">Neznano</string>
   <string name="preferences__pref_led_blink_title">Utripanje LED</string>
@@ -2196,7 +2198,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Z izklopom PINa boste ob ponovni prijavi v svoj račun Signal izgubili vse tam shranjene podatke, razen če prej sami ne ustvarite varnostne kopije. Brez PINa tudi ne morete vklopiti zaklepa registracije.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">S kodo PIN zavarujete podatke shranjene na Signalu s šifriranjem, tako da so dostopni le vam. Vaš profil, nastavitve in stiki bodo ob ponovni namestitvi aplikacije Signal obnovljeni. Vnos PINa ob vsakokratnem zagonu aplikacije ne bo potreben.</string>
   <string name="preferences__system_default">Privzeta sistemska</string>
-  <string name="preferences__default">Privzeto</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">Privzeto</string> -->
   <string name="preferences__language">Jezik</string>
   <string name="preferences__signal_messages_and_calls">Sporočila in klici Signal</string>
   <string name="preferences__advanced_pin_settings">Napredne nastavite PIN</string>
@@ -2270,9 +2272,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dovoli za vse pošiljatelje</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Vklop zakritega pošiljatelja za dohodna sporočila uporabnikov/ic, ki niso v imeniku in tistih, s katerimi ne delite svojega profila.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Izvedite več</string>
-  <string name="preferences_notifications__mentions">Omembe</string>
-  <string name="preferences_notifications__notify_me">Obveščaj me</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Prejemajte obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__mentions">Omembe</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__notify_me">Obveščaj me</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Prejemajte obvestila kadar bo vaše ime omenjeno v pogovorih, ki ste jih utišali</string> -->
   <string name="preferences_setup_a_username">Določite uporabniško ime</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
@@ -2302,7 +2304,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Izginjajoča sporočila</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Sporočila, ki bodo potekla</string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">Sporočila, ki bodo potekla</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Povabi</string>
   <!--conversation_list_batch-->
@@ -2312,7 +2314,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_batch__menu_select_all">Označi vse</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Premakni izbrano v arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_batch__menu_unarchive_selected">Premakni izbrano v nabiralnik</string> -->
   <string name="conversation_list_batch__menu_mark_as_read">Označi kot prebrano</string>
   <string name="conversation_list_batch__menu_mark_as_unread">Označi kot neprebrano</string>
   <!--conversation_list-->
@@ -2324,8 +2326,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Nabiralnik je prazen!</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nič. Nula. Zero. Nada. \nBrez sporočil!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Nabiralnik je prazen!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nič. Nula. Zero. Nada. \nBrez sporočil!</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
   <string name="conversation_list_fragment__open_camera_description">Odpri kamero</string>
@@ -2337,14 +2339,14 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Izklop obvestil</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Dodaj priponko</string>
-  <string name="conversation__menu_edit_group">Uredi skupino</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">Dodaj priponko</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">Uredi skupino</string> -->
   <string name="conversation__menu_group_settings">Nastavitve skupine</string>
   <string name="conversation__menu_leave_group">Zapusti skupino</string>
   <string name="conversation__menu_view_all_media">Vsa multimedijska sporočila</string>
   <string name="conversation__menu_conversation_settings">Nastavitve pogovora</string>
   <string name="conversation__menu_add_shortcut">Dodaj na domači zaslon</string>
-  <string name="conversation__menu_pending_members">Čakajoči/e člani/ce</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_pending_members">Čakajoči/e člani/ce</string> -->
   <string name="conversation__menu_create_bubble">Ustvari mehurček</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Razširi pojavno okno</string>
@@ -2361,7 +2363,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="text_secure_normal__menu_clear_passphrase">Zakleni</string>
   <string name="text_secure_normal__mark_all_as_read">Označi vse kot prebrano</string>
   <string name="text_secure_normal__invite_friends">Vabilo prijateljem/icam</string>
-  <string name="text_secure_normal__help">Pomoč</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">Pomoč</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiraj v odložišče</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Primerjaj preko odložišča</string>
@@ -2370,12 +2372,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="reminder_header_sms_import_text">Tapnite za kopiranje sporočil SMS iz telefona v kriptirano zbirko aplikacije Signal.</string>
   <string name="reminder_header_push_title">Vklopite sporočila in klice Signal</string>
   <string name="reminder_header_push_text">Izboljšajte kvaliteto svoje komunikacije!</string>
-  <string name="reminder_header_invite_title">Povabi k uporabi aplikacije Signal</string>
-  <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string>
-  <string name="reminder_header_share_title">Povabi svoje prijatelje/ice!</string>
-  <string name="reminder_header_share_text">Več vas bo uporabljalo Signal, boljši bo!</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Povabi k uporabi aplikacije Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">Prenesite svojo komunikacijo z osebo %1$s na novo raven.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">Povabi svoje prijatelje/ice!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">Več vas bo uporabljalo Signal, boljši bo!</string> -->
   <string name="reminder_header_service_outage_text">Prihaja do tehničnih težav v omrežju Signal. Ekipa vzdrževalcev se trudi, da bodo čimprej odpravljene.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Zadnje izboljšave aplikacije Signal ne bodo delovale na tej različici operacijskega sistema Android. Za nadaljnje posodobitve prosimo nadgradite svojo napravo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">Zadnje izboljšave aplikacije Signal ne bodo delovale na tej različici operacijskega sistema Android. Za nadaljnje posodobitve prosimo nadgradite svojo napravo.</string> -->
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Shrani</string>
@@ -2388,9 +2390,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="new_conversation_activity__refresh">Osveži</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Brišem</string>
-  <string name="trimmer__deleting_old_messages">Brisanje starih sporočil …</string>
-  <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">Brišem</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">Brisanje starih sporočil …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">Stara sporočila so bila uspešno izbrisana</string> -->
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Pregled</string>
@@ -2451,7 +2453,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="KbsSplashFragment__learn_more">Več o tem…</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">PIN = koda za zaklep registracije</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">PIN za prijavo v omrežje je izboljšan in odslej ponuja več možnosti. Posodobite ga zdaj!</string>
-  <string name="KbsSplashFragment__read_more_about_pins">Preberite več o varnostni PIN kodi.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_about_pins">Preberite več o varnostni PIN kodi.</string> -->
   <string name="KbsSplashFragment__update_pin">Posodobite PIN</string>
   <string name="KbsSplashFragment__create_your_pin">Ustvarite svoj PIN</string>
   <string name="KbsSplashFragment__learn_more_about_pins">Izvedite več o kodi PIN.</string>
@@ -2473,7 +2475,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Vnesite PIN, ki ste ga ustvarili za zaklep svojega računa. Tu ne gre za SMS potrditveno kodo.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Vnesite alfanumerični PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Vnesite številčni PIN</string>
-  <string name="RegistrationLockFragment__next">Naprej</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">Naprej</string> -->
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Napačen PIN. Poskusite znova.</string>
   <string name="RegistrationLockFragment__forgot_pin">Ste pozabili PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Napačen PIN</string>
@@ -2510,16 +2512,16 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
     <item quantity="other">Še %1$d poskusov.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okej</string>
+  <!-- Removed by excludeNonTranslatables <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okej</string> -->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">Uporabnik/ca %1$s bo prejel/a vaše vabilo. Ko ga bo potrdil/a, ga/jo lahko pokličete.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Ustvari PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN zavaruje informacije shranjene na Signalu z uporabo šifriranja.</string>
   <string name="KbsMegaphone__create_pin">Ustvari PIN</string>
-  <string name="KbsMegaphone__introducing_pins">Predstavljamo vam PIN!</string>
-  <string name="KbsMegaphone__update_pin">Posodobite PIN</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba PINa postala obvezna čez %1$d dni.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev PINa bo obvezna čez %1$d dni.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__introducing_pins">Predstavljamo vam PIN!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__update_pin">Posodobite PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">Spomnili vas bomo kasneje. Uporaba PINa postala obvezna čez %1$d dni.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">Spomnili vas bomo kasneje. Potrditev PINa bo obvezna čez %1$d dni.</string> -->
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Sporočite Signalu svoje mnenje</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Da bi bil Signal najboljša aplikacije za sporočanje v vesolju, pa tudi širše, bi radi slišali vaše mnenje.</string>
@@ -2538,7 +2540,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Dovoljenje za dostop do sporočil SMS je bilo trajno odvzeto. Aplikacija Signal potrebuje dovoljenje za dostop do sporočil SMS za pošiljanje sporočil SMS. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"SMS\".</string>
   <string name="Permissions_continue">Nadaljuj</string>
   <string name="Permissions_not_now">Ne zdaj</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov za iskanje med osebami iz vašega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string> -->
   <string name="conversation_activity__enable_signal_messages">VKLOPI SPOROČILA SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Prenašam podatkovno bazo Signal</string>
   <string name="PushDecryptJob_new_locked_message">Novo zaklenjeno sporočilo</string>
@@ -2550,12 +2552,12 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Zapisal sem si geslo. Brez njega ne bom mogel obnoviti varnostne kopije.</string>
   <string name="registration_activity__restore_backup">Obnovi iz varnostne kopije</string>
   <string name="registration_activity__skip">Preskoči</string>
-  <string name="registration_activity__register">Registriraj</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">Registriraj</string> -->
   <string name="preferences_chats__chat_backups">Varnostne kopije klepetov</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Varnostna kopija klepetov bo ustvarjena na zunanjem pomnilniku</string>
-  <string name="preferences_chats__create_backup">Ustvari varnostno kopijo</string>
-  <string name="preferences_chats__verify_backup_passphrase">Potrdite geslo za varnostno kopijo</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Preizkus gesla varnostne kopije</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">Ustvari varnostno kopijo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__verify_backup_passphrase">Potrdite geslo za varnostno kopijo</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Preizkus gesla varnostne kopije</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">Vnesite geslo varnostne kopije</string>
   <string name="RegistrationActivity_restore">Obnovi</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uvoz varnostnih kopij iz novejših različic aplikacije Signal ni mogoč</string>
@@ -2580,9 +2582,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="BackupDialog_verify">Potrdi</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Uspešno ste vnesli geslo svoje varnostne kopije</string>
   <string name="BackupDialog_passphrase_was_not_correct">Geslo ni bilo pravilno</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga Aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Zadnja varnostna kopija: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">V teku</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Dovoljenja za dostop do zunanjega pomnilnika, ki ga Aplikacija Signal potrebuje za varnostno kopiranje, je bilo trajno odvzeto. Prosimo, pojdite v sistemski meni z nastavitvami za aplikacije, izberite \"Dovoljenja\" in označite polje \"Zunanja shramba\".</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Zadnja varnostna kopija: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">V teku</string> -->
   <string name="LocalBackupJob_creating_backup">Ustvarjanje varnostne kopije …</string>
   <string name="LocalBackupJobApi29_backup_failed">Izdelava varnostne kopije ni uspela</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Mapa za varnostne kopije je bila izbrisana ali premaknjena.</string>
@@ -2590,7 +2592,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="LocalBackupJobApi29_there_is_not_enough_space">Za hrambo varnostne kopije ni dovolj prostora.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapnite za urejanje varnostnih kopij.</string>
   <string name="ProgressPreference_d_messages_so_far">%d sporočil zaenkrat</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string> -->
   <string name="RegistrationActivity_wrong_number">Napačna številka</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite \n (Dostopno čez %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontaktiraj center za podporo Signal</string>
@@ -2604,7 +2606,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="PhoneNumberPrivacy_nobody">Nikogar</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Vaša telefonska številka bo vidna vsem uporabnikom/cam in skupinam, ki jim boste pošiljali sporočila.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">Vsak/a uporabnik/ca, ki ima vašo telefonsko številko med svojimi stiki, vas bo lahko kontaktiral/a preko Signala. Drugi/e vas bodo lahko našli/e z iskanjem.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">Vašo telefonsko številko bodo lahko na Signalu videli le vaši stiki.</string>
+  <!-- Removed by excludeNonTranslatables <string name="PhoneNumberPrivacy_my_contacts_see_description">Vašo telefonsko številko bodo lahko na Signalu videli le vaši stiki.</string> -->
   <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Uporaba sistemskega zaklepanja in prstnih odtisov za zaklep aplikacije</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Časovni interval pred zaklepom aplikacije</string>
@@ -2623,46 +2625,46 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Neuspešen vklop zaklepa registracije.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Neuspešen izklop zaklepa registracije.</string>
   <string name="AppProtectionPreferenceFragment_none">Brez</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN za prijavo v omrežje ni enak potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklep registracije.</string>
-  <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string>
-  <string name="registration_activity__forgot_pin">Ste pozabili PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN mora vsebovati vsaj štiri številke. Če ga boste pozabili, lahko do sedem dni ostanete brez storitve Signal.</string>
-  <string name="registration_lock_dialog_view__enter_pin">Vnesite PIN</string>
-  <string name="registration_lock_dialog_view__confirm_pin">Potrdite PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Vnesite PIN za prijavo v omrežje</string>
-  <string name="registration_lock_reminder_view__enter_pin">Vnesite PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Vklop PINa za prijavo v omrežje. Vnos kode bo potreben vsakič, ko se boste želeli ponovno prijaviti v omrežje Signal.</string>
-  <string name="preferences_app_protection__registration_lock_pin">PIN za prijavo v omrežje</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN za prijavo v omrežje ni enak potrditveni kodi SMS, ki ste jo prejeli ravnokar. Prosimo, vnesite PIN, ki ste ga predhodno določili za zaklep registracije.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">PIN za prijavo v omrežje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">Ste pozabili PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN mora vsebovati vsaj štiri številke. Če ga boste pozabili, lahko do sedem dni ostanete brez storitve Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">Vnesite PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">Potrdite PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Vnesite PIN za prijavo v omrežje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">Vnesite PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Vklop PINa za prijavo v omrežje. Vnos kode bo potreben vsakič, ko se boste želeli ponovno prijaviti v omrežje Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">PIN za prijavo v omrežje</string> -->
   <string name="preferences_app_protection__registration_lock">Zaklep registracije</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Vnesti morate kodo PIN za prijavo v omrežje</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Vaš PIN vsebuje vsaj %d številk ali znakov</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Napačen PIN za zaklep registracije</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">Napačen PIN za zaklep registracije</string> -->
   <string name="RegistrationActivity_too_many_attempts">Preveč poskusov</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Prevečkrat ste vnesli napačen PIN za prijavo v omrežje Signal. Poskusite znova jutri.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Preveč neuspešnih poskusov. Prosimo poskusite znova kasneje.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Napaka pri povezavi do storitve</string>
-  <string name="RegistrationActivity_oh_no">Neeee!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Prijava s to telefonsko številko brez PINa za zaklep registracije bo spet možna po sedmih dneh odkar je bila številka nazadnje aktivna v omrežju Signal. Število dni do prijave: %d</string>
-  <string name="RegistrationActivity_registration_lock_pin">PIN za prijavo v omrežje</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefonska številka ima vklopljen PIN za prijavo v omrežje. Prosimo, vnesite kodo PIN za prijavo.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Za to telefonsko številko je vklujčen PIN za prijavo v omrežje Signal. Da ga ne bi pozabili, vas bomo občasno opomnili na njegov vnos.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Pozabil sem svoj PIN.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Pozabljen PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zaklep registracije vas ščiti pred nepooblaščeno prijavo tretje osebe z vašo telefonsko številko. Storitev lahko kadarkoli izkopite v meniju \"Zasebnost\" v nastavitvah aplikacije Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Zaklep registracije</string>
-  <string name="RegistrationLockDialog_enable">Vklopi</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN za prijavo v omrežje mora vsebovati vsaj %d številke.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kodi PIN, ki ste ju vnesli, se ne ujemata.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Napaka pri povezavi do storitve</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Zelite izklopiti PIN za zaklep registracije?</string>
-  <string name="RegistrationLockDialog_disable">Onemogoči</string>
-  <string name="RegistrationActivity_pin_incorrect">Napačen PIN</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">Število poskusov še na  voljo: %d</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">Neeee!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Prijava s to telefonsko številko brez PINa za zaklep registracije bo spet možna po sedmih dneh odkar je bila številka nazadnje aktivna v omrežju Signal. Število dni do prijave: %d</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">PIN za prijavo v omrežje</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Telefonska številka ima vklopljen PIN za prijavo v omrežje. Prosimo, vnesite kodo PIN za prijavo.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Za to telefonsko številko je vklujčen PIN za prijavo v omrežje Signal. Da ga ne bi pozabili, vas bomo občasno opomnili na njegov vnos.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">Pozabil sem svoj PIN.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">Pozabljen PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zaklep registracije vas ščiti pred nepooblaščeno prijavo tretje osebe z vašo telefonsko številko. Storitev lahko kadarkoli izkopite v meniju \"Zasebnost\" v nastavitvah aplikacije Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock">Zaklep registracije</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">Vklopi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">PIN za prijavo v omrežje mora vsebovati vsaj %d številke.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Kodi PIN, ki ste ju vnesli, se ne ujemata.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">Napaka pri povezavi do storitve</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">Zelite izklopiti PIN za zaklep registracije?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">Onemogoči</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_pin_incorrect">Napačen PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_you_have_d_tries_remaining">Število poskusov še na  voljo: %d</string> -->
   <string name="preferences_chats__backups">Varnostne kopije</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaklenjen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPNITE ZA ODKLEPANJE</string>
-  <string name="RegistrationLockDialog_reminder">Opomnik:</string>
-  <string name="recipient_preferences__about">Več</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">Opomnik:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">Več</string> -->
   <string name="Recipient_unknown">Neznano</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
@@ -2701,7 +2703,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupLinkBottomSheet_copied_to_clipboard">Kopirano v odložišče</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">Povezava trenutno ni aktivna</string>
   <!--VoiceNotePlaybackPreparer-->
-  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Posnetka ni bilo mogoče predvajati.</string>
+  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Posnetka ni bilo mogoče predvajati.</string> -->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Glasovno sporočilo · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s do %2$s</string>

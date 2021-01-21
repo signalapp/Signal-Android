@@ -29,7 +29,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.ContactsContract;
 import android.provider.OpenableColumns;
-import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Toast;
@@ -44,7 +43,6 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
@@ -223,7 +221,7 @@ public class AttachmentManager {
   @SuppressLint("StaticFieldLeak")
   public ListenableFuture<Boolean> setMedia(@NonNull final GlideRequests glideRequests,
                                             @NonNull final Uri uri,
-                                            @NonNull final MediaType mediaType,
+                                            @NonNull final SlideFactory.MediaType mediaType,
                                             @NonNull final MediaConstraints constraints,
                                                      final int width,
                                                      final int height)
@@ -286,7 +284,7 @@ public class AttachmentManager {
           } else {
             Attachment attachment = slide.asAttachment();
             result.deferTo(thumbnail.setImageResource(glideRequests, slide, false, true, attachment.getWidth(), attachment.getHeight()));
-            removableMediaView.display(thumbnail, mediaType == MediaType.IMAGE);
+            removableMediaView.display(thumbnail, mediaType == SlideFactory.MediaType.IMAGE);
           }
 
           attachmentListener.onAttachmentChanged();
@@ -480,58 +478,4 @@ public class AttachmentManager {
     void onAttachmentChanged();
   }
 
-  public enum MediaType {
-    IMAGE(MediaUtil.IMAGE_JPEG),
-    GIF(MediaUtil.IMAGE_GIF),
-    AUDIO(MediaUtil.AUDIO_AAC),
-    VIDEO(MediaUtil.VIDEO_MP4),
-    DOCUMENT(MediaUtil.UNKNOWN),
-    VCARD(MediaUtil.VCARD);
-
-    private final String fallbackMimeType;
-
-    MediaType(String fallbackMimeType) {
-      this.fallbackMimeType = fallbackMimeType;
-    }
-
-
-    public @NonNull Slide createSlide(@NonNull  Context  context,
-                                      @NonNull  Uri      uri,
-                                      @Nullable String   fileName,
-                                      @Nullable String   mimeType,
-                                      @Nullable BlurHash blurHash,
-                                                long     dataSize,
-                                                int      width,
-                                                int      height)
-    {
-      if (mimeType == null) {
-        mimeType = "application/octet-stream";
-      }
-
-      switch (this) {
-      case IMAGE:    return new ImageSlide(context, uri, dataSize, width, height, blurHash);
-      case GIF:      return new GifSlide(context, uri, dataSize, width, height);
-      case AUDIO:    return new AudioSlide(context, uri, dataSize, false);
-      case VIDEO:    return new VideoSlide(context, uri, dataSize);
-      case VCARD:
-      case DOCUMENT: return new DocumentSlide(context, uri, mimeType, dataSize, fileName);
-      default:       throw  new AssertionError("unrecognized enum");
-      }
-    }
-
-    public static @Nullable MediaType from(final @Nullable String mimeType) {
-      if (TextUtils.isEmpty(mimeType))     return null;
-      if (MediaUtil.isGif(mimeType))       return GIF;
-      if (MediaUtil.isImageType(mimeType)) return IMAGE;
-      if (MediaUtil.isAudioType(mimeType)) return AUDIO;
-      if (MediaUtil.isVideoType(mimeType)) return VIDEO;
-      if (MediaUtil.isVcard(mimeType))     return VCARD;
-
-      return DOCUMENT;
-    }
-
-    public String toFallbackMimeType() {
-      return fallbackMimeType;
-    }
-  }
 }

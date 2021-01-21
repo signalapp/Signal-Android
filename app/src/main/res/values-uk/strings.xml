@@ -13,20 +13,20 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Поточний: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ви ще не встановили фразу-пароль!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d повідомлення на розмову</item>
     <item quantity="few">%d повідомлень на розмову</item>
     <item quantity="many">%d повідомлень на розмову</item>
     <item quantity="other">%d повідомлень на розмову</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Вилучити всі старі повідомлення зараз?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Вилучити всі старі повідомлення зараз?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Це одразу скоротить всі розмови до останнього повідомлення.</item>
     <item quantity="few">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
     <item quantity="many">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
     <item quantity="other">Це одразу скоротить всі розмови до %d останніх повідомлень.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Видалити</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">Видалити</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">Вимкнути фразу-пароль?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Це назавжди розблокує Signal та сповіщення повідомлень.</string>
   <string name="ApplicationPreferencesActivity_disable">Вимкнути</string>
@@ -64,10 +64,10 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal потребує дозволу \"Зберігання\" для прикріплення фото, відео та аудіо, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal потребує дозволу \"Контакти\", щоб прикріпити контакт, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal потребує дозволу \"Геодані\", щоб прикріпити дані про розташування, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Геодані\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string> -->
   <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string> -->
   <!--BlockedContactsActivity-->
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Заблоковані контакти</string> -->
   <!--BucketedThreadMedia-->
@@ -79,9 +79,9 @@
   <string name="BucketedThreadMedia_Medium">Середній</string>
   <string name="BucketedThreadMedia_Small">Малий</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Вхідний виклик</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">Вхідний виклик</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">Помилка збереження зображення</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">Помилка збереження зображення</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_change_camera_description">Змінити камеру</string>
   <string name="CameraXFragment_open_gallery_description">Відкрити Галерею</string>
@@ -159,13 +159,13 @@
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string> -->
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Розблокувати цю групу?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">Розблокувати цю групу?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string> -->
   <string name="ConversationActivity_unblock">Розблокувати</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Вкладення перевищує обмеження за розміром для типу повідомлення, яке ви надсилаєте.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">Камера недоступна</string> -->
   <string name="ConversationActivity_unable_to_record_audio">Не вдалося записати аудіо!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Немає програми на вашому пристрої, що може відкрити це посилання.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Щоб надсилати аудіо повідомлення, дозвольте Signal доступ до мікрофона.</string>
@@ -195,12 +195,12 @@
     <item quantity="many">Видалити обрані повідомлення?</item>
     <item quantity="other">Видалити обрані повідомлення?</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Це назавжди видалить обране повідомлення.</item>
     <item quantity="few">Це назавжди видалить усі %1$d обрані повідомлення.</item>
     <item quantity="many">Це назавжди видалить усі %1$d обраних повідомлень.</item>
     <item quantity="other">Це назавжди видалить усі %1$d обраних повідомлень.</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">Зберегти на носій?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Збереження цього файлу до пам\'яті пристрою зробить його доступним іншим програмам на вашому пристрої.\n\nПродовжити?</item>
@@ -236,9 +236,9 @@
   <string name="ConversationFragment_quoted_message_not_found">Оригінальне повідомлення не знайдено</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Оригінальне повідомлення більше не доступно</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено браузер.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашому пристрої не встановлено браузер.</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">Не знайдено результатів для \'%s\'</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">Не знайдено результатів для \'%s\'</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Видалити обрану бесіду?</item>
     <item quantity="few">Видалити обрані бесіди?</item>
@@ -276,7 +276,7 @@
   <string name="CreateProfileActivity__profile">Профіль</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
   <string name="CreateProfileActivity_problem_setting_profile">Не вдалося встановити профіль</string>
-  <string name="CreateProfileActivity_profile_photo">Фото профілю</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">Фото профілю</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Налаштувати ваш профайл</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Використання власного: %s</string>
@@ -288,10 +288,10 @@
   <string name="DateUtils_today">Сьогодні</string>
   <string name="DateUtils_yesterday">Вчора</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Надсилання</string>
-  <string name="DeliveryStatus_sent">Надіслано</string>
-  <string name="DeliveryStatus_delivered">Доставлено</string>
-  <string name="DeliveryStatus_read">Читати</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">Надсилання</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">Надіслано</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">Доставлено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">Читати</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Від\'єднати \'%s\'?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Після від\'єднання цього пристрою він більше не зможе відправляти та одержувати повідомлення.</string>
@@ -329,7 +329,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_no_thanks">Ні, дякую</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Ясно</string> -->
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Отримуємо повідомлення…</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">Отримуємо повідомлення…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Постійний збій зв\'язку Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal не зміг зареєструватись у сервісах Google Play. Виклики та повідомлення Signal наразі вимкнено, спробуйте перереєструватися у Налаштуваннях &gt; Додатково.</string>
@@ -355,22 +355,22 @@
   <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Завантаження деталей групи…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Ви вже у групі.</string> -->
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поділитися іменем профілю та світлиною з цією групою?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string>
-  <string name="GroupShareProfileView_make_visible">Зробити видимим</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Поділитися іменем профілю та світлиною з цією групою?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Зробити ім\'я профілю та світлину видимою для усіх теперішніх та майбутніх учасників цієї групи?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">Зробити видимим</string> -->
   <!--GroupMembersDialog-->
   <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Я</string> -->
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Зображення групи</string>
-  <string name="CropImageActivity_profile_avatar">Фото</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">Зображення групи</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">Фото</string> -->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Торкніться і утримуйте для запису голосового повідомлення, відпустіть, щоб надіслати</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поділитися</string>
-  <string name="InviteActivity_choose_contacts">Оберіть контакти</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Оберіть контакти</string> -->
   <string name="InviteActivity_cancel">Скасувати</string>
   <string name="InviteActivity_sending">Надсилання…</string>
-  <string name="InviteActivity_heart_content_description">Серце</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Серце</string> -->
   <string name="InviteActivity_invitations_sent">Запрошення надіслано!</string>
   <string name="InviteActivity_invite_to_signal">Запросити до Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -389,7 +389,7 @@
   <string name="InviteActivity_no_app_to_share_to">Схоже, що у вас немає програм, щоб поділитися.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Друзі не мають дозволяти друзям незашифровано спілкуватися!</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Опрацьовується в фоні…</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Опрацьовується в фоні…</string> -->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Не вдалося надіслати</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Новий номер безпеки</string> -->
@@ -428,7 +428,7 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Відправити %s</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Нажміть щоб обрати</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">Нажміть щоб обрати</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Додати підпис…</string>
   <string name="MediaSendActivity_camera_unavailable">Камера не доступна</string>
@@ -446,7 +446,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Пропущений виклик</string> -->
   <string name="MessageRecord_s_updated_group">%s оновив групу.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s вам телефонував/-ла</string> -->
-  <string name="MessageRecord_called_s">Телефонували %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">Телефонували %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Пропущено виклик від %s</string> -->
   <string name="MessageRecord_s_joined_signal">%s приєднався до Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ви заборонили зникаючі повідомлення</string>
@@ -512,20 +512,20 @@
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ви знову зможете одержувати повідомлення та виклики від цього контакту.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">Розблокувати цю групу?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">Учасники зможуть додати вас до групи.</string> -->
-  <string name="RecipientPreferenceActivity_error_leaving_group">Помилка при виході з групи</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">Помилка при виході з групи</string> -->
   <string name="RecipientPreferenceActivity_unblock">Розблокувати</string>
-  <string name="RecipientPreferenceActivity_enabled">Увімкнено </string>
-  <string name="RecipientPreferenceActivity_disabled">Вимкнено</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно як тільки повідомлення буде надіслано чи отримано.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">Увімкнено </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">Вимкнено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно як тільки повідомлення буде надіслано чи отримано.</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Неназвана група</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Відповідаємо</string>
   <string name="RedPhone_ending_call">Завершення дзвінка</string>
-  <string name="RedPhone_dialing">Набір</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">Набір</string> -->
   <string name="RedPhone_ringing">Виклик</string>
   <string name="RedPhone_busy">Зайнято</string>
-  <string name="RedPhone_connected">Підключено</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">Підключено</string> -->
   <string name="RedPhone_recipient_unavailable">Одержувач недоступний</string>
   <string name="RedPhone_network_failed">Помилка мережі!</string>
   <string name="RedPhone_number_not_registered">Номер не зареєстровано!</string>
@@ -549,14 +549,14 @@
   <string name="RegistrationActivity_play_services_error">Помилка служби Google Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services оновлюються або тимчасово недоступні. Будь-ласка, спробуйте знов.</string>
   <string name="RegistrationActivity_terms_and_privacy">Умови та Політика конфіденційності</string>
-  <string name="RegistrationActivity_no_browser">Неможливо відкрити це посилання.  Браузер не знайдений.</string>
-  <string name="RegistrationActivity_more_information">Більше інформації</string>
-  <string name="RegistrationActivity_less_information">Менше інформації</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">Неможливо відкрити це посилання.  Браузер не знайдений.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">Більше інформації</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">Менше інформації</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує доступу до телефонної книги та файлової системи, щоб підключити друзів, відправляти повідомлення та здійснювати виклики</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви надасте Signal дозвіл \"SMS\", Signal виконає перевірку коду автоматично.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви надасте Signal дозвіл \"SMS\", Signal виконає перевірку коду автоматично.</string> -->
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Нам потрібно підтвердження що Ви людина.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">Неможливо підтвертити CAPTCHA</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">Неможливо підтвертити CAPTCHA</string> -->
   <string name="RegistrationActivity_next">Далі</string>
   <string name="RegistrationActivity_continue">Продовжити</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введіть Ваш номер телефону щоб почати</string>
@@ -565,7 +565,7 @@
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_media">Медіа</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">Не знайдено результатів для \'%s\'</string>
   <string name="SearchFragment_header_conversations">Розмови</string>
@@ -669,7 +669,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">Імпорт системної бази даних завершено.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Торкніться, щоб відкрити.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться, щоб відкрити, чи торкніться замка, щоб закрити.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">Торкніться, щоб відкрити, чи торкніться замка, щоб закрити.</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal розблоковано</string>
   <string name="KeyCachingService_lock">Заблокувати Signal</string>
   <!--MediaPreviewActivity-->
@@ -684,13 +684,13 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d нових повідомлень у %2$d розмовах</string>
   <string name="MessageNotifier_most_recent_from_s">Останнє від: %1$s</string>
   <string name="MessageNotifier_locked_message">Заблоковане повідомлення</string>
-  <string name="MessageNotifier_media_message_with_text">Медіа повідомлення: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">Медіа повідомлення: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">Збій доставки повідомлення.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Не вдалось доставити повідомлення.</string>
   <string name="MessageNotifier_error_delivering_message">Помилка доставки повідомлення.</string>
   <string name="MessageNotifier_mark_all_as_read">Позначити все як прочитане</string>
   <string name="MessageNotifier_mark_read">Позначити як прочитане</string>
-  <string name="MessageNotifier_media_message">Медіа повідомлення</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">Медіа повідомлення</string> -->
   <string name="MessageNotifier_reply">Відповісти</string>
   <string name="MessageNotifier_signal_message">Повідомлення Signal</string>
   <string name="MessageNotifier_unsecured_sms">Незахищене SMS</string>
@@ -725,39 +725,39 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Цей пристрій більше не зареєстровано</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Скоріше за все це через те, що ви зареєстрували свій телефонний номер на іншому пристрої. Торкніться щоб перереєструвати.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Помилка відтворення відео</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">Помилка відтворення відео</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Щоб відповісти нв дзвінок від %s, Signal потребує доступ до вашого мікрофону.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal потребує дозволів \"Мікрофон\" та \"Камера\", щоб здійснювати виклики, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Мікрофон\" та \"Камера\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Ваш номер безпеки для розмови із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string>
-  <string name="WebRtcCallScreen_accept">Прийняти</string>
-  <string name="WebRtcCallScreen_end_call">Завершити виклик</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">Ваш номер безпеки для розмови із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">Новий номер безпеки</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">Прийняти</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">Завершити виклик</string> -->
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">Торкніться, щоб почати трансляцію відео</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">Торкніться, щоб почати трансляцію відео</string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">Фото контакту</string>
-  <string name="WebRtcCallControls_speaker_button_description">Динамік</string>
-  <string name="WebRtcCallControls_mute_button_description">Без сповіщень</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">Фото контакту</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">Динамік</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">Без сповіщень</string> -->
   <string name="WebRtcCallControls_answer_call_description">Відповісти на виклик</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Аудіо</string>
-  <string name="attachment_type_selector__audio_description">Аудіо</string>
-  <string name="attachment_type_selector__contact">Контакт</string>
-  <string name="attachment_type_selector__contact_description">Контакт</string>
-  <string name="attachment_type_selector__camera">Камера</string>
-  <string name="attachment_type_selector__camera_description">Камера</string>
-  <string name="attachment_type_selector__location">Розташування</string>
-  <string name="attachment_type_selector__location_description">Розташування</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">Зображення або відео</string>
-  <string name="attachment_type_selector__file_description">Файл</string>
-  <string name="attachment_type_selector__gallery">Галерея</string>
-  <string name="attachment_type_selector__file">Файл</string>
-  <string name="attachment_type_selector__drawer_description">Увімк/вимк скриньку вкладень</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">Аудіо</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">Аудіо</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">Контакт</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">Контакт</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">Камера</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">Камера</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">Розташування</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">Розташування</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">Gif</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">Зображення або відео</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">Файл</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">Галерея</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">Файл</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">Увімк/вимк скриньку вкладень</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Стара фраза-пароль</string>
   <string name="change_passphrase_activity__new_passphrase">Нова фраза-пароль</string>
@@ -775,7 +775,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal потребує дозволів \"Контакти\", щоб показати контакти, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Не вдалося отримати список контактів, перевірте з\'єднання</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Немає заблокованих контактів</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">Немає заблокованих контактів</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal потребує дозволів \"Контакти\", щоб показати контакти.</string>
   <string name="contact_selection_list_fragment__show_contacts">Показати контакти</string>
@@ -810,7 +810,7 @@
   <string name="QuoteView_audio">Аудіо</string>
   <string name="QuoteView_video">Відео</string>
   <string name="QuoteView_photo">Світлини</string>
-  <string name="QuoteView_document">Документ</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">Документ</string> -->
   <string name="QuoteView_you">Ви</string>
   <string name="QuoteView_original_missing">Оригінальне повідомлення не знайдено</string>
   <!--conversation_fragment-->
@@ -826,10 +826,10 @@
   <string name="device_list_fragment__no_devices_linked">Немає зв\'язаних пристроїв</string>
   <string name="device_list_fragment__link_new_device">Зв\'язати новий пристрій</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">продовжити</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Звіти про прочитання знаходяться тут</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Відображати та надсилати стан \"Прочитано\"</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Увімкнути звіти про прочитання</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">продовжити</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Звіти про прочитання знаходяться тут</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Відображати та надсилати стан \"Прочитано\"</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">Увімкнути звіти про прочитання</string> -->
   <!--expiration-->
   <string name="expiration_off">Вимкнено</string>
   <plurals name="expiration_seconds">
@@ -888,20 +888,20 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Нічого не знайдено</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Помилка читання журналу відлагодження з вашого пристрою. Ви також можете використати ADB для отримання журналу.</string>
-  <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string>
-  <string name="log_submit_activity__submitting">Надсилання</string>
-  <string name="log_submit_activity__no_browser_installed">Браузер не встановлено</string>
-  <string name="log_submit_activity__button_dont_submit">Не відсилати</string>
-  <string name="log_submit_activity__button_submit">Відіслати</string>
-  <string name="log_submit_activity__button_got_it">Ясно</string>
-  <string name="log_submit_activity__button_compose_email">Написати електронного листа</string>
-  <string name="log_submit_activity__loading_logs">Завантаження журналу…</string>
-  <string name="log_submit_activity__uploading_logs">Вивантаження журналу…</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">Помилка читання журналу відлагодження з вашого пристрою. Ви також можете використати ADB для отримання журналу.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">Дякуємо за вашу допомогу!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">Надсилання</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">Браузер не встановлено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">Не відсилати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Відіслати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Ясно</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Написати електронного листа</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Завантаження журналу…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Вивантаження журналу…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Успішно!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Скопійовано до буфера обміну</string> -->
-  <string name="log_submit_activity__choose_email_app">Обрати додаток електронної пошти</string>
-  <string name="log_submit_activity__network_failure">Помилка мережі. Будь ласка спробуйте ще раз.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Обрати додаток електронної пошти</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">Помилка мережі. Будь ласка спробуйте ще раз.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Імпорутвати ваші SMS повідомлення у зашифровану базу даних Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Системна база даних не буде порушена.</string>
@@ -909,10 +909,10 @@
   <string name="database_migration_activity__import">Імпорт</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Це може зайняти якийсь час. Будь ласка, наберіться терпіння, ми вам повідомимо, коли імпортування завершиться.</string>
   <string name="database_migration_activity__importing">ІМПОРТУВАННЯ</string>
-  <string name="import_fragment__import_system_sms_database">Імпортувати системну базу SMS</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Імпортувати дані з типової програми обміну повідомленнями</string>
-  <string name="import_fragment__import_plaintext_backup">Імпорт незашифрованої резервної копії</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Імпортувати незашифровану резервну копію, сумісну з програмою \'SMSBackup &amp; Restore\'.</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">Імпортувати системну базу SMS</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">Імпортувати дані з типової програми обміну повідомленнями</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">Імпорт незашифрованої резервної копії</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">Імпортувати незашифровану резервну копію, сумісну з програмою \'SMSBackup &amp; Restore\'.</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Переглянути всю розмову</string>
   <string name="load_more_header__loading">Завантаження</string>
@@ -921,7 +921,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ВИГЛЯД</string>
   <string name="message_recipients_list_item__resend">НАДІСЛАТИ ЗНОВУ</string>
-  <string name="message_recipients_list_item__resending">Повторне пересилання…</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">Повторне пересилання…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s приєднується до групи.</item>
@@ -955,20 +955,20 @@
   <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Налаштування дзвінків</string> -->
   <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Мелодія дзвінка</string> -->
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Виклик Signal </string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Виклик Signal </string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">З Signal дуже легко спілкуватися маючи лише телефонну книги. Друзі та контакти з якими ви вже спілкуєтесь телефоном зможуть легко початки користуватись Signal.\n\nПід час реєстрації передається деяка інформація на сервер але вона не зберігається.</string>
-  <string name="registration_activity__verify_your_number">Перевірити ваш номер</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Вкажіть ваш мобільний номер, щоб отримати перевірочний код. Вашим оператором може стягуватися плата.</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">З Signal дуже легко спілкуватися маючи лише телефонну книги. Друзі та контакти з якими ви вже спілкуєтесь телефоном зможуть легко початки користуватись Signal.\n\nПід час реєстрації передається деяка інформація на сервер але вона не зберігається.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">Перевірити ваш номер</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Вкажіть ваш мобільний номер, щоб отримати перевірочний код. Вашим оператором може стягуватися плата.</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Введіть ім\'я або номер</small></string>
-  <string name="recipients_panel__add_members">Додати учасників</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">Додати учасників</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Відправника немає у вашій телефонній книзі</string>
-  <string name="unknown_sender_view__block">ЗАБЛОКУВАТИ</string>
-  <string name="unknown_sender_view__add_to_contacts">ДОДАТИ ДО ТЕЛЕФОННОЇ КНИГИ</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОДАВАТИ, АЛЕ ПОКАЗАТИ МІЙ ПРОФІЛЬ</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Відправника немає у вашій телефонній книзі</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">ЗАБЛОКУВАТИ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">ДОДАТИ ДО ТЕЛЕФОННОЇ КНИГИ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОДАВАТИ, АЛЕ ПОКАЗАТИ МІЙ ПРОФІЛЬ</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Якщо ви хочете перевірити безпеку вашого шифрування із %s, порівняйте номер вище із номером на його/її пристрої. Інший спосіб: ви можете сканувати код на його/її телефоні, або попросити його/її сканувати ваш код. <a href="https://signal.org/redirect/safety-numbers">Дізнатися більше про перевірку номерів безпеки</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Натисніть, щоб сканувати</string>
@@ -1001,7 +1001,7 @@
   <string name="AndroidManifest_archived_conversations">Архівовані розмови</string>
   <string name="AndroidManifest_remove_photo">Видалати світлину</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Імпорт</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">Імпорт</string> -->
   <string name="arrays__use_default">Використовувати типово</string>
   <string name="arrays__use_custom">Використовувати власні</string>
   <string name="arrays__mute_for_one_hour">Вимкнути звук на 1 годину</string>
@@ -1048,7 +1048,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Фраза-пароль після спливання часу неактивності</string>
   <string name="preferences__inactivity_timeout_interval">Інтервал часу неактивності</string>
   <string name="preferences__notifications">Сповіщення</string>
-  <string name="preferences__system_notification_settings">Налаштування системних сповіщень</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">Налаштування системних сповіщень</string> -->
   <string name="preferences__led_color">Колір LED</string>
   <string name="preferences__led_color_unknown">Невідомо</string>
   <string name="preferences__pref_led_blink_title">Шаблон мерехтіння LED</string>
@@ -1096,7 +1096,7 @@
   <string name="preferences__dark_theme">Темна</string>
   <string name="preferences__appearance">Вигляд</string>
   <string name="preferences__theme">Тема</string>
-  <string name="preferences__default">Типово</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">Типово</string> -->
   <string name="preferences__language">Мова</string>
   <string name="preferences__signal_messages_and_calls">Повідомлення та виклики Signal</string>
   <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
@@ -1157,7 +1157,7 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Зникнення повідомлень</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Час життя повідомлень спливає</string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">Час життя повідомлень спливає</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Запросити</string>
   <!--conversation_list_batch-->
@@ -1170,8 +1170,8 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Зображення контакту</string>
   <string name="conversation_list_item_view__archived">Архівовано</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Вхідних повідомлень немає</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Вхідних повідомлень немає</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Вхідних повідомлень немає</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Вхідних повідомлень немає</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Нова розмова</string>
   <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Надішліть до своєї поштової скриньки щось, щоб написати додому. Почніть листування з другом.</string> -->
@@ -1182,8 +1182,8 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Вимкнути звук сповіщень</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Додати вкладення</string>
-  <string name="conversation__menu_edit_group">Редагувати групу</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">Додати вкладення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">Редагувати групу</string> -->
   <string name="conversation__menu_leave_group">Вийти з групи</string>
   <string name="conversation__menu_view_all_media">Всі медіа-файли
 Всі зображення</string>
@@ -1204,7 +1204,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заблокувати</string>
   <string name="text_secure_normal__mark_all_as_read">Позначити усі як прочитані</string>
   <string name="text_secure_normal__invite_friends">Запросити друзів</string>
-  <string name="text_secure_normal__help">Допомога</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">Допомога</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Скопіювати до буфера обміну</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Порівняти із буфером обміну</string>
@@ -1225,10 +1225,10 @@
   <string name="reminder_header_sms_import_text">Торкніться, щоб імпортувати ваші SMS повідомлення у зашифровану базу даних Signal.</string>
   <string name="reminder_header_push_title">Увімкнути повідомлення та виклики Signal</string>
   <string name="reminder_header_push_text">Оновіть досвід вашого спілкування.</string>
-  <string name="reminder_header_invite_title">Запросити до Signal</string>
-  <string name="reminder_header_invite_text">Спілкуйтеся із %1$s на якісно новому рівні.</string>
-  <string name="reminder_header_share_title">Запросити друзів</string>
-  <string name="reminder_header_share_text">Що більше друзів використовують Signal, то кращим він стає.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Запросити до Signal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">Спілкуйтеся із %1$s на якісно новому рівні.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">Запросити друзів</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">Що більше друзів використовують Signal, то кращим він стає.</string> -->
   <string name="reminder_header_service_outage_text">Signal зазнав технічних труднощів. Ми тяжко працюємо щоб відновити сервіс якомога швидше.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Зберегти</string>
@@ -1241,9 +1241,9 @@
   <string name="new_conversation_activity__refresh">Оновити</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Видалення</string>
-  <string name="trimmer__deleting_old_messages">Видалення старих повідомлень…</string>
-  <string name="trimmer__old_messages_successfully_deleted">Старі повідомлення було успішно видалено</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">Видалення</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">Видалення старих повідомлень…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">Старі повідомлення було успішно видалено</string> -->
   <!--Insights-->
   <string name="InsightsDashboardFragment__cancel">Скасувати</string>
   <string name="InsightsDashboardFragment__send">Надіслати</string>
@@ -1274,7 +1274,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal потребує дозволу \"SMS\", але наразі дозволу немає. Будь-ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\" та увімкніть \"SMS\".</string>
   <string name="Permissions_continue">Продовжити</string>
   <string name="Permissions_not_now">Не зараз</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal потребує дозволу \"Контакти\", але наразі дозволу немає. Будь-ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\" та дозвольте \"Контакти\".</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal потребує дозволу \"Контакти\", але наразі дозволу немає. Будь-ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\" та дозвольте \"Контакти\".</string> -->
   <string name="conversation_activity__enable_signal_messages">Дозволити повідомлення Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Міграція бази даних Signal</string>
   <string name="PushDecryptJob_new_locked_message">Нове заблоковане повідомлення</string>
@@ -1286,10 +1286,10 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записав цю фразу-пароль. Без неї я не зможу відновити резервну копію.</string>
   <string name="registration_activity__restore_backup">Відновити резервну копію</string>
   <string name="registration_activity__skip">Пропустити</string>
-  <string name="registration_activity__register">Реєстрація</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">Реєстрація</string> -->
   <string name="preferences_chats__chat_backups">Резервні копії чату</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Зберегти розмови на зовнішній носій</string>
-  <string name="preferences_chats__create_backup">Створити резервну копію</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">Створити резервну копію</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">Введіть фразу-пароль</string>
   <string name="RegistrationActivity_restore">Відновити</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Хибна фраза-пароль!</string>
@@ -1306,12 +1306,12 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Вимкнути та видалити усі локальні резервні копії?</string>
   <string name="BackupDialog_delete_backups_statement">Видалити резервні копії</string>
   <string name="BackupDialog_copied_to_clipboard">Скопійовано до буфера обміну</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal потребує дозволу \"Зберігання\", щоб створювати резервні копії, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Остання резервна копія: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">В процесі</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal потребує дозволу \"Зберігання\", щоб створювати резервні копії, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Остання резервна копія: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">В процесі</string> -->
   <string name="LocalBackupJob_creating_backup">Створення резервної копії…</string>
   <string name="ProgressPreference_d_messages_so_far">Залишилось %d повідомлень</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Будь-ласка, введіть перевірочний код що відіслано до %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Будь-ласка, введіть перевірочний код що відіслано до %s</string> -->
   <string name="RegistrationActivity_wrong_number">Недоступний номер</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Подзвони мені взамін \n (Доступний о%1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Зверніться в службу підтримки Signal</string>
@@ -1321,41 +1321,41 @@
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Заблокувати доступ до Signal через налаштування Андроїд</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Затримка блокування екрану при бездіяльності</string>
   <string name="AppProtectionPreferenceFragment_none">Жодного</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ПІН блокування доступу це не теж саме що й щойно отриманий СМС-код перевірки. Будь ласка, введіть ПІН, який Ви встановили у налаштуваннях додатку.</string>
-  <string name="registration_activity__registration_lock_pin">ПІН блокування доступу</string>
-  <string name="registration_activity__forgot_pin">Забули PIN?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">ПІН блокування доступу може складатися з чотирьох або більше цифр. Якщо Ви  забудете Ваш ПІН, Ваш обліковий запис буде заблокований на сім днів.</string>
-  <string name="registration_lock_dialog_view__enter_pin">Введіть PIN</string>
-  <string name="registration_lock_dialog_view__confirm_pin">Підтвердити PIN</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Введіть Ваш ПІН блокування доступу</string>
-  <string name="registration_lock_reminder_view__enter_pin">Введіть PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Дозвольте ПІН блокування доступу, при цьому потрібно буде знову зареєструвати цей номер телефону.</string>
-  <string name="preferences_app_protection__registration_lock_pin">ПІН блокування доступу</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ПІН блокування доступу це не теж саме що й щойно отриманий СМС-код перевірки. Будь ласка, введіть ПІН, який Ви встановили у налаштуваннях додатку.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">ПІН блокування доступу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">Забули PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">ПІН блокування доступу може складатися з чотирьох або більше цифр. Якщо Ви  забудете Ваш ПІН, Ваш обліковий запис буде заблокований на сім днів.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">Введіть PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">Підтвердити PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Введіть Ваш ПІН блокування доступу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">Введіть PIN</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Дозвольте ПІН блокування доступу, при цьому потрібно буде знову зареєструвати цей номер телефону.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">ПІН блокування доступу</string> -->
   <string name="preferences_app_protection__registration_lock">Блокування доступу</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ви повинні ввести Ваш ПІН блокування доступу</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Неправильний ПІН блокування доступу</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">Неправильний ПІН блокування доступу</string> -->
   <string name="RegistrationActivity_too_many_attempts">Забагато спроб</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ви зробили забагато невдалих спроб введення ПІН блокування доступу. Будь ласка, спробуйте ще через день.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Помилка підключення до сервісу</string>
-  <string name="RegistrationActivity_oh_no">О ні!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Реєстрація цього телефонного номеру без ПІН блокування доступу буде можлива впродовж 7 днів з моменту останньої активності цього номеру у Signal. У Вас залишилося %d днів.</string>
-  <string name="RegistrationActivity_registration_lock_pin">ПІН блокування доступу</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Цей номер телефону має дозволення блокування доступу. Будь ласка, введіть ПІН блокування доступу.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Для Вашого номера телефону дозволено блокування доступу. Щоб допомогти Вам запам\'ятати ПІН блокування доступу Signal буде періодично вимагати підтвердити його.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Я забув свій PIN.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">Забули PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Блокування доступу допомагає захистити Ваш телефонний номер від спроб несанкціонованого доступу. Ця функція може бути заборонена в будь-який час у налаштуваннях приватності Вашого Signal.</string>
-  <string name="RegistrationLockDialog_registration_lock">Блокування доступу</string>
-  <string name="RegistrationLockDialog_enable">Увімкнути</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Введені ПІНи не співпали.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Помилка підключення до сервісу</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Заборонити ПІН блокування доступу?</string>
-  <string name="RegistrationLockDialog_disable">Вимкнути</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">О ні!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Реєстрація цього телефонного номеру без ПІН блокування доступу буде можлива впродовж 7 днів з моменту останньої активності цього номеру у Signal. У Вас залишилося %d днів.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">ПІН блокування доступу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Цей номер телефону має дозволення блокування доступу. Будь ласка, введіть ПІН блокування доступу.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Для Вашого номера телефону дозволено блокування доступу. Щоб допомогти Вам запам\'ятати ПІН блокування доступу Signal буде періодично вимагати підтвердити його.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">Я забув свій PIN.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">Забули PIN?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Блокування доступу допомагає захистити Ваш телефонний номер від спроб несанкціонованого доступу. Ця функція може бути заборонена в будь-який час у налаштуваннях приватності Вашого Signal.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock">Блокування доступу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">Увімкнути</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Введені ПІНи не співпали.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">Помилка підключення до сервісу</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">Заборонити ПІН блокування доступу?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">Вимкнути</string> -->
   <string name="preferences_chats__backups">Резервні копії</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal заблоковано</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНІТЬ ДЛЯ РОЗБЛОКУВАННЯ</string>
-  <string name="RegistrationLockDialog_reminder">Нагадування:</string>
-  <string name="recipient_preferences__about">Про додаток</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">Нагадування:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">Про додаток</string> -->
   <string name="Recipient_unknown">Невідомо</string>
   <string name="MessageRequestBottomView_accept">Прийняти</string>
   <string name="MessageRequestBottomView_delete">Видалити</string>

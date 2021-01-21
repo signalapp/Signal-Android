@@ -44,7 +44,7 @@ public class ConversationTypingView extends LinearLayout {
     bubble.getBackground().setColorFilter(typist.getColor().toConversationColor(getContext()), PorterDuff.Mode.MULTIPLY);
 
     if (isGroupThread) {
-      avatar.setAvatar(glideRequests, typist, false);
+      avatar.setAvatar(glideRequests, typist, true);
       avatar.setVisibility(VISIBLE);
     } else {
       avatar.setVisibility(GONE);

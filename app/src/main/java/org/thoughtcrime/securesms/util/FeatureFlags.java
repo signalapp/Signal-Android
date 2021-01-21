@@ -71,6 +71,7 @@ public final class FeatureFlags {
   private static final String AUTOMATIC_SESSION_INTERVAL   = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
   private static final String OKHTTP_AUTOMATIC_RETRY       = "android.okhttpAutomaticRetry";
+  private static final String SHARE_SELECTION_LIMIT        = "android.share.limit";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -98,7 +99,8 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
-      OKHTTP_AUTOMATIC_RETRY
+      OKHTTP_AUTOMATIC_RETRY,
+      SHARE_SELECTION_LIMIT
   );
 
   @VisibleForTesting
@@ -136,7 +138,8 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
-      OKHTTP_AUTOMATIC_RETRY
+      OKHTTP_AUTOMATIC_RETRY,
+      SHARE_SELECTION_LIMIT
   );
 
   /**
@@ -290,6 +293,11 @@ public final class FeatureFlags {
   /** The time in between routine CDS refreshes, in seconds. */
   public static int cdsRefreshIntervalSeconds() {
     return getInteger(CDS_REFRESH_INTERVAL, (int) TimeUnit.HOURS.toSeconds(48));
+  }
+
+  public static @NonNull SelectionLimits shareSelectionLimit() {
+    int limit = getInteger(SHARE_SELECTION_LIMIT, 5);
+    return new SelectionLimits(limit, limit);
   }
 
   /** The maximum number of grapheme */

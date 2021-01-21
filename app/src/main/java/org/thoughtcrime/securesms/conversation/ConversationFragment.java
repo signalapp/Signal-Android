@@ -126,6 +126,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -141,6 +142,7 @@ import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.views.AdaptiveActionsToolbar;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -171,7 +173,7 @@ public class ConversationFragment extends LoggingFragment {
   private Locale                      locale;
   private RecyclerView                list;
   private RecyclerView.ItemDecoration lastSeenDecoration;
-  private RecyclerView.ItemDecoration stickyHeaderDecoration;
+  private RecyclerView.ItemDecoration popoverDateDecoration;
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
@@ -390,6 +392,13 @@ public class ConversationFragment extends LoggingFragment {
     snapToTopDataObserver.requestScrollPosition(position);
   }
 
+  public void onWallpaperChanged(@Nullable ChatWallpaper wallpaper) {
+    if (list != null) {
+      Log.d(TAG, "Notifying adapter that wallpaper state has changed.");
+      getListAdapter().onHasWallpaperChanged(wallpaper != null);
+    }
+  }
+
   private int getStartPosition() {
     return conversationViewModel.getArgs().getStartingPosition();
   }
@@ -409,7 +418,6 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private static void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
-
     if (conversationBanner == null) {
       return;
     }
@@ -422,9 +430,11 @@ public class ConversationFragment extends LoggingFragment {
 
     if (recipient != null) {
       conversationBanner.setAvatar(GlideApp.with(context), recipient);
+      conversationBanner.showBackgroundBubble(recipient.hasWallpaper());
 
       String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(context);
       conversationBanner.setTitle(title);
+      conversationBanner.setAbout(recipient.getCombinedAboutAndEmoji());
 
       if (recipient.isGroup()) {
         if (pendingMemberCount > 0) {
@@ -487,7 +497,7 @@ public class ConversationFragment extends LoggingFragment {
     this.threadId       = conversationViewModel.getArgs().getThreadId();
     this.markReadHelper = new MarkReadHelper(threadId, requireContext());
 
-    conversationViewModel.onConversationDataAvailable(threadId, startingPosition);
+    conversationViewModel.onConversationDataAvailable(recipient.getId(), threadId, startingPosition);
     messageCountsViewModel.setThreadId(threadId);
 
     messageCountsViewModel.getUnreadMessagesCount().observe(getViewLifecycleOwner(), scrollToBottomButton::setUnreadCount);
@@ -510,7 +520,7 @@ public class ConversationFragment extends LoggingFragment {
       ConversationAdapter adapter = new ConversationAdapter(this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       adapter.setPagingController(conversationViewModel.getPagingController());
       list.setAdapter(adapter);
-      setStickyHeaderDecoration(adapter);
+      setPopoverDateDecoration(adapter);
       ConversationAdapter.initializePool(list.getRecycledViewPool());
 
       adapter.registerAdapterDataObserver(snapToTopDataObserver);
@@ -637,7 +647,7 @@ public class ConversationFragment extends LoggingFragment {
       messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
 
       snapToTopDataObserver.requestScrollPosition(0);
-      conversationViewModel.onConversationDataAvailable(threadId, -1);
+      conversationViewModel.onConversationDataAvailable(recipient.getId(), threadId, -1);
       messageCountsViewModel.setThreadId(threadId);
       initializeListAdapter();
     }
@@ -651,13 +661,13 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
-  public void setStickyHeaderDecoration(@NonNull ConversationAdapter adapter) {
-    if (stickyHeaderDecoration != null) {
-      list.removeItemDecoration(stickyHeaderDecoration);
+  public void setPopoverDateDecoration(@NonNull ConversationAdapter adapter) {
+    if (popoverDateDecoration != null) {
+      list.removeItemDecoration(popoverDateDecoration);
     }
 
-    stickyHeaderDecoration = new StickyHeaderDecoration(adapter, false, false);
-    list.addItemDecoration(stickyHeaderDecoration);
+    popoverDateDecoration = new StickyHeaderDecoration(adapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE);
+    list.addItemDecoration(popoverDateDecoration);
   }
 
   public void setLastSeen(long lastSeen) {
@@ -1179,7 +1189,7 @@ public class ConversationFragment extends LoggingFragment {
 
     private void bindScrollHeader(StickyHeaderViewHolder headerViewHolder, int positionId) {
       if (((ConversationAdapter)list.getAdapter()).getHeaderId(positionId) != -1) {
-        ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId);
+        ((ConversationAdapter) list.getAdapter()).onBindHeaderViewHolder(headerViewHolder, positionId, ConversationAdapter.HEADER_TYPE_POPOVER_DATE);
       }
     }
   }

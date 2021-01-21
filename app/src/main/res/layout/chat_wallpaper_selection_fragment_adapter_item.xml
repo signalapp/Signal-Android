@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="117dp"
+    android:layout_height="206dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:layout_marginBottom="4dp">
+
+    <ImageView
+        android:id="@+id/chat_wallpaper_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        tools:src="@drawable/test_gradient" />
+
+    <View
+        android:id="@+id/chat_wallpaper_dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:visibility="gone"
+        tools:alpha="0.2f"
+        tools:visibility="visible" />
+
+</FrameLayout>

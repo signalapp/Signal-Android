@@ -75,6 +75,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     setProfileName(profile.getName());
+    setProfileAbout(profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(profile.getAvatar());
     setProfileCapabilities(profile.getCapabilities());
     Optional<ProfileKeyCredential> profileKeyCredential = profileAndCredential.getProfileKeyCredential();
@@ -112,6 +113,18 @@ public class RefreshOwnProfileJob extends BaseJob {
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
+    } catch (InvalidCiphertextException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileAbout(@Nullable String encryptedAbout, @Nullable String encryptedEmoji) {
+    try {
+      ProfileKey  profileKey     = ProfileKeyUtil.getSelfProfileKey();
+      String      plaintextAbout = ProfileUtil.decryptName(profileKey, encryptedAbout);
+      String      plaintextEmoji = ProfileUtil.decryptName(profileKey, encryptedEmoji);
+
+      DatabaseFactory.getRecipientDatabase(context).setAbout(Recipient.self().getId(), plaintextAbout, plaintextEmoji);
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }

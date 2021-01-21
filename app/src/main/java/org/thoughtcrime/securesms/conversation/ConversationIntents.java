@@ -9,8 +9,10 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -146,6 +148,11 @@ public class ConversationIntents {
 
     public boolean isFirstTimeInSelfCreatedGroup() {
       return firstTimeInSelfCreatedGroup;
+    }
+
+    public @Nullable ChatWallpaper getWallpaper() {
+      // TODO [greyson][wallpaper] Is it worth it to do this beforehand?
+      return Recipient.resolved(recipientId).getWallpaper();
     }
   }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list>
+    <item>
+        <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/signal_background_tertiary" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/signal_accent_primary" />
+            <corners android:topLeftRadius="8dp" android:topRightRadius="8dp" />
+        </shape>
+    </item>
+</layer-list>

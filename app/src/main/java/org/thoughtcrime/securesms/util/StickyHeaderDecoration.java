@@ -30,15 +30,17 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
   private final StickyHeaderAdapter   adapter;
   private final boolean               renderInline;
   private final boolean               sticky;
+  private final int                   type;
 
   /**
    * @param adapter the sticky header adapter to use
    */
-  public StickyHeaderDecoration(StickyHeaderAdapter adapter, boolean renderInline, boolean sticky) {
+  public StickyHeaderDecoration(StickyHeaderAdapter adapter, boolean renderInline, boolean sticky, int type) {
     this.adapter      = adapter;
     this.headerCache  = new HashMap<>();
     this.renderInline = renderInline;
     this.sticky       = sticky;
+    this.type         = type;
   }
 
   /**
@@ -88,9 +90,9 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     if (headerHolder == null) {
 
       if (key != StickyHeaderAdapter.NO_HEADER_ID) {
-        headerHolder = adapter.onCreateHeaderViewHolder(parent, position);
+        headerHolder = adapter.onCreateHeaderViewHolder(parent, position, type);
         //noinspection unchecked
-        adapter.onBindHeaderViewHolder(headerHolder, position);
+        adapter.onBindHeaderViewHolder(headerHolder, position, type);
       }
 
       if (headerHolder == null) {
@@ -221,7 +223,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
      * @param position position in the adapter
      * @return a view holder for the created view
      */
-    T onCreateHeaderViewHolder(ViewGroup parent, int position);
+    T onCreateHeaderViewHolder(ViewGroup parent, int position, int type);
 
     /**
      * Updates the header view to reflect the header data for the given position.
@@ -229,7 +231,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
      * @param viewHolder the header view holder
      * @param position   the header's item position
      */
-    void onBindHeaderViewHolder(T viewHolder, int position);
+    void onBindHeaderViewHolder(T viewHolder, int position, int type);
 
     int getItemCount();
   }

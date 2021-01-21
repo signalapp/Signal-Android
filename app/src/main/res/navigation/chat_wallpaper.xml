@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chat_wallpaper"
+    app:startDestination="@id/chatWallpaperFragment">
+
+    <fragment
+        android:id="@+id/chatWallpaperFragment"
+        android:name="org.thoughtcrime.securesms.wallpaper.ChatWallpaperFragment"
+        android:label="chat_wallpaper_fragment"
+        tools:layout="@layout/chat_wallpaper_fragment">
+
+        <action
+            android:id="@+id/action_chatWallpaperFragment_to_chatWallpaperSelectionFragment"
+            app:destination="@id/chatWallpaperSelectionFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatWallpaperSelectionFragment"
+        android:name="org.thoughtcrime.securesms.wallpaper.ChatWallpaperSelectionFragment"
+        android:label="chat_wallpaper_selection_fragment"
+        tools:layout="@layout/chat_wallpaper_selection_fragment">
+    </fragment>
+</navigation>

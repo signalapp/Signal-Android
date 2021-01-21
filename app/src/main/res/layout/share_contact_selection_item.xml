@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.FromTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/recipient_view_name"
+    style="@style/Signal.Text.Preview"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:paddingEnd="5sp"
+    tools:text="@tools:sample/first_names" />

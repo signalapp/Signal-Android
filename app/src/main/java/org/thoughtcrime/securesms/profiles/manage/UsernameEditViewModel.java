@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.usernames.username;
+package org.thoughtcrime.securesms.profiles.manage;
 
 import android.app.Application;
 import android.text.TextUtils;
