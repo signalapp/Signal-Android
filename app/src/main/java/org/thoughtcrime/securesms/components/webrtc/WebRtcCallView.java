@@ -43,6 +43,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
@@ -330,7 +331,6 @@ public class WebRtcCallView extends FrameLayout {
   }
 
   public void updateLocalCallParticipant(@NonNull WebRtcLocalRenderState state, @NonNull CallParticipant localCallParticipant, @NonNull CallParticipant focusedParticipant) {
-    smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
     largeLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
     smallLocalRender.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
@@ -346,11 +346,12 @@ public class WebRtcCallView extends FrameLayout {
     if (state == WebRtcLocalRenderState.EXPANDED) {
       expandPip(localCallParticipant, focusedParticipant);
       return;
-    } else if (state == WebRtcLocalRenderState.SMALL_RECTANGLE && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
+    } else if ((state == WebRtcLocalRenderState.SMALL_RECTANGLE || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
       shrinkPip(localCallParticipant);
       return;
     } else {
       smallLocalRender.setCallParticipant(localCallParticipant);
+      smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
     }
 
     switch (state) {
@@ -597,11 +598,14 @@ public class WebRtcCallView extends FrameLayout {
       @Override
       public void onPictureInPictureExpanded() {
         largeLocalRenderFrame.setVisibility(View.VISIBLE);
+        largeLocalRenderNoVideo.setVisibility(View.GONE);
+        largeLocalRenderNoVideoAvatar.setVisibility(View.GONE);
       }
 
       @Override
       public void onPictureInPictureNotVisible() {
         smallLocalRender.setCallParticipant(focusedParticipant);
+        smallLocalRender.setMirror(false);
       }
 
       @Override
@@ -626,6 +630,11 @@ public class WebRtcCallView extends FrameLayout {
       @Override
       public void onPictureInPictureNotVisible() {
         smallLocalRender.setCallParticipant(localCallParticipant);
+        smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
+
+        if (!localCallParticipant.isVideoEnabled()) {
+          smallLocalRenderFrame.setVisibility(View.GONE);
+        }
       }
 
       @Override
