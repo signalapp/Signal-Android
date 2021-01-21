@@ -321,13 +321,21 @@
 
     <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme.Signal.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny">
         <item name="bottomSheetStyle">@style/Widget.Signal.BottomSheet.ReactWithAny.Light</item>
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.BottomSheet.Rounded</item>
+    </style>
+
+    <style name="Theme.Signal.Light.BottomSheetDialog.Fixed.ReactWithAny.Shadowless">
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">

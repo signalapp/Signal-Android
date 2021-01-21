@@ -21,6 +21,7 @@ public class ConversationBannerView extends ConstraintLayout {
 
   private AvatarImageView contactAvatar;
   private TextView        contactTitle;
+  private TextView        contactAbout;
   private TextView        contactSubtitle;
   private TextView        contactDescription;
 
@@ -39,6 +40,7 @@ public class ConversationBannerView extends ConstraintLayout {
 
     contactAvatar      = findViewById(R.id.message_request_avatar);
     contactTitle       = findViewById(R.id.message_request_title);
+    contactAbout       = findViewById(R.id.message_request_about);
     contactSubtitle    = findViewById(R.id.message_request_subtitle);
     contactDescription = findViewById(R.id.message_request_description);
 
@@ -51,6 +53,11 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void setTitle(@Nullable CharSequence title) {
     contactTitle.setText(title);
+  }
+
+  public void setAbout(@Nullable String about) {
+    contactAbout.setText(about);
+    contactAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
   }
 
   public void setSubtitle(@Nullable CharSequence subtitle) {

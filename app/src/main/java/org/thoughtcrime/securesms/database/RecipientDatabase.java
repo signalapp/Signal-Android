@@ -138,6 +138,8 @@ public class RecipientDatabase extends Database {
   private static final String LAST_SESSION_RESET        = "last_session_reset";
   private static final String WALLPAPER                 = "wallpaper";
   private static final String WALLPAPER_URI             = "wallpaper_file";
+  public  static final String ABOUT                     = "about";
+  public  static final String ABOUT_EMOJI               = "about_emoji";
 
   public  static final String SEARCH_PROFILE_NAME      = "search_signal_profile";
   private static final String SORT_NAME                = "sort_name";
@@ -162,12 +164,14 @@ public class RecipientDatabase extends Database {
       FORCE_SMS_SELECTION,
       CAPABILITIES,
       STORAGE_SERVICE_ID, DIRTY,
-      MENTION_SETTING, WALLPAPER, WALLPAPER_URI
+      MENTION_SETTING, WALLPAPER, WALLPAPER_URI,
+      MENTION_SETTING,
+      ABOUT, ABOUT_EMOJI
   };
 
   private static final String[] ID_PROJECTION              = new String[]{ID};
-  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
-  public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, SEARCH_PROFILE_NAME, SORT_NAME};
+  private static final String[] SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, "COALESCE(" + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ") AS " + SEARCH_PROFILE_NAME, "COALESCE(" + nullIfEmpty(SYSTEM_DISPLAY_NAME) + ", " + nullIfEmpty(PROFILE_JOINED_NAME) + ", " + nullIfEmpty(PROFILE_GIVEN_NAME) + ", " + nullIfEmpty(USERNAME) + ") AS " + SORT_NAME};
+  public  static final String[] SEARCH_PROJECTION_NAMES    = new String[]{ID, SYSTEM_DISPLAY_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, ABOUT, ABOUT_EMOJI, SEARCH_PROFILE_NAME, SORT_NAME};
   private static final String[] TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                    .map(columnName -> TABLE_NAME + "." + columnName)
                                                                    .toList().toArray(new String[0]);
@@ -359,7 +363,9 @@ public class RecipientDatabase extends Database {
                                             LAST_GV1_MIGRATE_REMINDER + " INTEGER DEFAULT 0, " +
                                             LAST_SESSION_RESET        + " BLOB DEFAULT NULL, " +
                                             WALLPAPER                 + " BLOB DEFAULT NULL, " +
-                                            WALLPAPER_URI             + " TEXT DEFAULT NULL);";
+                                            WALLPAPER_URI             + " TEXT DEFAULT NULL, " +
+                                            ABOUT                     + " TEXT DEFAULT NULL, " +
+                                            ABOUT_EMOJI               + " TEXT DEFAULT NULL);";
 
   private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
       " FROM " + TABLE_NAME +
@@ -1274,6 +1280,8 @@ public class RecipientDatabase extends Database {
     String  storageKeyRaw              = CursorUtil.requireString(cursor, STORAGE_SERVICE_ID);
     int     mentionSettingId           = CursorUtil.requireInt(cursor, MENTION_SETTING);
     byte[]  wallpaper                  = CursorUtil.requireBlob(cursor, WALLPAPER);
+    String  about                      = CursorUtil.requireString(cursor, ABOUT);
+    String  aboutEmoji                 = CursorUtil.requireString(cursor, ABOUT_EMOJI);
 
     MaterialColor        color;
     byte[]               profileKey           = null;
@@ -1359,6 +1367,8 @@ public class RecipientDatabase extends Database {
                                  storageKey,
                                  MentionSetting.fromId(mentionSettingId),
                                  chatWallpaper,
+                                 about,
+                                 aboutEmoji,
                                  getSyncExtras(cursor));
   }
 
@@ -1774,6 +1784,16 @@ public class RecipientDatabase extends Database {
         markDirty(id, DirtyState.UPDATE);
         StorageSyncHelper.scheduleSyncForDataChange();
       }
+    }
+  }
+
+  public void setAbout(@NonNull RecipientId id, @Nullable String about, @Nullable String emoji) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(ABOUT, about);
+    contentValues.put(ABOUT_EMOJI, emoji);
+
+    if (update(id, contentValues)) {
+      Recipient.live(id).refresh();
     }
   }
 
@@ -2938,6 +2958,8 @@ public class RecipientDatabase extends Database {
     private final byte[]                          storageId;
     private final MentionSetting                  mentionSetting;
     private final ChatWallpaper                   wallpaper;
+    private final String                          about;
+    private final String                          aboutEmoji;
     private final SyncExtras                      syncExtras;
 
     RecipientSettings(@NonNull RecipientId id,
@@ -2976,6 +2998,8 @@ public class RecipientDatabase extends Database {
                       @Nullable byte[] storageId,
                       @NonNull MentionSetting mentionSetting,
                       @Nullable ChatWallpaper wallpaper,
+                      @Nullable String about,
+                      @Nullable String aboutEmoji,
                       @NonNull SyncExtras syncExtras)
     {
       this.id                          = id;
@@ -3016,6 +3040,8 @@ public class RecipientDatabase extends Database {
       this.storageId                   = storageId;
       this.mentionSetting              = mentionSetting;
       this.wallpaper                   = wallpaper;
+      this.about                       = about;
+      this.aboutEmoji                  = aboutEmoji;
       this.syncExtras                  = syncExtras;
     }
 
@@ -3165,6 +3191,14 @@ public class RecipientDatabase extends Database {
 
     public @Nullable ChatWallpaper getWallpaper() {
       return wallpaper;
+    }
+
+    public @Nullable String getAbout() {
+      return about;
+    }
+
+    public @Nullable String getAboutEmoji() {
+      return aboutEmoji;
     }
 
     public @NonNull SyncExtras getSyncExtras() {

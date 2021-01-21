@@ -108,6 +108,8 @@ public class Recipient {
   private final byte[]                 storageId;
   private final MentionSetting         mentionSetting;
   private final ChatWallpaper          wallpaper;
+  private final String                 about;
+  private final String                 aboutEmoji;
 
 
   /**
@@ -342,6 +344,8 @@ public class Recipient {
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
     this.wallpaper                   = null;
+    this.about                       = null;
+    this.aboutEmoji                  = null;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -385,6 +389,8 @@ public class Recipient {
     this.storageId                   = details.storageId;
     this.mentionSetting              = details.mentionSetting;
     this.wallpaper                   = details.wallpaper;
+    this.about                       = details.about;
+    this.aboutEmoji                  = details.aboutEmoji;
   }
 
   public @NonNull RecipientId getId() {
@@ -870,6 +876,28 @@ public class Recipient {
     return contactUri != null;
   }
 
+  public @Nullable String getAbout() {
+    return about;
+  }
+
+  public @Nullable String getAboutEmoji() {
+    return aboutEmoji;
+  }
+
+  public @Nullable String getCombinedAboutAndEmoji() {
+    if (aboutEmoji != null) {
+      if (about != null) {
+        return aboutEmoji + " " + about;
+      } else {
+        return aboutEmoji;
+      }
+    } else if (about != null) {
+      return about;
+    } else {
+      return null;
+    }
+  }
+
   /**
    * If this recipient is missing crucial data, this will return a populated copy. Otherwise it
    * returns itself.
@@ -985,7 +1013,9 @@ public class Recipient {
            insightsBannerTier == other.insightsBannerTier &&
            Arrays.equals(storageId, other.storageId) &&
            mentionSetting == other.mentionSetting &&
-           Objects.equals(wallpaper, other.wallpaper);
+           Objects.equals(wallpaper, other.wallpaper) &&
+           Objects.equals(about, other.about) &&
+           Objects.equals(aboutEmoji, other.aboutEmoji);
   }
 
   private static boolean allContentsAreTheSame(@NonNull List<Recipient> a, @NonNull List<Recipient> b) {

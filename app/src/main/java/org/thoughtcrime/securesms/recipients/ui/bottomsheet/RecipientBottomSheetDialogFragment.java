@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -55,6 +56,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
   private RecipientDialogViewModel viewModel;
   private AvatarImageView          avatar;
   private TextView                 fullName;
+  private TextView                 about;
   private TextView                 usernameNumber;
   private Button                   messageButton;
   private Button                   secureCallButton;
@@ -102,6 +104,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
     avatar                 = view.findViewById(R.id.rbs_recipient_avatar);
     fullName               = view.findViewById(R.id.rbs_full_name);
+    about                  = view.findViewById(R.id.rbs_about);
     usernameNumber         = view.findViewById(R.id.rbs_username_number);
     messageButton          = view.findViewById(R.id.rbs_message_button);
     secureCallButton       = view.findViewById(R.id.rbs_secure_call_button);
@@ -156,6 +159,14 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         fullName.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_profile_circle_outline_16, 0);
         fullName.setCompoundDrawablePadding(ViewUtil.dpToPx(4));
         TextViewCompat.setCompoundDrawableTintList(fullName, ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_text_primary)));
+      }
+
+      String aboutText = recipient.getCombinedAboutAndEmoji();
+      if (!Util.isEmpty(aboutText)) {
+        about.setText(aboutText);
+        about.setVisibility(View.VISIBLE);
+      } else {
+        about.setVisibility(View.GONE);
       }
 
       String usernameNumberString = recipient.hasAUserSetDisplayName(requireContext()) && !recipient.isSelf()

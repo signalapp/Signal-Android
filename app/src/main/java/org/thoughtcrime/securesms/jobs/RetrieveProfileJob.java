@@ -328,6 +328,7 @@ public class RetrieveProfileJob extends BaseJob {
     ProfileKey           recipientProfileKey  = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
     setProfileName(recipient, profile.getName());
+    setProfileAbout(recipient, profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(recipient, profile.getAvatar());
     clearUsername(recipient);
     setProfileCapabilities(recipient, profile.getCapabilities());
@@ -450,6 +451,20 @@ public class RetrieveProfileJob extends BaseJob {
     } catch (InvalidCiphertextException e) {
       Log.w(TAG, "Bad profile key for " + recipient.getId());
     } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileAbout(@NonNull Recipient recipient, @Nullable String encryptedAbout, @Nullable String encryptedEmoji) {
+    try {
+      ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
+      if (profileKey == null) return;
+
+      String plaintextAbout = ProfileUtil.decryptName(profileKey, encryptedAbout);
+      String plaintextEmoji = ProfileUtil.decryptName(profileKey, encryptedEmoji);
+
+      DatabaseFactory.getRecipientDatabase(context).setAbout(recipient.getId(), plaintextAbout, plaintextEmoji);
+    } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }
   }

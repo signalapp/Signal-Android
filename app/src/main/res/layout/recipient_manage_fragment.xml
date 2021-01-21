@@ -46,6 +46,17 @@
                     android:maxLines="1"
                     android:textAppearance="@style/TextAppearance.Signal.Body1.Bold" />
 
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    android:textColor="@color/signal_text_secondary"
+                    tools:text="Hangin' around the web" />
+
                 <TextView
                     android:id="@+id/username_number"
                     android:layout_width="wrap_content"

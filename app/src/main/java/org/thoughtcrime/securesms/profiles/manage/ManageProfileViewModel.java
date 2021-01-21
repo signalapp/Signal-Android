@@ -100,10 +100,6 @@ class ManageProfileViewModel extends ViewModel {
     return FeatureFlags.usernames();
   }
 
-  public boolean shouldShowAbout() {
-    return FeatureFlags.about();
-  }
-
   public void onAvatarSelected(@NonNull Context context, @Nullable Media media) {
     if (media == null) {
       SignalExecutors.BOUNDED.execute(() -> {
@@ -136,6 +132,8 @@ class ManageProfileViewModel extends ViewModel {
   private void onRecipientChanged(@NonNull Recipient recipient) {
     profileName.postValue(recipient.getProfileName());
     username.postValue(recipient.getUsername().orNull());
+    about.postValue(recipient.getAbout());
+    aboutEmoji.postValue(recipient.getAboutEmoji());
   }
 
   @Override

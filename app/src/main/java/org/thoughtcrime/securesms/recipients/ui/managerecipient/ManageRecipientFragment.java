@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -71,6 +72,7 @@ public class ManageRecipientFragment extends LoggingFragment {
   private GroupMemberListView                    sharedGroupList;
   private Toolbar                                toolbar;
   private TextView                               title;
+  private TextView                               about;
   private TextView                               subtitle;
   private ViewGroup                              internalDetails;
   private TextView                               internalDetailsText;
@@ -132,6 +134,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     contactText                 = view.findViewById(R.id.recipient_contact_text);
     contactIcon                 = view.findViewById(R.id.recipient_contact_icon);
     title                       = view.findViewById(R.id.name);
+    about                       = view.findViewById(R.id.about);
     subtitle                    = view.findViewById(R.id.username_number);
     internalDetails             = view.findViewById(R.id.recipient_internal_details);
     internalDetailsText         = view.findViewById(R.id.recipient_internal_details_text);
@@ -302,6 +305,10 @@ public class ManageRecipientFragment extends LoggingFragment {
         startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
       });
     }
+
+    String aboutText = recipient.getCombinedAboutAndEmoji();
+    about.setText(aboutText);
+    about.setVisibility(Util.isEmpty(aboutText) ? View.GONE : View.VISIBLE);
 
     disappearingMessagesCard.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
     addToAGroup.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);

@@ -395,8 +395,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private LiveRecipient recipient;
   private long          threadId;
   private int           distributionType;
-  private int           reactWithAnyEmojiStartPage;
   private boolean       isSecureText;
+  private int           reactWithAnyEmojiStartPage    = -1;
   private boolean       isDefaultSms                  = true;
   private boolean       isMmsEnabled                  = true;
   private boolean       isSecurityInitialized         = false;
@@ -488,7 +488,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    reactWithAnyEmojiStartPage = 0;
+    reactWithAnyEmojiStartPage = -1;
     if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent() || inputPanel.getQuote().isPresent()) {
       saveDraft();
       attachmentManager.clear(glideRequests, false);
@@ -745,7 +745,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   protected void onRestoreInstanceState(Bundle savedInstanceState) {
     super.onRestoreInstanceState(savedInstanceState);
 
-    reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, 0);
+    reactWithAnyEmojiStartPage = savedInstanceState.getInt(STATE_REACT_WITH_ANY_PAGE, -1);
   }
 
   private void setVisibleThread(long threadId) {
@@ -2260,6 +2260,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onReactWithAnyEmojiPageChanged(int page) {
     reactWithAnyEmojiStartPage = page;
+  }
+
+  @Override
+  public void onReactWithAnyEmojiSelected(@NonNull String emoji) {
   }
 
   @Override

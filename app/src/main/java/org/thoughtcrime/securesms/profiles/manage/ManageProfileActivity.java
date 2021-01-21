@@ -5,21 +5,24 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.edit.EditProfileFragmentDirections;
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 /**
  * Activity that manages the local user's profile, as accessed via the settings.
  */
-public class ManageProfileActivity extends BaseActivity {
+public class ManageProfileActivity extends BaseActivity implements ReactWithAnyEmojiBottomSheetDialogFragment.Callback {
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
@@ -60,5 +63,27 @@ public class ManageProfileActivity extends BaseActivity {
   public void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+  }
+
+  @Override
+  public void onReactWithAnyEmojiDialogDismissed() {
+  }
+
+  @Override
+  public void onReactWithAnyEmojiPageChanged(int page) {
+  }
+
+  @Override
+  public void onReactWithAnyEmojiSelected(@NonNull String emoji) {
+    NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().getPrimaryNavigationFragment();
+    Fragment        activeFragment  = navHostFragment.getChildFragmentManager().getPrimaryNavigationFragment();
+
+    if (activeFragment instanceof EmojiController) {
+      ((EmojiController) activeFragment).onEmojiSelected(emoji);
+    }
+  }
+
+  interface EmojiController {
+    void onEmojiSelected(@NonNull String emoji);
   }
 }

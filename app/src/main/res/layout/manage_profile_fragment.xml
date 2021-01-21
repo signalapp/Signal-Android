@@ -93,7 +93,7 @@
           app:layout_constraintTop_toTopOf="@id/manage_profile_name"
           app:layout_constraintBottom_toBottomOf="@id/manage_profile_name_subtitle"/>
 
-      <TextView
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
           android:id="@+id/manage_profile_name"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
           app:layout_constraintTop_toTopOf="@id/manage_profile_username"
           app:layout_constraintBottom_toBottomOf="@id/manage_profile_username_subtitle"/>
 
-      <TextView
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
           android:id="@+id/manage_profile_username"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
           app:layout_constraintBottom_toBottomOf="@id/manage_profile_about_subtitle"
           app:layout_constraintStart_toStartOf="parent"/>
 
-      <TextView
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
           android:id="@+id/manage_profile_about"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintStart_toEndOf="@id/manage_profile_about_icon"
           app:layout_constraintEnd_toEndOf="parent"
-          tools:text="Reporter for the Daily Bugle"/>
+          tools:text="Photographer for the Daily Bugle"/>
 
       <TextView
           android:id="@+id/manage_profile_about_subtitle"

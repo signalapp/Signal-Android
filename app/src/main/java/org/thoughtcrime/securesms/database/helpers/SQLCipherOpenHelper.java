@@ -170,8 +170,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int CLEAR_PROFILE_KEY_CREDENTIALS    = 86;
   private static final int LAST_RESET_SESSION_TIME          = 87;
   private static final int WALLPAPER                        = 88;
+  private static final int ABOUT                            = 89;
 
-  private static final int    DATABASE_VERSION = 88;
+  private static final int    DATABASE_VERSION = 89;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1250,6 +1251,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < WALLPAPER) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN wallpaper BLOB DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient ADD COLUMN wallpaper_file TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < ABOUT) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN about TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN about_emoji TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

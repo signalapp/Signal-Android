@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.profiles.manage;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
@@ -21,6 +23,7 @@ import com.bumptech.glide.Glide;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -44,7 +47,7 @@ public class ManageProfileFragment extends LoggingFragment {
   private View                   usernameContainer;
   private TextView               aboutView;
   private View                   aboutContainer;
-  private TextView               aboutEmojiView;
+  private ImageView              aboutEmojiView;
   private AlertDialog            avatarProgress;
 
   private ManageProfileViewModel viewModel;
@@ -65,6 +68,7 @@ public class ManageProfileFragment extends LoggingFragment {
     this.usernameContainer     = view.findViewById(R.id.manage_profile_username_container);
     this.aboutView             = view.findViewById(R.id.manage_profile_about);
     this.aboutContainer        = view.findViewById(R.id.manage_profile_about_container);
+    this.aboutEmojiView        = view.findViewById(R.id.manage_profile_about_icon);
 
     initializeViewModel();
 
@@ -77,6 +81,10 @@ public class ManageProfileFragment extends LoggingFragment {
 
     this.usernameContainer.setOnClickListener(v -> {
       Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageUsername());
+    });
+
+    this.aboutContainer.setOnClickListener(v -> {
+      Navigation.findNavController(v).navigate(ManageProfileFragmentDirections.actionManageAbout());
     });
   }
 
@@ -102,13 +110,8 @@ public class ManageProfileFragment extends LoggingFragment {
     viewModel.getAvatar().observe(getViewLifecycleOwner(), this::presentAvatar);
     viewModel.getProfileName().observe(getViewLifecycleOwner(), this::presentProfileName);
     viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);
-
-    if (viewModel.shouldShowAbout()) {
-      viewModel.getAbout().observe(getViewLifecycleOwner(), this::presentAbout);
-      viewModel.getAboutEmoji().observe(getViewLifecycleOwner(), this::presentAboutEmoji);
-    } else {
-      aboutContainer.setVisibility(View.GONE);
-    }
+    viewModel.getAbout().observe(getViewLifecycleOwner(), this::presentAbout);
+    viewModel.getAboutEmoji().observe(getViewLifecycleOwner(), this::presentAboutEmoji);
 
     if (viewModel.shouldShowUsername()) {
       viewModel.getUsername().observe(getViewLifecycleOwner(), this::presentUsername);
@@ -156,14 +159,26 @@ public class ManageProfileFragment extends LoggingFragment {
 
   private void presentAbout(@Nullable String about) {
     if (about == null || about.isEmpty()) {
-      aboutView.setHint(R.string.ManageProfileFragment_about);
+      aboutView.setText(R.string.ManageProfileFragment_about);
+      aboutView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_secondary));
     } else {
       aboutView.setText(about);
+      aboutView.setTextColor(requireContext().getResources().getColor(R.color.signal_text_primary));
     }
   }
 
   private void presentAboutEmoji(@NonNull String aboutEmoji) {
+    if (aboutEmoji == null || aboutEmoji.isEmpty()) {
+      aboutEmojiView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_compose_24, null));
+    } else {
+      Drawable emoji = EmojiUtil.convertToDrawable(requireContext(), aboutEmoji);
 
+      if (emoji != null) {
+        aboutEmojiView.setImageDrawable(emoji);
+      } else {
+        aboutEmojiView.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_compose_24, null));
+      }
+    }
   }
 
   private void presentEvent(@NonNull ManageProfileViewModel.Event event) {

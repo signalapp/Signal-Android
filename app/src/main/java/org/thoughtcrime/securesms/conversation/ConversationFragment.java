@@ -126,6 +126,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -417,7 +418,6 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   private static void presentMessageRequestProfileView(@NonNull Context context, @NonNull MessageRequestViewModel.RecipientInfo recipientInfo, @Nullable ConversationBannerView conversationBanner) {
-
     if (conversationBanner == null) {
       return;
     }
@@ -434,6 +434,7 @@ public class ConversationFragment extends LoggingFragment {
 
       String title = isSelf ? context.getString(R.string.note_to_self) : recipient.getDisplayNameOrUsername(context);
       conversationBanner.setTitle(title);
+      conversationBanner.setAbout(recipient.getCombinedAboutAndEmoji());
 
       if (recipient.isGroup()) {
         if (pendingMemberCount > 0) {

@@ -1999,6 +1999,11 @@
     <string name="CreateProfileActivity__create_a_username">Create a username</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Custom MMS group names and photos will only be visible to you.</string>
 
+    <!-- EditAboutFragment -->
+    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_count">%d/%d</string>
+
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>
     <string name="EditProfileFragment__group_name">Group name</string>

@@ -29,6 +29,17 @@
         app:layout_constraintTop_toBottomOf="@id/message_request_avatar"
         tools:text="Cayce Pollard" />
 
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/message_request_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
+        tools:text="Hangin' on the web"
+        app:layout_constraintTop_toBottomOf="@id/message_request_title" />
+
     <TextView
         android:id="@+id/message_request_subtitle"
         android:layout_width="wrap_content"
@@ -38,7 +49,7 @@
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:layout_constraintTop_toBottomOf="@id/message_request_about"
         tools:text="\@caycepollard" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView

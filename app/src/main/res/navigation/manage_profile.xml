@@ -14,18 +14,26 @@
         <action
             android:id="@+id/action_manageUsername"
             app:destination="@id/usernameManageFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
 
         <action
             android:id="@+id/action_manageProfileName"
             app:destination="@id/profileNameManageFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+        <action
+            android:id="@+id/action_manageAbout"
+            app:destination="@id/aboutManageFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
 
     </fragment>
 
@@ -40,5 +48,11 @@
         android:name="org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment"
         android:label="fragment_manage_profile_name"
         tools:layout="@layout/edit_profile_name_fragment" />
+
+    <fragment
+        android:id="@+id/aboutManageFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditAboutFragment"
+        android:label="fragment_manage_about"
+        tools:layout="@layout/edit_about_fragment" />
 
 </navigation>
