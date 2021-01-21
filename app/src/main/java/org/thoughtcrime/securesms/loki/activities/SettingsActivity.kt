@@ -64,7 +64,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private val hexEncodedPublicKey: String
         get() {
             val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)!!
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 
@@ -210,7 +210,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             }
             displayNameToBeUploaded = null
             if (isUpdatingProfilePicture && profilePicture != null) {
-                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), profilePicture)
+                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!), profilePicture)
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
                 ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()

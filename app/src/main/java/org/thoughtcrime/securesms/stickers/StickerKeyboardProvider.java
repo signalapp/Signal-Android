@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
+
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;

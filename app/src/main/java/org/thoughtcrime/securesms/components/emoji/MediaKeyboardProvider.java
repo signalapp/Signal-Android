@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import android.widget.ImageView;
 
+
+
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 public interface MediaKeyboardProvider {

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -26,7 +27,7 @@ import network.loki.messenger.R;
  */
 final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder> {
 
-  private final GlideRequests       glideRequests;
+  private final GlideRequests glideRequests;
   private final EventListener       eventListener;
   private final List<StickerRecord> stickers;
 

@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.common.util.IOUtils;
 
+
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;

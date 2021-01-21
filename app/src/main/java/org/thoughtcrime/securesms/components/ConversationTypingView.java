@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.ThemeUtil;
 
+
 import java.util.List;
 
 import network.loki.messenger.R;

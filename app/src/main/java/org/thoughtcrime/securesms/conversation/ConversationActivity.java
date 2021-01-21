@@ -83,6 +83,8 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
@@ -191,6 +193,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.Util; // Cannot be modified
 
 import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -198,7 +201,6 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.ExpirationUtil;
-import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.views.Stub;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
@@ -268,7 +270,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
 
-  private   GlideRequests               glideRequests;
+  private GlideRequests glideRequests;
   protected ComposeText                 composeText;
   private   AnimatingToggle             buttonToggle;
   private   ImageButton                  sendButton;

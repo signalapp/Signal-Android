@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
@@ -19,7 +20,7 @@ import network.loki.messenger.R;
 
 public final class StickerPackPreviewAdapter extends RecyclerView.Adapter<StickerPackPreviewAdapter.StickerViewHolder>  {
 
-  private final GlideRequests                 glideRequests;
+  private final GlideRequests glideRequests;
   private final List<StickerManifest.Sticker> list;
 
   public StickerPackPreviewAdapter(@NonNull GlideRequests glideRequests) {

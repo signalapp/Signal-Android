@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 
 import androidx.annotation.NonNull;
 
+
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.views.UserView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -21,7 +22,7 @@ import java.util.List;
 class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
   private final Context                       context;
-  private final GlideRequests                 glideRequests;
+  private final GlideRequests glideRequests;
   private final MessageRecord                 record;
   private final List<RecipientDeliveryStatus> members;
   private final boolean                       isPushGroup;

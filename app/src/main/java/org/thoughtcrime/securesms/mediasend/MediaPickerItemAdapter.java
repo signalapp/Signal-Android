@@ -13,6 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.StableIdGenerator;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItemAdapter.ItemViewHolder> {
 
-  private final GlideRequests            glideRequests;
+  private final GlideRequests glideRequests;
   private final EventListener            eventListener;
   private final List<Media>              media;
   private final List<Media>              selected;

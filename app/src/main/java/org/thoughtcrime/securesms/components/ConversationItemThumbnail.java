@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
 import org.thoughtcrime.securesms.mms.GlideRequests;
+
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;

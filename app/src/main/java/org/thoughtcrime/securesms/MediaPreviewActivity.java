@@ -54,6 +54,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+
+
 import org.thoughtcrime.securesms.components.MediaView;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;

@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+
+
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
@@ -19,7 +21,7 @@ import java.util.List;
 
 class MediaPickerFolderAdapter extends RecyclerView.Adapter<MediaPickerFolderAdapter.FolderViewHolder> {
 
-  private final GlideRequests     glideRequests;
+  private final GlideRequests glideRequests;
   private final EventListener     eventListener;
   private final List<MediaFolder> folders;
 

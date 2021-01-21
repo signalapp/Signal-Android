@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
+
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.BucketedThreadMedia;
@@ -45,7 +46,7 @@ class MediaGalleryAdapter extends StickyHeaderGridAdapter {
   private static final String TAG = MediaGalleryAdapter.class.getSimpleName();
 
   private final Context             context;
-  private final GlideRequests       glideRequests;
+  private final GlideRequests glideRequests;
   private final Locale              locale;
   private final ItemClickListener   itemClickListener;
   private final Set<MediaRecord>    selected;

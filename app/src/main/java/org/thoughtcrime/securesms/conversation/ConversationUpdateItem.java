@@ -14,6 +14,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
@@ -72,7 +73,7 @@ public class ConversationUpdateItem extends LinearLayout
   public void bind(@NonNull MessageRecord           messageRecord,
                    @NonNull Optional<MessageRecord> previousMessageRecord,
                    @NonNull Optional<MessageRecord> nextMessageRecord,
-                   @NonNull GlideRequests           glideRequests,
+                   @NonNull GlideRequests glideRequests,
                    @NonNull Locale                  locale,
                    @NonNull Set<MessageRecord>      batchSelected,
                    @NonNull Recipient               conversationRecipient,

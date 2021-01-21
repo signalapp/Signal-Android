@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.lang.ref.WeakReference
@@ -120,7 +120,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         if (selectedMembers.count() >= ClosedGroupsProtocol.groupSizeLimit) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         isLoading = true
         loaderContainer.fadeIn()
         ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
@@ -152,7 +152,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         val recipients = selectedMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
-        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)
+        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)!!
         val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
         CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin ))
             .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)

@@ -1,9 +1,29 @@
+buildscript {
+    ext.kotlin_version = "1.4.0"
+    ext.kovenant_version = "3.3.0"
+
+    repositories {
+        mavenLocal()
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath files('libs/gradle-witness.jar')
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
+        classpath "com.google.gms:google-services:4.3.3"
+    }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'witness'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlinx-serialization'
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
@@ -96,6 +116,7 @@ dependencies {
     implementation project(":libsignal")
     implementation project(":libsession")
     // Remote:
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
     implementation "org.whispersystems:curve25519-java:$curve25519Version"
     implementation "com.goterl.lazycode:lazysodium-android:4.2.0@aar"
     implementation "net.java.dev.jna:jna:5.5.0@aar"

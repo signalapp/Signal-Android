@@ -22,6 +22,7 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;

@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 
+
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -97,7 +98,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private final Set<MessageRecord> batchSelected = Collections.synchronizedSet(new HashSet<MessageRecord>());
 
   private final @Nullable ItemClickListener clickListener;
-  private final @NonNull  GlideRequests     glideRequests;
+  private final @NonNull
+  GlideRequests glideRequests;
   private final @NonNull  Locale            locale;
   private final @NonNull  Recipient         recipient;
   private final @NonNull  MmsSmsDatabase    db;

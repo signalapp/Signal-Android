@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.session.libsession.messaging.threads.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 
@@ -63,7 +63,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
         val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivity::class.java)
@@ -116,7 +116,7 @@ class EnterPublicKeyFragment : Fragment() {
     private val hexEncodedPublicKey: String
         get() {
             val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext())
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())!!
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 

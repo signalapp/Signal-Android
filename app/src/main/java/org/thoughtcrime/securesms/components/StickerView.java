@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import org.thoughtcrime.securesms.mms.GlideRequests;
+
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;

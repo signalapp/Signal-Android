@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.AttributeSet;
+
+
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 import android.view.View;

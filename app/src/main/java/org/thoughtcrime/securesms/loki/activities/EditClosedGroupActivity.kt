@@ -13,6 +13,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.ui.failUi
