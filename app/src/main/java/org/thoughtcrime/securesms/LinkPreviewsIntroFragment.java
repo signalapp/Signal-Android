@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-
 import network.loki.messenger.R;
 
 public class LinkPreviewsIntroFragment extends Fragment {

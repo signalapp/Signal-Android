@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.thoughtcrime.securesms.attachments.DatabaseAttachmentProvider;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
@@ -61,13 +62,15 @@ public class DatabaseFactory {
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
-//  private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
-//  private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SharedSenderKeysDatabase sskDatabase;
+
+  // Refactor
+  private final Storage storage;
+  private final DatabaseAttachmentProvider attachmentProvider;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -155,14 +158,6 @@ public class DatabaseFactory {
     return getInstance(context).lokiAPIDatabase;
   }
 
-//  public static LokiPreKeyRecordDatabase getLokiPreKeyRecordDatabase(Context context) {
-//    return getInstance(context).lokiContactPreKeyDatabase;
-//  }
-
-//  public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
-//    return getInstance(context).lokiPreKeyBundleDatabase;
-//  }
-
   public static LokiMessageDatabase getLokiMessageDatabase(Context context) {
     return getInstance(context).lokiMessageDatabase;
   }
@@ -181,6 +176,16 @@ public class DatabaseFactory {
 
   public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
     return getInstance(context).sskDatabase;
+  }
+  // endregion
+
+  // region Refactor
+  public static Storage getStorage(Context context) {
+    return getInstance(context).storage;
+  }
+
+  public static DatabaseAttachmentProvider getAttachmentProvider(Context context) {
+    return getInstance(context).attachmentProvider;
   }
   // endregion
 
@@ -214,13 +219,13 @@ public class DatabaseFactory {
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
     this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
-//    this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
-//    this.lokiPreKeyBundleDatabase  = new LokiPreKeyBundleDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
+    this.storage                   = new Storage(context, databaseHelper);
+    this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
   }
 
 }

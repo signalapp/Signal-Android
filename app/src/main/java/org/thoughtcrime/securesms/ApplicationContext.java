@@ -33,6 +33,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
+import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.contacts.avatars.AvatarHelper;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
@@ -43,6 +44,7 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.session.libsignal.libsignal.state.SessionRecord;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
 import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
 import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
@@ -198,6 +200,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase, this);
+    MessagingConfiguration.Companion.configure(this,
+                                                DatabaseFactory.getStorage(this),
+                                                sskDatabase,
+                                                DatabaseFactory.getAttachmentProvider(this),
+                                                new SessionProtocolImpl(this));
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);

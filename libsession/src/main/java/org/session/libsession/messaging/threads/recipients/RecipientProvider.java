@@ -115,7 +115,7 @@ class RecipientProvider {
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(Context context, @NonNull Address address, Optional<RecipientSettings> settings) {
     if (!settings.isPresent()) {
-      settings = Optional.of(MessagingConfiguration.shared.getStorage().getRecipientSettings(address));
+      settings = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getRecipientSettings(address));
     }
 
     if (!settings.isPresent() && STATIC_DETAILS.containsKey(address.serialize())) {
@@ -130,11 +130,12 @@ class RecipientProvider {
   private @NonNull RecipientDetails getGroupRecipientDetails(Context context, Address groupId, Optional<GroupRecord> groupRecord, Optional<RecipientSettings> settings, boolean asynchronous) {
 
     if (!groupRecord.isPresent()) {
-      groupRecord = Optional.of(MessagingConfiguration.shared.getStorage().getGroup(groupId.toGroupString()));
+      groupRecord = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getGroup(groupId.toGroupString()));
     }
 
     if (!settings.isPresent()) {
-      settings = Optional.of(MessagingConfiguration.shared.getStorage().getRecipientSettings(groupId));
+
+      settings = Optional.fromNullable(MessagingConfiguration.shared.getStorage().getRecipientSettings(groupId));
     }
 
     if (groupRecord.isPresent()) {
