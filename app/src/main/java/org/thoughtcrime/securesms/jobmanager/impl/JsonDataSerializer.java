@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.logging.Log;
 import org.session.libsession.utilities.JsonUtils;
 

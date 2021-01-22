@@ -1,5 +1,8 @@
 package org.session.libsession.messaging.jobs
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import nl.komponents.kovenant.functional.map
 import okhttp3.MediaType
 import okhttp3.Request
@@ -22,6 +25,9 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     override val maxFailureCount: Int = 20
     companion object {
         val collection: String = "NotifyPNServerJobCollection"
+
+        //keys used for database storage purpose
+        private val KEY_MESSAGE = "message"
     }
 
     // Running
@@ -53,5 +59,34 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
 
     private fun handleFailure(error: Exception) {
         delegate?.handleJobFailed(this, error)
+    }
+
+    //database functions
+
+    override fun serialize(): Data {
+        val builder = this.createJobDataBuilder()
+        //serialize SnodeMessage property
+        val kryo = Kryo()
+        kryo.isRegistrationRequired = false
+        val serializedMessage = ByteArray(4096)
+        val output = Output(serializedMessage)
+        kryo.writeObject(output, message)
+        output.close()
+        return builder.putByteArray(KEY_MESSAGE, serializedMessage)
+                .build();
+    }
+
+    class Factory: Job.Factory<NotifyPNServerJob> {
+        override fun create(data: Data): NotifyPNServerJob {
+            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            //deserialize SnodeMessage property
+            val kryo = Kryo()
+            val input = Input(serializedMessage)
+            val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)
+            input.close()
+            val job = NotifyPNServerJob(message)
+            job.initJob(data)
+            return job
+        }
     }
 }

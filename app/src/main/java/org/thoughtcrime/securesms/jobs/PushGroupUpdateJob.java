@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.messaging.threads.recipients.Recipient;
@@ -12,7 +13,6 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
@@ -67,7 +67,8 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source)
                              .putString(KEY_GROUP_ID, GroupUtil.getEncodedClosedGroupID(groupId))
                              .build();
@@ -142,7 +143,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
 
   public static final class Factory implements Job.Factory<PushGroupUpdateJob> {
     @Override
-    public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+    public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new PushGroupUpdateJob(parameters,
                                     data.getString(KEY_SOURCE),
                                     GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID)));

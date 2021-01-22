@@ -5,12 +5,12 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.contacts.avatars.AvatarHelper;
 import org.session.libsession.utilities.Util;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
@@ -64,7 +64,8 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
                              .putString(KEY_ADDRESS, recipient.getAddress().serialize())
                              .build();

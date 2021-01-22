@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.jobs.Data
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob

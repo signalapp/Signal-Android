@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.util
+package org.session.libsession.utilities
 
 import android.os.Parcel
-
 import android.os.Parcelable
 
 object ParcelableUtil {

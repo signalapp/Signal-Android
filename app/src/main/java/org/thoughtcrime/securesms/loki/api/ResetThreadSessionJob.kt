@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.api
 
+import org.session.libsession.messaging.jobs.Data
 import org.session.libsession.messaging.threads.Address
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob

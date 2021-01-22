@@ -4,7 +4,7 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 import android.telephony.SmsManager;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -49,7 +49,8 @@ public class SmsSentJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
                              .putString(KEY_ACTION, action)
                              .putInt(KEY_RESULT, result)

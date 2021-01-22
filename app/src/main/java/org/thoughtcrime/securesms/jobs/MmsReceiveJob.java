@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobs;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -46,7 +46,8 @@ public class MmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_DATA, Base64.encodeBytes(data))
                              .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
                              .build();

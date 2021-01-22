@@ -1,12 +1,14 @@
 package org.session.libsession.messaging.jobs
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class MessageSendJob(val message: Message, val destination: Destination) : Job {
 
@@ -20,6 +22,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val TAG = MessageSendJob::class.qualifiedName
 
         val collection: String = "MessageSendJobCollection"
+
+        //keys used for database storage purpose
+        private val KEY_MESSAGE = "message"
+        private val KEY_DESTINATION = "destination"
     }
 
     override fun execute() {
@@ -66,5 +72,43 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             if(!MessagingConfiguration.shared.messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
         }
         delegate?.handleJobFailed(this, error)
+    }
+
+    //database functions
+
+    override fun serialize(): Data {
+        val builder = this.createJobDataBuilder()
+        //serialize Message and Destination properties
+        val kryo = Kryo()
+        kryo.isRegistrationRequired = false
+        val serializedMessage = ByteArray(4096)
+        val serializedDestination = ByteArray(4096)
+        var output = Output(serializedMessage)
+        kryo.writeObject(output, message)
+        output.close()
+        output = Output(serializedDestination)
+        kryo.writeObject(output, destination)
+        output.close()
+        return builder.putByteArray(KEY_MESSAGE, serializedMessage)
+                .putByteArray(KEY_DESTINATION, serializedDestination)
+                .build();
+    }
+
+    class Factory: Job.Factory<MessageSendJob> {
+        override fun create(data: Data): MessageSendJob {
+            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            val serializedDestination = data.getByteArray(KEY_DESTINATION)
+            //deserialize Message and Destination properties
+            val kryo = Kryo()
+            var input = Input(serializedMessage)
+            val message: Message = kryo.readObject(input, Message::class.java)
+            input.close()
+            input = Input(serializedDestination)
+            val destination: Destination = kryo.readObject(input, Destination::class.java)
+            input.close()
+            val job = MessageSendJob(message, destination)
+            job.initJob(data)
+            return job
+        }
     }
 }

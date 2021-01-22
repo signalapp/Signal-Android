@@ -1,5 +1,8 @@
 package org.session.libsession.messaging.jobs
 
+import com.esotericsoftware.kryo.Kryo
+import com.esotericsoftware.kryo.io.Input
+import com.esotericsoftware.kryo.io.Output
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.messages.Message
@@ -29,6 +32,12 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
         val collection: String = "AttachmentUploadJobCollection"
         val maxFailureCount: Int = 20
+
+        //keys used for database storage purpose
+        private val KEY_ATTACHMENT_ID = "attachment_id"
+        private val KEY_THREAD_ID = "thread_id"
+        private val KEY_MESSAGE = "message"
+        private val KEY_MESSAGE_SEND_JOB_ID = "message_send_job_id"
     }
 
     override fun execute() {
@@ -89,6 +98,38 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         MessageSender.handleFailedMessageSend(this.message!!, e)
         if (messageSendJob != null) {
             storage.markJobAsFailed(messageSendJob)
+        }
+    }
+
+    //database functions
+
+    override fun serialize(): Data {
+        val builder = this.createJobDataBuilder()
+        //serialize Message property
+        val kryo = Kryo()
+        kryo.isRegistrationRequired = false
+        val serializedMessage = ByteArray(4096)
+        val output = Output(serializedMessage)
+        kryo.writeObject(output, message)
+        output.close()
+        return builder.putLong(KEY_ATTACHMENT_ID, attachmentID)
+                .putString(KEY_THREAD_ID, threadID)
+                .putByteArray(KEY_MESSAGE, serializedMessage)
+                .putString(KEY_MESSAGE_SEND_JOB_ID, messageSendJobID)
+                .build();
+    }
+
+    class Factory: Job.Factory<AttachmentUploadJob> {
+        override fun create(data: Data): AttachmentUploadJob {
+            val serializedMessage = data.getByteArray(KEY_MESSAGE)
+            //deserialize Message property
+            val kryo = Kryo()
+            val input = Input(serializedMessage)
+            val message: Message = kryo.readObject(input, Message::class.java)
+            input.close()
+            val job =  AttachmentUploadJob(data.getLong(KEY_ATTACHMENT_ID), data.getString(KEY_THREAD_ID)!!, message, data.getString(KEY_MESSAGE_SEND_JOB_ID)!!)
+            job.initJob(data)
+            return job
         }
     }
 }

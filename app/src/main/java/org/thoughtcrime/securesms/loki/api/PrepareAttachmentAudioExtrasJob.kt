@@ -5,11 +5,11 @@ import android.os.Build
 import org.thoughtcrime.securesms.logging.Log
 import androidx.annotation.RequiresApi
 import org.greenrobot.eventbus.EventBus
+import org.session.libsession.messaging.jobs.Data
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.loki.utilities.audio.DecodedAudio

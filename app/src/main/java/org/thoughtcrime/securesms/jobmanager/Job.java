@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.LinkedList;
