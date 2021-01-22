@@ -13,7 +13,6 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -25,7 +24,6 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
@@ -41,6 +39,9 @@ class ManageProfileViewModel extends ViewModel {
   private final MutableLiveData<String>      aboutEmoji;
   private final SingleLiveEvent<Event>       events;
   private final RecipientForeverObserver     observer;
+  private final ManageProfileRepository      repository;
+
+  private byte[] previousAvatar;
 
   public ManageProfileViewModel() {
     this.avatar      = new MutableLiveData<>();
@@ -49,6 +50,7 @@ class ManageProfileViewModel extends ViewModel {
     this.about       = new MutableLiveData<>();
     this.aboutEmoji  = new MutableLiveData<>();
     this.events      = new SingleLiveEvent<>();
+    this.repository  = new ManageProfileRepository();
     this.observer    = this::onRecipientChanged;
 
     SignalExecutors.BOUNDED.execute(() -> {
@@ -101,11 +103,21 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   public void onAvatarSelected(@NonNull Context context, @Nullable Media media) {
+    previousAvatar = avatar.getValue() != null ? avatar.getValue().getAvatar() : null;
+
     if (media == null) {
-      SignalExecutors.BOUNDED.execute(() -> {
-        AvatarHelper.delete(context, Recipient.self().getId());
-        avatar.postValue(AvatarState.none());
-        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+      avatar.postValue(AvatarState.loading(null));
+      repository.clearAvatar(context, result -> {
+        switch (result) {
+          case SUCCESS:
+            avatar.postValue(AvatarState.loaded(null));
+            previousAvatar = null;
+            break;
+          case FAILURE_NETWORK:
+            avatar.postValue(AvatarState.loaded(previousAvatar));
+            events.postValue(Event.AVATAR_NETWORK_FAILURE);
+            break;
+        }
       });
     } else {
       SignalExecutors.BOUNDED.execute(() -> {
@@ -113,13 +125,23 @@ class ManageProfileViewModel extends ViewModel {
           InputStream stream = BlobProvider.getInstance().getStream(context, media.getUri());
           byte[]      data   = StreamUtil.readFully(stream);
 
-          AvatarHelper.setAvatar(context, Recipient.self().getId(), new ByteArrayInputStream(data));
-          avatar.postValue(AvatarState.loaded(data));
+          avatar.postValue(AvatarState.loading(data));
 
-          ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
+          repository.setAvatar(context, data, media.getMimeType(), result -> {
+            switch (result) {
+              case SUCCESS:
+                avatar.postValue(AvatarState.loaded(data));
+                previousAvatar = data;
+                break;
+              case FAILURE_NETWORK:
+                avatar.postValue(AvatarState.loaded(previousAvatar));
+                events.postValue(Event.AVATAR_NETWORK_FAILURE);
+                break;
+            }
+          });
         } catch (IOException e) {
           Log.w(TAG, "Failed to save avatar!", e);
-          events.postValue(Event.AVATAR_FAILURE);
+          events.postValue(Event.AVATAR_DISK_FAILURE);
         }
       });
     }
@@ -176,7 +198,7 @@ class ManageProfileViewModel extends ViewModel {
   }
 
   enum Event {
-    AVATAR_FAILURE
+    AVATAR_NETWORK_FAILURE, AVATAR_DISK_FAILURE
   }
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {

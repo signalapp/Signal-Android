@@ -107,10 +107,13 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithName(@NonNull Context context, @NonNull ProfileName profileName) throws IOException {
-    uploadProfile(context,
-                  profileName,
-                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      uploadProfile(context,
+                    profileName,
+                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    avatar);
+    }
   }
 
   /**
@@ -119,35 +122,51 @@ public final class ProfileUtil {
    * successfully before persisting the change to disk.
    */
   public static void uploadProfileWithAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji) throws IOException {
-    uploadProfile(context,
-                  Recipient.self().getProfileName(),
-                  about,
-                  emoji);
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      uploadProfile(context,
+                    Recipient.self().getProfileName(),
+                    about,
+                    emoji,
+                    avatar);
+    }
+  }
+
+  /**
+   * Uploads the profile based on all state that's written to disk, except we'll use the provided
+   * avatar instead. This is useful when you want to ensure that the profile has been uploaded
+   * successfully before persisting the change to disk.
+   */
+  public static void uploadProfileWithAvatar(@NonNull Context context, @Nullable StreamDetails avatar) throws IOException {
+      uploadProfile(context,
+                    Recipient.self().getProfileName(),
+                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    avatar);
   }
 
   /**
    * Uploads the profile based on all state that's already written to disk.
    */
   public static void uploadProfile(@NonNull Context context) throws IOException {
-    uploadProfile(context,
-                  Recipient.self().getProfileName(),
-                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
-                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      uploadProfile(context,
+                    Recipient.self().getProfileName(),
+                    Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                    Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""),
+                    avatar);
+    }
   }
 
-  public static void uploadProfile(@NonNull Context context,
-                                   @NonNull ProfileName profileName,
-                                   @Nullable String about,
-                                   @Nullable String aboutEmoji)
+  private static void uploadProfile(@NonNull Context context,
+                                    @NonNull ProfileName profileName,
+                                    @Nullable String about,
+                                    @Nullable String aboutEmoji,
+                                    @Nullable StreamDetails avatar)
       throws IOException
   {
-    ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
-    String      avatarPath;
-
-    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
-    }
+    ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
+    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+    String                      avatarPath     = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
 
     DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
   }

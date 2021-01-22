@@ -182,8 +182,13 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void presentEvent(@NonNull ManageProfileViewModel.Event event) {
-    if (event == ManageProfileViewModel.Event.AVATAR_FAILURE) {
-      Toast.makeText(requireContext(), R.string.ManageProfileFragment_failed_to_set_avatar, Toast.LENGTH_LONG).show();
+    switch (event) {
+      case AVATAR_DISK_FAILURE:
+        Toast.makeText(requireContext(), R.string.ManageProfileFragment_failed_to_set_avatar, Toast.LENGTH_LONG).show();
+        break;
+      case AVATAR_NETWORK_FAILURE:
+        Toast.makeText(requireContext(), R.string.EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later, Toast.LENGTH_LONG).show();
+        break;
     }
   }
 
