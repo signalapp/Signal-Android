@@ -885,13 +885,13 @@ public class Recipient {
   }
 
   public @Nullable String getCombinedAboutAndEmoji() {
-    if (aboutEmoji != null) {
-      if (about != null) {
+    if (!Util.isEmpty(aboutEmoji)) {
+      if (!Util.isEmpty(about)) {
         return aboutEmoji + " " + about;
       } else {
         return aboutEmoji;
       }
-    } else if (about != null) {
+    } else if (!Util.isEmpty(about)) {
       return about;
     } else {
       return null;
