@@ -560,7 +560,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     searchAdapter.updateResults(result);
 
     if (result.isEmpty() && activeAdapter == searchAdapter) {
-      if (emptyState.resolved()) emptyState.get().setVisibility(View.GONE);
+      if (emptyState.resolved()){
+        emptyState.get().setVisibility(View.GONE);
+      }
       searchEmptyState.setText(getString(R.string.SearchFragment_no_results, result.getQuery()));
       searchEmptyState.setVisibility(View.VISIBLE);
     } else {
