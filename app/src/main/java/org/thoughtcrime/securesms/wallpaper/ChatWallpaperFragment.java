@@ -81,7 +81,8 @@ public class ChatWallpaperFragment extends Fragment {
     updateDividerVisibility();
 
     clearWallpaper.setOnClickListener(unused -> {
-      confirmAction(R.string.ChatWallpaperFragment__clear_wallpaper_question_mark,
+      confirmAction(viewModel.isGlobal() ? R.string.ChatWallpaperFragment__clear_wallpaper_this_will_not
+                                         : R.string.ChatWallpaperFragment__clear_wallpaper_for_this_chat,
                     R.string.ChatWallpaperFragment__clear,
                     () -> {
                       viewModel.setWallpaper(null);
