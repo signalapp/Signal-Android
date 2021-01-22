@@ -85,7 +85,7 @@ public class ChatWallpaperFragment extends Fragment {
                     R.string.ChatWallpaperFragment__clear,
                     () -> {
                       viewModel.setWallpaper(null);
-                      viewModel.setDimInDarkTheme(false);
+                      viewModel.setDimInDarkTheme(true);
                       viewModel.saveWallpaperSelection();
                     });
     });
@@ -95,7 +95,7 @@ public class ChatWallpaperFragment extends Fragment {
                     R.string.ChatWallpaperFragment__reset,
                     () -> {
                       viewModel.setWallpaper(null);
-                      viewModel.setDimInDarkTheme(false);
+                      viewModel.setDimInDarkTheme(true);
                       viewModel.resetAllWallpaper();
                     });
     });

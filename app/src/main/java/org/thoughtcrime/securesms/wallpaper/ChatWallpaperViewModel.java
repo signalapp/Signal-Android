@@ -32,7 +32,7 @@ public class ChatWallpaperViewModel extends ViewModel {
     this.recipientId = recipientId;
 
     ChatWallpaper currentWallpaper = repository.getCurrentWallpaper(recipientId);
-    dimInDarkTheme.setValue(currentWallpaper != null && currentWallpaper.getDimLevelForDarkTheme() > 0f);
+    dimInDarkTheme.setValue(currentWallpaper == null || currentWallpaper.getDimLevelForDarkTheme() > 0f);
     enableWallpaperControls.setValue(hasClearableWallpaper());
     wallpaper.setValue(Optional.fromNullable(currentWallpaper));
   }
@@ -65,7 +65,7 @@ public class ChatWallpaperViewModel extends ViewModel {
         ChatWallpaper globalWallpaper = SignalStore.wallpaper().getWallpaper();
 
         this.wallpaper.setValue(Optional.fromNullable(globalWallpaper));
-        this.dimInDarkTheme.setValue(globalWallpaper != null && globalWallpaper.getDimLevelForDarkTheme() > 0);
+        this.dimInDarkTheme.setValue(globalWallpaper == null || globalWallpaper.getDimLevelForDarkTheme() > 0);
       }
 
       enableWallpaperControls.setValue(false);
