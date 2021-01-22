@@ -212,8 +212,11 @@ final class GroupMemberListAdapter extends LifecycleRecyclerAdapter<GroupMemberL
     void bindImageAndText(@NonNull Recipient recipient, @NonNull String displayText, @Nullable String about) {
       this.recipient.setText(displayText);
       this.avatar.setRecipient(recipient);
-      this.about.setText(about);
-      this.about.setVisibility(Util.isEmpty(about) ? View.GONE : View.VISIBLE);
+
+      if (this.about != null) {
+        this.about.setText(about);
+        this.about.setVisibility(Util.isEmpty(about) ? View.GONE : View.VISIBLE);
+      }
     }
 
     void bindRecipientClick(@NonNull Recipient recipient) {
