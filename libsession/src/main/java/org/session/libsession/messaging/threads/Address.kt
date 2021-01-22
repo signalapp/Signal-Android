@@ -142,7 +142,7 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
     }
 
     companion object {
-        val CREATOR: Parcelable.Creator<Address?> = object : Parcelable.Creator<Address?> {
+        @JvmField val CREATOR: Parcelable.Creator<Address?> = object : Parcelable.Creator<Address?> {
             override fun createFromParcel(`in`: Parcel): Address {
                 return Address(`in`)
             }

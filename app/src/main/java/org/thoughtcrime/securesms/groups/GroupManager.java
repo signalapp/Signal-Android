@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class GroupManager {
@@ -103,7 +104,7 @@ public class GroupManager {
     final Recipient     groupRecipient  = Recipient.from(context, Address.Companion.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = new HashSet<>();
 
-    memberAddresses.add(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    memberAddresses.add(Address.Companion.fromSerialized(Objects.requireNonNull(TextSecurePreferences.getLocalNumber(context))));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>());
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);

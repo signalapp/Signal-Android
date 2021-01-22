@@ -6,9 +6,10 @@ import java.io.IOException
 import java.util.*
 
 class GroupRecord(
-        val encodedId: String, val title: String, members: String?, val avatar: ByteArray,
-        val avatarId: Long, val avatarKey: ByteArray, val avatarContentType: String,
-        val relay: String, val isActive: Boolean, val avatarDigest: ByteArray, val isMms: Boolean, val url: String, admins: String?, val createAt: Long
+        val encodedId: String, val title: String, members: String?, val avatar: ByteArray?,
+        val avatarId: Long?, val avatarKey: ByteArray?, val avatarContentType: String?,
+        val relay: String?, val isActive: Boolean, val avatarDigest: ByteArray?, val isMms: Boolean,
+        val url: String?, admins: String?, val createAt: Long
 ) {
     var members: List<Address> = LinkedList<Address>()
     var admins: List<Address> = LinkedList<Address>()

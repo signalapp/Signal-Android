@@ -1267,7 +1267,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedClosedGroupID(message.getGroupInfo().get().getGroupId())), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.Companion.fromExternal(context, content.getSender()), false);
     }

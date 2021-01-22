@@ -55,7 +55,7 @@ object GroupUtil {
     fun getEncodedId(group: SignalServiceGroup): String {
         val groupId = group.groupId
         if (group.groupType == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
-            return getEncodedOpenGroupID(groupId.toString())
+            return getEncodedOpenGroupID(String(groupId))
         }
         return getEncodedClosedGroupID(Hex.toStringCondensed(groupId))
     }

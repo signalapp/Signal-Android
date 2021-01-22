@@ -916,7 +916,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun hasSeenWelcomeScreen(context: Context): Boolean {
-        return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, true)
+        return getBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, false)
     }
 
     fun setHasSeenWelcomeScreen(context: Context, value: Boolean) {
