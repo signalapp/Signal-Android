@@ -9,12 +9,16 @@ import androidx.annotation.WorkerThread;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
@@ -26,6 +30,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.internal.util.concurrent.CascadingFuture;
 import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
 
@@ -94,6 +99,57 @@ public final class ProfileUtil {
 
     ProfileCipher profileCipher = new ProfileCipher(profileKey);
     return new String(profileCipher.decryptName(Base64.decode(encryptedName)));
+  }
+
+  /**
+   * Uploads the profile based on all state that's written to disk, except we'll use the provided
+   * profile name instead. This is useful when you want to ensure that the profile has been uploaded
+   * successfully before persisting the change to disk.
+   */
+  public static void uploadProfileWithName(@NonNull Context context, @NonNull ProfileName profileName) throws IOException {
+    uploadProfile(context,
+                  profileName,
+                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+  }
+
+  /**
+   * Uploads the profile based on all state that's written to disk, except we'll use the provided
+   * about/emoji instead. This is useful when you want to ensure that the profile has been uploaded
+   * successfully before persisting the change to disk.
+   */
+  public static void uploadProfileWithAbout(@NonNull Context context, @NonNull String about, @NonNull String emoji) throws IOException {
+    uploadProfile(context,
+                  Recipient.self().getProfileName(),
+                  about,
+                  emoji);
+  }
+
+  /**
+   * Uploads the profile based on all state that's already written to disk.
+   */
+  public static void uploadProfile(@NonNull Context context) throws IOException {
+    uploadProfile(context,
+                  Recipient.self().getProfileName(),
+                  Optional.fromNullable(Recipient.self().getAbout()).or(""),
+                  Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+  }
+
+  public static void uploadProfile(@NonNull Context context,
+                                   @NonNull ProfileName profileName,
+                                   @Nullable String about,
+                                   @Nullable String aboutEmoji)
+      throws IOException
+  {
+    ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
+    String      avatarPath;
+
+    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
+      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
+    }
+
+    DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
   }
 
   private static @NonNull ListenableFuture<ProfileAndCredential> getPipeRetrievalFuture(@NonNull SignalServiceAddress address,

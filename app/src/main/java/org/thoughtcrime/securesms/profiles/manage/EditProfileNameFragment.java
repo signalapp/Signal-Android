@@ -6,12 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+
+import com.dd.CircularProgressButton;
 
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.R;
@@ -31,8 +35,10 @@ public class EditProfileNameFragment extends Fragment {
 
   public static final int NAME_MAX_GLYPHS = 26;
 
-  private EditText givenName;
-  private EditText familyName;
+  private EditText                 givenName;
+  private EditText                 familyName;
+  private CircularProgressButton   saveButton;
+  private EditProfileNameViewModel viewModel;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +49,9 @@ public class EditProfileNameFragment extends Fragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     this.givenName  = view.findViewById(R.id.edit_profile_name_given_name);
     this.familyName = view.findViewById(R.id.edit_profile_name_family_name);
+    this.saveButton = view.findViewById(R.id.edit_profile_name_save);
+
+    initializeViewModel();
 
     this.givenName.setText(Recipient.self().getProfileName().getGivenName());
     this.familyName.setText(Recipient.self().getProfileName().getFamilyName());
@@ -57,19 +66,38 @@ public class EditProfileNameFragment extends Fragment {
     this.givenName.addTextChangedListener(new AfterTextChanged(EditProfileNameFragment::trimFieldToMaxByteLength));
     this.familyName.addTextChangedListener(new AfterTextChanged(EditProfileNameFragment::trimFieldToMaxByteLength));
 
-    view.findViewById(R.id.edit_profile_name_save).setOnClickListener(this::onSaveClicked);
+    saveButton.setOnClickListener(v -> viewModel.onSaveClicked(requireContext(),
+                                                               givenName.getText().toString(),
+                                                               familyName.getText().toString()));
   }
 
-  private void onSaveClicked(View view) {
-    ProfileName profileName = ProfileName.fromParts(givenName.getText().toString(), familyName.getText().toString());
+  private void initializeViewModel() {
+    this.viewModel = ViewModelProviders.of(this).get(EditProfileNameViewModel.class);
 
-    SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      DatabaseFactory.getRecipientDatabase(requireContext()).setProfileName(Recipient.self().getId(), profileName);
-      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
-      return null;
-    }, (nothing) -> {
-      Navigation.findNavController(view).popBackStack();
-    });
+    viewModel.getSaveState().observe(getViewLifecycleOwner(), this::presentSaveState);
+    viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);
+  }
+
+  private void presentSaveState(@NonNull EditProfileNameViewModel.SaveState state) {
+    switch (state) {
+      case IDLE:
+        saveButton.setIndeterminateProgressMode(false);
+        saveButton.setProgress(0);
+        break;
+      case IN_PROGRESS:
+        saveButton.setIndeterminateProgressMode(true);
+        saveButton.setProgress(50);
+        break;
+      case DONE:
+        Navigation.findNavController(requireView()).popBackStack();
+        break;
+    }
+  }
+
+  private void presentEvent(@NonNull EditProfileNameViewModel.Event event) {
+    if (event == EditProfileNameViewModel.Event.NETWORK_FAILURE) {
+      Toast.makeText(requireContext(), R.string.EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later, Toast.LENGTH_SHORT).show();
+    }
   }
 
   public static void trimFieldToMaxByteLength(Editable s) {

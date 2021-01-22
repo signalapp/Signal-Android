@@ -9,30 +9,30 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dd.CircularProgressButton;
+
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -60,9 +60,11 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
       new AboutPreset("\uD83D\uDE80", R.string.EditAboutFragment_working_on_something_new)
   );
 
-  private ImageView emojiView;
-  private EditText  bodyView;
-  private TextView  countView;
+  private ImageView              emojiView;
+  private EditText               bodyView;
+  private TextView               countView;
+  private CircularProgressButton saveButton;
+  private EditAboutViewModel     viewModel;
 
   private String selectedEmoji;
 
@@ -76,6 +78,9 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     this.emojiView  = view.findViewById(R.id.edit_about_emoji);
     this.bodyView   = view.findViewById(R.id.edit_about_body);
     this.countView  = view.findViewById(R.id.edit_about_count);
+    this.saveButton = view.findViewById(R.id.edit_about_save);
+
+    initializeViewModel();
 
     view.<Toolbar>findViewById(R.id.toolbar)
         .setNavigationOnClickListener(v -> Navigation.findNavController(view)
@@ -92,8 +97,12 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
                                                 .show(requireFragmentManager(), "BOTTOM");
     });
 
-    view.findViewById(R.id.edit_about_save).setOnClickListener(this::onSaveClicked);
     view.findViewById(R.id.edit_about_clear).setOnClickListener(v -> onClearClicked());
+
+    saveButton.setOnClickListener(v -> viewModel.onSaveClicked(requireContext(),
+                                                               bodyView.getText().toString(),
+                                                               selectedEmoji));
+
 
     RecyclerView  presetList    = view.findViewById(R.id.edit_about_presets);
     PresetAdapter presetAdapter = new PresetAdapter();
@@ -135,6 +144,13 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     }
   }
 
+  private void initializeViewModel() {
+    this.viewModel = ViewModelProviders.of(this).get(EditAboutViewModel.class);
+
+    viewModel.getSaveState().observe(getViewLifecycleOwner(), this::presentSaveState);
+    viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);
+  }
+
   private void presentCount(@NonNull String aboutBody) {
     BreakIteratorCompat breakIterator = BreakIteratorCompat.getInstance();
     breakIterator.setText(aboutBody);
@@ -148,14 +164,26 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     }
   }
 
-  private void onSaveClicked(View view) {
-    SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      DatabaseFactory.getRecipientDatabase(requireContext()).setAbout(Recipient.self().getId(), bodyView.getText().toString(), selectedEmoji);
-      ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
-      return null;
-    }, (nothing) -> {
-      Navigation.findNavController(view).popBackStack();
-    });
+  private void presentSaveState(@NonNull EditAboutViewModel.SaveState state) {
+    switch (state) {
+      case IDLE:
+        saveButton.setIndeterminateProgressMode(false);
+        saveButton.setProgress(0);
+        break;
+      case IN_PROGRESS:
+        saveButton.setIndeterminateProgressMode(true);
+        saveButton.setProgress(50);
+        break;
+      case DONE:
+        Navigation.findNavController(requireView()).popBackStack();
+        break;
+    }
+  }
+
+  private void presentEvent(@NonNull EditAboutViewModel.Event event) {
+    if (event == EditAboutViewModel.Event.NETWORK_FAILURE) {
+      Toast.makeText(requireContext(), R.string.EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later, Toast.LENGTH_SHORT).show();
+    }
   }
 
   private void onClearClicked() {
