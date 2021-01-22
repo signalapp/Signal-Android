@@ -45,8 +45,8 @@ import java.util.List;
  */
 public class EditAboutFragment extends Fragment implements ManageProfileActivity.EmojiController {
 
-  public static final int ABOUT_MAX_GLYPHS              = 100;
-  public static final int ABOUT_LIMIT_DISPLAY_THRESHOLD = 75;
+  public static final int ABOUT_MAX_GLYPHS              = 140;
+  public static final int ABOUT_LIMIT_DISPLAY_THRESHOLD = 120;
 
   private static final String KEY_SELECTED_EMOJI = "selected_emoji";
 
