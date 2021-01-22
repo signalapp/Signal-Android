@@ -2003,6 +2003,13 @@
     <string name="EditAboutFragment_about">About</string>
     <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
     <string name="EditAboutFragment_count">%d/%d</string>
+    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
 
     <!-- EditProfileFragment -->
     <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>

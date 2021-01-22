@@ -35,6 +35,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
+      android:layout_marginStart="5dp"
       android:layout_marginEnd="8dp"
       style="@style/Signal.Text.Body"
       android:hint="@string/EditAboutFragment_write_a_few_words_about_yourself"
@@ -50,6 +51,7 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="20dp"
       app:srcCompat="@drawable/ic_x"
+      android:background="?selectableItemBackgroundBorderless"
       app:tint="@color/signal_text_secondary"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/edit_about_body"
@@ -64,6 +66,17 @@
       app:layout_constraintTop_toBottomOf="@id/edit_about_body"
       app:layout_constraintEnd_toEndOf="@id/edit_about_body"
       tools:text="75/100"/>
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/edit_about_presets"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginTop="24dp"
+      android:paddingBottom="60dp"
+      android:clipToPadding="false"
+      android:clipChildren="false"
+      app:layout_constraintTop_toBottomOf="@id/edit_about_count"
+      app:layout_constraintBottom_toBottomOf="parent" />
 
   <com.google.android.material.button.MaterialButton
       android:id="@+id/edit_about_save"

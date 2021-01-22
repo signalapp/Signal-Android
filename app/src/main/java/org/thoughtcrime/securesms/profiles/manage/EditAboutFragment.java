@@ -12,9 +12,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.BreakIteratorCompat;
 import org.signal.core.util.EditTextUtil;
@@ -27,10 +31,14 @@ import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDial
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.adapter.AlwaysChangedDiffUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Let's you edit the 'About' section of your profile.
@@ -41,6 +49,16 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
   public static final int ABOUT_LIMIT_DISPLAY_THRESHOLD = 75;
 
   private static final String KEY_SELECTED_EMOJI = "selected_emoji";
+
+  private static final List<AboutPreset> PRESETS = Arrays.asList(
+      new AboutPreset("\uD83D\uDC4B", R.string.EditAboutFragment_speak_freely),
+      new AboutPreset("\uD83E\uDD10", R.string.EditAboutFragment_encrypted),
+      new AboutPreset("\uD83D\uDE4F", R.string.EditAboutFragment_be_kind),
+      new AboutPreset("☕",            R.string.EditAboutFragment_coffee_lover),
+      new AboutPreset("\uD83D\uDC4D", R.string.EditAboutFragment_free_to_chat),
+      new AboutPreset("\uD83D\uDCF5", R.string.EditAboutFragment_taking_a_break),
+      new AboutPreset("\uD83D\uDE80", R.string.EditAboutFragment_working_on_something_new)
+  );
 
   private ImageView emojiView;
   private EditText  bodyView;
@@ -76,6 +94,14 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
 
     view.findViewById(R.id.edit_about_save).setOnClickListener(this::onSaveClicked);
     view.findViewById(R.id.edit_about_clear).setOnClickListener(v -> onClearClicked());
+
+    RecyclerView  presetList    = view.findViewById(R.id.edit_about_presets);
+    PresetAdapter presetAdapter = new PresetAdapter();
+
+    presetList.setAdapter(presetAdapter);
+    presetList.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+    presetAdapter.submitList(PRESETS);
 
     if (savedInstanceState != null && savedInstanceState.containsKey(KEY_SELECTED_EMOJI)) {
       onEmojiSelected(savedInstanceState.getString(KEY_SELECTED_EMOJI, ""));
@@ -117,7 +143,6 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     }
   }
 
-
   private void onSaveClicked(View view) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       DatabaseFactory.getRecipientDatabase(requireContext()).setAbout(Recipient.self().getId(), bodyView.getText().toString(), selectedEmoji);
@@ -138,6 +163,67 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
 
     if (s.length() > trimmedLength) {
       s.delete(trimmedLength, s.length());
+    }
+  }
+
+  private void onPresetSelected(@NonNull AboutPreset preset) {
+    onEmojiSelected(preset.getEmoji());
+    bodyView.setText(requireContext().getString(preset.getBodyRes()));
+  }
+
+  private final class PresetAdapter extends ListAdapter<AboutPreset, PresetViewHolder> {
+
+    protected PresetAdapter() {
+      super(new AlwaysChangedDiffUtil<>());
+    }
+
+    @Override
+    public @NonNull PresetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+      return new PresetViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.about_preset_item, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PresetViewHolder holder, int position) {
+      AboutPreset preset = getItem(position);
+
+      holder.bind(preset);
+      holder.itemView.setOnClickListener(v -> onPresetSelected(preset));
+    }
+  }
+
+  private final class PresetViewHolder extends RecyclerView.ViewHolder {
+
+    private final ImageView emoji;
+    private final TextView  body;
+
+    public PresetViewHolder(@NonNull View itemView) {
+      super(itemView);
+
+      this.emoji = itemView.findViewById(R.id.about_preset_emoji);
+      this.body  = itemView.findViewById(R.id.about_preset_body);
+    }
+
+    public void bind(@NonNull AboutPreset preset) {
+      this.emoji.setImageDrawable(EmojiUtil.convertToDrawable(itemView.getContext(), preset.getEmoji()));
+      this.body.setText(preset.getBodyRes());
+    }
+  }
+
+  private static final class AboutPreset {
+    private final String emoji;
+    private final int    bodyRes;
+
+    private AboutPreset(@NonNull String emoji, @StringRes int bodyRes) {
+      this.emoji   = emoji;
+      this.bodyRes = bodyRes;
+    }
+
+    public @NonNull String getEmoji() {
+      return emoji;
+    }
+
+    public @StringRes int getBodyRes() {
+      return bodyRes;
     }
   }
 }
