@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -82,6 +83,8 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
       this.bodyView.setText(Recipient.self().getAbout());
       onEmojiSelected(Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
     }
+
+    ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);
   }
 
   @Override
