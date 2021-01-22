@@ -1,18 +1,15 @@
 package org.whispersystems.signalservice.testutil;
 
-import org.signal.zkgroup.internal.Native;
+import org.signal.client.internal.Native;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeNoException;
 
-public final class ZkGroupLibraryUtil {
-
-  private ZkGroupLibraryUtil() {
-  }
+public final class LibSignalLibraryUtil {
 
   /**
-   * Attempts to initialize the ZkGroup Native class, which will load the native binaries.
+   * Attempts to initialize the LibSignal Native class, which will load the native binaries.
    * <p>
    * If that fails to link, then on Unix, it will fail as we rely on that for CI.
    * <p>
@@ -21,18 +18,18 @@ public final class ZkGroupLibraryUtil {
    * If using inside a PowerMocked test, the assumption violation can be fatal, use:
    * {@code @PowerMockRunnerDelegate(JUnit4.class)}
    */
-  public static void assumeZkGroupSupportedOnOS() {
+  public static void assumeLibSignalSupportedOnOS() {
     try {
       Class.forName(Native.class.getName());
     } catch (ClassNotFoundException e) {
       fail();
-    } catch (UnsatisfiedLinkError | NoClassDefFoundError e) {
+    } catch (NoClassDefFoundError | UnsatisfiedLinkError e) {
       String osName = System.getProperty("os.name");
 
       if (isUnix(osName)) {
-        fail("Not able to link native ZkGroup on a key OS: " + osName);
+        fail("Not able to link native LibSignal on a key OS: " + osName);
       } else {
-        assumeNoException("Not able to link native ZkGroup on this operating system: " + osName, e);
+        assumeNoException("Not able to link native LibSignal on this operating system: " + osName, e);
       }
     }
   }

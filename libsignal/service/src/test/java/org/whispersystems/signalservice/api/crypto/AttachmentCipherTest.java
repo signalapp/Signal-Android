@@ -1,8 +1,7 @@
 package org.whispersystems.signalservice.api.crypto;
 
-import junit.framework.TestCase;
-
 import org.conscrypt.Conscrypt;
+import org.junit.Test;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.signalservice.internal.util.Util;
@@ -16,13 +15,18 @@ import java.io.OutputStream;
 import java.security.Security;
 import java.util.Arrays;
 
-public class AttachmentCipherTest extends TestCase {
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
+import static org.whispersystems.signalservice.testutil.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
+
+public final class AttachmentCipherTest {
 
   static {
     Security.insertProviderAt(Conscrypt.newProvider(), 1);
   }
 
-  public void test_attachment_encryptDecrypt() throws IOException, InvalidMessageException {
+  @Test
+  public void attachment_encryptDecrypt() throws IOException, InvalidMessageException {
     byte[]        key             = Util.getSecretBytes(64);
     byte[]        plaintextInput  = "Peter Parker".getBytes();
     EncryptResult encryptResult   = encryptData(plaintextInput, key);
@@ -30,12 +34,13 @@ public class AttachmentCipherTest extends TestCase {
     InputStream   inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
 
-    assertTrue(Arrays.equals(plaintextInput, plaintextOutput));
+    assertArrayEquals(plaintextInput, plaintextOutput);
 
     cipherFile.delete();
   }
 
-  public void test_attachment_encryptDecryptEmpty() throws IOException, InvalidMessageException {
+  @Test
+  public void attachment_encryptDecryptEmpty() throws IOException, InvalidMessageException {
     byte[]        key             = Util.getSecretBytes(64);
     byte[]        plaintextInput  = "".getBytes();
     EncryptResult encryptResult   = encryptData(plaintextInput, key);
@@ -43,12 +48,13 @@ public class AttachmentCipherTest extends TestCase {
     InputStream   inputStream     = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.length, key, encryptResult.digest);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
 
-    assertTrue(Arrays.equals(plaintextInput, plaintextOutput));
+    assertArrayEquals(plaintextInput, plaintextOutput);
 
     cipherFile.delete();
   }
 
-  public void test_attachment_decryptFailOnBadKey() throws IOException{
+  @Test
+  public void attachment_decryptFailOnBadKey() throws IOException{
     File    cipherFile          = null;
     boolean hitCorrectException = false;
 
@@ -72,7 +78,8 @@ public class AttachmentCipherTest extends TestCase {
     assertTrue(hitCorrectException);
   }
 
-  public void test_attachment_decryptFailOnBadDigest() throws IOException{
+  @Test
+  public void attachment_decryptFailOnBadDigest() throws IOException{
     File    cipherFile          = null;
     boolean hitCorrectException = false;
 
@@ -96,7 +103,8 @@ public class AttachmentCipherTest extends TestCase {
     assertTrue(hitCorrectException);
   }
 
-  public void test_attachment_decryptFailOnNullDigest() throws IOException{
+  @Test
+  public void attachment_decryptFailOnNullDigest() throws IOException {
     File    cipherFile          = null;
     boolean hitCorrectException = false;
 
@@ -119,7 +127,8 @@ public class AttachmentCipherTest extends TestCase {
     assertTrue(hitCorrectException);
   }
 
-  public void test_attachment_decryptFailOnBadMac() throws IOException {
+  @Test
+  public void attachment_decryptFailOnBadMac() throws IOException {
     File    cipherFile          = null;
     boolean hitCorrectException = false;
 
@@ -145,27 +154,36 @@ public class AttachmentCipherTest extends TestCase {
     assertTrue(hitCorrectException);
   }
 
-  public void test_sticker_encryptDecrypt() throws IOException, InvalidMessageException {
+  @Test
+  public void sticker_encryptDecrypt() throws IOException, InvalidMessageException {
+    assumeLibSignalSupportedOnOS();
+
     byte[]        packKey         = Util.getSecretBytes(32);
     byte[]        plaintextInput  = "Peter Parker".getBytes();
     EncryptResult encryptResult   = encryptData(plaintextInput, expandPackKey(packKey));
     InputStream   inputStream     = AttachmentCipherInputStream.createForStickerData(encryptResult.ciphertext, packKey);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
 
-    assertTrue(Arrays.equals(plaintextInput, plaintextOutput));
+    assertArrayEquals(plaintextInput, plaintextOutput);
   }
 
-  public void test_sticker_encryptDecryptEmpty() throws IOException, InvalidMessageException {
+  @Test
+  public void sticker_encryptDecryptEmpty() throws IOException, InvalidMessageException {
+    assumeLibSignalSupportedOnOS();
+
     byte[]        packKey         = Util.getSecretBytes(32);
     byte[]        plaintextInput  = "".getBytes();
     EncryptResult encryptResult   = encryptData(plaintextInput, expandPackKey(packKey));
     InputStream   inputStream     = AttachmentCipherInputStream.createForStickerData(encryptResult.ciphertext, packKey);
     byte[]        plaintextOutput = readInputStreamFully(inputStream);
 
-    assertTrue(Arrays.equals(plaintextInput, plaintextOutput));
+    assertArrayEquals(plaintextInput, plaintextOutput);
   }
 
-  public void test_sticker_decryptFailOnBadKey() throws IOException{
+  @Test
+  public void sticker_decryptFailOnBadKey() throws IOException {
+    assumeLibSignalSupportedOnOS();
+
     boolean hitCorrectException = false;
 
     try {
@@ -182,7 +200,10 @@ public class AttachmentCipherTest extends TestCase {
     assertTrue(hitCorrectException);
   }
 
-  public void test_sticker_decryptFailOnBadMac() throws IOException {
+  @Test
+  public void sticker_decryptFailOnBadMac() throws IOException {
+    assumeLibSignalSupportedOnOS();
+
     boolean hitCorrectException = false;
 
     try {

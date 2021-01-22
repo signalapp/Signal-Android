@@ -17,6 +17,9 @@ public final class ZkGroupLibraryUtil {
    * If that fails to link, then on Unix, it will fail as we rely on that for CI.
    * <p>
    * If that fails to link, and it's not Unix, it will skip the test via assumption violation.
+   * <p>
+   * If using inside a PowerMocked test, the assumption violation can be fatal, use:
+   * {@code @PowerMockRunnerDelegate(JUnit4.class)}
    */
   public static void assumeZkGroupSupportedOnOS() {
     try {
