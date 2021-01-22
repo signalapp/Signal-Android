@@ -51,6 +51,7 @@
 <!-- nl --><item>Nederlands</item>
 <!-- nb --><item>Norsk (bokmål)</item>
 <!-- nn --><item>Norsk (nynorsk)</item>
+<!-- or --><item>Odia ଓଡ଼ିଆ</item>
 <!-- fa --><item>Persian فارسی</item>
 <!-- pl --><item>Polski</item>
 <!-- pt --><item>Português</item>
@@ -125,6 +126,7 @@
       <item>nl</item>
       <item>nb</item>
       <item>nn</item>
+      <item>or</item>
       <item>fa</item>
       <item>pl</item>
       <item>pt</item>
