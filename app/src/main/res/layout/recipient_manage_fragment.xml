@@ -55,6 +55,7 @@
                     android:paddingEnd="16dp"
                     android:textAppearance="@style/Signal.Text.Body"
                     android:textColor="@color/signal_text_secondary"
+                    android:gravity="center"
                     tools:text="Hangin' around the web" />
 
                 <TextView
