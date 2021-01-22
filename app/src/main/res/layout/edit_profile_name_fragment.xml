@@ -45,17 +45,23 @@
       app:layout_constraintTop_toBottomOf="@id/edit_profile_name_given_name"
       app:layout_constraintStart_toStartOf="parent"/>
 
-  <com.google.android.material.button.MaterialButton
+  <com.dd.CircularProgressButton
       android:id="@+id/edit_profile_name_save"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
       android:layout_marginEnd="16dp"
       android:layout_marginBottom="16dp"
-      style="@style/Signal.Widget.Button.Medium.Primary"
+      android:textColor="@color/white"
       android:text="@string/EditProfileNameFragment_save"
       app:cornerRadius="80dp"
       app:elevation="4dp"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"/>
+      app:layout_constraintEnd_toEndOf="parent"
+      app:cpb_colorIndicator="@color/white"
+      app:cpb_colorProgress="?colorAccent"
+      app:cpb_cornerRadius="28dp"
+      app:cpb_selectorIdle="@drawable/progress_button_state"
+      app:cpb_textIdle="@string/EditProfileNameFragment_save" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -104,10 +104,10 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     presetAdapter.submitList(PRESETS);
 
     if (savedInstanceState != null && savedInstanceState.containsKey(KEY_SELECTED_EMOJI)) {
-      onEmojiSelected(savedInstanceState.getString(KEY_SELECTED_EMOJI, ""));
+      onEmojiSelectedInternal(savedInstanceState.getString(KEY_SELECTED_EMOJI, ""));
     } else {
       this.bodyView.setText(Recipient.self().getAbout());
-      onEmojiSelected(Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
+      onEmojiSelectedInternal(Optional.fromNullable(Recipient.self().getAboutEmoji()).or(""));
     }
 
     ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);
@@ -120,6 +120,11 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
 
   @Override
   public void onEmojiSelected(@NonNull String emoji) {
+    onEmojiSelectedInternal(emoji);
+    ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(bodyView);
+  }
+
+  private void onEmojiSelectedInternal(@NonNull String emoji) {
     Drawable drawable = EmojiUtil.convertToDrawable(requireContext(), emoji);
     if (drawable != null) {
       this.emojiView.setImageDrawable(drawable);
@@ -155,7 +160,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
 
   private void onClearClicked() {
     bodyView.setText("");
-    onEmojiSelected("");
+    onEmojiSelectedInternal("");
   }
 
   private static void trimFieldToMaxByteLength(Editable s) {
@@ -167,7 +172,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
   }
 
   private void onPresetSelected(@NonNull AboutPreset preset) {
-    onEmojiSelected(preset.getEmoji());
+    onEmojiSelectedInternal(preset.getEmoji());
     bodyView.setText(requireContext().getString(preset.getBodyRes()));
   }
 
