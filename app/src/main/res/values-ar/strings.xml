@@ -14,24 +14,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
-  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="zero">%d رسالة في كل محادثة</item>
-    <item quantity="one">%d رسالة في كل محادثة</item>
-    <item quantity="two">%d رسائل في كل محادثة</item>
-    <item quantity="few">%d رسائل في كل محادثة</item>
-    <item quantity="many">%d</item>
-    <item quantity="other">%d رسائل في كل محادثة</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">أأحذف جميع الرسائل القديمة الآن ؟</string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="zero">تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
-    <item quantity="one">سوف يتم تقليم كل المحادثات إلى أحدث رسالة.</item>
-    <item quantity="two">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
-    <item quantity="few">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
-    <item quantity="many">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
-    <item quantity="other">سوف يتم تقليم كل المحادثات إلى أحدث %d رسالة الآن.</item>
-  </plurals> -->
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">حذف</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">تعطيل العبارة السرية؟</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
@@ -50,8 +32,6 @@
   <string name="ApplicationPreferencesActivity_Off">مغلق</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">رسائل MMS %1$s SMS%2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">إقفال الشاشة %1$s، إنهاء التسجيل %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">قفل الشاشة
-%1$s</string> -->
   <string name="ApplicationPreferencesActivity_appearance_summary">المظهر %1$s، اللغة %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">يوجد رقم تعريفي شخصي (PIN) لحماية التسجيل مصاحب لهذا الرقم. الرجاء إدخاله.</string>
   <string name="ApplicationPreferencesActivity_pin_created">تم إنشاء الرقم التعريفي الشخصي.</string>
@@ -86,12 +66,9 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن الوصول إلى التخزين من أجل إرفاق الصور والفيديوهات والملفّات الصوتيّة، ولكن الإذن لم يُمنح  بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثمّ تفعيل \"سعة التخزين\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
-  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل التقاط صور، لكن الإذن لم يمنح بشكل دائم. يرجى زيارة قائمة إعدادات التطبيق، ثم اختيار \"الأذونات\"، وتفعيل \"الكاميرا\".</string> -->
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الملف …</string>
   <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
-  <!--AudioSlidePlayer-->
-  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string> -->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
   <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدما محظورا</string>
@@ -112,7 +89,6 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ستصبحون قادرين على مراسلة ومكالمة بعضكما، وسيتم مشاركة اسمك وصورتك الشخصية معهم.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">لن يتمكن الأشخاص المحظورون من الاتصال بك ولا إرسال الرسائل إليك.</string>
   <string name="BlockUnblockDialog_unblock_s">إلغاء حظر %1$s؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">رفع الحظر</string> -->
   <string name="BlockUnblockDialog_block">حظر</string>
   <string name="BlockUnblockDialog_block_and_leave">الحظر و المغادرة</string>
   <string name="BlockUnblockDialog_block_and_delete">حظر و حذف</string>
@@ -124,10 +100,6 @@
   <string name="BucketedThreadMedia_Large">كبير</string>
   <string name="BucketedThreadMedia_Medium">متوسط</string>
   <string name="BucketedThreadMedia_Small">صغير</string>
-  <!--CallScreen-->
-  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">مكالمة واردة</string> -->
-  <!--CameraActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">لم ينجح حفظ الصورة.</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">أنقر لالتقاط صورة، أو أضغط باستمرار لتصوير فيديو</string>
   <string name="CameraXFragment_capture_description">التقاط</string>
@@ -157,10 +129,8 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">لقد انتهت صلاحية إصدار Signal الخاص بك. يمكنك عرض محفوظات رسائلك ولكنك لن تتمكن من إرسال أو استقبال الرسائل حتى تقوم بالتحديث.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
-  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string> -->
   <string name="CommunicationActions_send_email">إرسال رسالة إلكترونية</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">هناك مكالمة هاتفية جارية </string>
-  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_start_video_call">بدء مكالمة فيديو؟</string> -->
   <string name="CommunicationActions_start_voice_call">بدأ مكالمة صوتية؟</string>
   <string name="CommunicationActions_cancel">إلغاء</string>
   <string name="CommunicationActions_call">اتصال</string>
@@ -231,13 +201,8 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">هيا ننتقل إلى Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">رجاء اختيار جهة اتصال</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">إلغاء حظر جهة الاتصال؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">إلغاء حظر هذه المجموعة؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">سوف تتمكنون من استقبال الرسائل والمكالمات من هذا المستخدم من جديد.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">سيستطيع الأعضاء الموجودين إضافتك للمجموعة مرة أخرى.</string> -->
   <string name="ConversationActivity_unblock">إلغاء الحظر</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">حجم المرفق تجاوز الحد المسموح بهذا النوع من الرسائل.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">الكاميرا غير موجودة</string> -->
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">لا تستطيع إرسال الرسائل لهذه المجموعة لأنك لم تعد عضواً.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق لمعالجة هذا الرابط على جهازك.</string>
@@ -268,7 +233,6 @@
   <string name="ConversationActivity_delete">حذف  </string>
   <string name="ConversationActivity_delete_and_leave">حذف ومغادرة</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">للاتصال ب%1$s يحتاج Signal الوصول إلى ميكروفونك.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">للاتصال ب%1$s يحتاج Signal الوصول إلى ميكروفونك وكاميرتك.</string> -->
   <string name="ConversationActivity__more_options_now_in_group_settings">ثمة خيارات إضافية الآن في \"إعدادات المجموعة\"</string>
   <string name="ConversationActivity_join">انضم</string>
   <string name="ConversationActivity_full">ممتليء</string>
@@ -290,14 +254,6 @@
     <item quantity="many">حذف الرسائل المختارة؟</item>
     <item quantity="other">حذف الرسائل المختارة؟</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="zero">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
-    <item quantity="one">هذه العملية سوف تؤدي إلى حذف نهائي للرسالة الختارة.</item>
-    <item quantity="two">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
-    <item quantity="few">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
-    <item quantity="many">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
-    <item quantity="other">سوف يتم حذف %1$d رسالة مختارة نهائيا.</item>
-  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">أحفظ في الذاكرة؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="zero">حفظ %1$d وسيط في الذاكرة يسمح ﻷي تطبيق آخر على الهاتف من النفاذ له. \n\nاستمر؟</item>
@@ -359,10 +315,6 @@
   <string name="ConversationFragment_not_now">ليس الآن</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">لقد تغير رقم أمانك مع %s</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">لقد تغير رقم أمانك مع %s، يُحتَمل أن يكون بأن هذا الشخص أعاد تثبيت Signal أو أنه غيَّر جهازه. يُرجى لمس زر التحقق للتأكيد على رقم اﻷمان الجديد. هذا اﻹجراء اختياري.</string>
-  <!--ConversationListActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح مثبّت في جهازك.</string> -->
-  <!--ConversationListFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">لم يتم العثور على أية نتيجة لـ \'%s\'</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="zero">حذف المحادثات المختارة؟</item>
     <item quantity="one">حذف المحادثة المختارة؟</item>
@@ -411,7 +363,6 @@
   <string name="CreateProfileActivity__profile">الملف الشخصي</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">خطأ في اختيار صورة الملف الشخصي</string>
   <string name="CreateProfileActivity_problem_setting_profile">خطأ في إعداد الملف الشخصي</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">صورة الملف الشخصي</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">صفحة حسابك الشخصي مشفرة بالتغمية من طرف لطرف. وأيّة تغيير سيكون ظاهراً لجهات اتصالك، بعد أن تقبل طلب محادثتهم أو بعد انضمامك لمجموعة جديدة.</string>
   <string name="CreateProfileActivity_set_avatar_description">اختيار صورة ملفك الشخصي</string>
@@ -460,11 +411,6 @@
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">يستخدم Signal التعمية من طرف لطرف ويحتاج بعض اﻷحيان لإنعاش جلسات المحادثات. إن هذا لا يؤثر على أمان محادثتك، لكن قد تفوتك رسالة من جهة الاتصال تلك، لكن يمكن الطلب منها إعادة إرسالها.</string>
-  <!--DeliveryStatus-->
-  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">جار الإرسال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">تمّ الإرسال </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">تم تسليم الرسالة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">تمت القراءة</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">إلغاء ربط  \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
@@ -507,8 +453,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">شارك مع</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">المرفقات المتعددة مدعومة فقط مع الصور والفيديو</string>
-  <!--GcmBroadcastReceiver-->
-  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">جار استعادة رسالة…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائم في الاتصال ب Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">لم يتمكن Signal من التسجيل عبر خدمات Google Play، وتم تعطيل رسائل ومكالمات Signal. الرجاء محاولة إعادة التسجيل عبر قائمة الإعدادات &gt; ثم اختيار متقدم.</string>
@@ -529,10 +473,6 @@
   <string name="ChooseNewAdminActivity_choose_new_admin">اختر مشرفا جديدا</string>
   <string name="ChooseNewAdminActivity_done">تم</string>
   <string name="ChooseNewAdminActivity_you_left">لقد غادرت \"%1$s\".</string>
-  <!--GroupShareProfileView-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">هل تريد مشاركة الاسم والصورة من ملفّك الشخصي مع هذه المجموعة؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">هل تُريد إظهار اسمك وصورتك الشخصية لكل الأعضاء الحاليين والمستقبليين في هذه المجموعة؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">اجعلها ظاهرة</string> -->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">أنت</string>
   <!--GV2 access levels-->
@@ -550,7 +490,6 @@
     <item quantity="other">تم إرسال %dدعوات</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">لا يمكن إضافة \"%1$s\" تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">لمعرفة المزيد</string> -->
   <string name="GroupManagement_invite_multiple_users">لا يمكن إضافة هؤلاء المستخدمين تلقائياً إلى هذه المجموعة من قبلك. \n\n لقد تمت دعوتهم للانضمام، ولن يروا أيّة رسالة من رسائل المجموعة حتى يقبلون.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ما هي المجموعات الجديدة ؟</string>
@@ -737,7 +676,6 @@
   <string name="AddGroupDetailsFragment__group_name_required">اسم المجموعة (ضروري)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">اسم المجموعة (اختياري)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">هذا الحقل مطلوب.</string>
-  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">يتوجب على المجموعات أن تحتوي على عضوان على الأقل</string> -->
   <string name="AddGroupDetailsFragment__group_creation_failed">فشل إنشاء المجموعة.</string>
   <string name="AddGroupDetailsFragment__try_again_later">حاول مرة أخرى لاحقا.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">لقد اخترت شخص لا يدعم مجموعات Signal، لذلك هذه المجموعة ستكون بتقنية MMS</string>
@@ -781,7 +719,6 @@
     <item quantity="other">لا يمكن إنشاء هذه المجموعة لأن %1$d عضو يستخدمون إصدار Signal قديم. يجب عليك إزالتهم قبل إنشاء المجموعة.</item>
   </plurals>
   <!--ManageGroupActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_disappearing_messages">الرسائل المُختفية</string> -->
   <string name="ManageGroupActivity_member_requests_and_invites">طلبات و دعوات اﻷعضاء</string>
   <string name="ManageGroupActivity_add_members">إضافة أعضاء</string>
   <string name="ManageGroupActivity_edit_group_info">تعديل معلومات المجموعة</string>
@@ -799,15 +736,6 @@
   <string name="ManageGroupActivity_on">مفعّل</string>
   <string name="ManageGroupActivity_view_all_members">استعراض جميع الأعضاء</string>
   <string name="ManageGroupActivity_see_all">مشاهدة الكل</string>
-  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">لا شيء </string> -->
-  <!-- Removed by excludeNonTranslatables <plurals name="ManageGroupActivity_invited">
-    <item quantity="zero">دُعي %d</item>
-    <item quantity="one">دُعي %d</item>
-    <item quantity="two">دُعي %d</item>
-    <item quantity="few">دُعي %d</item>
-    <item quantity="many">دُعي %d</item>
-    <item quantity="other">دُعي %d</item>
-  </plurals> -->
   <plurals name="ManageGroupActivity_added">
     <item quantity="zero">تمت إضافة%dعضو.</item>
     <item quantity="one">تمت إضافة %dعضو.</item>
@@ -836,10 +764,13 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة ؟</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupMentionSettingDialog_default_notify_me">افتراضي(نبّهني)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="GroupMentionSettingDialog_default_dont_notify_me">افتراضي(لا تنبّهني)</string> -->
   <string name="GroupMentionSettingDialog_always_notify_me">نبّهني دوماً</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
+  <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">اسم الشخصية</string>
+  <string name="ManageProfileFragment_username">اسم المستخدم</string>
+  <string name="ManageProfileFragment_about">حول</string>
+  <string name="ManageProfileFragment_your_name">إسمك</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">إضافة إلى جهات اتصال النظام</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">هذا الشخص محفوظ في جهات اتصالك</string>
@@ -865,7 +796,6 @@
     <item quantity="many">%dمجموعات مشتركة</item>
     <item quantity="other">%dمجموعات مشتركة</item>
   </plurals>
-  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_edit_name_and_picture">عدّل الاسم والصورة</string> -->
   <string name="ManageRecipientActivity_message_description">رسالة</string>
   <string name="ManageRecipientActivity_voice_call_description">مكالمة صوتية</string>
   <string name="ManageRecipientActivity_insecure_voice_call_description">مكالمة صوتية غير آمنة</string>
@@ -897,10 +827,6 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">إعادة تعيين الوصلة</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">طلبات الأعضاء</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">الموافقة على الأعضاء الجدد</string>
-  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__enabled">مفعل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__disabled">معطل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__default">افتراضي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__group_link_reset">إعادة التعيين وصلة المجموعة</string> -->
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">يتطلب هذا اﻹجراء موافقة المشرف لقبول انضمام أعضاء جدد عبر وصلة المجموعة.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">أأنت على يقين من قيامك بإعادة تعيين وصلة المجموعة ؟ لن يتمكن الأشخاص بعد الآن من الانضمام إلى المجموعة باستخدام الوصلة الحالية.</string>
   <!--GroupLinkShareQrDialogFragment-->
@@ -936,7 +862,6 @@
     <item quantity="other">مجموعة · %1$dأعضاء</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_links_coming_soon">وصلات المجموعات عما قريب</string> -->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">قم بتحديث Signal لاستخدام روابط المجموعة</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">لا يدعم إصدار Signal المُستعمَل وصلة المجموعة هذه. لذا، يُرجى التحديث إلى آخر إصدار للانضمام إلى هذه المجموعة عبر وصلة.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">قم بتحديث Signal</string>
@@ -956,9 +881,6 @@
   <string name="RequestConfirmationDialog_deny_request_from_s">رفض طلب \"%1$s\" ؟</string>
   <string name="RequestConfirmationDialog_add">إضافة</string>
   <string name="RequestConfirmationDialog_deny">رفض</string>
-  <!--CropImageActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">الصورة الرمزية للمجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">الصورة الرمزية</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">ضبّب الوجوه</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">جديد: ضبّب الوجوه أو ارسم في أي مكان لتضبيبه</string>
@@ -968,12 +890,10 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ألمس وأضغط لتسجيل رسالة صوتية. اسحب إصبعك للإرسال</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">شارك</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">اختر جهات الاتصال</string> -->
   <string name="InviteActivity_share_with_contacts">المشاركة مع جهات الاتصال</string>
   <string name="InviteActivity_choose_how_to_share">اختر وسيلة المشاركة</string>
   <string name="InviteActivity_cancel">إلغاء</string>
   <string name="InviteActivity_sending">إرسال…</string>
-  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">قلب</string> -->
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -995,8 +915,6 @@
   <string name="InviteActivity_lets_switch_to_signal">هيا ننتقل إلى Signal %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">الأصدقاء لا يتركون بعضهم يجرون محادثات غير مُعمَّاة.</string>
-  <!--Job-->
-  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">جار العمل في الخلفية…</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">لمعرفة المزيد</string>
   <!--LongMessageActivity-->
@@ -1091,8 +1009,6 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">إرسال إلى %s</string>
   <string name="MediaPickerActivity__menu_open_camera">فتح الكاميرا</string>
-  <!--MediaPickerItemFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">أنقر للاختيار</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">إضافة تعليق…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">تم حذف عنصر لإنه تجاوز حد الحجم المسموح</string>
@@ -1126,7 +1042,6 @@
   <string name="MessageRecord_missed_video_call_date">مكالمة بالصورة فائتة · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s قام بتحديث المجموعة.</string>
   <string name="MessageRecord_s_called_you_date">%1$s اتصل بك · %2$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">%s قام بالاتصال</string> -->
   <string name="MessageRecord_s_joined_signal">%sمتواجد على Signal !</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">قمت بتعطيل الرسائل المختفية.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">قام %1$s بتعطيل الرسائل المختفية.</string>
@@ -1304,13 +1219,11 @@
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_you_are_in_the_group_call_s1">إنك في مكالمة جماعية · %1$s</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">العضوان %1$s و %2$s موجودان في مكالمة جماعية · %3$s</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">الأعضاء %1$s و %2$s و%3$s موجودون في مكالمة جماعية · %4$s</string> -->
   <string name="MessageRecord_group_call_s">مكالمة جماعية · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">قام العضو %1$s ببدء مكالمة جماعية</string>
   <string name="MessageRecord_s_is_in_the_group_call">العضو %1$s موجود في مكالمة جماعية</string>
   <string name="MessageRecord_you_are_in_the_group_call">إنك في مكالمة جماعية</string>
   <string name="MessageRecord_s_and_s_are_in_the_group_call">العضوان %1$s و %2$s موجودان في مكالمة جماعية</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_s_and_s_are_in_the_group_call">الأعضاء %1$s و %2$s و%3$s موجودون في مكالمة جماعية</string> -->
   <string name="MessageRecord_group_call">مكالمة جماعية</string>
   <string name="MessageRecord_you">أنت</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
@@ -1417,7 +1330,6 @@
   <string name="PassphrasePromptActivity_unlock_signal">فك قفل Signal </string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">الخريطة</string>
-  <!-- Removed by excludeNonTranslatables <string name="PlacePickerActivity_not_a_valid_address">ليس عنوان صالح</string> -->
   <string name="PlacePickerActivity_drop_pin">إدخال إشارة </string>
   <string name="PlacePickerActivity_accept_address">قبول العنوان</string>
   <!--PlayServicesProblemFragment-->
@@ -1467,20 +1379,14 @@
   <string name="ReactionsRecipientAdapter_you">أنت</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">حظر</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">خطأ أثناء مغادرة المجموعة</string> -->
   <string name="RecipientPreferenceActivity_unblock">رفع الحظر</string>
-  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">مفعل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">معطل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">متوفر حالما تبعث رسالة أو تُستلم.</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">مجموعة بلا اسم</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">جار الرد…</string>
   <string name="RedPhone_ending_call">جارٍ إنهاء المكالمة…</string>
-  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">جارٍ الاتصال…</string> -->
   <string name="RedPhone_ringing">رنين…</string>
   <string name="RedPhone_busy">مشغول</string>
-  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">متصل</string> -->
   <string name="RedPhone_recipient_unavailable">المتلقي غير متاح</string>
   <string name="RedPhone_network_failed">فشل في الشبكة!</string>
   <string name="RedPhone_number_not_registered">الرقم غير مسجل!</string>
@@ -1491,7 +1397,6 @@
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">للاتصال ب%1$s, يحتاج Signal الصلاحية للوصول إلى الكاميرا</string>
   <string name="WebRtcCallActivity__signal_s">%1$sSignal</string>
   <string name="WebRtcCallActivity__calling">يتصل…</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallActivity__group_call">مكالمة جماعية</string> -->
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">مكالمة صوتية على Signal…</string>
   <string name="WebRtcCallView__signal_video_call">مكالمة فيديو على Signal….</string>
@@ -1502,7 +1407,6 @@
   <string name="WebRtcCallView__s_group_call">\"%1$s\" مكالمة جماعية</string>
   <string name="WebRtcCallView__view_participants_list">إظهار المشاركين</string>
   <string name="WebRtcCallView__your_video_is_off">الفيديو الخاص بك غير مشغلة</string>
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallView__connecting">جار الرّبط…</string> -->
   <string name="WebRtcCallView__reconnecting">إعادة الاتصال..</string>
   <string name="WebRtcCallView__joining">يجري الانضمام…</string>
   <string name="WebRtcCallView__disconnected">غير متّصل</string>
@@ -1552,14 +1456,10 @@
   <string name="RegistrationActivity_play_services_error">خطأ في خدمات Play </string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">جاري تحديث خدمات Google Play  أو أنها غير موجودة مؤقتاً. يرجى المحاولة مجدداً. </string>
   <string name="RegistrationActivity_terms_and_privacy">الشروط  &amp; وسياسة الخصوصية</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">لايمكن فتح الرابط. لم يتم العثور على متصفح ويب</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">المزيد من المعلومات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">معلومات أقل</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات الاتصال والوسائط من أجل التواصل مع الأصدقا، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">يحتاج Signal إلى إذن الوصول لجهات اتصالك والوسائط من أجل التواصل مع الأصدقاء، وتبادل الرسائل وإجراء مكالمات آمنة.</string>
   <string name="RegistrationActivity_rate_limited_to_service">لقد قمت بمحاولات كثيرة للتسجيل بهذا الرقم. الرجاء المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">لا يمكن الاتصال بالخدمة. الرجاء التأكد من الإتصال بالشبكة والمحاولة مرة أخرى.</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">للتحقق من رقم هاتفك بسهولة، يمكن ل Signal استقراء رمز التحقق الخاص بك تلقائيًا عند منح Signal إذن مشاهدة رسائل SMS.</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="zero">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
     <item quantity="one">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
@@ -1569,16 +1469,12 @@
     <item quantity="other">أنت الآن على بعد %d خطوة من إرسال سجل التصحيح.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">علينا التحقق من أنك إنسان.</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">فشل التحقق من رمز الكابتشا</string> -->
   <string name="RegistrationActivity_next">التالي</string>
   <string name="RegistrationActivity_continue">استمرار</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_d_attempts_left">استمرار (%d محاولة باقية)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_last_attempt">استمرار (آخر محاولة!)</string> -->
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت.
 
 كن على طبيعتك في كل رسالة.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_enter_your_phone_number">يُرجى إدخال رقم هاتفك</string> -->
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تحقّق. قد تنطبّق تكلفة من مزوّد الخدمة.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">يُرجى التأكد من أن هاتفك يلتقط الإشارة الخلوية لتلقي الرسائل القصيرة أو المكالمات</string>
@@ -1596,8 +1492,6 @@
   <string name="RevealableMessageView_view_video">مشاهدة الفيديو</string>
   <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
   <string name="RevealableMessageView_media">الوسائط</string>
-  <!--ScribbleActivity-->
-  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">تعذر حفظ  تعديلات الصورة</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">لم يتم العثور على أية نتيجة لـ \'%s\'</string>
   <string name="SearchFragment_header_conversations">المحادثات</string>
@@ -1660,11 +1554,8 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجل</string>
   <string name="SubmitDebugLogActivity_success">تمّ بنجاح!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">انسخ هذا الرابط وأضفــه إلى بلاغك أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
-  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_copied_to_clipboard">تمّ النسخ إلى الحافظة</string> -->
   <string name="SubmitDebugLogActivity_share">شارك</string>
   <!--SupportEmailUtil-->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_subject">الموضوع:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_android_support_request">طلب دعم Signal Android</string> -->
   <string name="SupportEmailUtil_device_info">معلومات الجهاز:</string>
   <string name="SupportEmailUtil_android_version">إصدار اﻷندرويد</string>
   <string name="SupportEmailUtil_signal_version">إصدار Signal:</string>
@@ -1696,12 +1587,9 @@
   <string name="ThreadRecord_you_marked_unverified">لقد قمت بإلغاء التحقق</string>
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
   <string name="ThreadRecord_message_request">طلب مراسلة</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_added_you_to_the_group">أضافك %1$s للمجموعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_invited_you_to_the_group">دعاك %1$s إلى المجموعة</string> -->
   <string name="ThreadRecord_photo">صورة</string>
   <string name="ThreadRecord_gif">صورة GIF</string>
   <string name="ThreadRecord_voice_message">رسالة صوتية.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_contact">جهة اتصال</string> -->
   <string name="ThreadRecord_file">ملف</string>
   <string name="ThreadRecord_video">فيديو</string>
   <string name="ThreadRecord_chat_session_refreshed">تم إنعاش جلسة المحادثة</string>
@@ -1762,7 +1650,6 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">تم استيراد قاعدة بيانات النظام.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">المس للفتح.</string>
-  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">المس للفتح أو المس رمز القفل للإغلاق.</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal غير مقفل</string>
   <string name="KeyCachingService_lock">اقفِل Signal</string>
   <!--MediaPreviewActivity-->
@@ -1780,15 +1667,12 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d رسائل جديدة في %2$d محادثات</string>
   <string name="MessageNotifier_most_recent_from_s">الأحدث من: %1$s</string>
   <string name="MessageNotifier_locked_message">رسالة مقفلة</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">رسالة وسائط متعددة: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">فشل توصيل الرسالة.</string>
   <string name="MessageNotifier_failed_to_deliver_message">فشل توصيل الرسالة.</string>
   <string name="MessageNotifier_error_delivering_message">خطأ بالارسال</string>
   <string name="MessageNotifier_mark_all_as_read">وسم جميع الرسائل بأنها مقروءة</string>
   <string name="MessageNotifier_mark_read">عُدَّها مقروءة</string>
   <string name="MessageNotifier_turn_off_these_notifications">تعطيل هذه الإشعارات</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">رسالة وسائط متعددة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">ملصق</string> -->
   <string name="MessageNotifier_view_once_photo">صورة للعرض مرة واحدة</string>
   <string name="MessageNotifier_view_once_video">مقطع فيديو للعرض مرة واحدة</string>
   <string name="MessageNotifier_reply">رَدّ</string>
@@ -1819,8 +1703,6 @@
   <string name="NotificationChannel_missing_display_name">مجهول</string>
   <string name="NotificationChannel_voice_notes">ملاحظات صوتية</string>
   <!--ProfileEditNameFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">تم ضبط اسم الشخصية بنجاح.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_encountered_a_network_error">حدث خطأ فى الشبكة</string> -->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
@@ -1850,8 +1732,6 @@
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">إنّ الجهاز لم يعد مسجلا</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">هذا على الأرجح بسبب قيامك بتسجيل رقم هاتفك على Signal في جهاز آخر. أنقر لإعادة التسجيل.</string>
-  <!--VideoPlayer-->
-  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">خطأ في تشغيل الفيديو</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %s يجب السماح ل Signal بالوصول إلى المايكروفون في جهازك.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل استقبال أو تلقّي المكالمات، ولكن الإذن لم يُمنح بشكل دائم. الرجاء زيارة إعدادات التطبيق، واختيار \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
@@ -1860,11 +1740,6 @@
   <string name="WebRtcCallActivity__busy_on_a_linked_device">مشغول على جهازٍ مرتبط.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">انضم شخص لهذه المكالمة برقم أمان مختلف.</string>
   <!--WebRtcCallScreen-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">تم تغيير رقم السلامة مع %1$s، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم السامة مع جهة الاتصال هذه.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">رقم سلامة جديد</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">موافقة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">إنهاء المكالمة</string> -->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">يُرجى السحب لتغيير نمط العرض</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">رفض</string>
@@ -1875,33 +1750,8 @@
   <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة الهاتف الأذنية</string>
   <string name="WebRtcAudioOutputToggle__speaker">مكبر الصوت</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
-  <!--WebRtcCallControls-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">انقر لتفعيل الفيديو </string> -->
-  <!--WebRtcCallControls Content Descriptions-->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">صورة جهة الاتصال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">السمّاعة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_bluetooth_button_description">بلوتوث</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">كتم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_your_camera_button_description">كاميرتك</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_switch_to_rear_camera_button_description">تبديل الى الكاميرا الخلفية</string> -->
   <string name="WebRtcCallControls_answer_call_description">الرد على المكالمة</string>
   <string name="WebRtcCallControls_reject_call_description">رفض المكالمة</string>
-  <!--attachment_type_selector-->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">صوت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">صوت</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">جهة اتصال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">جهة الاتصال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">كاميرا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">كاميرا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">الموقع</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">موقع جغرافي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">صورة GIF</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">صورة Gif</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">صورة أو فيديو</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">ملف</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">المعرض</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">ملف</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">فتح جارور المرفقات</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">العبارة السرية القديمة</string>
   <string name="change_passphrase_activity__new_passphrase">العبارة السرية الجديدة</string>
@@ -1937,8 +1787,6 @@
     <item quantity="many">%1$d عضو</item>
     <item quantity="other">%1$d عضو</item>
   </plurals>
-  <!--blocked_contacts_fragment-->
-  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal بحاجة إلى الوصول إلى جهات الاتصال لديك وذلك بغرض عرضها.</string>
   <string name="contact_selection_list_fragment__show_contacts">إظهار جهات الإتصال</string>
@@ -1995,7 +1843,6 @@
   <string name="QuoteView_photo">صورة</string>
   <string name="QuoteView_view_once_media">ملف متعدّد الوسائط لمشاهدة-واحدة</string>
   <string name="QuoteView_sticker">ملصق</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">مستند</string> -->
   <string name="QuoteView_you">أنت</string>
   <string name="QuoteView_original_missing">لم يتم العثور على الرسالة الأصلية</string>
   <!--conversation_fragment-->
@@ -2021,11 +1868,6 @@
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">لا توجد أجهزة موصولة</string>
   <string name="device_list_fragment__link_new_device">ربط جهاز جديد</string>
-  <!--experience_upgrade_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">استمر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">وصولات القراءة هنا</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">لديك خيار معرفة ومشاركة مؤشّر على أنّ الرسائل قد قّرأت </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">تفعيل وصولات القراءة</string> -->
   <!--expiration-->
   <string name="expiration_off">مغلق</string>
   <plurals name="expiration_seconds">
@@ -2097,20 +1939,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لم نعثر على شيء</string>
   <!--log_submit_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">تعذر التقاط السجلات من هاتفك. يمكنك استخدام ADB للحصول على سجل التشغيل  بدلا من ذلك.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">شكرا للمساعدة!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">إرسال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">ليس هناك متصفّح مُثبّت.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">لا تقدِّم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">قدِّم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">عُلم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">كتابة بريد إلكتروني</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتّى يتمكن المساهمون من مشاهدته. يُمكنك فحصه أو تعديله قبل تقديمه.</string>
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">جار تحميل السّجلات…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">جار رفع السّجلات…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">اختر تطبيق البريد الإلكتروني</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">الرّجاء مراجعة هذا السجلّ من تطبيقي: %1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">فشل في الشبكة. الرجاء المحاولة مرة أخرى.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ألديك الرغبة في استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المُعمَّاة ؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
@@ -2118,10 +1947,6 @@
   <string name="database_migration_activity__import">استيراد</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">قد تستغرق العملية عدة دقائق. يرجى الانتظار. سيتم تنبيهك عند انتهاء العملية.</string>
   <string name="database_migration_activity__importing">مهم!</string>
-  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">استيراد قاعدة بيانات رسائل SMS بالنظام</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات من تطبيق الرسائل الافتراضي لنظام التشغيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file"> استيراد ملف plaintext كنسخة احتياطية. متوافق مع  \'SMS Backup &amp; Restore.\'</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">مطالعة المحادثة بالكامل</string>
   <string name="load_more_header__loading">جارٍ التحميل</string>
@@ -2130,7 +1955,6 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">مشاهدة</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
-  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">إعادة الارسال…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -2153,28 +1977,20 @@
   <string name="CreateProfileActivity__username">اسم المستخدم</string>
   <string name="CreateProfileActivity__create_a_username">يرجى إنشاء اسم المستخدم</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">أسماء وصور مجموعة MMS المخصصة ستكون مرئية لك فقط.</string>
+  <!--EditAboutFragment-->
+  <string name="EditAboutFragment_about">حول</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">اكتب عدة كلمات عن نفسك….</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">عدّل اسم المجموعة وصورتها</string>
   <string name="EditProfileFragment__group_name">اسم المجموعة</string>
+  <!--EditProfileNameFragment-->
+  <string name="EditProfileNameFragment_your_name">إسمك</string>
+  <string name="EditProfileNameFragment_last_name_optional">الاسم الأخير (اختياري)</string>
+  <string name="EditProfileNameFragment_save">حفظ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">الملفّات المتعدّدة الوسائط التي تّم مشاركتها</string>
-  <!--- redphone_call_controls-->
-  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">مكالمة Signal</string> -->
-  <!--registration_activity-->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">رقم الهاتف</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">يسهّل Signal من التواصل باستخدام رقم هاتفك الحالي وجهات الاتصال لديك. سيتمكن أصدقائك ومعارفك الذين يعرفون كيف يتصلون بك هاتفيّاً أن يتواصلوا معك عبر Signal.
-
-عملية التسجيل ستنقل بعض بيانات جهات الاتصال إلى الخادوم. لكنّ، لا يتم تخزين هذه البيانات. </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">تحقق من رقمك</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">الرّجاء إدخال رقم هاتفك لاستقبال رمز التّحقق. قد تنطبق تكلفة من مزوّد الخدمة.</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>أدخل اسم أو رقم</small></string>
-  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">إضافة أعضاء</string> -->
-  <!--unknown_sender_view-->
-  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">المرسِل ليس مُدرَجا ضمن جهات الإتصال الخاصة بك</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">حظر</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">أضف إلى جهات الإتصال</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">لا تضفه، و لكن أظهر ملفي الشخصي له</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[إذا رغبت في التحقق من أمان التعمية مع %s، يجب مقارنة الرقم بالأعلى بالرقم الموجود في جهاز ذلك الشخص. أو يمكنك المسح التصويري للرمز الموجود في هاتفه، أو أن تطلب منه مسح رمزك. <a href="https://signal.org/redirect/safety-numbers">التعرف على المزيد</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">انقر للمسح</string>
@@ -2217,11 +2033,7 @@
   <string name="MessageRequestsMegaphone__message_requests">طلبات مراسلة</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">يمكن للمستخدمين الآن اختيار قبول محادثة جديدة. تتيح أسماء الملفات الشخصية للأشخاص معرفة من يراسلهم.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">إضافة اسم الملف الشخصي</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__new_message_requests">جديد: طلبات المراسلة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__add_name">إضافة اسم</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">بإمكانك الآن اختيار قبول محادثة جديدة. سترى خيارًا للقبول أو الحذف أو الحظر.</string> -->
   <!--HelpFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__help">مساعدة</string> -->
   <string name="HelpFragment__have_you_read_our_faq_yet">هل قرأت قسم الأسئلة الشائعة لدينا ؟</string>
   <string name="HelpFragment__next">التالي</string>
   <string name="HelpFragment__contact_us">تواصل معنا</string>
@@ -2232,11 +2044,8 @@
   <string name="HelpFragment__support_info">معلومات الدعم</string>
   <string name="HelpFragment__signal_android_support_request">طلب دعم Signal Android</string>
   <string name="HelpFragment__debug_log">سِجل الفحص :</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__na">غير محدد</string> -->
   <string name="HelpFragment__could_not_upload_logs">لا يمكن تحميل السجلات</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__signal_support">دعم تطبيق Signal</string> -->
   <string name="HelpFragment__please_be_as_descriptive_as_possible">يُرجى أن تكون وصفيًا قدر الإمكان لمساعدتنا على فهم المشكلة.</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__no_email_app_found">لم يعثر على أي تطبيق للبريد الإلكتروني.</string> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تم استخدامه مؤخراً</string>
@@ -2250,7 +2059,6 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">أعلام</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">الرموز التعبيرية(ايموجي)</string>
   <!--arrays.xml-->
-  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">استيراد</string> -->
   <string name="arrays__use_default">استخدم الافتراضي</string>
   <string name="arrays__use_custom">تخصيص</string>
   <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
@@ -2308,7 +2116,6 @@
   <string name="preferences__inactivity_timeout_passphrase">تحديد مدة تذكر العبارة السرية</string>
   <string name="preferences__inactivity_timeout_interval">مدة الصلاحية</string>
   <string name="preferences__notifications">الإشعارات</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">إعدادات إشعارات النظام</string> -->
   <string name="preferences__led_color">لون ضوء التنبيه LED</string>
   <string name="preferences__led_color_unknown">مجهول</string>
   <string name="preferences__pref_led_blink_title">نمط وميض LED</string>
@@ -2361,7 +2168,6 @@
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قمت بتعطيل الرمز التعريفي الشخصي، ستفقد جميع البيانات عندما تقوم بإعادة التسجيل إلى Signal إلّا إذا قمت باسترجاع بالنسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل أثناء تعطيل الرمز التعريفي الشخصي.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">الرموز التعريفي الشخصية تبقي المعلومات المحفوظة في Signal مُعمَّاة حتى لا يستطيع أحدٌ غيرك الوصول إليها. سيتم استرجاع صفحة حسابك الشخصي، إعداداتك، وجهات اتصالك عندما تعيد تثبيت التطبيق. لن تحتاج إلى الرمز التعريفي الشخصي لفتح التطبيق.</string>
   <string name="preferences__system_default">افتراضات النظام</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__default">افتراضي</string> -->
   <string name="preferences__language">اللغة</string>
   <string name="preferences__signal_messages_and_calls">رسائل ومكالمات Signal</string>
   <string name="preferences__advanced_pin_settings">إعدادات الرقم التعريفي الشخصي المتقدمة</string>
@@ -2375,7 +2181,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">إن قمتِ بإلغاء تفعيل وصل قراءة الرسائل، فلن يمكنك كذلك رؤية وصل بأنّ الآخرين قاموا بقراءة  رسائلك.</string>
   <string name="preferences__typing_indicators">مؤشرات الطباعة</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اذا تم الغاء تفعيل المؤشر على الطباعة، فلن يمكنك كذلك رؤية مؤشر عند قيام الآخرين بالطّباعة.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">الطلب من لوحة المفاتيح تعطيل التعليم الذاتي</string>
   <string name="preferences_app_protection__blocked_users">المستخدمون المحظورون</string>
   <string name="preferences_chats__when_using_mobile_data">عند استخدام بيانات الجوّال</string>
   <string name="preferences_chats__when_using_wifi">عند استخدام واي فاي</string>
@@ -2435,9 +2240,6 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">السماح من أي شخص</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
   <string name="preferences_communication__sealed_sender_learn_more">لمعرفة المزيد</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__mentions">الرسائل التي ذكر فيها اسمك</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__notify_me">نبّهني</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">تلقي الإشعارات عندما يُذكَر اسمك في المحادثات الصامتة</string> -->
   <string name="preferences_setup_a_username">إعداد اسم المستخدم</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
@@ -2467,7 +2269,6 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">الرسائل المُختفية</string>
   <!--conversation_expiring_on-->
-  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">الرسائل المُوشكة صلاحيتها على الانتهاء</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">دعوة</string>
   <!--conversation_list_batch-->
@@ -2477,7 +2278,6 @@
   <string name="conversation_list_batch__menu_select_all">اختر الكل</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_batch__menu_unarchive_selected">فك أرشفة ما تمّ اختياره</string> -->
   <string name="conversation_list_batch__menu_mark_as_read">عُدَّها مقروءة</string>
   <string name="conversation_list_batch__menu_mark_as_unread">عُدَّها غير مقروءة</string>
   <!--conversation_list-->
@@ -2489,8 +2289,6 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
   <string name="conversation_list_item_view__archived">الأرشيف</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">لا يوجد رسائل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">لا توجد أي رسائل جديدة.\n </string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">محادثة جديدة</string>
   <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
@@ -2502,14 +2300,11 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
   <!--conversation-->
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">إضافات</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">تعديل المجموعة</string> -->
   <string name="conversation__menu_group_settings">إعدادات المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
   <string name="conversation__menu_add_shortcut">إضافة إلى الشاشة الرئيسية</string>
-  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_pending_members">الأعضاء المعلقون</string> -->
   <string name="conversation__menu_create_bubble">إنشاء فقاعة</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">توسيع الإشعار</string>
@@ -2526,7 +2321,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">أقفل</string>
   <string name="text_secure_normal__mark_all_as_read">اعتبارها رسائل مقروءة</string>
   <string name="text_secure_normal__invite_friends">دعوة الأصدقاء</string>
-  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">مساعدة</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">نسخ إلى الحافظة</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">قارن مع الحافظة</string>
@@ -2535,12 +2329,7 @@
   <string name="reminder_header_sms_import_text">يُرجى اللمس لنسخ رسائل SMS من على الهاتف إلى قاعدة بيانات Signal المُعمَّاة.</string>
   <string name="reminder_header_push_title">تفعيل رسائل ومكالمات Signal</string>
   <string name="reminder_header_push_text">ترقية التطبيق من أجل تواصل أفضل.</string>
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">دعوة إلى Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">انتقل بالمحادثة مع %1$s  للمستوى التالي.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">قم بدعوة أصدقائك!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">كلما ازداد عدد الأصدقاء الذين يستخدمون Signal كلما أصبح Signal أفضل.</string> -->
   <string name="reminder_header_service_outage_text">يواجه Signal بعض المشاكل التقنيّة حاليّاً. نعمل بجد لإعادة الخدمة بأسرع وقت ممكن. </string>
-  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">خصائص Signal الأحدث لن تعمل على هذا الإصدار من Android، يرجى تحديث  الجهاز لتمكين استقبال تحديثات Signal القادمة.</string> -->
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">حفظ</string>
@@ -2552,10 +2341,6 @@
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">إنعاش</string>
   <!--redphone_audio_popup_menu-->
-  <!--Trimmer-->
-  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">جارٍ الحذف</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">جار حذف الرسائل القديمة…</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string> -->
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">رؤى</string>
@@ -2620,7 +2405,6 @@
   <string name="KbsSplashFragment__learn_more">أعرف أكثر</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">قفل التسجيل = الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل التسجيل يسمى الآن رقم التعريف الشخصي، وهو مسؤول عن أشياء أخرى. حدِّثه الآن.</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_about_pins">اقرأ المزيد عن الأرقام التعريفية الشخصية.</string> -->
   <string name="KbsSplashFragment__update_pin">تحديث الرقم التعريفي الشخصي</string>
   <string name="KbsSplashFragment__create_your_pin">إنشاء الرقم التعريفي الشخصي الخاص بك</string>
   <string name="KbsSplashFragment__learn_more_about_pins">تعرف أكثر على الرقم التعريفي الشخصي</string>
@@ -2642,7 +2426,6 @@
   <string name="RegistrationLockFragment__enter_the_pin_you_created">أدخل الرقم التعريفي الشخصي الذي أنشأته لحسابك، وهو مختلف عن رمز تحقق SMS.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">أدخل الرقم التعريفي الشخصي بالأحرف والأرقام</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">أدخل الرقم التعريفي الشخصي بالأرقام</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">التالي</string> -->
   <string name="RegistrationLockFragment__incorrect_pin_try_again">الرقم التعريفي الشخصي غير صحيح. يرجى إعادة المحاولة.</string>
   <string name="RegistrationLockFragment__forgot_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
   <string name="RegistrationLockFragment__incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
@@ -2689,16 +2472,11 @@
     <item quantity="other">%1$dمحاولات متبقية. </item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <!-- Removed by excludeNonTranslatables <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">حسناً</string> -->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">سيتلقى %1$sطلب للتراسل منك. ويمكنك الاتصال بهم عندما يقبل طلب المراسلة الخاص بك.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">إنشاء رقم تعريفي شخصي</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">الأرقام التعريفية الشخصية تجعل المعلومات المُخزَّنة مع Signal مُعمَّاة.</string>
   <string name="KbsMegaphone__create_pin">إنشاء رقم تعريفي شخصي</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__introducing_pins">نقدم لكم الأرقام التعريفية الشخصية </string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__update_pin">تحديث الرقم التعريفي الشخصي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">سنذّكرك لاحقاً. اختيار كلمة مرور رقمية سيكون إجبارياً في %1$dأيام.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">سنذكّرك لاحقاً ، إدخال كلمة السر الرقمية ستكون إجبارية بعد %1$d أيام.</string> -->
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">إخبار Signal ما يجول ببالك</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">لجعل Signal أفضل تطبيق على هذا الكوكب للتراسُل، يسعدنا سماع ملاحظاتك.</string>
@@ -2717,7 +2495,6 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">يحتاج Signal إلى إذن الرسائل القصيرة SMS من أجل إرسال SMS ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"الرسائل القصيرة SMS\".</string>
   <string name="Permissions_continue">استمرار</string>
   <string name="Permissions_not_now">ليس الآن</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">يحتاج Signal إلى أذن الوصول إلى جهات الاتصال من أجل البحث عنها، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string> -->
   <string name="conversation_activity__enable_signal_messages">تفعيل رسائل Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات Signal</string>
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
@@ -2729,12 +2506,8 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">قمت بتدوين هذه العبارة السرية. بدونها، لن يمكنني استعادة أي نسخة احتياطية.</string>
   <string name="registration_activity__restore_backup">إستعادة نسخة إحتياطية</string>
   <string name="registration_activity__skip">تخطّي</string>
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">سجّل</string> -->
   <string name="preferences_chats__chat_backups">النسخ الاحتياطية للمحادثات</string>
   <string name="preferences_chats__backup_chats_to_external_storage">حفظ نسخة احتياطية من المحادثات في سعة التخزين خارجية</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">إنشاء نسخة إحتياطية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__verify_backup_passphrase">التحقق من رمز امان النسخة اﻻحتياطية</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">جرب النسخة الاحتياطية لعبارة السر وتأكد من موافقتها</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخ الاحتياطية</string>
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_backup_failure_downgrade">لا يمكن استيراد نسخ احتياطية من اصدارات أحدث من Signal</string>
@@ -2760,9 +2533,6 @@
   <string name="BackupDialog_verify">تحقق</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">لقد أدخلت العبارة السرية للنسخة الاحتياطية بنجاح</string>
   <string name="BackupDialog_passphrase_was_not_correct">العبارة السرية غير صحيحة</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج Signal إلى إذن سعة التخزين خارجيّة لإنشاء نسخ احتياطية، ولكن تم إيقاف الإذن على نحو دائم. الرجاء زيارة إعدادات التطبيق ثم اختيار \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">آخِر نسخة إحتياطية : %s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">جارٍ</string> -->
   <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string>
   <string name="LocalBackupJobApi29_backup_failed">فشل النسخ الاحتياطي</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">حُذف أو نُقل مجلد نسخك الاحتياطية.</string>
@@ -2770,7 +2540,6 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">لم يبق مكان كافٍ لحفظ نسختك الاحتياطية.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">يُرجى اللمس لإدارة النسخ الاحتياطية.</string>
   <string name="ProgressPreference_d_messages_so_far">%d رسالة حتى الآن</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">الرجاء إدخال رمز التحقق الذي تم إرساله إلى %s.</string> -->
   <string name="RegistrationActivity_wrong_number">رقم خاطئ </string>
   <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي أفضل  \n (متاح في %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">الاتصال بخدمة دعم Signal</string>
@@ -2784,7 +2553,6 @@
   <string name="PhoneNumberPrivacy_nobody">لا أحد</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">سيكون رقم هاتفك مرئيا لجميع الأشخاص والمجموعات التي يجري تراسلك معها.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">كل شخص لديه رقم هاتفك في جهات اتصاله سيجدك في جهات اتصال Signal. سيتمكن الآخرون من العثور عليك في البحث.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PhoneNumberPrivacy_my_contacts_see_description">جهات اتصالك فقط هي التي سترى رقم هاتفك في Signal.</string> -->
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">منع الوصول إلى Signal عبر قفل الشاشة أو بصمة الإصبع</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">نفاذ مهلة قفل الشاشة</string>
@@ -2803,46 +2571,16 @@
   <string name="preferences_app_protection__failed_to_enable_registration_lock">تعذّر تفعيل قفل التسجيل.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">تعذّر تعطيل قفل التسجيل.</string>
   <string name="AppProtectionPreferenceFragment_none">لا شيء </string>
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">الرقم التعريفي الشخصي لحماية التسجيل مختلف عن رمز التحقق في رسالة SMS التي استقبلتها الآن. يُرجى إدخال الرقم التعريفي الشخصي الذي قمت بتحديده في إعدادات التطبيق من قبل.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">هل نسيت الرقم التعريفي الشخصي؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">يمكن للرقم التعريفي الشخصي أن يتكون من أربعة أرقام أو أكثر. في حال نسيان الرّقم قد تتعرض إلى حظر الوصول إلى حسابك لغاية سبعة أيام.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">إدخال الرقم التعريفي الشخصي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">تأكيد الرقم التعريفي الشخصي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">أدخل الرقم التعريفي الشخصي لحماية التسجيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">إدخال الرقم التعريفي الشخصي</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">قم باختيار الرقم التعريفي الشخصي لحماية التسجيل. سيُطلب منك هذا الرقم عند تسجيل رقم هاتفك هذا على خدمة Signal مرة أخرى.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل</string> -->
   <string name="preferences_app_protection__registration_lock">الرقم التعريفي الشخصي لحماية التسجيل</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">يجب إدخال الرقم التعريفي الشخصي لحماية التسجيل</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">يحوي رقم تعريفك الشخصي على الأقل %d رقما أو حرفا</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">الرقم التعريفي الشخصي لحماية التسجيل غير صحيح</string> -->
   <string name="RegistrationActivity_too_many_attempts">محاولات كثيرة</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">لقد قمت بمحاولات عديدة لإدخال الرقم التعريفي الشخصي. الرجاء المحاولة مرة أخرى بعد يوم.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمت بمحاولات كثيرة. يُرجى المحاولة لاحقاً.</string>
   <string name="RegistrationActivity_error_connecting_to_service">عطل في الاتصال بالخدمة</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">أوه لا!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على Signal سيكون متاحًا بدون الرقم التعريفي الشخصي بعد مرور 7 أيام على آخر نشاط للرقم على Signal. تبقّى أمامك %d يوم.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">الرقم التعريفي الشخصية لحماية التسجيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">يوجد رقم تعريفي شخصي لحماية التسجيل مصاحب لهذا الرقم. الرجاء إدخاله.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">تم تفعيل حماية التسجيل لهذا الهاتف. لمساعدتك في تذكُّر الرّقم التعريفي الشّخصي لحماية التسجيل، سيطلب منك Signal تأكيده بشكل دوري.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">لقد نسيتُ الرّقم التعريفي الشّخصي.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">هل نسيت الرّقم التعريفي الشّخصي؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">الرقم التعريفي الشخصي لحماية التسجيل يحمي رقم هاتفك من محاولات غير مصرّحة  للتسجيل في الخدمة. يمكن إلغاء هذه الخاصية في أي وقت عبر إعدادات الخصوصية في تطبيق Signal.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock">قفل التسحيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">تفعيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من %d رقما على الأقل.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">الأرقام التي أدخلتها غير متطابقة.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">خطأ أثناء محاولة الاتصال بالخدمة</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">إلغاء الرقم التعريفي الشخصي لحماية التسجيل؟</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">تعطيل</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_pin_incorrect">الرقم التعريفي الشخصي غير صحيح</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_you_have_d_tries_remaining">لديك %d محاولات باقية</string> -->
   <string name="preferences_chats__backups">النُسخ الإحتياطية</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal مُقفَل</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
-  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">تذكير:</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">حول</string> -->
   <string name="Recipient_unknown">مجهول</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">حظر</string>
@@ -2881,7 +2619,6 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">تمّ النسخ إلى الحافظة</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">هذه الوصلة غير مُفعَّلة حاليا</string>
   <!--VoiceNotePlaybackPreparer-->
-  <!-- Removed by excludeNonTranslatables <string name="VoiceNotePlaybackPreparer__could_not_start_playback">لم يتمكن من بدء التشغيل</string> -->
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">رسالة صوتية · %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s إلى %2$s</string>
@@ -2955,5 +2692,19 @@
   <string name="DeleteAccountCountryPickerFragment__search_countries">البحث في البلدان</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">تخطّي</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity__share">مشاركة</string>
+  <string name="ShareActivity__send">أرسل</string>
+  <!--MultiShareDialogs-->
+  <!--ShareInterstitialActivity-->
+  <string name="ShareInterstitialActivity__forward_message">إعادة الإرسال</string>
+  <!--ChatWallpaperActivity-->
+  <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__reset">إعادة ضبط</string>
+  <!--ChatWallpaperSelectionFragment-->
+  <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">عرض معرض صورك يتطلب إذن بالتخزين.</string>
+  <!--WallpaperImageSelectionActivity-->
+  <!--WallpaperCropActivity-->
   <!--EOF-->
 </resources>
