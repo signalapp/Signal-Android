@@ -163,6 +163,10 @@ public final class MessageGroupContext {
       return groupMasterKey;
     }
 
+    public @NonNull DecryptedGroupChange getChange() {
+      return decryptedGroupV2Context.getChange();
+    }
+
     public @NonNull List<UUID> getAllActivePendingAndRemovedMembers() {
       LinkedList<UUID>     memberUuids = new LinkedList<>();
       DecryptedGroup       groupState  = decryptedGroupV2Context.getGroupState();

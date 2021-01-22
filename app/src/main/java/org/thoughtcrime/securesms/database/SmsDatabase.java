@@ -1029,9 +1029,14 @@ public class SmsDatabase extends MessageDatabase {
       groupRecipient = Recipient.resolved(id);
     }
 
-    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
-                            !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
+    boolean silent = message.isIdentityUpdate()   ||
+                     message.isIdentityVerified() ||
+                     message.isIdentityDefault()  ||
+                     message.isJustAGroupLeave();
+    boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
+                                 message.isSecureMessage()          ||
+                                 message.isGroup()                  ||
+                                 message.isPreKeyBundle());
 
     long       threadId;
 
@@ -1070,7 +1075,7 @@ public class SmsDatabase extends MessageDatabase {
         DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
+      if (!silent) {
         DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
 
@@ -1080,7 +1085,7 @@ public class SmsDatabase extends MessageDatabase {
 
       notifyConversationListeners(threadId);
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
+      if (!silent) {
         ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
       }
 
