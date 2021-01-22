@@ -168,7 +168,8 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   private boolean requiresInterstitial() {
-    return !media.isEmpty() || !TextUtils.isEmpty(draftText) || MediaUtil.isImageOrVideoType(dataType);
+    return stickerLocator == null &&
+           (!media.isEmpty() || !TextUtils.isEmpty(draftText) || MediaUtil.isImageOrVideoType(dataType));
   }
 
   public static final class Builder {
