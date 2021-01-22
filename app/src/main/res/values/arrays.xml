@@ -68,6 +68,7 @@
 <!-- fi --><item>Suomi</item>
 <!-- sv --><item>Svenska</item>
 <!-- ta --><item>Tamil தமிழ்</item>
+<!-- kab --><item>Taqbaylit</item>
 <!-- te --><item>Telugu తెలుగు</item>
 <!-- th --><item>Thai ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
@@ -143,6 +144,7 @@
       <item>fi</item>
       <item>sv</item>
       <item>ta</item>
+      <item>kab</item>
       <item>te</item>
       <item>th</item>
       <item>tr</item>

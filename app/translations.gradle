@@ -22,7 +22,7 @@ def autoResConfig() {
     allStringsResourceFiles { f ->
         files.add(f.parentFile.name)
     }
-    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
+    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2,3}(-r[A-Z]{2})?)$/ }
             .findAll { matcher -> matcher.find() }
             .collect { matcher -> matcher.group(1) }
             .sort()
