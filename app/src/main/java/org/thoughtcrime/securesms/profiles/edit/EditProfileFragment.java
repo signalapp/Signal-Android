@@ -18,11 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
@@ -39,6 +36,7 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFrag
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -53,7 +51,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static android.app.Activity.RESULT_OK;
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.DISPLAY_USERNAME;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.GROUP_ID;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
@@ -73,9 +70,6 @@ public class EditProfileFragment extends LoggingFragment {
   private EditText               familyName;
   private View                   reveal;
   private TextView               preview;
-  private View                   usernameLabel;
-  private View                   usernameEditButton;
-  private TextView               username;
 
   private Intent nextIntent;
 
@@ -94,26 +88,8 @@ public class EditProfileFragment extends LoggingFragment {
     }
   }
 
-  public static EditProfileFragment create(boolean excludeSystem,
-                                           Intent nextIntent,
-                                           boolean displayUsernameField,
-                                           @StringRes int nextButtonText) {
-
-    EditProfileFragment fragment = new EditProfileFragment();
-    Bundle              args     = new Bundle();
-
-    args.putBoolean(EXCLUDE_SYSTEM, excludeSystem);
-    args.putParcelable(NEXT_INTENT, nextIntent);
-    args.putBoolean(DISPLAY_USERNAME, displayUsernameField);
-    args.putInt(NEXT_BUTTON_TEXT, nextButtonText);
-    fragment.setArguments(args);
-
-    return fragment;
-  }
-
-  @Nullable
   @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+  public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     return inflater.inflate(R.layout.profile_create_fragment, container, false);
   }
 
@@ -125,13 +101,6 @@ public class EditProfileFragment extends LoggingFragment {
     initializeViewModel(requireArguments().getBoolean(EXCLUDE_SYSTEM, false), groupId, savedInstanceState != null);
     initializeProfileAvatar();
     initializeProfileName();
-    initializeUsername();
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    viewModel.refreshUsername();
   }
 
   @Override
@@ -200,16 +169,7 @@ public class EditProfileFragment extends LoggingFragment {
     this.finishButton       = view.findViewById(R.id.finish_button);
     this.reveal             = view.findViewById(R.id.reveal);
     this.preview            = view.findViewById(R.id.name_preview);
-    this.username           = view.findViewById(R.id.profile_overview_username);
-    this.usernameEditButton = view.findViewById(R.id.profile_overview_username_edit_button);
-    this.usernameLabel      = view.findViewById(R.id.profile_overview_username_label);
     this.nextIntent         = arguments.getParcelable(NEXT_INTENT);
-
-    if (FeatureFlags.usernames() && arguments.getBoolean(DISPLAY_USERNAME, false)) {
-      username.setVisibility(View.VISIBLE);
-      usernameEditButton.setVisibility(View.VISIBLE);
-      usernameLabel.setVisibility(View.VISIBLE);
-    }
 
     this.avatar.setOnClickListener(v -> startAvatarSelection());
 
@@ -228,12 +188,14 @@ public class EditProfileFragment extends LoggingFragment {
       view.findViewById(R.id.description_text).setVisibility(View.GONE);
       view.<ImageView>findViewById(R.id.avatar_placeholder).setImageResource(R.drawable.ic_group_outline_40);
     } else {
+      EditTextUtil.addGraphemeClusterLimitFilter(givenName, EditProfileNameFragment.NAME_MAX_GLYPHS);
+      EditTextUtil.addGraphemeClusterLimitFilter(familyName, EditProfileNameFragment.NAME_MAX_GLYPHS);
       this.givenName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                        trimInPlace(s);
+                                                                        EditProfileNameFragment.trimFieldToMaxByteLength(s);
                                                                         viewModel.setGivenName(s.toString());
                                                                       }));
       this.familyName.addTextChangedListener(new AfterTextChanged(s -> {
-                                                                         trimInPlace(s);
+                                                                         EditProfileNameFragment.trimFieldToMaxByteLength(s);
                                                                          viewModel.setFamilyName(s.toString());
                                                                        }));
       LearnMoreTextView descriptionText = view.findViewById(R.id.description_text);
@@ -248,11 +210,6 @@ public class EditProfileFragment extends LoggingFragment {
     });
 
     this.finishButton.setText(arguments.getInt(NEXT_BUTTON_TEXT, R.string.CreateProfileActivity_next));
-
-    this.usernameEditButton.setOnClickListener(v -> {
-      NavDirections action = EditProfileFragmentDirections.actionEditUsername();
-      Navigation.findNavController(v).navigate(action);
-    });
 
     if (arguments.getBoolean(SHOW_TOOLBAR, true)) {
       this.toolbar.setVisibility(View.VISIBLE);
@@ -285,10 +242,6 @@ public class EditProfileFragment extends LoggingFragment {
     });
   }
 
-  private void initializeUsername() {
-    viewModel.username().observe(getViewLifecycleOwner(), this::onUsernameChanged);
-  }
-
   private static void updateFieldIfNeeded(@NonNull EditText field, @NonNull String value) {
     String fieldTrimmed = field.getText().toString().trim();
     String valueTrimmed = value.trim();
@@ -302,10 +255,6 @@ public class EditProfileFragment extends LoggingFragment {
         field.setSelection(field.getText().length());
       }
     }
-  }
-
-  private void onUsernameChanged(@NonNull Optional<String> username) {
-    this.username.setText(username.transform(s -> "@" + s).or(""));
   }
 
   private void startAvatarSelection() {
@@ -373,14 +322,6 @@ public class EditProfileFragment extends LoggingFragment {
 
     reveal.setVisibility(View.VISIBLE);
     animation.start();
-  }
-
-  private static void trimInPlace(Editable s) {
-    int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
-
-    if (s.length() > trimmedLength) {
-      s.delete(trimmedLength, s.length());
-    }
   }
 
   public interface Controller {

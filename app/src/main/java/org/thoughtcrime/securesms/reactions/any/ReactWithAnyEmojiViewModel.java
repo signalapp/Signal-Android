@@ -36,8 +36,10 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   }
 
   void onEmojiSelected(@NonNull String emoji) {
-    SignalStore.emojiValues().setPreferredVariation(emoji);
-    repository.addEmojiToMessage(emoji, messageId, isMms);
+    if (messageId > 0) {
+      SignalStore.emojiValues().setPreferredVariation(emoji);
+      repository.addEmojiToMessage(emoji, messageId, isMms);
+    }
   }
 
   static class Factory implements ViewModelProvider.Factory {

@@ -1,60 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:wheel="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_alignParentTop="true"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarStyle">
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarStyle"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <TextView android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="@string/ShareActivity_share_with"
-                      android:textColor="@color/signal_text_primary"
-                      android:textSize="20sp"
-                      android:layout_alignParentStart="true"
-                      android:layout_centerVertical="true"
-                      android:layout_toStartOf="@+id/search_action"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/search_action"
+                android:text="@string/ShareActivity_share_with"
+                android:textColor="@color/signal_text_primary"
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/search_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                wheel:srcCompat="@drawable/ic_search_24"
-                android:tint="@color/signal_icon_tint_primary"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:tint="@color/signal_icon_tint_primary"
+                app:srcCompat="@drawable/ic_search_24" />
 
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
 
-    <fragment android:id="@+id/contact_selection_list_fragment"
-              android:layout_below="@id/toolbar"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:name="org.thoughtcrime.securesms.ContactSelectionListFragment" />
+    <FrameLayout
+        android:id="@+id/contact_selection_list_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/selected_list"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <org.thoughtcrime.securesms.components.SearchToolbar
-            android:id="@+id/search_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:elevation="4dp"
-            android:visibility="invisible"
-            tools:visibility="invisible"/>
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
 
-</RelativeLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="1"
+        android:background="@drawable/compose_divider_background"
+        app:layout_constraintBottom_toTopOf="@id/selected_list" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/selected_list"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="78dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/share_contact_selection_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/share_confirm"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/ShareActivity__share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_continue_24" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/selection_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:constraint_referenced_ids="divider,selected_list"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

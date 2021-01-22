@@ -40,7 +40,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 25;
+  public static final int CURRENT_VERSION = 26;
 
   private static final class Version {
     static final int LEGACY              = 1;
@@ -68,6 +68,7 @@ public class ApplicationMigrations {
     static final int BACKUP_NOTIFICATION = 23;
     static final int GV1_MIGRATION       = 24;
     static final int USER_NOTIFICATION   = 25;
+    static final int DAY_BY_DAY_STICKERS = 26;
   }
 
   /**
@@ -284,6 +285,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.USER_NOTIFICATION) {
       jobs.put(Version.USER_NOTIFICATION, new UserNotificationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DAY_BY_DAY_STICKERS) {
+      jobs.put(Version.DAY_BY_DAY_STICKERS, new StickerDayByDayMigrationJob());
     }
 
     return jobs;

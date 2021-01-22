@@ -129,7 +129,7 @@ public class PushMediaSendJob extends PushSendJob {
       boolean unidentified = deliver(message);
 
       database.markAsSent(messageId, true);
-      markAttachmentsUploaded(messageId, message.getAttachments());
+      markAttachmentsUploaded(messageId, message);
       database.markUnidentified(messageId, unidentified);
 
       if (recipient.isSelf()) {

@@ -94,13 +94,13 @@ class ConversationListSearchAdapter extends    RecyclerView.Adapter<Conversation
   }
 
   @Override
-  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
                                               .inflate(R.layout.search_result_list_divider, parent, false));
   }
 
   @Override
-  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position, int type) {
     viewHolder.bind((int) getHeaderId(position));
   }
 

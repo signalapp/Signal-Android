@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manage_profile"
+    app:startDestination="@id/manageProfileFragment">
+
+    <fragment
+        android:id="@+id/manageProfileFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.ManageProfileFragment"
+        android:label="fragment_manage_profile"
+        tools:layout="@layout/profile_create_fragment">
+
+        <action
+            android:id="@+id/action_manageUsername"
+            app:destination="@id/usernameManageFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+        <action
+            android:id="@+id/action_manageProfileName"
+            app:destination="@id/profileNameManageFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+        <action
+            android:id="@+id/action_manageAbout"
+            app:destination="@id/aboutManageFragment"
+            app:enterAnim="@anim/slide_from_end"
+            app:exitAnim="@anim/slide_to_start"
+            app:popEnterAnim="@anim/slide_from_start"
+            app:popExitAnim="@anim/slide_to_end" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/usernameManageFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
+        android:label="fragment_manage_username"
+        tools:layout="@layout/username_edit_fragment" />
+
+    <fragment
+        android:id="@+id/profileNameManageFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment"
+        android:label="fragment_manage_profile_name"
+        tools:layout="@layout/edit_profile_name_fragment" />
+
+    <fragment
+        android:id="@+id/aboutManageFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.EditAboutFragment"
+        android:label="fragment_manage_about"
+        tools:layout="@layout/edit_about_fragment" />
+
+</navigation>

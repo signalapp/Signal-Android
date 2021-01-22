@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
@@ -35,6 +36,11 @@ public class NetworkConstraint implements Constraint {
   @Override
   public void applyToJobInfo(@NonNull JobInfo.Builder jobInfoBuilder) {
     jobInfoBuilder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+  }
+
+  @Override
+  public String getJobSchedulerKeyPart() {
+    return "NETWORK";
   }
 
   public static boolean isMet(@NonNull Context context) {

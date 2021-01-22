@@ -14,16 +14,16 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">বর্তমানে: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">আপনি এখনও কোনো পাসফ্রেজ স্থাপন করেন নি!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">কথোপকথন প্রতি %dটি বার্তা</item>
     <item quantity="other">কথোপকথন প্রতি %dটি বার্তা</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">সব পুরনো বার্তা মুছে ফেলবেন?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">সব পুরনো বার্তা মুছে ফেলবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">এর ফলে সব কথোপকথনের শেষ বার্তাটি বাদে সব বার্তা মুছে যাবে এখনই।</item>
     <item quantity="other">এর ফলে সব কথোপকথন থেকে সাম্প্রতিক %dটি বার্তা বাদে সব এখনই মুছে যাবে।</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">মুছুন</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">মুছুন</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">পাসফ্রেজ নিষ্ক্রিয় করবেন?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">এটি স্থায়ীভাবে Signal এবং বার্তা বিজ্ঞপ্তিগুলি আনলক করবে।</string>
   <string name="ApplicationPreferencesActivity_disable">নিষ্ক্রিয় করুন</string>
@@ -42,7 +42,7 @@
   <string name="ApplicationPreferencesActivity_Off">বন্ধ</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$sটি, MMS%2$sটি</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">স্ক্রিন লক%1$s, নিবন্ধন লক%2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">স্ক্রিন লক %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">স্ক্রিন লক %1$s</string> -->
   <string name="ApplicationPreferencesActivity_appearance_summary">%1$sথীম, %2$s ভাষা</string>
   <string name="ApplicationPreferencesActivity_pin_created">পিন তৈরি করা হয়েছে।</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">পিন নিষ্ক্রিয়।</string>
@@ -71,12 +71,12 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ছবি, ভিডিও অথবা অডিও সংযুক্ত করার জন্য Signal এর স্টোরেজ ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংস-এ যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্টোরেজ\"  সক্ষম করুন।</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">পরিচিতিসমূহের তথ্য সংযুক্ত করার জন্য Signal এর পরিচিতিসমূহ ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"পরিচিতিসমূহ\" সক্ষম করুন।</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">স্থান সংযুক্ত করার জন্য Signal এর স্থান ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"স্থান\" সক্ষম করুন।</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ছবি তোলার করার জন্য Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"ক্যামেরা\" সক্ষম করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ছবি তোলার করার জন্য Signal এর ক্যামেরা ব্যাবহারের অনুমতির প্রয়োজন কিন্তু এর উপর স্থায়ী নিষেধাজ্ঞা জারি করা হয়েছে। দয়া করে আ্যপ সেটিংসে যান, \"অনুমতি\" নির্বাচন করুন এবং \"ক্যামেরা\" সক্ষম করুন।</string> -->
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">মিডিয়া আপলোড হচ্ছে…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ভিডিও সংকুচিত হচ্ছে…</string>
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">অডিও চালাতে ব্যর্থ!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">অডিও চালাতে ব্যর্থ!</string> -->
   <!--BlockedContactsActivity-->
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">অবরূদ্ধ পরিচিতিসমূহ</string> -->
   <!--BlockUnblockDialog-->
@@ -87,7 +87,7 @@
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">গ্রুপের সদস্যরা আপনাকে আবার এই গ্রুপে যুক্ত করতে পারবে।</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">অবরুদ্ধ লোকেরা আপনাকে কল করতে বা আপনাকে বার্তা প্রেরণ করতে পারবে না।</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s কে আনব্লক করুন?</string>
-  <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="BlockUnblockDialog_unblock">মূক্ত করুন</string> -->
   <string name="BlockUnblockDialog_block">অবরূদ্ধ</string>
   <string name="BlockUnblockDialog_block_and_leave">ব্লক করুন ও ছেড়ে যান</string>
   <string name="BlockUnblockDialog_block_and_delete">অবরুদ্ধ করুন এবং মুছুন</string>
@@ -100,9 +100,9 @@
   <string name="BucketedThreadMedia_Medium">মধ্যম</string>
   <string name="BucketedThreadMedia_Small">ছোট</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">আগত কল</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">আগত কল</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">ছবি সংরক্ষণে ব্যর্থ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">ছবি সংরক্ষণে ব্যর্থ।</string> -->
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">ছবির জন্য আলতো চাপুন, ভিডিও\'র জন্য ধরে রাখুন</string>
   <string name="CameraXFragment_capture_description">ক্যাপচার</string>
@@ -130,9 +130,9 @@
   <string name="ClientDeprecatedActivity_warning">সতর্কতা</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
-  <string name="CommunicationActions_no_email_app_found">কোন ইমেইল এপ পাওয়া যায়নি</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_no_email_app_found">কোন ইমেইল এপ পাওয়া যায়নি</string> -->
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">একটি সেলুলার কল ইতিমধ্যে চলছে।</string>
-  <string name="CommunicationActions_start_video_call">ভিডিও কল শুরু করুন?</string>
+  <!-- Removed by excludeNonTranslatables <string name="CommunicationActions_start_video_call">ভিডিও কল শুরু করুন?</string> -->
   <string name="CommunicationActions_start_voice_call">ভয়েস কল শুরু করুন?</string>
   <string name="CommunicationActions_cancel">বাতিল</string>
   <string name="CommunicationActions_call">কল করুন</string>
@@ -200,13 +200,13 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">চলুন Signal এ যোগ দেই %1$s</string>
   <string name="ConversationActivity_specify_recipient">দয়া করে একটি পরিচিতি চয়ন করুন</string>
-  <string name="ConversationActivity_unblock_this_contact_question">এই পরিচিতিকে আনব্লক করতে চাচ্ছেন?</string>
-  <string name="ConversationActivity_unblock_this_group_question">এই গ্রুপটিকে আনব্লক করতে চাচ্ছেন?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">আপনি এখন থেকে আবারো এই পরিচিতি থেকে বার্তা এবং কল সমূহ গ্রহণ করতে পারবেন।</string>
-  <string name="ConversationActivity_unblock_this_group_description">বিদ্যমান সদস্যরা আপনাকে আবারো গ্রুপে সংযোজিত করতে পারবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">এই পরিচিতিকে আনব্লক করতে চাচ্ছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">এই গ্রুপটিকে আনব্লক করতে চাচ্ছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">আপনি এখন থেকে আবারো এই পরিচিতি থেকে বার্তা এবং কল সমূহ গ্রহণ করতে পারবেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">বিদ্যমান সদস্যরা আপনাকে আবারো গ্রুপে সংযোজিত করতে পারবে।</string> -->
   <string name="ConversationActivity_unblock">আনব্লক করুন</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">আপনি যে বার্তা প্রেরণ করছেন সংযুক্তি তার আকারের সীমা অতিক্রম করেছে।</string>
-  <string name="ConversationActivity_quick_camera_unavailable">ক্যামেরা পাওয়া যাচ্ছেনা</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">ক্যামেরা পাওয়া যাচ্ছেনা</string> -->
   <string name="ConversationActivity_unable_to_record_audio">অডিও রেকর্ড করা যাচ্ছেনা!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">আপনার ডিভাইসে এই লিঙ্কটি পরিচালনা করার মত কোনও অ্যাপ পাওয়া যাচ্ছে না।</string>
   <string name="ConversationActivity_cancel_request">অনুরোধ বাতিল করুন</string>
@@ -235,7 +235,7 @@
   <string name="ConversationActivity_delete">মুছে দিন</string>
   <string name="ConversationActivity_delete_and_leave">মুছুন এবং ছেড়ে যান</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s কে ফোন করতে Signal কে আপনার মাইক্রোফোন ব্যাবহার করতে হবে।</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s কে ফোন করতে Signal কে আপনার মাইক্রোফোন এবং ক্যামেরা ব্যাবহার করতে হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera">%1$s কে ফোন করতে Signal কে আপনার মাইক্রোফোন এবং ক্যামেরা ব্যাবহার করতে হবে।</string> -->
   <string name="ConversationActivity__more_options_now_in_group_settings">\"গ্রুপ সেটিংস\" এ এখন আরো অপশন আছে</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
@@ -247,10 +247,10 @@
     <item quantity="one">বাছাইকৃত বার্তাটি মুছে ফেলবেন?</item>
     <item quantity="other">বাছাইকৃত বার্তাগুলো মুছে ফেলবেন?</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">ইহা নির্বাচিত  টি বার্তার সবকয়টি চিরতরে মুছে ফেলবে।</item>
     <item quantity="other">এটা নির্বাচিত %1$d টি বার্তার সবকয়টি চিরতরে মুছে ফেলবে|</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">স্টোরেজে সংরক্ষন করুন?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">এই মিডিয়া স্টোরেজে সংরক্ষণ করা হলে আপনার ডিভাইস এর অন্য কোনও অ্যাপ্লিকেশন সেগুলো অ্যাক্সেস করতে সক্ষম হবে। \n\n চালিয়ে যাবেন?</item>
@@ -285,9 +285,9 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">একবার দেখার যোগ্য বহির্গামী মিডিয়া ফাইলগুলি প্রেরণের পরে সেগুলি স্বয়ংক্রিয়ভাবে মুছে ফেলা হবে</string>
   <string name="ConversationFragment_you_already_viewed_this_message">আপনি ইতিমধ্যে এই বার্তাটি দেখেছেন</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">আপনার ডিভাইসে কোন ব্রাউজার ইন্সটল করা নেই।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">আপনার ডিভাইসে কোন ব্রাউজার ইন্সটল করা নেই।</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' এর জন্য কোন ফলাফল পাওয়া যায়নি</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' এর জন্য কোন ফলাফল পাওয়া যায়নি</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">বাছাইকৃত কথোপকথনটি মুছে ফেলবেন?</item>
     <item quantity="other">বাছাইকৃত কথোপকথনগুলো মুছে ফেলবেন?</item>
@@ -319,7 +319,7 @@
   <string name="CreateProfileActivity__profile">প্রোফাইল</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">প্রোফাইলের ছবি সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_problem_setting_profile">প্রোফাইল সেট করতে সমস্যা হয়েছে</string>
-  <string name="CreateProfileActivity_profile_photo">প্রোফাইলের ছবি</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">প্রোফাইলের ছবি</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">আপনার প্রোফাইল সেট করুন</string>
   <string name="CreateProfileActivity_set_avatar_description">প্রোফাইলের ছবি সেট করুন</string>
   <!--ChooseBackupFragment-->
@@ -352,10 +352,10 @@
   <string name="DateUtils_today">আজ</string>
   <string name="DateUtils_yesterday">গতকাল</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">পাঠানো হচ্ছে</string>
-  <string name="DeliveryStatus_sent">পাঠানো  হয়েছে</string>
-  <string name="DeliveryStatus_delivered">পৌঁছেছে</string>
-  <string name="DeliveryStatus_read">পড়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">পাঠানো হচ্ছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">পাঠানো  হয়েছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">পৌঁছেছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">পড়েছে</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' বিচ্ছিন্ন করা হবে?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">এই ডিভাইস বিচ্ছিন্ন করা হলে, এটি আর বার্তা প্রেরণ বা গ্রহণ করতে সক্ষম হবে না।</string>
@@ -382,7 +382,7 @@
   <string name="ShareActivity_share_with">এর সাথে শেয়ার করুন</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">একাধিক সংযুক্তি সমূহ শুধু ছবি ও ভিডিওর ক্ষেত্রে সম্ভব</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">একটি বার্তা আনয়ন করা হচ্ছে…</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">একটি বার্তা আনয়ন করা হচ্ছে…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal স্থায়ীভাবে যোগাযোগ স্থাপনে ব্যর্থ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal গুগল প্লে পরিষেবাদিতে নিবন্ধন করতে অক্ষম ছিল। Signal বার্তা এবং কল সমূহ অক্ষম করা হয়েছে, দয়া করে পুনরায় নিবন্ধকরণ চেষ্টা করুন সেটিংস &gt;  উন্নত।</string>
@@ -398,9 +398,9 @@
   <string name="ChooseNewAdminActivity_choose_new_admin">নতুন প্রশাসক চয়ন করুন</string>
   <string name="ChooseNewAdminActivity_done">শেষ</string>
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">আপনার প্রোফাইলের নাম ও ছবি গ্রুপের সাথে শেয়ার করবেন?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">আপনি কি এই গ্রুপের বর্তমান এবং ভবিষ্যতের সকল সদস্যের কাছে নিজের প্রোফাইল নাম এবং ফটো দৃশ্যমান করতে চান?</string>
-  <string name="GroupShareProfileView_make_visible">দৃশ্যমান করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">আপনার প্রোফাইলের নাম ও ছবি গ্রুপের সাথে শেয়ার করবেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">আপনি কি এই গ্রুপের বর্তমান এবং ভবিষ্যতের সকল সদস্যের কাছে নিজের প্রোফাইল নাম এবং ফটো দৃশ্যমান করতে চান?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">দৃশ্যমান করুন</string> -->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">আপনি</string>
   <!--GV2 access levels-->
@@ -408,7 +408,7 @@
   <string name="GroupManagement_access_level_all_members">সকল সদস্য</string>
   <string name="GroupManagement_access_level_only_admins">শুধুমাত্র এডমিন</string>
   <!--GV2 invites sent-->
-  <string name="GroupManagement_learn_more">আরও জানুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_learn_more">আরও জানুন</string> -->
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <!--LeaveGroupDialog-->
   <string name="LeaveGroupDialog_leave_group">গ্রুপ ত্যাগ করবেন?</string>
@@ -440,7 +440,7 @@
   <string name="AddGroupDetailsFragment__members">সদস্যগণ</string>
   <string name="AddGroupDetailsFragment__group_name_required">গ্রুপের নাম (প্রয়োজনীয়)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">এই ঘরটি পূরন বাঞ্জনীয়</string>
-  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">গ্রুপের জন্য নূন্যতম দুইজন সদস্য বাঞ্জনীয়</string>
+  <!-- Removed by excludeNonTranslatables <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">গ্রুপের জন্য নূন্যতম দুইজন সদস্য বাঞ্জনীয়</string> -->
   <string name="AddGroupDetailsFragment__group_creation_failed">গ্রুপ তৈরী করন ব্যার্থ হয়েছে</string>
   <string name="AddGroupDetailsFragment__try_again_later">পরবর্তীতে পুনরায় চেষ্টা করুন।</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">আপনি এমন একটি কন্টাক্ট নির্বাচন করেছেন যা Signal গ্রুপ সহায়ক না। তাই এটি এমএমএস গ্রুপ হবে।</string>
@@ -449,7 +449,7 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s কে এই গ্রুপ থেকে বের করে দিবেন?</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_disappearing_messages">অদৃশ্য বার্তা</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_pending_group_invites">অনিষ্পাদিত গ্রুপ নিমন্ত্রণসমূহ</string> -->
   <string name="ManageGroupActivity_add_members">সদস্য যোগ করুন</string>
   <string name="ManageGroupActivity_block_group">গ্রুপ ব্লক করুন</string>
@@ -462,11 +462,11 @@
   <string name="ManageGroupActivity_on">চালু</string>
   <string name="ManageGroupActivity_view_all_members">সব সদস্যদের দেখুন</string>
   <string name="ManageGroupActivity_see_all">সব দেখুন</string>
-  <string name="ManageGroupActivity_none">কিছুই না</string>
-  <plurals name="ManageGroupActivity_invited">
+  <!-- Removed by excludeNonTranslatables <string name="ManageGroupActivity_none">কিছুই না</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ManageGroupActivity_invited">
     <item quantity="one">%d জন আমন্ত্রিত</item>
     <item quantity="other">%d জন আমন্ত্রিত</item>
-  </plurals>
+  </plurals> -->
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d জন সদস্য যুক্ত করা হয়েছে।</item>
     <item quantity="other">%d জন সদস্য যুক্ত করা হয়েছে।</item>
@@ -489,7 +489,7 @@
   <string name="ManageRecipientActivity_on">চালু</string>
   <string name="ManageRecipientActivity_add_to_a_group">গ্রুপে যুক্ত করো</string>
   <string name="ManageRecipientActivity_see_all">সব দেখুন</string>
-  <string name="ManageRecipientActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ManageRecipientActivity_edit_name_and_picture">নাম এবং ছবি সম্পাদনা করেন</string> -->
   <string name="ManageRecipientActivity_message_description">বার্তা</string>
   <plurals name="GroupMemberList_invited">
     <item quantity="one"> জন লোককে %1$s আমন্ত্রণ জানিয়েছে </item>
@@ -508,9 +508,9 @@
   <string name="CustomNotificationsDialogFragment__default">সচারচর</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__share">শেয়ার করুন</string>
-  <string name="ShareableGroupLinkDialogFragment__enabled">সক্রিয়</string>
-  <string name="ShareableGroupLinkDialogFragment__disabled">নিষ্ক্রিয়</string>
-  <string name="ShareableGroupLinkDialogFragment__default">সচারচর</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__enabled">সক্রিয়</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__disabled">নিষ্ক্রিয়</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShareableGroupLinkDialogFragment__default">সচারচর</string> -->
   <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
@@ -519,8 +519,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal আপডেট করুন</string>
   <!--GV2 Request confirmation dialog-->
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string>
-  <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">গ্রুপের ছবি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">প্রোফাইলের ছবি</string> -->
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">চেহারা অস্পষ্ট করুন</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">নতুনঃ মুখয়ব অস্পষ্ট করুন অথবা যেকোন জায়গা অস্পষ্ট করতে আলতো চেপে টানুন</string>
@@ -530,12 +530,12 @@
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">একটি ভয়েস বার্তা রেকর্ড করতে আলতো চাপুন এবং ধরে রাখুন, প্রেরণের জন্য ছেড়ে দিন</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">শেয়ার করুন</string>
-  <string name="InviteActivity_choose_contacts">পরিচিতি সমূহ চয়ন করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">পরিচিতি সমূহ চয়ন করুন</string> -->
   <string name="InviteActivity_share_with_contacts">পরিচিতিদের সাথে শেয়ার করুন</string>
   <string name="InviteActivity_choose_how_to_share">কিভাবে শেয়ার করবেন তা চয়ন করুন</string>
   <string name="InviteActivity_cancel">বাতিল</string>
   <string name="InviteActivity_sending">পাঠানো হচ্ছে</string>
-  <string name="InviteActivity_heart_content_description">হৃদয়</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">হৃদয়</string> -->
   <string name="InviteActivity_invitations_sent">আমন্ত্রণ পাঠানো হয়েছে!</string>
   <string name="InviteActivity_invite_to_signal">Signal এ আমন্ত্রণ জানান</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -550,7 +550,7 @@
   <string name="InviteActivity_no_app_to_share_to">আপনার কাছে শেয়ার করতে পারবেন এমন কোন অ্যাপ নেই।</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">বন্ধুরা কখনোই বন্ধুদের এনক্রিপ্ট না করে চ্যাট করতে দেয় না।</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">নিভৃতে কাজ করা হচ্ছে …</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">নিভৃতে কাজ করা হচ্ছে …</string> -->
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">আরও জানুন</string>
   <!--LongMessageActivity-->
@@ -626,7 +626,7 @@
   <string name="MediaPickerActivity_send_to">%s কে পাঠান</string>
   <string name="MediaPickerActivity__menu_open_camera">ক্যামেরা চালু করুন</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">নির্বাচন করতে চাপুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">নির্বাচন করতে চাপুন</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ক্যাপশন যোগ করুন…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">একটি বস্তু সরানো হয়েছে কারণ এটি আকার সীমা অতিক্রম করেছে</string>
@@ -651,7 +651,7 @@
   <string name="MessageRecord_left_group">আপনি গ্রুপ ত্যাগ করেছেন।</string>
   <string name="MessageRecord_you_updated_group">আপনি গ্রুপ আপডেট করেছেন।</string>
   <string name="MessageRecord_s_updated_group">%s গ্রুপ আপডেট করেছে।</string>
-  <string name="MessageRecord_called_s">%s কল করেছেন</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">%s কল করেছেন</string> -->
   <string name="MessageRecord_s_joined_signal">%s Signal এ যোগ দিয়েছেন!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">আপনি অদৃশ্য হয়ে যাওয়া বার্তাগুলি অক্ষম করেছেন।</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s অদৃশ্য হয়ে যাওয়া বার্তা অক্ষম করেছেন।</string>
@@ -783,7 +783,7 @@
   <string name="PassphrasePromptActivity_unlock_signal">Signal আনলক করুন</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ম্যাপ</string>
-  <string name="PlacePickerActivity_not_a_valid_address">কোনও বৈধ ঠিকানা নয়</string>
+  <!-- Removed by excludeNonTranslatables <string name="PlacePickerActivity_not_a_valid_address">কোনও বৈধ ঠিকানা নয়</string> -->
   <string name="PlacePickerActivity_drop_pin">ড্রপ পিন</string>
   <string name="PlacePickerActivity_accept_address">ঠিকানাটি মানছি</string>
   <!--PlayServicesProblemFragment-->
@@ -820,17 +820,17 @@
   <string name="ReactionsRecipientAdapter_you">আপনি</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ব্লক করুন</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">গ্রুপ ত্যাগ করতে সমস্যা হয়েছে</string> -->
   <string name="RecipientPreferenceActivity_unblock">আনব্লক করুন</string>
-  <string name="RecipientPreferenceActivity_enabled">সক্রিয়</string>
-  <string name="RecipientPreferenceActivity_disabled">নিষ্ক্রিয়</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">একবার কোনও বার্তা প্রেরণ বা প্রাপ্ত হওয়ার পরে পাওয়া যাচ্ছে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">সক্রিয়</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">নিষ্ক্রিয়</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">একবার কোনও বার্তা প্রেরণ বা প্রাপ্ত হওয়ার পরে পাওয়া যাচ্ছে।</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">নামবিহীন গ্রুপ</string>
   <!--RedPhone-->
   <string name="RedPhone_ringing">রিং হচ্ছে …</string>
   <string name="RedPhone_busy">ব্যাস্ত আছে</string>
-  <string name="RedPhone_connected">যুক্ত হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">যুক্ত হয়েছে</string> -->
   <string name="RedPhone_recipient_unavailable">প্রাপককে পাওয়া যাচ্ছে না</string>
   <string name="RedPhone_network_failed">নেটওয়ার্ক ব্যর্থ!</string>
   <string name="RedPhone_number_not_registered">নাম্বারটি নিবন্ধিত নয়!</string>
@@ -860,22 +860,22 @@
   <string name="RegistrationActivity_play_services_error">প্লে সার্ভিস সমস্যা</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">গুগল প্লে পরিষেবাদি আপডেট করছে বা অস্থায়ীভাবে অনুপলব্ধ। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_terms_and_privacy">শর্তাদি এবং গোপনীয়তা নীতি</string>
-  <string name="RegistrationActivity_no_browser">এই লিংকে যাওয়া সম্ভব হচ্ছে না। কোন ব্রাউজার খুজে পাওয়া যায়নি।</string>
-  <string name="RegistrationActivity_more_information">আরো তথ্য</string>
-  <string name="RegistrationActivity_less_information">কম তথ্য দেখান</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">এই লিংকে যাওয়া সম্ভব হচ্ছে না। কোন ব্রাউজার খুজে পাওয়া যায়নি।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">আরো তথ্য</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">কম তথ্য দেখান</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">বন্ধুদের সাথে সংযোগ করতে, বার্তা বিনিময় করতে এবং সুরক্ষিত কল সমূহ করার জন্য Signal এর আপনার পরিচিতি এবংমিডিয়া অ্যাক্সেস প্রয়োজন</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">পরিষেবাতে সংযোগ করতে অক্ষম। নেটওয়ার্ক সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">আপনার ফোন নাম্বার সহজে যাচাই করতে, আপনি Signal কে এসএমএস বার্তা দেখার অনুমতি দিলে Signal স্বয়ংক্রিয়ভাবে আপনার যাচাই কোডটি সনাক্ত করতে পারে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">আপনার ফোন নাম্বার সহজে যাচাই করতে, আপনি Signal কে এসএমএস বার্তা দেখার অনুমতি দিলে Signal স্বয়ংক্রিয়ভাবে আপনার যাচাই কোডটি সনাক্ত করতে পারে।</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">আপনি এখন একটি ডিবাগ লগ জমা দেওয়ার থেকে %d পদক্ষেপ দূরে।</item>
     <item quantity="other">আপনি এখন একটি ডিবাগ লগ জমা দেওয়ার থেকে %d পদক্ষেপ দূরে।</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">আপনি যে একজন মানুষ তা আমরা যাচাই করতে চাই।</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">ক্যাপচা যাচাই করতে ব্যর্থ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">ক্যাপচা যাচাই করতে ব্যর্থ</string> -->
   <string name="RegistrationActivity_next">পরবর্তী</string>
   <string name="RegistrationActivity_continue">চলতে থাকুন</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">চালিয়ে যান ( %d প্রচেষ্টা বাকি আছে)</string>
-  <string name="RegistrationActivity_continue_last_attempt">চালিয়ে যান (সর্বশেষ প্রচেষ্টা)</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_d_attempts_left">চালিয়ে যান ( %d প্রচেষ্টা বাকি আছে)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_continue_last_attempt">চালিয়ে যান (সর্বশেষ প্রচেষ্টা)</string> -->
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">আপনার গোপনীয়তা বজায় রাখুন।\n প্রতিটি বার্তায় নিজস্ব থাকুন।</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">শুরু করতে আপনার ফোন নাম্বার লিখুন</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
@@ -895,7 +895,7 @@
   <string name="RevealableMessageView_viewed">দেখা হয়ে গেছে</string>
   <string name="RevealableMessageView_media">মিডিয়া</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">চিত্রের পরিবর্তনগুলি সংরক্ষণ করতে ব্যর্থ</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">চিত্রের পরিবর্তনগুলি সংরক্ষণ করতে ব্যর্থ</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' এর জন্য কোন ফলাফল পাওয়া যায়নি</string>
   <string name="SearchFragment_header_conversations">কথোপকথন সমুহ</string>
@@ -957,11 +957,11 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">বিবরণীসমূহ জমাদিতে ব্যার্থ</string>
   <string name="SubmitDebugLogActivity_success">সফল!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">এই ইউআরএল টি কপি করুন এবং এটি আপনার সমস্যা প্রতিবেদন বা সাপোর্ট ইমে‌ইলে যোগ করুন:\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_copied_to_clipboard">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string> -->
   <string name="SubmitDebugLogActivity_share">শেয়ার করুন</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_subject">বিষয়ঃ</string>
-  <string name="SupportEmailUtil_signal_android_support_request">Signal অ্যানড্রয়েড সহায়তা আবেদন</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_subject">বিষয়ঃ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_android_support_request">Signal অ্যানড্রয়েড সহায়তা আবেদন</string> -->
   <string name="SupportEmailUtil_device_info">ডিভাইস এর তথ্যঃ</string>
   <string name="SupportEmailUtil_android_version">অ্যানড্রয়েড ভার্সনঃ</string>
   <string name="SupportEmailUtil_signal_version">Signal ভার্সনঃ</string>
@@ -990,12 +990,12 @@
   <string name="ThreadRecord_you_marked_unverified">আপনি অযাচাইকৃত চিহ্নিত করেছেন</string>
   <string name="ThreadRecord_message_could_not_be_processed">বার্তাটি প্রক্রিয়া করা যায়নি</string>
   <string name="ThreadRecord_message_request">বার্তার অনুরোধ</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">%1$s আপনাকে গ্রুপটিতে সংযুক্ত করেছে।</string>
-  <string name="ThreadRecord_s_invited_you_to_the_group">%1$s আপনাকে গ্রুপটিতে আমন্ত্রণ জানিয়েছে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_added_you_to_the_group">%1$s আপনাকে গ্রুপটিতে সংযুক্ত করেছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_s_invited_you_to_the_group">%1$s আপনাকে গ্রুপটিতে আমন্ত্রণ জানিয়েছে।</string> -->
   <string name="ThreadRecord_photo">ছবি</string>
   <string name="ThreadRecord_gif">জিফ</string>
   <string name="ThreadRecord_voice_message">ভয়েস বার্তা</string>
-  <string name="ThreadRecord_contact">পরিচিতি</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_contact">পরিচিতি</string> -->
   <string name="ThreadRecord_file">ফাইল</string>
   <string name="ThreadRecord_video">ভিডিও</string>
   <!--UpdateApkReadyListener-->
@@ -1052,7 +1052,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">সিস্টেম ডাটাবেস আমদানি সম্পন্ন হয়েছে।</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">খোলার জন্য স্পর্শ করুন।</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">খুলতে স্পর্শ করুন বা বন্ধ করতে লক্ স্পর্শ করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">খুলতে স্পর্শ করুন বা বন্ধ করতে লক্ স্পর্শ করুন।</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal আনলক করা আছে</string>
   <string name="KeyCachingService_lock">Signal লক্ করুন</string>
   <!--MediaPreviewActivity-->
@@ -1068,14 +1068,14 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dটি নতুন বার্তা%2$dটি কথোপকথন</string>
   <string name="MessageNotifier_most_recent_from_s">%1$sথেকে অতি সাম্প্রতিক :</string>
   <string name="MessageNotifier_locked_message">লক্ করা বার্তা</string>
-  <string name="MessageNotifier_media_message_with_text">মিডিয়া বার্তা: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">মিডিয়া বার্তা: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">বার্তা পৌছে দিতে ব্যর্থ।</string>
   <string name="MessageNotifier_failed_to_deliver_message">বার্তা পৌছে দিতে ব্যর্থ।</string>
   <string name="MessageNotifier_error_delivering_message">বার্তা পৌছানোর সময় ত্রুটি।</string>
   <string name="MessageNotifier_mark_all_as_read">সবগুলো পঠিত বলে সনাক্ত কর।</string>
   <string name="MessageNotifier_mark_read">পঠিত বলে সনাক্ত কর</string>
-  <string name="MessageNotifier_media_message">মিডিয়া বার্তা</string>
-  <string name="MessageNotifier_sticker">স্টিকার</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">মিডিয়া বার্তা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">স্টিকার</string> -->
   <string name="MessageNotifier_view_once_photo">একবার দেখার যোগ্য ছবি</string>
   <string name="MessageNotifier_view_once_video">একবার দেখার যোগ্য ভিডিও</string>
   <string name="MessageNotifier_reply">প্রত্যুত্তর</string>
@@ -1105,8 +1105,8 @@
   <string name="NotificationChannel_group_messages">বার্তা সমূহ</string>
   <string name="NotificationChannel_missing_display_name">অজানা</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">সফলভাবে প্রোফাইল নাম সেট করা হয়েছে।</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_successfully_set_profile_name">সফলভাবে প্রোফাইল নাম সেট করা হয়েছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string> -->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal লক্ করা থাকলে দ্রুত প্রত্যুত্তর দেওয়া সম্ভব নয়!</string>
   <string name="QuickResponseService_problem_sending_message">বার্তা প্রেরণে সমস্যা!</string>
@@ -1133,7 +1133,7 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">ডিভাইস আর নিবন্ধিত নেই</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">সম্ভবত আপনি অন্য ডিভাইসে Signal এর সাথে আপনার ফোন নাম্বার নিবন্ধভুক্ত করেছেন। পুনরায় নিবন্ধন করতে আলতো চাপুন।</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">ভিডিও চালাতে ত্রুটি</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">ভিডিও চালাতে ত্রুটি</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%sএর থেকে কল উত্তর দিতে, Signal কে আপনার মাইক্রোফোনে অ্যাক্সেস দিন।</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">কল সমূহ করতে বা গ্রহণের জন্য Signal এর মাইক্রোফোন এবং ক্যামেরা ব্যবহারের অনুমতি প্রয়োজন, তবে সেগুলি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"মাইক্রোফোন\" এবং \"ক্যামেরা\" সক্ষম করুন |</string>
@@ -1141,11 +1141,11 @@
   <string name="WebRtcCallActivity__declined_on_a_linked_device">সংযুক্ত ডিভাইসে অস্বীকার করা হয়েছে।</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">সংযুক্ত ডিভাইসে ব্যাস্ত।</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s এর সাথে আপনার কথোপকথন এর নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে। এর অর্থ হয় যে কেউ আপনার যোগাযোগ বাধা দেওয়ার চেষ্টা করছে, বা %2$s কেবল Signal পুনরায় ইনস্টল করেছে।</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">আপনি হয়ত এই পরিচিতির সাথে আপনার নিরাপত্তা নাম্বার যাচাই করতে চাইবেন।</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">নতুন নিরাপত্তা নাম্বার</string>
-  <string name="WebRtcCallScreen_accept">গ্রহণ করুন</string>
-  <string name="WebRtcCallScreen_end_call">কল শেষ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">%1$s এর সাথে আপনার কথোপকথন এর নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে। এর অর্থ হয় যে কেউ আপনার যোগাযোগ বাধা দেওয়ার চেষ্টা করছে, বা %2$s কেবল Signal পুনরায় ইনস্টল করেছে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">আপনি হয়ত এই পরিচিতির সাথে আপনার নিরাপত্তা নাম্বার যাচাই করতে চাইবেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">নতুন নিরাপত্তা নাম্বার</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">গ্রহণ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">কল শেষ করুন</string> -->
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">প্রত্যাখ্যান করুন</string>
   <string name="WebRtcCallScreen__answer">উত্তর</string>
@@ -1155,32 +1155,32 @@
   <string name="WebRtcAudioOutputToggle__speaker">স্পিকার</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ব্লুটুথ</string>
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">আপনার ভিডিও সক্ষম করতে আলতো চাপুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">আপনার ভিডিও সক্ষম করতে আলতো চাপুন</string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">পরিচিতির ছবি</string>
-  <string name="WebRtcCallControls_speaker_button_description">স্পিকার</string>
-  <string name="WebRtcCallControls_bluetooth_button_description">ব্লুটুথ</string>
-  <string name="WebRtcCallControls_mute_button_description">নিরব</string>
-  <string name="WebRtcCallControls_your_camera_button_description">আপনার ক্যামেরা</string>
-  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">পেছনের ক্যামেরা ব্যবহার করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">পরিচিতির ছবি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">স্পিকার</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_bluetooth_button_description">ব্লুটুথ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">নিরব</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_your_camera_button_description">আপনার ক্যামেরা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_switch_to_rear_camera_button_description">পেছনের ক্যামেরা ব্যবহার করুন</string> -->
   <string name="WebRtcCallControls_answer_call_description">কল গ্রহণ করুন</string>
   <string name="WebRtcCallControls_reject_call_description">কল প্রত্যাখ্যান করুন</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">অডিও</string>
-  <string name="attachment_type_selector__audio_description">শব্দ</string>
-  <string name="attachment_type_selector__contact">পরিচিতি</string>
-  <string name="attachment_type_selector__contact_description">পরিচিতি</string>
-  <string name="attachment_type_selector__camera">ক্যামেরা</string>
-  <string name="attachment_type_selector__camera_description">ক্যামেরা</string>
-  <string name="attachment_type_selector__location">স্থান</string>
-  <string name="attachment_type_selector__location_description">স্থান</string>
-  <string name="attachment_type_selector__gif">জিফ</string>
-  <string name="attachment_type_selector__gif_description">জিফ</string>
-  <string name="attachment_type_selector__gallery_description">চিত্র বা ভিডিও</string>
-  <string name="attachment_type_selector__file_description">ফাইল</string>
-  <string name="attachment_type_selector__gallery">গ্যাল্যারি</string>
-  <string name="attachment_type_selector__file">ফাইল</string>
-  <string name="attachment_type_selector__drawer_description">সংযুক্তি ড্রয়ারটি টগল করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">অডিও</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">শব্দ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">পরিচিতি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">পরিচিতি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">ক্যামেরা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">ক্যামেরা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">স্থান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">স্থান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">জিফ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">জিফ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">চিত্র বা ভিডিও</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">ফাইল</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">গ্যাল্যারি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">ফাইল</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">সংযুক্তি ড্রয়ারটি টগল করুন</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">পুরানো পাসফ্রেজ</string>
   <string name="change_passphrase_activity__new_passphrase">নতুন পাসফ্রেজ</string>
@@ -1204,7 +1204,7 @@
   <string name="ContactSelectionListFragment_username_not_found">ব্যবহারকারীর নাম খুঁজে পাওয়া যায়নি</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" কোনও Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">কোনও অবরুদ্ধ পরিচিতি নেই</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">কোনও অবরুদ্ধ পরিচিতি নেই</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal আপনার পরিচিতিসমূহ প্রদর্শন করতে তাদের প্রবেশাধিকার প্রয়োজন।</string>
   <string name="contact_selection_list_fragment__show_contacts">পরিচিতিসমূহ দেখান</string>
@@ -1248,7 +1248,7 @@
   <string name="QuoteView_photo">ছবি</string>
   <string name="QuoteView_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
   <string name="QuoteView_sticker">স্টিকার</string>
-  <string name="QuoteView_document">নথিপত্র</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">নথিপত্র</string> -->
   <string name="QuoteView_you">আপনি</string>
   <string name="QuoteView_original_missing">মূল বার্তাটি পাওয়া যায়নি</string>
   <!--conversation_fragment-->
@@ -1266,10 +1266,10 @@
   <string name="device_list_fragment__no_devices_linked">কোনও ডিভাইস সংযুক্ত নেই</string>
   <string name="device_list_fragment__link_new_device">নতুন ডিভাইস সংযুক্ত করুন</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">চলতে থাক</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">পড়ার প্রাপ্তিগুলি এখানে</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">চাইলে অন্যরা যখন বার্তা পড়বে সেটা দেখুন আর নিজেও শেয়ার করুন </string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">পঠন প্রাপ্তিগুলি সক্ষম করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">চলতে থাক</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">পড়ার প্রাপ্তিগুলি এখানে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">চাইলে অন্যরা যখন বার্তা পড়বে সেটা দেখুন আর নিজেও শেয়ার করুন </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">পঠন প্রাপ্তিগুলি সক্ষম করুন</string> -->
   <!--expiration-->
   <string name="expiration_off">বন্ধ</string>
   <plurals name="expiration_seconds">
@@ -1317,20 +1317,20 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">কিছুই পাওয়া যায়নি</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">আপনার ডিভাইস এর লগটি পড়া যায়নি। আপনি তার পরিবর্তে একটি ডিবাগ লগ পেতে ADB ব্যবহার করতে পারেন।</string>
-  <string name="log_submit_activity__thanks">আপনার সাহায্যের জন্য ধন্যবাদ!</string>
-  <string name="log_submit_activity__submitting">সাবমিট করা হচ্ছে</string>
-  <string name="log_submit_activity__no_browser_installed">কোনও ব্রাউজার ইনস্টল করা নেই</string>
-  <string name="log_submit_activity__button_dont_submit">সাবমিট করবেন না</string>
-  <string name="log_submit_activity__button_submit">সাবমিট</string>
-  <string name="log_submit_activity__button_got_it">বুঝতে পেরেছি</string>
-  <string name="log_submit_activity__button_compose_email">ইমেইল লিখুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">আপনার ডিভাইস এর লগটি পড়া যায়নি। আপনি তার পরিবর্তে একটি ডিবাগ লগ পেতে ADB ব্যবহার করতে পারেন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">আপনার সাহায্যের জন্য ধন্যবাদ!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">সাবমিট করা হচ্ছে</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">কোনও ব্রাউজার ইনস্টল করা নেই</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">সাবমিট করবেন না</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">সাবমিট</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">বুঝতে পেরেছি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">ইমেইল লিখুন</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">এই লগটি অবদানকারীদের দেখার জন্য অনলাইনে প্রকাশ্যে পোস্ট করা হবে, আপনি সাবমিট করার আগে এটি পরীক্ষা এবং সম্পাদনা করতে পারেন।</string>
-  <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে …</string>
-  <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে …</string>
-  <string name="log_submit_activity__choose_email_app">ইমেইল অ্যাপ বাছুন</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">আমার অ্যাপ থেকে এই লগ পর্যালোচনা করুন: %1$s</string>
-  <string name="log_submit_activity__network_failure">নেটওয়ার্ক ব্যর্থতা। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">লগগুলি লোড হচ্ছে …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">লগগুলি আপলোড হচ্ছে …</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">ইমেইল অ্যাপ বাছুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">আমার অ্যাপ থেকে এই লগ পর্যালোচনা করুন: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">নেটওয়ার্ক ব্যর্থতা। অনুগ্রহপূর্বক আবার চেষ্টা করুন।</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">আপনি কি Signal এর এনক্রিপ্ট করা ডাটাবেস এর মধ্যে আপনার বিদ্যমান পাঠ্য বার্তাগুলি আমদানি করতে চান?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ডিফল্ট সিস্টেম ডাটাবেস কোনওভাবেই পরিবর্তন বা পরিবর্তন করা হবে না।</string>
@@ -1338,10 +1338,10 @@
   <string name="database_migration_activity__import">আমদানী</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">এটি কিছু সময় নিতে পারে। দয়া করে ধৈর্য ধরুন, আমদানি সম্পূর্ণ হলে আমরা আপনাকে অবহিত করব।</string>
   <string name="database_migration_activity__importing">আমদানী করা হচ্ছে</string>
-  <string name="import_fragment__import_system_sms_database">সিস্টেমের এসএমএস ডাটাবেস আমদানি করুন</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">ডিফল্ট সিস্টেম মেসেঞ্জার অ্যাপ থেকে ডাটাবেস আমদানি করুন</string>
-  <string name="import_fragment__import_plaintext_backup">সাধারন লেখা ব্যাকঅাপ আমদানি করুন</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">একটি সাধারন লেখার ব্যাকআপ ফাইল আমদানি করুন। যা এসএমএস ব্যাকআপ &amp; পুনরুদ্ধার এর সঙ্গে সামঞ্জস্যপূর্ণ।</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">সিস্টেমের এসএমএস ডাটাবেস আমদানি করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">ডিফল্ট সিস্টেম মেসেঞ্জার অ্যাপ থেকে ডাটাবেস আমদানি করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">সাধারন লেখা ব্যাকঅাপ আমদানি করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">একটি সাধারন লেখার ব্যাকআপ ফাইল আমদানি করুন। যা এসএমএস ব্যাকআপ &amp; পুনরুদ্ধার এর সঙ্গে সামঞ্জস্যপূর্ণ।</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">সম্পূর্ণ কথোপকথন দেখুন</string>
   <string name="load_more_header__loading">লোড হচ্ছে</string>
@@ -1350,7 +1350,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">দেখুন</string>
   <string name="message_recipients_list_item__resend">আবার পাঠান</string>
-  <string name="message_recipients_list_item__resending">আবার পাঠানো হচ্ছে…</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">আবার পাঠানো হচ্ছে…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s গ্রুপে যোগ দিয়েছেন</item>
@@ -1376,20 +1376,20 @@
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal কল</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Signal কল</string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">ফোন নাম্বার</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal আপনার বিদ্যমান ফোন নাম্বার  এবং এড্রোস বুক ব্যবহার করে যোগাযোগ করা সহজ করে তোলে। বন্ধুরা এবং পরিচিতিসমূহ যারা ইতিমধ্যে ফোনে আপনার সাথে যোগাযোগ করতে পারে তারা Signal এর মাধ্যমে সহজেই যোগাযোগ করতে সক্ষম হবে। \n\n নিবন্ধন করার সময় সার্ভারে পরিচিতির কিছু তথ্য প্রেরণ করে। এটি সংরক্ষণ করা হয় না।</string>
-  <string name="registration_activity__verify_your_number">আপনার নাম্বার যাচাই করুন</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">একটি যাচাইকরণ কোড পেতে আপনার মোবাইল নাম্বার প্রবেশ করুন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">ফোন নাম্বার</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal আপনার বিদ্যমান ফোন নাম্বার  এবং এড্রোস বুক ব্যবহার করে যোগাযোগ করা সহজ করে তোলে। বন্ধুরা এবং পরিচিতিসমূহ যারা ইতিমধ্যে ফোনে আপনার সাথে যোগাযোগ করতে পারে তারা Signal এর মাধ্যমে সহজেই যোগাযোগ করতে সক্ষম হবে। \n\n নিবন্ধন করার সময় সার্ভারে পরিচিতির কিছু তথ্য প্রেরণ করে। এটি সংরক্ষণ করা হয় না।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">আপনার নাম্বার যাচাই করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">একটি যাচাইকরণ কোড পেতে আপনার মোবাইল নাম্বার প্রবেশ করুন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>একটি নাম বা নাম্বার লিখুন</small></string>
-  <string name="recipients_panel__add_members">সদস্য যোগ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">সদস্য যোগ করুন</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">প্রেরক আপনার পরিচিতি তালিকায় নেই</string>
-  <string name="unknown_sender_view__block">ব্লক করুন</string>
-  <string name="unknown_sender_view__add_to_contacts">পরিচিতি তালিকায় যোগ করুন</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">যুক্ত করবেন না, তবে আমার প্রোফাইলটি দৃশ্যমান করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">প্রেরক আপনার পরিচিতি তালিকায় নেই</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">ব্লক করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">পরিচিতি তালিকায় যোগ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">যুক্ত করবেন না, তবে আমার প্রোফাইলটি দৃশ্যমান করুন</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[যদি আপনি %sএর সাথে আপনার এনক্রিপশনের সুরক্ষা যাচাই করতে চান তবে উপরের নাম্বার তাদের ডিভাইস এ দেখানো নাম্বার এর সাথে তুলনা করুন। বিকল্পভাবে, আপনি তাদের ফোনে কোডটি স্ক্যান করতে পারেন বা তাদের আপনার কোডটি স্ক্যান করতে বলতে পারেন। <a href="https://signal.org/redirect/safety-numbers">আরও জানুন</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">স্ক্যান করতে আলতো চাপুন</string>
@@ -1425,10 +1425,10 @@
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">বার্তার অনুরোধ</string>
   <string name="MessageRequestsMegaphone__add_profile_name">প্রোফাইল নাম যোগ করুন</string>
-  <string name="MessageRequestsMegaphone__new_message_requests">নতুনঃ বার্তার অনুরোধ</string>
-  <string name="MessageRequestsMegaphone__add_name">নাম যোগ করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__new_message_requests">নতুনঃ বার্তার অনুরোধ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestsMegaphone__add_name">নাম যোগ করুন</string> -->
   <!--HelpFragment-->
-  <string name="HelpFragment__help">সাহায্য</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__help">সাহায্য</string> -->
   <string name="HelpFragment__have_you_read_our_faq_yet">আপনি কি এখন পর্যন্ত আমাদের FAQ পড়েছেন?</string>
   <string name="HelpFragment__next">পরবর্তী</string>
   <string name="HelpFragment__contact_us">আমাদের সাথে যোগাযোগ করুন</string>
@@ -1439,10 +1439,10 @@
   <string name="HelpFragment__support_info">সহায়ক তথ্য</string>
   <string name="HelpFragment__signal_android_support_request">Signal অ্যানড্রয়েড সহায়তা আবেদন</string>
   <string name="HelpFragment__debug_log">ডিবাগ বিবরনীঃ</string>
-  <string name="HelpFragment__na">প্রযোজ্য নয়</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__na">প্রযোজ্য নয়</string> -->
   <string name="HelpFragment__could_not_upload_logs">বিবরনী সমূহ আপলোড করা যায়নি</string>
-  <string name="HelpFragment__signal_support">Signal সহায়তা</string>
-  <string name="HelpFragment__no_email_app_found">কোন ইমেইল এপ পাওয়া যায়নি</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__signal_support">Signal সহায়তা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__no_email_app_found">কোন ইমেইল এপ পাওয়া যায়নি</string> -->
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">সম্প্রতি ব্যাবহৃত হয়েছে</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">প্রকৃতি</string>
@@ -1454,7 +1454,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">পতাকা সমূহ</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ইমোটিকন সমূহ</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">আমদানী</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">আমদানী</string> -->
   <string name="arrays__use_default">ডিফল্ট ব্যবহার করুন</string>
   <string name="arrays__use_custom">কাস্টম ব্যবহার করুন</string>
   <string name="arrays__mute_for_one_hour">1 ঘন্টা নিঃশব্দ করুন</string>
@@ -1504,7 +1504,7 @@
   <string name="preferences__inactivity_timeout_passphrase">নিষ্ক্রিয়তার সময়সীমার পাসফ্রেজ</string>
   <string name="preferences__inactivity_timeout_interval">নিষ্ক্রিয়তার সময়সীমা</string>
   <string name="preferences__notifications">বিজ্ঞপ্তিগুলি</string>
-  <string name="preferences__system_notification_settings">সিস্টেম বিজ্ঞপ্তি সেটিংস</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">সিস্টেম বিজ্ঞপ্তি সেটিংস</string> -->
   <string name="preferences__led_color">এলইডি রঙ</string>
   <string name="preferences__led_color_unknown">অজানা</string>
   <string name="preferences__pref_led_blink_title">এলইডি মিটমিট করার প্যাটার্ন</string>
@@ -1550,7 +1550,7 @@
   <string name="preferences__appearance">অ্যাপিয়ারেন্স</string>
   <string name="preferences__theme">থীম</string>
   <string name="preferences__system_default">সিস্টেম ডিফল্ট</string>
-  <string name="preferences__default">সচারচর</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">সচারচর</string> -->
   <string name="preferences__language">ভাষা</string>
   <string name="preferences__signal_messages_and_calls">Signal বার্তাসমূহ এবং কল সমূহ</string>
   <string name="preferences__free_private_messages_and_calls">Signal  ব্যবহারকারীদের জন্য বিনামূল্যে ব্যক্তিগত বার্তা এবং কল সমূহ</string>
@@ -1625,7 +1625,7 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">অদৃশ্য বার্তা</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">বার্তাগুলির মেয়াদ শেষ হচ্ছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">বার্তাগুলির মেয়াদ শেষ হচ্ছে</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">আমন্ত্রণ</string>
   <!--conversation_list_batch-->
@@ -1633,7 +1633,7 @@
   <string name="conversation_list_batch__menu_select_all">সবগুলো নির্বাচন করুন</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">সংরক্ষণাগার নির্বাচন করা হয়েছে</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">সংরক্ষণাগারহীন নির্বাচন করা হয়েছে</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">সংরক্ষণাগারহীন নির্বাচন করা হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_batch__menu_unarchive_selected">সংরক্ষণাগারহীন নির্বাচন করা হয়েছে</string> -->
   <string name="conversation_list_batch__menu_mark_as_read">পড়া হয়েছে বলে চিহ্নিত করুন</string>
   <string name="conversation_list_batch__menu_mark_as_unread">পড়া হয়নি বলে চিহ্নিত করুন</string>
   <!--conversation_list-->
@@ -1643,8 +1643,8 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">পরিচিতির ফটো ইমেজ</string>
   <string name="conversation_list_item_view__archived">আর্কাইভ করা</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ইনবক্স ফাঁকা</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">নাই। কিছুই নেই। ফাঁকা। আপনি সহসাই নাগাল পাবেন!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ইনবক্স ফাঁকা</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">নাই। কিছুই নেই। ফাঁকা। আপনি সহসাই নাগাল পাবেন!</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">নতুন কথোপকথন</string>
   <string name="conversation_list_fragment__open_camera_description">ক্যামেরা চালু করুন</string>
@@ -1656,14 +1656,14 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">বিজ্ঞপ্তি নিঃশব্দ করুন</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">সংযোজন করুন</string>
-  <string name="conversation__menu_edit_group">গ্রুপ সংশোধন করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">সংযোজন করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">গ্রুপ সংশোধন করুন</string> -->
   <string name="conversation__menu_group_settings">গ্রুপ সেটিংস</string>
   <string name="conversation__menu_leave_group">গ্রুপ ত্যাগ করুন</string>
   <string name="conversation__menu_view_all_media">সমস্ত মিডিয়া</string>
   <string name="conversation__menu_conversation_settings">কথোপকথন সেটিংস</string>
   <string name="conversation__menu_add_shortcut">হোম পর্দায় যোগ করুন</string>
-  <string name="conversation__menu_pending_members">অনিষ্পাদিত সদস্যবৃন্দ</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_pending_members">অনিষ্পাদিত সদস্যবৃন্দ</string> -->
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">পপআপ প্রসারিত করুন</string>
   <!--conversation_callable_insecure-->
@@ -1679,7 +1679,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">লক্</string>
   <string name="text_secure_normal__mark_all_as_read">সমস্ত পড়া হয়েছে চিহ্নিত করুন</string>
   <string name="text_secure_normal__invite_friends">বন্ধুদের আমন্ত্রণ</string>
-  <string name="text_secure_normal__help">সাহায্য</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">সাহায্য</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ক্লিপবোর্ডে অনুলিপি করুন</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ক্লিপবোর্ডের সাথে তুলনা করুন</string>
@@ -1690,12 +1690,12 @@
   <string name="reminder_header_sms_import_text">Signal এর এনক্রিপ্ট করা ডাটাবেস এর মধ্যে আপনার ফোনের এসএমএস বার্তাগুলি অনুলিপি করতে আলতো চাপুন।</string>
   <string name="reminder_header_push_title"> Signal বার্তা এবং কল সমূহ সক্ষম করুন</string>
   <string name="reminder_header_push_text">আপনার যোগাযোগ অভিজ্ঞতা আপগ্রেড করুন।</string>
-  <string name="reminder_header_invite_title">Signal এ নিমন্ত্রণ করুন</string>
-  <string name="reminder_header_invite_text">%1$s এর সাথে আপনার কথোপকথন পরবর্তী স্তরে নিয়ে যান।</string>
-  <string name="reminder_header_share_title">আপনার বন্ধুদের নিমন্ত্রণ করুন!</string>
-  <string name="reminder_header_share_text">বন্ধুরা যত বেশি Signal ব্যবহার করে তত ভাল হয়।</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Signal এ নিমন্ত্রণ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">%1$s এর সাথে আপনার কথোপকথন পরবর্তী স্তরে নিয়ে যান।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">আপনার বন্ধুদের নিমন্ত্রণ করুন!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">বন্ধুরা যত বেশি Signal ব্যবহার করে তত ভাল হয়।</string> -->
   <string name="reminder_header_service_outage_text">Signal  প্রযুক্তিগত অসুবিধাগুলি অনুভব করছে। আমরা যত তাড়াতাড়ি সম্ভব সেবা পুনরুদ্ধার করতে কঠোর পরিশ্রম করছি।</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">সর্বশেষতম Signal বৈশিষ্ট্যগুলি অ্যানড্রয়েড এর এই সংস্করণে কাজ করবে না। ভবিষ্যতে Signal আপডেটগুলি পেতে দয়া করে এই ডিভাইস টি আপগ্রেড করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">সর্বশেষতম Signal বৈশিষ্ট্যগুলি অ্যানড্রয়েড এর এই সংস্করণে কাজ করবে না। ভবিষ্যতে Signal আপডেটগুলি পেতে দয়া করে এই ডিভাইস টি আপগ্রেড করুন।</string> -->
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">সংরক্ষণ</string>
@@ -1708,9 +1708,9 @@
   <string name="new_conversation_activity__refresh">সতেজ করন</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">মোছা হচ্ছে…</string>
-  <string name="trimmer__deleting_old_messages">পুরানো বার্তাগুলি মোছা হচ্ছে …‌</string>
-  <string name="trimmer__old_messages_successfully_deleted">পুরানো বার্তা সফলভাবে মোছা হয়েছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">মোছা হচ্ছে…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">পুরানো বার্তাগুলি মোছা হচ্ছে …‌</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">পুরানো বার্তা সফলভাবে মোছা হয়েছে</string> -->
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">অন্তর্দৃষ্টি</string>
@@ -1764,7 +1764,7 @@
   <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
   <string name="KbsSplashFragment__learn_more">আরও জানুন</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">রেজিস্ট্রেশন লক = পিন</string>
-  <string name="KbsSplashFragment__read_more_about_pins">পিন সম্পর্কে আরও পড়ুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__read_more_about_pins">পিন সম্পর্কে আরও পড়ুন।</string> -->
   <string name="KbsSplashFragment__update_pin">পিন আপডেট করুন</string>
   <string name="KbsSplashFragment__create_your_pin">আপনার পিন তৈরি করুন</string>
   <string name="KbsSplashFragment__learn_more_about_pins">পিনগুলি সম্পর্কে আরও জানুন</string>
@@ -1784,7 +1784,7 @@
   <string name="RegistrationLockFragment__enter_the_pin_you_created">আপনি নিজের অ্যাকাউন্ট এর জন্য তৈরি করা পিনটি প্রবেশ করুন। এটি আপনার এসএমএস যাচাইকরণ কোড থেকে ভিন্ন।</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">বর্ণানুক্রমিক পিন প্রবেশ করান</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">সংখ্যার পিন প্রবেশ করান</string>
-  <string name="RegistrationLockFragment__next">পরবর্তী</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">পরবর্তী</string> -->
   <string name="RegistrationLockFragment__incorrect_pin_try_again">ভুল পিন। আবার চেষ্টা করুন|</string>
   <string name="RegistrationLockFragment__forgot_pin">পিন ভুলে গেছেন?</string>
   <string name="RegistrationLockFragment__incorrect_pin">ভুল পিন</string>
@@ -1803,13 +1803,13 @@
     <item quantity="other">%1$d টি সুযোগ বাকি আছে</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ঠিক আছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ঠিক আছে</string> -->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s একটি বার্তা অনুরোধ পাবে। বার্তা অনুরোধটি মঞ্জুর করা মাত্র আপনি কল করতে পারবেন।</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">একটি পিন তৈরি করুন</string>
   <string name="KbsMegaphone__create_pin">পিন তৈরি করুন</string>
-  <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string>
-  <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__introducing_pins">পিনের সাথে পরিচিত হন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="KbsMegaphone__update_pin">পিন আপডেট করুন</string> -->
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_learn_more">আরও জানুন</string>
   <string name="ResearchMegaphone_dismiss">বাতিল</string>
@@ -1822,7 +1822,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">এসএমএস প্রেরণের জন্য Signal এর এসএমএসের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতি\" নির্বাচন করুন এবং \"এসএমএস\" সক্ষম করুন।</string>
   <string name="Permissions_continue">চলুন</string>
   <string name="Permissions_not_now">এখন না</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">আপনার পরিচিতিগুলি অনুসন্ধান করার জন্য সিগন্যালের পরিচিতি পাঠের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"পরিচিতিগুলি\" সক্ষম করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">আপনার পরিচিতিগুলি অনুসন্ধান করার জন্য সিগন্যালের পরিচিতি পাঠের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"পরিচিতিগুলি\" সক্ষম করুন।</string> -->
   <string name="conversation_activity__enable_signal_messages">SIGNAL বার্তা সক্ষম করুন</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ডাটাবেস ডাটাবেস স্থানান্তরিত হচ্ছে</string>
   <string name="PushDecryptJob_new_locked_message">নতুন লক্ করা বার্তা</string>
@@ -1832,11 +1832,11 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">আমি এই পাসফ্রেজ লিখে রেখেছি। এটি ছাড়া, আমি একটি ব্যাকঅাপ পুনরুদ্ধার করতে পারব না।</string>
   <string name="registration_activity__restore_backup">ব্যাকঅাপ পুনরুদ্ধার</string>
   <string name="registration_activity__skip">বাদ দিয়ে যান</string>
-  <string name="registration_activity__register">রেজিষ্ট্রি করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">রেজিষ্ট্রি করুন</string> -->
   <string name="preferences_chats__chat_backups">চ্যাট ব্যাকআপসমূহ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">বাহ্যিক স্টোরেজে চ্যাট ব্যাকঅাপ করুন</string>
-  <string name="preferences_chats__create_backup">ব্যাকঅাপ নির্মাণ করুন</string>
-  <string name="preferences_chats__verify_backup_passphrase">ব্যাকআপ পাসফ্রেজ যাচাই করুন</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">ব্যাকঅাপ নির্মাণ করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__verify_backup_passphrase">ব্যাকআপ পাসফ্রেজ যাচাই করুন</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">ব্যাকঅাপ পাসফ্রেজ প্রবেশ করান</string>
   <string name="RegistrationActivity_restore">পুনরুদ্ধার</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal এর নতুন সংস্করণগুলি থেকে ব্যাকআপ আমদানি করা যাবে না</string>
@@ -1859,12 +1859,12 @@
   <string name="BackupDialog_verify">যাচাই করুন</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">আপনি সফলভাবে আপনার ব্যাকআপ পাসফ্রেজটি প্রবেশ করিয়েছেন</string>
   <string name="BackupDialog_passphrase_was_not_correct">পাসফ্রেজ সঠিক ছিলোনা।</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ব্যাকআপগুলি তৈরি করতে Signal এর জন্য বাহ্যিক স্টোরেজ অনুমতি প্রয়োজন, তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংস যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">শেষ ব্যাকঅাপ: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">চলমান</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ব্যাকআপগুলি তৈরি করতে Signal এর জন্য বাহ্যিক স্টোরেজ অনুমতি প্রয়োজন, তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংস যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">শেষ ব্যাকঅাপ: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">চলমান</string> -->
   <string name="LocalBackupJob_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে …</string>
   <string name="ProgressPreference_d_messages_so_far">এযাবৎ %d টি বার্তা</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s এ প্রেরিত যাচাইকরণ কোডটি প্রবেশ করুন।</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s এ প্রেরিত যাচাইকরণ কোডটি প্রবেশ করুন।</string> -->
   <string name="RegistrationActivity_wrong_number">ভুল নাম্বার</string>
   <string name="RegistrationActivity_call_me_instead_available_in">পরিবর্তে আমাকে কল করুন \n (%1$02d:%2$02d পাওয়া যাচ্ছে)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal সহায়তায় যোগাযোগ করুন</string>
@@ -1886,46 +1886,46 @@
   <string name="preferences_app_protection__failed_to_enable_registration_lock">রেজিস্ট্রেশন লক সক্রিয় করতে ব্যার্থ।</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">রেজিস্ট্রেশন লক নিষ্ক্রিয় করতে ব্যার্থ।</string>
   <string name="AppProtectionPreferenceFragment_none">কেউ না</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string>
-  <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>
-  <string name="registration_activity__forgot_pin">পিন ভুলে গেছেন?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">পিন কোডটিতে 4 অথবা তার বেশী ডিজিট থাকতে পারে। যদি আপনার পিন কোড ভুলে যান তাহলে 7 দিন পর্যন্ত আপনার অ্যাকাউন্ট এ ঢুকতে পারবেন না।</string>
-  <string name="registration_lock_dialog_view__enter_pin">পিন প্রবেশ করান</string>
-  <string name="registration_lock_dialog_view__confirm_pin">পিনটি সমর্থন করুন</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">আপনার রেজিষ্ট্রি লক্ পিন কোডটি প্রদান করুন</string>
-  <string name="registration_lock_reminder_view__enter_pin">পিন প্রবেশ করান</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">রেজিস্ট্রেশন লক এর জন্য একটি পিন কোড সক্ষম করুন যেটি এই ফোন নাম্বার Signal এর সাথে পরবর্তীতে আবার নিবন্ধন করতে ব্যবহার করা হবে।</string>
-  <string name="preferences_app_protection__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">রেজিস্ট্রেশন লক পিনটি আপনি সদ্য প্রাপ্ত এসএমএস যাচাইকরণ কোডের সাথে মিলছে না। আপনি পূর্বে অ্যাপ্লিকেশনটিতে কনফিগার করা পিনটি প্রবেশ করুন।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">পিন ভুলে গেছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">পিন কোডটিতে 4 অথবা তার বেশী ডিজিট থাকতে পারে। যদি আপনার পিন কোড ভুলে যান তাহলে 7 দিন পর্যন্ত আপনার অ্যাকাউন্ট এ ঢুকতে পারবেন না।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">পিন প্রবেশ করান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">পিনটি সমর্থন করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">আপনার রেজিষ্ট্রি লক্ পিন কোডটি প্রদান করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">পিন প্রবেশ করান</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">রেজিস্ট্রেশন লক এর জন্য একটি পিন কোড সক্ষম করুন যেটি এই ফোন নাম্বার Signal এর সাথে পরবর্তীতে আবার নিবন্ধন করতে ব্যবহার করা হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string> -->
   <string name="preferences_app_protection__registration_lock">রেজিস্ট্রেশন লক</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">আপনার রেজিস্ট্রেশন লক এর পিন কোড দিতেই হবে</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">আপনার PIN এর নূন্যতম %d টি ডিজিট বা বর্ণ আছে</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোডটি ভুল</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোডটি ভুল</string> -->
   <string name="RegistrationActivity_too_many_attempts">অনেকবার চেষ্টা করা হয়েছে</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">আপনার রেজিস্ট্রেশন লক এর পিন কোড দিতে অনেকবার ভুল করেছেন। একদিন পর আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">আপনি অনেক বেশী প্রচেষ্টা চালিয়েছেন। দয়াকরে পরবর্তীতে আবার চেষ্টা করুন।</string>
   <string name="RegistrationActivity_error_connecting_to_service">পরিষেবাতে সংযোগ করার সময় ত্রুটি</string>
-  <string name="RegistrationActivity_oh_no">ওহ না!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">এই ফোন নাম্বার থেকে সর্বশেষ Signal যেদিন ব্যবহার করা হয়েছে, শুধুমাত্র তার 7 দিন পরেই আপনার রেজিস্ট্রেশন লক এর পিন কোড এর অবর্তমানে এই ফোন নাম্বার দিয়ে আবার নিবন্ধন করতে পারবেন। আরো %d দিন বাকি।</string>
-  <string name="RegistrationActivity_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">এই ফোন নাম্বার থেকে রেজিস্ট্রেশন লক সক্রিয় আছে। দয়া করে রেজিস্ট্রেশন লক পিন প্রবেশ করান।</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">আপনার ফোন নাম্বার এর রেজিস্ট্রেশন লক সক্ষম করা আছে। আপনার রেজিস্ট্রেশন লক পিনটি মনে রাখতে আপনাকে সহায়তা করতে, Signal আপনাকে পর্যায়ক্রমে এটির নিশ্চয়তা জিজ্ঞাসা করবে|</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">আমি আমার পিন ভুলে গেছি</string>
-  <string name="RegistrationLockDialog_forgotten_pin">পিন ভুলে গেছেন?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">রেজিস্ট্রেশন লক আপনার ফোন নাম্বার অননুমোদিত রেজিস্ট্রেশন প্রচেষ্টা থেকে রক্ষা করতে সহায়তা করে। আপনার Signal গোপনীয়তা সেটিংস থেকে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম করা যেতে পারে।</string>
-  <string name="RegistrationLockDialog_registration_lock">রেজিস্ট্রেশন লক</string>
-  <string name="RegistrationLockDialog_enable">সক্ষম করুন</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে %d ডিজিটের হতে হবে।</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">আপনি যে দুটি পিন লিখেছেন তা মিলছে না।</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">পরিষেবাটিতে সংযোগ করার সময় ত্রুটি</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড অক্ষম করতে চান?</string>
-  <string name="RegistrationLockDialog_disable">অকেজো</string>
-  <string name="RegistrationActivity_pin_incorrect">পিন সঠিক নয়</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">আপনার %d টি প্রচেষ্টা বাকি আছে</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">ওহ না!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">এই ফোন নাম্বার থেকে সর্বশেষ Signal যেদিন ব্যবহার করা হয়েছে, শুধুমাত্র তার 7 দিন পরেই আপনার রেজিস্ট্রেশন লক এর পিন কোড এর অবর্তমানে এই ফোন নাম্বার দিয়ে আবার নিবন্ধন করতে পারবেন। আরো %d দিন বাকি।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">এই ফোন নাম্বার থেকে রেজিস্ট্রেশন লক সক্রিয় আছে। দয়া করে রেজিস্ট্রেশন লক পিন প্রবেশ করান।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">আপনার ফোন নাম্বার এর রেজিস্ট্রেশন লক সক্ষম করা আছে। আপনার রেজিস্ট্রেশন লক পিনটি মনে রাখতে আপনাকে সহায়তা করতে, Signal আপনাকে পর্যায়ক্রমে এটির নিশ্চয়তা জিজ্ঞাসা করবে|</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">আমি আমার পিন ভুলে গেছি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">পিন ভুলে গেছেন?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">রেজিস্ট্রেশন লক আপনার ফোন নাম্বার অননুমোদিত রেজিস্ট্রেশন প্রচেষ্টা থেকে রক্ষা করতে সহায়তা করে। আপনার Signal গোপনীয়তা সেটিংস থেকে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম করা যেতে পারে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock">রেজিস্ট্রেশন লক</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">সক্ষম করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে %d ডিজিটের হতে হবে।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">আপনি যে দুটি পিন লিখেছেন তা মিলছে না।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">পরিষেবাটিতে সংযোগ করার সময় ত্রুটি</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড অক্ষম করতে চান?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">অকেজো</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_pin_incorrect">পিন সঠিক নয়</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_you_have_d_tries_remaining">আপনার %d টি প্রচেষ্টা বাকি আছে</string> -->
   <string name="preferences_chats__backups">ব্যাকআপ সমূহ</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal লক্ করা আছে</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">লক্ খুলতে ট্যাপ করুন</string>
-  <string name="RegistrationLockDialog_reminder">অনুস্মারক:</string>
-  <string name="recipient_preferences__about">সম্বন্ধে</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">অনুস্মারক:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">সম্বন্ধে</string> -->
   <string name="Recipient_unknown">অজানা</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">অবরূদ্ধ</string>

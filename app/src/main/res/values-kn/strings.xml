@@ -14,16 +14,6 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ಪ್ರಸ್ತುತ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ನೀವು ಇನ್ನೂ ಪಾಸ್‌ಫ್ರೇಸ್ ಹೊಂದಿಸಿಲ್ಲ!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">ಪ್ರತಿ ಸಂಭಾಷಣೆಯಲ್ಲಿ %d ಸಂದೇಶ</item>
-    <item quantity="other">ಪ್ರತಿ ಸಂಭಾಷಣೆಯಲ್ಲಿ %d ಸಂದೇಶಗಳು</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">ಈಗ ಎಲ್ಲಾ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸುವುದೇ?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ  %d ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</item>
-    <item quantity="other">ನೀವು ಈ  ಕ್ಷಣ ಎಲ್ಲಾ ಸಂಭಾಷಣೆಯ ಇತ್ತೀಚಿನ  %d ಸಂದೇಶಗಳಿಗೆ ಮಿತಗೊಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">ಅಳಿಸು</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ಪಾಸ್‌ಫ್ರೇಸ್‌ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ಇದು Signal ಮತ್ತು ಸಂದೇಶ ಅಧಿಸೂಚನೆಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅನ್ಲಾಕ್ ಮಾಡುತ್ತದೆ.</string>
   <string name="ApplicationPreferencesActivity_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
@@ -42,7 +32,6 @@
   <string name="ApplicationPreferencesActivity_Off">ಆಫ಼್</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">ಎಸ್‌‌ಎಂಎಸ್‌%1$s, ಎಂಎಂಎಸ್‌ %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">ಸ್ಕ್ರೀನ್ ಲಾಕ್ %1$s, ನೋಂದಣಿ ಲಾಕ್ %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್  %1$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">ಥೀಮ್‌ %1$s, ಭಾಷೆ %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಆಗಿಸಲು ಪಿನ್ಗಳು ಅಗತ್ಯವಿದೆ. ಪಿನ್‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು, ದಯವಿಟ್ಟು ಮೊದಲು ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="ApplicationPreferencesActivity_pin_created">ಪಿನ್ ರಚಿಸಲಾಗಿದೆ.</string>
@@ -73,12 +62,9 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ಫೋಟೊಗಳು, ವೀಡಿಯೋಗಳು ಅಥವಾ ಆಡಿಯೋಗಳನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಟೋರೇಜ್ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ಫೋಟೋಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು Signal ಗೆ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ಮೀಡಿಯಾವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ವಿಡಿಯೋವನ್ನು ಸಂಕುಚಿತಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
-  <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">ಆಡಿಯೋ ಪ್ಲೇ ಮಾಡುವುದರಲ್ಲಿ ದೋಷ!</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು</string>
   <string name="BlockedUsersActivity__add_blocked_user">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿ</string>
@@ -99,7 +85,6 @@
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">ನೀವು ಪರಸ್ಪರ ಸಂದೇಶ ಕಳುಹಿಸಲು ಮತ್ತು ಕರೆ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ ಮತ್ತು ನಿಮ್ಮ ಹೆಸರು ಮತ್ತು ಫೋಟೋವನ್ನು ಅವರೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗುತ್ತದೆ.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ನಿರ್ಬಂಧಿಸಿದ ಜನರಿಗೆ ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$sನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
-  <string name="BlockUnblockDialog_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="BlockUnblockDialog_block">ನಿರ್ಬಂಧಿಸಿ</string>
   <string name="BlockUnblockDialog_block_and_leave">ನಿರ್ಬಂಧಿಸಿ ಹಾಗು ಹೊರಹೋಗಿ</string>
   <string name="BlockUnblockDialog_block_and_delete">ನಿರ್ಬಂಧಿಸಿ ಮತ್ತು ಅಳಿಸಿ</string>
@@ -111,10 +96,6 @@
   <string name="BucketedThreadMedia_Large">ದೊಡ್ಡದು</string>
   <string name="BucketedThreadMedia_Medium">ಮಧ್ಯಮ</string>
   <string name="BucketedThreadMedia_Small">ಸಣ್ಣದು</string>
-  <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">ಒಳಬರುವ ಕರೆ</string>
-  <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">ಚಿತ್ರವನ್ನು ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">ಫೋಟೋಕ್ಕಾಗಿ ಟ್ಯಾಪ್ ಮಾಡಿ, ವೀಡಿಯೊಗಾಗಿ ಹಿಡಿದುಕೊಳ್ಳಿ</string>
   <string name="CameraXFragment_capture_description">ಸೆರೆಹಿಡಿಯಿರಿ</string>
@@ -144,10 +125,8 @@
   <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">ನಿಮ್ಮ Signal ಆವೃತ್ತಿಯ ವಾಯಿದೆ ಮುಗಿದಿದೆ. ನೀವು ನಿಮ್ಮ ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ನೋಡಬಹುದು ಆದರೆ ಹೊಸ ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಪಡೆಯಲು ದಯವಿಟ್ಟು ನವೀಕರಿಸಿ.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್ ಕಂಡುಬಂದಿಲ್ಲ.</string>
-  <string name="CommunicationActions_no_email_app_found">ಯಾವುದೇ ಈಮೇಲ್‌ ಇಲ್ಲ</string>
   <string name="CommunicationActions_send_email">ಈಮೇಲ್‌ ಕಳಿಸಿ</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ಒಂದು ಸೆಲ್ಯುಲಾರ್ ಕರೆ ಈಗಾಗಲೇ ಪ್ರಗತಿಯಲ್ಲಿದೆ.</string>
-  <string name="CommunicationActions_start_video_call">ವೀಡಿಯೊ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸುವುದೇ?</string>
   <string name="CommunicationActions_start_voice_call">ಧ್ವನಿ ಕರೆಯನ್ನು ಪ್ರಾರಂಭಿಸುವುದೇ?</string>
   <string name="CommunicationActions_cancel">ರದ್ದುಮಾಡು</string>
   <string name="CommunicationActions_call">ಕರೆ ಮಾಡಿ</string>
@@ -198,6 +177,8 @@
   <string name="ConversationItem_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
   <string name="ConversationItem_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
   <!--ConversationActivity-->
+  <string name="ConversationActivity_reset_secure_session_question">ಸುರಕ್ಷಿತ ಸೆಷನ್ ಮರು ಪ್ರಾರಂಭಿಸಿ?</string>
+  <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">ನೀವು ಈ ಸಂಭಾಷಣೆಯಲ್ಲಿ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸಮಸ್ಯೆಗಳನ್ನು ಹೊಂದಿದ್ದಲ್ಲಿ ಇದು ಸಹಾಯ ಮಾಡಬಹುದು. ನಿಮ್ಮ ಸಂದೇಶಗಳನ್ನು ಉಳಿಸಿಕೊಳ್ಳಲಾಗುವುದು.</string>
   <string name="ConversationActivity_reset">ಮರುಹೊಂದಿಸಿ</string>
   <string name="ConversationActivity_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
   <string name="ConversationActivity_select_contact_info">ಸಂಪರ್ಕದ ಮಾಹಿತಿಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
@@ -216,13 +197,8 @@
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s ಗೆ ಬದಲಾಯಿಸೋಣ</string>
   <string name="ConversationActivity_specify_recipient">ದಯವಿಟ್ಟು ಒಂದು ಸಂಪರ್ಕವನ್ನು ಆರಿಸಿಕೊಳ್ಳಿ</string>
-  <string name="ConversationActivity_unblock_this_contact_question">ಈ ಸಂಪರ್ಕವನ್ನು ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
-  <string name="ConversationActivity_unblock_this_group_question">ಈ ಗುಂಪಿನ ನಿರ್ಬಂಧ ತೆಗೆಯುವುದೇ?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">ಈ ಸಂಪರ್ಕದಿಂದ ನೀವು ಮತ್ತೊಮ್ಮೆ ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
-  <string name="ConversationActivity_unblock_this_group_description">ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಸದಸ್ಯರಿಗೆ ನಿಮ್ಮನ್ನು ಮತ್ತೆ ಗುಂಪಿಗೆ ಸೇರಿಸಲು ಸಾಧ್ಯವಿರುತ್ತದೆ.</string>
   <string name="ConversationActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">ನೀವು ಕಳುಹಿಸುತ್ತಿರುವ ಲಗತ್ತು ಸಂದೇಶದ ವಿಧವು ಗಾತ್ರದ ಮಿತಿಗಳನ್ನು ಮೀರಿದೆ.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">ಕ್ಯಾಮೆರಾ ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="ConversationActivity_unable_to_record_audio">ಆಡಿಯೋ ರೆಕಾರ್ಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">ಈ ಗುಂಪಿಗೆ ನೀವು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಇನ್ನು ಮುಂದೆ ನೀವು ಸದಸ್ಯರಾಗಿಲ್ಲ.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">ಈ ಲಿಂಕ್ ನಿರ್ವಹಿಸಲು ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಆ್ಯಪ್ ಲಭ್ಯವಿಲ್ಲ.</string>
@@ -253,7 +229,6 @@
   <string name="ConversationActivity_delete">ಅಳಿಸು</string>
   <string name="ConversationActivity_delete_and_leave">ಅಳಿಸಿ ಮತ್ತು ಈ ಗುಂಪನ್ನು ತೊರೆಯಿರಿ</string>
   <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone"> %1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ  ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್  ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
-  <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone_and_camera"> %1$s ಗೆ ಕರೆ ಮಾಡಲು, Signal ಗೆ   ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್ ಮತ್ತು ಕ್ಯಾಮೆರಾ ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">ಹೆಚ್ಚಿನ ಆಯ್ಕೆಗಳು ಈಗ \"ಗುಂಪಿನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ\" ಇವೆ</string>
   <string name="ConversationActivity_join">ಸೇರು</string>
   <string name="ConversationActivity_full">ಸಂಪೂರ್ಣ</string>
@@ -266,12 +241,6 @@
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
-  </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">
-ಇದು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ %1$d ಸಂದೇಶಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
-    <item quantity="other">
-ಇದು ಆಯ್ಕೆ ಮಾಡಲಾದ ಎಲ್ಲಾ %1$d ಸಂದೇಶಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸುತ್ತದೆ.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">ಸ್ಟೊರೇಜ್ ಗೆ ಉಳಿಸುವುದೇ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -316,10 +285,6 @@
   <string name="ConversationFragment_verify">ದೃಢೀಕರಿಸಿ</string>
   <string name="ConversationFragment_not_now">ಈಗಲ್ಲ</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಯಿಸಲಾಗಿದೆ.</string>
-  <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ನಿಮ್ಮ ಸಾಧನ ಯಾವುದೇ ಬ್ರೌಸರ್ ಅನ್ನು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ.</string>
-  <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\'ಗೆ ಫಲಿತಾಂಶಗಳು ಪತ್ತೆಯಾಗಿಲ್ಲ</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
     <item quantity="other">ಆಯ್ಕೆ ಮಾಡಲಾದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಳಿಸಬಹುದೇ?</item>
@@ -354,7 +319,6 @@
   <string name="CreateProfileActivity__profile">ಪ್ರೊಫೈಲ್</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">ಪ್ರೊಫೈಲ್ ಫೋಟೋ ಹೊಂದಿಸುವಲ್ಲಿ ದೋಷ</string>
   <string name="CreateProfileActivity_problem_setting_profile">ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್ ಸಮಸ್ಯೆ</string>
-  <string name="CreateProfileActivity_profile_photo">ಪ್ರೊಫೈಲ್ ಚಿತ್ರ</string>
   <string name="CreateProfileActivity_set_up_your_profile">ನಿಮ್ಮ ಪ್ರೊಫೈಲನ್ನು ಸ್ಥಾಪಿಸಿ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ ಎಂಡ್‌-ಟು-ಎಂಡ್ ಎನ್‌ಕ್ರಿಪ್ಟ್  ಆಗಿದೆ. ನೀವು ಹೊಸ ಸಂಭಾಷಣೆಗಳನ್ನು ಪ್ರಾರಂಭಿಸಿದಾಗ ಅಥವಾ ಸ್ವೀಕರಿಸುವಾಗ ಮತ್ತು ನೀವು ಹೊಸ ಗುಂಪುಗಳಿಗೆ ಸೇರಿದಾಗ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರ ಬದಲಾವಣೆಗಳು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ ಕಾಣಿಸುತ್ತದೆ. </string>
   <string name="CreateProfileActivity_set_avatar_description">ಅವತಾರ್ ಹೊಂದಿಸಿ</string>
@@ -401,11 +365,6 @@
   <string name="DateUtils_today">ಇಂದು</string>
   <string name="DateUtils_yesterday">ನಿನ್ನೆ</string>
   <!--DecryptionFailedDialog-->
-  <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="DeliveryStatus_sent">ಕಳುಹಿಸಲಾಗಿದೆ</string>
-  <string name="DeliveryStatus_delivered">ತಲುಪಿಸಲಾಗಿದೆ</string>
-  <string name="DeliveryStatus_read">ಓದಿ</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">%sಯನ್ನು ಅನ್‌ಲಿಂಕ್‌ ಮಾಡುವುದೇ?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ಈ ಸಾಧನವನ್ನು ಅನ್‌ಲಿಂಕ್ ಮಾಡುವ ಮೂಲಕ, ಇದು ಸಂದೇಶಗಳನ್ನು ಕಳುಹಿಸಲು ಅಥವಾ ಪಡೆಯಲು ಇನ್ನು ಮುಂದೆ ಸಮರ್ಥವಾಗಿರುವುದಿಲ್ಲ.</string>
@@ -443,8 +402,6 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">ಜೊತೆ ಹಂಚಿಕೊಳ್ಳಿ </string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">ಬಹು ಲಗತ್ತುಗಳನ್ನು ಕೇವಲ ಚಿತ್ರಗಳು ಮತ್ತು ವೀಡಿಯೋಗಳಿಗೆ ಬೆಂಬಲಿಸಲಾಗಿರುತ್ತದೆ</string>
-  <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">ಸಂದೇಶವನ್ನು ಮರುಪಡೆಯಲಾಗುತ್ತಿದೆ…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signalಗೆ ಶಾಶ್ವತವಾದ ಸಂಪರ್ಕ ವೈಫಲ್ಯ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ಅನ್ನು Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ನಲ್ಲಿ ನೋಂದಾಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. Signal ಸಂದೇಶಗಳು ಹಾಗೂ ಕರೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ,  ದಯವಿಟ್ಟು ಸೆಟ್ಟಿಂಗ್‌ಗಳು &gt; ಅಡ್ವಾನ್ಸ್ಡ್ ನಲ್ಲಿ ಪುನಃ ನೋಂದಾಯಿಸಲು ಯತ್ನಿಸಿ.</string>
@@ -465,10 +422,6 @@
   <string name="ChooseNewAdminActivity_choose_new_admin">ಹೊಸ ಅಡ್ಮಿನ್ ಆರಿಸಿ</string>
   <string name="ChooseNewAdminActivity_done">ಮುಗಿದಿದೆ</string>
   <string name="ChooseNewAdminActivity_you_left">ನೀವು \"%1$s\" ಅನ್ನು ಬಿಟ್ಟಿದ್ದೀರಿ</string>
-  <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರು ಮತ್ತು ಚಿತ್ರವನ್ನು ಈ ಗುಂಪಿನೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳುವಿರಾ?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">ನೀವು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಹೆಸರನ್ನು ಮಾಡಲು ಹಾಗೂ ಎಲ್ಲ ಸದ್ಯದ ಮತ್ತು ಭವಿಷ್ಯದ ಸದಸ್ಯರುಗಳಿಗೆ ಈ ಗುಂಪಿನಲ್ಲಿ ಫೋಟೊವನ್ನು ಕಾಣುವಂತೆ ಮಾಡಲು ಬಯಸುತ್ತೀರಾ?</string>
-  <string name="GroupShareProfileView_make_visible">ಕಾಣುವಂತೆ ಮಾಡಿ</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_you">ನೀವು</string>
   <!--GV2 access levels-->
@@ -482,7 +435,6 @@
     <item quantity="other">%d ಆಹ್ವಾನಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ</item>
   </plurals>
   <string name="GroupManagement_invite_single_user">\"%1$s\" ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಅವರನ್ನು ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೂ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
-  <string name="GroupManagement_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="GroupManagement_invite_multiple_users">ಈ ಬಳಕೆದಾರರನ್ನು ನೀವು ಈ ಗುಂಪಿಗೆ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸಲಾಗುವುದಿಲ್ಲ. ಅವರನ್ನು ಗುಂಪಿಗೆ ಸೇರಲು ಆಹ್ವಾನಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವರು ಸ್ವೀಕರಿಸುವವರೆಗೆ ಯಾವುದೇ ಗುಂಪು ಸಂದೇಶಗಳನ್ನು ನೋಡುವುದಿಲ್ಲ.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">ಹೊಸ ಗುಂಪುಗಳೆಂದರೇನು?</string>
@@ -594,7 +546,6 @@
   <string name="AddGroupDetailsFragment__group_name_required">ಗುಂಪಿನ ಹೆಸರು (ಅಗತ್ಯವಿದೆ)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">ಗುಂಪಿನ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">ಈ ಕ್ಷೇತ್ರ ಅಗತ್ಯವಿದೆ.</string>
-  <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">ಗುಂಪುಗಳಿಗೆ ಕನಿಷ್ಟ ಎರಡು ಸದಸ್ಯರು ಬೇಕು</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">ಗುಂಪಿನ ರಚನೆ ವಿಫಲವಾಗಿದೆ.</string>
   <string name="AddGroupDetailsFragment__try_again_later">ಪುನಃ ಪ್ರಯತ್ನಿಸಿ</string>
   <string name="AddGroupDetailsFragment__remove">ತೆಗೆದುಹಾಕಿ</string>
@@ -602,7 +553,6 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ರನ್ನು ಗುಂಪಿನಿಂದ ತೆಗೆಯುವುದೇ?</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageGroupActivity_member_requests_and_invites">ಸದಸ್ಯ ವಿನಂತಿಗಳು &amp; ಆಹ್ವಾನಗಳು</string>
   <string name="ManageGroupActivity_add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
   <string name="ManageGroupActivity_edit_group_info">ಗುಂಪಿನ ಮಾಹಿತಿಯನ್ನು ಬದಲಾಯಿಸಿ</string>
@@ -620,11 +570,6 @@
   <string name="ManageGroupActivity_on">ಆನ್</string>
   <string name="ManageGroupActivity_view_all_members">ಎಲ್ಲಾ ಸದಸ್ಯರನ್ನು ವೀಕ್ಷಿಸಿ</string>
   <string name="ManageGroupActivity_see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
-  <string name="ManageGroupActivity_none">ಯಾವುದೂ ಇಲ್ಲ</string>
-  <plurals name="ManageGroupActivity_invited">
-    <item quantity="one">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
-    <item quantity="other">%d ನಿಮ್ಮನ್ನು ಆಹ್ವಾನಿಸಿದ್ದಾರೆ.</item>
-  </plurals>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
     <item quantity="other">%d ಸದಸ್ಯರನ್ನು ಸೇರಿಸಲಾಗಿದೆ.</item>
@@ -634,6 +579,11 @@
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ  ಎಚ್ಚರಿಸು </string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ</string>
+  <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು</string>
+  <string name="ManageProfileFragment_username">ಬಳಕೆದಾರ ಹೆಸರು</string>
+  <string name="ManageProfileFragment_about">ಬಗ್ಗೆ</string>
+  <string name="ManageProfileFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <string name="ManageRecipientActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -663,9 +613,6 @@
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__group_link">ಗುಂಪಿನ ಲಿಂಕ್</string>
   <string name="ShareableGroupLinkDialogFragment__share">ಹಂಚಿಕೊಳ್ಳಿ </string>
-  <string name="ShareableGroupLinkDialogFragment__enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="ShareableGroupLinkDialogFragment__disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="ShareableGroupLinkDialogFragment__default">ಡೀಫಾಲ್ಟ್</string>
   <!--GroupLinkShareQrDialogFragment-->
   <!--GV2 Invite Revoke confirmation dialog-->
   <!--GroupJoinBottomSheetDialogFragment-->
@@ -680,20 +627,15 @@
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add">ಸೇರಿಸಿ</string>
   <string name="RequestConfirmationDialog_deny">ನಿರಾಕರಿಸಿ</string>
-  <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">ಗುಂಪಿನ ಅವತಾರ್</string>
-  <string name="CropImageActivity_profile_avatar">ಅವತಾರ್</string>
   <!--ImageEditorHud-->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">ಧ್ವನಿ ಸಂದೇಶವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು  ಹಿಡಿದುಕೊಳ್ಳಿ, ಕಳುಹಿಸಲು ಅದನ್ನು ಬಿಡಿ</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
-  <string name="InviteActivity_choose_contacts">ಸಂಪರ್ಕಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="InviteActivity_share_with_contacts">ಸಂಪರ್ಕಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಿ</string>
   <string name="InviteActivity_choose_how_to_share">ಹೇಗೆ ಹಂಚಿಕೊಳ್ಳಬೇಕೆಂದು ಆರಿಸಿ</string>
   <string name="InviteActivity_cancel">ರದ್ದುಗೊಳಿಸಿ</string>
   <string name="InviteActivity_sending">ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
-  <string name="InviteActivity_heart_content_description">ಹೃದಯ</string>
   <string name="InviteActivity_invitations_sent">ಆಮಂತ್ರಣಗಳನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ!</string>
   <string name="InviteActivity_invite_to_signal">Signalಗೆ ಆಮಂತ್ರಿಸಿ</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -707,8 +649,6 @@
   <string name="InviteActivity_lets_switch_to_signal">Signal ಗೆ ಬದಲಾಯಿಸೋಣ: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ಹಂಚಿಕೊಳ್ಳಲು ತಾವು ಯಾವುದೇ ಅಪ್ಲಿಕೇಶನ್ ಗಳನ್ನು ಹೊಂದಿಲ್ಲ ಎಂದು ಕಂಡುಬರುತ್ತಿದೆ.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ಸ್ನೇಹಿತರು ಸ್ನೇಹಿತರನ್ನು ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಮಾಡದೇ ಚಾಟ್ ಮಾಡಲು ಬಿಡುವುದಿಲ್ಲ.</string>
-  <!--Job-->
-  <string name="Job_working_in_the_background">ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಕೆಲಸವನ್ನು ಮಾಡುತ್ತಿದ್ದೇವೆ…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <!--LongMessageActivity-->
@@ -786,8 +726,6 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%sಗೆ ಕಳುಹಿಸಿ</string>
   <string name="MediaPickerActivity__menu_open_camera">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
-  <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">ಆಯ್ಕೆ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">ಕ್ಯಾಪ್ಷನ್ ಸೇರಿಸಿ</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ಗಾತ್ರದ ಮಿತಿಯನ್ನು ಮೀರಿದ ಕಾರಣ ಐಟಂ ಅನ್ನು ತೆಗೆಯಲಾಗಿದೆ</string>
@@ -812,7 +750,6 @@
   <string name="MessageRecord_left_group">ನೀವು ಗುಂಪನ್ನು ಬಿಟ್ಟಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_you_updated_group">ನೀವು ಗುಂಪನ್ನು ನವೀಕರಿಸಿದ್ದೀರಿ.</string>
   <string name="MessageRecord_s_updated_group">%s ಗುಂಪನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ.</string>
-  <string name="MessageRecord_called_s">%sಅವರನ್ನು ಕರೆ ಮಾಡಿದ್ದೀರಿ</string>
   <string name="MessageRecord_s_joined_signal">%sರವರು Signal ಸೇರಿದ್ದಾರೆ!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">ನೀವು ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ಅವರು ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿದ್ದಾರೆ</string>
@@ -901,7 +838,6 @@
   <string name="PassphrasePromptActivity_unlock_signal">Signal ಅನ್ಲಾಕ್ ಮಾಡಿ</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ನಕ್ಷೆ</string>
-  <string name="PlacePickerActivity_not_a_valid_address">ಮಾನ್ಯ ವಿಳಾಸ ಅಲ್ಲ</string>
   <string name="PlacePickerActivity_drop_pin">ಡ್ರಾಪ್ ಪಿನ್</string>
   <string name="PlacePickerActivity_accept_address">ವಿಳಾಸವನ್ನು ಒಪ್ಪಿ</string>
   <!--PlayServicesProblemFragment-->
@@ -937,17 +873,12 @@
   <string name="ReactionsRecipientAdapter_you">ನೀವು</string>
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block">ನಿರ್ಬಂಧಿಸಿ</string>
-  <string name="RecipientPreferenceActivity_error_leaving_group">ಗುಂಪನ್ನು ಬಿಡುವಾಗ ದೋಷವಾಯಿತು</string>
   <string name="RecipientPreferenceActivity_unblock">ನಿರ್ಬಂಧ ತೆಗೆಯಿರಿ</string>
-  <string name="RecipientPreferenceActivity_enabled">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="RecipientPreferenceActivity_disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿದ ಅಥವಾ ಸ್ವೀಕರಿಸಿದ ನಂತರ ಲಭ್ಯವಾಗುತ್ತದೆ.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">ಹೆಸರಿಸದ ಗುಂಪು</string>
   <!--RedPhone-->
   <string name="RedPhone_ringing">ರಿಂಗ್ ಆಗುತ್ತಿದೆ…</string>
   <string name="RedPhone_busy">ನಿರತವಾಗಿದೆ</string>
-  <string name="RedPhone_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ</string>
   <string name="RedPhone_recipient_unavailable">ಸ್ವೀಕರಿಸುವವರು ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="RedPhone_network_failed">ನೆಟ್‌ವರ್ಕ್‌ ದೋಷ!</string>
   <string name="RedPhone_number_not_registered">ಸಂಖ್ಯೆ  ನೋಂದಾಯಿಸಲಾಗಿಲ್ಲ!</string>
@@ -956,7 +887,6 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">ನಿಮ್ಮ ವೀಡಿಯೊವನ್ನು ಆನ್ ಮಾಡಲು ಇಲ್ಲಿ ಟ್ಯಾಪ್ ಮಾಡಿ</string>
   <!--WebRtcCallView-->
-  <string name="WebRtcCallView__connecting">ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="WebRtcCallView__reconnecting">ಮರುಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="WebRtcCallView__disconnected">ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡಿದೆ</string>
   <!--CallParticipantsListDialog-->
@@ -981,27 +911,19 @@
   <string name="RegistrationActivity_play_services_error">ಪ್ಲೇ ಸರ್ವೀಸಸ್ ದೋಷ</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google ಪ್ಲೇ ಸರ್ವೀಸಸ್ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತಿದೆ ಅಥವಾ ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationActivity_terms_and_privacy">ನಿಯಮಗಳು &amp; ಖಾಸಗಿತನ ನೀತಿ</string>
-  <string name="RegistrationActivity_no_browser">ಈ ಲಿಂಕ್ ತೆರೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ. ಯಾವುದೇ ವೆಬ್ ಬ್ರೌಸರ್ ಕಂಡುಬಂದಿಲ್ಲ.</string>
-  <string name="RegistrationActivity_more_information">ಇನ್ನಷ್ಟು ಮಾಹಿತಿ</string>
-  <string name="RegistrationActivity_less_information">ಕಡಿಮೆ ಮಾಹಿತಿ</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends"> Signal ಗೆ ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಸಂದೇಶಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು, ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳು ಮತ್ತು ಮೀಡಿಯಾವನ್ನು ಆಕ್ಸೆಸ್ ಮಾಡುವುದು ಅಗತ್ಯವಿರುತ್ತದೆ.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಲು, ಮೆಸೇಜ್‌ಗಳನ್ನು ವಿನಿಮಯ ಮಾಡಿಕೊಳ್ಳಲು ಮತ್ತು ಸುರಕ್ಷಿತ ಕರೆಗಳನ್ನು ಮಾಡಲು ನಿಮ್ಮ ಸಂಪರ್ಕಗಳಿಗೆ Signal ಪ್ರವೇಶಾವಕಾಶ ಪಡೆಯಬೇ</string>
   <string name="RegistrationActivity_rate_limited_to_service">ಈ ಸಂಖ್ಯೆಯನ್ನು ರಿಜಿಸ್ಟರ್ ಮಾಡಲು ನೀವು ತುಂಬಾ ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು ಪುನಃ </string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸುಲಭವಾಗಿ ದೃಢೀಕರಿಸಲು, ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ವೀಕ್ಷಿಸಲು Signal ಗೆ ನೀವು ಅನುಮತಿಸಿದರೆ Signal ನಿಮ್ಮ ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಪತ್ತೆ ಮಾಡುತ್ತದೆ.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">ನೀವು ಈಗ %d ಎ ಸಲ್ಲಿಸುವುದರಿಂದ ದೂರವಿರಿಡೀಬಗ್ ಲಾಗ್.</item>
     <item quantity="other">ನೀವು ಡಿಬಗ್ ಲಾಗ್  ಅನ್ನು ಸಲ್ಲಿಸುವುದರಿಂದ %d ಹೆಜ್ಜೆಗಳಷ್ಟು ದೂರದಲ್ಲಿದ್ದೀರಿ.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">ನಾವು ನೀವು ಮಾನವ ಅಂತ ದೃಢೀಕರಿಸಬೇಕಾಗಿದೆ.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">ಕ್ಯಾಪ್ಚಾವನ್ನು ದೃಢೀಕರಿಸುವಲ್ಲಿ ವಿಫಲವಾಗಿದೆ</string>
   <string name="RegistrationActivity_next">ಮುಂದೆ</string>
   <string name="RegistrationActivity_continue">ಮುಂದುವರಿಸಿ</string>
-  <string name="RegistrationActivity_continue_d_attempts_left">ಮುಂದುವರಿಸಿ (%d ಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ)</string>
-  <string name="RegistrationActivity_continue_last_attempt">ಮುಂದುವರಿಸಿ (ಕೊನೆಯ ಪ್ರಯತ್ನ!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ಖಾಸಗಿತನವನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಇರಿಸಿಕೊಳ್ಳಿ. \nನಿಮ್ಮ ಪ್ರತಿ ಸಂದೇಶದಲ್ಲಿಯೂ ಸ್ವಂತಿಕೆ ಕಾಯ್ದುಕೊಳ್ಳಿ.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ಪ್ರಾರಂಭಿಸಲು ನಿಮ್ಮ ದೂರವಾಣಿ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ </string>
-  <string name="RegistrationActivity_enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ನಂಬರ್ ನಮೂ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ನೀವು ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ. ಕೆರಿಯರ್ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ಗೆ ನಾವು ಕಳುಹಿಸಿದ ಕೋಡ್ ನಮೂದಿಸಿ</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಅಥಬಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ ಮೊಬೈಲ್ ಸಿಗ್ನಲ್ ಅನ್ನು ನಿಮ್ಮ ಫೋನ್‌ ಹೊಂದಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳ</string>
@@ -1019,8 +941,6 @@
   <string name="RevealableMessageView_view_video">ವೀಡಿಯೊ ವೀಕ್ಷಿಸಿ</string>
   <string name="RevealableMessageView_viewed">ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
   <string name="RevealableMessageView_media">ಮೀಡಿಯಾ</string>
-  <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">ಚಿತ್ರ ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಲು ವಿಫಲವಾಗಿದೆ </string>
   <!--Search-->
   <string name="SearchFragment_no_results">%sಗೆ ಫಲಿತಾಂಶಗಳು ಲಭ್ಯವಿಲ್ಲ</string>
   <string name="SearchFragment_header_conversations">ಸಂಭಾಷಣೆಗಳು</string>
@@ -1083,7 +1003,6 @@
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ಲಾಗ್ ಗಳನ್ನು ಸಲ್ಲಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
   <string name="SubmitDebugLogActivity_success">ಯಶಸ್ವಿಯಾಗಿದೆ!</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ಈ URL ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ವಿಷಯ ವರದಿಗೆ ಸೇರಿಸಿ ಅಥವಾ ಇಮೇಲ್ ಬೆಂಬಲಿಸಿ :\n\n<b>%1$s</b></string>
-  <string name="SubmitDebugLogActivity_copied_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ </string>
   <!--SupportEmailUtil-->
   <string name="SupportEmailUtil_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್ ಲಾಕ್‌:</string>
@@ -1110,11 +1029,9 @@
   <string name="ThreadRecord_you_marked_unverified">ನೀವು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿದ್ದೀರಿ</string>
   <string name="ThreadRecord_message_could_not_be_processed">ಸಂದೇಶವನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗಲಿಲ್ಲ</string>
   <string name="ThreadRecord_message_request">ಸಂದೇಶ ವಿನಂತಿ</string>
-  <string name="ThreadRecord_s_added_you_to_the_group">%1$sಅನ್ನು ಈ ಗುಂಪಿಗೆ ಸೇರಿಸಲಾಗಿದೆ</string>
   <string name="ThreadRecord_photo">ಫೋಟೋ</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">ಧ್ವನಿ ಸಂದೇಶ</string>
-  <string name="ThreadRecord_contact">ಸಂಪರ್ಕ</string>
   <string name="ThreadRecord_file">ಫೈಲ್</string>
   <string name="ThreadRecord_video">ವೀಡಿಯೊ</string>
   <!--UpdateApkReadyListener-->
@@ -1163,7 +1080,6 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">ಸಿಸ್ಟಂ ಡೇಟಾಬೇಸ್ ಇಂಪೋರ್ಟ್ ಪೂರ್ಣಗೊಂಡಿದೆ.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">ತೆರೆಯಲು ಸ್ಪರ್ಶಿಸಿ.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">ತೆರೆಯಲು ಸ್ಪರ್ಶಿಸಿ, ಅಥವಾ ಮುಚ್ಚಲು ಲಾಕ್ ಅನ್ನು ಸ್ಪರ್ಶಿಸಿ.</string>
   <string name="KeyCachingService_passphrase_cached">Signal ಅನ್ಲಾಕ್ ಆಗಿದೆ</string>
   <string name="KeyCachingService_lock">Signal ಲಾಕ್ ಮಾಡಿ</string>
   <!--MediaPreviewActivity-->
@@ -1179,14 +1095,11 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$dಸಂಭಾಷಣೆಗಳಲ್ಲಿ %1$d ಹೊಸ ಸಂದೇಶಗಳು</string>
   <string name="MessageNotifier_most_recent_from_s">ಇದರಿಂದ ಅತಿ ಇತ್ತೀಚಿನದು:%1$s</string>
   <string name="MessageNotifier_locked_message">ಲಾಕ್ ಮಾಡಿದ ಸಂದೇಶ</string>
-  <string name="MessageNotifier_media_message_with_text">ಮೀಡಿಯಾ ಸಂದೇಶ: %s</string>
   <string name="MessageNotifier_message_delivery_failed">ಸಂದೇಶ ತಲುಪಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="MessageNotifier_failed_to_deliver_message">ಸಂದೇಶ ತಲುಪಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="MessageNotifier_error_delivering_message">ಸಂದೇಶವನ್ನು ತಲುಪಿಸುವುದರಲ್ಲಿ ದೋಷ ಸಂಭವಿಸಿದೆ.</string>
   <string name="MessageNotifier_mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="MessageNotifier_mark_read">ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
-  <string name="MessageNotifier_media_message">ಮೀಡಿಯಾ ಸಂದೇಶ</string>
-  <string name="MessageNotifier_sticker">ಸ್ಟಿಕ್ಕರ್</string>
   <string name="MessageNotifier_view_once_photo">ವ್ಯೂ-ಒನ್ಸ್ ಫೋಟೋ</string>
   <string name="MessageNotifier_view_once_video">ವ್ಯೂ-ಒನ್ಸ್ ವೀಡಿಯೊ</string>
   <string name="MessageNotifier_reply">ಉತ್ತರಿಸಿ</string>
@@ -1214,8 +1127,6 @@
   <string name="NotificationChannel_group_messages">ಸಂದೇಶಗಳು</string>
   <string name="NotificationChannel_missing_display_name">ತಿಳಿದಿಲ್ಲ</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_successfully_set_profile_name">ಪ್ರೊಫೈಲ್ ಹೆಸರು ಯಶಸ್ವಿಯಾಗಿ ಹೊಂದಿಸಲಾಗಿದೆ.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">ನೆಟ್‌ವರ್ಕ್ ದೋಷವನ್ನು ಎದುರಿಸಿದೆ.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">ಯಾವಾಗ  Signal ಲಾಕ್ ಮಾಡಲಾಗಿದೆಯೋ ಆವಾಗ ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆ ಲಭ್ಯವಿಲ್ಲ!</string>
   <string name="QuickResponseService_problem_sending_message">ಸಂದೇಶ ಕಳುಹಿಸುವಲ್ಲಿ ಸಮಸ್ಯೆ!</string>
@@ -1241,49 +1152,17 @@
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">ಸಾಧನ ಇನ್ನು ನೋಂದಣಿ ಹೊಂದಿರುವುದಿಲ್ಲ</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನೀವು Signal ನೊಂದಿಗೆ ಬೇರೆ ಸಾಧನದಲ್ಲಿ ನೋಂದಾಯಿಸಿದ್ದರಿಂದ ಇದು ಉಂಟಾಗಿರಬಹುದು. ಪುನಃ ನೋಂದಾಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-  <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">ವೀಡಿಯೊ ಪ್ಲೇ ಮಾಡುವಲ್ಲಿ ದೋಷ</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone"> %s ನಿಂದ ಕರೆಗೆ ಉತ್ತರಿಸಲು, ನಿಮ್ಮ ಮೈಕ್ರೊಫೋನ್‌ಗೆ Signal ಗೆ ಪ್ರವೇಶವನ್ನು ನೀಡಿ.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">ಕರೆಗಳನ್ನು ಮಾಡಲು ಅಥವಾ ಪಡೆಯಲು Signal ಗೆ ಮೈಕ್ರೊಫೋನ್ ಹಾಗೂ ಕ್ಯಾಮೆರಾ ಅನುಮತಿಗಳು ಅಗತ್ಯವಿರುತ್ತವೆ, ಆದರೆ ಅವುಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ, ಮತ್ತು  \"ಮೈಕ್ರೊಫೋನ್\" ಮತ್ತು \"ಕ್ಯಾಮೆರಾ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s ರೊಂದಿಗಿನ ನಿಮ್ಮ ಸಂಭಾಷಣೆಯ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಬದಲಾಗಿದೆ. ನಿಮ್ಮ ಸಂವಹನವನ್ನು ಯಾರೋ ತಡೆಯಲು ಪ್ರಯತ್ನಿಸುತ್ತಿದ್ದಾರೆ ಅಥವಾ %2$s ಅನ್ನು Signal ಅನ್ನು ಪುನಃ ಇನ್‌‌‌ಸ್ಟಾಲ್ ಮಾಡಲಾಗಿದೆ ಎನ್ನುವುದು ಇದರರ್ಥವಾಗಿರಬಹುದು.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">ನೀವು ನಿಮ್ಮ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ ಈ ಸಂಪರ್ಕದೊಂದಿಗೆ ಪರಿಶೀಲಿಸಲು ಬಯಸಬಹುದು.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">ಹೊಸ ಸುರಕ್ಷತಾ ಸಂಖ್ಯೆ</string>
-  <string name="WebRtcCallScreen_accept">ಒಪ್ಪಿಕೊಳ್ಳಿ</string>
-  <string name="WebRtcCallScreen_end_call">ಕರೆ ಅಂತ್ಯಗೊಳಿಸಿ</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__answer">ಉತ್ತರಿಸಿ</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__speaker">ಸ್ಪೀಕರ್</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">ಬ್ಲೂಟೂತ್</string>
-  <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">ಟ್ಯಾಪ್ ಮಾಡಿ ಸಕ್ರಿಯಗೊಳಿಸಲು ನಿಮ್ಮ ವೀಡಿಯೊ</string>
-  <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">ಸಂಪರ್ಕದ ಛಾಯಾಚಿತ್ರ</string>
-  <string name="WebRtcCallControls_speaker_button_description">ಸ್ಪೀಕರ್</string>
-  <string name="WebRtcCallControls_bluetooth_button_description">ಬ್ಲೂಟೂತ್</string>
-  <string name="WebRtcCallControls_mute_button_description">ಮ್ಯೂಟ್ ಮಾಡಿ</string>
-  <string name="WebRtcCallControls_your_camera_button_description">ನಿಮ್ಮ ಕ್ಯಾಮೆರಾ</string>
-  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">ಹಿಂಭಾಗದ ಕ್ಯಾಮೆರಾಗೆ ಬದಲಿಸಿ </string>
   <string name="WebRtcCallControls_answer_call_description">ಕರೆಗೆ ಉತ್ತರಿಸಿ</string>
   <string name="WebRtcCallControls_reject_call_description">ಕರೆಯನ್ನು ತಿರಸ್ಕರಿಸಿ</string>
-  <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">ಆಡಿಯೋ</string>
-  <string name="attachment_type_selector__audio_description">ಆಡಿಯೋ</string>
-  <string name="attachment_type_selector__contact">ಸಂಪರ್ಕ</string>
-  <string name="attachment_type_selector__contact_description">ಸಂಪರ್ಕ</string>
-  <string name="attachment_type_selector__camera">ಕ್ಯಾಮರಾ</string>
-  <string name="attachment_type_selector__camera_description">ಕ್ಯಾಮರಾ</string>
-  <string name="attachment_type_selector__location">ಸ್ಥಳ</string>
-  <string name="attachment_type_selector__location_description">ಸ್ಥಳ</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">ಚಿತ್ರ ಅಥವಾ ವೀಡಿಯೊ</string>
-  <string name="attachment_type_selector__file_description">ಫೈಲ್</string>
-  <string name="attachment_type_selector__gallery">ಗ್ಯಾಲರಿ</string>
-  <string name="attachment_type_selector__file">ಫೈಲ್</string>
-  <string name="attachment_type_selector__drawer_description">ಅಟ್ಯಾಚ್‌ಮೆಂಟ್ ಡ್ರಾಯರ್ ಟಾಗಲ್ ಮಾಡಿ</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">ಹಳೆ ಪಾಸ್‌‌ಫ್ರೇಸ್</string>
   <string name="change_passphrase_activity__new_passphrase">ಹೊಸ ಪಾಸ್‌‌ಫ್ರೇಸ್</string>
@@ -1306,8 +1185,6 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ಸಂಪರ್ಕಗಳನ್ನು ಹಿಂಪಡೆಯುವಲ್ಲಿ ದೋಷ, ನಿಮ್ಮ ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ</string>
   <string name="ContactSelectionListFragment_username_not_found">ಬಳಕೆದಾರ ಹೆಸರು ಕಂಡುಬಂದಿಲ್ಲ</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"  Signal ಬಳಕೆದಾರರಲ್ಲ. ದಯವಿಟ್ಟು ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
-  <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">ನಿರ್ಬಂಧಿಸಲಾದ ಸಂಪರ್ಕಗಳಿಲ್ಲ</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ಗೆ  ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಪ್ರದರ್ಶಿಸಲು ಪ್ರವೇಶ ಅಗತ್ಯವಿದೆ.</string>
   <string name="contact_selection_list_fragment__show_contacts">ಸಂಪರ್ಕಗಳನ್ನು ತೋರಿಸಿ</string>
@@ -1352,7 +1229,6 @@
   <string name="QuoteView_photo">ಫೋಟೋ</string>
   <string name="QuoteView_view_once_media">ವ್ಯೂ-ಒನ್ಸ್ ಮೀಡಿಯಾ</string>
   <string name="QuoteView_sticker">ಸ್ಟಿಕ್ಕರ್</string>
-  <string name="QuoteView_document">ದಾಖಲೆ</string>
   <string name="QuoteView_you">ನೀವು</string>
   <string name="QuoteView_original_missing">ಮೂಲ ಸಂದೇಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--conversation_fragment-->
@@ -1369,11 +1245,6 @@
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">ಸಾಧನಗಳು ಲಿಂಕ್ ಮಾಡಿಲ್ಲ</string>
   <string name="device_list_fragment__link_new_device">ಹೊಸ ಸಾಧನ ಲಿಂಕ್ ಮಾಡಿ </string>
-  <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">ಮುಂದುವರಿಸಿ</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">ಓದುವ ಸ್ವೀಕೃತಿಗಳು ಇಲ್ಲಿವೆ</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">ಸಂದೇಶಗಳನ್ನು ಓದಿದಾಗ ಐಚ್ಛಿಕವಾಗಿ ನೋಡಿ ಮತ್ತು ಹಂಚಿಕೊಳ್ಳಿ</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">ಓದಿರುವ ಸ್ವೀಕೃತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <!--expiration-->
   <string name="expiration_off">ಆಫ಼್</string>
   <plurals name="expiration_seconds">
@@ -1421,20 +1292,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">ಏನೂ ಕಂಡುಬಂದಿಲ್ಲ</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿನ ಲಾಗ್ ಅನ್ನು ಓದಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಡೀಬಗ್ ಲಾಗ್ ಪಡೆಯಲು ನೀವು ಇನ್ನೂ ಎಡಿಬಿ ಬಳಸಬಹುದು.</string>
-  <string name="log_submit_activity__thanks">ನಿಮ್ಮ ಸಹಾಯಕ್ಕೆ ಧನ್ಯವಾದಗಳು!</string>
-  <string name="log_submit_activity__submitting">ಸಲ್ಲಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="log_submit_activity__no_browser_installed">ಯಾವುದೇ ಬ್ರೌಸರ್ ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ</string>
-  <string name="log_submit_activity__button_dont_submit">ಸಲ್ಲಿಸಬೇಡಿ</string>
-  <string name="log_submit_activity__button_submit">ಸಲ್ಲಿಸು</string>
-  <string name="log_submit_activity__button_got_it">ಅರ್ಥವಾಯಿತು</string>
-  <string name="log_submit_activity__button_compose_email">ಇಮೇಲ್ ಸಂಯೋಜಿಸಿ</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">ಕೊಡುಗೆ ನೀಡುವವವರ ನೋಡುವಂತಾಗಲು ಈ ಲಾಗ್ ಅನ್ನು ಸಾರ್ವಜನಿಕವಾಗಿ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಪೋಸ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ, ಸಲ್ಲಿಸುವ ಮೊದಲು ನೀವು ಅದನ್ನು ಪರಿಶೀಲಿಸಬಹುದು ಮತ್ತು ಸಂಪಾದಿಸಬಹುದು.</string>
-  <string name="log_submit_activity__loading_logs">ಲಾಗ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
-  <string name="log_submit_activity__uploading_logs">ಲಾಗ್‌ಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
-  <string name="log_submit_activity__choose_email_app">ಇಮೇಲ್ ಆ್ಯಪ್ ಆಯ್ಕೆಮಾಡಿ</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">ದಯವಿಟ್ಟು ನನ್ನ ಆ್ಯಪ್‌ ನಿಂದ ಈ ಲಾಗ್ ಅನ್ನು ಪರಿಶೀಲಿಸಿ: %1$s</string>
-  <string name="log_submit_activity__network_failure">ನೆಟ್‌ವರ್ಕ್ ವೈಫಲ್ಯ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸು.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಪಠ್ಯ ಸಂದೇಶಗಳನ್ನು Signal ನ ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಡೇಟಾಬೇಸ್‌ಗೆ ಇಂಪೋರ್ಟ್ ಮಾಡಲು ನೀವು ಬಯಸುವಿರಾ?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ಪ್ರಸ್ತುತ ವ್ಯವಸ್ಥೆಯ ದತ್ತಾಂಶವನ್ನು ಯಾವುದೇ ರೀತಿಯಲ್ಲಿ ಮಾರ್ಪಡಿಸಿವುದಿಲ್ಲ.</string>
@@ -1442,10 +1300,6 @@
   <string name="database_migration_activity__import">ಇಂಪೋರ್ಟ್</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ಈದು ಒಂದು ಕ್ಷಣ ತೆಗೆದುಕೊಳ್ಳಬಹುದು. ದಯವಿಟ್ಟು ತಾಳ್ಮೆಯಿಂದಿರಿ,  ಇಂಪೋರ್ಟ್ ಪೂರ್ಣಗೊಂಡಾಗ, ನಾವು ನಿಮಗೆ ಸೂಚಿಸುತ್ತೇವೆ.</string>
   <string name="database_migration_activity__importing">ಇಂಪೋರ್ಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
-  <string name="import_fragment__import_system_sms_database">ಸಿಸ್ಟಂ ಎಸ್‌‌‌ಎಂಎಸ್ ದತ್ತಾಂಶವನ್ನು ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">ಡೀಫಾಲ್ಟ್ ಸಿಸ್ಟಂ ಮೆಸೆಂಜರ್ ಆ್ಯಪ್‌ನಿಂದ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಇಂಪೋರ್ಟ್ ಮಾಡಿ</string>
-  <string name="import_fragment__import_plaintext_backup">ಸರಳಪಠ್ಯದ  ಬ್ಯಾಕಪ್ ಅನ್ನು ಆಮದು ಮಾಡಿಕೊಳ್ಳಿ</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">ಸರಳ ಪಠ್ಯದ ಬ್ಯಾಕಪ್ ಫೈಲ್ ಇಂಪೋರ್ಟ್ ಮಾಡಿ. \'ಎಸ್‌ಎಂಎಸ್ ಬ್ಯಾಕಪ್ &amp; ಮರುಸ್ಥಾಪನೆ\' ಗೆ ಹೊಂದಿಕೊಳ್ಳುವಂತಿದೆ </string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ಪೂರ್ಣ ಸಂಭಾಷಣೆ ನೋಡಿ</string>
   <string name="load_more_header__loading">ಲೋಡ್ ಆಗುತ್ತಿದೆ</string>
@@ -1454,7 +1308,6 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ನೋಡಿ</string>
   <string name="message_recipients_list_item__resend">ಪುನಃ ಕಳುಹಿಸಿ</string>
-  <string name="message_recipients_list_item__resending">ಪುನಃ ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ಗುಂಪನ್ನು ಸೇರಿದ್ದಾರೆ </item>
@@ -1472,25 +1325,18 @@
   <string name="CreateProfileActivity_next">ಮುಂದೆ</string>
   <string name="CreateProfileActivity__username">ಬಳಕೆದಾರ ಹೆಸರು</string>
   <string name="CreateProfileActivity__create_a_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ರಚಿಸಿ</string>
+  <!--EditAboutFragment-->
+  <string name="EditAboutFragment_about">ಬಗ್ಗೆ</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__group_name">ಗುಂಪಿನ ಹೆಸರು</string>
+  <!--EditProfileNameFragment-->
+  <string name="EditProfileNameFragment_your_name">ನಿಮ್ಮ ಹೆಸರು</string>
+  <string name="EditProfileNameFragment_last_name_optional">ಕೊನೆಯ ಹೆಸರು (ಐಚ್ಛಿಕ)</string>
+  <string name="EditProfileNameFragment_save">ಉಳಿಸಿ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ಮೀಡಿಯಾ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ</string>
-  <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal ಕರೆ</string>
-  <!--registration_activity-->
-  <string name="registration_activity__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ನಿಮ್ಮ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವ ಫೋನ್ ಸಂಖ್ಯೆ ಮತ್ತು ವಿಳಾಸ ಪುಸ್ತಕವನ್ನು ಬಳಸಿಕೊಂಡು ಸಂವಹನವನ್ನು ಸುಲಭಗೊಳಿಸುತ್ತದೆ. ಫೋನ್ ಮೂಲಕ ನಿಮ್ಮನ್ನು ಹೇಗೆ ಸಂಪರ್ಕಿಸಬೇಕು ಎಂದು ಈಗಾಗಲೇ ತಿಳಿದಿರುವ ಸ್ನೇಹಿತರು ಮತ್ತು ಸಂಪರ್ಕಗಳು Signal ಮೂಲಕ ಸುಲಭವಾಗಿ ಸಂಪರ್ಕ ಸಾಧಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ. \n\nನೋಂದಣಿಯು ಕೆಲವು ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಸರ್ವರ್‌ಗೆ ರವಾನಿಸುತ್ತದೆ. ಅದನ್ನು ಸಂಗ್ರಹಿಸಲಾಗಿಲ್ಲ.  </string>
-  <string name="registration_activity__verify_your_number">ನಿಮ್ಮ ಸಂಖ್ಯೆ ದೃಢೀಕರಿಸಿ</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">ದೃಢೀಕರಣ ಕೋಡ್ ಸ್ವೀಕರಿಸಲು ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ. ಕೆರಿಯರ್ ವಿಧಿಸುವ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>ಹೆಸರು ಅಥವಾ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</small></string>
-  <string name="recipients_panel__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
-  <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list"> ಕಳುಹಿಸುವವರು ನಿಮ್ಮ ಸಂಪರ್ಕ ಪಟ್ಟಿಯಲ್ಲಿ ಇಲ್ಲ  </string>
-  <string name="unknown_sender_view__block">ಬ್ಲಾಕ್</string>
-  <string name="unknown_sender_view__add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸಿ</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ಸೇರಿಸಬೇಡಿ, ಆದರೆ ನನ್ನ ಪ್ರೊಫೈಲ್ ಗೋಚರಿಸುವಂತೆ ಮಾಡಿ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ನಿಮ್ಮ ಎನ್‌ಕ್ರಿಪ್ಷನ್ ಸುರಕ್ಷತೆಯನ್ನು %s ನೊಂದಿಗೆ ದೃಢೀಕರಿಸಲು ನೀವು ಬಯಸಿದರೆ, ಮೇಲಿನ ಸಂಖ್ಯೆಯನ್ನು ಅವರ ಸಾಧನದಲ್ಲಿನ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ಹೋಲಿಸಿ. ಪರ್ಯಾಯವಾಗಿ, ನೀವು ಅವರ ಫೋನ್‌ನಲ್ಲಿ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಬಹುದು, ಅಥವಾ ನಿಮ್ಮ ಕೋಡ್ ಅನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಅವರನ್ನು ಕೇಳಬಹುದು. <a href="https://signal.org/redirect/safety-numbers">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ಸ್ಕ್ಯಾನ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
@@ -1527,18 +1373,11 @@
   <string name="MessageRequestsMegaphone__message_requests">ಸಂದೇಶ ವಿನಂತಿಗಳು</string>
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ಬಳಕೆದಾರರು ಈಗ ಹೊಸ ಸಂಭಾಷಣೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ಆಯ್ಕೆ ಮಾಡಬಹುದು. ಯಾರು ತಮಗೆ ಸಂದೇಶ ಕಳುಹಿಸುತ್ತಿದ್ದಾರೆ ಎಂಬುದನ್ನು ಪ್ರೋಫೈಲ್ ಹೆಸರುಗಳು ಜನರಿಗೆ ತಿಳಿಸುತ್ತವೆ.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">ಪ್ರೋಫೈಲ್ ಹೆಸರು ಸೇರಿಸಿ</string>
-  <string name="MessageRequestsMegaphone__new_message_requests">ಹೊಸ: ಸಂದೇಶ ವಿನಂತಿಗಳು</string>
-  <string name="MessageRequestsMegaphone__add_name">ಹೆಸರು ಸೇರಿಸಿ</string>
-  <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">ಹೊಸ ಸಂಭಾಷಣೆಯನ್ನು ಸ್ವೀಕರಿಸಬೇಕೆ ಎಂದು ನೀವು ಈಗ ಆಯ್ಕೆ ಮಾಡಬಹುದು. \"ಸ್ವೀಕರಿಸಿ,\" \"ಅಳಿಸಿ\" ಅಥವಾ \"ನಿರ್ಬಂಧಿಸಿ\" ಆಯ್ಕೆಗಳನ್ನು ನೀವು ನೋಡುತ್ತೀರಿ.</string>
   <!--HelpFragment-->
-  <string name="HelpFragment__help">ಸಹಾಯ</string>
   <string name="HelpFragment__next">ಮುಂದೆ</string>
   <string name="HelpFragment__contact_us">ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
-  <string name="HelpFragment__signal_support">Signal ಬೆಂಬಲ</string>
-  <string name="HelpFragment__no_email_app_found">ಯಾವುದೇ ಈಮೇಲ್‌ ಇಲ್ಲ</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <!--arrays.xml-->
-  <string name="arrays__import_export">ಇಂಪೋರ್ಟ್</string>
   <string name="arrays__use_default">ಡೀಫಾಲ್ಟ್ ಬಳಸಿ</string>
   <string name="arrays__use_custom">ಕಸ್ಟಮ್ ಬಳಸಿ</string>
   <string name="arrays__mute_for_one_hour">1 ಗಂಟೆ ಮ್ಯೂಟ್ ಮಾಡಿ</string>
@@ -1588,7 +1427,6 @@
   <string name="preferences__inactivity_timeout_passphrase">ಚಟುವಟಿಕೆಯಿಲ್ಲದ ಟೈಮ್‌ಔಟ್ ಪಾಸ್‌ಫ್ರೇಸ್</string>
   <string name="preferences__inactivity_timeout_interval">ಚಟುವಟಿಕೆಯಿಲ್ಲದ ಟೈಮ್‌ಔಟ್ ವಿರಾಮ</string>
   <string name="preferences__notifications">ಅಧಿಸೂಚನೆಗಳು</string>
-  <string name="preferences__system_notification_settings">ಸಿಸ್ಟಮ್ ಅಧಿಸೂಚನೆ ಸಂಯೋಜನೆಗಳು</string>
   <string name="preferences__led_color">ಎಲ್. ಇ. ಡಿ ಬಣ್ಣ</string>
   <string name="preferences__led_color_unknown">ತಿಳಿಯದ</string>
   <string name="preferences__pref_led_blink_title">ಎಲ್‌ಇಡಿ ಮಿನುಗುವ ಪ್ಯಾಟರ್ನ್‌</string>
@@ -1638,7 +1476,6 @@
   <string name="preferences__disable_pin">ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__enable_pin">PIN ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="preferences__system_default">ಸಿಸ್ಟಂ ಡೀಫಾಲ್ಟ್</string>
-  <string name="preferences__default">ಡೀಫಾಲ್ಟ್</string>
   <string name="preferences__language">ಭಾಷೆ</string>
   <string name="preferences__signal_messages_and_calls">Signal ಸಂದೇಶಗಳು ಮತ್ತು ಕರೆಗಳು</string>
   <string name="preferences__advanced_pin_settings">ಸುಧಾರಿತ PIN ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
@@ -1651,7 +1488,6 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ಓದುವ ಸ್ವೀಕೃತಿಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದ್ದಲ್ಲಿ ನೀವು ಉಳಿದವರಿಂದ ಓದಿದ ಸ್ವೀಕೃತಿಗಳನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="preferences__typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್ ಗಳು</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌‌ಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದ್ದಲ್ಲಿ, ನೀವು ಇತರರಿಂದ ಟೈಪಿಂಗ್ ಇಂಡಿಕೇಟರ್‌‌ ಗಳನ್ನು ನೋಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">ವೈಯಕ್ತಿಕಗೊಳಿಸಿದ ಕಲಿಕೆ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಕೀಬೋರ್ಡ್ ವಿನಂತಿಸಿ</string>
   <string name="preferences_app_protection__blocked_users">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು</string>
   <string name="preferences_chats__when_using_mobile_data">ಮೊಬೈಲ್ ಡೇಟಾ ಬಳಸುತ್ತಿರುವಾಗ</string>
   <string name="preferences_chats__when_using_wifi">ವೈಫೈ ಬಳಸುತ್ತಿರುವಾಗ</string>
@@ -1706,9 +1542,6 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">ಯಾರಿಂದಲೂ ಅನುಮತಿಸಿ</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ಸಂಪರ್ಕಗಳಲ್ಲದವರು ಮತ್ತು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್ ಅನ್ನು ನೀವು ಹಂಚಿಕೊಳ್ಳದ ಜನರಿಂದ ಒಳಬರುವ ಸಂದೇಶಗಳಿಗಾಗಿ ಸೀಲ್ಡ್ ಸೆಂಡರ್ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="preferences_communication__sealed_sender_learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
-  <string name="preferences_notifications__mentions">ಉಲ್ಲೇಖಗಳು</string>
-  <string name="preferences_notifications__notify_me">ನನಗೆ ತಿಳಿಸು</string>
-  <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">ಮ್ಯೂಟ್ ಮಾಡಿದ ಚಾಟ್‌ಗಳಲ್ಲಿ ನಿಮ್ಮನ್ನು ಉಲ್ಲೇಖಿಸಿದಾಗ ಅಧಿಸೂಚನೆಗಳನ್ನು ಸ್ವೀಕರಿಸಿ</string>
   <string name="preferences_setup_a_username">ಬಳಕೆದಾರ ಹೆಸರನ್ನು ಹೊಂದಿಸಿ</string>
   <string name="configurable_single_select__customize_option">ಆಯ್ಕೆಯನ್ನು ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸಿರಿ</string>
   <!--Internal only preferences-->
@@ -1738,7 +1571,6 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">ಸಂದೇಶಗಳು ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತಿವೆ</string>
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">ಆಹ್ವಾನ</string>
   <!--conversation_list_batch-->
@@ -1748,7 +1580,6 @@
   <string name="conversation_list_batch__menu_select_all">ಎಲ್ಲಾ ಆಯ್ಕೆಮಾಡಿ</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ಅನ್‌ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
-  <string name="conversation_list_batch__menu_unarchive_selected">ಅನ್‌ಆರ್ಕೈವ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ</string>
   <string name="conversation_list_batch__menu_mark_as_read">ಓದಿರುವುದಾಗಿ ಗುರುತಿಸಿ</string>
   <string name="conversation_list_batch__menu_mark_as_unread">ಓದಲಾಗಿಲ್ಲ ಎಂದು ಗುರುತಿಸಿ</string>
   <!--conversation_list-->
@@ -1760,8 +1591,6 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">ಸಂಪರ್ಕದ ಫೋಟೊ ಇಮೇಜ್</string>
   <string name="conversation_list_item_view__archived">ಆರ್ಕೈವ್ ಮಾಡಲಾಗಿದೆ</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">ಇನ್ಬಾಕ್ಸ್  ಝೀಇಇಇಇರೋ</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">ಜಿಪ್. ಜಿಲ್ಚ್. ಝಿರೋ. ನಾಡಾ. \nನಿಮ್ಮ ಮಾಹಿತಿ ಸಂಪೂರ್ಣ ಲಭ್ಯವಿದೆ! </string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">ಹೊಸ ಸಂಭಾಷಣೆ</string>
   <string name="conversation_list_fragment__open_camera_description">ಕ್ಯಾಮೆರಾ ತೆರೆಯಿರಿ</string>
@@ -1772,14 +1601,11 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">ಅಧಿಸೂಚನೆಗಳನ್ನು ಮ್ಯೂಟ್ ಮಾಡಿ</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">ಲಗತ್ತು ಸೇರಿಸಿ</string>
-  <string name="conversation__menu_edit_group">ಗುಂಪನ್ನು ಬದಲಾಯಿಸಿ</string>
   <string name="conversation__menu_group_settings">ಗುಂಪಿನ ಸಿದ್ಧತೆಗಳು</string>
   <string name="conversation__menu_leave_group">ಗುಂಪನ್ನು ತೊರೆಯಿರಿ </string>
   <string name="conversation__menu_view_all_media">ಎಲ್ಲಾ ಮೀಡಿಯಾ</string>
   <string name="conversation__menu_conversation_settings">ಸಂಭಾಷಣೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
   <string name="conversation__menu_add_shortcut">ಹೋಮ್ ಸ್ಕ್ರೀನಿಗೆ ಸೇರಿಸಿ</string>
-  <string name="conversation__menu_pending_members">ಬಾಕಿ ಉಳಿದಿರುವ ಸದಸ್ಯರು</string>
   <string name="conversation__menu_create_bubble">ಗುಳ್ಳೆಯನ್ನು ರಚಿಸಿರಿ</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">ಪಾಪ್ಅಪ್ ವಿಸ್ತರಿಸಿ</string>
@@ -1796,7 +1622,6 @@
   <string name="text_secure_normal__menu_clear_passphrase">ಲಾಕ್</string>
   <string name="text_secure_normal__mark_all_as_read">ಎಲ್ಲವನ್ನು ಓದಿದೆ ಎಂದು ಗುರುತು ಮಾಡಿ</string>
   <string name="text_secure_normal__invite_friends">ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ</string>
-  <string name="text_secure_normal__help">ಸಹಾಯ</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಗೆ ನಕಲಿಸಿ</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ ಜೊತೆ ಹೋಲಿಸಿ</string>
@@ -1805,12 +1630,7 @@
   <string name="reminder_header_sms_import_text">Signal ಎನ್‌ಕ್ರಿಪ್ಟ್ ಮಾಡಿದ ಡೇಟಾಬೇಸ್‌ಗೆ ನಿಮ್ಮ ಫೋನ್ ಎಸ್‌ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ನಕಲಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="reminder_header_push_title">Signal ಸಂದೇಶಗಳನ್ನು ಮತ್ತು ಕರೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="reminder_header_push_text">ನಿಮ್ಮ ಸಂವಹನದ ಅನುಭವವನ್ನು ಉತ್ತಮಗೊಳಿಸಿ.</string>
-  <string name="reminder_header_invite_title">Signal ಗೆ ಆಮಂತ್ರಿಸಿ</string>
-  <string name="reminder_header_invite_text">%1$s ನೊಂದಿಗೆ ನಿಮ್ಮ ಸಂಭಾಷಣೆಯನ್ನು ಮುಂದಿನ ಹಂತಕ್ಕೆ ಒಯ್ಯಿರಿ</string>
-  <string name="reminder_header_share_title">ನಿಮ್ಮ ಸ್ನೇಹಿತರನ್ನು ಆಹ್ವಾನಿಸಿ!</string>
-  <string name="reminder_header_share_text">ಹೆಚ್ಚು ಸ್ನೇಹಿತರು Signal ಬಳಸಿದಷ್ಟು, Signal ಉತ್ತಮಗೊಳ್ಳುತ್ತದೆ.</string>
   <string name="reminder_header_service_outage_text">Signal ತಾಂತ್ರಿಕ ತೊಂದರೆಗಳನ್ನು ಎದುರಿಸುತ್ತಿದೆ. ಸಾಧ್ಯವಾದಷ್ಟು ಬೇಗ ಸೇವೆಯನ್ನು ಮರುಸ್ಥಾಪಿಸಲು ನಾವು ಶ್ರಮಿಸುತ್ತಿದ್ದೇವೆ.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">ಆಂಡ್ರಾಯ್ಡ್‌ನ ಈ ಆವೃತ್ತಿಯಲ್ಲಿ ಇತ್ತೀಚಿನ Signal ವೈಶಿಷ್ಟ್ಯಗಳು ಕಾರ್ಯನಿರ್ವಹಿಸುವುದಿಲ್ಲ. ಭವಿಷ್ಯದ Signal ನವೀಕರಣಗಳನ್ನು ಸ್ವೀಕರಿಸಲು ದಯವಿಟ್ಟು ಈ ಸಾಧನವನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">ಉಳಿಸಿ</string>
@@ -1822,10 +1642,6 @@
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">ಪುನಶ್ಚೇತನ</string>
   <!--redphone_audio_popup_menu-->
-  <!--Trimmer-->
-  <string name="trimmer__deleting">ಅಳಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="trimmer__deleting_old_messages">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಅಳಿಸಲಾಗುತ್ತಿದೆ…</string>
-  <string name="trimmer__old_messages_successfully_deleted">ಹಳೆಯ ಸಂದೇಶಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅಳಿಸಲಾಗಿದೆ</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ಒಳನೋಟಗಳು</string>
@@ -1882,7 +1698,6 @@
   <string name="KbsSplashFragment__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">ನೋಂದಣಿ ಲಾಕ್ = ಪಿನ್</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಈಗ ಪಿನ್ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ, ಮತ್ತು ಅದು ಹೆಚ್ಚಿನದನ್ನು ಮಾಡುತ್ತದೆ. ಇದೀಗ ಅದನ್ನು ನವೀಕರಿಸಿ. </string>
-  <string name="KbsSplashFragment__read_more_about_pins">ಪಿನ್‌ಗಳ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ಓದಿ.</string>
   <string name="KbsSplashFragment__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
   <string name="KbsSplashFragment__create_your_pin"> ನಿಮ್ಮ ಪಿನ್ ರಚಿಸಿ</string>
   <string name="KbsSplashFragment__learn_more_about_pins">ಪಿನ್‌ಗಳ ಬಗ್ಗೆ ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ. </string>
@@ -1904,7 +1719,6 @@
   <string name="RegistrationLockFragment__enter_the_pin_you_created">ನೀವು ಖಾತೆಗಾಗಿ ರಚಿಸಿದ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ. ಇದು ಎಸ್‌ಎಂಎಸ್‌ ದೃಢೀಕರಣ ಕೋಡ್ ಗಿಂತ ಭಿನ್ನವಾಗಿರುತ್ತದೆ.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">ಆಲ್ಫಾನ್ಯೂಮರಿಕ್ ಪಿನ್ ನಮೂದಿಸಿ</string>
   <string name="RegistrationLockFragment__enter_numeric_pin"> ಸಂಖ್ಯಾ ಪಿನ್ ನಮೂದಿಸಿ</string>
-  <string name="RegistrationLockFragment__next">ಮುಂದೆ</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">ತಪ್ಪಾದ ಪಿನ್. ಮತ್ತೆ  ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationLockFragment__forgot_pin">ಪಿನ್ ಮರೆತಿದ್ದೀರಾ?</string>
   <string name="RegistrationLockFragment__incorrect_pin">ತಪ್ಪಾದ ಪಿನ್</string>
@@ -1931,16 +1745,11 @@
     <item quantity="other">%1$dಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">ಸರಿ</string>
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ನಿಮ್ಮಿಂದ ಸಂದೇಶ ವಿನಂತಿಯನ್ನು ಪಡೆಯುತ್ತರೆ. ನಿಮ್ಮ ಸಂದೇಶ ವಿನಂತಿಯನ್ನು ಸ್ವೀಕರಿಸಿದ ನಂತರ ನೀವು ಕರೆ ಮಾಡಬಹುದು.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">ಒಂದು ಪಿನ್ ರಚಿಸಿ</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal ಎನ್‌ಕ್ರಿಪ್ಟ್‌ ಮಾಡಿರುವ ಸಂಗ್ರಹಿಸಿದ ಮಾಹಿತಿಯನ್ನು ಪಿನ್‌ಗಳು ಇರಿಸಿಕೊಳ್ಳುತ್ತವೆ.</string>
   <string name="KbsMegaphone__create_pin">ಪಿನ್ ರಚಿಸಿ</string>
-  <string name="KbsMegaphone__introducing_pins">ಪಿನ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
-  <string name="KbsMegaphone__update_pin">ಪಿನ್ ನವೀಕರಿಸಿ</string>
-  <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. %1$d ದಿನಗಳಲ್ಲಿ ಪಿನ್ ರಚಿಸುವುದು ಕಡ್ಡಾಯವಾಗಲಿದೆ.</string>
-  <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">ನಾವು ನಿಮಗೆ ನಂತರ ನೆನಪಿಸುತ್ತೇವೆ. ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ದೃಢೀಕರಿಸುವುದು %1$dದಿನಗಳಲ್ಲಿ ಕಡ್ಡಾಯವಾಗಲಿದೆ. </string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">ನಿಮ್ಮ ಅನಿಸಿಕೆಗಳನ್ನು Signal ಗೆ ತಿಳಿಸಿ</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Signal ಅನ್ನು ಸಂದೇಶಗಳನ್ನು ಕಳಿಸುವ ವಿಶ್ವದ ಅತ್ಯುತ್ತಮ ಅಪ್ಲಿಕೇಶನ್ ಮಾಡಲು, ನಿಮ್ಮ ಪ್ರತಿಕ್ರಿಯೆಯನ್ನು ಕೇಳಲು ನಾವು ಇಷ್ಟಪಡುತ್ತೇವೆ.</string>
@@ -1958,7 +1767,6 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">ಎಸ್‌ಎಂಎಸ್ ಕಳುಹಿಸಲು Signal ಗೆ ಎಸ್‌ಎಂಎಸ್ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಎಸ್‌ಎಂಎಸ್\" ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="Permissions_continue">ಮುಂದುವರಿಸಿ</string>
   <string name="Permissions_not_now">ಈಗಲ್ಲ</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಶೋಧಿಸಲು Signal ಗೆ ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
   <string name="conversation_activity__enable_signal_messages"> SIGNAL ಸಂದೇಶಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ಡೇಟಾಬೇಸ್ ಮೈಗ್ರೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
   <string name="PushDecryptJob_new_locked_message">ಲಾಕ್ ಮಾಡಿರುವ ಹೊಸ ಸಂದೇಶ</string>
@@ -1970,12 +1778,8 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ನಾನು ಈ ಪಾಸ್‌ಫ್ರೇಸ್ ಬರೆದಿದ್ದೇನೆ. ಅದು ಇಲ್ಲದೆ, ನನಗೆ ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
   <string name="registration_activity__restore_backup">ಬ್ಯಾಕಪ್ ಮರುಸ್ಥಾಪಿಸಿ</string>
   <string name="registration_activity__skip">ಬಿಟ್ಟು ಮುಂದುವರಿ</string>
-  <string name="registration_activity__register">ನೋಂದಾಯಿಸು</string>
   <string name="preferences_chats__chat_backups">ಚಾಟ್ ಬ್ಯಾಕಪ್‌ಗಳು</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ಬಾಹ್ಯ ಸ್ಟೊರೇಜ್‌ಗೆ ಚಾಟ್‌ ಗಳನ್ನು ಬ್ಯಾಕಪ್ ಮಾಡಿ</string>
-  <string name="preferences_chats__create_backup">ಬ್ಯಾಕಪ್ ರಚಿಸಿ</string>
-  <string name="preferences_chats__verify_backup_passphrase">ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ದೃಢೀಕರಿಸಿ</string>
-  <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ಪರೀಕ್ಷಿಸಿ ಮತ್ತು ಇದು ಹೊಂದುತ್ತದೆಯೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ನಮೂದಿಸಿ</string>
   <string name="RegistrationActivity_restore">ಪುನಃಸ್ಥಾಪಿಸಿ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal ನ ಹೊಸ ಆವೃತ್ತಿಗಳಿಂದ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಇಂಪೋರ್ಟ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ </string>
@@ -1999,9 +1803,6 @@
   <string name="BackupDialog_verify">ದೃಢೀಕರಿಸಿ</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">ನೀವು ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನಮೂದಿಸಿದ್ದೀರಿ</string>
   <string name="BackupDialog_passphrase_was_not_correct">ಪಾಸ್‌ಫ್ರೇಸ್ ಸರಿಯಾಗಿರಲಿಲ್ಲ</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups"> ಬ್ಯಾಕಪ್ ಗಳನ್ನು ರಚಿಸಲು Signal ಗೆ ಬಾಹ್ಯ ಸ್ಟೋರೇಜ್ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು \"ಸ್ಟೋರೇಜ್\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">ಕೊನೆಯ ಬ್ಯಾಕಪ್: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">ಪ್ರಗತಿಯಲ್ಲಿದೆ</string>
   <string name="LocalBackupJob_creating_backup">ಬ್ಯಾಕಪ್ ರಚಿಸಲಾಗುತ್ತಿದೆ…</string>
   <string name="LocalBackupJobApi29_backup_failed">ಬ್ಯಾಕಪ್ ವಿಫಲವಾಗಿದೆ</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಡೈರೆಕ್ಟರಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ ಅಥವಾ ಸರಿಸಲಾಗಿದೆ.</string>
@@ -2009,7 +1810,6 @@
   <string name="LocalBackupJobApi29_there_is_not_enough_space">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಸಂಗ್ರಹಿಸಲು ಸಾಕಷ್ಟು ಸ್ಥಳವಿಲ್ಲ.</string>
   <string name="LocalBackupJobApi29_tap_to_manage_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿರ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
   <string name="ProgressPreference_d_messages_so_far">ಇಲ್ಲಿಯವರೆಗೆ %d ಸಂದೇಶಗಳು</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s ಗೆ ಕಳುಹಿಸಲಾಗಿದ ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ದಯವಿಟ್ಟು ನಮೂದಿಸಿ.</string>
   <string name="RegistrationActivity_wrong_number">ತಪ್ಪಾದ ಸಂಖ್ಯೆ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">ಬದಲಿಗೆ ನನಗೆ ಕರೆ ಮಾಡಿ \n (%1$02d:%2$02dನಲ್ಲಿ ಲಭ್ಯವಿದೆ)</string>
   <string name="RegistrationActivity_contact_signal_support">ಸಂಪರ್ಕಿಸಿ Signal ಬೆಂಬಲ</string>
@@ -2023,7 +1823,6 @@
   <string name="PhoneNumberPrivacy_nobody">ಯಾರೂ ಇಲ್ಲ</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">ನೀವು ಸಂದೇಶ ಮಾಡುವ ಎಲ್ಲಾ ಜನರು ಮತ್ತು ಗುಂಪುಗಳಿಗೆ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಕಾಣಿಸುತ್ತದೆ.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">ಅವರ ಸಂಪರ್ಕಗಳಲ್ಲಿ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಹೊಂದಿರುವ ಯಾರಾದರೂ ನಿಮ್ಮನ್ನು Signal ನಲ್ಲಿ ಸಂಪರ್ಕವನ್ನು ನೋಡುತ್ತಾರೆ. ಇತರರು ನಿಮ್ಮನ್ನು ಹುಡುಕಾಟದಲ್ಲಿ ನೋಡಲು ಸಾಧ್ಯವಾಗುತ್ತದೆ.</string>
-  <string name="PhoneNumberPrivacy_my_contacts_see_description">ನಿಮ್ಮ ಸಂಪರ್ಕದಲ್ಲಿರುವವರು ಮಾತ್ರ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಸಿಗ್ನಲ್‌ನಲ್ಲಿ ನೋಡುತ್ತರೆ.</string>
   <string name="preferences_app_protection__screen_lock">ಸ್ಕ್ರೀನ್ ಲಾಕ್</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal ಪ್ರವೇಶವನ್ನು ಆಂಡ್ರಾಯ್ಡ್ ಸ್ಕ್ರೀನ್ ಲಾಕ್ ಅಥವಾ ಫಿಂಗರ್ಪ್ರಿಂಟ್ ಜೊತೆ ಲಾಕ್ ಮಾಡಿ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ಸ್ಕ್ರೀನ್ ಲಾಕ್ ನಿಷ್ಕ್ರಿಯತೆಯ ಟೈಮ್‌ ಔಟ್</string>
@@ -2042,46 +1841,16 @@
   <string name="preferences_app_protection__failed_to_enable_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
   <string name="AppProtectionPreferenceFragment_none">ಯಾವುದೂ ಇಲ್ಲ</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನೀವು ಇದೀಗ ಸ್ವೀಕರಿಸಿದ ಎಸ್‌ಎಂಎಸ್ ದೃಢೀಕರಣ ಕೋಡ್‌ನಂತೆಯೇ ಇರುವುದಿಲ್ಲ. ದಯವಿಟ್ಟು ನೀವು ಈ ಹಿಂದೆ ಅಪ್ಲಿಕೇಶನ್‌ನಲ್ಲಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಿದ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
-  <string name="registration_activity__registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
-  <string name="registration_activity__forgot_pin">ನಿಮ್ಮ ಪಿನ್ ಮರೆತಿದ್ದೀರಾ?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">ಪಿನ್ ನಾಲ್ಕು ಅಥವಾ ಹೆಚ್ಚಿನ ಅಂಕಿಗಳನ್ನು ಒಳಗೊಂಡಿರಬಹುದು. ಒಂದೊಮ್ಮೆ ನೀವು ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಮರೆತರೆ, ನಿಮ್ಮನ್ನು ಏಳು ದಿನಗಳವರೆಗೆ ನಿಮ್ಮನ್ನು ಖಾತೆಯಿಂದ ಲಾಕ್ ಔಟ್‌ ಮಾಡಬಹುದು.</string>
-  <string name="registration_lock_dialog_view__enter_pin">ಪಿನ್ ನಮೂದಿಸಿ</string>
-  <string name="registration_lock_dialog_view__confirm_pin">ಪಿನ್ ದೃಢೀಕರಿಸಿ</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನಮೂದಿಸಿ</string>
-  <string name="registration_lock_reminder_view__enter_pin">ಪಿನ್ ನಮೂದಿಸಿ</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">ಈ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಮತ್ತೆ Signal ನೊಂದಿಗೆ ನೋಂದಾಯಿಸಲು ಅಗತ್ಯವಾಗಿರುವ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
-  <string name="preferences_app_protection__registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
   <string name="preferences_app_protection__registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಅನ್ನು ನೀವು ನಮೂದಿಸಬೇಕು</string>
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">ನಿಮ್ಮ ಪಿನ್ ಕನಿಷ್ಠ %dಅಂಕಿಗಳು ಮತ್ತು ಅಕ್ಷರಗಳನ್ನು ಹೊಂದಿರಬೇಕು</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">ತಪ್ಪಾದ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
   <string name="RegistrationActivity_too_many_attempts">ಬಹಳಷ್ಟು ಪ್ರಯತ್ನಗಳು</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">ನೀವು ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನಲ್ಲಿ ಹಲವಾರು ತಪ್ಪು  ಪ್ರಯತ್ನಗಳು ಮಾಡಿದ್ದೀರಿ. ದಯವಿಟ್ಟು ಒಂದು ದಿನದಲ್ಲಿ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">ನೀವು ಹಲವಾರು ಪ್ರಯತ್ನಗಳನ್ನು ಮಾಡಿದ್ದೀರಿ. ಮರಳಿ ಪ್ರಯತ್ನಿಸಿ.</string>
   <string name="RegistrationActivity_error_connecting_to_service">ಸೇವೆಗೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
-  <string name="RegistrationActivity_oh_no">ಓಹ್ ಇಲ್ಲ!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Signal ನಲ್ಲಿ ಈ ಫೋನ್ ಸಂಖ್ಯೆ ಕೊನೆಯದಾಗಿ ಸಕ್ರಿಯವಾಗಿರುವ ದಿನದಿಂದ 7 ದಿನಗಳು ಕಳೆದ ನಂತರ ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಇಲ್ಲದೆ ಈ ಫೋನ್ ಸಂಖ್ಯೆಯಲ್ಲಿ ನೋಂದಣಿ ಮಾಡಲು ಸಾಧ್ಯವಿರುತ್ತದೆ. ನಿಮಗೆ %dದಿನಗಳು ಉಳಿದಿರುತ್ತವೆ.</string>
-  <string name="RegistrationActivity_registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">ಈ ಫೋನ್ ಸಂಖ್ಯೆಯಲ್ಲಿ ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಅನ್ನು ನಮೂದಿಸಿ.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಗೆ ನೋಂದಣಿ ಲಾಕ್ ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಅನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಲು ನಿಮಗೆ ಸಹಾಯ ಮಾಡಲು, Signal ನಿಯತಕಾಲಿಕವಾಗಿ ಅದನ್ನು ದೃಢೀಕರಿಸಲು ನಿಮ್ಮನ್ನು ಕೇಳುತ್ತದೆ.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">ನಾನು ನನ್ನ ಪಿನ್ ಮರೆತಿದ್ದೇನೆ.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">ಪಿನ್ ಮರೆತುಹೋಗಿದೆಯೇ?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ನೋಂದಣಿ ಲಾಕ್ ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಅನಧಿಕೃತ ನೋಂದಣಿ ಪ್ರಯತ್ನಗಳಿಂದ ರಕ್ಷಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನಿಮ್ಮ Signal ಖಾಸಗಿತನ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಬಹುದು.</string>
-  <string name="RegistrationLockDialog_registration_lock">ನೋಂದಣಿ ಲಾಕ್</string>
-  <string name="RegistrationLockDialog_enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ಕನಿಷ್ಠ  %dಅಂಕಿಗಳನ್ನು ಹೊಂದಿರಬೇಕು.</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">ನೀವು ನಮೂದಿಸಿದ ಎರಡು ಪಿನ್‌ಗಳು ಹೊಂದುತ್ತಿಲ್ಲ.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">ಸೇವೆ ಸಂಪರ್ಕಿಸುವಲ್ಲಿ ದೋಷ</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">ನೋಂದಣಿ ಲಾಕ್ ಪಿನ್ ನಿಷ್ಕ್ರಿಯಗೊಳಿಸುವುದೇ?</string>
-  <string name="RegistrationLockDialog_disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
-  <string name="RegistrationActivity_pin_incorrect">ಪಿನ್ ತಪ್ಪಾಗಿದೆ</string>
-  <string name="RegistrationActivity_you_have_d_tries_remaining">ನಿಮಗೆ %d ಪ್ರಯತ್ನಗಳು ಉಳಿದಿವೆ.</string>
   <string name="preferences_chats__backups">ಬ್ಯಾಕಪ್‌ಗಳು</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ಅನ್‌‌ಲಾಕ್ ಆಗಿದೆ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ಅನ್‌ಲಾಕ್ ಮಾಡಲು ಟ್ಯಾಪ್ ಮಾಡಿ</string>
-  <string name="RegistrationLockDialog_reminder">ಜ್ಞಾಪನೆ:</string>
-  <string name="recipient_preferences__about">ಬಗ್ಗೆ</string>
   <string name="Recipient_unknown">ತಿಳಿದಿಲ್ಲ</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ನಿರ್ಬಂಧಿಸಿ</string>
@@ -2120,7 +1889,6 @@
   <string name="GroupLinkBottomSheet_copied_to_clipboard">ಕ್ಲಿಪ್‌‌ಬೋರ್ಡಿಗೆ ನಕಲು ಮಾಡಲಾಗಿದೆ</string>
   <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">ಲಿಂಕ್ ಪ್ರಸ್ತುತ ಸಕ್ರಿಯವಾಗಿಲ್ಲ</string>
   <!--VoiceNotePlaybackPreparer-->
-  <string name="VoiceNotePlaybackPreparer__could_not_start_playback">ಪ್ಲೇಬ್ಯಾಕ್ ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.</string>
   <!--VoiceNoteMediaDescriptionCompatFactory-->
   <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">ಧ್ವನಿ ಸಂದೇಶ . %1$s</string>
   <string name="VoiceNoteMediaDescriptionCompatFactory__s_to_s">%1$s  ಗೆ %2$s</string>
@@ -2174,5 +1942,19 @@
   <!--DeleteAccountCountryPickerFragment-->
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity__skip">ಬಿಟ್ಟು ಮುಂದುವರಿಯಿರಿ</string>
+  <!--ShareActivity-->
+  <string name="ShareActivity__share">ಹಂಚಿಕೊಳ್ಳಿ </string>
+  <string name="ShareActivity__send">ಕಳುಹಿಸು</string>
+  <!--MultiShareDialogs-->
+  <!--ShareInterstitialActivity-->
+  <string name="ShareInterstitialActivity__forward_message">ಸಂದೇಶವನ್ನು ರವಾನಿಸಿ</string>
+  <!--ChatWallpaperActivity-->
+  <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__reset">ಮರುಹೊಂದಿಸಿ</string>
+  <!--ChatWallpaperSelectionFragment-->
+  <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ನಿಮ್ಮ ಗ್ಯಾಲರಿಯನ್ನು ವೀಕ್ಷಿಸಲು ಶೇಖರಣಾ ಅನುಮತಿ ಅಗತ್ಯವಿದೆ.</string>
+  <!--WallpaperImageSelectionActivity-->
+  <!--WallpaperCropActivity-->
   <!--EOF-->
 </resources>

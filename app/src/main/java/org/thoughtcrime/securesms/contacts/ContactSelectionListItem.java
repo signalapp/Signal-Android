@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -65,6 +66,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
                   String name,
                   String number,
                   String label,
+                  String about,
                   int color,
                   boolean checkboxVisible)
   {
@@ -87,7 +89,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     this.numberView.setTextColor(color);
     this.contactPhotoImage.setAvatar(glideRequests, recipientSnapshot, false);
 
-    setText(recipientSnapshot, type, name, number, label);
+    setText(recipientSnapshot, type, name, number, label, about);
 
     this.checkBox.setVisibility(checkboxVisible ? View.VISIBLE : View.GONE);
   }
@@ -110,7 +112,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   }
 
   @SuppressLint("SetTextI18n")
-  private void setText(@Nullable Recipient recipient, int type, String name, String number, String label) {
+  private void setText(@Nullable Recipient recipient, int type, String name, String number, String label, @Nullable String about) {
     if (number == null || number.isEmpty()) {
       this.nameView.setEnabled(false);
       this.numberView.setText("");
@@ -120,7 +122,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
       this.numberView.setText(getGroupMemberCount(recipient));
       this.labelView.setVisibility(View.GONE);
     } else if (type == ContactRepository.PUSH_TYPE) {
-      this.numberView.setText(number);
+      this.numberView.setText(!Util.isEmpty(about) ? about : number);
       this.nameView.setEnabled(true);
       this.labelView.setVisibility(View.GONE);
     } else if (type == ContactRepository.NEW_USERNAME_TYPE) {
@@ -129,7 +131,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
       this.labelView.setText(label);
       this.labelView.setVisibility(View.VISIBLE);
     } else {
-      this.numberView.setText(number);
+      this.numberView.setText(!Util.isEmpty(about) ? about : number);
       this.nameView.setEnabled(true);
       this.labelView.setText(label != null && !label.equals("null") ? label : "");
       this.labelView.setVisibility(View.VISIBLE);

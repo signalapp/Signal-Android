@@ -13,16 +13,16 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d порака по разговор</item>
     <item quantity="other">%d пораки по разговор</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Избришете ги сите стари пораки?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Да ви остане само последнита порака на сите ваши разговори.</item>
     <item quantity="other">Да ви останат само последните %d пораки на сите ваши разговори.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Избриши</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">Избриши</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">Избриши ја лозинката</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Трајно овозможи ги нотификациите на Signal апликацијата.</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
@@ -62,7 +62,7 @@
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Блокирани контакти</string> -->
   <!--BucketedThreadMedia-->
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Доаѓачки повик</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">Доаѓачки повик</string> -->
   <!--CameraActivity-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Отстрани</string>
@@ -96,9 +96,9 @@
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_specify_recipient">Изберете контакт</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">Одблокирај го контактот?</string> -->
   <string name="ConversationActivity_unblock">Одблокирај</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостапна</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">Камерата е недостапна</string> -->
   <string name="ConversationActivity_unable_to_record_audio">Не може да се снима аудио!</string>
   <string name="ConversationActivity_yes">Да</string>
   <string name="ConversationActivity_no">Не</string>
@@ -125,8 +125,8 @@
   <string name="DateUtils_just_now">Сега</string>
   <string name="DateUtils_minutes_ago">%d минути</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sent">Испратено</string>
-  <string name="DeliveryStatus_delivered">Доставено</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">Испратено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">Доставено</string> -->
   <!--DeviceListActivity-->
   <!--DeviceListItem-->
   <!--DocumentView-->
@@ -183,7 +183,7 @@
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Добивте порака која е енкриптирана користејќи стара верзија на Signal која веќе не е поддржана. Ве молиме побајте од праќачот пораката да ја апдејтира апликацијата на најновата верзија и пак да ја препрати пораката.</string>
   <string name="MessageRecord_left_group">Ја напуштивте групата.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s ве повика</string> -->
-  <string name="MessageRecord_called_s">Повикан %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">Повикан %s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">Пропуштен повик од %s</string> -->
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Тајните фрази не се идентични!</string>
@@ -224,14 +224,14 @@
   <string name="RecipientPreferenceActivity_block">Блокирај</string>
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_contact_question">Одблокирај го контактот?</string> -->
   <string name="RecipientPreferenceActivity_unblock">Одблокирај</string>
-  <string name="RecipientPreferenceActivity_enabled">Овозможено</string>
-  <string name="RecipientPreferenceActivity_disabled">Оневозможено</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">Овозможено</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">Оневозможено</string> -->
   <!--RecipientProvider-->
   <!--RedPhone-->
   <string name="RedPhone_ending_call">Завршување на повик</string>
-  <string name="RedPhone_dialing">Повикување</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">Повикување</string> -->
   <string name="RedPhone_busy">Зафатено</string>
-  <string name="RedPhone_connected">Поврзан</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">Поврзан</string> -->
   <string name="RedPhone_number_not_registered">Бројот не е регистриран!</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">Бројот што го биравте не поддржува</string>
   <string name="RedPhone_got_it">Во ред</string>
@@ -281,12 +281,12 @@
   <string name="MediaPreviewActivity_unssuported_media_type">Неподдржан тип на датотека</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_most_recent_from_s">Најнови од: %1$s</string>
-  <string name="MessageNotifier_media_message_with_text">Медиа порака: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">Медиа порака: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">Доставувањето на пораката е неуспешно.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Неуспешно доставување на пораката.</string>
   <string name="MessageNotifier_error_delivering_message">Грешка при доставувањето на пораката.</string>
   <string name="MessageNotifier_mark_all_as_read">Обележи ги сите како прочитани</string>
-  <string name="MessageNotifier_media_message">Медиа порака</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">Медиа порака</string> -->
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Стандардно</string>
   <string name="NotificationChannel_missing_display_name">Непознато</string>
@@ -303,12 +303,12 @@
   <!--VideoPlayer-->
   <!--WebRtcCallActivity-->
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_accept">Прифати</string>
-  <string name="WebRtcCallScreen_end_call">Заврши го повикот</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">Прифати</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">Заврши го повикот</string> -->
   <!--WebRtcCallControls-->
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Звук</string>
-  <string name="attachment_type_selector__camera">камера</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">Звук</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">камера</string> -->
   <!--change_passphrase_activity-->
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
@@ -353,9 +353,9 @@
   <!--giphy_activity-->
   <!--giphy_fragment-->
   <!--log_submit_activity-->
-  <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string>
-  <string name="log_submit_activity__submitting">Испраќање</string>
-  <string name="log_submit_activity__button_got_it">Во ред</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">Ви благодариме за вашата помош!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">Испраќање</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Во ред</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Успешно!</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Стандардната системска база нема да биде променета на ниеден начин.</string>
@@ -365,8 +365,8 @@
   <string name="database_migration_activity__importing">ИМПОТИРАЊЕ</string>
   <!--database_upgrade_activity-->
   <!-- Removed by excludeNonTranslatables <string name="database_upgrade_activity__updating_database">Ажурирање на базата на податоци…</string> -->
-  <string name="import_fragment__import_system_sms_database">Импортирај системска SMS база на податоци</string>
-  <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">Импортирај системска SMS база на податоци</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string> -->
   <!--load_more_header-->
   <!--media_overview_activity-->
   <!--message_recipients_list_item-->
@@ -387,7 +387,7 @@
   <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Звук за звонење</string> -->
   <!--- redphone_call_controls-->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">ТЕЛЕФОНСКИ БРОЈ</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">ТЕЛЕФОНСКИ БРОЈ</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Внесете име или број</small></string>
   <!--unknown_sender_view-->
@@ -408,7 +408,7 @@
   <string name="AndroidManifest__change_passphrase">Променете лозинка</string>
   <string name="AndroidManifest__invite_friends">Покани пријатели</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Импортирај</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">Импортирај</string> -->
   <string name="arrays__use_default">Користете стандардно</string>
   <string name="arrays__use_custom">Користете прилагодено</string>
   <string name="arrays__mute_for_one_hour">Безгласен 1 час</string>
@@ -477,7 +477,7 @@
   <string name="preferences__dark_theme">Темна</string>
   <string name="preferences__appearance">Изглед</string>
   <string name="preferences__theme">Дизајн</string>
-  <string name="preferences__default">Стандардно</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">Стандардно</string> -->
   <string name="preferences__language">Јазик</string>
   <string name="preferences__submit_debug_log">Испратете протокол за дијагноза</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' мод за компатибилност</string>
@@ -518,7 +518,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Беззвучни известувања</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Прикачи датотека</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">Прикачи датотека</string> -->
   <string name="conversation__menu_leave_group">Напушти група</string>
   <string name="conversation__menu_conversation_settings">Разговорни подесувања</string>
   <!--conversation_popup-->
@@ -535,12 +535,12 @@
   <string name="text_secure_normal__menu_clear_passphrase">Заклучи</string>
   <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
   <string name="text_secure_normal__invite_friends">Покани пријатели</string>
-  <string name="text_secure_normal__help">Помош</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">Помош</string> -->
   <!--verify_display_fragment-->
   <!--reminder_header-->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_outdated_build">Вашата верзија на Signal е застарена.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="reminder_header_sms_default_title">Користи како стандардна СМС апликација</string> -->
-  <string name="reminder_header_share_title">Покани ги твиоте пријатели!</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">Покани ги твиоте пријатели!</string> -->
   <!--media_preview-->
   <string name="media_preview__save_title">Зачувај</string>
   <!--media_overview-->
@@ -548,20 +548,20 @@
   <!--new_conversation_activity-->
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Бришење</string>
-  <string name="trimmer__deleting_old_messages">Бришење на старите пораки…</string>
-  <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">Бришење</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">Бришење на старите пораки…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string> -->
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
   <string name="CallNotificationBuilder_connecting">Се поврзува…</string>
   <string name="Permissions_continue">Продолжете</string>
   <string name="registration_activity__skip">Прескокни</string>
-  <string name="registration_activity__register">Регистрирајте се</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">Регистрирајте се</string> -->
   <string name="RegistrationActivity_restore">Врати</string>
   <string name="BackupUtil_never">Никогаш</string>
   <string name="BackupUtil_unknown">Непознато</string>
   <string name="AppProtectionPreferenceFragment_none">Ниедна</string>
   <string name="RegistrationActivity_too_many_attempts">Премногу пробувања</string>
-  <string name="RegistrationLockDialog_disable">Оневозможи</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">Оневозможи</string> -->
   <!--EOF-->
 </resources>

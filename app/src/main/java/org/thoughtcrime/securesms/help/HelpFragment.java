@@ -172,7 +172,7 @@ public class HelpFragment extends LoggingFragment {
     }
 
     return SupportEmailUtil.generateSupportEmailBody(requireContext(),
-                                                     getString(R.string.HelpFragment__signal_android_support_request),
+                                                     R.string.HelpFragment__signal_android_support_request,
                                                      problem.getText().toString() + "\n\n",
                                                      suffix.toString());
   }

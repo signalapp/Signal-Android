@@ -13,16 +13,16 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Açar sözü təyin etməmisən!</string>
-  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">Hər söhbətə %d mesaj</item>
     <item quantity="other">Hər söhbətə %d mesaj</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Köhnə mesajların hamısını silirsən?</string>
-  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Köhnə mesajların hamısını silirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
     <item quantity="one">Bu avtomatik olaraq bütün söhbətləşmələri son yazışmalara qədər siləcək.</item>
     <item quantity="other">Bu avtomatik olaraq bütün söhbətləşmələri %d yazışmalara qədər siləcək.</item>
-  </plurals>
-  <string name="ApplicationPreferencesActivity_delete">Sil</string>
+  </plurals> -->
+  <!-- Removed by excludeNonTranslatables <string name="ApplicationPreferencesActivity_delete">Sil</string> -->
   <string name="ApplicationPreferencesActivity_disable_passphrase">Açar sözü deaktivə edirsən?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu daimi olaraq Signal və mesaj xəbərdarlıqlarının kilidini açacaq.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivə et</string>
@@ -64,10 +64,10 @@
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal-ın normal işləməsi üçün şəkil, video və ya səsləri saxlamağa yaddaş lazımdır ki, bu da hal hazırda qadağa edilib. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, orada isə \"İcazələr\" bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Əlaqə məlumatlarını yükləyə bilməsi üçün Signal-ın Əlaqələr bölməsinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Məkanı yükləyə bilməsi üçün Signal-ın məkan seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Məkan\" hissəsini aktivləşdir.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Şəkil çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Şəkil çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string> -->
   <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
-  <string name="AudioSlidePlayer_error_playing_audio">Səsin dinlənməsində xəta!</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioSlidePlayer_error_playing_audio">Səsin dinlənməsində xəta!</string> -->
   <!--BlockedContactsActivity-->
   <!-- Removed by excludeNonTranslatables <string name="BlockedContactsActivity_blocked_contacts">Əlaqələr kilidlidir</string> -->
   <!--BucketedThreadMedia-->
@@ -78,9 +78,9 @@
   <string name="BucketedThreadMedia_Large">Böyük</string>
   <string name="BucketedThreadMedia_Small">Kiçik</string>
   <!--CallScreen-->
-  <string name="CallScreen_Incoming_call">Gələn zəng</string>
+  <!-- Removed by excludeNonTranslatables <string name="CallScreen_Incoming_call">Gələn zəng</string> -->
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">Şəkli yaddaşa yazmaq mümkün olmadı.</string>
+  <!-- Removed by excludeNonTranslatables <string name="CameraActivity_image_save_failure">Şəkli yaddaşa yazmaq mümkün olmadı.</string> -->
   <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts__menu_search">Axtar</string>
@@ -152,13 +152,13 @@
   <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string> -->
   <string name="ConversationActivity_specify_recipient">Zəgmət olmasa əlaqəni seç</string>
-  <string name="ConversationActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string>
-  <string name="ConversationActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string>
-  <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu əlaqədən yenə mesaj və zəng qəbul edəcəksən.</string>
-  <string name="ConversationActivity_unblock_this_group_description">Mövcud üzvlər səni yenə də qrupa əlavə edə biləcəklər.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_contact_question">Bi əlaqənin kilidini açırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu əlaqədən yenə mesaj və zəng qəbul edəcəksən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_unblock_this_group_description">Mövcud üzvlər səni yenə də qrupa əlavə edə biləcəklər.</string> -->
   <string name="ConversationActivity_unblock">Kilidi aç</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">Göndərdiyin mesajın növünə görə faylın ölçüsü limiti aşır.</string>
-  <string name="ConversationActivity_quick_camera_unavailable">Kameranı aça bilmirik</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_quick_camera_unavailable">Kameranı aça bilmirik</string> -->
   <string name="ConversationActivity_unable_to_record_audio">Səs yaza bilmirik!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazında bu linkin öhdəsindən gələ biləcək aplikasiya yoxdur.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərə bilmək üçün Signal-a icazə ver mikrofonunu istifadə edə bilsin.</string>
@@ -185,10 +185,10 @@
     <item quantity="one">Seçilmiş mesajı silirsən?</item>
     <item quantity="other">Seçilmiş mesajları silirsən?</item>
   </plurals>
-  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+  <!-- Removed by excludeNonTranslatables <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="one">Bu addım seçilmiş mesajı həmişəlik siləcəkdir.</item>
     <item quantity="other">Bu addım seçilmiş %1$d mesajı həmişəlik siləcəkdir.</item>
-  </plurals>
+  </plurals> -->
   <string name="ConversationFragment_save_to_sd_card">Yaddaşa yazırsan?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Yaddaşa yazılacaq bu media fayla cihazındakı digər aplikasiyaların da giriş icazəsi olacaq.\n\nDavam edək?</item>
@@ -216,9 +216,9 @@
   <string name="ConversationFragment_quoted_message_not_found">Mesajın əsli tapılmadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajın əsli artıq mövcud deyil</string>
   <!--ConversationListActivity-->
-  <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazında heç bir işlək brauzer yoxdur.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazında heç bir işlək brauzer yoxdur.</string> -->
   <!--ConversationListFragment-->
-  <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' üçün nəticə tapılmadı</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListFragment_no_results_found_for_s_">\'%s\' üçün nəticə tapılmadı</string> -->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Seçilmiş söhbətləşməni silirsən?</item>
     <item quantity="other">Seçilmiş söhbətləşmələri silirsən?</item>
@@ -248,7 +248,7 @@
   <string name="CreateProfileActivity__profile">Profil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Profil şəklinin təyini zamanı xəta</string>
   <string name="CreateProfileActivity_problem_setting_profile">Profilin quraşdırılmasında problem</string>
-  <string name="CreateProfileActivity_profile_photo">Profil şəkli</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_photo">Profil şəkli</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Profilini quraşdır</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilləri son məqama qədər şifrəlidir və Signal-ın bu məlumatlara girişi mümkün deyil.</string>
   <!--CustomDefaultPreference-->
@@ -261,10 +261,10 @@
   <string name="DateUtils_today">Bu gün</string>
   <string name="DateUtils_yesterday">Dünən</string>
   <!--DeliveryStatus-->
-  <string name="DeliveryStatus_sending">Göndərilir</string>
-  <string name="DeliveryStatus_sent">Göndərildi</string>
-  <string name="DeliveryStatus_delivered">Çatdırıldı</string>
-  <string name="DeliveryStatus_read">Oxundu</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sending">Göndərilir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_sent">Göndərildi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_delivered">Çatdırıldı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="DeliveryStatus_read">Oxundu</string> -->
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' cihazının bağlılığını ləğv et?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Cihazın bağlılığını ləğv etsən, o daha mesaj göndərə və qəbul edə bilməyəcək.</string>
@@ -310,7 +310,7 @@
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_got_it">Anladım</string> -->
   <!-- Removed by excludeNonTranslatables <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Sticker olan yerdə sözə nə ehtiyac var? Klavyaturada bu işarəni sıxın:</string> -->
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası…</string>
+  <!-- Removed by excludeNonTranslatables <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası…</string> -->
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Həmişəlik Signal ünsiyyət xətası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servisləri ilə qeydiyyatdan keçə bilmədi. Signal zəngləri və mesajları deaktivə edildi, lütfən Parametrlər &gt; Daha Geniş seçimlərində yenidən qeydiyyatdan keçməyə cəhd et.</string>
@@ -336,22 +336,22 @@
   <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_loading_group_details">Qrup detalları yüklənir…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="GroupCreateActivity_youre_already_in_the_group">Sən artıq qrupdasan.</string> -->
   <!--GroupShareProfileView-->
-  <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adını və şəklini qrupda paylaşmaq istəyirsən?</string>
-  <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hazırkı və gələcək qrup üzvlərinə profil adını və şəklini nümayiş etdirməyə razısan?</string>
-  <string name="GroupShareProfileView_make_visible">Nümayiş etdir</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adını və şəklini qrupda paylaşmaq istəyirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Hazırkı və gələcək qrup üzvlərinə profil adını və şəklini nümayiş etdirməyə razısan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="GroupShareProfileView_make_visible">Nümayiş etdir</string> -->
   <!--GroupMembersDialog-->
   <!-- Removed by excludeNonTranslatables <string name="GroupMembersDialog_me">Mən</string> -->
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Qrupun şəkli</string>
-  <string name="CropImageActivity_profile_avatar">Şəkil</string>
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_group_avatar">Qrupun şəkli</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CropImageActivity_profile_avatar">Şəkil</string> -->
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Səsli mesaj yazmaq üçün düyməni sıx və saxla, göndərmək istəyəndə barmağını ekrandan ayır</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Paylaş</string>
-  <string name="InviteActivity_choose_contacts">Əlaqələri seç</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_choose_contacts">Əlaqələri seç</string> -->
   <string name="InviteActivity_cancel">Ləğv et</string>
   <string name="InviteActivity_sending">Göndərilir…</string>
-  <string name="InviteActivity_heart_content_description">Ürək</string>
+  <!-- Removed by excludeNonTranslatables <string name="InviteActivity_heart_content_description">Ürək</string> -->
   <string name="InviteActivity_invitations_sent">Dəvətnamələr göndərildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
   <plurals name="InviteActivity_send_sms_to_friends">
@@ -366,7 +366,7 @@
   <string name="InviteActivity_no_app_to_share_to">Elə görünür ki, paylaşa biləcəyin aplikasiya yoxdur.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar dostlara şifrələnməmiş yazışmaya icazə vermir.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Pərdə arxası iş gedir…</string>
+  <!-- Removed by excludeNonTranslatables <string name="Job_working_in_the_background">Pərdə arxası iş gedir…</string> -->
   <!--MessageDetailsRecipient-->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_failed_to_send">Göndərə bilmədik</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageDetailsRecipient_new_safety_number">Yeni təhlükəsizlik rəqəmi</string> -->
@@ -406,7 +406,7 @@
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%s istifadəçisinə göndər</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">Seçmək üçün kliklə</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaPickerItemFragment_tap_to_select">Seçmək üçün kliklə</string> -->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Başlıq əlavə et…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ölçüsü limiti aşdığı üçün fayl silindi</string>
@@ -429,7 +429,7 @@
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call">Cavab verilməmiş zəng</string> -->
   <string name="MessageRecord_s_updated_group">%s qrupu yenilədi.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_s_called_you">%s sənə zəng edib</string> -->
-  <string name="MessageRecord_called_s">%s istifadəçisinə zəng etmisən</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRecord_called_s">%s istifadəçisinə zəng etmisən</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MessageRecord_missed_call_from">%s tərəfindən cavab verilməmiş zəng</string> -->
   <string name="MessageRecord_s_joined_signal">%s artıq Signal-dadır!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Yox olan mesajları deaktivə etdin.</string>
@@ -499,20 +499,20 @@
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Bu əlaqədən yenə mesaj və zəng qəbul edəcəksən.</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_question">Bu qrupun kilidini açırsan?</string> -->
   <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_unblock_this_group_description">Mövcud üzvlər səni yenə də qrupa əlavə edə biləcəklər.</string> -->
-  <string name="RecipientPreferenceActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_error_leaving_group">Qrupdan çıxarkən xəta</string> -->
   <string name="RecipientPreferenceActivity_unblock">Kilidi aç</string>
-  <string name="RecipientPreferenceActivity_enabled">Aktiv et</string>
-  <string name="RecipientPreferenceActivity_disabled">Deaktiv et</string>
-  <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Mesaj göndəriləndən, yaxud da qəbul ediləndən sonra mümkündür.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_enabled">Aktiv et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_disabled">Deaktiv et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Mesaj göndəriləndən, yaxud da qəbul ediləndən sonra mümkündür.</string> -->
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Adsız qrup</string>
   <!--RedPhone-->
   <string name="RedPhone_answering">Cavab verilir</string>
   <string name="RedPhone_ending_call">Zəng bitirilir</string>
-  <string name="RedPhone_dialing">Zəng üçün rəqəmlər yazılır</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_dialing">Zəng üçün rəqəmlər yazılır</string> -->
   <string name="RedPhone_ringing">Zəng edilir</string>
   <string name="RedPhone_busy">Məşğul</string>
-  <string name="RedPhone_connected">Əlaqə yaradıldı</string>
+  <!-- Removed by excludeNonTranslatables <string name="RedPhone_connected">Əlaqə yaradıldı</string> -->
   <string name="RedPhone_recipient_unavailable">Qarşı tərəf cavab vermir</string>
   <string name="RedPhone_network_failed">Şəbəkəyə qoşulma alınmadı!</string>
   <string name="RedPhone_number_not_registered">Nömrə qeydiyyatdan keçirilməyib!</string>
@@ -536,18 +536,18 @@
   <string name="RegistrationActivity_play_services_error">Play Xidmət Xətası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Xidməti yenilənir və ya müvəqqəti işləmir: Zəhmət olmasa bir daha sına.</string>
   <string name="RegistrationActivity_terms_and_privacy">Şərtlər &amp; Məxfilik Polisi</string>
-  <string name="RegistrationActivity_no_browser">Bu linki aça bilmirik. Veb brauzer tapılmadı.</string>
-  <string name="RegistrationActivity_more_information">Daha ətraflı məlumat</string>
-  <string name="RegistrationActivity_less_information">Daha az məlumat</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_no_browser">Bu linki aça bilmirik. Veb brauzer tapılmadı.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_more_information">Daha ətraflı məlumat</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_less_information">Daha az məlumat</string> -->
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Dostlarınla əlaqəyə girmək, mesajlaşmaq və təhlükəsiz zənglər edə bilməsi üçün Signal sənin əlaqələrinə və mediana giriş icazəsi əldə etməlidir.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə əlaqə yarada bilmədik. Zəhmət olmasa şəbəkə əlaqəni yoxla və bir daha sına.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal-ın sənin SMS mesajların giriş icazəsi olsa, o avtomatik olaraq sənin təsdiq şifrəni oxuyacaq və Signal sənin telefon nömrəni asanlıqla təsdiq edəcək.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal-ın sənin SMS mesajların giriş icazəsi olsa, o avtomatik olaraq sənin təsdiq şifrəni oxuyacaq və Signal sənin telefon nömrəni asanlıqla təsdiq edəcək.</string> -->
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün %d cəmi addım qaldı.</item>
     <item quantity="other">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün cəmi %d addım qaldı.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Bis təsdiqləməliyik ki, sən insansan.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA təsdiq edilə bilmədi</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA təsdiq edilə bilmədi</string> -->
   <string name="RegistrationActivity_next">Növbəti</string>
   <string name="RegistrationActivity_continue">Davam et</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Məxfiliyi özündə saxla.\nHər mesajda özün ol.</string>
@@ -558,7 +558,7 @@
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
+  <!-- Removed by excludeNonTranslatables <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string> -->
   <!--Search-->
   <string name="SearchFragment_no_results">\'%s\' üçün nəticə tapılmadı</string>
   <string name="SearchFragment_header_conversations">Söhbətlər</string>
@@ -668,7 +668,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">Sistem məlumat bazasının daxil edilməsi tamamlandı.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Açmaq üçün toxun.</string>
-  <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmaq üçün toxun, yaxud bağlamaq üçün kilidə toxun.</string>
+  <!-- Removed by excludeNonTranslatables <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmaq üçün toxun, yaxud bağlamaq üçün kilidə toxun.</string> -->
   <string name="KeyCachingService_passphrase_cached">Signal-ın kilidi açıldı</string>
   <string name="KeyCachingService_lock">Signal-ı kilidlə</string>
   <!--MediaPreviewActivity-->
@@ -683,14 +683,14 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d söhbətləşmədə %1$d mesaj</string>
   <string name="MessageNotifier_most_recent_from_s">Ən son göndərən: %1$s</string>
   <string name="MessageNotifier_locked_message">Kilidlənmiş mesaj</string>
-  <string name="MessageNotifier_media_message_with_text">Media mesajı: %s</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message_with_text">Media mesajı: %s</string> -->
   <string name="MessageNotifier_message_delivery_failed">Mesajın çatdırılmasında problem var.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mesajı çatdıra bilmədik.</string>
   <string name="MessageNotifier_error_delivering_message">Mesajın çatdırılmasında xəta.</string>
   <string name="MessageNotifier_mark_all_as_read">Hamısını oxunmuş kimi nişanla</string>
   <string name="MessageNotifier_mark_read">Oxunmuş kimi nişanla</string>
-  <string name="MessageNotifier_media_message">Media mesajı</string>
-  <string name="MessageNotifier_sticker">Sticker</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_media_message">Media mesajı</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_sticker">Sticker</string> -->
   <string name="MessageNotifier_reply">Cavab ver</string>
   <string name="MessageNotifier_signal_message">Signal Mesajı</string>
   <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
@@ -731,39 +731,39 @@
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz daha qeydiyyatlı deyil</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Sən başqa cihazda Signal üçün telefon nömrəni qeydiyyatdan keçirdiyin üçün belə ola bilər. Yenidən qeydiyyatdan keçirəm üçün kliklə.</string>
   <!--VideoPlayer-->
-  <string name="VideoPlayer_error_playing_video">Videonun oxunmasında xəta</string>
+  <!-- Removed by excludeNonTranslatables <string name="VideoPlayer_error_playing_video">Videonun oxunmasında xəta</string> -->
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tərəfindən gələn zəngi cavablandırmaq üçün Signal üçün mikrofona giriş icazəsi ver.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Zəng qəbul edə bilməsi üçün Signal-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s ilə söhbətin üçün təhlükəsizlik rəqəmin dəyişdi. Ola bilsin ki, kimsə sizin söhbətinizə müdaxilə etmək istəyir, ya da %2$s Signal-ı yenidən qeydiyyatdan keçirib.</string>
-  <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
-  <string name="WebRtcCallScreen_new_safety_number_title">Yeni təhlükəsizlik rəqəmi</string>
-  <string name="WebRtcCallScreen_accept">Qəbul et</string>
-  <string name="WebRtcCallScreen_end_call">Zəngi bitir</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_numbers">%1$s ilə söhbətin üçün təhlükəsizlik rəqəmin dəyişdi. Ola bilsin ki, kimsə sizin söhbətinizə müdaxilə etmək istəyir, ya da %2$s Signal-ı yenidən qeydiyyatdan keçirib.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_new_safety_number_title">Yeni təhlükəsizlik rəqəmi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_accept">Qəbul et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallScreen_end_call">Zəngi bitir</string> -->
   <!--WebRtcCallControls-->
-  <string name="WebRtcCallControls_tap_to_enable_your_video">Videonu aktiv etmək üçün kliklə</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_tap_to_enable_your_video">Videonu aktiv etmək üçün kliklə</string> -->
   <!--WebRtcCallControls Content Descriptions-->
-  <string name="WebRtcCallControls_contact_photo_description">Əlaqənin şəkli</string>
-  <string name="WebRtcCallControls_speaker_button_description">Səsucaldan</string>
-  <string name="WebRtcCallControls_mute_button_description">Səssiz</string>
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_contact_photo_description">Əlaqənin şəkli</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_speaker_button_description">Səsucaldan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="WebRtcCallControls_mute_button_description">Səssiz</string> -->
   <string name="WebRtcCallControls_answer_call_description">Zəngə cavab ver</string>
   <!--attachment_type_selector-->
-  <string name="attachment_type_selector__audio">Səs</string>
-  <string name="attachment_type_selector__audio_description">Səs</string>
-  <string name="attachment_type_selector__contact">Əlaqə</string>
-  <string name="attachment_type_selector__contact_description">Əlaqə</string>
-  <string name="attachment_type_selector__camera">Kamera</string>
-  <string name="attachment_type_selector__camera_description">Kamera</string>
-  <string name="attachment_type_selector__location">Məkan</string>
-  <string name="attachment_type_selector__location_description">Məkan</string>
-  <string name="attachment_type_selector__gif">GIF</string>
-  <string name="attachment_type_selector__gif_description">Gif</string>
-  <string name="attachment_type_selector__gallery_description">Şəkil və ya video</string>
-  <string name="attachment_type_selector__file_description">Fayl</string>
-  <string name="attachment_type_selector__gallery">Qalereya</string>
-  <string name="attachment_type_selector__file">Fayl</string>
-  <string name="attachment_type_selector__drawer_description">Əlavə fayl siyirməsini keçir</string>
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio">Səs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__audio_description">Səs</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact">Əlaqə</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__contact_description">Əlaqə</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera">Kamera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__camera_description">Kamera</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location">Məkan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__location_description">Məkan</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif">GIF</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gif_description">Gif</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery_description">Şəkil və ya video</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file_description">Fayl</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__gallery">Qalereya</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__file">Fayl</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="attachment_type_selector__drawer_description">Əlavə fayl siyirməsini keçir</string> -->
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">Köhnə şifrə ifadəsi</string>
   <string name="change_passphrase_activity__new_passphrase">Yeni şifrə ifadəsi</string>
@@ -781,7 +781,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Ələqələrini göstərə bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Əlaqələrin bərpası alınmadı, şəbəkə əlaqəni yoxla</string>
   <!--blocked_contacts_fragment-->
-  <string name="blocked_contacts_fragment__no_blocked_contacts">Kilidlənmiş əlaqə yoxdur</string>
+  <!-- Removed by excludeNonTranslatables <string name="blocked_contacts_fragment__no_blocked_contacts">Kilidlənmiş əlaqə yoxdur</string> -->
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Nümayiş edə bilməsi üçün Signal-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
   <string name="contact_selection_list_fragment__show_contacts">Əlaqələri Göstər</string>
@@ -818,7 +818,7 @@
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Şəkil</string>
   <string name="QuoteView_sticker">Sticker</string>
-  <string name="QuoteView_document">Sənəd</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_document">Sənəd</string> -->
   <string name="QuoteView_you">Sən</string>
   <string name="QuoteView_original_missing">Mesajın əsli tapılmadı</string>
   <!--conversation_fragment-->
@@ -834,10 +834,10 @@
   <string name="device_list_fragment__no_devices_linked">Bağlantısı olan cihaz yoxdur</string>
   <string name="device_list_fragment__link_new_device">Yeni cihazla bağlantı qur</string>
   <!--experience_upgrade_activity-->
-  <string name="experience_upgrade_activity__continue">davam et</string>
-  <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Oxunmuşların hesabatları buradadır</string>
-  <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Mesajlar oxunduğu zaman bunu gör və paylaş</string>
-  <string name="experience_upgrade_preference_fragment__enable_read_receipts">Oxunmuşların hesabatlarını aktivləşdir</string>
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_activity__continue">davam et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Oxunmuşların hesabatları buradadır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Mesajlar oxunduğu zaman bunu gör və paylaş</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="experience_upgrade_preference_fragment__enable_read_receipts">Oxunmuşların hesabatlarını aktivləşdir</string> -->
   <!--expiration-->
   <string name="expiration_off">Deaktiv</string>
   <plurals name="expiration_seconds">
@@ -884,23 +884,23 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Heç nə tapılmadı</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__log_fetch_failed">Cihazındakı qeyd oxunmadı. Onun əvəzinə sən yenə də ADB-ni istifadə edərək xəta sorğusu göndərə bilərsən.</string>
-  <string name="log_submit_activity__thanks">Kömək etdiyin üçün təşəkkürlər!</string>
-  <string name="log_submit_activity__submitting">Təqdim edilir</string>
-  <string name="log_submit_activity__no_browser_installed">Brauzer quraşdırılmayıb</string>
-  <string name="log_submit_activity__button_dont_submit">Təqdim etmə</string>
-  <string name="log_submit_activity__button_submit">Təqdim et</string>
-  <string name="log_submit_activity__button_got_it">Anladım</string>
-  <string name="log_submit_activity__button_compose_email">Email yazmağa başla</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__log_fetch_failed">Cihazındakı qeyd oxunmadı. Onun əvəzinə sən yenə də ADB-ni istifadə edərək xəta sorğusu göndərə bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__thanks">Kömək etdiyin üçün təşəkkürlər!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__submitting">Təqdim edilir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__no_browser_installed">Brauzer quraşdırılmayıb</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_dont_submit">Təqdim etmə</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_submit">Təqdim et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_got_it">Anladım</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__button_compose_email">Email yazmağa başla</string> -->
   <string name="log_submit_activity__this_log_will_be_posted_online">Bu qeyd əməkdaşların baxışı üçün ictimai olaraq paylaşılacaqdır, təqdim etməzdən əvvəl sən ona müəyyən dəyişikliklər edə bilərsən.</string>
-  <string name="log_submit_activity__loading_logs">Girişlər yüklənir…</string>
-  <string name="log_submit_activity__uploading_logs">Girişlər əlavə edilir…</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__loading_logs">Girişlər yüklənir…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__uploading_logs">Girişlər əlavə edilir…</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__success">Müvəffəqiyyətlə bitdi!</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">URL-i köçür və onu xəta hesabatına və ya dəstək emailinə əlavə et:\n\n<b>%1$s</b>\n</string> -->
   <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__copied_to_clipboard">Mübadilə buferinə köçürüldü</string> -->
-  <string name="log_submit_activity__choose_email_app">Email aplikasiyasını seç</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">Aplikasiyam tərəfindən bu girişi yoxla: %1$s</string>
-  <string name="log_submit_activity__network_failure">Şəbəkə xətası. Zəhmət olmasa yenidən cəhd et.</string>
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__choose_email_app">Email aplikasiyasını seç</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__please_review_this_log_from_my_app">Aplikasiyam tərəfindən bu girişi yoxla: %1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="log_submit_activity__network_failure">Şəbəkə xətası. Zəhmət olmasa yenidən cəhd et.</string> -->
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Mövcud mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək istəyirsən?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Mövcud sistem məlumat bazasına heç bir halda dəyişiklik edilə bilməz.</string>
@@ -908,10 +908,10 @@
   <string name="database_migration_activity__import">Daxil et</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu bir qədər zaman ala bilər. Lütfən səbrli ol, daxil etmə prosesi bitən kimi səni xəbərdar edəcəyik.</string>
   <string name="database_migration_activity__importing">DAXİL EDİLİR</string>
-  <string name="import_fragment__import_system_sms_database">Sistem SMS məlumat bazasını daxil et</string>
-  <string name="import_fragment__import_the_database_from_the_default_system">Mövcud sistem mesencer aplikasiyasından məlumat bazasını daxil et</string>
-  <string name="import_fragment__import_plaintext_backup">Sadə mətn arxivini daxil et</string>
-  <string name="import_fragment__import_a_plaintext_backup_file">Sadə mətn arxiv faylını daxil et. \'SMS Arxivləşməsi &amp; Sıfırla\' addımları ilə mümkündür.</string>
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_system_sms_database">Sistem SMS məlumat bazasını daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_the_database_from_the_default_system">Mövcud sistem mesencer aplikasiyasından məlumat bazasını daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_plaintext_backup">Sadə mətn arxivini daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="import_fragment__import_a_plaintext_backup_file">Sadə mətn arxiv faylını daxil et. \'SMS Arxivləşməsi &amp; Sıfırla\' addımları ilə mümkündür.</string> -->
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Tam söhbətə bax</string>
   <string name="load_more_header__loading">Yüklənir</string>
@@ -920,7 +920,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">BAX</string>
   <string name="message_recipients_list_item__resend">YENİDƏN GÖNDƏR</string>
-  <string name="message_recipients_list_item__resending">Yenidən göndərilir…</string>
+  <!-- Removed by excludeNonTranslatables <string name="message_recipients_list_item__resending">Yenidən göndərilir…</string> -->
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s qrupa qoşuldu.</item>
@@ -952,20 +952,20 @@
   <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__call_settings">Zəng parametrləri</string> -->
   <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__ringtone">Zəng səsi</string> -->
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal Zəngi</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_card__signal_call">Signal Zəngi</string> -->
   <!--registration_activity-->
-  <string name="registration_activity__phone_number">TELEFON NÖMRƏ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
-  <string name="registration_activity__verify_your_number">Nömrəni Təsdiq Et</string>
-  <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Təsdiq şifrəsini əlaqə etmək üçün mobil nömrəni daxil et. Provayder tərəfindən ödəniş tətbiq oluna bilər.</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__phone_number">TELEFON NÖMRƏ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__verify_your_number">Nömrəni Təsdiq Et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Təsdiq şifrəsini əlaqə etmək üçün mobil nömrəni daxil et. Provayder tərəfindən ödəniş tətbiq oluna bilər.</string> -->
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Ad və ya nömrə daxil et</small></string>
-  <string name="recipients_panel__add_members">Üzvləri əlavə et</string>
+  <!-- Removed by excludeNonTranslatables <string name="recipients_panel__add_members">Üzvləri əlavə et</string> -->
   <!--unknown_sender_view-->
-  <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Göndərən əlaqə siyahısında deyil</string>
-  <string name="unknown_sender_view__block">BLOKLA</string>
-  <string name="unknown_sender_view__add_to_contacts">ƏLAQƏLƏRƏ ƏLAVƏ ET</string>
-  <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ƏLAVƏ ETMƏ, LAKİN PROFİLİMİ GÖSTƏR</string>
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">Göndərən əlaqə siyahısında deyil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__block">BLOKLA</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__add_to_contacts">ƏLAQƏLƏRƏ ƏLAVƏ ET</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ƏLAVƏ ETMƏ, LAKİN PROFİLİMİ GÖSTƏR</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ilə şifrələnmənin təhlükəsizliyini təsdiq etmək isyəyirsənsə, yuxarıdakı nömrə ilə onların cihazındakı nömrəni müqayisə et. Yaxud da, onların cihazındakı şifrəni skan edə bilərsən, ya da onlar sənin cihazındakı şifrəni skan edə bilərlər. <a href="https://signal.org/redirect/safety-numbers">Daha ətraflı.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Skan üçün kliklə</string>
@@ -998,7 +998,7 @@
   <string name="AndroidManifest_archived_conversations">Arxivləşdirilmiş söhbətlər</string>
   <string name="AndroidManifest_remove_photo">Şəkli sil</string>
   <!--arrays.xml-->
-  <string name="arrays__import_export">Daxil et</string>
+  <!-- Removed by excludeNonTranslatables <string name="arrays__import_export">Daxil et</string> -->
   <string name="arrays__use_default">Mövcud olanı istifadə et</string>
   <string name="arrays__use_custom">Seçilmişi istifadə et</string>
   <string name="arrays__mute_for_one_hour">1 saat səssiz olsun</string>
@@ -1045,7 +1045,7 @@
   <string name="preferences__inactivity_timeout_passphrase">Qeyri-aktivlik şifrə ifadəsi</string>
   <string name="preferences__inactivity_timeout_interval">Qeyri-aktivlik intervalı</string>
   <string name="preferences__notifications">Xəbərdarlıqlar</string>
-  <string name="preferences__system_notification_settings">Sistem xəbərdarlıq parametrləri</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__system_notification_settings">Sistem xəbərdarlıq parametrləri</string> -->
   <string name="preferences__led_color">LED rəng</string>
   <string name="preferences__led_color_unknown">Naməlum</string>
   <string name="preferences__pref_led_blink_title">LED işartılı nümunə</string>
@@ -1092,7 +1092,7 @@
   <string name="preferences__dark_theme">Tünd</string>
   <string name="preferences__appearance">Görünüş</string>
   <string name="preferences__theme">Mövzu</string>
-  <string name="preferences__default">Başlanğıc</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__default">Başlanğıc</string> -->
   <string name="preferences__language">Dil</string>
   <string name="preferences__signal_messages_and_calls">Signal mesajları və zəngləri</string>
   <string name="preferences__free_private_messages_and_calls">Signal istifadəçilərinə ödənişsiz mesaj və zənglər</string>
@@ -1158,7 +1158,7 @@
   <!--conversation_expiring_off-->
   <string name="conversation_expiring_off__disappearing_messages">Yox olan mesajlar</string>
   <!--conversation_expiring_on-->
-  <string name="menu_conversation_expiring_on__messages_expiring">Vaxtı ötən mesajlar</string>
+  <!-- Removed by excludeNonTranslatables <string name="menu_conversation_expiring_on__messages_expiring">Vaxtı ötən mesajlar</string> -->
   <!--conversation_insecure-->
   <string name="conversation_insecure__invite">Dəvət et</string>
   <!--conversation_list_batch-->
@@ -1171,8 +1171,8 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Əlaqənin Şəkli</string>
   <string name="conversation_list_item_view__archived">Arxivləşdirildi</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gələnlər sııfffıır</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Bitdi. Heç nə. Sıfır. Qurtardı.\nHamınız tutuldunuz!</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Gələnlər sııfffıır</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Bitdi. Heç nə. Sıfır. Qurtardı.\nHamınız tutuldunuz!</string> -->
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni söhbətləşmə</string>
   <!-- Removed by excludeNonTranslatables <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Mesajlar qutuna şans yarat ki, bir şey yazsın. Dostuna yazmağa başla.</string> -->
@@ -1183,8 +1183,8 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Xəbərdarlıqları səssiz et</string>
   <!--conversation-->
-  <string name="conversation__menu_add_attachment">Fayl əlavə et</string>
-  <string name="conversation__menu_edit_group">Qrupa düzəliş et</string>
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_add_attachment">Fayl əlavə et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="conversation__menu_edit_group">Qrupa düzəliş et</string> -->
   <string name="conversation__menu_leave_group">Qrupdan çıx</string>
   <string name="conversation__menu_view_all_media">Bütün media</string>
   <string name="conversation__menu_conversation_settings">Söhbətləşmə parametrləri</string>
@@ -1204,7 +1204,7 @@
   <string name="text_secure_normal__menu_clear_passphrase">Kilidlə</string>
   <string name="text_secure_normal__mark_all_as_read">Hamısını oxunmuş kimi nişanla</string>
   <string name="text_secure_normal__invite_friends">Dostlarını dəvət et</string>
-  <string name="text_secure_normal__help">Kömək et</string>
+  <!-- Removed by excludeNonTranslatables <string name="text_secure_normal__help">Kömək et</string> -->
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Mübadilə buferinə köçür</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mübadilə buferi ilə müqayisə et</string>
@@ -1223,12 +1223,12 @@
   <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
   <string name="reminder_header_push_title">Signal mesajlarına və zənglərinə icazə ver</string>
   <string name="reminder_header_push_text">Ünsiyyət təcrübəni daha yaxşı et.</string>
-  <string name="reminder_header_invite_title">Signala dəvət et</string>
-  <string name="reminder_header_invite_text">%1$s ilə söhbətləşməni daha üst səviyyəyə qaldır.</string>
-  <string name="reminder_header_share_title">Dostlarını dəvət et!</string>
-  <string name="reminder_header_share_text">Signal-ı nə qədər çox dostun istifadə etsə, o qədər də o sənə yararlı olacaq.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_title">Signala dəvət et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_invite_text">%1$s ilə söhbətləşməni daha üst səviyyəyə qaldır.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_title">Dostlarını dəvət et!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_share_text">Signal-ı nə qədər çox dostun istifadə etsə, o qədər də o sənə yararlı olacaq.</string> -->
   <string name="reminder_header_service_outage_text">Signal hal hazırda müəyyən texniki çətinlikləri aradan qaldırır. Xidməti ən qısa zamanda bərpa etmək üçün fasiləsiz olaraq cəhdlər edirik.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Android-in bu versiyasında Signal-ın ən son xüsusiyyətləri işləməyəcək. Cihazını yenilə ki, Signal-ın gələcək yeniliklərindən faydalana biləsən.</string>
+  <!-- Removed by excludeNonTranslatables <string name="reminder_header_the_latest_signal_features_wont_work">Android-in bu versiyasında Signal-ın ən son xüsusiyyətləri işləməyəcək. Cihazını yenilə ki, Signal-ın gələcək yeniliklərindən faydalana biləsən.</string> -->
   <!--media_preview-->
   <string name="media_preview__save_title">Yaddaşa yaz</string>
   <string name="media_preview__forward_title">Yönləndir</string>
@@ -1239,9 +1239,9 @@
   <string name="new_conversation_activity__refresh">Yenilə</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
-  <string name="trimmer__deleting">Silinir</string>
-  <string name="trimmer__deleting_old_messages">Köhnə mesajların silinməsi…</string>
-  <string name="trimmer__old_messages_successfully_deleted">Köhnə mesajlar müvəffəqiyyətlə silindi</string>
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting">Silinir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__deleting_old_messages">Köhnə mesajların silinməsi…</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="trimmer__old_messages_successfully_deleted">Köhnə mesajlar müvəffəqiyyətlə silindi</string> -->
   <!--Insights-->
   <string name="InsightsDashboardFragment__cancel">Ləğv et</string>
   <string name="InsightsDashboardFragment__send">Göndər</string>
@@ -1263,7 +1263,7 @@
   <string name="AccountLockedFragment__next">Növbəti</string>
   <string name="AccountLockedFragment__learn_more">Daha Ətraflı</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__next">Növbəti</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockFragment__next">Növbəti</string> -->
   <string name="RegistrationLockFragment__forgot_pin">PIN-i unutmusan?</string>
   <!--KBS Megaphone-->
   <!--Profile Names Megaphone-->
@@ -1275,7 +1275,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS göndərə bilməsi üçün Signal-ın SMS seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"SMS\" hissəsini aktivləşdir.</string>
   <string name="Permissions_continue">Davam et</string>
   <string name="Permissions_not_now">İndi yox</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Əlaqələrini axtara bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Əlaqələrini axtara bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string> -->
   <string name="conversation_activity__enable_signal_messages">SIGNAL MESAJLARINI AKTİVLƏŞDİR</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ın məlumat bazasının miqrasiyası</string>
   <string name="PushDecryptJob_new_locked_message">Yeni kilidli mesaj</string>
@@ -1287,10 +1287,10 @@
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mən bu şifrə ifadəsini yazmışam. Onsuz arxivi bərpa edə bilməyəcəm.</string>
   <string name="registration_activity__restore_backup">Arxivi bərpa et</string>
   <string name="registration_activity__skip">Ötür</string>
-  <string name="registration_activity__register">Qeydiyyatdan keç</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__register">Qeydiyyatdan keç</string> -->
   <string name="preferences_chats__chat_backups">Söhbət arxivləri</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Söhbətləşmələri xarici yaddaşa arxivləşdir</string>
-  <string name="preferences_chats__create_backup">Arxiv yarat</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences_chats__create_backup">Arxiv yarat</string> -->
   <string name="RegistrationActivity_enter_backup_passphrase">Arxiv üçün şifrə ifadəsini daxil et</string>
   <string name="RegistrationActivity_restore">Bərpa et</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal-ın yeni versiyalarından arxivləri daxil edə bilmirik</string>
@@ -1308,12 +1308,12 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Bütün yerli arxivləri deaktiv edib silirsən?</string>
   <string name="BackupDialog_delete_backups_statement">Arxivləri sil</string>
   <string name="BackupDialog_copied_to_clipboard">Mübadilə buferinə köçürüldü</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Arxivə məlumat yerləşdirə bilməsi üçün Signal-ın xarici yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
-  <string name="ChatsPreferenceFragment_last_backup_s">Son arxiv: %s</string>
-  <string name="ChatsPreferenceFragment_in_progress">Proses davam edir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Arxivə məlumat yerləşdirə bilməsi üçün Signal-ın xarici yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_last_backup_s">Son arxiv: %s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ChatsPreferenceFragment_in_progress">Proses davam edir</string> -->
   <string name="LocalBackupJob_creating_backup">Arxiv yaradılır…</string>
   <string name="ProgressPreference_d_messages_so_far">İndiyə qədər %d mesaj</string>
-  <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Zəhmət olmasa %s ünvanına göndərilmiş təsdiq şifrəsini daxil et.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Zəhmət olmasa %s ünvanına göndərilmiş təsdiq şifrəsini daxil et.</string> -->
   <string name="RegistrationActivity_wrong_number">Səhv rəqəm</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Əvəzində mənə zəng edə bilərsən \n (Aktiv olacaq: %1$02d:%2$02d)</string>
   <string name="BackupUtil_never">Heç vaxt</string>
@@ -1323,41 +1323,41 @@
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidinin qeyri aktivliyinin zamanı bitdi</string>
   <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__create">Yarat</string> -->
   <string name="AppProtectionPreferenceFragment_none">Heç biri</string>
-  <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Qeydiyyat Kilid PIN-i elə indicə əldə etdiyin SMS təsdiq şifrəsi ilə eyni deyil. Zəhmət olmasa aplikasiyaya əvvəl daxil etdiyin PIN-i daxil et.</string>
-  <string name="registration_activity__registration_lock_pin">Qeydiyyat Kilid PIN-i</string>
-  <string name="registration_activity__forgot_pin">PIN-i unutmusan?</string>
-  <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN dörd və ya daha çox rəqəmdən ibarət ola bilər. PIN-i unutsan, hesabından yeddi günə qədər kənarda saxlanıla bilərsən.</string>
-  <string name="registration_lock_dialog_view__enter_pin">PIN-i daxil et</string>
-  <string name="registration_lock_dialog_view__confirm_pin">PIN-i təsdiq et</string>
-  <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Qeydiyyat Kilid PIN-ini daxil et</string>
-  <string name="registration_lock_reminder_view__enter_pin">PIN-i daxil et</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Bu telefon nömrəsini Signal-la yenidən qeydiyyatdan keçirmək üçün tələb ediləcək Qeydiyyat Kilid PIN-ini aktivləşdir.</string>
-  <string name="preferences_app_protection__registration_lock_pin">Qeydiyyat Kilid PIN-i</string>
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Qeydiyyat Kilid PIN-i elə indicə əldə etdiyin SMS təsdiq şifrəsi ilə eyni deyil. Zəhmət olmasa aplikasiyaya əvvəl daxil etdiyin PIN-i daxil et.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__registration_lock_pin">Qeydiyyat Kilid PIN-i</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_activity__forgot_pin">PIN-i unutmusan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN dörd və ya daha çox rəqəmdən ibarət ola bilər. PIN-i unutsan, hesabından yeddi günə qədər kənarda saxlanıla bilərsən.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__enter_pin">PIN-i daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_dialog_view__confirm_pin">PIN-i təsdiq et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Qeydiyyat Kilid PIN-ini daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="registration_lock_reminder_view__enter_pin">PIN-i daxil et</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Bu telefon nömrəsini Signal-la yenidən qeydiyyatdan keçirmək üçün tələb ediləcək Qeydiyyat Kilid PIN-ini aktivləşdir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences_app_protection__registration_lock_pin">Qeydiyyat Kilid PIN-i</string> -->
   <string name="preferences_app_protection__registration_lock">Qeydiyyat Kilidi</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Qeydiyyat Kilid PIN-ini daxil etməlisən</string>
-  <string name="RegistrationActivity_incorrect_registration_lock_pin">Xətalı Qeydiyyat Kilid PIN-i</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_incorrect_registration_lock_pin">Xətalı Qeydiyyat Kilid PIN-i</string> -->
   <string name="RegistrationActivity_too_many_attempts">Hədsiz çox cəhd</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Xətalı Qeydiyyat Kilid PIN-i ilə çox sayda giriş cəhdi etmisən. Lütfən bir gündən sonra yenidən sına.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Xidmətlə əlaqədə xəta</string>
-  <string name="RegistrationActivity_oh_no">Vay vay!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu nömrənin Signal ilə son aktivliyindən 7 gün keçdikdən sonra bu telefon nömrəsi Qeydiyyat Kilid PIN-i olmadan qeydiyyatdan keçə biləcək. Hələ ki, növbədə %d günün var.</string>
-  <string name="RegistrationActivity_registration_lock_pin">Qeydiyyat kilid PIN-i</string>
-  <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Bu telefon nömrəsi Qeydiyyat Kilidini aktivləşdirdi. Lütfən, Qeydiyyat Kilid PIN-ini daxil et.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Qeydiyyat Kilidi sənin telefon nömrən üçün aktivləşdirildi. Qeydiyyat Kilid PIN-ini unutmayasan deyə Sİgnal mütəmadi olaraq onu təsdiq etməyini xahiş edəcək.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">PIN-i unutmuşam.</string>
-  <string name="RegistrationLockDialog_forgotten_pin">PIN-i unutmusan?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qeydiyyat Kilidin telefon nömrəni icazəsiz qeydiyyat cəhdlərindən qoruyur. Bu xüsusiyyət istənilən vaxt Signal-ın məxfilik parametrlərində deaktivasiya edilə bilər</string>
-  <string name="RegistrationLockDialog_registration_lock">Qeydiyyat Kilidi</string>
-  <string name="RegistrationLockDialog_enable">Aktivləşdir</string>
-  <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Daxil etdiyin iki PIN bir-birinə uyğun gəlmir.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Xidmətlə əlaqədə xəta var</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Qeydiyyat Kilid PIN-ini deaktiv edirsən?</string>
-  <string name="RegistrationLockDialog_disable">Söndür</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_oh_no">Vay vay!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu nömrənin Signal ilə son aktivliyindən 7 gün keçdikdən sonra bu telefon nömrəsi Qeydiyyat Kilid PIN-i olmadan qeydiyyatdan keçə biləcək. Hələ ki, növbədə %d günün var.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_registration_lock_pin">Qeydiyyat kilid PIN-i</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Bu telefon nömrəsi Qeydiyyat Kilidini aktivləşdirdi. Lütfən, Qeydiyyat Kilid PIN-ini daxil et.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Qeydiyyat Kilidi sənin telefon nömrən üçün aktivləşdirildi. Qeydiyyat Kilid PIN-ini unutmayasan deyə Sİgnal mütəmadi olaraq onu təsdiq etməyini xahiş edəcək.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_i_forgot_my_pin">PIN-i unutmuşam.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_forgotten_pin">PIN-i unutmusan?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qeydiyyat Kilidin telefon nömrəni icazəsiz qeydiyyat cəhdlərindən qoruyur. Bu xüsusiyyət istənilən vaxt Signal-ın məxfilik parametrlərində deaktivasiya edilə bilər</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_registration_lock">Qeydiyyat Kilidi</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_enable">Aktivləşdir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Daxil etdiyin iki PIN bir-birinə uyğun gəlmir.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_error_connecting_to_the_service">Xidmətlə əlaqədə xəta var</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable_registration_lock_pin">Qeydiyyat Kilid PIN-ini deaktiv edirsən?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_disable">Söndür</string> -->
   <string name="preferences_chats__backups">Ehtiyat nüsxələr</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal kilidlidir</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Açmaq üçün toxun</string>
-  <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
-  <string name="recipient_preferences__about">Haqqında</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_reminder">Xatırlatma:</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="recipient_preferences__about">Haqqında</string> -->
   <string name="Recipient_unknown">Naməlum</string>
   <string name="MessageRequestBottomView_accept">Qəbul et</string>
   <string name="MessageRequestBottomView_delete">Sil</string>

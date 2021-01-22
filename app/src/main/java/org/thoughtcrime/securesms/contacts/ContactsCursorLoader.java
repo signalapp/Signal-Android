@@ -71,7 +71,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                                                   ContactRepository.NUMBER_COLUMN,
                                                                   ContactRepository.NUMBER_TYPE_COLUMN,
                                                                   ContactRepository.LABEL_COLUMN,
-                                                                  ContactRepository.CONTACT_TYPE_COLUMN};
+                                                                  ContactRepository.CONTACT_TYPE_COLUMN,
+                                                                  ContactRepository.ABOUT_COLUMN};
 
   private static final int RECENT_CONVERSATION_MAX = 25;
 
@@ -212,7 +213,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                        "",
                                        ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                        "",
-                                       ContactRepository.DIVIDER_TYPE });
+                                       ContactRepository.DIVIDER_TYPE,
+                                       "" });
     return recentsHeader;
   }
 
@@ -225,7 +227,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",
-                                         ContactRepository.DIVIDER_TYPE });
+                                         ContactRepository.DIVIDER_TYPE,
+                                         "" });
     return contactsHeader;
   }
 
@@ -236,7 +239,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                      "",
                                      ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                      "",
-                                     ContactRepository.DIVIDER_TYPE });
+                                     ContactRepository.DIVIDER_TYPE,
+                                     "" });
     return groupHeader;
   }
 
@@ -247,7 +251,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",
-                                         ContactRepository.DIVIDER_TYPE });
+                                         ContactRepository.DIVIDER_TYPE,
+                                         "" });
     return contactsHeader;
   }
 
@@ -258,7 +263,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                          "",
                                          ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                          "",
-                                         ContactRepository.DIVIDER_TYPE });
+                                         ContactRepository.DIVIDER_TYPE,
+                                         "" });
     return contactsHeader;
   }
 
@@ -283,7 +289,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                                   stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
-                                                  ContactRepository.RECENT_TYPE });
+                                                  ContactRepository.RECENT_TYPE,
+                                                  recipient.getCombinedAboutAndEmoji() });
       }
     }
     return recentConversations;
@@ -318,7 +325,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                             groupRecord.getId(),
                                             ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                             "",
-                                            ContactRepository.NORMAL_TYPE });
+                                            ContactRepository.NORMAL_TYPE,
+                                            "" });
       }
     }
     return groupContacts;
@@ -331,7 +339,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                           filter,
                                           ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                           "\u21e2",
-                                          ContactRepository.NEW_PHONE_TYPE});
+                                          ContactRepository.NEW_PHONE_TYPE,
+                                          "" });
     return newNumberCursor;
   }
 
@@ -342,7 +351,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                  filter,
                                  ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                  "\u21e2",
-                                 ContactRepository.NEW_USERNAME_TYPE});
+                                 ContactRepository.NEW_USERNAME_TYPE,
+                                 "" });
     return cursor;
   }
 
@@ -370,7 +380,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN)),
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN)),
                                      cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.LABEL_COLUMN)),
-                                     ContactRepository.NORMAL_TYPE});
+                                     ContactRepository.NORMAL_TYPE,
+                                     "" });
         }
       }
       Log.i(TAG, "filterNonPushContacts() -> " + (System.currentTimeMillis() - startMillis) + "ms");

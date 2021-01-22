@@ -39,12 +39,31 @@
         android:gravity="start|center_vertical"
         android:textAlignment="viewStart"
         android:textAppearance="@style/Signal.Text.Body"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintBottom_toTopOf="@+id/recipient_about"
         app:layout_constraintEnd_toStartOf="@+id/admin"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
         app:layout_constraintTop_toTopOf="@+id/recipient_avatar"
-        tools:text="@tools:sample/full_names" />
+        tools:text="Miles Morales" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/recipient_about"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.Preview"
+        android:textColor="@color/signal_text_secondary"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintEnd_toStartOf="@+id/admin"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/recipient_name"
+        tools:text="Hangin' around the web" />
 
     <TextView
         android:id="@+id/admin"
@@ -56,11 +75,11 @@
         android:textAppearance="@style/TextAppearance.Signal.Subtitle2"
         android:textColor="@color/signal_text_secondary"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/recipient_name"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_name"
-        app:layout_constraintTop_toTopOf="@+id/recipient_name"
+        app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
     <FrameLayout

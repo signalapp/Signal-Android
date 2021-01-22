@@ -15,4 +15,6 @@
     <style name="Signal.DayNight.DarkNoActionBar" parent="TextSecure.DarkNoActionBar.DarkToolbar" />
 
     <style name="Signal.DayNight.Registration" parent="TextSecure.DarkRegistrationTheme" />
+
+    <style name="Signal.DayNight.WallpaperCropper" parent="Theme.Signal.WallpaperCropper" />
 </resources>

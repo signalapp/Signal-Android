@@ -124,8 +124,6 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     ContactSelectionListFragment fragment = new ContactSelectionListFragment();
     Intent                       intent   = getIntent();
 
-    fragment.setOnContactSelectedListener(this);
-
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, 1);
     intent.putExtra(ContactSelectionListFragment.HIDE_COUNT, true);
