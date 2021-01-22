@@ -2837,7 +2837,7 @@
     <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Clear wallpaper for this chat?</string>
     <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Clear wallpaper? This will not clear custom wallpapers you’ve set for your chats.</string>
     <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
-    <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Reset all wallpapers?</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Reset all wallpapers, including custom wallpapers you’ve set for your chats?</string>
     <string name="ChatWallpaperFragment__contact_name">Contact name</string>
     <string name="ChatWallpaperFragment__reset">Reset</string>
     <string name="ChatWallpaperFragment__clear">Clear</string>

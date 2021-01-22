@@ -92,7 +92,7 @@ public class ChatWallpaperFragment extends Fragment {
     });
 
     resetAllWallpaper.setOnClickListener(unused -> {
-      confirmAction(R.string.ChatWallpaperFragment__reset_all_wallpapers_question_mark,
+      confirmAction(R.string.ChatWallpaperFragment__reset_all_wallpapers_including_custom,
                     R.string.ChatWallpaperFragment__reset,
                     () -> {
                       viewModel.setWallpaper(null);
