@@ -29,6 +29,7 @@
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_update_body"
             style="@style/Signal.Text.Preview"
+            android:textSize="13sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
