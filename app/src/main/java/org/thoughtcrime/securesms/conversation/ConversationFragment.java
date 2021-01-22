@@ -394,8 +394,12 @@ public class ConversationFragment extends LoggingFragment {
 
   public void onWallpaperChanged(@Nullable ChatWallpaper wallpaper) {
     if (list != null) {
-      Log.d(TAG, "Notifying adapter that wallpaper state has changed.");
-      getListAdapter().onHasWallpaperChanged(wallpaper != null);
+      ConversationAdapter adapter = getListAdapter();
+
+      if (adapter != null) {
+        Log.d(TAG, "Notifying adapter that wallpaper state has changed.");
+        getListAdapter().onHasWallpaperChanged(wallpaper != null);
+      }
     }
   }
 
@@ -624,7 +628,7 @@ public class ConversationFragment extends LoggingFragment {
     menu.findItem(R.id.menu_context_copy).setVisible(menuState.shouldShowCopyAction());
   }
 
-  private ConversationAdapter getListAdapter() {
+  private @Nullable ConversationAdapter getListAdapter() {
     return (ConversationAdapter) list.getAdapter();
   }
 
