@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.session.libsession.messaging.threads.Address;
@@ -16,7 +18,6 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -71,7 +72,8 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder()
                    .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
                    .putLong(KEY_MESSAGE_ID, messageId)

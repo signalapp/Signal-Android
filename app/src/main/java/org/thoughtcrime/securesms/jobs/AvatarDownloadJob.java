@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.jobs;
 import android.graphics.Bitmap;
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;

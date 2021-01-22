@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -60,7 +60,8 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_THREAD_ID, threadId)
                              .putBoolean(KEY_TYPING, typing)
                              .build();

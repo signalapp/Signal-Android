@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraint;
@@ -56,7 +56,8 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
                              .putInt(KEY_RUN_ATTEMPT, runAttempt)
                              .build();
@@ -241,7 +242,7 @@ public class SmsSendJob extends SendJob {
 
   public static class Factory implements Job.Factory<SmsSendJob> {
     @Override
-    public @NonNull SmsSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
+    public @NonNull SmsSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new SmsSendJob(parameters, data.getLong(KEY_MESSAGE_ID), data.getInt(KEY_RUN_ATTEMPT));
     }
   }
