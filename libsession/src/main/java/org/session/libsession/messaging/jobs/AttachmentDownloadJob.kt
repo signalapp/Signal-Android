@@ -16,6 +16,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
 
     private val MAX_ATTACHMENT_SIZE = 10 * 1024 * 1024
 
+
+
     // Error
     internal sealed class Error(val description: String) : Exception() {
         object NoAttachment : Error("No such attachment.")
@@ -25,6 +27,10 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
     override val maxFailureCount: Int = 20
     companion object {
         val collection: String = "AttachmentDownloadJobCollection"
+
+        //keys used for database storage purpose
+        private val KEY_ATTACHMENT_ID = "attachment_id"
+        private val KEY_TS_INCOMING_MESSAGE_ID = "tsIncoming_message_id"
     }
 
     override fun execute() {
@@ -80,5 +86,22 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
         val file = File.createTempFile("push-attachment", "tmp", MessagingConfiguration.shared.context.cacheDir)
         file.deleteOnExit()
         return file
+    }
+
+    //database functions
+
+    override fun serialize(): JobData {
+        val builder = this.createJobDataBuilder()
+        return builder.putLong(KEY_ATTACHMENT_ID, attachmentID)
+                .putLong(KEY_TS_INCOMING_MESSAGE_ID, tsIncomingMessageID)
+                .build();
+    }
+
+    class Factory: Job.Factory<AttachmentDownloadJob> {
+        override fun create(data: JobData): AttachmentDownloadJob {
+            val job = AttachmentDownloadJob(data.getLong(KEY_ATTACHMENT_ID), data.getLong(KEY_TS_INCOMING_MESSAGE_ID))
+            job.initJob(data)
+            return job
+        }
     }
 }

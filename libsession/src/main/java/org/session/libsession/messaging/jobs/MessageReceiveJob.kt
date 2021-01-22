@@ -18,6 +18,12 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
         val TAG = MessageReceiveJob::class.qualifiedName
 
         val collection: String = "MessageReceiveJobCollection"
+
+        //keys used for database storage purpose
+        private val KEY_DATA = "data"
+        private val KEY_IS_BACKGROUND_POLL = "is_background_poll"
+        private val KEY_OPEN_GROUP_MESSAGE_SERVER_ID = "openGroupMessageServerID"
+        private val KEY_OPEN_GROUP_ID = "open_group_id"
     }
 
     override fun execute() {
@@ -53,5 +59,25 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
 
     private fun handleFailure(e: Exception) {
         delegate?.handleJobFailed(this, e)
+    }
+
+    //database functions
+
+    override fun serialize(): JobData {
+        val builder = this.createJobDataBuilder()
+        builder.putByteArray(KEY_DATA, data)
+                .putBoolean(KEY_IS_BACKGROUND_POLL, isBackgroundPoll)
+        openGroupMessageServerID?.let { builder.putLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID, openGroupMessageServerID) }
+        openGroupID?.let { builder.putString(KEY_OPEN_GROUP_ID, openGroupID) }
+
+        return builder.build();
+    }
+
+    class Factory: Job.Factory<MessageReceiveJob> {
+        override fun create(data: JobData): MessageReceiveJob {
+            val job =  MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
+            job.initJob(data)
+            return job
+        }
     }
 }
