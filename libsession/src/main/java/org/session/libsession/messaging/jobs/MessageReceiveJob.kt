@@ -63,7 +63,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
 
     //database functions
 
-    override fun serialize(): JobData {
+    override fun serialize(): Data {
         val builder = this.createJobDataBuilder()
         builder.putByteArray(KEY_DATA, data)
                 .putBoolean(KEY_IS_BACKGROUND_POLL, isBackgroundPoll)
@@ -74,7 +74,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     class Factory: Job.Factory<MessageReceiveJob> {
-        override fun create(data: JobData): MessageReceiveJob {
+        override fun create(data: Data): MessageReceiveJob {
             val job =  MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
             job.initJob(data)
             return job

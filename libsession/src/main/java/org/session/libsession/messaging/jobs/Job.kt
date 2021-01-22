@@ -17,19 +17,19 @@ interface Job {
 
     //database functions
 
-    fun serialize(): JobData
+    fun serialize(): Data
 
-    fun initJob(data: JobData) {
+    fun initJob(data: Data) {
         id = data.getString(KEY_ID)
         failureCount = data.getInt(KEY_FAILURE_COUNT)
     }
 
-    fun createJobDataBuilder(): JobData.Builder {
-        return JobData.Builder().putString(KEY_ID, id)
+    fun createJobDataBuilder(): Data.Builder {
+        return Data.Builder().putString(KEY_ID, id)
                 .putInt(KEY_FAILURE_COUNT, failureCount)
     }
 
     interface Factory<T : Job> {
-        fun create(data: JobData): T
+        fun create(data: Data): T
     }
 }

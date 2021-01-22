@@ -88,7 +88,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
 
     //database functions
 
-    override fun serialize(): JobData {
+    override fun serialize(): Data {
         val builder = this.createJobDataBuilder()
         return builder.putLong(KEY_ATTACHMENT_ID, attachmentID)
                 .putLong(KEY_TS_INCOMING_MESSAGE_ID, tsIncomingMessageID)
@@ -96,7 +96,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
     }
 
     class Factory: Job.Factory<AttachmentDownloadJob> {
-        override fun create(data: JobData): AttachmentDownloadJob {
+        override fun create(data: Data): AttachmentDownloadJob {
             val job = AttachmentDownloadJob(data.getLong(KEY_ATTACHMENT_ID), data.getLong(KEY_TS_INCOMING_MESSAGE_ID))
             job.initJob(data)
             return job

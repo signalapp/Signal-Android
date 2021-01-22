@@ -76,7 +76,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
 
     //database functions
 
-    override fun serialize(): JobData {
+    override fun serialize(): Data {
         val builder = this.createJobDataBuilder()
         //serialize Message and Destination properties
         val kryo = Kryo()
@@ -95,7 +95,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     }
 
     class Factory: Job.Factory<MessageSendJob> {
-        override fun create(data: JobData): MessageSendJob {
+        override fun create(data: Data): MessageSendJob {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
             val serializedDestination = data.getByteArray(KEY_DESTINATION)
             //deserialize Message and Destination properties

@@ -63,7 +63,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
 
     //database functions
 
-    override fun serialize(): JobData {
+    override fun serialize(): Data {
         val builder = this.createJobDataBuilder()
         //serialize SnodeMessage property
         val kryo = Kryo()
@@ -77,7 +77,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     }
 
     class Factory: Job.Factory<NotifyPNServerJob> {
-        override fun create(data: JobData): NotifyPNServerJob {
+        override fun create(data: Data): NotifyPNServerJob {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
             //deserialize SnodeMessage property
             val kryo = Kryo()

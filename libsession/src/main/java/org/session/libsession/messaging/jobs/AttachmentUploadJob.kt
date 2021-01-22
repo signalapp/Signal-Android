@@ -103,7 +103,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
     //database functions
 
-    override fun serialize(): JobData {
+    override fun serialize(): Data {
         val builder = this.createJobDataBuilder()
         //serialize Message property
         val kryo = Kryo()
@@ -120,7 +120,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     }
 
     class Factory: Job.Factory<AttachmentUploadJob> {
-        override fun create(data: JobData): AttachmentUploadJob {
+        override fun create(data: Data): AttachmentUploadJob {
             val serializedMessage = data.getByteArray(KEY_MESSAGE)
             //deserialize Message property
             val kryo = Kryo()
