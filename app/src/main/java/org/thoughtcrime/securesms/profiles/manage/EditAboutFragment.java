@@ -59,7 +59,6 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     this.bodyView   = view.findViewById(R.id.edit_about_body);
     this.countView  = view.findViewById(R.id.edit_about_count);
 
-
     view.<Toolbar>findViewById(R.id.toolbar)
         .setNavigationOnClickListener(v -> Navigation.findNavController(view)
                                                      .popBackStack());
@@ -76,6 +75,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     });
 
     view.findViewById(R.id.edit_about_save).setOnClickListener(this::onSaveClicked);
+    view.findViewById(R.id.edit_about_clear).setOnClickListener(v -> onClearClicked());
 
     if (savedInstanceState != null && savedInstanceState.containsKey(KEY_SELECTED_EMOJI)) {
       onEmojiSelected(savedInstanceState.getString(KEY_SELECTED_EMOJI, ""));
@@ -98,6 +98,9 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     if (drawable != null) {
       this.emojiView.setImageDrawable(drawable);
       this.selectedEmoji = emoji;
+    } else {
+      this.emojiView.setImageResource(R.drawable.ic_add_emoji);
+      this.selectedEmoji = "";
     }
   }
 
@@ -125,7 +128,12 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
     });
   }
 
-  public static void trimFieldToMaxByteLength(Editable s) {
+  private void onClearClicked() {
+    bodyView.setText("");
+    onEmojiSelected("");
+  }
+
+  private static void trimFieldToMaxByteLength(Editable s) {
     int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileCipher.MAX_POSSIBLE_ABOUT_LENGTH).length();
 
     if (s.length() > trimmedLength) {
