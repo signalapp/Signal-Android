@@ -4,4 +4,7 @@
         android:id="@+id/attachment_keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:background="@drawable/conversation_attachment_keyboard_background"/>
