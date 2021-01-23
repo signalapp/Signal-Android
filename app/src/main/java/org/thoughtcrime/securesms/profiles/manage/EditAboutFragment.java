@@ -202,6 +202,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
   private void onPresetSelected(@NonNull AboutPreset preset) {
     onEmojiSelectedInternal(preset.getEmoji());
     bodyView.setText(requireContext().getString(preset.getBodyRes()));
+    bodyView.setSelection(bodyView.length(), bodyView.length());
   }
 
   private final class PresetAdapter extends ListAdapter<AboutPreset, PresetViewHolder> {
