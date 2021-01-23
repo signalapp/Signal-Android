@@ -466,6 +466,8 @@ public final class ConversationListItem extends ConstraintLayout
       }
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time), defaultTint);
+    } else if (thread.getExpiresIn() > 0) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_new_disappearing_message_received), defaultTint);
     } else if (SmsDatabase.Types.isIdentityUpdate(thread.getType())) {
       return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> {
         if (r.isGroup()) {
