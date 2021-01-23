@@ -126,7 +126,6 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -173,7 +172,7 @@ public class ConversationFragment extends LoggingFragment {
   private Locale                      locale;
   private RecyclerView                list;
   private RecyclerView.ItemDecoration lastSeenDecoration;
-  private RecyclerView.ItemDecoration popoverDateDecoration;
+  private RecyclerView.ItemDecoration inlineDateDecoration;
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
@@ -398,7 +397,10 @@ public class ConversationFragment extends LoggingFragment {
 
       if (adapter != null) {
         Log.d(TAG, "Notifying adapter that wallpaper state has changed.");
-        getListAdapter().onHasWallpaperChanged(wallpaper != null);
+
+        if (adapter.onHasWallpaperChanged(wallpaper != null)) {
+          setInlineDateDecoration(adapter);
+        }
       }
     }
   }
@@ -524,7 +526,7 @@ public class ConversationFragment extends LoggingFragment {
       ConversationAdapter adapter = new ConversationAdapter(this, GlideApp.with(this), locale, selectionClickListener, this.recipient.get());
       adapter.setPagingController(conversationViewModel.getPagingController());
       list.setAdapter(adapter);
-      setPopoverDateDecoration(adapter);
+      setInlineDateDecoration(adapter);
       ConversationAdapter.initializePool(list.getRecycledViewPool());
 
       adapter.registerAdapterDataObserver(snapToTopDataObserver);
@@ -665,13 +667,13 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
-  public void setPopoverDateDecoration(@NonNull ConversationAdapter adapter) {
-    if (popoverDateDecoration != null) {
-      list.removeItemDecoration(popoverDateDecoration);
+  public void setInlineDateDecoration(@NonNull ConversationAdapter adapter) {
+    if (inlineDateDecoration != null) {
+      list.removeItemDecoration(inlineDateDecoration);
     }
 
-    popoverDateDecoration = new StickyHeaderDecoration(adapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE);
-    list.addItemDecoration(popoverDateDecoration);
+    inlineDateDecoration = new StickyHeaderDecoration(adapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE);
+    list.addItemDecoration(inlineDateDecoration);
   }
 
   public void setLastSeen(long lastSeen) {
