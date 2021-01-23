@@ -638,7 +638,7 @@
   <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
   <string name="ManageProfileFragment_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_about">Detalles</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti</string>
   <string name="ManageProfileFragment_your_name">Tu nombre</string>
   <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
@@ -738,10 +738,10 @@
   <string name="RequestConfirmationDialog_add">Añadir</string>
   <string name="RequestConfirmationDialog_deny">Denegar</string>
   <!--ImageEditorHud-->
-  <string name="ImageEditorHud_blur_faces">Enturbiar caras</string>
-  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuevo: Enturbia caras o zonas de la foto.</string>
-  <string name="ImageEditorHud_draw_anywhere_to_blur">Toca sobre la foto para enturbiar</string>
-  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Toca sobre la foto para enturbiar más caras o zonas</string>
+  <string name="ImageEditorHud_blur_faces">Difuminar caras</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nuevo: Difumina caras o zonas de la foto.</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Toca sobre la foto para difuminar</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Toca sobre la foto para difuminar más caras o zonas</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Toca y mantén pulsado para grabar un mensaje de voz, suelta para enviar</string>
   <!--InviteActivity-->
@@ -1702,6 +1702,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EditAboutFragment_about">Detalles</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Habla con libertad</string>
+  <string name="EditAboutFragment_encrypted">Cifrado</string>
+  <string name="EditAboutFragment_be_kind">Sé amable</string>
+  <string name="EditAboutFragment_coffee_lover">Amante del café</string>
+  <string name="EditAboutFragment_free_to_chat">Libre para chatear</string>
+  <string name="EditAboutFragment_taking_a_break">Tomando un descanso</string>
+  <string name="EditAboutFragment_working_on_something_new">Trabajando en cosas nuevas</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
@@ -1710,6 +1717,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="EditProfileNameFragment_first_name">Nombre</string>
   <string name="EditProfileNameFragment_last_name_optional">Apellido(s) (opcional)</string>
   <string name="EditProfileNameFragment_save">Guardar</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Fallo al guardar debido a problemas de red. Vuelve a intentarlo más tarde.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Adjuntos compartidos</string>
   <!--recipients_panel-->
@@ -1896,12 +1904,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__delete_account">Eliminar cuenta</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidad «Llamada por WiFi»</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Actívalo si tu dispositivo utiliza entrega de SMS/MMS vía WiFi (actívalo sólo cuando «Llamada por WiFi» esté activada en el dispositivo)</string>
-  <string name="preferences__incognito_keyboard">Teclado incógnito</string>
+  <string name="preferences__incognito_keyboard">Teclado en modo incógnito</string>
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando. </string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analiza tus mensajes. </string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analice tus mensajes. </string>
   <string name="preferences_app_protection__blocked_users">Personas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
@@ -2054,7 +2062,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Guardar</string>
-  <string name="media_preview__forward_title">Avanzar</string>
+  <string name="media_preview__forward_title">Reenviar</string>
   <string name="media_preview__share_title">Compartir</string>
   <string name="media_preview__all_media_title">Adjuntos</string>
   <!--media_preview_activity-->
@@ -2391,16 +2399,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ChatWallpaperFragment__set_wallpaper">Establecer fondo de chat</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Con tema oscuro se oscurece el fondo</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Eliminar fondo</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">¿Eliminar el fondo de este chat?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">¿Elimiar el fondo de este chat?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">¿Eliminar fondo? Esto no modificará los fondos individuales de tus chats.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Eliminar todos los fondos</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">¿Deseas eliminar todos los fondos de chat?</string> -->
-  <string name="ChatWallpaperFragment__contact_name">Nombre de contacto</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">¿Deseas eliminar todos los fondos de chat, incluidos los que has seleccionado para chats individuales?</string>
+  <string name="ChatWallpaperFragment__contact_name">Nombre</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Eliminar</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Seleccionar desde fotos</string>
-  <string name="ChatWallpaperSelectionFragment__presets">Ajustes</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Incluidos</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Vista previa</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Establecer fondo de chat</string>
@@ -2415,6 +2424,6 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Establecer para todos los chats.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Establece el fondo para %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fallo al establecer el fondo de chat.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Borroso</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Difuminar</string>
   <!--EOF-->
 </resources>

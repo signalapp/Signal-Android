@@ -1696,6 +1696,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EditAboutFragment_about">Quant a</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Parleu lliurement</string>
+  <string name="EditAboutFragment_encrypted">Encriptat</string>
+  <string name="EditAboutFragment_be_kind">Sigueu amables</string>
+  <string name="EditAboutFragment_coffee_lover">Amant del cafè</string>
+  <string name="EditAboutFragment_free_to_chat">Lliure per conversar-hi</string>
+  <string name="EditAboutFragment_taking_a_break">Faig un descans.</string>
+  <string name="EditAboutFragment_working_on_something_new">Treballo en una cosa nova.</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string>
   <string name="EditProfileFragment__group_name">Nom del grup</string>
@@ -1704,6 +1711,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="EditProfileNameFragment_first_name">Nom</string>
   <string name="EditProfileNameFragment_last_name_optional">Cognoms (opcional)</string>
   <string name="EditProfileNameFragment_save">Desa</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Ha fallat desar-ho per problemes de xarxa. Proveu-ho més tard.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Contingut compartit</string>
   <!--recipients_panel-->
@@ -2385,9 +2393,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">El tema fosc enfosqueix el fons.</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Neteja el fons</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Voleu netejar el fons?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Voleu netejar el fons per a aquesta conversa?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Voleu netejar el fons? Això no netejarà els fons personalitzats que heu establert per a les converses.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Voleu restablir tots els fons?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Voleu restablir tots els fons, inclosos els personalitzats que heu establert per a les converses?</string>
   <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
   <string name="ChatWallpaperFragment__reset">Restableix</string>
   <string name="ChatWallpaperFragment__clear">Neteja</string>
@@ -2409,6 +2418,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Estableix el fons per a totes les converses.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Estableix el fons per a %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Error en establir el fons.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Difumina</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Difumina la fotografia</string>
   <!--EOF-->
 </resources>

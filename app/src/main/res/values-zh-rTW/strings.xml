@@ -1626,6 +1626,13 @@
   <string name="EditAboutFragment_about">關於</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">寫一些關於你自己的話……</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">暢所欲言</string>
+  <string name="EditAboutFragment_encrypted">已加密</string>
+  <string name="EditAboutFragment_be_kind">友善點</string>
+  <string name="EditAboutFragment_coffee_lover">咖啡愛好者</string>
+  <string name="EditAboutFragment_free_to_chat">有空聊天</string>
+  <string name="EditAboutFragment_taking_a_break">正在休息中</string>
+  <string name="EditAboutFragment_working_on_something_new">從事新事物</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">編輯群組名稱及照片</string>
   <string name="EditProfileFragment__group_name">群組名稱</string>
@@ -1634,6 +1641,7 @@
   <string name="EditProfileNameFragment_first_name">名</string>
   <string name="EditProfileNameFragment_last_name_optional">姓氏 (選用)</string>
   <string name="EditProfileNameFragment_save">儲存</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">由於網路問題，儲存失敗。請稍後再試。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">分享的媒體</string>
   <!--recipients_panel-->
@@ -2305,9 +2313,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">設定桌布</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">黑暗主題暗淡桌布</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">清除桌布</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">要清除桌布嗎?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">清除此聊天的桌布嗎?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">清除桌布嗎? 這不會清除你為聊天設定的自定義桌布。</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有桌布</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">要重設所有桌布嗎?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">重設所有桌布，包括為聊天設定的自定義桌布?</string>
   <string name="ChatWallpaperFragment__contact_name">聯絡人名稱</string>
   <string name="ChatWallpaperFragment__reset">重設</string>
   <string name="ChatWallpaperFragment__clear">清除</string>
@@ -2329,6 +2338,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">為所有聊天設定桌布。</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">為 %s 設定桌布。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">設定桌布錯誤。</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">模糊</string> -->
+  <string name="WallpaperCropActivity__blur_photo">模糊照片</string>
   <!--EOF-->
 </resources>

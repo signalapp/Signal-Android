@@ -1699,6 +1699,13 @@
   <string name="EditAboutFragment_about">பற்றி</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">எதுவேண்டுமானாலும் பேசுங்கள்</string>
+  <string name="EditAboutFragment_encrypted">மறையாக்கப்பட்ட </string>
+  <string name="EditAboutFragment_be_kind">தயவுசெய்து இருங்கள்</string>
+  <string name="EditAboutFragment_coffee_lover">காபி காதலன்</string>
+  <string name="EditAboutFragment_free_to_chat">இலவசம் அரட்டை</string>
+  <string name="EditAboutFragment_taking_a_break">ஓய்வு எடுத்துக்கொள்வது</string>
+  <string name="EditAboutFragment_working_on_something_new">புதிதாக ஏதாவது வேலை</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">குழு பெயர் மற்றும் புகைப்படத்தைத் தொகு அல்லது திருத்தவும்</string>
   <string name="EditProfileFragment__group_name">குழுவின் பெயர்</string>
@@ -1707,6 +1714,7 @@
   <string name="EditProfileNameFragment_first_name">முதல் பெயர்</string>
   <string name="EditProfileNameFragment_last_name_optional">கடந்த பெயர் (விரும்பினால்)</string>
   <string name="EditProfileNameFragment_save">சேமி</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">இணையப் பிரச்சினகளால் சேமிக்க முடியவில்ல. சற்று நேரம் பொறுத்து முயற்சிக்கவும்.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">பகிரப்பட்ட மீடியா</string>
   <!--recipients_panel-->
@@ -2389,9 +2397,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">இருண்ட கருப்பொருள் பின்னணிப்படத்தை மங்கச் செய்கிறது</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">பின்னணிப்படம் நீக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">பின்னணிப்படம் நீக்கவா?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">இந்த அரட்டைக்கு பின்னணிப்படத்தை நீக்கவா?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">பின்னணிப்படத்தை நீக்கவா? இது அரட்டைகளுக்காக நீங்கள் அமைத்துள்ள தனி பின்னணிப்படங்களை நீக்காது.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">உங்கள் அரட்டைகளுக்காக நீங்கள் அமைத்துள்ள தனிப்பட்ட பின்னணிப்படங்கள் உட்பட அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string>
   <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
   <string name="ChatWallpaperFragment__clear">அழி</string>
@@ -2413,6 +2422,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">எல்லா அரட்டைகளுக்கும் பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">பின்னணிப்படம் அமைப்பதில் பிழை.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">தெளிவின்மை</string> -->
+  <string name="WallpaperCropActivity__blur_photo">புகைப்படத்தை மங்கச் செய்ய</string>
   <!--EOF-->
 </resources>

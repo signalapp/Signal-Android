@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">השתק התראות</string>
   <string name="ManageGroupActivity_custom_notifications">התראות מותאמות אישית</string>
   <string name="ManageGroupActivity_mentions">אזכורים</string>
+  <string name="ManageGroupActivity_chat_wallpaper">טפט התכתבות</string>
   <string name="ManageGroupActivity_until_s">עד %1$s</string>
   <string name="ManageGroupActivity_off">כבוי</string>
   <string name="ManageGroupActivity_on">מופעל</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">שם פרופיל</string>
   <string name="ManageProfileFragment_username">שם משתמש</string>
   <string name="ManageProfileFragment_about">אודות</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">כתוב כמה מילים על עצמך</string>
   <string name="ManageProfileFragment_your_name">שמך</string>
+  <string name="ManageProfileFragment_your_username">שם המשתמש שלך</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">נכשל בהגדרת יצגן</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">הוסף לאנשי קשר של המערכת</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">איש זה נמצא באנשי הקשר שלך</string>
   <string name="ManageRecipientActivity_disappearing_messages">הודעות נעלמות</string>
   <string name="ManageRecipientActivity_chat_color">צבע התכתבות</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">טפט התכתבות</string>
   <string name="ManageRecipientActivity_block">חסום</string>
   <string name="ManageRecipientActivity_unblock">שחרר חסימה</string>
   <string name="ManageRecipientActivity_view_safety_number">הצג מספר ביטחון</string>
@@ -1437,6 +1442,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">העתק כתובת זו והוסף אותה אל דוח הסוגיות שלך או דוא״ל התמיכה שלך:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">שתף</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">סנן:</string>
   <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
   <string name="SupportEmailUtil_android_version">גרסת Android:</string>
   <string name="SupportEmailUtil_signal_version">גרסת Signal:</string>
@@ -1839,13 +1845,23 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">אודות</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">כתוב כמה מילים על עצמך…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">דבר בחופשיות</string>
+  <string name="EditAboutFragment_encrypted">מוצפן</string>
+  <string name="EditAboutFragment_be_kind">תהיו אדיבים</string>
+  <string name="EditAboutFragment_coffee_lover">אוהב קפה</string>
+  <string name="EditAboutFragment_free_to_chat">פנוי לשיחה</string>
+  <string name="EditAboutFragment_taking_a_break">לוקח הפסקה</string>
+  <string name="EditAboutFragment_working_on_something_new">עובד על משהו חדש</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">ערוך את השם והתמונה של הקבוצה</string>
   <string name="EditProfileFragment__group_name">שם קבוצה</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">שמך</string>
+  <string name="EditProfileNameFragment_first_name">שם פרטי</string>
   <string name="EditProfileNameFragment_last_name_optional">שם משפחה (רשותי)</string>
   <string name="EditProfileNameFragment_save">שמור</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">נכשל בשמירה עקב סוגיות רשת. נסה שוב מאוחר יותר.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">מדיה משותפת</string>
   <!--recipients_panel-->
@@ -2020,6 +2036,7 @@
   <string name="preferences__dark_theme">כהה</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
+  <string name="preferences__chat_wallpaper">טפט התכתבות</string>
   <string name="preferences__disable_pin">השבת PIN</string>
   <string name="preferences__enable_pin">אפשר PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">אם תשבית את ה־PIN, תאבד את כל הנתונים כאשר תירשם מחדש אל Signal אלא אם תגבה ותשחזר באופן ידני. אינך יכול להפעיל נעילת הרשמה בזמן שה־PIN מושבת.</string>
@@ -2038,6 +2055,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">אם אישורי קריאה מושבתים, לא תוכל לראות אישורי קריאה מאחרים.</string>
   <string name="preferences__typing_indicators">מחווני הקלדה</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">בקש מהמקלדת להשבית למידה מותאמת אישית. הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string>
   <string name="preferences_app_protection__blocked_users">משתמשים חסומים</string>
   <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
   <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
@@ -2142,7 +2160,7 @@
   <string name="conversation_list_search_description">חפש</string>
   <string name="conversation_list__pinned">מוצמד</string>
   <string name="conversation_list__chats">התכתבויות</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">ניתן להצמיד עד %1$d התכתבויות בלבד</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">אתה יכול להצמיד רק עד %1$d התכתבויות</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__archived">בארכיון</string>
@@ -2533,16 +2551,43 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">שתף</string>
   <string name="ShareActivity__send">שלח</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">נכשל בשליחה אל כמה משתמשים</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">אתה יכול לשתף רק עם עד %1$d התכתבויות</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">העבר הלאה הודעה</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">טפט התכתבות</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">הגדר טפט</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ערכת נושא כהה מעמעמת טפטים</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">נקה טפט</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">לנקות טפט עבור התכתבות זו?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">לנקות טפט? זה לא ינקה טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">אפס את כל הטפטים</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">לנקות את כל הטפטים, כולל טפטים מותאמים אישית שהגדרת עבור ההתכתבויות שלך?</string>
+  <string name="ChatWallpaperFragment__contact_name">שם איש קשר</string>
   <string name="ChatWallpaperFragment__reset">אפס</string>
+  <string name="ChatWallpaperFragment__clear">נקה</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">תצוגה מקדימה של טפט</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">בחר מתוך תמונות</string>
+  <string name="ChatWallpaperSelectionFragment__presets">קדם־הגדרות</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">הצג מראש</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">הגדר טפט</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">החלק כדי להציג מראש עוד טפטים.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">טפט הוגדר עבור כל ההתכתבויות</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">טפט הוגדר עבור %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">הצגת הגלריה שלך דורשת את הרשאת האחסון.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">בחר תמונת טפט</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">צבוט כדי להתקרב, גרור כדי להתאים.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">טפט הוגדר עבור כל ההתכתבויות.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">טפט הוגדר עבור %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">שגיאה בהגדרת טפט.</string>
+  <string name="WallpaperCropActivity__blur_photo">טשטש תמונה</string>
   <!--EOF-->
 </resources>

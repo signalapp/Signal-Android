@@ -1770,6 +1770,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditAboutFragment_about">Despre</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrie câteva cuvinte despre tine…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Vorbește liber</string>
+  <string name="EditAboutFragment_encrypted">Criptat</string>
+  <string name="EditAboutFragment_be_kind">Fii bun</string>
+  <string name="EditAboutFragment_coffee_lover">Iubitor de cafea</string>
+  <string name="EditAboutFragment_free_to_chat">Disponibil pentru conversații</string>
+  <string name="EditAboutFragment_taking_a_break">Într-o pauză</string>
+  <string name="EditAboutFragment_working_on_something_new">Lucrez la ceva nou</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editare nume grup și poză</string>
   <string name="EditProfileFragment__group_name">Nume grup</string>
@@ -1778,6 +1785,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="EditProfileNameFragment_first_name">Prenume</string>
   <string name="EditProfileNameFragment_last_name_optional">Nume (opțional)</string>
   <string name="EditProfileNameFragment_save">Salvează</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Salvarea nu a reușit din cauza problemelor de rețea. Încercați mai târziu.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Fișiere media distribuite</string>
   <!--recipients_panel-->
@@ -2467,22 +2475,23 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Fundal conversații</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__set_wallpaper">Seteaza fundal</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Setare fundal</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema întunecată estompează fundalul</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Eliminare fundal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Eliminați fundalul?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Eliminați fundalul pentru această conversație?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ștergeți imaginea de fundal? Aceasta nu va șterge imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetare toate imaginile de fundal</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Resetați toate imaginile de fundal?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resetați toate imaginile de fundal, inclusiv imaginile de fundal personalizate pe care le-ați setat pentru conversațiile dvs.?</string>
   <string name="ChatWallpaperFragment__contact_name">Nume contact</string>
   <string name="ChatWallpaperFragment__reset">Resetare</string>
   <string name="ChatWallpaperFragment__clear">Eliminare</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Previzualizare fundal</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Alegeți din galerie</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Selecție din galerie</string>
   <string name="ChatWallpaperSelectionFragment__presets">Presetări</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Previzualizare</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Seteaza fundal</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Setează fundalul</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Glisați pentru a previzualiza mai multe imagini de fundal</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Setați imaginea de fundal pentru toate conversațiile</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Setare fundal pentru %1$s</string>
@@ -2494,6 +2503,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Setați imaginea de fundal pentru toate conversațiile</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Setare fundal pentru %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eroare la setarea fundalului.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Estompare</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Estompare poză</string>
   <!--EOF-->
 </resources>

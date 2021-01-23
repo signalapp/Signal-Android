@@ -5,7 +5,7 @@
   <string name="delete">Smazat</string>
   <string name="please_wait">Prosím čekejte…</string>
   <string name="save">Uložit</string>
-  <string name="note_to_self">Poznámka pro mne</string>
+  <string name="note_to_self">= Poznámka pro mne =</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
@@ -703,7 +703,7 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Název profilu</string>
   <string name="ManageProfileFragment_username">Uživatelské jméno</string>
-  <string name="ManageProfileFragment_about">Info</string>
+  <string name="ManageProfileFragment_about">O mně</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napište pár slov o sobě</string>
   <string name="ManageProfileFragment_your_name">Vaše jméno</string>
   <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
@@ -1842,9 +1842,16 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="CreateProfileActivity__create_a_username">Vytvořit uživatelské jméno</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Názvy a fotografie vlastních skupin MMS se zobrazí pouze vám.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">Info</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište o sobě několik slov…</string>
+  <string name="EditAboutFragment_about">O mně</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište pár slov o sobě…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Vyjadřujte se svobodně</string>
+  <string name="EditAboutFragment_encrypted">Šifrováno</string>
+  <string name="EditAboutFragment_be_kind">Buďte milí</string>
+  <string name="EditAboutFragment_coffee_lover">Milovník kávy</string>
+  <string name="EditAboutFragment_free_to_chat">K dispozici pro chatování</string>
+  <string name="EditAboutFragment_taking_a_break">Dávám si pauzu</string>
+  <string name="EditAboutFragment_working_on_something_new">Pracuji na něčem novém</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upravit název skupiny a fotografii</string>
   <string name="EditProfileFragment__group_name">Název skupiny</string>
@@ -1853,6 +1860,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="EditProfileNameFragment_first_name">Křestní jméno</string>
   <string name="EditProfileNameFragment_last_name_optional">Příjmení (nepovinné)</string>
   <string name="EditProfileNameFragment_save">Uložit</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Uložení se nezdařilo kvůli problémům se sítí. Zkuste to znovu později.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Sdílená média</string>
   <!--recipients_panel-->
@@ -2554,11 +2562,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ChatWallpaperFragment__set_wallpaper">Nastavit tapetu</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motiv ztlumí tapetu</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Vymazat tapetu</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Vymazat tapetu?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Vymazat tapetu pro tuto konverzaci?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Vymazat tapetu? Vlastní tapety, které jste si nastavili pro vaše konverzace, tímto nebudou vymazány.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Obnovit všechny tapety</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Obnovit všechny tapety?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Obnovit všechny tapety, včetně vlastních, které jste si nastavili pro vaše konverzace?</string>
   <string name="ChatWallpaperFragment__contact_name">Jméno kontaktu</string>
-  <string name="ChatWallpaperFragment__reset">Reset</string>
+  <string name="ChatWallpaperFragment__reset">Obnovit</string>
   <string name="ChatWallpaperFragment__clear">Vymazat</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhled tapety</string>
   <!--ChatWallpaperSelectionFragment-->
@@ -2578,6 +2587,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Nastavit tapetu pro všechny konverzace.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Nastavit tapetu pro %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba při nastavování tapety.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Rozostřit</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Rozostřit fotografii</string>
   <!--EOF-->
 </resources>

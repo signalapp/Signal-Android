@@ -1159,7 +1159,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Wordt beantwoord …</string>
   <string name="RedPhone_ending_call">Oproep aan het beëindigen …</string>
-  <string name="RedPhone_ringing">Aan het bellen …</string>
+  <string name="RedPhone_ringing">Gaat over …</string>
   <string name="RedPhone_busy">Bezet</string>
   <string name="RedPhone_recipient_unavailable">Ontvanger niet beschikbaar</string>
   <string name="RedPhone_network_failed">Netwerkfout!</string>
@@ -1170,7 +1170,7 @@
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tik hier om je camera aan te zetten</string>
   <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Signal heeft toegang nodig tot je camera om %1$s te bellen</string>
   <string name="WebRtcCallActivity__signal_s">Signal-oproep %1$s</string>
-  <string name="WebRtcCallActivity__calling">Aan het bellen …</string>
+  <string name="WebRtcCallActivity__calling">Oproep aan het starten …</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal audio-oproep …</string>
   <string name="WebRtcCallView__signal_video_call">Signal video-oproep …</string>
@@ -1505,7 +1505,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Weigeren</string>
   <string name="WebRtcCallScreen__answer">Beantwoorden</string>
-  <string name="WebRtcCallScreen__answer_without_video">Beantwoorden zonder video</string>
+  <string name="WebRtcCallScreen__answer_without_video">Beantwoorden zonder eigen camera aan te zetten</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio-uitvoer</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefoonoortje</string>
@@ -1706,6 +1706,13 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Spreek vrijuit</string>
+  <string name="EditAboutFragment_encrypted">Versleuteld</string>
+  <string name="EditAboutFragment_be_kind">Wees aardig</string>
+  <string name="EditAboutFragment_coffee_lover">Koffieliefhebber</string>
+  <string name="EditAboutFragment_free_to_chat">Beschikbaar om te spreken</string>
+  <string name="EditAboutFragment_taking_a_break">Ik heb even pauze</string>
+  <string name="EditAboutFragment_working_on_something_new">Ik werk aan iets nieuws</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Groepsnaam en -afbeelding</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
@@ -1714,6 +1721,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="EditProfileNameFragment_first_name">Voornaam (verplicht)</string>
   <string name="EditProfileNameFragment_last_name_optional">Achternaam (optioneel)</string>
   <string name="EditProfileNameFragment_save">Opslaan</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Het opslaan van de aanpassingen is mislukt door netwerkproblemen. Probeer het later opnieuw.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Uitgewisselde media</string>
   <!--recipients_panel-->
@@ -2395,9 +2403,10 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Donker thema dimt achtergrond</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Deze achtergrond verwijderen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Achtergrond verwijderen?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Achtergrond voor dit gesprek verwijderen?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Deze achtergrond verwijderen? Achtergronden die je apart voor een bepaald gesprek hebt ingesteld worden niet verwijderd.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden verwijderen</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Alle achtergronden verwijderen, inclusief achtergronden die je apart voor een bepaald gesprek hebt ingesteld?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Alle achtergronden verwijderen, inclusief achtergronden die je apart voor een bepaald gesprek hebt ingesteld?</string>
   <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
   <string name="ChatWallpaperFragment__reset">Alle achtergronden verwijderen</string>
   <string name="ChatWallpaperFragment__clear">Verwijderen</string>
@@ -2419,6 +2428,6 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze zelf gemaakte achtergrond in te stellen voor al je gesprekken.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze zelf gemaakte achtergrond instellen voor %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Vervagen</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Afbeelding vervagen</string>
   <!--EOF-->
 </resources>

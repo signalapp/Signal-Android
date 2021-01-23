@@ -1697,6 +1697,13 @@
   <string name="EditAboutFragment_about">Πληροφορίες</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Γράψε δυο πράγματα για σένα…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Μίλα ελεύθερα</string>
+  <string name="EditAboutFragment_encrypted">Με κρυπτογράφηση</string>
+  <string name="EditAboutFragment_be_kind">Κάνε το καλό και ρίξτο στο γιαλό</string>
+  <string name="EditAboutFragment_coffee_lover">Πίνω καφεδάκι</string>
+  <string name="EditAboutFragment_free_to_chat">Ελάτε να συζητήσουμε</string>
+  <string name="EditAboutFragment_taking_a_break">Κάνω διάλειμμα</string>
+  <string name="EditAboutFragment_working_on_something_new">Ετοιμάζω κάτι καινούργιο</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string>
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
@@ -1705,6 +1712,7 @@
   <string name="EditProfileNameFragment_first_name">Όνομα</string>
   <string name="EditProfileNameFragment_last_name_optional">Επώνυμο (προαιρετικό)</string>
   <string name="EditProfileNameFragment_save">Αποθήκευση</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Αποτυχία αποθήκευσης λόγω προβλημάτων δικτύου. Προσπάθησε ξανά αργότερα.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Μοιρασμένα πολυμέσα</string>
   <!--recipients_panel-->
@@ -2386,9 +2394,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">Ορισμός ταπετσαρίας</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Εκκαθάριση ταπετσαρίας</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Εκκαθάριση ταπετσαρίας;</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Εκκαθάριση της ταπετσαρίας αυτής της συνομιλίας;</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Εκκαθάριση ταπετσαρίας; Αυτό δεν θα εκκαθαρίσει τις προσαρμοσμένες ταπετσαρίες που έχεις ορίσει για τις συνομιλίες σου.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Επαναφορά όλων των ταπετσαριών;</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Επαναφορά όλων των ταπετσαριών, συμπεριλαμβανομένων των προσαρμοσμένων ταπετσαριών που έχεις ορίσει στις συνομιλίες σου;</string>
   <string name="ChatWallpaperFragment__contact_name">Όνομα επαφής</string>
   <string name="ChatWallpaperFragment__reset">Επαναφορά</string>
   <string name="ChatWallpaperFragment__clear">Εκκαθάριση</string>
@@ -2410,6 +2419,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ορισμός ταπετσαρίας για όλες τις συνομιλίες.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Ορισμός ταπετσαρίας για %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Σφάλμα κατά τον ορισμό ταπετσαρίας.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Θόλωμα</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Θόλωμα φωτογραφίας</string>
   <!--EOF-->
 </resources>

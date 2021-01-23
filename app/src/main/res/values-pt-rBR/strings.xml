@@ -1695,6 +1695,12 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Sobre mim</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você…</string>
+  <string name="EditAboutFragment_speak_freely">Fale livremente</string>
+  <string name="EditAboutFragment_be_kind">Seja gentil</string>
+  <string name="EditAboutFragment_coffee_lover">Eu amo café</string>
+  <string name="EditAboutFragment_free_to_chat">Disponível para conversar</string>
+  <string name="EditAboutFragment_taking_a_break">Relaxando</string>
+  <string name="EditAboutFragment_working_on_something_new">Trabalhando em algo novo</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e foto do grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>

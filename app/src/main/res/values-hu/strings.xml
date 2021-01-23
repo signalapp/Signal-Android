@@ -603,6 +603,7 @@
   <string name="ManageGroupActivity_mute_notifications">Értesítések némítása</string>
   <string name="ManageGroupActivity_custom_notifications">Egyedi értesítések</string>
   <string name="ManageGroupActivity_mentions">Említések</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="ManageGroupActivity_until_s">%1$s-ig</string>
   <string name="ManageGroupActivity_off">Ki</string>
   <string name="ManageGroupActivity_on">Be</string>
@@ -638,12 +639,16 @@
   <string name="ManageProfileFragment_profile_name">Profilnév</string>
   <string name="ManageProfileFragment_username">Felhasználónév</string>
   <string name="ManageProfileFragment_about">Névjegy</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Írj néhány szót magadról!</string>
   <string name="ManageProfileFragment_your_name">Neved</string>
+  <string name="ManageProfileFragment_your_username">Felhasználóneved</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Nem sikerült beállítani a profilképet</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Hozzáadás a rendszer-kontaktokhoz</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ez a személy szerepel a kontakjaid közt</string>
   <string name="ManageRecipientActivity_disappearing_messages">Eltűnő üzenetek</string>
   <string name="ManageRecipientActivity_chat_color">Beszélgetés színe</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="ManageRecipientActivity_block">Letiltás</string>
   <string name="ManageRecipientActivity_unblock">Tiltás feloldása</string>
   <string name="ManageRecipientActivity_view_safety_number">Biztonsági szám megjelenítése</string>
@@ -1317,6 +1322,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Másold ki ezt a URL-t és illeszd be a hibajegybe vagy a támogatásnak küldött e-mailbe:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Megosztás</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Szűrő:</string>
   <string name="SupportEmailUtil_device_info">Eszköz információ:</string>
   <string name="SupportEmailUtil_android_version">Android verzió:</string>
   <string name="SupportEmailUtil_signal_version">Signal verzió:</string>
@@ -1697,13 +1703,23 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Névjegy</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Írj egy pár szót magadról…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Beszélj szabadon</string>
+  <string name="EditAboutFragment_encrypted">Titkosított</string>
+  <string name="EditAboutFragment_be_kind">Légy kedves</string>
+  <string name="EditAboutFragment_coffee_lover">Kávémániás</string>
+  <string name="EditAboutFragment_free_to_chat">Nyitott csevegésre</string>
+  <string name="EditAboutFragment_taking_a_break">Lazulok pár percet</string>
+  <string name="EditAboutFragment_working_on_something_new">Valami izgalmas újdonságon dolgozom</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Csoport nevének és képének szerkesztése</string>
   <string name="EditProfileFragment__group_name">Csoport neve</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Neved</string>
+  <string name="EditProfileNameFragment_first_name">Keresztnév</string>
   <string name="EditProfileNameFragment_last_name_optional">Vezetéknév (kötelező)</string>
   <string name="EditProfileNameFragment_save">Mentés</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Hálózati hiba miatt nem sikerült a mentés. Próbáld újra később!</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Megosztott médiafájlok</string>
   <!--recipients_panel-->
@@ -1876,6 +1892,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__dark_theme">Sötét</string>
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
+  <string name="preferences__chat_wallpaper">Beszélgetés háttérkép</string>
   <string name="preferences__disable_pin">PIN letiltása</string>
   <string name="preferences__enable_pin">PIN engedélyezése</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN kódod letiltásával egy esetleges újraregisztráció során az összes Signal adatod el fog veszni, kivéve ha azokat előtte külön lemented majd visszatöltöd. Letiltott PIN kóddal nem lehetséges a regisztrációs zár bekapcsolása.</string>
@@ -1894,6 +1911,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ha az olvasási nyugták le vannak tiltva, te sem fogod látni mások olvasási nyugtáit.</string>
   <string name="preferences__typing_indicators">Gépelés-indikátorok</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ha a gépelés-indikátorod ki van kapcsolva, te sem fogsz értesülni róla, ha mások épp gépelnek.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Tanulás letiltásának kérése a billentyűzettől (személyre szabás kikapcsolása). Ennek a beállításnak a használata nem garantálja, hogy a billentyűzet figyelembe is veszi ezt a kérést.</string>
   <string name="preferences_app_protection__blocked_users">Letiltott felhasználók</string>
   <string name="preferences_chats__when_using_mobile_data">Mobilinternet használata során</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi használata során</string>
@@ -2371,19 +2389,43 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Megosztás</string>
   <string name="ShareActivity__send">Küldés</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Néhány felhasználónak nem sikerült a küldés</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">A megosztás maximum %1$d db beszélgetéssel lehetséges</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Üzenet továbbítása</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Beszélgetés háttérkép</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Háttérkép beállítása</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">A sötét téma elsötétíti a háttérképet is</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Háttérkép eltávolítása</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Háttérkép levétele a beszélgetésről?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Általános háttérkép eltávolítása? Ennek nem lesz hatása az egyedi beszélgetésekhez rendelt képekre.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Összes háttérkép alaphelyzetbe állítása</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Az összes háttérképet - egyedi beszélgetés függő képeket is - alaphelyzetbe állítod?</string>
+  <string name="ChatWallpaperFragment__contact_name">Kontakt neve</string>
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
+  <string name="ChatWallpaperFragment__clear">Törlés</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Háttérkép előnézete</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Választás fotók közül</string>
   <string name="ChatWallpaperSelectionFragment__presets">Gyári profilok</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Előnézet</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Háttérkép beállítása</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Suhints további hátterekért</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Háttérkép beállítása az összes beszélgetéshez</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Háttérkép beállítása (%1$s)</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">A galériád megtekintéséhez szükség van a tárhelyhozzáférés-jogosultságra.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Háttérkép kiválasztása</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Csippents a nagyításhoz, húzd a módosításhoz</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Háttérkép beállítása az összes beszélgetéshez</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Háttérkép beállítása (%s)</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Nem sikerült beállítani a háttérképet.</string>
+  <string name="WallpaperCropActivity__blur_photo">Fotó elhomályosítása</string>
   <!--EOF-->
 </resources>

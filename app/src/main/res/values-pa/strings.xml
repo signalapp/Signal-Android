@@ -1397,6 +1397,10 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ਇਸ ਬਾਰੇ</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">ਆਪਣੇ ਬਾਰੇ ਕੁਝ ਜਾਣਕਾਰੀ ਲਿਖੋ…</string>
+  <string name="EditAboutFragment_be_kind">ਸਾਊ</string>
+  <string name="EditAboutFragment_coffee_lover">ਕਾਫ਼ੀ ਪੀਣ ਵਾਲਾ</string>
+  <string name="EditAboutFragment_free_to_chat">ਗੱਲਾਂ ਕਰਨ ਲਈ ਵੇਹਲੇ</string>
+  <string name="EditAboutFragment_working_on_something_new">ਕੁਝ ਨਵਾਂ ਬਣਾ ਰਹੇ ਹਾਂ</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">ਗਰੁੱਪ ਦਾ ਨਾਂ ਅਤੇ ਫ਼ੋਟੋ ਨੂੰ ਸੋਧੋ</string>
   <string name="EditProfileFragment__group_name">ਸਮੂਹ ਦਾ ਨਾਂ</string>

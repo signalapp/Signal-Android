@@ -1702,6 +1702,11 @@
   <string name="EditAboutFragment_about">Teave</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kirjuta paar sõna enda kohta…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_be_kind">Ole lahke</string>
+  <string name="EditAboutFragment_coffee_lover">Kohvisõber</string>
+  <string name="EditAboutFragment_free_to_chat">Lobisemiseks vaba</string>
+  <string name="EditAboutFragment_taking_a_break">Puhkepaus</string>
+  <string name="EditAboutFragment_working_on_something_new">Töötan millegi uue kallal</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string>
   <string name="EditProfileFragment__group_name">Grupi nimi</string>
@@ -2391,9 +2396,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">Määra taustapildiks</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tume teema tumendab taustapilti</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Eemalda taustapilt</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Kas eemaldada taustapilt?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kas eemaldada selle vestluse taustapilt?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kas eemaldada taustapilt? See ei eemalda vestluste määratud kohandatud taustapilte.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Kas lähtestada kõik taustapildid?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Lähtesta kõik taustapildid, kaasaarvatud vestlustele määratud kohandatud taustapildid</string>
   <string name="ChatWallpaperFragment__contact_name">Kontakti nimi</string>
   <string name="ChatWallpaperFragment__reset">Lähtesta</string>
   <string name="ChatWallpaperFragment__clear">Eemalda</string>
@@ -2415,6 +2421,5 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Määra taustapilt kõigi vestluste jaoks.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Määra taustapilt %s jaoks.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustapildi määramisel tekkis tõrge.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Hägusta</string> -->
   <!--EOF-->
 </resources>

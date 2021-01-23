@@ -1702,6 +1702,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
   <string name="EditAboutFragment_count">%d%d</string>
+  <string name="EditAboutFragment_speak_freely">Tal frit</string>
+  <string name="EditAboutFragment_encrypted">Krypteret</string>
+  <string name="EditAboutFragment_be_kind">Vær venlig</string>
+  <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
+  <string name="EditAboutFragment_free_to_chat">Gratis at chatte</string>
+  <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
+  <string name="EditAboutFragment_working_on_something_new">Arbejder med noget nyt</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
@@ -1710,6 +1717,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditProfileNameFragment_first_name">Fornavn</string>
   <string name="EditProfileNameFragment_last_name_optional">Efternavn (frivilligt)</string>
   <string name="EditProfileNameFragment_save">Gem</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Det lykkedes ikke at gemme pga. netværksproblemer. Prøv igen senere.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delt medie</string>
   <!--recipients_panel-->
@@ -2391,9 +2399,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ChatWallpaperFragment__set_wallpaper">Opsæt baggrund</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dæmper baggrund</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Fjern baggrund</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Fjern baggrund?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern baggrund fra denne chat?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Fjern tapet? Dette fjerner ikke de tilpassede baggrunde, du opsatte til dine chats.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Nulstil alle baggrunde</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Nulstil alle baggrunde?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Nulstil alle baggrunde, inklusive de tilpassede baggrunde, du opsatte til dine chats?</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnavn</string>
   <string name="ChatWallpaperFragment__reset">Nulstil</string>
   <string name="ChatWallpaperFragment__clear">Fjern</string>
@@ -2415,6 +2424,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Opsæt baggrund til alle chats.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Opsæt baggrund til %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Slør</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Slør billede</string>
   <!--EOF-->
 </resources>

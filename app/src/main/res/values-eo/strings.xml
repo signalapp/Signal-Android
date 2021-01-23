@@ -2390,9 +2390,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatWallpaperFragment__set_wallpaper">Elekti ekranfonon</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Malhela etoso malheligas la ekranfonon</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Forviŝi la ekranfonon</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Ĉu forviŝi la ekranfonon?</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Restarigi ĉiujn ekranfonojn</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Ĉu restarigi ĉiujn ekranfonojn?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Kontaktnomo</string>
   <string name="ChatWallpaperFragment__reset">Restarigi</string>
   <string name="ChatWallpaperFragment__clear">Forviŝi</string>
@@ -2414,6 +2412,5 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elekti ekranfonon por ĉiuj interparoloj.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Agordi la ekranfonon por %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eraro dum agordo de la ekranfono.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Malklarigi</string> -->
   <!--EOF-->
 </resources>

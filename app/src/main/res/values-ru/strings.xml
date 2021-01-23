@@ -1839,6 +1839,13 @@
   <string name="EditAboutFragment_about">Обо мне</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите несколько слов о себе…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Говори свободно</string>
+  <string name="EditAboutFragment_encrypted">Зашифрован</string>
+  <string name="EditAboutFragment_be_kind">Будьте добрыми</string>
+  <string name="EditAboutFragment_coffee_lover">Любитель кофе</string>
+  <string name="EditAboutFragment_free_to_chat">Свободен для чата</string>
+  <string name="EditAboutFragment_taking_a_break">Делаю перерыв</string>
+  <string name="EditAboutFragment_working_on_something_new">Работаю над кое-чем новым</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string>
   <string name="EditProfileFragment__group_name">Название группы</string>
@@ -1847,6 +1854,7 @@
   <string name="EditProfileNameFragment_first_name">Имя</string>
   <string name="EditProfileNameFragment_last_name_optional">Фамилия (необязательно)</string>
   <string name="EditProfileNameFragment_save">Сохранить</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Не удалось сохранить из-за ошибки сети. Попробуйте ещё раз позже.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Общие медиа</string>
   <!--recipients_panel-->
@@ -2548,9 +2556,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">Установить обои</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Затемнение обоев при тёмной теме</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Удалить обои</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Удалить обои?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Удалить обои для этого чата?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Удалить обои? Обои, установленные вами для отдельных чатов, не будут удалены.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Сбросить все обои</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Сбросить все обои?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Сбросить все обои, включая те, которые были установлены вами для отдельных чатов?</string>
   <string name="ChatWallpaperFragment__contact_name">Имя контакта</string>
   <string name="ChatWallpaperFragment__reset">Сбросить</string>
   <string name="ChatWallpaperFragment__clear">Удалить</string>
@@ -2572,6 +2581,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Установите обои для всех чатов.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Установите обои для %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Не удалось установить обои.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Размыть</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Размыть фото</string>
   <!--EOF-->
 </resources>

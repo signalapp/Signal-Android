@@ -170,7 +170,7 @@
   <string name="ConversationItem_copied_text">%s をコピーしました </string>
   <string name="ConversationItem_from_s">%s から</string>
   <string name="ConversationItem_to_s">%s へ</string>
-  <string name="ConversationItem_read_more">  続きを表示</string>
+  <string name="ConversationItem_read_more">  続きを読む</string>
   <string name="ConversationItem_download_more">  更にダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
@@ -1620,6 +1620,13 @@
   <string name="EditAboutFragment_about">自己紹介</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">気軽に話しかけて</string>
+  <string name="EditAboutFragment_encrypted">暗号化済み</string>
+  <string name="EditAboutFragment_be_kind">優しくしてね</string>
+  <string name="EditAboutFragment_coffee_lover">コーヒー大好き</string>
+  <string name="EditAboutFragment_free_to_chat">チャット歓迎</string>
+  <string name="EditAboutFragment_taking_a_break">休憩中</string>
+  <string name="EditAboutFragment_working_on_something_new">新しいことをしています</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と画像の編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
@@ -1628,6 +1635,7 @@
   <string name="EditProfileNameFragment_first_name">名</string>
   <string name="EditProfileNameFragment_last_name_optional">姓 (任意)</string>
   <string name="EditProfileNameFragment_save">保存</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ネットワークエラーのため保存に失敗しました。あとで再度試してください。</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipients_panel-->
@@ -1932,7 +1940,7 @@
   <string name="conversation_list_fragment__open_camera_description">カメラを開く</string>
   <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">まだチャットがありません。\n友達にメッセージを送って始めましょう。</string>
   <!--conversation_secure_verified-->
-  <string name="conversation_secure_verified__menu_reset_secure_session">セキュアセッションをリセット</string>
+  <string name="conversation_secure_verified__menu_reset_secure_session">セッションをリセット</string>
   <!--conversation_muted-->
   <string name="conversation_muted__unmute">ミュートを解除</string>
   <!--conversation_unmuted-->
@@ -2299,9 +2307,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">壁紙を設定</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ダークテーマで壁紙を暗くする</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">壁紙を消去</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">壁紙を消去しますか？</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">このチャットの壁紙を消去しますか？</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">壁紙を消去しますか？チャットに設定したカスタム壁紙は消去されません。</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">すべての壁紙をリセットしますか？</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">チャットに設定したカスタム壁紙を含む、すべての壁紙をリセットしますか？</string>
   <string name="ChatWallpaperFragment__contact_name">連絡先名</string>
   <string name="ChatWallpaperFragment__reset">リセット</string>
   <string name="ChatWallpaperFragment__clear">消去</string>
@@ -2323,6 +2332,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">すべてのチャットに壁紙を設定しましょう。</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s の壁紙を設定しましょう。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">壁紙の設定でエラーが発生しました。</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">ぼかす</string> -->
+  <string name="WallpaperCropActivity__blur_photo">写真をぼかす</string>
   <!--EOF-->
 </resources>

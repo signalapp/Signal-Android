@@ -1693,6 +1693,12 @@
   <string name="EditAboutFragment_about">À propos</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots sur vous…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Exprimez-vous librement</string>
+  <string name="EditAboutFragment_be_kind">Sois gentil</string>
+  <string name="EditAboutFragment_coffee_lover">Amateur de café</string>
+  <string name="EditAboutFragment_free_to_chat">Prêt à converser</string>
+  <string name="EditAboutFragment_taking_a_break">Je prend une pause</string>
+  <string name="EditAboutFragment_working_on_something_new">Je travaille sur quelque chose de nouveau </string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifier le nom et la photo du groupe</string>
   <string name="EditProfileFragment__group_name">Nom du groupe</string>
@@ -2382,9 +2388,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">Définir le fond d\'écran</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre assombrit également le fond d\'écran</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Réinitialiser le fond d\'écran</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Réinitialiser le fond d\'écran ?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Réinitialiser le fond d\'écran pour cette conversation ?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Réinitialiser le fond d\'écran ? Cela n\'effacera pas les fonds d\'écran personnalisés que vous avez définis pour vos chats.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d\'écran</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Réinitialiser tous les fonds d\'écran ?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d\'écran ainsi que les fonds d\'écrans personnalisés utilisés dans vos conversations ?</string>
   <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>
@@ -2406,6 +2413,5 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Définir le fond d\'écran pour toutes les conversations.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Définir le fond d\'écran pour %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Erreur de réglage du fond d\'écran.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Flouter</string> -->
   <!--EOF-->
 </resources>

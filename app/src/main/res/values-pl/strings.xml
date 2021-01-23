@@ -1838,6 +1838,13 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EditAboutFragment_about">O mnie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napisz kilka słów o sobie…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Mówcie śmiało</string>
+  <string name="EditAboutFragment_encrypted">Zaszyfrowany</string>
+  <string name="EditAboutFragment_be_kind">Bądźcie uprzejmi</string>
+  <string name="EditAboutFragment_coffee_lover">Miłośnik kawy</string>
+  <string name="EditAboutFragment_free_to_chat">Chętny do rozmowy</string>
+  <string name="EditAboutFragment_taking_a_break">Robię przerwę</string>
+  <string name="EditAboutFragment_working_on_something_new">Pracuję nad czymś nowym</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Edytuj nazwę i zdjęcie grupy</string>
   <string name="EditProfileFragment__group_name">Nazwa grupy</string>
@@ -1846,6 +1853,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="EditProfileNameFragment_first_name">Imię</string>
   <string name="EditProfileNameFragment_last_name_optional">Nazwisko (opcjonalne)</string>
   <string name="EditProfileNameFragment_save">Zapisz</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Zapisywanie nie powiodło się z powodu problemów z siecią. Spróbuj później</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Udostępnione multimedia</string>
   <!--recipients_panel-->
@@ -2547,16 +2555,17 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Ustaw tapetę</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Usuń tapetę</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Usunąć tapetę?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Usunąć tapetę dla tej rozmowy?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Usunąć tapetę? To działanie nie usunie tapet, ustawionych przez Ciebie, dla poszczególnych rozmów.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetuj wszystkie tapety</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Zresetować wszystkie tapety?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetować wszystkie tapety, łącznie z ustawionymi przez Ciebie, dla poszczególnych rozmów?</string>
   <string name="ChatWallpaperFragment__contact_name">Imię kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Zresetuj</string>
   <string name="ChatWallpaperFragment__clear">Usuń</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Podgląd tapety</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Wybierz ze zdjęć</string>
-  <string name="ChatWallpaperSelectionFragment__presets">Domyslne</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Domyślne</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Podgląd</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ustaw tapetę</string>
@@ -2567,10 +2576,10 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Wybierz zdjęcie na tapetę</string>
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Ściśnij aby zmienić rozmiar, przeciągnij, aby dopasować.</string>
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Ściśnij lub rozciągnij, aby zmienić rozmiar. Przeciągnij, aby dopasować.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ustaw tapetę dla wszystkich rozmów.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Ustaw tapetę dla %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Błąd przy ustawianiu tapety.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Rozmyj</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Rozmyj zdjęcie</string>
   <!--EOF-->
 </resources>

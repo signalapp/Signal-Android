@@ -1698,6 +1698,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="EditAboutFragment_about">Acerca</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Fale à vontade</string>
+  <string name="EditAboutFragment_encrypted">Encriptado(a)</string>
+  <string name="EditAboutFragment_be_kind">Seja gentil</string>
+  <string name="EditAboutFragment_coffee_lover">Amante de café</string>
+  <string name="EditAboutFragment_free_to_chat">Livre para conversar</string>
+  <string name="EditAboutFragment_taking_a_break">A fazer uma pausa</string>
+  <string name="EditAboutFragment_working_on_something_new">A trabalhar em algo novo</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e fotografia do grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
@@ -1706,6 +1713,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="EditProfileNameFragment_first_name">Primeiro nome</string>
   <string name="EditProfileNameFragment_last_name_optional">Apelido (opcional)</string>
   <string name="EditProfileNameFragment_save">Guardar</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Falha ao guardar devido a problemas de rede. Tente novamente mais tarde.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Ficheiros partilhados</string>
   <!--recipients_panel-->
@@ -2387,9 +2395,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ChatWallpaperFragment__set_wallpaper">Definir fundo de ecrã</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Fundo escuro com pouco brilho</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Limpar fundo de ecrã</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Limpar fundo de ecrã?</string> -->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Limpar fundo de ecrã para esta conversa?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Limpar fundo de ecrã? Isto não irá limpar fundos de ecrã personalizados que tenha definido para as suas conversas.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Repor todos os fundos</string>
-  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Repor todos os fundos?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Repor todos os fundos de ecrã, incluindo os fundos de ecrã personalizados que definiu para as suas conversas?</string>
   <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Limpar</string>
@@ -2411,6 +2420,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir fundo para todas as conversas.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir fundo para %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Ocorreu um erro ao tentar definir o fundo de ecrã.</string>
-  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Desfocar</string> -->
+  <string name="WallpaperCropActivity__blur_photo">Desfocar fotografia</string>
   <!--EOF-->
 </resources>

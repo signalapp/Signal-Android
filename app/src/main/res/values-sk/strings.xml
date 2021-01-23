@@ -1838,6 +1838,12 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Informácie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napíšte pár slov o sebe…</string>
+  <string name="EditAboutFragment_encrypted">Šifrovaný</string>
+  <string name="EditAboutFragment_be_kind">Buďte milí</string>
+  <string name="EditAboutFragment_coffee_lover">Milovník kávy</string>
+  <string name="EditAboutFragment_free_to_chat">Môžeme sa baviť</string>
+  <string name="EditAboutFragment_taking_a_break">Dávam si prestávku</string>
+  <string name="EditAboutFragment_working_on_something_new">Pracujem na niečom novom</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upraviť názov a fotku skupiny</string>
   <string name="EditProfileFragment__group_name">Názov skupiny</string>
@@ -2537,6 +2543,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ShareInterstitialActivity__forward_message">Preposlať správu</string>
   <!--ChatWallpaperActivity-->
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Odstrániť pozadie pre tento chat?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Odstrániť pozadie? Neodstránia sa tým vlastné pozadia, čo ste si pre vaše chaty nastavili.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetovať všetky pozadia vrátane vlastných pozadí, čo ste si pre vaše chaty nastavili?</string>
   <string name="ChatWallpaperFragment__reset">Resetovať</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__presets">Predvoľby</string>

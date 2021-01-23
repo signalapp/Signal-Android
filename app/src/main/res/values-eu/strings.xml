@@ -603,6 +603,7 @@
   <string name="ManageGroupActivity_mute_notifications">Desaktibatu jakinarazpenak</string>
   <string name="ManageGroupActivity_custom_notifications">Jakinarazpen pertsonalizatuak</string>
   <string name="ManageGroupActivity_mentions">Aipamenak</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Elkarrizketaren hormairudia</string>
   <string name="ManageGroupActivity_until_s">%1$s dataraino</string>
   <string name="ManageGroupActivity_off">Desaktibatuta</string>
   <string name="ManageGroupActivity_on">Aktibatuta</string>
@@ -638,12 +639,16 @@
   <string name="ManageProfileFragment_profile_name">Profilaren izena</string>
   <string name="ManageProfileFragment_username">Erabiltzailearen izena</string>
   <string name="ManageProfileFragment_about">Honi buruz</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Idatzi zuri buruzko hitz batzuk…</string>
   <string name="ManageProfileFragment_your_name">Zure izena</string>
+  <string name="ManageProfileFragment_your_username">Zure erabiltzaile-izena</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Huts egin du zure irudia ezartzeak</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Gehitu sistemaren kontaktuetara</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Pertsona hau zure kontaktuetan dago</string>
   <string name="ManageRecipientActivity_disappearing_messages">Mezuen desagerpena</string>
   <string name="ManageRecipientActivity_chat_color">Txat-aren kolorea</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Elkarrizketaren hormairudia</string>
   <string name="ManageRecipientActivity_block">Blokeatu</string>
   <string name="ManageRecipientActivity_unblock">Desblokeatu</string>
   <string name="ManageRecipientActivity_view_safety_number">Erakutsi segurtasun zenbakia </string>
@@ -1316,6 +1321,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">URL hau kopiatu eta erantsi zure arazoaren txostenari edo laguntza eskatzeko emailari: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Elkarbanatu</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtroa:</string>
   <string name="SupportEmailUtil_device_info">Gailuari buruzko informazioa:</string>
   <string name="SupportEmailUtil_android_version">Android bertsioa:</string>
   <string name="SupportEmailUtil_signal_version">Signal bertsioa:</string>
@@ -1696,13 +1702,23 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Honi buruz</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Idatzi zuri buruzko hitz batzuk…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Hitz egin</string>
+  <string name="EditAboutFragment_encrypted">Zifratuta</string>
+  <string name="EditAboutFragment_be_kind">Izan atsegina…</string>
+  <string name="EditAboutFragment_coffee_lover">Kafea gustatzen zai</string>
+  <string name="EditAboutFragment_free_to_chat">Txateatzeko libre</string>
+  <string name="EditAboutFragment_taking_a_break">Atsedena hartzen</string>
+  <string name="EditAboutFragment_working_on_something_new">Zerbait berrian lanean</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editatu taldearen izena eta argazkia</string>
   <string name="EditProfileFragment__group_name">Taldearen izena</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Zure izena</string>
+  <string name="EditProfileNameFragment_first_name">Izena</string>
   <string name="EditProfileNameFragment_last_name_optional">Abizena (aukerazkoa)</string>
   <string name="EditProfileNameFragment_save">Gorde</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Huts egin du gordetzeak sare-arazoak direla-eta. Saia zaitez beranduago.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Partekatutako media</string>
   <!--recipients_panel-->
@@ -1875,6 +1891,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__dark_theme">Iluna</string>
   <string name="preferences__appearance">Itxura</string>
   <string name="preferences__theme">Gaia</string>
+  <string name="preferences__chat_wallpaper">Elkarrizketaren hormairudia</string>
   <string name="preferences__disable_pin">Desaktibatu PINa</string>
   <string name="preferences__enable_pin">Aktibatu PINa</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ez baduzu modu manualean segurtasun kopiak egiten, PINa desaktibatzen baduzu, datu guztiak galduko dituzu signal berriro erregistratzen duzunean. Ezin duzu erregistratzeko blokeoa aktibatu PINa desaktibatuta dagoen bitartean.</string>
@@ -1893,6 +1910,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Irakurketaren hartu-agiriak desaktibatuta badaude, ezingo dituzu besteenak ikusi</string>
   <string name="preferences__typing_indicators">Idazketa jakinarazleak</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Idazketa jakinarazleak desaktibatuta badaude, ezin izango duzu besteak idazten ari diren ikusi</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Eskatu teklatuari idazteko ikaskuntza desaktibatzeko. Ezarpen honek ez du ezer ziurtatzen eta zure teklatuak agian ez dio kasurik egingo.</string>
   <string name="preferences_app_protection__blocked_users">Blokeatutako erabiltzaileak</string>
   <string name="preferences_chats__when_using_mobile_data">Datu mugikorrak erabiltzerakoan</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fia erabiltzerakoan</string>
@@ -2370,16 +2388,43 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Elkarbanatu</string>
   <string name="ShareActivity__send">Bidali</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Huts egin du erabiltzaile batzuei bidaltzean</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Gehienez ere %1$d elkarrizketarekin parteka dezakezu</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Birbidali mezua</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Elkarrizketaren hormairudia</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Ezarri hormairudia</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Itxura ilunak hormairudia leundu egingo du</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Kendu hormairudia</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Kendu elkarrizketa honen hormairudia?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Kendu hormairudia? Honek ez ditu zure elkarrizketetarako zuk ezarritako hormairudiak.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Berrezarri hormairudi guztiak</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Hormairudi guztiak berrezarri, zure elkarrizketetarako ezarri dituzunak barne?</string>
+  <string name="ChatWallpaperFragment__contact_name">Kontaktuaren izena</string>
   <string name="ChatWallpaperFragment__reset">Berrabiarazi</string>
+  <string name="ChatWallpaperFragment__clear">Garbitu</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Aurreikusi hormairudia</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Aukeratu argazkietatik</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Aurre-ezarpenak</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Aurrebista</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ezarri hormairudia</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Mugitu alde batera hormairudi gehiago ikusteko</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ezarri hormairudia elkarrizketa guztientzat</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ezarri hormairudia %1$s elkarrizketarentzat</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Zure galeria ikusteko biltegian sartzeko baimena behar da.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Aukeratu hormairudia</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Egin zoom, arrastatu doitzeko</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ezarri hormairudia elkarrizketa guztientzat</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Errorea gertatu da %s elkarrizketan hormairudia ezartzean.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Errorea gertatu da hormairudia ezartzean.</string>
+  <string name="WallpaperCropActivity__blur_photo">Lausotu argazkia</string>
   <!--EOF-->
 </resources>
