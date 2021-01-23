@@ -363,8 +363,10 @@ public class ConversationAdapter
 
     if (hasWallpaper) {
       viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
     } else {
       viewHolder.clearBackground();
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.core_grey_45));
     }
   }
 
@@ -605,10 +607,12 @@ public class ConversationAdapter
 
   static class StickyHeaderViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
+    View     divider;
 
     StickyHeaderViewHolder(View itemView) {
       super(itemView);
       textView = itemView.findViewById(R.id.text);
+      divider  = itemView.findViewById(R.id.last_seen_divider);
     }
 
     StickyHeaderViewHolder(TextView textView) {
@@ -626,6 +630,12 @@ public class ConversationAdapter
 
     public void setBackgroundRes(@DrawableRes int resId) {
       textView.setBackgroundResource(resId);
+    }
+
+    public void setDividerColor(@ColorInt int color) {
+      if (divider != null) {
+        divider.setBackgroundColor(color);
+      }
     }
 
     public void clearBackground() {

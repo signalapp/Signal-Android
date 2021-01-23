@@ -9,8 +9,9 @@
     android:paddingBottom="20dp">
 
     <View
+        android:id="@+id/last_seen_divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_marginBottom="3dp"
         android:background="@color/core_grey_45" />
 
