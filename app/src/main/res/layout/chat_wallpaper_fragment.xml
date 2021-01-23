@@ -236,11 +236,10 @@
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
             android:background="@color/signal_inverse_transparent_15"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_dark_theme_dims_wallpaper"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_dark_theme_dims_wallpaper" />
 
         <TextView
             android:id="@+id/chat_wallpaper_clear_wallpaper"
@@ -254,11 +253,10 @@
             android:text="@string/ChatWallpaperFragment__clear_wallpaper"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/signal_text_primary"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_divider"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_divider" />
 
         <TextView
             android:id="@+id/chat_wallpaper_reset_all_wallpapers"

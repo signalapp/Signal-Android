@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +25,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -43,6 +47,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -302,7 +307,9 @@ public class ConversationAdapter
 
   @Override
   public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position, int type) {
+    Context             context             = viewHolder.itemView.getContext();
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
+
     viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
 
     if (type == HEADER_TYPE_POPOVER_DATE) {
@@ -317,6 +324,12 @@ public class ConversationAdapter
       } else {
         viewHolder.clearBackground();
       }
+    }
+
+    if (hasWallpaper && ThemeUtil.isDarkTheme(context)) {
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.core_grey_15));
+    } else {
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
     }
   }
 
@@ -451,12 +464,16 @@ public class ConversationAdapter
 
   /**
    * Lets the adapter know that the wallpaper state has changed.
+   * @return True if the internal wallpaper state changed, otherwise false.
    */
-  void onHasWallpaperChanged(boolean hasWallpaper) {
+  boolean onHasWallpaperChanged(boolean hasWallpaper) {
     if (this.hasWallpaper != hasWallpaper) {
       Log.d(TAG, "Resetting adapter due to wallpaper change.");
       this.hasWallpaper = hasWallpaper;
       notifyDataSetChanged();
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -601,6 +618,10 @@ public class ConversationAdapter
 
     public void setText(CharSequence text) {
       textView.setText(text);
+    }
+
+    public void setTextColor(@ColorInt int color) {
+      textView.setTextColor(color);
     }
 
     public void setBackgroundRes(@DrawableRes int resId) {

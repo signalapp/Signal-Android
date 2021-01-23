@@ -2871,7 +2871,7 @@
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Set wallpaper for all chats.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_s">Set wallpaper for %s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
-    <string name="WallpaperCropActivity__blur">Blur</string>
+    <string name="WallpaperCropActivity__blur_photo">Blur photo</string>
 
     <!-- EOF -->
 

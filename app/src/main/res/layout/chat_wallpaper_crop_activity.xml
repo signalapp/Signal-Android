@@ -137,12 +137,18 @@
         android:id="@+id/preview_blur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/WallpaperCropActivity__blur"
+        android:layout_marginBottom="17dp"
+        android:text="@string/WallpaperCropActivity__blur_photo"
         android:textColor="@color/signal_button_primary"
-        app:layout_constraintBottom_toBottomOf="@+id/preview_set_wallpaper"
+        android:background="@drawable/wallpaper_crop_bubble_background"
+        android:paddingStart="14dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingEnd="6dp"
+        app:switchPadding="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/preview_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/preview_set_wallpaper" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/preview_set_wallpaper"
@@ -154,5 +160,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/preview_guideline" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/wallpaper_preview_background"
+        app:layout_constraintTop_toBottomOf="@id/navigation_bar_guideline"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>

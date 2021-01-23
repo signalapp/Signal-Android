@@ -48,6 +48,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -185,6 +186,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;
+  private int defaultBubbleColorForWallpaper;
   private int measureCalls;
 
   private final PassthroughClickListener        passthroughClickListener    = new PassthroughClickListener();
@@ -276,7 +278,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
+    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread, hasWallpaper);
     setBodyText(messageRecord, searchQuery);
     setBubbleState(messageRecord, hasWallpaper);
     setInteractionState(conversationMessage, pulse);
@@ -390,7 +392,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void initializeAttributes() {
-    defaultBubbleColor = ContextCompat.getColor(context, R.color.signal_background_secondary);
+    defaultBubbleColor             = ContextCompat.getColor(context, R.color.signal_background_secondary);
+    defaultBubbleColorForWallpaper = ContextCompat.getColor(context, R.color.conversation_item_wallpaper_bubble_color);
+  }
+
+  private @ColorInt int getDefaultBubbleColor(boolean hasWallpaper) {
+    return hasWallpaper ? defaultBubbleColorForWallpaper : defaultBubbleColor;
   }
 
   @Override
@@ -412,7 +419,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void setBubbleState(MessageRecord messageRecord, boolean hasWallpaper) {
     if (messageRecord.isOutgoing() && !messageRecord.isRemoteDelete()) {
-      bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+      bodyBubble.getBackground().setColorFilter(getDefaultBubbleColor(hasWallpaper), PorterDuff.Mode.MULTIPLY);
       footer.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
       footer.setIconColor(ContextCompat.getColor(context, R.color.signal_icon_tint_secondary));
       footer.setOnlyShowSendingStatus(false, messageRecord);
@@ -659,7 +666,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                                   @NonNull Optional<MessageRecord> previousRecord,
                                   @NonNull Optional<MessageRecord> nextRecord,
                                   @NonNull Recipient               conversationRecipient,
-                                           boolean                 isGroupThread)
+                                           boolean                 isGroupThread,
+                                           boolean                 hasWallpaper)
   {
     boolean showControls = !messageRecord.isFailed();
 
@@ -834,7 +842,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       mediaThumbnailStub.get().setOnLongClickListener(passthroughClickListener);
       mediaThumbnailStub.get().setOnClickListener(passthroughClickListener);
       mediaThumbnailStub.get().showShade(TextUtils.isEmpty(messageRecord.getDisplayBody(getContext())) && !hasExtraText(messageRecord));
-      mediaThumbnailStub.get().setConversationColor(messageRecord.isOutgoing() ? defaultBubbleColor
+      mediaThumbnailStub.get().setConversationColor(messageRecord.isOutgoing() ? getDefaultBubbleColor(hasWallpaper)
                                                                                : messageRecord.getRecipient().getColor().toConversationColor(context));
       mediaThumbnailStub.get().setBorderless(false);
 
@@ -1106,7 +1114,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
       if (hasWallpaper && hasNoBubble((messageRecord))) {
         if (messageRecord.isOutgoing()) {
-          activeFooter.enableBubbleBackground(R.drawable.wallpaper_bubble_background_tintable_11, defaultBubbleColor);
+          activeFooter.enableBubbleBackground(R.drawable.wallpaper_bubble_background_tintable_11, getDefaultBubbleColor(hasWallpaper));
         } else {
           activeFooter.enableBubbleBackground(R.drawable.wallpaper_bubble_background_tintable_11,  messageRecord.getRecipient().getColor().toConversationColor(context));
           activeFooter.setTextColor(ContextCompat.getColor(context, R.color.conversation_item_received_text_secondary_color));

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +24,10 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public class ChatWallpaperFragment extends Fragment {
 
-  private boolean isSettingDimFromViewModel;
-  private View    clearWallpaper;
-  private View    resetAllWallpaper;
-  private View    divider;
+  private boolean  isSettingDimFromViewModel;
+  private TextView clearWallpaper;
+  private View     resetAllWallpaper;
+  private View     divider;
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class ChatWallpaperFragment extends Fragment {
 
     viewModel.getEnableWallpaperControls().observe(getViewLifecycleOwner(), enableWallpaperControls -> {
       dimInNightMode.setEnabled(enableWallpaperControls);
-      clearWallpaper.setVisibility(enableWallpaperControls ? View.VISIBLE : View.GONE);
-      updateDividerVisibility();
+      dimInNightMode.setAlpha(enableWallpaperControls ? 1 : 0.5f);
+      clearWallpaper.setEnabled(enableWallpaperControls);
+      clearWallpaper.setAlpha(enableWallpaperControls ? 1 : 0.5f);
     });
 
     chatWallpaperPreview.setOnClickListener(unused -> setWallpaper.performClick());
@@ -78,7 +80,6 @@ public class ChatWallpaperFragment extends Fragment {
                                                         .navigate(R.id.action_chatWallpaperFragment_to_chatWallpaperSelectionFragment));
 
     resetAllWallpaper.setVisibility(viewModel.isGlobal() ? View.VISIBLE : View.GONE);
-    updateDividerVisibility();
 
     clearWallpaper.setOnClickListener(unused -> {
       confirmAction(viewModel.isGlobal() ? R.string.ChatWallpaperFragment__clear_wallpaper_this_will_not
@@ -106,14 +107,6 @@ public class ChatWallpaperFragment extends Fragment {
         viewModel.setDimInDarkTheme(isChecked);
       }
     });
-  }
-
-  private void updateDividerVisibility() {
-    if (clearWallpaper.getVisibility() == View.VISIBLE || resetAllWallpaper.getVisibility() == View.VISIBLE) {
-      divider.setVisibility(View.VISIBLE);
-    } else {
-      divider.setVisibility(View.GONE);
-    }
   }
 
   private void confirmAction(@StringRes int title, @StringRes int positiveActionLabel, @NonNull Runnable onPositiveAction) {

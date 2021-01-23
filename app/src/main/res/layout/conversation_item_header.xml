@@ -21,6 +21,7 @@
         android:paddingEnd="10dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
+        android:layout_gravity="center"
         tools:text="March 1, 2015" />
 
 </LinearLayout>
