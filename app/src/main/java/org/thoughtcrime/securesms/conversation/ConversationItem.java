@@ -1068,9 +1068,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private void setGutterSizes(@NonNull MessageRecord current, boolean isGroupThread) {
     if (isGroupThread && current.isOutgoing()) {
-      ViewUtil.setLeftMargin(this, readDimen(R.dimen.conversation_group_left_gutter));
+      ViewUtil.setPaddingStart(this, readDimen(R.dimen.conversation_group_left_gutter));
     } else if (current.isOutgoing()) {
-      ViewUtil.setLeftMargin(this, readDimen(R.dimen.conversation_individual_left_gutter));
+      ViewUtil.setPaddingStart(this, readDimen(R.dimen.conversation_individual_left_gutter));
     }
   }
 

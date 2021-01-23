@@ -5,7 +5,7 @@
     android:id="@+id/conversation_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
+    android:paddingEnd="@dimen/conversation_individual_right_gutter"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:focusable="true"
