@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Stream;
 import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.components.SelectionAwareEmojiEditText;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.sharing.MultiShareDialogs;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -80,6 +82,16 @@ public class ShareInterstitialActivity extends PassphraseRequiredActivity {
     LinkPreviewViewModel.Factory linkPreviewViewModelFactory = new LinkPreviewViewModel.Factory(linkPreviewRepository);
 
     linkPreviewViewModel = ViewModelProviders.of(this, linkPreviewViewModelFactory).get(LinkPreviewViewModel.class);
+
+    boolean hasSms = Stream.of(args.getShareContactAndThreads())
+                           .anyMatch(c -> {
+                             Recipient recipient = Recipient.resolved(c.getRecipientId());
+                             return !recipient.isRegistered() || recipient.isForceSmsSelection();
+                           });
+
+    if (hasSms) {
+      linkPreviewViewModel.onTransportChanged(hasSms);
+    }
   }
 
   private void initializeViews(@NonNull MultiShareArgs args) {
