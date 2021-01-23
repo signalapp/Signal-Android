@@ -287,7 +287,7 @@ public class ContactsCursorLoader extends CursorLoader {
                                                   stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
-                                                  ContactRepository.RECENT_TYPE,
+                                                  ContactRepository.RECENT_TYPE | (recipient.isRegistered() && !recipient.isForceSmsSelection() ? ContactRepository.PUSH_TYPE : 0),
                                                   recipient.getCombinedAboutAndEmoji() });
       }
     }

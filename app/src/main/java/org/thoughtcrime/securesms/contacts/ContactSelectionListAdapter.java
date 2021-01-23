@@ -215,9 +215,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     String      label       = CursorUtil.requireString(cursor, ContactRepository.LABEL_COLUMN);
     String      labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getContext().getResources(),
                                                                                   numberType, label).toString();
+    boolean     isPush      = (contactType & ContactRepository.PUSH_TYPE) > 0;
 
-    int color = (contactType == ContactRepository.PUSH_TYPE) ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
-                                                             : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
+    int color = isPush ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
+                       : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
 
     boolean currentContact = currentContacts.contains(id);
 
@@ -314,7 +315,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private @NonNull String getHeaderString(int position) {
     int contactType = getContactType(position);
 
-    if (contactType == ContactRepository.RECENT_TYPE || contactType == ContactRepository.DIVIDER_TYPE) {
+    if ((contactType & ContactRepository.RECENT_TYPE) > 0 || contactType == ContactRepository.DIVIDER_TYPE) {
       return " ";
     }
 

@@ -46,11 +46,11 @@ public class ContactRepository {
          static final String ABOUT_COLUMN        = "about";
 
   static final int NORMAL_TYPE       = 0;
-  static final int PUSH_TYPE         = 1;
-  static final int NEW_PHONE_TYPE    = 2;
-  static final int NEW_USERNAME_TYPE = 3;
-  static final int RECENT_TYPE       = 4;
-  static final int DIVIDER_TYPE      = 5;
+  static final int PUSH_TYPE         = 1 << 0;
+  static final int NEW_PHONE_TYPE    = 1 << 2;
+  static final int NEW_USERNAME_TYPE = 1 << 3;
+  static final int RECENT_TYPE       = 1 << 4;
+  static final int DIVIDER_TYPE      = 1 << 5;
 
   /** Maps the recipient results to the legacy contact column names */
   private static final List<Pair<String, ValueMapper>> SEARCH_CURSOR_MAPPERS = new ArrayList<Pair<String, ValueMapper>>() {{
