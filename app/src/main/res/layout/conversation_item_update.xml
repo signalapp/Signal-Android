@@ -8,21 +8,20 @@
     android:background="@drawable/conversation_item_background"
     android:focusable="true"
     android:paddingStart="26dp"
-    android:paddingEnd="26dp"
-    android:clipToPadding="false"
-    android:clipChildren="false">
+    android:paddingEnd="26dp">
 
     <LinearLayout
         android:id="@+id/conversation_update_background"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="100dp"
         android:layout_gravity="center"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginTop="@dimen/conversation_update_vertical_margin"
+        android:layout_marginBottom="@dimen/conversation_update_vertical_margin"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="@dimen/conversation_update_vertical_padding"
+        android:paddingBottom="@dimen/conversation_update_vertical_padding"
         android:paddingStart="10dp"
         android:paddingEnd="10dp">
 

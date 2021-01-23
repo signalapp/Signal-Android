@@ -6,6 +6,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -30,10 +31,12 @@ import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -101,7 +104,7 @@ public final class ConversationUpdateItem extends FrameLayout
   {
     this.batchSelected = batchSelected;
 
-    bind(lifecycleOwner, conversationMessage, nextMessageRecord, conversationRecipient, hasWallpaper);
+    bind(lifecycleOwner, conversationMessage, previousMessageRecord, nextMessageRecord, conversationRecipient, hasWallpaper);
   }
 
   @Override
@@ -116,6 +119,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private void bind(@NonNull LifecycleOwner lifecycleOwner,
                     @NonNull ConversationMessage conversationMessage,
+                    @NonNull Optional<MessageRecord> previousMessageRecord,
                     @NonNull Optional<MessageRecord> nextMessageRecord,
                     @NonNull Recipient conversationRecipient,
                     boolean hasWallpaper)
@@ -131,12 +135,6 @@ public final class ConversationUpdateItem extends FrameLayout
       groupObserver.observe(lifecycleOwner, conversationRecipient);
     } else {
       groupObserver.observe(lifecycleOwner, null);
-    }
-
-    if (hasWallpaper) {
-      background.setBackgroundResource(R.drawable.wallpaper_bubble_background_12);
-    } else {
-      background.setBackground(null);
     }
 
     int textColor = ContextCompat.getColor(getContext(), R.color.conversation_item_update_text_color);
@@ -159,6 +157,16 @@ public final class ConversationUpdateItem extends FrameLayout
     observeDisplayBody(lifecycleOwner, spannableMessage);
 
     present(conversationMessage, nextMessageRecord, conversationRecipient);
+
+    presentBackground(shouldCollapse(messageRecord, previousMessageRecord),
+                      shouldCollapse(messageRecord, nextMessageRecord),
+                      hasWallpaper);
+  }
+
+  private static boolean shouldCollapse(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> candidate) {
+    return candidate.isPresent()      &&
+           candidate.get().isUpdate() &&
+           DateUtils.isSameDay(current.getTimestamp(), candidate.get().getTimestamp());
   }
 
   /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
@@ -291,6 +299,71 @@ public final class ConversationUpdateItem extends FrameLayout
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
+    }
+  }
+
+  private void presentBackground(boolean collapseAbove, boolean collapseBelow, boolean hasWallpaper) {
+    int marginDefault    = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_update_vertical_margin);
+    int marginCollapsed  = 0;
+    int paddingDefault   = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_update_vertical_padding);
+    int paddingCollapsed = getContext().getResources().getDimensionPixelOffset(R.dimen.conversation_update_vertical_padding_collapsed);
+
+    if (collapseAbove && collapseBelow) {
+      ViewUtil.setTopMargin(background, marginCollapsed);
+      ViewUtil.setBottomMargin(background, marginCollapsed);
+
+      ViewUtil.setPaddingTop(background, paddingCollapsed);
+      ViewUtil.setPaddingBottom(background, paddingCollapsed);
+
+      ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+      if (hasWallpaper) {
+        background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_middle);
+      } else {
+        background.setBackground(null);
+      }
+    } else if (collapseAbove) {
+      ViewUtil.setTopMargin(background, marginCollapsed);
+      ViewUtil.setBottomMargin(background, marginDefault);
+
+      ViewUtil.setPaddingTop(background, paddingCollapsed);
+      ViewUtil.setPaddingBottom(background, paddingDefault);
+
+      ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+      if (hasWallpaper) {
+        background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_bottom);
+      } else {
+        background.setBackground(null);
+      }
+    } else if (collapseBelow) {
+      ViewUtil.setTopMargin(background, paddingDefault);
+      ViewUtil.setBottomMargin(background, paddingCollapsed);
+
+      ViewUtil.setPaddingTop(background, paddingDefault);
+      ViewUtil.setPaddingBottom(background, paddingCollapsed);
+
+      ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+      if (hasWallpaper) {
+        background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_top);
+      } else {
+        background.setBackground(null);
+      }
+    } else {
+      ViewUtil.setTopMargin(background, marginDefault);
+      ViewUtil.setBottomMargin(background, marginDefault);
+
+      ViewUtil.setPaddingTop(background, paddingDefault);
+      ViewUtil.setPaddingBottom(background, paddingDefault);
+
+      ViewUtil.updateLayoutParams(background, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+      if (hasWallpaper) {
+        background.setBackgroundResource(R.drawable.conversation_update_wallpaper_background_singular);
+      } else {
+        background.setBackground(null);
+      }
     }
   }
 
