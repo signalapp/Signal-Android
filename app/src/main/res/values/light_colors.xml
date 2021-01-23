@@ -57,7 +57,7 @@
 
     <color name="audio_seek_bar_sent_played_color">@color/core_grey_60</color>
     <color name="audio_seek_bar_sent_unplayed_color">@color/core_grey_25</color>
-    <color name="audio_play_pause_sent_background_tint">@color/core_white</color>
+    <color name="audio_play_pause_sent_background_tint">@color/core_grey_02</color>
 
     <color name="insight_title">@color/core_grey_90</color>
     <color name="insight_body_2">@color/core_grey_60</color>
