@@ -6,9 +6,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.SystemClock;
 
+import androidx.core.app.AlarmManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
@@ -72,19 +72,10 @@ public class AlarmSleepTimer implements SleepTimer {
 
       Log.w(TAG, "Setting alarm to wake up in " + millis + "ms.");
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                                               SystemClock.elapsedRealtime() + millis,
-                                               pendingIntent);
-      } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                              SystemClock.elapsedRealtime() + millis,
-                              pendingIntent);
-      } else {
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                         SystemClock.elapsedRealtime() + millis,
-                         pendingIntent);
-      }
+      AlarmManagerCompat.setExactAndAllowWhileIdle(alarmManager,
+                                                   AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                                                   SystemClock.elapsedRealtime() + millis,
+                                                   pendingIntent);
     }
 
     @Override
