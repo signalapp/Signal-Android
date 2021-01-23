@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.jobs;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -535,8 +535,7 @@ public final class PushProcessMessageJob extends BaseJob {
             .putExtra(WebRtcCallService.EXTRA_OFFER_TYPE,                 message.getType().getCode())
             .putExtra(WebRtcCallService.EXTRA_MULTI_RING,                 content.getCallMessage().get().isMultiRing());
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
+      ContextCompat.startForegroundService(context, intent);
     }
   }
 
