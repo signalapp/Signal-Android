@@ -80,7 +80,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     String channelId = recipient.getNotificationChannel();
     setChannelId(channelId != null ? channelId : NotificationChannels.getMessagesChannel(context));
 
-    if (privacy.isDisplayContact()) {
+    if (isDisplayContact(recipient)) {
       setContentTitle(recipient.getDisplayName(context));
 
       if (recipient.getContactUri() != null) {
@@ -134,7 +134,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       stringBuilder.append(Util.getBoldedString(individualRecipient.getDisplayName(context) + ": "));
     }
 
-    if (privacy.isDisplayMessage()) {
+    if (isDisplayMessage(threadRecipients)) {
       setContentText(stringBuilder.append(message));
       this.slideDeck = slideDeck;
     } else {
@@ -243,7 +243,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     this.threadRecipient = threadRecipient;
 
-    if (privacy.isDisplayContact()) {
+    if (isDisplayContact(threadRecipient)) {
       personBuilder.setName(individualRecipient.getDisplayName(context));
       personBuilder.setUri(individualRecipient.isSystemContact() ? individualRecipient.getContactUri().toString() : null);
 
@@ -256,7 +256,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     }
 
     final CharSequence text;
-    if (privacy.isDisplayMessage()) {
+    if (isDisplayMessage(threadRecipient)) {
       text = messageBody == null ? "" : messageBody;
     } else {
       text = stringBuilder.append(context.getString(R.string.SingleRecipientNotificationBuilder_new_message));
@@ -314,7 +314,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     NotificationCompat.MessagingStyle messagingStyle = new NotificationCompat.MessagingStyle(ConversationUtil.buildPersonCompat(context, Recipient.self()));
 
     if (threadRecipient.isGroup()) {
-      if (privacy.isDisplayContact()) {
+      if (isDisplayContact(threadRecipient)) {
         messagingStyle.setConversationTitle(threadRecipient.getDisplayName(context));
       } else {
         messagingStyle.setConversationTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));

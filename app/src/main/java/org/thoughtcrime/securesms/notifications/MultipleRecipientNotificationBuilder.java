@@ -47,7 +47,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   }
 
   public void setMostRecentSender(Recipient recipient) {
-    if (privacy.isDisplayContact()) {
+    if (isDisplayContact(recipient)) {
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
                                        recipient.getDisplayName(context)));
     }
@@ -66,13 +66,13 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   }
 
   public void addMessageBody(@NonNull Recipient sender, @Nullable CharSequence body) {
-    if (privacy.isDisplayMessage()) {
+    if (isDisplayMessage(sender)) {
       messageBodies.add(getStyledMessage(sender, body));
-    } else if (privacy.isDisplayContact()) {
+    } else if (isDisplayContact(sender)) {
       messageBodies.add(Util.getBoldedString(sender.getDisplayName(context)));
     }
 
-    if (privacy.isDisplayContact() && sender.getContactUri() != null) {
+    if (isDisplayContact(sender) && sender.getContactUri() != null) {
       addPerson(sender.getContactUri().toString());
     }
   }

@@ -76,9 +76,9 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
   }
 
   public void setTicker(@NonNull Recipient recipient, @Nullable CharSequence message) {
-    if (privacy.isDisplayMessage()) {
+    if (isDisplayMessage(recipient)) {
       setTicker(getStyledMessage(recipient, trimToDisplayLength(message)));
-    } else if (privacy.isDisplayContact()) {
+    } else if (isDisplayContact(recipient)) {
       setTicker(getStyledMessage(recipient, context.getString(R.string.AbstractNotificationBuilder_new_message)));
     } else {
       setTicker(context.getString(R.string.AbstractNotificationBuilder_new_message));
@@ -97,5 +97,13 @@ public abstract class AbstractNotificationBuilder extends NotificationCompat.Bui
 
     return text.length() <= MAX_DISPLAY_LENGTH ? text
                                                : text.subSequence(0, MAX_DISPLAY_LENGTH);
+  }
+
+  protected boolean isDisplayMessage(@NonNull Recipient recipient) {
+    return privacy.isDisplayMessage() && recipient.getExpireMessages() == 0;
+  }
+
+  protected boolean isDisplayContact(@NonNull Recipient recipient) {
+    return privacy.isDisplayContact() && recipient.getExpireMessages() == 0;
   }
 }
