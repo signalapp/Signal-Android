@@ -74,6 +74,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="194dp"
             android:text="@string/WallpaperCropActivity__pinch_to_zoom_drag_to_adjust"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white" />
