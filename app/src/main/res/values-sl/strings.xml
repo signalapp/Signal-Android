@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Izklop obvestil</string>
   <string name="ManageGroupActivity_custom_notifications">Obvestila po meri</string>
   <string name="ManageGroupActivity_mentions">Omembe</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Ozadje pogovora</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Izklopljena</string>
   <string name="ManageGroupActivity_on">Vklopljena</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">Naziv profila</string>
   <string name="ManageProfileFragment_username">Uporabniško ime</string>
   <string name="ManageProfileFragment_about">Več</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napišite nekaj besed o sebi</string>
   <string name="ManageProfileFragment_your_name">Vaše ime</string>
+  <string name="ManageProfileFragment_your_username">Vaše uporabniško ime</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Nastavitev avatarja ni uspela</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj k sistemskim stikom</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Uporabnik/ca je med vašimi stiki</string>
   <string name="ManageRecipientActivity_disappearing_messages">Izginjajoča sporočila</string>
   <string name="ManageRecipientActivity_chat_color">Barva pogovora</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Ozadje pogovora</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>
   <string name="ManageRecipientActivity_unblock">Odblokiraj</string>
   <string name="ManageRecipientActivity_view_safety_number">Pregled varnostnega števila</string>
@@ -1428,6 +1433,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Prekopirajte naslov URL in ga dodajte k prijavi napake ali v elektronsko sporočilo za tehnično podporo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Deli</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Podatki o napravi:</string>
   <string name="SupportEmailUtil_android_version">Različica Android:</string>
   <string name="SupportEmailUtil_signal_version">Različica Signal:</string>
@@ -1829,11 +1835,14 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Imena in fotografije MMS skupin po meri bodo vidna le vam.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Več</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekaj besed o sebi …</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Uredi ime in fotografijo skupine</string>
   <string name="EditProfileFragment__group_name">Ime skupine</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše ime</string>
+  <string name="EditProfileNameFragment_first_name">Ime</string>
   <string name="EditProfileNameFragment_last_name_optional">Priimek (neobvezno)</string>
   <string name="EditProfileNameFragment_save">Shrani</string>
   <!--recipient_preferences_activity-->
@@ -2010,6 +2019,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__dark_theme">Temna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Ozadje pogovora</string>
   <string name="preferences__disable_pin">Izklop PINa</string>
   <string name="preferences__enable_pin">Vklopi PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Z izklopom PINa boste ob ponovni prijavi v svoj račun Signal izgubili vse tam shranjene podatke, razen če prej sami ne ustvarite varnostne kopije. Brez PINa tudi ne morete vklopiti zaklepa registracije.</string>
@@ -2028,6 +2038,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Če izklopite poročila o ogledu, tudi sami ne boste obveščeni, ko bo prejemnik prebral vaše sporočilo.</string>
   <string name="preferences__typing_indicators">Kazalniki tipkanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti kdaj vaš partner tipka svoje sporočilo.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Zahteva tipkovnici za izklop personificiranega učenja. Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani/e uporabniki/ce</string>
   <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
   <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
@@ -2523,16 +2534,42 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--ShareActivity-->
   <string name="ShareActivity__share">Deli</string>
   <string name="ShareActivity__send">Pošlji</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom/cam ni uspelo</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pošljete lahko največ %1$d pogovorom</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Posreduj sporočilo</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Ozadje pogovora</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Določi ozadje</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatemnjeno ozadje pri temni témi</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Ponastavi ozadje</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Res želite ponastaviti ozadje pogovora?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ponastavi vsa ozadja</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Res želite ponastaviti vsa ozadja pogovorov?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Ime stika</string>
   <string name="ChatWallpaperFragment__reset">Ponastavi</string>
+  <string name="ChatWallpaperFragment__clear">Izbriši</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Predogled ozadja</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Izberi izmed fotografij</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Prednastavljeni</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Predogled</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Določi ozadje</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Podrsajte po zaslonu za več ozadij</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Določi ozadje za vse pogovore</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Določi ozadje za uporabnika/co %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ogled galerije zahteva dovoljenje aplikaciji za dostop do sistemske shrambe.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Izberi sliko za ozadje</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Ščip za približanje, povlek za naravnavo.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Določi ozadje za vse pogovore.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Določi ozadje za uporabnika/co %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Napaka pri nastavitvi ozadja.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Zabriši</string> -->
   <!--EOF-->
 </resources>

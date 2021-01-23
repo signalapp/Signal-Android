@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Benachrichtigungen stummschalten</string>
   <string name="ManageGroupActivity_custom_notifications">Personalisierte Benachrichtigungen</string>
   <string name="ManageGroupActivity_mentions">Erwähnungen</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Hintergrund</string>
   <string name="ManageGroupActivity_until_s">Bis %1$s</string>
   <string name="ManageGroupActivity_off">Aus</string>
   <string name="ManageGroupActivity_on">Ein</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Profilname</string>
   <string name="ManageProfileFragment_username">Nutzername</string>
   <string name="ManageProfileFragment_about">Über</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Schreib einige Worte über dich</string>
   <string name="ManageProfileFragment_your_name">Dein Name</string>
+  <string name="ManageProfileFragment_your_username">Dein Nutzername</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Avatar konnte nicht festgelegt werden</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Zu Systemkontakten hinzufügen</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Diese Person ist in deinen Kontakten</string>
   <string name="ManageRecipientActivity_disappearing_messages">Verschwindende Nachrichten</string>
   <string name="ManageRecipientActivity_chat_color">Unterhaltungsfarbe</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Hintergrund</string>
   <string name="ManageRecipientActivity_block">Blockieren</string>
   <string name="ManageRecipientActivity_unblock">Freigeben</string>
   <string name="ManageRecipientActivity_view_safety_number">Sicherheitsnummer anzeigen</string>
@@ -1304,6 +1309,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bitte kopiere diese Internetadresse und füge sie deinem Fehlerbericht oder deiner E-Mail an den Support hinzu:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Teilen</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Geräteinformationen:</string>
   <string name="SupportEmailUtil_android_version">Android-Version:</string>
   <string name="SupportEmailUtil_signal_version">Signal-Version:</string>
@@ -1684,11 +1690,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Über</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schreib einige Worte über dich …</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Gruppenname und -bild bearbeiten</string>
   <string name="EditProfileFragment__group_name">Gruppenname</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Dein Name</string>
+  <string name="EditProfileNameFragment_first_name">Vorname</string>
   <string name="EditProfileNameFragment_last_name_optional">Nachname (optional)</string>
   <string name="EditProfileNameFragment_save">Speichern</string>
   <!--recipient_preferences_activity-->
@@ -1863,6 +1871,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__dark_theme">Dunkel</string>
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
+  <string name="preferences__chat_wallpaper">Hintergrund</string>
   <string name="preferences__disable_pin">PIN deaktivieren</string>
   <string name="preferences__enable_pin">PIN aktivieren</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
@@ -1881,6 +1890,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Bei deaktivierten Lesebestätigungen kannst du auch die Lesebestätigungen anderer nicht sehen</string>
   <string name="preferences__typing_indicators">Tipp-Indikatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Bei deaktivierten Tipp-Indikatoren kannst du auch die Tipp-Indikatoren anderer nicht sehen</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Tastatur auffordern, personalisiertes Lernen auszuschalten. Diese Einstellung ist keine Garantie und wird womöglich von deiner Tastatur ignoriert.</string>
   <string name="preferences_app_protection__blocked_users">Blockierte Nutzer</string>
   <string name="preferences_chats__when_using_mobile_data">Bei mobiler Datenverbindung</string>
   <string name="preferences_chats__when_using_wifi">Bei WLAN-Verbindung</string>
@@ -2358,16 +2368,42 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ShareActivity-->
   <string name="ShareActivity__share">Teilen</string>
   <string name="ShareActivity__send">Senden</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Konnte an einige Nutzer nicht gesendet werden</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kannst maximal mit %1$d Unterhaltungen teilen</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Nachricht weiterleiten</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Hintergrund</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__reset">Neu starten</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Hintergrund festlegen</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Dunkles Design dunkelt Hintergrund ab</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Hintergrund entfernen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Hintergrund entfernen?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle Hintergründe zurücksetzen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Alle Hintergründe zurücksetzen?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontaktname</string>
+  <string name="ChatWallpaperFragment__reset">Zurücksetzen</string>
+  <string name="ChatWallpaperFragment__clear">Entfernen</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Hintergrundvorschau</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Aus Fotos auswählen</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Standardhintergründe</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Vorschau</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Hintergrund festlegen</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Wische, um dir weitere Hintergründe anzusehen.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Leg den Hintergrund für alle Unterhaltungen fest.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Leg den Hintergrund für %1$s fest.</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Zum Anzeigen der Galerie ist die Berechtigung »Speicher« erforderlich.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Hintergrundbild auswählen</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Führe zum Vergrößern zwei Finger aufeinander zu, rotiere das Bild durch Drehbewegungen mit zwei Fingern oder verschiebe es zum Anpassen des Bildausschnitts mit einem Finger.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Leg den Hintergrund für alle Unterhaltungen fest.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Leg den Hintergrund für %s fest.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Fehler beim Festlegen des Hintergrunds.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Verwischen</string> -->
   <!--EOF-->
 </resources>

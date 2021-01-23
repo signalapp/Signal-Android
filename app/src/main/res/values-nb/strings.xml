@@ -1119,7 +1119,7 @@
     <item quantity="one">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
     <item quantity="other">Du har %1$d forsøk igjen. Hvis du går tom for forsøk, kan du opprette en ny PIN. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</item>
   </plurals>
-  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til verifikasjonskode for Android</string>
+  <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal Registrering - Hjelp ønskes til PIN for Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Skriv inn alfanumerisk PIN</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Skriv inn numerisk PIN</string>
   <!--PinRestoreLockedFragment-->

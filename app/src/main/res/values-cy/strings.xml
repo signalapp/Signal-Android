@@ -668,6 +668,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageGroupActivity_mute_notifications">Tewi hysbysiadau</string>
   <string name="ManageGroupActivity_custom_notifications">Hysbysiadau cyfaddas</string>
   <string name="ManageGroupActivity_mentions">Crybwylliadau</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Papur wal sgwrsio</string>
   <string name="ManageGroupActivity_until_s">Tan %1$s</string>
   <string name="ManageGroupActivity_off">I ffwrdd</string>
   <string name="ManageGroupActivity_on">Ymlaen</string>
@@ -705,12 +706,16 @@ Send neges heb ei ddiogelu?</string>
   <string name="ManageProfileFragment_profile_name">Enw proffilEnw proffil</string>
   <string name="ManageProfileFragment_username">Enw defnyddiwr</string>
   <string name="ManageProfileFragment_about">Ynghylch</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig eiriau amdanoch chi\'ch hun</string>
   <string name="ManageProfileFragment_your_name">Eich enw</string>
+  <string name="ManageProfileFragment_your_username">Eich enw defnyddiwr</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Wedi methu gosod afatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ychwanegu at gysylltiadau system</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Mae\'r person hwn yn eich cysylltiadau</string>
   <string name="ManageRecipientActivity_disappearing_messages">Negeseuon yn diflannu</string>
   <string name="ManageRecipientActivity_chat_color">Lliw\'r sgwrs</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Papur wal sgwrsio</string>
   <string name="ManageRecipientActivity_block">Rhwystro</string>
   <string name="ManageRecipientActivity_unblock">Dadrwystro</string>
   <string name="ManageRecipientActivity_view_safety_number">Gweld rhif diogelwch</string>
@@ -1439,6 +1444,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Rhannu</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Hidl:</string>
   <string name="SupportEmailUtil_device_info">Manylion y ddyfais:</string>
   <string name="SupportEmailUtil_android_version">Fersiwn Android:</string>
   <string name="SupportEmailUtil_signal_version">Fersiwn Signal:</string>
@@ -1841,11 +1847,13 @@ Send neges heb ei ddiogelu?</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Ynghylch</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig o eiriau amdanoch…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Golygu enw a llun grŵp</string>
   <string name="EditProfileFragment__group_name">Enw\'r grŵp</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Eich enw</string>
+  <string name="EditProfileNameFragment_first_name">Enw cyntaf</string>
   <string name="EditProfileNameFragment_last_name_optional">Enw olaf (dewisol)</string>
   <string name="EditProfileNameFragment_save">Cadw</string>
   <!--recipient_preferences_activity-->
@@ -2022,6 +2030,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__dark_theme">Tywyll</string>
   <string name="preferences__appearance">Golwg</string>
   <string name="preferences__theme">Thema</string>
+  <string name="preferences__chat_wallpaper">Papur wal sgwrsio</string>
   <string name="preferences__disable_pin">Analluogi\'r PIN</string>
   <string name="preferences__enable_pin">Galluogi\'r PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Os fyddwch yn analluogi\'r PIN, byddwch yn colli\'r holl ddata pan fyddwch yn ailgofrestru Signal oni bai eich bod yn gwneud copi wrth gefn ac adfer â llaw. Fyddwch chi ddim yn gallu cychwyn Cloi Cofrestru tra bod y PIN wedi ei analluogi.</string>
@@ -2040,6 +2049,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Os yw derbynebau darllen wedi eu hanalluogi, fyddwch chi ddim yn gallu gweld derbynebau darllen gan eraill.</string>
   <string name="preferences__typing_indicators">Dangosyddion Teipio</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Os yw dangosyddion teipio wedi eu hanalluogi, fyddwch chi ddim yn gweld dangosyddion teipio pobl eraill.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Gofynnwch am fysellfwrdd i analluogi dysgu wedi\'i bersonoli. Nid yw\'r gosodiad hwn yn gwarantu hynny, ac efallai y bydd eich bysellfwrdd yn ei anwybyddu.</string>
   <string name="preferences_app_protection__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="preferences_chats__when_using_mobile_data">Wrth ddefnyddio data symudol</string>
   <string name="preferences_chats__when_using_wifi">Wrth ddefnyddio diwifr</string>
@@ -2535,16 +2545,42 @@ Send neges heb ei ddiogelu?</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Rhannu</string>
   <string name="ShareActivity__send">Anfon</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Wedi methu anfon at rai defnyddwyr</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Dim ond gyda hyd at %1$d o sgyrsiau y gallwch chi eu rhannu</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Anfon ymlaen</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Papur wal sgwrsio</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Gosod papur wal</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Papur wal dims thema tywyll</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Papur wal clir</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Papur wal clir?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Ailosod pob papur wal</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Ailosod pob papur wal?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Enw cyswllt</string>
   <string name="ChatWallpaperFragment__reset">Ailosod</string>
+  <string name="ChatWallpaperFragment__clear">Clirio</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Rhagolwg papur wal</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Dewiswch o luniau</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Rhagosodiadau</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Rhagolwg</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Gosod papur wal</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Llusgwch i gael rhagolwg o ragor o bapurau wal</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Gosod papur wal ar gyfer pob sgwrs</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Gosod papur wal ar gyfer %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Mae angen y caniatâd storio i edrych ar eich oriel.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Dewis ddelwedd papur wal</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinsio i glosio, llusgo i gywiro</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Gosod papur wal i pob sgwrs.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Gosod papur wal ar gyfer %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Gwall wrth osod papur wal.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Pylu</string> -->
   <!--EOF-->
 </resources>

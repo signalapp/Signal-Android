@@ -2539,9 +2539,13 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__reset">Resetovať</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__presets">Predvoľby</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Náhľad</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Prezeranie galérie vyžaduje prístup k úložisku dát.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Štipnite pre priblíženie, potiahnite pre úpravu.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Nastaviť tapetu pre všetky chaty.</string>
   <!--EOF-->
 </resources>

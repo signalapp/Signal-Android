@@ -316,7 +316,7 @@
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Κάποιες επαφές δεν μπορούν να προστεθούν σε ομάδες παλαιού τύπου.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Προφίλ</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">Σφάλμα κατά τον καθορισμό φωτογραφίας προφίλ</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Σφάλμα κατά τον ορισμό φωτογραφίας προφίλ</string>
   <string name="CreateProfileActivity_problem_setting_profile">Πρόβλημα στον καθορισμό του προφίλ</string>
   <string name="CreateProfileActivity_set_up_your_profile">Δημιούργησε το προφίλ σου</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Το προφίλ σου είναι κρυπτογραφημένο από άκρο σε άκρο. Το προφίλ σου και οι αλλαγές του θα είναι ορατά στις επαφές σου, όταν ξεκινάς ή αποδέχεσαι νέες συνομιλίες, και όταν μπαίνεις σε νέες ομάδες.</string>
@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Σίγαση ειδοποιήσεων</string>
   <string name="ManageGroupActivity_custom_notifications">Προσαρμοσμένες ειδοποιήσεις</string>
   <string name="ManageGroupActivity_mentions">Αναφορές</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <string name="ManageGroupActivity_until_s">Μέχρι %1$s</string>
   <string name="ManageGroupActivity_off">Ανενεργό</string>
   <string name="ManageGroupActivity_on">Ενεργό</string>
@@ -634,14 +635,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">Να ειδοποιούμαι πάντα</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Να μην ειδοποιούμαι</string>
   <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">Όνομα προφίλ</string>
   <string name="ManageProfileFragment_username">Όνομα χρήστη</string>
   <string name="ManageProfileFragment_about">Πληροφορίες</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Γράψε μερικές λέξεις για σένα</string>
   <string name="ManageProfileFragment_your_name">Το όνομά σας</string>
+  <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Προσθήκη στις επαφές συστήματος</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Αυτό το άτομο είναι στις επαφές σου</string>
   <string name="ManageRecipientActivity_disappearing_messages">Μηνύματα που εξαφανίζονται</string>
   <string name="ManageRecipientActivity_chat_color">Χρώμα συνομιλίας</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <string name="ManageRecipientActivity_block">Φραγή</string>
   <string name="ManageRecipientActivity_unblock">Κατάργηση φραγής</string>
   <string name="ManageRecipientActivity_view_safety_number">Προβολή αριθμού ασφαλείας</string>
@@ -1309,6 +1315,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Αντέγραψε αυτό το URL και προσθεσέ το στην αναφορά σφάλματος ή στο email υποστήριξης:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Διαμοιρασμός</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Φίλτρο:</string>
   <string name="SupportEmailUtil_device_info">Πληροφορίες συσκευής:</string>
   <string name="SupportEmailUtil_android_version">Έκδοση Android:</string>
   <string name="SupportEmailUtil_signal_version">Έκδοση Signal:</string>
@@ -1689,11 +1696,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Πληροφορίες</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Γράψε δυο πράγματα για σένα…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Επεξεργασία ονόματος και φωτογραφίας ομάδας</string>
   <string name="EditProfileFragment__group_name">Όνομα ομάδας</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Το όνομά σας</string>
+  <string name="EditProfileNameFragment_first_name">Όνομα</string>
   <string name="EditProfileNameFragment_last_name_optional">Επώνυμο (προαιρετικό)</string>
   <string name="EditProfileNameFragment_save">Αποθήκευση</string>
   <!--recipient_preferences_activity-->
@@ -1868,6 +1877,7 @@
   <string name="preferences__dark_theme">Σκοτεινό</string>
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
+  <string name="preferences__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <string name="preferences__disable_pin">Απενεργοποίηση PIN</string>
   <string name="preferences__enable_pin">Ενεργοποίηση PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Αν απενεργοποιήσεις το PIN, θα χάσεις όλα τα δεδομένα όταν επανεγγραφτείς στο Signal, εκτός εάν δημιουργήσεις χειροκίνητα αντίγραφο ασφαλείας και το ανακτήσεις. Δεν μπορείς να ενεργοποιήσεις το Κλείδωμα Εγγραφής όσο το PIN είναι απενεργοποιημένο.</string>
@@ -1886,6 +1896,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Αν τα αποδεικτικά ανάγνωσης είναι απενεργοποιημένα, δε θα μπορείς να δεις αποδεικτικά ανάγνωσης από άλλους/ες.</string>
   <string name="preferences__typing_indicators">Δείκτες πληκτρολόγησης</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Αν οι δείκτες πληκτρολόγησης είναι απενεργοποιημένοι, δε θα μπορείς να δεις δείκτες πληκτρολόγησης από άλλους/ες.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Ζήτα από το πληκτρολόγιο να απενεργοποιήσει την προσωποποιημένη εκμάθηση. Αυτή η επιλογή δεν είναι εγγυημένη, το πληκτρολόγιό σου μπορεί να την αγνοήσει.</string>
   <string name="preferences_app_protection__blocked_users">Φραγμένοι χρήστες/τριες</string>
   <string name="preferences_chats__when_using_mobile_data">Όταν χρησιμοποιούνται δεδομένα</string>
   <string name="preferences_chats__when_using_wifi">Όταν χρησιμοποιείται WiFi</string>
@@ -2363,16 +2374,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Μοιράσου</string>
   <string name="ShareActivity__send">Αποστολή</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Αποτυχία αποστολής σε μερικούς χρήστες</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Μπορείς να μοιραστείς με μέχρι %1$d συνομιλίες</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Προώθηση μηνύματος</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Ταπετσαρία συνομιλίας</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Ορισμός ταπετσαρίας</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Το Σκοτεινό θέμα σκουραίνει την ταπετσαρία.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Εκκαθάριση ταπετσαρίας</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Εκκαθάριση ταπετσαρίας;</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Επαναφορά όλων των ταπετσαριών</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Επαναφορά όλων των ταπετσαριών;</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Όνομα επαφής</string>
   <string name="ChatWallpaperFragment__reset">Επαναφορά</string>
+  <string name="ChatWallpaperFragment__clear">Εκκαθάριση</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Προεπισκόπηση ταπετσαρίας</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Επιλογή από φωτογραφίες</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Προεπιλογές</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Προεπισκόπηση</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ορισμός ταπετσαρίας</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Σύρε για προεπισκόπηση περισσότερων ταπετσαριών.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ορισμός ταπετσαρίας για όλες τις συνομιλίες</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ορισμός ταπετσαρίας για %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Η προβολή της βιβλιοθήκης σου απαιτεί την άδεια αποθηκευτικού χώρου.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Επιλογή εικόνας ταπετσαρίας</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Τσίμπα για ζουμ, σύρε για ρύθμιση</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ορισμός ταπετσαρίας για όλες τις συνομιλίες.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Ορισμός ταπετσαρίας για %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Σφάλμα κατά τον ορισμό ταπετσαρίας.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Θόλωμα</string> -->
   <!--EOF-->
 </resources>

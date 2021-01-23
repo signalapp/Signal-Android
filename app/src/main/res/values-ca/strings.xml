@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silencia les notificacions</string>
   <string name="ManageGroupActivity_custom_notifications">Notificacions personalitzades</string>
   <string name="ManageGroupActivity_mentions">Mencions</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fons de la conversa</string>
   <string name="ManageGroupActivity_until_s">Fins a %1$s</string>
   <string name="ManageGroupActivity_off">Inactiu</string>
   <string name="ManageGroupActivity_on">Actiu</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nom del perfil</string>
   <string name="ManageProfileFragment_username">Nom d\'usuari</string>
   <string name="ManageProfileFragment_about">Quant a</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres.</string>
   <string name="ManageProfileFragment_your_name">El nom</string>
+  <string name="ManageProfileFragment_your_username">El nom d\'usuari</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Ha fallat establir l\'avatar.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Afegeix als contactes del sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Aquesta persona és als vostres contactes.</string>
   <string name="ManageRecipientActivity_disappearing_messages">Missatges efímers</string>
   <string name="ManageRecipientActivity_chat_color">Color de la conversa</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fons de la conversa</string>
   <string name="ManageRecipientActivity_block">Bloca</string>
   <string name="ManageRecipientActivity_unblock">Desbloca</string>
   <string name="ManageRecipientActivity_view_safety_number">Mostra el número de seguretat</string>
@@ -1309,6 +1314,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copieu aquest URL i afegiu-lo a l\'informe d\'error o al correu electrònic de suport:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Comparteix</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Informació del dispositiu:</string>
   <string name="SupportEmailUtil_android_version">Versió d\'Android:</string>
   <string name="SupportEmailUtil_signal_version">Versió del Signal:</string>
@@ -1689,11 +1695,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Quant a</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editeu el nom i la foto del grup</string>
   <string name="EditProfileFragment__group_name">Nom del grup</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">El nom</string>
+  <string name="EditProfileNameFragment_first_name">Nom</string>
   <string name="EditProfileNameFragment_last_name_optional">Cognoms (opcional)</string>
   <string name="EditProfileNameFragment_save">Desa</string>
   <!--recipient_preferences_activity-->
@@ -1868,6 +1876,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__dark_theme">Fosc</string>
   <string name="preferences__appearance">Aparença</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Fons de la conversa</string>
   <string name="preferences__disable_pin">Desactiva el PIN</string>
   <string name="preferences__enable_pin">Activa el PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si desactiveu el PIN, perdreu totes les dades quan torneu a registrar-vos al Signal, si no és que en feu una còpia de seguretat i una restauració manualment. No podeu activar el bloqueig de registre mentre el PIN estigui desactivat.</string>
@@ -1886,6 +1895,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les confirmacions de recepció estan desactivbades, no podreu veure les dels altres.</string>
   <string name="preferences__typing_indicators">Indicadors de tecleig</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si els indicadors de tecleig estan desactivats, no podreu veure els indicadors de tecleig dels altres.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Sol·liciteu el teclat per desactivar l\'aprenentatge personalitzat. Aquesta opció de configuració no és una garantia i és possible que el teclat l’ignori.</string>
   <string name="preferences_app_protection__blocked_users">Usuaris blocats</string>
   <string name="preferences_chats__when_using_mobile_data">En usar dades mòbils</string>
   <string name="preferences_chats__when_using_wifi">En usar Wi-Fi</string>
@@ -2363,16 +2373,42 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir-lo</string>
   <string name="ShareActivity__send">Envia</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Ha fallat l\'enviament a alguns usuaris.</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Només podeu compartir fins a %1$d converses.</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Reenvia el missatge</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fons de la conversa</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Estableix el fons</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">El tema fosc enfosqueix el fons.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Neteja el fons</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Voleu netejar el fons?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restableix tots els fons</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Voleu restablir tots els fons?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Nom de contacte</string>
   <string name="ChatWallpaperFragment__reset">Restableix</string>
+  <string name="ChatWallpaperFragment__clear">Neteja</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Previsualització del fons</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Trieu des de les fotografies</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Valors per defecte</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Previsualitza</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Estableix el fons</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Llisqueu per previsualitzar més fons.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Estableix el fons per a totes les converses</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Estableix el fons per a %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Veure la galeria necessita permís de l\'emmagatzematge.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Trieu la imatge de fons</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pessigueu per ampliar i arrossegueu per ajustar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Estableix el fons per a totes les converses.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Estableix el fons per a %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Error en establir el fons.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Difumina</string> -->
   <!--EOF-->
 </resources>

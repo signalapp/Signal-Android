@@ -570,6 +570,7 @@
   <string name="ManageGroupActivity_mute_notifications">將通知調整為靜音</string>
   <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
   <string name="ManageGroupActivity_mentions">提及</string>
+  <string name="ManageGroupActivity_chat_wallpaper">聊天桌布</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_off">關</string>
   <string name="ManageGroupActivity_on">開</string>
@@ -604,12 +605,16 @@
   <string name="ManageProfileFragment_profile_name">個人資料名稱</string>
   <string name="ManageProfileFragment_username">使用者名稱</string>
   <string name="ManageProfileFragment_about">關於</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">寫一些關於你自己的話</string>
   <string name="ManageProfileFragment_your_name">你的名字</string>
+  <string name="ManageProfileFragment_your_username">你的使用者名稱</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">設定頭像失敗</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">加入系統聯絡人</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">這個人在你的聯絡人清單中</string>
   <string name="ManageRecipientActivity_disappearing_messages">自動銷毀訊息</string>
   <string name="ManageRecipientActivity_chat_color">聊天的顏色</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">聊天桌布</string>
   <string name="ManageRecipientActivity_block">封鎖</string>
   <string name="ManageRecipientActivity_unblock">解除封鎖</string>
   <string name="ManageRecipientActivity_view_safety_number">檢視安全碼</string>
@@ -1250,6 +1255,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">複製網址及將之加入你的錯誤報告或支援email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">過濾:</string>
   <string name="SupportEmailUtil_device_info">裝置資訊:</string>
   <string name="SupportEmailUtil_android_version">Android 版本:</string>
   <string name="SupportEmailUtil_signal_version">Signal 版本:</string>
@@ -1619,11 +1625,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">關於</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">寫一些關於你自己的話……</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">編輯群組名稱及照片</string>
   <string name="EditProfileFragment__group_name">群組名稱</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">你的名字</string>
+  <string name="EditProfileNameFragment_first_name">名</string>
   <string name="EditProfileNameFragment_last_name_optional">姓氏 (選用)</string>
   <string name="EditProfileNameFragment_save">儲存</string>
   <!--recipient_preferences_activity-->
@@ -1797,6 +1805,7 @@
   <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
+  <string name="preferences__chat_wallpaper">聊天桌布</string>
   <string name="preferences__disable_pin">停用PIN碼</string>
   <string name="preferences__enable_pin">啟用 PIN 碼</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果停用了PIN碼功能，則除非手動備份和還原，否則重新註冊Signal時，所有資料都會遺失。 停用PIN碼功能時無法開啟註冊鎖。</string>
@@ -1815,6 +1824,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">如果關閉已讀標記，你將無法看到其他人的已讀標記。</string>
   <string name="preferences__typing_indicators">打字狀態</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">如果打字狀態被關閉，你將無法看見其他人的打字狀態。</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">要求鍵盤停用個性化學習。 此設定不能保證，你的鍵盤可能會忽略它。</string>
   <string name="preferences_app_protection__blocked_users">被封鎖的使用者</string>
   <string name="preferences_chats__when_using_mobile_data">當使用行動數據時</string>
   <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
@@ -2283,16 +2293,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">傳送</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">無法傳送給某些使用者</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">您最多只能共享 %1$d 個聊天</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">轉寄訊息</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">聊天桌布</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">設定桌布</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">黑暗主題暗淡桌布</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">清除桌布</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">要清除桌布嗎?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">重設所有桌布</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">要重設所有桌布嗎?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">聯絡人名稱</string>
   <string name="ChatWallpaperFragment__reset">重設</string>
+  <string name="ChatWallpaperFragment__clear">清除</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">桌布預覽</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">從照片中選擇</string>
+  <string name="ChatWallpaperSelectionFragment__presets">預設值</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">預覽</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">設定桌布</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">滑動以預覽更多桌布</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">為所有聊天設定桌布</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">為 %1$s 設定桌布</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">查看你的照片庫需要儲存權限。</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">選擇桌布影像</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">雙指滑動放大，拖動以調整。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">為所有聊天設定桌布。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">為 %s 設定桌布。</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">設定桌布錯誤。</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">模糊</string> -->
   <!--EOF-->
 </resources>

@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
   <string name="ManageGroupActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageGroupActivity_mentions">பெயர் குறிப்பிடுவது</string>
+  <string name="ManageGroupActivity_chat_wallpaper">அரட்டை பின்னணிப்படம்</string>
   <string name="ManageGroupActivity_until_s">%1$s வரை</string>
   <string name="ManageGroupActivity_off">அணை</string>
   <string name="ManageGroupActivity_on">இயக்க</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">சுயவிவரப் பெயர்</string>
   <string name="ManageProfileFragment_username">பயனர்பெயர்</string>
   <string name="ManageProfileFragment_about">பற்றி</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்</string>
   <string name="ManageProfileFragment_your_name">உங்கள் பெயர்</string>
+  <string name="ManageProfileFragment_your_username">உங்கள் பயனர்பெயர்</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">சித்தரிப்பு அமைப்பதில் தோல்வி</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">தொலைபேசி தொடர்புகளில் சேர்க்கவும்</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">இந்த நபர் உங்கள் தொலைபேசி தொடர்புகளில் உள்ளார்</string>
   <string name="ManageRecipientActivity_disappearing_messages">காணாமல் போகும் செய்திகள்</string>
   <string name="ManageRecipientActivity_chat_color">உரையாடல் நிறம்</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">அரட்டை பின்னணிப்படம்</string>
   <string name="ManageRecipientActivity_block">தடு </string>
   <string name="ManageRecipientActivity_unblock">தடைநீக்கு </string>
   <string name="ManageRecipientActivity_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
@@ -1312,6 +1317,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">இந்த URL link நகலெடுத்து உங்கள் வெளியீட்டு அறிக்கை அல்லது ஆதரவு மின்னஞ்சலில்  <b>%1$s</b> சேர்க்கவும்</string>
   <string name="SubmitDebugLogActivity_share">பகிர்</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">வடிகட்டி: </string>
   <string name="SupportEmailUtil_device_info">Device info: சாதனத் தகவல்:</string>
   <string name="SupportEmailUtil_android_version">Android version: Android பதிப்பு:</string>
   <string name="SupportEmailUtil_signal_version">Signal version: Signal பதிப்பு:</string>
@@ -1692,11 +1698,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">பற்றி</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">குழு பெயர் மற்றும் புகைப்படத்தைத் தொகு அல்லது திருத்தவும்</string>
   <string name="EditProfileFragment__group_name">குழுவின் பெயர்</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">உங்கள் பெயர்</string>
+  <string name="EditProfileNameFragment_first_name">முதல் பெயர்</string>
   <string name="EditProfileNameFragment_last_name_optional">கடந்த பெயர் (விரும்பினால்)</string>
   <string name="EditProfileNameFragment_save">சேமி</string>
   <!--recipient_preferences_activity-->
@@ -1872,6 +1880,7 @@
   <string name="preferences__dark_theme">இருட்டு</string>
   <string name="preferences__appearance">தோற்றம்</string>
   <string name="preferences__theme">நிறவடிவமைப்பு</string>
+  <string name="preferences__chat_wallpaper">அரட்டை பின்னணிப்படம்</string>
   <string name="preferences__disable_pin">PIN-ஐ முடக்கு</string>
   <string name="preferences__enable_pin">பின்னை மீண்டும் திறக்கவும்</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">நீங்கள் Signal PIN-ஐ முடக்கினால், நீங்கள் கைமுறையாக காப்புப்பிரதி எடுத்து மீட்டெடுக்காவிட்டால் Signal-ஐ மீண்டும் பதிவுசெய்யும்போது எல்லா தரவையும் இழப்பீர்கள். PIN முடக்கப்பட்டிருக்கும் போது நீங்கள் பதிவு பூட்டை இயக்க முடியாது.</string>
@@ -1890,6 +1899,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">வாசிப்பு ரசீதுகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து வாசிப்பு ரசீதுகளை நீங்கள் காண முடியாது.</string>
   <string name="preferences__typing_indicators">தட்டச்சு குறிகாட்டிகள்</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">தட்டச்சு குறிகாட்டிகள் முடக்கப்பட்டிருந்தால், மற்றவர்களிடமிருந்து தட்டச்சு குறிகாட்டிகளை நீங்கள் பார்க்க முடியாது.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">தனிப்பயனாக்கப்பட்ட கற்றலை முடக்க விசைப்பலகை கோருங்கள். இந்த அமைப்பு உத்தரவாதமல்ல, உங்கள் விசைப்பலகை அதை புறக்கணிக்கக்கூடும்.</string>
   <string name="preferences_app_protection__blocked_users">தடைசெய்த பயனர்கள்</string>
   <string name="preferences_chats__when_using_mobile_data">மொபைல் தரவைப் பயன்படுத்தும் போது</string>
   <string name="preferences_chats__when_using_wifi">வைஃபை பயன்படுத்தும் போது</string>
@@ -2367,16 +2377,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">பகிர்</string>
   <string name="ShareActivity__send">அனுப்புக</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">சில பயனர்களுக்கு அனுப்புவதில் தோல்வி</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to"> நீங்கள் அரட்டைகள் %1$d வரை மட்டுமே பகிர முடியும்</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">செய்தியை முன்னனுப்புக</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">அரட்டை பின்னணிப்படம்</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">இருண்ட கருப்பொருள் பின்னணிப்படத்தை மங்கச் செய்கிறது</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">பின்னணிப்படம் நீக்கவும்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">பின்னணிப்படம் நீக்கவா?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
+  <string name="ChatWallpaperFragment__clear">அழி</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">பின்னணிப்பட மாதிரிக்காட்சி</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">புகைப்படங்களிலிருந்து தேர்வு செய்யவும்</string>
+  <string name="ChatWallpaperSelectionFragment__presets">முன்னமைவுகள்</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">முன்னோட்டம்</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">மேலும் பின்னணிப்படங்களை முன்னோட்டமிட ஸ்வைப் செய்யவும்</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">எல்லா அரட்டைகளுக்கும் பின்னணிப்படத்தை அமைக்கவும்</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">உங்கள் கேலரியைப் பார்க்க சேமிப்பு அனுமதி தேவை.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">பின்னணிப்படத்தைத் தேர்வுசெய்யவும்</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">பெரிதாக்க கிள்ளவும், சரிசெய்ய இழுக்கவும்.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">எல்லா அரட்டைகளுக்கும் பின்னணிப்படத்தை அமைக்கவும்.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">பின்னணிப்படம் அமைப்பதில் பிழை.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">தெளிவின்மை</string> -->
   <!--EOF-->
 </resources>

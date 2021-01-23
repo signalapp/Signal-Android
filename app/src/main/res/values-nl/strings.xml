@@ -83,7 +83,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Je zult niet langer berichten of meldingen van deze groep ontvangen, en de leden kunnen je niet opnieuw aan de groep toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer kunnen bellen en berichten naar elkaar kunnen verzenden en je profielnaam en -foto zullen voor hem of haar weer worden bijgewerkt.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer kunnen bellen en berichten naar elkaar kunnen verzenden en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_block">Blokkeren</string>
@@ -320,7 +320,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam en -foto zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam en -foto nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
@@ -530,7 +530,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen door jou verzonden uitnodigingen in afwachting van een reactie.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Personen die door andere leden voor de groep zijn uitgenodigd</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam en -foto zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam, -foto en -omschrijving zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
   <string name="PendingMembersActivity_revoke_invite">Uitnodiging intrekken</string>
   <string name="PendingMembersActivity_revoke_invites">Uitnodigingen intrekken</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -643,7 +643,7 @@
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Schrijf een paar woorden over jezelf</string>
   <string name="ManageProfileFragment_your_name">Je naam</string>
   <string name="ManageProfileFragment_your_username">Je gebruikersnaam</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielafbeelding is mislukt</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Instellen van profielfoto is mislukt</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aan systeem-contactenlijst toevoegen</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Deze persoon staat in je contactenlijst</string>
@@ -714,7 +714,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam en -foto direct zichtbaar zijn voor de groepsleden.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groep · %1$d lid</item>
     <item quantity="other">Groep · %1$d leden</item>
@@ -1042,15 +1042,15 @@
   <string name="MessageRequestBottomView_delete">Wissen</string>
   <string name="MessageRequestBottomView_block">Blokkeren</string>
   <string name="MessageRequestBottomView_unblock">Deblokkeren</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Hij of zij zal totdat je het gespreksverzoek aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam en -foto kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam en -foto voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals  @vermeldingen en beheerders. Groepsleden die hun profielnaam en -foto niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Hij of zij zal totdat je het gespreksverzoek aanvaardt niet kunnen zien dat je zijn of haar berichten hebt gelezen.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Wil je berichten van %1$s ontvangen, en sta je toe dat hij of zij je profielnaam, -foto en -omschrijving kan zien? Je zult geen berichten ontvangen en je profiel zal voor hem of haar niet meer worden bijgewerkt totdat je hem of haar hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor deze groep zichtbaar maken om je gesprek met de groep voort te kunnen zetten?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Zet deze groep om om nieuwe functionaliteiten te kunnen gebruiken zoals  @vermeldingen en beheerders. Groepsleden die hun profielnaam, -foto en -omschrijving niet voor deze groep zichtbaar hebben gemaakt, zullen worden uitgenodigd om tot deze groep toe te treden.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Deze verouderde groep kan niet langer gebruikt worden omdat hij teveel leden heeft. Het maximum ledenaantal voor een groep is %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam en -foto voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien?</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Wil je je profielnaam, -foto en -omschrijving voor %1$s zichtbaar maken om je gesprek voort te kunnen zetten?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Wil je lid worden van deze groep, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien?</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Lid worden van deze groep? De leden van de groep zullen niet kunnen zien dat je hun berichten hebt gelezen zolang je de uitnodiging nog niet hebt geaccepteerd.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam en -foto kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Wil je weer berichten van deze groep ontvangen, en sta je toe dat alle leden van de groep je profielnaam, -foto en -omschrijving kunnen zien? Je zult geen berichten ontvangen en je profiel zal voor de leden van deze groep niet worden bijgewerkt totdat je de groep hebt gedeblokkeerd.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Lid van %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Lid van %1$s en %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Lid van %1$s, %2$s en %3$s</string>
@@ -1117,22 +1117,22 @@
   <string name="PinRestoreEntryFragment_incorrect_pin">Incorrecte pincode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Pincode invoeren overslaan?</string>
   <string name="PinRestoreEntryFragment_need_help">Hulp nodig?</string>
-  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</string>
-  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
+  <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Je pincode is een code welke je zelf hebt aangemaakt en welke bestaat uit %1$d of meer cijfers of een combinatie van cijfers en letters. Als je je je pincode niet kunt herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Signal dan weer gebruiken, maar sommige instellingen waaronder je profielnaam, -foto en -omschrijving zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
   <string name="PinRestoreEntryFragment_cancel">Audio-opname annuleren</string>
   <string name="PinRestoreEntryFragment_skip">Overslaan</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-    <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
-    <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
+    <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
+    <item quantity="other">Je hebt nog %1$d pogingen resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Signal dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam, -foto en -omschrijving zullen dan verloren gaan.</item>
   </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal-registratratie - Ik heb hulp nodig bij de Signal-pincode op Android apparaten</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Voer alfanumerieke pincode in.</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Voer numerieke pincode in.</string>
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">Pincode aanmaken</string>
-  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam en profielfoto niet worden herstelt.</string>
+  <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Je hebt geen pogingen resterend om je pincode te raden, maar je kunt nog wel gebruik blijven maken van Signal door een nieuwe pincode aan te maken. Ter beveiliging van je profielinformatie, zullen je instellingen, profielnaam, -foto en -omschrijving niet worden herstelt.</string>
   <string name="PinRestoreLockedFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">Waarschuwing</string>
@@ -1824,7 +1824,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor het verzenden van tekstberichten</string>
   <string name="preferences__pref_use_address_book_photos">Profielfoto uit systeemadresboek</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Gebruik indien beschikbaar de profielafbeelding uit je eigen systeemadresboek, in plaats van de profielafbeelding welke anderen voor zichzelf hebben ingesteld.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Gebruik indien beschikbaar de profielfoto uit je eigen systeemadresboek weer, in plaats van de profielfoto welke anderen voor zichzelf hebben ingesteld.</string>
   <string name="preferences__generate_link_previews">Voorbeeldafbeeldingen genereren</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Sta Signal toe om voor elke verwijzing naar een website die je verzendt een voorbeeldafbeelding genereren en aan je bericht bij te voegen. Echter, als je dit inschakelt zouden websites kunnen detecteren dat je hen in je bericht vermeldt.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
@@ -1890,7 +1890,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__disable_pin">Pincode uitschakelen</string>
   <string name="preferences__enable_pin">Pincode inschakelen</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Als je de pincode uitschakelt zul je wanneer je Signal opnieuw registreert alle gegevens kwijtraken, tenzij je ze handmatig herstelt vanuit een back-up-bestand. Daarnaast kun je zolang de pincode is uitgeschakeld de registratievergrendeling niet inschakelen.</string>
-  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="preferences__system_default">Systeemstandaard</string>
   <string name="preferences__language">Taal</string>
   <string name="preferences__signal_messages_and_calls">Signal-berichten en -oproepen</string>
@@ -2106,7 +2106,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="CreateKbsPinFragment__create_a_new_pin">Nieuwe pincode aanmaken</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Je kunt je pincode nu nog wijzigen omdat je telefoonnummer nog voor dit apparaat geregistreerd staat. Wanneer je telefoonnummer niet meer geregistreerd staat voor dit apparaat, dan kun je de pincode niet langer wijzigen en ook niet teruglezen; je zult hem dus moeten onthouden.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Pincode aanmaken</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Verzin een pincode die je nergens anders gebruikt. Met die pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Verzin een sterkere pincode</string>
   <!--ConfirmKbsPinFragment-->
   <string name="ConfirmKbsPinFragment__pins_dont_match">De pincodes komen niet overeen, probeer het opnieuw.</string>
@@ -2118,7 +2118,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ConfirmKbsPinFragment__creating_pin">Pincode aan het aanmaken …</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">We introduceren pincodes</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien. Je hebt de pincode niet nodig om de app te openen.</string>
   <string name="KbsSplashFragment__learn_more">Lees meer</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Registratievergrendeling = Pincode</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Registratievergrendeling heet vanaf nu ‘pincode’, en je kunt er meer mee doen. Je moet de pincode welke je tot nog toe gebruikte bijwerken.</string>
@@ -2256,7 +2256,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_app_protection__create_a_pin">Pincode aanmaken</string>
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
-  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam en -foto, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
+  <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is het zelfde als twee-factor-authenticatie. Ieder wie jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
@@ -2366,7 +2366,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeleteAccountFragment__deleting_your_account_will">Als je al je gegevens wist:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="DeleteAccountFragment__delete_account">Al je gegevens wissen</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">zullen al je instellingen, lijst van (geblokkeerde) contactpersonen, profielnaam en profielfoto worden gewist</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">zullen al je instellingen, lijst van (geblokkeerde) contactpersonen, profielnaam, -foto en -omschrijving worden gewist</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">zullen alle berichten worden gewist</string>
   <string name="DeleteAccountFragment__no_country_code">Er is geen landcode gespecificeerd</string>
   <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
@@ -2394,12 +2394,12 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Gespreksachtergrond kiezen</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Donker thema dimt achtergrond</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Achtergrond verwijderen</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Achtergrond verwijderen?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Deze achtergrond verwijderen</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Achtergrond verwijderen?</string> -->
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Alle achtergronden verwijderen</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Alle achtergronden verwijderen?</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Alle achtergronden verwijderen, inclusief achtergronden die je apart voor een bepaald gesprek hebt ingesteld?</string> -->
   <string name="ChatWallpaperFragment__contact_name">Naam van contactpersoon</string>
-  <string name="ChatWallpaperFragment__reset">Opnieuw beginnen</string>
+  <string name="ChatWallpaperFragment__reset">Alle achtergronden verwijderen</string>
   <string name="ChatWallpaperFragment__clear">Verwijderen</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Achtergrond-voorbeeld</string>
   <!--ChatWallpaperSelectionFragment-->
@@ -2408,17 +2408,17 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Voorbeeld</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Gespreksachtergrond kiezen</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Deze achtergrond instellen voor alle gesprekken</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze achtergrond instellen voor %1$s</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze standaard achtergrond in te stellen voor al je gesprekken.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze standaard achtergrond instellen voor %1$s.</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je gallerij weer te kunnen geven is toestemming om de opslag te gebruiken nodig.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Een achtergrond kiezen</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knijp met twee vingers om te vergroten of te draaien, sleep met één vinger om te verschuiven.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Deze achtergrond instellen voor alle gesprekken.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">Een achtergrond instellen voor %s.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Je staat op het punt om deze zelf gemaakte achtergrond in te stellen voor al je gesprekken.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Deze zelf gemaakte achtergrond instellen voor %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Het instellen van een achtergrond is mislukt.</string>
-  <string name="WallpaperCropActivity__blur">Vervagen</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Vervagen</string> -->
   <!--EOF-->
 </resources>

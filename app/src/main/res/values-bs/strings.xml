@@ -634,6 +634,7 @@
   <string name="ManageGroupActivity_mute_notifications">Stišaj obavještenja</string>
   <string name="ManageGroupActivity_custom_notifications">Podešavanje obavještenja</string>
   <string name="ManageGroupActivity_mentions">Spomen</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Pozadinska slika</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
   <string name="ManageGroupActivity_on">Uključeno</string>
@@ -670,12 +671,16 @@
   <string name="ManageProfileFragment_profile_name">Ime profila</string>
   <string name="ManageProfileFragment_username">Korisničko ime</string>
   <string name="ManageProfileFragment_about">O kontaktu</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napišite nekoliko riječi o sebi</string>
   <string name="ManageProfileFragment_your_name">Vaše ime</string>
+  <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Neuspjelo postavljanje slike profila</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj među kontakte u telefonski adresar</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ova osoba ne nalazi se među Vašim kontaktima</string>
   <string name="ManageRecipientActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageRecipientActivity_chat_color">Boja poruka</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Pozadinska slika</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>
   <string name="ManageRecipientActivity_unblock">Deblokiraj</string>
   <string name="ManageRecipientActivity_view_safety_number">Vidi sigurnosni broj</string>
@@ -1376,6 +1381,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovu adresu i priložite je uz svoj izvještaj o problemu ili email za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dijeli</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Podaci o uređaju:</string>
   <string name="SupportEmailUtil_android_version">Verzija Androida:</string>
   <string name="SupportEmailUtil_signal_version">Verzija Signala:</string>
@@ -1766,11 +1772,14 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastiti nazivi dodijeljeni MMS grupama i slike bit će vidljivi samo Vama.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O kontaktu</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekoliko riječi o sebi…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upišite naziv grupe i dodajte sliku</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše ime</string>
+  <string name="EditProfileNameFragment_first_name">Ime</string>
   <string name="EditProfileNameFragment_last_name_optional">Prezime (neobavezno)</string>
   <string name="EditProfileNameFragment_save">Pohrani</string>
   <!--recipient_preferences_activity-->
@@ -1946,6 +1955,7 @@
   <string name="preferences__dark_theme">Tamna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Pozadinska slika</string>
   <string name="preferences__disable_pin">Isključi PIN</string>
   <string name="preferences__enable_pin">Uključi PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ako isključite PIN, svi Vaši podaci bit će izbrisani kada se ponovo registrujete na Signal, izuzev ako ručno kreirate rezervnu kopiju i koristite je za povrat podataka. Nećete moći aktivirati zaključavanje registracije dok god je PIN isključen.</string>
@@ -1964,6 +1974,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja onemogućena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja onemogućen, nećete moći vidjeti indikator kucanja od drugih.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Tražite od tastature da onemogući personalizovano učenje. Ovo podešavanje ipak nije garancija i tastatura ga može ignorisati.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi konekcije</string>
@@ -2023,7 +2034,7 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dopusti svakom</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivira opciju zapečaćenog pošiljaoca za poruke koje dolaze od osoba koje nisu među Vašim kontaktima i s kojima niste razmijenili profile.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saznajte više</string>
-  <string name="preferences_setup_a_username">Podesite korisničko ime</string>
+  <string name="preferences_setup_a_username">Odredite korisničko ime</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2450,16 +2461,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Dijeli</string>
   <string name="ShareActivity__send">Šalji</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nekim od korisnika nije uspjelo</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Možete podijeliti maksimalno %1$d konverzacija</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Proslijedi poruku</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Pozadinska slika</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Postavi pozadinsku sliku</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tamna tema prigušit će intenzitet pozadinske slike</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Ukloni pozadinsku sliku</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Ukloniti pozadinsku sliku?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadinske slike</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Poništiti sve pozadinske slike?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
   <string name="ChatWallpaperFragment__reset">Ponovi</string>
+  <string name="ChatWallpaperFragment__clear">Ukloni</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Prikaz pozadinske slike</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Odaberi iz fotografija</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Zadati</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Pregled</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Postavi pozadinsku sliku</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Prevucite da biste pregledali druge pozadinske slike</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Postavi pozadinsku sliku za sve konverzacije</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Postavi pozadinsku sliku za %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Pregledanje Vaše galerije zahtijeva dopuštenje za pristup memoriji.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Izaberite sliku pozadine</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Vucite dva prsta jedan prema drugom da zumirate, a povlačite jednim prstom da pomjerite.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Postavi pozadinsku sliku za sve konverzacije.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Postavi pozadinsku sliku za %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Greška prilikom podešavanja pozadinske slike.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Zamagli</string> -->
   <!--EOF-->
 </resources>

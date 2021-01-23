@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Отключить уведомления</string>
   <string name="ManageGroupActivity_custom_notifications">Пользовательские уведомления</string>
   <string name="ManageGroupActivity_mentions">Упоминания</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Обои чата</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
   <string name="ManageGroupActivity_off">Отключено</string>
   <string name="ManageGroupActivity_on">Включено</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">Имя профиля</string>
   <string name="ManageProfileFragment_username">Имя пользователя</string>
   <string name="ManageProfileFragment_about">Обо мне</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Напишите несколько слов о себе</string>
   <string name="ManageProfileFragment_your_name">Ваше имя</string>
+  <string name="ManageProfileFragment_your_username">Ваше имя пользователя</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Не удалось установить аватар</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Добавить в системные контакты</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Этот человек есть в ваших контактах</string>
   <string name="ManageRecipientActivity_disappearing_messages">Исчезающие сообщения</string>
   <string name="ManageRecipientActivity_chat_color">Цвет чата</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Обои чата</string>
   <string name="ManageRecipientActivity_block">Заблокировать</string>
   <string name="ManageRecipientActivity_unblock">Разблокировать</string>
   <string name="ManageRecipientActivity_view_safety_number">Просмотреть код безопасности</string>
@@ -1430,6 +1435,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Скопируйте этот URL-адрес и добавьте его в отчет о проблеме или в письмо в службу поддержки:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Поделиться</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Фильтр:</string>
   <string name="SupportEmailUtil_device_info">Информация об устройстве:</string>
   <string name="SupportEmailUtil_android_version">Версия Android:</string>
   <string name="SupportEmailUtil_signal_version">Версия Signal:</string>
@@ -1832,11 +1838,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Обо мне</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите несколько слов о себе…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Редактировать имя и фото группы</string>
   <string name="EditProfileFragment__group_name">Название группы</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ваше имя</string>
+  <string name="EditProfileNameFragment_first_name">Имя</string>
   <string name="EditProfileNameFragment_last_name_optional">Фамилия (необязательно)</string>
   <string name="EditProfileNameFragment_save">Сохранить</string>
   <!--recipient_preferences_activity-->
@@ -2013,6 +2021,7 @@
   <string name="preferences__dark_theme">Темная</string>
   <string name="preferences__appearance">Внешний вид</string>
   <string name="preferences__theme">Тема</string>
+  <string name="preferences__chat_wallpaper">Обои чата</string>
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
@@ -2031,6 +2040,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Если уведомления о прочтении отключены, вы не сможете видеть уведомления о прочтении от других пользователей.</string>
   <string name="preferences__typing_indicators">Индикаторы набора текста</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Если индикаторы набора текста отключены, вы не сможете видеть индикаторы набора текста других пользователей.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Запросить отключение персонализированного обучения клавиатуры. Эта настройка не является гарантией, и ваша клавиатура может её игнорировать.</string>
   <string name="preferences_app_protection__blocked_users">Заблокированные пользователи</string>
   <string name="preferences_chats__when_using_mobile_data">Через мобильную сеть</string>
   <string name="preferences_chats__when_using_wifi">Через Wi-Fi</string>
@@ -2526,16 +2536,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Поделиться</string>
   <string name="ShareActivity__send">Отправить</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Не удалось отправить некоторым пользователям</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Можно поделиться максимум с %1$d чатами</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Переслать сообщение</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Обои чата</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Установить обои</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Затемнение обоев при тёмной теме</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Удалить обои</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Удалить обои?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Сбросить все обои</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Сбросить все обои?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Имя контакта</string>
   <string name="ChatWallpaperFragment__reset">Сбросить</string>
+  <string name="ChatWallpaperFragment__clear">Удалить</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Предпросмотр обоев</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Выбрать из фото</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Встроенные</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Предпросмотр</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Установить обои</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Проведите, чтобы просмотреть другие обои</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Установите обои для всех чатов</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Установите обои для %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Для просмотра галереи нужно разрешение на доступ к хранилищу.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Выберите изображение для обоев</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Разведите для увеличения, перетащите для изменения.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Установите обои для всех чатов.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Установите обои для %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Не удалось установить обои.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Размыть</string> -->
   <!--EOF-->
 </resources>

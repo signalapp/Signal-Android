@@ -606,6 +606,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageGroupActivity_mute_notifications">Heshtoji njoftimet</string>
   <string name="ManageGroupActivity_custom_notifications">Njoftime vetjake</string>
   <string name="ManageGroupActivity_mentions">Përmendje</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Sfond fjalosjesh</string>
   <string name="ManageGroupActivity_until_s">Deri më %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
@@ -641,12 +642,16 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="ManageProfileFragment_profile_name">Emër profili</string>
   <string name="ManageProfileFragment_username">Emër përdoruesi</string>
   <string name="ManageProfileFragment_about">Mbi</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Shkruani dy rreshta rreth vetes</string>
   <string name="ManageProfileFragment_your_name">Emri juaj</string>
+  <string name="ManageProfileFragment_your_username">Emri juaj i përdoruesit</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">S’u arrit të caktohej avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Shtoje te kontakte sistemi</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ky person gjendet në kontaktet tuaja</string>
   <string name="ManageRecipientActivity_disappearing_messages">Zhdukje mesazhesh</string>
   <string name="ManageRecipientActivity_chat_color">Ngjyrë fjalosjeje</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Sfond fjalosjesh</string>
   <string name="ManageRecipientActivity_block">Bllokoje</string>
   <string name="ManageRecipientActivity_unblock">Zhbllokoje</string>
   <string name="ManageRecipientActivity_view_safety_number">Shihni numër sigurie</string>
@@ -1315,6 +1320,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopjojeni këtë URL dhe shtojeni te njoftimi i problemit tuaj ose email-i për asistencën:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtër:</string>
   <string name="SupportEmailUtil_device_info">Të dhëna pajisjeje:</string>
   <string name="SupportEmailUtil_android_version">Version Android:</string>
   <string name="SupportEmailUtil_signal_version">Version Signal-i:</string>
@@ -1695,11 +1701,13 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Mbi</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Shkruani dy rreshta rreth vetes…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Përpunoni emër dhe foto grupi</string>
   <string name="EditProfileFragment__group_name">Emër grupi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Emri juaj</string>
+  <string name="EditProfileNameFragment_first_name">Emër</string>
   <string name="EditProfileNameFragment_last_name_optional">Mbiemër (i domosdoshëm)</string>
   <string name="EditProfileNameFragment_save">Ruaje</string>
   <!--recipient_preferences_activity-->
@@ -1874,6 +1882,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="preferences__dark_theme">E errët</string>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
+  <string name="preferences__chat_wallpaper">Sfond fjalosjesh</string>
   <string name="preferences__disable_pin">Çaktivizoje PIN-in</string>
   <string name="preferences__enable_pin">Aktivizoje PIN-in</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nëse çaktivizoni PIN-in, do të humbni krejt të dhënat, kur riregjistroni
@@ -1894,6 +1903,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nëse dëftesat e leximit janë të çaktivizuara, s\’do të jeni në gjendje të shihni dëftesa leximi nga të tjerët.</string>
   <string name="preferences__typing_indicators">Tregues shtypjeje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nëse treguesit e shtypjeve janë të çaktivizuar, s\’do të jeni në gjendje të shihni tregues shtypjesh nga të tjerët.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Kërkoji tastierës të çaktivizojë të nxënit e personalizuar. Ky rregullim s’përbën garanci, dhe tastiera juaj mund ta shpërfillë.</string>
   <string name="preferences_app_protection__blocked_users">Përdorues të bllokuar</string>
   <string name="preferences_chats__when_using_mobile_data">Kur përdoret rrjet celular</string>
   <string name="preferences_chats__when_using_wifi">Kur përdoret Wi-Fi</string>
@@ -2373,16 +2383,42 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Ndajeni Me të Tjerë</string>
   <string name="ShareActivity__send">Dërgoje</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">S’u arrit të dërgoheshin ca përdorues</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Mund të shkëmbeni deri me %1$d fjalosje</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Përcille mesazhin</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Sfond fjalosjesh</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Caktoni sfond</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema e errët e ul ndriçimin e sfondit</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Hiqe sfondin</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Të hiqet sfondi?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Rikthe te parazgjedhjet krejt sfondet</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Të rikthehen te parazgjedhjet krejt sfondet?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Emër kontakti</string>
   <string name="ChatWallpaperFragment__reset">Riktheje</string>
+  <string name="ChatWallpaperFragment__clear">Spastroje</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Paraparje sfondi</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Zgjidhni prej fotosh</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Paracaktime</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Paraparje</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Caktoni sfond</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Fërkojeni që të bëni paraparje për më tepër sfonde</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Vini sfond për krejt fjalosjet</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Vini sfond përr %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Parja e galerisë suaj lyp lejen për depozitim.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Zgjidhni figurë sfondi</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Për zmadhim/zvogëlim, pickojeni, për ta përshtatur, tërhiqeni.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Caktoni sfond për krejt fjalosjet</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Caktoni sfond për %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Gabim në vënie sfondi</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Turbulloje</string> -->
   <!--EOF-->
 </resources>

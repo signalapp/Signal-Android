@@ -170,7 +170,7 @@
   <string name="ConversationItem_copied_text">%s をコピーしました </string>
   <string name="ConversationItem_from_s">%s から</string>
   <string name="ConversationItem_to_s">%s へ</string>
-  <string name="ConversationItem_read_more">  詳細を読む</string>
+  <string name="ConversationItem_read_more">  続きを表示</string>
   <string name="ConversationItem_download_more">  更にダウンロード</string>
   <string name="ConversationItem_pending">  保留中</string>
   <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
@@ -570,6 +570,7 @@
   <string name="ManageGroupActivity_mute_notifications">通知をミュート</string>
   <string name="ManageGroupActivity_custom_notifications">カスタム通知</string>
   <string name="ManageGroupActivity_mentions">メンション</string>
+  <string name="ManageGroupActivity_chat_wallpaper">チャットの壁紙</string>
   <string name="ManageGroupActivity_until_s">%1$s まで</string>
   <string name="ManageGroupActivity_off">オフ</string>
   <string name="ManageGroupActivity_on">オン</string>
@@ -604,12 +605,16 @@
   <string name="ManageProfileFragment_profile_name">プロフィール名</string>
   <string name="ManageProfileFragment_username">ユーザ名</string>
   <string name="ManageProfileFragment_about">この連絡先について</string>
-  <string name="ManageProfileFragment_your_name">プロフィール名</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください</string>
+  <string name="ManageProfileFragment_your_name">あなたの名前</string>
+  <string name="ManageProfileFragment_your_username">あなたのユーザ名</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザは連絡先に入っています</string>
   <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageRecipientActivity_chat_color">チャットの色</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">チャットの壁紙</string>
   <string name="ManageRecipientActivity_block">ブロックする</string>
   <string name="ManageRecipientActivity_unblock">ブロックを解除する</string>
   <string name="ManageRecipientActivity_view_safety_number">安全番号を表示</string>
@@ -1244,6 +1249,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">共有</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">フィルタ:</string>
   <string name="SupportEmailUtil_device_info">Device info:</string>
   <string name="SupportEmailUtil_android_version">Android version:</string>
   <string name="SupportEmailUtil_signal_version">Signal version:</string>
@@ -1611,15 +1617,17 @@
   <string name="CreateProfileActivity__create_a_username">ユーザ名の作成</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像はあなただけに表示されます。</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">この連絡先について</string>
+  <string name="EditAboutFragment_about">自己紹介</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と画像の編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
   <!--EditProfileNameFragment-->
-  <string name="EditProfileNameFragment_your_name">プロフィール名</string>
+  <string name="EditProfileNameFragment_your_name">あなたの名前</string>
+  <string name="EditProfileNameFragment_first_name">名</string>
   <string name="EditProfileNameFragment_last_name_optional">姓 (任意)</string>
-  <string name="EditProfileNameFragment_save">保存する</string>
+  <string name="EditProfileNameFragment_save">保存</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">共有されたメディア</string>
   <!--recipients_panel-->
@@ -1791,6 +1799,7 @@
   <string name="preferences__dark_theme">ダーク</string>
   <string name="preferences__appearance">デザイン</string>
   <string name="preferences__theme">テーマ</string>
+  <string name="preferences__chat_wallpaper">チャットの壁紙</string>
   <string name="preferences__disable_pin">PINを無効化</string>
   <string name="preferences__enable_pin">PINを有効化</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PINを無効にすると、自身でバックアップと復元を行わない限り、Signalに再登録する際すべてのデータが失われます。PINを無効にしている間は登録ロックは使用できません。</string>
@@ -1809,6 +1818,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">既読通知を無効にすると、相手の既読通知も受け取れません。</string>
   <string name="preferences__typing_indicators">入力中アイコン</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボードに個別自動学習の停止を要求します。この設定はキーボードに無視される可能性があり、保証されません。</string>
   <string name="preferences_app_protection__blocked_users">ブロック中のユーザ</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi利用時</string>
@@ -2277,16 +2287,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">共有する</string>
   <string name="ShareActivity__send">送信する</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザへの送信に失敗しました</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">共有できるチャットは%1$d件までです</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">メッセージの転送</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">チャットの壁紙</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__reset">リセットする</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">壁紙を設定</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ダークテーマで壁紙を暗くする</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">壁紙を消去</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">壁紙を消去しますか？</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">すべての壁紙をリセットしますか？</string> -->
+  <string name="ChatWallpaperFragment__contact_name">連絡先名</string>
+  <string name="ChatWallpaperFragment__reset">リセット</string>
+  <string name="ChatWallpaperFragment__clear">消去</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">壁紙のプレビュー</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">写真から選択</string>
+  <string name="ChatWallpaperSelectionFragment__presets">プリセット</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">プレビュー</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">壁紙を設定</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">スワイプしてさらに壁紙をプレビュー</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">すべてのチャットに壁紙を設定しましょう</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s の壁紙を設定しましょう</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ギャラリーを表示するには、ストレージへのアクセス許可が必要です。</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">壁紙画像を選択</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">ピンチして拡大、ドラッグして調整します。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">すべてのチャットに壁紙を設定しましょう。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s の壁紙を設定しましょう。</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">壁紙の設定でエラーが発生しました。</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">ぼかす</string> -->
   <!--EOF-->
 </resources>

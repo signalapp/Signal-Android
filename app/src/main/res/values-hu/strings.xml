@@ -2378,9 +2378,12 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__reset">Alaphelyzetbe állítás</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__presets">Gyári profilok</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Előnézet</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">A galériád megtekintéséhez szükség van a tárhelyhozzáférés-jogosultságra.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Csippents a nagyításhoz, húzd a módosításhoz</string>
   <!--EOF-->
 </resources>

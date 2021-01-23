@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Vaigista märguanded</string>
   <string name="ManageGroupActivity_custom_notifications">Kohandatud märguanded</string>
   <string name="ManageGroupActivity_mentions">Mainimised</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Vestluse taustapilt</string>
   <string name="ManageGroupActivity_until_s">kuni %1$s</string>
   <string name="ManageGroupActivity_off">Väljas</string>
   <string name="ManageGroupActivity_on">Sees</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Profiilinimi</string>
   <string name="ManageProfileFragment_username">Kasutajanimi</string>
   <string name="ManageProfileFragment_about">Teave</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Kirjuta enda kohta paar sõna</string>
   <string name="ManageProfileFragment_your_name">Sinu nimi</string>
+  <string name="ManageProfileFragment_your_username">Sinu kasutajanimi</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Profiilipildi määramine ei õnnestunud</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lisa süsteemi kontaktidesse</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">See isik on sinu kontaktides</string>
   <string name="ManageRecipientActivity_disappearing_messages">Kaduvad sõnumid</string>
   <string name="ManageRecipientActivity_chat_color">Vestluse värv</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Vestluse taustapilt</string>
   <string name="ManageRecipientActivity_block">Blokeeri</string>
   <string name="ManageRecipientActivity_unblock">Eemalda blokeering</string>
   <string name="ManageRecipientActivity_view_safety_number">Näita turvanumbrit</string>
@@ -1315,6 +1320,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopeeri see aadress ja lisa oma probleemiteatesse või toe e-kirja:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Jaga</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Seadme info:</string>
   <string name="SupportEmailUtil_android_version">Androidi versioon:</string>
   <string name="SupportEmailUtil_signal_version">Signali versioon:</string>
@@ -1695,11 +1701,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Teave</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kirjuta paar sõna enda kohta…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Muuda grupi nime ja pilti</string>
   <string name="EditProfileFragment__group_name">Grupi nimi</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Sinu nimi</string>
+  <string name="EditProfileNameFragment_first_name">Eesnimi</string>
   <string name="EditProfileNameFragment_last_name_optional">Perekonnanimi (valikuline)</string>
   <string name="EditProfileNameFragment_save">Salvesta</string>
   <!--recipient_preferences_activity-->
@@ -1874,6 +1882,7 @@
   <string name="preferences__dark_theme">Tume</string>
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
+  <string name="preferences__chat_wallpaper">Vestluse taustapilt</string>
   <string name="preferences__disable_pin">Keela PIN</string>
   <string name="preferences__enable_pin">Luba PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Kui keelad PIN-koodi, siis kaotad kõik andmed, kui eemaldad Signal rakenduse ja pole seda käsitsi varundanud ja taastanud. Registreerimislukku pole võimalik sisse lülitada, kui PIN-kood on keelatud.</string>
@@ -1892,6 +1901,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Kui lugemiskinnitused on keelatud, siis pole sul võimalik teiste saadetud lugemiskinnitusi näha.</string>
   <string name="preferences__typing_indicators">Kirjutamisindikaatorid</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Kui kirjutamisindikaatorid on keelatud, ei näe sa neid ka teiste puhul.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Nõua klaviatuurilt isikustatud õppimise keelamist. See säte ei garanteeri midagi ja klaviatuur võib seda eirata.</string>
   <string name="preferences_app_protection__blocked_users">Blokeeritud kasutajad</string>
   <string name="preferences_chats__when_using_mobile_data">Kui kasutad mobiilandmesidet</string>
   <string name="preferences_chats__when_using_wifi">Kui kasutad Wi-Fit</string>
@@ -2369,16 +2379,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Jaga</string>
   <string name="ShareActivity__send">Saada</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Mõnedele kasutajatele saatmine ei õnnestunud.</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Saad jagada ainult kuni %1$d vestlusega</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Edasta sõnum</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Vestluse taustapilt</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Määra taustapildiks</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tume teema tumendab taustapilti</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Eemalda taustapilt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Kas eemaldada taustapilt?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Lähtesta kõik taustapildid</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Kas lähtestada kõik taustapildid?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontakti nimi</string>
   <string name="ChatWallpaperFragment__reset">Lähtesta</string>
+  <string name="ChatWallpaperFragment__clear">Eemalda</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Taustapildi eelvaade</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vali fotodest</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Eelsätted</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Eelvaade</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Määra taustapildiks</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Pühi sõrmega rohkemate taustpiltide kuvamiseks.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Määra taustapilt kõigi vestluste jaoks</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Määra taustapilt %1$s jaoks</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Galerii vaatamine nõuab mäluruumi luba.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vali taustapildi pilt</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Suumimiseks näpista, kohandamiseks lohista.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Määra taustapilt kõigi vestluste jaoks.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Määra taustapilt %s jaoks.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Taustapildi määramisel tekkis tõrge.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Hägusta</string> -->
   <!--EOF-->
 </resources>

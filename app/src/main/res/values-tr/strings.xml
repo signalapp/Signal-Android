@@ -277,10 +277,10 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Gönderilen tek görümlük içerik dosyaları gönderim tamamlandıktan sonra kendiliğinden silinir</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Bu iletiyi zaten görüntülediniz</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Bu konuşmada kendinize notlar ekleyebilirsiniz. \nEğer hesabınıza bağlı cihaz varsa, yeni notlar eşzamanlanacaktır.</string>
-  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$dgrup üyeleri aynı isme sahiptir.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı ada sahip.</string>
   <string name="ConversationFragment__tap_to_review">Gözden geçirmek için dokunun</string>
   <string name="ConversationFragment__review_requests_carefully">İstekleri dikkatlice inceleyin</string>
-  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal aynı isimde başka bir kişi buldu.</string>
+  <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal aynı ada sahip başka bir kişi buldu.</string>
   <string name="ConversationFragment_contact_us">Bizimle iletişime geçin</string>
   <string name="ConversationFragment_verify">Doğrula</string>
   <string name="ConversationFragment_not_now">Şimdi değil</string>
@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Bildirimleri sessize al</string>
   <string name="ManageGroupActivity_custom_notifications">Özel bildirimler</string>
   <string name="ManageGroupActivity_mentions">Bahsedilmeler</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Sohbet duvar kağıdı</string>
   <string name="ManageGroupActivity_until_s">%1$s tarihine kadar</string>
   <string name="ManageGroupActivity_off">Kapalı</string>
   <string name="ManageGroupActivity_on">Açık</string>
@@ -634,15 +635,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">Her zaman bana bildir</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Bana bildirme</string>
   <!--ManageProfileFragment-->
-  <string name="ManageProfileFragment_profile_name">Profil ismi</string>
+  <string name="ManageProfileFragment_profile_name">Profil adı</string>
   <string name="ManageProfileFragment_username">Kullanıcı adı</string>
   <string name="ManageProfileFragment_about">Hakkında</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Hakkınızda birkaç kelime yazın</string>
   <string name="ManageProfileFragment_your_name">Adınız</string>
+  <string name="ManageProfileFragment_your_username">Kullanıcı adınız</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Avatar ayarlanamadı</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Sistem kişilerine ekle</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Bu kişi, kişileriniz arasında</string>
   <string name="ManageRecipientActivity_disappearing_messages">Kaybolan iletiler</string>
   <string name="ManageRecipientActivity_chat_color">Konuşma rengi</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Sohbet duvar kağıdı</string>
   <string name="ManageRecipientActivity_block">Engelle</string>
   <string name="ManageRecipientActivity_unblock">Engeli kaldır</string>
   <string name="ManageRecipientActivity_view_safety_number">Güvenlik numarasını görüntüle</string>
@@ -707,7 +712,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Grup bağlantısı etkin değil</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Grup bilgisi alınamadı, lütfen daha sonra tekrar deneyin</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bu gruba katılmak ve adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Gruba katılmadan önce bu grubun bir yöneticisinin isteğinizi onaylaması gerekiyor. Katılma isteğinde bulunduğunuzda, isminiz ve fotoğrafınız üyeleriyle paylaşılacaktır.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Gruba katılmadan önce bu grubun bir yöneticisinin isteğinizi onaylaması gerekiyor. Katılma isteğinde bulunduğunuzda, adınız ve fotoğrafınız üyeleriyle paylaşılacaktır.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grup · %1$d üye</item>
     <item quantity="other">Grup · %1$d üye</item>
@@ -1038,7 +1043,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s kişisinin sizinle yazışmasına ve adınızla fotoğrafınızı görmesine izin vermek istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
   <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s kişisinin sizinle yazışmasına ve adınızla fotoğrafınızı görmesine izin vermek istiyor musunuz? Engeli kaldırana kadar hiçbir ileti almayacaksınız.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Bu grupla sohbete devam etmek ve adınızı ve fotoğrafınızı üyeleriyle paylaşmak ister misiniz?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Yöneticiler ve bahsedilmeler gibi yeni özellikleri etkinleştirmek için bu grubu yükseltin. Bu gruba resimlerini veya isimlerini paylaşmayan kişilere gruba katılma daveti gönderilecektir.</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Yöneticiler ve bahsedilmeler gibi yeni özellikleri etkinleştirmek için bu grubu yükseltin. Bu gruba resimlerini veya adlarını paylaşmayan kişilere gruba katılma daveti gönderilecektir.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Bu Eski Grup çok büyük olduğu için artık kullanılamaz. Azami grup boyutu %1$d.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s ile bu sohbete devam etmek ve adınızı ve fotoğrafınızı onunla paylaşmak ister misiniz?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Bu gruba katılmak ve adınızla fotonuzu üyeleri ile paylaşmak istiyor musunuz? Kabul edene kadar iletilerini gördüğünüzü bilmeyecekler.</string>
@@ -1313,6 +1318,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Bu adresi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Paylaş</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtre:</string>
   <string name="SupportEmailUtil_device_info">Cihaz bilgisi:</string>
   <string name="SupportEmailUtil_android_version">Android sürümü:</string>
   <string name="SupportEmailUtil_signal_version">Signal sürümü:</string>
@@ -1693,17 +1699,19 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Hakkında</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Hakkınızda bir kaç kelime yazın…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Grup adını ve resmini düzenleyin</string>
   <string name="EditProfileFragment__group_name">Grup adı</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Adınız</string>
+  <string name="EditProfileNameFragment_first_name">Ad</string>
   <string name="EditProfileNameFragment_last_name_optional">Soyad (isteğe bağlı)</string>
   <string name="EditProfileNameFragment_save">Kaydet</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Paylaşılan içerik</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to"><small>Bir isim veya numara girin</small></string>
+  <string name="recipients_panel__to"><small>Bir ad veya numara girin</small></string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile şifreleme güvenliğini doğrulamak isterseniz,  yukarıdaki sayıları kişinin cihazındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://signal.org/redirect/safety-numbers">Dahasını öğrenin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
@@ -1783,7 +1791,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="arrays__enabled">Etkin</string>
   <string name="arrays__disabled">Devre dışı</string>
   <string name="arrays__name_and_message">İsim ve ileti</string>
-  <string name="arrays__name_only">Yalnızca isim</string>
+  <string name="arrays__name_only">Yalnızca ad</string>
   <string name="arrays__no_name_or_message">İsim veya ileti yok</string>
   <string name="arrays__images">Görüntüler</string>
   <string name="arrays__audio">Ses</string>
@@ -1872,6 +1880,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__dark_theme">Karanlık</string>
   <string name="preferences__appearance">Görünüm</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Sohbet duvar kağıdı</string>
   <string name="preferences__disable_pin">PIN\'i devre dışı bırak</string>
   <string name="preferences__enable_pin">PIN\'i etkinleştir</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">PIN\'i devre dışı bırakırsanız, elle yedekleyip geri yüklemediğiniz sürece Signal\'i yeniden kaydettiğinizde tüm verilerinizi kaybedersiniz. PIN devre dışı iken Kayıt Kilidini açamazsınız.</string>
@@ -1890,6 +1899,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
   <string name="preferences__typing_indicators">Yazma göstergeleri</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Yazma göstergeleri etkin değilse, başkalarının yazma göstergelerini göremeyeceksiniz.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Kişiselleştirilmiş öğrenmeyi devre dışı bırakmak için klavyeyi isteyin. Bu ayar garanti değildir ve klavyeniz bunu dikkate almayabilir.</string>
   <string name="preferences_app_protection__blocked_users">Engellenen kullanıcılar</string>
   <string name="preferences_chats__when_using_mobile_data">Mobil veri kullanırken</string>
   <string name="preferences_chats__when_using_wifi">Kablosuz ağ kullanırken</string>
@@ -2310,7 +2320,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Üyeleri İncelle</string>
   <string name="ReviewCardDialogFragment__review_request">İsteği İncele</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı isme sahip, aşağıdan inceleyerek tercih yapabilirsiniz.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d grup üyesi aynı ada sahip, aşağıdan inceleyerek tercih yapabilirsiniz.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">İsteğin kimden geldiğinden emin değilseniz, aşağıdaki kişileri inceleyerek tercih yapabilirsiniz.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Başka ortak grup yok.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Ortak grup yok.</string>
@@ -2333,7 +2343,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ReviewCard__update_contact">Kişiyi güncelle</string>
   <string name="ReviewCard__block">Engelle</string>
   <string name="ReviewCard__delete">Sil</string>
-  <string name="ReviewCard__recently_changed">Yakın zamanda profil ismi %1$s iken %2$s olarak değiştirdi</string>
+  <string name="ReviewCard__recently_changed">Yakın zamanda profil adı %1$s iken %2$s olarak değiştirdi</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s katıldı</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s ve %2$s katıldı</string>
@@ -2367,16 +2377,42 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Paylaş</string>
   <string name="ShareActivity__send">Gönder</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Bazı kullanıcılara gönderilemedi</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">En fazla %1$d konuşmayı paylaşabilirsiniz</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">İletiyi yönlendir</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Sohbet duvar kağıdı</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Duvar kağıdı ayarla</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Koyu tema duvar kağıdını karartır</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Duvar kağıdını temizle</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Duvar kağıdını temizle?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Tüm duvar kağıtlarını sıfırla?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kişi adı</string>
   <string name="ChatWallpaperFragment__reset">Sıfırla</string>
+  <string name="ChatWallpaperFragment__clear">Temizle</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Fotoğraflardan seç</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Ön ayarlar</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Ön izleme</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Duvar kağıdı ayarla</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Daha fazla duvar kağıdını önizlemek için kaydırın</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Tüm sohbetler için duvar kağıdını ayarlayın</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s için duvar kağıdını ayarlayın</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Galerinizi görüntülemek için depolama izni gereklidir.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Duvar kağıdı resmini seçin</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Yakınlaştırmak için parmaklarınızı birbirine yakınlaştırın, ayarlamak için sürükleyin.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Tüm sohbetler için duvar kağıdını ayarlayın.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s için duvar kağıdını ayarlayın.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Duvar kağıdı ayarlanırken hata oluştu.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Bulanıklaştır</string> -->
   <!--EOF-->
 </resources>

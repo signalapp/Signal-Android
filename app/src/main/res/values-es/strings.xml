@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificaciones</string>
   <string name="ManageGroupActivity_custom_notifications">Notificaciones personalizadas</string>
   <string name="ManageGroupActivity_mentions">Menciones</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fondo de chat</string>
   <string name="ManageGroupActivity_until_s">Hasta %1$s</string>
   <string name="ManageGroupActivity_off">Inactivo</string>
   <string name="ManageGroupActivity_on">Activo</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
   <string name="ManageProfileFragment_username">Alias (nombre de usuari@)</string>
   <string name="ManageProfileFragment_about">Detalles</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
   <string name="ManageProfileFragment_your_name">Tu nombre</string>
+  <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Fallo al seleccionar foto de perfil</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Añadir a los contactos del sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persona está entre tus contactos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Desaparición de mensajes</string>
   <string name="ManageRecipientActivity_chat_color">Color del chat</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fondo de chat</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
   <string name="ManageRecipientActivity_view_safety_number">Ver cifras de seguridad</string>
@@ -1315,6 +1320,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia esta URL y añádela a tu correo para el soporte o informe de incidencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información de dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versión de Android:</string>
   <string name="SupportEmailUtil_signal_version">Versión de Signal:</string>
@@ -1695,11 +1701,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Detalles</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nombre e imagen del grupo</string>
   <string name="EditProfileFragment__group_name">Nombre del grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tu nombre</string>
+  <string name="EditProfileNameFragment_first_name">Nombre</string>
   <string name="EditProfileNameFragment_last_name_optional">Apellido(s) (opcional)</string>
   <string name="EditProfileNameFragment_save">Guardar</string>
   <!--recipient_preferences_activity-->
@@ -1874,6 +1882,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__dark_theme">Oscuro</string>
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Fondo de chat</string>
   <string name="preferences__disable_pin">Desactivar PIN</string>
   <string name="preferences__enable_pin">Activar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Al desactivar el PIN perderás todos los datos de tu cuenta al volver a instalar Signal, a menos que hagas una copia de seguridad manual y la restaures. No puedes activar el bloqueo se registro mientras el PIN esté desactivado.</string>
@@ -1892,6 +1901,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
   <string name="preferences__typing_indicators">Indicadores de tecleo</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si desactivas los indicadores de tecleo, no podrás ver cuándo otr@s participantes están tecleando. </string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Evitar el aprendizaje predictivo del teclado. Activar esta opción no garantiza que tu teclado no analiza tus mensajes. </string>
   <string name="preferences_app_protection__blocked_users">Personas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
@@ -2369,16 +2379,42 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartir con un máximo de %1$d chats</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Reenviar mensaje</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de chat</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Establecer fondo de chat</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Con tema oscuro se oscurece el fondo</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Eliminar fondo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">¿Eliminar el fondo de este chat?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Eliminar todos los fondos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">¿Deseas eliminar todos los fondos de chat?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Nombre de contacto</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
+  <string name="ChatWallpaperFragment__clear">Eliminar</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Vista previa del fondo</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Seleccionar desde fotos</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Ajustes</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Vista previa</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Establecer fondo de chat</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Desliza horizontalmente para ver más.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Establecer para todos los chats</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Establece el fondo para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Signal necesita acceso al almacenamiento para mostrar la galería.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Selecciona foto para fondo de chat</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pellizca y arrastra para ajustar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Establecer para todos los chats.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Establece el fondo para %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Fallo al establecer el fondo de chat.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Borroso</string> -->
   <!--EOF-->
 </resources>

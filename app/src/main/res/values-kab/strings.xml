@@ -136,7 +136,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ahat tebɣiḍ ad tesneqdeḍ uṭṭun-ik·im aɣellsan s unermis-a.</string>
   <string name="ConfirmIdentityDialog_accept">Qbel</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Chats ineggura</string>
+  <string name="ContactsCursorLoader_recent_chats">Idiwenniyen ineggura</string>
   <string name="ContactsCursorLoader_contacts">Inermisen</string>
   <string name="ContactsCursorLoader_groups">Igrawen</string>
   <string name="ContactsCursorLoader_phone_number_search">Anadi n wuṭṭun n tilifun</string>
@@ -170,9 +170,9 @@
   <string name="ConversationItem_copied_text">Yettwanɣel %s</string>
   <string name="ConversationItem_from_s">sɣur %s</string>
   <string name="ConversationItem_to_s">ɣer %s</string>
-  <string name="ConversationItem_read_more">Ɣer Ugar</string>
-  <string name="ConversationItem_download_more">Sider Ugar</string>
-  <string name="ConversationItem_pending">Ittraǧu</string>
+  <string name="ConversationItem_read_more">  Ɣer Ugar</string>
+  <string name="ConversationItem_download_more">  Sider Ugar</string>
+  <string name="ConversationItem_pending">  Ittraǧu</string>
   <string name="ConversationItem_this_message_was_deleted">Izen-agi yettwakkes.</string>
   <string name="ConversationItem_you_deleted_this_message">Tekkseḍ izen-agi.</string>
   <!--ConversationActivity-->
@@ -193,7 +193,7 @@
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Ibenk-a ur yettban ara isefrak tigawin n usuḍen.</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS araɣelsan</string>
   <string name="ConversationActivity_transport_insecure_mms">SMS araɣelsan</string>
-  <string name="ConversationActivity_transport_signal">Tamuli</string>
+  <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Iyya ad nɛeddi ɣer Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Ma ulac aɣilif fren anermis</string>
   <string name="ConversationActivity_unblock">Serreḥ</string>
@@ -587,6 +587,7 @@
   <string name="ManageGroupActivity_mute_notifications">Susem ilɣa</string>
   <string name="ManageGroupActivity_custom_notifications">Sagen ilɣa</string>
   <string name="ManageGroupActivity_mentions">Tibdarin</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Tugna n ugilal n udiwenni</string>
   <string name="ManageGroupActivity_until_s">Alamma d %1$s</string>
   <string name="ManageGroupActivity_off">Yensa</string>
   <string name="ManageGroupActivity_on">Yermed</string>
@@ -604,10 +605,12 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">Aleqqem n ugraw ur yeddi ara</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Kečč·kemm mačči d aεeggal n ugraw-a</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Aleqqem n ugraw ur yeddi ara, ttxil-k·m ales aneεruḍ ticki</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aleqqem n ugraw ur yeddi ara ssebba n tuccḍa deg uzeṭṭa, ttxil-k·m εreḍ tikkelt-nniḍen</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Ẓreg isem akked tewlaft</string>
   <string name="ManageGroupActivity_legacy_group">Agraw aqbur</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Wagi d agraw aqbur. Timahilin am yinedbalen n ugraw llant kan i yigrawen imaynuten.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Wagi d agraw aqbur. I usekcem n tmahilin timaynutin am @mentions akked yinedbalen,</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">Agraw-a aqbur ur yezmir ara ad yettuleqqem ɣer ugraw amaynut acku meqqer aṭas. Teɣzi tafellayt n ugraw d %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">leqqem agraw-a.</string>
   <string name="ManageGroupActivity_invite_now">Snubget tura</string>
   <!--GroupMentionSettingDialog-->
@@ -627,6 +630,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Amdan-a yella deg yinermisen-ik·im</string>
   <string name="ManageRecipientActivity_disappearing_messages">Iznan yettṛuḥun</string>
   <string name="ManageRecipientActivity_chat_color">Ini n chat</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Tugna n ugilal n udiwenni</string>
   <string name="ManageRecipientActivity_block">Sewḥel</string>
   <string name="ManageRecipientActivity_unblock">Serreḥ</string>
   <string name="ManageRecipientActivity_view_safety_number">Senqed uṭṭun aɣellsan</string>
@@ -670,8 +674,11 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Wennez aseɣwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Isutar n uεeggal</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Qbel iεeggalen imaynuten</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Suter anedbal i wakken ad isentem iεeggalen imaynuten i d-yernan s useɣwen n ugraw.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">D tidet tebɣiḍ ad twennzeḍ aseɣwen n ugraw? Imdanen ur ttizmiren ara ad d-rnun s agraw s useqdec n useɣwen amiran.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Tangalt QR</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Imdanen ara yesmiḍnen tangalt-a ad izmiren ad rnun ɣer ugraw-ik·im. Inedbalen ad uɣalen ad ttwasran i usentem n yiεeggalen imaynuten ma yella aɣewwar-a yettwarmed ɣur-k·m.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Bḍu tangalt</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Tebɣiḍ ad tesfesxeḍ tinubga i tuzneḍ i %1$s?</string>
@@ -716,6 +723,7 @@
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Udmawen yerwin</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Sit, teǧǧeḍ aḍad-ik·im i wakken ad teskelseḍ izen s taɣuct, syen serreḥ i wakken ad t-tazneḍ</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bḍu</string>
   <string name="InviteActivity_share_with_contacts">Bḍu akked yinermisen</string>
@@ -842,6 +850,9 @@
   <string name="MessageRecord_s_joined_signal">%s ha-t-an ɣef Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Tsenseḍ tuffra n yiznan.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s isens tuffra n yiznan.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Tesbaduḍ amkadur n yizen ara ituḥen ɣer %1$s.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s yesbadu amkadur n yizen ara iruḥen ɣer %2$s.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">Amkadur n yizen ara iruḥen yettusbadu ɣer %1$s.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Agraw-a yettuleqqem ɣer ugraw amaynut.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Ur tezmireḍ ara ad tettwarnuḍ ɣer ugraw amaynut, tettwanecdeḍ ad ternuḍ.</string>
   <string name="MessageRecord_chat_session_refreshed">Tiɣimit n usqerdec tettusmiren</string>
@@ -949,6 +960,8 @@
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Tsenseḍ asentem n unedbal i useɣwen n ugraw.</string>
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s isens asentem n unedbal i useɣwen n ugraw.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Asentem n udebal i useɣwen n ugraw yensa.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Tremdeḍ asentem n unedbal i useɣwen n ugraw.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s yermed asentem n unedbal i useɣwen n ugraw.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Asentem n udebal i useɣwen n ugraw yermed.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Twennzeḍ aseɣwen n ugraw.</string>
@@ -1079,10 +1092,15 @@
   <string name="PinRestoreEntryFragment_skip_pin_entry">Zgel asekcem n tengalt PIN?</string>
   <string name="PinRestoreEntryFragment_need_help">Tesriḍ tallelt?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Tangalt-ik·im PIN d %1$d+ azwil i d-terniḍ i izemren ad yili d umḍin neɣ d agmumḍin.\n\nMA yella ur d-tecfiḍ ara i tengalt-ik·im PIN, tzemreḍ ad ternuḍ yiwet n tmaynut. Tzemreḍ ad tjerrdeḍ  yerna ad tesqedceḍ amiḍan-ik·im maca tesruḥeḍ kra n yiɣewwaren yettuskelsen am talɣut n umaɣnu-inek·inem.</string>
+  <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Ma yella ur d-tecfiḍ ara i tengalt-ik·im PIN, tzemreḍ ad ternuḍ yiwet n tmaynut. Tzemreḍ ad tjerrdeḍ  yerna ad tesqedceḍ amiḍan-ik·im maca ad tesruḥeḍ kra n yiɣewwaren yettuskelsen am talɣut n umaɣnu-inek·inem.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Rnu tangalt PIN tamaynut</string>
   <string name="PinRestoreEntryFragment_contact_support">Tallalt n unermis</string>
   <string name="PinRestoreEntryFragment_cancel">Sefsex</string>
   <string name="PinRestoreEntryFragment_skip">Zgel</string>
+  <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
+    <item quantity="one">Mazal-ak·am %1$d n uneεruḍ. Ma yella xuṣṣn-k·kem ineεruḍen, tzemreḍ ad ternuḍ yiwet n tengalt PIN tamaynut. Tzemreḍ ad tjerrdeḍ yerna ad tesqedceḍ amiḍan-ik·im maca ad tesruḥeḍ kra n yiɣewwaren yettuskelsen am talɣut n umaɣnu-inek·inem.</item>
+    <item quantity="other">Mazal-ak·am %1$d n yineεruḍen. Ma yella xuṣṣn-k·kem ineεruḍen, tzemreḍ ad ternuḍ yiwet n tengalt PIN tamaynut. Tzemreḍ ad tjerrdeḍ  yerna ad tesqedceḍ amiḍan-ik·im maca ad tesruḥeḍ kra n yiɣewwaren yettuskelsen am talɣut n umaɣnu-inek·inem.</item>
+  </plurals>
   <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Ajerred deg Signal - Tesriḍ tallelt ɣef PIN i Android</string>
   <string name="PinRestoreEntryFragment_enter_alphanumeric_pin">Sekcem tangalt PIN tagmumḍint</string>
   <string name="PinRestoreEntryFragment_enter_numeric_pin">Sekcem PIN umḍin</string>
@@ -1480,7 +1498,7 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="SingleContactSelectionActivity_contact_photo">Tawlaft n unermis</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal yesra tisirag n Yinermisen i wakken ad d-yesken inermisen-ik·im, maca yezga ur d-yettwaqbal ara. Ttxil-k·m kemmel s yiɣewwaren n usnas, fren \"Tisirag\" syen rmed \"Inermisen\".</string>
-  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Teccḍa deg tririt n yinermisen, senqed tuqqna-inek·inem ɣer uzeṭṭa</string>
+  <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Tuccḍa deg tririt n yinermisen, senqed tuqqna-inek·inem ɣer uzeṭṭa</string>
   <string name="ContactSelectionListFragment_username_not_found">Ulac isem n useqdac</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" mačči d aseqdac n Signal. Ttxil-k·m senqed isem n useqdac syen εreḍ tikkelt-nniḍen.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Ur tesriḍ ara ad ternuḍ iman-ik·im ɣer ugraw</string>
@@ -1830,6 +1848,7 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="preferences__dark_theme">Ubrik</string>
   <string name="preferences__appearance">Askan</string>
   <string name="preferences__theme">Asentel</string>
+  <string name="preferences__chat_wallpaper">Tugna n ugilal n udiwenni</string>
   <string name="preferences__disable_pin">Kkes PIN</string>
   <string name="preferences__enable_pin">Rmed PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ma yella tsenseḍ tangalt PIN, ad tesruḥeḍ meṛṛa isefka mi ara talseḍ ajerred n Signal, ala ma yella tḥerzeḍ-ten syen ad ten-id-terreḍ s ufus. Ur tezmireḍ ara ad tremdeḍ asekkeṛ n ujerred mi ara tili tengalt PIN tensa.</string>
@@ -1868,15 +1887,18 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="preferences_storage__s_messages">%1$s n yiznan</string>
   <string name="preferences_storage__custom">Udmawan</string>
   <string name="preferences_advanced__use_system_emoji">Seqdec emoji n unagraw</string>
+  <string name="preferences_advanced__always_relay_calls">Siweḍ yal tikkelt isawalen</string>
   <string name="preferences_app_protection__who_can">Aniwa izemren…</string>
   <string name="preferences_app_protection__app_access">Anekcum ɣer usnas</string>
   <string name="preferences_app_protection__communication">taɣwalt</string>
   <string name="preferences_chats__chats">Chats</string>
   <string name="preferences_data_and_storage__manage_storage">Sefrek aḥraz</string>
   <string name="preferences_data_and_storage__calls">Isawalen</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Seqdec drus n yisefka i yisawalen</string>
   <string name="preferences_data_and_storage__never">Werǧin</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">WiFi akked Uziraz</string>
   <string name="preferences_data_and_storage__cellular_only">Aziraz kan</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Aseqdec n drus n yisefka iseqεad isawalen deg yir izeḍwa</string>
   <string name="preferences_notifications__messages">Iznan</string>
   <string name="preferences_notifications__events">Tidyanin</string>
   <string name="preferences_notifications__in_chat_sounds">Imeslawen deg udiwenni</string>
@@ -1996,6 +2018,7 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Talqayt</string>
   <string name="InsightsDashboardFragment__title">Talqayt</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Aneggaf n Signal yettummesten s wudem awurman %% %1$d seg yiznan-ik·im yeffɣen n wussan-a %2$d ineggura. Ameslay gar yiseqdacen n Signal zgan ttwawgelhen seg yixef ɣer yixef.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Anerni n Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">ulac ddeqs n ysefka</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bdu adiwenni</string>
@@ -2094,6 +2117,7 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="ConversationListFragment_loading">Asali…</string>
   <string name="CallNotificationBuilder_connecting">Tuqqna tetteddu…</string>
   <string name="Permissions_permission_required">Tettusra tsiregt</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal yesra tisirag n SMS i tuzna n SMS, maca yezga yettwagi. Ttxil-k·m kemmel ɣer wumuɣ n yiɣewwaren n usnas, fren \"Tisirag\" syen rmed \"SMS\".</string>
   <string name="Permissions_continue">Kemmel</string>
   <string name="Permissions_not_now">Mačči tura</string>
   <string name="conversation_activity__enable_signal_messages">RMED IZNAN SIGNAL</string>
@@ -2101,7 +2125,10 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="PushDecryptJob_new_locked_message">Izen amaynut isekkṛen</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Kkes asekkeṛ i tmeẓriwt n yiznan yettṛaǧun</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Tafyirt tuffirt n uḥraz</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Aḥrazen ad ttuskelsen deg uklas azɣaray yerna ad ttwawgelhen s tefyirt tuffirt ddaw. Ilaq ad tesεuḍ tafyirt-a tuffirt i tririt n waḥrazen.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Ilaq ad tesεuḍ tafyirt-a tuffirt i tririt n waḥrazen.</string>
   <string name="backup_enable_dialog__folder">Akaram</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Uriɣ tafyirt-a tuffirt. Mebla yis-s, ur zmireɣ ara ad d-rreɣ aḥraz.</string>
   <string name="registration_activity__restore_backup">Tiririt n uḥraz</string>
   <string name="registration_activity__skip">Zgel</string>
   <string name="preferences_chats__chat_backups">Aḥrazen n usqerdec</string>
@@ -2118,12 +2145,14 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="RegistrationActivity_backup_timestamp_s">Azemzakud n uḥraz: %s</string>
   <string name="BackupDialog_enable_local_backups">Rmed aḥraz adigan?</string>
   <string name="BackupDialog_enable_backups">Rmed aḥraz</string>
+  <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Ttxil-k·m, sentem gezzu-inek·inem s uṛcam n tbewwaḍt n usentem.</string>
   <string name="BackupDialog_delete_backups">Kkes aḥraz</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Sens rnu kkes meṛṛa aḥrazen idiganen?</string>
   <string name="BackupDialog_delete_backups_statement">Kkes aḥraz</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">I urmad n waḥrazen, fren akaram. Aḥrazen ad ttuskelsen i yideg-a.</string>
   <string name="BackupDialog_choose_folder">Fren akaram</string>
   <string name="BackupDialog_copied_to_clipboard">Aḍris yettwanɣel ɣef afus</string>
+  <string name="BackupDialog_no_file_picker_available">Ulac amefray n yifuyla yellan.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Sekcem tafyirt-ik·im tuffirt n uḥraz i usenqed</string>
   <string name="BackupDialog_verify">Senqed</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Teskecmeḍ tafyirt-ik·im tuffirt n uḥraz akken iwata</string>
@@ -2263,7 +2292,9 @@ i d-tefkiḍ %s ur yeɣti ara.
   <string name="DeleteAccountFragment__delete_all_your_messages">Kkes akk iznan-ik/inem</string>
   <string name="DeleteAccountFragment__no_country_code">Ulac tangalt n tmurt</string>
   <string name="DeleteAccountFragment__no_number">Ulac uṭṭun</string>
+  <string name="DeleteAccountFragment__the_phone_number">Uṭṭun n tilifun i teskecmeḍ ur yemṣada ara d wuṭṭun n umiḍan-ik·im.</string>
   <string name="DeleteAccountFragment__are_you_sure">D tidet tebɣiḍ ad tekkseḍ amiḍan-ik?</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ayagi ad yekkes amiḍan-ik·im n Signal syen ad iwennez asnas. Asnas ad yemdel seld ad yemmed ukala.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Tella-d tuccḍa deg tukksa n umiḍan. Tesɛiḍ tuqqna?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Tella-d tuccḍa deg tukksa n isefka idiganen. Tzemreḍ ad tent-kkseḍ s ufus seg iɣewwaṛen n unagraw n usnan.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Sekker iɣewwaren n usnas</string>
@@ -2274,16 +2305,39 @@ i d-tefkiḍ %s ur yeɣti ara.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bḍu</string>
   <string name="ShareActivity__send">Azen</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Tuzna i kra n yiseqdacen ur teddi ara</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Tzemreḍ kan ad tebḍuḍ alamma %1$d n yidiwenniyen</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Ḍfer izen</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Agilal n ugdil n udiwenni</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Sbadu agilal n ugdil</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Asentel aberkan iseḍlam agilal n ugdil</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Sfeḍ agilal n ugdil</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Sfeḍ agilal n ugdil?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Wennez meṛṛa agilal n ugdil</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Wennez meṛṛa agilal n ugdil?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Isem n unermis</string>
   <string name="ChatWallpaperFragment__reset">Ales asbadu</string>
+  <string name="ChatWallpaperFragment__clear">Sfeḍ</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Taskant agilal n ugdil</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Fren seg tewlafin</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Tawila tuzwirt</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Taskant</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Sbadu agilal n ugdil</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Sbadu agilal n ugdil i meṛṛa idiwenniyen</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Sbadu agilal n ugdil i %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Askan n temsikent-ik·im yesra tasiregt seg uklas.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Fren tugna n ugilal n ugdil</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Sbadu agilal n ugdil i meṛṛa idiwenniyen.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Sbadu agilal n ugdil i %s</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Tuccḍa deg usbadu n ugilal n ugdil.</string>
   <!--EOF-->
 </resources>

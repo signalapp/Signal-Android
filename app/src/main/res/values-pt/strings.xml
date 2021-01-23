@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Notificações personalizadas</string>
   <string name="ManageGroupActivity_mentions">Menções</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fundo de ecrã de conversas</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nome de perfil</string>
   <string name="ManageProfileFragment_username">Nome de utilizador</string>
   <string name="ManageProfileFragment_about">Acerca</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si</string>
   <string name="ManageProfileFragment_your_name">O seu nome</string>
+  <string name="ManageProfileFragment_your_username">O seu nome de utilizador</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao tentar definir o avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adicionar aos contactos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Este utilizador encontra-se nos seus contactos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Destruição de mensagens</string>
   <string name="ManageRecipientActivity_chat_color">Cor do chat</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fundo de ecrã de conversas</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
   <string name="ManageRecipientActivity_view_safety_number">Ver número de segurança</string>
@@ -1311,6 +1316,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie este URL e adicione-o ao seu relatório de problema ou e-mail de pedido de apoio:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partilhar</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versão do Android:</string>
   <string name="SupportEmailUtil_signal_version">Versão do Signal:</string>
@@ -1691,11 +1697,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome e fotografia do grupo</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">O seu nome</string>
+  <string name="EditProfileNameFragment_first_name">Primeiro nome</string>
   <string name="EditProfileNameFragment_last_name_optional">Apelido (opcional)</string>
   <string name="EditProfileNameFragment_save">Guardar</string>
   <!--recipient_preferences_activity-->
@@ -1870,6 +1878,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Fundo de ecrã de conversas</string>
   <string name="preferences__disable_pin">Desativar PIN</string>
   <string name="preferences__enable_pin">Ativar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, todos os dados serão perdidos ao registar-se novamente no Sinal, a menos que faça uma cópia de segurnaça e o restaure manualmente. Você não pode ativar o \'Bloqueio de registo\' enquanto o PIN estiver desativado.</string>
@@ -1888,6 +1897,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não poderá ver os recibos enviados por outros.</string>
   <string name="preferences__typing_indicators">Indicadores de escrita</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita de outros utilizadores.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado para desativar a aprendizagem personalizada. Esta configuração não está garantida e o seu teclado poderá ignorá-la.</string>
   <string name="preferences_app_protection__blocked_users">Utilizadores bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Ao utilizar os dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Ao utilizar o Wi-Fi</string>
@@ -2365,16 +2375,42 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Partilhar</string>
   <string name="ShareActivity__send">Enviar</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para alguns utilizadores</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Apenas pode partilhar com até %1$d conversas</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Reencaminhar mensagem</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fundo de ecrã de conversas</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Definir fundo de ecrã</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Fundo escuro com pouco brilho</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Limpar fundo de ecrã</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Limpar fundo de ecrã?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Repor todos os fundos</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Repor todos os fundos?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
+  <string name="ChatWallpaperFragment__clear">Limpar</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Pré-visualização de fundo</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher das fotografias</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Predefinições</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Pré-visualização</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Definir fundo de ecrã</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslize para pré-visualizar mais fundos de ecrã</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir fundo para  todas as conversas</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir fundo para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ver a sua galeria exige ter permissão de armazenamento.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolha a imagem do fundo</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince para ampliar, arraste para ajustar</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir fundo para todas as conversas.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir fundo para %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Ocorreu um erro ao tentar definir o fundo de ecrã.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Desfocar</string> -->
   <!--EOF-->
 </resources>

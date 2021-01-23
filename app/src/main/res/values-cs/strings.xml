@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Ztišit upozornění</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastní oznámení</string>
   <string name="ManageGroupActivity_mentions">Zmínky</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Tapeta pro konverzaci</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Vyp.</string>
   <string name="ManageGroupActivity_on">Zap.</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">Název profilu</string>
   <string name="ManageProfileFragment_username">Uživatelské jméno</string>
   <string name="ManageProfileFragment_about">Info</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napište pár slov o sobě</string>
   <string name="ManageProfileFragment_your_name">Vaše jméno</string>
+  <string name="ManageProfileFragment_your_username">Vaše uživatelské jméno</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Nepodařilo se nastavit avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Přidat k systémovým kontaktům</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tato osoba je ve vašich kontaktech</string>
   <string name="ManageRecipientActivity_disappearing_messages">Mizející zprávy</string>
   <string name="ManageRecipientActivity_chat_color">Barva konverzace</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Tapeta pro konverzaci</string>
   <string name="ManageRecipientActivity_block">Zablokovat</string>
   <string name="ManageRecipientActivity_unblock">Odblokovat</string>
   <string name="ManageRecipientActivity_view_safety_number">Zobrazit bezpečnostní číslo</string>
@@ -1436,6 +1441,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Zkopírujte tento URL a přidejte jej do chybového hlášení nebo e-mailu podpoře:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Sdílet</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtr:</string>
   <string name="SupportEmailUtil_device_info">Informace o zařízení:</string>
   <string name="SupportEmailUtil_android_version">Verze Androidu:</string>
   <string name="SupportEmailUtil_signal_version">Verze Signal:</string>
@@ -1838,11 +1844,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Info</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište o sobě několik slov…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Upravit název skupiny a fotografii</string>
   <string name="EditProfileFragment__group_name">Název skupiny</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše jméno</string>
+  <string name="EditProfileNameFragment_first_name">Křestní jméno</string>
   <string name="EditProfileNameFragment_last_name_optional">Příjmení (nepovinné)</string>
   <string name="EditProfileNameFragment_save">Uložit</string>
   <!--recipient_preferences_activity-->
@@ -2019,6 +2027,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhled</string>
   <string name="preferences__theme">Motiv</string>
+  <string name="preferences__chat_wallpaper">Tapeta pro konverzaci</string>
   <string name="preferences__disable_pin">Deaktivovat PIN</string>
   <string name="preferences__enable_pin">Povolit PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Pokud PIN deaktivujete, tak při opětovné registraci Signal ztratíte všechna data, jestliže si je ručně nezazálohujete a neobnovíte. Když je PIN deaktivován, nemůžete si zapnout zámek registrace.</string>
@@ -2037,6 +2046,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jestliže zakážete posílání potvrzení o přečtení zpráv, nebudete vidět tato potvrzení ani od ostatních.</string>
   <string name="preferences__typing_indicators">Indikátory psaní</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Pokud máte vypnuté indikátory psaní, nebudete je vidět ani od ostatních.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Vyžadovat, aby klávesnice deaktivovala učení. Toto nastavení nezaručuje, že jej vaše klávesnice bude ignorovat.</string>
   <string name="preferences_app_protection__blocked_users">Zablokovaní uživatelé</string>
   <string name="preferences_chats__when_using_mobile_data">Při použití mobilních datových přenosů</string>
   <string name="preferences_chats__when_using_wifi">Při použití WiFi</string>
@@ -2532,16 +2542,42 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Sdílet</string>
   <string name="ShareActivity__send">Odeslat</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Odeslání některým uživatelům se nezdařilo</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Můžete sdílet nejvýše s %1$d konverzacemi.</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Přeposlat zprávu</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta pro konverzaci</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Nastavit tapetu</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motiv ztlumí tapetu</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Vymazat tapetu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Vymazat tapetu?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Obnovit všechny tapety</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Obnovit všechny tapety?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Jméno kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Reset</string>
+  <string name="ChatWallpaperFragment__clear">Vymazat</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhled tapety</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vybrat z fotografií</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Přednastavená pozadí</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Náhled</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Nastavit tapetu</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Přejetím zobrazíte náhled dalších tapet</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Nastavit tapetu pro všechny konverzace</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Nastavit tapetu pro %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Prohlížení vaší galerie vyžaduje oprávnění pro přístup k úložišti.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vybrat obrázek tapety</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Stažením prstů lze zvětšit, táhnutím lze přizpůsobit.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Nastavit tapetu pro všechny konverzace.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Nastavit tapetu pro %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba při nastavování tapety.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Rozostřit</string> -->
   <!--EOF-->
 </resources>

@@ -460,11 +460,11 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Malsukcesa ĝisdatigo.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">Tiuj ĉi ano bezonos akcepti inviton por anigi la grupon ree, kaj li aŭ ŝi ne ricevos grupmesaĝojn ĝis ŝia aŭ lia akcepto:</item>
-    <item quantity="other">Tiuj ĉi anoj bezonos akcepti inviton por anigi la grupon ree, kaj ili ne ricevos grupmesaĝojn ĝis ilia akcepto:</item>
+    <item quantity="other">Tiuj ĉi anoj bezonos akcepti inviton por anigi la grupon ree, kaj ili ne ricevos mesaĝojn el la grupo ĝis ilia akcepto:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
     <item quantity="one">Tiuj ĉi ano ne povas anigi novtipajn grupojn, kaj ŝi aŭ li foriĝos de la grupo:</item>
-    <item quantity="other">Tiuj ĉi anoj ne povas anigi novtipajn grupojn, kaj ili foriĝos de la grupo:</item>
+    <item quantity="other">Tiuj ĉi anoj ne povas anigi novtipajn grupojn, kaj ili estos forigitaj de la grupo:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Por uzi @menciojn kaj grupadministrantojn, ĝisdatigu tiun ĉi grupon.</string>
@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silentigi sciigojn</string>
   <string name="ManageGroupActivity_custom_notifications">Propraj sciigoj</string>
   <string name="ManageGroupActivity_mentions">Mencioj</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Interparola ekranfono</string>
   <string name="ManageGroupActivity_until_s">Ĝis %1$s</string>
   <string name="ManageGroupActivity_off">Malŝaltita</string>
   <string name="ManageGroupActivity_on">Ŝaltita</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Profila nomo</string>
   <string name="ManageProfileFragment_username">Uzantnomo</string>
   <string name="ManageProfileFragment_about">Pri</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skribu kelkajn vortojn pri vi</string>
   <string name="ManageProfileFragment_your_name">Via nomo</string>
+  <string name="ManageProfileFragment_your_username">Via uzantnomo</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">La difino de avataro malsukcesis</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aldoni al sistemaj kontaktoj</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Tiu persono estas en viaj kontaktoj.</string>
   <string name="ManageRecipientActivity_disappearing_messages">Memviŝontaj mesaĝoj</string>
   <string name="ManageRecipientActivity_chat_color">Koloro de interparolo</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Interparola ekranfono</string>
   <string name="ManageRecipientActivity_block">Bloki</string>
   <string name="ManageRecipientActivity_unblock">Malbloki</string>
   <string name="ManageRecipientActivity_view_safety_number">Montri sekurigan numeron</string>
@@ -1314,6 +1319,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiu tiun ĉi retadreson kaj aldonu ĝin al via problemraporto aŭ subtena retpoŝtmesaĝo:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Kunhavigi</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtrilo:</string>
   <string name="SupportEmailUtil_device_info">Aparatinformo:</string>
   <string name="SupportEmailUtil_android_version">Android-versio:</string>
   <string name="SupportEmailUtil_signal_version">Signal-versio:</string>
@@ -1693,11 +1699,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Propraj MMS-aj grupaj nomoj kaj fotoj nur videblos de vi.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Pri</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Skribu kelkajn vortojn pri vi…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string>
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Via nomo</string>
+  <string name="EditProfileNameFragment_first_name">Persona nomo</string>
   <string name="EditProfileNameFragment_last_name_optional">Familia nomo (malnepra)</string>
   <string name="EditProfileNameFragment_save">Konservi</string>
   <!--recipient_preferences_activity-->
@@ -1872,6 +1881,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__dark_theme">Malhela</string>
   <string name="preferences__appearance">Aspekto</string>
   <string name="preferences__theme">Etoso</string>
+  <string name="preferences__chat_wallpaper">Interparola ekranfono</string>
   <string name="preferences__disable_pin">Malŝalti PIN-on</string>
   <string name="preferences__enable_pin">Ŝalti PIN-on</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se vi malŝaltas la uzon de PIN, vi perdos ĉiujn datumojn, kiam vi re-registros kun Signal, krom tio ke vi permane faris savkopion kaj restaŭras tiun savkopion. Vi ne povas uzi blokon de registriĝo, kiam PIN estas malŝaltita.</string>
@@ -1890,6 +1900,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se legokonfirmoj ne estas ŝaltitaj, vi ne vidos aliulajn legokonfirmojn.</string>
   <string name="preferences__typing_indicators">Tajp-indikiloj</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se tajp-indikiloj ne estas ŝaltitaj, vi ne vidos aliulajn tajp-indikilojn.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Peti al la klavaro ne lerni laŭ via uzo. Tio estas nur peto, kaj la klavaro povas ne respekti vian peton.</string>
   <string name="preferences_app_protection__blocked_users">Blokataj uzantoj</string>
   <string name="preferences_chats__when_using_mobile_data">Kiam uziĝas sendrataj datumoj</string>
   <string name="preferences_chats__when_using_wifi">Kiam uziĝas vifio</string>
@@ -2367,16 +2378,42 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Kunhavigi</string>
   <string name="ShareActivity__send">Sendi</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">La sendo al kelkaj uzantoj malsukcesis</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vi povas kunhavigi nur kun maks. %1$d interparoloj</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Plusendi mesaĝon</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Interparola ekranfono</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Elekti ekranfonon</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Malhela etoso malheligas la ekranfonon</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Forviŝi la ekranfonon</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Ĉu forviŝi la ekranfonon?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Restarigi ĉiujn ekranfonojn</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Ĉu restarigi ĉiujn ekranfonojn?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontaktnomo</string>
   <string name="ChatWallpaperFragment__reset">Restarigi</string>
+  <string name="ChatWallpaperFragment__clear">Forviŝi</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Antaŭrigardo de la ekranfono</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Elekti el la fotoj</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Antaŭagordoj</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Antaŭrigardo</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Elekti ekranfonon</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Ŝovumi por antaŭrigardi pliajn ekranfonojn</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Elekti ekranfonon por ĉiuj interparoloj</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Agordi la ekranfonon por %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Vido de via galerio bezonas la permeson uzi la „Konservejon“.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Elekti bildon por la ekranfono</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinĉi por zomi, ŝovi por ĝustigi</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elekti ekranfonon por ĉiuj interparoloj.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Agordi la ekranfonon por %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Eraro dum agordo de la ekranfono.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Malklarigi</string> -->
   <!--EOF-->
 </resources>

@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Tysta aviseringar</string>
   <string name="ManageGroupActivity_custom_notifications">Anpassade aviseringar</string>
   <string name="ManageGroupActivity_mentions">Omnämnanden</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Chattbakgrund</string>
   <string name="ManageGroupActivity_until_s">Fram tills %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Profilnamn</string>
   <string name="ManageProfileFragment_username">Användarnamn</string>
   <string name="ManageProfileFragment_about">Om</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv</string>
   <string name="ManageProfileFragment_your_name">Ditt namn</string>
+  <string name="ManageProfileFragment_your_username">Ditt användarnamn</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Misslyckades med att ställa in avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person är i dina kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageRecipientActivity_chat_color">Chattfärg</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Chattbakgrund</string>
   <string name="ManageRecipientActivity_block">Blockera</string>
   <string name="ManageRecipientActivity_unblock">Avblockera</string>
   <string name="ManageRecipientActivity_view_safety_number">Visa säkerhetsnummer</string>
@@ -1309,6 +1314,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopiera webbadressen och lägg till den i din problemrapport eller support-e-post:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Dela</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformation:</string>
   <string name="SupportEmailUtil_android_version">Android version:</string>
   <string name="SupportEmailUtil_signal_version">Signal version:</string>
@@ -1689,11 +1695,13 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Redigera gruppnamn och foto</string>
   <string name="EditProfileFragment__group_name">Gruppnamn</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ditt namn</string>
+  <string name="EditProfileNameFragment_first_name">Förnamn</string>
   <string name="EditProfileNameFragment_last_name_optional">Efternamn (valfritt)</string>
   <string name="EditProfileNameFragment_save">Spara</string>
   <!--recipient_preferences_activity-->
@@ -1868,6 +1876,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__dark_theme">Mörkt</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Chattbakgrund</string>
   <string name="preferences__disable_pin">Inaktivera PIN-koden</string>
   <string name="preferences__enable_pin">Aktivera PIN-koden</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Om du inaktiverar PIN-koden kommer du att förlora alla data när du registrerar om Signal om du inte säkerhetskopierar och återställer manuellt. Du kan inte aktivera registreringslåset medan PIN-koden är inaktiverad.</string>
@@ -1886,6 +1895,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Om läskvitton är inaktiverade kommer du inte att kunna se läskvitton från andra.</string>
   <string name="preferences__typing_indicators">Skrivindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Om skrivindikatorer är inaktiverade kommer du inte att kunna se skrivindikatorer från andra.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Begär tangentbord för att inaktivera personlig inlärning. Denna inställning är ingen garanti, och tangentbordet kanske ignorerar det.</string>
   <string name="preferences_app_protection__blocked_users">Blockerade användare</string>
   <string name="preferences_chats__when_using_mobile_data">Vid användning av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Vid användning av Wi-Fi</string>
@@ -2363,16 +2373,42 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Dela</string>
   <string name="ShareActivity__send">Skicka</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Det gick inte att skicka till vissa användare</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan bara dela med upp till %1$d chattar</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Vidarebefordra meddelande</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Chattbakgrund</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Ställ in bakgrund</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mörkt tema dämpar bakgrunden</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Rensa bakgrund</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Rensa bakgrund?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Återställ alla bakgrunder</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Återställ alla bakgrunder?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Starta om</string>
+  <string name="ChatWallpaperFragment__clear">Rensa</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Förhandsgranskning av bakgrund</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Välj från foton</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Förinställningar</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Förhandsvisning</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ställ in bakgrund</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Svep för att förhandsgranska fler bakgrunder</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ställ in bagrund för alla chattar</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ställ in bakgrund för %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">För att visa ditt galleri krävs lagringstillstånd.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Välj bakgrundsbild</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Knip för att zooma, dra för att justera.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ställ in bagrund för alla chattar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Ställ in bakgrund för %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Fel vid inställning av bakgrund.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Oskärpa</string> -->
   <!--EOF-->
 </resources>

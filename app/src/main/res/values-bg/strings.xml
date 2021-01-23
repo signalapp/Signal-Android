@@ -2379,6 +2379,6 @@
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Гледане на галерията трябва пазрешение на паметта.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__blur">Мъгли</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Мъгли</string> -->
   <!--EOF-->
 </resources>

@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">صامت کردن اعلان‌ها</string>
   <string name="ManageGroupActivity_custom_notifications">اعلان‌‌های سفارشی</string>
   <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
+  <string name="ManageGroupActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
   <string name="ManageGroupActivity_until_s">تا %1$s</string>
   <string name="ManageGroupActivity_off">خاموش</string>
   <string name="ManageGroupActivity_on">روشن</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">نام نمایه</string>
   <string name="ManageProfileFragment_username">نام کاربری</string>
   <string name="ManageProfileFragment_about">درباره</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید</string>
   <string name="ManageProfileFragment_your_name">نام شما</string>
+  <string name="ManageProfileFragment_your_username">نام کاربری شما</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">تنظیم عکس پروفایل با اشکال مواجه شد</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">افزودن به مخاطبین سیستم</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">این فرد در مخاطبین شماست</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیام‌های ناپدید شونده</string>
   <string name="ManageRecipientActivity_chat_color">رنگ گفتگو</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">کاغذدیواری گفتگو</string>
   <string name="ManageRecipientActivity_block">مسدود کردن</string>
   <string name="ManageRecipientActivity_unblock">رفع مسدودیت</string>
   <string name="ManageRecipientActivity_view_safety_number">مشاهدهٔ شمارهٔ امنیتی</string>
@@ -1313,6 +1318,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">این ‌‌URL را کپی کرده و آن را به گزارش اشکال یا ایمیل پشتیبانی اضافه کنید:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">فیلتر:</string>
   <string name="SupportEmailUtil_device_info">اطلاعات دستگاه:</string>
   <string name="SupportEmailUtil_android_version">نسخهٔ اندروید:</string>
   <string name="SupportEmailUtil_signal_version">نسخهٔ سیگنال:</string>
@@ -1692,11 +1698,14 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه‌‌های فراپیامک فقط برای شما قابل دیدن هستند.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">درباره</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">نام و عکس گروه را ویرایش کنید</string>
   <string name="EditProfileFragment__group_name">نام گروه</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">نام شما</string>
+  <string name="EditProfileNameFragment_first_name">نام</string>
   <string name="EditProfileNameFragment_last_name_optional">نام خانوادگی (اختیاری)</string>
   <string name="EditProfileNameFragment_save">ذخیره‌</string>
   <!--recipient_preferences_activity-->
@@ -1871,6 +1880,7 @@
   <string name="preferences__dark_theme">تاریک</string>
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">طرح زمینه</string>
+  <string name="preferences__chat_wallpaper">کاغذدیواری گفتگو</string>
   <string name="preferences__disable_pin">غیرفعال کردن پین</string>
   <string name="preferences__enable_pin">فعال کردن پین</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر پین را غیرفعال کنید، هنگامی که دوباره در سیگنال ثبت‌نام می‌کنید، تمامی داده‌ها را از دست خواهید داد، مگر اینکه به صورت دستی پشتیبان‌گیری و بازگردانی کنید. هنگامی که پین غیرفعال است نمی‌توانید قفل ثبت‌نام را روشن کنید.</string>
@@ -1889,6 +1899,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی شده. این تنظیم ضمانت نشده است و صفحهٔ کلید شما ممکن است آن را نادیده بگیرد.</string>
   <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
@@ -2366,16 +2377,41 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک‌گذاری</string>
   <string name="ShareActivity__send">ارسال</string>
+  <string name="ShareActivity__s_comma">%1$s،</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">شما می‌توانید نهایتاً با %1$d گفتگو به اشتراک بگذارید</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ارسال پیام</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">کاغذدیواری گفتگو</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">تنظیم کاغذدیواری</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">طرح زمینهٔ تاریک کاغذدیواری را تیره می‌کند</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">پاک کردن کاغذدیواری</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">پاک کردن کاغذدیواری؟</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">بازنشانی همهٔ کاغذدیواری‌ها</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">بازنشانی همهٔ کاغذدیواری‌ها؟</string> -->
+  <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
   <string name="ChatWallpaperFragment__reset">بازنشانی</string>
+  <string name="ChatWallpaperFragment__clear">پاک کردن</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">پیش‌نمایش کاغذدیواری</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">انتخاب از عکس‌ها</string>
+  <string name="ChatWallpaperSelectionFragment__presets">پیش‌تنظیم‌ها</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">پیش‌نمایش</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">تنظیم کاغذ دیواری</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">برای دیدن کاغذدیواری‌های بیشتر بکشید</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">تنظیم کاغذدیواری برای تمامی گفتگوها</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">تنظیم کاغذدیواری برای %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">دیدن گالری نیاز به مجوز ذخیره‌سازی دارد.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">انتخاب تصویر کاغذدیواری</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تنظیم کاغذدیواری برای تمامی گفتگوها.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">تنظیم کاغذدیواری برای %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">اشکال در تنظیم کاغذدیواری.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">مات</string> -->
   <!--EOF-->
 </resources>

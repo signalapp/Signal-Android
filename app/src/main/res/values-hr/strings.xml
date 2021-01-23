@@ -337,7 +337,7 @@
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Vratite svoje poruke i medijske zapise iz lokalne sigurnosne kopije. Ako ne vratite sada, nećete kasnije moći vratiti.</string>
   <string name="ChooseBackupFragment__icon_content_description">Vrati iz ikone sigurnosne kopije</string>
   <string name="ChooseBackupFragment__choose_backup">Odaberi sigurnosnu kopiju</string>
-  <string name="ChooseBackupFragment__learn_more">Saznaj više</string>
+  <string name="ChooseBackupFragment__learn_more">Saznajte više</string>
   <!--RestoreBackupFragment-->
   <string name="RestoreBackupFragment__restore_complete">Dovršeno vraćanje sigurnosne kopije</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Da biste nastavili koristiti sigurnosne kopije, odaberite mapu. Nove sigurnosne kopije bit će spremljene u tu mapu.</string>
@@ -354,7 +354,7 @@
   <string name="BackupsPreferenceFragment__turn_on">Uključi</string>
   <string name="BackupsPreferenceFragment__turn_off">Isključi</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Da biste vratili sigurnosnu kopiju, instalirajte novu kopiju Signala. Otvorite aplikaciju i pritisnite \"Vrati sigurnosnu kopiju\", a zatim pronađite datoteku sigurnosne kopije. %1$s</string>
-  <string name="BackupsPreferenceFragment__learn_more">Saznaj više</string>
+  <string name="BackupsPreferenceFragment__learn_more">Saznajte više</string>
   <string name="BackupsPreferenceFragment__in_progress">U tijeku…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d za sada…</string>
   <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal zahtijeva dopuštenje za vanjski prostor za pohranu kako bi stvorio sigurnosne kopije, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Prostor za pohranu\".</string>
@@ -634,6 +634,7 @@
   <string name="ManageGroupActivity_mute_notifications">Utišaj obavijesti</string>
   <string name="ManageGroupActivity_custom_notifications">Prilagođene obavijesti</string>
   <string name="ManageGroupActivity_mentions">Spominjanja</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Pozadina razgovora</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Isključeno</string>
   <string name="ManageGroupActivity_on">Uključeno</string>
@@ -667,14 +668,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">Uvijek me obavijesti</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Ne obavještavaj me</string>
   <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">Ime profila</string>
   <string name="ManageProfileFragment_username">Korisničko ime</string>
-  <string name="ManageProfileFragment_about">O</string>
+  <string name="ManageProfileFragment_about">Opis</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napišite par riječi o sebi</string>
   <string name="ManageProfileFragment_your_name">Vaše ime</string>
+  <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Neuspješno postavljanje slike profila</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj u kontakte na uređaju</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ovaj korisnik je u vašim kontaktima</string>
   <string name="ManageRecipientActivity_disappearing_messages">Poruke koje nestaju</string>
   <string name="ManageRecipientActivity_chat_color">Boja razgovora</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Pozadina razgovora</string>
   <string name="ManageRecipientActivity_block">Blokiraj</string>
   <string name="ManageRecipientActivity_unblock">Odblokiraj</string>
   <string name="ManageRecipientActivity_view_safety_number">Prikaži sigurnosni broj</string>
@@ -797,7 +803,7 @@
   <string name="InviteActivity_no_app_to_share_to">Izgleda da nemate nijednu aplikaciju za dijeljenje.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prijatelji ne dopuštaju prijateljima da razgovaraju bez šifriranja.</string>
   <!--LearnMoreTextView-->
-  <string name="LearnMoreTextView_learn_more">Saznaj više</string>
+  <string name="LearnMoreTextView_learn_more">Saznajte više</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Neuspješno pronalaženje poruke</string>
   <string name="LongMessageActivity_message_from_s">Poruka od %1$s</string>
@@ -1372,6 +1378,7 @@ broj telefona</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopirajte ovaj URL i dodajte ga u izvješće o problemu ili u e-poštu za podršku:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Podijeli</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtar:</string>
   <string name="SupportEmailUtil_device_info">Informacije o uređaju:</string>
   <string name="SupportEmailUtil_android_version">Android verzija:</string>
   <string name="SupportEmailUtil_signal_version">Signal verzija:</string>
@@ -1633,7 +1640,7 @@ broj telefona</string>
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">Učitavanje</string>
-  <string name="ConversationUpdateItem_learn_more">Saznaj više</string>
+  <string name="ConversationUpdateItem_learn_more">Saznajte više</string>
   <string name="ConversationUpdateItem_join_call">Pridruži se pozivu</string>
   <string name="ConversationUpdateItem_return_to_call">Povratak na poziv</string>
   <string name="ConversationUpdateItem_call_is_full">Poziv je pun</string>
@@ -1761,13 +1768,15 @@ broj telefona</string>
   <string name="CreateProfileActivity__create_a_username">Stvorite korisničko ime</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nazivi i fotografije prilagođenih MMS grupa biti će vidljivi samo vama.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">O</string>
+  <string name="EditAboutFragment_about">Opis</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite par riječi o sebi…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Uredi naziv grupe i sliku</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše ime</string>
+  <string name="EditProfileNameFragment_first_name">Ime</string>
   <string name="EditProfileNameFragment_last_name_optional">Prezime (neobavezno)</string>
   <string name="EditProfileNameFragment_save">Spremi</string>
   <!--recipient_preferences_activity-->
@@ -1943,6 +1952,7 @@ broj telefona</string>
   <string name="preferences__dark_theme">Tamna</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Pozadina razgovora</string>
   <string name="preferences__disable_pin">Onemogući PIN</string>
   <string name="preferences__enable_pin">Omogući PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ako onemogućite PIN, izgubiti će te sve podatke prilikom ponovne registracije Signala osim ako ručno ne napravite sigurnosnu kopiju i vratite podatke. Ne možete uključiti Zaključavanje registracije dok je PIN onemogućen.</string>
@@ -1961,6 +1971,7 @@ broj telefona</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako su potvrde o čitanju onemogućene, nećete moći vidjeti potvrde o čitanju od drugih.</string>
   <string name="preferences__typing_indicators">Prikaži tipkanje</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako su potvrde o tipkanju onemogućene, nećete moći vidjeti potvrde o tipkanju od drugih.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Zatraži od tipkovnice da onemogući personalizaciju. Ova postavka nije garantirana i vaša će je tipkovnica možda zanemariti.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnih podataka</string>
   <string name="preferences_chats__when_using_wifi">Prilikom korištenja Wi-Fi-ja</string>
@@ -2019,7 +2030,7 @@ broj telefona</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Prikazuje ikonu statusa kada odaberete \"Detalji o poruci\" na porukama koje su isporučene pomoću zapečaćenog pošiljatelja.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Dopusti od svih</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Omogućite zapečaćenog pošiljatelja za dolazne poruke od osoba koje nisu vaši kontakti i od osoba s kojima niste podijelili vaš profil.</string>
-  <string name="preferences_communication__sealed_sender_learn_more">Saznaj više</string>
+  <string name="preferences_communication__sealed_sender_learn_more">Saznajte više</string>
   <string name="preferences_setup_a_username">Postavite korisničko ime</string>
   <string name="configurable_single_select__customize_option">Opcija prilagođavanja</string>
   <!--Internal only preferences-->
@@ -2176,7 +2187,7 @@ broj telefona</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Predstavljamo PIN-ove</string>
   <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-ovi čuvaju šifrirane podatke pohranjene u Signalu tako da im možete pristupiti samo vi. Nakon ponovne instalacije vratiti će se vaš profil, postavke i kontakti. Neće vam trebati PIN kako biste otvorili aplikaciju.</string>
-  <string name="KbsSplashFragment__learn_more">Saznaj više</string>
+  <string name="KbsSplashFragment__learn_more">Saznajte više</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Zaključavanje registracije = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Vaše Zaključavanje registracije sada se zove PIN i čini još više. Ažurirajte odmah.</string>
   <string name="KbsSplashFragment__update_pin">Ažuriraj PIN</string>
@@ -2194,7 +2205,7 @@ broj telefona</string>
   <string name="AccountLockedFragment__account_locked">Račun je zaključan</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Vaš je račun zaključan radi zaštite vaše privatnosti i sigurnosti. Nakon %1$d dana neaktivnosti vašeg računa moći će te ponovno registrirati ovaj broj telefona bez potrebe za PIN-om. Sav sadržaj bit će izbrisan.</string>
   <string name="AccountLockedFragment__next">Sljedeće</string>
-  <string name="AccountLockedFragment__learn_more">Saznaj više</string>
+  <string name="AccountLockedFragment__learn_more">Saznajte više</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Unesite vaš PIN</string>
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Unesite PIN koji ste stvorili za svoj račun. To se razlikuje od vašeg SMS kôda za provjeru.</string>
@@ -2239,7 +2250,7 @@ broj telefona</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Recite što mislite o Signalu</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Kako bi Signal bio najbolja aplikacija za razmjenu poruka na planetu, voljeli bismo čuti vaše povratne informacije.</string>
-  <string name="ResearchMegaphone_learn_more">Saznaj više</string>
+  <string name="ResearchMegaphone_learn_more">Saznajte više</string>
   <string name="ResearchMegaphone_dismiss">Odbaci</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal istraživanja</string>
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Vjerujemo u privatnost.</b></p><p>Signal vas ne prati niti prikuplja vaše podatke. Da bismo poboljšali Signal za sve, oslanjamo se na povratne informacije korisnika i <b>voljeli bismo vaše.</b></p><p>Provodimo anketu kako bismo shvatili kako koristite Signal. Naša anketa ne prikuplja podatke koji će vas identificirati. Ako ste zainteresirani za dijeljenje dodatnih povratnih informacija, imat ćete mogućnost pružanja podataka za kontakt.</p><p>Ako imate nekoliko minuta i želite poslati povratne informacije, voljeli bismo čuti vaše mišljenje.</p>]]></string>
@@ -2447,16 +2458,42 @@ broj telefona</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Podijeli</string>
   <string name="ShareActivity__send">Pošalji</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nije uspjelo za neke korisnike</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Možete dijeliti s najviše %1$d razgovora</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Proslijedi poruku</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Pozadina razgovora</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Postavi pozadinu</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Zatamni pozadinu</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Ukloni pozadinu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Ukloni pozadinu?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadine</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Poništi sve pozadine?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
   <string name="ChatWallpaperFragment__reset">Poništi</string>
+  <string name="ChatWallpaperFragment__clear">Ukloni</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Pregled pozadine</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Odaberi iz galerije</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Unaprijed dodano</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Pregled</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Postavi pozadinu</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Prijeđite prstom za pregled ostalih pozadina</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Postavi pozadinu za sve razgovore</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Postavi pozadinu za %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Za pregledavanje vaše galerije potrebno je dopuštenje prostora za pohranu.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Postavi pozadinu</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Stisnite za zumiranje, povucite za podešavanje.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Postavi pozadinu za sve razgovore.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Postavi pozadinu za %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Pogreška prilikom postavljanja pozadine.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Zamuti</string> -->
   <!--EOF-->
 </resources>

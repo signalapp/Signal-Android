@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenzia notifiche</string>
   <string name="ManageGroupActivity_custom_notifications">Notifiche personalizzate</string>
   <string name="ManageGroupActivity_mentions">Menzioni</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Sfondo chat</string>
   <string name="ManageGroupActivity_until_s">Fino a %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nome profilo</string>
   <string name="ManageProfileFragment_username">Nome utente</string>
   <string name="ManageProfileFragment_about">Info</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Scrivi qualche parola su di te</string>
   <string name="ManageProfileFragment_your_name">Il tuo nome</string>
+  <string name="ManageProfileFragment_your_username">Il tuo nome utente</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Impossibile impostare avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Aggiungi ai contatti di sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Questa persona è nei tuoi contatti</string>
   <string name="ManageRecipientActivity_disappearing_messages">Messaggi a scomparsa</string>
   <string name="ManageRecipientActivity_chat_color">Colore chat</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Sfondo chat</string>
   <string name="ManageRecipientActivity_block">Blocca</string>
   <string name="ManageRecipientActivity_unblock">Sblocca</string>
   <string name="ManageRecipientActivity_view_safety_number">Mostra codice di sicurezza</string>
@@ -1315,6 +1320,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia questo URL e aggiungilo alla tua segnalazione o all\'email di supporto:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Condividi</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Informazioni sul dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versione di Android:</string>
   <string name="SupportEmailUtil_signal_version">Versione di Signal:</string>
@@ -1695,11 +1701,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Info</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrivi qualche parola su di te…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifica nome e foto del gruppo</string>
   <string name="EditProfileFragment__group_name">Nome del gruppo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Il tuo nome</string>
+  <string name="EditProfileNameFragment_first_name">Nome</string>
   <string name="EditProfileNameFragment_last_name_optional">Cognome (facoltativo)</string>
   <string name="EditProfileNameFragment_save">Salva</string>
   <!--recipient_preferences_activity-->
@@ -1874,6 +1882,7 @@
   <string name="preferences__dark_theme">Scuro</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Sfondo chat</string>
   <string name="preferences__disable_pin">Disabilita PIN</string>
   <string name="preferences__enable_pin">Abilita PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se disabiliti il PIN, perderai tutti i dati quando ti registri nuovamente con Signal a meno che tu non esegua manualmente il backup e il ripristino. Non è possibile attivare il Blocco registrazione mentre il PIN è disabilitato.</string>
@@ -1892,6 +1901,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se le conferme di lettura sono disabilitate, non sarai in grado di vedere le conferme di lettura da altri.</string>
   <string name="preferences__typing_indicators">Indicatori di scrittura</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se gli indicatori di scrittura sono disabilitati, non sarai in grado di vedere quando gli altri utenti stanno digitando.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Richiedi alla tastiera di disattivare l\'apprendimento delle parole digitate. Questa impostazione non è una garanzia, e la vostra tastiera potrebbe ignorarla.</string>
   <string name="preferences_app_protection__blocked_users">Utenti bloccati</string>
   <string name="preferences_chats__when_using_mobile_data">Via rete cellulare</string>
   <string name="preferences_chats__when_using_wifi">Via Wi-Fi</string>
@@ -2369,16 +2379,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Condividi</string>
   <string name="ShareActivity__send">Invia</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Invio non riuscito per alcuni utenti</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puoi condividere solo con un massimo di %1$d chat</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Inoltra messaggio</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Sfondo chat</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Imposta sfondo</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Attenua lo sfondo nel tema scuro</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Rimuovi sfondo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Rimuovere sfondo?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetta tutti gli sfondi</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Resettare tutti gli sfondi?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Nome contatto</string>
   <string name="ChatWallpaperFragment__reset">Resetta</string>
+  <string name="ChatWallpaperFragment__clear">Rimuovi</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Anteprima sfondo</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Scegli dalle foto</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Predefiniti</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Anteprima</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Imposta sfondo</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Scorri per vedere l\'anteprima di altri sfondi</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Imposta sfondo per tutte le chat</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Imposta sfondo per %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Visualizzare la tua galleria richiede l\'autorizzazione alla memoria.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Scegli immagine di sfondo</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pizzica per ingrandire, trascina per regolare.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Imposta sfondo per tutte le chat.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Imposta sfondo per %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Impossibile impostare sfondo.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Sfuoca</string> -->
   <!--EOF-->
 </resources>

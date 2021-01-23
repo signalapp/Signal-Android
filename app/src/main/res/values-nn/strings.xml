@@ -607,6 +607,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageGroupActivity_mute_notifications">Ikkje vis varsel</string>
   <string name="ManageGroupActivity_custom_notifications">Eigendefinerte varsel</string>
   <string name="ManageGroupActivity_mentions">Omtalar</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Samtalebakgrunnsbilde</string>
   <string name="ManageGroupActivity_until_s">Fram til %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
@@ -642,12 +643,16 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="ManageProfileFragment_profile_name">Profilnamn</string>
   <string name="ManageProfileFragment_username">Brukarnamn</string>
   <string name="ManageProfileFragment_about">Om</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skriv nokre ord om deg sjølv</string>
   <string name="ManageProfileFragment_your_name">Namnet ditt</string>
+  <string name="ManageProfileFragment_your_username">Brukarnamnet ditt</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Klarte ikkje endra profilbilde</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Legg til i systemkontaktar</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlista di</string>
   <string name="ManageRecipientActivity_disappearing_messages">Forsvinnande meldingar</string>
   <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Samtalebakgrunnsbilde</string>
   <string name="ManageRecipientActivity_block">Blokker</string>
   <string name="ManageRecipientActivity_unblock">Fjern blokkering</string>
   <string name="ManageRecipientActivity_view_safety_number">Vis tryggingsnummer</string>
@@ -1319,6 +1324,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg han til feilrapporten eller e-posten til support:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Einingsinfo:</string>
   <string name="SupportEmailUtil_android_version">Android-utgåve:</string>
   <string name="SupportEmailUtil_signal_version">Signal-utgåve:</string>
@@ -1698,11 +1704,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Eigendefinerte namn og bilde på MMS-grupper er berre synlege for deg.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv nokre ord om deg sjølv …</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenamn og bilde</string>
   <string name="EditProfileFragment__group_name">Gruppenamn</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Namnet ditt</string>
+  <string name="EditProfileNameFragment_first_name">Fornamn</string>
   <string name="EditProfileNameFragment_last_name_optional">Etternamn (valfritt)</string>
   <string name="EditProfileNameFragment_save">Lagra</string>
   <!--recipient_preferences_activity-->
@@ -1877,6 +1886,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utsjåande</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Samtalebakgrunnsbilde</string>
   <string name="preferences__disable_pin">Skru av PIN</string>
   <string name="preferences__enable_pin">Skru på PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Viss du skrur av PIN, mistar du all data når du omregistrerer Signal (med mindre du manuelt tar reservekopi og gjenopprettar). Du kan heller ikkje skru på registreringslås utan PIN.</string>
@@ -1895,6 +1905,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Viss du har skrudd av lesekvitteringar, får du heller ikkje sjå andre sine lesekvitteringar.</string>
   <string name="preferences__typing_indicators">Tastevisning</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Viss tastevisning er av, kan du heller ikkje sjå når andre tastar.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Be tastaturet om å skru av personleg læring. Denne innstillinga gir ingen garantiar, og tastaturet ditt står fritt til å oversjå han.</string>
   <string name="preferences_app_protection__blocked_users">Blokkerte brukarar</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wifi</string>
@@ -2374,16 +2385,42 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Klarte ikkje senda til visse brukarar</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan berre dela med opp mot %1$d samtalar</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Vidaresend melding</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Samtalebakgrunnsbilde</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Vel bakgrunnsbilde</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dimmar bakgrunnsbildet</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunnsbildet</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Fjern bakgrunnsbildet?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nullstill alle bakgrunnsbilde</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Nullstill alle bakgrunnsbilde?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontaktnamn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
+  <string name="ChatWallpaperFragment__clear">Fjern</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Førehandsvisning av bakgrunn</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vel frå bilde</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Forval</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Førehandsvisning</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Vel bakgrunnsbilde</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Sveip for å sjå gjennom fleire bakgrunnar</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Vel bakgrunnsbilde for alle samtalar</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Vel bakgrunnsbilde for %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Du må gi tillating til bruk av lagring for å visa galleriet.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vel bakgrunnsbilde</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Klyp for å zooma inn, dra for å justera</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Vel bakgrunnsbilde for alle samtalar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Vel bakgrunnsbilde for %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Klarte ikkje endra bakgrunnsbilde.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Gjer uklar</string> -->
   <!--EOF-->
 </resources>

@@ -570,6 +570,7 @@
   <string name="ManageGroupActivity_mute_notifications">静音通知</string>
   <string name="ManageGroupActivity_custom_notifications">自定义通知</string>
   <string name="ManageGroupActivity_mentions">提及我</string>
+  <string name="ManageGroupActivity_chat_wallpaper">聊天墙纸</string>
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_off">关</string>
   <string name="ManageGroupActivity_on">开</string>
@@ -601,15 +602,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">总是通知我</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">总是不通知我</string>
   <!--ManageProfileFragment-->
-  <string name="ManageProfileFragment_profile_name">昵称</string>
+  <string name="ManageProfileFragment_profile_name">个人资料名称</string>
   <string name="ManageProfileFragment_username">用户名</string>
   <string name="ManageProfileFragment_about">关于</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">简单介绍下自己</string>
   <string name="ManageProfileFragment_your_name">你的名字</string>
+  <string name="ManageProfileFragment_your_username">你的用户名</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">设置头像失败</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">添加至系统联系人</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">此人是你的联系人</string>
   <string name="ManageRecipientActivity_disappearing_messages">阅后即焚</string>
   <string name="ManageRecipientActivity_chat_color">聊天颜色</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">聊天墙纸</string>
   <string name="ManageRecipientActivity_block">屏蔽</string>
   <string name="ManageRecipientActivity_unblock">取消屏蔽</string>
   <string name="ManageRecipientActivity_view_safety_number">查看安全码</string>
@@ -1255,6 +1260,7 @@
 </string>
   <string name="SubmitDebugLogActivity_share">分享</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">筛选器：</string>
   <string name="SupportEmailUtil_device_info">设备信息：</string>
   <string name="SupportEmailUtil_android_version">Android版本：</string>
   <string name="SupportEmailUtil_signal_version">Signal版本:</string>
@@ -1624,11 +1630,13 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">关于</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">简单介绍下自己…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">编辑群昵称和头像</string>
   <string name="EditProfileFragment__group_name">群组名称</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">你的名字</string>
+  <string name="EditProfileNameFragment_first_name">名</string>
   <string name="EditProfileNameFragment_last_name_optional">姓氏（可选）</string>
   <string name="EditProfileNameFragment_save">保存</string>
   <!--recipient_preferences_activity-->
@@ -1802,6 +1810,7 @@
   <string name="preferences__dark_theme">深色</string>
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
+  <string name="preferences__chat_wallpaper">聊天墙纸</string>
   <string name="preferences__disable_pin">禁用 PIN</string>
   <string name="preferences__enable_pin">启用 PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
@@ -1820,6 +1829,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
   <string name="preferences__typing_indicators">“正在输入”提示</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">禁用“正在输入”提示之后，无法查看其他用户的正在输入状态。</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">请求键盘禁用个性化学习。这样并不能保证禁用该功能，你的键盘可能忽略该设置。</string>
   <string name="preferences_app_protection__blocked_users">已屏蔽的用户</string>
   <string name="preferences_chats__when_using_mobile_data">当使用移动数据时</string>
   <string name="preferences_chats__when_using_wifi">当使用 WiFi 时</string>
@@ -2288,16 +2298,42 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">分享</string>
   <string name="ShareActivity__send">发送</string>
+  <string name="ShareActivity__s_comma">%1$s，</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">无法发送给某些用户</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">最多只能分享 %1$d 个对话</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">转发消息</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">聊天墙纸</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">设置墙纸</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">深色主题暗淡墙纸</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">清除墙纸</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">是否清除墙纸？</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">重置全部墙纸</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">是否重置全部墙纸？</string> -->
+  <string name="ChatWallpaperFragment__contact_name">联系人名字</string>
   <string name="ChatWallpaperFragment__reset">重置</string>
+  <string name="ChatWallpaperFragment__clear">清除</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">墙纸预览</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">从图片中选择</string>
+  <string name="ChatWallpaperSelectionFragment__presets">预设</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">预览</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">设置墙纸</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">轻扫预览更多墙纸</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">对全部聊天设置墙纸</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">对 %1$s 设置墙纸</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">查看相册需存储权限。</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">选择墙纸图片</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">捏合缩放，拖拉调整。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">对全部聊天设置墙纸。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">对 %s 设置墙纸。</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">设置墙纸出错。</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">模糊</string> -->
   <!--EOF-->
 </resources>

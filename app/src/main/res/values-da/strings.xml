@@ -603,6 +603,7 @@
   <string name="ManageGroupActivity_mute_notifications">Udsæt notifikationer</string>
   <string name="ManageGroupActivity_custom_notifications">Brugerdefinerede notifikationer</string>
   <string name="ManageGroupActivity_mentions">Omtaler</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Chatbaggrund</string>
   <string name="ManageGroupActivity_until_s">Indtil %1$s</string>
   <string name="ManageGroupActivity_off">Deaktiveret</string>
   <string name="ManageGroupActivity_on">Aktiveret</string>
@@ -638,12 +639,16 @@
   <string name="ManageProfileFragment_profile_name">Profilnavn</string>
   <string name="ManageProfileFragment_username">Brugernavn</string>
   <string name="ManageProfileFragment_about">Om</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv</string>
   <string name="ManageProfileFragment_your_name">Dit navn</string>
+  <string name="ManageProfileFragment_your_username">Dit brugernavn</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Avataren kunne ikke opsættes</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Tilføj til dine kontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Personen findes i dine kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Beskeder med tidsudløb</string>
   <string name="ManageRecipientActivity_chat_color">Chatfarve</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Chatbaggrund</string>
   <string name="ManageRecipientActivity_block">Blokér</string>
   <string name="ManageRecipientActivity_unblock">Fjern blokering</string>
   <string name="ManageRecipientActivity_view_safety_number">Vis sikkerhedsnummer</string>
@@ -1315,6 +1320,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL og tilføj den til din fejlrapport, eller til support email:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enheds info:</string>
   <string name="SupportEmailUtil_android_version">Android version:</string>
   <string name="SupportEmailUtil_signal_version">Signal version:</string>
@@ -1695,11 +1701,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
+  <string name="EditAboutFragment_count">%d%d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Dit navn</string>
+  <string name="EditProfileNameFragment_first_name">Fornavn</string>
   <string name="EditProfileNameFragment_last_name_optional">Efternavn (frivilligt)</string>
   <string name="EditProfileNameFragment_save">Gem</string>
   <!--recipient_preferences_activity-->
@@ -1874,6 +1882,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__dark_theme">Mørkt</string>
   <string name="preferences__appearance">Udseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Chatbaggrund</string>
   <string name="preferences__disable_pin">Déaktiver PIN</string>
   <string name="preferences__enable_pin">Aktivér PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN mister du alle data når du omregistrerer Signal, medmindre du sikkerhedskopierer og gendanner manuelt. Du kan ikke aktivere Registreringslås, mens PIN er deaktiveret</string>
@@ -1892,6 +1901,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis læst af modtager er deaktiverét, er det ikke muligt at se status for beskeder</string>
   <string name="preferences__typing_indicators">Skrive indikator</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skrive indikator er deaktiverét, er det ikke muligt at se når andre skriver</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Anmod tastatur om at deaktivere personlig indlæring. Denne indstilling er ikke en garanti, og dit tastatur ignorerer muligvis det.</string>
   <string name="preferences_app_protection__blocked_users">Blokerede brugere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved anvendelse af mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved brug af WiFi</string>
@@ -2369,16 +2379,42 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele op til %1$d chats</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Videresend besked</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Chatbaggrund</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Opsæt baggrund</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørkt tema dæmper baggrund</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Fjern baggrund</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__clear_wallpaper_question_mark">Fjern baggrund?</string> -->
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Nulstil alle baggrunde</string>
+  <!-- Removed by excludeNonTranslatables <string name="ChatWallpaperFragment__reset_all_wallpapers_question_mark">Nulstil alle baggrunde?</string> -->
+  <string name="ChatWallpaperFragment__contact_name">Kontaktnavn</string>
   <string name="ChatWallpaperFragment__reset">Nulstil</string>
+  <string name="ChatWallpaperFragment__clear">Fjern</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Baggrundseksempel</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vælg fra billeder</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Forudindstillet</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Eksempel</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Opsæt baggrund</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Stryg for at få vist flere baggrunde</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Opsæt baggrund til alle chats</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Opsæt baggrund til %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Det kræves adgang til hukommelsen for at vise dine billeder</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vælg baggrundsbillede</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Klem for at zoome, træk for at justere.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Opsæt baggrund til alle chats.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Opsæt baggrund til %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Fejl ved opsætning af baggrund.</string>
+  <!-- Removed by excludeNonTranslatables <string name="WallpaperCropActivity__blur">Slør</string> -->
   <!--EOF-->
 </resources>
