@@ -102,7 +102,7 @@ final class MenuState {
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
-             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete)
+             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete && !messageRecord.isMediaPending())
              .shouldShowDetailsAction(!actionMessage)
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
     }
