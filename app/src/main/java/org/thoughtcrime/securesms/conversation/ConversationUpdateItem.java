@@ -157,6 +157,8 @@ public final class ConversationUpdateItem extends FrameLayout
     LiveData<Spannable> spannableMessage  = loading(liveUpdateMessage);
 
     observeDisplayBody(lifecycleOwner, spannableMessage);
+
+    present(conversationMessage, nextMessageRecord, conversationRecipient);
   }
 
   /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
@@ -301,10 +303,10 @@ public final class ConversationUpdateItem extends FrameLayout
 
     @Override
     public void onChanged(Recipient recipient) {
-      if (recipient.getId() == conversationRecipient.getId()) {
+      if (recipient.getId() == conversationRecipient.getId() && (conversationRecipient == null || !conversationRecipient.hasSameContent(recipient))) {
         conversationRecipient = recipient;
+        present(conversationMessage, nextMessageRecord, conversationRecipient);
       }
-      present(conversationMessage, nextMessageRecord, conversationRecipient);
     }
   }
 
