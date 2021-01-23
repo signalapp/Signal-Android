@@ -5,13 +5,13 @@ import android.os.PowerManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
 
@@ -55,7 +55,7 @@ public class BackgroundMessageRetriever {
         TextSecurePreferences.setNeedsMessagePull(context, true);
 
         long         startTime    = System.currentTimeMillis();
-        PowerManager powerManager = ServiceUtil.getPowerManager(context);
+        PowerManager powerManager = ContextCompat.getSystemService(context, PowerManager.class);
         boolean      doze         = PowerManagerCompat.isDeviceIdleMode(powerManager);
         boolean      network      = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
 

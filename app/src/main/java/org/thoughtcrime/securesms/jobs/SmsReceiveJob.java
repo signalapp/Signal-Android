@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.Person;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.Status;
@@ -30,7 +31,6 @@ import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -98,7 +98,7 @@ public class SmsReceiveJob extends BaseJob {
         if (token.isPresent()) {
           Log.i(TAG, "Received something that looks like a registration SMS. Posting a notification and broadcast.");
 
-          NotificationManager manager      = ServiceUtil.getNotificationManager(context);
+          NotificationManager manager      = ContextCompat.getSystemService(context, NotificationManager.class);
           Notification        notification = buildPreRegistrationNotification(context, message.get());
           manager.notify(NotificationIds.PRE_REGISTRATION_SMS, notification);
 

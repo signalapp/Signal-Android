@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
-import android.content.Context;
 import android.os.Build;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
@@ -59,14 +59,14 @@ final class SignalStrengthPhoneStateListener extends PhoneStateListener
 
   @Override
   public void onResume(@NonNull LifecycleOwner owner) {
-    TelephonyManager telephonyManager = (TelephonyManager) ApplicationDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+    TelephonyManager telephonyManager = ContextCompat.getSystemService(ApplicationDependencies.getApplication(), TelephonyManager.class);
     telephonyManager.listen(this, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
     Log.i(TAG, "Listening to cell phone signal strength changes");
   }
 
   @Override
   public void onPause(@NonNull LifecycleOwner owner) {
-    TelephonyManager telephonyManager = (TelephonyManager) ApplicationDependencies.getApplication().getSystemService(Context.TELEPHONY_SERVICE);
+    TelephonyManager telephonyManager = ContextCompat.getSystemService(ApplicationDependencies.getApplication(), TelephonyManager.class);
     telephonyManager.listen(this, PhoneStateListener.LISTEN_NONE);
     Log.i(TAG, "Stopped listening to cell phone signal strength changes");
   }

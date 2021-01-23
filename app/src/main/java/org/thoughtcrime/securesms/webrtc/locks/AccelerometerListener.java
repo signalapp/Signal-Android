@@ -25,6 +25,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
+import androidx.core.content.ContextCompat;
+
 import org.signal.core.util.logging.Log;
 
 /**
@@ -67,7 +69,7 @@ public final class AccelerometerListener {
 
     public AccelerometerListener(Context context, OrientationListener listener) {
         mListener = listener;
-        mSensorManager = (SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = ContextCompat.getSystemService(context, SensorManager.class);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 

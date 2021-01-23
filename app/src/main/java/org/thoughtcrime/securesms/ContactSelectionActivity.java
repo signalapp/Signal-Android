@@ -19,7 +19,9 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
+import androidx.core.content.ContextCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.signal.core.util.logging.Log;
@@ -29,7 +31,6 @@ import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -125,7 +126,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
   }
 
   private void hideKeyboard() {
-    ServiceUtil.getInputMethodManager(this)
+    ContextCompat.getSystemService(this, InputMethodManager.class)
                .hideSoftInputFromWindow(toolbar.getWindowToken(), 0);
     toolbar.clearFocus();
   }

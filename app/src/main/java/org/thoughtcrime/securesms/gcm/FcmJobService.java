@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.gcm;
 
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
+import android.app.job.JobScheduler;
 import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,7 +15,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.RestStrategy;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -34,7 +34,7 @@ public class FcmJobService extends JobService {
                                                 .setBackoffCriteria(0, JobInfo.BACKOFF_POLICY_LINEAR)
                                                 .setPersisted(true);
 
-    ServiceUtil.getJobScheduler(context).schedule(jobInfoBuilder.build());
+    context.getSystemService(JobScheduler.class).schedule(jobInfoBuilder.build());
   }
 
   @Override

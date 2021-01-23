@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.service.webrtc;
 
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 
@@ -34,7 +33,7 @@ class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handlePreJoinCall(@NonNull WebRtcServiceState currentState, @NonNull RemotePeer remotePeer) {
     Log.i(TAG, "handlePreJoinCall():");
 
-    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    ConnectivityManager connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
     if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {

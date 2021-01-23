@@ -57,6 +57,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -191,7 +192,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   @Override
   public void onQrDataFound(final String data) {
     Util.runOnMain(() -> {
-      ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+      ContextCompat.getSystemService(this, Vibrator.class).vibrate(50);
 
       getSupportFragmentManager().popBackStack();
       displayFragment.setScannedFingerprint(data);

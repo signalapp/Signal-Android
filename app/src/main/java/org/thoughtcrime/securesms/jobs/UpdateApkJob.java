@@ -11,6 +11,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -115,7 +116,7 @@ public class UpdateApkJob extends BaseJob {
   }
 
   private DownloadStatus getDownloadStatus(String uri, byte[] theirDigest) {
-    DownloadManager       downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+    DownloadManager       downloadManager = ContextCompat.getSystemService(context, DownloadManager.class);
     DownloadManager.Query query           = new DownloadManager.Query();
 
     query.setFilterByStatus(DownloadManager.STATUS_PAUSED | DownloadManager.STATUS_PENDING | DownloadManager.STATUS_RUNNING | DownloadManager.STATUS_SUCCESSFUL);
@@ -156,7 +157,7 @@ public class UpdateApkJob extends BaseJob {
   private void handleDownloadStart(String uri, String versionName, byte[] digest) {
     clearPreviousDownloads(context);
 
-    DownloadManager         downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+    DownloadManager         downloadManager = ContextCompat.getSystemService(context, DownloadManager.class);
     DownloadManager.Request downloadRequest = new DownloadManager.Request(Uri.parse(uri));
 
     downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
@@ -180,7 +181,7 @@ public class UpdateApkJob extends BaseJob {
 
   private @Nullable byte[] getDigestForDownloadId(long downloadId) {
     try {
-      DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+      DownloadManager downloadManager = ContextCompat.getSystemService(context, DownloadManager.class);
       FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor());
       byte[]          digest          = FileUtils.getFileDigest(fin);
 

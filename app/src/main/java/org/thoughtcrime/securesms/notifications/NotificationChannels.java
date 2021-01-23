@@ -17,6 +17,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -28,7 +29,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class NotificationChannels {
       return;
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
     int oldVersion = TextSecurePreferences.getNotificationChannelVersion(context);
     if (oldVersion != VERSION) {
@@ -99,7 +99,7 @@ public class NotificationChannels {
     try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
       while ((recipient = reader.getNext()) != null) {
-        NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+        NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
         if (!channelExists(notificationManager.getNotificationChannel(recipient.getNotificationChannel()))) {
           String id = createChannelFor(context, recipient);
           db.setNotificationChannel(recipient.getId(), id);
@@ -186,7 +186,7 @@ public class NotificationChannels {
                                                                   .build());
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     notificationManager.createNotificationChannel(channel);
 
     return channelId;
@@ -201,7 +201,7 @@ public class NotificationChannels {
       return;
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     String              channel             = recipient.getNotificationChannel();
 
     if (channel != null) {
@@ -235,7 +235,7 @@ public class NotificationChannels {
     }
     Log.i(TAG, "Updating LED color.");
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
     updateMessageChannel(context, channel -> setLedPreference(channel, color));
     updateAllRecipientChannelLedColors(context, notificationManager, color);
@@ -251,7 +251,7 @@ public class NotificationChannels {
       return Uri.EMPTY;
     }
 
-    Uri sound = ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel(context)).getSound();
+    Uri sound = ContextCompat.getSystemService(context, NotificationManager.class).getNotificationChannel(getMessagesChannel(context)).getSound();
     return sound == null ? Uri.EMPTY : sound;
   }
 
@@ -260,7 +260,7 @@ public class NotificationChannels {
       return null;
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     NotificationChannel channel             = notificationManager.getNotificationChannel(recipient.getNotificationChannel());
 
     if (!channelExists(channel)) {
@@ -299,7 +299,7 @@ public class NotificationChannels {
     Log.i(TAG, "Updating recipient message ringtone with URI: " + String.valueOf(uri));
 
     String  newChannelId = generateChannelIdFor(recipient);
-    boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
+    boolean success      = updateExistingChannel(ContextCompat.getSystemService(context, NotificationManager.class),
                                                  recipient.getNotificationChannel(),
                                                  generateChannelIdFor(recipient),
                                                  channel -> channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes()));
@@ -316,7 +316,7 @@ public class NotificationChannels {
       return false;
     }
 
-    return ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel(context)).shouldVibrate();
+    return ContextCompat.getSystemService(context, NotificationManager.class).getNotificationChannel(getMessagesChannel(context)).shouldVibrate();
   }
 
   /**
@@ -328,7 +328,7 @@ public class NotificationChannels {
       return getMessageVibrate(context);
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     NotificationChannel channel             = notificationManager.getNotificationChannel(recipient.getNotificationChannel());
 
     if (!channelExists(channel)) {
@@ -366,7 +366,7 @@ public class NotificationChannels {
 
     boolean enabled      = vibrateState == VibrateState.DEFAULT ? getMessageVibrate(context) : vibrateState == VibrateState.ENABLED;
     String  newChannelId = generateChannelIdFor(recipient);
-    boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
+    boolean success      = updateExistingChannel(ContextCompat.getSystemService(context, NotificationManager.class),
                                                  recipient.getNotificationChannel(),
                                                  newChannelId,
                                                  channel -> channel.enableVibration(enabled));
@@ -385,7 +385,7 @@ public class NotificationChannels {
     }
     Log.i(TAG, "Updating contact channel name");
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
     if (notificationManager.getNotificationChannel(recipient.getNotificationChannel()) == null) {
       Log.w(TAG, "Tried to update the name of a channel, but that channel doesn't exist.");
@@ -407,7 +407,7 @@ public class NotificationChannels {
     }
     Log.d(TAG, "ensureCustomChannelConsistency()");
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     RecipientDatabase   db                  = DatabaseFactory.getRecipientDatabase(context);
     List<Recipient>     customRecipients    = new ArrayList<>();
     Set<String>         customChannelIds    = new HashSet<>();
@@ -549,7 +549,7 @@ public class NotificationChannels {
 
   @TargetApi(26)
   private static void updateMessageChannel(@NonNull Context context, @NonNull ChannelUpdater updater) {
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     int existingVersion                     = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
     int newVersion                          = existingVersion + 1;
 

@@ -2,11 +2,13 @@ package org.thoughtcrime.securesms.shakereport;
 
 import android.app.Activity;
 import android.app.Application;
+import android.hardware.SensorManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.ShakeDetector;
 import org.signal.core.util.logging.Log;
@@ -16,7 +18,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
@@ -44,7 +45,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
   public void enable() {
     if (!FeatureFlags.internalUser()) return;
 
-    detector.start(ServiceUtil.getSensorManager(application));
+    detector.start(ContextCompat.getSystemService(application, SensorManager.class));
   }
 
   public void disable() {

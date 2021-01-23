@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -15,11 +14,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
@@ -88,16 +87,13 @@ public class GiphyActivityToolbar extends Toolbar {
       }
     });
 
-    this.searchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-      @Override
-      public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-          InputMethodManager inputMethodManager = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-          inputMethodManager.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
-        }
-
-        return false;
+    this.searchText.setOnEditorActionListener((v, actionId, event) -> {
+      if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+        InputMethodManager inputMethodManager = ContextCompat.getSystemService(getContext(), InputMethodManager.class);
+        inputMethodManager.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
       }
+
+      return false;
     });
 
     setLogo(null);

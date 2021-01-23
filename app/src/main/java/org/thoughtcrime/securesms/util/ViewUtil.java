@@ -39,6 +39,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.lifecycle.Lifecycle;
@@ -58,7 +59,7 @@ public final class ViewUtil {
     int numberLength = input.getText().length();
     input.setSelection(numberLength, numberLength);
 
-    InputMethodManager imm = (InputMethodManager) input.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    InputMethodManager imm = ContextCompat.getSystemService(input.getContext(), InputMethodManager.class);
     imm.showSoftInput(input, InputMethodManager.SHOW_IMPLICIT);
 
     if (!imm.isAcceptingText()) {
@@ -86,7 +87,8 @@ public final class ViewUtil {
   private static void showTheKeyboardNow(@NonNull View view) {
     if (view.isFocused()) {
       view.post(() -> {
-        InputMethodManager inputMethodManager = ServiceUtil.getInputMethodManager(view.getContext());
+        InputMethodManager inputMethodManager = ContextCompat.getSystemService(view.getContext(),
+          InputMethodManager.class);
         inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
       });
     }
@@ -305,8 +307,8 @@ public final class ViewUtil {
   }
 
   public static void hideKeyboard(@NonNull Context context, @NonNull View view) {
-    InputMethodManager inputManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-    inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    ContextCompat.getSystemService(context, InputMethodManager.class)
+            .hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 
   /**

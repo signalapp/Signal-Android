@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModelProviders;
@@ -82,7 +83,7 @@ abstract class BaseRegistrationFragment extends LoggingFragment {
   }
 
   protected static void hideKeyboard(@NonNull Context context, @NonNull View view) {
-    InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+    InputMethodManager imm = ContextCompat.getSystemService(context, InputMethodManager.class);
     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 

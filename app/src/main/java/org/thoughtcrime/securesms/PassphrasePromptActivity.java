@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
@@ -47,6 +46,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.os.CancellationSignal;
 
@@ -270,7 +270,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void resumeScreenLock() {
-    KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+    KeyguardManager keyguardManager = ContextCompat.getSystemService(this, KeyguardManager.class);
 
     assert keyguardManager != null;
 

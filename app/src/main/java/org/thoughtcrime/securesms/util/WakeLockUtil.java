@@ -6,6 +6,7 @@ import android.os.PowerManager.WakeLock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 
@@ -36,7 +37,7 @@ public class WakeLockUtil {
   public static WakeLock acquire(@NonNull Context context, int lockType, long timeout, @NonNull String tag) {
     tag = prefixTag(tag);
     try {
-      PowerManager powerManager = ServiceUtil.getPowerManager(context);
+      PowerManager powerManager = ContextCompat.getSystemService(context, PowerManager.class);
       WakeLock     wakeLock     = powerManager.newWakeLock(lockType, tag);
 
       wakeLock.acquire(timeout);

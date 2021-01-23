@@ -8,11 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.util.AccessibilityUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
@@ -186,7 +186,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
   }
 
   private static void vibrate(@NonNull Context context) {
-    Vibrator vibrator = ServiceUtil.getVibrator(context);
+    Vibrator vibrator = ContextCompat.getSystemService(context, Vibrator.class);
     if (vibrator != null) vibrator.vibrate(SWIPE_SUCCESS_VIBE_TIME_MS);
   }
 

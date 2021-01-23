@@ -6,6 +6,8 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 
+import androidx.core.content.ContextCompat;
+
 public class TelephonyServiceState {
 
   public boolean isConnected(Context context) {
@@ -31,7 +33,7 @@ public class TelephonyServiceState {
       Looper         looper   = initializeLooper();
       ListenCallback callback = new ListenCallback(looper);
 
-      TelephonyManager telephonyManager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+      TelephonyManager telephonyManager = ContextCompat.getSystemService(context, TelephonyManager.class);
       telephonyManager.listen(callback, PhoneStateListener.LISTEN_SERVICE_STATE);
 
       Looper.loop();

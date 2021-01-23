@@ -8,9 +8,9 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class SignalAudioManager {
 
@@ -43,7 +43,7 @@ public class SignalAudioManager {
   }
 
   public void startIncomingRinger(@Nullable Uri ringtoneUri, boolean vibrate) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     boolean      speaker      = !audioManager.isWiredHeadsetOn() && !audioManager.isBluetoothScoOn();
 
     audioManager.setMode(AudioManager.MODE_RINGTONE);
@@ -54,7 +54,7 @@ public class SignalAudioManager {
   }
 
   public void startOutgoingRinger(OutgoingRinger.Type type) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     audioManager.setMicrophoneMute(false);
 
     audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
@@ -67,7 +67,7 @@ public class SignalAudioManager {
   }
 
   public void startCommunication(boolean preserveSpeakerphone) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
     incomingRinger.stop();
     outgoingRinger.stop();
@@ -82,7 +82,7 @@ public class SignalAudioManager {
   }
 
   public void stop(boolean playDisconnected) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
     incomingRinger.stop();
     outgoingRinger.stop();

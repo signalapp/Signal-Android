@@ -12,9 +12,9 @@ import android.os.Vibrator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.io.IOException;
 
@@ -31,11 +31,11 @@ public class IncomingRinger {
 
   IncomingRinger(Context context) {
     this.context  = context.getApplicationContext();
-    this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+    this.vibrator = ContextCompat.getSystemService(context, Vibrator.class);
   }
 
   public void start(@Nullable Uri uri, boolean vibrate) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
     if (player != null) player.release();
     if (uri != null)    player = createPlayer(uri);
@@ -86,7 +86,7 @@ public class IncomingRinger {
 
   @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   private boolean shouldVibrateNew(Context context, int ringerMode, boolean vibrate) {
-    Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+    Vibrator vibrator = ContextCompat.getSystemService(context, Vibrator.class);
 
     if (vibrator == null || !vibrator.hasVibrator()) {
       return false;
@@ -100,7 +100,7 @@ public class IncomingRinger {
   }
 
   private boolean shouldVibrateOld(Context context, boolean vibrate) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     return vibrate && audioManager.shouldVibrate(AudioManager.VIBRATE_TYPE_RINGER);
   }
 

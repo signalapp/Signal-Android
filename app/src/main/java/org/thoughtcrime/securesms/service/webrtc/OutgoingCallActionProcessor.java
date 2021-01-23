@@ -5,11 +5,11 @@ import android.os.ResultReceiver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.webrtc.PeerConnection;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -67,7 +66,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "assign activePeer callId: " + remotePeer.getCallId() + " key: " + remotePeer.hashCode());
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
+    AudioManager androidAudioManager = ContextCompat.getSystemService(context, AudioManager.class);
     androidAudioManager.setSpeakerphoneOn(false);
     WebRtcUtil.enableSpeakerPhoneIfNeeded(context, currentState.getCallSetupState().isEnableVideoOnCreate());
 

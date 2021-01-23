@@ -202,7 +202,6 @@ import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
-import org.thoughtcrime.securesms.mms.SlideFactory.MediaType;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GifSlide;
@@ -219,6 +218,7 @@ import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlideFactory;
+import org.thoughtcrime.securesms.mms.SlideFactory.MediaType;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -264,7 +264,6 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SmsUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -758,7 +757,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    ShortcutManager shortcutManager = ServiceUtil.getShortcutManager(this);
+    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
     if (shortcutManager != null) {
       shortcutManager.reportShortcutUsed(ConversationUtil.getShortcutId(recipientId));
     }
@@ -2940,8 +2939,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
   @Override
   public void onRecorderStarted() {
-    Vibrator vibrator = ServiceUtil.getVibrator(this);
-    vibrator.vibrate(20);
+    ContextCompat.getSystemService(this, Vibrator.class).vibrate(20);
 
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
@@ -2958,8 +2956,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onRecorderFinished() {
     updateToggleButtonState();
-    Vibrator vibrator = ServiceUtil.getVibrator(this);
-    vibrator.vibrate(20);
+    ContextCompat.getSystemService(this, Vibrator.class).vibrate(20);
 
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
@@ -3013,8 +3010,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onRecorderCanceled() {
     updateToggleButtonState();
-    Vibrator vibrator = ServiceUtil.getVibrator(this);
-    vibrator.vibrate(50);
+    ContextCompat.getSystemService(this, Vibrator.class).vibrate(50);
 
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);

@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -44,6 +45,6 @@ public final class NetworkUtil {
   }
 
   private static NetworkInfo getNetworkInfo(@NonNull Context context) {
-    return ServiceUtil.getConnectivityManager(context).getActiveNetworkInfo();
+    return ContextCompat.getSystemService(context, ConnectivityManager.class).getActiveNetworkInfo();
   }
 }

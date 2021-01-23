@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.app.DownloadManager;
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -19,7 +21,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
@@ -74,11 +75,11 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
         .setContentIntent(pendingIntent)
         .build();
 
-    ServiceUtil.getNotificationManager(context).notify(666, notification);
+    ContextCompat.getSystemService(context, NotificationManager.class).notify(666, notification);
   }
 
   private @Nullable Uri getLocalUriForDownloadId(Context context, long downloadId) {
-    DownloadManager       downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+    DownloadManager       downloadManager = ContextCompat.getSystemService(context, DownloadManager.class);
     DownloadManager.Query query           = new DownloadManager.Query();
     query.setFilterById(downloadId);
 
@@ -105,7 +106,7 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
       if (theirEncodedDigest == null) return false;
 
       byte[]          theirDigest     = Hex.fromStringCondensed(theirEncodedDigest);
-      DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+      DownloadManager downloadManager = ContextCompat.getSystemService(context, DownloadManager.class);
       FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor());
       byte[]          ourDigest       = FileUtils.getFileDigest(fin);
 

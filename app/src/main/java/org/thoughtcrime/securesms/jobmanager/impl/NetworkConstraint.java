@@ -7,8 +7,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 
@@ -44,7 +44,7 @@ public class NetworkConstraint implements Constraint {
   }
 
   public static boolean isMet(@NonNull Context context) {
-    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    ConnectivityManager connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
     NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
 
     return activeNetworkInfo != null && activeNetworkInfo.isConnected();

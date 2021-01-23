@@ -18,12 +18,12 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -134,7 +134,7 @@ public class FcmRefreshJob extends BaseJob {
     builder.setVibrate(new long[] {0, 1000});
     builder.setContentIntent(pendingIntent);
 
-    ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+    ContextCompat.getSystemService(context, NotificationManager.class)
         .notify(NotificationIds.FCM_FAILURE, builder.build());
   }
 

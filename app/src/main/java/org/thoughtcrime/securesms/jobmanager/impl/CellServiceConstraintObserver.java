@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
 import android.app.Application;
-import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
@@ -32,7 +32,7 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
   }
 
   private CellServiceConstraintObserver(@NonNull Application application) {
-    TelephonyManager     telephonyManager     = (TelephonyManager) application.getSystemService(Context.TELEPHONY_SERVICE);
+    TelephonyManager     telephonyManager     = ContextCompat.getSystemService(application, TelephonyManager.class);
     ServiceStateListener serviceStateListener = new ServiceStateListener();
 
     SignalExecutors.BOUNDED.execute(() -> {

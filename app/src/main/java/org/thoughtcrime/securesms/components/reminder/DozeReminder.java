@@ -43,7 +43,6 @@ public class DozeReminder extends Reminder {
     return TextSecurePreferences.isFcmDisabled(context)            &&
            !TextSecurePreferences.hasPromptedOptimizeDoze(context) &&
            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M          &&
-           !((PowerManager)context.getSystemService(Context.POWER_SERVICE)).isIgnoringBatteryOptimizations(context.getPackageName());
+           !context.getSystemService(PowerManager.class).isIgnoringBatteryOptimizations(context.getPackageName());
   }
-
 }

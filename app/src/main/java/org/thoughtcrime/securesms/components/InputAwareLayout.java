@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKeyboardShownListener {
   private InputView current;
@@ -32,12 +33,10 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
 
   public void show(@NonNull final EditText imeTarget, @NonNull final InputView input) {
     if (isKeyboardOpen()) {
-      hideSoftkey(imeTarget, new Runnable() {
-        @Override public void run() {
-          hideAttachedInput(true);
-          input.show(getKeyboardHeight(), true);
-          current = input;
-        }
+      hideSoftkey(imeTarget, () -> {
+        hideAttachedInput(true);
+        input.show(getKeyboardHeight(), true);
+        current = input;
       });
     } else {
       if (current != null) current.hide(true);
@@ -65,24 +64,19 @@ public class InputAwareLayout extends KeyboardAwareLinearLayout implements OnKey
   }
 
   public void showSoftkey(final EditText inputTarget) {
-    postOnKeyboardOpen(new Runnable() {
-      @Override public void run() {
-        hideAttachedInput(true);
-      }
-    });
-    inputTarget.post(new Runnable() {
-      @Override public void run() {
-        inputTarget.requestFocus();
-        ServiceUtil.getInputMethodManager(inputTarget.getContext()).showSoftInput(inputTarget, 0);
-      }
+    postOnKeyboardOpen(() -> hideAttachedInput(true));
+    inputTarget.post(() -> {
+      inputTarget.requestFocus();
+      ContextCompat.getSystemService(inputTarget.getContext(), InputMethodManager.class)
+        .showSoftInput(inputTarget, 0);
     });
   }
 
   public void hideSoftkey(final EditText inputTarget, @Nullable Runnable runAfterClose) {
     if (runAfterClose != null) postOnKeyboardClose(runAfterClose);
 
-    ServiceUtil.getInputMethodManager(inputTarget.getContext())
-               .hideSoftInputFromWindow(inputTarget.getWindowToken(), 0);
+    ContextCompat.getSystemService(getContext(), InputMethodManager.class)
+      .hideSoftInputFromWindow(inputTarget.getWindowToken(), 0);
   }
 
   public interface InputView {

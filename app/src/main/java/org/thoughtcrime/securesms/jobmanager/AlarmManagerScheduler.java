@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -48,7 +49,7 @@ public class AlarmManagerScheduler implements Scheduler {
   }
 
   private void setUniqueAlarm(@NonNull Context context, long time) {
-    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager alarmManager = ContextCompat.getSystemService(context, AlarmManager.class);
     Intent       intent       = new Intent(context, RetryReceiver.class);
 
     intent.setAction(BuildConfig.APPLICATION_ID + UUID.randomUUID().toString());

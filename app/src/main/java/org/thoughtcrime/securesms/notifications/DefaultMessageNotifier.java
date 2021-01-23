@@ -40,6 +40,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -69,7 +70,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
@@ -140,7 +140,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
                                                              .build();
       FailedNotificationBuilder builder = new FailedNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context), intent);
 
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
+      ContextCompat.getSystemService(context, NotificationManager.class)
         .notify((int)threadId, builder.build());
     }
   }
@@ -153,7 +153,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static boolean isDisplayingSummaryNotification(@NonNull Context context) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
-        NotificationManager     notificationManager = ServiceUtil.getNotificationManager(context);
+        NotificationManager     notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
         StatusBarNotification[] activeNotifications = notificationManager.getActiveNotifications();
 
         for (StatusBarNotification activeNotification : activeNotifications) {
@@ -177,7 +177,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   private static void cancelOrphanedNotifications(@NonNull Context context, NotificationState notificationState) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
-        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+        NotificationManager     notifications       = ContextCompat.getSystemService(context, NotificationManager.class);
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
         for (StatusBarNotification notification : activeNotifications) {
@@ -516,7 +516,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   private static void sendInThreadNotification(Context context, Recipient recipient) {
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
-        ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
+        ContextCompat.getSystemService(context, AudioManager.class).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
     {
       return;
     }
@@ -722,7 +722,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
       return;
     }
 
-    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager alarmManager = ContextCompat.getSystemService(context, AlarmManager.class);
     Intent       alarmIntent  = new Intent(context, ReminderReceiver.class);
     alarmIntent.putExtra("reminder_count", count);
 
@@ -743,7 +743,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
   public void clearReminder(@NonNull Context context) {
     Intent        alarmIntent   = new Intent(context, ReminderReceiver.class);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-    AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager  alarmManager  = ContextCompat.getSystemService(context, AlarmManager.class);
 
     alarmManager.cancel(pendingIntent);
   }

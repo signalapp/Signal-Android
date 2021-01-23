@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -18,7 +19,6 @@ import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
 import org.thoughtcrime.securesms.util.DeviceProperties;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -94,7 +94,7 @@ public class LogSectionSystemInfo implements LogSection {
   }
 
   private static @NonNull String getMemoryClass(Context context) {
-    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+    ActivityManager activityManager = ContextCompat.getSystemService(context, ActivityManager.class);
     String          lowMem          = "";
 
     if (activityManager.isLowRamDevice()) {
@@ -125,7 +125,7 @@ public class LogSectionSystemInfo implements LogSection {
 
   private static @NonNull String getScreenResolution(@NonNull Context context) {
     DisplayMetrics displayMetrics = new DisplayMetrics();
-    WindowManager  windowManager  = ServiceUtil.getWindowManager(context);
+    WindowManager  windowManager  = ContextCompat.getSystemService(context, WindowManager.class);
 
     windowManager.getDefaultDisplay().getMetrics(displayMetrics);
     return displayMetrics.widthPixels + "x" + displayMetrics.heightPixels;
@@ -156,7 +156,7 @@ public class LogSectionSystemInfo implements LogSection {
   }
 
   private static @NonNull String getScreenRefreshRate(@NonNull Context context) {
-    return String.format(Locale.ENGLISH, "%.2f hz", ServiceUtil.getWindowManager(context).getDefaultDisplay().getRefreshRate());
+    return String.format(Locale.ENGLISH, "%.2f hz", ContextCompat.getSystemService(context, WindowManager.class).getDefaultDisplay().getRefreshRate());
   }
 
   private static String getSigningString(@NonNull Context context) {

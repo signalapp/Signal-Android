@@ -8,6 +8,7 @@ import android.service.notification.StatusBarNotification;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -17,7 +18,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.Objects;
 
@@ -46,7 +46,7 @@ public final class NotificationCancellationHelper {
   static void cancelAllMessageNotifications(@NonNull Context context) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
-        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+        NotificationManager     notifications       = ContextCompat.getSystemService(context, NotificationManager.class);
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
         int                     activeCount         = 0;
 
@@ -65,7 +65,7 @@ public final class NotificationCancellationHelper {
       } catch (Throwable e) {
         // XXX Appears to be a ROM bug, see #6043
         Log.w(TAG, "Canceling all notifications.", e);
-        ServiceUtil.getNotificationManager(context).cancelAll();
+        ContextCompat.getSystemService(context, NotificationManager.class).cancelAll();
       }
     } else {
       cancelLegacy(context, NotificationIds.MESSAGE_SUMMARY);
@@ -102,7 +102,7 @@ public final class NotificationCancellationHelper {
    */
   public static void cancelLegacy(@NonNull Context context, int notificationId) {
     Log.d(TAG, "cancelLegacy() called with: notificationId = [" + notificationId + "]");
-    ServiceUtil.getNotificationManager(context).cancel(notificationId);
+    ContextCompat.getSystemService(context, NotificationManager.class).cancel(notificationId);
   }
 
   /**
@@ -129,7 +129,7 @@ public final class NotificationCancellationHelper {
    */
   @RequiresApi(ConversationUtil.CONVERSATION_SUPPORT_VERSION)
   private static boolean isCancellable(@NonNull Context context, int notificationId) {
-    NotificationManager     manager       = ServiceUtil.getNotificationManager(context);
+    NotificationManager     manager       = ContextCompat.getSystemService(context, NotificationManager.class);
     StatusBarNotification[] notifications = manager.getActiveNotifications();
     Notification            notification  = Stream.of(notifications)
                                                   .filter(n -> n.getId() == notificationId)

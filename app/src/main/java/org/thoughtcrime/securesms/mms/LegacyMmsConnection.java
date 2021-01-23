@@ -26,6 +26,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.apache.http.Header;
 import org.apache.http.auth.AuthScope;
@@ -44,7 +45,6 @@ import org.apache.http.message.BasicHeader;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -106,8 +106,9 @@ public abstract class LegacyMmsConnection {
       add("312190");
     }};
 
-    return ServiceUtil.getTelephonyManager(context).getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA &&
-           sprintMccMncs.contains(TelephonyUtil.getMccMnc(context));
+    return ContextCompat.getSystemService(context, TelephonyManager.class)
+            .getPhoneType() == TelephonyManager.PHONE_TYPE_CDMA
+            && sprintMccMncs.contains(TelephonyUtil.getMccMnc(context));
   }
 
   @SuppressWarnings("TryWithIdenticalCatches")
@@ -134,7 +135,7 @@ public abstract class LegacyMmsConnection {
     }
 
     Log.i(TAG, "Checking route to address: " + host + ", " + inetAddress.getHostAddress());
-    ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    ConnectivityManager manager = ContextCompat.getSystemService(context, ConnectivityManager.class);
 
     try {
       final Method  requestRouteMethod  = manager.getClass().getMethod("requestRouteToHostAddress", Integer.TYPE, InetAddress.class);
@@ -234,7 +235,7 @@ public abstract class LegacyMmsConnection {
     if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_SMS)           == PackageManager.PERMISSION_GRANTED ||
         ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_NUMBERS) == PackageManager.PERMISSION_GRANTED ||
         ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)   == PackageManager.PERMISSION_GRANTED) {
-      return TelephonyUtil.getManager(context).getLine1Number();
+      return ContextCompat.getSystemService(context, TelephonyManager.class).getLine1Number();
     } else {
       return "";
     }

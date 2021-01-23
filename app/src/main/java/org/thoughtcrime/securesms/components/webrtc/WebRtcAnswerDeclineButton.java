@@ -20,11 +20,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.AccessibilityUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public final class WebRtcAnswerDeclineButton extends LinearLayout implements AccessibilityManager.TouchExplorationStateChangeListener {
@@ -68,7 +68,7 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout implements Acc
     setOrientation(LinearLayout.VERTICAL);
     setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-    accessibilityManager = ServiceUtil.getAccessibilityManager(getContext());
+    accessibilityManager = ContextCompat.getSystemService(getContext(), AccessibilityManager.class);
 
     createView(accessibilityManager.isTouchExplorationEnabled());
   }

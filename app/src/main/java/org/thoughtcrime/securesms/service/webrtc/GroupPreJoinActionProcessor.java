@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.service.webrtc;
 import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
 import org.thoughtcrime.securesms.util.NetworkUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.List;
@@ -140,7 +140,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
 
     currentState = WebRtcVideoUtil.reinitializeCamera(context, webRtcInteractor.getCameraEventListener(), currentState);
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
+    AudioManager androidAudioManager = ContextCompat.getSystemService(context, AudioManager.class);
     androidAudioManager.setSpeakerphoneOn(false);
 
     webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));

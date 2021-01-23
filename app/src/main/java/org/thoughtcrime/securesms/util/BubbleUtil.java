@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -63,7 +64,7 @@ public final class BubbleUtil {
       return false;
     }
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
     NotificationChannel conversationChannel = notificationManager.getNotificationChannel(ConversationUtil.getChannelId(context, recipient),
                                                                                          ConversationUtil.getShortcutId(recipientId));
 
@@ -77,7 +78,7 @@ public final class BubbleUtil {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
       SignalExecutors.BOUNDED.execute(() -> {
         if (canBubble(context, recipientId, threadId)) {
-          NotificationManager     notificationManager      = ServiceUtil.getNotificationManager(context);
+          NotificationManager     notificationManager      = ContextCompat.getSystemService(context, NotificationManager.class);
           StatusBarNotification[] notifications            = notificationManager.getActiveNotifications();
           int                     threadNotificationId     = NotificationIds.getNotificationIdForThread(threadId);
           Notification            activeThreadNotification = Stream.of(notifications)

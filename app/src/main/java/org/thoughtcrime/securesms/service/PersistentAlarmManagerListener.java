@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.core.content.ContextCompat;
+
 import org.signal.core.util.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
@@ -19,7 +21,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
   @Override
   public void onReceive(Context context, Intent intent) {
     long          scheduledTime = getNextScheduledExecutionTime(context);
-    AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager  alarmManager  = ContextCompat.getSystemService(context, AlarmManager.class);
     Intent        alarmIntent   = new Intent(context, getClass());
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, 0);
 

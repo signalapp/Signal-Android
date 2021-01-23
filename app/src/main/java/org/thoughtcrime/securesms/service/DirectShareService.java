@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -54,7 +53,7 @@ public class DirectShareService extends ChooserTargetService {
     Map<RecipientId, ChooserTarget> results = new LinkedHashMap<>();
 
     if (Build.VERSION.SDK_INT >= ConversationUtil.CONVERSATION_SUPPORT_VERSION) {
-      ShortcutManager shortcutManager = ServiceUtil.getShortcutManager(this);
+      ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
       if (shortcutManager != null && !shortcutManager.getDynamicShortcuts().isEmpty()) {
         addChooserTargetsFromDynamicShortcuts(results, shortcutManager.getDynamicShortcuts());
       }

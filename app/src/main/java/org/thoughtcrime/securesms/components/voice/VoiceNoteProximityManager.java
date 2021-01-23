@@ -11,6 +11,7 @@ import android.os.PowerManager;
 import android.support.v4.media.MediaDescriptionCompat;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.Player;
@@ -20,7 +21,6 @@ import com.google.android.exoplayer2.util.Util;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,13 +44,14 @@ class VoiceNoteProximityManager implements SensorEventListener {
                             @NonNull VoiceNoteQueueDataAdapter queueDataAdapter)
   {
     this.player           = player;
-    this.audioManager     = ServiceUtil.getAudioManager(context);
-    this.sensorManager    = ServiceUtil.getSensorManager(context);
+    this.audioManager     = ContextCompat.getSystemService(context, AudioManager.class);
+    this.sensorManager    = ContextCompat.getSystemService(context, SensorManager.class);
     this.proximitySensor  = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
     this.queueDataAdapter = queueDataAdapter;
 
     if (Build.VERSION.SDK_INT >= 21) {
-      this.wakeLock = ServiceUtil.getPowerManager(context).newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
+      this.wakeLock = ContextCompat.getSystemService(context, PowerManager.class)
+        .newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TAG);
     } else {
       this.wakeLock = null;
     }

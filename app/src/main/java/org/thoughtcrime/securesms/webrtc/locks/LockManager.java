@@ -5,6 +5,8 @@ import android.net.wifi.WifiManager;
 import android.os.PowerManager;
 import android.provider.Settings;
 
+import androidx.core.content.ContextCompat;
+
 import org.signal.core.util.logging.Log;
 
 /**
@@ -45,12 +47,12 @@ public class LockManager {
   }
 
   public LockManager(Context context) {
-    PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    PowerManager pm = ContextCompat.getSystemService(context, PowerManager.class);
     fullLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "signal:full");
     partialLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:partial");
     proximityLock = new ProximityLock(pm);
 
-    WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+    WifiManager wm = ContextCompat.getSystemService(context, WifiManager.class);
     wifiLock = wm.createWifiLock(WifiManager.WIFI_MODE_FULL_HIGH_PERF, "signal:wifi");
 
     fullLock.setReferenceCounted(false);

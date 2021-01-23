@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.core.util.Supplier;
 import androidx.fragment.app.Fragment;
@@ -66,7 +67,6 @@ import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Function3;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -419,8 +419,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   @Override
   public void onVideoCaptureError() {
-    Vibrator vibrator = ServiceUtil.getVibrator(this);
-    vibrator.vibrate(50);
+    ContextCompat.getSystemService(this, Vibrator.class).vibrate(50);
   }
 
   @Override

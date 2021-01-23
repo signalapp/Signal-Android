@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.core.content.ContextCompat;
+
 import org.thoughtcrime.securesms.ApplicationContext;
 
 public class ExpirationListener extends BroadcastReceiver {
@@ -18,7 +20,7 @@ public class ExpirationListener extends BroadcastReceiver {
   public static void setAlarm(Context context, long waitTimeMillis) {
     Intent        intent        = new Intent(context, ExpirationListener.class);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-    AlarmManager  alarmManager  = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager  alarmManager  = ContextCompat.getSystemService(context, AlarmManager.class);
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC, System.currentTimeMillis() + waitTimeMillis, pendingIntent);

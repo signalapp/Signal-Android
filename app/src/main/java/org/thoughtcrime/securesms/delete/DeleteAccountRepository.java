@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.delete;
 
+import android.app.ActivityManager;
+
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -9,7 +12,6 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.pin.KbsEnclaves;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
@@ -65,7 +67,8 @@ class DeleteAccountRepository {
       Log.i(TAG, "deleteAccount: successfully removed account from server");
       Log.i(TAG, "deleteAccount: attempting to delete user data and close process...");
 
-      if (!ServiceUtil.getActivityManager(ApplicationDependencies.getApplication()).clearApplicationUserData()) {
+      if (!ContextCompat.getSystemService(ApplicationDependencies.getApplication(),
+        ActivityManager.class).clearApplicationUserData()) {
         Log.w(TAG, "deleteAccount: failed to delete user data");
         onFailureToDeleteLocalData.run();
       }

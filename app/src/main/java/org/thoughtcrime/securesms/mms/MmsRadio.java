@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.PowerManager;
 
+import androidx.core.content.ContextCompat;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -41,9 +43,9 @@ public class MmsRadio {
   private int connectedCounter = 0;
 
   private MmsRadio(Context context) {
-    PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+    PowerManager powerManager = ContextCompat.getSystemService(context, PowerManager.class);
     this.context             = context;
-    this.connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    this.connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
     this.wakeLock            = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:mms");
     this.wakeLock.setReferenceCounted(true);
   }
