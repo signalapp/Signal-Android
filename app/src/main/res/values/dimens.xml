@@ -71,7 +71,7 @@
     <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
     <dimen name="reaction_scrubber_width">320dp</dimen>
 
-    <dimen name="conversation_item_reply_size">20dp</dimen>
+    <dimen name="conversation_item_reply_size">38dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>

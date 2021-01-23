@@ -14,16 +14,25 @@
     android:orientation="vertical"
     android:paddingStart="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/reply_icon"
-        android:layout_width="@dimen/conversation_item_reply_size"
-        android:layout_height="@dimen/conversation_item_reply_size"
+    <FrameLayout
+        android:id="@+id/reply_icon_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@id/body_bubble"
         android:layout_alignTop="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:alpha="0"
-        android:tint="@color/signal_icon_tint_primary"
-        app:srcCompat="@drawable/ic_reply_24" />
+        android:alpha="0">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/reply_icon"
+            android:layout_width="@dimen/conversation_item_reply_size"
+            android:layout_height="@dimen/conversation_item_reply_size"
+            android:padding="9dp"
+            android:tint="@color/signal_icon_tint_primary"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_reply_24" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/contact_photo_container"

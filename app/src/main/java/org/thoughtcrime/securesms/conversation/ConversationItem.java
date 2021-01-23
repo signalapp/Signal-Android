@@ -160,6 +160,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
             protected ConversationItemBodyBubble bodyBubble;
             protected View                       reply;
+            protected View                       replyIcon;
   @Nullable protected ViewGroup                  contactPhotoHolder;
   @Nullable private   QuoteView                  quoteView;
             private   EmojiTextView              bodyText;
@@ -237,7 +238,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.revealableStub          = new Stub<>(findViewById(R.id.revealable_view_stub));
     this.groupSenderHolder       =            findViewById(R.id.group_sender_holder);
     this.quoteView               =            findViewById(R.id.quote_view);
-    this.reply                   =            findViewById(R.id.reply_icon);
+    this.reply                   =            findViewById(R.id.reply_icon_wrapper);
+    this.replyIcon               =            findViewById(R.id.reply_icon);
     this.reactionsView           =            findViewById(R.id.reactions_view);
 
     setOnClickListener(new ClickListener(null));
@@ -282,7 +284,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setBodyText(messageRecord, searchQuery);
     setBubbleState(messageRecord, hasWallpaper);
     setInteractionState(conversationMessage, pulse);
-    setStatusIcons(messageRecord);
+    setStatusIcons(messageRecord, hasWallpaper);
     setContactPhoto(recipient.get());
     setGroupMessageStatus(messageRecord, recipient.get());
     setGroupAuthorColor(messageRecord, hasWallpaper);
@@ -458,6 +460,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     if (audioViewStub.resolved()) {
       setAudioViewTint(messageRecord);
+    }
+
+    if (hasWallpaper) {
+      replyIcon.setBackgroundResource(R.drawable.wallpaper_message_decoration_background);
+    } else {
+      replyIcon.setBackground(null);
     }
   }
 
@@ -1003,7 +1011,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return messageBody;
   }
 
-  private void setStatusIcons(MessageRecord messageRecord) {
+  private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
 
     if (messageRecord.isFailed()) {
@@ -1012,6 +1020,12 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       alertView.setPendingApproval();
     } else {
       alertView.setNone();
+    }
+
+    if (hasWallpaper) {
+      alertView.setBackgroundResource(R.drawable.wallpaper_message_decoration_background);
+    } else {
+      alertView.setBackground(null);
     }
   }
 
