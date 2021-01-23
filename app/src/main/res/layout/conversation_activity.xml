@@ -12,7 +12,8 @@
         android:importantForAccessibility="no"
         android:id="@+id/conversation_wallpaper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"/>
 
     <View
         android:id="@+id/conversation_wallpaper_dim"
