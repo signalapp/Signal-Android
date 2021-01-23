@@ -87,13 +87,13 @@ public class ContactRepository {
       String aboutEmoji = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT_EMOJI);
       String about      = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT);
 
-      if (aboutEmoji != null) {
-        if (about != null) {
+      if (!Util.isEmpty(aboutEmoji)) {
+        if (!Util.isEmpty(about)) {
           return aboutEmoji + " " + about;
         } else {
           return aboutEmoji;
         }
-      } else if (about != null) {
+      } else if (!Util.isEmpty(about)) {
         return about;
       } else {
         return "";
