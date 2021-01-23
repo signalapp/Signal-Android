@@ -547,10 +547,10 @@ public class ThreadDatabase extends Database {
   }
 
   public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean hideV1Groups) {
-    return getRecentConversationList(limit, includeInactiveGroups, false, hideV1Groups);
+    return getRecentConversationList(limit, includeInactiveGroups, false, hideV1Groups, false);
   }
 
-  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean groupsOnly, boolean hideV1Groups) {
+  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups, boolean groupsOnly, boolean hideV1Groups, boolean hideSms) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
     String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)"
                                                   : MESSAGE_COUNT + " != 0";
@@ -561,6 +561,11 @@ public class ThreadDatabase extends Database {
 
     if (hideV1Groups) {
       query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_TYPE + " != " + RecipientDatabase.GroupType.SIGNAL_V1.getId();
+    }
+
+    if (hideSms) {
+      query += " AND (" + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.GROUP_ID + " NOT NULL OR " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + ")";
+      query += " AND " + RecipientDatabase.TABLE_NAME + "." + RecipientDatabase.FORCE_SMS_SELECTION + " = 0";
     }
 
     query += " AND " + ARCHIVED + " = 0";

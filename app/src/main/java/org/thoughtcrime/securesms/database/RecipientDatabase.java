@@ -125,7 +125,7 @@ public class RecipientDatabase extends Database {
   private static final String PROFILE_SHARING           = "profile_sharing";
   private static final String LAST_PROFILE_FETCH        = "last_profile_fetch";
   private static final String UNIDENTIFIED_ACCESS_MODE  = "unidentified_access_mode";
-  private static final String FORCE_SMS_SELECTION       = "force_sms_selection";
+          static final String FORCE_SMS_SELECTION       = "force_sms_selection";
   private static final String CAPABILITIES              = "capabilities";
   private static final String STORAGE_SERVICE_ID        = "storage_service_key";
   private static final String DIRTY                     = "dirty";
