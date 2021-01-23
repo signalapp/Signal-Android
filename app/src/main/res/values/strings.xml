@@ -2827,6 +2827,7 @@
     <string name="ShareActivity__share">Share</string>
     <string name="ShareActivity__send">Send</string>
     <string name="ShareActivity__s_comma">%1$s,</string>
+    <string name="ShareActivity__sharing_to_multiple_chats_is">Sharing to multiple chats is only supported for Signal messages</string>
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>

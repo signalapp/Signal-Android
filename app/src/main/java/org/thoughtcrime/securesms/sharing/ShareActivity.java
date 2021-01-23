@@ -98,6 +98,7 @@ public class ShareActivity extends PassphraseRequiredActivity
   private ImageView                    searchAction;
   private View                         shareConfirm;
   private ShareSelectionAdapter        adapter;
+  private boolean                      disallowMultiShare;
 
   private ShareViewModel viewModel;
 
@@ -173,7 +174,12 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   @Override
   public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
-    return viewModel.onContactSelected(new ShareContact(recipientId, number));
+    if (disallowMultiShare) {
+      Toast.makeText(this, R.string.ShareActivity__sharing_to_multiple_chats_is, Toast.LENGTH_LONG).show();
+      return false;
+    } else {
+      return viewModel.onContactSelected(new ShareContact(recipientId, number));
+    }
   }
 
   @Override
@@ -203,7 +209,7 @@ public class ShareActivity extends PassphraseRequiredActivity
 
   private void initializeIntent() {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_SELF;
+      int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS | DisplayMode.FLAG_SELF | DisplayMode.FLAG_HIDE_NEW;
 
       if (TextSecurePreferences.isSmsEnabled(this) && viewModel.isExternalShare())  {
         mode |= DisplayMode.FLAG_SMS;
@@ -267,6 +273,42 @@ public class ShareActivity extends PassphraseRequiredActivity
         animateOutSelection();
       } else {
         animateInSelection();
+      }
+    });
+
+    viewModel.getSmsShareRestriction().observe(this, smsShareRestriction -> {
+      final int displayMode;
+
+      switch (smsShareRestriction) {
+        case NO_RESTRICTIONS:
+          disallowMultiShare = false;
+          displayMode        = getIntent().getIntExtra(ContactSelectionListFragment.DISPLAY_MODE, -1);
+
+          if (displayMode == -1) {
+            Log.w(TAG, "DisplayMode not set yet.");
+            return;
+          }
+
+          if (TextSecurePreferences.isSmsEnabled(this) && viewModel.isExternalShare() && (displayMode & DisplayMode.FLAG_SMS) == 0) {
+            getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode | DisplayMode.FLAG_SMS);
+            contactsFragment.setQueryFilter(null);
+          }
+          break;
+        case DISALLOW_SMS_CONTACTS:
+          disallowMultiShare = false;
+          displayMode        = getIntent().getIntExtra(ContactSelectionListFragment.DISPLAY_MODE, -1);
+
+          if (displayMode == -1) {
+            Log.w(TAG, "DisplayMode not set yet.");
+            return;
+          }
+
+          getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode & ~DisplayMode.FLAG_SMS);
+          contactsFragment.setQueryFilter(null);
+          break;
+        case DISALLOW_MULTI_SHARE:
+          disallowMultiShare = true;
+          break;
       }
     });
   }

@@ -5,6 +5,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -16,8 +17,10 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -33,15 +36,17 @@ public class ShareViewModel extends ViewModel {
   private final ShareRepository                      shareRepository;
   private final MutableLiveData<Optional<ShareData>> shareData;
   private final MutableLiveData<Set<ShareContact>>   selectedContacts;
+  private final LiveData<SmsShareRestriction>        smsShareRestriction;
 
   private boolean mediaUsed;
   private boolean externalShare;
 
   private ShareViewModel() {
-    this.context          = ApplicationDependencies.getApplication();
-    this.shareRepository  = new ShareRepository();
-    this.shareData        = new MutableLiveData<>();
-    this.selectedContacts = new DefaultValueLiveData<>(Collections.emptySet());
+    this.context             = ApplicationDependencies.getApplication();
+    this.shareRepository     = new ShareRepository();
+    this.shareData           = new MutableLiveData<>();
+    this.selectedContacts    = new DefaultValueLiveData<>(Collections.emptySet());
+    this.smsShareRestriction = Transformations.map(selectedContacts, this::updateShareRestriction);
   }
 
   void onSingleMediaShared(@NonNull Uri uri, @Nullable String mimeType) {
@@ -90,6 +95,10 @@ public class ShareViewModel extends ViewModel {
                                                               .toList());
   }
 
+  @NonNull LiveData<SmsShareRestriction> getSmsShareRestriction() {
+    return Transformations.distinctUntilChanged(smsShareRestriction);
+  }
+
   void onNonExternalShare() {
     externalShare = false;
   }
@@ -116,11 +125,34 @@ public class ShareViewModel extends ViewModel {
     }
   }
 
+  private @NonNull SmsShareRestriction updateShareRestriction(@NonNull Set<ShareContact> shareContacts) {
+    if (shareContacts.isEmpty()) {
+      return SmsShareRestriction.NO_RESTRICTIONS;
+    } else if (shareContacts.size() == 1) {
+      ShareContact shareContact = shareContacts.iterator().next();
+      Recipient    recipient    = Recipient.live(shareContact.getRecipientId().get()).get();
+
+      if (!recipient.isRegistered() || recipient.isForceSmsSelection()) {
+        return SmsShareRestriction.DISALLOW_MULTI_SHARE;
+      } else {
+        return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+      }
+    } else {
+      return SmsShareRestriction.DISALLOW_SMS_CONTACTS;
+    }
+  }
+
   public static class Factory extends ViewModelProvider.NewInstanceFactory {
     @Override
     public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
       return modelClass.cast(new ShareViewModel());
     }
+  }
+
+  enum SmsShareRestriction {
+    NO_RESTRICTIONS,
+    DISALLOW_SMS_CONTACTS,
+    DISALLOW_MULTI_SHARE
   }
 }
