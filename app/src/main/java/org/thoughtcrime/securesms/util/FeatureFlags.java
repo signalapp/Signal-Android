@@ -72,6 +72,7 @@ public final class FeatureFlags {
   private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
   private static final String OKHTTP_AUTOMATIC_RETRY       = "android.okhttpAutomaticRetry";
   private static final String SHARE_SELECTION_LIMIT        = "android.share.limit";
+  private static final String ANIMATED_STICKER_MIN_MEMORY  = "android.animatedStickerMinMemory";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -100,7 +101,8 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
-      SHARE_SELECTION_LIMIT
+      SHARE_SELECTION_LIMIT,
+      ANIMATED_STICKER_MIN_MEMORY
   );
 
   @VisibleForTesting
@@ -139,7 +141,8 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
-      SHARE_SELECTION_LIMIT
+      SHARE_SELECTION_LIMIT,
+      ANIMATED_STICKER_MIN_MEMORY
   );
 
   /**
@@ -322,6 +325,11 @@ public final class FeatureFlags {
   /** Whether or not to allow automatic retries from OkHttp */
   public static boolean okHttpAutomaticRetry() {
     return getBoolean(OKHTTP_AUTOMATIC_RETRY, false);
+  }
+
+  /** The minimum amount of memory required for rendering animated stickers in the keyboard and such */
+  public static int animatedStickerMinimumMemory() {
+    return getInteger(ANIMATED_STICKER_MIN_MEMORY, 193);
   }
 
   /** Only for rendering debug info. */
