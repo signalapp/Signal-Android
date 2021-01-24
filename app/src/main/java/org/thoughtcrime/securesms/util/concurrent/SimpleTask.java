@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util.concurrent;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -42,7 +43,11 @@ public class SimpleTask {
    * the main thread. Essentially {@link AsyncTask}, but lambda-compatible.
    */
   public static <E> void run(@NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
-    run(SignalExecutors.BOUNDED, backgroundTask, foregroundTask);
+    run(backgroundTask, foregroundTask, null);
+  }
+
+  public static <E> void run(@NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask, @Nullable CompletionTask completionTask) {
+    run(SignalExecutors.BOUNDED, backgroundTask, foregroundTask, completionTask);
   }
 
   /**
@@ -50,9 +55,16 @@ public class SimpleTask {
    * task that is run on the main thread. Essentially {@link AsyncTask}, but lambda-compatible.
    */
   public static <E> void run(@NonNull Executor executor, @NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
+    run(executor, backgroundTask, foregroundTask, null);
+  }
+
+  public static <E> void run(@NonNull Executor executor, @NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask, @Nullable CompletionTask completionTask) {
     executor.execute(() -> {
       final E result = backgroundTask.run();
-      Util.runOnMain(() -> foregroundTask.run(result));
+      Util.runOnMain(() -> {
+        foregroundTask.run(result);
+        if (completionTask != null) completionTask.run();
+      });
     });
   }
 
@@ -66,5 +78,9 @@ public class SimpleTask {
 
   public interface ForegroundTask<E> {
     void run(E result);
+  }
+
+  public interface CompletionTask {
+    void run();
   }
 }

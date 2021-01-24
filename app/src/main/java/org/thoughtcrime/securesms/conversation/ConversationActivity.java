@@ -1240,10 +1240,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private void handleAddShortcut() {
     Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.get().getId());
 
-    final Context context = getApplicationContext();
-    final Recipient recipient = this.recipient.get();
-
-    GlideApp.with(this)
+    final Context       context   = getApplicationContext();
+    final Recipient     recipient = this.recipient.get();
+    final GlideRequests requests  = GlideApp.with(this);
+    requests
             .asBitmap()
             .load(recipient.getContactPhoto())
             .error(recipient.getFallbackContactPhoto().asDrawable(this, recipient.getColor().toAvatarColor(this), false))
@@ -1256,14 +1256,18 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
                 Log.w(TAG, "Utilizing fallback photo for shortcut for recipient " + recipient.getId());
 
+                final CustomTarget<Bitmap> target = this;
                 SimpleTask.run(() -> DrawableUtil.toBitmap(errorDrawable, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE),
-                               bitmap -> addIconToHomeScreen(context, bitmap, recipient));
+                               bitmap -> addIconToHomeScreen(context, bitmap, recipient),
+                               () -> requests.clear(target));
               }
 
               @Override
               public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                final CustomTarget<Bitmap> target = this;
                 SimpleTask.run(() -> BitmapUtil.createScaledBitmap(resource, SHORTCUT_ICON_SIZE, SHORTCUT_ICON_SIZE),
-                               bitmap -> addIconToHomeScreen(context, bitmap, recipient));
+                               bitmap -> addIconToHomeScreen(context, bitmap, recipient),
+                               () -> requests.clear(target));
               }
 
               @Override
