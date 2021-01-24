@@ -2470,6 +2470,7 @@
   <string name="ShareActivity__share">Dijeli</string>
   <string name="ShareActivity__send">Šalji</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Dijeljenje s više od jedne konverzacije podržano je samo u Signalovim porukama</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nekim od korisnika nije uspjelo</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Možete podijeliti maksimalno %1$d konverzacija</string>

@@ -738,7 +738,7 @@
   <string name="RequestConfirmationDialog_add">Aldoni</string>
   <string name="RequestConfirmationDialog_deny">Malaprobi</string>
   <!--ImageEditorHud-->
-  <string name="ImageEditorHud_blur_faces">Malkarigi la vizaĝojn</string>
+  <string name="ImageEditorHud_blur_faces">Malklarigi la vizaĝojn</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Novaĵo: malklarigi la vizaĝojn, aŭ elekti tion, kion malklarigi</string>
   <string name="ImageEditorHud_draw_anywhere_to_blur">Desegni ie ajn por malklarigi</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Desegni por malklarigi pliajn vizaĝojn aŭ partojn</string>
@@ -1701,6 +1701,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="EditAboutFragment_about">Pri</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skribu kelkajn vortojn pri vi…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Parolu libere</string>
+  <string name="EditAboutFragment_encrypted">Ĉifrita</string>
+  <string name="EditAboutFragment_be_kind">Estu afabla</string>
+  <string name="EditAboutFragment_coffee_lover">Kafamanto</string>
+  <string name="EditAboutFragment_free_to_chat">Disponebla por interparoli</string>
+  <string name="EditAboutFragment_taking_a_break">Mi paŭzas</string>
+  <string name="EditAboutFragment_working_on_something_new">Mi laboras pri io nova</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Modifi nomon kaj bildon de la grupo</string>
   <string name="EditProfileFragment__group_name">Nomo de la grupo</string>
@@ -1709,6 +1716,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="EditProfileNameFragment_first_name">Persona nomo</string>
   <string name="EditProfileNameFragment_last_name_optional">Familia nomo (malnepra)</string>
   <string name="EditProfileNameFragment_save">Konservi</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Malsukcesis konservo pro reteraro. Reprovu poste.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Aŭdvidaĵoj kunhavigitaj</string>
   <!--recipients_panel-->
@@ -2379,6 +2387,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ShareActivity__share">Kunhavigi</string>
   <string name="ShareActivity__send">Sendi</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Kunhavigi al pluraj interparoloj nur eblas por Signal-mesaĝoj</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">La sendo al kelkaj uzantoj malsukcesis</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vi povas kunhavigi nur kun maks. %1$d interparoloj</string>
@@ -2390,7 +2399,10 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ChatWallpaperFragment__set_wallpaper">Elekti ekranfonon</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Malhela etoso malheligas la ekranfonon</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Forviŝi la ekranfonon</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ĉu forviŝi la ekranfonon por tiu interparolo?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ĉu forviŝi la ekranfonon? Tio ne forviŝos la proprajn ekranfonojn, kiujn vi agordis en viaj interparoloj.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Restarigi ĉiujn ekranfonojn</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Ĉu forviŝi ĉiujn ekranfonojn, inkuzive de la propraj ekranfonoj, kiujn vi agordis en viaj interparoloj?</string>
   <string name="ChatWallpaperFragment__contact_name">Kontaktnomo</string>
   <string name="ChatWallpaperFragment__reset">Restarigi</string>
   <string name="ChatWallpaperFragment__clear">Forviŝi</string>
@@ -2412,5 +2424,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Elekti ekranfonon por ĉiuj interparoloj.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Agordi la ekranfonon por %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Eraro dum agordo de la ekranfono.</string>
+  <string name="WallpaperCropActivity__blur_photo">Malklarigi foton</string>
   <!--EOF-->
 </resources>

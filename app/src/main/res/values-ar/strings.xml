@@ -303,7 +303,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليمين على أي رسالة للرد بسرعة</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ملفات الوسائط المرسلة كمشاهدة لمرة واحدة تحذف تلقائيا بعد ارسالها</string>
-  <string name="ConversationFragment_you_already_viewed_this_message">سبق وأن شاهدت هذه الرسالة</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">لقد سبق لك رؤية هذه الرسالة</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">يمكنك إضافة ملاحظات خاصة بك في هذه المحادثة.
 إن كان حسابك متصلا بأجهزة أخرى، ستتم مزامنة الملاحظات معها.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d عضوا بالمجموعة لهم نفس اﻻسم.</string>
@@ -457,9 +457,9 @@
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائم في الاتصال ب Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">لم يتمكن Signal من التسجيل عبر خدمات Google Play، وتم تعطيل رسائل ومكالمات Signal. الرجاء محاولة إعادة التسجيل عبر قائمة الإعدادات &gt; ثم اختيار متقدم.</string>
   <!--GiphyActivity-->
-  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطأ أثناء جلب كامل دقة صورة GIF</string>
+  <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">حدث خطأ أثناء جلب صورة متحركة ذات الدقة العالية</string>
   <!--GiphyFragmentPageAdapter-->
-  <string name="GiphyFragmentPagerAdapter_gifs">صور GIF</string>
+  <string name="GiphyFragmentPagerAdapter_gifs">الصور المتحركة</string>
   <string name="GiphyFragmentPagerAdapter_stickers">الملصقات</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">إضافة العضو؟</string>
@@ -1295,27 +1295,27 @@
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">أدخل عبارة سرية جديدة!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ربط هذا الجهاز؟</string>
-  <string name="DeviceProvisioningActivity_continue">استمر</string>
+  <string name="DeviceProvisioningActivity_continue">الاستمرار</string>
   <string name="DeviceProvisioningActivity_content_intro">سوف يتمكن من </string>
   <string name="DeviceProvisioningActivity_content_bullets">
 • قراءة جميع الرسائل
-\n• أرسل رسائل باسمك</string>
+\n• إرسال الرسائل باسمك</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط جهاز جديد…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">يجري ربط الجهاز الجديد…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">تمت المصادقة على الجهاز.</string>
-  <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
+  <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على أي جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
-  <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز غير سليم.</string>
-  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذراً، العديد من أجهزتك مربوطة. يرجى إزالة بعضها</string>
+  <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز باطل.</string>
+  <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك عدة أجهزة مرتبطة. يرجى إزالة بعضها</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">الربط بجهاز Signal؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط جهاز Signal باستخدام ماسح ضوئي من طرف ثالث. الرجاء مسح الرمز مرّة  أخرى باستخدام Signal من أجل حمايتك.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج Signal إلى إذن الكاميرا من أجل مسح رمز الاستجابة السريع أو QR ولكن تم إيقاف الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق، اختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل مسح الرمز المربع ضوئيا ولكن رُفض الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق، ثم اختيار « الصلاحيات »، ثم تفعيل « الكاميرا ».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح رمز الاستجابة السريع بدون منح إذن الوصول إلى الكاميرا</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">الرسائل المختفية</string>
-  <string name="ExpirationDialog_your_messages_will_not_expire">صلاحية رسائلك لن تنتهي.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">الرسائل الصادرة والواردة في هذه المحادثة سوف تختفي بعد %s من رؤيتها.</string>
+  <string name="ExpirationDialog_your_messages_will_not_expire">لن تختفي رسائلك.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">من الآن فصاعدا سوف تختفي الرسائل الصادرة والواردة في هذه المحادثة بعد %s من رؤيتها.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">حدِّث الآن</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">تنتهي اليوم صلاحية إصدار Signal. يُرجى اللمس لتثبيت آخر نسخة من التطبيق.</string>
@@ -1498,9 +1498,9 @@
   <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
   <string name="RevealableMessageView_media">الوسائط</string>
   <!--Search-->
-  <string name="SearchFragment_no_results">لم يتم العثور على أية نتيجة لـ \'%s\'</string>
+  <string name="SearchFragment_no_results">لم يتم العثور على أي نتيجة لـ \'%s\'</string>
   <string name="SearchFragment_header_conversations">المحادثات</string>
-  <string name="SearchFragment_header_contacts">جهات الإتصال</string>
+  <string name="SearchFragment_header_contacts">جهات الاتصال</string>
   <string name="SearchFragment_header_messages">الرسائل</string>
   <!--ShakeToReport-->
   <!--SharedContactDetailsActivity-->
@@ -1941,11 +1941,11 @@
     <item quantity="other">%d آخرون</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في صور GIF والملصقات</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">ابحث في الصور المتحركة والملصقات</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">لم نعثر على شيء</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتّى يتمكن المساهمون من مشاهدته. يُمكنك فحصه أو تعديله قبل تقديمه.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">سيتم نشر هذا السّجل علناً حتى يتمكن المساهمون من مشاهدته. يُمكنك فحصه أو تعديله قبل تقديمه.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">ألديك الرغبة في استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المُعمَّاة ؟</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">لن يتم تغيير قاعدة البيانات الأساسية بأي طريقة.</string>
@@ -2713,6 +2713,7 @@
   <string name="ShareActivity__share">مشاركة</string>
   <string name="ShareActivity__send">أرسل</string>
   <string name="ShareActivity__s_comma">‏%1$s,‏</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">إن  خيار إعادة التوجيه نحو عدة محادثات مدعوم فقط مع رسائل Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">فشل اﻹرسال إلى بعض المستخدمين.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">يمكنك فقط مشاركة ما لا يزيد عن %1$d محادثات.</string>

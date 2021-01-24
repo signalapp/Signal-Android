@@ -2467,6 +2467,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ShareActivity__share">Partajați</string>
   <string name="ShareActivity__send">Trimiteți</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Distribuirea la conversații multiple este disponibilă doar pentru mesaje Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Trimiterea către unii utilizatori nu a reușit</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puteți distribui până la %1$d conversații</string>

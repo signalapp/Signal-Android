@@ -637,7 +637,7 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">Nombre de perfil</string>
   <string name="ManageProfileFragment_username">Alias (nombre de usuari@)</string>
-  <string name="ManageProfileFragment_about">Detalles</string>
+  <string name="ManageProfileFragment_about">Biografía</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti</string>
   <string name="ManageProfileFragment_your_name">Tu nombre</string>
   <string name="ManageProfileFragment_your_username">Alias (nombre de usuari@)</string>
@@ -1699,7 +1699,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="CreateProfileActivity__create_a_username">Crear alias (nombre de usuari@)</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Los nombres e imágenes de grupos MMS sólo son visibles para ti.</string>
   <!--EditAboutFragment-->
-  <string name="EditAboutFragment_about">Detalles</string>
+  <string name="EditAboutFragment_about">Biografía</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
   <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Habla con libertad</string>
@@ -2388,6 +2388,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir en múltiples chats sólo funciona con mensajes de Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallo al enviar a algunas personas</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartir con un máximo de %1$d chats</string>

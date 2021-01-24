@@ -666,7 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Wycisz powiadomienia</string>
   <string name="ManageGroupActivity_custom_notifications">Niestandardowe powiadomienia</string>
   <string name="ManageGroupActivity_mentions">Wzmianki</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Tapeta rozmowy</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Tapeta czatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Wyłączone</string>
   <string name="ManageGroupActivity_on">Włączone</string>
@@ -713,7 +713,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ta osoba jest w Twoich kontaktach</string>
   <string name="ManageRecipientActivity_disappearing_messages">Znikające wiadomości</string>
   <string name="ManageRecipientActivity_chat_color">Kolor czatu</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Tapeta rozmowy</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Tapeta czatu</string>
   <string name="ManageRecipientActivity_block">Zablokuj</string>
   <string name="ManageRecipientActivity_unblock">Odblokuj</string>
   <string name="ManageRecipientActivity_view_safety_number">Zobacz numer bezpieczeństwa</string>
@@ -2028,7 +2028,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__dark_theme">Ciemny</string>
   <string name="preferences__appearance">Wygląd</string>
   <string name="preferences__theme">Motyw</string>
-  <string name="preferences__chat_wallpaper">Tapeta rozmowy</string>
+  <string name="preferences__chat_wallpaper">Tapeta</string>
   <string name="preferences__disable_pin">Wyłącz PIN</string>
   <string name="preferences__enable_pin">Włącz PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jeśli wyłączysz PIN, przy ponownej rejestracji Signal stracisz wszystkie dane, chyba że ręcznie wykonasz i przywrócisz kopię zapasową. Gdy PIN jest wyłączony, nie możesz włączyć blokady rejestracji.</string>
@@ -2544,13 +2544,14 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ShareActivity__share">Udostępnij</string>
   <string name="ShareActivity__send">Wyślij</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Udostępnianie w wielu rozmowach jest obsługiwane tylko dla wiadomości Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Nie udało się wysłać do niektórych użytkowników</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Możesz udostępnić maksymalnie w %1$d rozmowach</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Przekaż wiadomość</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta rozmowy</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Tapeta czatu</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Ustaw tapetę</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Ciemny motyw przyciemnia tapetę</string>

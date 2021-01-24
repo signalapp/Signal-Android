@@ -390,6 +390,7 @@
   <string name="GroupCallingMegaphone__introducing_group_calls">ସାମୁହିକ କଲ୍ ର ପରିଚୟ</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">ଏକ ମାଗଣା ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ସାମୁହିକ କଲ୍ ଆରମ୍ଭ କରିବାକୁ ଏକ ନୂତନ ଗୋଷ୍ଠୀ ଖୋଲନ୍ତୁ</string>
   <!--DozeReminder-->
+  <string name="DozeReminder_optimize_for_missing_play_services">ଅନୁପଲବ୍ଧ ପ୍ଲେ ସର୍ଭିସ ପାଇଁ ଅନୂକୁଳନ କରନ୍ତୁ</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ଏହି ଉପକରଣ ପ୍ଲେ ସର୍ଭିସ୍ କୁ ସମର୍ଥନ କରେନାହିଁ | ସିଷ୍ଟମ୍ ବ୍ୟାଟେରୀ ଅନୁକୂଲନ ଅକ୍ଷମ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ ଯାହା ନିଷ୍କ୍ରିୟ ଥିବା ସମୟରେ Signal ବାର୍ତ୍ତା ପୁନରୁଦ୍ଧାରରୁ ରୋକିଥାଏ</string>
   <!--ExpiredBuildReminder-->
   <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal ର ଏହି ସଂସ୍କରଣର ସମୟ ସମାପ୍ତ ହୋଇଛି | ବାର୍ତ୍ତା ପଠାଇବା ଏବଂ ଗ୍ରହଣ କରିବା ପାଇଁ ବର୍ତ୍ତମାନ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
@@ -601,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">ବିଜ୍ଞପ୍ତି ମ୍ୟୁଟ୍ କରନ୍ତୁ</string>
   <string name="ManageGroupActivity_custom_notifications">କଷ୍ଟମ୍ ବିଜ୍ଞପ୍ତି</string>
   <string name="ManageGroupActivity_mentions">ଉଲ୍ଲେଖ</string>
+  <string name="ManageGroupActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <string name="ManageGroupActivity_until_s">%1$s ପର୍ଯ୍ୟନ୍ତ</string>
   <string name="ManageGroupActivity_off">ବନ୍ଦ</string>
   <string name="ManageGroupActivity_on">ଚାଲୁ</string>
@@ -633,13 +635,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">ସର୍ବଦା ମୋତେ ଜଣାନ୍ତୁ</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">ମୋତେ ଜଣାନ୍ତୁ ନାହିଁ</string>
   <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">ପ୍ରୋଫାଇଲ୍ ନାମ</string>
   <string name="ManageProfileFragment_username">ବ୍ୟବହାରିକ ନାମ</string>
   <string name="ManageProfileFragment_about">ବିଷୟରେ</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">ନିଜ ବିଷୟରେ କିଛି ଲେଖନ୍ତୁ</string>
+  <string name="ManageProfileFragment_your_name">ଆପଣଙ୍କ ନାମ</string>
+  <string name="ManageProfileFragment_your_username">ଆପଣଙ୍କ ବ୍ୟବହାରିକ ନାମ</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">ଅବତାର ସେଟ୍ କରିବାରେ ବିଫଳ</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">ସିଷ୍ଟମ୍ ଯୋଗାଯୋଗରେ ଯୋଡ଼ନ୍ତୁ</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">ଏହି ବ୍ୟକ୍ତି ଆପଣଙ୍କ ଯୋଗାଯୋଗରେ ଅଛନ୍ତି</string>
   <string name="ManageRecipientActivity_disappearing_messages">ଉଭାନ ହୋଇଯାଉଥିବା ବାର୍ତ୍ତାଗଡ଼ିକ</string>
   <string name="ManageRecipientActivity_chat_color">ଚାଟ୍ ରଙ୍ଗ</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <string name="ManageRecipientActivity_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="ManageRecipientActivity_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="ManageRecipientActivity_view_safety_number">ସୁରକ୍ଷା ନମ୍ବର ଦେଖନ୍ତୁ</string>
@@ -791,6 +799,10 @@
   <string name="MediaOverviewActivity_Grid_view_description">ଗ୍ରୀଡ଼୍ ଭିଉ</string>
   <string name="MediaOverviewActivity_List_view_description">ତାଲିକା ଭିଉ</string>
   <string name="MediaOverviewActivity_Selected_description">ମନୋନୀତ</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">ମନୋନୀତ %1$dଟିଏ, ଆକାର %2$s</item>
+    <item quantity="other">ମନୋନୀତ %1$dଟି, ଆକାର %2$s </item>
+  </plurals>
   <plurals name="MediaOverviewActivity_d_items">
     <item quantity="one">%1$dଟେ ଆଇଟମ୍</item>
     <item quantity="other">%1$dଟି ଆଇଟମ୍</item>
@@ -940,6 +952,8 @@
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">ଆପଣ ଗୋଷ୍ଠୀକୁ ନିମନ୍ତ୍ରଣ ଗ୍ରହଣ କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_accepted_invite">%1$s ଗୋଷ୍ଠୀକୁ ଗୋଟେ ନିମନ୍ତ୍ରଣ ଗ୍ରହଣ କରିଛନ୍ତି</string>
+  <string name="MessageRecord_you_added_invited_member_s">ଆପଣ ଆମନ୍ତ୍ରିତ %1$sଙ୍କୁ ଯୋଡ଼ିଲେ</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s ଆମନ୍ତ୍ରିତ%2$sଙ୍କୁ ଯୋଡ଼ିଲେ</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">ଆପଣ ଗୋଷ୍ଠୀ ନାମକୁ \"%1$s\" କୁ ପରିବର୍ତ୍ତନ କରିଛନ୍ତି</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ଗୋଷ୍ଠୀ ନାମକୁ \"%2$s\"  କୁ ପରିବର୍ତ୍ତନ କଲେ</string>
@@ -1301,6 +1315,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ଏହି URLର ନକଲ କରନ୍ତୁ ଏବଂ ଏହାକୁ ଆପଣଙ୍କର ଅସୁବିଧା ରିପୋର୍ଟରେ କିମ୍ବା ସମର୍ଥନ ଇମେଲରେ ଯୋଗ କରନ୍ତୁ:<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">ଶୋଧନ:</string>
   <string name="SupportEmailUtil_device_info">ଉପକରଣ ସୂଚନା</string>
   <string name="SupportEmailUtil_android_version">ଆଣ୍ଡ୍ରଏଡ୍ ସଂସ୍କରଣ:</string>
   <string name="SupportEmailUtil_signal_version">Signal ସଂସ୍କରଣ:</string>
@@ -1680,12 +1695,24 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">କଷ୍ଟମ୍ MMS ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି କେବଳ ଆପଣଙ୍କୁ ଦୃଶ୍ୟମାନ ହେବ</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ବିଷୟରେ</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">ନିଜ ବିଷୟରେ କିଛି ଲେଖନ୍ତୁ…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">ମୁକ୍ତ ଭାବେ କୁହନ୍ତୁ</string>
+  <string name="EditAboutFragment_encrypted">ଏନକ୍ରିପ୍ଟ ହୋଇଛି</string>
+  <string name="EditAboutFragment_be_kind">ଦୟାଳୁ ହୁଅନ୍ତୁ</string>
+  <string name="EditAboutFragment_coffee_lover">କଫି ପ୍ରେମୀ</string>
+  <string name="EditAboutFragment_free_to_chat">ଉପଲବ୍ଧ</string>
+  <string name="EditAboutFragment_taking_a_break">ଗୋଟେ ବିରତି ନିଆହଉଛି</string>
+  <string name="EditAboutFragment_working_on_something_new">କୌଣସି ଗୋଟେ ନୂଆ ଜିନିଷରେ କାମ କରନ୍ତୁ</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">ଗୋଷ୍ଠୀ ନାମ ଏବଂ ଛବି ସଂପାଦନ କରନ୍ତୁ</string>
   <string name="EditProfileFragment__group_name">ଗୋଷ୍ଠୀ ନାମ</string>
   <!--EditProfileNameFragment-->
+  <string name="EditProfileNameFragment_your_name">ଆପଣଙ୍କ ନାମ</string>
+  <string name="EditProfileNameFragment_first_name">ପ୍ରଥମ ନାମ</string>
   <string name="EditProfileNameFragment_last_name_optional">ଶେଷ ନାମ (ବୈକଳ୍ପିକ)</string>
   <string name="EditProfileNameFragment_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">ନେଟୱର୍କ ସମସ୍ୟା ହେତୁ ସଞ୍ଚୟ କରିବାରେ ବିଫଳ | ପରେ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">ଅଂଶୀଦାର ହେଇଥିବା ମିଡିଆ</string>
   <!--recipients_panel-->
@@ -1858,6 +1885,7 @@
   <string name="preferences__dark_theme">ଅନ୍ଧାର</string>
   <string name="preferences__appearance">ଦୃଶ୍ୟ</string>
   <string name="preferences__theme">ଥିମ୍</string>
+  <string name="preferences__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <string name="preferences__disable_pin">ପିନ୍ ଅକ୍ଷମ କରନ୍ତୁ</string>
   <string name="preferences__enable_pin">ପିନ୍ ସକ୍ଷମ କରନ୍ତୁ</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">ଯଦି ଆପଣ ପିନ୍ କୁ ଅକ୍ଷମ କରନ୍ତି,ଯଦି ଆପଣ ମାନୁଆଲ ବ୍ୟାକଅପ୍ ଏବଂ ପୁନଃସ୍ଥାପନ ନକରନ୍ତି ଆପଣ Signal ପୁନଃପଞ୍ଜିକରଣ କରିବାବେଳେ ଆପଣ ସମସ୍ତ ତଥ୍ୟ ହରାଇବେ | ପିନ୍ ଅକ୍ଷମ ଥିବାବେଳେ ଆପଣ ପଞ୍ଜିକରଣ ତାଲା ଚାଲୁ କରିପାରିବେ ନାହିଁ</string>
@@ -1876,6 +1904,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">ଯଦି ପଠନ ରସିଦ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ପଠନ ରସିଦ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
   <string name="preferences__typing_indicators">ଟାଇପ୍ ସୂଚକ</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ଯଦି ଟାଇପ୍ ସୂଚକ ଅକ୍ଷମ ହୋଇଛି, ଆପଣ ଅନ୍ୟମାନଙ୍କଠାରୁ ଟାଇପ୍ ସୂଚକ ଦେଖିବାକୁ ସମର୍ଥ ହେବେ ନାହିଁ</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">ବ୍ୟକ୍ତିଗତ ଶିକ୍ଷଣକୁ ଅକ୍ଷମ କରିବାକୁ କୀବୋର୍ଡ୍ ଅନୁରୋଧ | ଏହି ସେଟିଂ ଏକ ଗ୍ୟାରେଣ୍ଟି ନୁହେଁ, ଏବଂ ଆପଣଙ୍କର କୀବୋର୍ଡ୍ ଏହାକୁ ଅଣଦେଖା କରିପାରେ</string>
   <string name="preferences_app_protection__blocked_users">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ</string>
   <string name="preferences_chats__when_using_mobile_data">ମୋବାଇଲ୍ ଡାଟା ବ୍ୟବହାର କରିବାବେଳେ</string>
   <string name="preferences_chats__when_using_wifi">ୱାଇ-ଫାଇ ବ୍ୟବହାର କରିବାବେଳେ</string>
@@ -2353,16 +2382,44 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="ShareActivity__send">ପଠାନ୍ତୁ</string>
+  <string name="ShareActivity__s_comma">%1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">ଏକାଧିକ ବାର୍ତ୍ତାଳାପରେ ଅଂଶୀଦାର କରିବା କେବଳ Signal ବାର୍ତ୍ତା ପାଇଁ ସମର୍ଥିତ</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">କିଛି ଉପଭୋକ୍ତାଙ୍କୁ ପଠାଇବାରେ ବିଫଳ</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">ଆପଣ କେବଳ %1$dଟି ବାର୍ତ୍ତାଳାପ ସହିତ ଅଂଶୀଦାର କରିପାରିବେ</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">ବାର୍ତ୍ତା ଅଗ୍ରଗାମୀ କରନ୍ତୁ</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">ବାର୍ତ୍ତା କାନ୍ଥଛବି</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">ଅନ୍ଧାର ଥିମ୍ କାନ୍ଥଛବିକୁ ଅନ୍ଧାରୁଆ କରିଦିଏ</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">କାନ୍ଥଛବି ହଟାନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">ଏହି ବାର୍ତ୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ହଟାନ୍ତୁ?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">କାନ୍ଥଛବି ହଟାନ୍ତୁ? ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ କରିଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବିଗୁଡିକୁ ଏହା ସଫା କରିବ ନାହିଁ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃନିର୍ଦ୍ଧାରିତ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">ଆପଣଙ୍କ ବାର୍ତ୍ତାଳାପ ପାଇଁ ସେଟ୍ ହୋଇଥିବା କଷ୍ଟମ୍ କାନ୍ଥଛବି ସମେତ ସମସ୍ତ କାନ୍ଥଛବି ପୁନଃସେଟ୍ କରନ୍ତୁ? </string>
+  <string name="ChatWallpaperFragment__contact_name">ସମ୍ପର୍କର ନାମ</string>
   <string name="ChatWallpaperFragment__reset">ରିସେଟ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__clear">ସଫା କରନ୍ତୁ</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">କାନ୍ଥଛବି ପୂର୍ବାବଲୋକନ</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">ଛବି ସଂଗ୍ରହରୁ ବାଛନ୍ତୁ</string>
+  <string name="ChatWallpaperSelectionFragment__presets">ପୂର୍ବନିର୍ଦ୍ଧାରିତ</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">ପୂର୍ବାବଲୋକନ</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">ଅଧିକ କାନ୍ଥଛବିଙ୍କର ପୂର୍ବାବଲୋକନ ପାଇଁ ସ୍ୱାଇପ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ସମସ୍ତ ବାର୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ଆପଣଙ୍କର ଗ୍ୟାଲେରୀ ଦେଖିବା ପାଇଁ ସଂରକ୍ଷଣ ଅନୁମତି ଆବଶ୍ୟକ</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">କାନ୍ଥଛବି ବାଛନ୍ତୁ</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">ବଡ଼ିକରଣ ପାଇଁ ପିଞ୍ଚ କରନ୍ତୁ, ବାଗେଇବାକୁ ଏପଟ ସେପଟ କରନ୍ତୁ</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">ସମସ୍ତ ବାର୍ତାଳାପ ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s ପାଇଁ କାନ୍ଥଛବି ସେଟ୍ କରନ୍ତୁ</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">କାନ୍ଥଛବି ସେଟ୍ କରିବାରେ ତ୍ରୁଟି</string>
+  <string name="WallpaperCropActivity__blur_photo">ଛବି ଅସ୍ପଷ୍ଟ କରନ୍ତୁ</string>
   <!--EOF-->
 </resources>

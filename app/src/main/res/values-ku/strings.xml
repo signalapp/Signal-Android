@@ -59,7 +59,7 @@
   <string name="AttachmentKeyboard_give_access">Destûrê bide</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ji bo bijartina medyayê sepan nayê dîtin.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, ji bo tevlîkirina wêne, vidyo yan jî dengan destûra Bîrgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe, biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrgeh\"ê çalak bike.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, ji bo tevlîkirina wêne, vîdyo yan jî dengan destûra Bîrgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe, biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrgeh\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, ji bo tevllîkirina agahiyên têkiliyê destûra Navnivîskê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Navnivîsk\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, ji bo tevllîkirina agahiya cîgehê destûra Cîgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Cîgeh\"ê çalak bike.</string>
   <!--AttachmentUploadJob-->
@@ -1722,7 +1722,7 @@
   <string name="preferences__dark_theme">Tarî</string>
   <string name="preferences__appearance">Xuyang</string>
   <string name="preferences__theme">Rûkar</string>
-  <string name="preferences__chat_wallpaper">Wêneyê dîwêr ê gotûbêjê</string>
+  <string name="preferences__chat_wallpaper">Paşrûya gotûbêjê</string>
   <string name="preferences__disable_pin">PIN\'ê neçalak bike</string>
   <string name="preferences__enable_pin">PIN\'ê çalak bike</string>
   <string name="preferences__system_default">Jixwebera sîstemê</string>
@@ -2188,7 +2188,9 @@
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Paşrûyê saz bike</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Rûkara tarî paşrûyê reş dike</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê paqij bike</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê rake</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ji bo vê gotûbêjê paşrûyê rake?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Paşrûyê rake? Ev dê paşrûyên taybet ên ku te ji bo gotûbêjên xwe saz kirine raneke.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan paqij bike</string>
   <string name="ChatWallpaperFragment__contact_name">Navê kesî</string>
   <string name="ChatWallpaperFragment__reset">Reset bike</string>
@@ -2200,6 +2202,8 @@
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Pêşdîtin</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Paşrûyê saz bike</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Ji bo pêşdîtina paşrûyên zêdetir, bişemitîne</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ji bo hemû gotûbêjan paşrûyê saz bike</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ji bo %1$s\'ê paşrûyê saz bike</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ji bo nîşandana galeriya te, destûra bîrgehê hewce ye.</string>
   <!--WallpaperImageSelectionActivity-->
