@@ -2386,6 +2386,7 @@
   <string name="ShareActivity__share">اشتراک‌گذاری</string>
   <string name="ShareActivity__send">ارسال</string>
   <string name="ShareActivity__s_comma">، %1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">اشتراک گذاری به چند گفتگو فقط برای پیام های سیگنال پشتیبانی میشود</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ارسال به برخی کاربران موفق نبود</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">شما می‌توانید نهایتاً با %1$d گفتگو به اشتراک بگذارید</string>

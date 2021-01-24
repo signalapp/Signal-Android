@@ -1497,6 +1497,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="WebRtcCallScreen__answer_without_video">Err war avidyu</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Tuffɣa n umeslaw</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Timejjatin n tilifun</string>
   <string name="WebRtcAudioOutputToggle__speaker">Imsiwel</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Err ɣef usiwel</string>
@@ -2379,6 +2380,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="ShareActivity__share">Bḍu</string>
   <string name="ShareActivity__send">Azen</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Beṭṭu ɣer waṭas n yidiwenniyen yettusefrak kan i yiznan n Signal.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Tuzna i kra n yiseqdacen ur teddi ara</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Tzemreḍ kan ad tebḍuḍ alamma %1$d n yidiwenniyen</string>
@@ -2415,5 +2417,6 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Sbadu agilal n ugdil i meṛṛa idiwenniyen.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Sbadu agilal n ugdil i %s</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Tuccḍa deg usbadu n ugilal n ugdil.</string>
+  <string name="WallpaperCropActivity__blur_photo">Tawlaft yerwin</string>
   <!--EOF-->
 </resources>

@@ -1842,7 +1842,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="EditAboutFragment_be_kind">Prijaznost, pliz!</string>
   <string name="EditAboutFragment_coffee_lover">Za kofetek!</string>
   <string name="EditAboutFragment_free_to_chat">Za debato!</string>
-  <string name="EditAboutFragment_taking_a_break">Možgani \"na off\"</string>
+  <string name="EditAboutFragment_taking_a_break">Možgani na off</string>
   <string name="EditAboutFragment_working_on_something_new">Delam na nečem …</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Uredi ime in fotografijo skupine</string>
@@ -2543,6 +2543,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ShareActivity__share">Deli</string>
   <string name="ShareActivity__send">Pošlji</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Deljenje med večimi pogovori je možno samo za sporočila Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Pošiljanje nekaterim uporabnikom/cam ni uspelo</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Pošljete lahko največ %1$d pogovorom</string>

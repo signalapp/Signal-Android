@@ -599,7 +599,7 @@
   <string name="ManageGroupActivity_block_group">குழுவைத் தடு</string>
   <string name="ManageGroupActivity_unblock_group">குழுவைத் தடைநீக்கு</string>
   <string name="ManageGroupActivity_leave_group">குழுவிலுருந்து விலகு</string>
-  <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
+  <string name="ManageGroupActivity_mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <string name="ManageGroupActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageGroupActivity_mentions">பெயர் குறிப்பிடுவது</string>
   <string name="ManageGroupActivity_chat_wallpaper">அரட்டை பின்னணிப்படம்</string>
@@ -631,7 +631,7 @@
   <string name="ManageGroupActivity_invite_now">இப்போது அழைக்கவும்</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">முடக்கிய அரட்டைகளில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ஒலியடக்கிய அரட்டைகளில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">எப்போதும் எனக்கு அறிவிக்கவும்</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">எனக்கு அறிவிக்க வேண்டாம்</string>
   <!--ManageProfileFragment-->
@@ -651,7 +651,7 @@
   <string name="ManageRecipientActivity_block">தடு </string>
   <string name="ManageRecipientActivity_unblock">தடைநீக்கு </string>
   <string name="ManageRecipientActivity_view_safety_number">பாதுகாப்பு எண்ணைக் காண்பி</string>
-  <string name="ManageRecipientActivity_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
+  <string name="ManageRecipientActivity_mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <string name="ManageRecipientActivity_custom_notifications">தனிப்பயன் அறிவிப்புகள்</string>
   <string name="ManageRecipientActivity_until_s">%1$s வரை</string>
   <string name="ManageRecipientActivity_off">அணை</string>
@@ -870,7 +870,7 @@
   <string name="MessageRecord_missed_video_call_date">தவறவிட்ட வீடியோ அழைப்பு . %1$s</string>
   <string name="MessageRecord_s_updated_group">%s குழு புதுப்பிக்கப்பட்டது .</string>
   <string name="MessageRecord_s_called_you_date">%1$sஉங்களை அழைத்தார்%2$s</string>
-  <string name="MessageRecord_s_joined_signal">%s Signal லில் உள்ளது!</string>
+  <string name="MessageRecord_s_joined_signal">%s Signal-இல் உள்ளார்!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">காணாமல் போகும் செய்திகளை முடக்கியுள்ளீர்கள்.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ஆல் காணாமல் போகும் செய்திகள் முடக்கப்பட்டது .</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">காணாமல் போகும் செய்திகளின் நேரத்தை %1$s ஆக அமைத்துள்ளீர்கள்.</string>
@@ -1340,7 +1340,7 @@
   <string name="ThreadRecord_view_once_media">காண்க-ஒருமுறை ஊடகம் </string>
   <string name="ThreadRecord_this_message_was_deleted">இந்த செய்தி இருந்தது நீக்கப்பட்டது</string>
   <string name="ThreadRecord_you_deleted_this_message">இந்த செய்தியை நீக்கிவிட்டீர்கள்.</string>
-  <string name="ThreadRecord_s_is_on_signal">%s Signal உள்ளது!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s Signal-இல் உள்ளார்!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">காணாமல் போகும் செய்திகள் முடக்கப்பட்டது</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">காணாமல் போகும் செய்திகளின் நேரம் %s ஆக அமைக்கப்பட்டுள்ளது</string>
   <string name="ThreadRecord_safety_number_changed">பாதுகாப்பு எண் மாறிவிட்டது</string>
@@ -1378,8 +1378,8 @@
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் %1$d மற்றும் %2$d  எழுத்துக்களுக்கு இடையில் இருக்க வேண்டும்.</string>
   <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signal-லில் உள்ள பயனர்பெயர்கள் விருப்பத்தேர்வானவை. பயனர்பெயரை உருவாக்க நீங்கள் தேர்வு செய்தால், பிற Signal பயனர்கள் இந்த பயனர்பெயர் மூலம் உங்களை கண்டுபிடித்து, உங்கள் தொலைபேசி எண்ணை அறியாத வகையில் உங்களை தொடர்பு கொள்ள முடியும்.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-    <item quantity="one">%d contact is on Signal!</item>
-    <item quantity="other">%d தொடர்புகள் Signal இல் உள்ளன</item>
+    <item quantity="one">%d தொடர்பு Signal-இல் உள்ளார்!</item>
+    <item quantity="other">%d தொடர்புகள் Signal-இல் உள்ளார்கள்!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறார். உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
@@ -1400,7 +1400,7 @@
   <string name="MmsMessageRecord_bad_encrypted_mms_message">தவறாக மறையாக்கப்பட்ட MMS செய்தி</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு மறையாக்கப்பட்ட MMS செய்தி </string>
   <!--MuteDialog-->
-  <string name="MuteDialog_mute_notifications">அறிவிப்பை ஊமையாக்கு </string>
+  <string name="MuteDialog_mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <!--ApplicationMigrationService-->
   <string name="ApplicationMigrationService_import_in_progress">இறக்குமதி முன்னேறுகிறது </string>
   <string name="ApplicationMigrationService_importing_text_messages">குறுஞ்செய்திகளை இறக்குமதி செய்யப்படுகிறது.</string>
@@ -1789,11 +1789,11 @@
   <!--arrays.xml-->
   <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
   <string name="arrays__use_custom">விருப்பம் பயன்படுத்தவும்</string>
-  <string name="arrays__mute_for_one_hour">1 மணி நேரம் முடக்கு</string>
-  <string name="arrays__mute_for_two_hours">2 மணி நேரம் முடக்கு</string>
-  <string name="arrays__mute_for_one_day">1 நாள் முடக்கு</string>
-  <string name="arrays__mute_for_seven_days">7 நாட்கள் முடக்கு</string>
-  <string name="arrays__mute_for_one_year">1 வருடம் முடக்கு</string>
+  <string name="arrays__mute_for_one_hour">1 மணி நேரம் ஒலியடக்கு</string>
+  <string name="arrays__mute_for_two_hours">2 மணி நேரம் ஒலியடக்கு</string>
+  <string name="arrays__mute_for_one_day">1 நாள் ஒலியடக்கு</string>
+  <string name="arrays__mute_for_seven_days">7 நாட்கள் ஒலியடக்கு</string>
+  <string name="arrays__mute_for_one_year">1 வருடம் ஒலியடக்கு</string>
   <string name="arrays__settings_default">அமைப்புகள் இயல்புநிலை</string>
   <string name="arrays__enabled">செயல்படுத்தப்பட்டது</string>
   <string name="arrays__disabled">முடக்கப்பட்டது</string>
@@ -1899,7 +1899,7 @@
   <string name="preferences__advanced_pin_settings">மேம்பட்ட பின் அமைப்புகள்</string>
   <string name="preferences__free_private_messages_and_calls">Signal பயனர்களுக்கு இலவச தனிப்பட்ட செய்திகள் மற்றும் அழைப்புகள்</string>
   <string name="preferences__submit_debug_log">பிழைத்திருத்த பதிவுகளை சமர்ப்பி</string>
-  <string name="preferences__delete_account">கணக்குகணக்குகணக்கு</string>
+  <string name="preferences__delete_account">கணக்கை நீக்குக</string>
   <string name="preferences__support_wifi_calling">\'WiFi அழைப்புகள்\' பொருந்தக்கூடிய முறை</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">உங்கள் சாதனம் WiFi வழியாக SMS/MMS விநியோகத்தைப் பயன்படுத்தினால் இயக்கவும் (உங்கள் சாதனத்தில் \'WiFI அழைப்பு\' இயக்கப்பட்டால் மட்டுமே இயக்கவும்)</string>
   <string name="preferences__incognito_keyboard">மறைநிலை விசைப்பலகை</string>
@@ -2023,9 +2023,9 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">பாதுகாப்பான அமர்வை மீட்டமைக்கவும்</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">ஒலித்தடையை நீக்கு</string>
+  <string name="conversation_muted__unmute">ஒலியடக்கை நீக்கு</string>
   <!--conversation_unmuted-->
-  <string name="conversation_unmuted__mute_notifications">அறிவிப்பை ஊமையாக்கு</string>
+  <string name="conversation_unmuted__mute_notifications">அறிவிப்பை ஒலியடக்கு</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">குழு அமைப்புகள்</string>
   <string name="conversation__menu_leave_group">குழுவிலுருந்து விலகு</string>
@@ -2367,7 +2367,7 @@
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">உங்கள் நீக்குகிறது கணக்கு விருப்பம்:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-  <string name="DeleteAccountFragment__delete_account">அழி கணக்கு</string>
+  <string name="DeleteAccountFragment__delete_account">கணக்கை நீக்குக</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">உங்கள் நீக்கு கணக்கு தகவல் மற்றும் சுயவிவரம் புகைப்படம்</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">உங்கள் எல்லா செய்திகளையும் நீக்கு</string>
   <string name="DeleteAccountFragment__no_country_code">இல்லை நாட்டின் குறியீடு குறிப்பிடப்பட்டுள்ளது</string>

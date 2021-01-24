@@ -15,7 +15,7 @@
   <string name="ApplicationPreferencesActivity_currently_s">ഇപ്പോൾ%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">താങ്കൾ ഒരു രഹസ്യവാക്ക് ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാക്ക് പ്രവർത്തനരഹിതമാക്കണോ?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal, സന്ദേശ അറിയിപ്പുകളെ എന്നന്നേയ്ക്കുമായി അൺലോക്കുചെയ്യും.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal സന്ദേശ അറിയിപ്പുകളെ എന്നന്നേയ്ക്കുമായി അൺലോക്കുചെയ്യും.</string>
   <string name="ApplicationPreferencesActivity_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
   <string name="ApplicationPreferencesActivity_unregistering">അൺരെജിസ്റ്റർ ചെയ്യുന്നു</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal സന്ദേശങ്ങളിൽ നിന്നും കോളുകളിൽ നിന്നും അൺരജിസ്റ്റർ ചെയ്യുന്നു…</string>
@@ -59,7 +59,7 @@
   <string name="AttachmentKeyboard_give_access">ആക്സസ് നൽകുക</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">മീഡിയ തിരഞ്ഞെടുക്കുന്നതിന് ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ചിത്രങ്ങൾ‌, ദൃശ്യങ്ങൾ‌ അല്ലെങ്കിൽ‌ ശബ്ദങ്ങൾ ബന്ധിപ്പിക്കുന്നതിന് Signal ന് സംഭരണ അനുമതി ആവശ്യമാണ്. പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണ മെനുവിൽ ചെന്ന്, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സംഭരണം\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">ചിത്രങ്ങൾ‌, ദൃശ്യങ്ങൾ‌ അല്ലെങ്കിൽ‌ ശബ്ദങ്ങൾ ബന്ധിപ്പിക്കുന്നതിന് Signal-ന് സ്റ്റോറേജ് അനുമതി ആവശ്യമാണ്. പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണ മെനുവിൽ ചെന്ന്, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറേജ് \" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">കോൺ‌ടാക്റ്റ് വിവരങ്ങൾ‌ ബന്ധിപ്പിക്കുന്നതിന് Signal-ന് കോൺ‌ടാക്റ്റുകളുടെ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണ മെനുവിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"കോൺടാക്റ്റുകൾ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ഒരു സ്ഥാനം ബന്ധിപ്പിക്കുന്നതിന് Signal-ന് ലൊക്കേഷൻ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണ മെനുവിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ലൊക്കേഷൻ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <!--AttachmentUploadJob-->
@@ -133,7 +133,7 @@
   <string name="CommunicationActions_insecure_call">സുരക്ഷിതമല്ലാത്ത കോൾ</string>
   <string name="CommunicationActions_carrier_charges_may_apply">കാരിയർ നിരക്കുകൾ ബാധകം. നിങ്ങൾ വിളിക്കുന്ന നമ്പർ Signal-ൽ രജിസ്റ്റർ ചെയ്തിട്ടില്ല. ഈ കോൾ ഇൻറർനെറ്റിലൂടെയല്ല, നിങ്ങളുടെ മൊബൈൽ കാരിയർ വഴിയാണ് നടത്തുക.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. നിങ്ങളുടെ ആശയവിനിമയം ആരെങ്കിലും തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുകയാണെന്നോ അല്ലെങ്കിൽ %2$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതാണെന്നോ ആണ് ഇതിനർത്ഥം.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. നിങ്ങളുടെ ആശയവിനിമയം ആരെങ്കിലും തടസ്സപ്പെടുത്താൻ ശ്രമിക്കുകയായിരിക്കും അല്ലെങ്കിൽ %2$s Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തന്നായിരിക്കും ഇതിനർത്ഥം.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ഈ കോൺടാക്റ്റുമായി നിങ്ങളുടെ സുരക്ഷാ നമ്പർ ഉറപ്പാക്കാം.</string>
   <string name="ConfirmIdentityDialog_accept">സ്വീകരിക്കുക</string>
   <!--ContactsCursorLoader-->
@@ -158,12 +158,11 @@
   <string name="ContactShareEditActivity_type_missing">മറ്റുള്ളവ</string>
   <string name="ContactShareEditActivity_invalid_contact">തിരഞ്ഞെടുത്ത കോൺടാക്റ്റ് അസാധുവായിരുന്നു</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് ടാപ്പുചെയ്യുക</string>
-  <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് ടാപ്പുചെയ്യുക</string>
+  <string name="ConversationItem_error_not_sent_tap_for_details">അയച്ചില്ല, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
+  <string name="ConversationItem_error_partially_not_delivered">ഭാഗികമായി അയച്ചു, വിശദാംശങ്ങൾക്ക് തൊടുക</string>
   <string name="ConversationItem_error_network_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു, സുരക്ഷിതമല്ലാത്ത പക്ഷെ പകരം ഉപയോഗിക്കാവുന്ന പ്രക്രിയയ്ക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. പകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
@@ -341,7 +340,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
   <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
   <string name="BackupsPreferenceFragment__turn_off">ഓഫ് ആക്കുക</string>
-  <string name="BackupsPreferenceFragment__to_restore_a_backup">ഒരു ബാക്കപ്പ് റീസ്റ്റോര്‍ ചെയ്യാന്‍, Signal(സിഗ്നലി)ന്റെ ഒരു പുതിയ പകർപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക. അപ്ലിക്കേഷൻ തുറന്ന്  \"റിസ്റ്റോർ ചെയ്യുക\" ടാപ്പുചെയ്യുക, തുടർന്ന് ഒരു ബാക്കപ്പ് ഫയൽ കണ്ടെത്തുക. %1$s</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">ഒരു ബാക്കപ്പ് റീസ്റ്റോര്‍ ചെയ്യാന്‍, Signal-ന്റെ ഒരു പുതിയ പകർപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക. അപ്ലിക്കേഷൻ തുറന്ന്  \"റിസ്റ്റോർ ചെയ്യുക\" ടാപ്പുചെയ്യുക, തുടർന്ന് ഒരു ബാക്കപ്പ് ഫയൽ കണ്ടെത്തുക. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <string name="BackupsPreferenceFragment__in_progress">പുരോഗതിയിൽ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ഇതുവരെ….</string>
@@ -438,7 +437,7 @@
   <string name="GroupManagement_invite_multiple_users">ഈ ഉപയോക്താക്കളെ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സ്വയമേവ  ചേർക്കാൻ കഴിയില്ല.\n\nഅവരെ അംഗത്വമെടുക്കാൻ ക്ഷണിച്ചിട്ടുണ്ട്, അവർ അത് സ്വീകരിക്കുന്നത് വരെ ഗ്രൂപ്പ് സന്ദേശങ്ങളൊന്നും കാണാൻ സാധിക്കുകയില്ല.</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">പുതിയ ഗ്രൂപ്പുകൾ എന്താണ്?</string>
-  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകല്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകള്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും നവീകരിക്കുന്നതിന് മുമ്പായി സൂക്ഷിച്ചിരിക്കുന്നു.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">ഈ ഗ്രൂപ്പിൽ വീണ്ടും ചേരുന്നതിനുള്ള ഒരു ക്ഷണം നിങ്ങൾ സ്വീകരിക്കേണ്ടതുണ്ട്, നിങ്ങൾ സ്വീകരിക്കുന്നതുവരെ ഗ്രൂപ്പ് സന്ദേശങ്ങൾ ലഭിക്കില്ല.</string>
   <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
@@ -452,7 +451,7 @@
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
-  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകല്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">പുതിയ ഗ്രൂപ്പുകൾക്ക് @സൂചനകള്‍, ഗ്രൂപ്പ് അഡ്മിനുകൾ എന്നിവ പോലുള്ള സവിശേഷതകളുണ്ട്, മാത്രമല്ല ഭാവിയിൽ കൂടുതൽ സവിശേഷതകളെ പിന്തുണയ്ക്കുകയും ചെയ്യും.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">എല്ലാ സന്ദേശ ചരിത്രവും മീഡിയയും നവീകരിക്കുന്നതിന് മുമ്പായി സൂക്ഷിച്ച് വയ്ക്കും.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">ഒരു നെറ്റ്‌വർക്ക് പിശക് നേരിട്ടു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">അപ്‌ഗ്രേഡുചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
@@ -465,7 +464,7 @@
     <item quantity="other">ഈ അംഗങ്ങൾക്ക് പുതിയ ഗ്രൂപ്പുകളിൽ‌ ചേരാൻ‌ കഴിയില്ല, മാത്രമല്ല ഈ ഗ്രൂപ്പിൽ‌ നിന്നും നീക്കംചെയ്യുകയും ചെയ്യും:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
-  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകല്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string>
+  <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="GroupsV1MigrationInitiationReminder_update_group">ഗ്രൂപ്പ് അപ്ഡേറ്റ് ചെയ്യുക</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
@@ -599,7 +598,7 @@
   <string name="ManageGroupActivity_leave_group">ഗ്രൂപ്പ് വിടുക</string>
   <string name="ManageGroupActivity_mute_notifications">അറിയിപ്പുകൾ നിശബ്ദമാക്കുക </string>
   <string name="ManageGroupActivity_custom_notifications">ഇഷ്‌ടാനുസൃത അറിയിപ്പുകൾ</string>
-  <string name="ManageGroupActivity_mentions">പരാമർശങ്ങൾ</string>
+  <string name="ManageGroupActivity_mentions">സൂചനകൾ</string>
   <string name="ManageGroupActivity_chat_wallpaper">ചാറ്റ് വാൾപേപ്പർ</string>
   <string name="ManageGroupActivity_until_s">%1$s വരെ</string>
   <string name="ManageGroupActivity_off">ഓഫ്</string>
@@ -622,13 +621,13 @@
   <string name="ManageGroupActivity_edit_name_and_picture">പേരും ചിത്രവും എഡിറ്റുചെയ്യുക</string>
   <string name="ManageGroupActivity_legacy_group">ലെഗസി ഗ്രൂപ്പ്</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">ഇതൊരു ലെഗസി ഗ്രൂപ്പാണ്. ഗ്രൂപ്പ് അഡ്മിൻ പോലുള്ള സവിശേഷതകൾ പുതിയ ഗ്രൂപ്പുകൾക്ക് മാത്രമേ ലഭ്യമാകൂ.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">ഇതൊരു ലെഗസി ഗ്രൂപ്പാണ്. @സൂചനകല്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്,</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">ഇതൊരു ലെഗസി ഗ്രൂപ്പാണ്. @സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">ഈ ലെഗസി ഗ്രൂപ്പിനെ ഒരു പുതിയ ഗ്രൂപ്പിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യാൻ കഴിയില്ല കാരണം ഇത് വളരെ വലുതാണ്. പരമാവധി ഗ്രൂപ്പ് വലുപ്പം %1$d ആണ്.</string>
   <string name="ManageGroupActivity_upgrade_this_group">ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">ഇതൊരു സുരക്ഷിതമല്ലാത്ത MMS ഗ്രൂപ്പാണ്. സ്വകാര്യമായി ചാറ്റുചെയ്യാൻ, നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
   <string name="ManageGroupActivity_invite_now">ഇപ്പോൾ ക്ഷണിക്കുക</string>
   <!--GroupMentionSettingDialog-->
-  <string name="GroupMentionSettingDialog_notify_me_for_mentions">പരാമർശങ്ങൾ എന്നെ അറിയിക്കുക</string>
+  <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">നിശബ്ദമാക്കിയ ചാറ്റുകളിൽ നിങ്ങളെ സൂചിക്കുമ്പോൾ അറിയിപ്പുകൾ ലഭിക്കണോ?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">എന്നെ അറിയിക്കുക</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">എന്നെ അറിയിക്കരുത്</string>
@@ -835,7 +834,7 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">മൾട്ടിമീഡിയ സന്ദേശം</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS സന്ദേശം ഡൗൺലോഡുചെയ്യുന്നു</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS സന്ദേശം ഡൗണ്‍ലോഡ് ചെയ്യുന്നതിൽ പിശക്, വീണ്ടും ശ്രമിക്കാൻ ടാപ്പുചെയ്യുക</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS സന്ദേശം ഡൗണ്‍ലോഡ് ചെയ്യുന്നതിൽ പിശക്, വീണ്ടും ശ്രമിക്കാൻ തൊടുക</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%s-ലേക്ക് അയയ്‌ക്കുക</string>
   <string name="MediaPickerActivity__menu_open_camera">ക്യാമറ തുറക്കുക</string>
@@ -853,7 +852,7 @@
     <item quantity="other">നിങ്ങൾക്ക് %d ഇനങ്ങളിൽ കൂടുതൽ പങ്കിടാൻ കഴിയില്ല.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">സ്വീകർത്താക്കളെ തിരഞ്ഞെടുക്കുക</string>
-  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">ഈ സന്ദേശം കണ്ടതിനുശേഷം അത് അപ്രത്യക്ഷമാകാൻ ഇവിടെ ടാപ്പുചെയ്യുക.</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">ഈ സന്ദേശം കണ്ടതിനുശേഷം അത് അപ്രത്യക്ഷമാകാൻ ഇവിടെ തൊടുക.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">എല്ലാ മീഡിയ</string>
   <string name="MediaRepository__camera">ക്യാമറ</string>
@@ -1277,7 +1276,7 @@
       സന്ദേശം കൈമാറുക!</string>
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
       അസാധുവായ പ്രോട്ടോക്കോൾ പതിപ്പിനായി കീ എക്സ്ചേഞ്ച് സന്ദേശം ലഭിച്ചു.</string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">പുതിയ സുരക്ഷാ നമ്പറുള്ള സന്ദേശം ലഭിച്ചു. പ്രോസസ്സ് ചെയ്യുന്നതിനും പ്രദർശിപ്പിക്കുന്നതിനും ടാപ്പുചെയ്യുക.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">പുതിയ സുരക്ഷാ നമ്പറുള്ള സന്ദേശം ലഭിച്ചു. പ്രോസസ്സ് ചെയ്യുന്നതിനും പ്രദർശിപ്പിക്കുന്നതിനും തൊടുക.</string>
   <string name="SmsMessageRecord_secure_session_reset">നിങ്ങൾ സുരക്ഷ-സെഷൻ പുതുക്കി.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s സുരക്ഷ-സെഷൻ പുതുക്കി.</string>
   <string name="SmsMessageRecord_duplicate_message">ഡൂപ്ലിക്കേറ്റ് സന്ദേശം</string>
@@ -1303,7 +1302,7 @@
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">തിരുത്തുക</string>
   <string name="SubmitDebugLogActivity_done">ചെയ്‌തു</string>
-  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ഇല്ലാതാക്കാൻ ഒരു വരി ടാപ്പുചെയ്യുക</string>
+  <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">ഇല്ലാതാക്കാൻ ഒരു വരി തൊടുക</string>
   <string name="SubmitDebugLogActivity_submit">സമർപ്പിക്കുക</string>
   <string name="SubmitDebugLogActivity_failed_to_submit_logs">ലോഗുകൾ സമർപ്പിക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="SubmitDebugLogActivity_success">വിജയം!</string>
@@ -1350,7 +1349,7 @@
   <string name="ThreadRecord_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal അപ്‌ഡേറ്റ്</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ന്റെ ഒരു പുതിയ പതിപ്പ് ലഭ്യമാണ്, അപ്‌ഡേറ്റ് ചെയ്യാൻ തൊടുക</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">സന്ദേശം അയക്കണോ?</string>
   <string name="UntrustedSendDialog_send">അയയ്‌ക്കുക</string>
@@ -2042,7 +2041,7 @@
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">ക്ലിപ്പ്ബോർഡുമായി താരതമ്യം ചെയ്യുക</string>
   <!--reminder_header-->
   <string name="reminder_header_sms_import_title">സിസ്റ്റം SMS ഇറക്കുമതി ചെയ്യുക</string>
-  <string name="reminder_header_sms_import_text">Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ ഫോണിലേ SMS സന്ദേശങ്ങൾ പകർത്താൻ ടാപ്പുചെയ്യുക.</string>
+  <string name="reminder_header_sms_import_text">Signal-ന്റെ എൻ‌ക്രിപ്റ്റ് ചെയ്ത ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ ഫോണിലേ SMS സന്ദേശങ്ങൾ പകർത്താൻ തൊടുക.</string>
   <string name="reminder_header_push_title">Signal സന്ദേശങ്ങളും കോളുകളും പ്രാപ്തമാക്കുക</string>
   <string name="reminder_header_push_text">നിങ്ങളുടെ ആശയവിനിമയ അനുഭവം അപ്‌ഗ്രേഡുചെയ്യു.</string>
   <string name="reminder_header_service_outage_text">Signal ചില സാങ്കേതിക പ്രശ്നങ്ങൾ നേരിടുകയാണ്.  കഴിയുന്നതും വേഗം സേവനം പുനസ്ഥാപിക്കാൻ ഞങ്ങൾ കഠിനപ്രയത്നം നടത്തുകയാണ്.</string>
@@ -2226,7 +2225,7 @@
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">നിങ്ങളുടെ ബാക്കപ്പ് ഡയറക്ടറി ഇല്ലാതാക്കി അല്ലെങ്കിൽ നീക്കി.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">ഈ വോളിയത്തിൽ സംഭരിക്കാനുംമാത്രം നിങ്ങളുടെ ബാക്കപ്പ് ഫയൽ വളരെ വലുതാണ്.</string>
   <string name="LocalBackupJobApi29_there_is_not_enough_space">നിങ്ങളുടെ ബാക്കപ്പ് സംഭരിക്കാൻ മതിയായ ഇടമില്ല.</string>
-  <string name="LocalBackupJobApi29_tap_to_manage_backups">ബാക്കപ്പുകൾ നിയന്ത്രിക്കാൻ സ്പര്‍ശിക്കുക.</string>
+  <string name="LocalBackupJobApi29_tap_to_manage_backups">ബാക്കപ്പുകൾ നിയന്ത്രിക്കാൻ തൊടുക.</string>
   <string name="ProgressPreference_d_messages_so_far">%d സന്ദേശങ്ങൾ ഇതുവരെ</string>
   <string name="RegistrationActivity_wrong_number">തെറ്റായ നമ്പർ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">പകരം എന്നെ വിളിക്കൂ \n(%1$02d:%2$02d ൽ ലഭ്യമാകും)</string>
@@ -2267,7 +2266,7 @@
   <string name="RegistrationActivity_error_connecting_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യുന്നതിൽ പിശക്</string>
   <string name="preferences_chats__backups">ബാക്കപ്പുകൾ</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal പൂട്ടിയിരിക്കുന്നു</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">അൺലോക്കുചെയ്യാൻ ടാപ്പുചെയ്യുക</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">അൺലോക്കുചെയ്യാൻ തൊടുക</string>
   <string name="Recipient_unknown">അജ്ഞാതം</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>

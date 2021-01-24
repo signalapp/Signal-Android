@@ -2467,6 +2467,7 @@ broj telefona</string>
   <string name="ShareActivity__share">Podijeli</string>
   <string name="ShareActivity__send">Pošalji</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Dijeljenje s više razgovora je podržano samo za Signal poruke</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Slanje nije uspjelo za neke korisnike</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Možete dijeliti s najviše %1$d razgovora</string>
