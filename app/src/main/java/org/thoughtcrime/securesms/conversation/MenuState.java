@@ -99,6 +99,7 @@ final class MenuState {
              .shouldShowSaveAttachmentAction(!actionMessage                                              &&
                                              !viewOnce                                                   &&
                                              messageRecord.isMms()                                       &&
+                                             !messageRecord.isMediaPending()                             &&
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
