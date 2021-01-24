@@ -339,8 +339,8 @@ public final class ConversationUpdateItem extends FrameLayout
         background.setBackground(null);
       }
     } else if (collapseBelow) {
-      ViewUtil.setTopMargin(background, paddingDefault);
-      ViewUtil.setBottomMargin(background, paddingCollapsed);
+      ViewUtil.setTopMargin(background, marginDefault);
+      ViewUtil.setBottomMargin(background, marginCollapsed);
 
       ViewUtil.setPaddingTop(background, paddingDefault);
       ViewUtil.setPaddingBottom(background, paddingCollapsed);
