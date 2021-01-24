@@ -68,7 +68,7 @@
     <color name="conversation_item_update_text_color">@color/core_grey_45</color>
     <color name="conversation_item_sent_icon_color">@color/core_grey_25</color>
     <color name="conversation_item_quote_text_color">@color/core_grey_05</color>
-    <color name="conversation_item_wallpaper_bubble_color">@color/core_black</color>
+    <color name="conversation_item_wallpaper_bubble_color">@color/core_grey_95</color>
 
     <color name="wallpaper_bubble_color">@color/transparent_black_80</color>
 
