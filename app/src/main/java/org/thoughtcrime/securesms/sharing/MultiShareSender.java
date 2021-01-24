@@ -174,7 +174,7 @@ public final class MultiShareSender {
   private static @NonNull SlideDeck buildSlideDeck(@NonNull Context context, @NonNull MultiShareArgs multiShareArgs) {
     SlideDeck slideDeck = new SlideDeck();
     if (multiShareArgs.getStickerLocator() != null) {
-      slideDeck.addSlide(buildStickerSlide(context, multiShareArgs.getStickerLocator()));
+      slideDeck.addSlide(new StickerSlide(context, multiShareArgs.getDataUri(), 0, multiShareArgs.getStickerLocator(), multiShareArgs.getDataType()));
     } else if (!multiShareArgs.getMedia().isEmpty()) {
       for (Media media : multiShareArgs.getMedia()) {
         slideDeck.addSlide(SlideFactory.getSlide(context, media.getMimeType(), media.getUri(), media.getWidth(), media.getHeight()));
@@ -184,13 +184,6 @@ public final class MultiShareSender {
     }
 
     return slideDeck;
-  }
-
-  private static @NonNull StickerSlide buildStickerSlide(@NonNull Context context, @NonNull StickerLocator stickerLocator) {
-    StickerDatabase stickerDatabase = DatabaseFactory.getStickerDatabase(context);
-    StickerRecord   stickerRecord   = stickerDatabase.getSticker(stickerLocator.getPackId(), stickerLocator.getStickerId(), false);
-
-    return new StickerSlide(context, stickerRecord.getUri(), stickerRecord.getSize(), stickerLocator, stickerRecord.getContentType());
   }
 
   public static final class MultiShareSendResultCollection {
