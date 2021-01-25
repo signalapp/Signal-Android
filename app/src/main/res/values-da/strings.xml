@@ -2388,6 +2388,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere chats understøttes kun til Signal-beskeder</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Det kunne ikke sendes til nogle brugere</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan kun dele op til %1$d chats</string>

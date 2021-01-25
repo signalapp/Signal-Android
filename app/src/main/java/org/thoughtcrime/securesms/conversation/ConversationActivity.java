@@ -2950,6 +2950,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   @Override
   public void onRecorderLocked() {
     updateToggleButtonState();
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
   }
 
   @Override
@@ -3014,6 +3015,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     vibrator.vibrate(50);
 
     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
     ListenableFuture<Pair<Uri, Long>> future = audioRecorder.stopRecording();
     future.addListener(new ListenableFuture.Listener<Pair<Uri, Long>>() {

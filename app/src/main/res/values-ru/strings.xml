@@ -2567,7 +2567,7 @@
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Предпросмотр обоев</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Выбрать из фото</string>
-  <string name="ChatWallpaperSelectionFragment__presets">Встроенные</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Предустановленные</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Предпросмотр</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Установить обои</string>

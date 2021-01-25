@@ -316,7 +316,7 @@
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Noen kontakter kan ikke eksistere i \"legacy\"-grupper.</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity__profile">Profil</string>
-  <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved largring av profilbilde</string>
+  <string name="CreateProfileActivity_error_setting_profile_photo">Feil ved lagring av profilbilde</string>
   <string name="CreateProfileActivity_problem_setting_profile">Feil ved lagring av profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilen din er ende-til-ende kryptert. Den, og endringene som gjøres, vil være søkbar for kontaktene dine, når du starter eller godtar nye samtaler, og når du blir medlem av nye grupper.</string>
@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Skru av varsler</string>
   <string name="ManageGroupActivity_custom_notifications">Egendefinerte varsler</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Samtale bakgrunn</string>
   <string name="ManageGroupActivity_until_s">Frem til %1$s</string>
   <string name="ManageGroupActivity_off">Av</string>
   <string name="ManageGroupActivity_on">På</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Profil navn</string>
   <string name="ManageProfileFragment_username">Brukernavn</string>
   <string name="ManageProfileFragment_about">Om</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Skriv noen ord om deg selv</string>
   <string name="ManageProfileFragment_your_name">Ditt navn</string>
+  <string name="ManageProfileFragment_your_username">Ditt brukernavn</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Kunne ikke lagre profilbilde</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Legg til systemkontakter</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denne personen er i kontaktlisten din</string>
   <string name="ManageRecipientActivity_disappearing_messages">Forsvinnende meldinger</string>
   <string name="ManageRecipientActivity_chat_color">Samtalefarge</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Samtale bakgrunn</string>
   <string name="ManageRecipientActivity_block">Blokker</string>
   <string name="ManageRecipientActivity_unblock">Skru av blokkering</string>
   <string name="ManageRecipientActivity_view_safety_number">Vis sikkerhetsnummer</string>
@@ -1309,6 +1314,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Kopier denne URL-en og legg den til i din feilrapport eller support-e-postadressen:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Del</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Enhetsinformasjon:</string>
   <string name="SupportEmailUtil_android_version">Android versjon</string>
   <string name="SupportEmailUtil_signal_version">Signal versjon:</string>
@@ -1689,6 +1695,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv noen ord om deg selv…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Snakk fritt</string>
+  <string name="EditAboutFragment_encrypted">Kryptert</string>
   <string name="EditAboutFragment_be_kind">Vær grei</string>
   <string name="EditAboutFragment_coffee_lover">Kaffielsker</string>
   <string name="EditAboutFragment_free_to_chat">Ledig til samtale</string>
@@ -1699,8 +1708,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Ditt navn</string>
+  <string name="EditProfileNameFragment_first_name">Fornavn</string>
   <string name="EditProfileNameFragment_last_name_optional">Etternavn (valgfritt)</string>
   <string name="EditProfileNameFragment_save">Lagre</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Kunne ikke lagre på grunn av nettverksproblemer. Prøv igjen senere.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Delte medier</string>
   <!--recipients_panel-->
@@ -1873,6 +1884,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__dark_theme">Mørk</string>
   <string name="preferences__appearance">Utseende</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Samtale bakgrunn</string>
   <string name="preferences__disable_pin">Deaktiver PIN-kode</string>
   <string name="preferences__enable_pin">Aktiver PIN-kode</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Hvis du deaktiverer PIN-koden vil du miste all informasjon når du gjennomfører Signal-registrering på nytt, med mindre du manuelt tar en sikkerhetskopi og gjenoppretter innholdet. Du kan ikke skru på registreringslås mens PIN-koden er deaktivert.</string>
@@ -1891,6 +1903,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Hvis du slår av lesebekreftelser, får du heller ikke se lesebekreftelser fra andre.</string>
   <string name="preferences__typing_indicators">Skriveindikatorer</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Hvis skriveindikatorer er deaktivert, vil du ikke kunne se skriveindikatorer fra andre.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Be om tastaturtilgang for å deaktivere personlig læring. Dette er ikke en garanti, og tastaturet ditt kan ignorere forespørselen.</string>
   <string name="preferences_app_protection__blocked_users">Blokkerte brukere</string>
   <string name="preferences_chats__when_using_mobile_data">Ved bruk av mobildata</string>
   <string name="preferences_chats__when_using_wifi">Ved bruk av Wi-Fi</string>
@@ -2368,16 +2381,44 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Del</string>
   <string name="ShareActivity__send">Send</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Deling til flere samtaler støttes kun for Signal-meldinger</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Mislyktes med å sende meldingen til noen brukere.</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kan bare dele opp til %1$d samtaler</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Videresend melding</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Samtale bakgrunn</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Sett bakgrunn</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Mørk tema dimmer bakgrunnen</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Fjern bakgrunn</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Fjern bakgrunn for denne samtalen?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Fjern bakgrunnen? Dette inkluderer ikke tilpassede bakgrunner du har angitt for samtalene dine.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Fjern alle bakgrunner</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Tilbakestille alle bakgrunner, inkludert tilpassede bakgrunner du har angitt for alle samtalene dine?</string>
+  <string name="ChatWallpaperFragment__contact_name">Kontakt navn</string>
   <string name="ChatWallpaperFragment__reset">Tilbakestill</string>
+  <string name="ChatWallpaperFragment__clear">Slett</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Forhåndsvisning av bakgrunn</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Velg fra bilder</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Forhåndsvalgte</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Forhåndsvisning</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Sett bakgrunn</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Sveip for å forhåndsvise flere bakgrunner</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Sett bakgrunn for alle samtaler</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Sett bakgrunn for %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Å se bildegalleriet krever tilgang til lagringsområdene.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Velg bakgrunn</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Klyp for å zoome, dra for å justere.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Sett bakgrunn for alle samtaler.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Sett bakgrunn for %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Feil ved lagring av bakgrunn.</string>
+  <string name="WallpaperCropActivity__blur_photo">Gjør bildet uskarpt</string>
   <!--EOF-->
 </resources>

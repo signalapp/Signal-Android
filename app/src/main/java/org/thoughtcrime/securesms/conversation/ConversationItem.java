@@ -1178,7 +1178,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     if (groupSender != null) {
       int stickerAuthorColor = ContextCompat.getColor(context, R.color.signal_text_primary);
 
-      if (shouldDrawBodyBubbleOutline(messageRecord, hasWallpaper)) {
+      if (shouldDrawBodyBubbleOutline(messageRecord, false)) {
         groupSender.setTextColor(stickerAuthorColor);
       } else if (!hasWallpaper && hasNoBubble(messageRecord)) {
         groupSender.setTextColor(stickerAuthorColor);

@@ -105,7 +105,7 @@
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
   <string name="CameraContacts_signal_contacts">Contacts Signal</string>
   <string name="CameraContacts_signal_groups">Groupes Signal</string>
-  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Vous pouvez partager avec un maximum de %d conversations.</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Vous ne pouvez partager qu’avec %d conversations, au plus</string>
   <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
   <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser le bouton Appareil photo que pour envoyer des photos à des contacts Signal.</string>
@@ -357,7 +357,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Choisir dans la galerie</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Supprimer la photo</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">L’autorisation d’accès à l’appareil photo est requise pour prendre une photo.</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">L’autorisation d’accès à la mémoire de votre appareil est requise pour afficher votre galerie.</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">L’autorisation Stockage est exigée pour afficher votre galerie.</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">À l’instant</string>
   <string name="DateUtils_minutes_ago">%d min</string>
@@ -602,7 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fond d\'écran de conversation</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de conversation</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
@@ -638,16 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nom de profil</string>
   <string name="ManageProfileFragment_username">Nom d’utilisateur</string>
   <string name="ManageProfileFragment_about">À propos</string>
-  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Rédigez quelques mots à propos de vous</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet</string>
   <string name="ManageProfileFragment_your_name">Votre nom</string>
-  <string name="ManageProfileFragment_your_username">Votre nom d\'utilisateur</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">Échec du paramètrage de l\'avatar</string>
+  <string name="ManageProfileFragment_your_username">Votre nom d’utilisateur</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Échec de définition de l’avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Ajouter aux contacts du système </string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
   <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Fond d\'écran de conversation</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran de conversation</string>
   <string name="ManageRecipientActivity_block">Bloquer</string>
   <string name="ManageRecipientActivity_unblock">Débloquer</string>
   <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string>
@@ -1311,7 +1311,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre relevé d’erreur ou à votre courriel de demande d’assistance :\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Partager</string>
   <!--SupportEmailUtil-->
-  <string name="SupportEmailUtil_filter">Filtre :</string>
+  <string name="SupportEmailUtil_filter">Filtre :</string>
   <string name="SupportEmailUtil_device_info">Renseignements sur l’appareil :</string>
   <string name="SupportEmailUtil_android_version">Version d’Android :</string>
   <string name="SupportEmailUtil_signal_version">Version de Signal :</string>
@@ -1419,7 +1419,7 @@
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nouveaux messages dans %2$d conversations</string>
   <string name="MessageNotifier_most_recent_from_s">Le plus récent de : %1$s</string>
   <string name="MessageNotifier_locked_message">Message verrouillé</string>
-  <string name="MessageNotifier_message_delivery_failed">La remise du message a échoué.</string>
+  <string name="MessageNotifier_message_delivery_failed">Échec de remise du message.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Échec de remise du message.</string>
   <string name="MessageNotifier_error_delivering_message">Erreur de remise du message.</string>
   <string name="MessageNotifier_mark_all_as_read">Tout marquer comme lu</string>
@@ -1691,9 +1691,10 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Les noms et les photos des groupes de messages multimédias personnalisés ne seront visibles que par vous.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">À propos</string>
-  <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots sur vous…</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Exprimez-vous librement</string>
+  <string name="EditAboutFragment_encrypted">Chiffré</string>
   <string name="EditAboutFragment_be_kind">Sois gentil</string>
   <string name="EditAboutFragment_coffee_lover">Amateur de café</string>
   <string name="EditAboutFragment_free_to_chat">Prêt à converser</string>
@@ -1707,6 +1708,7 @@
   <string name="EditProfileNameFragment_first_name">Prénom</string>
   <string name="EditProfileNameFragment_last_name_optional">Nom de famille (facultatif)</string>
   <string name="EditProfileNameFragment_save">Enregistrer</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Échec d’enregistrement en raison d’erreurs réseau. Veuillez réessayer plus tard.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Médias partagés</string>
   <!--recipients_panel-->
@@ -1871,7 +1873,7 @@
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Demander un relevé de remise pour chaque texto envoyé</string>
   <string name="preferences__data_and_storage">Données et mémoire</string>
   <string name="preferences__storage">Mémoire</string>
-  <string name="preferences__conversation_length_limit">Limite de taille des conversations</string>
+  <string name="preferences__conversation_length_limit">Taille maximale des conversations</string>
   <string name="preferences__keep_messages">Conserver les messages</string>
   <string name="preferences__clear_message_history">Effacer l’historique des messages</string>
   <string name="preferences__linked_devices">Appareils reliés</string>
@@ -1879,7 +1881,7 @@
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
-  <string name="preferences__chat_wallpaper">Fond d\'écran de conversation</string>
+  <string name="preferences__chat_wallpaper">Fond d’écran de conversation</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
@@ -1898,7 +1900,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si les accusés de lecture sont désactivés, vous ne pourrez pas voir les accusés de lecture d’autrui.</string>
   <string name="preferences__typing_indicators">Indicateurs de saisie</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Si les indicateurs de saisie sont désactivés, vous ne serez pas en mesure de voir les indicateurs de saisie d’autrui.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Demande au clavier de désactiver l\'apprentissage personnalisé. Ce paramètre n\'est pas une garantie, et votre clavier peut l\'ignorer.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Demander au clavier de désactiver l’apprentissage personnalisé. Ce paramètre n’est pas une garantie et votre clavier pourrait l’ignorer.</string>
   <string name="preferences_app_protection__blocked_users">Utilisateurs bloqués</string>
   <string name="preferences_chats__when_using_mobile_data">En utilisant les données mobiles</string>
   <string name="preferences_chats__when_using_wifi">En utilisant le WI-FI</string>
@@ -1925,7 +1927,7 @@
   <string name="preferences_storage__thirty_days">30 jours</string>
   <string name="preferences_storage__none">Aucune</string>
   <string name="preferences_storage__s_messages">%1$s messages</string>
-  <string name="preferences_storage__custom">Personnalisé</string>
+  <string name="preferences_storage__custom">Personnalisée</string>
   <string name="preferences_advanced__use_system_emoji">Utiliser les émojis du système</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Désactiver la prise en charge des émojis intégrés à Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relayer tous les appels par le serveur Signal pour éviter de divulguer votre adresse IP à votre contact. L’activation de cette option réduira la qualité des appels.</string>
@@ -2003,7 +2005,7 @@
   <string name="conversation_list_search_description">Chercher</string>
   <string name="conversation_list__pinned">Épinglée</string>
   <string name="conversation_list__chats">Conversations</string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Vous pouvez épingler jusqu’à %1$d conversations</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">Vous ne pouvez épingler plus de %1$d conversations</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo du contact</string>
   <string name="conversation_list_item_view__archived">Archivée</string>
@@ -2377,41 +2379,43 @@
   <string name="ShareActivity__share">Partager</string>
   <string name="ShareActivity__send">Envoyer</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Le partage vers plusieurs conversations n’est pris en charge que pour les messages Signal.</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">Échec de l\'envoi vers plusieurs utilisateurs</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vous ne pouvez partager qu\'avec au plus %1$d conversations</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Échec d’envoi vers certains utilisateurs</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Vous ne pouvez partager qu’avec %1$d conversations, au plus</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Transférer le message</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d\'écran de conversation</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de conversation</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__set_wallpaper">Définir le fond d\'écran</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre assombrit également le fond d\'écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Réinitialiser le fond d\'écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Réinitialiser le fond d\'écran pour cette conversation ?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Réinitialiser le fond d\'écran ? Cela n\'effacera pas les fonds d\'écran personnalisés que vous avez définis pour vos chats.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d\'écran</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d\'écran ainsi que les fonds d\'écrans personnalisés utilisés dans vos conversations ?</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Effacer le fond d’écran</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Effacer le fond d’écran pour cette conversation ?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Effacer le fond d’écran ? Les fonds d’écran personnalisés que vous avez définis pour vos conversations ne seront pas effacés.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d’écran</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d’écran, dont les fonds d’écran personnalisés que vous avez définis pour vos conversations ?</string>
   <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
   <string name="ChatWallpaperFragment__reset">Réinitialiser</string>
   <string name="ChatWallpaperFragment__clear">Réinitialiser</string>
-  <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d\'écran</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Aperçu du fond d’écran</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choisir parmis les photos</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choisir parmi les photos</string>
   <string name="ChatWallpaperSelectionFragment__presets">Préréglages</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Aperçu</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Définir le fond d\'écran</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Faites défiler pour avoir un aperçu d\'autres fonds d\'écran</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Définir le fond d\'écran pour toutes les conversations</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Définir le fond d\'écran pour %1$s</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">L’autorisation d’accès à la mémoire de votre appareil est requise pour afficher votre galerie.</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Définir le fond d’écran</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Faire glisser pour prévisualiser d’autres fonds d’écran</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Définir le fond d’écran pour toutes les conversations</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Définir le fond d’écran pour %1$s</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">L’autorisation Stockage est exigée pour afficher votre galerie.</string>
   <!--WallpaperImageSelectionActivity-->
-  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Choisissez l\'image de fond d\'écran</string>
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Choisissez une image de fond d’écran</string>
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pincez pour zoomer, glissez pour ajuster.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Définir le fond d\'écran pour toutes les conversations.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">Définir le fond d\'écran pour %s.</string>
-  <string name="WallpaperCropActivity__error_setting_wallpaper">Erreur de réglage du fond d\'écran.</string>
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pincer pour zoomer, glisser pour ajuster.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Définir le fond d’écran pour toutes les conversations.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Définir le fond d’écran pour %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Erreur de définition du fond d’écran.</string>
+  <string name="WallpaperCropActivity__blur_photo">Rendre la photo floue</string>
   <!--EOF-->
 </resources>

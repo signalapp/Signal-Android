@@ -59,7 +59,7 @@
   <string name="AttachmentKeyboard_give_access">Destûrê bide</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ji bo bijartina medyayê sepan nayê dîtin.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, ji bo tevlîkirina wêne, vidyo yan jî dengan destûra Bîrgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe, biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrgeh\"ê çalak bike.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal, ji bo tevlîkirina wêne, vîdyo yan jî dengan destûra Bîrgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe, biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û  \"Bîrgeh\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, ji bo tevllîkirina agahiyên têkiliyê destûra Navnivîskê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Navnivîsk\"ê çalak bike.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, ji bo tevllîkirina agahiya cîgehê destûra Cîgehê hewce dike lê ew bi awayekî mayinde hatiye redkirin. Ji kerema xwe biçe menûya sazkariyên sepanê \"Destûr\"ê bibijêre û \"Cîgeh\"ê çalak bike.</string>
   <!--AttachmentUploadJob-->
@@ -131,6 +131,7 @@
   <string name="CommunicationActions_cancel">Betal bike</string>
   <string name="CommunicationActions_call">Bigere</string>
   <string name="CommunicationActions_insecure_call">Gerîna neparastî</string>
+  <string name="CommunicationActions_carrier_charges_may_apply">Dibe ku hin mesrefê GSMê çêbibin. Numara ku hûn lê digerin li ser Signal qeydkirî nîne. Ev lêgerînê bi rêya xeta we ye telefonê bi cîhbigire, ne li ser rêya înternetê.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nimreya te ya ewlehiyê ya bi %1$s re hate guhertin. Yan yek dixwaze axiftina we qut bike yan jî belkî %2$s, Signalê ji nû ve saz dike.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Belkî tu bixwazî nimreya xwe ya ewlehiyê bi vî kesî re piştrast bikî.</string>
@@ -435,11 +436,13 @@
   </plurals>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Komên nû çi ne?</string>
+  <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Taybetmendiyên Grûpên nû yên wekî @navnîşan û rêvebirên komê hene, û dê di pêşerojê de piştgirîya  bêtir taybetmendiyan ê bêkirin.</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Berî bilindkirinê raboriya peyaman û hemû medya hatin hilanîn.</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Ji bo tu dîsa tevlî vê komê bibî divê tu vexwendinekê qebûl bikî, heta ku tu qebûl nekî tu yê peyamên komê nestînî.</string>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Bilîndî bike koma nû</string>
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">Vê komê bilind bike</string>
+  <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">  </string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Berî bilindkirinê ew ê raboriya peyaman û hemû medya bên hilanîn.</string>
   <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Çewtiyeke torê derket. Paşê dîsa biceribîne.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Bilindkirin bi ser neket.</string>
@@ -508,6 +511,7 @@
   <string name="PendingMembersActivity_people_you_invited">Kesên ku te wan vexwendine</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Ti vexwendinên li bendê tune.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Vexwendinên ji endamên din ên komê</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Tu Vexwendinên bendêmayî yên ji endamên komê ye din tunene</string>
   <string name="PendingMembersActivity_revoke_invite">Vexwendinê betal bike</string>
   <string name="PendingMembersActivity_revoke_invites">Vexwendinan betal bike</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -521,6 +525,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Daxwazên endambûnê (li bendê)</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Ti daxwazên endambûnê tune ye.</string>
+  <string name="RequestingMembersFragment_explanation">Kesên di nav vê lîstê da hewl didin ku bi riya lînka komê beşdarî vê komê bibin.</string>
   <string name="RequestingMembersFragment_added_s">\"%1$s\" hat tevlîkirin</string>
   <string name="RequestingMembersFragment_denied_s">\"%1$s\" hat redkirin</string>
   <!--AddMembersActivity-->
@@ -569,6 +574,9 @@
     <item quantity="one">%d endam hat tevlîkirin.</item>
     <item quantity="other"> %d endam hatin tevlîkirin.</item>
   </plurals>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Tenê rêvebir dikarin lînka komê ya tê belavkirin çalak bikin an jî neçalak bikin.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Tenê rêvebir dikarin vebijêrka erêkirina endamên nû çalak bikin an jî neçalak bikin.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Tenê rêvebir dikarin lînka komê ya tê belavkirin reset bikin</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Mafê te tune ye tu vê bikî</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Nûkirina komê bi ser neket</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Tu ne endamê komê yî</string>
@@ -639,10 +647,12 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Girêdanê reset bike</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Daxwazên endambûnê</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Endamên nû bipejirîne</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Rêvebirekî ji bo pejirandina endamên nu yên bi rêya lînka komê tevlêdibin hewcebike</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR Kod</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Kodê parve bike</string>
   <!--GV2 Invite Revoke confirmation dialog-->
+  <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Hûn dixwazin vexwendina ku we şandîye %1$s betal bikin?</string>
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jixwe tu endam î</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Tevlî bibe</string>
@@ -651,6 +661,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Çewtiyeke torê rû da.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Girêdana komê ne çalak e</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nikare agahiyên komê bistîne. Ji kerema xwe paşê dîsa biceribîne</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">Hûn dixwazin tevlî vê komê bibin û nav û wêneya xwe bi endamên wê re parve bikin?</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Kom · %1$d endam</item>
     <item quantity="other">Kom · %1$d endam</item>
@@ -1548,6 +1559,7 @@
   <string name="EditAboutFragment_speak_freely">Bi azadî bipeyive</string>
   <string name="EditAboutFragment_encrypted">Şîfrekirî</string>
   <string name="EditAboutFragment_coffee_lover">Hezkerê qehweyê</string>
+  <string name="EditAboutFragment_taking_a_break">Bêhna xwe vedide</string>
   <string name="EditAboutFragment_working_on_something_new">Li ser tiştên nû dixebite</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Nav û wêneyê komê sererast bike</string>
@@ -1722,7 +1734,7 @@
   <string name="preferences__dark_theme">Tarî</string>
   <string name="preferences__appearance">Xuyang</string>
   <string name="preferences__theme">Rûkar</string>
-  <string name="preferences__chat_wallpaper">Wêneyê dîwêr ê gotûbêjê</string>
+  <string name="preferences__chat_wallpaper">Paşrûya gotûbêjê</string>
   <string name="preferences__disable_pin">PIN\'ê neçalak bike</string>
   <string name="preferences__enable_pin">PIN\'ê çalak bike</string>
   <string name="preferences__system_default">Jixwebera sîstemê</string>
@@ -1981,11 +1993,13 @@
     <item quantity="other">%1$d heqên te mane.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s ê peyameke daxwazê ji we bistîne. Gava ku daxwaziya peyama we hate qebûl kirin hûn dikarin telefon bikin.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">PIN\'ê biafiîne</string>
   <string name="KbsMegaphone__create_pin">PIN\'ê biafiîne</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Tu çi difikirî ka ji Signalê re bibêjî</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Ji bo ku Signal ê bikin sepana peyam-avîtinê ya li seranserê erdê a herî baş, em dixwazin ramanên we bibihîzin.</string>
   <string name="ResearchMegaphone_learn_more">Zêdetir bizane</string>
   <string name="ResearchMegaphone_dismiss">Bigire</string>
   <string name="ResearchMegaphoneDialog_signal_research">Lêkolîna Signalê</string>
@@ -2033,6 +2047,7 @@
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Ji bo çalakkirina yedekan, peldankekê hilbijêre. Yedek ew ê li vê cîgehê bên tomarkirin.</string>
   <string name="BackupDialog_choose_folder">Peldankê hilbijêre</string>
   <string name="BackupDialog_copied_to_clipboard">Li panoyê hat kopîkirin</string>
+  <string name="BackupDialog_no_file_picker_available">Tu dosîya-hilbijêr berdest nînin</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Ji bo piştrastkirinê pêborîna yedekê bikevê</string>
   <string name="BackupDialog_verify">Piştrast bike</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Te pêborîna xwe rast nivîsî</string>
@@ -2144,6 +2159,7 @@
   <string name="ReviewCard__update_contact">Kesî nûve bike</string>
   <string name="ReviewCard__block">Asteng bike</string>
   <string name="ReviewCard__delete">Jê bibe</string>
+  <string name="ReviewCard__recently_changed">Demeke nêz da navê profîla xwe %1$s\'ê guherand, kir %2$s</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s tevlî bû</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s û %2$s tevlî bûn</string>
@@ -2188,8 +2204,10 @@
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Paşrûyê saz bike</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Rûkara tarî paşrûyê reş dike</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê paqij bike</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan paqij bike</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Paşrûyê rake</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ji bo vê gotûbêjê paşrûyê rake?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Paşrûyê rake? Ev dê paşrûyên taybet ên ku te ji bo gotûbêjên xwe saz kirine raneke.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Hemû paşrûyan rake</string>
   <string name="ChatWallpaperFragment__contact_name">Navê kesî</string>
   <string name="ChatWallpaperFragment__reset">Reset bike</string>
   <string name="ChatWallpaperFragment__clear">Paqij bike</string>
@@ -2200,6 +2218,8 @@
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Pêşdîtin</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Paşrûyê saz bike</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Ji bo pêşdîtina paşrûyên zêdetir, bişemitîne</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ji bo hemû gotûbêjan paşrûyê saz bike</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ji bo %1$s\'ê paşrûyê saz bike</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ji bo nîşandana galeriya te, destûra bîrgehê hewce ye.</string>
   <!--WallpaperImageSelectionActivity-->

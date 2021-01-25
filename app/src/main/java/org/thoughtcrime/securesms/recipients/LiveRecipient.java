@@ -41,9 +41,9 @@ public final class LiveRecipient {
   private final GroupDatabase                 groupDatabase;
   private final MutableLiveData<Object>       refreshForceNotify;
 
-  LiveRecipient(@NonNull Context context, @NonNull MutableLiveData<Recipient> liveData, @NonNull Recipient defaultRecipient) {
+  LiveRecipient(@NonNull Context context, @NonNull Recipient defaultRecipient) {
     this.context           = context.getApplicationContext();
-    this.liveData          = liveData;
+    this.liveData          = new MutableLiveData<>(defaultRecipient);
     this.recipient         = new AtomicReference<>(defaultRecipient);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);

@@ -1696,6 +1696,7 @@
   <string name="EditAboutFragment_about">Sobre mim</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você…</string>
   <string name="EditAboutFragment_speak_freely">Fale livremente</string>
+  <string name="EditAboutFragment_encrypted">Criptografado</string>
   <string name="EditAboutFragment_be_kind">Seja gentil</string>
   <string name="EditAboutFragment_coffee_lover">Eu amo café</string>
   <string name="EditAboutFragment_free_to_chat">Disponível para conversar</string>
@@ -2380,11 +2381,18 @@
   <string name="ShareInterstitialActivity__forward_message">Encaminhar mensagem</string>
   <!--ChatWallpaperActivity-->
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Remover papel de parede desta conversa?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Remover papel de parede? Não serão removidos os personalizados que você tiver definido para as suas conversas.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Redefinir todos os papéis de parede, inclusive os personalizados que você tiver definido para as suas conversas?</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__presets">Pré-definidos</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Pré-visualização</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">A visualização da sua galeria requer a permissão de armazenamento.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince com os dedos para aproximar ou afastar, arraste para ajustar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir papel de parede para todas as conversas.</string>
   <!--EOF-->
 </resources>

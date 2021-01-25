@@ -2552,6 +2552,7 @@
   <string name="ShareActivity__share">שתף</string>
   <string name="ShareActivity__send">שלח</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">העברה הלאה אל התכתבויות רבות נתמכת רק עבור הודעות Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">נכשל בשליחה אל כמה משתמשים</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">אתה יכול לשתף רק עם עד %1$d התכתבויות</string>

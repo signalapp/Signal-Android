@@ -2236,7 +2236,7 @@
   <string name="BackupUtil_never">कधीही नाही</string>
   <string name="BackupUtil_unknown">अज्ञात</string>
   <string name="preferences_app_protection__see_my_phone_number">माझा फोन नंबर बघा</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">माझ्या फोन नंबरवरून मला शोधा</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">फोन नंबरवरून मला शोधा</string>
   <string name="PhoneNumberPrivacy_everyone">प्रत्येकजण</string>
   <string name="PhoneNumberPrivacy_my_contacts">माझे संपर्क</string>
   <string name="PhoneNumberPrivacy_nobody">कोणीही नाही</string>

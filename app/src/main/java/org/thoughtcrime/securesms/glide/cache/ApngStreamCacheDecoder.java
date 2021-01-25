@@ -26,7 +26,11 @@ public class ApngStreamCacheDecoder implements ResourceDecoder<InputStream, APNG
 
   @Override
   public boolean handles(@NonNull InputStream source, @NonNull Options options) {
-    return APNGParser.isAPNG(new StreamReader(source));
+    if (options.get(ApngOptions.ANIMATE)) {
+      return APNGParser.isAPNG(new StreamReader(source));
+    } else {
+      return false;
+    }
   }
 
   @Override

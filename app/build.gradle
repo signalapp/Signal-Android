@@ -61,8 +61,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 777
-def canonicalVersionName = "5.3.4"
+def canonicalVersionCode = 779
+def canonicalVersionName = "5.3.6"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -340,7 +340,7 @@ dependencies {
     implementation project(':video')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
-    implementation 'org.whispersystems:signal-client-android:0.2.2'
+    implementation 'org.whispersystems:signal-client-android:0.1.5'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 

@@ -1848,6 +1848,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="EditAboutFragment_about">Ynghylch</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig o eiriau amdanoch…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_encrypted">Amgryptiedig</string>
   <string name="EditAboutFragment_be_kind">Byddwch yn garedig</string>
   <string name="EditAboutFragment_coffee_lover">Carwr Coffi</string>
   <string name="EditAboutFragment_free_to_chat">Ar gael i sgwrsio</string>

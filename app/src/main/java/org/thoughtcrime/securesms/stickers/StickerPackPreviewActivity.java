@@ -21,10 +21,12 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.glide.cache.ApngOptions;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.sharing.ShareActivity;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libsignal.util.Pair;
@@ -140,7 +142,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     this.shareButton      = findViewById(R.id.sticker_install_share_button);
     this.shareButtonImage = findViewById(R.id.sticker_install_share_button_image);
 
-    this.adapter       = new StickerPackPreviewAdapter(GlideApp.with(this), this);
+    this.adapter       = new StickerPackPreviewAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
     this.layoutManager = new GridLayoutManager(this, 2);
     this.touchListener = new StickerRolloverTouchListener(this, GlideApp.with(this), this, this);
     onScreenWidthChanged(getScreenWidth());
@@ -192,6 +194,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
                                                  : new StickerRemoteUri(cover.getPackId(), cover.getPackKey(), cover.getId());
       GlideApp.with(this).load(model)
                          .transition(DrawableTransitionOptions.withCrossFade())
+                         .set(ApngOptions.ANIMATE, DeviceProperties.shouldAllowApngStickerAnimation(this))
                          .into(coverImage);
     } else {
       coverImage.setImageDrawable(null);

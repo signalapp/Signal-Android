@@ -49,29 +49,31 @@ public final class FeatureFlags {
 
   private static final long FETCH_INTERVAL = TimeUnit.HOURS.toMillis(2);
 
-  private static final String USERNAMES                    = "android.usernames";
-  private static final String GROUPS_V2_RECOMMENDED_LIMIT  = "global.groupsv2.maxGroupSize";
-  private static final String GROUPS_V2_HARD_LIMIT         = "global.groupsv2.groupSizeHardLimit";
-  private static final String GROUP_NAME_MAX_LENGTH        = "global.groupsv2.maxNameLength";
-  private static final String INTERNAL_USER                = "android.internalUser";
-  private static final String VERIFY_V2                    = "android.verifyV2";
-  private static final String PHONE_NUMBER_PRIVACY_VERSION = "android.phoneNumberPrivacyVersion";
-  private static final String CLIENT_EXPIRATION            = "android.clientExpiration";
-  public  static final String RESEARCH_MEGAPHONE_1         = "research.megaphone.1";
-  public  static final String DONATE_MEGAPHONE             = "android.donate";
-  private static final String VIEWED_RECEIPTS              = "android.viewed.receipts";
-  private static final String GROUP_CALLING                = "android.groupsv2.calling.2";
-  private static final String GV1_MANUAL_MIGRATE           = "android.groupsV1Migration.manual";
-  private static final String GV1_FORCED_MIGRATE           = "android.groupsV1Migration.forced";
-  private static final String GV1_MIGRATION_JOB            = "android.groupsV1Migration.job";
-  private static final String SEND_VIEWED_RECEIPTS         = "android.sendViewedReceipts";
-  private static final String CUSTOM_VIDEO_MUXER           = "android.customVideoMuxer";
-  private static final String CDS_REFRESH_INTERVAL         = "cds.syncInterval.seconds";
-  private static final String AUTOMATIC_SESSION_RESET      = "android.automaticSessionReset.2";
-  private static final String AUTOMATIC_SESSION_INTERVAL   = "android.automaticSessionResetInterval";
-  private static final String DEFAULT_MAX_BACKOFF          = "android.defaultMaxBackoff";
-  private static final String OKHTTP_AUTOMATIC_RETRY       = "android.okhttpAutomaticRetry";
-  private static final String SHARE_SELECTION_LIMIT        = "android.share.limit";
+  private static final String USERNAMES                         = "android.usernames";
+  private static final String GROUPS_V2_RECOMMENDED_LIMIT       = "global.groupsv2.maxGroupSize";
+  private static final String GROUPS_V2_HARD_LIMIT              = "global.groupsv2.groupSizeHardLimit";
+  private static final String GROUP_NAME_MAX_LENGTH             = "global.groupsv2.maxNameLength";
+  private static final String INTERNAL_USER                     = "android.internalUser";
+  private static final String VERIFY_V2                         = "android.verifyV2";
+  private static final String PHONE_NUMBER_PRIVACY_VERSION      = "android.phoneNumberPrivacyVersion";
+  private static final String CLIENT_EXPIRATION                 = "android.clientExpiration";
+  public  static final String RESEARCH_MEGAPHONE_1              = "research.megaphone.1";
+  public  static final String DONATE_MEGAPHONE                  = "android.donate";
+  private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
+  private static final String GROUP_CALLING                     = "android.groupsv2.calling.2";
+  private static final String GV1_MANUAL_MIGRATE                = "android.groupsV1Migration.manual";
+  private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced";
+  private static final String GV1_MIGRATION_JOB                 = "android.groupsV1Migration.job";
+  private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
+  private static final String CUSTOM_VIDEO_MUXER                = "android.customVideoMuxer";
+  private static final String CDS_REFRESH_INTERVAL              = "cds.syncInterval.seconds";
+  private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
+  private static final String AUTOMATIC_SESSION_INTERVAL        = "android.automaticSessionResetInterval";
+  private static final String DEFAULT_MAX_BACKOFF               = "android.defaultMaxBackoff";
+  private static final String OKHTTP_AUTOMATIC_RETRY            = "android.okhttpAutomaticRetry";
+  private static final String SHARE_SELECTION_LIMIT             = "android.share.limit";
+  private static final String ANIMATED_STICKER_MIN_MEMORY       = "android.animatedStickerMinMemory";
+  private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -100,7 +102,9 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
-      SHARE_SELECTION_LIMIT
+      SHARE_SELECTION_LIMIT,
+      ANIMATED_STICKER_MIN_MEMORY,
+      ANIMATED_STICKER_MIN_TOTAL_MEMORY
   );
 
   @VisibleForTesting
@@ -139,7 +143,9 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
-      SHARE_SELECTION_LIMIT
+      SHARE_SELECTION_LIMIT,
+      ANIMATED_STICKER_MIN_MEMORY,
+      ANIMATED_STICKER_MIN_TOTAL_MEMORY
   );
 
   /**
@@ -322,6 +328,16 @@ public final class FeatureFlags {
   /** Whether or not to allow automatic retries from OkHttp */
   public static boolean okHttpAutomaticRetry() {
     return getBoolean(OKHTTP_AUTOMATIC_RETRY, false);
+  }
+
+  /** The minimum memory class required for rendering animated stickers in the keyboard and such */
+  public static int animatedStickerMinimumMemoryClass() {
+    return getInteger(ANIMATED_STICKER_MIN_MEMORY, 193);
+  }
+
+  /** The minimum total memory for rendering animated stickers in the keyboard and such */
+  public static int animatedStickerMinimumTotalMemoryMb() {
+    return getInteger(ANIMATED_STICKER_MIN_TOTAL_MEMORY, (int) ByteUnit.GIGABYTES.toMegabytes(3));
   }
 
   /** Only for rendering debug info. */

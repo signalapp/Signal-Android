@@ -2392,6 +2392,7 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="ShareActivity__share">Ndajeni Me të Tjerë</string>
   <string name="ShareActivity__send">Dërgoje</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Dhënia e diçkaje në shumë fjalosje mbulohet vetëm për mesazhe Signal</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">S’u arrit të dërgoheshin ca përdorues</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Mund të shkëmbeni deri me %1$d fjalosje</string>
