@@ -429,6 +429,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       } catch (UnsupportedEncodingException e) {
         throw new AssertionError(e);
       }
+      catch (RuntimeException e){
+        Log.w(TAG, e);
+        Toast.makeText(getActivity(), "Invalid QR Code", Toast.LENGTH_SHORT).show();
+      }
     }
 
     public void setClickListener(View.OnClickListener listener) {
