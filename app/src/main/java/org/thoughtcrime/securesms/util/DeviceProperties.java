@@ -1,7 +1,9 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 
@@ -15,7 +17,17 @@ public final class DeviceProperties {
    * large numbers of APNGs simultaneously.
    */
   public static boolean shouldAllowApngStickerAnimation(@NonNull Context context) {
-    return !isLowMemoryDevice(context) && getMemoryClass(context) >= FeatureFlags.animatedStickerMinimumMemory();
+    if (Build.VERSION.SDK_INT < 26) {
+      return false;
+    }
+
+    MemoryInfo memoryInfo = getMemoryInfo(context);
+    int        memoryMb   = (int) ByteUnit.BYTES.toMegabytes(memoryInfo.totalMem);
+
+    return !isLowMemoryDevice(context) &&
+           !memoryInfo.lowMemory       &&
+           (memoryMb                >= FeatureFlags.animatedStickerMinimumTotalMemoryMb() ||
+            getMemoryClass(context) >= FeatureFlags.animatedStickerMinimumMemoryClass());
   }
 
   public static boolean isLowMemoryDevice(@NonNull Context context) {
@@ -26,5 +38,14 @@ public final class DeviceProperties {
   public static int getMemoryClass(@NonNull Context context) {
     ActivityManager activityManager = ServiceUtil.getActivityManager(context);
     return activityManager.getMemoryClass();
+  }
+
+  public static @NonNull MemoryInfo getMemoryInfo(@NonNull Context context) {
+    MemoryInfo      info            = new MemoryInfo();
+    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+
+    activityManager.getMemoryInfo(info);
+
+    return info;
   }
 }
