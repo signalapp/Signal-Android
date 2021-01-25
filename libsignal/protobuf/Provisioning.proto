@@ -1,0 +1,27 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+syntax = "proto2";
+
+package signalservice;
+
+option java_package = "org.session.libsignal.service.internal.push";
+option java_outer_classname = "ProvisioningProtos";
+
+message ProvisionEnvelope {
+  optional bytes publicKey = 1;
+  optional bytes body      = 2; // Encrypted ProvisionMessage
+}
+
+message ProvisionMessage {
+  optional bytes  identityKeyPublic  = 1;
+  optional bytes  identityKeyPrivate = 2;
+  optional string number             = 3;
+  optional string provisioningCode   = 4;
+  optional string userAgent          = 5;
+  optional bytes  profileKey         = 6;
+  optional bool   readReceipts       = 7;
+}

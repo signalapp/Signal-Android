@@ -62,7 +62,7 @@ public final class ProvisioningProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -134,7 +134,7 @@ public final class ProvisioningProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ProvisionEnvelope> getParserForType() {
       return PARSER;
     }
@@ -225,8 +225,8 @@ public final class ProvisioningProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -291,7 +291,7 @@ public final class ProvisioningProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -554,7 +554,7 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string number = 3;</code>
      */
-    String getNumber();
+    java.lang.String getNumber();
     /**
      * <code>optional string number = 3;</code>
      */
@@ -569,7 +569,7 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string provisioningCode = 4;</code>
      */
-    String getProvisioningCode();
+    java.lang.String getProvisioningCode();
     /**
      * <code>optional string provisioningCode = 4;</code>
      */
@@ -584,7 +584,7 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string userAgent = 5;</code>
      */
-    String getUserAgent();
+    java.lang.String getUserAgent();
     /**
      * <code>optional string userAgent = 5;</code>
      */
@@ -634,7 +634,7 @@ public final class ProvisioningProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -731,7 +731,7 @@ public final class ProvisioningProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ProvisionMessage> getParserForType() {
       return PARSER;
     }
@@ -771,7 +771,7 @@ public final class ProvisioningProtos {
 
     // optional string number = 3;
     public static final int NUMBER_FIELD_NUMBER = 3;
-    private Object number_;
+    private java.lang.Object number_;
     /**
      * <code>optional string number = 3;</code>
      */
@@ -781,14 +781,14 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string number = 3;</code>
      */
-    public String getNumber() {
-      Object ref = number_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getNumber() {
+      java.lang.Object ref = number_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           number_ = s;
         }
@@ -800,11 +800,11 @@ public final class ProvisioningProtos {
      */
     public com.google.protobuf.ByteString
         getNumberBytes() {
-      Object ref = number_;
-      if (ref instanceof String) {
+      java.lang.Object ref = number_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         number_ = b;
         return b;
       } else {
@@ -814,7 +814,7 @@ public final class ProvisioningProtos {
 
     // optional string provisioningCode = 4;
     public static final int PROVISIONINGCODE_FIELD_NUMBER = 4;
-    private Object provisioningCode_;
+    private java.lang.Object provisioningCode_;
     /**
      * <code>optional string provisioningCode = 4;</code>
      */
@@ -824,14 +824,14 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string provisioningCode = 4;</code>
      */
-    public String getProvisioningCode() {
-      Object ref = provisioningCode_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getProvisioningCode() {
+      java.lang.Object ref = provisioningCode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           provisioningCode_ = s;
         }
@@ -843,11 +843,11 @@ public final class ProvisioningProtos {
      */
     public com.google.protobuf.ByteString
         getProvisioningCodeBytes() {
-      Object ref = provisioningCode_;
-      if (ref instanceof String) {
+      java.lang.Object ref = provisioningCode_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         provisioningCode_ = b;
         return b;
       } else {
@@ -857,7 +857,7 @@ public final class ProvisioningProtos {
 
     // optional string userAgent = 5;
     public static final int USERAGENT_FIELD_NUMBER = 5;
-    private Object userAgent_;
+    private java.lang.Object userAgent_;
     /**
      * <code>optional string userAgent = 5;</code>
      */
@@ -867,14 +867,14 @@ public final class ProvisioningProtos {
     /**
      * <code>optional string userAgent = 5;</code>
      */
-    public String getUserAgent() {
-      Object ref = userAgent_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUserAgent() {
+      java.lang.Object ref = userAgent_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           userAgent_ = s;
         }
@@ -886,11 +886,11 @@ public final class ProvisioningProtos {
      */
     public com.google.protobuf.ByteString
         getUserAgentBytes() {
-      Object ref = userAgent_;
-      if (ref instanceof String) {
+      java.lang.Object ref = userAgent_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         userAgent_ = b;
         return b;
       } else {
@@ -1015,8 +1015,8 @@ public final class ProvisioningProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -1081,7 +1081,7 @@ public final class ProvisioningProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1338,7 +1338,7 @@ public final class ProvisioningProtos {
       }
 
       // optional string number = 3;
-      private Object number_ = "";
+      private java.lang.Object number_ = "";
       /**
        * <code>optional string number = 3;</code>
        */
@@ -1348,15 +1348,15 @@ public final class ProvisioningProtos {
       /**
        * <code>optional string number = 3;</code>
        */
-      public String getNumber() {
-        Object ref = number_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getNumber() {
+        java.lang.Object ref = number_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           number_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1364,11 +1364,11 @@ public final class ProvisioningProtos {
        */
       public com.google.protobuf.ByteString
           getNumberBytes() {
-        Object ref = number_;
+        java.lang.Object ref = number_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           number_ = b;
           return b;
         } else {
@@ -1379,7 +1379,7 @@ public final class ProvisioningProtos {
        * <code>optional string number = 3;</code>
        */
       public Builder setNumber(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1412,7 +1412,7 @@ public final class ProvisioningProtos {
       }
 
       // optional string provisioningCode = 4;
-      private Object provisioningCode_ = "";
+      private java.lang.Object provisioningCode_ = "";
       /**
        * <code>optional string provisioningCode = 4;</code>
        */
@@ -1422,15 +1422,15 @@ public final class ProvisioningProtos {
       /**
        * <code>optional string provisioningCode = 4;</code>
        */
-      public String getProvisioningCode() {
-        Object ref = provisioningCode_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getProvisioningCode() {
+        java.lang.Object ref = provisioningCode_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           provisioningCode_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1438,11 +1438,11 @@ public final class ProvisioningProtos {
        */
       public com.google.protobuf.ByteString
           getProvisioningCodeBytes() {
-        Object ref = provisioningCode_;
+        java.lang.Object ref = provisioningCode_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           provisioningCode_ = b;
           return b;
         } else {
@@ -1453,7 +1453,7 @@ public final class ProvisioningProtos {
        * <code>optional string provisioningCode = 4;</code>
        */
       public Builder setProvisioningCode(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1486,7 +1486,7 @@ public final class ProvisioningProtos {
       }
 
       // optional string userAgent = 5;
-      private Object userAgent_ = "";
+      private java.lang.Object userAgent_ = "";
       /**
        * <code>optional string userAgent = 5;</code>
        */
@@ -1496,15 +1496,15 @@ public final class ProvisioningProtos {
       /**
        * <code>optional string userAgent = 5;</code>
        */
-      public String getUserAgent() {
-        Object ref = userAgent_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getUserAgent() {
+        java.lang.Object ref = userAgent_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           userAgent_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1512,11 +1512,11 @@ public final class ProvisioningProtos {
        */
       public com.google.protobuf.ByteString
           getUserAgentBytes() {
-        Object ref = userAgent_;
+        java.lang.Object ref = userAgent_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           userAgent_ = b;
           return b;
         } else {
@@ -1527,7 +1527,7 @@ public final class ProvisioningProtos {
        * <code>optional string userAgent = 5;</code>
        */
       public Builder setUserAgent(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1657,16 +1657,16 @@ public final class ProvisioningProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\022Provisioning.proto\022\rsignalservice\"4\n\021P" +
       "rovisionEnvelope\022\021\n\tpublicKey\030\001 \001(\014\022\014\n\004b" +
       "ody\030\002 \001(\014\"\260\001\n\020ProvisionMessage\022\031\n\021identi" +
       "tyKeyPublic\030\001 \001(\014\022\032\n\022identityKeyPrivate\030" +
       "\002 \001(\014\022\016\n\006number\030\003 \001(\t\022\030\n\020provisioningCod" +
       "e\030\004 \001(\t\022\021\n\tuserAgent\030\005 \001(\t\022\022\n\nprofileKey" +
-      "\030\006 \001(\014\022\024\n\014readReceipts\030\007 \001(\010BD\n.org.whis" +
-      "persystems.signalservice.internal.pushB\022" +
-      "ProvisioningProtos"
+      "\030\006 \001(\014\022\024\n\014readReceipts\030\007 \001(\010BA\n+org.sess" +
+      "ion.libsignal.service.internal.pushB\022Pro" +
+      "visioningProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1678,13 +1678,13 @@ public final class ProvisioningProtos {
           internal_static_signalservice_ProvisionEnvelope_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ProvisionEnvelope_descriptor,
-              new String[] { "PublicKey", "Body", });
+              new java.lang.String[] { "PublicKey", "Body", });
           internal_static_signalservice_ProvisionMessage_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_signalservice_ProvisionMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ProvisionMessage_descriptor,
-              new String[] { "IdentityKeyPublic", "IdentityKeyPrivate", "Number", "ProvisioningCode", "UserAgent", "ProfileKey", "ReadReceipts", });
+              new java.lang.String[] { "IdentityKeyPublic", "IdentityKeyPrivate", "Number", "ProvisioningCode", "UserAgent", "ProfileKey", "ReadReceipts", });
           return null;
         }
       };

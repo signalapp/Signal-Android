@@ -52,7 +52,7 @@ public final class FingerprintProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -102,7 +102,7 @@ public final class FingerprintProtos {
       return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_LogicalFingerprint_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_LogicalFingerprint_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -119,7 +119,7 @@ public final class FingerprintProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<LogicalFingerprint> getParserForType() {
       return PARSER;
     }
@@ -186,8 +186,8 @@ public final class FingerprintProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -252,9 +252,9 @@ public final class FingerprintProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -269,7 +269,7 @@ public final class FingerprintProtos {
         return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_LogicalFingerprint_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_LogicalFingerprint_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -282,7 +282,7 @@ public final class FingerprintProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -503,7 +503,7 @@ public final class FingerprintProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -579,7 +579,7 @@ public final class FingerprintProtos {
       return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_CombinedFingerprints_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_CombinedFingerprints_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -596,7 +596,7 @@ public final class FingerprintProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CombinedFingerprints> getParserForType() {
       return PARSER;
     }
@@ -715,8 +715,8 @@ public final class FingerprintProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -781,9 +781,9 @@ public final class FingerprintProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -798,7 +798,7 @@ public final class FingerprintProtos {
         return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_CombinedFingerprints_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.fingerprint.FingerprintProtos.internal_static_textsecure_CombinedFingerprints_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -811,7 +811,7 @@ public final class FingerprintProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1237,15 +1237,15 @@ public final class FingerprintProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\031FingerprintProtocol.proto\022\ntextsecure\"" +
       "%\n\022LogicalFingerprint\022\017\n\007content\030\001 \001(\014\"\234" +
       "\001\n\024CombinedFingerprints\022\017\n\007version\030\001 \001(\r" +
       "\0228\n\020localFingerprint\030\002 \001(\0132\036.textsecure." +
       "LogicalFingerprint\0229\n\021remoteFingerprint\030" +
-      "\003 \001(\0132\036.textsecure.LogicalFingerprintB=\n" +
-      "(org.session.libsignal.libsignal.fingerprin" +
-      "tB\021FingerprintProtos"
+      "\003 \001(\0132\036.textsecure.LogicalFingerprintB@\n" +
+      "+org.session.libsignal.libsignal.fingerp" +
+      "rintB\021FingerprintProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1257,13 +1257,13 @@ public final class FingerprintProtos {
           internal_static_textsecure_LogicalFingerprint_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_LogicalFingerprint_descriptor,
-              new String[] { "Content", });
+              new java.lang.String[] { "Content", });
           internal_static_textsecure_CombinedFingerprints_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_textsecure_CombinedFingerprints_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_CombinedFingerprints_descriptor,
-              new String[] { "Version", "LocalFingerprint", "RemoteFingerprint", });
+              new java.lang.String[] { "Version", "LocalFingerprint", "RemoteFingerprint", });
           return null;
         }
       };

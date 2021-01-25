@@ -19,7 +19,7 @@ public final class StickerProtos {
     /**
      * <code>optional string title = 1;</code>
      */
-    String getTitle();
+    java.lang.String getTitle();
     /**
      * <code>optional string title = 1;</code>
      */
@@ -34,7 +34,7 @@ public final class StickerProtos {
     /**
      * <code>optional string author = 2;</code>
      */
-    String getAuthor();
+    java.lang.String getAuthor();
     /**
      * <code>optional string author = 2;</code>
      */
@@ -103,7 +103,7 @@ public final class StickerProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -199,7 +199,7 @@ public final class StickerProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Pack> getParserForType() {
       return PARSER;
     }
@@ -225,7 +225,7 @@ public final class StickerProtos {
       /**
        * <code>optional string emoji = 2;</code>
        */
-      String getEmoji();
+      java.lang.String getEmoji();
       /**
        * <code>optional string emoji = 2;</code>
        */
@@ -255,7 +255,7 @@ public final class StickerProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -327,7 +327,7 @@ public final class StickerProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Sticker> getParserForType() {
         return PARSER;
       }
@@ -351,7 +351,7 @@ public final class StickerProtos {
 
       // optional string emoji = 2;
       public static final int EMOJI_FIELD_NUMBER = 2;
-      private Object emoji_;
+      private java.lang.Object emoji_;
       /**
        * <code>optional string emoji = 2;</code>
        */
@@ -361,14 +361,14 @@ public final class StickerProtos {
       /**
        * <code>optional string emoji = 2;</code>
        */
-      public String getEmoji() {
-        Object ref = emoji_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getEmoji() {
+        java.lang.Object ref = emoji_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             emoji_ = s;
           }
@@ -380,11 +380,11 @@ public final class StickerProtos {
        */
       public com.google.protobuf.ByteString
           getEmojiBytes() {
-        Object ref = emoji_;
-        if (ref instanceof String) {
+        java.lang.Object ref = emoji_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           emoji_ = b;
           return b;
         } else {
@@ -437,8 +437,8 @@ public final class StickerProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -503,7 +503,7 @@ public final class StickerProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -672,7 +672,7 @@ public final class StickerProtos {
         }
 
         // optional string emoji = 2;
-        private Object emoji_ = "";
+        private java.lang.Object emoji_ = "";
         /**
          * <code>optional string emoji = 2;</code>
          */
@@ -682,15 +682,15 @@ public final class StickerProtos {
         /**
          * <code>optional string emoji = 2;</code>
          */
-        public String getEmoji() {
-          Object ref = emoji_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getEmoji() {
+          java.lang.Object ref = emoji_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             emoji_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -698,11 +698,11 @@ public final class StickerProtos {
          */
         public com.google.protobuf.ByteString
             getEmojiBytes() {
-          Object ref = emoji_;
+          java.lang.Object ref = emoji_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             emoji_ = b;
             return b;
           } else {
@@ -713,7 +713,7 @@ public final class StickerProtos {
          * <code>optional string emoji = 2;</code>
          */
         public Builder setEmoji(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -759,7 +759,7 @@ public final class StickerProtos {
     private int bitField0_;
     // optional string title = 1;
     public static final int TITLE_FIELD_NUMBER = 1;
-    private Object title_;
+    private java.lang.Object title_;
     /**
      * <code>optional string title = 1;</code>
      */
@@ -769,14 +769,14 @@ public final class StickerProtos {
     /**
      * <code>optional string title = 1;</code>
      */
-    public String getTitle() {
-      Object ref = title_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           title_ = s;
         }
@@ -788,11 +788,11 @@ public final class StickerProtos {
      */
     public com.google.protobuf.ByteString
         getTitleBytes() {
-      Object ref = title_;
-      if (ref instanceof String) {
+      java.lang.Object ref = title_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         title_ = b;
         return b;
       } else {
@@ -802,7 +802,7 @@ public final class StickerProtos {
 
     // optional string author = 2;
     public static final int AUTHOR_FIELD_NUMBER = 2;
-    private Object author_;
+    private java.lang.Object author_;
     /**
      * <code>optional string author = 2;</code>
      */
@@ -812,14 +812,14 @@ public final class StickerProtos {
     /**
      * <code>optional string author = 2;</code>
      */
-    public String getAuthor() {
-      Object ref = author_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getAuthor() {
+      java.lang.Object ref = author_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           author_ = s;
         }
@@ -831,11 +831,11 @@ public final class StickerProtos {
      */
     public com.google.protobuf.ByteString
         getAuthorBytes() {
-      Object ref = author_;
-      if (ref instanceof String) {
+      java.lang.Object ref = author_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         author_ = b;
         return b;
       } else {
@@ -962,8 +962,8 @@ public final class StickerProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -1028,7 +1028,7 @@ public final class StickerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1226,7 +1226,7 @@ public final class StickerProtos {
       private int bitField0_;
 
       // optional string title = 1;
-      private Object title_ = "";
+      private java.lang.Object title_ = "";
       /**
        * <code>optional string title = 1;</code>
        */
@@ -1236,15 +1236,15 @@ public final class StickerProtos {
       /**
        * <code>optional string title = 1;</code>
        */
-      public String getTitle() {
-        Object ref = title_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getTitle() {
+        java.lang.Object ref = title_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           title_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1252,11 +1252,11 @@ public final class StickerProtos {
        */
       public com.google.protobuf.ByteString
           getTitleBytes() {
-        Object ref = title_;
+        java.lang.Object ref = title_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           title_ = b;
           return b;
         } else {
@@ -1267,7 +1267,7 @@ public final class StickerProtos {
        * <code>optional string title = 1;</code>
        */
       public Builder setTitle(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1300,7 +1300,7 @@ public final class StickerProtos {
       }
 
       // optional string author = 2;
-      private Object author_ = "";
+      private java.lang.Object author_ = "";
       /**
        * <code>optional string author = 2;</code>
        */
@@ -1310,15 +1310,15 @@ public final class StickerProtos {
       /**
        * <code>optional string author = 2;</code>
        */
-      public String getAuthor() {
-        Object ref = author_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getAuthor() {
+        java.lang.Object ref = author_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           author_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1326,11 +1326,11 @@ public final class StickerProtos {
        */
       public com.google.protobuf.ByteString
           getAuthorBytes() {
-        Object ref = author_;
+        java.lang.Object ref = author_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           author_ = b;
           return b;
         } else {
@@ -1341,7 +1341,7 @@ public final class StickerProtos {
        * <code>optional string author = 2;</code>
        */
       public Builder setAuthor(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1629,7 +1629,7 @@ public final class StickerProtos {
        * <code>repeated .signalservice.Pack.Sticker stickers = 4;</code>
        */
       public Builder addAllStickers(
-          Iterable<? extends org.session.libsignal.service.internal.sticker.StickerProtos.Pack.Sticker> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.sticker.StickerProtos.Pack.Sticker> values) {
         if (stickersBuilder_ == null) {
           ensureStickersIsMutable();
           super.addAll(values, stickers_);
@@ -1759,14 +1759,14 @@ public final class StickerProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\026StickerResources.proto\022\rsignalservice\"" +
       "\246\001\n\004Pack\022\r\n\005title\030\001 \001(\t\022\016\n\006author\030\002 \001(\t\022" +
       "*\n\005cover\030\003 \001(\0132\033.signalservice.Pack.Stic" +
       "ker\022-\n\010stickers\030\004 \003(\0132\033.signalservice.Pa" +
       "ck.Sticker\032$\n\007Sticker\022\n\n\002id\030\001 \001(\r\022\r\n\005emo" +
-      "ji\030\002 \001(\tBB\n1org.whispersystems.signalser" +
-      "vice.internal.stickerB\rStickerProtos"
+      "ji\030\002 \001(\tB?\n.org.session.libsignal.servic" +
+      "e.internal.stickerB\rStickerProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1778,13 +1778,13 @@ public final class StickerProtos {
           internal_static_signalservice_Pack_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Pack_descriptor,
-              new String[] { "Title", "Author", "Cover", "Stickers", });
+              new java.lang.String[] { "Title", "Author", "Cover", "Stickers", });
           internal_static_signalservice_Pack_Sticker_descriptor =
             internal_static_signalservice_Pack_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_Pack_Sticker_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Pack_Sticker_descriptor,
-              new String[] { "Id", "Emoji", });
+              new java.lang.String[] { "Id", "Emoji", });
           return null;
         }
       };

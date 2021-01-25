@@ -19,7 +19,7 @@ public final class WebSocketProtos {
     /**
      * <code>optional string verb = 1;</code>
      */
-    String getVerb();
+    java.lang.String getVerb();
     /**
      * <code>optional string verb = 1;</code>
      */
@@ -34,7 +34,7 @@ public final class WebSocketProtos {
     /**
      * <code>optional string path = 2;</code>
      */
-    String getPath();
+    java.lang.String getPath();
     /**
      * <code>optional string path = 2;</code>
      */
@@ -55,7 +55,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getHeadersList();
     /**
      * <code>repeated string headers = 5;</code>
@@ -64,7 +64,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    String getHeaders(int index);
+    java.lang.String getHeaders(int index);
     /**
      * <code>repeated string headers = 5;</code>
      */
@@ -104,7 +104,7 @@ public final class WebSocketProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -197,7 +197,7 @@ public final class WebSocketProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<WebSocketRequestMessage> getParserForType() {
       return PARSER;
     }
@@ -205,7 +205,7 @@ public final class WebSocketProtos {
     private int bitField0_;
     // optional string verb = 1;
     public static final int VERB_FIELD_NUMBER = 1;
-    private Object verb_;
+    private java.lang.Object verb_;
     /**
      * <code>optional string verb = 1;</code>
      */
@@ -215,14 +215,14 @@ public final class WebSocketProtos {
     /**
      * <code>optional string verb = 1;</code>
      */
-    public String getVerb() {
-      Object ref = verb_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getVerb() {
+      java.lang.Object ref = verb_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           verb_ = s;
         }
@@ -234,11 +234,11 @@ public final class WebSocketProtos {
      */
     public com.google.protobuf.ByteString
         getVerbBytes() {
-      Object ref = verb_;
-      if (ref instanceof String) {
+      java.lang.Object ref = verb_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         verb_ = b;
         return b;
       } else {
@@ -248,7 +248,7 @@ public final class WebSocketProtos {
 
     // optional string path = 2;
     public static final int PATH_FIELD_NUMBER = 2;
-    private Object path_;
+    private java.lang.Object path_;
     /**
      * <code>optional string path = 2;</code>
      */
@@ -258,14 +258,14 @@ public final class WebSocketProtos {
     /**
      * <code>optional string path = 2;</code>
      */
-    public String getPath() {
-      Object ref = path_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getPath() {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           path_ = s;
         }
@@ -277,11 +277,11 @@ public final class WebSocketProtos {
      */
     public com.google.protobuf.ByteString
         getPathBytes() {
-      Object ref = path_;
-      if (ref instanceof String) {
+      java.lang.Object ref = path_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         path_ = b;
         return b;
       } else {
@@ -311,7 +311,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getHeadersList() {
       return headers_;
     }
@@ -324,7 +324,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    public String getHeaders(int index) {
+    public java.lang.String getHeaders(int index) {
       return headers_.get(index);
     }
     /**
@@ -425,8 +425,8 @@ public final class WebSocketProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -491,7 +491,7 @@ public final class WebSocketProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -665,7 +665,7 @@ public final class WebSocketProtos {
       private int bitField0_;
 
       // optional string verb = 1;
-      private Object verb_ = "";
+      private java.lang.Object verb_ = "";
       /**
        * <code>optional string verb = 1;</code>
        */
@@ -675,15 +675,15 @@ public final class WebSocketProtos {
       /**
        * <code>optional string verb = 1;</code>
        */
-      public String getVerb() {
-        Object ref = verb_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getVerb() {
+        java.lang.Object ref = verb_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           verb_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -691,11 +691,11 @@ public final class WebSocketProtos {
        */
       public com.google.protobuf.ByteString
           getVerbBytes() {
-        Object ref = verb_;
+        java.lang.Object ref = verb_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           verb_ = b;
           return b;
         } else {
@@ -706,7 +706,7 @@ public final class WebSocketProtos {
        * <code>optional string verb = 1;</code>
        */
       public Builder setVerb(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -739,7 +739,7 @@ public final class WebSocketProtos {
       }
 
       // optional string path = 2;
-      private Object path_ = "";
+      private java.lang.Object path_ = "";
       /**
        * <code>optional string path = 2;</code>
        */
@@ -749,15 +749,15 @@ public final class WebSocketProtos {
       /**
        * <code>optional string path = 2;</code>
        */
-      public String getPath() {
-        Object ref = path_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getPath() {
+        java.lang.Object ref = path_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           path_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -765,11 +765,11 @@ public final class WebSocketProtos {
        */
       public com.google.protobuf.ByteString
           getPathBytes() {
-        Object ref = path_;
+        java.lang.Object ref = path_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           path_ = b;
           return b;
         } else {
@@ -780,7 +780,7 @@ public final class WebSocketProtos {
        * <code>optional string path = 2;</code>
        */
       public Builder setPath(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -859,7 +859,7 @@ public final class WebSocketProtos {
       /**
        * <code>repeated string headers = 5;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getHeadersList() {
         return java.util.Collections.unmodifiableList(headers_);
       }
@@ -872,7 +872,7 @@ public final class WebSocketProtos {
       /**
        * <code>repeated string headers = 5;</code>
        */
-      public String getHeaders(int index) {
+      public java.lang.String getHeaders(int index) {
         return headers_.get(index);
       }
       /**
@@ -886,7 +886,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder setHeaders(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -899,7 +899,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder addHeaders(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -912,7 +912,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder addAllHeaders(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureHeadersIsMutable();
         super.addAll(values, headers_);
         onChanged();
@@ -1016,7 +1016,7 @@ public final class WebSocketProtos {
     /**
      * <code>optional string message = 3;</code>
      */
-    String getMessage();
+    java.lang.String getMessage();
     /**
      * <code>optional string message = 3;</code>
      */
@@ -1027,7 +1027,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getHeadersList();
     /**
      * <code>repeated string headers = 5;</code>
@@ -1036,7 +1036,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    String getHeaders(int index);
+    java.lang.String getHeaders(int index);
     /**
      * <code>repeated string headers = 5;</code>
      */
@@ -1076,7 +1076,7 @@ public final class WebSocketProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -1169,7 +1169,7 @@ public final class WebSocketProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<WebSocketResponseMessage> getParserForType() {
       return PARSER;
     }
@@ -1209,7 +1209,7 @@ public final class WebSocketProtos {
 
     // optional string message = 3;
     public static final int MESSAGE_FIELD_NUMBER = 3;
-    private Object message_;
+    private java.lang.Object message_;
     /**
      * <code>optional string message = 3;</code>
      */
@@ -1219,14 +1219,14 @@ public final class WebSocketProtos {
     /**
      * <code>optional string message = 3;</code>
      */
-    public String getMessage() {
-      Object ref = message_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           message_ = s;
         }
@@ -1238,11 +1238,11 @@ public final class WebSocketProtos {
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
-      Object ref = message_;
-      if (ref instanceof String) {
+      java.lang.Object ref = message_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         message_ = b;
         return b;
       } else {
@@ -1256,7 +1256,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getHeadersList() {
       return headers_;
     }
@@ -1269,7 +1269,7 @@ public final class WebSocketProtos {
     /**
      * <code>repeated string headers = 5;</code>
      */
-    public String getHeaders(int index) {
+    public java.lang.String getHeaders(int index) {
       return headers_.get(index);
     }
     /**
@@ -1370,8 +1370,8 @@ public final class WebSocketProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -1436,7 +1436,7 @@ public final class WebSocketProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1674,7 +1674,7 @@ public final class WebSocketProtos {
       }
 
       // optional string message = 3;
-      private Object message_ = "";
+      private java.lang.Object message_ = "";
       /**
        * <code>optional string message = 3;</code>
        */
@@ -1684,15 +1684,15 @@ public final class WebSocketProtos {
       /**
        * <code>optional string message = 3;</code>
        */
-      public String getMessage() {
-        Object ref = message_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getMessage() {
+        java.lang.Object ref = message_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           message_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1700,11 +1700,11 @@ public final class WebSocketProtos {
        */
       public com.google.protobuf.ByteString
           getMessageBytes() {
-        Object ref = message_;
+        java.lang.Object ref = message_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           message_ = b;
           return b;
         } else {
@@ -1715,7 +1715,7 @@ public final class WebSocketProtos {
        * <code>optional string message = 3;</code>
        */
       public Builder setMessage(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1758,7 +1758,7 @@ public final class WebSocketProtos {
       /**
        * <code>repeated string headers = 5;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getHeadersList() {
         return java.util.Collections.unmodifiableList(headers_);
       }
@@ -1771,7 +1771,7 @@ public final class WebSocketProtos {
       /**
        * <code>repeated string headers = 5;</code>
        */
-      public String getHeaders(int index) {
+      public java.lang.String getHeaders(int index) {
         return headers_.get(index);
       }
       /**
@@ -1785,7 +1785,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder setHeaders(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1798,7 +1798,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder addHeaders(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1811,7 +1811,7 @@ public final class WebSocketProtos {
        * <code>repeated string headers = 5;</code>
        */
       public Builder addAllHeaders(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureHeadersIsMutable();
         super.addAll(values, headers_);
         onChanged();
@@ -1951,7 +1951,7 @@ public final class WebSocketProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -2050,7 +2050,7 @@ public final class WebSocketProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<WebSocketMessage> getParserForType() {
       return PARSER;
     }
@@ -2129,7 +2129,7 @@ public final class WebSocketProtos {
       public static Type valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -2260,8 +2260,8 @@ public final class WebSocketProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -2326,7 +2326,7 @@ public final class WebSocketProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -2626,7 +2626,7 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketRequestMessage request = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage.Builder, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessageOrBuilder>
+          org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage.Builder, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessageOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
           requestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -2743,7 +2743,7 @@ public final class WebSocketProtos {
        * <code>optional .signalservice.WebSocketResponseMessage response = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessage, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessage.Builder, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessageOrBuilder>
+          org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessage, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessage.Builder, org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketResponseMessageOrBuilder> 
           getResponseFieldBuilder() {
         if (responseBuilder_ == null) {
           responseBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -2790,7 +2790,7 @@ public final class WebSocketProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\030WebSocketResources.proto\022\rsignalservic" +
       "e\"`\n\027WebSocketRequestMessage\022\014\n\004verb\030\001 \001" +
       "(\t\022\014\n\004path\030\002 \001(\t\022\014\n\004body\030\003 \001(\014\022\017\n\007header" +
@@ -2803,8 +2803,8 @@ public final class WebSocketProtos {
       "equestMessage\0229\n\010response\030\003 \001(\0132\'.signal",
       "service.WebSocketResponseMessage\".\n\004Type" +
       "\022\013\n\007UNKNOWN\020\000\022\013\n\007REQUEST\020\001\022\014\n\010RESPONSE\020\002" +
-      "BF\n3org.session.libsignal.service.int" +
-      "ernal.websocketB\017WebSocketProtos"
+      "BC\n0org.session.libsignal.service.intern" +
+      "al.websocketB\017WebSocketProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2816,19 +2816,19 @@ public final class WebSocketProtos {
           internal_static_signalservice_WebSocketRequestMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_WebSocketRequestMessage_descriptor,
-              new String[] { "Verb", "Path", "Body", "Headers", "Id", });
+              new java.lang.String[] { "Verb", "Path", "Body", "Headers", "Id", });
           internal_static_signalservice_WebSocketResponseMessage_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_signalservice_WebSocketResponseMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_WebSocketResponseMessage_descriptor,
-              new String[] { "Id", "Status", "Message", "Headers", "Body", });
+              new java.lang.String[] { "Id", "Status", "Message", "Headers", "Body", });
           internal_static_signalservice_WebSocketMessage_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_signalservice_WebSocketMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_WebSocketMessage_descriptor,
-              new String[] { "Type", "Request", "Response", });
+              new java.lang.String[] { "Type", "Request", "Response", });
           return null;
         }
       };
