@@ -7,6 +7,8 @@ import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -40,6 +42,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
@@ -105,6 +108,14 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     contactsFragment  = (ContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
 
     inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+    inviteText.addTextChangedListener(new AfterTextChanged(editable -> {
+      boolean isEnabled = editable.length() > 0;
+      smsButton.setEnabled(isEnabled);
+      shareButton.setEnabled(isEnabled);
+      smsButton.animate().alpha(isEnabled ? 1f : 0.5f);
+      shareButton.animate().alpha(isEnabled ? 1f : 0.5f);
+    }));
+
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
 
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
