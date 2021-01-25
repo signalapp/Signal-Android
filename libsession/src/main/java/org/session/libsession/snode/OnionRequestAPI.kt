@@ -23,11 +23,11 @@ private typealias Path = List<Snode>
 /**
  * See the "Onion Requests" section of [The Session Whitepaper](https://arxiv.org/pdf/2002.04609.pdf) for more information.
  */
-public object OnionRequestAPI {
+object OnionRequestAPI {
     private val pathFailureCount = mutableMapOf<Path, Int>()
     private val snodeFailureCount = mutableMapOf<Snode, Int>()
-    public var guardSnodes = setOf<Snode>()
-    public var paths: List<Path> // Not a set to ensure we consistently show the same path to the user
+    var guardSnodes = setOf<Snode>()
+    var paths: List<Path> // Not a set to ensure we consistently show the same path to the user
         get() = SnodeAPI.database.getOnionRequestPaths()
         set(newValue) {
             if (newValue.isEmpty()) {
@@ -41,19 +41,19 @@ public object OnionRequestAPI {
     /**
      * The number of snodes (including the guard snode) in a path.
      */
-    private val pathSize = 3
+    private const val pathSize = 3
     /**
      * The number of times a path can fail before it's replaced.
      */
-    private val pathFailureThreshold = 2
+    private const val pathFailureThreshold = 1
     /**
      * The number of times a snode can fail before it's replaced.
      */
-    private val snodeFailureThreshold = 2
+    private const val snodeFailureThreshold = 1
     /**
      * The number of paths to maintain.
      */
-    public val targetPathCount = 2 // A main path and a backup path for the case where the target snode is in the main path
+    const val targetPathCount = 2 // A main path and a backup path for the case where the target snode is in the main path
 
     /**
      * The number of guard snodes required to maintain `targetPathCount` paths.
@@ -67,9 +67,9 @@ public object OnionRequestAPI {
     class InsufficientSnodesException : Exception("Couldn't find enough snodes to build a path.")
 
     private data class OnionBuildingResult(
-        internal val guardSnode: Snode,
-        internal val finalEncryptionResult: EncryptionResult,
-        internal val destinationSymmetricKey: ByteArray
+        val guardSnode: Snode,
+        val finalEncryptionResult: EncryptionResult,
+        val destinationSymmetricKey: ByteArray
     )
 
     internal sealed class Destination {
@@ -406,9 +406,11 @@ public object OnionRequestAPI {
                     } else {
                         handleUnspecificError()
                     }
+                } else if (destination is Destination.Server && exception.statusCode == 400) {
+                    Log.d("Loki","Destination server returned ${exception.statusCode}")
                 } else if (message == "Loki Server error") {
-                    // Do nothing
-                } else {
+                    Log.d("Loki", "message was $message")
+                } else { // Only drop snode/path if not receiving above two exception cases
                     handleUnspecificError()
                 }
             }
@@ -438,7 +440,7 @@ public object OnionRequestAPI {
      *
      * `publicKey` is the hex encoded public key of the user the call is associated with. This is needed for swarm cache maintenance.
      */
-    public fun sendOnionRequest(request: Request, server: String, x25519PublicKey: String, target: String = "/loki/v3/lsrpc", isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
+    fun sendOnionRequest(request: Request, server: String, x25519PublicKey: String, target: String = "/loki/v3/lsrpc", isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
         val headers = request.getHeadersForOnionRequest()
         val url = request.url()
         val urlAsString = url.toString()

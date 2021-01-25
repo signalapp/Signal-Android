@@ -19,21 +19,7 @@ class LokiServiceCipher(localAddress: SignalServiceAddress, private val signalPr
     private val userPrivateKey get() = signalProtocolStore.identityKeyPair.privateKey.serialize()
 
     override fun decrypt(envelope: SignalServiceEnvelope, ciphertext: ByteArray): Plaintext {
-//        return if (envelope.isFallbackMessage) decryptFallbackMessage(envelope, ciphertext) else super.decrypt(envelope, ciphertext)
-
-        return when {
-            envelope.isUnidentifiedSender -> {
-                //AC: Messages come unencrypted (for refactoring time being).
-                val transportDetails = PushTransportDetails(FallbackSessionCipher.sessionVersion)
-                val unpaddedMessageBody = transportDetails.getStrippedPaddingMessageBody(ciphertext)
-                val metadata = Metadata(envelope.source, envelope.sourceDevice, envelope.timestamp, false)
-                return Plaintext(metadata, unpaddedMessageBody)
-            }
-            envelope.isFallbackMessage ->
-                decryptFallbackMessage(envelope, ciphertext)
-            else ->
-                super.decrypt(envelope, ciphertext)
-        }
+        return if (envelope.isFallbackMessage) decryptFallbackMessage(envelope, ciphertext) else super.decrypt(envelope, ciphertext)
     }
 
     private fun decryptFallbackMessage(envelope: SignalServiceEnvelope, ciphertext: ByteArray): Plaintext {

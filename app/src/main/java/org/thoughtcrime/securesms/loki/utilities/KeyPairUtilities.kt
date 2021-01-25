@@ -46,10 +46,10 @@ object KeyPairUtilities {
     }
 
     fun getUserED25519KeyPair(context: Context): KeyPair? {
-        val hexEncodedED25519PublicKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_PUBLIC_KEY) ?: return null
-        val hexEncodedED25519SecretKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_SECRET_KEY) ?: return null
-        val ed25519PublicKey = Key.fromBase64String(hexEncodedED25519PublicKey)
-        val ed25519SecretKey = Key.fromBase64String(hexEncodedED25519SecretKey)
+        val base64EncodedED25519PublicKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_PUBLIC_KEY) ?: return null
+        val base64EncodedED25519SecretKey = IdentityKeyUtil.retrieve(context, IdentityKeyUtil.ED25519_SECRET_KEY) ?: return null
+        val ed25519PublicKey = Key.fromBytes(Base64.decode(base64EncodedED25519PublicKey))
+        val ed25519SecretKey = Key.fromBytes(Base64.decode(base64EncodedED25519SecretKey))
         return KeyPair(ed25519PublicKey, ed25519SecretKey)
     }
 
