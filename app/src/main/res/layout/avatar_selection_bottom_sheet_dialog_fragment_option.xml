@@ -4,6 +4,7 @@
     android:id="@+id/avatar_selection_bottom_sheet_dialog_fragment_recycler"
     android:layout_width="match_parent"
     android:layout_height="?listPreferredItemHeight"
+    android:background="?selectableItemBackground"
     android:drawablePadding="16dp"
     android:gravity="center_vertical"
     android:paddingStart="16dp"
