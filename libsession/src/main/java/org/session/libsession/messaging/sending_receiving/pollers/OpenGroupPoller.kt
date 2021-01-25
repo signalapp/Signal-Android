@@ -162,16 +162,16 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                     dataMessageProto.setQuote(quoteProto.build())
                 }
                 val messageServerID = message.serverID
-                /* TODO: the signal service proto needs to be synced with iOS
                 // Profile
-                val profileProto = DataMessage.LokiProfile.newBuilder()
+                val profileProto = LokiUserProfile.newBuilder()
                 profileProto.setDisplayName(message.displayName)
                 val profilePicture = message.profilePicture
                 if (profilePicture != null) {
-                    profileProto.setProfilePicture(profilePicture.url)
+                    profileProto.setProfilePictureURL(profilePicture.url)
                     dataMessageProto.setProfileKey(ByteString.copyFrom(profilePicture.profileKey))
                 }
                 dataMessageProto.setProfile(profileProto.build())
+                /* TODO: the signal service proto needs to be synced with iOS
                 // Open group info
                 if (messageServerID != null) {
                     val openGroupProto = PublicChatInfo.newBuilder()
