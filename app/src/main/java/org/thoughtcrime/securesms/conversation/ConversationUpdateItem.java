@@ -171,9 +171,7 @@ public final class ConversationUpdateItem extends FrameLayout
 
   /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
   private @NonNull LiveData<Spannable> loading(@NonNull LiveData<Spannable> string) {
-    // TODO [greyson] This sometimes isn't working and can instead get stuck on 'loading'.
-    return string;
-//    return LiveDataUtil.until(string, LiveDataUtil.delay(250, new SpannableString(getContext().getString(R.string.ConversationUpdateItem_loading))));
+    return LiveDataUtil.until(string, LiveDataUtil.delay(250, new SpannableString(getContext().getString(R.string.ConversationUpdateItem_loading))));
   }
 
   @Override
