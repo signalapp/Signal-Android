@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -295,7 +296,20 @@ public final class DecryptedGroupUtil {
   }
 
   private static void applyAddMemberAction(DecryptedGroup.Builder builder, List<DecryptedMember> newMembersList) {
-    builder.addAllMembers(newMembersList);
+    if (newMembersList.isEmpty()) return;
+
+    LinkedHashMap<ByteString, DecryptedMember> members = new LinkedHashMap<>();
+
+    for (DecryptedMember member : builder.getMembersList()) {
+      members.put(member.getUuid(), member);
+    }
+
+    for (DecryptedMember member : newMembersList) {
+      members.put(member.getUuid(), member);
+    }
+
+    builder.clearMembers();
+    builder.addAllMembers(members.values());
 
     removePendingAndRequestingMembersNowInGroup(builder);
   }
