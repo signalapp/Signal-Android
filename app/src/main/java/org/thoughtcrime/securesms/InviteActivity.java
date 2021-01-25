@@ -7,6 +7,8 @@ import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -105,6 +107,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     contactsFragment  = (ContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
 
     inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+    inviteText.addTextChangedListener(new SmsTextChangeListener());
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
 
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
@@ -240,6 +243,30 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
           .setNegativeButton(R.string.no, (dialog, which) -> dialog.dismiss())
           .show();
     }
+  }
+
+  private class SmsTextChangeListener implements TextWatcher {
+
+    private final Button smsButton = findViewById(R.id.sms_button);
+    private final View shareButton = findViewById(R.id.share_button);
+
+    @Override
+    public void afterTextChanged(Editable s) {
+      boolean isEnabled = s.length() > 0;
+      smsButton.setEnabled(isEnabled);
+      shareButton.setEnabled(isEnabled);
+      smsButton.animate().alpha(isEnabled ? 1f : 0.5f);
+      shareButton.animate().alpha(isEnabled ? 1f : 0.5f);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start,
+                                  int count, int after) {}
+
+    @Override
+    public void onTextChanged(CharSequence s, int start,
+                              int before, int count) {}
+
   }
 
   private class ContactFilterChangedListener implements OnFilterChangedListener {
