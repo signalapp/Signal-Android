@@ -2279,6 +2279,7 @@
   <string name="ChatWallpaperFragment__reset">초기화</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">미리보기</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->

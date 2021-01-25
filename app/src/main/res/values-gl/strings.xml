@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificacións</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificacións</string>
   <string name="ManageGroupActivity_mentions">Mencións</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fondo de pantalla do chat</string>
   <string name="ManageGroupActivity_until_s">Ata %1$s</string>
   <string name="ManageGroupActivity_off">Off</string>
   <string name="ManageGroupActivity_on">On</string>
@@ -634,14 +635,19 @@
   <string name="GroupMentionSettingDialog_always_notify_me">Notifíqueme sempre</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">Non me notifique</string>
   <!--ManageProfileFragment-->
+  <string name="ManageProfileFragment_profile_name">Nome do perfil</string>
   <string name="ManageProfileFragment_username">Nome de usuario</string>
   <string name="ManageProfileFragment_about">Acerca de</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escriba unhas palabras de si mesmo</string>
   <string name="ManageProfileFragment_your_name">O teu nome</string>
+  <string name="ManageProfileFragment_your_username">O seu nome de usuario</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Fallou a configuración do avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Engadir aos contactos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta persoa é un dos teus contactos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Desaparición das mensaxes</string>
   <string name="ManageRecipientActivity_chat_color">Cor do chat</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fondo de pantalla do chat</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
   <string name="ManageRecipientActivity_view_safety_number">Ver número de seguranza</string>
@@ -1314,6 +1320,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copia este URL e engádeo ao teu informe de problemas ou correo de asistencia:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartir</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Información do dispositivo:</string>
   <string name="SupportEmailUtil_android_version">Versión de Android:</string>
   <string name="SupportEmailUtil_signal_version">Versión de Signal:</string>
@@ -1693,13 +1700,24 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Os nomes de grupos MMS personalizados e fotos só serán visibles para ti.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca de</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriba unhas palabras sobre si mesmo</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Fale libremente</string>
+  <string name="EditAboutFragment_encrypted">Cifrado</string>
+  <string name="EditAboutFragment_be_kind">Sexa considerado</string>
+  <string name="EditAboutFragment_coffee_lover">Afeccionado ao café</string>
+  <string name="EditAboutFragment_free_to_chat">Libre para conversar</string>
+  <string name="EditAboutFragment_taking_a_break">Tomando un descanso</string>
+  <string name="EditAboutFragment_working_on_something_new">Traballando en algo novo</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Editar nome do grupo e fotografía</string>
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">O teu nome</string>
+  <string name="EditProfileNameFragment_first_name">Nome</string>
   <string name="EditProfileNameFragment_last_name_optional">Apelido (optativo)</string>
   <string name="EditProfileNameFragment_save">Gardar</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Produciuse un fallo ao gardar por problemas coa rede. Ténteo de novo.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Ficheiros multimedia compartidos</string>
   <!--recipients_panel-->
@@ -1872,6 +1890,7 @@
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aparencia</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Fondo de pantalla do chat</string>
   <string name="preferences__disable_pin">Desactivar PIN</string>
   <string name="preferences__enable_pin">Activar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se desactivas o PIN perderás todos os datos cando voltes a rexistrar Signal a menos que fagas unha copia de apoio e a restaures. Non podes activar Bloqueo do Rexistro se o PIN está desactivado.</string>
@@ -1890,6 +1909,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se desactivas as confirmacións de lectura, non poderás ver as confirmacións dos demais.</string>
   <string name="preferences__typing_indicators">Indicador de escritura</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escritura están desactivados non verás cando outras persoas está a escribir.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar un teclado para desactivar a aprendizaxe personalizada. Este axuste non é unha garantía porque o seu teclado por ignoralo.</string>
   <string name="preferences_app_protection__blocked_users">Usuarios bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Usando datos móbiles</string>
   <string name="preferences_chats__when_using_wifi">Usando conexión wifi</string>
@@ -2055,6 +2075,7 @@
   <string name="Insights__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__title">Estatísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O Protocolo Signal protexeu de xeito automático o %1$d%% das túas mensaxes enviadas nos últimos %2$d días. As conversas entre usuarios Signal están sempre cifradas de extremo-a-extremo.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Pular polo Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">O teu porcentaxe Insights calcúlase en función das mensaxes enviadas nos últimos %1$d días e que non desapareceron ou foron eliminados.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
@@ -2068,6 +2089,7 @@
   <string name="InsightsModalFragment__view_insights">Ver Estatísticas</string>
   <string name="FirstInviteReminder__title">Convidar a Signal</string>
   <string name="FirstInviteReminder__description">Podes aumentar o número de mensaxes cifradas que envías por %1$d %%</string>
+  <string name="SecondInviteReminder__title">Pular polo seu Signal</string>
   <string name="SecondInviteReminder__description">Convidar a %1$s</string>
   <string name="InsightsReminder__view_insights">Ver Estatísticas</string>
   <string name="InsightsReminder__invite">Convidar</string>
@@ -2365,14 +2387,27 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartir</string>
   <string name="ShareActivity__send">Enviar</string>
+  <string name="ShareActivity__s_comma">%1$s</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Compartir con múltiplos chats é algo que só se pode facer coas mensaxes do Signal</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Fallou o envío a algúns usuarios</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Soamente pode compartila con %1$d chat</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Reenviar mensaxe</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fondo de pantalla do chat</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Estabelecer o fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">O tema escuro atenúa o fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Despexar o fondo de pantalla</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Despexar o fondo de pantalla deste chat?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Despexar o fondo de pantalla? Non retira os fondos de pantalla personalizados que teña estabelecidos para os seus chats.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Reestabelecer todos os fondos de pantalla</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Reestabelecer todos os fondos de pantalla, incluíndo os personalizados que teña estabelecidos para os seus chats?</string>
   <string name="ChatWallpaperFragment__reset">Restablecer</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Estabelecer o fondo de pantalla</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Para ver a galería precisas permiso de almacenaxe.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->

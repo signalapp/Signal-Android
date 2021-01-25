@@ -1308,7 +1308,7 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">الرمز باطل.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">عذرا، لديك عدة أجهزة مرتبطة. يرجى إزالة بعضها</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">عذرا، الرابط غير صحيح.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">الربط بجهاز Signal؟</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">ربط جهاز Signal آخر ؟</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">يبدو أنك تحاول ربط جهاز Signal باستخدام ماسح ضوئي من طرف ثالث. الرجاء مسح الرمز مرّة  أخرى باستخدام Signal من أجل حمايتك.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">يحتاج Signal إلى إذن الوصول إلى الكاميرا من أجل مسح الرمز المربع ضوئيا ولكن رُفض الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق، ثم اختيار « الصلاحيات »، ثم تفعيل « الكاميرا ».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">لا يمكن مسح رمز الاستجابة السريع بدون منح إذن الوصول إلى الكاميرا</string>
@@ -1753,7 +1753,7 @@
   <string name="WebRtcCallScreen__answer_without_video">أجب بدون فيديو</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">مخرج الصوت</string>
-  <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة الهاتف الأذنية</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">سماعة أذن الهاتف</string>
   <string name="WebRtcAudioOutputToggle__speaker">مكبر الصوت</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">بلوتوث</string>
   <string name="WebRtcCallControls_answer_call_description">الرد على المكالمة</string>
@@ -1989,11 +1989,11 @@
   <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">ما عليك إلا التحدث بكل حرية</string>
   <string name="EditAboutFragment_encrypted">مُعمَّى</string>
-  <string name="EditAboutFragment_be_kind">كن لطيفاً</string>
-  <string name="EditAboutFragment_coffee_lover">محب للقهوة</string>
-  <string name="EditAboutFragment_free_to_chat">لديّ وقت للتحدث</string>
-  <string name="EditAboutFragment_taking_a_break">آخذ استراحة</string>
-  <string name="EditAboutFragment_working_on_something_new">أعمل على شيء جديد</string>
+  <string name="EditAboutFragment_be_kind">كن لطيفا</string>
+  <string name="EditAboutFragment_coffee_lover">من عشاق القهوة</string>
+  <string name="EditAboutFragment_free_to_chat">لدي الوقت للتحدث</string>
+  <string name="EditAboutFragment_taking_a_break">أنا في استراحة</string>
+  <string name="EditAboutFragment_working_on_something_new">أعمل حاليا على شيء جديد</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">عدّل اسم المجموعة وصورتها</string>
   <string name="EditProfileFragment__group_name">اسم المجموعة</string>
@@ -2725,10 +2725,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">ضبط الخلفية</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">إن النمط الداكن يجعل الخلفية معتمة</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">محو الخلفية</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">مسح الخلفية لهذه المُحادثة؟</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">مسح الخلفية؟ هذا لن يؤدي إلى مسح الخلفيات المُخصصة التي قد قمت بتعيينها لمُحادثاتك.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">محو الخلفية لهذه المُحادثة ؟</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">أأمحو الخلفية ؟ لن يؤدي هذا إلى محو الخلفيات المخصصة التي قد قمت بضبطها لمحادثاتك.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">إعادة التعيين كل الخلفيات</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">إعادة تعيين جميع الخلفيات، بما في ذلك الخلفيات المُخصصة التي قد قمت بتعيينها لمُحادثاتك؟</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">أأعيد تعيين جميع الخلفيات، بما في ذلك الخلفيات المخصصة التي قد قمت بضبطها لمحادثاتك ؟</string>
   <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
   <string name="ChatWallpaperFragment__reset">إعادة التعيين</string>
   <string name="ChatWallpaperFragment__clear">محو</string>

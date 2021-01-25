@@ -604,7 +604,7 @@
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">プロフィール名</string>
   <string name="ManageProfileFragment_username">ユーザ名</string>
-  <string name="ManageProfileFragment_about">この連絡先について</string>
+  <string name="ManageProfileFragment_about">自己紹介</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください</string>
   <string name="ManageProfileFragment_your_name">あなたの名前</string>
   <string name="ManageProfileFragment_your_username">あなたのユーザ名</string>
@@ -2313,25 +2313,25 @@
   <string name="ChatWallpaperFragment__reset_all_wallpapers">すべての壁紙をリセット</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">チャットに設定したカスタム壁紙を含む、すべての壁紙をリセットしますか？</string>
   <string name="ChatWallpaperFragment__contact_name">連絡先名</string>
-  <string name="ChatWallpaperFragment__reset">リセット</string>
-  <string name="ChatWallpaperFragment__clear">消去</string>
+  <string name="ChatWallpaperFragment__reset">リセットする</string>
+  <string name="ChatWallpaperFragment__clear">消去する</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">壁紙のプレビュー</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">写真から選択</string>
   <string name="ChatWallpaperSelectionFragment__presets">プリセット</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">プレビュー</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">壁紙を設定</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">スワイプしてさらに壁紙をプレビュー</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">すべてのチャットに壁紙を設定しましょう</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s の壁紙を設定しましょう</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">壁紙を設定する</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">スワイプすると別の壁紙をプレビューできます</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">すべてのチャットの壁紙を設定します</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s の壁紙を設定します</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">ギャラリーを表示するには、ストレージへのアクセス許可が必要です。</string>
   <!--WallpaperImageSelectionActivity-->
-  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">壁紙画像を選択</string>
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">壁紙画像の選択</string>
   <!--WallpaperCropActivity-->
-  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">ピンチして拡大、ドラッグして調整します。</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">すべてのチャットに壁紙を設定しましょう。</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s の壁紙を設定しましょう。</string>
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">ピンチで拡大、ドラッグで調整します。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">すべてのチャットの壁紙を設定します。</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s の壁紙を設定します。</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">壁紙の設定でエラーが発生しました。</string>
   <string name="WallpaperCropActivity__blur_photo">写真をぼかす</string>
   <!--EOF-->

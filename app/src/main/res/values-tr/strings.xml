@@ -1700,7 +1700,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="EditAboutFragment_about">Hakkında</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Hakkınızda bir kaç kelime yazın…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
-  <string name="EditAboutFragment_speak_freely">Özgürce Konuşun</string>
+  <string name="EditAboutFragment_speak_freely">Özgürce konuşun</string>
   <string name="EditAboutFragment_encrypted">Şifreli</string>
   <string name="EditAboutFragment_be_kind">Türk; öğün, çalış, güven</string>
   <string name="EditAboutFragment_coffee_lover">Kahve sevdalısı</string>
@@ -2396,15 +2396,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChatWallpaperActivity__chat_wallpaper">Sohbet duvar kağıdı</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Duvar kağıdı ayarla</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Koyu tema duvar kağıdını karartır</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Duvar kağıdını temizle</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Koyu tema duvar kağıdını karartsın</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Duvar kağıdını kaldır</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Bu sohbet için duvar kağıdı kaldırılsın mi?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Duvar kağıdı kaldırılsın mi? Bu, sohbetleriniz için ayarladığınız özel duvar kağıtlarını kaldırmayacaktır.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Tüm duvar kağıtlarını sıfırla</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Sohbetleriniz için belirlediğiniz özel duvar kağıtları dahil tüm duvar kağıtları sıfırlansın mı?</string>
   <string name="ChatWallpaperFragment__contact_name">Kişi adı</string>
   <string name="ChatWallpaperFragment__reset">Sıfırla</string>
-  <string name="ChatWallpaperFragment__clear">Temizle</string>
+  <string name="ChatWallpaperFragment__clear">Kaldır</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Duvar kağıdı önizlemesi</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Fotoğraflardan seç</string>
