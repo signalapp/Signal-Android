@@ -15,7 +15,7 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.signal.glide.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.glide.common.executor.FrameDecoderExecutor;
 import org.signal.glide.common.io.Reader;
 import org.signal.glide.common.io.Writer;
