@@ -431,7 +431,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       }
       catch (RuntimeException e){
         Log.w(TAG, e);
-        Toast.makeText(getActivity(), "Invalid QR Code", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.VerifyIdentityActivity_the_scanned_qr_code_is_invalid, Toast.LENGTH_SHORT).show();
       }
     }
 
