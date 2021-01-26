@@ -54,7 +54,7 @@
         android:title="@string/preferences__inactivity_timeout_interval" />
 
     <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="pref_screen_security"
         android:summary="@string/preferences__disable_screen_security_to_allow_screen_shots"
         android:title="@string/preferences__screen_security" />
