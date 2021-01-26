@@ -2,14 +2,14 @@ package org.session.libsession.messaging.opengroups
 
 import org.session.libsignal.service.internal.util.JsonUtil
 
-public data class OpenGroup(
-    public val channel: Long,
+data class OpenGroup(
+    val channel: Long,
     private val serverURL: String,
-    public val displayName: String,
-    public val isDeletable: Boolean
+    val displayName: String,
+    val isDeletable: Boolean
 ) {
-    public val server get() = serverURL.toLowerCase()
-    public val id get() = getId(channel, server)
+    val server get() = serverURL.toLowerCase()
+    val id get() = getId(channel, server)
 
     companion object {
 
@@ -31,7 +31,7 @@ public data class OpenGroup(
         }
     }
 
-    public fun toJSON(): Map<String, Any> {
+    fun toJSON(): Map<String, Any> {
         return mapOf( "channel" to channel, "server" to server, "displayName" to displayName, "isDeletable" to isDeletable )
     }
 }

@@ -9,14 +9,16 @@ import org.session.libsession.messaging.MessagingConfiguration
 
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
+import org.session.libsession.utilities.ThreadUtils
+import org.session.libsession.utilities.createContext
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.internal.util.Hex
 import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.service.loki.api.LokiDotNetAPI
+import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
-import org.session.libsignal.service.loki.utilities.createContext
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -25,7 +27,7 @@ import java.util.*
 object OpenGroupAPI: DotNetAPI() {
 
     private val moderators: HashMap<String, HashMap<Long, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-    val sharedContext = Kovenant.createContext("LokiPublicChatAPISharedContext")
+    val sharedContext = Kovenant.createContext()
 
     // region Settings
     private val fallbackBatchCount = 64
@@ -36,15 +38,15 @@ object OpenGroupAPI: DotNetAPI() {
     private val channelInfoType = "net.patter-app.settings"
     private val attachmentType = "net.app.core.oembed"
     @JvmStatic
-    public val openGroupMessageType = "network.loki.messenger.publicChat"
+    val openGroupMessageType = "network.loki.messenger.publicChat"
     @JvmStatic
-    public val profilePictureType = "network.loki.messenger.avatar"
+    val profilePictureType = "network.loki.messenger.avatar"
 
     fun getDefaultChats(): List<OpenGroup> {
         return listOf() // Don't auto-join any open groups right now
     }
 
-    public fun isUserModerator(hexEncodedPublicKey: String, channel: Long, server: String): Boolean {
+    fun isUserModerator(hexEncodedPublicKey: String, channel: Long, server: String): Boolean {
         if (moderators[server] != null && moderators[server]!![channel] != null) {
             return moderators[server]!![channel]!!.contains(hexEncodedPublicKey)
         }
@@ -53,7 +55,7 @@ object OpenGroupAPI: DotNetAPI() {
     // endregion
 
     // region Public API
-    public fun getMessages(channel: Long, server: String): Promise<List<OpenGroupMessage>, Exception> {
+    fun getMessages(channel: Long, server: String): Promise<List<OpenGroupMessage>, Exception> {
         Log.d("Loki", "Getting messages for open group with ID: $channel on server: $server.")
         val storage = MessagingConfiguration.shared.storage
         val parameters = mutableMapOf<String, Any>( "include_annotations" to 1 )
@@ -158,7 +160,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
+    fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
         Log.d("Loki", "Getting deleted messages for open group with ID: $channel on server: $server.")
         val storage = MessagingConfiguration.shared.storage
         val parameters = mutableMapOf<String, Any>()
@@ -190,12 +192,12 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun sendMessage(message: OpenGroupMessage, channel: Long, server: String): Promise<OpenGroupMessage, Exception> {
+    fun sendMessage(message: OpenGroupMessage, channel: Long, server: String): Promise<OpenGroupMessage, Exception> {
         val deferred = deferred<OpenGroupMessage, Exception>()
         val storage = MessagingConfiguration.shared.storage
         val userKeyPair = storage.getUserKeyPair() ?: throw Error.Generic
         val userDisplayName = storage.getUserDisplayName() ?: throw Error.Generic
-        Thread {
+        ThreadUtils.queue {
             val signedMessage = message.sign(userKeyPair.second)
             if (signedMessage == null) {
                 deferred.reject(Error.SigningFailed)
@@ -225,11 +227,11 @@ object OpenGroupAPI: DotNetAPI() {
                     deferred.reject(it)
                 }
             }
-        }.start()
+        }
         return deferred.promise
     }
 
-    public fun deleteMessage(messageServerID: Long, channel: Long, server: String, isSentByUser: Boolean): Promise<Long, Exception> {
+    fun deleteMessage(messageServerID: Long, channel: Long, server: String, isSentByUser: Boolean): Promise<Long, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val isModerationRequest = !isSentByUser
             Log.d("Loki", "Deleting message with ID: $messageServerID from open group with ID: $channel on server: $server (isModerationRequest = $isModerationRequest).")
@@ -241,7 +243,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun deleteMessages(messageServerIDs: List<Long>, channel: Long, server: String, isSentByUser: Boolean): Promise<List<Long>, Exception> {
+    fun deleteMessages(messageServerIDs: List<Long>, channel: Long, server: String, isSentByUser: Boolean): Promise<List<Long>, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val isModerationRequest = !isSentByUser
             val parameters = mapOf( "ids" to messageServerIDs.joinToString(",") )
@@ -254,7 +256,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
+    fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
         return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/get_moderators").then(sharedContext) { json ->
             try {
                 @Suppress("UNCHECKED_CAST") val moderators = json["moderators"] as? List<String>
@@ -272,7 +274,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun getChannelInfo(channel: Long, server: String): Promise<OpenGroupInfo, Exception> {
+    fun getChannelInfo(channel: Long, server: String): Promise<OpenGroupInfo, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val parameters = mapOf( "include_annotations" to 1 )
             execute(HTTPVerb.GET, server, "/channels/$channel", parameters = parameters).then(sharedContext) { json ->
@@ -296,7 +298,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: OpenGroupInfo, isForcedUpdate: Boolean) {
+    fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: OpenGroupInfo, isForcedUpdate: Boolean) {
         val storage = MessagingConfiguration.shared.storage
         storage.setUserCount(channel, server, info.memberCount)
         storage.updateTitle(groupID, info.displayName)
@@ -309,7 +311,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun downloadOpenGroupProfilePicture(server: String, endpoint: String): ByteArray? {
+    fun downloadOpenGroupProfilePicture(server: String, endpoint: String): ByteArray? {
         val url = "${server.removeSuffix("/")}/${endpoint.removePrefix("/")}"
         Log.d("Loki", "Downloading open group profile picture from \"$url\".")
         val outputStream = ByteArrayOutputStream()
@@ -325,7 +327,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun join(channel: Long, server: String): Promise<Unit, Exception> {
+    fun join(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.POST, server, "/channels/$channel/subscribe").then {
                 Log.d("Loki", "Joined channel with ID: $channel on server: $server.")
@@ -333,7 +335,7 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun leave(channel: Long, server: String): Promise<Unit, Exception> {
+    fun leave(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.DELETE, server, "/channels/$channel/subscribe").then {
                 Log.d("Loki", "Left channel with ID: $channel on server: $server.")
@@ -341,7 +343,15 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
+    fun ban(publicKey: String, server: String): Promise<Unit,Exception> {
+        return retryIfNeeded(maxRetryCount) {
+            execute(HTTPVerb.POST, server, "/loki/v1/moderation/blacklist/@$publicKey").then {
+                Log.d("Loki", "Banned user with ID: $publicKey from $server")
+            }
+        }
+    }
+
+    fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
         return getUserProfiles(publicKeys, server, false).map(sharedContext) { json ->
             val mapping = mutableMapOf<String, String>()
             for (user in json) {
@@ -355,17 +365,17 @@ object OpenGroupAPI: DotNetAPI() {
         }
     }
 
-    public fun setDisplayName(newDisplayName: String?, server: String): Promise<Unit, Exception> {
+    fun setDisplayName(newDisplayName: String?, server: String): Promise<Unit, Exception> {
         Log.d("Loki", "Updating display name on server: $server.")
         val parameters = mapOf( "name" to (newDisplayName ?: "") )
         return execute(HTTPVerb.PATCH, server, "users/me", parameters = parameters).map { Unit }
     }
 
-    public fun setProfilePicture(server: String, profileKey: ByteArray, url: String?): Promise<Unit, Exception> {
+    fun setProfilePicture(server: String, profileKey: ByteArray, url: String?): Promise<Unit, Exception> {
         return setProfilePicture(server, Base64.encodeBytes(profileKey), url)
     }
 
-    public fun setProfilePicture(server: String, profileKey: String, url: String?): Promise<Unit, Exception> {
+    fun setProfilePicture(server: String, profileKey: String, url: String?): Promise<Unit, Exception> {
         Log.d("Loki", "Updating profile picture on server: $server.")
         val value = when (url) {
             null -> null

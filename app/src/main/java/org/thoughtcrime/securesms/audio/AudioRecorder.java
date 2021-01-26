@@ -12,7 +12,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-import org.session.libsession.utilities.ThreadUtil;
+import org.session.libsession.utilities.ThreadUtils;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.concurrent.ListenableFuture;
 import org.session.libsession.utilities.concurrent.SettableFuture;
@@ -25,7 +25,7 @@ public class AudioRecorder {
 
   private static final String TAG = AudioRecorder.class.getSimpleName();
 
-  private static final ExecutorService executor = ThreadUtil.newDynamicSingleThreadedExecutor();
+  private static final ExecutorService executor = ThreadUtils.newDynamicSingleThreadedExecutor();
 
   private final Context context;
 

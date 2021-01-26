@@ -5,6 +5,7 @@ import nl.komponents.kovenant.deferred
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.AESGCM
+import org.session.libsession.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import java.nio.Buffer
 import java.nio.ByteBuffer
@@ -32,7 +33,7 @@ object OnionRequestEncryption {
      */
     internal fun encryptPayloadForDestination(payload: Map<*, *>, destination: OnionRequestAPI.Destination): Promise<EncryptionResult, Exception> {
         val deferred = deferred<EncryptionResult, Exception>()
-        Thread {
+        ThreadUtils.queue {
             try {
                 // Wrapping isn't needed for file server or open group onion requests
                 when (destination) {
@@ -52,7 +53,7 @@ object OnionRequestEncryption {
             } catch (exception: Exception) {
                 deferred.reject(exception)
             }
-        }.start()
+        }
         return deferred.promise
     }
 

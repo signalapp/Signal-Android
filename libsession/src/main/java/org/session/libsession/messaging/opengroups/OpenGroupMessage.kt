@@ -7,18 +7,18 @@ import org.session.libsignal.service.internal.util.Hex
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.whispersystems.curve25519.Curve25519
 
-public data class OpenGroupMessage(
-        public val serverID: Long?,
-        public val senderPublicKey: String,
-        public val displayName: String,
-        public val body: String,
-        public val timestamp: Long,
-        public val type: String,
-        public val quote: Quote?,
-        public val attachments: MutableList<Attachment>,
-        public val profilePicture: ProfilePicture?,
-        public val signature: Signature?,
-        public val serverTimestamp: Long,
+data class OpenGroupMessage(
+        val serverID: Long?,
+        val senderPublicKey: String,
+        val displayName: String,
+        val body: String,
+        val timestamp: Long,
+        val type: String,
+        val quote: Quote?,
+        val attachments: MutableList<Attachment>,
+        val profilePicture: ProfilePicture?,
+        val signature: Signature?,
+        val serverTimestamp: Long,
 ) {
 
     // region Settings
@@ -98,52 +98,52 @@ public data class OpenGroupMessage(
     // endregion
 
     // region Types
-    public data class ProfilePicture(
-            public val profileKey: ByteArray,
-            public val url: String,
+    data class ProfilePicture(
+            val profileKey: ByteArray,
+            val url: String,
     )
 
-    public data class Quote(
-            public val quotedMessageTimestamp: Long,
-            public val quoteePublicKey: String,
-            public val quotedMessageBody: String,
-            public val quotedMessageServerID: Long? = null,
+    data class Quote(
+            val quotedMessageTimestamp: Long,
+            val quoteePublicKey: String,
+            val quotedMessageBody: String,
+            val quotedMessageServerID: Long? = null,
     )
 
-    public data class Signature(
-            public val data: ByteArray,
-            public val version: Long,
+    data class Signature(
+            val data: ByteArray,
+            val version: Long,
     )
 
-    public data class Attachment(
-            public val kind: Kind,
-            public val server: String,
-            public val serverID: Long,
-            public val contentType: String,
-            public val size: Int,
-            public val fileName: String,
-            public val flags: Int,
-            public val width: Int,
-            public val height: Int,
-            public val caption: String?,
-            public val url: String,
+    data class Attachment(
+            val kind: Kind,
+            val server: String,
+            val serverID: Long,
+            val contentType: String,
+            val size: Int,
+            val fileName: String,
+            val flags: Int,
+            val width: Int,
+            val height: Int,
+            val caption: String?,
+            val url: String,
             /**
             Guaranteed to be non-`nil` if `kind` is `LinkPreview`.
              */
-            public val linkPreviewURL: String?,
+            val linkPreviewURL: String?,
             /**
             Guaranteed to be non-`nil` if `kind` is `LinkPreview`.
              */
-            public val linkPreviewTitle: String?,
+            val linkPreviewTitle: String?,
     ) {
-        public val dotNetAPIType = when {
+        val dotNetAPIType = when {
             contentType.startsWith("image") -> "photo"
             contentType.startsWith("video") -> "video"
             contentType.startsWith("audio") -> "audio"
             else -> "other"
         }
 
-        public enum class Kind(val rawValue: String) {
+        enum class Kind(val rawValue: String) {
             Attachment("attachment"), LinkPreview("preview")
         }
     }

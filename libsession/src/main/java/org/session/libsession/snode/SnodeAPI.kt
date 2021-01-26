@@ -7,24 +7,22 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 
 import org.session.libsession.snode.utilities.getRandomElement
+import org.session.libsession.utilities.ThreadUtils
+import org.session.libsession.utilities.createContext
 
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.loki.api.MessageWrapper
 import org.session.libsignal.service.loki.api.utilities.HTTP
-import org.session.libsignal.service.loki.utilities.createContext
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
-import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
 
 import java.security.SecureRandom
 
 object SnodeAPI {
     val database = SnodeConfiguration.shared.storage
     val broadcaster = SnodeConfiguration.shared.broadcaster
-    val sharedContext = Kovenant.createContext("LokiAPISharedContext")
-    val messageSendingContext = Kovenant.createContext("LokiAPIMessageSendingContext")
-    val messagePollingContext = Kovenant.createContext("LokiAPIMessagePollingContext")
+    val sharedContext = Kovenant.createContext()
+    val messageSendingContext = Kovenant.createContext()
+    val messagePollingContext = Kovenant.createContext()
 
     internal var snodeFailureCount: MutableMap<Snode, Int> = mutableMapOf()
     internal var snodePool: Set<Snode>
@@ -57,7 +55,7 @@ object SnodeAPI {
             return OnionRequestAPI.sendOnionRequest(method, parameters, snode, publicKey)
         } else {
             val deferred = deferred<Map<*, *>, Exception>()
-            Thread {
+            ThreadUtils.queue {
                 val payload = mapOf( "method" to method.rawValue, "params" to parameters )
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, payload)
@@ -66,12 +64,12 @@ object SnodeAPI {
                     val httpRequestFailedException = exception as? HTTP.HTTPRequestFailedException
                     if (httpRequestFailedException != null) {
                         val error = handleSnodeError(httpRequestFailedException.statusCode, httpRequestFailedException.json, snode, publicKey)
-                        if (error != null) { return@Thread deferred.reject(exception) }
+                        if (error != null) { return@queue deferred.reject(exception) }
                     }
                     Log.d("Loki", "Unhandled exception: $exception.")
                     deferred.reject(exception)
                 }
-            }.start()
+            }
             return deferred.promise
         }
     }
@@ -91,7 +89,7 @@ object SnodeAPI {
             )
             val deferred = deferred<Snode, Exception>()
             deferred<org.session.libsignal.service.loki.api.Snode, Exception>(SnodeAPI.sharedContext)
-            Thread {
+            ThreadUtils.queue {
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, parameters, useSeedNodeConnection = true)
                     val intermediate = json["result"] as? Map<*, *>
@@ -125,7 +123,7 @@ object SnodeAPI {
                 } catch (exception: Exception) {
                     deferred.reject(exception)
                 }
-            }.start()
+            }
             return deferred.promise
         } else {
             return Promise.of(snodePool.getRandomElement())
