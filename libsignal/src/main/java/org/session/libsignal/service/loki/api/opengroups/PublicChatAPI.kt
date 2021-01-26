@@ -16,6 +16,7 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
+import org.session.libsignal.service.loki.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.createContext
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.io.ByteArrayOutputStream
@@ -27,7 +28,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
 
     companion object {
         private val moderators: HashMap<String, HashMap<Long, Set<String>>> = hashMapOf() // Server URL to (channel ID to set of moderator IDs)
-        val sharedContext = Kovenant.createContext("LokiPublicChatAPISharedContext")
+        val sharedContext = Kovenant.createContext()
 
         // region Settings
         private val fallbackBatchCount = 64
@@ -38,15 +39,15 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         private val channelInfoType = "net.patter-app.settings"
         private val attachmentType = "net.app.core.oembed"
         @JvmStatic
-        public val publicChatMessageType = "network.loki.messenger.publicChat"
+        val publicChatMessageType = "network.loki.messenger.publicChat"
         @JvmStatic
-        public val profilePictureType = "network.loki.messenger.avatar"
+        val profilePictureType = "network.loki.messenger.avatar"
 
         fun getDefaultChats(): List<PublicChat> {
             return listOf() // Don't auto-join any open groups right now
         }
 
-        public fun isUserModerator(hexEncodedPublicKey: String, channel: Long, server: String): Boolean {
+        fun isUserModerator(hexEncodedPublicKey: String, channel: Long, server: String): Boolean {
             if (moderators[server] != null && moderators[server]!![channel] != null) {
                 return moderators[server]!![channel]!!.contains(hexEncodedPublicKey)
             }
@@ -56,7 +57,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
     }
 
     // region Public API
-    public fun getMessages(channel: Long, server: String): Promise<List<PublicChatMessage>, Exception> {
+    fun getMessages(channel: Long, server: String): Promise<List<PublicChatMessage>, Exception> {
         Log.d("Loki", "Getting messages for open group with ID: $channel on server: $server.")
         val parameters = mutableMapOf<String, Any>( "include_annotations" to 1 )
         val lastMessageServerID = apiDatabase.getLastMessageServerID(channel, server)
@@ -160,7 +161,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
+    fun getDeletedMessageServerIDs(channel: Long, server: String): Promise<List<Long>, Exception> {
         Log.d("Loki", "Getting deleted messages for open group with ID: $channel on server: $server.")
         val parameters = mutableMapOf<String, Any>()
         val lastDeletionServerID = apiDatabase.getLastDeletionServerID(channel, server)
@@ -191,9 +192,9 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun sendMessage(message: PublicChatMessage, channel: Long, server: String): Promise<PublicChatMessage, Exception> {
+    fun sendMessage(message: PublicChatMessage, channel: Long, server: String): Promise<PublicChatMessage, Exception> {
         val deferred = deferred<PublicChatMessage, Exception>()
-        Thread {
+        ThreadUtils.queue {
             val signedMessage = message.sign(userPrivateKey)
             if (signedMessage == null) {
                 deferred.reject(SnodeAPI.Error.MessageSigningFailed)
@@ -224,11 +225,11 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
                     deferred.reject(it)
                 }
             }
-        }.start()
+        }
         return deferred.promise
     }
 
-    public fun deleteMessage(messageServerID: Long, channel: Long, server: String, isSentByUser: Boolean): Promise<Long, Exception> {
+    fun deleteMessage(messageServerID: Long, channel: Long, server: String, isSentByUser: Boolean): Promise<Long, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val isModerationRequest = !isSentByUser
             Log.d("Loki", "Deleting message with ID: $messageServerID from open group with ID: $channel on server: $server (isModerationRequest = $isModerationRequest).")
@@ -240,7 +241,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun deleteMessages(messageServerIDs: List<Long>, channel: Long, server: String, isSentByUser: Boolean): Promise<List<Long>, Exception> {
+    fun deleteMessages(messageServerIDs: List<Long>, channel: Long, server: String, isSentByUser: Boolean): Promise<List<Long>, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val isModerationRequest = !isSentByUser
             val parameters = mapOf( "ids" to messageServerIDs.joinToString(",") )
@@ -253,7 +254,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
+    fun getModerators(channel: Long, server: String): Promise<Set<String>, Exception> {
         return execute(HTTPVerb.GET, server, "loki/v1/channel/$channel/get_moderators").then(sharedContext) { json ->
             try {
                 @Suppress("UNCHECKED_CAST") val moderators = json["moderators"] as? List<String>
@@ -271,7 +272,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun getChannelInfo(channel: Long, server: String): Promise<PublicChatInfo, Exception> {
+    fun getChannelInfo(channel: Long, server: String): Promise<PublicChatInfo, Exception> {
         return retryIfNeeded(maxRetryCount) {
             val parameters = mapOf( "include_annotations" to 1 )
             execute(HTTPVerb.GET, server, "/channels/$channel", parameters = parameters).then(sharedContext) { json ->
@@ -295,7 +296,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: PublicChatInfo, isForcedUpdate: Boolean) {
+    fun updateProfileIfNeeded(channel: Long, server: String, groupID: String, info: PublicChatInfo, isForcedUpdate: Boolean) {
         apiDatabase.setUserCount(channel, server, info.memberCount)
         openGroupDatabase.updateTitle(groupID, info.displayName)
         // Download and update profile picture if needed
@@ -307,7 +308,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun downloadOpenGroupProfilePicture(server: String, endpoint: String): ByteArray? {
+    fun downloadOpenGroupProfilePicture(server: String, endpoint: String): ByteArray? {
         val url = "${server.removeSuffix("/")}/${endpoint.removePrefix("/")}"
         Log.d("Loki", "Downloading open group profile picture from \"$url\".")
         val outputStream = ByteArrayOutputStream()
@@ -323,7 +324,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun join(channel: Long, server: String): Promise<Unit, Exception> {
+    fun join(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.POST, server, "/channels/$channel/subscribe").then {
                 Log.d("Loki", "Joined channel with ID: $channel on server: $server.")
@@ -331,7 +332,7 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun leave(channel: Long, server: String): Promise<Unit, Exception> {
+    fun leave(channel: Long, server: String): Promise<Unit, Exception> {
         return retryIfNeeded(maxRetryCount) {
             execute(HTTPVerb.DELETE, server, "/channels/$channel/subscribe").then {
                 Log.d("Loki", "Left channel with ID: $channel on server: $server.")
@@ -339,7 +340,15 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
+    fun ban(publicKey: String, server: String): Promise<Unit,Exception> {
+        return retryIfNeeded(maxRetryCount) {
+            execute(HTTPVerb.POST, server, "/loki/v1/moderation/blacklist/@$publicKey").then {
+                Log.d("Loki", "Banned user with ID: $publicKey from $server")
+            }
+        }
+    }
+
+    fun getDisplayNames(publicKeys: Set<String>, server: String): Promise<Map<String, String>, Exception> {
         return getUserProfiles(publicKeys, server, false).map(sharedContext) { json ->
             val mapping = mutableMapOf<String, String>()
             for (user in json) {
@@ -353,17 +362,17 @@ class PublicChatAPI(userPublicKey: String, private val userPrivateKey: ByteArray
         }
     }
 
-    public fun setDisplayName(newDisplayName: String?, server: String): Promise<Unit, Exception> {
+    fun setDisplayName(newDisplayName: String?, server: String): Promise<Unit, Exception> {
         Log.d("Loki", "Updating display name on server: $server.")
         val parameters = mapOf( "name" to (newDisplayName ?: "") )
         return execute(HTTPVerb.PATCH, server, "users/me", parameters = parameters).map { Unit }
     }
 
-    public fun setProfilePicture(server: String, profileKey: ByteArray, url: String?): Promise<Unit, Exception> {
+    fun setProfilePicture(server: String, profileKey: ByteArray, url: String?): Promise<Unit, Exception> {
         return setProfilePicture(server, Base64.encodeBytes(profileKey), url)
     }
 
-    public fun setProfilePicture(server: String, profileKey: String, url: String?): Promise<Unit, Exception> {
+    fun setProfilePicture(server: String, profileKey: String, url: String?): Promise<Unit, Exception> {
         Log.d("Loki", "Updating profile picture on server: $server.")
         val value = when (url) {
             null -> null

@@ -82,12 +82,12 @@ public object OnionRequestAPI {
      */
     private fun testSnode(snode: Snode): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
-        Thread { // No need to block the shared context for this
+        ThreadUtils.queue { // No need to block the shared context for this
             val url = "${snode.address}:${snode.port}/get_stats/v1"
             try {
                 val json = HTTP.execute(HTTP.Verb.GET, url)
                 val version = json["version"] as? String
-                if (version == null) { deferred.reject(Exception("Missing snode version.")); return@Thread }
+                if (version == null) { deferred.reject(Exception("Missing snode version.")); return@queue }
                 if (version >= "2.0.7") {
                     deferred.resolve(Unit)
                 } else {
@@ -98,7 +98,7 @@ public object OnionRequestAPI {
             } catch (exception: Exception) {
                 deferred.reject(exception)
             }
-        }.start()
+        }
         return deferred.promise
     }
 
@@ -312,10 +312,10 @@ public object OnionRequestAPI {
                 return@success deferred.reject(exception)
             }
             val destinationSymmetricKey = result.destinationSymmetricKey
-            Thread {
+            ThreadUtils.queue {
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, body)
-                    val base64EncodedIVAndCiphertext = json["result"] as? String ?: return@Thread deferred.reject(Exception("Invalid JSON"))
+                    val base64EncodedIVAndCiphertext = json["result"] as? String ?: return@queue deferred.reject(Exception("Invalid JSON"))
                     val ivAndCiphertext = Base64.decode(base64EncodedIVAndCiphertext)
                     try {
                         val plaintext = DecryptionUtilities.decryptUsingAESGCM(ivAndCiphertext, destinationSymmetricKey)
@@ -325,7 +325,7 @@ public object OnionRequestAPI {
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
                                 val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
-                                return@Thread deferred.reject(exception)
+                                return@queue deferred.reject(exception)
                             } else if (json["body"] != null) {
                                 @Suppress("NAME_SHADOWING") val body: Map<*, *>
                                 if (json["body"] is Map<*, *>) {
@@ -340,13 +340,13 @@ public object OnionRequestAPI {
                                 }
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
-                                    return@Thread deferred.reject(exception)
+                                    return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(body)
                             } else {
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, json)
-                                    return@Thread deferred.reject(exception)
+                                    return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(json)
                             }
@@ -359,7 +359,7 @@ public object OnionRequestAPI {
                 } catch (exception: Exception) {
                     deferred.reject(exception)
                 }
-            }.start()
+            }
         }.fail { exception ->
             deferred.reject(exception)
         }

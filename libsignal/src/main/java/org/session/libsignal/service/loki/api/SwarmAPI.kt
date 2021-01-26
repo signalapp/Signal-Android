@@ -8,6 +8,7 @@ import nl.komponents.kovenant.task
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
+import org.session.libsignal.service.loki.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
@@ -67,7 +68,7 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
             )
             val deferred = deferred<Snode, Exception>()
             deferred<Snode, Exception>(SnodeAPI.sharedContext)
-            Thread {
+            ThreadUtils.queue {
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, parameters, useSeedNodeConnection = true)
                     val intermediate = json["result"] as? Map<*, *>
@@ -101,7 +102,7 @@ class SwarmAPI private constructor(private val database: LokiAPIDatabaseProtocol
                 } catch (exception: Exception) {
                     deferred.reject(exception)
                 }
-            }.start()
+            }
             return deferred.promise
         } else {
             return Promise.of(snodePool.getRandomElement())
