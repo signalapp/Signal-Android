@@ -165,7 +165,7 @@ final class GradientChatWallpaper implements ChatWallpaper, Parcelable {
     private final float[] positions;
 
     private final Rect  fillRect  = new Rect();
-    private final Paint fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint fillPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 
     private RotatableGradientDrawable(float degrees, int[] colors, @Nullable float[] positions) {
       this.degrees   = degrees + 225f;
