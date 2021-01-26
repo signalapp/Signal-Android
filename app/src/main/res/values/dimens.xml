@@ -163,7 +163,7 @@
 
     <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
 
-    <dimen name="conversation_update_vertical_margin">2dp</dimen>
+    <dimen name="conversation_update_vertical_margin">4dp</dimen>
     <dimen name="conversation_update_vertical_padding">5dp</dimen>
     <dimen name="conversation_update_vertical_padding_collapsed">2dp</dimen>
 </resources>

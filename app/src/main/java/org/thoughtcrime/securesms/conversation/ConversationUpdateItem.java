@@ -163,10 +163,12 @@ public final class ConversationUpdateItem extends FrameLayout
                       hasWallpaper);
   }
 
-  private static boolean shouldCollapse(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> candidate) {
+  private static boolean shouldCollapse(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> candidate)
+  {
     return candidate.isPresent()      &&
            candidate.get().isUpdate() &&
-           DateUtils.isSameDay(current.getTimestamp(), candidate.get().getTimestamp());
+           DateUtils.isSameDay(current.getTimestamp(), candidate.get().getTimestamp()) &&
+           isSameType(current, candidate.get());
   }
 
   /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
@@ -229,7 +231,10 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
-  private void present(ConversationMessage conversationMessage, @NonNull Optional<MessageRecord> nextMessageRecord, @NonNull Recipient conversationRecipient) {
+  private void present(@NonNull ConversationMessage conversationMessage,
+                       @NonNull Optional<MessageRecord> nextMessageRecord,
+                       @NonNull Recipient conversationRecipient)
+  {
     if (batchSelected.contains(conversationMessage)) setSelected(true);
     else                                             setSelected(false);
 
@@ -365,6 +370,13 @@ public final class ConversationUpdateItem extends FrameLayout
         background.setBackground(null);
       }
     }
+  }
+
+  private static boolean isSameType(@NonNull MessageRecord current, @NonNull MessageRecord candidate) {
+    return (current.isGroupUpdate()           && candidate.isGroupUpdate())   ||
+           (current.isProfileChange()         && candidate.isProfileChange()) ||
+           (current.isGroupCall()             && candidate.isGroupCall())     ||
+           (current.isExpirationTimerUpdate() && candidate.isExpirationTimerUpdate());
   }
 
   @Override
