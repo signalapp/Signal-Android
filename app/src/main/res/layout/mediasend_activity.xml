@@ -102,6 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
+                        android:textColor="@color/core_white"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
                         tools:hint="Send TextSecure message" >
