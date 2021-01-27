@@ -2404,12 +2404,27 @@
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Despexar o fondo de pantalla? Non retira os fondos de pantalla personalizados que teña estabelecidos para os seus chats.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Reestabelecer todos os fondos de pantalla</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Reestabelecer todos os fondos de pantalla, incluíndo os personalizados que teña estabelecidos para os seus chats?</string>
+  <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
   <string name="ChatWallpaperFragment__reset">Restablecer</string>
+  <string name="ChatWallpaperFragment__clear">Despexar</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualización do fondo de pantalla</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escoller de entre as fotos</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Preestabelecidos</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Visualización</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Estabelecer o fondo de pantalla</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Mover para visualizar máis fondos de pantalla</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Estabelecer fondo de pantalla para todos os chats</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Estabelecer fondo de pantalla para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Para ver a galería precisas permiso de almacenaxe.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escoller imaxe de fondo de pantalla</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Picar para aumentar, arrastrar para axustar.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Estabelecer fondo de pantalla para todos os chats.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Estabelecer fondo de pantalla para %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Produciuse un erro ao estabelecer o fondo de pantalla</string>
+  <string name="WallpaperCropActivity__blur_photo">Esvaer foto</string>
   <!--EOF-->
 </resources>

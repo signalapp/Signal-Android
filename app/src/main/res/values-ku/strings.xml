@@ -552,7 +552,7 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$s ji vê komê derxîne?</string>
   <!--NonGv2MemberDialog-->
   <!--ManageGroupActivity-->
-  <string name="ManageGroupActivity_member_requests_and_invites">Daxwazên &amp; vexwendinên endambûnê</string>
+  <string name="ManageGroupActivity_member_requests_and_invites">Daxwaz û vexwendinên endambûnê</string>
   <string name="ManageGroupActivity_add_members">Endaman tevlî bike</string>
   <string name="ManageGroupActivity_edit_group_info">Agahiya komê sererast bike</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Kî dikare endamên nû tevlî bike?</string>
@@ -683,6 +683,8 @@
   <string name="RequestConfirmationDialog_add">Tevlî bike</string>
   <string name="RequestConfirmationDialog_deny">Red bike</string>
   <!--ImageEditorHud-->
+  <string name="ImageEditorHud_blur_faces">Rûyan şêlî bikin</string>
+  <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nû: Rûyan şêlî bikin an jî cîhekî kifş bikin ji ber ku şêlî bikin</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ji bo peyameke dengî tomar bikî lê bitepîne û tiliya xwe li ser bihêle, paşê ji bo şandinê berde</string>
   <!--InviteActivity-->
@@ -856,24 +858,24 @@
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="one">Te vexwendineke komê betal kir.</item>
-    <item quantity="other">Te, %1$d vexwendinên komê betal kirin.</item>
+    <item quantity="one">Te, vexwendineke li komê betal kir.</item>
+    <item quantity="other">Te, %1$d vexwendinên li komê betal kirin.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="one">%1$s, vexwendineke komê red kir.</item>
-    <item quantity="other">%1$s, %2$d vexwendinên komê betal kirin.</item>
+    <item quantity="one">%1$s, vexwendineke li komê red kir.</item>
+    <item quantity="other">%1$s, %2$d vexwendinên li komê betal kir.</item>
   </plurals>
-  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kesekî vexwendina komê red kir.</string>
-  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Te vexwendina komê red kir.</string>
-  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s vexwendina te ya li komê betal kir.</string>
+  <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Kesekî vexwendina li komê red kir.</string>
+  <string name="MessageRecord_you_declined_the_invitation_to_the_group">Te, vexwendina li komê red kir.</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s, vexwendina te ya li komê betal kir.</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Rêveberekî vexwendina te ya li komê betal kir.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
-    <item quantity="one"> Vexwendineke komê hate betalkirin.</item>
-    <item quantity="other">%1$d vexwendinên komê hatin betalkirin.</item>
+    <item quantity="one"> Vexwendineke li komê hate betalkirin.</item>
+    <item quantity="other">%1$d vexwendinên li komê hatin betalkirin.</item>
   </plurals>
   <!--GV2 invitation acceptance-->
-  <string name="MessageRecord_you_accepted_invite">Te vexwendina komê qebûl kir.</string>
-  <string name="MessageRecord_s_accepted_invite">%1$s vexwendina komê qebûl kir.</string>
+  <string name="MessageRecord_you_accepted_invite">Te, vexwendina li komê qebûl kir.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s, vexwendina li komê qebûl kir.</string>
   <string name="MessageRecord_you_added_invited_member_s">Te endamê (%1$s) hatiye vexwendin tevlî kir.</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s, endamê (%2$s) hatiye vexwendin tevlî kir.</string>
   <!--GV2 title change-->
@@ -1358,6 +1360,7 @@
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Ji ser cîhaza girêdayî hat bersivandin.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Ji ser cîhaza girêdayî hat redkirin.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Di cîhaza girêdayî de mijûl e.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Kesekî ku nimreya wî ya ewlehiyê hatiye guhertin, tevlî vê gerînê bû.</string>
   <!--WebRtcCallScreen-->
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Red bike</string>
@@ -2228,5 +2231,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Paşrûyê ji bo hemû gotûbêjan saz bike.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Ji bo %s\'ê paşrûyê saz bike.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Di sazkirina paşrûyê de çewtî derket.</string>
+  <string name="WallpaperCropActivity__blur_photo">Wêne şêlî bikin</string>
   <!--EOF-->
 </resources>

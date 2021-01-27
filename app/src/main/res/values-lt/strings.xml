@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Išjungti pranešimus</string>
   <string name="ManageGroupActivity_custom_notifications">Tinkinti pranešimai</string>
   <string name="ManageGroupActivity_mentions">Paminėjimai</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Pokalbio fonas</string>
   <string name="ManageGroupActivity_until_s">Iki %1$s</string>
   <string name="ManageGroupActivity_off">Išjungta</string>
   <string name="ManageGroupActivity_on">Įjungta</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">Profilio pavadinimas</string>
   <string name="ManageProfileFragment_username">Naudotojo vardas</string>
   <string name="ManageProfileFragment_about">Apie</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Parašykite kelis žodžius apie save</string>
   <string name="ManageProfileFragment_your_name">Jūsų vardas</string>
+  <string name="ManageProfileFragment_your_username">Jūsų naudotojo vardas</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Nepavyko nustatyti avataro</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Pridėti į sistemos adresatus</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Šis žmogus yra jūsų adresatų sąraše</string>
   <string name="ManageRecipientActivity_disappearing_messages">Išnykstančios žinutės</string>
   <string name="ManageRecipientActivity_chat_color">Pokalbio spalva</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Pokalbio fonas</string>
   <string name="ManageRecipientActivity_block">Užblokuoti</string>
   <string name="ManageRecipientActivity_unblock">Atblokuoti</string>
   <string name="ManageRecipientActivity_view_safety_number">Rodyti saugumo numerį</string>
@@ -794,7 +799,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Grupės nuoroda negalioja</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Pakviesti draugus</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Bendrinkite šią nuorodą su draugais, norėdami leisti jiems greitai prisijungti prie šios grupės.</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Bendrinkite nuorodą su draugais, norėdami leisti jiems greitai prisijungti prie šios grupės.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Įjungti ir bendrinti nuorodą</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Bendrinti nuorodą</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Nepavyko įjungti grupės nuorodos. Vėliau bandykite dar kartą.</string>
@@ -981,7 +986,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">Jūs sukūrėte grupę.</string>
   <string name="MessageRecord_group_updated">Grupė atnaujinta.</string>
-  <string name="MessageRecord_invite_friends_to_this_group">Pakviesti draugus į šią grupę per grupės nuorodą</string>
+  <string name="MessageRecord_invite_friends_to_this_group">Pakvieskite draugus į šią grupę per grupės nuorodą</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Jūs pridėjote %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s pridėjo naudotoją %2$s.</string>
@@ -1437,6 +1442,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Nukopijuokite šį URL ir pridėkite jį į savo pranešimą apie klaidą ar palaikymo el. laišką:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Bendrinti</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtras:</string>
   <string name="SupportEmailUtil_device_info">Įrenginio informacija:</string>
   <string name="SupportEmailUtil_android_version">Android versija:</string>
   <string name="SupportEmailUtil_signal_version">Signal versija:</string>
@@ -1839,13 +1845,17 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Apie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Parašykite kelis žodžius apie save…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Bendraukite atvirai</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Taisyti grupės pavadinimą ir nuotrauką</string>
   <string name="EditProfileFragment__group_name">Grupės pavadinimas</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Jūsų vardas</string>
+  <string name="EditProfileNameFragment_first_name">Vardas</string>
   <string name="EditProfileNameFragment_last_name_optional">Pavardė (nebūtina)</string>
   <string name="EditProfileNameFragment_save">Įrašyti</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Nepavyko įrašyti dėl tinklo problemų. Vėliau bandykite dar kartą.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Bendrinama medija</string>
   <!--recipients_panel-->
@@ -2020,6 +2030,7 @@
   <string name="preferences__dark_theme">Tamsus</string>
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Apipavidalinimas</string>
+  <string name="preferences__chat_wallpaper">Pokalbio fonas</string>
   <string name="preferences__disable_pin">Išjungti PIN kodą</string>
   <string name="preferences__enable_pin">Įjungti PIN kodą</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Jei išjungsite PIN kodą, tuomet registruodamiesi iš naujo Signal programėlėje, prarasite visus duomenis, nebent rankiniu būdu pasidarysite atsarginę kopiją ir ją atkursite. Tol, kol PIN kodas yra išjungtas, negalėsite įjungti Registracijos užrakto.</string>
@@ -2038,6 +2049,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Jeigu pranešimai apie žinučių skaitymą yra išjungti, jūs negalėsite matyti kitų žmonių pranešimų apie žinučių skaitymą.</string>
   <string name="preferences__typing_indicators">Rašymo indikatoriai</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Išjungę rašymo indikatorius, nebegalėsite matyti kitų žmonių rašymo indikatorių.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Prašyti klaviatūros išjungti suasmenintą mokymąsi. Šis nustatymas nieko negarantuoja ir jūsų klaviatūra gali jo nepaisyti.</string>
   <string name="preferences_app_protection__blocked_users">Užblokuoti naudotojai</string>
   <string name="preferences_chats__when_using_mobile_data">Naudojant mobiliuosius duomenis</string>
   <string name="preferences_chats__when_using_wifi">Naudojant belaidį ryšį (Wi-Fi)</string>
@@ -2533,16 +2545,44 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bendrinti</string>
   <string name="ShareActivity__send">Siųsti</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Bendrinimas su keliais pokalbiais yra palaikomas tik Signal žinutėms</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Nepavyko išsiųsti kai kuriems naudotojams</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Galite bendrinti daugiausiai su %1$d pokalbių</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Persiųsti žinutę</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Pokalbio fonas</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Nustatyti foną</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tamsus apipavidalinimas pritemdo foną</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Išvalyti foną</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Išvalyti šio pokalbio foną?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Išvalyti foną? Tai neišvalys tinkintų fonų, kuriuos nustatėte savo pokalbiams.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Atstatyti visus fonus</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Atstatyti visus fonus, įskaitant tinkintus fonus, kuriuos nustatėte savo pokalbiams?</string>
+  <string name="ChatWallpaperFragment__contact_name">Adresato vardas</string>
   <string name="ChatWallpaperFragment__reset">Atstatyti</string>
+  <string name="ChatWallpaperFragment__clear">Išvalyti</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Fono peržiūra</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Pasirinkti iš nuotraukų</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Išankstinės parinktys</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Peržiūra</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Nustatyti foną</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Perbraukite norėdami peržiūrėti daugiau fonų</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Nustatyti foną visiems pokalbiams</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Nustatyti foną, skirtą %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Galerijos peržiūrai reikia leidimo naudoti saugyklą.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Pasirinkti fono paveikslą</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Sugnybkite norėdami keisti mastelį, tempkite norėdami derinti.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Nustatyti foną visiems pokalbiams.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Nustatytas fonas, skirtas %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Klaida nustatant foną.</string>
+  <string name="WallpaperCropActivity__blur_photo">Sulieti nuotrauką</string>
   <!--EOF-->
 </resources>

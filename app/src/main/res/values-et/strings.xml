@@ -1702,6 +1702,8 @@
   <string name="EditAboutFragment_about">Teave</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kirjuta paar sõna enda kohta…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Räägi vabalt</string>
+  <string name="EditAboutFragment_encrypted">Krüptitud</string>
   <string name="EditAboutFragment_be_kind">Ole lahke</string>
   <string name="EditAboutFragment_coffee_lover">Kohvisõber</string>
   <string name="EditAboutFragment_free_to_chat">Lobisemiseks vaba</string>
@@ -1715,6 +1717,7 @@
   <string name="EditProfileNameFragment_first_name">Eesnimi</string>
   <string name="EditProfileNameFragment_last_name_optional">Perekonnanimi (valikuline)</string>
   <string name="EditProfileNameFragment_save">Salvesta</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Salvestamine ei õnnestunud võrgutõrgete tõttu. Proovi hiljem uuesti.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Jagatud meedia</string>
   <!--recipients_panel-->
@@ -2385,6 +2388,7 @@
   <string name="ShareActivity__share">Jaga</string>
   <string name="ShareActivity__send">Saada</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Mitmesse vestlusse jagamine toetab ainult Signali sõnumeid</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Mõnedele kasutajatele saatmine ei õnnestunud.</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Saad jagada ainult kuni %1$d vestlusega</string>
@@ -2421,5 +2425,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Määra taustapilt kõigi vestluste jaoks.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Määra taustapilt %s jaoks.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustapildi määramisel tekkis tõrge.</string>
+  <string name="WallpaperCropActivity__blur_photo">Hägusta foto</string>
   <!--EOF-->
 </resources>

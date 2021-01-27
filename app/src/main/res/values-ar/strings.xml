@@ -1443,7 +1443,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقق الشخص من تغيير رقم أمانك، أو بسبب وجود مشكلة في جهازه، أو قيامه بحظرك.</string>
   <!--RegistrationActivity-->
-  <string name="RegistrationActivity_select_your_country">اختر بلدك</string>
+  <string name="RegistrationActivity_select_your_country">يجب عليك اختيار بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">يجب عليك تحديد
 رقم الهاتف الخاص بك</string>
@@ -2234,8 +2234,8 @@
   <string name="preferences_app_protection__app_access">الوصول إلى البرنامج</string>
   <string name="preferences_app_protection__communication">اتصال</string>
   <string name="preferences_chats__chats">المحادثات</string>
-  <string name="preferences_data_and_storage__manage_storage">إدارة سعة التخزين</string>
-  <string name="preferences_data_and_storage__calls">المُكالمات</string>
+  <string name="preferences_data_and_storage__manage_storage">إدارة التخزين</string>
+  <string name="preferences_data_and_storage__calls">المكالمات</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">استخدام بيانات أقل أثناء المكالمات</string>
   <string name="preferences_data_and_storage__never">أبدا</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">شبكة WiFi والشبكة الخلوية</string>

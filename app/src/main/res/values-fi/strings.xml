@@ -2392,7 +2392,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChatWallpaperActivity__chat_wallpaper">Keskustelunäkymän taustakuva</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Aseta taustakuva</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tumma teema himmentää taustakuvan</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Himmennä tummassa teemassa</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Poista taustakuva</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Haluatko poistaa tämän keskustelun taustakuvan?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Haluatko poistaa taustakuvan? Yksittäisille keskusteluille asetettuja taustakuvia ei poisteta.</string>
@@ -2416,7 +2416,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Valitse taustakuva</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Lähennä/loitonna nipistämällä, säädä vetämällä.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Aseta taustakuva kaikille keskusteluille.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Taustakuva asetetaan kaikkiin keskusteluihin.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Aseta taustakuva keskustelulle %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Taustakuvan asettaminen epäonnistui.</string>
   <string name="WallpaperCropActivity__blur_photo">Sumenna valokuva</string>

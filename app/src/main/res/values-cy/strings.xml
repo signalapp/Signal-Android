@@ -1848,6 +1848,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="EditAboutFragment_about">Ynghylch</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Ysgrifennwch ychydig o eiriau amdanoch…</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_speak_freely">Siarad yn rhydd</string>
   <string name="EditAboutFragment_encrypted">Amgryptiedig</string>
   <string name="EditAboutFragment_be_kind">Byddwch yn garedig</string>
   <string name="EditAboutFragment_coffee_lover">Carwr Coffi</string>
@@ -1862,6 +1863,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="EditProfileNameFragment_first_name">Enw cyntaf</string>
   <string name="EditProfileNameFragment_last_name_optional">Enw olaf (dewisol)</string>
   <string name="EditProfileNameFragment_save">Cadw</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Wedi methu cadw oherwydd materion rhwydwaith. Ceisiwch eto\'n hwyrach.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Cyfryngau wedi\'u rhannu</string>
   <!--recipients_panel-->
@@ -2552,6 +2554,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ShareActivity__share">Rhannu</string>
   <string name="ShareActivity__send">Anfon</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Mae rhannu i sgyrsiau lluosog yn cael ei gynnal ar gyfer negeseuon Signal, yn unig.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Wedi methu anfon at rai defnyddwyr</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Dim ond gyda hyd at %1$d o sgyrsiau y gallwch chi eu rhannu</string>
@@ -2588,5 +2591,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Gosod papur wal i pob sgwrs.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Gosod papur wal ar gyfer %s.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">Gwall wrth osod papur wal.</string>
+  <string name="WallpaperCropActivity__blur_photo">Pylu llun</string>
   <!--EOF-->
 </resources>

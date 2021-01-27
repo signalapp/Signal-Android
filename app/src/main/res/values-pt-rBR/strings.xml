@@ -602,6 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
   <string name="ManageGroupActivity_custom_notifications">Personalizar notificações</string>
   <string name="ManageGroupActivity_mentions">Menções</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Papel de parede da conversa</string>
   <string name="ManageGroupActivity_until_s">Até %1$s</string>
   <string name="ManageGroupActivity_off">Desligado</string>
   <string name="ManageGroupActivity_on">Ligado</string>
@@ -637,12 +638,16 @@
   <string name="ManageProfileFragment_profile_name">Nome do perfil</string>
   <string name="ManageProfileFragment_username">Nome de usuário</string>
   <string name="ManageProfileFragment_about">Sobre mim</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você</string>
   <string name="ManageProfileFragment_your_name">Seu nome</string>
+  <string name="ManageProfileFragment_your_username">Seu nome de usuário</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Falha ao salvar foto de perfil</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Adicionar aos contatos do sistema</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Esta pessoa está em seus contatos</string>
   <string name="ManageRecipientActivity_disappearing_messages">Mensagens efêmeras</string>
   <string name="ManageRecipientActivity_chat_color">Cor da conversa</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Papel de parede da conversa</string>
   <string name="ManageRecipientActivity_block">Bloquear</string>
   <string name="ManageRecipientActivity_unblock">Desbloquear</string>
   <string name="ManageRecipientActivity_view_safety_number">Ver número de segurança</string>
@@ -1315,6 +1320,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copie esse URL e adicione-o ao seu relatório de problemas ou e-mail de suporte: \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Compartilhar</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filtro:</string>
   <string name="SupportEmailUtil_device_info">Info do aparelho:</string>
   <string name="SupportEmailUtil_android_version">Versão do Android:</string>
   <string name="SupportEmailUtil_signal_version">Versão do Signal:</string>
@@ -1335,7 +1341,7 @@
   <string name="ThreadRecord_view_once_photo">Imagem efêmera</string>
   <string name="ThreadRecord_view_once_video">Vídeo efêmero</string>
   <string name="ThreadRecord_view_once_media">Mídia efêmera</string>
-  <string name="ThreadRecord_this_message_was_deleted">Essa mensagem foi apagada.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Esta mensagem foi apagada.</string>
   <string name="ThreadRecord_you_deleted_this_message">Você apagou esta mensagem.</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
@@ -1444,7 +1450,7 @@
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagiu com %1$s ao seu áudio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagiu com %1$s à sua mídia efêmera.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagiu com %1$s à sua figurinha.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Essa mensagem foi apagada.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Esta mensagem foi apagada.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Desabilitar notificações de contatos que entram no Signal? Você pode habilitá-las novamente em Signal &gt; Configurações &gt; Notificações.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Padrão</string>
@@ -1695,6 +1701,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Sobre mim</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras sobre você…</string>
+  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Fale livremente</string>
   <string name="EditAboutFragment_encrypted">Criptografado</string>
   <string name="EditAboutFragment_be_kind">Seja gentil</string>
@@ -1707,8 +1714,10 @@
   <string name="EditProfileFragment__group_name">Nome do grupo</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Seu nome</string>
+  <string name="EditProfileNameFragment_first_name">Nome</string>
   <string name="EditProfileNameFragment_last_name_optional">Sobrenome (opcional)</string>
   <string name="EditProfileNameFragment_save">Salvar</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Falha ao salvar devido aos problemas na rede. Tente mais tarde.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Mídia compartilhada</string>
   <!--recipients_panel-->
@@ -1881,6 +1890,7 @@
   <string name="preferences__dark_theme">Escuro</string>
   <string name="preferences__appearance">Aparência</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Papel de parede da conversa</string>
   <string name="preferences__disable_pin">Desabilitar PIN</string>
   <string name="preferences__enable_pin">Habilitar PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Se você desativar o PIN, perderá todos os dados ao se registrar de novo com o Signal, a menos que você faça backup manualmente e os restaure. Você não pode ativar o Bloqueio de Registro enquanto o PIN estiver desativado.</string>
@@ -1899,6 +1909,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se as confirmações de leitura estiverem desabilitadas, você não verá as confirmações de leitura das outras pessoas.</string>
   <string name="preferences__typing_indicators">Indicadores de digitação</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de digitação estiverem desabilitados, você não poderá ver os indicadores de digitação de outras pessoas.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado para evitar o aprendizado de digitação. Essa configuração não é uma garantia e seu teclado pode ignorá-la.</string>
   <string name="preferences_app_protection__blocked_users">Pessoas bloqueadas</string>
   <string name="preferences_chats__when_using_mobile_data">Quando usar dados móveis</string>
   <string name="preferences_chats__when_using_wifi">Quando usar Wi-Fi</string>
@@ -2376,23 +2387,44 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">Compartilhar</string>
   <string name="ShareActivity__send">Enviar</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Compartilhar com várias conversas só é compatível com contatos no Signal</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Falha ao enviar para algumas pessoas</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Você só pode compartilhar com até %1$d conversas</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Encaminhar mensagem</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Papel de parede da conversa</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Definir papel de parede</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Escurecer papel de parede no tema escuro</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Remover papel de parede</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Remover papel de parede desta conversa?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Remover papel de parede? Não serão removidos os personalizados que você tiver definido para as suas conversas.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Redefinir todos os papéis de parede</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Redefinir todos os papéis de parede, inclusive os personalizados que você tiver definido para as suas conversas?</string>
+  <string name="ChatWallpaperFragment__contact_name">Nome do contato</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
+  <string name="ChatWallpaperFragment__clear">Limpar</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Visualização do papel de parede</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher foto</string>
   <string name="ChatWallpaperSelectionFragment__presets">Pré-definidos</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Pré-visualização</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Definir papel de parede</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslize para ver mais papéis de parede</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir papel de parede para todas as conversas</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir papel de parede para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">A visualização da sua galeria requer a permissão de armazenamento.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolher imagem do papel de parede</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince com os dedos para aproximar ou afastar, arraste para ajustar.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir papel de parede para todas as conversas.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir papel de parede para %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Erro ao definir o papel de parede.</string>
+  <string name="WallpaperCropActivity__blur_photo">Borrar foto</string>
   <!--EOF-->
 </resources>

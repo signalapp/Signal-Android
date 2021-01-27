@@ -95,7 +95,7 @@
   <string name="BucketedThreadMedia_This_month">Овој месец</string>
   <string name="BucketedThreadMedia_Large">Големина</string>
   <string name="BucketedThreadMedia_Medium">Средно</string>
-  <string name="BucketedThreadMedia_Small">Мало</string>
+  <string name="BucketedThreadMedia_Small">Мала</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Допрете за фотографија, држете за видео</string>
   <string name="CameraXFragment_capture_description">Сними</string>
@@ -377,7 +377,7 @@
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Неименуван уред</string>
   <string name="DeviceListItem_linked_s">Поврзан %s</string>
-  <string name="DeviceListItem_last_active_s">Последен пат активен: %s:</string>
+  <string name="DeviceListItem_last_active_s">Последен пат активен: %s</string>
   <string name="DeviceListItem_today">Денес</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">Неименувана датотека</string>
@@ -1803,10 +1803,10 @@
   <string name="arrays__audio">Звук</string>
   <string name="arrays__video">Видео</string>
   <string name="arrays__documents">Документи</string>
-  <string name="arrays__small">Мало</string>
+  <string name="arrays__small">Мала</string>
   <string name="arrays__normal">Нормално</string>
-  <string name="arrays__large">Големо</string>
-  <string name="arrays__extra_large">Екстра големо</string>
+  <string name="arrays__large">Голема</string>
+  <string name="arrays__extra_large">Екстра голема</string>
   <string name="arrays__default">Стандардно </string>
   <string name="arrays__high">Високо</string>
   <string name="arrays__max">Максимално</string>
@@ -1841,7 +1841,7 @@
   <string name="preferences__notifications">Известувања</string>
   <string name="preferences__led_color">LED боја</string>
   <string name="preferences__led_color_unknown">Непознато</string>
-  <string name="preferences__pref_led_blink_title">LED примерок за трепкање</string>
+  <string name="preferences__pref_led_blink_title">LED шема на трепкање</string>
   <string name="preferences__sound">Звук</string>
   <string name="preferences__silent">Тивко</string>
   <string name="preferences__repeat_alerts">Постојани аларми</string>
@@ -1861,7 +1861,7 @@
   <string name="preferences__white">Бела</string>
   <string name="preferences__none">Ниедна</string>
   <string name="preferences__fast">Брзо</string>
-  <string name="preferences__normal">Нормално</string>
+  <string name="preferences__normal">Нормална</string>
   <string name="preferences__slow">Бавно</string>
   <string name="preferences__help">Помош</string>
   <string name="preferences__advanced">Напредно</string>
@@ -1875,7 +1875,7 @@
   <string name="preferences__mmsc_username">MMSC корисничко име</string>
   <string name="preferences__mmsc_password">MMSC лозинка</string>
   <string name="preferences__sms_delivery_reports">SMS потврда за достава</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Побарајте доставна потврда за секоја испратена SMS порака</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Побарајте потврда за испорака за секоја испратена SMS порака</string>
   <string name="preferences__data_and_storage">Податоци и складирање</string>
   <string name="preferences__storage">Склад</string>
   <string name="preferences__conversation_length_limit">Максимална должина на разговор</string>
@@ -1898,7 +1898,7 @@
   <string name="preferences__free_private_messages_and_calls">Бесплатни приватни пораки и повици кон Signal корисниците</string>
   <string name="preferences__submit_debug_log">Испратете запис за дебагирање</string>
   <string name="preferences__delete_account">Избриши сметка</string>
-  <string name="preferences__support_wifi_calling">\'WiFi Calling\' режим за компатибилност</string>
+  <string name="preferences__support_wifi_calling">„WiFi Calling“ режим за компатибилност</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Овозможи доколку уредот користи SMS/MMS достава преку WiFi (овозможи само доколку „WiFi Calling“ е вклучено на уредот)</string>
   <string name="preferences__incognito_keyboard">Инкогнито тастатура</string>
   <string name="preferences__read_receipts">Потврда за примени пораки</string>
@@ -1963,7 +1963,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">Индикатори за приказ</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Покажува икона за статус кога ќе изберете „Детали за порака“ на пораки испорачани со употреба на запечатен испраќач.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Дозволи од секого</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете го запечатениот испраќач за дојдовни пораки од нерегеистрирани контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете го запечатениот испраќач за дојдовни пораки од нерегистрирани контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Дознајте повеќе</string>
   <string name="preferences_setup_a_username">Поставете корисничко име</string>
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
@@ -2021,13 +2021,13 @@
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Ресетирај безбедна сесија</string>
   <!--conversation_muted-->
-  <string name="conversation_muted__unmute">Вклучи звук</string>
+  <string name="conversation_muted__unmute">Вклучи известувања</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Исклучи известувања</string>
   <!--conversation-->
   <string name="conversation__menu_group_settings">Поставувања за група</string>
   <string name="conversation__menu_leave_group">Напушти група</string>
-  <string name="conversation__menu_view_all_media">Сета медија</string>
+  <string name="conversation__menu_view_all_media">Цела медија</string>
   <string name="conversation__menu_conversation_settings">Разговорни поставувања</string>
   <string name="conversation__menu_add_shortcut">Додај на домашниот екран</string>
   <string name="conversation__menu_create_bubble">Создај балонче</string>
@@ -2044,7 +2044,7 @@
   <string name="text_secure_normal__menu_new_group">Нова група</string>
   <string name="text_secure_normal__menu_settings">Поставувања</string>
   <string name="text_secure_normal__menu_clear_passphrase">Заклучи</string>
-  <string name="text_secure_normal__mark_all_as_read">Обележи ги сите како прочитани</string>
+  <string name="text_secure_normal__mark_all_as_read">Обележи сѐ како прочитано</string>
   <string name="text_secure_normal__invite_friends">Покани пријатели</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Копирај во табелата со исечоци</string>

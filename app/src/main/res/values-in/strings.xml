@@ -2167,8 +2167,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="GroupRecipientListItem_approve_description">Terima</string>
   <string name="GroupRecipientListItem_deny_description">Tolak</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
+  <string name="GroupsLearnMore_legacy_vs_new_groups">Lawas vs. Grup Baru</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Apakah Grup Warisan itu?</string>
   <string name="GroupsLearnMore_paragraph_1">Grup Warisan adalah grup yang tidak cocok dengan fitur-fitur Grup Baru seperti admin dan pembaruan grup yang lebih deskriptif.</string>
+  <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Bisakah Saya tingkatkan sebuah Grup Lawas?</string>
   <string name="GroupsLearnMore_paragraph_3">Signal akan menawarkan cara untuk meningkatkan grup versi lawas di masa mendatang.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Bagikan melalui Signal</string>

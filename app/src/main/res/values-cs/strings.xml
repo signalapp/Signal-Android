@@ -740,7 +740,7 @@
     <item quantity="one">%1$s pozval jednu osobu</item>
     <item quantity="few">%1$s pozval %2$d osoby</item>
     <item quantity="many">%1$s pozval %2$d osob</item>
-    <item quantity="other">%1$s pozval %2$d osob</item>
+    <item quantity="other">%1$s pozval(a) %2$d osob</item>
   </plurals>
   <!--CustomNotificationsDialogFragment-->
   <string name="CustomNotificationsDialogFragment__custom_notifications">Vlastní oznámení</string>
@@ -957,10 +957,10 @@
   <string name="MessageRecord_missed_audio_call_date">Zmeškaný hovor · %1$s</string>
   <string name="MessageRecord_missed_video_call_date">Zmeškaný videohovor · %1$s</string>
   <string name="MessageRecord_s_updated_group">%s upravil skupinu.</string>
-  <string name="MessageRecord_s_called_you_date">%1$s vám volal · %2$s</string>
+  <string name="MessageRecord_s_called_you_date">%1$s vám volal(a) · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s má Signal!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Zakázali jste zmizení zpráv.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s zakázal zmizení zpráv.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s zakázal(a) zmizení zpráv.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Nastavili jste časovač pro zmizení zpráv na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s nastavil časovač pro zmizení zpráv na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Časovač pro zmizení zprávy byl nastaven na %1$s.</string>
@@ -989,8 +989,8 @@
   <string name="MessageRecord_invite_friends_to_this_group">Pozvat přátele do této skupiny pomocí odkazu skupiny.</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">Přidali jste %1$s.</string>
-  <string name="MessageRecord_s_added_s">%1$s přidal %2$s.</string>
-  <string name="MessageRecord_s_added_you">%1$s vás přidal do skupiny.</string>
+  <string name="MessageRecord_s_added_s">%1$s přidal(a) %2$s.</string>
+  <string name="MessageRecord_s_added_you">%1$s vás přidal(a) do skupiny.</string>
   <string name="MessageRecord_you_joined_the_group">Připojili jste se ke skupině.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s se připojili ke skupině.</string>
   <!--GV2 member removals-->
@@ -1006,20 +1006,20 @@
   <string name="MessageRecord_s_made_s_an_admin">%1$s učinil %2$s správcem.</string>
   <string name="MessageRecord_s_made_you_an_admin">%1$s vás učinil správcem.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Odebrali jste správcovská oprávnění %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral vaše správcovská oprávnění.</string>
-  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral správcovská oprávnění %2$s.</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s odebral(a) vaše správcovská oprávnění.</string>
+  <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s odebral(a) správcovská oprávnění %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s je nyní správcem.</string>
   <string name="MessageRecord_you_are_now_an_admin">Stali jste se správcem</string>
   <string name="MessageRecord_s_is_no_longer_an_admin">%1$s už není správcem.</string>
   <string name="MessageRecord_you_are_no_longer_an_admin">Už nejste správcem.</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">Pozvali jste %1$s do skupiny.</string>
-  <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval do skupiny.</string>
+  <string name="MessageRecord_s_invited_you_to_the_group">%1$s vás pozval(a) do skupiny.</string>
   <plurals name="MessageRecord_s_invited_members">
     <item quantity="one">%1$s pozval jednu osobu do skupiny.</item>
     <item quantity="few">%1$s pozval %2$d osoby do skupiny.</item>
     <item quantity="many">%1$s pozval %2$d osob do skupiny.</item>
-    <item quantity="other">%1$s pozval %2$d osob do skupiny.</item>
+    <item quantity="other">%1$s pozval(a) %2$d osob do skupiny.</item>
   </plurals>
   <string name="MessageRecord_you_were_invited_to_the_group">Byii jste pozváni do skupiny.</string>
   <plurals name="MessageRecord_d_people_were_invited_to_the_group">
@@ -1039,7 +1039,7 @@
     <item quantity="one">%1$s odvolal pozvánku do skupiny.</item>
     <item quantity="few">%1$s odvolal %2$d pozvánky do skupiny.</item>
     <item quantity="many">%1$s odvolal %2$d pozvánek do skupiny.</item>
-    <item quantity="other">%1$s odvolal %2$d pozvánek do skupiny.</item>
+    <item quantity="other">%1$s odvolal(a) %2$d pozvánek do skupiny.</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Někdo odmítl pozvánku do skupiny.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odmítli jste pozvánku do skupiny.</string>
@@ -1053,9 +1053,9 @@
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">Přijali jste pozvánku do skupiny.</string>
-  <string name="MessageRecord_s_accepted_invite">%1$s přijal pozvánku do skupiny.</string>
+  <string name="MessageRecord_s_accepted_invite">%1$s přijal(a) pozvánku do skupiny.</string>
   <string name="MessageRecord_you_added_invited_member_s">Přidali jste pozvaného člena %1$s.</string>
-  <string name="MessageRecord_s_added_invited_member_s">%1$s přidal pozvaného člena %2$s.</string>
+  <string name="MessageRecord_s_added_invited_member_s">%1$s přidal(a) pozvaného člena %2$s.</string>
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Změnili jste název skupiny na \"%1$s\".</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s změnil název skupiny na \"%2$s\".</string>
@@ -1097,7 +1097,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se připojil ke skupině pomocí odkazu skupiny.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Odeslali jste požadavek na vstup do skupiny.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal o připojení pomocí odkazu skupiny.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s požádal(a) o připojení pomocí odkazu skupiny.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s schválil váš požadavek na připojení ke skupině.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s schválil požadavek na připojení ke skupině od %2$s.</string>
@@ -1410,7 +1410,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
 </string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Přijata zpráva s novým bezpečnostním číslem. Klepněte pro její zpracování a zobrazení.</string>
   <string name="SmsMessageRecord_secure_session_reset">Resetovali jste zabezpečenou konverzaci.</string>
-  <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval zabezpečenou konverzaci.</string>
+  <string name="SmsMessageRecord_secure_session_reset_s">%s resetoval(a) zabezpečenou konverzaci.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicitní zpráva</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Zprávu se nepodařilo zpracovat, protože byla odeslána z novější verze aplikace Signal. Požádejte váš kontakt, aby vám poslal zprávu znovu, až provedete aktualizaci.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Chyba při zpracování příchozí zprávy</string>
@@ -1453,8 +1453,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_left_the_group">Opustil skupinu.</string>
   <string name="ThreadRecord_secure_session_reset">Reset zabezpečené konverzace.</string>
   <string name="ThreadRecord_draft">Koncept:</string>
-  <string name="ThreadRecord_called">Vy jste volal</string>
-  <string name="ThreadRecord_called_you">Volal vás</string>
+  <string name="ThreadRecord_called">Vy jste volal(a)</string>
+  <string name="ThreadRecord_called_you">Volal(a) vás</string>
   <string name="ThreadRecord_missed_audio_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_missed_video_call">Zmeškaný video hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
@@ -1566,13 +1566,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otevřít Signal pro kontrolu nedávných upozornění.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-  <string name="MessageNotifier_reacted_s_to_s">Reagoval %1$s na: \"%2$s\".</string>
-  <string name="MessageNotifier_reacted_s_to_your_video">Reagoval %1$s na vaše video.</string>
-  <string name="MessageNotifier_reacted_s_to_your_image">Reagoval %1$s na váš obrázek.</string>
-  <string name="MessageNotifier_reacted_s_to_your_file">Reagoval %1$s na váš soubor.</string>
-  <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval %1$s na vaše audio.</string>
-  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval %1$s na vaše média pro jednorázové zobrazení.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval %1$s na vaši nálepku.</string>
+  <string name="MessageNotifier_reacted_s_to_s">Reagoval(a) %1$s na: \"%2$s\".</string>
+  <string name="MessageNotifier_reacted_s_to_your_video">Reagoval(a) %1$s na vaše video.</string>
+  <string name="MessageNotifier_reacted_s_to_your_image">Reagoval(a) %1$s na váš obrázek.</string>
+  <string name="MessageNotifier_reacted_s_to_your_file">Reagoval(a) %1$s na váš soubor.</string>
+  <string name="MessageNotifier_reacted_s_to_your_audio">Reagoval(a) %1$s na vaše audio.</string>
+  <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoval(a) %1$s na vaše média pro jednorázové zobrazení.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reagoval(a) %1$s na vaši nálepku.</string>
   <string name="MessageNotifier_this_message_was_deleted">Tato zpráva byla smazána.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Vypnout upozornění, že se kontakt připojil k Signal? Můžete je znovu zapnout v Signal &gt; Nastavení &gt; Upozornění.</string>
   <!--Notification Channels-->
@@ -2551,6 +2551,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ShareActivity__share">Sdílet</string>
   <string name="ShareActivity__send">Odeslat</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Sdílení do více konverzací je podporováno pouze u Signal zpráv</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Odeslání některým uživatelům se nezdařilo</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Můžete sdílet nejvýše s %1$d konverzacemi.</string>
