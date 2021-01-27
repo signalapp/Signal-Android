@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.conversation;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -344,6 +345,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
 
+  private static final int     REQUEST_CODE_PIN_SHORTCUT = 902;
+  private static final String  ACTION_PINNED_SHORTCUT    = "action_pinned_shortcut";
+
   private   GlideRequests              glideRequests;
   protected ComposeText                composeText;
   private   AnimatingToggle            buttonToggle;
@@ -382,6 +386,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   boolean                  callingTooltipShown;
   private   ImageView                wallpaper;
   private   View                     wallpaperDim;
+  private   BroadcastReceiver        pinnedShortcutReceiver;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -603,6 +608,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   protected void onDestroy() {
     saveDraft();
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
+    if (pinnedShortcutReceiver != null)  unregisterReceiver(pinnedShortcutReceiver);
     super.onDestroy();
   }
 
@@ -1243,6 +1249,14 @@ public class ConversationActivity extends PassphraseRequiredActivity
     final Context context = getApplicationContext();
     final Recipient recipient = this.recipient.get();
 
+    if (pinnedShortcutReceiver == null) {
+      pinnedShortcutReceiver = new BroadcastReceiver() {
+        @Override public void onReceive(Context context, Intent intent) {
+          Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
+        }
+      };
+      registerReceiver(pinnedShortcutReceiver, new IntentFilter(ACTION_PINNED_SHORTCUT));
+    }
     GlideApp.with(this)
             .asBitmap()
             .load(recipient.getContactPhoto())
@@ -1294,9 +1308,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                                                   .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
                                                                   .build();
 
-    if (ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, null)) {
-      Toast.makeText(context, context.getString(R.string.ConversationActivity_added_to_home_screen), Toast.LENGTH_LONG).show();
-    }
+    Intent callbackIntent                = new Intent(ACTION_PINNED_SHORTCUT);
+    PendingIntent shortcutPinnedCallback = PendingIntent.getBroadcast(context, REQUEST_CODE_PIN_SHORTCUT, callbackIntent, 0);
+
+    ShortcutManagerCompat.requestPinShortcut(context, shortcutInfoCompat, shortcutPinnedCallback.getIntentSender());
 
     bitmap.recycle();
   }
