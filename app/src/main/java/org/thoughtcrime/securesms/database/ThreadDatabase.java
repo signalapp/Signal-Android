@@ -70,6 +70,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -797,13 +798,10 @@ public class ThreadDatabase extends Database {
    * @return Pinned recipients, in order from top to bottom.
    */
   public @NonNull List<RecipientId> getPinnedRecipientIds() {
-    SQLiteDatabase    db         = databaseHelper.getReadableDatabase();
-    String[]          projection = new String[]{RECIPIENT_ID};
-    String            query      = PINNED + " > ?";
-    String[]          args       = SqlUtil.buildArgs(0);
+    String[]          projection = new String[]{ID, RECIPIENT_ID};
     List<RecipientId> pinned     = new LinkedList<>();
 
-    try (Cursor cursor = db.query(TABLE_NAME, projection, query, args, null, null, PINNED + " ASC")) {
+    try (Cursor cursor = getPinned(projection)) {
       while (cursor.moveToNext()) {
         pinned.add(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)));
       }
@@ -812,13 +810,63 @@ public class ThreadDatabase extends Database {
     return pinned;
   }
 
-  public void pinConversations(@NonNull Set<Long> threadIds) {
+  /**
+   * @return Pinned thread ids, in order from top to bottom.
+   */
+  public @NonNull List<Long> getPinnedThreadIds() {
+    String[]   projection = new String[]{ID};
+    List<Long> pinned     = new LinkedList<>();
+
+    try (Cursor cursor = getPinned(projection)) {
+      while (cursor.moveToNext()) {
+        pinned.add(CursorUtil.requireLong(cursor, ID));
+      }
+    }
+
+    return pinned;
+  }
+
+  /**
+   * @return Pinned recipients, in order from top to bottom.
+   */
+  private @NonNull Cursor getPinned(String[] projection) {
+    SQLiteDatabase    db         = databaseHelper.getReadableDatabase();
+    String            query      = PINNED + " > ?";
+    String[]          args       = SqlUtil.buildArgs(0);
+
+    return db.query(TABLE_NAME, projection, query, args, null, null, PINNED + " ASC");
+  }
+
+  public void restorePins(@NonNull Collection<Long> threadIds) {
+    Log.d(TAG, "Restoring pinned threads " + StringUtil.join(threadIds, ","));
+    pinConversations(threadIds, true);
+  }
+
+  public void pinConversations(@NonNull Collection<Long> threadIds) {
+    Log.d(TAG, "Pinning threads " + StringUtil.join(threadIds, ","));
+    pinConversations(threadIds, false);
+  }
+
+  private void pinConversations(@NonNull Collection<Long> threadIds, boolean clearFirst) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    threadIds = new LinkedHashSet<>(threadIds);
 
     try {
       db.beginTransaction();
 
+      if (clearFirst) {
+        ContentValues contentValues = new ContentValues(1);
+        contentValues.put(PINNED, 0);
+        String   query = PINNED + " > ?";
+        String[] args  = SqlUtil.buildArgs(0);
+        db.update(TABLE_NAME, contentValues, query, args);
+      }
+
       int pinnedCount = getPinnedConversationListCount();
+
+      if (pinnedCount > 0 && clearFirst) {
+        throw new AssertionError();
+      }
 
       for (long threadId : threadIds) {
         ContentValues contentValues = new ContentValues(1);

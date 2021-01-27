@@ -1026,24 +1026,34 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                 Snackbar.LENGTH_LONG,
                                 false)
     {
+      private final ThreadDatabase threadDatabase= DatabaseFactory.getThreadDatabase(getActivity());
+
+      private List<Long> pinnedThreadIds;
+
       @Override
       protected void executeAction(@Nullable Long parameter) {
-        DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+        Context context = requireActivity();
+
+        pinnedThreadIds = threadDatabase.getPinnedThreadIds();
+        threadDatabase.archiveConversation(threadId);
 
         if (unreadCount > 0) {
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
-          MarkReadReceiver.process(getActivity(), messageIds);
+          List<MarkedMessageInfo> messageIds = threadDatabase.setRead(threadId, false);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context);
+          MarkReadReceiver.process(context, messageIds);
         }
       }
 
       @Override
       protected void reverseAction(@Nullable Long parameter) {
-        DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+        Context context = requireActivity();
+
+        threadDatabase.unarchiveConversation(threadId);
+        threadDatabase.restorePins(pinnedThreadIds);
 
         if (unreadCount > 0) {
-          DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
+          threadDatabase.incrementUnread(threadId, unreadCount);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context);
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);
