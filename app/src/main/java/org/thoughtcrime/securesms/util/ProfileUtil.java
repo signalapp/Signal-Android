@@ -6,12 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import org.signal.core.util.logging.Log;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
@@ -44,6 +46,8 @@ import java.util.concurrent.TimeoutException;
  * Aids in the retrieval and decryption of profiles.
  */
 public final class ProfileUtil {
+
+  private static final String TAG = Log.tag(ProfileUtil.class);
 
   private ProfileUtil() {
   }
@@ -164,6 +168,9 @@ public final class ProfileUtil {
                                     @Nullable StreamDetails avatar)
       throws IOException
   {
+    Log.d(TAG, "Uploading " + (!Util.isEmpty(about) ? "non-" : "") + "empty about.");
+    Log.d(TAG, "Uploading " + (!Util.isEmpty(aboutEmoji) ? "non-" : "") + "empty emoji.");
+
     ProfileKey                  profileKey     = ProfileKeyUtil.getSelfProfileKey();
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
     String                      avatarPath     = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), about, aboutEmoji, avatar).orNull();
