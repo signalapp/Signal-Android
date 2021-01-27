@@ -2002,7 +2002,7 @@
     <!-- EditAboutFragment -->
     <string name="EditAboutFragment_about">About</string>
     <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
-    <string name="EditAboutFragment_count">%d/%d</string>
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
     <string name="EditAboutFragment_speak_freely">Speak freely</string>
     <string name="EditAboutFragment_encrypted">Encrypted</string>
     <string name="EditAboutFragment_be_kind">Be kind</string>
