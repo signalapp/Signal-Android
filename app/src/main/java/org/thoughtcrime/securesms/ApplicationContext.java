@@ -287,6 +287,9 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     } else if (!TextSecurePreferences.isPasswordDisabled(this) && VersionTracker.getDaysSinceFirstInstalled(this) < 90) {
       Log.i(TAG, "Detected a new install that doesn't have passphrases disabled -- assuming bad initialization.");
       AppInitialization.onRepairFirstEverAppLaunch(this);
+    } else if (!TextSecurePreferences.isPasswordDisabled(this) && VersionTracker.getDaysSinceFirstInstalled(this) < 912) {
+      Log.i(TAG, "Detected a not-recent install that doesn't have passphrases disabled -- disabling now.");
+      TextSecurePreferences.setPasswordDisabled(this, true);
     }
   }
 
