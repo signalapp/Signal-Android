@@ -252,14 +252,13 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             isSSKBasedClosedGroup = false
         }
 
-        if (members.size < 1) {
+        if (members.isEmpty()) {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else legacyGroupSizeLimit
+        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocolV2.groupSizeLimit else legacyGroupSizeLimit
         if (members.size >= maxGroupMembers) {
-            // TODO: Update copy for SSK based closed groups
-            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
 
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!

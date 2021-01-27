@@ -107,12 +107,16 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.TreeSet;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Kovenant;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends Fragment
@@ -402,18 +406,24 @@ public class ConversationFragment extends Fragment
       boolean isPublicChat = (publicChat != null);
       int selectedMessageCount = messageRecords.size();
       boolean areAllSentByUser = true;
+      Set<String> uniqueUserSet = new HashSet<>();
       for (MessageRecord message : messageRecords) {
         if (!message.isOutgoing()) { areAllSentByUser = false; }
+        uniqueUserSet.add(message.getRecipient().getAddress().toString());
       }
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
       boolean userCanModerate = isPublicChat && PublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
       boolean isDeleteOptionVisible = !isPublicChat || (areAllSentByUser || userCanModerate);
+      // allow banning if moderating a public chat and only one user's messages are selected
+      boolean isBanOptionVisible = isPublicChat && userCanModerate && !areAllSentByUser && uniqueUserSet.size() == 1;
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
+      menu.findItem(R.id.menu_context_ban_user).setVisible(isBanOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
       menu.findItem(R.id.menu_context_delete_message).setVisible(true);
+      menu.findItem(R.id.menu_context_ban_user).setVisible(false);
     }
   }
 
@@ -566,6 +576,59 @@ public class ConversationFragment extends Fragment
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));
       }
+    });
+
+    builder.setNegativeButton(android.R.string.cancel, null);
+    builder.show();
+  }
+
+  private void handleBanUser(Set<MessageRecord> messageRecords) {
+    AlertDialog.Builder builder       = new AlertDialog.Builder(getActivity());
+
+    String userPublicKey = null;
+    for (MessageRecord record: messageRecords) {
+      String currentPublicKey = record.getRecipient().getAddress().toString();
+      if (userPublicKey == null) {
+        userPublicKey = currentPublicKey;
+      }
+    }
+    final String finalPublicKey = userPublicKey;
+
+    builder.setIconAttribute(R.attr.dialog_alert_icon);
+    builder.setTitle(R.string.ConversationFragment_ban_selected_user);
+    builder.setCancelable(true);
+
+    PublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+
+    builder.setPositiveButton(R.string.ban, (dialog, which) -> {
+      ConversationAdapter chatAdapter = getListAdapter();
+      chatAdapter.clearSelection();
+      chatAdapter.notifyDataSetChanged();
+      new ProgressDialogAsyncTask<String, Void, Void>(getActivity(),
+              R.string.ConversationFragment_banning,
+              R.string.ConversationFragment_banning_user) {
+        @Override
+        protected Void doInBackground(String... userPublicKeyParam) {
+          String userPublicKey = userPublicKeyParam[0];
+          if (publicChat != null) {
+            PublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getPublicChatAPI();
+            if (publicChat != null && publicChatAPI != null) {
+              publicChatAPI
+                      .ban(userPublicKey, publicChat.getServer())
+                      .success(l -> {
+                        Log.d("Loki", "User banned");
+                        return Unit.INSTANCE;
+                      }).fail(e -> {
+                Log.d("Loki", "Couldn't ban user due to error: " + e.toString() + ".");
+                return null;
+              });
+            }
+          } else {
+            Log.d("Loki", "Tried to ban user from a non-public chat");
+          }
+          return null;
+        }
+      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, finalPublicKey);
     });
 
     builder.setNegativeButton(android.R.string.cancel, null);
@@ -1085,6 +1148,9 @@ public class ConversationFragment extends Fragment
         case R.id.menu_context_delete_message:
           handleDeleteMessages(getListAdapter().getSelectedItems());
           actionMode.finish();
+          return true;
+        case R.id.menu_context_ban_user:
+          handleBanUser(getListAdapter().getSelectedItems());
           return true;
         case R.id.menu_context_details:
           handleDisplayDetails(getSelectedMessageRecord());

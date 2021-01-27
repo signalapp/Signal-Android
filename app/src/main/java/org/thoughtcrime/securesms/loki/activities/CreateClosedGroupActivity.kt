@@ -21,7 +21,6 @@ import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -43,7 +42,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     companion object {
-        val closedGroupCreatedResultCode = 100
+        const val closedGroupCreatedResultCode = 100
     }
 
     // region Lifecycle
@@ -98,14 +97,6 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
     }
 
     private fun createClosedGroup() {
-        if (ClosedGroupsProtocol.isSharedSenderKeysEnabled) {
-            createSSKBasedClosedGroup()
-        } else {
-            createLegacyClosedGroup()
-        }
-    }
-
-    private fun createSSKBasedClosedGroup() {
         val name = nameEditText.text.trim()
         if (name.isEmpty()) {
             return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
@@ -117,7 +108,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
-        if (selectedMembers.count() >= ClosedGroupsProtocol.groupSizeLimit) { // Minus one because we're going to include self later
+        if (selectedMembers.count() >= ClosedGroupsProtocolV2.groupSizeLimit) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
@@ -133,61 +124,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             }
         }
     }
-
-    private fun createLegacyClosedGroup() {
-        val name = nameEditText.text.trim()
-        if (name.isEmpty()) {
-            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_missing_error, Toast.LENGTH_LONG).show()
-        }
-        if (name.length >= 64) {
-            return Toast.makeText(this, R.string.activity_create_closed_group_group_name_too_long_error, Toast.LENGTH_LONG).show()
-        }
-        val selectedMembers = this.selectContactsAdapter.selectedMembers
-        if (selectedMembers.count() < 1) {
-            return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
-        }
-        if (selectedMembers.count() > 10) {
-            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
-        }
-        val recipients = selectedMembers.map {
-            Recipient.from(this, Address.fromSerialized(it), false)
-        }.toSet()
-        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this) ?: TextSecurePreferences.getLocalNumber(this)!!
-        val admin = Recipient.from(this, Address.fromSerialized(masterHexEncodedPublicKey), false)
-        CreateClosedGroupTask(WeakReference(this), null, name.toString(), recipients, setOf( admin ))
-            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
-    }
     // endregion
-
-    // region Group Creation Task (Legacy)
-    internal class CreateClosedGroupTask(
-        private val activity: WeakReference<CreateClosedGroupActivity>,
-        private val profilePicture: Bitmap?,
-        private val name: String?,
-        private val members: Set<Recipient>,
-        private val admins: Set<Recipient>
-    ) : AsyncTask<Void, Void, Optional<GroupManager.GroupActionResult>>() {
-
-        override fun doInBackground(vararg params: Void?): Optional<GroupManager.GroupActionResult> {
-            val activity = activity.get() ?: return Optional.absent()
-            return Optional.of(GroupManager.createGroup(activity, members, profilePicture, name, admins))
-        }
-
-        override fun onPostExecute(result: Optional<GroupManager.GroupActionResult>) {
-            val activity = activity.get() ?: return super.onPostExecute(result)
-            if (result.isPresent && result.get().threadId > -1) {
-                if (!activity.isFinishing) {
-                    openConversationActivity(activity, result.get().threadId, result.get().groupRecipient)
-                    activity.finish()
-                }
-            } else {
-                super.onPostExecute(result)
-                Toast.makeText(activity.applicationContext, R.string.activity_create_closed_group_invalid_session_id_error, Toast.LENGTH_LONG).show()
-            }
-        }
-    }
 }
-// endregion
 
 // region Convenience
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
