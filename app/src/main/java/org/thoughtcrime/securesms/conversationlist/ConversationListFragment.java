@@ -1108,7 +1108,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           canvas.save();
           canvas.clipRect(itemView.getLeft(), itemView.getTop(), dX, itemView.getBottom());
 
-          canvas.drawColor(alpha > 0 ? resources.getColor(R.color.green_500) : Color.WHITE);
+          canvas.drawColor(alpha > 0 ? resources.getColor(R.color.green_500) : resources.getColor(R.color.signal_background_primary));
 
           canvas.translate(itemView.getLeft() + resources.getDimension(R.dimen.conversation_list_fragment_archive_padding),
                            itemView.getTop() + (itemView.getBottom() - itemView.getTop() - archiveDrawable.getIntrinsicHeight()) / 2f);
