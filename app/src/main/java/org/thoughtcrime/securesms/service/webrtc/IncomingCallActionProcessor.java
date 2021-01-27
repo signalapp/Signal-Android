@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
+import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -20,6 +21,7 @@ import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
@@ -91,6 +93,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 videoState.requireCamera(),
                                                 iceServers,
                                                 hideIp,
+                                                NetworkUtil.getCallingBandwidthMode(context),
                                                 false);
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);

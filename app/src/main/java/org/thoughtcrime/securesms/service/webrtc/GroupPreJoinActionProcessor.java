@@ -8,6 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
+import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -52,7 +53,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     try {
       groupCall.setOutgoingAudioMuted(true);
       groupCall.setOutgoingVideoMuted(true);
-      groupCall.setBandwidthMode(NetworkUtil.useLowBandwidthCalling(context) ? GroupCall.BandwidthMode.LOW : GroupCall.BandwidthMode.NORMAL);
+      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
 
       Log.i(TAG, "Connecting to group call: " + currentState.getCallInfoState().getCallRecipient().getId());
       groupCall.connect();
@@ -151,7 +152,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
       groupCall.setOutgoingVideoSource(currentState.getVideoState().requireLocalSink(), currentState.getVideoState().requireCamera());
       groupCall.setOutgoingVideoMuted(!currentState.getLocalDeviceState().getCameraState().isEnabled());
       groupCall.setOutgoingAudioMuted(!currentState.getLocalDeviceState().isMicrophoneEnabled());
-      groupCall.setBandwidthMode(NetworkUtil.useLowBandwidthCalling(context) ? GroupCall.BandwidthMode.LOW : GroupCall.BandwidthMode.NORMAL);
+      groupCall.setBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
 
       groupCall.join();
     } catch (CallException e) {
