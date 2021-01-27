@@ -429,7 +429,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     setContentView(R.layout.conversation_activity);
 
     getWindow().getDecorView().setBackgroundResource(R.color.signal_background_primary);
-    WindowUtil.setLightNavigationBar(getWindow());
+    WindowUtil.setLightNavigationBarFromTheme(this);
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
 
