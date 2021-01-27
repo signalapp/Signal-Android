@@ -40,6 +40,7 @@ public final class ThreadRecord {
   private final long      threadId;
   private final String    body;
   private final Recipient recipient;
+  private final Recipient sender;
   private final long      type;
   private final long      date;
   private final long      deliveryStatus;
@@ -61,6 +62,7 @@ public final class ThreadRecord {
     this.threadId             = builder.threadId;
     this.body                 = builder.body;
     this.recipient            = builder.recipient;
+    this.sender               = builder.sender;
     this.date                 = builder.date;
     this.type                 = builder.type;
     this.deliveryStatus       = builder.deliveryStatus;
@@ -184,6 +186,29 @@ public final class ThreadRecord {
     else                                                  return null;
   }
 
+  public @NonNull RecipientId getIndividualRecipientId() {
+    if (extra != null && extra.getIndividualRecipientId() != null) {
+      return RecipientId.from(extra.getIndividualRecipientId());
+    } else {
+      if (getRecipient().isGroup()) {
+        return RecipientId.UNKNOWN;
+      } else {
+        return getRecipient().getId();
+      }
+    }
+  }
+
+  public @NonNull RecipientId getGroupMessageSender() {
+    RecipientId threadRecipientId     = getRecipient().getId();
+    RecipientId individualRecipientId = getIndividualRecipientId();
+
+    if (threadRecipientId.equals(individualRecipientId)) {
+      return Recipient.self().getId();
+    } else {
+      return individualRecipientId;
+    }
+  }
+
   public boolean isGv2Invite() {
     return extra != null && extra.isGv2Invite();
   }
@@ -249,7 +274,8 @@ public final class ThreadRecord {
   public static class Builder {
     private long      threadId;
     private String    body;
-    private Recipient recipient;
+    private Recipient recipient = Recipient.UNKNOWN;
+    private Recipient sender    = Recipient.UNKNOWN;
     private long      type;
     private long      date;
     private long      deliveryStatus;
@@ -278,6 +304,11 @@ public final class ThreadRecord {
 
     public Builder setRecipient(@NonNull Recipient recipient) {
       this.recipient = recipient;
+      return this;
+    }
+
+    public Builder setSender(@NonNull Recipient sender) {
+      this.sender = sender;
       return this;
     }
 

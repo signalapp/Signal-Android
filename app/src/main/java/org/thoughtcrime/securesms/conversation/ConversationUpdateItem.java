@@ -55,15 +55,15 @@ public final class ConversationUpdateItem extends FrameLayout
 
   private Set<ConversationMessage> batchSelected;
 
-  private TextView                body;
-  private MaterialButton          actionButton;
-  private View                    background;
-  private ConversationMessage     conversationMessage;
-  private Recipient               conversationRecipient;
-  private Optional<MessageRecord> nextMessageRecord;
-  private MessageRecord           messageRecord;
-  private LiveData<Spannable>     displayBody;
-  private EventListener           eventListener;
+  private TextView                  body;
+  private MaterialButton            actionButton;
+  private View                      background;
+  private ConversationMessage       conversationMessage;
+  private Recipient                 conversationRecipient;
+  private Optional<MessageRecord>   nextMessageRecord;
+  private MessageRecord             messageRecord;
+  private LiveData<SpannableString> displayBody;
+  private EventListener             eventListener;
 
   private final UpdateObserver updateObserver = new UpdateObserver();
 
@@ -150,9 +150,9 @@ public final class ConversationUpdateItem extends FrameLayout
       }
     }
 
-    UpdateDescription   updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
-    LiveData<Spannable> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, textColor);
-    LiveData<Spannable> spannableMessage  = loading(liveUpdateMessage);
+    UpdateDescription         updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
+    LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, textColor);
+    LiveData<SpannableString> spannableMessage  = loading(liveUpdateMessage);
 
     observeDisplayBody(lifecycleOwner, spannableMessage);
 
@@ -172,7 +172,7 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
-  private @NonNull LiveData<Spannable> loading(@NonNull LiveData<Spannable> string) {
+  private @NonNull LiveData<SpannableString> loading(@NonNull LiveData<SpannableString> string) {
     return LiveDataUtil.until(string, LiveDataUtil.delay(250, new SpannableString(getContext().getString(R.string.ConversationUpdateItem_loading))));
   }
 
@@ -208,7 +208,7 @@ public final class ConversationUpdateItem extends FrameLayout
     }
   }
 
-  private void observeDisplayBody(@NonNull LifecycleOwner lifecycleOwner, @Nullable LiveData<Spannable> displayBody) {
+  private void observeDisplayBody(@NonNull LifecycleOwner lifecycleOwner, @Nullable LiveData<SpannableString> displayBody) {
     if (this.displayBody != displayBody) {
       if (this.displayBody != null) {
         this.displayBody.removeObserver(updateObserver);

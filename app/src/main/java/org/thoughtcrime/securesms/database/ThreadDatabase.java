@@ -1381,6 +1381,7 @@ public class ThreadDatabase extends Database {
   private @Nullable Extra getExtrasFor(MessageRecord record) {
     boolean     messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(context, record.getThreadId());
     RecipientId threadRecipientId      = getRecipientIdForThreadId(record.getThreadId());
+    RecipientId individualRecipient    = record.getIndividualRecipient().getId();
 
     if (!messageRequestAccepted && threadRecipientId != null) {
       Recipient resolved = Recipient.resolved(threadRecipientId);
@@ -1391,35 +1392,42 @@ public class ThreadDatabase extends Database {
             RecipientId from = RecipientId.from(inviteAddState.getAddedOrInvitedBy(), null);
             if (inviteAddState.isInvited()) {
               Log.i(TAG, "GV2 invite message request from " + from);
-              return Extra.forGroupV2invite(from);
+              return Extra.forGroupV2invite(from, individualRecipient);
             } else {
               Log.i(TAG, "GV2 message request from " + from);
-              return Extra.forGroupMessageRequest(from);
+              return Extra.forGroupMessageRequest(from, individualRecipient);
             }
           }
           Log.w(TAG, "Falling back to unknown message request state for GV2 message");
-          return Extra.forMessageRequest();
+          return Extra.forMessageRequest(individualRecipient);
         } else {
           RecipientId recipientId = DatabaseFactory.getMmsSmsDatabase(context).getGroupAddedBy(record.getThreadId());
 
           if (recipientId != null) {
-            return Extra.forGroupMessageRequest(recipientId);
+            return Extra.forGroupMessageRequest(recipientId, individualRecipient);
           }
         }
       }
 
-      return Extra.forMessageRequest();
+      return Extra.forMessageRequest(individualRecipient);
     }
 
     if (record.isRemoteDelete()) {
-      return Extra.forRemoteDelete();
+      return Extra.forRemoteDelete(individualRecipient);
     } else if (record.isViewOnce()) {
-      return Extra.forViewOnce();
+      return Extra.forViewOnce(individualRecipient);
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
       StickerSlide slide = Objects.requireNonNull(((MmsMessageRecord) record).getSlideDeck().getStickerSlide());
-      return Extra.forSticker(slide.getEmoji());
+      return Extra.forSticker(slide.getEmoji(), individualRecipient);
     } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getSlides().size() > 1) {
-      return Extra.forAlbum();
+      return Extra.forAlbum(individualRecipient);
+    }
+
+    if (threadRecipientId != null) {
+      Recipient resolved = Recipient.resolved(threadRecipientId);
+      if (resolved.isGroup()) {
+        return Extra.forDefault(individualRecipient);
+      }
     }
 
     return null;
@@ -1590,6 +1598,7 @@ public class ThreadDatabase extends Database {
     @JsonProperty private final boolean isMessageRequestAccepted;
     @JsonProperty private final boolean isGv2Invite;
     @JsonProperty private final String  groupAddedBy;
+    @JsonProperty private final String  individualRecipientId;
 
     public Extra(@JsonProperty("isRevealable") boolean isRevealable,
                  @JsonProperty("isSticker") boolean isSticker,
@@ -1598,7 +1607,8 @@ public class ThreadDatabase extends Database {
                  @JsonProperty("isRemoteDelete") boolean isRemoteDelete,
                  @JsonProperty("isMessageRequestAccepted") boolean isMessageRequestAccepted,
                  @JsonProperty("isGv2Invite") boolean isGv2Invite,
-                 @JsonProperty("groupAddedBy") String groupAddedBy)
+                 @JsonProperty("groupAddedBy") String groupAddedBy,
+                 @JsonProperty("individualRecipientId") String individualRecipientId)
     {
       this.isRevealable             = isRevealable;
       this.isSticker                = isSticker;
@@ -1608,34 +1618,39 @@ public class ThreadDatabase extends Database {
       this.isMessageRequestAccepted = isMessageRequestAccepted;
       this.isGv2Invite              = isGv2Invite;
       this.groupAddedBy             = groupAddedBy;
+      this.individualRecipientId    = individualRecipientId;
     }
 
-    public static @NonNull Extra forViewOnce() {
-      return new Extra(true, false, null, false, false, true, false, null);
+    public static @NonNull Extra forViewOnce(@NonNull RecipientId individualRecipient) {
+      return new Extra(true, false, null, false, false, true, false, null, individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forSticker(@Nullable String emoji) {
-      return new Extra(false, true, emoji, false, false, true, false, null);
+    public static @NonNull Extra forSticker(@Nullable String emoji, @NonNull RecipientId individualRecipient) {
+      return new Extra(false, true, emoji, false, false, true, false, null, individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forAlbum() {
-      return new Extra(false, false, null, true, false, true, false, null);
+    public static @NonNull Extra forAlbum(@NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, true, false, true, false, null, individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forRemoteDelete() {
-      return new Extra(false, false, null, false, true, true, false, null);
+    public static @NonNull Extra forRemoteDelete(@NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, false, true, true, false, null, individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forMessageRequest() {
-      return new Extra(false, false, null, false, false, false, false, null);
+    public static @NonNull Extra forMessageRequest(@NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, false, false, false, false, null, individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forGroupMessageRequest(RecipientId recipientId) {
-      return new Extra(false, false, null, false, false, false, false, recipientId.serialize());
+    public static @NonNull Extra forGroupMessageRequest(@NonNull RecipientId recipientId, @NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, false, false, false, false, recipientId.serialize(), individualRecipient.serialize());
     }
 
-    public static @NonNull Extra forGroupV2invite(RecipientId recipientId) {
-      return new Extra(false, false, null, false, false, false, true, recipientId.serialize());
+    public static @NonNull Extra forGroupV2invite(@NonNull RecipientId recipientId, @NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, false, false, false, true, recipientId.serialize(), individualRecipient.serialize());
+    }
+
+    public static @NonNull Extra forDefault(@NonNull RecipientId individualRecipient) {
+      return new Extra(false, false, null, false, false, true, false, null, individualRecipient.serialize());
     }
 
     public boolean isViewOnce() {
@@ -1668,6 +1683,10 @@ public class ThreadDatabase extends Database {
 
     public @Nullable String getGroupAddedBy() {
       return groupAddedBy;
+    }
+
+    public @Nullable String getIndividualRecipientId() {
+      return individualRecipientId;
     }
   }
 

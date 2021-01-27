@@ -31,7 +31,7 @@ public final class LiveUpdateMessage {
    * recreates the string asynchronously when they change.
    */
   @AnyThread
-  public static LiveData<Spannable> fromMessageDescription(@NonNull Context context, @NonNull UpdateDescription updateDescription, @ColorInt int defaultTint) {
+  public static LiveData<SpannableString> fromMessageDescription(@NonNull Context context, @NonNull UpdateDescription updateDescription, @ColorInt int defaultTint) {
     if (updateDescription.isStringStatic()) {
       return LiveDataUtil.just(toSpannable(context, updateDescription, updateDescription.getStaticString(), defaultTint));
     }
@@ -49,13 +49,13 @@ public final class LiveUpdateMessage {
   /**
    * Observes a single recipient and recreates the string asynchronously when they change.
    */
-  public static LiveData<Spannable> recipientToStringAsync(@NonNull RecipientId recipientId,
-                                                           @NonNull Function<Recipient, Spannable> createStringInBackground)
+  public static LiveData<SpannableString> recipientToStringAsync(@NonNull RecipientId recipientId,
+                                                                 @NonNull Function<Recipient, SpannableString> createStringInBackground)
   {
-    return LiveDataUtil.mapAsync(Recipient.live(recipientId).getLiveData(), createStringInBackground);
+    return LiveDataUtil.mapAsync(Recipient.live(recipientId).getLiveDataResolved(), createStringInBackground);
   }
 
-  private static @NonNull Spannable toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint) {
+  private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull String string, @ColorInt int defaultTint) {
     boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
     int      drawableResource = updateDescription.getIconResource();
     int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
