@@ -8,6 +8,6 @@ package org.whispersystems.signalservice.api.push.exceptions;
 
 public class RemoteAttestationResponseExpiredException extends NonSuccessfulResponseCodeException {
   public RemoteAttestationResponseExpiredException(String message) {
-    super(message);
+    super(409, message);
   }
 }

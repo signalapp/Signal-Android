@@ -7,6 +7,7 @@ public class DeviceLimitExceededException extends NonSuccessfulResponseCodeExcep
   private final DeviceLimit deviceLimit;
 
   public DeviceLimitExceededException(DeviceLimit deviceLimit) {
+    super(411);
     this.deviceLimit = deviceLimit;
   }
 

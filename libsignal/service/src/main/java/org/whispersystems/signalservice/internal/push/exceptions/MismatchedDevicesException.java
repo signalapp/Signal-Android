@@ -14,6 +14,7 @@ public class MismatchedDevicesException extends NonSuccessfulResponseCodeExcepti
   private final MismatchedDevices mismatchedDevices;
 
   public MismatchedDevicesException(MismatchedDevices mismatchedDevices) {
+    super(409);
     this.mismatchedDevices = mismatchedDevices;
   }
 
