@@ -352,10 +352,8 @@ public class ManageGroupFragment extends LoggingFragment {
     viewModel.getMentionSetting().observe(getViewLifecycleOwner(), value -> mentionsValue.setText(value));
 
     viewModel.getCanLeaveGroup().observe(getViewLifecycleOwner(), canLeave -> leaveGroup.setVisibility(canLeave ? View.VISIBLE : View.GONE));
-    viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> {
-      blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE);
-      unblockGroup.setVisibility(canBlock ? View.GONE : View.VISIBLE);
-    });
+    viewModel.getCanBlockGroup().observe(getViewLifecycleOwner(), canBlock -> blockGroup.setVisibility(canBlock ? View.VISIBLE : View.GONE));
+    viewModel.getCanUnblockGroup().observe(getViewLifecycleOwner(), canUnblock -> unblockGroup.setVisibility(canUnblock ? View.VISIBLE : View.GONE));
 
     viewModel.getGroupInfoMessage().observe(getViewLifecycleOwner(), message -> {
       switch (message) {
