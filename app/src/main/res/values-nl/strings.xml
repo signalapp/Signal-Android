@@ -1908,7 +1908,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__delete_account">Al je gegevens wissen</string>
   <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
-  <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
+  <string name="preferences__incognito_keyboard">Incognito-toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
@@ -1968,7 +1968,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictorgram</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van niet-contactpersonen voor wie je ook je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>

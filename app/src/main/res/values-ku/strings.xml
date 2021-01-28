@@ -685,6 +685,8 @@
   <!--ImageEditorHud-->
   <string name="ImageEditorHud_blur_faces">Rûyan şêlî bikin</string>
   <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">Nû: Rûyan şêlî bikin an jî cîhekî kifş bikin ji ber ku şêlî bikin</string>
+  <string name="ImageEditorHud_draw_anywhere_to_blur">Cîhekî kifş bikin ji ber ku şêlî bikin</string>
+  <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Ji bo zêdetir rûyan an jî cîhan şêlî bikin kifş bikin</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Ji bo peyameke dengî tomar bikî lê bitepîne û tiliya xwe li ser bihêle, paşê ji bo şandinê berde</string>
   <!--InviteActivity-->

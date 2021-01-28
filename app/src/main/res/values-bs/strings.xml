@@ -2487,7 +2487,7 @@
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadinske slike</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Poništiti pozadinske slike, uključujući i ručno podešene u svim Vašim konverzacijama?</string>
   <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
-  <string name="ChatWallpaperFragment__reset">Ponovi</string>
+  <string name="ChatWallpaperFragment__reset">Poništi</string>
   <string name="ChatWallpaperFragment__clear">Ukloni</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Prikaz pozadinske slike</string>
   <!--ChatWallpaperSelectionFragment-->

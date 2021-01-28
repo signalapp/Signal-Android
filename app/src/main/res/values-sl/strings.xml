@@ -3,7 +3,7 @@
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Izbriši</string>
-  <string name="please_wait">Prosimo počakajte …</string>
+  <string name="please_wait">Prosimo, počakajte …</string>
   <string name="save">Shrani</string>
   <string name="note_to_self">Osebna zabeležka</string>
   <!--AbstractNotificationBuilder-->

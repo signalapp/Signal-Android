@@ -2379,8 +2379,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ShareActivity__s_comma">%1$s,</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Das Weiterleiten an mehrere Unterhaltungen wird nur für Signal-Nachrichten unterstützt.</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">Konnte an einige Nutzer nicht gesendet werden</string>
-  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kannst maximal mit %1$d Unterhaltungen teilen</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Senden an einige Benutzer fehlgeschlagen</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kannst mit maximal %1$d Unterhaltungen teilen</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Nachricht weiterleiten</string>
   <!--ChatWallpaperActivity-->

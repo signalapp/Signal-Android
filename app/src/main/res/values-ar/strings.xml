@@ -2738,7 +2738,7 @@
   <string name="ChatWallpaperSelectionFragment__presets">الإعدادات المسبقة</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">مُعاينة</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">ضبط الخلفية</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين خلفية</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">يُرجى السحب لمعاينة بقية الخلفيات</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ضبط الخلفية لجميع المحادثات</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s</string>
