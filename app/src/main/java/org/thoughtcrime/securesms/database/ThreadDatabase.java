@@ -1378,7 +1378,7 @@ public class ThreadDatabase extends Database {
     return null;
   }
 
-  private @Nullable Extra getExtrasFor(MessageRecord record) {
+  private @Nullable Extra getExtrasFor(@NonNull MessageRecord record) {
     boolean     messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(context, record.getThreadId());
     RecipientId threadRecipientId      = getRecipientIdForThreadId(record.getThreadId());
     RecipientId individualRecipient    = record.getIndividualRecipient().getId();
