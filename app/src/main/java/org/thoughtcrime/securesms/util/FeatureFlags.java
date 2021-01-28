@@ -321,8 +321,8 @@ public final class FeatureFlags {
     return getInteger(AUTOMATIC_SESSION_RESET, (int) TimeUnit.HOURS.toSeconds(1));
   }
 
-  public static int getDefaultMaxBackoffSeconds() {
-    return getInteger(DEFAULT_MAX_BACKOFF, 60);
+  public static long getDefaultMaxBackoff() {
+    return TimeUnit.SECONDS.toMillis(getInteger(DEFAULT_MAX_BACKOFF, 60));
   }
 
   /** Whether or not to allow automatic retries from OkHttp */
