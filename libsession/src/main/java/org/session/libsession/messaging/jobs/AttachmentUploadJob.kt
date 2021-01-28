@@ -29,8 +29,8 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     override val maxFailureCount: Int = 20
     companion object {
         val TAG = AttachmentUploadJob::class.qualifiedName
+        val KEY: String = "AttachmentUploadJob"
 
-        val collection: String = "AttachmentUploadJobCollection"
         val maxFailureCount: Int = 20
 
         //keys used for database storage purpose
@@ -104,7 +104,6 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
     //database functions
 
     override fun serialize(): Data {
-        val builder = this.createJobDataBuilder()
         //serialize Message property
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
@@ -112,11 +111,15 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return builder.putLong(KEY_ATTACHMENT_ID, attachmentID)
+        return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
                 .putString(KEY_THREAD_ID, threadID)
                 .putByteArray(KEY_MESSAGE, serializedMessage)
                 .putString(KEY_MESSAGE_SEND_JOB_ID, messageSendJobID)
                 .build();
+    }
+
+    override fun getFactoryKey(): String {
+        return AttachmentDownloadJob.KEY
     }
 
     class Factory: Job.Factory<AttachmentUploadJob> {
@@ -127,9 +130,7 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
             val input = Input(serializedMessage)
             val message: Message = kryo.readObject(input, Message::class.java)
             input.close()
-            val job =  AttachmentUploadJob(data.getLong(KEY_ATTACHMENT_ID), data.getString(KEY_THREAD_ID)!!, message, data.getString(KEY_MESSAGE_SEND_JOB_ID)!!)
-            job.initJob(data)
-            return job
+            return AttachmentUploadJob(data.getLong(KEY_ATTACHMENT_ID), data.getString(KEY_THREAD_ID)!!, message, data.getString(KEY_MESSAGE_SEND_JOB_ID)!!)
         }
     }
 }

@@ -18,7 +18,7 @@ class VisibleMessage : Message()  {
     var profile: Profile? = null
 
     companion object {
-        const val TAG = "BaseVisibleMessage"
+        const val TAG = "VisibleMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): VisibleMessage? {
             val dataMessage = proto.dataMessage ?: return null

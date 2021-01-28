@@ -16,8 +16,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     override val maxFailureCount: Int = 10
     companion object {
         val TAG = MessageReceiveJob::class.qualifiedName
-
-        val collection: String = "MessageReceiveJobCollection"
+        val KEY: String = "AttachmentUploadJob"
 
         //keys used for database storage purpose
         private val KEY_DATA = "data"
@@ -64,20 +63,20 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     //database functions
 
     override fun serialize(): Data {
-        val builder = this.createJobDataBuilder()
-        builder.putByteArray(KEY_DATA, data)
+        val builder = Data.Builder().putByteArray(KEY_DATA, data)
                 .putBoolean(KEY_IS_BACKGROUND_POLL, isBackgroundPoll)
         openGroupMessageServerID?.let { builder.putLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID, openGroupMessageServerID) }
         openGroupID?.let { builder.putString(KEY_OPEN_GROUP_ID, openGroupID) }
-
         return builder.build();
+    }
+
+    override fun getFactoryKey(): String {
+        return AttachmentDownloadJob.KEY
     }
 
     class Factory: Job.Factory<MessageReceiveJob> {
         override fun create(data: Data): MessageReceiveJob {
-            val job =  MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
-            job.initJob(data)
-            return job
+            return MessageReceiveJob(data.getByteArray(KEY_DATA), data.getBoolean(KEY_IS_BACKGROUND_POLL), data.getLong(KEY_OPEN_GROUP_MESSAGE_SERVER_ID), data.getString(KEY_OPEN_GROUP_ID))
         }
     }
 }
