@@ -148,11 +148,13 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     int trimmedLength = pin.replace(" ", "").length();
     if (trimmedLength == 0) {
       Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show();
+      enableAndFocusPinEntry();
       return;
     }
 
     if (trimmedLength < MINIMUM_PIN_LENGTH) {
       Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show();
+      enableAndFocusPinEntry();
       return;
     }
 
