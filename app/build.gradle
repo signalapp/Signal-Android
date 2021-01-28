@@ -162,10 +162,6 @@ android {
         exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 
-    aaptOptions {
-        ignoreAssetsPattern '!contours.tfl:!LMprec_600.emd:!blazeface.tfl'
-    }
-
     buildTypes {
         debug {
             if (keystores['debug'] != null) {
@@ -315,8 +311,6 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha18"
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
     implementation "androidx.autofill:autofill:1.0.0"
-    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
-    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
 
     implementation ('com.google.firebase:firebase-messaging:20.2.0') {
         exclude group: 'com.google.firebase', module: 'firebase-core'
