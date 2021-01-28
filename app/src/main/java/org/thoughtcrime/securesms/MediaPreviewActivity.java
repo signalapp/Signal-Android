@@ -159,7 +159,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActivity
 
     viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
 
-    fullscreenHelper = new FullscreenHelper(this);
+    fullscreenHelper = FullscreenHelper.createWithShortEdgesCutoutMode(this);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
