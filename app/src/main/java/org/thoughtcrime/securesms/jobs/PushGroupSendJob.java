@@ -264,13 +264,6 @@ public final class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof IOException)         return true;
-    if (exception instanceof RetryLaterException) return true;
-    return false;
-  }
-
-  @Override
   public void onFailure() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
