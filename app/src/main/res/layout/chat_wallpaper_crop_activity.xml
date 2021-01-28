@@ -60,12 +60,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="48dp"
         android:background="@drawable/chat_wallpaper_preview_bubble_background_accent"
         android:orientation="vertical"
         android:paddingStart="12dp"
         android:paddingTop="7dp"
         android:paddingEnd="12dp"
         android:paddingBottom="7dp"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +76,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="194dp"
             android:text="@string/WallpaperCropActivity__pinch_to_zoom_drag_to_adjust"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white" />
@@ -92,6 +93,7 @@
         android:id="@+id/preview_bubble_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/chat_wallpaper_preview_bubble_background"
@@ -100,6 +102,7 @@
         android:paddingTop="7dp"
         android:paddingEnd="12dp"
         android:paddingBottom="7dp"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,17 +142,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
-        android:text="@string/WallpaperCropActivity__blur_photo"
-        android:textColor="@color/signal_button_primary"
         android:background="@drawable/wallpaper_crop_bubble_background"
         android:paddingStart="14dp"
         android:paddingTop="6dp"
-        android:paddingBottom="6dp"
         android:paddingEnd="6dp"
-        app:switchPadding="4dp"
+        android:paddingBottom="6dp"
+        android:text="@string/WallpaperCropActivity__blur_photo"
+        android:textColor="@color/signal_button_primary"
         app:layout_constraintBottom_toTopOf="@+id/preview_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:switchPadding="4dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/preview_set_wallpaper"
@@ -166,7 +169,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/wallpaper_preview_background"
-        app:layout_constraintTop_toBottomOf="@id/navigation_bar_guideline"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/navigation_bar_guideline" />
 
 </org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>
