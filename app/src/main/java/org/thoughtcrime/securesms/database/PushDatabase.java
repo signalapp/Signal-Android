@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -19,7 +18,6 @@ import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
 
-@Trace
 public class PushDatabase extends Database {
 
   private static final String TAG = PushDatabase.class.getSimpleName();

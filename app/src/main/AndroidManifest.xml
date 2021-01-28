@@ -159,12 +159,15 @@
     <activity android:name=".preferences.MmsPreferencesActivity"
                android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".sharing.interstitial.ShareInterstitialActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:windowSoftInputMode="adjustResize" />
+
     <activity android:name=".sharing.ShareActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:excludeFromRecents="true"
               android:launchMode="singleTask"
               android:taskAffinity=""
-              android:noHistory="true"
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
         <intent-filter>
@@ -225,6 +228,17 @@
             <category android:name="android.intent.category.MULTIWINDOW_LAUNCHER" />
         </intent-filter>
 
+        <meta-data android:name="com.sec.minimode.icon.portrait.normal"
+                   android:resource="@mipmap/ic_launcher" />
+        <meta-data android:name="com.sec.minimode.icon.landscape.normal"
+                   android:resource="@mipmap/ic_launcher" />
+
+    </activity-alias>
+
+    <activity android:name=".deeplinks.DeepLinkEntryActivity"
+              android:noHistory="true"
+              android:theme="@style/Signal.Transparent">
+
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
@@ -241,13 +255,7 @@
             <data android:scheme="https"
                   android:host="signal.group"/>
         </intent-filter>
-
-        <meta-data android:name="com.sec.minimode.icon.portrait.normal"
-                   android:resource="@mipmap/ic_launcher" />
-        <meta-data android:name="com.sec.minimode.icon.landscape.normal"
-                   android:resource="@mipmap/ic_launcher" />
-
-    </activity-alias>
+    </activity>
 
     <activity android:name=".conversation.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
@@ -348,6 +356,16 @@
             <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />
         </intent-filter>
     </activity>
+
+        <activity android:name=".wallpaper.ChatWallpaperActivity"
+                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+                  android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
+
+        <activity android:name=".wallpaper.ChatWallpaperPreviewActivity"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden">
+        </activity>
 
     <activity android:name=".registration.RegistrationNavigationActivity"
               android:launchMode="singleTask"
@@ -455,6 +473,10 @@
               android:theme="@style/TextSecure.LightRegistrationTheme"
               android:windowSoftInputMode="stateVisible|adjustResize" />
 
+    <activity android:name=".profiles.manage.ManageProfileActivity"
+              android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateVisible|adjustResize" />
+
     <activity android:name=".lock.v2.CreateKbsPinActivity"
             android:theme="@style/TextSecure.LightRegistrationTheme"
             android:windowSoftInputMode="adjustResize"
@@ -504,7 +526,6 @@
 
     <activity android:name=".MainActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <activity android:name=".pin.PinRestoreActivity"
@@ -530,6 +551,15 @@
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize|uiMode"
               android:launchMode="singleTask" />
+
+    <activity android:name=".wallpaper.crop.WallpaperImageSelectionActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:theme="@style/TextSecure.FullScreenMedia" />
+
+    <activity android:name=".wallpaper.crop.WallpaperCropActivity"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:screenOrientation="portrait"
+              android:theme="@style/Theme.Signal.WallpaperCropper" />
 
     <service android:enabled="true" android:name=".service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>

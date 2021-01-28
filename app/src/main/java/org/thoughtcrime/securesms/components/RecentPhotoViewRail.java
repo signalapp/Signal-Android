@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.loaders.RecentPhotosLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -52,7 +51,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
 
     inflate(context, R.layout.recent_photo_view, this);
 
-    this.recyclerView = ViewUtil.findById(this, R.id.photo_list);
+    this.recyclerView = findViewById(R.id.photo_list);
     this.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
     this.recyclerView.setItemAnimator(new DefaultItemAnimator());
   }
@@ -158,7 +157,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       RecentPhotoViewHolder(View itemView) {
         super(itemView);
 
-        this.imageView = ViewUtil.findById(itemView, R.id.thumbnail);
+        this.imageView = itemView.findViewById(R.id.thumbnail);
       }
     }
   }

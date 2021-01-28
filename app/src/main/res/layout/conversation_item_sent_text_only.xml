@@ -5,7 +5,7 @@
     android:id="@+id/conversation_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
+    android:paddingEnd="@dimen/conversation_individual_right_gutter"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:focusable="true"
@@ -13,16 +13,25 @@
     android:nextFocusRight="@id/embedded_text_editor"
     android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/reply_icon"
-        android:layout_width="@dimen/conversation_item_reply_size"
-        android:layout_height="@dimen/conversation_item_reply_size"
+    <FrameLayout
+        android:id="@+id/reply_icon_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@id/body_bubble"
         android:layout_alignTop="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:alpha="0"
-        android:tint="@color/signal_icon_tint_primary"
-        app:srcCompat="@drawable/ic_reply_24" />
+        android:alpha="0">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/reply_icon"
+            android:layout_width="@dimen/conversation_item_reply_size"
+            android:layout_height="@dimen/conversation_item_reply_size"
+            android:padding="9dp"
+            android:tint="@color/signal_icon_tint_primary"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_reply_24" />
+
+    </FrameLayout>
 
     <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
         android:id="@+id/body_bubble"
@@ -90,8 +99,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
-        android:orientation="vertical"
-        android:paddingBottom="4dp" />
+        android:padding="8dp"
+        android:orientation="vertical" />
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"

@@ -59,9 +59,11 @@ import org.whispersystems.signalservice.api.push.exceptions.NoContentException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.RangeException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
@@ -231,14 +233,17 @@ public class PushServiceSocket {
   private final String                           signalAgent;
   private final SecureRandom                     random;
   private final ClientZkProfileOperations        clientZkProfileOperations;
+  private final boolean                          automaticNetworkRetry;
 
   public PushServiceSocket(SignalServiceConfiguration configuration,
                            CredentialsProvider credentialsProvider,
                            String signalAgent,
-                           ClientZkProfileOperations clientZkProfileOperations)
+                           ClientZkProfileOperations clientZkProfileOperations,
+                           boolean automaticNetworkRetry)
   {
     this.credentialsProvider       = credentialsProvider;
     this.signalAgent               = signalAgent;
+    this.automaticNetworkRetry     = automaticNetworkRetry;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns());
     this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns());
@@ -571,7 +576,8 @@ public class PushServiceSocket {
   }
 
   public void retrieveAttachment(int cdnNumber, SignalServiceAttachmentRemoteId cdnPath, File destination, long maxSizeBytes, ProgressListener listener)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MissingConfigurationException {
+      throws IOException, MissingConfigurationException
+  {
     final String path;
     if (cdnPath.getV2().isPresent()) {
       path = String.format(Locale.US, ATTACHMENT_ID_DOWNLOAD_PATH, cdnPath.getV2().get());
@@ -579,12 +585,6 @@ public class PushServiceSocket {
       path = String.format(Locale.US, ATTACHMENT_KEY_DOWNLOAD_PATH, cdnPath.getV3().get());
     }
     downloadFromCdn(destination, cdnNumber, path, maxSizeBytes, listener);
-  }
-
-  public void retrieveSticker(File destination, byte[] packId, int stickerId)
-      throws NonSuccessfulResponseCodeException, PushNetworkException, MissingConfigurationException {
-    String hexPackId = Hex.toStringCondensed(packId);
-    downloadFromCdn(destination, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
   }
 
   public byte[] retrieveSticker(byte[] packId, int stickerId)
@@ -694,7 +694,8 @@ public class PushServiceSocket {
   }
 
   public void retrieveProfileAvatar(String path, File destination, long maxSizeBytes)
-      throws NonSuccessfulResponseCodeException, PushNetworkException {
+      throws IOException
+  {
     try {
       downloadFromCdn(destination, 0, path, maxSizeBytes, null);
     } catch (MissingConfigurationException e) {
@@ -971,11 +972,10 @@ public class PushServiceSocket {
   }
 
   private void downloadFromCdn(File destination, int cdnNumber, String path, long maxSizeBytes, ProgressListener listener)
-      throws PushNetworkException, NonSuccessfulResponseCodeException, MissingConfigurationException {
+      throws IOException, MissingConfigurationException
+  {
     try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
       downloadFromCdn(outputStream, destination.length(), cdnNumber, path, maxSizeBytes, listener);
-    } catch (IOException e) {
-      throw new PushNetworkException(e);
     }
   }
 
@@ -1037,13 +1037,17 @@ public class PushServiceSocket {
         }
 
         return;
+      } else if (response.code() == 416) {
+        throw new RangeException(offset);
       }
+    } catch (NonSuccessfulResponseCodeException | PushNetworkException e) {
+      throw e;
     } catch (IOException e) {
+      throw new PushNetworkException(e);
+    } finally {
       if (body != null) {
         body.close();
       }
-      throw new PushNetworkException(e);
-    } finally {
       synchronized (connections) {
         connections.remove(call);
       }
@@ -1434,6 +1438,9 @@ public class PushServiceSocket {
                                   basicStorageCredentials);
       case 499:
         throw new DeprecatedVersionException();
+
+      case 508:
+        throw new ServerRejectedException();
     }
 
     if (responseCode != 200 && responseCode != 204) {
@@ -1473,6 +1480,7 @@ public class PushServiceSocket {
     return baseClient.newBuilder()
                      .connectTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                      .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
+                     .retryOnConnectionFailure(automaticNetworkRetry)
                      .build();
   }
 

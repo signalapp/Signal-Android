@@ -22,7 +22,7 @@ public class SystemSmsImportReminder extends Reminder {
       context.startService(intent);
 
       // TODO [greyson] Navigation
-      Intent nextIntent = new Intent(context, MainActivity.class);
+      Intent nextIntent = MainActivity.clearTop(context);
       Intent activityIntent = new Intent(context, DatabaseMigrationActivity.class);
       activityIntent.putExtra("next_intent", nextIntent);
       context.startActivity(activityIntent);

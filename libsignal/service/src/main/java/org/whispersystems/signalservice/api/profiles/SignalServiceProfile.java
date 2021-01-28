@@ -30,6 +30,12 @@ public class SignalServiceProfile {
   private String name;
 
   @JsonProperty
+  private String about;
+
+  @JsonProperty
+  private String aboutEmoji;
+
+  @JsonProperty
   private String avatar;
 
   @JsonProperty
@@ -60,6 +66,14 @@ public class SignalServiceProfile {
 
   public String getName() {
     return name;
+  }
+
+  public String getAbout() {
+    return about;
+  }
+
+  public String getAboutEmoji() {
+    return aboutEmoji;
   }
 
   public String getAvatar() {

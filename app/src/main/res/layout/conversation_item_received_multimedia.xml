@@ -5,7 +5,7 @@
     android:id="@+id/conversation_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
+    android:paddingEnd="@dimen/conversation_individual_right_gutter"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:focusable="true"
@@ -14,16 +14,25 @@
     android:orientation="vertical"
     android:paddingStart="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/reply_icon"
-        android:layout_width="@dimen/conversation_item_reply_size"
-        android:layout_height="@dimen/conversation_item_reply_size"
+    <FrameLayout
+        android:id="@+id/reply_icon_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@id/body_bubble"
         android:layout_alignTop="@id/body_bubble"
         android:layout_alignBottom="@id/body_bubble"
-        android:alpha="0"
-        android:tint="@color/signal_icon_tint_primary"
-        app:srcCompat="@drawable/ic_reply_24" />
+        android:alpha="0">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/reply_icon"
+            android:layout_width="@dimen/conversation_item_reply_size"
+            android:layout_height="@dimen/conversation_item_reply_size"
+            android:padding="9dp"
+            android:tint="@color/signal_icon_tint_primary"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_reply_24" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/contact_photo_container"
@@ -61,10 +70,11 @@
             android:id="@+id/group_sender_holder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginTop="@dimen/message_bubble_top_padding"
-            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
             android:orientation="horizontal"
             android:visibility="gone"
             tools:visibility="visible">
@@ -81,20 +91,6 @@
                 android:textStyle="bold"
                 tools:text="+14152222222"
                 tools:visibility="visible" />
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/group_message_sender_profile"
-                style="@style/Signal.Text.Preview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:fontFamily="sans-serif-regular"
-                android:maxLines="1"
-                android:paddingStart="4sp"
-                android:paddingEnd="4sp"
-                android:textColor="@color/conversation_item_received_text_primary_color"
-                android:textStyle="italic"
-                tools:text="~Clement Duval" />
 
         </LinearLayout>
 
@@ -203,9 +199,12 @@
             android:id="@+id/conversation_item_sticker_footer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+            android:paddingStart="@dimen/message_bubble_horizontal_padding"
+            android:paddingEnd="@dimen/message_bubble_horizontal_padding"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:gravity="start"

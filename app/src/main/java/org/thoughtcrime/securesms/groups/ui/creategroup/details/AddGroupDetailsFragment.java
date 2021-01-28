@@ -27,6 +27,7 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dd.CircularProgressButton;
 
+import org.signal.core.util.EditTextUtil;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
@@ -92,6 +93,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     ImageView           avatar     = view.findViewById(R.id.group_avatar);
     View                mmsWarning = view.findViewById(R.id.mms_warning);
     LearnMoreTextView   gv2Warning = view.findViewById(R.id.gv2_warning);
+    View                addLater   = view.findViewById(R.id.add_later);
 
     avatarPlaceholder = VectorDrawableCompat.create(getResources(), R.drawable.ic_camera_outline_32_ultramarine, requireActivity().getTheme());
 
@@ -103,15 +105,13 @@ public class AddGroupDetailsFragment extends LoggingFragment {
 
     avatar.setOnClickListener(v -> showAvatarSelectionBottomSheet());
     members.setRecipientClickListener(this::handleRecipientClick);
+    EditTextUtil.addGraphemeClusterLimitFilter(name, FeatureFlags.getMaxGroupNameGraphemeLength());
     name.addTextChangedListener(new AfterTextChanged(editable -> viewModel.setName(editable.toString())));
     toolbar.setNavigationOnClickListener(unused -> callback.onNavigationButtonPressed());
     create.setOnClickListener(v -> handleCreateClicked());
-    viewModel.getMembers().observe(getViewLifecycleOwner(), recipients -> {
-      members.setMembers(recipients);
-      if (recipients.isEmpty()) {
-        toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
-        callback.onNavigationButtonPressed();
-      }
+    viewModel.getMembers().observe(getViewLifecycleOwner(), list -> {
+      addLater.setVisibility(list.isEmpty() ? View.VISIBLE : View.GONE);
+      members.setMembers(list);
     });
     viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
@@ -229,10 +229,6 @@ public class AddGroupDetailsFragment extends LoggingFragment {
         break;
       case ERROR_INVALID_NAME:
         name.setError(getString(R.string.AddGroupDetailsFragment__this_field_is_required));
-        break;
-      case ERROR_INVALID_MEMBER_COUNT:
-        toast(R.string.AddGroupDetailsFragment__groups_require_at_least_two_members);
-        callback.onNavigationButtonPressed();
         break;
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());

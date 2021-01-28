@@ -24,6 +24,8 @@ public class MegaphoneViewBuilder {
         return buildReactionsMegaphone(context, megaphone, listener);
       case LINK_PREVIEWS:
         return buildLinkPreviewsMegaphone(context, megaphone, listener);
+      case ONBOARDING:
+        return buildOnboardingMegaphone(context, megaphone, listener);
       case POPUP:
         return buildPopupMegaphone(context, megaphone, listener);
       default:
@@ -54,6 +56,15 @@ public class MegaphoneViewBuilder {
                                                           @NonNull MegaphoneActionController listener)
   {
     LinkPreviewsMegaphoneView view = new LinkPreviewsMegaphoneView(context);
+    view.present(megaphone, listener);
+    return view;
+  }
+
+  private static @NonNull View buildOnboardingMegaphone(@NonNull Context context,
+                                                        @NonNull Megaphone megaphone,
+                                                        @NonNull MegaphoneActionController listener)
+  {
+    OnboardingMegaphoneView view = new OnboardingMegaphoneView(context);
     view.present(megaphone, listener);
     return view;
   }

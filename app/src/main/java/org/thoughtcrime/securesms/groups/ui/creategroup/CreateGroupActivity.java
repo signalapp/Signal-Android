@@ -1,16 +1,19 @@
 package org.thoughtcrime.securesms.groups.ui.creategroup;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ContactSelectionActivity;
@@ -27,6 +30,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -40,10 +44,11 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
   private static final String TAG = Log.tag(CreateGroupActivity.class);
 
-  private static final int   MINIMUM_GROUP_SIZE       = 1;
   private static final short REQUEST_CODE_ADD_DETAILS = 17275;
 
-  private View next;
+  private ExtendedFloatingActionButton next;
+  private ValueAnimator                padStart;
+  private ValueAnimator                padEnd;
 
   public static Intent newIntent(@NonNull Context context) {
     Intent intent = new Intent(context, CreateGroupActivity.class);
@@ -67,8 +72,8 @@ public class CreateGroupActivity extends ContactSelectionActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     next = findViewById(R.id.next);
+    extendSkip();
 
-    disableNext();
     next.setOnClickListener(v -> handleNextPressed());
   }
 
@@ -97,7 +102,7 @@ public class CreateGroupActivity extends ContactSelectionActivity {
       getToolbar().clear();
     }
 
-    enableNext();
+    shrinkSkip();
 
     return true;
   }
@@ -108,19 +113,39 @@ public class CreateGroupActivity extends ContactSelectionActivity {
       getToolbar().clear();
     }
 
-    if (contactsFragment.getSelectedContactsCount() < MINIMUM_GROUP_SIZE) {
-      disableNext();
+    if (contactsFragment.getSelectedContactsCount() == 0) {
+      extendSkip();
     }
   }
 
-  private void enableNext() {
-    next.setEnabled(true);
-    next.animate().alpha(1f);
+  private void extendSkip() {
+    next.setIconGravity(MaterialButton.ICON_GRAVITY_END);
+    next.extend();
+    animatePadding(24, 18);
   }
 
-  private void disableNext() {
-    next.setEnabled(false);
-    next.animate().alpha(0.5f);
+  private void shrinkSkip() {
+    next.setIconGravity(MaterialButton.ICON_GRAVITY_START);
+    next.shrink();
+    animatePadding(16, 16);
+  }
+
+  private void animatePadding(int startDp, int endDp) {
+    if (padStart != null) padStart.cancel();
+
+    padStart = ValueAnimator.ofInt(next.getPaddingStart(), ViewUtil.dpToPx(startDp)).setDuration(200);
+    padStart.addUpdateListener(animation -> {
+      ViewUtil.setPaddingStart(next, (Integer) animation.getAnimatedValue());
+    });
+    padStart.start();
+
+    if (padEnd != null) padEnd.cancel();
+
+    padEnd = ValueAnimator.ofInt(next.getPaddingEnd(), ViewUtil.dpToPx(endDp)).setDuration(200);
+    padEnd.addUpdateListener(animation -> {
+      ViewUtil.setPaddingEnd(next, (Integer) animation.getAnimatedValue());
+    });
+    padEnd.start();
   }
 
   private void handleNextPressed() {
@@ -167,28 +192,33 @@ public class CreateGroupActivity extends ContactSelectionActivity {
 
       resolved = Recipient.resolvedList(ids);
 
+      Pair<Boolean, List<RecipientId>> result;
+
       boolean gv2 = Stream.of(recipientsAndSelf).allMatch(r -> r.getGroupsV2Capability() == Recipient.Capability.SUPPORTED);
       if (!gv2 && Stream.of(resolved).anyMatch(r -> !r.hasE164()))
       {
         Log.w(TAG, "Invalid GV1 group...");
         ids = Collections.emptyList();
+        result = Pair.create(false, ids);
+      } else {
+        result = Pair.create(true, ids);
       }
 
       stopwatch.split("gv1-check");
 
-      return ids;
-    }, ids -> {
+      return result;
+    }, result -> {
       dismissibleDialog.dismiss();
 
       stopwatch.stop(TAG);
 
-      if (ids.isEmpty()) {
+      if (result.first) {
+        startActivityForResult(AddGroupDetailsActivity.newIntent(this, result.second), REQUEST_CODE_ADD_DETAILS);
+      } else {
         new AlertDialog.Builder(this)
                        .setMessage(R.string.CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups)
                        .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss())
                        .show();
-      } else {
-        startActivityForResult(AddGroupDetailsActivity.newIntent(this, ids), REQUEST_CODE_ADD_DETAILS);
       }
     });
   }

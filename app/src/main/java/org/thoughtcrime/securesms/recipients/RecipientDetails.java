@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.zkgroup.profiles.ProfileKeyCredential;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
@@ -49,7 +51,7 @@ public class RecipientDetails {
   final Optional<Integer>      defaultSubscriptionId;
   final RegisteredState        registered;
   final byte[]                 profileKey;
-  final byte[]                 profileKeyCredential;
+  final ProfileKeyCredential   profileKeyCredential;
   final String                 profileAvatar;
   final boolean                hasProfileImage;
   final boolean                profileSharing;
@@ -64,6 +66,9 @@ public class RecipientDetails {
   final InsightsBannerTier     insightsBannerTier;
   final byte[]                 storageId;
   final MentionSetting         mentionSetting;
+  final ChatWallpaper          wallpaper;
+  final String                 about;
+  final String                 aboutEmoji;
 
   public RecipientDetails(@Nullable String name,
                           @NonNull Optional<Long> groupAvatarId,
@@ -109,6 +114,9 @@ public class RecipientDetails {
     this.insightsBannerTier          = settings.getInsightsBannerTier();
     this.storageId                   = settings.getStorageId();
     this.mentionSetting              = settings.getMentionSetting();
+    this.wallpaper                   = settings.getWallpaper();
+    this.about                       = settings.getAbout();
+    this.aboutEmoji                  = settings.getAboutEmoji();
 
     if (name == null) this.name = settings.getSystemDisplayName();
     else              this.name = name;
@@ -156,6 +164,9 @@ public class RecipientDetails {
     this.groupsV1MigrationCapability = Recipient.Capability.UNKNOWN;
     this.storageId                   = null;
     this.mentionSetting              = MentionSetting.ALWAYS_NOTIFY;
+    this.wallpaper                   = null;
+    this.about                       = null;
+    this.aboutEmoji                  = null;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {

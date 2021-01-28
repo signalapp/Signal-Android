@@ -17,7 +17,6 @@ import androidx.annotation.RequiresApi;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.List;
 
@@ -53,9 +52,9 @@ public class UnverifiedBannerView extends LinearLayout {
 
   private void initialize() {
     LayoutInflater.from(getContext()).inflate(R.layout.unverified_banner_view, this, true);
-    this.container   = ViewUtil.findById(this, R.id.container);
-    this.text        = ViewUtil.findById(this, R.id.unverified_text);
-    this.closeButton = ViewUtil.findById(this, R.id.cancel);
+    this.container   = findViewById(R.id.container);
+    this.text        = findViewById(R.id.unverified_text);
+    this.closeButton = findViewById(R.id.cancel);
   }
 
   public void display(@NonNull final String text,

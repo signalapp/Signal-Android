@@ -71,7 +71,7 @@
     <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
     <dimen name="reaction_scrubber_width">320dp</dimen>
 
-    <dimen name="conversation_item_reply_size">20dp</dimen>
+    <dimen name="conversation_item_reply_size">38dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>
@@ -162,4 +162,8 @@
     <dimen name="wave_form_bar_width">2dp</dimen>
 
     <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
+
+    <dimen name="conversation_update_vertical_margin">2dp</dimen>
+    <dimen name="conversation_update_vertical_padding">5dp</dimen>
+    <dimen name="conversation_update_vertical_padding_collapsed">2dp</dimen>
 </resources>

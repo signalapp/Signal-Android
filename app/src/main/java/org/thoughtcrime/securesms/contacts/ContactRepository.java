@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 
@@ -42,28 +43,29 @@ public class ContactRepository {
          static final String NUMBER_TYPE_COLUMN  = "number_type";
          static final String LABEL_COLUMN        = "label";
          static final String CONTACT_TYPE_COLUMN = "contact_type";
+         static final String ABOUT_COLUMN        = "about";
 
   static final int NORMAL_TYPE       = 0;
-  static final int PUSH_TYPE         = 1;
-  static final int NEW_PHONE_TYPE    = 2;
-  static final int NEW_USERNAME_TYPE = 3;
-  static final int RECENT_TYPE       = 4;
-  static final int DIVIDER_TYPE      = 5;
+  static final int PUSH_TYPE         = 1 << 0;
+  static final int NEW_PHONE_TYPE    = 1 << 2;
+  static final int NEW_USERNAME_TYPE = 1 << 3;
+  static final int RECENT_TYPE       = 1 << 4;
+  static final int DIVIDER_TYPE      = 1 << 5;
 
   /** Maps the recipient results to the legacy contact column names */
   private static final List<Pair<String, ValueMapper>> SEARCH_CURSOR_MAPPERS = new ArrayList<Pair<String, ValueMapper>>() {{
-    add(new Pair<>(ID_COLUMN, cursor -> cursor.getLong(cursor.getColumnIndexOrThrow(RecipientDatabase.ID))));
+    add(new Pair<>(ID_COLUMN, cursor -> CursorUtil.requireLong(cursor, RecipientDatabase.ID)));
 
     add(new Pair<>(NAME_COLUMN, cursor -> {
-      String system  = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_DISPLAY_NAME));
-      String profile = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SEARCH_PROFILE_NAME));
+      String system  = CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_DISPLAY_NAME);
+      String profile = CursorUtil.requireString(cursor, RecipientDatabase.SEARCH_PROFILE_NAME);
 
       return Util.getFirstNonEmpty(system, profile);
     }));
 
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
-      String phone = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.PHONE));
-      String email = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.EMAIL));
+      String phone = CursorUtil.requireString(cursor, RecipientDatabase.PHONE);
+      String email = CursorUtil.requireString(cursor, RecipientDatabase.EMAIL);
 
       if (phone != null) {
         phone = PhoneNumberFormatter.prettyPrint(phone);
@@ -72,13 +74,30 @@ public class ContactRepository {
       return Util.getFirstNonEmpty(phone, email);
     }));
 
-    add(new Pair<>(NUMBER_TYPE_COLUMN, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_PHONE_TYPE))));
+    add(new Pair<>(NUMBER_TYPE_COLUMN, cursor -> CursorUtil.requireInt(cursor, RecipientDatabase.SYSTEM_PHONE_TYPE)));
 
-    add(new Pair<>(LABEL_COLUMN, cursor -> cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_PHONE_LABEL))));
+    add(new Pair<>(LABEL_COLUMN, cursor -> CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_PHONE_LABEL)));
 
     add(new Pair<>(CONTACT_TYPE_COLUMN, cursor -> {
-      int registered = cursor.getInt(cursor.getColumnIndexOrThrow(RecipientDatabase.REGISTERED));
+      int registered = CursorUtil.requireInt(cursor, RecipientDatabase.REGISTERED);
       return registered == RecipientDatabase.RegisteredState.REGISTERED.getId() ? PUSH_TYPE : NORMAL_TYPE;
+    }));
+
+    add(new Pair<>(ABOUT_COLUMN, cursor -> {
+      String aboutEmoji = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT_EMOJI);
+      String about      = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT);
+
+      if (!Util.isEmpty(aboutEmoji)) {
+        if (!Util.isEmpty(about)) {
+          return aboutEmoji + " " + about;
+        } else {
+          return aboutEmoji;
+        }
+      } else if (!Util.isEmpty(about)) {
+        return about;
+      } else {
+        return "";
+      }
     }));
   }};
 
@@ -106,7 +125,7 @@ public class ContactRepository {
 
       if (shouldAdd) {
         MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION_NAMES);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
+        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), noteToSelfTitle, noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
       }

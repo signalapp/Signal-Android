@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -32,15 +33,17 @@ public final class LiveRecipient {
 
   private final Context                       context;
   private final MutableLiveData<Recipient>    liveData;
+  private final LiveData<Recipient>           observableLiveData;
   private final Set<RecipientForeverObserver> observers;
   private final Observer<Recipient>           foreverObserver;
   private final AtomicReference<Recipient>    recipient;
   private final RecipientDatabase             recipientDatabase;
   private final GroupDatabase                 groupDatabase;
+  private final MutableLiveData<Object>       refreshForceNotify;
 
-  LiveRecipient(@NonNull Context context, @NonNull MutableLiveData<Recipient> liveData, @NonNull Recipient defaultRecipient) {
+  LiveRecipient(@NonNull Context context, @NonNull Recipient defaultRecipient) {
     this.context           = context.getApplicationContext();
-    this.liveData          = liveData;
+    this.liveData          = new MutableLiveData<>(defaultRecipient);
     this.recipient         = new AtomicReference<>(defaultRecipient);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
@@ -50,6 +53,10 @@ public final class LiveRecipient {
         o.onRecipientChanged(recipient);
       }
     };
+    this.refreshForceNotify = new MutableLiveData<>(System.currentTimeMillis());
+    this.observableLiveData = LiveDataUtil.combineLatest(LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent),
+                                                         refreshForceNotify,
+                                                         (recipient, force) -> recipient);
   }
 
   public @NonNull RecipientId getId() {
@@ -70,14 +77,14 @@ public final class LiveRecipient {
    * use {@link #removeObservers(LifecycleOwner)}.
    */
   public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<Recipient> observer) {
-    Util.postToMain(() -> liveData.observe(owner, observer));
+    Util.postToMain(() -> observableLiveData.observe(owner, observer));
   }
 
   /**
    * Removes all observers of this data registered for the given LifecycleOwner.
    */
   public void removeObservers(@NonNull LifecycleOwner owner) {
-    Util.runOnMain(() -> liveData.removeObservers(owner));
+    Util.runOnMain(() -> observableLiveData.removeObservers(owner));
   }
 
   /**
@@ -87,11 +94,10 @@ public final class LiveRecipient {
    */
   public void observeForever(@NonNull RecipientForeverObserver observer) {
     Util.postToMain(() -> {
-      observers.add(observer);
-
-      if (observers.size() == 1) {
-        liveData.observeForever(foreverObserver);
+      if (observers.isEmpty()) {
+        observableLiveData.observeForever(foreverObserver);
       }
+      observers.add(observer);
     });
   }
 
@@ -103,7 +109,7 @@ public final class LiveRecipient {
       observers.remove(observer);
 
       if (observers.isEmpty()) {
-        liveData.removeObserver(foreverObserver);
+        observableLiveData.removeObserver(foreverObserver);
       }
     });
   }
@@ -170,10 +176,11 @@ public final class LiveRecipient {
     }
 
     set(recipient);
+    refreshForceNotify.postValue(new Object());
   }
 
   public @NonNull LiveData<Recipient> getLiveData() {
-    return liveData;
+    return observableLiveData;
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {

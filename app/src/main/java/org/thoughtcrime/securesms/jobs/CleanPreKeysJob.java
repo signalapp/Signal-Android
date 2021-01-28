@@ -26,7 +26,7 @@ public class CleanPreKeysJob extends BaseJob {
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
-  private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(7);
+  private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(30);
 
   public CleanPreKeysJob() {
     this(new Job.Parameters.Builder()

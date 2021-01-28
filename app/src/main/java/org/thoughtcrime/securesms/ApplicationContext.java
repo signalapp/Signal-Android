@@ -16,13 +16,13 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.hardware.SensorManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
@@ -33,10 +33,12 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.core.util.ShakeDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.PersistentLogger;
+import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -44,6 +46,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
@@ -68,14 +71,15 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
-import org.thoughtcrime.securesms.tracing.Tracer;
+import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
@@ -94,7 +98,6 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Moxie Marlinspike
  */
-@Trace
 public class ApplicationContext extends MultiDexApplication implements DefaultLifecycleObserver {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
@@ -112,44 +115,54 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   @Override
   public void onCreate() {
     Tracer.getInstance().start("Application#onCreate()");
+    AppStartup.getInstance().onApplicationCreate();
+
     long startTime = System.currentTimeMillis();
+
+    if (FeatureFlags.internalUser()) {
+      Tracer.getInstance().setMaxBufferSize(35_000);
+    }
 
     super.onCreate();
 
-    initializeSecurityProvider();
-    initializeLogging();
-    Log.i(TAG, "onCreate()");
-    initializeCrashHandling();
-    initializeAppDependencies();
-    initializeFirstEverAppLaunch();
-    initializeApplicationMigrations();
-    initializeMessageRetrieval();
-    initializeExpiringMessageManager();
-    initializeRevealableMessageManager();
-    initializeGcmCheck();
-    initializeSignedPreKeyCheck();
-    initializePeriodicTasks();
-    initializeCircumvention();
-    initializeRingRtc();
-    initializePendingMessages();
-    initializeBlobProvider();
-    initializeCleanup();
-    initializeGlideCodecs();
+    AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
+                            .addBlocking("logging", () -> {
+                                initializeLogging();
+                                Log.i(TAG, "onCreate()");
+                            })
+                            .addBlocking("crash-handling", this::initializeCrashHandling)
+                            .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
+                            .addBlocking("app-dependencies", this::initializeAppDependencies)
+                            .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
+                            .addBlocking("app-migrations", this::initializeApplicationMigrations)
+                            .addBlocking("ring-rtc", this::initializeRingRtc)
+                            .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
+                            .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
+                            .addBlocking("message-retriever", this::initializeMessageRetrieval)
+                            .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
+                            .addBlocking("vector-compat", () -> {
+                              if (Build.VERSION.SDK_INT < 21) {
+                                AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+                              }
+                            })
+                            .addNonBlocking(this::initializeRevealableMessageManager)
+                            .addNonBlocking(this::initializeGcmCheck)
+                            .addNonBlocking(this::initializeSignedPreKeyCheck)
+                            .addNonBlocking(this::initializePeriodicTasks)
+                            .addNonBlocking(this::initializeCircumvention)
+                            .addNonBlocking(this::initializePendingMessages)
+                            .addNonBlocking(this::initializeCleanup)
+                            .addNonBlocking(this::initializeGlideCodecs)
+                            .addNonBlocking(FeatureFlags::init)
+                            .addNonBlocking(RefreshPreKeysJob::scheduleIfNecessary)
+                            .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
+                            .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
+                            .addPostRender(this::initializeExpiringMessageManager)
+                            .addPostRender(this::initializeBlobProvider)
+                            .addPostRender(() -> NotificationChannels.create(this))
+                            .execute();
 
-    FeatureFlags.init();
-    NotificationChannels.create(this);
-    RefreshPreKeysJob.scheduleIfNecessary();
-    StorageSyncHelper.scheduleRoutineSync();
-    RegistrationUtil.maybeMarkRegistrationComplete(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
-    if (Build.VERSION.SDK_INT < 21) {
-      AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
-
-    ApplicationDependencies.getJobManager().beginJobLoop();
-
-    DynamicTheme.setDefaultDayNightMode(this);
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     Tracer.getInstance().end("Application#onCreate()");
@@ -157,17 +170,25 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @Override
   public void onStart(@NonNull LifecycleOwner owner) {
+    long startTime = System.currentTimeMillis();
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
-    FeatureFlags.refreshIfNecessary();
-    ApplicationDependencies.getRecipientCache().warmUp();
-    RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
-    GroupV1MigrationJob.enqueueRoutineMigrationsIfNecessary(this);
-    executePendingContactSync();
-    KeyCachingService.onAppForegrounded(this);
+
     ApplicationDependencies.getFrameRateTracker().begin();
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
-    checkBuildExpiration();
+
+    SignalExecutors.BOUNDED.execute(() -> {
+      FeatureFlags.refreshIfNecessary();
+      ApplicationDependencies.getRecipientCache().warmUp();
+      RetrieveProfileJob.enqueueRoutineFetchIfNecessary(this);
+      GroupV1MigrationJob.enqueueRoutineMigrationsIfNecessary(this);
+      executePendingContactSync();
+      KeyCachingService.onAppForegrounded(this);
+      ApplicationDependencies.getShakeToReport().enable();
+      checkBuildExpiration();
+    });
+
+    Log.d(TAG, "onStart() took " + (System.currentTimeMillis() - startTime) + " ms");
   }
 
   @Override
@@ -177,9 +198,13 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
     ApplicationDependencies.getFrameRateTracker().end();
+    ApplicationDependencies.getShakeToReport().disable();
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {
+    if (expiringMessageManager == null) {
+      initializeExpiringMessageManager();
+    }
     return expiringMessageManager;
   }
 
@@ -252,13 +277,19 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void initializeFirstEverAppLaunch() {
     if (TextSecurePreferences.getFirstInstallVersion(this) == -1) {
-      if (!SQLCipherOpenHelper.databaseFileExists(this)) {
+      if (!SQLCipherOpenHelper.databaseFileExists(this) || VersionTracker.getDaysSinceFirstInstalled(this) < 365) {
         Log.i(TAG, "First ever app launch!");
         AppInitialization.onFirstEverAppLaunch(this);
       }
 
       Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);
       TextSecurePreferences.setFirstInstallVersion(this, BuildConfig.CANONICAL_VERSION_CODE);
+    } else if (!TextSecurePreferences.isPasswordDisabled(this) && VersionTracker.getDaysSinceFirstInstalled(this) < 90) {
+      Log.i(TAG, "Detected a new install that doesn't have passphrases disabled -- assuming bad initialization.");
+      AppInitialization.onRepairFirstEverAppLaunch(this);
+    } else if (!TextSecurePreferences.isPasswordDisabled(this) && VersionTracker.getDaysSinceFirstInstalled(this) < 912) {
+      Log.i(TAG, "Detected a not-recent install that doesn't have passphrases disabled -- disabling now.");
+      TextSecurePreferences.setPasswordDisabled(this, true);
     }
   }
 
@@ -333,23 +364,15 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     }
   }
 
-  @SuppressLint("StaticFieldLeak")
+  @WorkerThread
   private void initializeCircumvention() {
-    AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
-      @Override
-      protected Void doInBackground(Void... params) {
-        if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
-          try {
-            ProviderInstaller.installIfNeeded(ApplicationContext.this);
-          } catch (Throwable t) {
-            Log.w(TAG, t);
-          }
-        }
-        return null;
+    if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
+      try {
+        ProviderInstaller.installIfNeeded(ApplicationContext.this);
+      } catch (Throwable t) {
+        Log.w(TAG, t);
       }
-    };
-
-    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    }
   }
 
   private void executePendingContactSync() {
@@ -370,17 +393,15 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     }
   }
 
+  @WorkerThread
   private void initializeBlobProvider() {
-    SignalExecutors.BOUNDED.execute(() -> {
-      BlobProvider.getInstance().onSessionStart(this);
-    });
+    BlobProvider.getInstance().onSessionStart(this);
   }
 
+  @WorkerThread
   private void initializeCleanup() {
-    SignalExecutors.BOUNDED.execute(() -> {
-      int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
-      Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
-    });
+    int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
+    Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
   }
 
   private void initializeGlideCodecs() {

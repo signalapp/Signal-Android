@@ -17,9 +17,11 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.AppSignatureUtil;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.CensorshipUtil;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.VersionTracker;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -53,6 +55,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("ABIs          : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
     builder.append("Memory        : ").append(getMemoryUsage()).append("\n");
     builder.append("Memclass      : ").append(getMemoryClass(context)).append("\n");
+    builder.append("MemInfo       : ").append(getMemoryInfo(context)).append("\n");
     builder.append("OS Host       : ").append(Build.HOST).append("\n");
     builder.append("Censored      : ").append(CensorshipUtil.isCensored(context)).append("\n");
     builder.append("Play Services : ").append(getPlayServicesString(context)).append("\n");
@@ -60,6 +63,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Locale        : ").append(Locale.getDefault().toString()).append("\n");
     builder.append("Linked Devices: ").append(TextSecurePreferences.isMultiDevice(context)).append("\n");
     builder.append("First Version : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
+    builder.append("Days Installed: ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
     builder.append("App           : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
@@ -98,6 +102,12 @@ public class LogSectionSystemInfo implements LogSection {
     }
 
     return activityManager.getMemoryClass() + lowMem;
+  }
+
+  private static @NonNull String getMemoryInfo(Context context) {
+    ActivityManager.MemoryInfo info = DeviceProperties.getMemoryInfo(context);
+    return String.format(Locale.US, "availMem: %d mb, totalMem: %d mb, threshold: %d mb, lowMemory: %b",
+                         ByteUnit.BYTES.toMegabytes(info.availMem), ByteUnit.BYTES.toMegabytes(info.totalMem), ByteUnit.BYTES.toMegabytes(info.threshold), info.lowMemory);
   }
 
   private static @NonNull Iterable<String> getSupportedAbis() {

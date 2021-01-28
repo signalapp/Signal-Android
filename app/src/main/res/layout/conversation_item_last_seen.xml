@@ -9,8 +9,9 @@
     android:paddingBottom="20dp">
 
     <View
+        android:id="@+id/last_seen_divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_marginBottom="3dp"
         android:background="@color/core_grey_45" />
 
@@ -19,6 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         style="@style/Signal.Text.Caption"
         android:fontFamily="sans-serif-medium"
         android:textColor="@color/signal_text_primary"

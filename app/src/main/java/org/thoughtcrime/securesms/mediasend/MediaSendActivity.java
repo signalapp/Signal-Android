@@ -111,11 +111,12 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   public static final String EXTRA_RESULT    = "result";
 
-  private static final String KEY_RECIPIENT = "recipient_id";
-  private static final String KEY_BODY      = "body";
-  private static final String KEY_MEDIA     = "media";
-  private static final String KEY_TRANSPORT = "transport";
-  private static final String KEY_IS_CAMERA = "is_camera";
+  private static final String KEY_RECIPIENT  = "recipient_id";
+  private static final String KEY_RECIPIENTS = "recipient_ids";
+  private static final String KEY_BODY       = "body";
+  private static final String KEY_MEDIA      = "media";
+  private static final String KEY_TRANSPORT  = "transport";
+  private static final String KEY_IS_CAMERA  = "is_camera";
 
   private static final String TAG_FOLDER_PICKER = "folder_picker";
   private static final String TAG_ITEM_PICKER   = "item_picker";
@@ -192,6 +193,20 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
   {
     Intent intent = buildGalleryIntent(context, recipient, body, transport);
     intent.putParcelableArrayListExtra(KEY_MEDIA, new ArrayList<>(media));
+    return intent;
+  }
+
+  public static Intent buildShareIntent(@NonNull Context context,
+                                        @NonNull List<Media> media,
+                                        @NonNull List<RecipientId> recipientIds,
+                                        @NonNull CharSequence body,
+                                        @NonNull TransportOption transportOption)
+  {
+    Intent intent = new Intent(context, MediaSendActivity.class);
+    intent.putParcelableArrayListExtra(KEY_MEDIA, new ArrayList<>(media));
+    intent.putExtra(KEY_TRANSPORT, transportOption);
+    intent.putExtra(KEY_BODY, body == null ? "" : body);
+    intent.putParcelableArrayListExtra(KEY_RECIPIENTS, new ArrayList<>(recipientIds));
     return intent;
   }
 
@@ -332,7 +347,18 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     initViewModel();
 
     revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
-    continueButton.setOnClickListener(v -> navigateToContactSelect());
+
+    List<RecipientId> recipientIds = getIntent().getParcelableArrayListExtra(KEY_RECIPIENTS);
+    continueButton.setOnClickListener(v -> {
+      continueButton.setEnabled(false);
+      if (recipientIds == null || recipientIds.isEmpty()) {
+        navigateToContactSelect();
+      } else {
+        SimpleTask.run(getLifecycle(),
+                       () -> Stream.of(recipientIds).map(Recipient::resolved).toList(),
+                       this::onCameraContactsSendClicked);
+      }
+    });
   }
 
   @Override
@@ -551,7 +577,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
       SimpleProgressDialog.DismissibleDialog dialog = SimpleProgressDialog.showDelayed(this, 300, 0);
       viewModel.onSendClicked(buildModelsToTransform(fragment), recipients, composeText.getMentions()).observe(this, result -> {
         dialog.dismiss();
-        finish();
+        setActivityResultAndFinish(result);
       });
     } else {
       throw new AssertionError("No editor fragment available!");

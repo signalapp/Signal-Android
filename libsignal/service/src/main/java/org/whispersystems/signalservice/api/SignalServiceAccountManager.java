@@ -21,6 +21,7 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
+import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;
@@ -121,21 +122,23 @@ public class SignalServiceAccountManager {
    */
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      UUID uuid, String e164, String password,
-                                     String signalAgent)
+                                     String signalAgent, boolean automaticNetworkRetry)
   {
     this(configuration,
          new StaticCredentialsProvider(uuid, e164, password, null),
          signalAgent,
-         new GroupsV2Operations(ClientZkOperations.create(configuration)));
+         new GroupsV2Operations(ClientZkOperations.create(configuration)),
+         automaticNetworkRetry);
   }
 
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      CredentialsProvider credentialsProvider,
                                      String signalAgent,
-                                     GroupsV2Operations groupsV2Operations)
+                                     GroupsV2Operations groupsV2Operations,
+                                     boolean automaticNetworkRetry)
   {
     this.groupsV2Operations = groupsV2Operations;
-    this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations());
+    this.pushServiceSocket  = new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry);
     this.credentials        = credentialsProvider;
     this.userAgent          = signalAgent;
   }
@@ -632,12 +635,14 @@ public class SignalServiceAccountManager {
   /**
    * @return The avatar URL path, if one was written.
    */
-  public Optional<String> setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, StreamDetails avatar)
+  public Optional<String> setVersionedProfile(UUID uuid, ProfileKey profileKey, String name, String about, String aboutEmoji, StreamDetails avatar)
       throws IOException
   {
     if (name == null) name = "";
 
-    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.NAME_PADDED_LENGTH);
+    byte[]            ciphertextName    = new ProfileCipher(profileKey).encryptName(name.getBytes(StandardCharsets.UTF_8), ProfileCipher.getTargetNameLength(name));
+    byte[]            ciphertextAbout   = new ProfileCipher(profileKey).encryptName(about.getBytes(StandardCharsets.UTF_8), ProfileCipher.getTargetAboutLength(about));
+    byte[]            ciphertextEmoji   = new ProfileCipher(profileKey).encryptName(aboutEmoji.getBytes(StandardCharsets.UTF_8), ProfileCipher.EMOJI_PADDED_LENGTH);
     boolean           hasAvatar         = avatar != null;
     ProfileAvatarData profileAvatarData = null;
 
@@ -650,6 +655,8 @@ public class SignalServiceAccountManager {
 
     return this.pushServiceSocket.writeProfile(new SignalServiceProfileWrite(profileKey.getProfileKeyVersion(uuid).serialize(),
                                                                              ciphertextName,
+                                                                             ciphertextAbout,
+                                                                             ciphertextEmoji,
                                                                              hasAvatar,
                                                                              profileKey.getCommitment(uuid).serialize()),
                                                                              profileAvatarData);

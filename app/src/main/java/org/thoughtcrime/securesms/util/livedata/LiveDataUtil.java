@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.util.livedata;
 
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.annimon.stream.function.Predicate;
 
@@ -65,7 +67,11 @@ public final class LiveDataUtil {
     MediatorLiveData<B> outputLiveData   = new MediatorLiveData<>();
     Executor            liveDataExecutor = new SerialMonoLifoExecutor(executor);
 
-    outputLiveData.addSource(source, currentValue -> liveDataExecutor.execute(() -> outputLiveData.postValue(backgroundFunction.apply(currentValue))));
+    outputLiveData.addSource(source, currentValue -> {
+      liveDataExecutor.execute(() -> {
+        outputLiveData.postValue(backgroundFunction.apply(currentValue));
+      });
+    });
 
     return outputLiveData;
   }
@@ -172,10 +178,42 @@ public final class LiveDataUtil {
       @Override
       protected void onActive() {
         if (emittedValue) return;
-        new Handler().postDelayed(() -> setValue(value), delay);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> setValue(value), delay);
         emittedValue = true;
       }
     };
+  }
+
+  public static <T> LiveData<T> distinctUntilChanged(@NonNull LiveData<T> source, @NonNull EqualityChecker<T> checker) {
+    final MediatorLiveData<T> outputLiveData = new MediatorLiveData<>();
+    outputLiveData.addSource(source, new Observer<T>() {
+
+      boolean firstChange = true;
+
+      @Override
+      public void onChanged(T nextValue) {
+        T currentValue = outputLiveData.getValue();
+
+        if (currentValue == null && nextValue == null) {
+          return;
+        }
+
+        if (firstChange          ||
+            currentValue == null ||
+            nextValue    == null ||
+            !checker.contentsMatch(currentValue, nextValue))
+        {
+          firstChange = false;
+          outputLiveData.setValue(nextValue);
+        }
+      }
+    });
+
+    return outputLiveData;
+  }
+
+  public interface EqualityChecker<T> {
+    boolean contentsMatch(@NonNull T current, @NonNull T next);
   }
 
   public interface Combine2<A, B, R> {

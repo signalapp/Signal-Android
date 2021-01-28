@@ -5,6 +5,7 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -20,7 +21,15 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ProfileCipher {
 
-  public static final int NAME_PADDED_LENGTH = 53;
+  private static final int NAME_PADDED_LENGTH_1 = 53;
+  private static final int NAME_PADDED_LENGTH_2 = 257;
+  private static final int ABOUT_PADDED_LENGTH_1 = 128;
+  private static final int ABOUT_PADDED_LENGTH_2 = 254;
+  private static final int ABOUT_PADDED_LENGTH_3 = 512;
+
+  public static final int MAX_POSSIBLE_NAME_LENGTH  = NAME_PADDED_LENGTH_2;
+  public static final int MAX_POSSIBLE_ABOUT_LENGTH = ABOUT_PADDED_LENGTH_3;
+  public static final int EMOJI_PADDED_LENGTH       = 32;
 
   private final ProfileKey key;
 
@@ -99,4 +108,25 @@ public class ProfileCipher {
     }
   }
 
+  public static int getTargetNameLength(String name) {
+    int nameLength = name.getBytes(StandardCharsets.UTF_8).length;
+
+    if (nameLength <= NAME_PADDED_LENGTH_1) {
+      return NAME_PADDED_LENGTH_1;
+    } else {
+      return NAME_PADDED_LENGTH_2;
+    }
+  }
+
+  public static int getTargetAboutLength(String about) {
+    int aboutLength = about.getBytes(StandardCharsets.UTF_8).length;
+
+    if (aboutLength <= ABOUT_PADDED_LENGTH_1) {
+      return ABOUT_PADDED_LENGTH_1;
+    } else if (aboutLength < ABOUT_PADDED_LENGTH_2){
+      return ABOUT_PADDED_LENGTH_2;
+    } else {
+      return ABOUT_PADDED_LENGTH_3;
+    }
+  }
 }

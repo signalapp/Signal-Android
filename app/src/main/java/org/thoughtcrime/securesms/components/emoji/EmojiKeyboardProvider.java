@@ -30,7 +30,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
 {
   private static final KeyEvent DELETE_KEY_EVENT = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
 
-  private static final String RECENT_STORAGE_KEY = "pref_recent_emoji2";
+  public static final String RECENT_STORAGE_KEY = "pref_recent_emoji2";
 
   private final Context              context;
   private final List<EmojiPageModel> models;
@@ -39,6 +39,7 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
   private final EmojiEventListener   emojiEventListener;
 
   private Controller controller;
+  private int        currentPosition;
 
   public EmojiKeyboardProvider(@NonNull Context context, @Nullable EmojiEventListener emojiEventListener) {
     this.context            = context;
@@ -66,11 +67,18 @@ public class EmojiKeyboardProvider implements MediaKeyboardProvider,
 
     models.add(recentModel);
     models.addAll(EmojiPages.DISPLAY_PAGES);
+
+    currentPosition = recentModel.getEmoji().size() > 0 ? 0 : 1;
   }
 
   @Override
   public void requestPresentation(@NonNull Presenter presenter, boolean isSoloProvider) {
-    presenter.present(this, emojiPagerAdapter, this, this, null, null, recentModel.getEmoji().size() > 0 ? 0 : 1);
+    presenter.present(this, emojiPagerAdapter, this, this, null, null, currentPosition);
+  }
+
+  @Override
+  public void setCurrentPosition(int currentPosition) {
+    this.currentPosition = currentPosition;
   }
 
   @Override

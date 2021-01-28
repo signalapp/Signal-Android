@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -61,16 +60,16 @@ public final class TransferControlView extends FrameLayout {
     inflate(context, R.layout.transfer_controls_view, this);
 
     setLongClickable(false);
-    ViewUtil.setBackground(this, ContextCompat.getDrawable(context, R.drawable.transfer_controls_background));
+    setBackground(ContextCompat.getDrawable(context, R.drawable.transfer_controls_background));
     setVisibility(GONE);
     setLayoutTransition(new LayoutTransition());
 
     this.networkProgress      = new HashMap<>();
     this.compresssionProgress = new HashMap<>();
 
-    this.progressWheel       = ViewUtil.findById(this, R.id.progress_wheel);
-    this.downloadDetails     = ViewUtil.findById(this, R.id.download_details);
-    this.downloadDetailsText = ViewUtil.findById(this, R.id.download_details_text);
+    this.progressWheel       = findViewById(R.id.progress_wheel);
+    this.downloadDetails     = findViewById(R.id.download_details);
+    this.downloadDetailsText = findViewById(R.id.download_details_text);
   }
 
   @Override

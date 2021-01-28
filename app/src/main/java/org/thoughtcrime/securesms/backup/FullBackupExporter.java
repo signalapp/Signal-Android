@@ -74,11 +74,7 @@ public class FullBackupExporter extends FullBackupBase {
     OneTimePreKeyDatabase.TABLE_NAME,
     SessionDatabase.TABLE_NAME,
     SearchDatabase.SMS_FTS_TABLE_NAME,
-    SearchDatabase.MMS_FTS_TABLE_NAME,
-    JobDatabase.JOBS_TABLE_NAME,
-    JobDatabase.CONSTRAINTS_TABLE_NAME,
-    JobDatabase.DEPENDENCIES_TABLE_NAME,
-    KeyValueDatabase.TABLE_NAME
+    SearchDatabase.MMS_FTS_TABLE_NAME
   );
 
   public static void export(@NonNull Context context,

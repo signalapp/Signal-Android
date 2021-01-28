@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.AnyThread;
@@ -38,9 +39,9 @@ public final class KeyValueStore implements KeyValueReader {
 
   private KeyValueDataSet dataSet;
 
-  public KeyValueStore(@NonNull Context context) {
+  public KeyValueStore(@NonNull Application application) {
     this.executor = SignalExecutors.newCachedSingleThreadExecutor("signal-KeyValueStore");
-    this.database = DatabaseFactory.getKeyValueDatabase(context);
+    this.database = KeyValueDatabase.getInstance(application);
   }
 
   @AnyThread

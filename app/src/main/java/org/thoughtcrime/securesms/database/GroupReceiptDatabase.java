@@ -9,14 +9,12 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-@Trace
 public class GroupReceiptDatabase extends Database {
 
   public  static final String TABLE_NAME = "group_receipts";

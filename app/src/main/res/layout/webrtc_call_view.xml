@@ -13,11 +13,11 @@
             android:id="@+id/call_screen_participants_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -28,9 +28,15 @@
 
     <ViewStub
         android:id="@+id/group_call_call_full_view"
-        android:layout="@layout/group_call_call_full"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout="@layout/group_call_call_full" />
+
+    <View
+        android:id="@+id/call_screen_header_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@drawable/webrtc_call_screen_header_gradient" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/call_screen"
@@ -44,29 +50,27 @@
             android:orientation="horizontal"
             tools:layout_constraintGuide_begin="48dp" />
 
-        <View
-            android:id="@+id/call_screen_header_gradient"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:background="@drawable/webrtc_call_screen_header_gradient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/call_screen_navigation_bar_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:layout_constraintGuide_end="48dp" />
 
         <Space
             android:id="@+id/call_screen_footer_gradient_spacer"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            app:layout_constraintBottom_toBottomOf="@id/call_screen_footer_gradient_barrier"/>
+            app:layout_constraintBottom_toBottomOf="@id/call_screen_footer_gradient_barrier" />
 
         <View
             android:id="@+id/call_screen_footer_gradient"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="-40dp"
             android:background="@drawable/webrtc_call_screen_header_gradient"
             android:rotation="180"
             android:visibility="gone"
-            android:layout_margin="-40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/call_screen_footer_gradient_spacer"
             tools:visibility="visible" />
@@ -91,10 +95,8 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/call_screen_status_bar_guideline"
-            app:layout_constraintVertical_bias="0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/call_screen_pip"
@@ -106,7 +108,8 @@
                 android:translationY="100000dp"
                 android:visibility="gone"
                 app:cardCornerRadius="8dp"
-                tools:background="@color/red"
+                tools:translationX="0dp"
+                tools:translationY="0dp"
                 tools:visibility="visible">
 
                 <include
@@ -209,7 +212,7 @@
             android:layout_marginStart="66dp"
             android:layout_marginBottom="65dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_navigation_bar_guideline"
             app:layout_constraintEnd_toStartOf="@id/call_screen_answer_call"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
@@ -236,7 +239,7 @@
             android:layout_marginEnd="66dp"
             android:layout_marginBottom="65dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_navigation_bar_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toEndOf="@id/call_screen_decline_call"
@@ -285,13 +288,13 @@
             android:id="@+id/call_screen_start_call_controls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="32dp"
             android:visibility="gone"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_navigation_bar_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible">
@@ -322,13 +325,32 @@
 
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/call_screen_error_cancel"
+            style="@style/Widget.Signal.Button.Flat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="1"
+            android:text="@android:string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/core_white"
+            android:visibility="gone"
+            app:backgroundTint="@color/transparent_white_40"
+            app:layout_constraintBottom_toTopOf="@id/call_screen_navigation_bar_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
+
         <ViewStub
             android:id="@+id/call_screen_group_call_speaker_hint"
-            android:layout="@layout/group_call_speaker_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:inflatedId="@+id/call_screen_group_call_speaker_hint_view"
+            android:layout="@layout/group_call_speaker_hint"
             app:layout_constraintBottom_toTopOf="@+id/call_screen_footer_gradient_barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
@@ -21,6 +22,10 @@ public abstract class BaseJob extends Job {
 
   @Override
   public @NonNull Result run() {
+    if (shouldTrace()) {
+      Tracer.getInstance().start(getClass().getSimpleName());
+    }
+
     try {
       onRun();
       return Result.success(outputData);
@@ -35,12 +40,23 @@ public abstract class BaseJob extends Job {
         Log.w(TAG, JobLogger.format(this, "Encountered a failing exception."), e);
         return Result.failure();
       }
+    } finally {
+      if (shouldTrace()) {
+        Tracer.getInstance().end(getClass().getSimpleName());
+      }
     }
   }
 
   protected abstract void onRun() throws Exception;
 
   protected abstract boolean onShouldRetry(@NonNull Exception e);
+
+  /**
+   * Whether or not the job should be traced with the {@link org.signal.core.util.tracing.Tracer}.
+   */
+  protected boolean shouldTrace() {
+    return false;
+  }
 
   /**
    * If this job is part of a {@link Chain}, data set here will be passed as input data to the next

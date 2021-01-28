@@ -73,6 +73,7 @@ public class AddGroupDetailsActivity extends PassphraseRequiredActivity implemen
 
   void goToConversation(@NonNull RecipientId recipientId, long threadId) {
     Intent intent = ConversationIntents.createBuilder(this, recipientId, threadId)
+                                       .firstTimeInSelfCreatedGroup()
                                        .build();
 
     startActivity(intent);

@@ -99,10 +99,11 @@ final class MenuState {
              .shouldShowSaveAttachmentAction(!actionMessage                                              &&
                                              !viewOnce                                                   &&
                                              messageRecord.isMms()                                       &&
+                                             !messageRecord.isMediaPending()                             &&
                                              !messageRecord.isMmsNotification()                          &&
                                              ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                              ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null)
-             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete)
+             .shouldShowForwardAction(!actionMessage && !sharedContact && !viewOnce && !remoteDelete && !messageRecord.isMediaPending())
              .shouldShowDetailsAction(!actionMessage)
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest));
     }
@@ -131,7 +132,8 @@ final class MenuState {
            messageRecord.isIdentityUpdate()        ||
            messageRecord.isIdentityVerified()      ||
            messageRecord.isIdentityDefault()       ||
-           messageRecord.isProfileChange();
+           messageRecord.isProfileChange()         ||
+           messageRecord.isFailedDecryptionType();
   }
 
   private final static class Builder {

@@ -9,6 +9,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Parcelable;
 import android.view.View;
@@ -150,7 +151,7 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActivity {
         startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       } else {
         // TODO [greyson] Navigation
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(MainActivity.clearTop(this));
       }
     }
 
@@ -158,6 +159,11 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActivity {
   }
 
   private class ImportStateHandler extends Handler {
+
+    public ImportStateHandler() {
+      super(Looper.getMainLooper());
+    }
+
     @Override
     public void handleMessage(Message message) {
       switch (message.what) {

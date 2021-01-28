@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:visibility="visible"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navigationIcon="@drawable/ic_arrow_left_24"
+      app:title="@string/EditAboutFragment_about" />
+
+  <ImageView
+      android:id="@+id/edit_about_emoji"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="10dp"
+      android:padding="15dp"
+      android:background="?selectableItemBackgroundBorderless"
+      app:srcCompat="@drawable/ic_add_emoji"
+      app:tint="@color/signal_text_secondary"
+      app:layout_constraintTop_toTopOf="@id/edit_about_body"
+      app:layout_constraintBottom_toBottomOf="@id/edit_about_body"
+      app:layout_constraintStart_toStartOf="parent"/>
+
+  <org.thoughtcrime.securesms.components.emoji.EmojiEditText
+      android:id="@+id/edit_about_body"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:layout_marginStart="5dp"
+      android:layout_marginEnd="8dp"
+      style="@style/Signal.Text.Body"
+      android:hint="@string/EditAboutFragment_write_a_few_words_about_yourself"
+      android:inputType="textCapSentences"
+      android:maxLines="1"
+      app:layout_constraintTop_toBottomOf="@id/toolbar"
+      app:layout_constraintStart_toEndOf="@id/edit_about_emoji"
+      app:layout_constraintEnd_toStartOf="@id/edit_about_clear"/>
+
+  <ImageView
+      android:id="@+id/edit_about_clear"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="20dp"
+      app:srcCompat="@drawable/ic_x"
+      android:background="?selectableItemBackgroundBorderless"
+      app:tint="@color/signal_text_secondary"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="@id/edit_about_body"
+      app:layout_constraintBottom_toBottomOf="@id/edit_about_body"/>
+
+  <TextView
+      android:id="@+id/edit_about_count"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      style="@style/Signal.Text.Caption"
+      app:layout_constraintTop_toBottomOf="@id/edit_about_body"
+      app:layout_constraintEnd_toEndOf="@id/edit_about_body"
+      tools:text="75/100"/>
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/edit_about_presets"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_marginTop="24dp"
+      android:paddingBottom="60dp"
+      android:clipToPadding="false"
+      android:clipChildren="false"
+      app:layout_constraintTop_toBottomOf="@id/edit_about_count"
+      app:layout_constraintBottom_toBottomOf="parent" />
+
+  <com.dd.CircularProgressButton
+      android:id="@+id/edit_about_save"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:textColor="@color/white"
+      android:text="@string/EditProfileNameFragment_save"
+      app:cornerRadius="80dp"
+      app:elevation="4dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:cpb_colorIndicator="@color/white"
+      app:cpb_colorProgress="?colorAccent"
+      app:cpb_cornerRadius="28dp"
+      app:cpb_selectorIdle="@drawable/progress_button_state"
+      app:cpb_textIdle="@string/EditProfileNameFragment_save" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

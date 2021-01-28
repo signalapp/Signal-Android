@@ -37,8 +37,10 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper;
+import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
+import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -461,12 +463,15 @@ final class GroupManagerV2 {
       if (Arrays.equals(profileKey.serialize(), selfInGroup.get().getProfileKey().toByteArray())) {
         Log.i(TAG, "Own Profile Key is already up to date in group " + groupId);
         return null;
+      } else {
+        Log.i(TAG, "Profile Key does not match that in group " + groupId);
       }
 
       GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
       if (!groupCandidate.hasProfileKeyCredential()) {
-        Log.w(TAG, "No credential available");
+        Log.w(TAG, "No credential available, repairing");
+        ApplicationDependencies.getJobManager().add(new ProfileUploadJob());
         return null;
       }
 
@@ -503,7 +508,7 @@ final class GroupManagerV2 {
     }
 
     @WorkerThread
-    public GroupManager.GroupActionResult setJoinByGroupLinkState(@NonNull GroupManager.GroupLinkState state)
+    public @Nullable GroupInviteLinkUrl setJoinByGroupLinkState(@NonNull GroupManager.GroupLinkState state)
         throws GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException, IOException
     {
       AccessControl.AccessRequired access;
@@ -515,7 +520,7 @@ final class GroupManagerV2 {
         default:                    throw new AssertionError();
       }
 
-      GroupChange.Actions.Builder  change = groupOperations.createChangeJoinByLinkRights(access);
+      GroupChange.Actions.Builder change = groupOperations.createChangeJoinByLinkRights(access);
 
       if (state != GroupManager.GroupLinkState.DISABLED) {
         DecryptedGroup group = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getDecryptedGroup();
@@ -526,7 +531,17 @@ final class GroupManagerV2 {
         }
       }
 
-      return commitChangeWithConflictResolution(change);
+      commitChangeWithConflictResolution(change);
+
+      if (state != GroupManager.GroupLinkState.DISABLED) {
+        GroupDatabase.V2GroupProperties v2GroupProperties = groupDatabase.requireGroup(groupId).requireV2GroupProperties();
+        GroupMasterKey                  groupMasterKey    = v2GroupProperties.getGroupMasterKey();
+        DecryptedGroup                  decryptedGroup    = v2GroupProperties.getDecryptedGroup();
+
+        return GroupInviteLinkUrl.forGroup(groupMasterKey, decryptedGroup);
+      } else {
+        return null;
+      }
     }
 
     private @NonNull GroupManager.GroupActionResult commitChangeWithConflictResolution(@NonNull GroupChange.Actions.Builder change)

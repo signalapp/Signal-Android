@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
@@ -50,18 +51,18 @@ public final class LinkPreviewUtil {
   /**
    * @return All whitelisted URLs in the source text.
    */
-  public static @NonNull List<Link> findValidPreviewUrls(@NonNull String text) {
+  public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
     boolean         found     = Linkify.addLinks(spannable, Linkify.WEB_URLS);
 
     if (!found) {
-      return Collections.emptyList();
+      return Links.EMPTY;
     }
 
-    return Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
-                 .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
-                 .filter(link -> isValidPreviewUrl(link.getUrl()))
-                 .toList();
+    return new Links(Stream.of(spannable.getSpans(0, spannable.length(), URLSpan.class))
+                           .map(span -> new Link(span.getURL(), spannable.getSpanStart(span)))
+                           .filter(link -> isValidPreviewUrl(link.getUrl()))
+                           .toList());
   }
 
   /**
@@ -216,5 +217,40 @@ public final class LinkPreviewUtil {
 
   public interface HtmlDecoder {
     @NonNull String fromEncoded(@NonNull String html);
+  }
+
+  public static class Links {
+    static final Links EMPTY = new Links(Collections.emptyList());
+
+    private final List<Link>  links;
+    private final Set<String> urlSet;
+
+    private Links(@NonNull List<Link> links) {
+      this.links  = links;
+      this.urlSet = Stream.of(links)
+                          .map(link -> trimTrailingSlash(link.getUrl()))
+                          .collect(Collectors.toSet());
+    }
+
+    public Optional<Link> findFirst() {
+      return links.isEmpty() ? Optional.absent()
+                             : Optional.of(links.get(0));
+    }
+
+    /**
+     * Slightly forgiving comparison where it will ignore trailing '/' on the supplied url.
+     */
+    public boolean containsUrl(@NonNull String url) {
+      return urlSet.contains(trimTrailingSlash(url));
+    }
+
+    private @NonNull String trimTrailingSlash(@NonNull String url) {
+      return url.endsWith("/") ? url.substring(0, url.length() - 1)
+                               : url;
+    }
+
+    public int size() {
+      return links.size();
+    }
   }
 }

@@ -1,23 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.signal.zkgroup.profiles.ProfileKey;
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.profiles.ProfileName;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.util.StreamDetails;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,9 +19,6 @@ public final class ProfileUploadJob extends BaseJob {
   public static final String KEY = "ProfileUploadJob";
 
   public static final String QUEUE = "ProfileAlteration";
-
-  private final Context                     context;
-  private final SignalServiceAccountManager accountManager;
 
   public ProfileUploadJob() {
     this(new Job.Parameters.Builder()
@@ -44,9 +32,6 @@ public final class ProfileUploadJob extends BaseJob {
 
   private ProfileUploadJob(@NonNull Parameters parameters) {
     super(parameters);
-
-    this.context        = ApplicationDependencies.getApplication();
-    this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
   }
 
   @Override
@@ -56,15 +41,7 @@ public final class ProfileUploadJob extends BaseJob {
       return;
     }
 
-    ProfileKey  profileKey  = ProfileKeyUtil.getSelfProfileKey();
-    ProfileName profileName = Recipient.self().getProfileName();
-    String      avatarPath;
-
-    try (StreamDetails avatar = AvatarHelper.getSelfProfileAvatarStream(context)) {
-      avatarPath = accountManager.setVersionedProfile(Recipient.self().getUuid().get(), profileKey, profileName.serialize(), avatar).orNull();
-    }
-
-    DatabaseFactory.getRecipientDatabase(context).setProfileAvatar(Recipient.self().getId(), avatarPath);
+    ProfileUtil.uploadProfile(context);
   }
 
   @Override

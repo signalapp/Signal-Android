@@ -36,12 +36,29 @@
         <item name="android:textSize">13sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:letterSpacing" tools:targetApi="21">0.01</item>
-        <item name="strokeWidth">2dp</item>
+        <item name="strokeWidth">1.5dp</item>
         <item name="cornerRadius">18dp</item>
         <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
         <item name="strokeColor">@color/signal_button_secondary_stroke</item>
-        <item name="backgroundTint">@color/signal_background_primary</item>
+        <item name="backgroundTint">@color/transparent</item>
         <item name="rippleColor">@color/signal_button_secondary</item>
+    </style>
+
+    <style name="Signal.Widget.Button.Small.Secondary" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">7dp</item>
+        <item name="android:paddingStart">14dp</item>
+        <item name="android:paddingEnd">14dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing" tools:targetApi="21">0.01</item>
+        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
+        <item name="android:textColor">@color/signal_button_secondary_text_selector</item>
+        <item name="background">@color/signal_background_tertiary</item>
+        <item name="rippleColor">@color/core_ultramarine</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.Signal.Button.Rounded</item>
     </style>
 
     <style name="Signal.Widget.Button.Base.Secondary" parent="Widget.MaterialComponents.Button.OutlinedButton">

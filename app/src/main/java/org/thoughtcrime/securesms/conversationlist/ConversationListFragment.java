@@ -80,7 +80,6 @@ import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
-import org.thoughtcrime.securesms.components.reminder.DefaultSmsReminder;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.OutdatedBuildReminder;
@@ -88,8 +87,6 @@ import org.thoughtcrime.securesms.components.reminder.PushRegistrationReminder;
 import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
-import org.thoughtcrime.securesms.components.reminder.ShareReminder;
-import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
@@ -117,18 +114,19 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
+import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
+import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -142,7 +140,6 @@ import java.util.Set;
 import static android.app.Activity.RESULT_OK;
 
 
-@Trace
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
                                                                       ConversationListAdapter.OnConversationClickListener,
                                                                       ConversationListSearchAdapter.EventListener,
@@ -156,21 +153,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private static final int MAXIMUM_PINNED_CONVERSATIONS = 4;
 
-  private static final int[] EMPTY_IMAGES = new int[] { R.drawable.empty_inbox_1,
-                                                        R.drawable.empty_inbox_2,
-                                                        R.drawable.empty_inbox_3,
-                                                        R.drawable.empty_inbox_4,
-                                                        R.drawable.empty_inbox_5 };
-
   private ActionMode                        actionMode;
   private RecyclerView                      list;
-  private ReminderView                      reminderView;
-  private View                              emptyState;
-  private ImageView                         emptyImage;
+  private Stub<ReminderView>                reminderView;
+  private Stub<ViewGroup>                   emptyState;
   private TextView                          searchEmptyState;
   private PulsingFloatingActionButton       fab;
   private PulsingFloatingActionButton       cameraFab;
-  private SearchToolbar                     searchToolbar;
+  private Stub<SearchToolbar>               searchToolbar;
   private ImageView                         searchAction;
   private View                              toolbarShadow;
   private ConversationListViewModel         viewModel;
@@ -178,10 +168,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private ConversationListAdapter           defaultAdapter;
   private ConversationListSearchAdapter     searchAdapter;
   private StickyHeaderDecoration            searchAdapterDecoration;
-  private ViewGroup                         megaphoneContainer;
+  private Stub<ViewGroup>                   megaphoneContainer;
   private SnapToTopDataObserver             snapToTopDataObserver;
   private Drawable                          archiveDrawable;
   private LifecycleObserver                 visibilityLifecycleObserver;
+
+  private Stopwatch startupStopwatch;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -191,6 +183,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     setHasOptionsMenu(true);
+    startupStopwatch = new Stopwatch("startup");
   }
 
   @Override
@@ -200,27 +193,23 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    reminderView       = view.findViewById(R.id.reminder);
     list               = view.findViewById(R.id.list);
     fab                = view.findViewById(R.id.fab);
     cameraFab          = view.findViewById(R.id.camera_fab);
-    emptyState         = view.findViewById(R.id.empty_state);
-    emptyImage         = view.findViewById(R.id.empty);
     searchEmptyState   = view.findViewById(R.id.search_no_results);
-    searchToolbar      = view.findViewById(R.id.search_toolbar);
     searchAction       = view.findViewById(R.id.search_action);
     toolbarShadow      = view.findViewById(R.id.conversation_list_toolbar_shadow);
-    megaphoneContainer = view.findViewById(R.id.megaphone_container);
+    reminderView       = new Stub<>(view.findViewById(R.id.reminder));
+    emptyState         = new Stub<>(view.findViewById(R.id.empty_state));
+    searchToolbar      = new Stub<>(view.findViewById(R.id.search_toolbar));
+    megaphoneContainer = new Stub<>(view.findViewById(R.id.megaphone_container));
 
-    Toolbar toolbar = view.findViewById(getToolbarRes());
+    Toolbar toolbar = getToolbar(view);
     toolbar.setVisibility(View.VISIBLE);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
 
     fab.show();
     cameraFab.show();
-
-    reminderView.setOnDismissListener(this::updateReminders);
-    reminderView.setOnActionClickListener(this::onReminderAction);
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
@@ -242,8 +231,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                  .execute();
     });
 
-    initializeListAdapters();
     initializeViewModel();
+    initializeListAdapters();
     initializeTypingObserver();
     initializeSearchListener();
 
@@ -265,7 +254,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), Recipient::self, this::initializeProfileIcon);
 
-    if (!searchToolbar.isVisible() && list.getAdapter() != defaultAdapter) {
+    if ((!searchToolbar.resolved() || !searchToolbar.get().isVisible()) && list.getAdapter() != defaultAdapter) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
     }
@@ -331,10 +320,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private boolean closeSearchIfOpen() {
-    if (searchToolbar.isVisible() || activeAdapter == searchAdapter) {
+    if ((searchToolbar.resolved() && searchToolbar.get().isVisible()) || activeAdapter == searchAdapter) {
       list.removeItemDecoration(searchAdapterDecoration);
       setAdapter(defaultAdapter);
-      searchToolbar.collapse();
+      searchToolbar.get().collapse();
       return true;
     }
 
@@ -431,6 +420,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     dialogFragment.show(getChildFragmentManager(), "megaphone_dialog");
   }
 
+  private void initializeReminderView() {
+    reminderView.get().setOnDismissListener(this::updateReminders);
+    reminderView.get().setOnActionClickListener(this::onReminderAction);
+  }
+
   private void onReminderAction(@IdRes int reminderActionId) {
     if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
@@ -451,45 +445,58 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeSearchListener() {
     searchAction.setOnClickListener(v -> {
-      searchToolbar.display(searchAction.getX() + (searchAction.getWidth() / 2.0f),
-                            searchAction.getY() + (searchAction.getHeight() / 2.0f));
-    });
+      searchToolbar.get().display(searchAction.getX() + (searchAction.getWidth() / 2.0f),
+                                  searchAction.getY() + (searchAction.getHeight() / 2.0f));
 
-    searchToolbar.setListener(new SearchToolbar.SearchListener() {
-      @Override
-      public void onSearchTextChange(String text) {
-        String trimmed = text.trim();
+      searchToolbar.get().setListener(new SearchToolbar.SearchListener() {
+        @Override
+        public void onSearchTextChange(String text) {
+          String trimmed = text.trim();
 
-        viewModel.updateQuery(trimmed);
+          viewModel.updateQuery(trimmed);
 
-        if (trimmed.length() > 0) {
-          if (activeAdapter != searchAdapter) {
-            setAdapter(searchAdapter);
-            list.removeItemDecoration(searchAdapterDecoration);
-            list.addItemDecoration(searchAdapterDecoration);
-          }
-        } else {
-          if (activeAdapter != defaultAdapter) {
-            list.removeItemDecoration(searchAdapterDecoration);
-            setAdapter(defaultAdapter);
+          if (trimmed.length() > 0) {
+            if (activeAdapter != searchAdapter) {
+              setAdapter(searchAdapter);
+              list.removeItemDecoration(searchAdapterDecoration);
+              list.addItemDecoration(searchAdapterDecoration);
+            }
+          } else {
+            if (activeAdapter != defaultAdapter) {
+              list.removeItemDecoration(searchAdapterDecoration);
+              setAdapter(defaultAdapter);
+            }
           }
         }
-      }
 
-      @Override
-      public void onSearchClosed() {
-        list.removeItemDecoration(searchAdapterDecoration);
-        setAdapter(defaultAdapter);
-      }
+        @Override
+        public void onSearchClosed() {
+          list.removeItemDecoration(searchAdapterDecoration);
+          setAdapter(defaultAdapter);
+        }
+      });
     });
   }
 
   private void initializeListAdapters() {
     defaultAdapter          = new ConversationListAdapter(GlideApp.with(this), this);
     searchAdapter           = new ConversationListSearchAdapter(GlideApp.with(this), this, Locale.getDefault());
-    searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false);
+    searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false, 0);
 
     setAdapter(defaultAdapter);
+
+    defaultAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+      @Override
+      public void onItemRangeInserted(int positionStart, int itemCount) {
+        startupStopwatch.split("data-set");
+        defaultAdapter.unregisterAdapterDataObserver(this);
+        list.post(() -> {
+          AppStartup.getInstance().onCriticalRenderEventEnd();
+          startupStopwatch.split("first-render");
+          startupStopwatch.stop(TAG);
+        });
+      }
+    });
   }
 
   @SuppressWarnings("rawtypes")
@@ -500,6 +507,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     if (oldAdapter == activeAdapter) {
       return;
+    }
+
+    if (adapter instanceof ConversationListAdapter) {
+      ((ConversationListAdapter) adapter).setPagingController(viewModel.getPagingController());
     }
 
     list.setAdapter(adapter);
@@ -555,20 +566,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
     if (megaphone == null) {
-      megaphoneContainer.setVisibility(View.GONE);
-      megaphoneContainer.removeAllViews();
+      if (megaphoneContainer.resolved()) {
+        megaphoneContainer.get().setVisibility(View.GONE);
+        megaphoneContainer.get().removeAllViews();
+      }
       return;
     }
 
     View view = MegaphoneViewBuilder.build(requireContext(), megaphone, this);
 
-    megaphoneContainer.removeAllViews();
+    megaphoneContainer.get().removeAllViews();
 
     if (view != null) {
-      megaphoneContainer.addView(view);
-      megaphoneContainer.setVisibility(View.VISIBLE);
+      megaphoneContainer.get().addView(view);
+      megaphoneContainer.get().setVisibility(View.VISIBLE);
     } else {
-      megaphoneContainer.setVisibility(View.GONE);
+      megaphoneContainer.get().setVisibility(View.GONE);
 
       if (megaphone.getOnVisibleListener() != null) {
         megaphone.getOnVisibleListener().onEvent(megaphone, this);
@@ -591,14 +604,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         return Optional.of(new ServiceOutageReminder(context));
       } else if (OutdatedBuildReminder.isEligible()) {
         return Optional.of(new OutdatedBuildReminder(context));
-      } else if (DefaultSmsReminder.isEligible(context)) {
-        return Optional.of(new DefaultSmsReminder(this, SMS_ROLE_REQUEST_CODE));
-      } else if (Util.isDefaultSmsProvider(context) && SystemSmsImportReminder.isEligible(context)) {
-        return Optional.of((new SystemSmsImportReminder(context)));
       } else if (PushRegistrationReminder.isEligible(context)) {
         return Optional.of((new PushRegistrationReminder(context)));
-      } else if (ShareReminder.isEligible(context)) {
-        return Optional.of(new ShareReminder(context));
       } else if (DozeReminder.isEligible(context)) {
         return Optional.of(new DozeReminder(context));
       } else {
@@ -606,9 +613,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       }
     }, reminder -> {
       if (reminder.isPresent() && getActivity() != null && !isRemoving()) {
-        reminderView.showReminder(reminder.get());
-      } else if (!reminder.isPresent()) {
-        reminderView.hide();
+        if (!reminderView.resolved()) {
+          initializeReminderView();
+        }
+        reminderView.get().showReminder(reminder.get());
+      } else if (reminderView.resolved() && !reminder.isPresent()) {
+        reminderView.get().hide();
       }
     });
   }
@@ -820,33 +830,37 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
   }
 
-  private void onSubmitList(@NonNull ConversationListViewModel.ConversationList conversationList) {
-    if (conversationList.getConversations().isDetached()) {
-      return;
-    }
-
-    defaultAdapter.submitList(conversationList.getConversations());
-
-    onPostSubmitList();
+  private void onSubmitList(@NonNull List<Conversation> conversationList) {
+    defaultAdapter.submitList(conversationList);
+    onPostSubmitList(conversationList.size());
   }
 
-  private void updateEmptyState(boolean isConversationEmpty) {
+  void updateEmptyState(boolean isConversationEmpty) {
     if (isConversationEmpty) {
       Log.i(TAG, "Received an empty data set.");
       list.setVisibility(View.INVISIBLE);
-      emptyState.setVisibility(View.VISIBLE);
-      emptyImage.setImageResource(EMPTY_IMAGES[(int) (Math.random() * EMPTY_IMAGES.length)]);
+      emptyState.get().setVisibility(View.VISIBLE);
       fab.startPulse(3 * 1000);
       cameraFab.startPulse(3 * 1000);
+
+      SignalStore.onboarding().setShowNewGroup(true);
+      SignalStore.onboarding().setShowInviteFriends(true);
     } else {
       list.setVisibility(View.VISIBLE);
-      emptyState.setVisibility(View.GONE);
       fab.stopPulse();
       cameraFab.stopPulse();
+
+      if (emptyState.resolved()) {
+        emptyState.get().setVisibility(View.GONE);
+      }
     }
   }
 
-  protected void onPostSubmitList() {
+  protected void onPostSubmitList(int conversationCount) {
+    if (conversationCount >= 6 && (SignalStore.onboarding().shouldShowInviteFriends() || SignalStore.onboarding().shouldShowNewGroup())) {
+      SignalStore.onboarding().clearAll();
+      ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.ONBOARDING);
+    }
   }
 
   @Override
@@ -976,8 +990,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
   }
 
-  protected @IdRes int getToolbarRes() {
-    return R.id.toolbar;
+  protected Toolbar getToolbar(@NonNull View rootView) {
+    return rootView.findViewById(R.id.toolbar);
   }
 
   protected @PluralsRes int getArchivedSnackbarTitleRes() {

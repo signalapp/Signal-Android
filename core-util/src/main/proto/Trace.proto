@@ -1,0 +1,151 @@
+/*
+ * Copyright (C) 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+syntax = "proto2";
+
+package signal;
+
+option java_package         = "org.signal.core.util.tracing";
+option java_outer_classname = "TraceProtos";
+
+/*
+ * Minimal interface needed to work with Perfetto.
+ *
+ * https://cs.android.com/android/platform/superproject/+/master:external/perfetto/protos/perfetto/trace/trace.proto
+ */
+message Trace {
+  repeated TracePacket packet = 1;
+}
+
+message TracePacket {
+  optional uint64 timestamp          = 8;
+  optional uint32 timestamp_clock_id = 58;
+
+  oneof data {
+    TrackEvent      track_event            = 11;
+    TrackDescriptor track_descriptor       = 60;
+    bytes           synchronization_marker = 36;
+  }
+
+  oneof optional_trusted_packet_sequence_id {
+    uint32 trusted_packet_sequence_id = 10;
+  }
+}
+
+message TrackEvent {
+  repeated uint64 category_iids = 3;
+  repeated string categories    = 22;
+
+  repeated DebugAnnotation debug_annotations = 4;
+
+  oneof name_field {
+    uint64 name_iid = 10;
+  string name     = 23;
+  }
+
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_SLICE_BEGIN = 1;
+    TYPE_SLICE_END   = 2;
+    TYPE_INSTANT     = 3;
+    TYPE_COUNTER     = 4;
+  }
+
+  optional Type   type          = 9;
+  optional uint64 track_uuid    = 11;
+  optional int64  counter_value = 30;
+
+  oneof timestamp {
+    int64 timestamp_delta_us    = 1;
+    int64 timestamp_absolute_us = 16;
+  }
+
+  oneof thread_time {
+    int64 thread_time_delta_us    = 2;
+    int64 thread_time_absolute_us = 17;
+  }
+}
+
+message TrackDescriptor {
+  optional uint64            uuid        = 1;
+  optional uint64            parent_uuid = 5;
+  optional string            name        = 2;
+  optional ThreadDescriptor  thread      = 4;
+  optional CounterDescriptor counter     = 8;
+}
+
+
+message ThreadDescriptor {
+  optional int32 pid = 1;
+  optional int32 tid = 2;
+
+  optional string thread_name = 5;
+}
+
+message CounterDescriptor {
+  enum BuiltinCounterType {
+    COUNTER_UNSPECIFIED = 0;
+    COUNTER_THREAD_TIME_NS = 1;
+    COUNTER_THREAD_INSTRUCTION_COUNT = 2;
+  }
+
+  enum Unit {
+    UNIT_UNSPECIFIED = 0;
+    UNIT_TIME_NS     = 1;
+    UNIT_COUNT       = 2;
+    UNIT_SIZE_BYTES  = 3;
+  }
+  optional BuiltinCounterType type            = 1;
+  repeated string             categories      = 2;
+  optional Unit               unit            = 3;
+  optional int64              unit_multiplier = 4;
+  optional bool               is_incremental  = 5;
+}
+
+message DebugAnnotation {
+  message NestedValue {
+    enum NestedType {
+      UNSPECIFIED = 0;
+      DICT        = 1;
+      ARRAY       = 2;
+    }
+
+    optional NestedType  nested_type  = 1;
+    repeated string      dict_keys    = 2;
+    repeated NestedValue dict_values  = 3;
+    repeated NestedValue array_values = 4;
+    optional int64       int_value    = 5;
+    optional double      double_value = 6;
+    optional bool        bool_value   = 7;
+    optional string      string_value = 8;
+  }
+
+  oneof name_field {
+    uint64 name_iid = 1;
+    string name     = 10;
+  }
+
+  oneof value {
+    bool        bool_value    = 2;
+    uint64      uint_value    = 3;
+    int64       int_value     = 4;
+    double      double_value  = 5;
+    string      string_value  = 6;
+    uint64      pointer_value = 7;
+    NestedValue nested_value  = 8;
+  }
+}

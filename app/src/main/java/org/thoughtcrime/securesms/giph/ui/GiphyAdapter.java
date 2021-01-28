@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -56,8 +55,8 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
 
     GiphyViewHolder(View view) {
       super(view);
-      thumbnail   = ViewUtil.findById(view, R.id.thumbnail);
-      gifProgress = ViewUtil.findById(view, R.id.gif_progress);
+      thumbnail   = view.findViewById(R.id.thumbnail);
+      gifProgress = view.findViewById(R.id.gif_progress);
       thumbnail.setOnClickListener(this);
       gifProgress.setVisibility(View.GONE);
     }

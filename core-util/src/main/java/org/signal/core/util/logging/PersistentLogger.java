@@ -2,6 +2,8 @@ package org.signal.core.util.logging;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Looper;
+
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,11 +48,14 @@ public final class PersistentLogger extends Log.Logger {
 
   private LogFile.Writer writer;
 
+  private ThreadLocal<String> cachedThreadString;
+
   public PersistentLogger(@NonNull Context context, @NonNull byte[] secret, @NonNull String logTag) {
-    this.context  = context.getApplicationContext();
-    this.secret   = secret;
-    this.logTag   = logTag;
-    this.executor = Executors.newSingleThreadExecutor(r -> {
+    this.context            = context.getApplicationContext();
+    this.secret             = secret;
+    this.logTag             = logTag;
+    this.cachedThreadString = new ThreadLocal<>();
+    this.executor           = Executors.newSingleThreadExecutor(r -> {
       Thread thread = new Thread(r, "signal-PersistentLogger");
       thread.setPriority(Thread.MIN_PRIORITY);
       return thread;
@@ -150,6 +155,20 @@ public final class PersistentLogger extends Log.Logger {
 
   @AnyThread
   private void write(String level, String tag, String message, Throwable t) {
+    String threadString = cachedThreadString.get();
+
+    if (cachedThreadString.get() == null) {
+      if (Looper.myLooper() == Looper.getMainLooper()) {
+        threadString = "main";
+      } else {
+        threadString = String.format("%-4s", Thread.currentThread().getId());
+      }
+
+      cachedThreadString.set(threadString);
+    }
+
+    final String finalThreadString = threadString;
+
     executor.execute(() -> {
       try {
         if (writer == null) {
@@ -162,7 +181,7 @@ public final class PersistentLogger extends Log.Logger {
           trimLogFilesOverMax();
         }
 
-        for (String entry : buildLogEntries(level, tag, message, t)) {
+        for (String entry : buildLogEntries(level, tag, message, t, finalThreadString)) {
           writer.writeEntry(entry);
         }
 
@@ -225,11 +244,11 @@ public final class PersistentLogger extends Log.Logger {
     return logDir;
   }
 
-  private List<String> buildLogEntries(String level, String tag, String message, Throwable t) {
+  private List<String> buildLogEntries(String level, String tag, String message, Throwable t, String threadString) {
     List<String> entries = new LinkedList<>();
     Date         date    = new Date();
 
-    entries.add(buildEntry(level, tag, message, date));
+    entries.add(buildEntry(level, tag, message, date, threadString));
 
     if (t != null) {
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -239,14 +258,14 @@ public final class PersistentLogger extends Log.Logger {
       String[] lines = trace.split("\\n");
 
       for (String line : lines) {
-        entries.add(buildEntry(level, tag, line, date));
+        entries.add(buildEntry(level, tag, line, date, threadString));
       }
     }
 
     return entries;
   }
 
-  private String buildEntry(String level, String tag, String message, Date date) {
-    return logTag + ' ' + DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
+  private String buildEntry(String level, String tag, String message, Date date, String threadString) {
+    return '[' + logTag + "] [" + threadString + "] " + DATE_FORMAT.format(date) + ' ' + level + ' ' + tag + ": " + message;
   }
 }

@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.tracing.Tracer;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -55,15 +54,18 @@ public class SubmitDebugLogRepository {
   private static final List<LogSection> SECTIONS = new ArrayList<LogSection>() {{
     add(new LogSectionSystemInfo());
     add(new LogSectionJobs());
+    add(new LogSectionConstraints());
     if (Build.VERSION.SDK_INT >= 28) {
       add(new LogSectionPower());
     }
     add(new LogSectionPin());
     add(new LogSectionCapabilities());
     add(new LogSectionFeatureFlags());
+    add(new LogSectionKeyPreferences());
     add(new LogSectionPermissions());
     add(new LogSectionTrace());
     add(new LogSectionThreads());
+    add(new LogSectionBlockedThreads());
     add(new LogSectionLogcat());
     add(new LogSectionLogger());
   }};

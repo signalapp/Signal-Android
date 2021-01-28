@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mediaoverview;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -332,7 +333,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       itemView.setOnLongClickListener(view -> onLongClick());
       selectForMarque = () -> line1.setSelected(true);
-      handler = new Handler();
+      handler = new Handler(Looper.getMainLooper());
       handler.postDelayed(selectForMarque, 2500);
 
       LiveRecipient from = mediaRecord.isOutgoing() ? Recipient.self().live() : Recipient.live(mediaRecord.getRecipientId());

@@ -6,9 +6,6 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-
-import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -22,7 +19,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -50,7 +46,7 @@ public final class LiveRecipientCache {
     this.context           = context.getApplicationContext();
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.recipients        = new LRUCache<>(CACHE_MAX);
-    this.unknown           = new LiveRecipient(context, new MutableLiveData<>(), Recipient.UNKNOWN);
+    this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
   }
 
   @AnyThread
@@ -60,7 +56,7 @@ public final class LiveRecipientCache {
     LiveRecipient live = recipients.get(id);
 
     if (live == null) {
-      final LiveRecipient newLive = new LiveRecipient(context, new MutableLiveData<>(), new Recipient(id));
+      final LiveRecipient newLive = new LiveRecipient(context, new Recipient(id));
 
       recipients.put(id, newLive);
 
@@ -93,7 +89,7 @@ public final class LiveRecipientCache {
       boolean       needsResolve = false;
 
       if (live == null) {
-        live = new LiveRecipient(context, new MutableLiveData<>(), recipient);
+        live = new LiveRecipient(context, recipient);
         recipients.put(recipient.getId(), live);
         needsResolve = recipient.isResolving();
       } else if (live.get().isResolving() || !recipient.isResolving()) {
@@ -149,7 +145,7 @@ public final class LiveRecipientCache {
       ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
       List<Recipient> recipients     = new ArrayList<>();
 
-      try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getConversationList())) {
+      try (ThreadDatabase.Reader reader = threadDatabase.readerFor(threadDatabase.getRecentConversationList(CACHE_WARM_MAX, false, false))) {
         int          i      = 0;
         ThreadRecord record = null;
 
@@ -160,8 +156,7 @@ public final class LiveRecipientCache {
       }
 
       Log.d(TAG, "Warming up " + recipients.size() + " recipients.");
-      Collections.reverse(recipients);
-      Stream.of(recipients).map(Recipient::getId).forEach(this::getLive);
+      addToCache(recipients);
     });
   }
 

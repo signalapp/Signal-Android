@@ -26,6 +26,7 @@ import android.os.Bundle;
 
 import androidx.core.app.RemoteInput;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -67,56 +68,51 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
     if (replyMethod == null) throw new AssertionError("No reply method specified");
 
     if (responseText != null) {
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          long threadId;
+      SignalExecutors.BOUNDED.execute(() -> {
+        long threadId;
 
-          Recipient recipient      = Recipient.resolved(recipientId);
-          int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-          long      expiresIn      = recipient.getExpireMessages() * 1000L;
+        Recipient recipient      = Recipient.resolved(recipientId);
+        int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+        long      expiresIn      = recipient.getExpireMessages() * 1000L;
 
-          switch (replyMethod) {
-            case GroupMessage: {
-              OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient,
-                                                                    responseText.toString(),
-                                                                    new LinkedList<>(),
-                                                                    System.currentTimeMillis(),
-                                                                    subscriptionId,
-                                                                    expiresIn,
-                                                                    false,
-                                                                    0,
-                                                                    null,
-                                                                    Collections.emptyList(),
-                                                                    Collections.emptyList(),
-                                                                    Collections.emptyList(),
-                                                                    Collections.emptyList(),
-                                                                    Collections.emptyList());
-              threadId = MessageSender.send(context, reply, -1, false, null);
-              break;
-            }
-            case SecureMessage: {
-              OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-              threadId = MessageSender.send(context, reply, -1, false, null);
-              break;
-            }
-            case UnsecuredSmsMessage: {
-              OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-              threadId = MessageSender.send(context, reply, -1, true, null);
-              break;
-            }
-            default:
-              throw new AssertionError("Unknown Reply method");
+        switch (replyMethod) {
+          case GroupMessage: {
+            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient,
+                                                                  responseText.toString(),
+                                                                  new LinkedList<>(),
+                                                                  System.currentTimeMillis(),
+                                                                  subscriptionId,
+                                                                  expiresIn,
+                                                                  false,
+                                                                  0,
+                                                                  null,
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList(),
+                                                                  Collections.emptyList());
+            threadId = MessageSender.send(context, reply, -1, false, null);
+            break;
           }
-
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
-
-          ApplicationDependencies.getMessageNotifier().updateNotification(context);
-          MarkReadReceiver.process(context, messageIds);
-
-          return null;
+          case SecureMessage: {
+            OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
+            threadId = MessageSender.send(context, reply, -1, false, null);
+            break;
+          }
+          case UnsecuredSmsMessage: {
+            OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
+            threadId = MessageSender.send(context, reply, -1, true, null);
+            break;
+          }
+          default:
+            throw new AssertionError("Unknown Reply method");
         }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
+        MarkReadReceiver.process(context, messageIds);
+      });
     }
   }
 }

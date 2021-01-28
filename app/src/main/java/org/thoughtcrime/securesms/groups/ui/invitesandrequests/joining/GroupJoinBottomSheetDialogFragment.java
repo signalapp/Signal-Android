@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public final class GroupJoinBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-  private static final String TAG = Log.tag(GroupJoinUpdateRequiredBottomSheetDialogFragment.class);
+  private static final String TAG = Log.tag(GroupJoinBottomSheetDialogFragment.class);
 
   private static final String ARG_GROUP_INVITE_LINK_URL = "group_invite_url";
 

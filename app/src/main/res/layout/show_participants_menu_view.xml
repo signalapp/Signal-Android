@@ -7,6 +7,8 @@
     android:background="?attr/selectableItemBackground"
     android:gravity="center"
     android:minWidth="48dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:orientation="horizontal"
     tools:background="@color/core_ultramarine">
 

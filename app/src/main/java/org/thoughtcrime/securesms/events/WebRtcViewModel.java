@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.events;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.OptionalLong;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
@@ -44,6 +45,14 @@ public class WebRtcViewModel {
              this == RECIPIENT_UNAVAILABLE ||
              this == NO_SUCH_USER          ||
              this == UNTRUSTED_IDENTITY;
+    }
+
+    public boolean isPreJoinOrNetworkUnavailable() {
+      return this == CALL_PRE_JOIN || this == NETWORK_FAILURE;
+    }
+
+    public boolean isPassedPreJoin() {
+      return this.ordinal() > CALL_PRE_JOIN.ordinal();
     }
   }
 
@@ -94,7 +103,7 @@ public class WebRtcViewModel {
   private final CallParticipant       localParticipant;
   private final List<CallParticipant> remoteParticipants;
   private final Set<RecipientId>      identityChangedRecipients;
-  private final long                  remoteDevicesCount;
+  private final OptionalLong          remoteDevicesCount;
   private final Long                  participantLimit;
 
   public WebRtcViewModel(@NonNull WebRtcServiceState state) {
@@ -154,7 +163,7 @@ public class WebRtcViewModel {
     return identityChangedRecipients;
   }
 
-  public long getRemoteDevicesCount() {
+  public OptionalLong getRemoteDevicesCount() {
     return remoteDevicesCount;
   }
 

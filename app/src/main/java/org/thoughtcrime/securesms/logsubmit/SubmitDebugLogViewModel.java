@@ -10,7 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.tracing.Tracer;
+import org.signal.core.util.tracing.Tracer;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.whispersystems.libsignal.util.guava.Optional;
 

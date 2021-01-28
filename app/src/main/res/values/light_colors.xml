@@ -57,7 +57,7 @@
 
     <color name="audio_seek_bar_sent_played_color">@color/core_grey_60</color>
     <color name="audio_seek_bar_sent_unplayed_color">@color/core_grey_25</color>
-    <color name="audio_play_pause_sent_background_tint">@color/core_white</color>
+    <color name="audio_play_pause_sent_background_tint">@color/core_grey_02</color>
 
     <color name="insight_title">@color/core_grey_90</color>
     <color name="insight_body_2">@color/core_grey_60</color>
@@ -68,6 +68,9 @@
     <color name="conversation_item_update_text_color">@color/core_grey_60</color>
     <color name="conversation_item_sent_icon_color">@color/core_grey_60</color>
     <color name="conversation_item_quote_text_color">@color/core_grey_90</color>
+    <color name="conversation_item_wallpaper_bubble_color">@color/core_white</color>
+
+    <color name="wallpaper_bubble_color">@color/transparent_white_80</color>
 
     <color name="conversation_scroll_to_bottom_foreground_color">@color/grey_600</color>
 
@@ -107,6 +110,7 @@
 
     <color name="media_keyboard_button_color">@color/core_grey_60</color>
 
+    <color name="megaphone_background_color">@color/core_white</color>
     <color name="megaphone_body_text_color">@color/core_grey_65</color>
     <color name="megaphone_reactions_shade">@color/core_grey_02</color>
     <color name="megaphone_reactions_close_tint">@color/core_black</color>
@@ -114,4 +118,6 @@
     <color name="sticker_management_action_button_color">@color/core_grey_90</color>
 
     <color name="tooltip_default_color">@color/core_white</color>
+
+    <color name="wallpaper_preview_background">@color/transparent_white_30</color>
 </resources>

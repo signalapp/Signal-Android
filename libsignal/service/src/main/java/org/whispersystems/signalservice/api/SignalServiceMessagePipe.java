@@ -26,6 +26,7 @@ import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.push.AttachmentV2UploadAttributes;
@@ -200,6 +201,8 @@ public class SignalServiceMessagePipe {
     return FutureTransformers.map(response, value -> {
       if (value.getStatus() == 404) {
         throw new UnregisteredUserException(list.getDestination(), new NotFoundException("not found"));
+      } else if (value.getStatus() == 508) {
+        throw new ServerRejectedException();
       } else if (value.getStatus() < 200 || value.getStatus() >= 300) {
         throw new IOException("Non-successful response: " + value.getStatus());
       }

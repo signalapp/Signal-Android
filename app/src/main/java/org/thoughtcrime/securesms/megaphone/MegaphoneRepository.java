@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.megaphone;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.AnyThread;
@@ -28,17 +29,17 @@ import java.util.concurrent.Executor;
  */
 public class MegaphoneRepository {
 
-  private final Context                     context;
+  private final Application                 context;
   private final Executor                    executor;
   private final MegaphoneDatabase           database;
   private final Map<Event, MegaphoneRecord> databaseCache;
 
   private boolean enabled;
 
-  public MegaphoneRepository(@NonNull Context context) {
+  public MegaphoneRepository(@NonNull Application context) {
     this.context       = context;
     this.executor      = SignalExecutors.SERIAL;
-    this.database      = DatabaseFactory.getMegaphoneDatabase(context);
+    this.database      = MegaphoneDatabase.getInstance(context);
     this.databaseCache = new HashMap<>();
 
     executor.execute(this::init);

@@ -55,7 +55,7 @@ public class UnarchivedConversationListDataSourceTest {
     when(DatabaseFactory.getThreadDatabase(any())).thenReturn(threadDatabase);
     when(ApplicationDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
 
-    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ApplicationProvider.getApplicationContext(), mock(Invalidator.class));
+    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(mock(Application.class));
   }
 
   @Test

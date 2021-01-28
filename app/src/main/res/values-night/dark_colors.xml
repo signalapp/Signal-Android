@@ -68,6 +68,9 @@
     <color name="conversation_item_update_text_color">@color/core_grey_45</color>
     <color name="conversation_item_sent_icon_color">@color/core_grey_25</color>
     <color name="conversation_item_quote_text_color">@color/core_grey_05</color>
+    <color name="conversation_item_wallpaper_bubble_color">@color/core_grey_95</color>
+
+    <color name="wallpaper_bubble_color">@color/transparent_black_80</color>
 
     <color name="conversation_scroll_to_bottom_foreground_color">@color/core_white</color>
 
@@ -107,6 +110,7 @@
 
     <color name="media_keyboard_button_color">@color/core_grey_25</color>
 
+    <color name="megaphone_background_color">@color/core_grey_85</color>
     <color name="megaphone_body_text_color">@color/core_grey_25</color>
     <color name="megaphone_reactions_shade">@color/core_grey_70</color>
     <color name="megaphone_reactions_close_tint">@color/core_grey_15</color>
@@ -114,4 +118,6 @@
     <color name="sticker_management_action_button_color">@color/core_grey_25</color>
 
     <color name="tooltip_default_color">@color/core_grey_75</color>
+
+    <color name="wallpaper_preview_background">@color/transparent_black_60</color>
 </resources>

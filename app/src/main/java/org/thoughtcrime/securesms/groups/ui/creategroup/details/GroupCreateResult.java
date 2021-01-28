@@ -86,8 +86,7 @@ abstract class GroupCreateResult {
       ERROR_IO,
       ERROR_BUSY,
       ERROR_FAILED,
-      ERROR_INVALID_NAME,
-      ERROR_INVALID_MEMBER_COUNT
+      ERROR_INVALID_NAME
     }
   }
 

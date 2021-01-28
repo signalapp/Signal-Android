@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Manages the queue of jobs. This is the only class that should write to {@link JobStorage} to
@@ -161,7 +163,7 @@ class JobController {
   @WorkerThread
   synchronized void onRetry(@NonNull Job job) {
     int    nextRunAttempt     = job.getRunAttempt() + 1;
-    long   nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, job.getParameters().getMaxBackoff());
+    long   nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, TimeUnit.SECONDS.toMillis(FeatureFlags.getDefaultMaxBackoffSeconds()));
     String serializedData     = dataSerializer.serialize(job.serialize());
 
     jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
@@ -355,7 +357,6 @@ class JobController {
                                   job.getParameters().getMaxAttempts(),
                                   job.getParameters().getMaxBackoff(),
                                   job.getParameters().getLifespan(),
-                                  job.getParameters().getMaxInstancesForFactory(),
                                   dataSerializer.serialize(job.serialize()),
                                   null,
                                   false,
@@ -452,9 +453,12 @@ class JobController {
   }
 
   private long calculateNextRunAttemptTime(long currentTime, int nextAttempt, long maxBackoff) {
-    int  boundedAttempt     = Math.min(nextAttempt, 30);
-    long exponentialBackoff = (long) Math.pow(2, boundedAttempt) * 1000;
-    long actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
+    int    boundedAttempt     = Math.min(nextAttempt, 30);
+    long   exponentialBackoff = (long) Math.pow(2, boundedAttempt) * 1000;
+    long   actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
+    double jitter             = 0.75 + (Math.random() * 0.5);
+
+    actualBackoff = (long) (actualBackoff * jitter);
 
     return currentTime + actualBackoff;
   }
@@ -469,7 +473,6 @@ class JobController {
                        jobSpec.getMaxAttempts(),
                        jobSpec.getMaxBackoff(),
                        jobSpec.getLifespan(),
-                       jobSpec.getMaxInstancesForFactory(),
                        jobSpec.getSerializedData(),
                        dataSerializer.serialize(inputData),
                        jobSpec.isRunning(),

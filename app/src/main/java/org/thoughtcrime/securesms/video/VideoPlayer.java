@@ -48,7 +48,6 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.VideoSlide;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.video.exo.AttachmentDataSourceFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -81,7 +80,7 @@ public class VideoPlayer extends FrameLayout {
 
     inflate(context, R.layout.video_player, this);
 
-    this.exoView     = ViewUtil.findById(this, R.id.video_view);
+    this.exoView     = findViewById(R.id.video_view);
     this.exoControls = new PlayerControlView(getContext());
     this.exoControls.setShowTimeoutMs(-1);
   }

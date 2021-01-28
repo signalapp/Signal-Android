@@ -27,7 +27,6 @@ class EditProfileViewModel extends ViewModel {
   private final LiveData<ProfileName>             internalProfileName = LiveDataUtil.combineLatest(trimmedGivenName, trimmedFamilyName, ProfileName::fromParts);
   private final MutableLiveData<byte[]>           internalAvatar      = new MutableLiveData<>();
   private final MutableLiveData<byte[]>           originalAvatar      = new MutableLiveData<>();
-  private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
   private final MutableLiveData<String>           originalDisplayName = new MutableLiveData<>();
   private final LiveData<Boolean>                 isFormValid;
   private final EditProfileRepository             repository;
@@ -77,10 +76,6 @@ class EditProfileViewModel extends ViewModel {
     return Transformations.distinctUntilChanged(internalAvatar);
   }
 
-  public LiveData<Optional<String>> username() {
-    return internalUsername;
-  }
-
   public boolean hasAvatar() {
     return internalAvatar.getValue() != null;
   }
@@ -103,10 +98,6 @@ class EditProfileViewModel extends ViewModel {
 
   public void setAvatar(byte[] avatar) {
     internalAvatar.setValue(avatar);
-  }
-
-  public void refreshUsername() {
-    repository.getCurrentUsername(internalUsername::postValue);
   }
 
   public void submitProfile(Consumer<EditProfileRepository.UploadResult> uploadResultConsumer) {

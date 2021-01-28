@@ -7,9 +7,11 @@ import com.annimon.stream.Stream;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.KeyDifferenceResult;
@@ -42,6 +44,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.thoughtcrime.securesms.testutil.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.assertByteListEquals;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.assertContentsEqual;
 import static org.thoughtcrime.securesms.testutil.TestHelpers.byteArray;
@@ -51,6 +54,7 @@ import static org.thoughtcrime.securesms.testutil.TestHelpers.setOf;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ Recipient.class, FeatureFlags.class})
 @PowerMockIgnore("javax.crypto.*")
+@PowerMockRunnerDelegate(JUnit4.class)
 public final class StorageSyncHelperTest {
 
   private static final UUID UUID_A    = UuidUtil.parseOrThrow("ebef429e-695e-4f51-bcc4-526a60ac68c7");
@@ -214,6 +218,8 @@ public final class StorageSyncHelperTest {
 
   @Test
   public void resolveConflict_group_v1_sameAsRemote() {
+    assumeLibSignalSupportedOnOS();
+
     SignalGroupV1Record remote1 = groupV1(1, 1, true, false);
     SignalGroupV1Record local1  = groupV1(2, 1, true, false);
 
@@ -279,6 +285,8 @@ public final class StorageSyncHelperTest {
 
   @Test
   public void resolveConflict_complex() {
+    assumeLibSignalSupportedOnOS();
+
     SignalContactRecord remote1 = contact(1, UUID_A, null, "a");
     SignalContactRecord local1  = contact(2, UUID_A, E164_A, "a");
 

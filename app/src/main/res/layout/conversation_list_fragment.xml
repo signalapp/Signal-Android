@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -68,24 +69,19 @@
 
   </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
 
-  <androidx.appcompat.widget.Toolbar
+  <ViewStub
       android:id="@+id/toolbar_basic"
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
-      android:background="@null"
+      android:layout="@layout/conversation_list_archive_toolbar"
       android:minHeight="?attr/actionBarSize"
-      android:theme="?attr/actionBarStyle"
-      android:visibility="gone"
-      app:layout_constraintTop_toTopOf="parent"
-      app:titleTextAppearance="@style/TextSecure.TitleTextStyle" />
+      app:layout_constraintTop_toTopOf="parent" />
 
-  <org.thoughtcrime.securesms.components.SearchToolbar
+  <ViewStub
       android:id="@+id/search_toolbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@null"
-      android:elevation="4dp"
-      android:visibility="invisible"
+      android:layout="@layout/conversation_list_search_toolbar"
       app:layout_constraintTop_toTopOf="parent" />
 
   <androidx.constraintlayout.widget.Barrier
@@ -119,44 +115,22 @@
       app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
       tools:text="@string/SearchFragment_no_results" />
 
-  <LinearLayout
+  <ViewStub
       android:id="@+id/empty_state"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout="@layout/conversation_list_empty_state"
       android:layout_marginTop="32dp"
-      android:orientation="vertical"
-      android:visibility="gone"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
-      tools:visibility="visible">
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier" />
 
-    <ImageView
-        android:id="@+id/empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:src="@drawable/conversation_list_empty_state" />
-
-    <TextView
-        style="@style/Signal.Text.Body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="@string/conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend" />
-
-  </LinearLayout>
-
-  <org.thoughtcrime.securesms.components.reminder.ReminderView
+  <ViewStub
       android:id="@+id/reminder"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
-      tools:visibility="gone" />
+      android:layout="@layout/conversation_list_reminder_view"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/list"
@@ -165,7 +139,7 @@
       android:clipToPadding="false"
       android:nextFocusDown="@+id/fab"
       android:nextFocusForward="@+id/fab"
-      android:paddingBottom="150dp"
+      android:paddingBottom="160dp"
       android:scrollbars="vertical"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@id/reminder"
@@ -178,11 +152,18 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       android:layout_width="0dp"
-      android:layout_height="500dp">
+      android:layout_height="500dp"
+      android:clipToPadding="false"
+      android:clipChildren="false">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom|end"
+        android:gravity="end"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         app:layout_behavior="org.thoughtcrime.securesms.util.views.SlideUpWithSnackbarBehavior">
 
       <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
@@ -190,45 +171,34 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginBottom="20dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginTop="8dp"
           android:contentDescription="@string/conversation_list_fragment__open_camera_description"
           android:focusable="true"
           android:tint="@color/signal_icon_tint_secondary"
           app:backgroundTint="@color/conversation_list_camera_button_background"
-          app:layout_constraintBottom_toTopOf="@id/fab"
-          app:layout_constraintEnd_toEndOf="@id/fab"
           app:srcCompat="@drawable/ic_camera_solid_white_24" />
 
       <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
           android:id="@+id/fab"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_margin="16dp"
+          android:layout_marginEnd="16dp"
+          android:layout_marginBottom="16dp"
           android:contentDescription="@string/conversation_list_fragment__fab_content_description"
           android:focusable="true"
           android:tint="@color/core_white"
-          app:layout_constraintBottom_toTopOf="@id/megaphone_container"
-          app:layout_constraintEnd_toEndOf="parent"
           app:srcCompat="@drawable/ic_compose_solid_24"
           app:backgroundTint="@color/core_ultramarine"/>
 
-      <androidx.cardview.widget.CardView
+      <ViewStub
           android:id="@+id/megaphone_container"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_margin="8dp"
-          android:clipChildren="false"
-          android:clipToPadding="false"
-          android:visibility="gone"
-          app:cardBackgroundColor="@color/signal_background_secondary"
-          app:cardCornerRadius="8dp"
-          app:cardElevation="4dp"
-          app:cardPreventCornerOverlap="false"
-          app:cardUseCompatPadding="true"
-          app:contentPadding="0dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          tools:visibility="visible" />
+          android:layout="@layout/conversation_list_megaphone_container"
+          app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

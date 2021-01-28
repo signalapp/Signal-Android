@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class LabeledEditText extends FrameLayout implements View.OnFocusChangeListener {
 
@@ -90,5 +91,9 @@ public class LabeledEditText extends FrameLayout implements View.OnFocusChangeLi
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
     input.setEnabled(enabled);
+  }
+
+  public void focusAndMoveCursorToEndAndOpenKeyboard() {
+    ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(input);
   }
 }

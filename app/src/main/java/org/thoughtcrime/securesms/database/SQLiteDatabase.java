@@ -3,17 +3,14 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.ContentValues;
 
-import androidx.annotation.Nullable;
-
-import com.google.android.gms.vision.Tracker;
-
 import net.sqlcipher.Cursor;
 import net.sqlcipher.SQLException;
 import net.sqlcipher.database.SQLiteQueryStats;
 import net.sqlcipher.database.SQLiteStatement;
 import net.sqlcipher.database.SQLiteTransactionListener;
 
-import org.thoughtcrime.securesms.tracing.Tracer;
+import org.signal.core.util.tracing.Tracer;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.HashMap;
 import java.util.Locale;

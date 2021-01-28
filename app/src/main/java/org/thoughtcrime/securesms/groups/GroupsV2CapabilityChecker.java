@@ -44,7 +44,7 @@ public final class GroupsV2CapabilityChecker {
       JobManager jobManager = ApplicationDependencies.getJobManager();
 
       for (Job job : jobs) {
-        if (!jobManager.runSynchronously(job, TimeUnit.SECONDS.toMillis(5)).isPresent()) {
+        if (!jobManager.runSynchronously(job, TimeUnit.SECONDS.toMillis(10)).isPresent()) {
           throw new IOException("Recipient capability was not retrieved in time");
         }
       }

@@ -1,44 +1,106 @@
 package org.thoughtcrime.securesms.database;
 
+import android.app.Application;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabaseHook;
+import net.sqlcipher.database.SQLiteOpenHelper;
+
+import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.crypto.DatabaseSecret;
+import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
-import org.thoughtcrime.securesms.tracing.Trace;
+import org.thoughtcrime.securesms.util.CursorUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 
 import java.util.Collection;
 import java.util.Map;
 
-@Trace
-public class KeyValueDatabase extends Database {
+/**
+ * Persists data for the {@link org.thoughtcrime.securesms.keyvalue.KeyValueStore}.
+ *
+ * This is it's own separate physical database, so it cannot do joins or queries with any other
+ * tables.
+ */
+public class KeyValueDatabase extends SQLiteOpenHelper implements SignalDatabase {
 
-  public static final String TABLE_NAME = "key_value";
+  private static final String TAG = Log.tag(KeyValueDatabase.class);
 
-  private static final String ID    = "_id";
-  private static final String KEY   = "key";
-  private static final String VALUE = "value";
-  private static final String TYPE  = "type";
+  private static final int    DATABASE_VERSION = 1;
+  private static final String DATABASE_NAME    = "signal-key-value.db";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                 KEY   + " TEXT UNIQUE, " +
-                                                                                 VALUE + " TEXT, " +
-                                                                                 TYPE  + " INTEGER)";
+  private static final String TABLE_NAME = "key_value";
+  private static final String ID         = "_id";
+  private static final String KEY        = "key";
+  private static final String VALUE      = "value";
+  private static final String TYPE       = "type";
 
-  KeyValueDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
-    super(context, databaseHelper);
+  private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                                                  KEY   + " TEXT UNIQUE, " +
+                                                                                  VALUE + " TEXT, " +
+                                                                                  TYPE  + " INTEGER)";
+
+  private static volatile KeyValueDatabase instance;
+
+  private final Application    application;
+  private final DatabaseSecret databaseSecret;
+
+  public static @NonNull KeyValueDatabase getInstance(@NonNull Application context) {
+    if (instance == null) {
+      synchronized (KeyValueDatabase.class) {
+        if (instance == null) {
+          instance = new KeyValueDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context));
+        }
+      }
+    }
+    return instance;
+  }
+
+  public KeyValueDatabase(@NonNull Application application, @NonNull DatabaseSecret databaseSecret) {
+    super(application, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook());
+
+    this.application    = application;
+    this.databaseSecret = databaseSecret;
+  }
+
+  @Override
+  public void onCreate(SQLiteDatabase db) {
+    Log.i(TAG, "onCreate()");
+
+    db.execSQL(CREATE_TABLE);
+
+    if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
+      Log.i(TAG, "Found old key_value table. Migrating data.");
+      migrateDataFromPreviousDatabase(DatabaseFactory.getInstance(application).getRawDatabase(), db);
+    }
+  }
+
+  @Override
+  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    Log.i(TAG, "onUpgrade(" + oldVersion + ", " + newVersion + ")");
+  }
+
+  @Override
+  public void onOpen(SQLiteDatabase db) {
+    Log.i(TAG, "onOpen()");
+
+    if (DatabaseFactory.getInstance(application).hasTable("key_value")) {
+      Log.i(TAG, "Dropping original key_value table from the main database.");
+      DatabaseFactory.getInstance(application).getRawDatabase().rawExecSQL("DROP TABLE key_value");
+    }
   }
 
   public @NonNull KeyValueDataSet getDataSet() {
     KeyValueDataSet dataSet = new KeyValueDataSet();
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)){
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, null, null, null, null, null, null)){
       while (cursor != null && cursor.moveToNext()) {
-        Type type = Type.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)));
-        String key = cursor.getString(cursor.getColumnIndexOrThrow(KEY));
+        Type   type = Type.fromId(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)));
+        String key  = cursor.getString(cursor.getColumnIndexOrThrow(KEY));
 
         switch (type) {
           case BLOB:
@@ -67,7 +129,7 @@ public class KeyValueDatabase extends Database {
   }
 
   public void writeDataSet(@NonNull KeyValueDataSet dataSet, @NonNull Collection<String> removes) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    SQLiteDatabase db = getWritableDatabase();
 
     db.beginTransaction();
     try {
@@ -112,6 +174,53 @@ public class KeyValueDatabase extends Database {
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
+    }
+  }
+
+  private @NonNull SQLiteDatabase getReadableDatabase() {
+    return getReadableDatabase(databaseSecret.asString());
+  }
+
+  private @NonNull SQLiteDatabase getWritableDatabase() {
+    return getWritableDatabase(databaseSecret.asString());
+  }
+
+  @Override
+  public @NonNull SQLiteDatabase getSqlCipherDatabase() {
+    return getWritableDatabase();
+  }
+
+  private static void migrateDataFromPreviousDatabase(@NonNull SQLiteDatabase oldDb, @NonNull SQLiteDatabase newDb) {
+    try (Cursor cursor = oldDb.rawQuery("SELECT * FROM key_value", null)) {
+      while (cursor.moveToNext()) {
+        int type = CursorUtil.requireInt(cursor, "type");
+        ContentValues values = new ContentValues();
+        values.put(KEY, CursorUtil.requireString(cursor, "key"));
+        values.put(TYPE, type);
+
+        switch (type) {
+          case 0:
+            values.put(VALUE, CursorUtil.requireBlob(cursor, "value"));
+            break;
+          case 1:
+            values.put(VALUE, CursorUtil.requireBoolean(cursor, "value"));
+            break;
+          case 2:
+            values.put(VALUE, CursorUtil.requireFloat(cursor, "value"));
+            break;
+          case 3:
+            values.put(VALUE, CursorUtil.requireInt(cursor, "value"));
+            break;
+          case 4:
+            values.put(VALUE, CursorUtil.requireLong(cursor, "value"));
+            break;
+          case 5:
+            values.put(VALUE, CursorUtil.requireString(cursor, "value"));
+            break;
+        }
+
+        newDb.insert(TABLE_NAME, null, values);
+      }
     }
   }
 

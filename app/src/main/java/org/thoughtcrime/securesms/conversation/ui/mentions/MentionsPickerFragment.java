@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation.ui.mentions;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ public class MentionsPickerFragment extends LoggingFragment {
   private       BottomSheetBehavior<View> behavior;
   private       MentionsPickerViewModel   viewModel;
   private final Runnable                  lockSheetAfterListUpdate = () -> behavior.setHideable(false);
-  private final Handler                   handler                  = new Handler();
+  private final Handler                   handler                  = new Handler(Looper.getMainLooper());
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

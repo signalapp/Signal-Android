@@ -80,7 +80,13 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    return masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
+    boolean locked = masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
+
+    if (locked) {
+      Log.d(TAG, "Locked! PasswordDisabled: " + TextSecurePreferences.isPasswordDisabled(context) + ", ScreenLock: " + TextSecurePreferences.isScreenLockEnabled(context));
+    }
+
+    return locked;
   }
 
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
@@ -287,9 +293,7 @@ public class KeyCachingService extends Service {
 
   private PendingIntent buildLaunchIntent() {
     // TODO [greyson] Navigation
-    Intent intent              = new Intent(this, MainActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
+    return PendingIntent.getActivity(getApplicationContext(), 0, MainActivity.clearTop(this), 0);
   }
 
   private static PendingIntent buildExpirationPendingIntent(@NonNull Context context) {

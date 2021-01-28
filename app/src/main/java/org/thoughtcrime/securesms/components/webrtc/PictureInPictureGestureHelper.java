@@ -222,8 +222,9 @@ public class PictureInPictureGestureHelper extends GestureDetector.SimpleOnGestu
 
   @Override
   public boolean onSingleTapUp(MotionEvent e) {
-    child.performClick();
+    isDragging = false;
 
+    child.performClick();
     return true;
   }
 

@@ -50,7 +50,8 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                        false,
                                                        0,
                                                        true,
-                                                       0
+                                                       0,
+                                                       CallParticipant.DeviceOrdinal.PRIMARY
                                                ))
                                .build();
 
@@ -93,7 +94,8 @@ public class BeginCallActionProcessorDelegate extends WebRtcActionProcessor {
                                                false,
                                                0,
                                                true,
-                                               0
+                                               0,
+                                               CallParticipant.DeviceOrdinal.PRIMARY
                                        ))
                        .build();
   }

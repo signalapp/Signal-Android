@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   private static final String KEY_MAX_SEND   = "max_send_size";
 
   private final Throttler videoScanThrottle = new Throttler(150);
-  private final Handler   handler           = new Handler();
+  private final Handler   handler           = new Handler(Looper.getMainLooper());
 
             private Controller     controller;
             private Data           data           = new Data();

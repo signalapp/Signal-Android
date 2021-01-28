@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -50,7 +49,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@Trace
 public final class StorageSyncHelper {
 
   private static final String TAG = Log.tag(StorageSyncHelper.class);
@@ -433,6 +431,7 @@ public final class StorageSyncHelper {
                                                          .setUnlistedPhoneNumber(SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode().isUnlisted())
                                                          .setPhoneNumberSharingMode(StorageSyncModels.localToRemotePhoneNumberSharingMode(SignalStore.phoneNumberPrivacy().getPhoneNumberSharingMode()))
                                                          .setPinnedConversations(StorageSyncModels.localToRemotePinnedConversations(pinned))
+                                                         .setPreferContactAvatars(SignalStore.settings().isPreferSystemContactPhotos())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -454,6 +453,7 @@ public final class StorageSyncHelper {
     SignalStore.settings().setLinkPreviewsEnabled(update.isLinkPreviewsEnabled());
     SignalStore.phoneNumberPrivacy().setPhoneNumberListingMode(update.isPhoneNumberUnlisted() ? PhoneNumberPrivacyValues.PhoneNumberListingMode.UNLISTED : PhoneNumberPrivacyValues.PhoneNumberListingMode.LISTED);
     SignalStore.phoneNumberPrivacy().setPhoneNumberSharingMode(StorageSyncModels.remoteToLocalPhoneNumberSharingMode(update.getPhoneNumberSharingMode()));
+    SignalStore.settings().setPreferSystemContactPhotos(update.isPreferContactAvatars());
 
     if (fetchProfile && update.getAvatarUrlPath().isPresent()) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(Recipient.self(), update.getAvatarUrlPath().get()));

@@ -253,6 +253,13 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
+  /**
+   * @return True iff the message is only a group leave of a single member.
+   */
+  public boolean isJustAGroupLeave() {
+    return false;
+  }
+
   public boolean isUnidentified() {
     return unidentified;
   }

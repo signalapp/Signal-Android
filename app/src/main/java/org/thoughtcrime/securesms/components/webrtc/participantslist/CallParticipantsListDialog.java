@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.OptionalLong;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
@@ -88,19 +89,21 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
   private void updateList(@NonNull CallParticipantsState callParticipantsState) {
     List<MappingModel<?>> items = new ArrayList<>();
 
-    boolean includeSelf = callParticipantsState.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+    boolean      includeSelf = callParticipantsState.getGroupCallState() == WebRtcViewModel.GroupCallState.CONNECTED_AND_JOINED;
+    OptionalLong headerCount = callParticipantsState.getParticipantCount();
 
-    items.add(new CallParticipantsListHeader((int) callParticipantsState.getRemoteDevicesCount() + (includeSelf ? 1 : 0)));
+    headerCount.executeIfPresent(count -> {
+      items.add(new CallParticipantsListHeader((int) count));
 
-    if (includeSelf) {
-      items.add(new CallParticipantViewState(callParticipantsState.getLocalParticipant()));
-    }
+      if (includeSelf) {
+        items.add(new CallParticipantViewState(callParticipantsState.getLocalParticipant()));
+      }
 
-    for (CallParticipant callParticipant : callParticipantsState.getAllRemoteParticipants()) {
-      items.add(new CallParticipantViewState(callParticipant));
-    }
+      for (CallParticipant callParticipant : callParticipantsState.getAllRemoteParticipants()) {
+        items.add(new CallParticipantViewState(callParticipant));
+      }
+    });
 
     adapter.submitList(items);
   }
-
 }

@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -340,7 +341,7 @@ public abstract class Job {
       }
 
       Builder(@NonNull String id) {
-        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, UNLIMITED, null, new LinkedList<>(), null, false);
+        this(id, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(FeatureFlags.getDefaultMaxBackoffSeconds()), IMMORTAL, 1, UNLIMITED, UNLIMITED, null, new LinkedList<>(), null, false);
       }
 
       private Builder(@NonNull String id,

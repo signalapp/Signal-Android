@@ -9,7 +9,6 @@ import net.sqlcipher.Cursor;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.CursorUtil;
 
 import java.util.HashMap;
@@ -20,7 +19,6 @@ import java.util.Map;
 /**
  * The backing datastore for {@link RemappedRecords}. See that class for more details.
  */
-@Trace
 public class RemappedRecordsDatabase extends Database {
 
   public static final String[] CREATE_TABLE = { Recipients.CREATE_TABLE,

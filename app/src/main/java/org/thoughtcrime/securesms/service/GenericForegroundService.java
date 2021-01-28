@@ -108,7 +108,7 @@ public final class GenericForegroundService extends Service {
                                                            .setSmallIcon(active.iconRes)
                                                            .setContentTitle(active.title)
                                                            .setProgress(active.progressMax, active.progress, active.indeterminate)
-                                                           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
+                                                           .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0))
                                                            .build());
   }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.ResultReceiver;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadata;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
+import org.thoughtcrime.securesms.util.NetworkUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
@@ -42,6 +44,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ACCEPT_CALL;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_BANDWIDTH_MODE_UPDATE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_BLUETOOTH_CHANGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CALL_CONCLUDED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_CALL_CONNECTED;
@@ -77,6 +80,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_RINGING;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_ERROR;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_SUCCESS;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_NETWORK_CHANGE;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_OUTGOING_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_PRE_JOIN_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVED_OFFER_EXPIRED;
@@ -213,6 +217,8 @@ public abstract class WebRtcActionProcessor {
       case ACTION_SET_AUDIO_BLUETOOTH:                 return handleSetBluetoothAudio(currentState, intent.getBooleanExtra(EXTRA_BLUETOOTH, false));
       case ACTION_BLUETOOTH_CHANGE:                    return handleBluetoothChange(currentState, getAvailable(intent));
       case ACTION_CAMERA_SWITCH_COMPLETED:             return handleCameraSwitchCompleted(currentState, getCameraState(intent));
+      case ACTION_NETWORK_CHANGE:                      return handleNetworkChanged(currentState, getAvailable(intent));
+      case ACTION_BANDWIDTH_MODE_UPDATE:               return handleBandwidthModeUpdate(currentState);
 
       // End Call Actions
       case ACTION_ENDED_REMOTE_HANGUP:
@@ -595,6 +601,21 @@ public abstract class WebRtcActionProcessor {
 
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted not processed");
+    return currentState;
+  }
+
+  public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
+    Log.i(tag, "handleNetworkChanged not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleBandwidthModeUpdate(@NonNull WebRtcServiceState currentState) {
+    try {
+      webRtcInteractor.getCallManager().setLowBandwidthMode(NetworkUtil.useLowBandwidthCalling(context));
+    } catch (CallException e) {
+      Log.i(tag, "handleBandwidthModeUpdate: could not update bandwidth mode.");
+    }
+
     return currentState;
   }
 

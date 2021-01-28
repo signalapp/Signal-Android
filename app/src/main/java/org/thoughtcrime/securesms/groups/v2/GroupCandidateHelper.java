@@ -51,19 +51,26 @@ public final class GroupCandidateHelper {
       throw new AssertionError("Non UUID members should have need detected by now");
     }
 
-    Optional<ProfileKeyCredential> profileKeyCredential = ProfileKeyUtil.profileKeyCredentialOptional(recipient.getProfileKeyCredential());
+    Optional<ProfileKeyCredential> profileKeyCredential = Optional.fromNullable(recipient.getProfileKeyCredential());
     GroupCandidate                 candidate            = new GroupCandidate(uuid, profileKeyCredential);
 
     if (!candidate.hasProfileKeyCredential()) {
       ProfileKey profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
       if (profileKey != null) {
+        Log.i(TAG, String.format("No profile key credential on recipient %s, fetching", recipient.getId()));
+
         Optional<ProfileKeyCredential> profileKeyCredentialOptional = signalServiceAccountManager.resolveProfileKeyCredential(uuid, profileKey);
 
         if (profileKeyCredentialOptional.isPresent()) {
-          candidate = candidate.withProfileKeyCredential(profileKeyCredentialOptional.get());
+          boolean updatedProfileKey = recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());
 
-          recipientDatabase.setProfileKeyCredential(recipient.getId(), profileKey, profileKeyCredentialOptional.get());
+          if (!updatedProfileKey) {
+            Log.w(TAG, String.format("Failed to update the profile key credential on recipient %s", recipient.getId()));
+          } else {
+            Log.i(TAG, String.format("Got new profile key credential for recipient %s", recipient.getId()));
+            candidate = candidate.withProfileKeyCredential(profileKeyCredentialOptional.get());
+          }
         }
       }
     }

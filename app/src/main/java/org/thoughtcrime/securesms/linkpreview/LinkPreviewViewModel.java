@@ -75,8 +75,8 @@ public class LinkPreviewViewModel extends ViewModel {
         return;
       }
 
-      List<Link>     links = LinkPreviewUtil.findValidPreviewUrls(text);
-      Optional<Link> link  = links.isEmpty() ? Optional.absent() : Optional.of(links.get(0));
+      Optional<Link> link = LinkPreviewUtil.findValidPreviewUrls(text)
+                                           .findFirst();
 
       if (link.isPresent() && link.get().getUrl().equals(activeUrl)) {
         return;

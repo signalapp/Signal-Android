@@ -29,7 +29,7 @@ public final class PinRestoreActivity extends AppCompatActivity {
   }
 
   void navigateToPinCreation() {
-    final Intent main      = new Intent(this, MainActivity.class);
+    final Intent main      = MainActivity.clearTop(this);
     final Intent createPin = CreateKbsPinActivity.getIntentForPinCreate(this);
     final Intent chained   = PassphraseRequiredActivity.chainIntent(createPin, main);
 

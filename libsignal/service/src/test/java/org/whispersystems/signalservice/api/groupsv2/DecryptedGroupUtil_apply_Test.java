@@ -83,6 +83,54 @@ public final class DecryptedGroupUtil_apply_Test {
   }
 
   @Test
+  public void apply_new_member_already_in_the_group() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedMember member1 = member(UUID.randomUUID());
+    DecryptedMember member2 = member(UUID.randomUUID());
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .addMembers(member2)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addNewMembers(member2)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .addMembers(member2)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
+  public void apply_new_member_already_in_the_group_by_uuid() throws NotAbleToApplyGroupV2ChangeException {
+    DecryptedMember member1     = member(UUID.randomUUID());
+    UUID            member2Uuid = UUID.randomUUID();
+    DecryptedMember member2a    = member(member2Uuid, newProfileKey());
+    DecryptedMember member2b    = member(member2Uuid, newProfileKey());
+
+    DecryptedGroup newGroup = DecryptedGroupUtil.apply(DecryptedGroup.newBuilder()
+                                                                     .setRevision(10)
+                                                                     .addMembers(member1)
+                                                                     .addMembers(member2a)
+                                                                     .build(),
+                                                       DecryptedGroupChange.newBuilder()
+                                                                           .setRevision(11)
+                                                                           .addNewMembers(member2b)
+                                                                           .build());
+
+    assertEquals(DecryptedGroup.newBuilder()
+                               .setRevision(11)
+                               .addMembers(member1)
+                               .addMembers(member2b)
+                               .build(),
+                 newGroup);
+  }
+
+  @Test
   public void apply_remove_member() throws NotAbleToApplyGroupV2ChangeException {
     DecryptedMember member1 = member(UUID.randomUUID());
     DecryptedMember member2 = member(UUID.randomUUID());

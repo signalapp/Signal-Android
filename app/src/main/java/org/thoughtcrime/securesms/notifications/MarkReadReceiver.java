@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -45,24 +45,19 @@ public class MarkReadReceiver extends BroadcastReceiver {
     if (threadIds != null) {
       NotificationCancellationHelper.cancelLegacy(context, intent.getIntExtra(NOTIFICATION_ID_EXTRA, -1));
 
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
+      SignalExecutors.BOUNDED.execute(() -> {
+        List<MarkedMessageInfo> messageIdsCollection = new LinkedList<>();
 
-          for (long threadId : threadIds) {
-            Log.i(TAG, "Marking as read: " + threadId);
-            List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
-            messageIdsCollection.addAll(messageIds);
-          }
-
-          process(context, messageIdsCollection);
-
-          ApplicationDependencies.getMessageNotifier().updateNotification(context);
-
-          return null;
+        for (long threadId : threadIds) {
+          Log.i(TAG, "Marking as read: " + threadId);
+          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+          messageIdsCollection.addAll(messageIds);
         }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+        process(context, messageIdsCollection);
+
+        ApplicationDependencies.getMessageNotifier().updateNotification(context);
+      });
     }
   }
 

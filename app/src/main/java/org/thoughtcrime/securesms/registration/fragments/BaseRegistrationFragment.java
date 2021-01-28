@@ -4,26 +4,37 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.dd.CircularProgressButton;
 
+import org.signal.core.util.TranslationDetection;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.SpanUtil;
+
+import java.util.Locale;
 
 import static org.thoughtcrime.securesms.registration.RegistrationNavigationActivity.RE_REGISTRATION_EXTRA;
 
 abstract class BaseRegistrationFragment extends LoggingFragment {
+
+  private static final String TAG = Log.tag(BaseRegistrationFragment.class);
 
   private RegistrationViewModel model;
 
@@ -103,5 +114,46 @@ abstract class BaseRegistrationFragment extends LoggingFragment {
         }
       }
     });
+  }
+
+  /**
+   * Presents a prompt for the user to confirm their number as long as it can be shown in one of their device languages.
+   */
+  protected final void showConfirmNumberDialogIfTranslated(@NonNull Context context,
+                                                           @StringRes int firstMessageLine,
+                                                           @NonNull String e164number,
+                                                           @NonNull Runnable onConfirmed,
+                                                           @NonNull Runnable onEditNumber)
+  {
+    TranslationDetection translationDetection = new TranslationDetection(context);
+
+    if (translationDetection.textExistsInUsersLanguage(firstMessageLine) &&
+        translationDetection.textExistsInUsersLanguage(R.string.RegistrationActivity_is_your_phone_number_above_correct) &&
+        translationDetection.textExistsInUsersLanguage(R.string.RegistrationActivity_edit_number))
+    {
+      CharSequence message = new SpannableStringBuilder().append(context.getString(firstMessageLine))
+                                                         .append("\n\n")
+                                                         .append(SpanUtil.bold(PhoneNumberFormatter.prettyPrint(e164number)))
+                                                         .append("\n\n")
+                                                         .append(context.getString(R.string.RegistrationActivity_is_your_phone_number_above_correct));
+
+      Log.i(TAG, "Showing confirm number dialog (" + context.getString(firstMessageLine) + ")");
+      new AlertDialog.Builder(context)
+                     .setMessage(message)
+                     .setPositiveButton(android.R.string.ok,
+                                        (a, b) -> {
+                                          Log.i(TAG, "Number confirmed");
+                                          onConfirmed.run();
+                                        })
+                     .setNegativeButton(R.string.RegistrationActivity_edit_number,
+                                        (a, b) -> {
+                                          Log.i(TAG, "User requested edit number from confirm dialog");
+                                          onEditNumber.run();
+                                        })
+                     .show();
+    } else {
+     Log.i(TAG, "Confirm number dialog not translated in " + Locale.getDefault() + " skipping");
+     onConfirmed.run();
+    }
   }
 }

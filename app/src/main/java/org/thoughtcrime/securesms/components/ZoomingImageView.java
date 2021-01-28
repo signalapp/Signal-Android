@@ -3,14 +3,11 @@ package org.thoughtcrime.securesms.components;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.AttributeSet;
-import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
@@ -29,6 +26,8 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -83,32 +82,27 @@ public class ZoomingImageView extends FrameLayout {
 
     Log.i(TAG, "Max texture size: " + maxTextureSize);
 
-    new AsyncTask<Void, Void, Pair<Integer, Integer>>() {
-      @Override
-      protected @Nullable Pair<Integer, Integer> doInBackground(Void... params) {
-        if (MediaUtil.isGif(contentType)) return null;
+    SimpleTask.run(ViewUtil.getActivityLifecycle(this), () -> {
+      if (MediaUtil.isGif(contentType)) return null;
 
-        try {
-          InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
-          return BitmapUtil.getDimensions(inputStream);
-        } catch (IOException | BitmapDecodingException e) {
-          Log.w(TAG, e);
-          return null;
-        }
+      try {
+        InputStream inputStream = PartAuthority.getAttachmentStream(context, uri);
+        return BitmapUtil.getDimensions(inputStream);
+      } catch (IOException | BitmapDecodingException e) {
+        Log.w(TAG, e);
+        return null;
       }
+    }, dimensions -> {
+      Log.i(TAG, "Dimensions: " + (dimensions == null ? "(null)" : dimensions.first + ", " + dimensions.second));
 
-      protected void onPostExecute(@Nullable Pair<Integer, Integer> dimensions) {
-        Log.i(TAG, "Dimensions: " + (dimensions == null ? "(null)" : dimensions.first + ", " + dimensions.second));
-
-        if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
-          Log.i(TAG, "Loading in standard image view...");
-          setImageViewUri(glideRequests, uri);
-        } else {
-          Log.i(TAG, "Loading in subsampling image view...");
-          setSubsamplingImageViewUri(uri);
-        }
+      if (dimensions == null || (dimensions.first <= maxTextureSize && dimensions.second <= maxTextureSize)) {
+        Log.i(TAG, "Loading in standard image view...");
+        setImageViewUri(glideRequests, uri);
+      } else {
+        Log.i(TAG, "Loading in subsampling image view...");
+        setSubsamplingImageViewUri(uri);
       }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+    });
   }
 
   private void setImageViewUri(@NonNull GlideRequests glideRequests, @NonNull Uri uri) {

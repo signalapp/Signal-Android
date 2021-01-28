@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:key="media_download" android:title="@string/preferences_chats__media_auto_download">
-        <MultiSelectListPreference
-                android:title="@string/preferences_chats__when_using_mobile_data"
-                android:key="pref_media_download_mobile"
-                android:defaultValue="@array/pref_media_download_mobile_data_default"
-                android:persistent="true"
-                android:entries="@array/pref_media_download_values"
-                android:entryValues="@array/pref_media_download_entries" />
-
-        <MultiSelectListPreference
-                android:title="@string/preferences_chats__when_using_wifi"
-                android:key="pref_media_download_wifi"
-                android:defaultValue="@array/pref_media_download_wifi_default"
-                android:persistent="true"
-                android:entries="@array/pref_media_download_values"
-                android:entryValues="@array/pref_media_download_entries" />
-
-        <MultiSelectListPreference
-                android:title="@string/preferences_chats__when_roaming"
-                android:key="pref_media_download_roaming"
-                android:defaultValue="@array/pref_media_download_roaming_default"
-                android:persistent="true"
-                android:entries="@array/pref_media_download_values"
-                android:entryValues="@array/pref_media_download_entries" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:layout="@layout/preference_divider"/>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory android:title="@string/preferences_chats__chats">
         <org.thoughtcrime.securesms.preferences.widgets.SignalListPreference
@@ -56,6 +29,12 @@
                 android:key="pref_enter_sends"
                 android:summary="@string/preferences__pressing_the_enter_key_will_send_text_messages"
                 android:title="@string/preferences__pref_enter_sends_title"/>
+
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="pref_system_contact_photos"
+            android:summary="@string/preferences__display_contact_photos_from_your_address_book_if_available"
+            android:title="@string/preferences__pref_use_address_book_photos"/>
 
     </PreferenceCategory>
 

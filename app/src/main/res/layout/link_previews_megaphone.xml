@@ -5,87 +5,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="14dp"
     android:clipChildren="false"
     android:clipToPadding="false"
+    android:paddingBottom="14dp"
     tools:parentTag="android.widget.FrameLayout">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <androidx.cardview.widget.CardView
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:paddingTop="16dp"
-      android:paddingStart="8dp"
-      android:paddingEnd="8dp"
-      android:paddingBottom="8dp"
-      android:background="@color/signal_background_secondary"
-      android:clickable="true">
+      android:layout_margin="8dp"
+      android:clipChildren="false"
+      android:clipToPadding="false"
+      app:cardBackgroundColor="@color/megaphone_background_color"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="6dp"
+      app:cardPreventCornerOverlap="false"
+      app:cardUseCompatPadding="true"
+      app:contentPadding="0dp">
 
-    <ImageView
-        android:id="@+id/linkpreview_megaphone_image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:scaleType="centerInside"
-        app:srcCompat="@drawable/ic_megaphone_link_previews"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/linkpreview_megaphone_title"
-        style="@style/Signal.Text.Body"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/LinkPreviewsMegaphone_preview_any_link"
-        app:layout_constraintStart_toEndOf="@id/linkpreview_megaphone_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/linkpreview_megaphone_image" />
+        android:clickable="true"
+        android:paddingStart="8dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-        android:id="@+id/linkpreview_megaphone_body"
-        style="@style/Signal.Text.Preview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:textColor="@color/megaphone_body_text_color"
-        android:text="@string/LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website"
-        app:layout_constraintStart_toStartOf="@id/linkpreview_megaphone_title"
-        app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_title"
-        app:layout_constraintEnd_toEndOf="parent" />
+      <ImageView
+          android:id="@+id/linkpreview_megaphone_image"
+          android:layout_width="64dp"
+          android:layout_height="64dp"
+          android:layout_marginStart="8dp"
+          android:scaleType="centerInside"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/ic_megaphone_link_previews" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/linkpreview_megaphone_content_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="linkpreview_megaphone_image,linkpreview_megaphone_body,linkpreview_megaphone_title"/>
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/linkpreview_megaphone_title"
+          style="@style/Signal.Text.Body"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="12dp"
+          android:layout_marginEnd="8dp"
+          android:fontFamily="sans-serif-medium"
+          android:text="@string/LinkPreviewsMegaphone_preview_any_link"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/linkpreview_megaphone_image"
+          app:layout_constraintTop_toTopOf="@id/linkpreview_megaphone_image" />
 
-    <Button
-        android:id="@+id/linkpreview_megaphone_ok"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        style="@style/Button.Borderless"
-        android:text="@string/ok"
-        app:layout_constraintStart_toEndOf="@id/linkpreview_megaphone_disable"
-        app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_content_barrier"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible"/>
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/linkpreview_megaphone_body"
+          style="@style/Signal.Text.Preview"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:text="@string/LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website"
+          android:textColor="@color/megaphone_body_text_color"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="@id/linkpreview_megaphone_title"
+          app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_title" />
 
-    <Button
-        android:id="@+id/linkpreview_megaphone_disable"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/LinkPreviewsMegaphone_disable"
-        style="@style/Button.Borderless"
-        app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_content_barrier"
-        app:layout_constraintEnd_toStartOf="@id/linkpreview_megaphone_ok"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible"/>
+      <androidx.constraintlayout.widget.Barrier
+          android:id="@+id/linkpreview_megaphone_content_barrier"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:barrierDirection="bottom"
+          app:constraint_referenced_ids="linkpreview_megaphone_image,linkpreview_megaphone_body,linkpreview_megaphone_title" />
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+      <Button
+          android:id="@+id/linkpreview_megaphone_ok"
+          style="@style/Button.Borderless"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          android:text="@string/ok"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/linkpreview_megaphone_disable"
+          app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_content_barrier"
+          tools:visibility="visible" />
+
+      <Button
+          android:id="@+id/linkpreview_megaphone_disable"
+          style="@style/Button.Borderless"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="4dp"
+          android:text="@string/LinkPreviewsMegaphone_disable"
+          app:layout_constraintEnd_toStartOf="@id/linkpreview_megaphone_ok"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/linkpreview_megaphone_content_barrier"
+          tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.cardview.widget.CardView>
 
 </merge>

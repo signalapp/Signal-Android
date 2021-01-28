@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolde
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -97,7 +98,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       super(itemView);
     }
 
-    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible);
+    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkboxVisible);
     public abstract void unbind(@NonNull GlideRequests glideRequests);
     public abstract void setChecked(boolean checked);
     public abstract void setEnabled(boolean enabled);
@@ -117,8 +118,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return (ContactSelectionListItem) itemView;
     }
 
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkBoxVisible) {
-      getView().set(glideRequests, recipientId, type, name, number, label, color, checkBoxVisible);
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkBoxVisible) {
+      getView().set(glideRequests, recipientId, type, name, number, label, about, color, checkBoxVisible);
     }
 
     @Override
@@ -147,7 +148,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
 
     @Override
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible) {
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, int color, boolean checkboxVisible) {
       this.label.setText(name);
     }
 
@@ -204,23 +205,25 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    String      rawId       = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+    String      rawId       = CursorUtil.requireString(cursor, ContactRepository.ID_COLUMN);
     RecipientId id          = rawId != null ? RecipientId.from(rawId) : null;
-    int         contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.CONTACT_TYPE_COLUMN));
-    String      name        = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NAME_COLUMN  ));
-    String      number      = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN));
-    int         numberType  = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN ));
-    String      label       = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.LABEL_COLUMN ));
+    int         contactType = CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN);
+    String      name        = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
+    String      number      = CursorUtil.requireString(cursor, ContactRepository.NUMBER_COLUMN);
+    int         numberType  = CursorUtil.requireInt(cursor, ContactRepository.NUMBER_TYPE_COLUMN);
+    String      about       = CursorUtil.requireString(cursor, ContactRepository.ABOUT_COLUMN);
+    String      label       = CursorUtil.requireString(cursor, ContactRepository.LABEL_COLUMN);
     String      labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getContext().getResources(),
                                                                                   numberType, label).toString();
+    boolean     isPush      = (contactType & ContactRepository.PUSH_TYPE) > 0;
 
-    int color = (contactType == ContactRepository.PUSH_TYPE) ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
-                                                             : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
+    int color = isPush ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
+                       : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
 
     boolean currentContact = currentContacts.contains(id);
 
     viewHolder.unbind(glideRequests);
-    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, color, multiSelect || currentContact);
+    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, about, color, multiSelect || currentContact);
     viewHolder.setEnabled(true);
 
     if (currentContact) {
@@ -239,10 +242,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       throw new AssertionError();
     }
 
-    String      rawId      = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+    String      rawId      = CursorUtil.requireString(cursor, ContactRepository.ID_COLUMN);
     RecipientId id         = rawId != null ? RecipientId.from(rawId) : null;
-    int         numberType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN));
-    String      number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN));
+    int         numberType = CursorUtil.requireInt(cursor, ContactRepository.NUMBER_TYPE_COLUMN);
+    String      number     = CursorUtil.requireString(cursor, ContactRepository.NUMBER_COLUMN);
 
     viewHolder.setEnabled(true);
 
@@ -258,7 +261,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.CONTACT_TYPE_COLUMN)) == ContactRepository.DIVIDER_TYPE) {
+    if (CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN) == ContactRepository.DIVIDER_TYPE) {
       return VIEW_TYPE_DIVIDER;
     } else {
       return VIEW_TYPE_CONTACT;
@@ -266,12 +269,12 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   }
 
   @Override
-  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.contact_selection_recyclerview_header, parent, false));
   }
 
   @Override
-  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position) {
+  public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int position, int type) {
     ((TextView)viewHolder.itemView).setText(getSpannedHeaderString(position));
   }
 
@@ -312,12 +315,12 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private @NonNull String getHeaderString(int position) {
     int contactType = getContactType(position);
 
-    if (contactType == ContactRepository.RECENT_TYPE || contactType == ContactRepository.DIVIDER_TYPE) {
+    if ((contactType & ContactRepository.RECENT_TYPE) > 0 || contactType == ContactRepository.DIVIDER_TYPE) {
       return " ";
     }
 
     Cursor cursor = getCursorAtPositionOrThrow(position);
-    String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NAME_COLUMN));
+    String letter = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
 
     if (letter != null) {
       letter = letter.trim();

@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
-class EditSelfProfileRepository implements EditProfileRepository {
+public class EditSelfProfileRepository implements EditProfileRepository {
 
   private static final String TAG = Log.tag(EditSelfProfileRepository.class);
 

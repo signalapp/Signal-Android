@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.support.v4.media.MediaBrowserCompat;
@@ -208,17 +209,20 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   private static class ProgressEventHandler extends Handler {
 
-    private final MediaControllerCompat                    mediaController;
-    private final MutableLiveData<VoiceNotePlaybackState>  voiceNotePlaybackState;
+    private final MediaControllerCompat                   mediaController;
+    private final MutableLiveData<VoiceNotePlaybackState> voiceNotePlaybackState;
 
     private ProgressEventHandler(@NonNull MediaControllerCompat mediaController,
-                                 @NonNull MutableLiveData<VoiceNotePlaybackState> voiceNotePlaybackState) {
+                                 @NonNull MutableLiveData<VoiceNotePlaybackState> voiceNotePlaybackState)
+    {
+      super(Looper.getMainLooper());
+
       this.mediaController        = mediaController;
       this.voiceNotePlaybackState = voiceNotePlaybackState;
     }
 
     @Override
-    public void handleMessage(Message msg) {
+    public void handleMessage(@NonNull Message msg) {
       MediaMetadataCompat mediaMetadataCompat = mediaController.getMetadata();
       if (isPlayerActive(mediaController.getPlaybackState()) &&
           mediaMetadataCompat != null                        &&

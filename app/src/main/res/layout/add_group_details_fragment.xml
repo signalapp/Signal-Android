@@ -33,7 +33,6 @@
         android:background="@null"
         android:hint="@string/AddGroupDetailsFragment__group_name_required"
         android:inputType="text"
-        android:maxLength="34"
         android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="@id/group_avatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,6 +105,19 @@
         android:textColor="@color/signal_text_secondary"
         app:layout_constraintTop_toBottomOf="@id/gv2_warning"
         app:layout_goneMarginTop="30dp" />
+
+    <TextView
+        android:id="@+id/add_later"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/member_list_header" />
 
     <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
         android:id="@+id/member_list"

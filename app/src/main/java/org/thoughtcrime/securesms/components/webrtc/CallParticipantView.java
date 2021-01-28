@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
@@ -49,6 +50,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private RecipientId recipientId;
   private boolean     infoMode;
+  private Runnable    missingMediaKeysUpdater;
 
   private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
@@ -77,6 +79,7 @@ public class CallParticipantView extends ConstraintLayout {
   @Override
   protected void onFinishInflate() {
     super.onFinishInflate();
+
     backgroundAvatar = findViewById(R.id.call_participant_background_avatar);
     avatar           = findViewById(R.id.call_participant_item_avatar);
     pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
@@ -102,7 +105,7 @@ public class CallParticipantView extends ConstraintLayout {
   void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();
-    infoMode    = participant.getRecipient().isBlocked() || (!participant.isMediaKeysReceived() && (System.currentTimeMillis() - participant.getAddedToCallTime()) > DELAY_SHOWING_MISSING_MEDIA_KEYS);
+    infoMode    = participant.getRecipient().isBlocked() || isMissingMediaKeys(participant);
 
     if (infoMode) {
       renderer.setVisibility(View.GONE);
@@ -147,6 +150,28 @@ public class CallParticipantView extends ConstraintLayout {
       setPipAvatar(participant.getRecipient());
       contactPhoto = participant.getRecipient().getContactPhoto();
     }
+  }
+
+  private boolean isMissingMediaKeys(@NonNull CallParticipant participant) {
+    if (missingMediaKeysUpdater != null) {
+      Util.cancelRunnableOnMain(missingMediaKeysUpdater);
+      missingMediaKeysUpdater = null;
+    }
+
+    if (!participant.isMediaKeysReceived()) {
+      long time = System.currentTimeMillis() - participant.getAddedToCallTime();
+      if (time > DELAY_SHOWING_MISSING_MEDIA_KEYS) {
+        return true;
+      } else {
+        missingMediaKeysUpdater = () -> {
+          if (recipientId.equals(participant.getRecipient().getId())) {
+            setCallParticipant(participant);
+          }
+        };
+        Util.runOnMainDelayed(missingMediaKeysUpdater, DELAY_SHOWING_MISSING_MEDIA_KEYS - time);
+      }
+    }
+    return false;
   }
 
   void setRenderInPip(boolean shouldRenderInPip) {

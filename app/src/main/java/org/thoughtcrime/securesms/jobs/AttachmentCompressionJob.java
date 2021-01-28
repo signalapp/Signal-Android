@@ -5,12 +5,18 @@ import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.exoplayer2.util.MimeTypes;
+
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.crypto.AttachmentSecret;
+import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
+import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
+import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -26,15 +32,22 @@ import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
-import org.thoughtcrime.securesms.video.VideoSizeException;
+import org.thoughtcrime.securesms.video.StreamingTranscoder;
+import org.thoughtcrime.securesms.video.TranscoderCancelationSignal;
+import org.thoughtcrime.securesms.video.TranscoderOptions;
 import org.thoughtcrime.securesms.video.VideoSourceException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public final class AttachmentCompressionJob extends BaseJob {
@@ -105,6 +118,11 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
+  protected boolean shouldTrace() {
+    return true;
+  }
+
+  @Override
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 
@@ -172,7 +190,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                                               @NonNull DatabaseAttachment attachment,
                                                                               @NonNull MediaConstraints constraints,
                                                                               @NonNull EventBus eventBus,
-                                                                              @NonNull InMemoryTranscoder.CancelationSignal cancelationSignal)
+                                                                              @NonNull TranscoderCancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
     AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
@@ -191,34 +209,73 @@ public final class AttachmentCompressionJob extends BaseJob {
       notification.setIndeterminateProgress();
 
       try (MediaDataSource dataSource = attachmentDatabase.mediaDataSourceFor(attachment.getAttachmentId())) {
-
         if (dataSource == null) {
           throw new UndeliverableMessageException("Cannot get media data source for attachment.");
         }
 
         allowSkipOnFailure = !transformProperties.isVideoEdited();
-        InMemoryTranscoder.Options options = null;
+        TranscoderOptions options = null;
         if (transformProperties.isVideoTrim()) {
-          options = new InMemoryTranscoder.Options(transformProperties.getVideoTrimStartTimeUs(), transformProperties.getVideoTrimEndTimeUs());
+          options = new TranscoderOptions(transformProperties.getVideoTrimStartTimeUs(), transformProperties.getVideoTrimEndTimeUs());
         }
 
-        try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, options, constraints.getCompressedVideoMaxSize(context))) {
-          if (transcoder.isTranscodeRequired()) {
-            MediaStream mediaStream = transcoder.transcode(percent -> {
-              notification.setProgress(100, percent);
-              eventBus.postSticky(new PartProgressEvent(attachment,
-                                                        PartProgressEvent.Type.COMPRESSION,
-                                                        100,
-                                                        percent));
-            }, cancelationSignal);
+        if (FeatureFlags.useStreamingVideoMuxer() || !MemoryFileDescriptor.supported()) {
+          StreamingTranscoder transcoder = new StreamingTranscoder(dataSource, options, constraints.getCompressedVideoMaxSize(context));
 
-            attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
-            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
-            DatabaseAttachment updatedAttachment = attachmentDatabase.getAttachment(attachment.getAttachmentId());
-            if (updatedAttachment == null) {
-              throw new AssertionError();
+          if (transcoder.isTranscodeRequired()) {
+            Log.i(TAG, "Compressing with streaming muxer");
+            AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
+
+            File file = DatabaseFactory.getAttachmentDatabase(context)
+                                       .newFile();
+            file.deleteOnExit();
+
+            try {
+              try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
+                transcoder.transcode(percent -> {
+                  notification.setProgress(100, percent);
+                  eventBus.postSticky(new PartProgressEvent(attachment,
+                                                            PartProgressEvent.Type.COMPRESSION,
+                                                            100,
+                                                            percent));
+                }, outputStream, cancelationSignal);
+              }
+
+              MediaStream mediaStream = new MediaStream(ModernDecryptingPartInputStream.createFor(attachmentSecret, file, 0), MimeTypes.VIDEO_MP4, 0, 0);
+              attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
+            } finally {
+              if (!file.delete()) {
+                Log.w(TAG, "Failed to delete temp file");
+              }
             }
-            return updatedAttachment;
+
+            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
+
+            return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
+          } else {
+            Log.i(TAG, "Transcode was not required");
+          }
+        } else {
+          try (InMemoryTranscoder transcoder = new InMemoryTranscoder(context, dataSource, options, constraints.getCompressedVideoMaxSize(context))) {
+            if (transcoder.isTranscodeRequired()) {
+              Log.i(TAG, "Compressing with android in-memory muxer");
+
+              MediaStream mediaStream = transcoder.transcode(percent -> {
+                notification.setProgress(100, percent);
+                eventBus.postSticky(new PartProgressEvent(attachment,
+                                                          PartProgressEvent.Type.COMPRESSION,
+                                                          100,
+                                                          percent));
+              }, cancelationSignal);
+
+              attachmentDatabase.updateAttachmentData(attachment, mediaStream, transformProperties.isVideoEdited());
+
+              attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
+
+              return Objects.requireNonNull(attachmentDatabase.getAttachment(attachment.getAttachmentId()));
+            } else {
+              Log.i(TAG, "Transcode was not required (in-memory transcoder)");
+            }
           }
         }
       }
@@ -232,7 +289,7 @@ public final class AttachmentCompressionJob extends BaseJob {
           throw new UndeliverableMessageException("Failed to transcode and cannot skip due to editing", e);
         }
       }
-    } catch (IOException | MmsException | VideoSizeException e) {
+    } catch (IOException | MmsException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
     }
     return attachment;

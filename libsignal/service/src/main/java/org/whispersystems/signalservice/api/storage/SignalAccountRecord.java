@@ -24,17 +24,19 @@ public final class SignalAccountRecord implements SignalRecord {
   private final Optional<String>         avatarUrlPath;
   private final Optional<byte[]>         profileKey;
   private final List<PinnedConversation> pinnedConversations;
+  private final boolean                  preferContactAvatars;
 
   public SignalAccountRecord(StorageId id, AccountRecord proto) {
     this.id               = id;
     this.proto            = proto;
     this.hasUnknownFields = ProtoUtil.hasUnknownFields(proto);
 
-    this.givenName           = OptionalUtil.absentIfEmpty(proto.getGivenName());
-    this.familyName          = OptionalUtil.absentIfEmpty(proto.getFamilyName());
-    this.profileKey          = OptionalUtil.absentIfEmpty(proto.getProfileKey());
-    this.avatarUrlPath       = OptionalUtil.absentIfEmpty(proto.getAvatarUrlPath());
-    this.pinnedConversations = new ArrayList<>(proto.getPinnedConversationsCount());
+    this.givenName            = OptionalUtil.absentIfEmpty(proto.getGivenName());
+    this.familyName           = OptionalUtil.absentIfEmpty(proto.getFamilyName());
+    this.profileKey           = OptionalUtil.absentIfEmpty(proto.getProfileKey());
+    this.avatarUrlPath        = OptionalUtil.absentIfEmpty(proto.getAvatarUrlPath());
+    this.pinnedConversations  = new ArrayList<>(proto.getPinnedConversationsCount());
+    this.preferContactAvatars = proto.getPreferContactAvatars();
 
     for (AccountRecord.PinnedConversation conversation : proto.getPinnedConversationsList()) {
       pinnedConversations.add(PinnedConversation.fromRemote(conversation));
@@ -104,6 +106,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public List<PinnedConversation> getPinnedConversations() {
     return pinnedConversations;
+  }
+
+  public boolean isPreferContactAvatars() {
+    return preferContactAvatars;
   }
 
   AccountRecord toProto() {
@@ -296,6 +302,12 @@ public final class SignalAccountRecord implements SignalRecord {
       for (PinnedConversation pinned : pinnedConversations) {
         builder.addPinnedConversations(pinned.toRemote());
       }
+
+      return this;
+    }
+
+    public Builder setPreferContactAvatars(boolean preferContactAvatars) {
+      builder.setPreferContactAvatars(preferContactAvatars);
 
       return this;
     }

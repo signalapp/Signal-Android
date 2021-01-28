@@ -10,12 +10,10 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.Cursor;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
 
 /**
  * Contains all databases necessary for full-text search (FTS).
  */
-@Trace
 public class SearchDatabase extends Database {
 
   public static final String SMS_FTS_TABLE_NAME = "sms_fts";

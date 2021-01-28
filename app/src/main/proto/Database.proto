@@ -77,3 +77,41 @@ message GroupCallUpdateDetails {
     repeated string inCallUuids          = 4;
              bool   isCallFull           = 5;
 }
+
+message ProfileKeyCredentialColumnData {
+    bytes profileKey           = 1;
+    bytes profileKeyCredential = 2;
+}
+
+message DeviceLastResetTime {
+    message Pair {
+        int32 deviceId      = 1;
+        int64 lastResetTime = 2;
+    }
+
+    repeated Pair resetTime = 1;
+}
+
+message Wallpaper {
+    message SingleColor {
+        int32 color = 1;
+    }
+
+    message LinearGradient {
+                 float rotation  = 1;
+        repeated int32 colors    = 2;
+        repeated float positions = 3;
+    }
+
+    message File {
+        string uri = 1;
+    }
+
+    oneof wallpaper {
+        SingleColor    singleColor    = 1;
+        LinearGradient linearGradient = 2;
+        File           file           = 3;
+    }
+
+    float dimLevelInDarkTheme = 4;
+}

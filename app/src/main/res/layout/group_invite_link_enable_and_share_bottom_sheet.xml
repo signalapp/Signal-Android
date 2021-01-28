@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <TextView
+        android:id="@+id/group_link_enable_and_share_title"
+        style="@style/TextAppearance.Signal.Title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/group_link_enable_and_share_explain"
+        style="@style/TextAppearance.Signal.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group"
+        android:textAlignment="center"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_title" />
+
+    <LinearLayout
+        android:id="@+id/group_link_enable_and_share_approve_new_members_row"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/group_link_admin_approval_border"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_explain">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/ShareableGroupLinkDialogFragment__approve_new_members"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/text_color_primary_enabled_selector" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/group_link_enable_and_share_approve_new_members_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@id/shareable_group_link_enable_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/shareable_group_link_enable_label"
+            app:layout_constraintTop_toTopOf="@id/shareable_group_link_enable_label" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/group_link_enable_and_share_approve_new_members_row2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="?selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_approve_new_members_row">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_vertical|start"
+            android:text="@string/ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/text_color_secondary_enabled_selector" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/group_link_enable_and_share_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_approve_new_members_row2"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/group_link_share_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_approve_new_members_row2" />
+
+    <Button
+        android:id="@+id/group_link_enable_and_share_cancel_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@android:string/cancel"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_link_enable_and_share_button"
+        app:layout_constraintVertical_bias="0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

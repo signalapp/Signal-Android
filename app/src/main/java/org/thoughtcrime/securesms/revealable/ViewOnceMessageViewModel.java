@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.revealable;
 import android.app.Application;
 import android.database.ContentObserver;
 import android.net.Uri;
-import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -33,7 +32,7 @@ class ViewOnceMessageViewModel extends ViewModel {
     this.application = application;
     this.repository  = repository;
     this.message     = new MutableLiveData<>();
-    this.observer    = new ContentObserver(new Handler()) {
+    this.observer    = new ContentObserver(null) {
       @Override
       public void onChange(boolean selfChange) {
         repository.getMessage(messageId, optionalMessage -> onMessageRetrieved(optionalMessage));

@@ -30,7 +30,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setSmallIcon(R.drawable.ic_notification);
     setContentTitle(context.getString(R.string.app_name));
     // TODO [greyson] Navigation
-    setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0));
+    setContentIntent(PendingIntent.getActivity(context, 0, MainActivity.clearTop(context), 0));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setGroupSummary(true);
 

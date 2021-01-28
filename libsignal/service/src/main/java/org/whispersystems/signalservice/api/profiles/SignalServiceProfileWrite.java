@@ -12,6 +12,12 @@ public class SignalServiceProfileWrite {
   private byte[] name;
 
   @JsonProperty
+  private byte[] about;
+
+  @JsonProperty
+  private byte[] aboutEmoji;
+
+  @JsonProperty
   private boolean avatar;
 
   @JsonProperty
@@ -21,9 +27,11 @@ public class SignalServiceProfileWrite {
   public SignalServiceProfileWrite(){
   }
 
-  public SignalServiceProfileWrite(String version, byte[] name, boolean avatar, byte[] commitment) {
+  public SignalServiceProfileWrite(String version, byte[] name, byte[] about, byte[] aboutEmoji, boolean avatar, byte[] commitment) {
     this.version    = version;
     this.name       = name;
+    this.about      = about;
+    this.aboutEmoji = aboutEmoji;
     this.avatar     = avatar;
     this.commitment = commitment;
   }

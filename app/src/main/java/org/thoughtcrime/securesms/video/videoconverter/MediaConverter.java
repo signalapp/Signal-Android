@@ -30,11 +30,13 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.media.MediaInput;
+import org.thoughtcrime.securesms.video.videoconverter.muxer.StreamingMuxer;
 
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -83,6 +85,10 @@ public final class MediaConverter {
     @RequiresApi(26)
     public void setOutput(final @NonNull FileDescriptor fileDescriptor) {
         mOutput = new FileDescriptorOutput(fileDescriptor);
+    }
+
+    public void setOutput(final @NonNull OutputStream stream) {
+        mOutput = new StreamOutput(stream);
     }
 
     @SuppressWarnings("unused")
@@ -330,6 +336,20 @@ public final class MediaConverter {
         public @NonNull
         Muxer createMuxer() throws IOException {
             return new AndroidMuxer(fileDescriptor);
+        }
+    }
+
+     private static class StreamOutput implements Output {
+
+        final OutputStream outputStream;
+
+        StreamOutput(final @NonNull OutputStream outputStream) {
+            this.outputStream = outputStream;
+        }
+
+        @Override
+        public @NonNull Muxer createMuxer() {
+            return new StreamingMuxer(outputStream);
         }
     }
 }

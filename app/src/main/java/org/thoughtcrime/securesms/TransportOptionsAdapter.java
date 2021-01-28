@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.ViewUtil;
-
 import java.util.List;
 
 public class TransportOptionsAdapter extends BaseAdapter {
@@ -55,9 +53,9 @@ public class TransportOptionsAdapter extends BaseAdapter {
     }
 
     TransportOption transport   = (TransportOption) getItem(position);
-    ImageView       imageView   = ViewUtil.findById(convertView, R.id.icon);
-    TextView        textView    = ViewUtil.findById(convertView, R.id.text);
-    TextView        subtextView = ViewUtil.findById(convertView, R.id.subtext);
+    ImageView       imageView   = convertView.findViewById(R.id.icon);
+    TextView        textView    = convertView.findViewById(R.id.text);
+    TextView        subtextView = convertView.findViewById(R.id.subtext);
 
     imageView.getBackground().setColorFilter(transport.getBackgroundColor(), Mode.MULTIPLY);
     imageView.setImageResource(transport.getDrawable());

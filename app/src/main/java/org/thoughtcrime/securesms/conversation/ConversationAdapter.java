@@ -16,6 +16,8 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +25,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -42,6 +47,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -72,6 +78,10 @@ public class ConversationAdapter
 
   private static final String TAG = Log.tag(ConversationAdapter.class);
 
+  public static final int HEADER_TYPE_POPOVER_DATE = 1;
+  public static final int HEADER_TYPE_INLINE_DATE  = 2;
+  public static final int HEADER_TYPE_LAST_SEEN    = 3;
+
   private static final int MESSAGE_TYPE_OUTGOING_MULTIMEDIA = 0;
   private static final int MESSAGE_TYPE_OUTGOING_TEXT       = 1;
   private static final int MESSAGE_TYPE_INCOMING_MULTIMEDIA = 2;
@@ -101,6 +111,7 @@ public class ConversationAdapter
   private View                headerView;
   private View                footerView;
   private PagingController    pagingController;
+  private boolean             hasWallpaper;
 
   ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
@@ -131,6 +142,7 @@ public class ConversationAdapter
     this.releasedFastRecords = new HashSet<>();
     this.calendar            = Calendar.getInstance();
     this.digest              = getMessageDigestOrThrow();
+    this.hasWallpaper        = recipient.hasWallpaper();
 
     setHasStableIds(true);
   }
@@ -241,7 +253,8 @@ public class ConversationAdapter
                                                   selected,
                                                   recipient,
                                                   searchQuery,
-                                                  conversationMessage == recordToPulse);
+                                                  conversationMessage == recordToPulse,
+                                                  hasWallpaper);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -288,14 +301,36 @@ public class ConversationAdapter
   }
 
   @Override
-  public StickyHeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
+  public StickyHeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position, int type) {
     return new StickyHeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_item_header, parent, false));
   }
 
   @Override
-  public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position) {
+  public void onBindHeaderViewHolder(StickyHeaderViewHolder viewHolder, int position, int type) {
+    Context             context             = viewHolder.itemView.getContext();
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
+
     viewHolder.setText(DateUtils.getRelativeDate(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateReceived()));
+
+    if (type == HEADER_TYPE_POPOVER_DATE) {
+      if (hasWallpaper) {
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      } else {
+        viewHolder.setBackgroundRes(R.drawable.sticky_date_header_background);
+      }
+    } else if (type == HEADER_TYPE_INLINE_DATE) {
+      if (hasWallpaper) {
+        viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      } else {
+        viewHolder.clearBackground();
+      }
+    }
+
+    if (hasWallpaper && ThemeUtil.isDarkTheme(context)) {
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.core_grey_15));
+    } else {
+      viewHolder.setTextColor(ContextCompat.getColor(context, R.color.signal_text_secondary));
+    }
   }
 
   public @Nullable ConversationMessage getItem(int position) {
@@ -325,6 +360,14 @@ public class ConversationAdapter
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
     viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+
+    if (hasWallpaper) {
+      viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.transparent_black_80));
+    } else {
+      viewHolder.clearBackground();
+      viewHolder.setDividerColor(viewHolder.itemView.getResources().getColor(R.color.core_grey_45));
+    }
   }
 
   boolean hasNoConversationMessages() {
@@ -419,6 +462,21 @@ public class ConversationAdapter
   void onSearchQueryUpdated(String query) {
     this.searchQuery = query;
     notifyDataSetChanged();
+  }
+
+  /**
+   * Lets the adapter know that the wallpaper state has changed.
+   * @return True if the internal wallpaper state changed, otherwise false.
+   */
+  boolean onHasWallpaperChanged(boolean hasWallpaper) {
+    if (this.hasWallpaper != hasWallpaper) {
+      Log.d(TAG, "Resetting adapter due to wallpaper change.");
+      this.hasWallpaper = hasWallpaper;
+      notifyDataSetChanged();
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -549,10 +607,12 @@ public class ConversationAdapter
 
   static class StickyHeaderViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
+    View     divider;
 
     StickyHeaderViewHolder(View itemView) {
       super(itemView);
       textView = itemView.findViewById(R.id.text);
+      divider  = itemView.findViewById(R.id.last_seen_divider);
     }
 
     StickyHeaderViewHolder(TextView textView) {
@@ -562,6 +622,24 @@ public class ConversationAdapter
 
     public void setText(CharSequence text) {
       textView.setText(text);
+    }
+
+    public void setTextColor(@ColorInt int color) {
+      textView.setTextColor(color);
+    }
+
+    public void setBackgroundRes(@DrawableRes int resId) {
+      textView.setBackgroundResource(resId);
+    }
+
+    public void setDividerColor(@ColorInt int color) {
+      if (divider != null) {
+        divider.setBackgroundColor(color);
+      }
+    }
+
+    public void clearBackground() {
+      textView.setBackground(null);
     }
   }
 

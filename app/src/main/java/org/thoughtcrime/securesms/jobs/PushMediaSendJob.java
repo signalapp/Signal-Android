@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
@@ -42,6 +41,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Pr
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 
 import java.io.FileNotFoundException;
@@ -49,7 +49,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
-@Trace
 public class PushMediaSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";
@@ -130,7 +129,7 @@ public class PushMediaSendJob extends PushSendJob {
       boolean unidentified = deliver(message);
 
       database.markAsSent(messageId, true);
-      markAttachmentsUploaded(messageId, message.getAttachments());
+      markAttachmentsUploaded(messageId, message);
       database.markUnidentified(messageId, unidentified);
 
       if (recipient.isSelf()) {
@@ -237,6 +236,8 @@ public class PushMediaSendJob extends PushSendJob {
       throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
+      throw new UndeliverableMessageException(e);
+    } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     } catch (IOException e) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), e);

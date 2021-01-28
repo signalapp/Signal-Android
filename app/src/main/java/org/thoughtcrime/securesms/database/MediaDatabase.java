@@ -10,12 +10,10 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.List;
 
-@Trace
 public class MediaDatabase extends Database {
 
     public  static final int    ALL_THREADS         = -1;

@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -73,7 +72,6 @@ import java.util.concurrent.TimeoutException;
 /**
  * Manages all the stuff around determining if a user is registered or not.
  */
-@Trace
 public class DirectoryHelper {
 
   private static final String TAG = Log.tag(DirectoryHelper.class);
@@ -254,6 +252,8 @@ public class DirectoryHelper {
 
     stopwatch.split("handle-unlisted");
 
+    Set<RecipientId> preExistingRegisteredUsers = new HashSet<>(recipientDatabase.getRegistered());
+
     recipientDatabase.bulkUpdatedRegisteredStatus(uuidMap, inactiveIds);
 
     stopwatch.split("update-registered");
@@ -267,14 +267,13 @@ public class DirectoryHelper {
     }
 
     if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context) && notifyOfNewUsers) {
-      Set<RecipientId>  existingSignalIds = new HashSet<>(recipientDatabase.getRegistered());
-      Set<RecipientId>  existingSystemIds = new HashSet<>(recipientDatabase.getSystemContacts());
-      Set<RecipientId>  newlyActiveIds    = new HashSet<>(activeIds);
+      Set<RecipientId>  systemContacts                = new HashSet<>(recipientDatabase.getSystemContacts());
+      Set<RecipientId>  newlyRegisteredSystemContacts = new HashSet<>(activeIds);
 
-      newlyActiveIds.removeAll(existingSignalIds);
-      newlyActiveIds.retainAll(existingSystemIds);
+      newlyRegisteredSystemContacts.removeAll(preExistingRegisteredUsers);
+      newlyRegisteredSystemContacts.retainAll(systemContacts);
 
-      notifyNewUsers(context, newlyActiveIds);
+      notifyNewUsers(context, newlyRegisteredSystemContacts);
     } else {
       TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
     }
@@ -403,8 +402,11 @@ public class DirectoryHelper {
 
     for (RecipientId newUser: newUsers) {
       Recipient recipient = Recipient.resolved(newUser);
-      if (!SessionUtil.hasSession(context, recipient.getId()) && !recipient.isSelf()) {
-        IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
+      if (!SessionUtil.hasSession(context, recipient.getId()) &&
+          !recipient.isSelf()                                 &&
+          recipient.hasAUserSetDisplayName(context))
+      {
+        IncomingJoinedMessage  message      = new IncomingJoinedMessage(recipient.getId());
         Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
         if (insertResult.isPresent()) {

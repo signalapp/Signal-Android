@@ -66,7 +66,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
   public void onRun()
       throws IOException, GroupNotAMemberException, GroupChangeFailedException, GroupInsufficientRightsException, GroupChangeBusyException
   {
-    Log.i(TAG, "Updating profile key on group " + groupId);
+    Log.i(TAG, "Ensuring profile key up to date on group " + groupId);
     GroupManager.updateSelfProfileKeyInGroup(context, groupId);
   }
 

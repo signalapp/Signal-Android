@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.app.Application;
 import android.content.Context;
 import android.view.Choreographer;
 import android.view.Display;
@@ -23,7 +24,7 @@ public class FrameRateTracker {
 
   private static final int MAX_CONSECUTIVE_FRAME_LOGS = 10;
 
-  private final Context context;
+  private final Application context;
 
   private double refreshRate;
   private long   idealTimePerFrameNanos;
@@ -33,8 +34,8 @@ public class FrameRateTracker {
 
   private long consecutiveFrameWarnings;
 
-  public FrameRateTracker(@NonNull Context context) {
-    this.context = context;
+  public FrameRateTracker(@NonNull Application application) {
+    this.context = application;
 
     updateRefreshRate();
   }

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -21,19 +22,19 @@ import java.util.Set;
  */
 public final class CallParticipantListUpdate {
 
-  private final Set<Holder> added;
-  private final Set<Holder> removed;
+  private final Set<Wrapper> added;
+  private final Set<Wrapper> removed;
 
-  CallParticipantListUpdate(@NonNull Set<Holder> added, @NonNull Set<Holder> removed) {
+  CallParticipantListUpdate(@NonNull Set<Wrapper> added, @NonNull Set<Wrapper> removed) {
     this.added   = added;
     this.removed = removed;
   }
 
-  public @NonNull Set<Holder> getAdded() {
+  public @NonNull Set<Wrapper> getAdded() {
     return added;
   }
 
-  public @NonNull Set<Holder> getRemoved() {
+  public @NonNull Set<Wrapper> getRemoved() {
     return removed;
   }
 
@@ -68,66 +69,47 @@ public final class CallParticipantListUpdate {
   public static @NonNull CallParticipantListUpdate computeDeltaUpdate(@NonNull List<CallParticipant> oldList,
                                                                       @NonNull List<CallParticipant> newList)
   {
-    Set<CallParticipantId>                primaries       = getPrimaries(oldList, newList);
-    Set<CallParticipantListUpdate.Holder> oldParticipants = Stream.of(oldList)
+    Set<CallParticipantListUpdate.Wrapper> oldParticipants = Stream.of(oldList)
                                                                   .filter(p -> p.getCallParticipantId().getDemuxId() != CallParticipantId.DEFAULT_ID)
-                                                                  .map(p -> createHolder(p, primaries.contains(p.getCallParticipantId())))
+                                                                  .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
-    Set<CallParticipantListUpdate.Holder> newParticipants = Stream.of(newList)
+    Set<CallParticipantListUpdate.Wrapper> newParticipants = Stream.of(newList)
                                                                   .filter(p -> p.getCallParticipantId().getDemuxId() != CallParticipantId.DEFAULT_ID)
-                                                                  .map(p -> createHolder(p, primaries.contains(p.getCallParticipantId())))
+                                                                  .map(CallParticipantListUpdate::createWrapper)
                                                                   .collect(Collectors.toSet());
-    Set<CallParticipantListUpdate.Holder> added           = SetUtil.difference(newParticipants, oldParticipants);
-    Set<CallParticipantListUpdate.Holder> removed         = SetUtil.difference(oldParticipants, newParticipants);
+    Set<CallParticipantListUpdate.Wrapper> added           = SetUtil.difference(newParticipants, oldParticipants);
+    Set<CallParticipantListUpdate.Wrapper> removed         = SetUtil.difference(oldParticipants, newParticipants);
 
     return new CallParticipantListUpdate(added, removed);
   }
 
-  static Holder createHolder(@NonNull CallParticipant callParticipant, boolean isPrimary) {
-    return new Holder(callParticipant.getCallParticipantId(), callParticipant.getRecipient(), isPrimary);
+  @VisibleForTesting
+  static Wrapper createWrapper(@NonNull CallParticipant callParticipant) {
+    return new Wrapper(callParticipant);
   }
 
-  private static @NonNull Set<CallParticipantId> getPrimaries(@NonNull List<CallParticipant> oldList, @NonNull List<CallParticipant> newList) {
-    return Stream.concat(Stream.of(oldList), Stream.of(newList))
-                 .map(CallParticipant::getCallParticipantId)
-                 .distinctBy(CallParticipantId::getRecipientId)
-                 .collect(Collectors.toSet());
-  }
+  static final class Wrapper {
+    private final CallParticipant callParticipant;
 
-  static final class Holder {
-    private final CallParticipantId callParticipantId;
-    private final Recipient         recipient;
-    private final boolean           isPrimary;
-
-    private Holder(@NonNull CallParticipantId callParticipantId, @NonNull Recipient recipient, boolean isPrimary) {
-      this.callParticipantId = callParticipantId;
-      this.recipient         = recipient;
-      this.isPrimary         = isPrimary;
+    private Wrapper(@NonNull CallParticipant callParticipant) {
+      this.callParticipant = callParticipant;
     }
 
-    public @NonNull Recipient getRecipient() {
-      return recipient;
-    }
-
-    /**
-     * Denotes whether this was the first detected instance of this recipient when generating an update. See
-     * {@link CallParticipantListUpdate#computeDeltaUpdate(List, List)}
-     */
-    public boolean isPrimary() {
-      return isPrimary;
+    public @NonNull CallParticipant getCallParticipant() {
+      return callParticipant;
     }
 
     @Override
     public boolean equals(Object o) {
       if (this == o) return true;
       if (o == null || getClass() != o.getClass()) return false;
-      Holder holder = (Holder) o;
-      return callParticipantId.equals(holder.callParticipantId);
+      Wrapper wrapper = (Wrapper) o;
+      return callParticipant.getCallParticipantId().equals(wrapper.callParticipant.getCallParticipantId());
     }
 
     @Override
     public int hashCode() {
-      return Objects.hash(callParticipantId);
+      return Objects.hash(callParticipant.getCallParticipantId());
     }
   }
 }

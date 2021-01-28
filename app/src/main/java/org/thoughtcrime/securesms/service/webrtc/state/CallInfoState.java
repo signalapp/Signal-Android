@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.service.webrtc.state;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.OptionalLong;
+
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -35,7 +37,7 @@ public class CallInfoState {
   GroupCall                               groupCall;
   WebRtcViewModel.GroupCallState          groupState;
   Set<RecipientId>                        identityChangedRecipients;
-  long                                    remoteDevicesCount;
+  OptionalLong                            remoteDevicesCount;
   Long                                    participantLimit;
 
   public CallInfoState() {
@@ -48,7 +50,7 @@ public class CallInfoState {
          null,
          WebRtcViewModel.GroupCallState.IDLE,
          Collections.emptySet(),
-         0L,
+         OptionalLong.empty(),
          null);
   }
 
@@ -75,7 +77,7 @@ public class CallInfoState {
                        @Nullable GroupCall groupCall,
                        @NonNull WebRtcViewModel.GroupCallState groupState,
                        @NonNull Set<RecipientId> identityChangedRecipients,
-                       long remoteDevicesCount,
+                       @NonNull OptionalLong remoteDevicesCount,
                        @Nullable Long participantLimit)
   {
     this.callState                 = callState;
@@ -147,7 +149,7 @@ public class CallInfoState {
     return identityChangedRecipients;
   }
 
-  public long getRemoteDevicesCount() {
+  public OptionalLong getRemoteDevicesCount() {
     return remoteDevicesCount;
   }
 

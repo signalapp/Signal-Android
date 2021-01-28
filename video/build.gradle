@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'witness'
+apply from: 'witness-verifications.gradle'
+
+android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion MINIMUM_SDK
+        targetSdkVersion TARGET_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+}
+
+dependencyVerification {
+    configuration = '(debug|release)RuntimeClasspath'
+}
+
+dependencies {
+    lintChecks project(':lintchecks')
+
+    api 'androidx.annotation:annotation:1.1.0'
+
+    implementation project(':core-util')
+
+    implementation 'org.mp4parser:isoparser:1.9.39'
+    implementation 'org.mp4parser:streaming:1.9.39'
+    implementation('org.mp4parser:muxer:1.9.39') {
+        exclude group: 'junit', module: 'junit'
+    }
+}

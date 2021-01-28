@@ -61,10 +61,10 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 759
-def canonicalVersionName = "5.0.8"
+def canonicalVersionCode = 780
+def canonicalVersionName = "5.3.7"
 
-def postFixSize = 10
+def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
                   'armeabi-v7a' : 1,
                   'arm64-v8a'   : 2,
@@ -128,7 +128,6 @@ android {
         buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X0=\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
-        buildConfigField "int", "TRACE_EVENT_MAX", "3500"
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -206,6 +205,12 @@ android {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
         }
+        perf {
+            initWith debug
+            isDefault false
+            debuggable false
+            matchingFallbacks = ['debug']
+        }
     }
 
     productFlavors {
@@ -229,7 +234,6 @@ android {
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
-            buildConfigField "int", "TRACE_EVENT_MAX", "30_000"
         }
 
         prod {
@@ -311,8 +315,6 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha18"
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
     implementation "androidx.autofill:autofill:1.0.0"
-    implementation "androidx.paging:paging-common:2.1.2"
-    implementation "androidx.paging:paging-runtime:2.1.2"
     implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
     implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
 
@@ -335,12 +337,14 @@ dependencies {
     implementation project(':libsignal-service')
     implementation project(':paging')
     implementation project(':core-util')
+    implementation project(':video')
+
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation 'org.whispersystems:signal-client-android:0.1.5'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 
-    implementation 'org.signal:ringrtc-android:2.8.7'
+    implementation 'org.signal:ringrtc-android:2.8.10'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'

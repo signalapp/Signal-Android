@@ -51,9 +51,11 @@ import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -70,6 +72,7 @@ public class ManageRecipientFragment extends LoggingFragment {
   private GroupMemberListView                    sharedGroupList;
   private Toolbar                                toolbar;
   private TextView                               title;
+  private TextView                               about;
   private TextView                               subtitle;
   private ViewGroup                              internalDetails;
   private TextView                               internalDetailsText;
@@ -105,6 +108,7 @@ public class ManageRecipientFragment extends LoggingFragment {
   private View                                   secureCallButton;
   private View                                   insecureCallButton;
   private View                                   secureVideoCallButton;
+  private View                                   chatWallpaperButton;
 
   static ManageRecipientFragment newInstance(@NonNull RecipientId recipientId, boolean fromConversation) {
     ManageRecipientFragment fragment = new ManageRecipientFragment();
@@ -130,6 +134,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     contactText                 = view.findViewById(R.id.recipient_contact_text);
     contactIcon                 = view.findViewById(R.id.recipient_contact_icon);
     title                       = view.findViewById(R.id.name);
+    about                       = view.findViewById(R.id.about);
     subtitle                    = view.findViewById(R.id.username_number);
     internalDetails             = view.findViewById(R.id.recipient_internal_details);
     internalDetailsText         = view.findViewById(R.id.recipient_internal_details_text);
@@ -161,6 +166,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     secureCallButton            = view.findViewById(R.id.recipient_voice_call);
     insecureCallButton          = view.findViewById(R.id.recipient_insecure_voice_call);
     secureVideoCallButton       = view.findViewById(R.id.recipient_video_call);
+    chatWallpaperButton         = view.findViewById(R.id.chat_wallpaper);
 
     return view;
   }
@@ -270,6 +276,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     secureCallButton.setOnClickListener(v -> viewModel.onSecureCall(requireActivity()));
     insecureCallButton.setOnClickListener(v -> viewModel.onInsecureCall(requireActivity()));
     secureVideoCallButton.setOnClickListener(v -> viewModel.onSecureVideoCall(requireActivity()));
+    chatWallpaperButton.setOnClickListener(v -> startActivity(ChatWallpaperActivity.createIntent(requireContext(), recipientId)));
   }
 
   @Override
@@ -298,6 +305,10 @@ public class ManageRecipientFragment extends LoggingFragment {
         startActivityForResult(RecipientExporter.export(recipient).asAddContactIntent(), REQUEST_CODE_ADD_CONTACT);
       });
     }
+
+    String aboutText = recipient.getCombinedAboutAndEmoji();
+    about.setText(aboutText);
+    about.setVisibility(Util.isEmpty(aboutText) ? View.GONE : View.VISIBLE);
 
     disappearingMessagesCard.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);
     addToAGroup.setVisibility(recipient.isRegistered() ? View.VISIBLE : View.GONE);

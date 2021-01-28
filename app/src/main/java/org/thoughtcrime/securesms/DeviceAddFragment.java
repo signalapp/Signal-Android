@@ -32,9 +32,9 @@ public class DeviceAddFragment extends LoggingFragment {
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
     this.container    = ViewUtil.inflate(inflater, viewGroup, R.layout.device_add_fragment);
-    this.overlay      = ViewUtil.findById(this.container, R.id.overlay);
-    this.scannerView  = ViewUtil.findById(this.container, R.id.scanner);
-    this.devicesImage = ViewUtil.findById(this.container, R.id.devices);
+    this.overlay      = this.container.findViewById(R.id.overlay);
+    this.scannerView  = this.container.findViewById(R.id.scanner);
+    this.devicesImage = this.container.findViewById(R.id.devices);
 
     if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       this.overlay.setOrientation(LinearLayout.HORIZONTAL);

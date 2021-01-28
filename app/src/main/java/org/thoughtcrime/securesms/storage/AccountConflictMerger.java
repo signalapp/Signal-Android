@@ -70,8 +70,9 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
     boolean                              unlisted               = remote.isPhoneNumberUnlisted();
     List<PinnedConversation>             pinnedConversations    = remote.getPinnedConversations();
     AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode = remote.getPhoneNumberSharingMode();
-    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations);
-    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations);
+    boolean                              preferContactAvatars   = remote.isPreferContactAvatars();
+    boolean                              matchesRemote          = doParamsMatch(remote, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars);
+    boolean                              matchesLocal           = doParamsMatch(local, unknownFields, givenName, familyName, avatarUrlPath, profileKey, noteToSelfArchived, noteToSelfForcedUnread, readReceipts, typingIndicators, sealedSenderIndicators, linkPreviews, phoneNumberSharingMode, unlisted, pinnedConversations, preferContactAvatars);
 
     if (matchesRemote) {
       return remote;
@@ -94,6 +95,7 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                     .setPhoneNumberSharingMode(phoneNumberSharingMode)
                                     .setUnlistedPhoneNumber(unlisted)
                                     .setPinnedConversations(pinnedConversations)
+                                    .setPreferContactAvatars(preferContactAvatars)
                                     .build();
     }
   }
@@ -112,7 +114,8 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
                                        boolean linkPreviewsEnabled,
                                        AccountRecord.PhoneNumberSharingMode phoneNumberSharingMode,
                                        boolean unlistedPhoneNumber,
-                                       @NonNull List<PinnedConversation> pinnedConversations)
+                                       @NonNull List<PinnedConversation> pinnedConversations,
+                                       boolean preferContactAvatars)
   {
     return Arrays.equals(contact.serializeUnknownFields(), unknownFields)      &&
            Objects.equals(contact.getGivenName().or(""), givenName)            &&
@@ -127,6 +130,7 @@ class AccountConflictMerger implements StorageSyncHelper.ConflictMerger<SignalAc
            contact.isLinkPreviewsEnabled() == linkPreviewsEnabled              &&
            contact.getPhoneNumberSharingMode() == phoneNumberSharingMode       &&
            contact.isPhoneNumberUnlisted() == unlistedPhoneNumber              &&
+           contact.isPreferContactAvatars() == preferContactAvatars            &&
            Objects.equals(contact.getPinnedConversations(), pinnedConversations);
   }
 }

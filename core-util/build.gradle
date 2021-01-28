@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.google.protobuf'
 apply plugin: 'witness'
 apply from: 'witness-verifications.gradle'
 
@@ -21,10 +22,27 @@ dependencyVerification {
     configuration = '(debug|release)RuntimeClasspath'
 }
 
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.10.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    lintChecks project(':lintchecks')
+
+    api 'androidx.annotation:annotation:1.1.0'
+
+    implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+
     testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

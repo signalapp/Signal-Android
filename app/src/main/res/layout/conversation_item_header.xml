@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:gravity="center"
     android:paddingTop="12dp"
     android:paddingBottom="13dp"
     android:paddingStart="28dp"
@@ -12,11 +13,15 @@
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         style="@style/Signal.Text.Preview"
         android:textColor="@color/conversation_item_update_text_color"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_gravity="center"
         tools:text="March 1, 2015" />
 
 </LinearLayout>

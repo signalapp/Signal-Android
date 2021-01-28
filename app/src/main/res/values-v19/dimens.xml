@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_button_full_round_corner_radius">0dp</dimen>
+</resources>

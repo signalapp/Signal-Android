@@ -14,11 +14,16 @@ import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
+import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
+import org.thoughtcrime.securesms.jobmanager.Constraint;
+import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
+import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
@@ -41,9 +46,11 @@ import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
+import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -88,7 +95,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
                                            new DynamicCredentialsProvider(context),
                                            BuildConfig.SIGNAL_AGENT,
-                                           provideGroupsV2Operations());
+                                           provideGroupsV2Operations(),
+                                           FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
@@ -103,7 +111,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16),
-                                            ByteUnit.KILOBYTES.toBytes(512));
+                                            ByteUnit.KILOBYTES.toBytes(512),
+                                            FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
@@ -115,7 +124,8 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             BuildConfig.SIGNAL_AGENT,
                                             new PipeConnectivityListener(),
                                             sleepTimer,
-                                            provideClientZkOperations().getProfileOperations());
+                                            provideClientZkOperations().getProfileOperations(),
+                                            FeatureFlags.okHttpAutomaticRetry());
   }
 
   @Override
@@ -140,16 +150,17 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull JobManager provideJobManager() {
-    return new JobManager(context, new JobManager.Configuration.Builder()
-                                                               .setDataSerializer(new JsonDataSerializer())
-                                                               .setJobFactories(JobManagerFactories.getJobFactories(context))
-                                                               .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
-                                                               .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
-                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
-                                                               .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
-                                                               .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
-                                                               .addReservedJobRunner(new FactoryJobPredicate(PushTextSendJob.KEY, PushMediaSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
-                                                               .build());
+    JobManager.Configuration config = new JobManager.Configuration.Builder()
+                                                                  .setDataSerializer(new JsonDataSerializer())
+                                                                  .setJobFactories(JobManagerFactories.getJobFactories(context))
+                                                                  .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
+                                                                  .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
+                                                                  .setJobStorage(new FastJobStorage(JobDatabase.getInstance(context)))
+                                                                  .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushDecryptMessageJob.KEY, PushProcessMessageJob.KEY, MarkerJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(PushTextSendJob.KEY, PushMediaSendJob.KEY, PushGroupSendJob.KEY, ReactionSendJob.KEY, TypingSendJob.KEY, GroupCallUpdateSendJob.KEY))
+                                                                  .build();
+    return new JobManager(context, config);
   }
 
   @Override
@@ -188,12 +199,17 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull TypingStatusSender provideTypingStatusSender() {
-    return new TypingStatusSender(context);
+    return new TypingStatusSender();
   }
 
   @Override
   public @NonNull DatabaseObserver provideDatabaseObserver() {
     return new DatabaseObserver(context);
+  }
+
+  @Override
+  public @NonNull ShakeToReport provideShakeToReport() {
+    return new ShakeToReport(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

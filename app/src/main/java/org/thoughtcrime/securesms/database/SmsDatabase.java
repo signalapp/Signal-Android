@@ -53,7 +53,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.tracing.Trace;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -80,7 +79,6 @@ import java.util.UUID;
  *
  * @author Moxie Marlinspike
  */
-@Trace
 public class SmsDatabase extends MessageDatabase {
 
   private static final String TAG = SmsDatabase.class.getSimpleName();
@@ -1031,16 +1029,21 @@ public class SmsDatabase extends MessageDatabase {
       groupRecipient = Recipient.resolved(id);
     }
 
-    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
-                            !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
+    boolean silent = message.isIdentityUpdate()   ||
+                     message.isIdentityVerified() ||
+                     message.isIdentityDefault()  ||
+                     message.isJustAGroupLeave();
+    boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
+                                 message.isSecureMessage()          ||
+                                 message.isGroup()                  ||
+                                 message.isPreKeyBundle());
 
     long       threadId;
 
     if (groupRecipient == null) threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
     else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
-    ContentValues values = new ContentValues(6);
+    ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
@@ -1072,7 +1075,7 @@ public class SmsDatabase extends MessageDatabase {
         DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
+      if (!silent) {
         DatabaseFactory.getThreadDatabase(context).update(threadId, true);
       }
 
@@ -1082,7 +1085,7 @@ public class SmsDatabase extends MessageDatabase {
 
       notifyConversationListeners(threadId);
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
+      if (!silent) {
         ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
       }
 
@@ -1093,6 +1096,36 @@ public class SmsDatabase extends MessageDatabase {
   @Override
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+  }
+
+  @Override
+  public @NonNull InsertResult insertDecryptionFailedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    long           threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.resolved(recipientId));
+    long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
+
+    type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;
+
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, recipientId.serialize());
+    values.put(ADDRESS_DEVICE_ID,  senderDeviceId);
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_SENT, sentTimestamp);
+    values.put(DATE_SERVER, -1);
+    values.put(READ, 0);
+    values.put(TYPE, type);
+    values.put(THREAD_ID, threadId);
+
+    long messageId = db.insert(TABLE_NAME, null, values);
+
+    DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+
+    notifyConversationListeners(threadId);
+
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
+
+    return new InsertResult(messageId, threadId);
   }
 
   @Override

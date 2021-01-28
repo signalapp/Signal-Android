@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
@@ -78,6 +79,7 @@ public final class ReminderView extends FrameLayout {
     }
 
     text.setText(reminder.getText());
+    text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_button_primary_text));
 
     switch (reminder.getImportance()) {
       case NORMAL:
@@ -85,6 +87,7 @@ public final class ReminderView extends FrameLayout {
         break;
       case ERROR:
         container.setBackgroundResource(R.drawable.reminder_background_error);
+        text.setTextColor(ContextCompat.getColor(getContext(), R.color.signal_text_primary));
         break;
       case TERMINAL:
         container.setBackgroundResource(R.drawable.reminder_background_terminal);

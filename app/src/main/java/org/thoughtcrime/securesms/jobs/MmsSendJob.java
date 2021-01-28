@@ -141,7 +141,7 @@ public final class MmsSendJob extends SendJob {
       final MmsSendResult result   = getSendResult(sendConf, pdu);
 
       database.markAsSent(messageId, false);
-      markAttachmentsUploaded(messageId, message.getAttachments());
+      markAttachmentsUploaded(messageId, message);
 
       Log.i(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException | IOException e) {
