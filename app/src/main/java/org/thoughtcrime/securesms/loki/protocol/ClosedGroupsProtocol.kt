@@ -9,18 +9,10 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.ecc.Curve
-import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.api.messages.SignalServiceGroup.GroupType
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext
-import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementation
-import org.session.libsignal.service.loki.utilities.hexEncodedPrivateKey
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -29,10 +21,8 @@ import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.thoughtcrime.securesms.sms.MessageSender
-import org.thoughtcrime.securesms.util.Hex
+import org.session.libsession.utilities.Hex
 import java.io.IOException
 import java.util.*
 
@@ -306,7 +296,7 @@ object ClosedGroupsProtocol {
     @JvmStatic
     @Throws(IOException::class)
     fun doubleEncodeGroupID(groupPublicKey: String): String {
-        return GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(groupPublicKey))
+        return GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray())
     }
 
     @JvmStatic

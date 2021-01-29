@@ -59,7 +59,6 @@ public class Hex {
   }
 
   private static void appendHexChar(StringBuffer buf, int b) {
-    buf.append("(byte)0x");
     buf.append(HEX_DIGITS[(b >> 4) & 0xf]);
     buf.append(HEX_DIGITS[b & 0xf]);
   }

@@ -901,7 +901,7 @@ public class ConversationItem extends LinearLayout
       // Show custom display names for group chats
       String displayName = recipient.toShortString();
       try {
-        String serverId = GroupUtil.getDecodedGroupID(conversationRecipient.getAddress().serialize().getBytes());
+        String serverId = GroupUtil.getDecodedGroupID(conversationRecipient.getAddress().serialize());
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
         if (senderDisplayName != null) { displayName = senderDisplayName; }
       } catch (Exception e) {

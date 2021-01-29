@@ -16,7 +16,6 @@ import org.session.libsession.utilities.Util;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.session.libsession.messaging.threads.Address;
@@ -31,7 +30,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.Hex;
+import org.session.libsession.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;

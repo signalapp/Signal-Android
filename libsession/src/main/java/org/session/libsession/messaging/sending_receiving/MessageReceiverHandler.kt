@@ -1,9 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
-import com.annimon.stream.Collectors
-import com.annimon.stream.Stream
-import com.annimon.stream.function.Function
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -22,10 +19,10 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.Hex
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -236,7 +233,7 @@ private fun MessageReceiver.handleNewGroup(message: ClosedGroupUpdate) {
         MessageSender.requestSenderKey(groupPublicKey, publicKey)
     }
     // Create the group
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) //double encoded
     if (storage.getGroup(groupID) != null) {
         // Update the group
         storage.updateTitle(groupID, name)
@@ -266,7 +263,7 @@ private fun MessageReceiver.handleGroupUpdate(message: ClosedGroupUpdate) {
     val members = kind.members.map { it.toHexString() }
     val admins = kind.admins.map { it.toHexString() }
     // Get the group
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) //double encoded
     val group = storage.getGroup(groupID) ?: return Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
     // Check that the sender is a member of the group (before the update)
     if (!group.members.contains(Address.fromSerialized(message.sender!!))) { return Log.d("Loki", "Ignoring closed group info message from non-member.") }
@@ -326,7 +323,7 @@ private fun MessageReceiver.handleSenderKeyRequest(message: ClosedGroupUpdate) {
     val sskDatabase = MessagingConfiguration.shared.sskDatabase
     val userPublicKey = storage.getUserPublicKey()!!
     val groupPublicKey = kind.groupPublicKey.toHexString()
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) //double encoded
     val group = storage.getGroup(groupID)
     if (group == null) {
         Log.d("Loki", "Ignoring closed group sender key request for nonexistent group.")

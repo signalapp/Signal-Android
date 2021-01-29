@@ -111,7 +111,7 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                     return "${rawDisplayName} (${senderPublicKey.takeLast(8)})"
                 }
                 val senderDisplayName = MessagingConfiguration.shared.storage.getOpenGroupDisplayName(senderPublicKey, openGroup.channel, openGroup.server) ?: generateDisplayName("Anonymous")
-                val id = GroupUtil.getEncodedOpenGroupIDAsData(openGroup.id)
+                val id = openGroup.id.toByteArray()
                 // Main message
                 val dataMessageProto = DataMessage.newBuilder()
                 val body = if (message.body == message.timestamp.toString()) { "" } else { message.body }

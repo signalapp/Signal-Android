@@ -62,7 +62,7 @@ object OpenGroupUtilities {
                 ?: throw IllegalStateException("Public chat API is not initialized!")
 
         // Check if open group has a related DB record.
-        val groupId = GroupUtil.getEncodedOpenGroupID(PublicChat.getId(channel, url))
+        val groupId = GroupUtil.getEncodedOpenGroupID(PublicChat.getId(channel, url).toByteArray())
         if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
             throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
         }

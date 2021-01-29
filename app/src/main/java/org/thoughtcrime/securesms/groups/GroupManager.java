@@ -40,7 +40,7 @@ import java.util.Set;
 public class GroupManager {
 
   public static long getOpenGroupThreadID(String id, @NonNull  Context context) {
-    final String groupID = GroupUtil.getEncodedOpenGroupID(id);
+    final String groupID = GroupUtil.getEncodedOpenGroupID(id.getBytes());
     return getThreadIDFromGroupID(groupID, context);
   }
 
@@ -90,7 +90,7 @@ public class GroupManager {
                                                            @Nullable Bitmap  avatar,
                                                            @Nullable String  name)
   {
-    final String groupID = GroupUtil.getEncodedOpenGroupID(id);
+    final String groupID = GroupUtil.getEncodedOpenGroupID(id.getBytes());
     return createLokiGroup(groupID, context, avatar, name);
   }
 

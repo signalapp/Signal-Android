@@ -118,7 +118,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
-            if (!isFinishing) {
+             if (!isFinishing) {
                 openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
                 finish()
             }

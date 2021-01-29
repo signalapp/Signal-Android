@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.thoughtcrime.securesms.util.Hex
+import org.session.libsession.utilities.Hex
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.crypto.MnemonicCodec

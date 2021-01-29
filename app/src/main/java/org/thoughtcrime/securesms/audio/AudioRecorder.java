@@ -12,7 +12,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
-import org.session.libsession.utilities.ThreadUtils;
+import org.session.libsignal.service.loki.utilities.ThreadUtils;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.concurrent.ListenableFuture;
 import org.session.libsession.utilities.concurrent.SettableFuture;

@@ -14,8 +14,8 @@ object DelimiterUtil {
     }
 
     @JvmStatic
-    fun split(value: String, delimiter: Char): Array<String> {
-        val regex = "(?<!\\\\)" + Pattern.quote(delimiter.toString() + "")
-        return value.split(regex).toTypedArray()
+    fun split(value: String, delimiter: Char): List<String> {
+        val regex = Regex("(?<!\\\\)" + Pattern.quote(delimiter + ""))
+        return value.split(regex)
     }
 }

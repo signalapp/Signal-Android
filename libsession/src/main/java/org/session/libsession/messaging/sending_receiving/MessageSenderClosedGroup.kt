@@ -12,11 +12,9 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.SSKEnvironment
-
+import org.session.libsession.utilities.Hex
 
 import org.session.libsignal.libsignal.ecc.Curve
-import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
@@ -45,7 +43,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
     // Create the group
     val admins = setOf( userPublicKey )
     val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) //double encoded
     storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }), null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
     storage.setProfileSharing(Address.fromSerialized(groupID), true)
     // Send a closed group update message to all members using established channels
@@ -79,7 +77,7 @@ fun MessageSender.update(groupPublicKey: String, members: Collection<String>, na
     val storage = MessagingConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
     val sskDatabase = MessagingConfiguration.shared.sskDatabase
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) // double encoded
     val group = storage.getGroup(groupID)
     if (group == null) {
         Log.d("Loki", "Can't update nonexistent closed group.")
@@ -206,7 +204,7 @@ fun MessageSender.update(groupPublicKey: String, members: Collection<String>, na
 fun MessageSender.leave(groupPublicKey: String) {
     val storage = MessagingConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
-    val groupID = GroupUtil.getEncodedClosedGroupID(groupPublicKey)
+    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) // double encoded
     val group = storage.getGroup(groupID)
     if (group == null) {
         Log.d("Loki", "Can't leave nonexistent closed group.")

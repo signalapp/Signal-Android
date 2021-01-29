@@ -5,9 +5,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.util.Pair
 import androidx.annotation.VisibleForTesting
-import org.session.libsession.utilities.DelimiterUtil.escape
-import org.session.libsession.utilities.DelimiterUtil.split
-import org.session.libsession.utilities.DelimiterUtil.unescape
+import org.session.libsession.utilities.DelimiterUtil
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.internal.util.Util
@@ -163,10 +161,10 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
         }
 
         fun fromSerializedList(serialized: String, delimiter: Char): List<Address> {
-            val escapedAddresses = split(serialized, delimiter)
+            val escapedAddresses = DelimiterUtil.split(serialized, delimiter)
             val addresses: MutableList<Address> = LinkedList()
             for (escapedAddress in escapedAddresses) {
-                addresses.add(fromSerialized(unescape(escapedAddress, delimiter)))
+                addresses.add(fromSerialized(DelimiterUtil.unescape(escapedAddress, delimiter)))
             }
             return addresses
         }
@@ -175,7 +173,7 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
             Collections.sort(addresses)
             val escapedAddresses: MutableList<String> = LinkedList()
             for (address in addresses) {
-                escapedAddresses.add(escape(address.serialize(), delimiter))
+                escapedAddresses.add(DelimiterUtil.escape(address.serialize(), delimiter))
             }
             return Util.join(escapedAddresses, delimiter.toString() + "")
         }

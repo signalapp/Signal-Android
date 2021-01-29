@@ -7,7 +7,7 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 
 import org.session.libsession.snode.utilities.getRandomElement
-import org.session.libsession.utilities.ThreadUtils
+import org.session.libsignal.service.loki.utilities.ThreadUtils
 import org.session.libsession.utilities.createContext
 
 import org.session.libsignal.libsignal.logging.Log

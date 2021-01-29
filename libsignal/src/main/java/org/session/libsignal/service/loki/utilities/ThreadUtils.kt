@@ -1,18 +1,26 @@
 package org.session.libsignal.service.loki.utilities
 
-import java.util.concurrent.Executors
+import java.util.concurrent.*
 
 object ThreadUtils {
 
-    internal val executorPool = Executors.newCachedThreadPool()
+    val executorPool = Executors.newCachedThreadPool()
 
     @JvmStatic
     fun queue(target: Runnable) {
         executorPool.execute(target)
     }
 
-    fun queue(target: ()->Unit) {
+    fun queue(target: () -> Unit) {
         executorPool.execute(target)
+    }
+
+    @JvmStatic
+    fun newDynamicSingleThreadedExecutor(): ExecutorService {
+        val executor = ThreadPoolExecutor(1, 1, 60, TimeUnit.SECONDS,
+                LinkedBlockingQueue())
+        executor.allowCoreThreadTimeOut(true)
+        return executor
     }
 
 }

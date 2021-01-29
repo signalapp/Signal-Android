@@ -205,7 +205,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     contentValues.put(AVATAR_RELAY, relay);
     contentValues.put(TIMESTAMP, System.currentTimeMillis());
     contentValues.put(ACTIVE, 1);
-    contentValues.put(MMS, GroupUtil.INSTANCE.isMmsGroup(groupId));
+    contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 
     if (admins != null) {
       contentValues.put(ADMINS, Address.Companion.toSerializedList(admins, ','));

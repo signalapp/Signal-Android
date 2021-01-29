@@ -2,7 +2,6 @@ package org.session.libsession.utilities
 
 import org.whispersystems.curve25519.Curve25519
 import org.session.libsignal.libsignal.util.ByteUtil
-import org.session.libsignal.libsignal.util.Hex
 import org.session.libsignal.service.internal.util.Util
 import javax.crypto.Cipher
 import javax.crypto.Mac

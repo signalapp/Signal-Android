@@ -15,7 +15,7 @@ sealed class Destination {
             if (address.isContact) {
                 return Contact(address.contactIdentifier())
             } else if (address.isClosedGroup) {
-                val groupID = address.contactIdentifier().toByteArray()
+                val groupID = address.contactIdentifier()
                 val groupPublicKey = GroupUtil.getDecodedGroupID(groupID)
                 return ClosedGroup(groupPublicKey)
             } else if (address.isOpenGroup) {
