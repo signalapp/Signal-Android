@@ -25,7 +25,7 @@ class JobQueue : JobDelegate {
 
     fun addWithoutExecuting(job: Job) {
         job.id = System.currentTimeMillis().toString()
-        MessagingConfiguration.shared.storage.persist(job)
+        MessagingConfiguration.shared.storage.persistJob(job)
         job.delegate = this
     }
 
@@ -54,7 +54,7 @@ class JobQueue : JobDelegate {
         job.failureCount += 1
         val storage = MessagingConfiguration.shared.storage
         if (storage.isJobCanceled(job)) { return Log.i("Jobs", "${job::class.simpleName} canceled.")}
-        storage.persist(job)
+        storage.persistJob(job)
         if (job.failureCount == job.maxFailureCount) {
             storage.markJobAsFailed(job)
         } else {
@@ -70,7 +70,7 @@ class JobQueue : JobDelegate {
     override fun handleJobFailedPermanently(job: Job, error: Exception) {
         job.failureCount += 1
         val storage = MessagingConfiguration.shared.storage
-        storage.persist(job)
+        storage.persistJob(job)
         storage.markJobAsFailed(job)
     }
 

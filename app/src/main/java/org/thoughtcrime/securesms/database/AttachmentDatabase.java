@@ -438,6 +438,30 @@ public class AttachmentDatabase extends Database {
     return insertedAttachments;
   }
 
+  /**
+   * Insert attachments in database and return the IDs of the inserted attachments
+   *
+   * @param mmsId message ID
+   * @param attachments attachments to persist
+   * @return IDs of the persisted attachments
+   * @throws MmsException
+   */
+  @NonNull List<Long> insertAttachments(long mmsId, @NonNull List<Attachment> attachments)
+          throws MmsException
+  {
+    Log.d(TAG, "insertParts(" + attachments.size() + ")");
+
+    List<Long> insertedAttachmentsIDs = new LinkedList<>();
+
+    for (Attachment attachment : attachments) {
+      AttachmentId attachmentId = insertAttachment(mmsId, attachment, attachment.isQuote());
+      insertedAttachmentsIDs.add(attachmentId.getRowId());
+      Log.i(TAG, "Inserted attachment at ID: " + attachmentId);
+    }
+
+    return insertedAttachmentsIDs;
+  }
+
   public @NonNull Attachment updateAttachmentData(@NonNull Attachment attachment,
                                                   @NonNull MediaStream mediaStream)
       throws MmsException

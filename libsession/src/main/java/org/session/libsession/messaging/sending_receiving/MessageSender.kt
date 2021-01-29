@@ -72,7 +72,7 @@ object MessageSender {
                 attachments.add(attachment)
             }
         }
-        val attachmentIDs = MessagingConfiguration.shared.storage.persist(attachments)
+        val attachmentIDs = MessagingConfiguration.shared.storage.persistAttachments(message.id ?: 0, attachments)
         message.attachmentIDs.addAll(attachmentIDs)
     }
 

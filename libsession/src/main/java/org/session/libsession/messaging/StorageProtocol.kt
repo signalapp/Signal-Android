@@ -39,7 +39,7 @@ interface StorageProtocol {
     fun getOrGenerateRegistrationID(): Int
 
     // Jobs
-    fun persist(job: Job)
+    fun persistJob(job: Job)
     fun markJobAsSucceeded(job: Job)
     fun markJobAsFailed(job: Job)
     fun getAllPendingJobs(type: String): List<Job>
@@ -86,7 +86,7 @@ interface StorageProtocol {
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
     // Returns the IDs of the saved attachments.
-    fun persist(attachments: List<Attachment>): List<Long>
+    fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
 
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long?
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
