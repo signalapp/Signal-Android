@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.sharing;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.OpenableColumns;
@@ -9,6 +11,7 @@ import android.util.Pair;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -22,9 +25,9 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendConstants;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.mms.PushMediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -109,7 +112,8 @@ class ShareRepository {
   }
 
   private boolean isMmsSupported(@NonNull Context context, @NonNull String mimeType, long size) {
-    if (!Util.isMmsCapable(context)) {
+    boolean canReadPhoneState = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED;
+    if (!TextSecurePreferences.isSmsEnabled(context) || !canReadPhoneState || !Util.isMmsCapable(context)) {
       return false;
     }
 
