@@ -499,7 +499,7 @@ object TextSecurePreferences {
 
     @JvmStatic
     fun isPasswordDisabled(context: Context): Boolean {
-        return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, false)
+        return getBooleanPreference(context, DISABLE_PASSPHRASE_PREF, true)
     }
 
     fun setPasswordDisabled(context: Context, disabled: Boolean) {

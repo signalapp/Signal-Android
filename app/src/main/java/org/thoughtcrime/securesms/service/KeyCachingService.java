@@ -71,7 +71,7 @@ public class KeyCachingService extends Service {
 
   // AC: This is a temporal drop off replacement for the refactoring time being.
   // This field only indicates if the app was unlocked or not (null means locked).
-  private static Object masterSecret;
+  private static Object masterSecret = new Object();
 
   /**
    * A temporal utility method to quickly call {@link KeyCachingService#setMasterSecret(Object)}
