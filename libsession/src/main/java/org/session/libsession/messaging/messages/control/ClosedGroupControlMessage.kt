@@ -7,7 +7,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
-class ClosedGroupUpdateV2() : ControlMessage() {
+class ClosedGroupControlMessage() : ControlMessage() {
 
     override val ttl: Long = run {
         when (kind) {
@@ -16,19 +16,30 @@ class ClosedGroupUpdateV2() : ControlMessage() {
         }
     }
 
+    override val isSelfSendValid: Boolean = run {
+        when(kind) {
+            is Kind.New -> false
+            else -> true
+        }
+    }
+
     var kind: Kind? = null
 
     // Kind enum
     sealed class Kind {
         class New(val publicKey: ByteString, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<ByteString>, val admins: List<ByteString>) : Kind()
-        class Update(val name: String, val members: List<ByteString>) : Kind()
+        class Update(val name: String, val members: List<ByteString>) : Kind() //deprecated
         class EncryptionKeyPair(val wrappers: Collection<KeyPairWrapper>) : Kind()
+        class NameChange(val name: String) : Kind()
+        class MembersAdded(val members: List<ByteString>) : Kind()
+        class MembersRemoved( val members: List<ByteString>) : Kind()
+        class MemberLeft() : Kind()
     }
 
     companion object {
         const val TAG = "ClosedGroupUpdateV2"
 
-        fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupUpdateV2? {
+        fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupControlMessage? {
             val closedGroupUpdateProto = proto.dataMessage?.closedGroupUpdateV2 ?: return null
             val kind: Kind
             when(closedGroupUpdateProto.type) {
@@ -53,8 +64,21 @@ class ClosedGroupUpdateV2() : ControlMessage() {
                     val wrappers = closedGroupUpdateProto.wrappersList.mapNotNull { KeyPairWrapper.fromProto(it) }
                     kind = Kind.EncryptionKeyPair(wrappers)
                 }
+                SignalServiceProtos.ClosedGroupUpdateV2.Type.NAME_CHANGE -> {
+                    val name = closedGroupUpdateProto.name ?: return null
+                    kind = Kind.NameChange(name)
+                }
+                SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_ADDED -> {
+                    kind = Kind.MembersAdded(closedGroupUpdateProto.membersList)
+                }
+                SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_REMOVED -> {
+                    kind = Kind.MembersRemoved(closedGroupUpdateProto.membersList)
+                }
+                SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBER_LEFT -> {
+                    kind = Kind.MemberLeft()
+                }
             }
-            return ClosedGroupUpdateV2(kind)
+            return ClosedGroupControlMessage(kind)
         }
     }
 
@@ -69,14 +93,15 @@ class ClosedGroupUpdateV2() : ControlMessage() {
         val kind = kind ?: return false
         return when(kind) {
             is Kind.New -> {
-                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair.publicKey != null && kind.encryptionKeyPair.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
+                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair.publicKey != null
+                        && kind.encryptionKeyPair.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
             }
-            is Kind.Update -> {
-                kind.name.isNotEmpty()
-            }
-            is Kind.EncryptionKeyPair -> {
-                true
-            }
+            is Kind.Update -> kind.name.isNotEmpty()
+            is Kind.EncryptionKeyPair -> true
+            is Kind.NameChange -> kind.name.isNotEmpty()
+            is Kind.MembersAdded -> kind.members.isNotEmpty()
+            is Kind.MembersRemoved -> kind.members.isNotEmpty()
+            is Kind.MemberLeft -> true
         }
     }
 
@@ -115,6 +140,21 @@ class ClosedGroupUpdateV2() : ControlMessage() {
                     closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR
                     closedGroupUpdate.addAllWrappers(kind.wrappers.map { it.toProto() })
                 }
+                is Kind.NameChange -> {
+                    closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NAME_CHANGE
+                    closedGroupUpdate.name = kind.name
+                }
+                is Kind.MembersAdded -> {
+                    closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_ADDED
+                    closedGroupUpdate.addAllMembers(kind.members)
+                }
+                is Kind.MembersRemoved -> {
+                    closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_REMOVED
+                    closedGroupUpdate.addAllMembers(kind.members)
+                }
+                is Kind.MemberLeft -> {
+                    closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBER_LEFT
+                }
             }
             val contentProto = SignalServiceProtos.Content.newBuilder()
             val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
@@ -128,7 +168,7 @@ class ClosedGroupUpdateV2() : ControlMessage() {
         }
     }
 
-    class KeyPairWrapper(val publicKey: String?, private val encryptedKeyPair: ByteString?) {
+    final class KeyPairWrapper(val publicKey: String?, private val encryptedKeyPair: ByteString?) {
         companion object {
             fun fromProto(proto: SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper): KeyPairWrapper {
                 return KeyPairWrapper(proto.publicKey.toString(), proto.encryptedKeyPair)
