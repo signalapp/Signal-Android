@@ -20,7 +20,7 @@ public class FcmReceiveService extends FirebaseMessagingService {
 
   @Override
   public void onMessageReceived(RemoteMessage remoteMessage) {
-    Log.i(TAG, "FCM message... Delay: " + (System.currentTimeMillis() - remoteMessage.getSentTime()));
+    Log.i(TAG, "onMessageReceived() ID: " + remoteMessage.getMessageId() + ", Delay: " + (System.currentTimeMillis() - remoteMessage.getSentTime()));
 
     String challenge = remoteMessage.getData().get("challenge");
     if (challenge != null) {
@@ -28,6 +28,12 @@ public class FcmReceiveService extends FirebaseMessagingService {
     } else {
       handleReceivedNotification(ApplicationDependencies.getApplication());
     }
+  }
+
+  @Override
+  public void onDeletedMessages() {
+    Log.w(TAG, "onDeleteMessages() -- Messages may have been dropped. Doing a normal message fetch.");
+    handleReceivedNotification(ApplicationDependencies.getApplication());
   }
 
   @Override
