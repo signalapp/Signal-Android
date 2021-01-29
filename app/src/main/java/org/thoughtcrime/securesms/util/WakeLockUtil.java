@@ -5,6 +5,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import androidx.annotation.NonNull;
 
+import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.logging.Log;
 
 public class WakeLockUtil {

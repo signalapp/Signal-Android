@@ -7,9 +7,9 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.session.libsession.utilities.Hex;
-import org.thoughtcrime.securesms.util.Util;
 
+import org.session.libsession.utilities.Hex;
+import org.session.libsession.utilities.Util;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 import java.io.BufferedOutputStream;

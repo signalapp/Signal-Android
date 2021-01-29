@@ -46,6 +46,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.JsonUtils;
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -616,7 +617,7 @@ public class SmsDatabase extends MessagingDatabase {
       groupRecipient = Recipient.from(context, message.getGroupId(), true);
     }
 
-    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+    boolean    unread     = (Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
                             !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
 

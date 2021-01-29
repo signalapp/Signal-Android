@@ -20,6 +20,7 @@ import org.session.libsignal.libsignal.logging.Log
 import java.io.*
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom
+import java.text.DecimalFormat
 import java.util.*
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutorService
@@ -43,16 +44,16 @@ object Util {
 
     @JvmStatic
     @Throws(IOException::class)
-    fun copy(`in`: InputStream, out: OutputStream): Long {
+    fun copy(`in`: InputStream, out: OutputStream?): Long {
         val buffer = ByteArray(8192)
         var read: Int
         var total: Long = 0
         while (`in`.read(buffer).also { read = it } != -1) {
-            out.write(buffer, 0, read)
+            out?.write(buffer, 0, read)
             total += read.toLong()
         }
         `in`.close()
-        out.close()
+        out?.close()
         return total
     }
 
@@ -327,4 +328,39 @@ object Util {
         return spanned
     }
 
+    @JvmStatic
+    fun clamp(value: Int, min: Int, max: Int): Int {
+        return Math.min(Math.max(value, min), max)
+    }
+
+    @JvmStatic
+    fun combine(vararg elements: ByteArray?): ByteArray? {
+        return try {
+            val baos = ByteArrayOutputStream()
+            for (element in elements) {
+                baos.write(element)
+            }
+            baos.toByteArray()
+        } catch (e: IOException) {
+            throw java.lang.AssertionError(e)
+        }
+    }
+
+    @JvmStatic
+    fun split(input: ByteArray?, firstLength: Int, secondLength: Int): Array<ByteArray?> {
+        val parts = arrayOfNulls<ByteArray>(2)
+        parts[0] = ByteArray(firstLength)
+        System.arraycopy(input, 0, parts[0], 0, firstLength)
+        parts[1] = ByteArray(secondLength)
+        System.arraycopy(input, firstLength, parts[1], 0, secondLength)
+        return parts
+    }
+
+    @JvmStatic
+    fun getPrettyFileSize(sizeBytes: Long): String {
+        if (sizeBytes <= 0) return "0"
+        val units = arrayOf("B", "kB", "MB", "GB", "TB")
+        val digitGroups = (Math.log10(sizeBytes.toDouble()) / Math.log10(1024.0)).toInt()
+        return DecimalFormat("#,##0.#").format(sizeBytes / Math.pow(1024.0, digitGroups.toDouble())) + " " + units[digitGroups]
+    }
 }

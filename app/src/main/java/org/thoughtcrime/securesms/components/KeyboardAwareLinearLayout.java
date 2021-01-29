@@ -29,8 +29,8 @@ import android.view.Surface;
 import android.view.View;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;

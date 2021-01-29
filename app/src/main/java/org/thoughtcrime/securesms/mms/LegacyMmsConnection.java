@@ -43,7 +43,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
 import org.apache.http.message.BasicHeader;
 import org.thoughtcrime.securesms.database.ApnDatabase;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 

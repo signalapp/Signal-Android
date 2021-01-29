@@ -23,7 +23,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.util.concurrent.TimeoutException;
 

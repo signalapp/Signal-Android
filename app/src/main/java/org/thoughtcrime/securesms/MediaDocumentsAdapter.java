@@ -25,7 +25,8 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.Util;
 
 import java.util.Calendar;
 import java.util.Date;

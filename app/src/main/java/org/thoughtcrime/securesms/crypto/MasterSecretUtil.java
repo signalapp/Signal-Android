@@ -31,7 +31,7 @@ import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.session.libsession.utilities.Base64;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;

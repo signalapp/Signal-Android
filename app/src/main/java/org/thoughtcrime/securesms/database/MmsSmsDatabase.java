@@ -27,9 +27,9 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.util.Util;
 
 import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Util;
 
 import java.util.HashSet;
 import java.util.Set;

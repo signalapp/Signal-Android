@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.HashMap;

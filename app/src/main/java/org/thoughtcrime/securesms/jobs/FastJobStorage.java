@@ -11,7 +11,8 @@ import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;

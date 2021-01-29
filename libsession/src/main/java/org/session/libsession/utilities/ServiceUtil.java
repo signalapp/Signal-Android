@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.session.libsession.utilities;
 
 import android.app.Activity;
 import android.app.AlarmManager;

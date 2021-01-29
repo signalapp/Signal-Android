@@ -965,7 +965,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
-    if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
+    if (Util.isDefaultSmsProvider(context)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
@@ -1433,10 +1433,10 @@ public class MmsDatabase extends MessagingDatabase {
       byte[]transactionIdBytes   = null;
 
       if (!TextUtils.isEmpty(contentLocation))
-        contentLocationBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(contentLocation);
+        contentLocationBytes = Util.toIsoBytes(contentLocation);
 
       if (!TextUtils.isEmpty(transactionId))
-        transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
+        transactionIdBytes = Util.toIsoBytes(transactionId);
 
       SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
 

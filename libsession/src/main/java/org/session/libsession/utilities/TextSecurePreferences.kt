@@ -10,17 +10,13 @@ import androidx.core.app.NotificationCompat
 import org.session.libsession.R
 import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.libsignal.util.Medium
 import org.session.libsignal.service.internal.util.Base64
 import java.io.IOException
-import java.security.SecureRandom
 import java.util.*
 
 object TextSecurePreferences {
     private val TAG = TextSecurePreferences::class.simpleName
 
-    const val IDENTITY_PREF = "pref_choose_identity"
-    const val CHANGE_PASSPHRASE_PREF = "pref_change_passphrase"
     const val DISABLE_PASSPHRASE_PREF = "pref_disable_passphrase"
     const val THEME_PREF = "pref_theme"
     const val LANGUAGE_PREF = "pref_language"
@@ -40,20 +36,16 @@ object TextSecurePreferences {
 
     private const val LAST_VERSION_CODE_PREF = "last_version_code"
     private const val LAST_EXPERIENCE_VERSION_PREF = "last_experience_version_code"
-    private const val EXPERIENCE_DISMISSED_PREF = "experience_dismissed"
     const val RINGTONE_PREF = "pref_key_ringtone"
     const val VIBRATE_PREF = "pref_key_vibrate"
     private const val NOTIFICATION_PREF = "pref_key_enable_notifications"
     const val LED_COLOR_PREF = "pref_led_color"
     const val LED_BLINK_PREF = "pref_led_blink"
     private const val LED_BLINK_PREF_CUSTOM = "pref_led_blink_custom"
-    const val ALL_MMS_PREF = "pref_all_mms"
-    const val ALL_SMS_PREF = "pref_all_sms"
     const val PASSPHRASE_TIMEOUT_INTERVAL_PREF = "pref_timeout_interval"
     const val PASSPHRASE_TIMEOUT_PREF = "pref_timeout_passphrase"
     const val SCREEN_SECURITY_PREF = "pref_screen_security"
     private const val ENTER_SENDS_PREF = "pref_enter_sends"
-    private const val ENTER_PRESENT_PREF = "pref_enter_key"
     private const val SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms"
     const val MMS_USER_AGENT = "pref_mms_user_agent"
     private const val MMS_CUSTOM_USER_AGENT = "pref_custom_mms_user_agent"
@@ -63,39 +55,23 @@ object TextSecurePreferences {
     const val REGISTERED_GCM_PREF = "pref_gcm_registered"
     private const val GCM_PASSWORD_PREF = "pref_gcm_password"
     private const val SEEN_WELCOME_SCREEN_PREF = "pref_seen_welcome_screen"
-    private const val PROMPTED_PUSH_REGISTRATION_PREF = "pref_prompted_push_registration"
-    private const val PROMPTED_DEFAULT_SMS_PREF = "pref_prompted_default_sms"
-    private const val PROMPTED_OPTIMIZE_DOZE_PREF = "pref_prompted_optimize_doze"
-    private const val PROMPTED_SHARE_PREF = "pref_prompted_share"
     private const val SIGNALING_KEY_PREF = "pref_signaling_key"
-    private const val DIRECTORY_FRESH_TIME_PREF = "pref_directory_refresh_time"
     private const val UPDATE_APK_REFRESH_TIME_PREF = "pref_update_apk_refresh_time"
     private const val UPDATE_APK_DOWNLOAD_ID = "pref_update_apk_download_id"
     private const val UPDATE_APK_DIGEST = "pref_update_apk_digest"
-    private const val SIGNED_PREKEY_ROTATION_TIME_PREF = "pref_signed_pre_key_rotation_time"
 
     private const val IN_THREAD_NOTIFICATION_PREF = "pref_key_inthread_notifications"
-    private const val SHOW_INVITE_REMINDER_PREF = "pref_show_invite_reminder"
     const val MESSAGE_BODY_TEXT_SIZE_PREF = "pref_message_body_text_size"
 
     const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
-    private const val SIGNED_PREKEY_REGISTERED_PREF = "pref_signed_prekey_registered"
     private const val WIFI_SMS_PREF = "pref_wifi_sms"
 
     private const val GCM_DISABLED_PREF = "pref_gcm_disabled"
-    private const val GCM_REGISTRATION_ID_PREF = "pref_gcm_registration_id"
-    private const val GCM_REGISTRATION_ID_VERSION_PREF = "pref_gcm_registration_id_version"
-    private const val GCM_REGISTRATION_ID_TIME_PREF = "pref_gcm_registration_id_last_set_time"
     private const val WEBSOCKET_REGISTERED_PREF = "pref_websocket_registered"
-    private const val RATING_LATER_PREF = "pref_rating_later"
-    private const val RATING_ENABLED_PREF = "pref_rating_enabled"
-    private const val SIGNED_PREKEY_FAILURE_COUNT_PREF = "pref_signed_prekey_failure_count"
 
     const val REPEAT_ALERTS_PREF = "pref_repeat_alerts"
     const val NOTIFICATION_PRIVACY_PREF = "pref_notification_privacy"
     const val NOTIFICATION_PRIORITY_PREF = "pref_notification_priority"
-    const val NEW_CONTACTS_NOTIFICATIONS = "pref_enable_new_contacts_notifications"
-    const val WEBRTC_CALLING_PREF = "pref_webrtc_calling"
 
     const val MEDIA_DOWNLOAD_MOBILE_PREF = "pref_media_download_mobile"
     const val MEDIA_DOWNLOAD_WIFI_PREF = "pref_media_download_wifi"
@@ -104,7 +80,6 @@ object TextSecurePreferences {
     const val SYSTEM_EMOJI_PREF = "pref_system_emoji"
     private const val MULTI_DEVICE_PROVISIONED_PREF = "pref_multi_device"
     const val DIRECT_CAPTURE_CAMERA_ID = "pref_direct_capture_camera_id"
-    private const val ALWAYS_RELAY_CALLS_PREF = "pref_turn_only"
     const val PROFILE_KEY_PREF = "pref_profile_key"
     const val PROFILE_NAME_PREF = "pref_profile_name"
     const val PROFILE_AVATAR_ID_PREF = "pref_profile_avatar_id"
@@ -112,17 +87,12 @@ object TextSecurePreferences {
     const val READ_RECEIPTS_PREF = "pref_read_receipts"
     const val INCOGNITO_KEYBORAD_PREF = "pref_incognito_keyboard"
     private const val UNAUTHORIZED_RECEIVED = "pref_unauthorized_received"
-    private const val SUCCESSFUL_DIRECTORY_PREF = "pref_successful_directory"
 
     private const val DATABASE_ENCRYPTED_SECRET = "pref_database_encrypted_secret"
     private const val DATABASE_UNENCRYPTED_SECRET = "pref_database_unencrypted_secret"
     private const val ATTACHMENT_ENCRYPTED_SECRET = "pref_attachment_encrypted_secret"
     private const val ATTACHMENT_UNENCRYPTED_SECRET = "pref_attachment_unencrypted_secret"
     private const val NEEDS_SQLCIPHER_MIGRATION = "pref_needs_sql_cipher_migration"
-
-    private const val NEXT_PRE_KEY_ID = "pref_next_pre_key_id"
-    private const val ACTIVE_SIGNED_PRE_KEY_ID = "pref_active_signed_pre_key_id"
-    private const val NEXT_SIGNED_PRE_KEY_ID = "pref_next_signed_pre_key_id"
 
     const val BACKUP_ENABLED = "pref_backup_enabled_v3"
     private const val BACKUP_PASSPHRASE = "pref_backup_passphrase"
@@ -134,9 +104,6 @@ object TextSecurePreferences {
     const val SCREEN_LOCK = "pref_android_screen_lock"
     const val SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout"
 
-    private const val LAST_FULL_CONTACT_SYNC_TIME = "pref_last_full_contact_sync_time"
-    private const val NEEDS_FULL_CONTACT_SYNC = "pref_needs_full_contact_sync"
-
     private const val LOG_ENCRYPTED_SECRET = "pref_log_encrypted_secret"
     private const val LOG_UNENCRYPTED_SECRET = "pref_log_unencrypted_secret"
 
@@ -145,11 +112,7 @@ object TextSecurePreferences {
 
     private const val NEEDS_MESSAGE_PULL = "pref_needs_message_pull"
 
-    private const val UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time"
-    private const val UNIDENTIFIED_ACCESS_CERTIFICATE = "pref_unidentified_access_certificate"
     const val UNIVERSAL_UNIDENTIFIED_ACCESS = "pref_universal_unidentified_access"
-    const val SHOW_UNIDENTIFIED_DELIVERY_INDICATORS = "pref_show_unidentifed_delivery_indicators"
-    private const val UNIDENTIFIED_DELIVERY_ENABLED = "pref_unidentified_delivery_enabled"
 
     const val TYPING_INDICATORS = "pref_typing_indicators"
 
@@ -165,7 +128,6 @@ object TextSecurePreferences {
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
-    private const val HAS_SEEN_PN_MODE_SHEET = "pref_has_seen_pn_mode_sheet"
 
 
     @JvmStatic
@@ -264,36 +226,6 @@ object TextSecurePreferences {
         return getStringPreference(context, BACKUP_SAVE_DIR, null)
     }
 
-    fun getNextPreKeyId(context: Context): Int {
-        return getIntegerPreference(context, NEXT_PRE_KEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
-    }
-
-    fun setNextPreKeyId(context: Context, value: Int) {
-        setIntegerPrefrence(context, NEXT_PRE_KEY_ID, value)
-    }
-
-    fun getNextSignedPreKeyId(context: Context): Int {
-        return getIntegerPreference(context, NEXT_SIGNED_PRE_KEY_ID, SecureRandom().nextInt(Medium.MAX_VALUE))
-    }
-
-    fun setNextSignedPreKeyId(context: Context, value: Int) {
-        setIntegerPrefrence(context, NEXT_SIGNED_PRE_KEY_ID, value)
-    }
-
-    fun getActiveSignedPreKeyId(context: Context): Int {
-        return getIntegerPreference(context, ACTIVE_SIGNED_PRE_KEY_ID, -1)
-    }
-
-    fun setActiveSignedPreKeyId(context: Context, value: Int) {
-        setIntegerPrefrence(context, ACTIVE_SIGNED_PRE_KEY_ID, value)
-    }
-
-    // TODO
-//    fun setNeedsSqlCipherMigration(context: Context, value: Boolean) {
-//        setBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, value)
-//        org.greenrobot.eventbus.EventBus.getDefault().post(SqlCipherNeedsMigrationEvent())
-//    }
-
     @JvmStatic
     fun getNeedsSqlCipherMigration(context: Context): Boolean {
         return getBooleanPreference(context, NEEDS_SQLCIPHER_MIGRATION, false)
@@ -339,21 +271,9 @@ object TextSecurePreferences {
         return getStringPreference(context, DATABASE_ENCRYPTED_SECRET, null)
     }
 
-    fun setHasSuccessfullyRetrievedDirectory(context: Context, value: Boolean) {
-        setBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, value)
-    }
-
-    fun hasSuccessfullyRetrievedDirectory(context: Context): Boolean {
-        return getBooleanPreference(context, SUCCESSFUL_DIRECTORY_PREF, false)
-    }
-
     @JvmStatic
     fun setUnauthorizedReceived(context: Context, value: Boolean) {
         setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value)
-    }
-
-    fun isUnauthorizedRecieved(context: Context): Boolean {
-        return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false)
     }
 
     @JvmStatic
@@ -449,25 +369,9 @@ object TextSecurePreferences {
         return getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16")!!.toInt()
     }
 
-    fun isTurnOnly(context: Context): Boolean {
-        return getBooleanPreference(context, ALWAYS_RELAY_CALLS_PREF, false)
-    }
-
     @JvmStatic
     fun isFcmDisabled(context: Context): Boolean {
         return getBooleanPreference(context, GCM_DISABLED_PREF, false)
-    }
-
-    fun setFcmDisabled(context: Context, disabled: Boolean) {
-        setBooleanPreference(context, GCM_DISABLED_PREF, disabled)
-    }
-
-    fun isWebrtcCallingEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, WEBRTC_CALLING_PREF, false)
-    }
-
-    fun setWebrtcCallingEnabled(context: Context, enabled: Boolean) {
-        setBooleanPreference(context, WEBRTC_CALLING_PREF, enabled)
     }
 
     @JvmStatic
@@ -480,21 +384,9 @@ object TextSecurePreferences {
         return getIntegerPreference(context, DIRECT_CAPTURE_CAMERA_ID, Camera.CameraInfo.CAMERA_FACING_FRONT)
     }
 
-    fun setMultiDevice(context: Context, value: Boolean) {
-        setBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, value)
-    }
-
     @JvmStatic
     fun isMultiDevice(context: Context): Boolean {
         return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false)
-    }
-
-    fun setSignedPreKeyFailureCount(context: Context, value: Int) {
-        setIntegerPrefrence(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, value)
-    }
-
-    fun getSignedPreKeyFailureCount(context: Context): Int {
-        return getIntegerPreference(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, 0)
     }
 
     @JvmStatic
@@ -502,33 +394,9 @@ object TextSecurePreferences {
         return NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"))
     }
 
-    fun isNewContactsNotificationEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, true)
-    }
-
-    fun getRatingLaterTimestamp(context: Context): Long {
-        return getLongPreference(context, RATING_LATER_PREF, 0)
-    }
-
-    fun setRatingLaterTimestamp(context: Context, timestamp: Long) {
-        setLongPreference(context, RATING_LATER_PREF, timestamp)
-    }
-
-    fun isRatingEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, RATING_ENABLED_PREF, true)
-    }
-
-    fun setRatingEnabled(context: Context, enabled: Boolean) {
-        setBooleanPreference(context, RATING_ENABLED_PREF, enabled)
-    }
-
     @JvmStatic
     fun isWebsocketRegistered(context: Context): Boolean {
         return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false)
-    }
-
-    fun setWebsocketRegistered(context: Context, registered: Boolean) {
-        setBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, registered)
     }
 
     @JvmStatic
@@ -546,18 +414,6 @@ object TextSecurePreferences {
         }
     }
 
-    fun setRepeatAlertsCount(context: Context, count: Int) {
-        setStringPreference(context, REPEAT_ALERTS_PREF, count.toString())
-    }
-
-    fun isSignedPreKeyRegistered(context: Context): Boolean {
-        return getBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, false)
-    }
-
-    fun setSignedPreKeyRegistered(context: Context, value: Boolean) {
-        setBooleanPreference(context, SIGNED_PREKEY_REGISTERED_PREF, value)
-    }
-
     fun getLocalRegistrationId(context: Context): Int {
         return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0)
     }
@@ -566,37 +422,9 @@ object TextSecurePreferences {
         setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId)
     }
 
-    fun removeLocalRegistrationId(context: Context) {
-        removePreference(context, LOCAL_REGISTRATION_ID_PREF)
-    }
-
     @JvmStatic
     fun isInThreadNotifications(context: Context): Boolean {
         return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true)
-    }
-
-    fun getUnidentifiedAccessCertificateRotationTime(context: Context): Long {
-        return getLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, 0L)
-    }
-
-    fun setUnidentifiedAccessCertificateRotationTime(context: Context, value: Long) {
-        setLongPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF, value)
-    }
-
-    fun setUnidentifiedAccessCertificate(context: Context, value: ByteArray?) {
-        setStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, Base64.encodeBytes(value))
-    }
-
-    fun getUnidentifiedAccessCertificate(context: Context): ByteArray? {
-        try {
-            val result = getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null)
-            if (result != null) {
-                return Base64.decode(result)
-            }
-        } catch (e: IOException) {
-            Log.w(TAG, e)
-        }
-        return null
     }
 
     @JvmStatic
@@ -604,35 +432,11 @@ object TextSecurePreferences {
         return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false)
     }
 
-    fun isShowUnidentifiedDeliveryIndicatorsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, false)
-    }
-
-    fun setIsUnidentifiedDeliveryEnabled(context: Context, enabled: Boolean) {
-        setBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, enabled)
-    }
-
     @JvmStatic
     fun isUnidentifiedDeliveryEnabled(context: Context): Boolean {
         // Loki - Always enable unidentified sender
         return true
         // return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
-    }
-
-    fun getSignedPreKeyRotationTime(context: Context): Long {
-        return getLongPreference(context, SIGNED_PREKEY_ROTATION_TIME_PREF, 0L)
-    }
-
-    fun setSignedPreKeyRotationTime(context: Context, value: Long) {
-        setLongPreference(context, SIGNED_PREKEY_ROTATION_TIME_PREF, value)
-    }
-
-    fun getDirectoryRefreshTime(context: Context): Long {
-        return getLongPreference(context, DIRECTORY_FRESH_TIME_PREF, 0L)
-    }
-
-    fun setDirectoryRefreshTime(context: Context, value: Long) {
-        setLongPreference(context, DIRECTORY_FRESH_TIME_PREF, value)
     }
 
     @JvmStatic
@@ -683,17 +487,9 @@ object TextSecurePreferences {
         return getStringPreference(context, GCM_PASSWORD_PREF, null)
     }
 
-    fun setPushServerPassword(context: Context, password: String?) {
-        setStringPreference(context, GCM_PASSWORD_PREF, password)
-    }
-
     @JvmStatic
     fun getSignalingKey(context: Context): String? {
         return getStringPreference(context, SIGNALING_KEY_PREF, null)
-    }
-
-    fun isEnterImeKeyEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, ENTER_PRESENT_PREF, false)
     }
 
     @JvmStatic
@@ -716,17 +512,9 @@ object TextSecurePreferences {
         return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy)
     }
 
-    fun setUseCustomMmsc(context: Context, value: Boolean) {
-        setBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, value)
-    }
-
     @JvmStatic
     fun getMmscUrl(context: Context): String? {
         return getStringPreference(context, MMSC_HOST_PREF, "")
-    }
-
-    fun setMmscUrl(context: Context, mmsc: String?) {
-        setStringPreference(context, MMSC_HOST_PREF, mmsc)
     }
 
     @JvmStatic
@@ -735,17 +523,9 @@ object TextSecurePreferences {
         return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy)
     }
 
-    fun setUseCustomMmscProxy(context: Context, value: Boolean) {
-        setBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, value)
-    }
-
     @JvmStatic
     fun getMmscProxy(context: Context): String? {
         return getStringPreference(context, MMSC_PROXY_HOST_PREF, "")
-    }
-
-    fun setMmscProxy(context: Context, value: String?) {
-        setStringPreference(context, MMSC_PROXY_HOST_PREF, value)
     }
 
     @JvmStatic
@@ -754,17 +534,9 @@ object TextSecurePreferences {
         return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy)
     }
 
-    fun setUseCustomMmscProxyPort(context: Context, value: Boolean) {
-        setBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, value)
-    }
-
     @JvmStatic
     fun getMmscProxyPort(context: Context): String? {
         return getStringPreference(context, MMSC_PROXY_PORT_PREF, "")
-    }
-
-    fun setMmscProxyPort(context: Context, value: String?) {
-        setStringPreference(context, MMSC_PROXY_PORT_PREF, value)
     }
 
     @JvmStatic
@@ -773,17 +545,9 @@ object TextSecurePreferences {
         return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy)
     }
 
-    fun setUseCustomMmscUsername(context: Context, value: Boolean) {
-        setBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, value)
-    }
-
     @JvmStatic
     fun getMmscUsername(context: Context): String? {
         return getStringPreference(context, MMSC_USERNAME_PREF, "")
-    }
-
-    fun setMmscUsername(context: Context, value: String?) {
-        setStringPreference(context, MMSC_USERNAME_PREF, value)
     }
 
     @JvmStatic
@@ -792,35 +556,15 @@ object TextSecurePreferences {
         return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy)
     }
 
-    fun setUseCustomMmscPassword(context: Context, value: Boolean) {
-        setBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, value)
-    }
-
     @JvmStatic
     fun getMmscPassword(context: Context): String? {
         return getStringPreference(context, MMSC_PASSWORD_PREF, "")
-    }
-
-    fun setMmscPassword(context: Context, value: String?) {
-        setStringPreference(context, MMSC_PASSWORD_PREF, value)
     }
 
     @JvmStatic
     fun getMmsUserAgent(context: Context, defaultUserAgent: String): String {
         val useCustom: Boolean = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false)
         return if (useCustom) getStringPreference(context, MMS_USER_AGENT, defaultUserAgent)!! else defaultUserAgent
-    }
-
-    fun getIdentityContactUri(context: Context): String? {
-        return getStringPreference(context, IDENTITY_PREF, null)
-    }
-
-    fun setIdentityContactUri(context: Context, identityUri: String?) {
-        setStringPreference(context, IDENTITY_PREF, identityUri)
-    }
-
-    fun setScreenSecurityEnabled(context: Context, value: Boolean) {
-        setBooleanPreference(context, SCREEN_SECURITY_PREF, value)
     }
 
     @JvmStatic
@@ -843,20 +587,8 @@ object TextSecurePreferences {
         }
     }
 
-    fun getLastExperienceVersionCode(context: Context): Int {
-        return getIntegerPreference(context, LAST_EXPERIENCE_VERSION_PREF, 0)
-    }
-
     fun setLastExperienceVersionCode(context: Context, versionCode: Int) {
         setIntegerPrefrence(context, LAST_EXPERIENCE_VERSION_PREF, versionCode)
-    }
-
-    fun getExperienceDismissedVersionCode(context: Context): Int {
-        return getIntegerPreference(context, EXPERIENCE_DISMISSED_PREF, 0)
-    }
-
-    fun setExperienceDismissedVersionCode(context: Context, versionCode: Int) {
-        setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode)
     }
 
     fun getTheme(context: Context): String? {
@@ -868,22 +600,9 @@ object TextSecurePreferences {
         return getBooleanPreference(context, VERIFYING_STATE_PREF, false)
     }
 
-    fun setVerifying(context: Context, verifying: Boolean) {
-        setBooleanPreference(context, VERIFYING_STATE_PREF, verifying)
-    }
-
     @JvmStatic
     fun isPushRegistered(context: Context): Boolean {
         return getBooleanPreference(context, REGISTERED_GCM_PREF, false)
-    }
-
-    fun setPushRegistered(context: Context, registered: Boolean) {
-        Log.i(TAG, "Setting push registered: $registered")
-        setBooleanPreference(context, REGISTERED_GCM_PREF, registered)
-    }
-
-    fun isShowInviteReminders(context: Context): Boolean {
-        return getBooleanPreference(context, SHOW_INVITE_REMINDER_PREF, true)
     }
 
     @JvmStatic
@@ -896,17 +615,9 @@ object TextSecurePreferences {
         return getIntegerPreference(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, 5 * 60)
     }
 
-    fun setPassphraseTimeoutInterval(context: Context, interval: Int) {
-        setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval)
-    }
-
     @JvmStatic
     fun getLanguage(context: Context): String? {
         return getStringPreference(context, LANGUAGE_PREF, "zz")
-    }
-
-    fun setLanguage(context: Context, language: String?) {
-        setStringPreference(context, LANGUAGE_PREF, language)
     }
 
     @JvmStatic
@@ -921,46 +632,6 @@ object TextSecurePreferences {
 
     fun setHasSeenWelcomeScreen(context: Context, value: Boolean) {
         setBooleanPreference(context, SEEN_WELCOME_SCREEN_PREF, value)
-    }
-
-    fun hasPromptedPushRegistration(context: Context): Boolean {
-        return getBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, false)
-    }
-
-    fun setPromptedPushRegistration(context: Context, value: Boolean) {
-        setBooleanPreference(context, PROMPTED_PUSH_REGISTRATION_PREF, value)
-    }
-
-    fun hasPromptedDefaultSmsProvider(context: Context): Boolean {
-        return getBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, false)
-    }
-
-    fun setPromptedDefaultSmsProvider(context: Context, value: Boolean) {
-        setBooleanPreference(context, PROMPTED_DEFAULT_SMS_PREF, value)
-    }
-
-    fun setPromptedOptimizeDoze(context: Context, value: Boolean) {
-        setBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, value)
-    }
-
-    fun hasPromptedOptimizeDoze(context: Context): Boolean {
-        return getBooleanPreference(context, PROMPTED_OPTIMIZE_DOZE_PREF, false)
-    }
-
-    fun hasPromptedShare(context: Context): Boolean {
-        return getBooleanPreference(context, PROMPTED_SHARE_PREF, false)
-    }
-
-    fun setPromptedShare(context: Context, value: Boolean) {
-        setBooleanPreference(context, PROMPTED_SHARE_PREF, value)
-    }
-
-    fun isInterceptAllMmsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, ALL_MMS_PREF, true)
-    }
-
-    fun isInterceptAllSmsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, ALL_SMS_PREF, true)
     }
 
     @JvmStatic
@@ -1012,10 +683,6 @@ object TextSecurePreferences {
         return getStringPreference(context, LED_BLINK_PREF_CUSTOM, "500,2000")
     }
 
-    fun setNotificationLedPatternCustom(context: Context, pattern: String?) {
-        setStringPreference(context, LED_BLINK_PREF_CUSTOM, pattern)
-    }
-
     @JvmStatic
     fun isThreadLengthTrimmingEnabled(context: Context): Boolean {
         return getBooleanPreference(context, THREAD_TRIM_ENABLED, false)
@@ -1048,22 +715,6 @@ object TextSecurePreferences {
 
     private fun getMediaDownloadAllowed(context: Context, key: String, @ArrayRes defaultValuesRes: Int): Set<String>? {
         return getStringSetPreference(context, key, HashSet(Arrays.asList(*context.resources.getStringArray(defaultValuesRes))))
-    }
-
-    fun getLastFullContactSyncTime(context: Context): Long {
-        return getLongPreference(context, LAST_FULL_CONTACT_SYNC_TIME, 0)
-    }
-
-    fun setLastFullContactSyncTime(context: Context, timestamp: Long) {
-        setLongPreference(context, LAST_FULL_CONTACT_SYNC_TIME, timestamp)
-    }
-
-    fun needsFullContactSync(context: Context): Boolean {
-        return getBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, false)
-    }
-
-    fun setNeedsFullContactSync(context: Context, needsSync: Boolean) {
-        setBooleanPreference(context, NEEDS_FULL_CONTACT_SYNC, needsSync)
     }
 
     @JvmStatic
@@ -1191,30 +842,6 @@ object TextSecurePreferences {
     }
 
     // region Loki
-    fun getBackgroundPollTime(context: Context): Long {
-        return getLongPreference(context, "background_poll_time", 0L)
-    }
-
-    fun setBackgroundPollTime(context: Context, backgroundPollTime: Long) {
-        setLongPreference(context, "background_poll_time", backgroundPollTime)
-    }
-
-    fun getOpenGroupBackgroundPollTime(context: Context): Long {
-        return getLongPreference(context, "public_chat_background_poll_time", 0L)
-    }
-
-    fun setOpenGroupBackgroundPollTime(context: Context, backgroundPollTime: Long) {
-        setLongPreference(context, "public_chat_background_poll_time", backgroundPollTime)
-    }
-
-    fun isChatSetUp(context: Context, id: String): Boolean {
-        return getBooleanPreference(context, "is_chat_set_up?chat=$id", false)
-    }
-
-    fun markChatSetUp(context: Context, id: String) {
-        setBooleanPreference(context, "is_chat_set_up?chat=$id", true)
-    }
-
     @JvmStatic
     fun getMasterHexEncodedPublicKey(context: Context): String? {
         return getStringPreference(context, "master_hex_encoded_public_key", null)
@@ -1230,14 +857,6 @@ object TextSecurePreferences {
 
     fun setHasViewedSeed(context: Context, hasViewedSeed: Boolean) {
         setBooleanPreference(context, "has_viewed_seed", hasViewedSeed)
-    }
-
-    fun setNeedsDatabaseReset(context: Context, resetDatabase: Boolean) {
-        getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit()
-    }
-
-    fun getNeedsDatabaseReset(context: Context): Boolean {
-        return getBooleanPreference(context, "database_reset", false)
     }
 
     fun setWasUnlinked(context: Context, value: Boolean) {
@@ -1265,14 +884,6 @@ object TextSecurePreferences {
         return getLongPreference(context, "restoration_time", 0)
     }
 
-    fun getHasSeenOpenGroupSuggestionSheet(context: Context): Boolean {
-        return getBooleanPreference(context, "has_seen_open_group_suggestion_sheet", false)
-    }
-
-    fun setHasSeenOpenGroupSuggestionSheet(context: Context) {
-        setBooleanPreference(context, "has_seen_open_group_suggestion_sheet", true)
-    }
-
     @JvmStatic
     fun getLastProfilePictureUpload(context: Context): Long {
         return getLongPreference(context, "last_profile_picture_upload", 0)
@@ -1298,36 +909,12 @@ object TextSecurePreferences {
         getDefaultSharedPreferences(context).edit().clear().commit()
     }
 
-    fun getHasSeenMultiDeviceRemovalSheet(context: Context): Boolean {
-        return getBooleanPreference(context, "has_seen_multi_device_removal_sheet", false)
-    }
-
-    fun setHasSeenMultiDeviceRemovalSheet(context: Context) {
-        setBooleanPreference(context, "has_seen_multi_device_removal_sheet", true)
-    }
-
-    fun hasSeenLightThemeIntroSheet(context: Context): Boolean {
-        return getBooleanPreference(context, "has_seen_light_theme_intro_sheet", false)
-    }
-
-    fun setHasSeenLightThemeIntroSheet(context: Context) {
-        setBooleanPreference(context, "has_seen_light_theme_intro_sheet", true)
-    }
-
     fun getLastSnodePoolRefreshDate(context: Context?): Long {
         return getLongPreference(context!!, "last_snode_pool_refresh_date", 0)
     }
 
     fun setLastSnodePoolRefreshDate(context: Context?, date: Date) {
         setLongPreference(context!!, "last_snode_pool_refresh_date", date.time)
-    }
-
-    fun getLastKeyPairMigrationNudge(context: Context?): Long {
-        return getLongPreference(context!!, "last_key_pair_migration_nudge", 0)
-    }
-
-    fun setLastKeyPairMigrationNudge(context: Context?, newValue: Long) {
-        setLongPreference(context!!, "last_key_pair_migration_nudge", newValue)
     }
 
     fun getIsMigratingKeyPair(context: Context?): Boolean {
@@ -1338,7 +925,6 @@ object TextSecurePreferences {
     fun setIsMigratingKeyPair(context: Context?, newValue: Boolean) {
         setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
     }
-
     // endregion
 
 

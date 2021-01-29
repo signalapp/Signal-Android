@@ -192,7 +192,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util; // Cannot be modified
 
 import org.session.libsession.messaging.sending_receiving.contacts.Contact;

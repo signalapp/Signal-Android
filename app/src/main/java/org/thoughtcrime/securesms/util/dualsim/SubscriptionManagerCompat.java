@@ -10,7 +10,7 @@ import android.telephony.TelephonyManager;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsignal.libsignal.util.guava.Function;
 import org.session.libsignal.libsignal.util.guava.Optional;
 

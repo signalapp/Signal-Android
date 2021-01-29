@@ -152,8 +152,6 @@ class PNModeActivity : BaseActionBarActivity() {
         }
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
-        TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
-        TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
         application.setUpP2PAPIIfNeeded()

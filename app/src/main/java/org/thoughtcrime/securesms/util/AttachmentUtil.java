@@ -12,9 +12,11 @@ import androidx.annotation.WorkerThread;
 
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.logging.Log;
-import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.Set;

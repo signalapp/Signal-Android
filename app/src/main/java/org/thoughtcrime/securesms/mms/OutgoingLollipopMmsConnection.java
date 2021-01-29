@@ -33,7 +33,8 @@ import com.google.android.mms.pdu_alt.SendConf;
 
 import org.thoughtcrime.securesms.providers.MmsBodyProvider;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.Util;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.LimitedInputStream;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.io.File;
 import java.io.FileInputStream;

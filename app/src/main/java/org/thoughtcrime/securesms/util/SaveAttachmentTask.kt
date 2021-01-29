@@ -20,6 +20,8 @@ import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
 import kotlin.jvm.Throws
 
+import org.session.libsession.utilities.Util
+
 /**
  * Saves attachment files to an external storage using [MediaStore] API.
  * Requires [android.Manifest.permission.WRITE_EXTERNAL_STORAGE] on API 28 and below.

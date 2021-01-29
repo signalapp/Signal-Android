@@ -20,7 +20,7 @@ import android.content.ContentValues;
 
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 public class ContentValuesBuilder {
 

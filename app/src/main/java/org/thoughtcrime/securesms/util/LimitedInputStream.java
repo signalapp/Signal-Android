@@ -22,6 +22,8 @@ import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.session.libsession.utilities.Util;
+
 
 /**
  * An input stream, which limits its data size. This stream is
