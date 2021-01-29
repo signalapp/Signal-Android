@@ -18,6 +18,8 @@ object AvatarPlaceholderGenerator {
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         val hash: Long
         if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {
+            val sha = getSha512(hashString)
+            val test = sha.substring(0 until 12)
             hash = getSha512(hashString).substring(0 until 12).toLong(16)
         } else {
             hash = 0
@@ -76,10 +78,10 @@ object AvatarPlaceholderGenerator {
         // Convert message digest into hex value
         var hashText: String = no.toString(16)
 
-        // Add preceding 0s to make it 32 bit
-        if (hashText.length < 32) {
+        // Add preceding 0s to make it 32 bytes
+        if (hashText.length < 128) {
             val sb = StringBuilder()
-            for (i in 0 until 32 - hashText.length) {
+            for (i in 0 until 128 - hashText.length) {
                 sb.append('0')
             }
             hashText = sb.append(hashText).toString()
