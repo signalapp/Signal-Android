@@ -27,9 +27,7 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowInsetsController;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
@@ -37,8 +35,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.transition.Transition;
-import androidx.transition.TransitionListenerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -47,6 +43,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsListUpdatePopupWindow;
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState;
+import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutput;
 import org.thoughtcrime.securesms.components.webrtc.WebRtcCallView;
@@ -65,7 +62,6 @@ import org.thoughtcrime.securesms.util.EllapsedTimeFormatter;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.WindowUtil;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -85,6 +81,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
 
   private CallParticipantsListUpdatePopupWindow participantUpdateWindow;
+  private DeviceOrientationMonitor              deviceOrientationMonitor;
 
   private FullscreenHelper    fullscreenHelper;
   private WebRtcCallView      callScreen;
@@ -240,7 +237,12 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   private void initializeViewModel() {
-    viewModel = ViewModelProviders.of(this).get(WebRtcCallViewModel.class);
+    deviceOrientationMonitor = new DeviceOrientationMonitor(this);
+    getLifecycle().addObserver(deviceOrientationMonitor);
+
+    WebRtcCallViewModel.Factory factory = new WebRtcCallViewModel.Factory(deviceOrientationMonitor);
+
+    viewModel = ViewModelProviders.of(this, factory).get(WebRtcCallViewModel.class);
     viewModel.setIsInPipMode(isInPipMode());
     viewModel.getMicrophoneEnabled().observe(this, callScreen::setMicEnabled);
     viewModel.getWebRtcControls().observe(this, callScreen::setWebRtcControls);
@@ -260,6 +262,25 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
           intent.setAction(WebRtcCallService.ACTION_GROUP_UPDATE_RENDERED_RESOLUTIONS);
           startService(intent);
         }
+      }
+    });
+
+    viewModel.getOrientation().observe(this, orientation -> {
+      Intent intent = new Intent(this, WebRtcCallService.class);
+      intent.setAction(WebRtcCallService.ACTION_ORIENTATION_CHANGED)
+            .putExtra(WebRtcCallService.EXTRA_ORIENTATION_DEGREES, orientation.getDegrees());
+
+      startService(intent);
+
+      switch (orientation) {
+        case LANDSCAPE_LEFT_EDGE:
+          callScreen.rotateControls(90);
+          break;
+        case LANDSCAPE_RIGHT_EDGE:
+          callScreen.rotateControls(-90);
+          break;
+        case PORTRAIT_BOTTOM_EDGE:
+          callScreen.rotateControls(0);
       }
     });
   }

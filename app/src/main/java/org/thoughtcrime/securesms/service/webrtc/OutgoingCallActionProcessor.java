@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.components.webrtc.OrientationAwareVideoSink;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -114,8 +114,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
                                                 videoState.requireEglBase(),
-                                                videoState.requireLocalSink(),
-                                                callParticipant.getVideoSink(),
+                                                new OrientationAwareVideoSink(videoState.requireLocalSink()),
+                                                new OrientationAwareVideoSink(callParticipant.getVideoSink()),
                                                 videoState.requireCamera(),
                                                 iceServers,
                                                 isAlwaysTurn,

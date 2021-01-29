@@ -13,12 +13,14 @@ import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
+import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.ringrtc.CallState;
+import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
@@ -82,6 +84,7 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_LOCAL_
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_ERROR;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_MESSAGE_SENT_SUCCESS;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_NETWORK_CHANGE;
+import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_ORIENTATION_CHANGED;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_OUTGOING_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_PRE_JOIN_CALL;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.ACTION_RECEIVED_OFFER_EXPIRED;
@@ -135,6 +138,7 @@ import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIc
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getIceServers;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getNullableRemotePeerFromMap;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getOfferMessageType;
+import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getOrientationDegrees;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeer;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemotePeerFromMap;
 
@@ -220,6 +224,7 @@ public abstract class WebRtcActionProcessor {
       case ACTION_CAMERA_SWITCH_COMPLETED:             return handleCameraSwitchCompleted(currentState, getCameraState(intent));
       case ACTION_NETWORK_CHANGE:                      return handleNetworkChanged(currentState, getAvailable(intent));
       case ACTION_BANDWIDTH_MODE_UPDATE:               return handleBandwidthModeUpdate(currentState);
+      case ACTION_ORIENTATION_CHANGED:                 return handleOrientationChanged(currentState, getOrientationDegrees(intent));
 
       // End Call Actions
       case ACTION_ENDED_REMOTE_HANGUP:
@@ -624,6 +629,18 @@ public abstract class WebRtcActionProcessor {
     }
 
     return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, int orientationDegrees) {
+    Camera camera = currentState.getVideoState().getCamera();
+    if (camera != null) {
+      camera.setOrientation(orientationDegrees);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .setOrientation(Orientation.fromDegrees(orientationDegrees))
+                       .build();
   }
 
   //endregion Local device

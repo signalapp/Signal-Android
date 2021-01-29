@@ -120,6 +120,7 @@ public class WebRtcCallView extends FrameLayout {
   private final Set<View> topViews             = new HashSet<>();
   private final Set<View> visibleViewSet       = new HashSet<>();
   private final Set<View> adjustableMarginsSet = new HashSet<>();
+  private final Set<View> rotatableControls    = new HashSet<>();
 
   private       WebRtcControls controls        = WebRtcControls.NONE;
   private final Runnable       fadeOutRunnable = () -> {
@@ -251,6 +252,16 @@ public class WebRtcCallView extends FrameLayout {
         controlsListener.onCancelStartCall();
       }
     });
+
+    rotatableControls.add(hangup);
+    rotatableControls.add(answer);
+    rotatableControls.add(answerWithAudio);
+    rotatableControls.add(audioToggle);
+    rotatableControls.add(micToggle);
+    rotatableControls.add(videoToggle);
+    rotatableControls.add(cameraDirectionToggle);
+    rotatableControls.add(decline);
+    rotatableControls.add(smallLocalRender.findViewById(R.id.call_participant_mic_muted));
   }
 
   @Override
@@ -286,6 +297,12 @@ public class WebRtcCallView extends FrameLayout {
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     cancelFadeOut();
+  }
+
+  public void rotateControls(int degrees) {
+    for (View view : rotatableControls) {
+      view.animate().rotation(degrees);
+    }
   }
 
   public void setControlsListener(@Nullable ControlsListener controlsListener) {
