@@ -24685,6 +24685,37 @@ public final class SignalServiceProtos {
        * </pre>
        */
       ENCRYPTION_KEY_PAIR(2, 3),
+        /**
+         * <code>NAME_CHANGE = 4;</code>
+         *
+         * <pre>
+         * name
+         * </pre>
+         */
+        NAME_CHANGE(3, 4),
+        /**
+         * <code>MEMBERS_ADDED = 5;</code>
+         *
+         * <pre>
+         * members
+         * </pre>
+         */
+        MEMBERS_ADDED(4, 5),
+        /**
+         * <code>MEMBERS_REMOVED = 6;</code>
+         *
+         * <pre>
+         * members
+         * </pre>
+         */
+        MEMBERS_REMOVED(5, 6),
+        /**
+         * <code>MEMBER_LEFT = 7;</code>
+         *
+         * <pre>
+         * </pre>
+         */
+        MEMBER_LEFT(6, 7),
       ;
 
       /**
@@ -24711,6 +24742,38 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public static final int ENCRYPTION_KEY_PAIR_VALUE = 3;
+        /**
+         * <code>NAME_CHANGE = 4;</code>
+         *
+         * <pre>
+         * name
+         * </pre>
+         */
+        public static final int NAME_CHANGE_VALUE = 4;
+        /**
+         * <code>MEMBERS_ADDED = 5;</code>
+         *
+         * <pre>
+         * members
+         * </pre>
+         */
+        public static final int MEMBERS_ADDED_VALUE = 5;
+        /**
+         * <code>MEMBERS_REMOVED = 6;</code>
+         *
+         * <pre>
+         * members
+         * </pre>
+         */
+        public static final int MEMBERS_REMOVED_VALUE = 6;
+        /**
+         * <code>MEMBER_LEFT = 7;</code>
+         *
+         * <pre>
+         * </pre>
+         */
+        public static final int MEMBER_LEFT_VALUE = 7;
+
 
 
       public final int getNumber() { return value; }
@@ -24720,6 +24783,10 @@ public final class SignalServiceProtos {
           case 1: return NEW;
           case 2: return UPDATE;
           case 3: return ENCRYPTION_KEY_PAIR;
+          case 4: return NAME_CHANGE;
+          case 5: return MEMBERS_ADDED;
+          case 6: return MEMBERS_REMOVED;
+          case 7: return MEMBER_LEFT;
           default: return null;
         }
       }

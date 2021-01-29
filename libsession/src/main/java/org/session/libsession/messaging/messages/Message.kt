@@ -12,7 +12,9 @@ abstract class Message {
     var sender: String? = null
     var groupPublicKey: String? = null
     var openGroupServerMessageID: Long? = null
+
     open val ttl: Long = 2 * 24 * 60 * 60 * 1000
+    open val isSelfSendValid: Boolean = false
 
     // validation
     open fun isValid(): Boolean {
