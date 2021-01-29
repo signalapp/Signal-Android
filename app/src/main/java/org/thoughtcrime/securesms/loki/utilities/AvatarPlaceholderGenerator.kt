@@ -18,8 +18,6 @@ object AvatarPlaceholderGenerator {
     fun generate(context: Context, pixelSize: Int, hashString: String, displayName: String?): BitmapDrawable {
         val hash: Long
         if (hashString.length >= 12 && hashString.matches(Regex("^[0-9A-Fa-f]+\$"))) {
-            val sha = getSha512(hashString)
-            val test = sha.substring(0 until 12)
             hash = getSha512(hashString).substring(0 until 12).toLong(16)
         } else {
             hash = 0

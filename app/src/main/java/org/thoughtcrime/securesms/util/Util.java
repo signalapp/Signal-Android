@@ -21,6 +21,8 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Handler;
+import android.os.Looper;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -41,6 +43,8 @@ import java.util.List;
 import network.loki.messenger.BuildConfig;
 
 public class Util {
+
+  private static volatile Handler handler;
 
   public static String join(String[] list, String delimiter) {
     return join(Arrays.asList(list), delimiter);
@@ -143,5 +147,25 @@ public class Util {
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public static boolean isMmsCapable(Context context) {
     return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
+  }
+
+  public static boolean isMainThread() {
+    return Looper.myLooper() == Looper.getMainLooper();
+  }
+
+  public static void runOnMain(final @NonNull Runnable runnable) {
+    if (isMainThread()) runnable.run();
+    else                getHandler().post(runnable);
+  }
+
+  private static Handler getHandler() {
+    if (handler == null) {
+      synchronized (Util.class) {
+        if (handler == null) {
+          handler = new Handler(Looper.getMainLooper());
+        }
+      }
+    }
+    return handler;
   }
 }
