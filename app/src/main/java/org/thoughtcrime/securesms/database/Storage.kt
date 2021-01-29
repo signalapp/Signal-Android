@@ -6,6 +6,7 @@ import com.google.protobuf.ByteString
 import org.session.libsession.messaging.StorageProtocol
 import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
+import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.Attachment
@@ -80,10 +81,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return registrationID
     }
 
-    override fun persist(job: Job) {
-        TODO("Not yet implemented")
-    }
-
     override fun persist(attachments: List<Attachment>): List<Long> {
         TODO("Not yet implemented")
     }
@@ -128,33 +125,43 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return messageID
     }
 
+    // JOBS
+
+    override fun persist(job: Job) {
+        DatabaseFactory.getSessionJobDatabase(context).persistJob(job)
+    }
+
     override fun markJobAsSucceeded(job: Job) {
-        TODO("Not yet implemented")
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsSucceeded(job)
     }
 
     override fun markJobAsFailed(job: Job) {
-        TODO("Not yet implemented")
+        DatabaseFactory.getSessionJobDatabase(context).markJobAsFailed(job)
     }
 
     override fun getAllPendingJobs(type: String): List<Job> {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getSessionJobDatabase(context).getAllPendingJobs(type)
     }
 
     override fun getAttachmentUploadJob(attachmentID: Long): AttachmentUploadJob? {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getSessionJobDatabase(context).getAttachmentUploadJob(attachmentID)
     }
 
     override fun getMessageSendJob(messageSendJobID: String): MessageSendJob? {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID)
     }
 
     override fun resumeMessageSendJobIfNeeded(messageSendJobID: String) {
-        TODO("Not yet implemented")
+        val job = DatabaseFactory.getSessionJobDatabase(context).getMessageSendJob(messageSendJobID) ?: return
+        job.delegate = JobQueue.shared
+        job.execute()
     }
 
     override fun isJobCanceled(job: Job): Boolean {
-        TODO("Not yet implemented")
+        return DatabaseFactory.getSessionJobDatabase(context).isJobCanceled(job)
     }
+
+    // Authorization
 
     override fun getAuthToken(server: String): String? {
         return DatabaseFactory.getLokiAPIDatabase(context).getAuthToken(server)

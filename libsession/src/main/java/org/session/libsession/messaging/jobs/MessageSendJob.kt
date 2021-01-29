@@ -20,8 +20,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     override val maxFailureCount: Int = 10
     companion object {
         val TAG = MessageSendJob::class.qualifiedName
-
-        val collection: String = "MessageSendJobCollection"
+        val KEY: String = "MessageSendJob"
 
         //keys used for database storage purpose
         private val KEY_MESSAGE = "message"
@@ -77,7 +76,6 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     //database functions
 
     override fun serialize(): Data {
-        val builder = this.createJobDataBuilder()
         //serialize Message and Destination properties
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
@@ -89,9 +87,13 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         output = Output(serializedDestination)
         kryo.writeObject(output, destination)
         output.close()
-        return builder.putByteArray(KEY_MESSAGE, serializedMessage)
+        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
                 .putByteArray(KEY_DESTINATION, serializedDestination)
                 .build();
+    }
+
+    override fun getFactoryKey(): String {
+        return AttachmentDownloadJob.KEY
     }
 
     class Factory: Job.Factory<MessageSendJob> {
@@ -106,9 +108,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             input = Input(serializedDestination)
             val destination: Destination = kryo.readObject(input, Destination::class.java)
             input.close()
-            val job = MessageSendJob(message, destination)
-            job.initJob(data)
-            return job
+            return MessageSendJob(message, destination)
         }
     }
 }

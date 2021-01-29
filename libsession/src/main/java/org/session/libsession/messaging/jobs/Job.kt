@@ -19,15 +19,10 @@ interface Job {
 
     fun serialize(): Data
 
-    fun initJob(data: Data) {
-        id = data.getString(KEY_ID)
-        failureCount = data.getInt(KEY_FAILURE_COUNT)
-    }
-
-    fun createJobDataBuilder(): Data.Builder {
-        return Data.Builder().putString(KEY_ID, id)
-                .putInt(KEY_FAILURE_COUNT, failureCount)
-    }
+    /**
+     * Returns the key that can be used to find the relevant factory needed to create your job.
+     */
+    fun getFactoryKey(): String
 
     interface Factory<T : Job> {
         fun create(data: Data): T

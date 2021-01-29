@@ -24,7 +24,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     // Settings
     override val maxFailureCount: Int = 20
     companion object {
-        val collection: String = "NotifyPNServerJobCollection"
+        val KEY: String = "NotifyPNServerJob"
 
         //keys used for database storage purpose
         private val KEY_MESSAGE = "message"
@@ -64,7 +64,6 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     //database functions
 
     override fun serialize(): Data {
-        val builder = this.createJobDataBuilder()
         //serialize SnodeMessage property
         val kryo = Kryo()
         kryo.isRegistrationRequired = false
@@ -72,8 +71,12 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
         val output = Output(serializedMessage)
         kryo.writeObject(output, message)
         output.close()
-        return builder.putByteArray(KEY_MESSAGE, serializedMessage)
+        return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
                 .build();
+    }
+
+    override fun getFactoryKey(): String {
+        return AttachmentDownloadJob.KEY
     }
 
     class Factory: Job.Factory<NotifyPNServerJob> {
@@ -84,9 +87,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
             val input = Input(serializedMessage)
             val message: SnodeMessage = kryo.readObject(input, SnodeMessage::class.java)
             input.close()
-            val job = NotifyPNServerJob(message)
-            job.initJob(data)
-            return job
+            return NotifyPNServerJob(message)
         }
     }
 }
