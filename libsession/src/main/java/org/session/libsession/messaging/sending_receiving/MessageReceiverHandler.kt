@@ -117,7 +117,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             return@mapNotNull attachment
         }
     }
-    val attachmentIDs = storage.persist(attachments)
+    val attachmentIDs = storage.persistAttachments(message.id ?: 0, attachments)
     message.attachmentIDs = attachmentIDs as ArrayList<Long>
     var attachmentsToDownload = attachmentIDs
     // Update profile if needed

@@ -81,8 +81,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return registrationID
     }
 
-    override fun persist(attachments: List<Attachment>): List<Long> {
-        TODO("Not yet implemented")
+    override fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long> {
+        val database = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachments = attachments.map { it.toDatabaseAttachment() }
+        return database.insertAttachments(messageId, databaseAttachments)
     }
 
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long? {
@@ -127,7 +129,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     // JOBS
 
-    override fun persist(job: Job) {
+    override fun persistJob(job: Job) {
         DatabaseFactory.getSessionJobDatabase(context).persistJob(job)
     }
 
