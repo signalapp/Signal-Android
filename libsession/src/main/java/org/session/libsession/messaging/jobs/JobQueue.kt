@@ -35,7 +35,7 @@ class JobQueue : JobDelegate {
             return
         }
         hasResumedPendingJobs = true
-        val allJobTypes = listOf(AttachmentDownloadJob.collection, AttachmentDownloadJob.collection, MessageReceiveJob.collection, MessageSendJob.collection, NotifyPNServerJob.collection)
+        val allJobTypes = listOf(AttachmentDownloadJob.KEY, AttachmentDownloadJob.KEY, MessageReceiveJob.KEY, MessageSendJob.KEY, NotifyPNServerJob.KEY)
         allJobTypes.forEach { type ->
             val allPendingJobs = MessagingConfiguration.shared.storage.getAllPendingJobs(type)
             allPendingJobs.sortedBy { it.id }.forEach { job ->
