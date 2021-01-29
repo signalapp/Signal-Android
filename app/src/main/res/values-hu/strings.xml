@@ -1703,7 +1703,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Névjegy</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Írj egy pár szót magadról…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Beszélj szabadon</string>
   <string name="EditAboutFragment_encrypted">Titkosított</string>
   <string name="EditAboutFragment_be_kind">Légy kedves</string>

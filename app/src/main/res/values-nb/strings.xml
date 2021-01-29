@@ -1695,7 +1695,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv noen ord om deg selv…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Snakk fritt</string>
   <string name="EditAboutFragment_encrypted">Kryptert</string>
   <string name="EditAboutFragment_be_kind">Vær grei</string>

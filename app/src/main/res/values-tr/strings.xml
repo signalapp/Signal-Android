@@ -1699,7 +1699,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Hakkında</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Hakkınızda bir kaç kelime yazın…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Özgürce konuşun</string>
   <string name="EditAboutFragment_encrypted">Şifreli</string>
   <string name="EditAboutFragment_be_kind">Türk; öğün, çalış, güven</string>

@@ -602,7 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran des conversations</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
@@ -647,7 +647,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
   <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran des conversations</string>
   <string name="ManageRecipientActivity_block">Bloquer</string>
   <string name="ManageRecipientActivity_unblock">Débloquer</string>
   <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string>
@@ -1692,7 +1692,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">À propos</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Exprimez-vous librement</string>
   <string name="EditAboutFragment_encrypted">Chiffré</string>
   <string name="EditAboutFragment_be_kind">Sois gentil</string>
@@ -1881,7 +1881,7 @@
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
-  <string name="preferences__chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="preferences__chat_wallpaper">Fond d’écran des conversations</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
@@ -2386,7 +2386,7 @@
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Transférer le message</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran des conversations</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string>

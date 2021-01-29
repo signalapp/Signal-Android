@@ -1699,7 +1699,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">درباره</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">چند کلمه دربارهٔ خودتان بنویسید…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">آزادانه صحبت کنید</string>
   <string name="EditAboutFragment_encrypted">رمز شده</string>
   <string name="EditAboutFragment_be_kind">مهربان باش</string>
@@ -1818,7 +1818,7 @@
     <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">پیامک و فراپیام</string>
+  <string name="preferences__sms_mms">پیامک (SMS) و فراپیام (MMS)</string>
   <string name="preferences__pref_all_sms_title">دریافت همهٔ پیامک‌ها</string>
   <string name="preferences__pref_all_mms_title">دریافت همهٔ فراپیام‌ها</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از سیگنال برای همهٔ پیام‌های متنی ورودی</string>

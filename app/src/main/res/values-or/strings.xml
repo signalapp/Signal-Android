@@ -1696,7 +1696,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">ବିଷୟରେ</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">ନିଜ ବିଷୟରେ କିଛି ଲେଖନ୍ତୁ…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">ମୁକ୍ତ ଭାବେ କୁହନ୍ତୁ</string>
   <string name="EditAboutFragment_encrypted">ଏନକ୍ରିପ୍ଟ ହୋଇଛି</string>
   <string name="EditAboutFragment_be_kind">ଦୟାଳୁ ହୁଅନ୍ତୁ</string>

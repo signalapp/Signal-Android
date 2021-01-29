@@ -1844,7 +1844,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mně</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napište pár slov o sobě…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Vyjadřujte se svobodně</string>
   <string name="EditAboutFragment_encrypted">Šifrováno</string>
   <string name="EditAboutFragment_be_kind">Buďte milí</string>

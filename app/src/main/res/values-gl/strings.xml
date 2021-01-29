@@ -1245,7 +1245,7 @@
   <!--RegistrationLockV2Dialog-->
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Activar o bloqueo de rexistro?</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Desactivar o bloqueo de rexistro?</string>
-  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se non lembras o teu PIN Signal ao voltar a rexistrar Signal de volta, perderás o acceso a conta durante 7 días.</string>
+  <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Se non lembras o teu PIN Signal ao volver a rexistrar Signal, perderás o acceso á conta durante 7 días.</string>
   <string name="RegistrationLockV2Dialog_turn_on">Acender</string>
   <string name="RegistrationLockV2Dialog_turn_off">Apagar</string>
   <!--RevealableMessageView-->
@@ -1701,7 +1701,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca de</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriba unhas palabras sobre si mesmo</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Fale libremente</string>
   <string name="EditAboutFragment_encrypted">Cifrado</string>
   <string name="EditAboutFragment_be_kind">Sexa considerado</string>
@@ -2139,7 +2139,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorrecto. Inténtao outra vez.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Conta bloqueada</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás voltar a rexistrar este número se precisar dun PIN. Todo o contido será eliminado.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A túa conta foi bloqueada para protexer a túa privacidade e seguridade. Após %1$d días de inactividade na conta poderás volver a rexistrar este número sen precisar dun PIN. Todo o contido será eliminado.</string>
   <string name="AccountLockedFragment__next">Seguinte</string>
   <string name="AccountLockedFragment__learn_more">Saber máis</string>
   <!--KbsLockFragment-->
@@ -2153,16 +2153,16 @@
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Non quedan moitas tentativas!</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes voltar a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, a conta será eliminada e o contido borrado.</item>
-    <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes voltar a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, a conta será eliminada e todo o contido borrado.</item>
+    <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes volver a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, a conta será eliminada e o contido borrado.</item>
+    <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes volver a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, a conta será eliminada e todo o contido borrado.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">PIN incorrecto. %1$d intento restante.</item>
     <item quantity="other">PIN incorrecto. %1$d intentos restantes.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás voltar a rexistrala sen precisar PIN. A conta será eliminada e o contido borrado.</item>
-    <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes voltar a rexistrala sen precisar PIN. A conta será eliminada e todo o contido borrado.</item>
+    <item quantity="one">Se esgotas os intentos a conta quedará bloqueada durante %1$d día. Após %1$d día de inactividade, poderás volver a rexistrala sen precisar PIN. A conta será eliminada e o contido borrado.</item>
+    <item quantity="other">Se esgotas os intentos a conta será bloqueada durante %1$d días. Tras %1$d días de inactividade, podes volver a rexistrala sen precisar PIN. A conta será eliminada e todo o contido borrado.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Quédache%1$d intento.</item>

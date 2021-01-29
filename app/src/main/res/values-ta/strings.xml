@@ -1698,7 +1698,6 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">பற்றி</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">எதுவேண்டுமானாலும் பேசுங்கள்</string>
   <string name="EditAboutFragment_encrypted">மறையாக்கப்பட்ட </string>
   <string name="EditAboutFragment_be_kind">தயவுசெய்து இருங்கள்</string>

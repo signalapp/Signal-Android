@@ -1695,7 +1695,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv några ord om dig själv…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Tala fritt</string>
   <string name="EditAboutFragment_encrypted">Krypterad</string>
   <string name="EditAboutFragment_be_kind">Var snäll</string>

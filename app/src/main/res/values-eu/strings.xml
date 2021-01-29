@@ -1702,7 +1702,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Honi buruz</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Idatzi zuri buruzko hitz batzuk…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Hitz egin</string>
   <string name="EditAboutFragment_encrypted">Zifratuta</string>
   <string name="EditAboutFragment_be_kind">Izan atsegina…</string>

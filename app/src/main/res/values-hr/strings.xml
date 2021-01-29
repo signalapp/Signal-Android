@@ -1770,7 +1770,7 @@ broj telefona</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Opis</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite par riječi o sebi…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Govorite slobodno</string>
   <string name="EditAboutFragment_encrypted">Šifrirano</string>
   <string name="EditAboutFragment_be_kind">Budite ljubazni</string>

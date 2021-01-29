@@ -1700,7 +1700,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Pri</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skribu kelkajn vortojn pri vi…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Parolu libere</string>
   <string name="EditAboutFragment_encrypted">Ĉifrita</string>
   <string name="EditAboutFragment_be_kind">Estu afabla</string>

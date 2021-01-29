@@ -1630,7 +1630,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">关于</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">简单介绍下自己…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">畅所欲言</string>
   <string name="EditAboutFragment_encrypted">已加密</string>
   <string name="EditAboutFragment_be_kind">温和且无害</string>

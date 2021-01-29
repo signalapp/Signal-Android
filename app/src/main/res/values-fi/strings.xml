@@ -1695,7 +1695,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Tiedot</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kuvaile itseäsi muutamalla sanalla…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Puhu vapaasti</string>
   <string name="EditAboutFragment_encrypted">Salattu</string>
   <string name="EditAboutFragment_be_kind">Ole ystävällinen</string>

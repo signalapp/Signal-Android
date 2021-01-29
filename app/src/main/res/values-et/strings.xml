@@ -1701,7 +1701,6 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Teave</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Kirjuta paar sõna enda kohta…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Räägi vabalt</string>
   <string name="EditAboutFragment_encrypted">Krüptitud</string>
   <string name="EditAboutFragment_be_kind">Ole lahke</string>

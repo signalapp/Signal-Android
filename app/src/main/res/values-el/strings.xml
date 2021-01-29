@@ -743,7 +743,7 @@
   <string name="ImageEditorHud_draw_anywhere_to_blur">Ζωγράφισε οπουδήποτε για να θολώσεις</string>
   <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">Ζωγράφισε για να θολώσεις επιπλέον πρόσωπα ή περιοχές</string>
   <!--InputPanel-->
-  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα φωνητικό μήνυμα, άφησε το κουμπί για αποστολή</string>
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Πάτα και κράτα πατημένο για να ηχογραφήσεις ένα μήνυμα φωνής, άφησε το κουμπί για αποστολή</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Μοιράσου</string>
   <string name="InviteActivity_share_with_contacts">Μοιράσου με επαφές</string>
@@ -1696,11 +1696,11 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Πληροφορίες</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Γράψε δυο πράγματα για σένα…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Μίλα ελεύθερα</string>
-  <string name="EditAboutFragment_encrypted">Με κρυπτογράφηση</string>
+  <string name="EditAboutFragment_encrypted">Έχει κρυπτογραφηθεί</string>
   <string name="EditAboutFragment_be_kind">Κάνε το καλό και ρίξτο στο γιαλό</string>
-  <string name="EditAboutFragment_coffee_lover">Πίνω καφεδάκι</string>
+  <string name="EditAboutFragment_coffee_lover">Λάτρης του καφέ</string>
   <string name="EditAboutFragment_free_to_chat">Ελάτε να συζητήσουμε</string>
   <string name="EditAboutFragment_taking_a_break">Κάνω διάλειμμα</string>
   <string name="EditAboutFragment_working_on_something_new">Ετοιμάζω κάτι καινούργιο</string>

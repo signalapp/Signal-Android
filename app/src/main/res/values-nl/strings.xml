@@ -1705,7 +1705,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Spreek vrijuit</string>
   <string name="EditAboutFragment_encrypted">Versleuteld</string>
   <string name="EditAboutFragment_be_kind">Wees aardig</string>

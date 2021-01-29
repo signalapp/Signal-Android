@@ -1845,7 +1845,6 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">אודות</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">כתוב כמה מילים על עצמך…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">דבר בחופשיות</string>
   <string name="EditAboutFragment_encrypted">מוצפן</string>
   <string name="EditAboutFragment_be_kind">תהיו אדיבים</string>

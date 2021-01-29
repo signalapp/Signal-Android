@@ -1986,7 +1986,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">حول</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">اكتب عدة كلمات عن نفسك….</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">ما عليك إلا التحدث بكل حرية</string>
   <string name="EditAboutFragment_encrypted">مُعمَّى</string>
   <string name="EditAboutFragment_be_kind">كن لطيفا</string>

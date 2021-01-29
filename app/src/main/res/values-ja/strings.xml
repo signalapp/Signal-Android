@@ -1619,7 +1619,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">自己紹介</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">気軽に話しかけて</string>
   <string name="EditAboutFragment_encrypted">暗号化済み</string>
   <string name="EditAboutFragment_be_kind">優しくしてね</string>

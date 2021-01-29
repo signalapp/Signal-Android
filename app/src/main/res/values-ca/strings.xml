@@ -1695,7 +1695,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Quant a</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escriviu alguna cosa sobre vosaltres…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Parleu lliurement</string>
   <string name="EditAboutFragment_encrypted">Encriptat</string>
   <string name="EditAboutFragment_be_kind">Sigueu amables</string>

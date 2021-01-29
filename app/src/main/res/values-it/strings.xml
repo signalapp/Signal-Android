@@ -1701,7 +1701,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Info</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrivi qualche parola su di te…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Parla liberamente</string>
   <string name="EditAboutFragment_encrypted">Criptato</string>
   <string name="EditAboutFragment_be_kind">Sii gentile</string>
@@ -2403,7 +2403,7 @@
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Rimuovere lo sfondo per questa chat?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Rimuovere lo sfondo? Questo non rimuoverà gli sfondi personalizzati che hai scelto per le tue chat.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Resetta tutti gli sfondi</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Reimposta tutti gli sfondi, inclusi quelli personalizzati che hai scelto per le tue chat?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Resettare tutti gli sfondi, inclusi quelli personalizzati che hai scelto per le tue chat?</string>
   <string name="ChatWallpaperFragment__contact_name">Nome contatto</string>
   <string name="ChatWallpaperFragment__reset">Resetta</string>
   <string name="ChatWallpaperFragment__clear">Rimuovi</string>

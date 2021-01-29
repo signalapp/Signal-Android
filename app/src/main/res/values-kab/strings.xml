@@ -1698,7 +1698,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Γef</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Aru kra n wawal ɣef yiman-ik·im…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Meslay s tlelli</string>
   <string name="EditAboutFragment_encrypted">Yettwawgelhen</string>
   <string name="EditAboutFragment_be_kind">Ili-k·kum d t·uḥdiq·t</string>

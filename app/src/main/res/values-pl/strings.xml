@@ -1837,7 +1837,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O mnie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napisz kilka słów o sobie…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Mówcie śmiało</string>
   <string name="EditAboutFragment_encrypted">Zaszyfrowany</string>
   <string name="EditAboutFragment_be_kind">Bądźcie uprzejmi</string>

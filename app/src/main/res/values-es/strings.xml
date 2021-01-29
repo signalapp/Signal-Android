@@ -1701,7 +1701,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Biografía</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escribe unas pocas palabras sobre ti …</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Habla con libertad</string>
   <string name="EditAboutFragment_encrypted">Cifrado</string>
   <string name="EditAboutFragment_be_kind">Sé amable</string>

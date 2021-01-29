@@ -1836,7 +1836,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Več</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekaj besed o sebi …</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">No povej!</string>
   <string name="EditAboutFragment_encrypted">Nimam besed.</string>
   <string name="EditAboutFragment_be_kind">Prijaznost, pliz!</string>

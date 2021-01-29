@@ -1697,7 +1697,6 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">За</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Неколку зборови за Вас…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
   <string name="EditAboutFragment_speak_freely">Тука сум, кажи</string>
   <string name="EditAboutFragment_encrypted">Енкриптирано</string>
   <string name="EditAboutFragment_be_kind">Бидете љубезни</string>
