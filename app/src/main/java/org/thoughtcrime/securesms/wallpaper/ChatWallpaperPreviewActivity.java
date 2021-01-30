@@ -90,7 +90,7 @@ public class ChatWallpaperPreviewActivity extends PassphraseRequiredActivity {
       bubble2.setText(getString(R.string.ChatWallpaperPreviewActivity__set_wallpaper_for_s, recipient.getDisplayName(this)));
     }
 
-    FullscreenHelper.createWithDefaultCutoutMode(this).showSystemUI();
+    new FullscreenHelper(this).showSystemUI();
     WindowUtil.setLightStatusBarFromTheme(this);
     WindowUtil.setLightNavigationBarFromTheme(this);
   }

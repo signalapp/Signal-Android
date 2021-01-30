@@ -33,6 +33,8 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
   protected boolean fitSystemWindows(Rect insets) {
     Guideline statusBarGuideline     = findViewById(R.id.status_bar_guideline);
     Guideline navigationBarGuideline = findViewById(R.id.navigation_bar_guideline);
+    Guideline parentStartGuideline   = findViewById(R.id.parent_start_guideline);
+    Guideline parentEndGuideline     = findViewById(R.id.parent_end_guideline);
 
     if (statusBarGuideline != null) {
       statusBarGuideline.setGuidelineBegin(insets.top);
@@ -40,6 +42,14 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
 
     if (navigationBarGuideline != null) {
       navigationBarGuideline.setGuidelineEnd(insets.bottom);
+    }
+
+    if (parentStartGuideline != null) {
+      parentStartGuideline.setGuidelineBegin(insets.left);
+    }
+
+    if (parentEndGuideline != null) {
+      parentEndGuideline.setGuidelineEnd(insets.right);
     }
 
     return true;

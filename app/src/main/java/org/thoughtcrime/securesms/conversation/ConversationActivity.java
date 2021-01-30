@@ -420,7 +420,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       return;
     }
 
-    FullscreenHelper.createWithDefaultCutoutMode(this).showSystemUI();
+    new FullscreenHelper(this).showSystemUI();
 
     ConversationIntents.Args args = ConversationIntents.Args.from(getIntent());
 

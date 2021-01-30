@@ -108,7 +108,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     setContentView(R.layout.webrtc_call_activity);
 
-    fullscreenHelper = FullscreenHelper.createWithShortEdgesCutoutMode(this);
+    fullscreenHelper = new FullscreenHelper(this);
 
     setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 

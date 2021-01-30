@@ -125,7 +125,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
       toolbar.setTitle(recipient.getDisplayName(context));
     });
 
-    FullscreenHelper fullscreenHelper = FullscreenHelper.createWithShortEdgesCutoutMode(this);
+    FullscreenHelper fullscreenHelper = new FullscreenHelper(this);
 
     findViewById(android.R.id.content).setOnClickListener(v -> fullscreenHelper.toggleUiVisibility());
 

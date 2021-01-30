@@ -18,28 +18,14 @@ public final class FullscreenHelper {
 
   @NonNull private final Activity activity;
 
-  public static @NonNull FullscreenHelper createWithDefaultCutoutMode(@NonNull Activity activity) {
-    FullscreenHelper helper = new FullscreenHelper(activity);
-
-    helper.showSystemUI();
-
-    return helper;
-  }
-
-  public static @NonNull FullscreenHelper createWithShortEdgesCutoutMode(@NonNull Activity activity) {
-    FullscreenHelper helper = new FullscreenHelper(activity);
+  public FullscreenHelper(@NonNull Activity activity) {
+    this.activity = activity;
 
     if (Build.VERSION.SDK_INT >= 28) {
       activity.getWindow().getAttributes().layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
     }
 
-    helper.showSystemUI();
-
-    return helper;
-  }
-
-  private FullscreenHelper(@NonNull Activity activity) {
-    this.activity = activity;
+    showSystemUI();
   }
 
   public void configureToolbarSpacer(@NonNull View spacer) {
