@@ -51,6 +51,7 @@
         android:textColor="@color/signal_text_secondary"
         style="@style/Signal.Text.Body"
         app:layout_constraintTop_toBottomOf="@id/rbs_full_name"
+        app:emoji_forceCustom="true"
         tools:text="🕷🕷🕷Hangin' on the web🕷🕷"/>
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
