@@ -359,7 +359,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Снимане трябва разрешение на камерата.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Гледане на галерията трябва пазрешение на паметта.</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">Сега</string>
+  <string name="DateUtils_just_now">Току що</string>
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Днес</string>
   <string name="DateUtils_yesterday">Вчера</string>
@@ -622,8 +622,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Актуализирането на групата не бе успешно, опитайте отново по-късно</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Актуализирането на групата не бе успешно поради мрежова грешка, моля, опитайте отново по-късно</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Редактирайте име и снимка</string>
-  <string name="ManageGroupActivity_legacy_group">Група от стар вид</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Това е група от стар вид. Функции като администратори на групи са достъпни само за Нови Групи.</string>
+  <string name="ManageGroupActivity_legacy_group">Стар вид група</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Това е група от стар вид. Функции като администратори на групи са достъпни само за нов вид групи.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Това е група от стар вид. За достъп до нови функции като @споменавяния и администратори,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Тази група не може да бъде обновена до Нова, защото е прекалено голяма. Максиналният размер на група е %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">Обновете тази група</string>
@@ -778,7 +778,7 @@
   <string name="MediaOverviewActivity_Media">Медия</string>
   <string name="MediaOverviewActivity_Files">Файлове</string>
   <string name="MediaOverviewActivity_Audio">Аудио</string>
-  <string name="MediaOverviewActivity_All">Lir\'ur</string>
+  <string name="MediaOverviewActivity_All">Всички</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Да се изтрие ли избраният елемент?</item>
     <item quantity="other">Да се изтрият ли избраните елементи?</item>
@@ -792,8 +792,8 @@
   <string name="MediaOverviewActivity_Select_all">Избери всичко</string>
   <string name="MediaOverviewActivity_collecting_attachments">Събиране на прикачени файлове…</string>
   <string name="MediaOverviewActivity_Sort_by">Сортиране по</string>
-  <string name="MediaOverviewActivity_Newest">Най нови</string>
-  <string name="MediaOverviewActivity_Oldest">Най стари</string>
+  <string name="MediaOverviewActivity_Newest">Най-нови</string>
+  <string name="MediaOverviewActivity_Oldest">Най-стари</string>
   <string name="MediaOverviewActivity_Storage_used">Памет изпозвана</string>
   <string name="MediaOverviewActivity_All_storage_use">Цялото пространство за съхранение</string>
   <string name="MediaOverviewActivity_Grid_view_description">Изглед на мрежа</string>
@@ -1259,12 +1259,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Покани в Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal-ско съобщение</string>
+  <string name="SharedContactDetailsActivity_signal_message">Съобщение в Signal</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal обаждане</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactView_invite_to_signal">Покани в Signal</string>
-  <string name="SharedContactView_message">Signal-ско съобщение</string>
+  <string name="SharedContactView_message">Съобщение в Signal</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ще ви напомним отново по-късно.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ще ви припомним отново утре.</string>
@@ -1433,7 +1433,7 @@
   <string name="MessageNotifier_view_once_photo">Снимка за еднократно гледане</string>
   <string name="MessageNotifier_view_once_video">Видео за еднократно гледане</string>
   <string name="MessageNotifier_reply">Отговори</string>
-  <string name="MessageNotifier_signal_message">Signal-ско съобщение</string>
+  <string name="MessageNotifier_signal_message">Съобщение в Signal</string>
   <string name="MessageNotifier_unsecured_sms">Некриптиран SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Вие може да имате нови съобщения</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Отворете Signal за да проверите за скорошни известия</string>
@@ -1545,7 +1545,7 @@
     <item quantity="other">%1$d членове</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-ско съобщение</string>
+  <string name="conversation_activity__type_message_push">Съобщение в Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Некриптиран SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Некриптиран MMS</string>
   <string name="conversation_activity__from_sim_name">От %1$s</string>
@@ -1672,7 +1672,7 @@
   <string name="load_more_header__see_full_conversation">Разгледай целия разговор</string>
   <string name="load_more_header__loading">Зареждане</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Без медия</string>
+  <string name="media_overview_activity__no_media">Няма нищо</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ПРЕГЛЕД</string>
   <string name="message_recipients_list_item__resend">ПОВТОРНО ИЗПРАЩАНЕ</string>
@@ -1697,6 +1697,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Относно</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напиши нещо за себе си…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Говори свободно</string>
   <string name="EditAboutFragment_encrypted">Криптирано</string>
   <string name="EditAboutFragment_be_kind">Бъде добър</string>
@@ -2404,7 +2405,7 @@
   <string name="ChatWallpaperFragment__clear">Изчистване</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед на тапета</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Изери от снимки</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Избери от снимки</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предварително зададени</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Преглед</string>

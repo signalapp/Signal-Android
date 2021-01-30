@@ -1556,7 +1556,7 @@
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ако желите да потврдите да је шифровање са %s безбедно, упоредите број изнад са бројем на њиховом уређају. Алтернативно, можете да очитате кôд са њиховог телефона или замолити их да очитају ваш кôд. <a href="https://signal.org/redirect/safety-numbers">Сазнајте више.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Тапните за скенирање</string>
   <string name="verify_display_fragment__loading">Учитавање…</string>
-  <string name="verify_display_fragment__verified">Потврђен</string>
+  <string name="verify_display_fragment__verified">Оверен/на</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Подели безбедносни број</string>
   <!--webrtc_answer_decline_button-->
@@ -1582,7 +1582,7 @@
   <string name="AndroidManifest__create_passphrase">Направи лозинку</string>
   <string name="AndroidManifest__select_contacts">Изаберите контакте</string>
   <string name="AndroidManifest__change_passphrase">Измена лозинке</string>
-  <string name="AndroidManifest__verify_safety_number">Потврди безбедносни број</string>
+  <string name="AndroidManifest__verify_safety_number">Овери безбедносни број</string>
   <string name="AndroidManifest__log_submit">Пошаљи дневник исправљања грешака</string>
   <string name="AndroidManifest__media_preview">Преглед медијума</string>
   <string name="AndroidManifest__message_details">Детаљи поруке</string>
@@ -2037,7 +2037,7 @@
   <string name="BackupDialog_choose_folder">Одаберите фолдер</string>
   <string name="BackupDialog_copied_to_clipboard">Копирано на клипборд</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Верификујте фразу за резервну копију</string>
-  <string name="BackupDialog_verify">Потврди</string>
+  <string name="BackupDialog_verify">Овери</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Успешно сте унели фразу за резервну копију</string>
   <string name="BackupDialog_passphrase_was_not_correct">Фраза није тачна</string>
   <string name="LocalBackupJob_creating_backup">Прављење бекапа…</string>

@@ -1641,7 +1641,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>名前または番号を入力して下さい</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s との暗号化を検証したい場合は、上記の番号が相手端末上の番号と一致するか確認してください。相手の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらうことでも可能です。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s に対する暗号化を検証するには、上記の番号が相手の端末のものと一致するか確認してください。相手の端末上のコードをスキャンするか、あなたのコードをスキャンしてもらうことでも可能です。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
   <string name="verify_display_fragment__loading">読み込んでいます…</string>
   <string name="verify_display_fragment__verified">検証済み</string>
@@ -2031,7 +2031,7 @@
   <string name="ConfirmKbsPinFragment__pins_dont_match">PINが一致しません。再度試してください。</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">PINを確認してください。</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PINの作成に失敗しました</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PINは保存されませんでした。あとでPINの作成について改めて伺います。 </string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PINは保存されていません。あとでPINを作成するようお知らせします。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PINを作成しました。</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">PINを再入力</string>
   <string name="ConfirmKbsPinFragment__creating_pin">PINを作成しています…</string>

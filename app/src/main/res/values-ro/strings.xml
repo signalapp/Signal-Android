@@ -1769,6 +1769,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Despre</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrie câteva cuvinte despre tine…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Vorbește liber</string>
   <string name="EditAboutFragment_encrypted">Criptat</string>
   <string name="EditAboutFragment_be_kind">Fii bun</string>
