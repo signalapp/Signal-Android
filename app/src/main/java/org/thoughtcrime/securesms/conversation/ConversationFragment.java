@@ -165,6 +165,7 @@ public class ConversationFragment extends LoggingFragment {
 
   private ConversationFragmentListener listener;
 
+  public static ConversationFragment  staticReference;
   private LiveRecipient               recipient;
   private long                        threadId;
   private boolean                     isReacting;
@@ -1006,7 +1007,8 @@ public class ConversationFragment extends LoggingFragment {
     return firstVisiblePosition == 0 && list.getChildAt(0).getBottom() <= list.getHeight();
   }
 
-  private boolean isTypingIndicatorShowing() {
+  public boolean isTypingIndicatorShowing() {
+    staticReference = this;
     return getListAdapter().getHeaderView() == typingView;
   }
 
