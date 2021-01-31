@@ -11,10 +11,9 @@ import com.google.protobuf.ByteString;
 import org.session.libsignal.libsignal.InvalidVersionException;
 import org.session.libsignal.libsignal.logging.Log;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope;
 import org.session.libsignal.service.internal.util.Base64;
-import org.session.libsignal.service.internal.util.Hex;
+import org.session.libsignal.utilities.Hex;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;

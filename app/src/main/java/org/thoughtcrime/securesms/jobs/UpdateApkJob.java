@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.JsonUtils;
 import org.session.libsession.utilities.TextSecurePreferences;
 

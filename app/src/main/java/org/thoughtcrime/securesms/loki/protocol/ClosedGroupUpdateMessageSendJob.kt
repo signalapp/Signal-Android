@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey

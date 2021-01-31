@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;

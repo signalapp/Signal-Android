@@ -18,7 +18,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;

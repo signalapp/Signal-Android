@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;

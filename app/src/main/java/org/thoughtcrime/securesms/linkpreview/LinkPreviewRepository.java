@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.Pair;

@@ -12,7 +12,7 @@ import org.session.libsession.messaging.sending_receiving.notifications.PushNoti
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 
 import org.session.libsignal.libsignal.ecc.Curve
 import org.session.libsignal.service.internal.push.SignalServiceProtos

@@ -15,7 +15,7 @@ import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLin
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsession.utilities.TextSecurePreferences
 import java.util.*
 

@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.NumberUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;

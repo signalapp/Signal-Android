@@ -1,6 +1,6 @@
 package org.session.libsignal.service.loki.utilities
 
-import org.session.libsignal.service.internal.util.Hex
+import org.session.libsignal.utilities.Hex
 
 fun String.removing05PrefixIfNeeded(): String {
   return if (length == 66) removePrefix("05") else this

@@ -5,7 +5,7 @@ import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.libsignal.util.ByteUtil
-import org.session.libsignal.libsignal.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.internal.util.Util
 import org.session.libsignal.service.loki.api.utilities.EncryptionUtilities
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded

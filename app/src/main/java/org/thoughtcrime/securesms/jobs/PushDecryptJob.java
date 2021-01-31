@@ -97,7 +97,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.loki.SessionResetProtocol;

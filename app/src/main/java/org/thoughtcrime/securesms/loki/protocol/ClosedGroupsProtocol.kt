@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGro
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.sms.MessageSender
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 import java.io.IOException
 import java.util.*
 

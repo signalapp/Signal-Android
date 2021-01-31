@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 
 import java.util.*
 import java.util.concurrent.TimeUnit

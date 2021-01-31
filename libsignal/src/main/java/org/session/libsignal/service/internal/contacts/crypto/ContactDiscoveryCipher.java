@@ -9,11 +9,10 @@ import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.session.libsignal.libsignal.util.ByteUtil;
 import org.session.libsignal.service.api.crypto.InvalidCiphertextException;
-import org.session.libsignal.service.internal.contacts.crypto.UnauthenticatedQuoteException;
 import org.session.libsignal.service.internal.contacts.entities.DiscoveryRequest;
 import org.session.libsignal.service.internal.contacts.entities.DiscoveryResponse;
 import org.session.libsignal.service.internal.contacts.entities.RemoteAttestationResponse;
-import org.session.libsignal.service.internal.util.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.service.internal.util.JsonUtil;
 import org.session.libsignal.service.internal.util.Util;
 

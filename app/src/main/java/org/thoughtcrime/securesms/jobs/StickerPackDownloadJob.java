@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;

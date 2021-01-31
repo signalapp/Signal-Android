@@ -14,10 +14,8 @@ import org.session.libsession.utilities.createContext
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.internal.util.JsonUtil
-import org.session.libsignal.service.loki.api.LokiDotNetAPI
-import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.io.ByteArrayOutputStream

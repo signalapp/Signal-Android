@@ -5,7 +5,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey

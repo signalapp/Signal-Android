@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient

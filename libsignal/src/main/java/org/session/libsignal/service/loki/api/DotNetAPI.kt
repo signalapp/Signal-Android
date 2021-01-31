@@ -1,6 +1,5 @@
 package org.session.libsignal.service.loki.api
 
-import com.fasterxml.jackson.databind.JsonNode
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -20,7 +19,7 @@ import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI

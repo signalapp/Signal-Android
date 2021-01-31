@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.session.libsession.utilities.Base64;
-import org.session.libsession.utilities.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.Util;
 
 import java.io.File;

@@ -2,8 +2,7 @@ package org.session.libsignal.service.loki.protocol.closedgroups
 
 import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.libsignal.protocol.SignalProtos
-import org.session.libsignal.libsignal.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.util.JsonUtil
 import org.session.libsignal.service.loki.utilities.toHexString

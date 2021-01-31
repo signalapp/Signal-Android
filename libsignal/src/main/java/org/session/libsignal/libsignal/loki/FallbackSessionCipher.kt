@@ -1,7 +1,7 @@
 package org.session.libsignal.libsignal.loki
 
 import org.whispersystems.curve25519.Curve25519
-import org.session.libsignal.libsignal.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 
 /**

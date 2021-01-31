@@ -19,7 +19,7 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log

@@ -1,6 +1,7 @@
 package org.session.libsession.utilities
 
 import org.session.libsignal.service.api.messages.SignalServiceGroup
+import org.session.libsignal.utilities.Hex
 
 object GroupUtil {
     const val CLOSED_GROUP_PREFIX = "__textsecure_group__!"
