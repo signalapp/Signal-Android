@@ -12,6 +12,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -29,7 +30,6 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.utilities.ThreadUtils
 
 import java.io.IOException
 import java.util.*

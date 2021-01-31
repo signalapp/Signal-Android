@@ -51,6 +51,7 @@ import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.session.libsignal.service.loki.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
@@ -298,13 +299,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
-                Thread {
+                ThreadUtils.queue {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()
                     }
-                }.start()
+                }
             }.show()
     }
 
@@ -314,13 +315,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
-                Thread {
+                ThreadUtils.queue {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()
                     }
-                }.start()
+                }
             }.show()
     }
 
