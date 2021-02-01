@@ -57,8 +57,10 @@ import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
@@ -137,7 +139,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.log_submit, menu);
+    inflater.inflate(R.menu.passphrase_prompt, menu);
 
     super.onCreateOptionsMenu(menu);
     return true;
@@ -146,8 +148,12 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
-    switch (item.getItemId()) {
-    case R.id.menu_submit_debug_logs: handleLogSubmit(); return true;
+    if (item.getItemId() == R.id.menu_submit_debug_logs) {
+      handleLogSubmit();
+      return true;
+    } else if (item.getItemId() == R.id.menu_contact_support) {
+      sendEmailToSupport();
+      return true;
     }
 
     return false;
@@ -292,6 +298,17 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     if (fingerprintCancellationSignal != null) {
       fingerprintCancellationSignal.cancel();
     }
+  }
+
+  private void sendEmailToSupport() {
+    String body = SupportEmailUtil.generateSupportEmailBody(this,
+                                                            R.string.PassphrasePromptActivity_signal_android_lock_screen,
+                                                            null,
+                                                            null);
+    CommunicationActions.openEmail(this,
+                                   SupportEmailUtil.getSupportEmailAddress(this),
+                                   getString(R.string.PassphrasePromptActivity_signal_android_lock_screen),
+                                   body);
   }
 
   private class PassphraseActionListener implements TextView.OnEditorActionListener {
