@@ -403,7 +403,9 @@ public class ConversationAdapter
   }
 
   void onBindLastSeenViewHolder(StickyHeaderViewHolder viewHolder, int position) {
-    viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, (position + 1), (position + 1)));
+    int messagePosition = isTypingViewEnabled ? position - 1 : position;
+    int count = messagePosition + 1;
+    viewHolder.setText(viewHolder.itemView.getContext().getResources().getQuantityString(R.plurals.ConversationAdapter_n_unread_messages, count, count));
 
     if (hasWallpaper) {
       viewHolder.setBackgroundRes(R.drawable.wallpaper_bubble_background_8);
