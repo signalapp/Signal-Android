@@ -56,7 +56,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;

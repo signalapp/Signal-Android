@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.CloseableLiveData;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.session.libsession.utilities.Debouncer;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.concurrent.SignalExecutors;
 

@@ -66,7 +66,7 @@ import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 
 import java.util.Collection;
 import java.util.LinkedList;

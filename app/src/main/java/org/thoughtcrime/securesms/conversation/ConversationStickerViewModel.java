@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.CloseableLiveData;
-import org.thoughtcrime.securesms.util.Throttler;
+import org.session.libsession.utilities.Throttler;
 
 class ConversationStickerViewModel extends ViewModel {
 

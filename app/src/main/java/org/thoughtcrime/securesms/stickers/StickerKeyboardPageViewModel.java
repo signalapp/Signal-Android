@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.util.Throttler;
+import org.session.libsession.utilities.Throttler;
 
 import java.util.List;
 

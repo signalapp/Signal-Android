@@ -17,7 +17,7 @@ import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.spans.CenterAlignedRelativeSizeSpan;
+import org.session.libsession.utilities.color.spans.CenterAlignedRelativeSizeSpan;
 
 public class FromTextView extends EmojiTextView {
 

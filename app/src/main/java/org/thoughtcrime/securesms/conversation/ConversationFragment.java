@@ -69,7 +69,6 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickList
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -90,7 +89,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
@@ -112,11 +111,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.TreeSet;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Kovenant;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends Fragment

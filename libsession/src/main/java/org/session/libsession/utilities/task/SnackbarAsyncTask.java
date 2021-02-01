@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.task;
+package org.session.libsession.utilities.task;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;

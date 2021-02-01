@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.session.libsession.utilities.Debouncer;
 import org.session.libsignal.service.loki.api.Poller;
 import org.session.libsignal.utilities.ThreadUtils;
 

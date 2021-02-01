@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util.spans;
+package org.session.libsession.utilities.color.spans;
 
 
 import androidx.annotation.NonNull;

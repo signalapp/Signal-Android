@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.session.libsession.utilities.Debouncer;
 
 import java.util.ArrayList;
 import java.util.Collections;

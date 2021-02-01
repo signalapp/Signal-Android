@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.stickers.StickerKeyboardPageFragment.EventList
 import org.thoughtcrime.securesms.stickers.StickerKeyboardRepository.PackListResult;
 import org.thoughtcrime.securesms.util.ResUtil;
 import org.session.libsession.utilities.ThemeUtil;
-import org.thoughtcrime.securesms.util.Throttler;
+import org.session.libsession.utilities.Throttler;
 
 import java.util.ArrayList;
 import java.util.HashMap;

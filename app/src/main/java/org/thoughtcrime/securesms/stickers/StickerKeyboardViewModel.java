@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardRepository.PackListResult;
-import org.thoughtcrime.securesms.util.Throttler;
+import org.session.libsession.utilities.Throttler;
 
 final class StickerKeyboardViewModel extends ViewModel {
 
