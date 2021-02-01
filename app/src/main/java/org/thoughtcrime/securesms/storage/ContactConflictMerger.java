@@ -7,6 +7,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.storage.SignalContactRecord;
@@ -15,9 +16,11 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalContactRecord> {
@@ -52,11 +55,41 @@ class ContactConflictMerger implements StorageSyncHelper.ConflictMerger<SignalCo
 
   @Override
   public @NonNull Collection<SignalContactRecord> getInvalidEntries(@NonNull Collection<SignalContactRecord> remoteRecords) {
-    List<SignalContactRecord> invalid = Stream.of(remoteRecords)
-                                              .filter(r -> r.getAddress().getUuid().equals(self.getUuid()) || r.getAddress().getNumber().equals(self.getE164()))
-                                              .toList();
+    Map<String, Set<SignalContactRecord>> localIdToRemoteRecords = new HashMap<>();
+
+    for (SignalContactRecord remote : remoteRecords) {
+      Optional<SignalContactRecord> local = getMatching(remote);
+
+      if (local.isPresent()) {
+        String                   serializedLocalId = Base64.encodeBytes(local.get().getId().getRaw());
+        Set<SignalContactRecord> matches           = localIdToRemoteRecords.get(serializedLocalId);
+
+        if (matches == null) {
+          matches = new HashSet<>();
+        }
+
+        matches.add(remote);
+        localIdToRemoteRecords.put(serializedLocalId, matches);
+      }
+    }
+
+    Set<SignalContactRecord> duplicates = new HashSet<>();
+    for (Set<SignalContactRecord> matches : localIdToRemoteRecords.values()) {
+      if (matches.size() > 1) {
+        duplicates.addAll(matches);
+      }
+    }
+
+    List<SignalContactRecord> selfRecords = Stream.of(remoteRecords)
+                                                  .filter(r -> r.getAddress().getUuid().equals(self.getUuid()) || r.getAddress().getNumber().equals(self.getE164()))
+                                                  .toList();
+
+    Set<SignalContactRecord> invalid = new HashSet<>();
+    invalid.addAll(selfRecords);
+    invalid.addAll(duplicates);
+
     if (invalid.size() > 0) {
-      Log.w(TAG, "Found invalid contact entries! Count: " + invalid.size());
+      Log.w(TAG, "Found invalid contact entries! Self Records: " + selfRecords.size() + ", Duplicates: " + duplicates.size());
     }
 
     return invalid;
