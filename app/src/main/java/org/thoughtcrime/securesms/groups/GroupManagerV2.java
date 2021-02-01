@@ -75,6 +75,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -578,7 +579,16 @@ final class GroupManagerV2 {
       GroupsV2StateProcessor.GroupUpdateResult groupUpdateResult = groupsV2StateProcessor.forGroup(groupMasterKey)
                                                                                          .updateLocalGroupToRevision(GroupsV2StateProcessor.LATEST, System.currentTimeMillis(), null);
 
-      if (groupUpdateResult.getGroupState() != GroupsV2StateProcessor.GroupState.GROUP_UPDATED || groupUpdateResult.getLatestServer() == null) {
+      if (groupUpdateResult.getLatestServer() == null) {
+        Log.w(TAG, "Latest server state null.");
+        throw new GroupChangeFailedException();
+      }
+
+      if (groupUpdateResult.getGroupState() != GroupsV2StateProcessor.GroupState.GROUP_UPDATED) {
+        int serverRevision = groupUpdateResult.getLatestServer().getRevision();
+        int localRevision  = groupDatabase.requireGroup(groupId).requireV2GroupProperties().getGroupRevision();
+        int revisionDelta  = serverRevision - localRevision;
+        Log.w(TAG, String.format(Locale.US, "Server is ahead by %d revisions", revisionDelta));
         throw new GroupChangeFailedException();
       }
 
