@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 
 import java.io.IOException;
 

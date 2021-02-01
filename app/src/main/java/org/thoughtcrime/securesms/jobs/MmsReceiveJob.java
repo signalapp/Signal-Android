@@ -17,7 +17,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;
 
 import java.io.IOException;

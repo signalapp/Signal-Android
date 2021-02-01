@@ -1,6 +1,6 @@
 package org.session.libsignal.service.loki.api.opengroups
 
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 
 public data class PublicChat(
     public val channel: Long,

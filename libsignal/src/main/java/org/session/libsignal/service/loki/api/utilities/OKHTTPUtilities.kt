@@ -3,7 +3,7 @@ package org.session.libsignal.service.loki.api.utilities
 import okhttp3.MultipartBody
 import okhttp3.Request
 import okio.Buffer
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 import java.io.IOException
 import java.util.*
 

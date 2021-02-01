@@ -9,7 +9,6 @@ package org.session.libsignal.service.api.push;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -19,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.session.libsignal.service.internal.push.PreKeyEntity;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package org.session.libsession.messaging.opengroups
 
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 
 data class OpenGroup(
     val channel: Long,

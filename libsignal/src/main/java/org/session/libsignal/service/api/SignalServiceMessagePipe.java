@@ -19,8 +19,8 @@ import org.session.libsignal.service.api.util.CredentialsProvider;
 import org.session.libsignal.service.internal.push.AttachmentUploadAttributes;
 import org.session.libsignal.service.internal.push.OutgoingPushMessageList;
 import org.session.libsignal.service.internal.push.SendMessageResponse;
-import org.session.libsignal.service.internal.util.Base64;
-import org.session.libsignal.service.internal.util.JsonUtil;
+import org.session.libsignal.utilities.Base64;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.service.internal.util.Util;
 import org.session.libsignal.service.internal.websocket.WebSocketConnection;
 

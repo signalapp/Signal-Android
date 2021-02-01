@@ -44,7 +44,7 @@ import org.session.libsignal.service.internal.crypto.ProvisioningCipher;
 import org.session.libsignal.service.internal.push.ProfileAvatarData;
 import org.session.libsignal.service.internal.push.PushServiceSocket;
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.service.internal.util.StaticCredentialsProvider;
 import org.session.libsignal.service.internal.util.Util;
 

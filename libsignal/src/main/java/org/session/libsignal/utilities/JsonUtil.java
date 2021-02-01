@@ -1,17 +1,31 @@
-package org.session.libsession.utilities;
+package org.session.libsignal.utilities;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.session.libsignal.libsignal.IdentityKey;
+import org.session.libsignal.libsignal.InvalidKeyException;
+import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.Base64;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-public class JsonUtils {
+public class JsonUtil {
+
+  private static final String TAG = org.session.libsignal.utilities.JsonUtil.class.getSimpleName();
 
   private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -37,8 +51,41 @@ public class JsonUtils {
     return objectMapper.readValue(serialized, clazz);
   }
 
-  public static String toJson(Object object) throws IOException {
+  public  static JsonNode fromJson(String serialized) throws IOException {
+    return objectMapper.readTree(serialized);
+  }
+
+  public static String toJsonThrows(Object object) throws IOException {
     return objectMapper.writeValueAsString(object);
+  }
+
+    public static String toJson(Object object) {
+    try {
+      return objectMapper.writeValueAsString(object);
+    } catch (JsonProcessingException e) {
+      Log.w(TAG, e);
+      return "";
+    }
+  }
+
+  public static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {
+    @Override
+    public void serialize(IdentityKey value, JsonGenerator gen, SerializerProvider serializers)
+            throws IOException
+    {
+      gen.writeString(Base64.encodeBytesWithoutPadding(value.serialize()));
+    }
+  }
+
+  public static class IdentityKeyDeserializer extends JsonDeserializer<IdentityKey> {
+    @Override
+    public IdentityKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+      try {
+        return new IdentityKey(Base64.decodeWithoutPadding(p.getValueAsString()), 0);
+      } catch (InvalidKeyException e) {
+        throw new IOException(e);
+      }
+    }
   }
 
   public static ObjectMapper getMapper() {

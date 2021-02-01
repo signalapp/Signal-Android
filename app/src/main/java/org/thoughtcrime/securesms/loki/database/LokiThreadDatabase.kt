@@ -15,7 +15,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 import org.session.libsignal.libsignal.loki.SessionResetStatus
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 

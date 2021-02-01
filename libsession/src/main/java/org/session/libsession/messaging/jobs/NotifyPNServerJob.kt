@@ -13,7 +13,7 @@ import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.snode.OnionRequestAPI
 
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 
 class NotifyPNServerJob(val message: SnodeMessage) : Job {

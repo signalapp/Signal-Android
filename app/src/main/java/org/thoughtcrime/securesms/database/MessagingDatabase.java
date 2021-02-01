@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.session.libsignal.libsignal.IdentityKey;
 
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -132,7 +132,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     if (document == null || document.size() == 0) {
       contentValues.put(column, (String)null);
     } else {
-      contentValues.put(column, JsonUtils.toJson(document));
+      contentValues.put(column, JsonUtil.toJsonThrows(document));
     }
 
     database.update(getTableName(), contentValues, ID_WHERE, new String[] {String.valueOf(messageId)});
@@ -153,7 +153,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
         try {
           if (!TextUtils.isEmpty(document)) {
-            return JsonUtils.fromJson(document, clazz);
+            return JsonUtil.fromJson(document, clazz);
           }
         } catch (IOException e) {
           Log.w(TAG, e);

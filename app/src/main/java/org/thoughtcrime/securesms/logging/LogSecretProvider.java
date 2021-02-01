@@ -5,7 +5,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.KeyStoreHelper;
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.IOException;

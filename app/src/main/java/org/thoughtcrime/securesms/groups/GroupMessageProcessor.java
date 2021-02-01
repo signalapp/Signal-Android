@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;

@@ -16,7 +16,7 @@ import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.Recipient.*;
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsignal.libsignal.util.guava.Optional;

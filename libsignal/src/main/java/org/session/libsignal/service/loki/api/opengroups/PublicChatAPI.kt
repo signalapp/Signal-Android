@@ -6,9 +6,9 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.LokiDotNetAPI
 import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI

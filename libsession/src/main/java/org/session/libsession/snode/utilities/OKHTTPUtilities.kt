@@ -3,9 +3,10 @@ package org.session.libsession.utilities
 import okhttp3.MultipartBody
 import okhttp3.Request
 import okio.Buffer
-import org.session.libsignal.service.internal.util.Base64
 import java.io.IOException
 import java.util.*
+
+import org.session.libsignal.utilities.Base64
 
 internal fun Request.getHeadersForOnionRequest(): Map<String, Any> {
     val result = mutableMapOf<String, Any>()

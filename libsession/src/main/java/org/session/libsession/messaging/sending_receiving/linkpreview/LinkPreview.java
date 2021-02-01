@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -69,10 +69,10 @@ public class LinkPreview {
   }
 
   public String serialize() throws IOException {
-    return JsonUtils.toJson(this);
+    return JsonUtil.toJsonThrows(this);
   }
 
   public static LinkPreview deserialize(@NonNull String serialized) throws IOException {
-    return JsonUtils.fromJson(serialized, LinkPreview.class);
+    return JsonUtil.fromJson(serialized, LinkPreview.class);
   }
 }

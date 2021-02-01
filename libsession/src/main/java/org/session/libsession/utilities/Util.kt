@@ -17,6 +17,7 @@ import android.text.TextUtils
 import android.text.style.StyleSpan
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.Base64
 import java.io.*
 import java.nio.charset.StandardCharsets
 import java.security.SecureRandom

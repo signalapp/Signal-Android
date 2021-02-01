@@ -8,8 +8,8 @@ import nl.komponents.kovenant.functional.map
 import okhttp3.Request
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.*
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.utilities.*

@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -960,7 +960,7 @@ public class SmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatches(String document) {
       try {
         if (!TextUtils.isEmpty(document)) {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
+          return JsonUtil.fromJson(document, IdentityKeyMismatchList.class).getList();
         }
       } catch (IOException e) {
         Log.w(TAG, e);

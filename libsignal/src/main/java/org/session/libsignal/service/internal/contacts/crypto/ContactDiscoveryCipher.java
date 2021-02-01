@@ -13,7 +13,7 @@ import org.session.libsignal.service.internal.contacts.entities.DiscoveryRequest
 import org.session.libsignal.service.internal.contacts.entities.DiscoveryResponse;
 import org.session.libsignal.service.internal.contacts.entities.RemoteAttestationResponse;
 import org.session.libsignal.utilities.Hex;
-import org.session.libsignal.service.internal.util.JsonUtil;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.service.internal.util.Util;
 
 import java.io.ByteArrayOutputStream;

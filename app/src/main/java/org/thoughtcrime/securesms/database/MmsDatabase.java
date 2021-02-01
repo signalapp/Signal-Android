@@ -65,7 +65,7 @@ import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 
@@ -82,8 +82,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static org.session.libsession.messaging.sending_receiving.contacts.Contact.Avatar;
 
 public class MmsDatabase extends MessagingDatabase {
 
@@ -655,7 +653,7 @@ public class MmsDatabase extends MessagingDatabase {
 
         if (!TextUtils.isEmpty(mismatchDocument)) {
           try {
-            mismatches = JsonUtils.fromJson(mismatchDocument, IdentityKeyMismatchList.class).getList();
+            mismatches = JsonUtil.fromJson(mismatchDocument, IdentityKeyMismatchList.class).getList();
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -663,7 +661,7 @@ public class MmsDatabase extends MessagingDatabase {
 
         if (!TextUtils.isEmpty(networkDocument)) {
           try {
-            networkFailures = JsonUtils.fromJson(networkDocument, NetworkFailureList.class).getList();
+            networkFailures = JsonUtil.fromJson(networkDocument, NetworkFailureList.class).getList();
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -1504,7 +1502,7 @@ public class MmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {
       if (!TextUtils.isEmpty(document)) {
         try {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
+          return JsonUtil.fromJson(document, IdentityKeyMismatchList.class).getList();
         } catch (IOException e) {
           Log.w(TAG, e);
         }
@@ -1516,7 +1514,7 @@ public class MmsDatabase extends MessagingDatabase {
     private List<NetworkFailure> getFailures(String document) {
       if (!TextUtils.isEmpty(document)) {
         try {
-          return JsonUtils.fromJson(document, NetworkFailureList.class).getList();
+          return JsonUtil.fromJson(document, NetworkFailureList.class).getList();
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
         }

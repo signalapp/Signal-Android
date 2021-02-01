@@ -1,4 +1,4 @@
-package org.session.libsignal.service.internal.util;
+package org.session.libsignal.utilities;
 
 /**
  * <p>Encodes and decodes to and from Base64 notation.</p>

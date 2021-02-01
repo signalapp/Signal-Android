@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.ContentValues
 import net.sqlcipher.Cursor
 import net.sqlcipher.database.SQLiteDatabase
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 
 fun <T> SQLiteDatabase.get(table: String, query: String?, arguments: Array<String>?, get: (Cursor) -> T): T? {
     var cursor: Cursor? = null

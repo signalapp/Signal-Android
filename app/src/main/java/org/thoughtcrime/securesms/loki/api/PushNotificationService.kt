@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.MessageWrapper
 
 class PushNotificationService : FirebaseMessagingService() {

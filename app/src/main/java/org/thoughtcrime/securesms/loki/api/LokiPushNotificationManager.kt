@@ -6,7 +6,7 @@ import okhttp3.*
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.PushNotificationAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded

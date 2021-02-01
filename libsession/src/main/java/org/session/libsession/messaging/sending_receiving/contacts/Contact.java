@@ -16,7 +16,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.MediaTypes;
 
 import java.io.IOException;
@@ -106,11 +106,11 @@ public class Contact implements Parcelable {
   }
 
   public String serialize() throws IOException {
-    return JsonUtils.toJson(this);
+    return JsonUtil.toJsonThrows(this);
   }
 
   public static Contact deserialize(@NonNull String serialized) throws IOException {
-    return JsonUtils.fromJson(serialized, Contact.class);
+    return JsonUtil.fromJson(serialized, Contact.class);
   }
 
   @Override

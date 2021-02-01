@@ -46,10 +46,10 @@ import org.session.libsignal.service.internal.push.exceptions.MismatchedDevicesE
 import org.session.libsignal.service.internal.push.exceptions.StaleDevicesException;
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody;
 import org.session.libsignal.service.internal.push.http.OutputStreamFactory;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.service.internal.util.BlacklistingTrustManager;
 import org.session.libsignal.utilities.Hex;
-import org.session.libsignal.service.internal.util.JsonUtil;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsignal.service.internal.util.Util;
 
 import java.io.ByteArrayOutputStream;

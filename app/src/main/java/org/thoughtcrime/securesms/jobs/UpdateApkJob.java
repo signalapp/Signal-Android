@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.session.libsignal.utilities.Hex;
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.FileInputStream;
@@ -76,7 +76,7 @@ public class UpdateApkJob extends BaseJob {
       throw new IOException("Bad response: " + response.message());
     }
 
-    UpdateDescriptor updateDescriptor = JsonUtils.fromJson(response.body().string(), UpdateDescriptor.class);
+    UpdateDescriptor updateDescriptor = JsonUtil.fromJson(response.body().string(), UpdateDescriptor.class);
     byte[]           digest           = Hex.fromStringCondensed(updateDescriptor.getDigest());
 
     Log.i(TAG, "Got descriptor: " + updateDescriptor);

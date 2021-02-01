@@ -52,7 +52,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
 import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 
-import org.session.libsession.utilities.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.Util;
 
 import org.thoughtcrime.securesms.mms.MediaStream;
@@ -679,7 +679,7 @@ public class AttachmentDatabase extends Database {
         JSONArray                array  = new JSONArray(cursor.getString(cursor.getColumnIndexOrThrow(ATTACHMENT_JSON_ALIAS)));
 
         for (int i=0;i<array.length();i++) {
-          JsonUtils.SaneJSONObject object = new JsonUtils.SaneJSONObject(array.getJSONObject(i));
+          JsonUtil.SaneJSONObject object = new JsonUtil.SaneJSONObject(array.getJSONObject(i));
 
           if (!object.isNull(ROW_ID)) {
             result.add(new DatabaseAttachment(new AttachmentId(object.getLong(ROW_ID), object.getLong(UNIQUE_ID)),

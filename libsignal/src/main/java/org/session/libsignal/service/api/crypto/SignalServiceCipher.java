@@ -40,7 +40,6 @@ import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
-import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
@@ -84,7 +83,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMe
 import org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Verified;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;

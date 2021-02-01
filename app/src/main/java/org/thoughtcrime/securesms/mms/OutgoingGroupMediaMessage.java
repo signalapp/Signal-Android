@@ -9,7 +9,7 @@ import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 

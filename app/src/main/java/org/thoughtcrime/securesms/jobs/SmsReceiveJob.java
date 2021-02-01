@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 
-import org.session.libsession.utilities.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.session.libsignal.libsignal.util.guava.Optional;

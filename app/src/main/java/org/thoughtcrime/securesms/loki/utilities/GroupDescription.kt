@@ -5,7 +5,7 @@ import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.Base64
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.util.*
 

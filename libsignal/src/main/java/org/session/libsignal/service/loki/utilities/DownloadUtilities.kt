@@ -6,7 +6,7 @@ import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import java.io.*

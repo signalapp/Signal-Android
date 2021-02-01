@@ -2,7 +2,7 @@ package org.session.libsession.snode
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.AESGCM
 import org.session.libsignal.service.loki.utilities.ThreadUtils

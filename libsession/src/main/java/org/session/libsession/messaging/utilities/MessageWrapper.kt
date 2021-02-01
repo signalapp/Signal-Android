@@ -2,9 +2,7 @@ package org.session.libsession.messaging.utilities
 
 import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
-import org.session.libsignal.service.internal.util.Base64
 import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketMessage
 import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketRequestMessage
 import java.security.SecureRandom

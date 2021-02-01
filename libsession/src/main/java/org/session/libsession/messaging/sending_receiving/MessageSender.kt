@@ -22,7 +22,7 @@ import org.session.libsession.utilities.SSKEnvironment
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 

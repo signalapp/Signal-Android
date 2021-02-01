@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.utilities.toHexString
 
 public class ClosedGroupSenderKey(public val chainKey: ByteArray, public val keyIndex: Int, public val publicKey: ByteArray) {
