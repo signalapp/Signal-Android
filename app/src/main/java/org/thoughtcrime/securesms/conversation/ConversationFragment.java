@@ -23,6 +23,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -309,7 +310,9 @@ public class ConversationFragment extends LoggingFragment {
       list.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
-    listener.onListVerticalTranslationChanged(list.getTranslationY());
+
+    int offset = WindowUtil.isStatusBarPresent(requireActivity().getWindow()) ? ViewUtil.getStatusBarHeight(list) : 0;
+    listener.onListVerticalTranslationChanged(list.getTranslationY() - offset);
   }
 
   @Override

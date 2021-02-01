@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.graphics.Rect;
 import android.os.Build;
 import android.view.View;
 import android.view.Window;
@@ -60,6 +61,16 @@ public final class WindowUtil {
     if (Build.VERSION.SDK_INT < 21) return;
 
     window.setStatusBarColor(color);
+  }
+
+  /**
+   * A sort of roundabout way of determining if the status bar is present by seeing if there's a
+   * vertical window offset.
+   */
+  public static boolean isStatusBarPresent(@NonNull Window window) {
+    Rect rectangle = new Rect();
+    window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
+    return rectangle.top > 0;
   }
 
   private static void clearSystemUiFlags(@NonNull Window window, int flags) {
