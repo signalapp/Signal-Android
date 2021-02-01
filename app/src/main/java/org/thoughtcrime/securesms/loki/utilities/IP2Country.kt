@@ -8,7 +8,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import org.thoughtcrime.securesms.logging.Log
 import com.opencsv.CSVReader
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
-import org.session.libsignal.service.loki.utilities.ThreadUtils
+import org.session.libsignal.utilities.ThreadUtils
 import java.io.File
 import java.io.FileOutputStream
 import java.io.FileReader

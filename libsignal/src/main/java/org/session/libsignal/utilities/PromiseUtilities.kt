@@ -1,5 +1,5 @@
 @file:JvmName("PromiseUtilities")
-package org.session.libsession.utilities
+package org.session.libsignal.utilities
 
 import nl.komponents.kovenant.Context
 import nl.komponents.kovenant.Kovenant
@@ -7,7 +7,6 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.jvm.asDispatcher
 import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.loki.utilities.ThreadUtils
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeoutException
 

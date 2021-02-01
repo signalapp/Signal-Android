@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.session.libsignal.service.loki.api.Poller;
-import org.session.libsignal.service.loki.utilities.ThreadUtils;
+import org.session.libsignal.utilities.ThreadUtils;
 
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;

@@ -12,7 +12,7 @@ import org.session.libsignal.service.api.util.Tls12SocketFactory;
 import org.session.libsignal.service.api.websocket.ConnectivityListener;
 import org.session.libsignal.service.internal.util.BlacklistingTrustManager;
 import org.session.libsignal.service.internal.util.Util;
-import org.session.libsignal.service.internal.util.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.security.KeyManagementException;

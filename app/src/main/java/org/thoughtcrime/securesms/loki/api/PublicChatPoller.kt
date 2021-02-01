@@ -14,10 +14,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
-import org.session.libsession.utilities.successBackground
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceContent
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage
@@ -31,7 +31,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChatMessage
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 import java.util.*
-import java.util.concurrent.CompletableFuture
 
 class PublicChatPoller(private val context: Context, private val group: PublicChat) {
     private val handler by lazy { Handler() }

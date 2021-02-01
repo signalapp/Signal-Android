@@ -1,4 +1,4 @@
-package org.session.libsession.utilities.concurrent;
+package org.session.libsignal.utilities.concurrent;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;

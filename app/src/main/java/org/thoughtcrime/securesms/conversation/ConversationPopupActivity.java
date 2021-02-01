@@ -10,11 +10,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 
 import org.thoughtcrime.securesms.logging.Log;
-import org.session.libsession.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 

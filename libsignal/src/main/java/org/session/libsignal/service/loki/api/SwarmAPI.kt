@@ -8,7 +8,7 @@ import nl.komponents.kovenant.task
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.ThreadUtils
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.getRandomElement
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded

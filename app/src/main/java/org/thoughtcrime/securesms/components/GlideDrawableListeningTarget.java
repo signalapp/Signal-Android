@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.request.target.DrawableImageViewTarget;
 
-import org.session.libsession.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 
 public class GlideDrawableListeningTarget extends DrawableImageViewTarget {
 

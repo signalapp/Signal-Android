@@ -16,8 +16,7 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
-import org.session.libsignal.service.loki.utilities.ThreadUtils
-import org.session.libsignal.service.loki.utilities.createContext
+import org.session.libsignal.utilities.*
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat

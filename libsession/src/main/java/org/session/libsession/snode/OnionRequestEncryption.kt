@@ -5,7 +5,7 @@ import nl.komponents.kovenant.deferred
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsession.utilities.AESGCM.EncryptionResult
 import org.session.libsession.utilities.AESGCM
-import org.session.libsignal.service.loki.utilities.ThreadUtils
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import java.nio.Buffer
 import java.nio.ByteBuffer

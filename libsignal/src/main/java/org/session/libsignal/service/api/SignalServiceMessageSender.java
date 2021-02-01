@@ -64,7 +64,7 @@ import org.session.libsignal.service.internal.push.http.OutputStreamFactory;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.service.internal.util.StaticCredentialsProvider;
 import org.session.libsignal.service.internal.util.Util;
-import org.session.libsignal.service.internal.util.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsignal.service.loki.api.LokiDotNetAPI;
 import org.session.libsignal.service.loki.api.PushNotificationAPI;
 import org.session.libsignal.service.loki.api.SignalMessageInfo;

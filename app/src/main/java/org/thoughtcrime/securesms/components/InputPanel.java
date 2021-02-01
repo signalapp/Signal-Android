@@ -44,8 +44,8 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
-import org.session.libsession.utilities.concurrent.ListenableFuture;
-import org.session.libsession.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.List;

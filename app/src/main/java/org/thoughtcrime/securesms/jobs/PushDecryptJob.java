@@ -27,6 +27,7 @@ import org.session.libsignal.metadata.ProtocolNoSessionException;
 import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SelfSendException;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
+import org.session.libsignal.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
 
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -40,7 +41,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.StickerLoc
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.session.libsession.utilities.PromiseUtilities;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 

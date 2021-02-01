@@ -39,8 +39,8 @@ import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
-import org.session.libsession.utilities.concurrent.ListenableFuture;
-import org.session.libsession.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsession.utilities.views.Stub;
 
 public class ViewUtil {

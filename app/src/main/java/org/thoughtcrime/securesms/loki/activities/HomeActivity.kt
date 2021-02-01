@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -51,7 +50,7 @@ import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
-import org.session.libsignal.service.loki.utilities.ThreadUtils
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2

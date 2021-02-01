@@ -204,8 +204,8 @@ import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.views.Stub;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
-import org.session.libsession.utilities.concurrent.ListenableFuture;
-import org.session.libsession.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.TextSecurePreferences.MediaKeyboardMode;
 

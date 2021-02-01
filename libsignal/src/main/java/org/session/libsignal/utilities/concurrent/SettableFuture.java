@@ -1,6 +1,4 @@
-package org.session.libsignal.service.internal.util.concurrent;
-
-import org.session.libsignal.service.internal.util.concurrent.ListenableFuture;
+package org.session.libsignal.utilities.concurrent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,12 +8,19 @@ import java.util.concurrent.TimeoutException;
 
 public class SettableFuture<T> implements ListenableFuture<T> {
 
-  private final List<Listener<T>> listeners = new LinkedList<Listener<T>>();
+  private final List<Listener<T>> listeners = new LinkedList<>();
 
   private          boolean   completed;
   private          boolean   canceled;
   private volatile T         result;
   private volatile Throwable exception;
+
+  public SettableFuture() { }
+
+  public SettableFuture(T value) {
+    this.result    = value;
+    this.completed = true;
+  }
 
   @Override
   public synchronized boolean cancel(boolean mayInterruptIfRunning) {
@@ -65,6 +70,20 @@ public class SettableFuture<T> implements ListenableFuture<T> {
     return true;
   }
 
+  public void deferTo(ListenableFuture<T> other) {
+    other.addListener(new Listener<T>() {
+      @Override
+      public void onSuccess(T result) {
+        SettableFuture.this.set(result);
+      }
+
+      @Override
+      public void onFailure(ExecutionException e) {
+        SettableFuture.this.setException(e.getCause());
+      }
+    });
+  }
+
   @Override
   public synchronized T get() throws InterruptedException, ExecutionException {
     while (!completed) wait();
@@ -79,7 +98,7 @@ public class SettableFuture<T> implements ListenableFuture<T> {
   {
     long startTime = System.currentTimeMillis();
 
-    while (!completed && System.currentTimeMillis() - startTime < unit.toMillis(timeout)) {
+    while (!completed && System.currentTimeMillis() - startTime > unit.toMillis(timeout)) {
       wait(unit.toMillis(timeout));
     }
 
@@ -102,7 +121,7 @@ public class SettableFuture<T> implements ListenableFuture<T> {
     List<Listener<T>> localListeners;
 
     synchronized (this) {
-      localListeners = new LinkedList<Listener<T>>(listeners);
+      localListeners = new LinkedList<>(listeners);
     }
 
     for (Listener<T> listener : localListeners) {

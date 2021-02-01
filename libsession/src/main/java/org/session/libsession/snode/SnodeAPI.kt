@@ -7,13 +7,12 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 
 import org.session.libsession.snode.utilities.getRandomElement
-import org.session.libsignal.service.loki.utilities.ThreadUtils
-import org.session.libsession.utilities.createContext
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.*
 
 import java.security.SecureRandom
 

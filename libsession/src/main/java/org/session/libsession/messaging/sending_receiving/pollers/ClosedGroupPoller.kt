@@ -10,7 +10,7 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.SnodeAPI
-import org.session.libsession.utilities.successBackground
+import org.session.libsignal.utilities.successBackground
 
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.utilities.Base64

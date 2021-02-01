@@ -16,6 +16,7 @@ import org.session.libsignal.service.loki.api.utilities.EncryptionResult
 import org.session.libsignal.service.loki.api.utilities.getBodyForOnionRequest
 import org.session.libsignal.service.loki.api.utilities.getHeadersForOnionRequest
 import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
 
 private typealias Path = List<Snode>
 

@@ -25,9 +25,9 @@ import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.recover
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.recover
 import java.util.*
 
 /**

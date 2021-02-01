@@ -11,9 +11,8 @@ import org.session.libsession.messaging.jobs.MessageReceiveJob
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
-import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.successBackground
 
+import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.libsignal.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos.*
 

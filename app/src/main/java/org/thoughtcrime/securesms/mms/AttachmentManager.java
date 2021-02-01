@@ -67,9 +67,9 @@ import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.views.Stub;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
-import org.session.libsession.utilities.concurrent.ListenableFuture;
-import org.session.libsession.utilities.concurrent.ListenableFuture.Listener;
-import org.session.libsession.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture.Listener;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 
 import java.io.File;
 import java.io.IOException;

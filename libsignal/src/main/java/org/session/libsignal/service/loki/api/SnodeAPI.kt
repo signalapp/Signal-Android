@@ -13,6 +13,7 @@ import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 
