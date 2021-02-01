@@ -49,4 +49,12 @@
         android:layout_marginTop="@dimen/very_large_spacing"
         android:text="Upgrade Now" />
 
+    <Button
+        style="@style/Widget.Session.Button.Common.UnimportantOutline"
+        android:id="@+id/upgradeLaterButton"
+        android:layout_width="240dp"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:text="Upgrade Later" />
+
 </LinearLayout>

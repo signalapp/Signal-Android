@@ -23,6 +23,7 @@ class KeyPairMigrationBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         upgradeNowButton.setOnClickListener { upgradeNow() }
+        upgradeLaterButton.setOnClickListener { upgradeLater() }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,5 +41,14 @@ class KeyPairMigrationBottomSheet : BottomSheetDialogFragment() {
     private fun upgradeNow() {
         val applicationContext = requireContext().applicationContext as ApplicationContext
         applicationContext.clearAllData(true)
+    }
+
+    private fun upgradeLater() {
+        val dialog = AlertDialog.Builder(requireContext())
+        dialog.setMessage("You won't be able to send or receive messages until you upgrade.")
+        dialog.setPositiveButton(R.string.ok) { _, _ ->
+            dismiss()
+        }
+        dialog.create().show()
     }
 }
