@@ -39,7 +39,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -213,7 +213,7 @@ public class AttachmentManager {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = BlobProvider.getInstance()
                                                   .forData(blob)
-                                                  .withMimeType(MediaUtil.IMAGE_JPEG)
+                                                  .withMimeType(MediaTypes.IMAGE_JPEG)
                                                   .createForSingleSessionInMemory();
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 

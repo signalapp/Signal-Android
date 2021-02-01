@@ -98,7 +98,7 @@ public class SettableFuture<T> implements ListenableFuture<T> {
   {
     long startTime = System.currentTimeMillis();
 
-    while (!completed && System.currentTimeMillis() - startTime > unit.toMillis(timeout)) {
+    while (!completed && System.currentTimeMillis() - startTime < unit.toMillis(timeout)) {
       wait(unit.toMillis(timeout));
     }
 

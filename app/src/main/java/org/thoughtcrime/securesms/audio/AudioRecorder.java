@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import androidx.annotation.NonNull;
+
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
@@ -50,7 +52,7 @@ public class AudioRecorder {
 
         captureUri = BlobProvider.getInstance()
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
-                                 .withMimeType(MediaUtil.AUDIO_AAC)
+                                 .withMimeType(MediaTypes.AUDIO_AAC)
                                  .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Error during recording", e));
         audioCodec = new AudioCodec();
 

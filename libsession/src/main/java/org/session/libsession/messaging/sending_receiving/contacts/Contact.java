@@ -643,7 +643,7 @@ public class Contact implements Parcelable {
 
     private static Attachment attachmentFromUri(@Nullable Uri uri) {
       if (uri == null) return null;
-      return new UriAttachment(uri, MediaTypes.IMAGE_JPEG.getValue(), AttachmentTransferProgress.TRANSFER_PROGRESS_DONE.getValue(), 0, null, false, false, null, null);
+      return new UriAttachment(uri, MediaTypes.IMAGE_JPEG, AttachmentTransferProgress.TRANSFER_PROGRESS_DONE, 0, null, false, false, null, null);
     }
 
     @Override

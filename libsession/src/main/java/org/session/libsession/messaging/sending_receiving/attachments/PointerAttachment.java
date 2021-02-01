@@ -104,7 +104,7 @@ public class PointerAttachment extends Attachment {
     }
 
     return Optional.of(new PointerAttachment(pointer.get().getContentType(),
-                                      AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
+                                      AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING,
                                       pointer.get().asPointer().getSize().or(0),
                                       pointer.get().asPointer().getFileName().orNull(),
                                       String.valueOf(pointer.get().asPointer().getId()),
@@ -122,7 +122,7 @@ public class PointerAttachment extends Attachment {
 
   public static Optional<Attachment> forPointer(SignalServiceProtos.AttachmentPointer pointer) {
     return Optional.of(new PointerAttachment(pointer.getContentType(),
-            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
+            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING,
             (long)pointer.getSize(),
             pointer.getFileName(),
             String.valueOf(pointer != null ? pointer.getId() : 0),
@@ -142,7 +142,7 @@ public class PointerAttachment extends Attachment {
     SignalServiceProtos.AttachmentPointer thumbnail = pointer.getThumbnail();
 
     return Optional.of(new PointerAttachment(pointer.getContentType(),
-                                             AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
+                                             AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING,
                                              thumbnail != null ? (long)thumbnail.getSize() : 0,
                                              thumbnail.getFileName(),
                                              String.valueOf(thumbnail != null ? thumbnail.getId() : 0),
@@ -162,7 +162,7 @@ public class PointerAttachment extends Attachment {
     SignalServiceAttachment thumbnail = pointer.getThumbnail();
 
     return Optional.of(new PointerAttachment(pointer.getContentType(),
-            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING.getValue(),
+            AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING,
             thumbnail != null ? thumbnail.asPointer().getSize().or(0) : 0,
             pointer.getFileName(),
             String.valueOf(thumbnail != null ? thumbnail.asPointer().getId() : 0),

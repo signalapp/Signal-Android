@@ -14,6 +14,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.UriAttachm
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -24,11 +25,9 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.service.api.util.InvalidNumberException;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -192,7 +191,7 @@ public class GroupManager {
 
     if (avatar != null) {
       Uri avatarUri = BlobProvider.getInstance().forData(avatar).createForSingleUseInMemory();
-      avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null, null);
+      avatarAttachment = new UriAttachment(avatarUri, MediaTypes.IMAGE_PNG, AttachmentDatabase.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, null, null);
     }
 
     OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(groupRecipient, groupContext, avatarAttachment, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList());

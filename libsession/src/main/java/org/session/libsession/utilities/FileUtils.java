@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.util;
+package org.session.libsession.utilities;
 
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;

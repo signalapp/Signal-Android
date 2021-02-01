@@ -18,10 +18,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsession.utilities.ViewUtil;
 
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
 
           return BlobProvider.getInstance()
                              .forData(data)
-                             .withMimeType(MediaUtil.IMAGE_GIF)
+                             .withMimeType(MediaTypes.IMAGE_GIF)
                              .createForSingleSessionOnDisk(GiphyActivity.this, e -> Log.w(TAG, "Failed to write to disk.", e));
         } catch (InterruptedException | ExecutionException | IOException e) {
           Log.w(TAG, e);

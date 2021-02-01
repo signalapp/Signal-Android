@@ -85,6 +85,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
@@ -1900,7 +1901,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String filename  = String.format("signal-%s.txt", timestamp);
       Uri    textUri   = BlobProvider.getInstance()
                                      .forData(textData)
-                                     .withMimeType(MediaUtil.LONG_TEXT)
+                                     .withMimeType(MediaTypes.LONG_TEXT)
                                      .withFileName(filename)
                                      .createForSingleSessionInMemory();
 
@@ -2186,7 +2187,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         int        subscriptionId = -1;
         long       expiresIn      = recipient.getExpireMessages() * 1000L;
         boolean    initiating     = threadId == -1;
-        AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaUtil.AUDIO_AAC, true);
+        AudioSlide audioSlide     = new AudioSlide(ConversationActivity.this, result.first, result.second, MediaTypes.AUDIO_AAC, true);
         SlideDeck  slideDeck      = new SlideDeck();
         slideDeck.addSlide(audioSlide);
 

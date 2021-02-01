@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.session.libsession.utilities.MediaTypes;
 
 import network.loki.messenger.R;
 
@@ -23,7 +23,7 @@ public class StickerSlide extends Slide {
   }
 
   public StickerSlide(Context context, Uri uri, long size, @NonNull StickerLocator stickerLocator) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_WEBP, size, WIDTH, HEIGHT, true, null, null, stickerLocator, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaTypes.IMAGE_WEBP, size, WIDTH, HEIGHT, true, null, null, stickerLocator, false, false));
   }
 
   @Override

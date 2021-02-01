@@ -20,13 +20,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
-import org.thoughtcrime.securesms.util.MediaUtil;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
@@ -266,10 +266,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       try {
         Uri uri = BlobProvider.getInstance()
                               .forData(data)
-                              .withMimeType(MediaUtil.IMAGE_JPEG)
+                              .withMimeType(MediaTypes.IMAGE_JPEG)
                               .createForSingleSessionOnDisk(this, e -> Log.w(TAG, "Failed to write to disk.", e));
         return new Media(uri,
-                         MediaUtil.IMAGE_JPEG,
+                         MediaTypes.IMAGE_JPEG,
                          System.currentTimeMillis(),
                          width,
                          height,

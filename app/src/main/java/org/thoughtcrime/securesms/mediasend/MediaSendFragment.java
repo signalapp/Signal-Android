@@ -28,6 +28,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
@@ -44,7 +45,6 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -453,10 +453,10 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
 
               Uri uri = BlobProvider.getInstance()
                                     .forData(baos.toByteArray())
-                                    .withMimeType(MediaUtil.IMAGE_JPEG)
+                                    .withMimeType(MediaTypes.IMAGE_JPEG)
                                     .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Failed to write to disk.", e));
 
-              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), baos.size(), media.getBucketId(), media.getCaption());
+              Media updated = new Media(uri, MediaTypes.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), baos.size(), media.getBucketId(), media.getCaption());
 
               updatedMedia.add(updated);
               renderTimer.split("item");

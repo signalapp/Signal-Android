@@ -15,6 +15,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.InvalidMetadataVersionException;
 import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -98,7 +99,6 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.session.libsignal.utilities.Hex;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
@@ -1170,7 +1170,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (stickerRecord != null) {
       return Optional.of(new UriAttachment(stickerRecord.getUri(),
                                            stickerRecord.getUri(),
-                                           MediaUtil.IMAGE_WEBP,
+                                           MediaTypes.IMAGE_WEBP,
                                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                            stickerRecord.getSize(),
                                            StickerSlide.WIDTH,

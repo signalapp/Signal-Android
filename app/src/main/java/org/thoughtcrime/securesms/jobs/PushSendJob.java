@@ -10,6 +10,7 @@ import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
@@ -191,7 +192,7 @@ public abstract class PushSendJob extends SendJob {
     for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
       BitmapUtil.ScaleResult  thumbnailData = null;
       SignalServiceAttachment thumbnail     = null;
-      String                  thumbnailType = MediaUtil.IMAGE_JPEG;
+      String                  thumbnailType = MediaTypes.IMAGE_JPEG;
 
       try {
         if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getDataUri() != null) {

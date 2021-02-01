@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
-import org.thoughtcrime.securesms.util.FileUtils;
+import org.session.libsession.utilities.FileUtils;
 import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.ServiceUtil;
 import org.session.libsession.utilities.TextSecurePreferences;

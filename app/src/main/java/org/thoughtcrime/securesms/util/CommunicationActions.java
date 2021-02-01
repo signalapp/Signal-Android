@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +16,6 @@ import network.loki.messenger.R;
 
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public class CommunicationActions {

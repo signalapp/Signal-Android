@@ -38,6 +38,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -797,7 +798,7 @@ public class AttachmentDatabase extends Database {
     if (thumbnailUri != null) {
       try (InputStream attachmentStream = PartAuthority.getAttachmentStream(context, thumbnailUri)) {
         Pair<Integer, Integer> dimens;
-        if (attachment.getContentType().equals(MediaUtil.IMAGE_GIF)) {
+        if (attachment.getContentType().equals(MediaTypes.IMAGE_GIF)) {
           dimens = new Pair<>(attachment.getWidth(), attachment.getHeight());
         } else {
           dimens = BitmapUtil.getDimensions(attachmentStream);

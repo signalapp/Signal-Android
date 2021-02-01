@@ -1,13 +1,13 @@
 package org.session.libsession.utilities
 
-enum class MediaTypes(val value: String) {
-    IMAGE_PNG("image/png"),
-    IMAGE_JPEG("image/jpeg"),
-    IMAGE_WEBP("image/webp"),
-    IMAGE_GIF("image/gif"),
-    AUDIO_AAC("audio/aac"),
-    AUDIO_UNSPECIFIED("audio/*"),
-    VIDEO_UNSPECIFIED("video/*"),
-    VCARD("text/x-vcard"),
-    LONG_TEXT("text/x-signal-plain")
+object MediaTypes {
+    const val IMAGE_PNG         = "image/png"
+    const val IMAGE_JPEG        = "image/jpeg"
+    const val IMAGE_WEBP        = "image/webp"
+    const val IMAGE_GIF         = "image/gif"
+    const val AUDIO_AAC         = "audio/aac"
+    const val AUDIO_UNSPECIFIED = "audio/*"
+    const val VIDEO_UNSPECIFIED = "video/*"
+    const val VCARD             = "text/x-vcard"
+    const val LONG_TEXT         = "text/x-signal-plain"
 }
