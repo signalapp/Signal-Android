@@ -194,7 +194,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.PushCharacterCalculator;
 import org.session.libsession.utilities.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util; // Cannot be modified
+import org.session.libsession.utilities.Util;
 
 import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -466,7 +466,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    if (!Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
+    if (!org.thoughtcrime.securesms.util.Util.isEmpty(composeText) || attachmentManager.isAttachmentPresent()) {
       saveDraft();
       attachmentManager.clear(glideRequests, false);
       silentlySetComposeText("");
@@ -1371,7 +1371,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     new AsyncTask<Void, Void, Boolean>() {
       @Override
       protected Boolean doInBackground(Void... params) {
-        return Util.isMmsCapable(ConversationActivity.this);
+        return org.thoughtcrime.securesms.util.Util.isMmsCapable(ConversationActivity.this);
       }
 
       @Override
@@ -1723,7 +1723,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private Drafts getDraftsForCurrentState() {
     Drafts drafts = new Drafts();
 
-    if (!Util.isEmpty(composeText)) {
+    if (!org.thoughtcrime.securesms.util.Util.isEmpty(composeText)) {
       drafts.add(new Draft(Draft.TEXT, composeText.getTextTrimmed()));
     }
 

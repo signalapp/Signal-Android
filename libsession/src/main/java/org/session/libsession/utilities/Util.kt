@@ -156,6 +156,18 @@ object Util {
     }
 
     @JvmStatic
+    fun <E> chunk(list: List<E>, chunkSize: Int): List<List<E>> {
+        val chunks: MutableList<List<E>> = ArrayList(list.size / chunkSize)
+        var i = 0
+        while (i < list.size) {
+            val chunk = list.subList(i, Math.min(list.size, i + chunkSize))
+            chunks.add(chunk)
+            i += chunkSize
+        }
+        return chunks
+    }
+
+    @JvmStatic
     fun equals(a: Any?, b: Any?): Boolean {
         return a === b || a != null && a == b
     }

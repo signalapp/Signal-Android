@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import org.junit.Test;
 import org.thoughtcrime.securesms.BaseUnitTest;
+import org.session.libsession.utilities.Util;
 
 import java.util.LinkedList;
 import java.util.List;

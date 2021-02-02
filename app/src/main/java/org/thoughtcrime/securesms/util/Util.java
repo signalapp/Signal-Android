@@ -44,79 +44,8 @@ import network.loki.messenger.BuildConfig;
 
 public class Util {
 
-  private static volatile Handler handler;
-
-  public static String join(String[] list, String delimiter) {
-    return join(Arrays.asList(list), delimiter);
-  }
-
-  public static String join(Collection<String> list, String delimiter) {
-    StringBuilder result = new StringBuilder();
-    int i = 0;
-
-    for (String item : list) {
-      result.append(item);
-
-      if (++i < list.size())
-        result.append(delimiter);
-    }
-
-    return result.toString();
-  }
-
   public static boolean isEmpty(ComposeText value) {
     return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());
-  }
-
-  public static boolean isEmpty(Collection collection) {
-    return collection == null || collection.isEmpty();
-  }
-
-  public static <E> List<List<E>> chunk(@NonNull List<E> list, int chunkSize) {
-    List<List<E>> chunks = new ArrayList<>(list.size() / chunkSize);
-
-    for (int i = 0; i < list.size(); i += chunkSize) {
-      List<E> chunk = list.subList(i, Math.min(list.size(), i + chunkSize));
-      chunks.add(chunk);
-    }
-
-    return chunks;
-  }
-
-  public static boolean isOwnNumber(Context context, Address address) {
-    if (address.isGroup()) return false;
-
-    return TextSecurePreferences.getLocalNumber(context).equals(address.serialize());
-  }
-
-  public static byte[] readFully(InputStream in) throws IOException {
-    ByteArrayOutputStream bout = new ByteArrayOutputStream();
-    byte[] buffer              = new byte[4096];
-    int read;
-
-    while ((read = in.read(buffer)) != -1) {
-      bout.write(buffer, 0, read);
-    }
-
-    in.close();
-
-    return bout.toByteArray();
-  }
-
-  public static String readFullyAsString(InputStream in) throws IOException {
-    return new String(readFully(in));
-  }
-
-  public static <T> List<List<T>> partition(List<T> list, int partitionSize) {
-    List<List<T>> results = new LinkedList<>();
-
-    for (int index=0;index<list.size();index+=partitionSize) {
-      int subListSize = Math.min(partitionSize, list.size() - index);
-
-      results.add(list.subList(index, index + subListSize));
-    }
-
-    return results;
   }
 
   /**
@@ -147,25 +76,5 @@ public class Util {
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public static boolean isMmsCapable(Context context) {
     return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
-  }
-
-  public static boolean isMainThread() {
-    return Looper.myLooper() == Looper.getMainLooper();
-  }
-
-  public static void runOnMain(final @NonNull Runnable runnable) {
-    if (isMainThread()) runnable.run();
-    else                getHandler().post(runnable);
-  }
-
-  private static Handler getHandler() {
-    if (handler == null) {
-      synchronized (Util.class) {
-        if (handler == null) {
-          handler = new Handler(Looper.getMainLooper());
-        }
-      }
-    }
-    return handler;
   }
 }
