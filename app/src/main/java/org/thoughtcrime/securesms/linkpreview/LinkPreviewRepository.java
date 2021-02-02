@@ -145,7 +145,7 @@ public class LinkPreviewRepository implements InjectableType {
           imageUrl = Optional.absent();
         }
 
-        if (imageUrl.isPresent() && !LinkPreviewUtil.isVaildMimeType(imageUrl.get())) {
+        if (imageUrl.isPresent() && !LinkPreviewUtil.isValidMimeType(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid mime type. Skipping.");
           imageUrl = Optional.absent();
         }
