@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
-import static org.session.libsession.messaging.sending_receiving.contacts.Contact.*;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import static org.session.libsession.messaging.sending_receiving.sharecontacts.Contact.*;
 
 public class ContactModelMapper {
 

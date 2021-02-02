@@ -22,7 +22,7 @@ import androidx.annotation.Nullable;
 import android.text.SpannableString;
 
 import network.loki.messenger.R;
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;

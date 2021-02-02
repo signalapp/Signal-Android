@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.contacts.avatars;
+package org.session.libsession.messaging.avatars;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,7 +8,6 @@ import android.graphics.drawable.LayerDrawable;
 import android.widget.ImageView;
 
 import androidx.annotation.DrawableRes;
-import androidx.appcompat.content.res.AppCompatResources;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;

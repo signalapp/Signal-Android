@@ -25,9 +25,9 @@ import androidx.core.app.RemoteInput;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.session.libsession.messaging.contacts.avatars.ContactColors;
-import org.session.libsession.messaging.contacts.avatars.ContactPhoto;
-import org.session.libsession.messaging.contacts.avatars.GeneratedContactPhoto;
+import org.session.libsession.messaging.avatars.ContactColors;
+import org.session.libsession.messaging.avatars.ContactPhoto;
+import org.session.libsession.messaging.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;

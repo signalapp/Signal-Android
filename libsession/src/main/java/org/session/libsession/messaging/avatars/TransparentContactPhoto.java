@@ -1,13 +1,9 @@
-package org.session.libsession.messaging.contacts.avatars;
+package org.session.libsession.messaging.avatars;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
-import androidx.core.content.ContextCompat;
-
 import com.makeramen.roundedimageview.RoundedDrawable;
-
-import org.session.libsession.R;
 
 public class TransparentContactPhoto implements FallbackContactPhoto {
 

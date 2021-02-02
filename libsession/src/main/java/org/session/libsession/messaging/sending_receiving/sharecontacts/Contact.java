@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.sending_receiving.contacts;
+package org.session.libsession.messaging.sending_receiving.sharecontacts;
 
 import android.net.Uri;
 import android.os.Parcel;

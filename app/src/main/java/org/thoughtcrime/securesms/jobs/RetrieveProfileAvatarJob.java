@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.contacts.avatars.AvatarHelper;
+import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.utilities.Util;
 
 import org.thoughtcrime.securesms.jobmanager.Job;

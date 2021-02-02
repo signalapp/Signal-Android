@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.sending_receiving.contacts;
+package org.session.libsession.messaging.sending_receiving.sharecontacts;
 
 public interface Selectable {
   void setSelected(boolean selected);

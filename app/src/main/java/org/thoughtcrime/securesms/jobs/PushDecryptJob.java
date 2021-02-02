@@ -36,7 +36,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.Address;

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.view.View;
 
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -11,12 +10,10 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 

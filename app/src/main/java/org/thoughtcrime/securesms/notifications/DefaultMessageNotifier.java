@@ -40,7 +40,7 @@ import android.text.TextUtils;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;

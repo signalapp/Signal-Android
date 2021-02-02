@@ -40,7 +40,7 @@ import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.session.libsession.messaging.contacts.avatars.AvatarHelper
+import org.session.libsession.messaging.avatars.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil

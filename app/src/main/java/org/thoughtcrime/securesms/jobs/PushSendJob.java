@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.TextSecurePreferences;

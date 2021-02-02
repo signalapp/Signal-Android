@@ -29,7 +29,7 @@ import com.annimon.stream.function.Consumer;
 
 import org.greenrobot.eventbus.EventBus;
 import org.session.libsession.messaging.MessagingConfiguration;
-import org.session.libsession.messaging.contacts.avatars.TransparentContactPhoto;
+import org.session.libsession.messaging.avatars.TransparentContactPhoto;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.messaging.threads.recipients.RecipientProvider.RecipientDetails;
@@ -39,11 +39,11 @@ import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsignal.libsignal.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
-import org.session.libsession.messaging.contacts.avatars.ContactColors;
-import org.session.libsession.messaging.contacts.avatars.ContactPhoto;
-import org.session.libsession.messaging.contacts.avatars.GroupRecordContactPhoto;
-import org.session.libsession.messaging.contacts.avatars.ProfileContactPhoto;
-import org.session.libsession.messaging.contacts.avatars.SystemContactPhoto;
+import org.session.libsession.messaging.avatars.ContactColors;
+import org.session.libsession.messaging.avatars.ContactPhoto;
+import org.session.libsession.messaging.avatars.GroupRecordContactPhoto;
+import org.session.libsession.messaging.avatars.ProfileContactPhoto;
+import org.session.libsession.messaging.avatars.SystemContactPhoto;
 import org.session.libsession.utilities.ProfilePictureModifiedEvent;
 import org.session.libsession.utilities.FutureTaskListener;
 import org.session.libsession.utilities.ListenableFutureTask;
@@ -55,8 +55,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
-
-import org.session.libsession.R;
 
 public class Recipient implements RecipientModifiedListener {
 

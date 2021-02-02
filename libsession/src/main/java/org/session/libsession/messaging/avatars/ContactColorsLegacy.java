@@ -1,4 +1,4 @@
-package org.session.libsession.messaging.contacts.avatars;
+package org.session.libsession.messaging.avatars;
 
 import androidx.annotation.NonNull;
 

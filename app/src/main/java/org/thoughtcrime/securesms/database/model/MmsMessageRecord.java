@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.database.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.session.libsession.messaging.sending_receiving.contacts.Contact;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
