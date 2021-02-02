@@ -231,7 +231,7 @@ public class SignalServiceNetworkAccess {
                                                                   new SignalStorageUrl[] {new SignalStorageUrl(BuildConfig.STORAGE_URL, new SignalServiceTrustStore(context))},
                                                                   interceptors,
                                                                   dns,
-                                                                  Optional.absent(),
+                                                                  SignalStore.proxy().isProxyEnabled() ? Optional.of(SignalStore.proxy().getProxy()) : Optional.absent(),
                                                                   zkGroupServerPublicParams);
 
     this.censoredCountries = this.censorshipConfiguration.keySet().toArray(new String[0]);

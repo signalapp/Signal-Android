@@ -1396,6 +1396,14 @@
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Can\'t receive audio and video from %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">This may be because they have not verified your safety number change, there\'s a problem with their device, or they have blocked you.</string>
 
+    <!-- ProxyBottomSheetFragment -->
+    <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">Proxy address</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Do you want to use this proxy address?</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Use proxy</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Successfully connected to proxy.</string>
+
+
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">You must specify your
@@ -2303,6 +2311,21 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
     <string name="preferences_setup_a_username">Setup a username</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_on">On</string>
+    <string name="preferences_proxy_address">Proxy address</string>
+    <string name="preferences_share">Share</string>
+    <string name="preferences_save">Save</string>
+    <string name="preferences_connecting_to_proxy">Connecting to proxy…</string>
+    <string name="preferences_connected_to_proxy">Connected to proxy</string>
+    <string name="preferences_connection_failed">Connection failed</string>
+    <string name="preferences_couldnt_connect_to_the_proxy">Couldn\'t connect to the proxy. Check the proxy address and try again.</string>
+    <string name="preferences_you_are_connected_to_the_proxy">You are connected to the proxy. You can turn the proxy off at any time from Settings.</string>
+    <string name="preferences_success">Success</string>
+    <string name="preferences_failed_to_connect">Failed to connect</string>
+
 
     <string name="configurable_single_select__customize_option">Customize option</string>
 

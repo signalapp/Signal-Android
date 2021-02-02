@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <ImageView
+        android:id="@+id/proxy_sheet_avatar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/proxy_avatar_96"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/proxy_sheet_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        style="@style/TextAppearance.Signal.Body1"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ProxyBottomSheetFragment_proxy_server"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/proxy_sheet_avatar"/>
+
+    <LinearLayout
+        android:id="@+id/proxy_sheet_details_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:orientation="vertical"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:background="@drawable/wallpaper_bubble_background_12"
+        android:backgroundTint="@color/signal_background_tertiary"
+        app:layout_constraintTop_toBottomOf="@id/proxy_sheet_title">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Signal.Text.Caption"
+            android:text="@string/ProxyBottomSheetFragment_proxy_address" />
+
+        <TextView
+            android:id="@+id/proxy_sheet_host"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Signal.Text.Preview"
+            tools:text="https://signal.tube/proxy.parker.org" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/proxy_sheet_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        style="@style/Signal.Text.Preview"
+        android:text="@string/ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintTop_toBottomOf="@id/proxy_sheet_details_container"/>
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/proxy_sheet_use_proxy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="@string/ProxyBottomSheetFragment_use_proxy"
+        app:cornerRadius="4dp"
+        app:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/proxy_sheet_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/proxy_sheet_cancel"
+        app:layout_constraintVertical_bias="0"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/ProxyBottomSheetFragment_use_proxy" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/proxy_sheet_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:text="@android:string/cancel"
+        app:cornerRadius="4dp"
+        app:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/proxy_sheet_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/proxy_sheet_use_proxy"
+        app:layout_constraintVertical_bias="0"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@android:string/cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

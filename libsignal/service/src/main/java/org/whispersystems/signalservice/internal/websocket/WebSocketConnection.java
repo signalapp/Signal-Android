@@ -304,7 +304,15 @@ public class WebSocketConnection extends WebSocketListener {
     Log.w(TAG, "onFailure()", t);
 
     if (response != null && (response.code() == 401 || response.code() == 403)) {
-      if (listener != null) listener.onAuthenticationFailure();
+      if (listener != null) {
+        listener.onAuthenticationFailure();
+      }
+    } else if (listener != null) {
+      boolean shouldRetryConnection = listener.onGenericFailure(response, t);
+      if (!shouldRetryConnection) {
+        Log.w(TAG, "Experienced a failure, and the listener indicated we should not retry the connection. Disconnecting.");
+        disconnect();
+      }
     }
 
     if (client != null) {

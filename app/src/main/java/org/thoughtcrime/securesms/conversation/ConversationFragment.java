@@ -131,6 +131,7 @@ import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SetUtil;
+import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -336,6 +337,7 @@ public class ConversationFragment extends LoggingFragment {
   public void onStart() {
     super.onStart();
     initializeTypingObserver();
+    SignalProxyUtil.startListeningToWebsocket();
   }
 
   @Override
@@ -1429,7 +1431,8 @@ public class ConversationFragment extends LoggingFragment {
 
     @Override
     public boolean onUrlClicked(@NonNull String url) {
-      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url);
+      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
+             CommunicationActions.handlePotentialProxyLinkUrl(requireActivity(), url);
     }
 
     @Override

@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms;
 
 import android.content.Context;
-import android.hardware.SensorManager;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -33,7 +32,6 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
-import org.signal.core.util.ShakeDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
 import org.signal.core.util.logging.Log;
@@ -46,7 +44,6 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.GroupV1MigrationJob;
@@ -71,7 +68,6 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
-import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -143,6 +139,12 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addBlocking("vector-compat", () -> {
                               if (Build.VERSION.SDK_INT < 21) {
                                 AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+                              }
+                            })
+                            .addBlocking("proxy-init", () -> {
+                              if (SignalStore.proxy().isProxyEnabled()) {
+                                Log.w(TAG, "Proxy detected. Enabling Conscrypt.setUseEngineSocketByDefault()");
+                                Conscrypt.setUseEngineSocketByDefault(true);
                               }
                             })
                             .addNonBlocking(this::initializeRevealableMessageManager)
@@ -272,7 +274,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   private void initializeAppDependencies() {
-    ApplicationDependencies.init(this, new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
+    ApplicationDependencies.init(this, new ApplicationDependencyProvider(this));
   }
 
   private void initializeFirstEverAppLaunch() {

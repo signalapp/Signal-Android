@@ -39,6 +39,7 @@
           tools:src="@drawable/ic_contact_picture" />
 
       <TextView
+          android:id="@+id/conversation_list_title"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:layout_marginStart="6dp"
@@ -48,9 +49,23 @@
           android:textSize="20sp"
           android:textStyle="bold"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toStartOf="@id/search_action"
+          app:layout_constraintEnd_toStartOf="@id/conversation_list_proxy_status"
           app:layout_constraintStart_toEndOf="@id/toolbar_icon"
           app:layout_constraintTop_toTopOf="parent" />
+
+      <ImageView
+          android:id="@+id/conversation_list_proxy_status"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="12dp"
+          android:background="?selectableItemBackgroundBorderless"
+          android:visibility="gone"
+          app:layout_constraintStart_toEndOf="@id/conversation_list_title"
+          app:layout_constraintEnd_toStartOf="@id/search_action"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent"
+          tools:src="@drawable/ic_proxy_connected_24"
+          tools:visibility="visible"/>
 
       <androidx.appcompat.widget.AppCompatImageView
           android:id="@+id/search_action"

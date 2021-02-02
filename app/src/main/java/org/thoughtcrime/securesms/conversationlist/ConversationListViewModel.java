@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
+import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Util;
@@ -98,6 +99,10 @@ class ConversationListViewModel extends ViewModel {
 
   @NonNull PagingController getPagingController() {
     return pagedData.getController();
+  }
+
+  @NonNull LiveData<PipeConnectivityListener.State> getPipeState() {
+    return ApplicationDependencies.getPipeListener().getState();
   }
 
   public int getPinnedCount() {

@@ -44,4 +44,15 @@
     </PreferenceCategory>
 
     <Preference android:layout="@layout/preference_data_and_storage_call_bandwidth_notice" />
+
+    <PreferenceCategory android:layout="@layout/preference_divider"/>
+
+    <PreferenceCategory
+        android:title="@string/preferences_proxy">
+
+        <Preference
+            android:title="@string/preferences_use_proxy"
+            android:key="pref_use_proxy" />
+
+    </PreferenceCategory>
 </PreferenceScreen>

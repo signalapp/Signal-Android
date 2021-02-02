@@ -81,14 +81,17 @@ public class EditProfileNameFragment extends Fragment {
   private void presentSaveState(@NonNull EditProfileNameViewModel.SaveState state) {
     switch (state) {
       case IDLE:
+        saveButton.setClickable(true);
         saveButton.setIndeterminateProgressMode(false);
         saveButton.setProgress(0);
         break;
       case IN_PROGRESS:
+        saveButton.setClickable(false);
         saveButton.setIndeterminateProgressMode(true);
         saveButton.setProgress(50);
         break;
       case DONE:
+        saveButton.setClickable(false);
         Navigation.findNavController(requireView()).popBackStack();
         break;
     }

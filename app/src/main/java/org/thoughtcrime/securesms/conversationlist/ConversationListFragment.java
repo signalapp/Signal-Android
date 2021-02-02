@@ -72,6 +72,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.NewConversationActivity;
@@ -108,6 +109,7 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneActionController;
 import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -118,6 +120,7 @@ import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -161,6 +164,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private PulsingFloatingActionButton       fab;
   private PulsingFloatingActionButton       cameraFab;
   private Stub<SearchToolbar>               searchToolbar;
+  private ImageView                         proxyStatus;
   private ImageView                         searchAction;
   private View                              toolbarShadow;
   private ConversationListViewModel         viewModel;
@@ -199,6 +203,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     searchEmptyState   = view.findViewById(R.id.search_no_results);
     searchAction       = view.findViewById(R.id.search_action);
     toolbarShadow      = view.findViewById(R.id.conversation_list_toolbar_shadow);
+    proxyStatus        = view.findViewById(R.id.conversation_list_proxy_status);
     reminderView       = new Stub<>(view.findViewById(R.id.reminder));
     emptyState         = new Stub<>(view.findViewById(R.id.empty_state));
     searchToolbar      = new Stub<>(view.findViewById(R.id.search_toolbar));
@@ -207,6 +212,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     Toolbar toolbar = getToolbar(view);
     toolbar.setVisibility(View.VISIBLE);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+
+    proxyStatus.setOnClickListener(v -> onProxyStatusClicked());
 
     fab.show();
     cameraFab.show();
@@ -262,6 +269,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (activeAdapter != null) {
       activeAdapter.notifyDataSetChanged();
     }
+
+    SignalProxyUtil.startListeningToWebsocket();
   }
 
   @Override
@@ -543,6 +552,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     viewModel.getMegaphone().observe(getViewLifecycleOwner(), this::onMegaphoneChanged);
     viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitList);
     viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
+    viewModel.getPipeState().observe(getViewLifecycleOwner(), this::updateProxyStatus);
 
     visibilityLifecycleObserver = new DefaultLifecycleObserver() {
       @Override
@@ -854,6 +864,34 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         emptyState.get().setVisibility(View.GONE);
       }
     }
+  }
+
+  private void updateProxyStatus(@NonNull PipeConnectivityListener.State state) {
+    if (SignalStore.proxy().isProxyEnabled()) {
+      proxyStatus.setVisibility(View.VISIBLE);
+
+      switch (state) {
+        case CONNECTING:
+        case DISCONNECTED:
+          proxyStatus.setImageResource(R.drawable.ic_proxy_connecting_24);
+          break;
+        case CONNECTED:
+          proxyStatus.setImageResource(R.drawable.ic_proxy_connected_24);
+          break;
+        case FAILURE:
+          proxyStatus.setImageResource(R.drawable.ic_proxy_failed_24);
+          break;
+      }
+    } else {
+      proxyStatus.setVisibility(View.GONE);
+    }
+  }
+
+  private void onProxyStatusClicked() {
+    Intent intent = new Intent(requireContext(), ApplicationPreferencesActivity.class);
+    intent.putExtra(ApplicationPreferencesActivity.LAUNCH_TO_PROXY_FRAGMENT, true);
+
+    startActivity(intent);
   }
 
   protected void onPostSubmitList(int conversationCount) {
