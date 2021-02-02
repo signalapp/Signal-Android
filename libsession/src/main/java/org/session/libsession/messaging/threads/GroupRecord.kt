@@ -9,7 +9,7 @@ class GroupRecord(
         val encodedId: String, val title: String, members: String?, val avatar: ByteArray?,
         val avatarId: Long?, val avatarKey: ByteArray?, val avatarContentType: String?,
         val relay: String?, val isActive: Boolean, val avatarDigest: ByteArray?, val isMms: Boolean,
-        val url: String?, admins: String?, val createAt: Long
+        val url: String?, admins: String?, val createdAt: Long
 ) {
     var members: List<Address> = LinkedList<Address>()
     var admins: List<Address> = LinkedList<Address>()

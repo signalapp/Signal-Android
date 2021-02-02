@@ -24685,37 +24685,34 @@ public final class SignalServiceProtos {
        * </pre>
        */
       ENCRYPTION_KEY_PAIR(2, 3),
-        /**
-         * <code>NAME_CHANGE = 4;</code>
-         *
-         * <pre>
-         * name
-         * </pre>
-         */
-        NAME_CHANGE(3, 4),
-        /**
-         * <code>MEMBERS_ADDED = 5;</code>
-         *
-         * <pre>
-         * members
-         * </pre>
-         */
-        MEMBERS_ADDED(4, 5),
-        /**
-         * <code>MEMBERS_REMOVED = 6;</code>
-         *
-         * <pre>
-         * members
-         * </pre>
-         */
-        MEMBERS_REMOVED(5, 6),
-        /**
-         * <code>MEMBER_LEFT = 7;</code>
-         *
-         * <pre>
-         * </pre>
-         */
-        MEMBER_LEFT(6, 7),
+      /**
+       * <code>NAME_CHANGE = 4;</code>
+       *
+       * <pre>
+       * name
+       * </pre>
+       */
+      NAME_CHANGE(3, 4),
+      /**
+       * <code>MEMBERS_ADDED = 5;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      MEMBERS_ADDED(4, 5),
+      /**
+       * <code>MEMBERS_REMOVED = 6;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      MEMBERS_REMOVED(5, 6),
+      /**
+       * <code>MEMBER_LEFT = 7;</code>
+       */
+      MEMBER_LEFT(6, 7),
       ;
 
       /**
@@ -24742,38 +24739,34 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public static final int ENCRYPTION_KEY_PAIR_VALUE = 3;
-        /**
-         * <code>NAME_CHANGE = 4;</code>
-         *
-         * <pre>
-         * name
-         * </pre>
-         */
-        public static final int NAME_CHANGE_VALUE = 4;
-        /**
-         * <code>MEMBERS_ADDED = 5;</code>
-         *
-         * <pre>
-         * members
-         * </pre>
-         */
-        public static final int MEMBERS_ADDED_VALUE = 5;
-        /**
-         * <code>MEMBERS_REMOVED = 6;</code>
-         *
-         * <pre>
-         * members
-         * </pre>
-         */
-        public static final int MEMBERS_REMOVED_VALUE = 6;
-        /**
-         * <code>MEMBER_LEFT = 7;</code>
-         *
-         * <pre>
-         * </pre>
-         */
-        public static final int MEMBER_LEFT_VALUE = 7;
-
+      /**
+       * <code>NAME_CHANGE = 4;</code>
+       *
+       * <pre>
+       * name
+       * </pre>
+       */
+      public static final int NAME_CHANGE_VALUE = 4;
+      /**
+       * <code>MEMBERS_ADDED = 5;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      public static final int MEMBERS_ADDED_VALUE = 5;
+      /**
+       * <code>MEMBERS_REMOVED = 6;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      public static final int MEMBERS_REMOVED_VALUE = 6;
+      /**
+       * <code>MEMBER_LEFT = 7;</code>
+       */
+      public static final int MEMBER_LEFT_VALUE = 7;
 
 
       public final int getNumber() { return value; }
@@ -49481,7 +49474,7 @@ public final class SignalServiceProtos {
       "\022\026\n\022PROFILE_KEY_UPDATE\020\004\022\035\n\030DEVICE_UNLIN" +
       "KING_REQUEST\020\200\001\"A\n\017LokiUserProfile\022\023\n\013di" +
       "splayName\030\001 \001(\t\022\031\n\021profilePictureURL\030\002 \001",
-      "(\t\"\301\003\n\023ClosedGroupUpdateV2\0225\n\004type\030\001 \002(\016" +
+      "(\t\"\213\004\n\023ClosedGroupUpdateV2\0225\n\004type\030\001 \002(\016" +
       "2\'.signalservice.ClosedGroupUpdateV2.Typ" +
       "e\022\021\n\tpublicKey\030\002 \001(\014\022\014\n\004name\030\003 \001(\t\022E\n\021en" +
       "cryptionKeyPair\030\004 \001(\0132*.signalservice.Cl" +
@@ -49491,98 +49484,100 @@ public final class SignalServiceProtos {
       "Wrapper\0320\n\007KeyPair\022\021\n\tpublicKey\030\001 \002(\014\022\022\n" +
       "\nprivateKey\030\002 \002(\014\032=\n\016KeyPairWrapper\022\021\n\tp" +
       "ublicKey\030\001 \002(\014\022\030\n\020encryptedKeyPair\030\002 \002(\014",
-      "\"4\n\004Type\022\007\n\003NEW\020\001\022\n\n\006UPDATE\020\002\022\027\n\023ENCRYPT" +
-      "ION_KEY_PAIR\020\003\"\357\002\n\021ClosedGroupUpdate\022\014\n\004" +
-      "name\030\001 \001(\t\022\026\n\016groupPublicKey\030\002 \001(\014\022\027\n\017gr" +
-      "oupPrivateKey\030\003 \001(\014\022>\n\nsenderKeys\030\004 \003(\0132" +
-      "*.signalservice.ClosedGroupUpdate.Sender" +
-      "Key\022\017\n\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\0223\n\004" +
-      "type\030\007 \001(\0162%.signalservice.ClosedGroupUp" +
-      "date.Type\032B\n\tSenderKey\022\020\n\010chainKey\030\001 \001(\014" +
-      "\022\020\n\010keyIndex\030\002 \001(\r\022\021\n\tpublicKey\030\003 \001(\014\"A\n" +
-      "\004Type\022\007\n\003NEW\020\000\022\010\n\004INFO\020\001\022\026\n\022SENDER_KEY_R",
-      "EQUEST\020\002\022\016\n\nSENDER_KEY\020\003\"\036\n\013NullMessage\022" +
-      "\017\n\007padding\030\001 \001(\014\"u\n\016ReceiptMessage\0220\n\004ty" +
-      "pe\030\001 \001(\0162\".signalservice.ReceiptMessage." +
-      "Type\022\021\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIV" +
-      "ERY\020\000\022\010\n\004READ\020\001\"\214\001\n\rTypingMessage\022\021\n\ttim" +
-      "estamp\030\001 \001(\004\0223\n\006action\030\002 \001(\0162#.signalser" +
-      "vice.TypingMessage.Action\022\017\n\007groupId\030\003 \001" +
-      "(\014\"\"\n\006Action\022\013\n\007STARTED\020\000\022\013\n\007STOPPED\020\001\"\253" +
-      "\001\n\010Verified\022\023\n\013destination\030\001 \001(\t\022\023\n\013iden" +
-      "tityKey\030\002 \001(\014\022,\n\005state\030\003 \001(\0162\035.signalser",
-      "vice.Verified.State\022\023\n\013nullMessage\030\004 \001(\014" +
-      "\"2\n\005State\022\013\n\007DEFAULT\020\000\022\014\n\010VERIFIED\020\001\022\016\n\n" +
-      "UNVERIFIED\020\002\"\325\014\n\013SyncMessage\022-\n\004sent\030\001 \001" +
-      "(\0132\037.signalservice.SyncMessage.Sent\0225\n\010c" +
-      "ontacts\030\002 \001(\0132#.signalservice.SyncMessag" +
-      "e.Contacts\0221\n\006groups\030\003 \001(\0132!.signalservi" +
-      "ce.SyncMessage.Groups\0223\n\007request\030\004 \001(\0132\"" +
-      ".signalservice.SyncMessage.Request\022-\n\004re" +
-      "ad\030\005 \003(\0132\037.signalservice.SyncMessage.Rea" +
-      "d\0223\n\007blocked\030\006 \001(\0132\".signalservice.SyncM",
-      "essage.Blocked\022)\n\010verified\030\007 \001(\0132\027.signa" +
-      "lservice.Verified\022?\n\rconfiguration\030\t \001(\013" +
-      "2(.signalservice.SyncMessage.Configurati" +
-      "on\022\017\n\007padding\030\010 \001(\014\022M\n\024stickerPackOperat" +
-      "ion\030\n \003(\0132/.signalservice.SyncMessage.St" +
-      "ickerPackOperation\022?\n\nopenGroups\030d \003(\0132+" +
-      ".signalservice.SyncMessage.OpenGroupDeta" +
-      "ils\032\236\002\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\ttim" +
-      "estamp\030\002 \001(\004\022+\n\007message\030\003 \001(\0132\032.signalse" +
-      "rvice.DataMessage\022 \n\030expirationStartTime",
-      "stamp\030\004 \001(\004\022V\n\022unidentifiedStatus\030\005 \003(\0132" +
-      ":.signalservice.SyncMessage.Sent.Unident" +
-      "ifiedDeliveryStatus\032G\n\032UnidentifiedDeliv" +
-      "eryStatus\022\023\n\013destination\030\001 \001(\t\022\024\n\014uniden" +
-      "tified\030\002 \001(\010\032a\n\010Contacts\022.\n\004blob\030\001 \001(\0132 " +
-      ".signalservice.AttachmentPointer\022\027\n\010comp" +
-      "lete\030\002 \001(\010:\005false\022\014\n\004data\030e \001(\014\032F\n\006Group" +
-      "s\022.\n\004blob\030\001 \001(\0132 .signalservice.Attachme" +
-      "ntPointer\022\014\n\004data\030e \001(\014\032,\n\007Blocked\022\017\n\007nu" +
-      "mbers\030\001 \003(\t\022\020\n\010groupIds\030\002 \003(\014\032\217\001\n\007Reques",
-      "t\0225\n\004type\030\001 \001(\0162\'.signalservice.SyncMess" +
-      "age.Request.Type\"M\n\004Type\022\013\n\007UNKNOWN\020\000\022\014\n" +
-      "\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\022\013\n\007BLOCKED\020\003\022\021\n\r" +
-      "CONFIGURATION\020\004\032)\n\004Read\022\016\n\006sender\030\001 \001(\t\022" +
-      "\021\n\ttimestamp\030\002 \001(\004\032}\n\rConfiguration\022\024\n\014r" +
-      "eadReceipts\030\001 \001(\010\022&\n\036unidentifiedDeliver" +
-      "yIndicators\030\002 \001(\010\022\030\n\020typingIndicators\030\003 " +
-      "\001(\010\022\024\n\014linkPreviews\030\004 \001(\010\032\234\001\n\024StickerPac" +
-      "kOperation\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey\030\002 " +
-      "\001(\014\022B\n\004type\030\003 \001(\01624.signalservice.SyncMe",
-      "ssage.StickerPackOperation.Type\"\037\n\004Type\022" +
-      "\013\n\007INSTALL\020\000\022\n\n\006REMOVE\020\001\0322\n\020OpenGroupDet" +
-      "ails\022\013\n\003url\030\001 \001(\t\022\021\n\tchannelID\030\002 \001(\r\"\354\001\n" +
-      "\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013conten" +
-      "tType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021" +
-      "\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fil" +
-      "eName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(" +
-      "\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003ur" +
-      "l\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\243\002\n\014" +
-      "GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 ",
-      ".signalservice.GroupContext.Type\022\014\n\004name" +
-      "\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132" +
-      " .signalservice.AttachmentPointer\022\016\n\006adm" +
-      "ins\030\006 \003(\t\022\023\n\nnewMembers\030\346\007 \003(\t\022\027\n\016remove" +
-      "dMembers\030\347\007 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006" +
-      "UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUE" +
-      "ST_INFO\020\004\"\231\002\n\016ContactDetails\022\016\n\006number\030\001" +
-      " \001(\t\022\014\n\004name\030\002 \001(\t\0224\n\006avatar\030\003 \001(\0132$.sig" +
-      "nalservice.ContactDetails.Avatar\022\r\n\005colo" +
-      "r\030\004 \001(\t\022)\n\010verified\030\005 \001(\0132\027.signalservic",
-      "e.Verified\022\022\n\nprofileKey\030\006 \001(\014\022\017\n\007blocke" +
-      "d\030\007 \001(\010\022\023\n\013expireTimer\030\010 \001(\r\022\020\n\010nickname" +
-      "\030e \001(\t\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n" +
-      "\006length\030\002 \001(\r\"\367\001\n\014GroupDetails\022\n\n\002id\030\001 \001" +
-      "(\014\022\014\n\004name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\0222\n\006ava" +
-      "tar\030\004 \001(\0132\".signalservice.GroupDetails.A" +
-      "vatar\022\024\n\006active\030\005 \001(\010:\004true\022\023\n\013expireTim" +
-      "er\030\006 \001(\r\022\r\n\005color\030\007 \001(\t\022\017\n\007blocked\030\010 \001(\010" +
-      "\022\016\n\006admins\030\t \003(\t\032-\n\006Avatar\022\023\n\013contentTyp" +
-      "e\030\001 \001(\t\022\016\n\006length\030\002 \001(\rBB\n+org.session.l",
-      "ibsignal.service.internal.pushB\023SignalSe" +
-      "rviceProtos"
+      "\"~\n\004Type\022\007\n\003NEW\020\001\022\n\n\006UPDATE\020\002\022\027\n\023ENCRYPT" +
+      "ION_KEY_PAIR\020\003\022\017\n\013NAME_CHANGE\020\004\022\021\n\rMEMBE" +
+      "RS_ADDED\020\005\022\023\n\017MEMBERS_REMOVED\020\006\022\017\n\013MEMBE" +
+      "R_LEFT\020\007\"\357\002\n\021ClosedGroupUpdate\022\014\n\004name\030\001" +
+      " \001(\t\022\026\n\016groupPublicKey\030\002 \001(\014\022\027\n\017groupPri" +
+      "vateKey\030\003 \001(\014\022>\n\nsenderKeys\030\004 \003(\0132*.sign" +
+      "alservice.ClosedGroupUpdate.SenderKey\022\017\n" +
+      "\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\0223\n\004type\030\007" +
+      " \001(\0162%.signalservice.ClosedGroupUpdate.T" +
+      "ype\032B\n\tSenderKey\022\020\n\010chainKey\030\001 \001(\014\022\020\n\010ke",
+      "yIndex\030\002 \001(\r\022\021\n\tpublicKey\030\003 \001(\014\"A\n\004Type\022" +
+      "\007\n\003NEW\020\000\022\010\n\004INFO\020\001\022\026\n\022SENDER_KEY_REQUEST" +
+      "\020\002\022\016\n\nSENDER_KEY\020\003\"\036\n\013NullMessage\022\017\n\007pad" +
+      "ding\030\001 \001(\014\"u\n\016ReceiptMessage\0220\n\004type\030\001 \001" +
+      "(\0162\".signalservice.ReceiptMessage.Type\022\021" +
+      "\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022" +
+      "\010\n\004READ\020\001\"\214\001\n\rTypingMessage\022\021\n\ttimestamp" +
+      "\030\001 \001(\004\0223\n\006action\030\002 \001(\0162#.signalservice.T" +
+      "ypingMessage.Action\022\017\n\007groupId\030\003 \001(\014\"\"\n\006" +
+      "Action\022\013\n\007STARTED\020\000\022\013\n\007STOPPED\020\001\"\253\001\n\010Ver",
+      "ified\022\023\n\013destination\030\001 \001(\t\022\023\n\013identityKe" +
+      "y\030\002 \001(\014\022,\n\005state\030\003 \001(\0162\035.signalservice.V" +
+      "erified.State\022\023\n\013nullMessage\030\004 \001(\014\"2\n\005St" +
+      "ate\022\013\n\007DEFAULT\020\000\022\014\n\010VERIFIED\020\001\022\016\n\nUNVERI" +
+      "FIED\020\002\"\325\014\n\013SyncMessage\022-\n\004sent\030\001 \001(\0132\037.s" +
+      "ignalservice.SyncMessage.Sent\0225\n\010contact" +
+      "s\030\002 \001(\0132#.signalservice.SyncMessage.Cont" +
+      "acts\0221\n\006groups\030\003 \001(\0132!.signalservice.Syn" +
+      "cMessage.Groups\0223\n\007request\030\004 \001(\0132\".signa" +
+      "lservice.SyncMessage.Request\022-\n\004read\030\005 \003",
+      "(\0132\037.signalservice.SyncMessage.Read\0223\n\007b" +
+      "locked\030\006 \001(\0132\".signalservice.SyncMessage" +
+      ".Blocked\022)\n\010verified\030\007 \001(\0132\027.signalservi" +
+      "ce.Verified\022?\n\rconfiguration\030\t \001(\0132(.sig" +
+      "nalservice.SyncMessage.Configuration\022\017\n\007" +
+      "padding\030\010 \001(\014\022M\n\024stickerPackOperation\030\n " +
+      "\003(\0132/.signalservice.SyncMessage.StickerP" +
+      "ackOperation\022?\n\nopenGroups\030d \003(\0132+.signa" +
+      "lservice.SyncMessage.OpenGroupDetails\032\236\002" +
+      "\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\ttimestamp",
+      "\030\002 \001(\004\022+\n\007message\030\003 \001(\0132\032.signalservice." +
+      "DataMessage\022 \n\030expirationStartTimestamp\030" +
+      "\004 \001(\004\022V\n\022unidentifiedStatus\030\005 \003(\0132:.sign" +
+      "alservice.SyncMessage.Sent.UnidentifiedD" +
+      "eliveryStatus\032G\n\032UnidentifiedDeliverySta" +
+      "tus\022\023\n\013destination\030\001 \001(\t\022\024\n\014unidentified" +
+      "\030\002 \001(\010\032a\n\010Contacts\022.\n\004blob\030\001 \001(\0132 .signa" +
+      "lservice.AttachmentPointer\022\027\n\010complete\030\002" +
+      " \001(\010:\005false\022\014\n\004data\030e \001(\014\032F\n\006Groups\022.\n\004b" +
+      "lob\030\001 \001(\0132 .signalservice.AttachmentPoin",
+      "ter\022\014\n\004data\030e \001(\014\032,\n\007Blocked\022\017\n\007numbers\030" +
+      "\001 \003(\t\022\020\n\010groupIds\030\002 \003(\014\032\217\001\n\007Request\0225\n\004t" +
+      "ype\030\001 \001(\0162\'.signalservice.SyncMessage.Re" +
+      "quest.Type\"M\n\004Type\022\013\n\007UNKNOWN\020\000\022\014\n\010CONTA" +
+      "CTS\020\001\022\n\n\006GROUPS\020\002\022\013\n\007BLOCKED\020\003\022\021\n\rCONFIG" +
+      "URATION\020\004\032)\n\004Read\022\016\n\006sender\030\001 \001(\t\022\021\n\ttim" +
+      "estamp\030\002 \001(\004\032}\n\rConfiguration\022\024\n\014readRec" +
+      "eipts\030\001 \001(\010\022&\n\036unidentifiedDeliveryIndic" +
+      "ators\030\002 \001(\010\022\030\n\020typingIndicators\030\003 \001(\010\022\024\n" +
+      "\014linkPreviews\030\004 \001(\010\032\234\001\n\024StickerPackOpera",
+      "tion\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey\030\002 \001(\014\022B\n" +
+      "\004type\030\003 \001(\01624.signalservice.SyncMessage." +
+      "StickerPackOperation.Type\"\037\n\004Type\022\013\n\007INS" +
+      "TALL\020\000\022\n\n\006REMOVE\020\001\0322\n\020OpenGroupDetails\022\013" +
+      "\n\003url\030\001 \001(\t\022\021\n\tchannelID\030\002 \001(\r\"\354\001\n\021Attac" +
+      "hmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030" +
+      "\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthum" +
+      "bnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030" +
+      "\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006h" +
+      "eight\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(",
+      "\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\243\002\n\014GroupC" +
+      "ontext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signa" +
+      "lservice.GroupContext.Type\022\014\n\004name\030\003 \001(\t" +
+      "\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .sign" +
+      "alservice.AttachmentPointer\022\016\n\006admins\030\006 " +
+      "\003(\t\022\023\n\nnewMembers\030\346\007 \003(\t\022\027\n\016removedMembe" +
+      "rs\030\347\007 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE" +
+      "\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INF" +
+      "O\020\004\"\231\002\n\016ContactDetails\022\016\n\006number\030\001 \001(\t\022\014" +
+      "\n\004name\030\002 \001(\t\0224\n\006avatar\030\003 \001(\0132$.signalser",
+      "vice.ContactDetails.Avatar\022\r\n\005color\030\004 \001(" +
+      "\t\022)\n\010verified\030\005 \001(\0132\027.signalservice.Veri" +
+      "fied\022\022\n\nprofileKey\030\006 \001(\014\022\017\n\007blocked\030\007 \001(" +
+      "\010\022\023\n\013expireTimer\030\010 \001(\r\022\020\n\010nickname\030e \001(\t" +
+      "\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006lengt" +
+      "h\030\002 \001(\r\"\367\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
+      "name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\0222\n\006avatar\030\004 " +
+      "\001(\0132\".signalservice.GroupDetails.Avatar\022" +
+      "\024\n\006active\030\005 \001(\010:\004true\022\023\n\013expireTimer\030\006 \001" +
+      "(\r\022\r\n\005color\030\007 \001(\t\022\017\n\007blocked\030\010 \001(\010\022\016\n\006ad",
+      "mins\030\t \003(\t\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(" +
+      "\t\022\016\n\006length\030\002 \001(\rBB\n+org.session.libsign" +
+      "al.service.internal.pushB\023SignalServiceP" +
+      "rotos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

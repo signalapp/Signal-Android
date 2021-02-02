@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -239,6 +240,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         val members = this.members.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
+        val originalMembers = this.originalMembers.map {
+            Recipient.from(this, Address.fromSerialized(it), false)
+        }.toSet()
 
         val admins = members.toSet() //TODO For now, consider all the users to be admins.
 
@@ -272,11 +276,25 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         if (isSSKBasedClosedGroup) {
             isLoading = true
             loaderContainer.fadeIn()
-            val promise: Promise<Unit, Exception>
-            if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
-                promise = ClosedGroupsProtocolV2.leave(this, groupPublicKey!!)
+            val promise: Promise<Any, Exception> = if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
+                ClosedGroupsProtocolV2.leave(this, groupPublicKey!!)
             } else {
-                promise = ClosedGroupsProtocolV2.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
+//                TODO: uncomment when we switch to sending new explicit updates after clients update
+//                task {
+//                    val name =
+//                            if (hasNameChanged) ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity,groupPublicKey!!,name)
+//                            else Promise.of(Unit)
+//                    name.get()
+//                    members.filterNot { it in originalMembers }.let { adds ->
+//                        if (adds.isNotEmpty()) ClosedGroupsProtocolV2.explicitAddMembers(this@EditClosedGroupActivity, groupPublicKey!!, adds.map { it.address.serialize() })
+//                        else Promise.of(Unit)
+//                    }.get()
+//                    originalMembers.filterNot { it in members }.let { removes ->
+//                        if (removes.isNotEmpty()) ClosedGroupsProtocolV2.explicitRemoveMembers(this@EditClosedGroupActivity, groupPublicKey!!, removes.map { it.address.serialize() })
+//                        else Promise.of(Unit)
+//                    }.get()
+//                }
+                ClosedGroupsProtocolV2.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
             }
             promise.successUi {
                 loaderContainer.fadeOut()

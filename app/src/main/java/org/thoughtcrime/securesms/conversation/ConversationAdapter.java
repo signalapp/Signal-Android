@@ -30,7 +30,6 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 
-
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
