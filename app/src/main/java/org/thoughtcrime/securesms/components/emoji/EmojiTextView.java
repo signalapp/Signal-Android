@@ -10,6 +10,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.ViewGroup;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -136,6 +137,10 @@ public class EmojiTextView extends AppCompatTextView {
           ellipsizeEmojiTextForMaxLines();
         }
       }
+    }
+
+    if (getLayoutParams() != null && getLayoutParams().width == ViewGroup.LayoutParams.WRAP_CONTENT) {
+      requestLayout();
     }
   }
 
