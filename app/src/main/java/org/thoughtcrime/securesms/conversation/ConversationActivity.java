@@ -679,7 +679,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     boolean isOpenGroupOrRSSFeed = recipient.getAddress().isOpenGroup();
 
-    if (isOpenGroupOrRSSFeed) {
+    if (!isOpenGroupOrRSSFeed) {
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
