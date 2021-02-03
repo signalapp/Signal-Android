@@ -493,7 +493,7 @@ public final class ConversationListItem extends ConstraintLayout
         if (thread.getRecipient().isGroup()) {
           RecipientId groupMessageSender = thread.getGroupMessageSender();
           if (!groupMessageSender.isUnknown()) {
-            return describeGroupMessage(context, body, groupMessageSender);
+            return describeGroupMessage(context, body, groupMessageSender, thread.isRead());
           }
         }
         return LiveDataUtil.just(new SpannableString(body));
@@ -503,21 +503,24 @@ public final class ConversationListItem extends ConstraintLayout
 
   private static LiveData<SpannableString> describeGroupMessage(@NonNull Context context,
                                                                 @NonNull String body,
-                                                                @NonNull RecipientId groupMessageSender)
+                                                                @NonNull RecipientId groupMessageSender,
+                                                                boolean read)
   {
     return whileLoadingShow(body, recipientToStringAsync(groupMessageSender,
-                                                         r -> createGroupMessageUpdateString(context, body, r)));
+                                                         r -> createGroupMessageUpdateString(context, body, r, read)));
   }
 
   private static SpannableString createGroupMessageUpdateString(@NonNull Context context,
                                                                 @NonNull String body,
-                                                                @NonNull Recipient recipient)
+                                                                @NonNull Recipient recipient,
+                                                                boolean read)
   {
     String sender = (recipient.isSelf() ? context.getString(R.string.MessageRecord_you)
                                         : recipient.getShortDisplayName(context)) + ": ";
 
     SpannableString spannable = new SpannableString(sender + body);
-    spannable.setSpan(new TextAppearanceSpan(context, R.style.Signal_Text_Preview_Medium),
+    spannable.setSpan(new TextAppearanceSpan(context, read ? R.style.Signal_Text_Preview_Medium_Secondary
+                                                           : R.style.Signal_Text_Preview_Medium_Primary),
                       0,
                       sender.length(),
                       Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
