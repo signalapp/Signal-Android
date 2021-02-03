@@ -20,13 +20,15 @@ public class ReviewCardViewModel extends ViewModel {
 
   private final ReviewCardRepository                   repository;
   private final boolean                                isGroupThread;
+  private final boolean                                canRemoveUsersFromGroup;
   private final MutableLiveData<List<ReviewRecipient>> reviewRecipients;
   private final LiveData<List<ReviewCard>>             reviewCards;
   private final SingleLiveEvent<Event>                 reviewEvents;
 
-  public ReviewCardViewModel(@NonNull ReviewCardRepository repository, boolean isGroupThread) {
+  public ReviewCardViewModel(@NonNull ReviewCardRepository repository, boolean isGroupThread, boolean canRemoveUsersFromGroup) {
     this.repository       = repository;
     this.isGroupThread    = isGroupThread;
+    this.canRemoveUsersFromGroup    = canRemoveUsersFromGroup;
     this.reviewRecipients = new MutableLiveData<>();
     this.reviewCards      = LiveDataUtil.mapAsync(reviewRecipients, this::transformReviewRecipients);
     this.reviewEvents     = new SingleLiveEvent<>();
@@ -92,6 +94,9 @@ public class ReviewCardViewModel extends ViewModel {
     if (reviewRecipient.getRecipient().isSystemContact()) {
       return ReviewCard.Action.UPDATE_CONTACT;
     } else if (isGroupThread) {
+      if (!canRemoveUsersFromGroup) {
+        return null;
+      }
       return ReviewCard.Action.REMOVE_FROM_GROUP;
     } else {
       return ReviewCard.Action.BLOCK;
@@ -140,15 +145,17 @@ public class ReviewCardViewModel extends ViewModel {
 
     private final ReviewCardRepository repository;
     private final boolean              isGroupThread;
+    private final boolean              canRemoveUsersFromGroup;
 
-    public Factory(@NonNull ReviewCardRepository repository, boolean isGroupThread) {
+    public Factory(@NonNull ReviewCardRepository repository, boolean isGroupThread, boolean canRemoveUsersFromGroup) {
       this.repository    = repository;
       this.isGroupThread = isGroupThread;
+      this.canRemoveUsersFromGroup = canRemoveUsersFromGroup;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return Objects.requireNonNull(modelClass.cast(new ReviewCardViewModel(repository, isGroupThread)));
+      return Objects.requireNonNull(modelClass.cast(new ReviewCardViewModel(repository, isGroupThread, canRemoveUsersFromGroup)));
     }
   }
 

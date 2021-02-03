@@ -77,7 +77,7 @@ public class MentionsPickerViewModel extends ViewModel {
 
   /**
    * Wraps a nullable query string so it can be properly propagated through
-   * {@link LiveDataUtil#combineLatest(LiveData, LiveData, LiveDataUtil.Combine)}.
+   * {@link LiveDataUtil#combineLatest(LiveData, LiveData, LiveDataUtil.Combine2)}.
    */
   private static class Query {
     static final Query NONE = new Query(null);
