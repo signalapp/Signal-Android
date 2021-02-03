@@ -452,7 +452,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@メンションや管理者などの新機能を使用するには、このグループをアップグレードしてください。</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">いまはしない</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">グループをアップデートしてください</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">グループをアップデートしてください</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d人のメンバーが、新しいグループに再参加できませんでした。このメンバーをいま追加しますか？</item>
@@ -1047,6 +1047,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定する</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不正なパスフレーズです！</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signalのロックを解除する</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - ロック画面</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地図</string>
   <string name="PlacePickerActivity_drop_pin">ピンを打つ</string>
@@ -1140,6 +1141,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s からの音声と映像を受信できません</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s からの音声と映像を受信できません</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">プロクシサーバ</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">プロクシアドレス</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">このプロクシアドレスを使用しますか？</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">プロクシを使用する</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">プロクシに接続しました。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
@@ -1887,6 +1894,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
   <string name="preferences_setup_a_username">ユーザ名の設定</string>
+  <string name="preferences_proxy">プロクシ</string>
+  <string name="preferences_use_proxy">プロクシを使用する</string>
+  <string name="preferences_off">オフ</string>
+  <string name="preferences_on">オン</string>
+  <string name="preferences_proxy_address">プロクシアドレス</string>
+  <string name="preferences_share">共有する</string>
+  <string name="preferences_save">保存</string>
+  <string name="preferences_connecting_to_proxy">プロクシに接続しています…</string>
+  <string name="preferences_connected_to_proxy">プロクシ接続済み</string>
+  <string name="preferences_connection_failed">接続失敗</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">プロクシに接続できませんでした。プロクシアドレスを確認して、再度試してください。</string>
+  <string name="preferences_you_are_connected_to_the_proxy">プロクシに接続しました。いつでも設定でプロクシを無効にできます。</string>
+  <string name="preferences_success">成功</string>
+  <string name="preferences_failed_to_connect">接続に失敗しました</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2067,6 +2088,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">PINが違います</string>
   <string name="RegistrationLockFragment__forgot_your_pin">PINを忘れましたか？</string>
   <string name="RegistrationLockFragment__not_many_tries_left">試行回数が残りわずかです！</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal登録 - AndroidのPINに関するサポートが必要 (V1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal登録 - AndroidのPINに関するサポートが必要 (V2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="other">プライバシーとセキュリティ保護のため、PINを回復する方法はありません。PINを思い出せない場合、%1$d日間無操作にするとSMSで再認証できます。その場合アカウントはリセットされ、メッセージ等もすべて削除されます。</item>
   </plurals>

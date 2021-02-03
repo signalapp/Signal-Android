@@ -452,7 +452,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Để truy cập các tính năng mới như @nhắc tên và admins, hãy nâng cấp nhóm này.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Cập nhật nhóm</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Cập nhật nhóm</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d thành viên không thể được thêm lại vào Nhóm Mới. Bạn có muốn thêm họ bây giờ không?</item>
@@ -1136,6 +1136,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Không thể nhận được âm thanh &amp; video từ %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Không thể nhận được âm thanh và video từ %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Điều này có thể vì họ chưa có xác minh việc thay đổi số an toàn của bạn, có vấn đề với thiết bị của họ, hoặc họ đã chặn bạn.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
@@ -1878,6 +1879,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Bật \'Lá thư không chủ\' cho tin nhắn từ người gửi không có trong danh bạ và người bạn chưa chia sẻ hồ sơ.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Tìm hiểu thêm</string>
   <string name="preferences_setup_a_username">Đặt tên người dùng</string>
+  <string name="preferences_off">Tắt</string>
+  <string name="preferences_on">Bật</string>
+  <string name="preferences_share">Chia sẻ</string>
+  <string name="preferences_save">Lưu</string>
   <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
   <!--Internal only preferences-->
   <!--****************************************-->

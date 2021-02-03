@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Per accedir a les funcions noves com ara les @mencions i els administradors, actualitzeu aquest grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ara no</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Actualitza el grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Actualitza el grup</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membre no s\'ha pogut tornar a afegir al grup nou. Voleu afegir-l\'hi ara?</item>
@@ -1104,6 +1104,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Envia la contrasenya</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Contrasenya incorrecta!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Desbloca el Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Bloca la pantalla</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Marqueu el lloc</string>
@@ -1200,6 +1201,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">No es pot rebre ni àudio ni vídeo de %1$s.</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Això pot ser degut al fet que no han verificat el canvi del vostre número de seguretat, hi ha un problema al seu dispositiu o us han blocat.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Servidor intermediari</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Adreça intermediària</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Voleu usar aquesta adreça intermediària?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Usa un servidor intermediari</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Connexió correcta amb l\'intermediari</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Seleccioneu el país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Heu d\'especificar el
@@ -1964,6 +1971,20 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa el remitent segellat per a missatges rebuts de persones que no teniu als contactes o de persones amb qui no heu compartit el vostre perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Més informació</string>
   <string name="preferences_setup_a_username">Estableix un nom d\'usuari</string>
+  <string name="preferences_proxy">Servidor intermediari</string>
+  <string name="preferences_use_proxy">Usa un servidor intermediari</string>
+  <string name="preferences_off">Inactiu</string>
+  <string name="preferences_on">Actiu</string>
+  <string name="preferences_proxy_address">Adreça intermediària</string>
+  <string name="preferences_share">Comparteix-lo</string>
+  <string name="preferences_save">Desa</string>
+  <string name="preferences_connecting_to_proxy">Es connecta amb l\'intermediari…</string>
+  <string name="preferences_connected_to_proxy">Connectat amb l\'intermediari</string>
+  <string name="preferences_connection_failed">Ha fallat la connexió.</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">No s\'ha pogut connectar amb l\'intermediari. Comproveu-ne l\'adreça i torneu-ho a provar.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Esteu connectat amb l\'intermediari. Podeu desactivar-lo en qualsevol moment des de la configuració.</string>
+  <string name="preferences_success">Correcte</string>
+  <string name="preferences_failed_to_connect">Ha fallat la connexió.</string>
   <string name="configurable_single_select__customize_option">Opció de personalització</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2146,6 +2167,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecte</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Heu oblidat el PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">No resta cap intent!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registre del Signal - Cal ajuda amb el PIN per a Android (PIN v1)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registre del Signal - Cal ajuda amb el PIN per a Android (PIN v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si no el podeu recordar, podeu refer la verificació amb un SMS al cap de %1$d dia d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</item>
     <item quantity="other">Per a la vostra privadesa i seguretat, no hi ha manera de recuperar el PIN. Si no el podeu recordar, podeu refer la verificació amb un SMS al cap de %1$d dies d\'inactivitat. En aquest cas, el compte s\'esborrarà i se\'n suprimirà el contingut.</item>

@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">नए फ़ीचर्स जैसे कि @mentions और एडमिन तक पहुँच प्राप्त करने के लिए, इस ग्रुप को अपग्रेड करें।</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">अभी नहीं</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">अपडेट समूह </string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">अपडेट समूह </string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d मेंबर को नए ग्रुप में दोबारा शामिल नहीं किया जा सका। क्या आप उन्हें अब शामिल करना चाहते हैं?</item>
@@ -1195,6 +1195,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा</string>
@@ -1949,6 +1950,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">सील्ड सेंडर फी़चर आने वाले मेसेजों के लिये शुरु कर दिया जाऐगा जिसके अनुसार वो लोग जो आपके संपर्क में नहीं  हैं या जिनसे आपने अपना प्रोफ़ाइल साझा नहीं किया है, वो भी आपको मेसेज भेज पाएंगे|</string>
   <string name="preferences_communication__sealed_sender_learn_more">अधिक जानें</string>
   <string name="preferences_setup_a_username">उपयोगकर्ता नाम सेट अप करें</string>
+  <string name="preferences_off">बंद </string>
+  <string name="preferences_on">पर</string>
+  <string name="preferences_share">साझा करें</string>
+  <string name="preferences_save">सेव</string>
   <string name="configurable_single_select__customize_option">अनुकूलित करने का विकल्प</string>
   <!--Internal only preferences-->
   <!--****************************************-->

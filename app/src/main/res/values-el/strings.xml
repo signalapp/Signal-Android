@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Για πρόσβαση σε χαρακτηριστικά όπως οι @αναφορές και οι διαχειριστές ομάδας, αναβάθμισε την ομάδα.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Όχι τώρα</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Αναβάθμιση ομάδας</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Αναβάθμιση ομάδας</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d μέλος δεν μπόρεσε να επαναπροστεθεί στην Ομάδα νέου τύπου. Θέλεις να τον/την προσθέσεις τώρα;</item>
@@ -1104,6 +1104,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη έγκυρο συνθηματικό!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Ξεκλείδωσε το Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Κλείδωμα οθόνης</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Χάρτης</string>
   <string name="PlacePickerActivity_drop_pin">Καρφίτσωμα τοποθεσίας</string>
@@ -1200,6 +1201,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Δεν μπορείς να λάβεις ήχο &amp; βίντεο από τον/την %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Δεν μπορείς να λάβεις ήχο και βίντεο από τον/την %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Αυτό ίσως οφείλεται στο ότι δεν έχει επιβεβαιώσει την αλλαγή του αριθμού ασφαλείας σου, ότι υπάρχει πρόβλημα με τη συσκευή του/της ή ότι σε έχει μπλοκάρει.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Διακομιστής proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Διεύθυνση proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Θέλεις να χρησιμοποιήσεις αυτή τη διεύθυνση proxy;</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Χρήση proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Επιτυχής σύνδεση στο proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Διάλεξε τη χώρα σου</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να γράψεις τον
@@ -1965,6 +1972,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ενεργοποίηση του προστατευμένου αποστολέα για εισερχόμενα μηνύματα από άτομα που δεν έχεις στις επαφές σου και άτομα με τα οποία δεν έχεις μοιραστεί το προφίλ σου.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Μάθε περισσότερα</string>
   <string name="preferences_setup_a_username">Ορισμός ονόματος χρήστη`</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Χρήση proxy</string>
+  <string name="preferences_off">Ανενεργό</string>
+  <string name="preferences_on">Ενεργό</string>
+  <string name="preferences_proxy_address">Διεύθυνση proxy</string>
+  <string name="preferences_share">Μοιράσου</string>
+  <string name="preferences_save">Αποθήκευση</string>
+  <string name="preferences_connecting_to_proxy">Συνδεόμαστε στο proxy…</string>
+  <string name="preferences_connected_to_proxy">Συνδεθήκαμε στο proxy</string>
+  <string name="preferences_connection_failed">Αποτυχία σύνδεσης</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Αποτυχία σύνδεσης το proxy. Έλεγξε τη διεύθυνση proxy και ξαναπροσπάθησε.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Έχεις συνδεθεί στο proxy. Μπορείς να το απενεργοποιήσεις οποιαδήποτε στιγμή στις Ρυθμίσεις.</string>
+  <string name="preferences_success">Επιτυχία</string>
+  <string name="preferences_failed_to_connect">Αποτυχία σύνδεσης</string>
   <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2147,6 +2168,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Λάθος ΡΙΝ</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Ξέχασες το PIN σου;</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Δεν απομένουν πολλές προσπάθειες!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Εγγραφή Signal - Βοήθεια με το PIN στο Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Εγγραφή Signal - Βοήθεια με το PIN στο Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Για την ασφάλεια και ιδιωτικότητά σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να επανεπιβεβαιώσεις μέσω SMS μετά από %1$d ημέρα αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>
     <item quantity="other">Για την ασφάλεια και ιδιωτικότητά σου, δεν υπάρχει τρόπος να επανακτήσεις το PIN σου. Αν δεν μπορείς να το θυμηθείς, μπορείς να επανεπιβεβαιώσεις μέσω SMS μετά από %1$d ημέρες αδράνειας. Σε αυτή την περίπτωση, ο λογαριασμός σου θα καθαριστεί και όλα τα περιεχόμενα θα διαγραφτούν.</item>

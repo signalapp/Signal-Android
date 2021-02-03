@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">For å få tilgang til de nye funksjonene, som @mentions og administratorer, oppgrader gruppen.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ikke nå</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikke legges til på nytt. Ønsker du å legge dem til nå?</item>
@@ -1200,6 +1200,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikke motta lyd &amp; video fra %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikke motta lyd og video fra %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan være fordi de ikke har verifisert ditt endrede sikkerhetsnummer, fordi det er et problem med enheten deres eller de har blokkert deg.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Velg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgi
@@ -1964,6 +1965,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktiver forseglet avsender for innkommende meldinger fra avsendere og personer du ikke har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær mer</string>
   <string name="preferences_setup_a_username">Sette upp brukernavn</string>
+  <string name="preferences_off">Av</string>
+  <string name="preferences_on">På</string>
+  <string name="preferences_share">Del</string>
+  <string name="preferences_save">Lagre</string>
   <string name="configurable_single_select__customize_option">Tilpass opsjon</string>
   <!--Internal only preferences-->
   <!--****************************************-->

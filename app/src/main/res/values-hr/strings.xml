@@ -486,7 +486,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste pristupili novim značajkama poput @spominjanja i administratora, nadogradite ovu grupu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Ažuriraj grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Ažuriraj grupu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d član nije bilo moguće ponovno dodati u Novu grupu. Želite li ga dodati sada?</item>
@@ -1162,6 +1162,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Pošaljite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nevažeća lozinka!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Otključaj Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Zaključani zaslon</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Ispusti značku</string>
@@ -1261,6 +1262,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Ne možete primiti audio i video od %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ne možete primiti audio i video od %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">To je možda zato što nisu potvrdili promjenu vašeg sigurnosnog broja, ili postoji problem s njihovim uređajem ili su vas blokirali.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy poslužitelj</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy adresa</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Želite li koristiti ovu proxy adresu?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Koristi proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Uspješno spajanje na proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju državu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Unesite pozivni broj
@@ -2040,6 +2047,20 @@ broj telefona</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Omogućite zapečaćenog pošiljatelja za dolazne poruke od osoba koje nisu vaši kontakti i od osoba s kojima niste podijelili vaš profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saznajte više</string>
   <string name="preferences_setup_a_username">Postavite korisničko ime</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Koristi proxy</string>
+  <string name="preferences_off">Isključeno</string>
+  <string name="preferences_on">Uključeno</string>
+  <string name="preferences_proxy_address">Proxy adresa</string>
+  <string name="preferences_share">Podijeli</string>
+  <string name="preferences_save">Spremi</string>
+  <string name="preferences_connecting_to_proxy">Povezivanje na proxy…</string>
+  <string name="preferences_connected_to_proxy">Povezano na proxy</string>
+  <string name="preferences_connection_failed">Pogreška prilikom spajanja</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Neuspješno spajanje s proxyjem. Provjerite adresu proxyja i pokušajte ponovo.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Povezani ste s proxyjem. Možete u bilo kojem trenutku isključiti proxy u Postavkama.</string>
+  <string name="preferences_success">Uspješno</string>
+  <string name="preferences_failed_to_connect">Neuspješno povezivanje</string>
   <string name="configurable_single_select__customize_option">Opcija prilagođavanja</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2224,6 +2245,8 @@ broj telefona</string>
   <string name="RegistrationLockFragment__incorrect_pin">Nevažeći PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Zaboravili ste PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Nije ostalo puno pokušaja!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registracija Signala - Trebate pomoć s PIN-om za Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registracija Signala - Trebate pomoć s PIN-om za Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Zbog vaše privatnosti i sigurnosti ne možete oporaviti vaš PIN. Ako se ne možete sjetiti vašeg PIN-a, možete ponovno potvrditi SMS-om nakon %1$d dan neaktivnosti. U tom će slučaju vaš račun biti izbrisan i sav sadržaj će biti izbrisan.</item>
     <item quantity="few">Zbog vaše privatnosti i sigurnosti ne možete oporaviti vaš PIN. Ako se ne možete sjetiti vašeg PIN-a, možete ponovno potvrditi SMS-om nakon %1$d dana neaktivnosti. U tom će slučaju vaš račun biti izbrisan i sav sadržaj će biti izbrisan.</item>

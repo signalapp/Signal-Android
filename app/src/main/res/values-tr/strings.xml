@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@Bahsedilmeler ve yöneticiler gibi yeni özelliklere erişmek için bu grubu yükseltin.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Şimdi değil</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Grubu güncelle</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Grubu güncelle</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d üye yeni gruba eklenemedi. Şimdi eklemek ister misiniz?</item>
@@ -1105,6 +1105,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Parola gir</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz parola!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal\'in Kilidini Aç</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Kilit Ekranı</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Harita</string>
   <string name="PlacePickerActivity_drop_pin">İşaretle</string>
@@ -1201,6 +1202,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s kişisinden ses ve görüntü alınamıyor</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Bunun sebebi, güvenlik numaranızın değişimini doğrulamamaları, cihazlarıyla ilgili bir sorun olması veya sizi engellemesi olabilir.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Vekil sunucu</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Vekil adresi</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Bu vekil adresini kullanmak istiyor musunuz?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Vekil sunucu kullan</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Vekil sunucuya başarıyla bağlanıldı.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Ülkenizi seçin</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Ülke kodunuzu
@@ -1968,6 +1975,20 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Kişileriniz arasında bulunmayan ve profilinizi paylaşmadığınız kişilerden göndereninin gizli olduğu iletilerin alınmasını etkinleştir.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dahasını öğrenin</string>
   <string name="preferences_setup_a_username">Bir kullanıcı adı oluştur</string>
+  <string name="preferences_proxy">Vekil sunucu</string>
+  <string name="preferences_use_proxy">Vekil sunucu kullan</string>
+  <string name="preferences_off">Kapalı</string>
+  <string name="preferences_on">Açık</string>
+  <string name="preferences_proxy_address">Vekil adres</string>
+  <string name="preferences_share">Paylaş</string>
+  <string name="preferences_save">Kaydet</string>
+  <string name="preferences_connecting_to_proxy">Vekil sunucuya bağlanılıyor…</string>
+  <string name="preferences_connected_to_proxy">Vekil sunucuya bağlanıldı</string>
+  <string name="preferences_connection_failed">Bağlantı başarısız</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Vekil sunucuya bağlanılamadı. Vekil adresinizi kontrol edin ve tekrar deneyin.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Vekil sunucuya bağlandınız. Vekil sunucuyu istediğiniz zaman Ayarlar\'dan kapatabilirsiniz.</string>
+  <string name="preferences_success">Başarılı</string>
+  <string name="preferences_failed_to_connect">Bağlanılamadı</string>
   <string name="configurable_single_select__customize_option">Seçeneği düzenle</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2150,6 +2171,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationLockFragment__incorrect_pin">Yanlış PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">PIN\'inizi mi unuttunuz?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Deneme hakkınız azaldı!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal Kaydı -  Android için PIN ile ilgili Yardıma mı İhtiyacınız Var (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Kaydı -  Android için PIN ile ilgili Yardıma mı İhtiyacınız Var (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Gizlilik ve güvenliğiniz için PIN\'inizi kurtarmanın yolu yoktur. Eğer PIN\'inizi hatırlayamıyorsanız, %1$d gün eylemsizlik sonrasında SMS ile tekrar doğrulayabilirsiniz. Bu durumda hesabınız ve tüm içeriğiniz silinecektir.</item>
     <item quantity="other">Gizlilik ve güvenliğiniz için PIN\'inizi kurtarmanın yolu yoktur. Eğer PIN\'inizi hatırlayamıyorsanız, %1$d gün eylemsizlik sonrasında SMS ile tekrar doğrulayabilirsiniz. Bu durumda hesabınız ve tüm içeriğiniz silinecektir.</item>

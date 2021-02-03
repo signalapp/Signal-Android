@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">För att få tillgång till nya funktioner som @omnämnanden och administratörer, uppgradera denna grupp.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Inte nu</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Uppdatera grupp</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Uppdatera grupp</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunde inte läggas till igen i den Nya gruppen. Vill du lägga till medlemmen nu?</item>
@@ -1104,6 +1104,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Lås upp Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Låsskärm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Karta</string>
   <string name="PlacePickerActivity_drop_pin">Släpp stift</string>
@@ -1200,6 +1201,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan inte ta emot ljud &amp; video från %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan inte ta emot ljud och video från %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Det kan bero på att de inte har verifierat ditt säkerhetsnummerbyte, det finns ett problem med deras enhet eller att de har blockerat dig.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxyadress</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vill du använda denna proxyadress?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Använd proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ansluten till proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Välj ditt land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du måste ange din 
@@ -1964,6 +1971,20 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivera dold avsändare för inkommande meddelanden från icke-kontakter och personer som du inte delat din profil med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Läs mer</string>
   <string name="preferences_setup_a_username">Ställ in ett användarnamn</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Använd proxy</string>
+  <string name="preferences_off">Av</string>
+  <string name="preferences_on">På</string>
+  <string name="preferences_proxy_address">Proxyadress</string>
+  <string name="preferences_share">Dela</string>
+  <string name="preferences_save">Spara</string>
+  <string name="preferences_connecting_to_proxy">Ansluter till proxy…</string>
+  <string name="preferences_connected_to_proxy">Ansluten till proxy</string>
+  <string name="preferences_connection_failed">Anslutningen misslyckades</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Det gick inte att ansluta till proxyen. Kontrollera proxyadressen och försök igen.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Du är ansluten till proxyen. Du kan stänga av proxyn när som helst från Inställningar.</string>
+  <string name="preferences_success">Lyckades</string>
+  <string name="preferences_failed_to_connect">Det gick inte att ansluta</string>
   <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2146,6 +2167,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationLockFragment__incorrect_pin">Felaktig PIN-kod</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Har du glömt din PIN-kod?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Inte många försök kvar!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signalregistrering - Behöver du hjälp med PIN-kod för Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signalregistrering - Behöver du hjälp med PIN-kod för Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du verifiera med SMS efter %1$d dag av inaktivitet. I detta fall kommer ditt konto att rensas och allt innehåll tas bort.</item>
     <item quantity="other">För din integritet och säkerhet finns det inget sätt att återställa din PIN-kod. Om du inte kan komma ihåg din PIN-kod kan du återverifiera med SMS efter %1$d dagar av inaktivitet. I detta fall kommer ditt konto att rensas och allt innehåll tas bort.</item>

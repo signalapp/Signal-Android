@@ -503,7 +503,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizuj skupinu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizuj skupinu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohol byť znovu pridaný do Novej skupiny. Chcete ho pridať teraz?</item>
@@ -1218,6 +1218,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Odomknúť Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Zámok obrazovky</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Umiestniť značku</string>
@@ -1320,6 +1321,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť pre to, že dotyčný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, že sa vyskytol problém s jeho zariadením, alebo že vás zablokoval.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy adresa</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Chcete použiť túto proxy adresu?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Použiť proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Úspešne pripojené ku proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadať
@@ -2115,6 +2122,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
   <string name="preferences_setup_a_username">Založiť používateľské meno</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Použiť proxy</string>
+  <string name="preferences_off">Vypnuté</string>
+  <string name="preferences_on">Zapnuté</string>
+  <string name="preferences_proxy_address">Proxy adresa</string>
+  <string name="preferences_share">Zdieľať</string>
+  <string name="preferences_save">Uložiť</string>
+  <string name="preferences_connecting_to_proxy">Pripája sa ku proxy…</string>
+  <string name="preferences_connected_to_proxy">Pripojené ku proxy</string>
+  <string name="preferences_connection_failed">Pripojenie zlyhalo</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
   <!--****************************************-->

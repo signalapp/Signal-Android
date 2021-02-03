@@ -31,7 +31,7 @@
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s، فراپیام %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه‌نمایش %1$s، قفل ثبت‌نام %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
   <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">برای دسترسی به قابلیت‌های جدید مثل اشاره‌ها@ و مدیران این گروه را ارتقا دهید.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">حالا نه</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">به‌روز‌رسانی گروه</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">به‌روز‌رسانی گروه</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d کاربر نمی‌تواند به گروه جدید اضافه شود. می‌خواهید حالا او را اضافه کنید؟</item>
@@ -1105,6 +1105,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">ارسال گذرواژه</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">گذرواژه معتبر نیست!</string>
   <string name="PassphrasePromptActivity_unlock_signal">باز کردن قفل سیگنال</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">سیگنال اندروید - صفحه‌نمایش قفل</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشه</string>
   <string name="PlacePickerActivity_drop_pin">قرار دادن نشانگر</string>
@@ -1201,6 +1202,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">دریافت صدا و تصویر از %1$s ممکن نیست</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">این می‌تواند به این خاطر باشد که آن‌ها تغییر شمارهٔ امنیتی شما را تأیید نکرده‌اند، مشکلی برای دستگاه‌شان پیش آمده یا شما را مسدود کرده‌اند.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">سرور پروکسی</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">نشانی پروکسی</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">آیا می‌خواهید از این نشانی پروکسی استفاده کنید؟</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">استفاده از پروکسی</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">با موفقیت به پروکسی متصل شدید.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
@@ -1833,10 +1840,10 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
   <string name="preferences__change_passphrase">تغییر گذرواژه</string>
   <string name="preferences__change_your_passphrase">گذرواژهٔ خود را تغییر دهید</string>
-  <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
-  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه  و اعلان‌ها را با یک گذرواژه قفل کنید</string>
+  <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه‌نمایش</string>
+  <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه‌نمایش و اعلان‌ها را با یک گذرواژه قفل کنید</string>
   <string name="preferences__screen_security">امنیت صفحه‌نمایش</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">مسدود کردن تصویربرداری از صفحه در فهرست آخرین‌ها و در درون برنامه</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">مسدود کردن تصویربرداری از صفحه‌نمایش در فهرست آخرین‌ها و در درون برنامه</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال  بعد از یک زمان مشخص عدم فعالیت</string>
   <string name="preferences__inactivity_timeout_passphrase">گذرواژهٔ پایان زمان عدم فعالیت</string>
   <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
@@ -1907,7 +1914,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسیدهای خوانده شدن غیرفعال باشند، شما قادر به دیدن رسیدهای خوانده شدن دیگران نخواهید بود.</string>
   <string name="preferences__typing_indicators">نشانگرهای نوشتن</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی شده. اعمال این تنظیم ضمانت شده نیست و صفحه‌کلید شما ممکن است آن را نادیده بگیرد.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده. اعمال این تنظیم ضمانت شده نیست و صفحه‌کلید شما ممکن است آن را نادیده بگیرد.</string>
   <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
@@ -1968,6 +1975,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندۀ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
   <string name="preferences_setup_a_username">برپایی نام کاربری</string>
+  <string name="preferences_proxy">پروکسی</string>
+  <string name="preferences_use_proxy">استفاده از پروکسی</string>
+  <string name="preferences_off">خاموش</string>
+  <string name="preferences_on">روشن</string>
+  <string name="preferences_proxy_address">نشانی پروکسی</string>
+  <string name="preferences_share">اشتراک‌گذاری</string>
+  <string name="preferences_save">ذخیره‌</string>
+  <string name="preferences_connecting_to_proxy">در حال اتصال به پروکسی…</string>
+  <string name="preferences_connected_to_proxy">متصل به پروکسی</string>
+  <string name="preferences_connection_failed">اتصال موفق نبود</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">اتصال به پروکسی ممکن نبود. نشانی پروکسی را بررسی کرده و دوباره امتحان کنید.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">شما به پروکسی متصل شدید. می‌توانید پروکسی را در هر زمانی از تنظیمات غیرفعال کنید.</string>
+  <string name="preferences_success">موفقیت</string>
+  <string name="preferences_failed_to_connect">اتصال موفق نبود</string>
   <string name="configurable_single_select__customize_option">سفارشی‌سازی</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2150,6 +2171,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">پین نادرست</string>
   <string name="RegistrationLockFragment__forgot_your_pin">پین خود را فراموش کرده‌اید؟</string>
   <string name="RegistrationLockFragment__not_many_tries_left"> تعداد تلاش زیادی باقی نمانده است</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۱)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۲)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
     <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، بعد از %1$d روز عدم فعالیت، می‌توانید از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
@@ -2251,9 +2274,9 @@
   <string name="PhoneNumberPrivacy_nobody">هیچ کس</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">شماره‌ٔ تلفن شما برای همهٔ افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل رؤیت خواهد بود.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">هرکسی که شمارهٔ تلفن شما را در مخاطبین خود داشته باشد شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند شما را در جستجو پیدا کنند.</string>
-  <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل دسترسی سیگنال با قفل صفحهٔ اندروید یا اثر انگشت</string>
-  <string name="preferences_app_protection__screen_lock_inactivity_timeout">قفل خودکار صفحه به دلیل عدم فعالیت</string>
+  <string name="preferences_app_protection__screen_lock">قفل صفحه‌نمایش</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل کردن دسترسی به سیگنال با قفل صفحه‌نمایش اندروید یا اثر انگشت</string>
+  <string name="preferences_app_protection__screen_lock_inactivity_timeout">قفل خودکار صفحه‌نمایش به دلیل عدم فعالیت</string>
   <string name="preferences_app_protection__signal_pin">پین سیگنال</string>
   <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>

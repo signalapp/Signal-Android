@@ -503,7 +503,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Чтобы получить доступ к новым функциям, таким как @упоминания и администраторы групп, обновите эту группу.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сейчас</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Обновить группу</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Обновить группу</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d участника не удалось автоматически добавить в Новую группу. Добавить сейчас?</item>
@@ -1218,6 +1218,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Подтвердить парольную фразу</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Неверная парольная фраза!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Разблокировать Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Экран блокировки</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Карта</string>
   <string name="PlacePickerActivity_drop_pin">Поставить метку</string>
@@ -1320,6 +1321,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Причина может заключаться в том, что этот участник не проверил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Прокси-сервер</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Адрес прокси</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Вы хотите использовать этот адрес прокси?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Использовать прокси</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Signal успешно подключился к прокси.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Выберите вашу страну</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Необходимо указать код страны</string>
@@ -2109,6 +2116,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <string name="preferences_setup_a_username">Настройте имя пользователя</string>
+  <string name="preferences_proxy">Прокси</string>
+  <string name="preferences_use_proxy">Использовать прокси</string>
+  <string name="preferences_off">Отключено</string>
+  <string name="preferences_on">Включено</string>
+  <string name="preferences_proxy_address">Адрес прокси</string>
+  <string name="preferences_share">Поделиться</string>
+  <string name="preferences_save">Сохранить</string>
+  <string name="preferences_connecting_to_proxy">Подключение к прокси…</string>
+  <string name="preferences_connected_to_proxy">Signal подключён к прокси</string>
+  <string name="preferences_connection_failed">Подключение не удалось</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Не удалось подключиться к прокси. Проверьте адрес прокси и попробуйте ещё раз.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Signal подключён к прокси. Вы можете отключить прокси в любое время в настройках.</string>
+  <string name="preferences_success">Успех</string>
+  <string name="preferences_failed_to_connect">Не удалось подключиться</string>
   <string name="configurable_single_select__customize_option">Изменить опцию</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2295,6 +2316,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Неверный PIN-код</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Забыли свой PIN-код?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Осталось не много попыток!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Регистрация в Signal - Нужна помощь с PIN-кодом для Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Регистрация в Signal - Нужна помощь с PIN-кодом для Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дня не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>
     <item quantity="few">Для вашей конфиденциальности и безопасности способа восстановить PIN-код не предусмотрено. Если вы не сможете вспомнить свой PIN-код, вы сможете заново зарегистрироваться через SMS, если в течение %1$d дней не будет активности. При этом ваша учётная запись будет стёрта, а всё содержимое удалено.</item>

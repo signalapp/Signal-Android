@@ -505,7 +505,7 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Diweddaru grŵp</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Diweddaru grŵp</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
@@ -1323,6 +1323,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Gall hyn fod oherwydd nad ydyn nhw wedi gwirio\'ch newid rhif diogelwch, mae problem gyda\'u dyfais, neu maen nhw wedi\'ch rhwystro chi.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Dewiswch eich gwlad</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Rhaid i chi roi
@@ -2118,6 +2119,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Galluogwch anfon dan sêl ar gyfer negeseuon i mewn gan y sawl sydd ddim yn gysylltiad a phobl nad ydych wedi rhannu eich proffil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dysgu rhagor</string>
   <string name="preferences_setup_a_username">Gosod enw defnyddiwr</string>
+  <string name="preferences_off">I ffwrdd</string>
+  <string name="preferences_on">Ymlaen</string>
+  <string name="preferences_share">Rhannu</string>
+  <string name="preferences_save">Cadw</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
   <!--****************************************-->

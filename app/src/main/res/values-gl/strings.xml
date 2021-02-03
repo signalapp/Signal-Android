@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a novas características como @mencións e admins, actualiza este grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora non</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro non puido ser engadido ao Novo Grupo. Queres engadilo agora?</item>
@@ -1105,6 +1105,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de acceso non válida!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Desbloquear Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Bloqueo de pantalla</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Engadir marcador</string>
@@ -1201,6 +1202,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Non se pode recibir o audio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Esto podería ser debido a que non verificaron o cambio no teu número de seguridade, hai un problema co seu dispositivo ou a que te bloquearon.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Enderezo do proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Queres utilizar este enderezo do proxy?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Usar proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Conexión correcta ao proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Elixe o teu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Debes especificar o teu
@@ -1970,6 +1977,19 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activa o remitente selado para as mensaxes entrantes de persoas que non estean nos teus contactos ou con aquelas coas que non compartiras o teu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber máis</string>
   <string name="preferences_setup_a_username">Establecer un nome de usuario</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Usar proxy</string>
+  <string name="preferences_off">Off</string>
+  <string name="preferences_on">On</string>
+  <string name="preferences_proxy_address">Enderezo do proxy</string>
+  <string name="preferences_share">Compartir</string>
+  <string name="preferences_save">Gardar</string>
+  <string name="preferences_connecting_to_proxy">Conectando ao proxy…</string>
+  <string name="preferences_connected_to_proxy">Conectado ao proxy</string>
+  <string name="preferences_connection_failed">Fallou a conexión</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Non se puido conectar co proxy. Comproba o enderezo e inténtao outra vez.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Estás conectado ao proxy. Podes apagar o proxy en calquera momento desde os Axustes.</string>
+  <string name="preferences_failed_to_connect">Fallou a conexión</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2152,6 +2172,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorrecto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueciches o PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Non quedan moitas tentativas!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Rexistro Signal - Preciso axuda co PIN para Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Rexstro Signal - Preciso axudo co PIN para Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Non hai xeito de recuperar o PIN, por seguridade e privacidade. Se non lembras o PIN, podes volver a verificar a conta cun SMS tras %1$d día de inactividade. Neste caso, a conta será eliminada e o contido borrado.</item>
     <item quantity="other">Non hai xeito de recuperar o teu PIN, por privacidade e seguridade. Se non podes lembrar o PIN, podes volver a verificar a conta cun SMS tras %1$d días de inactividade. Neste caso, a conta será eliminada e todo o contido borrado.</item>

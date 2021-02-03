@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, இந்த குழுவை மேம்படுத்தவும்.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">இப்போது இல்லை</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">குழுவை மேம்படுத்து</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">குழுவை மேம்படுத்து</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">புதிய குழுவில் %1$dஉறுப்பினரை மீண்டும் சேர்க்க முடியவில்லை. இப்போது அந்த உறுப்பினரை சேர்க்க விரும்புகிறீர்களா?</item>
@@ -1201,6 +1201,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$sஇலிருந்து ஆடியோ மற்றும் வீடியோவைப் பெற முடியவில்லை</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$sஇலிருந்து ஆடியோ மற்றும் வீடியோவைப் பெற முடியவில்லை </string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">இது உங்கள் பாதுகாப்பு எண் மாற்றத்தை அவர்கள் சரிபார்க்கவில்லை அல்லது அவர்களின் சாதனத்தில் சிக்கல் இருப்பதால் அல்லது அவர்கள் உங்களைத் தடுத்ததால் இருக்கலாம்.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -1967,6 +1968,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">தொடர்புகள் அல்லாதவர்களிடமிருந்தும், உங்கள் சுயவிவரத்தைப் பகிராத நபர்களிடமிருந்தும் உள்வரும் செய்திகளுக்கு சீல் அனுப்பியவரை இயக்கவும்.</string>
   <string name="preferences_communication__sealed_sender_learn_more">மேலும் அறிக</string>
   <string name="preferences_setup_a_username">பயனர்பெயரை அமைக்கவும்</string>
+  <string name="preferences_off">அணை</string>
+  <string name="preferences_on">இயக்கு</string>
+  <string name="preferences_share">பகிர்</string>
+  <string name="preferences_save">சேமி</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
   <!--****************************************-->

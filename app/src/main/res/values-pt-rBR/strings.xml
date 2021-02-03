@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acessar novos recursos como @menções e administradores, atualize este grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pôde ser adicionado ao Novo Grupo. Você deseja adicioná-lo agora?</item>
@@ -1201,6 +1201,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Não é possível receber áudio &amp; vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isso pode acontecer porque: ou essa pessoa não verificou a alteração do seu número de segurança, ou há um problema com o dispositivo dela, ou ela bloqueou você.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
@@ -1970,6 +1971,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Habilitar remetente oculto para mensagens recebidas de não contatos e pessoas com quem você não compartilhou seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saiba mais</string>
   <string name="preferences_setup_a_username">Definir um nome de usuário</string>
+  <string name="preferences_off">Desligado</string>
+  <string name="preferences_on">Ligado</string>
+  <string name="preferences_share">Compartilhar</string>
+  <string name="preferences_save">Salvar</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
   <!--****************************************-->

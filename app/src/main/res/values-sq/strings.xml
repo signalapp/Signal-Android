@@ -470,7 +470,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Fresko grupiin</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Fresko grupiin</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
@@ -1108,6 +1108,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="PassphrasePromptActivity_ok_button_content_description">Parashtroje frazëkalimin</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frazëkalim i pavlefshëm!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Shkyçe Signal-in</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Kyçje Ekrani</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Hartë</string>
   <string name="PlacePickerActivity_drop_pin">Lini pin</string>
@@ -1204,6 +1205,12 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">S’mund të merret audio &amp; video prej %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">S’mund të merret audio dhe video prej %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Kjo mund të vijë ngaqë s’kanë verifikuar ndryshimin e numrit tuaj të sigurisë, ka një problem me pajisjen e tyre, ose ju kanë bllokuar.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Shërbyes ndërmjetës</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Adresë ndërmjetësi</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Doni të përdoret kjo adresë ndërmjetësi?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Përdor ndërmjetës</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">U lidh me sukses te ndërmjetësi.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni
@@ -1972,6 +1979,20 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivizoni dërgues të vulosur për mesazhe ardhës nga persona që s\’i keni në kontaktet dhe persona të cilëve s\’u keni dhënë profilin tuaj.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Mësoni më tepër</string>
   <string name="preferences_setup_a_username">Ujdisë një emër përdoruesi</string>
+  <string name="preferences_proxy">Ndërmjetës</string>
+  <string name="preferences_use_proxy">Përdor ndërmjetës</string>
+  <string name="preferences_off">Off</string>
+  <string name="preferences_on">On</string>
+  <string name="preferences_proxy_address">Adresë ndërmjetësi</string>
+  <string name="preferences_share">Ndajeni Me të Tjerë</string>
+  <string name="preferences_save">Ruaje</string>
+  <string name="preferences_connecting_to_proxy">Po lidhet te ndërmjetës…</string>
+  <string name="preferences_connected_to_proxy">U lidh te ndërmjetësi</string>
+  <string name="preferences_connection_failed">Lidhja dështoi</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">S’u lidh dot te ndërmjetësi. Kontrolloni adresën e ndërmjetësit dhe riprovoni.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Jeni i lidhur te ndërmjetësi. Ndërmjetësin mund ta çaktivizoni në çfarëdo kohe, që nga Rregullimet.</string>
+  <string name="preferences_success">Sukses</string>
+  <string name="preferences_failed_to_connect">S’u arrit të lidhej</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2154,6 +2175,8 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN i pasaktë</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Harruat PIN-in tuaj?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">S’ka edhe shumë prova!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Regjistrim Signal-i - Duhet Ndihmë me PIN për Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Regjistrim Signal-i - Duhet Ndihmë me PIN për Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Për privatësinë dhe sigurinë tuaj, s’ka mënyrë për të rimarrë PIN-in 
 tuaj. Nëse s’mbani mend PIN-in tuaj, mund  të ribëni verifikimin me SMS pas %1$d dite pa veprimtari. Në këtë rast, llogaria juaj do të 

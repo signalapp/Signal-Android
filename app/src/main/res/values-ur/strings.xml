@@ -470,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ذکر, خصوصیات اور منتظمین جیسی نئی خصوصیات تک رسائی حاصل کرنے کے لیئے اس گروپ کو اپ گریڈ کریں۔</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ابھی نہیں</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">گروپ تازہ کاری</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">گروپ تازہ کاری</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">نئے گروپ میں %1$d ممبر کو دوبارہ شامل نہیں کیا جاسکا۔ کیا آپ انہیں ابھی شامل کرنا چاہتے ہیں؟</item>
@@ -1196,6 +1196,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">آڈیو وصول نہیں کر سکتے ہیں۔ %1$s سے ویڈیو</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s سے آڈیو اور ویڈیو موصول نہیں ہوسکتی ہے</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">اس کی وجہ یہ ہوسکتی ہے کہ انہوں نے آپ کے حفاظتی نمبر میں تبدیلی کی توثیق نہیں کی ہے ، ان کے آلے میں کوئی مسئلہ ہے یا انہوں نے آپ کو مسدود کردیا ہے۔</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اپنے ملک کا انتخاب کریں</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">آپ لازمی ملک کا کوڈ واضع کریں</string>
@@ -1942,6 +1943,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">غیر رابطوں اور ان لوگوں کی طرف سے آنے والے پیغامات کے لئے مہر بند مرسل کو اہل بنائیں جن کے ساتھ آپ نے اپنا پروفائل اشتراک نہیں کیا ہے۔</string>
   <string name="preferences_communication__sealed_sender_learn_more">مزید پڑھیں</string>
   <string name="preferences_setup_a_username">ایک صارف کا نام مرتب کریں</string>
+  <string name="preferences_off">بند کریں</string>
+  <string name="preferences_on">چلائیں</string>
+  <string name="preferences_share">اشتراک کریں</string>
+  <string name="preferences_save">محفوظ کریں</string>
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
   <!--Internal only preferences-->
   <!--****************************************-->

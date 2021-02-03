@@ -470,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Az újabb funkciók eléréséhez, mint az @említések, vagy admin szerep, frissítsd a csoportot.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Most nem</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Csoport frissítése</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Csoport frissítése</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d korábbi tagot nem sikerült automatikusan újra hozzáadni az új típusú csoporthoz. Szeretnéd hozzáadni őt most?</item>
@@ -1106,6 +1106,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Jelmondat küldése</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Érvénytelen jelmondat!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal feloldása</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Képernyőzár</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Térkép</string>
   <string name="PlacePickerActivity_drop_pin">Rajztű ledobása</string>
@@ -1203,6 +1204,12 @@ Kérlek telepítsd újra a Google Play Szolgáltatásokat, majd próbáld újra!
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Sikertelen hang és kép fogadás %1$s irányából</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ennek oka lehet, hogy esetleg nem ellenőrizte le a biztonsági azonosítód megváltozását, készülék problémája van, vagy letiltott téged.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy szerver</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy cím</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Szeretnéd ezt a proxyt használni?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Proxy használata</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sikeresen csatlakozva a proxy szerverhez.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Saját ország kiválasztása </string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Meg kell adnod az
@@ -1972,6 +1979,20 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Rejtett feladóval érkező üzenetek engedélyezése olyan nem-kontaktoktól és személyektől is, akikkel nem osztottad meg a profilodat.</string>
   <string name="preferences_communication__sealed_sender_learn_more">További információ</string>
   <string name="preferences_setup_a_username">Felhasználónév beállítása</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Proxy használata</string>
+  <string name="preferences_off">Ki</string>
+  <string name="preferences_on">Be</string>
+  <string name="preferences_proxy_address">Proxy cím</string>
+  <string name="preferences_share">Megosztás</string>
+  <string name="preferences_save">Mentés</string>
+  <string name="preferences_connecting_to_proxy">Csatlakozás a proxyhoz…</string>
+  <string name="preferences_connected_to_proxy">Csatlakozva a proxyhoz</string>
+  <string name="preferences_connection_failed">Sikertelen kapcsolódás</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Nem sikerült csatlakozni a proxyhoz. Ellenőrizd a proxy szerver címét, és próbáld újra!</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Csatlakozva vagy a proxyhoz. A proxyt bármikor kikapcsolhatod a Beállítások menüben.</string>
+  <string name="preferences_success">Siker</string>
+  <string name="preferences_failed_to_connect">Sikertelen kapcsolódás</string>
   <string name="configurable_single_select__customize_option">Beállítás testreszabása</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2154,6 +2175,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationLockFragment__incorrect_pin">Hibás PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Elfelejtett PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Nem maradt túl sok lehetőséged!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal regisztráció - Segítségkérés a PIN kód használatához Androidon (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal regisztráció - Segítségkérés a PIN kód használatához Androidon (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Személyes adataid védelme és biztonságod érdekében nincs lehetőség a PIN kód visszaállítására. Ha nem emlékszel PIN kódodra, SMS-ben újra megerősítheted telefonszámodat %1$d nap inaktivitást követően. Ebben az esetben fiókod és az összes kapcsolódó adat törlésre kerül.</item>
     <item quantity="other">Személyes adataid védelme és biztonságod érdekében nincs lehetőség a PIN kód visszaállítására. Ha nem emlékszel PIN kódodra, SMS-ben újra megerősítheted telefonszámodat %1$d nap inaktivitást követően. Ebben az esetben fiókod és az összes kapcsolódó adat törlésre kerül.</item>

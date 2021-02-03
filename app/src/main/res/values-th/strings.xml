@@ -452,7 +452,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">อัปเกรดกลุ่มนี้เพื่อเข้าถึงคุณลักษณะใหม่เช่นการ @mentions และผู้ดูแลกลุ่ม </string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ไม่ใช่ตอนนี้</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">ปรับปรุงกลุ่ม</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ปรับปรุงกลุ่ม</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">ไม่สามารถเพิ่มสมาชิก%1$dเข้ากลุ่มใหม่ได้ คุณต้องการเพิ่มสมาชิกตอนนี้หรือไม่? </item>
@@ -996,6 +996,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">คุณจะไม่ได้รับเสียงและวิดีโอ และพวกเขาจะไม่ได้รับเสียงและวิดีโอของคุณ</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรเห็นหน้าจาก %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">ไม่สามารถรับการโทรเสียงและการโทรเห็นหน้าจาก %1$s</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส
@@ -1657,6 +1658,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
   <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="preferences_off">ปิด</string>
+  <string name="preferences_on">เปิด</string>
+  <string name="preferences_share">แบ่งปัน</string>
+  <string name="preferences_save">บันทึก</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
