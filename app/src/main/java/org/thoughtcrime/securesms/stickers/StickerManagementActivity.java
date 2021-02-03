@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import network.loki.messenger.R;
 
@@ -20,8 +19,6 @@ import network.loki.messenger.R;
  * Allows the user to view and manage (install, uninstall, etc) their stickers.
  */
 public final class StickerManagementActivity extends PassphraseRequiredActionBarActivity implements StickerManagementAdapter.EventListener {
-
-  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private RecyclerView             list;
   private StickerManagementAdapter adapter;
@@ -35,7 +32,6 @@ public final class StickerManagementActivity extends PassphraseRequiredActionBar
   @Override
   protected void onPreCreate() {
     super.onPreCreate();
-    dynamicTheme.onCreate(this);
   }
 
   @Override
@@ -56,7 +52,6 @@ public final class StickerManagementActivity extends PassphraseRequiredActionBar
   @Override
   protected void onResume() {
     super.onResume();
-    dynamicTheme.onResume(this);
   }
 
   @Override

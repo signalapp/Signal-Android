@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.SubmitLogFragment;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 
 import network.loki.messenger.R;
 
@@ -19,11 +18,9 @@ import network.loki.messenger.R;
 public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLogFragment.OnLogSubmittedListener {
 
   private static final String TAG = LogSubmitActivity.class.getSimpleName();
-  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   @Override
   protected void onCreate(Bundle icicle) {
-    dynamicTheme.onCreate(this);
     super.onCreate(icicle);
     setContentView(R.layout.log_submit_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,7 +32,6 @@ public class LogSubmitActivity extends BaseActionBarActivity implements SubmitLo
 
   @Override
   protected void onResume() {
-    dynamicTheme.onResume(this);
     super.onResume();
   }
 
