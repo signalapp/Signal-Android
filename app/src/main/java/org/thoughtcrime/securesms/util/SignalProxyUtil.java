@@ -103,11 +103,17 @@ public final class SignalProxyUtil {
    * If this is a valid proxy deep link, this will return the embedded host. If not, it will return
    * null.
    */
-  public static @Nullable String parseHostFromProxyDeepLink(@NonNull String proxyLink) {
+  public static @Nullable String parseHostFromProxyDeepLink(@Nullable String proxyLink) {
+    if (proxyLink == null) {
+      return null;
+    }
+
     try {
       URI uri = new URI(proxyLink);
 
-      if (!"https".equalsIgnoreCase(uri.getScheme())) {
+      if (!"https".equalsIgnoreCase(uri.getScheme()) &&
+          !"sgnl".equalsIgnoreCase(uri.getScheme()))
+      {
         return null;
       }
 

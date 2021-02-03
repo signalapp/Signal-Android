@@ -261,6 +261,8 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="https"
                   android:host="signal.tube" />
+            <data android:scheme="sgnl"
+                  android:host="signal.tube" />
         </intent-filter>
     </activity>
 
