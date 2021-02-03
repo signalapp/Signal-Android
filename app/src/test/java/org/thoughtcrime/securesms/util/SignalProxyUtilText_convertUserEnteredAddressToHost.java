@@ -10,7 +10,7 @@ import java.util.Collection;
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(Parameterized.class)
-public class SignalProxyUtilText_parseHostFromProxyDeepLink {
+public class SignalProxyUtilText_convertUserEnteredAddressToHost {
 
   private final String input;
   private final String output;
@@ -22,24 +22,20 @@ public class SignalProxyUtilText_parseHostFromProxyDeepLink {
         { "https://signal.tube/#proxy.parker.org:443", "proxy.parker.org" },
         { "sgnl://signal.tube/#proxy.parker.org",      "proxy.parker.org" },
         { "sgnl://signal.tube/#proxy.parker.org:443",  "proxy.parker.org" },
-        { "https://signal.tube/",                       null },
-        { "https://signal.tube/#",                      null },
-        { "sgnl://signal.tube/",                        null },
-        { "sgnl://signal.tube/#",                       null },
-        { "http://signal.tube/#proxy.parker.org",       null },
-        { "signal.tube/#proxy.parker.org",              null },
-        { "",                                           null },
-        { null,                                         null }
+        { "proxy.parker.org",                          "proxy.parker.org" },
+        { "proxy.parker.org:443",                      "proxy.parker.org" },
+        { "x",                                         "x" },
+        { "",                                          "" }
     });
   }
 
-  public SignalProxyUtilText_parseHostFromProxyDeepLink(String input, String output) {
+  public SignalProxyUtilText_convertUserEnteredAddressToHost(String input, String output) {
     this.input  = input;
     this.output = output;
   }
 
   @Test
   public void parse() {
-    assertEquals(output, SignalProxyUtil.parseHostFromProxyDeepLink(input));
+    assertEquals(output, SignalProxyUtil.convertUserEnteredAddressToHost(input));
   }
 }

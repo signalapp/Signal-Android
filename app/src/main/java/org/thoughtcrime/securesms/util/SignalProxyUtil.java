@@ -18,15 +18,22 @@ import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public final class SignalProxyUtil {
 
   private static final String TAG = Log.tag(SignalProxyUtil.class);
 
   private static final String PROXY_LINK_HOST = "signal.tube";
+
+  private static final Pattern PROXY_LINK_PATTERN = Pattern.compile("^(https|sgnl)://" + PROXY_LINK_HOST + "/#([^:]+).*$");
+  private static final Pattern HOST_PATTERN       = Pattern.compile("^([^:]+).*$");
 
   private SignalProxyUtil() {}
 
@@ -112,31 +119,11 @@ public final class SignalProxyUtil {
       return null;
     }
 
-    try {
-      URI uri = new URI(proxyLink);
+    Matcher matcher = PROXY_LINK_PATTERN.matcher(proxyLink);
 
-      if (!"https".equalsIgnoreCase(uri.getScheme()) &&
-          !"sgnl".equalsIgnoreCase(uri.getScheme()))
-      {
-        return null;
-      }
-
-      if (!PROXY_LINK_HOST.equalsIgnoreCase(uri.getHost())) {
-        return null;
-      }
-
-      String fragment = uri.getFragment();
-
-      if (Util.isEmpty(fragment)) {
-        return null;
-      }
-
-      if (fragment.startsWith("#")) {
-        fragment = fragment.substring(1);
-      }
-
-      return Util.isEmpty(fragment) ? null : fragment;
-    } catch (URISyntaxException e) {
+    if (matcher.matches()) {
+      return matcher.group(2);
+    } else {
       return null;
     }
   }
@@ -147,7 +134,18 @@ public final class SignalProxyUtil {
    */
   public static @NonNull String convertUserEnteredAddressToHost(@NonNull String host) {
     String parsedHost = SignalProxyUtil.parseHostFromProxyDeepLink(host);
-    return parsedHost != null ? parsedHost : host;
+    if (parsedHost != null) {
+      return parsedHost;
+    }
+
+    Matcher matcher = HOST_PATTERN.matcher(host);
+
+    if (matcher.matches()) {
+      String result = matcher.group(1);
+      return result != null ? result : "";
+    } else {
+      return host;
+    }
   }
 
   public static @NonNull String generateProxyUrl(@NonNull String link) {
@@ -156,6 +154,12 @@ public final class SignalProxyUtil {
 
     if (parsed != null) {
       host = parsed;
+    }
+
+    Matcher matcher = HOST_PATTERN.matcher(host);
+
+    if (matcher.matches()) {
+      host = matcher.group(1);
     }
 
     return "https://" + PROXY_LINK_HOST + "/#" + host;
