@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.logging;
+package org.session.libsignal.utilities.logging;
 
 import androidx.annotation.MainThread;
 

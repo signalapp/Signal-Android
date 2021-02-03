@@ -10,7 +10,7 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
 
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.*
 import org.session.libsignal.service.loki.utilities.DownloadUtilities
 import org.session.libsignal.service.loki.utilities.retryIfNeeded

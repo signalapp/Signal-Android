@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.session.libsession.utilities.TextSecurePreferences;
 

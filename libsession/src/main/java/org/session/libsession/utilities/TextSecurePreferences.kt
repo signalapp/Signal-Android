@@ -9,7 +9,7 @@ import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
 import org.session.libsession.R
 import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import java.io.IOException
 import java.util.*
 

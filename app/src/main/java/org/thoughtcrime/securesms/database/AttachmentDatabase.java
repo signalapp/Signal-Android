@@ -39,7 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import org.session.libsession.utilities.MediaTypes;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
+import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;

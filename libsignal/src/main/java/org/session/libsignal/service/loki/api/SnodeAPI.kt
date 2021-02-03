@@ -6,7 +6,7 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.task
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI

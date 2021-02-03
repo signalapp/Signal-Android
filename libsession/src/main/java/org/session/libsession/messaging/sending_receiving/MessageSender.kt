@@ -19,7 +19,7 @@ import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.Base64

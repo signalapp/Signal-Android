@@ -36,7 +36,7 @@ import org.session.libsession.messaging.threads.recipients.RecipientProvider.Rec
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.color.MaterialColor;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.session.libsession.messaging.avatars.ContactColors;

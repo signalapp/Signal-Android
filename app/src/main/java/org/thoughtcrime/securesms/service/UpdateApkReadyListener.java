@@ -12,7 +12,7 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;

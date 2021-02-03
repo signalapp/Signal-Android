@@ -10,7 +10,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.jetbrains.annotations.Nullable;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;

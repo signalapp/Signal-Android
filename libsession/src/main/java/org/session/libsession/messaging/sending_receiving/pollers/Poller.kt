@@ -11,7 +11,7 @@ import org.session.libsession.snode.Snode
 import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.snode.SnodeConfiguration
 
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 
 import java.security.SecureRandom

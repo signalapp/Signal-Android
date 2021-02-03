@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
 

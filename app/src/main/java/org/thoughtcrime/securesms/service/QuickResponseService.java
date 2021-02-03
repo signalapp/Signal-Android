@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import network.loki.messenger.R;
 import org.session.libsession.messaging.threads.Address;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;

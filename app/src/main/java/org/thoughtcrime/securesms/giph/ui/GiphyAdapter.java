@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

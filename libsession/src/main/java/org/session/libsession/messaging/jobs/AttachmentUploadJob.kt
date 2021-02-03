@@ -8,7 +8,7 @@ import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.utilities.DotNetAPI
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Util

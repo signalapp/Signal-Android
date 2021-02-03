@@ -5,7 +5,7 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ControlMessage
 import org.session.libsignal.libsignal.IdentityKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.state.PreKeyBundle
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.security.SecureRandom

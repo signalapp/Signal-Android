@@ -8,11 +8,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.SystemClock;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.session.libsignal.service.api.util.SleepTimer;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * A sleep timer that is based on elapsed realtime, so

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
 import org.session.libsession.utilities.FileUtils;
 import org.session.libsignal.utilities.Hex;

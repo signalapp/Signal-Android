@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
 
 import java.io.File;
 

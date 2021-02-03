@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;

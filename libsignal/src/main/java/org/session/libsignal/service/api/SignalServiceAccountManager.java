@@ -15,7 +15,7 @@ import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.IdentityKeyPair;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.state.PreKeyRecord;
 import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
 import org.session.libsignal.libsignal.util.Pair;

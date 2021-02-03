@@ -11,7 +11,7 @@ import android.telephony.TelephonyManager;
 import network.loki.messenger.R;
 import org.session.libsession.utilities.ServiceUtil;
 
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Function;
 import org.session.libsignal.libsignal.util.guava.Optional;
 

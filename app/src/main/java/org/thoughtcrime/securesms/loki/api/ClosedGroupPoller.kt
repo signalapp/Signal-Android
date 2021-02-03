@@ -6,7 +6,7 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase
 import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope

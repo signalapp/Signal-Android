@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.media.MediaDataSource
 import android.os.Build
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import androidx.annotation.RequiresApi
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.messaging.jobs.Data

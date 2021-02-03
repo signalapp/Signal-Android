@@ -6,7 +6,7 @@ import nl.komponents.kovenant.Kovenant
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.jvm.asDispatcher
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeoutException
 

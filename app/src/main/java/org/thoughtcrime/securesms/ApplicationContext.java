@@ -64,8 +64,7 @@ import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
-import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
@@ -97,7 +96,6 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
-import org.session.libsignal.libsignal.logging.SignalProtocolLoggerProvider;
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.util.StreamDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
@@ -349,9 +347,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeLogging() {
     persistentLogger = new PersistentLogger(this);
-    org.thoughtcrime.securesms.logging.Log.initialize(new AndroidLogger(), persistentLogger);
-
-    SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
+    Log.initialize(new AndroidLogger(), persistentLogger);
   }
 
   private void initializeCrashHandling() {

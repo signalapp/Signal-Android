@@ -2,7 +2,7 @@ package org.session.libsignal.service.loki.api
 
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import java.security.SecureRandom

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.jobs.Data;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;

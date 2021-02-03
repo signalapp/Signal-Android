@@ -53,7 +53,7 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask;

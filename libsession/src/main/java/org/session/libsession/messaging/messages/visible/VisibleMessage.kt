@@ -5,7 +5,7 @@ import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class VisibleMessage : Message()  {

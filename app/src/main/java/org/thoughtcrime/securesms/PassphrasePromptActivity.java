@@ -41,7 +41,7 @@ import androidx.core.os.CancellationSignal;
 
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.session.libsession.utilities.TextSecurePreferences;
 

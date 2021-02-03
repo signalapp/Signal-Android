@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.SignalProtocolAddress;
 import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.state.SessionRecord;

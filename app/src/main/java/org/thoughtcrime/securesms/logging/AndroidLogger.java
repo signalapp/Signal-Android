@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.logging;
 
+import org.session.libsignal.utilities.logging.Log;
+
 public class AndroidLogger extends Log.Logger {
 
   @Override

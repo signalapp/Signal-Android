@@ -10,7 +10,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.util.*
 
 import network.loki.messenger.R
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import java.io.IOException
 
 class GroupDescription(context: Context, groupContext: SignalServiceProtos.GroupContext?) {

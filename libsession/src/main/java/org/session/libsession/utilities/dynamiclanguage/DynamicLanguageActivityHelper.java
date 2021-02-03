@@ -5,7 +5,7 @@ import android.app.Activity;
 import androidx.annotation.MainThread;
 import androidx.core.os.ConfigurationCompat;
 
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.util.Locale;
 

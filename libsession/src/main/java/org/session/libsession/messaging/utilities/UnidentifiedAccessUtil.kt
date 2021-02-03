@@ -5,7 +5,7 @@ import com.goterl.lazycode.lazysodium.SodiumAndroid
 
 import org.session.libsession.messaging.MessagingConfiguration
 
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.metadata.SignalProtos
 import org.session.libsignal.metadata.certificate.InvalidCertificateException
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess

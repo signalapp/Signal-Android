@@ -27,6 +27,18 @@ import javax.crypto.spec.SecretKeySpec;
 
 class LogFile {
 
+  public static class GrowingBuffer {
+
+    private byte[] buffer;
+
+    public byte[] get(int minLength) {
+      if (buffer == null || buffer.length < minLength) {
+        buffer = new byte[minLength];
+      }
+      return buffer;
+    }
+  }
+
   public static class Writer {
 
     private final byte[]        ivBuffer         = new byte[16];

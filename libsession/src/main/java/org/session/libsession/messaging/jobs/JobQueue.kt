@@ -6,7 +6,7 @@ import java.util.Timer
 
 import org.session.libsession.messaging.MessagingConfiguration
 
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import kotlin.concurrent.schedule
 import kotlin.math.roundToLong
 

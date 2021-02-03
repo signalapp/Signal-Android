@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import androidx.work.*
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 

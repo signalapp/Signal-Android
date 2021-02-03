@@ -16,7 +16,7 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGroupOperation
 import org.thoughtcrime.securesms.loki.utilities.recipient

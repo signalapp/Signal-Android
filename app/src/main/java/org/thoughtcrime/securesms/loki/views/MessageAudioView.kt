@@ -15,7 +15,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.ColorUtils
 import kotlinx.coroutines.*
 import network.loki.messenger.R
 import org.greenrobot.eventbus.EventBus
@@ -28,7 +27,7 @@ import org.thoughtcrime.securesms.components.AnimatingToggle
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.events.PartProgressEvent
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.thoughtcrime.securesms.mms.AudioSlide

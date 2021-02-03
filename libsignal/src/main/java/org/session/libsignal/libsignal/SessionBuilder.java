@@ -9,7 +9,7 @@ package org.session.libsignal.libsignal;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
 import org.session.libsignal.libsignal.ratchet.AliceSignalProtocolParameters;

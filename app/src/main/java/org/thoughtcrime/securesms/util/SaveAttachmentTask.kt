@@ -11,7 +11,7 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.session.libsession.utilities.task.ProgressDialogAsyncTask
 import java.io.File

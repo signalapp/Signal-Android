@@ -20,7 +20,7 @@ import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;
 
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.io.Closeable;
 import java.io.IOException;

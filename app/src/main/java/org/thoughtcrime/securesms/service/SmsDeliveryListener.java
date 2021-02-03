@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.SmsDatabase;

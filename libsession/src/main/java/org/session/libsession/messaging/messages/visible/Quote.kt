@@ -1,9 +1,8 @@
 package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
-import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.messaging.MessagingConfiguration
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class Quote() {

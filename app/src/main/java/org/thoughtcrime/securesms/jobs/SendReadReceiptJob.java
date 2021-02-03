@@ -9,7 +9,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.service.api.SignalServiceMessageSender;

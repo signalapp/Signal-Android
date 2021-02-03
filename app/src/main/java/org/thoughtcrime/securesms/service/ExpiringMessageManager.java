@@ -11,7 +11,7 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;

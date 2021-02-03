@@ -17,7 +17,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.session.libsignal.libsignal.kdf.HKDF;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.ratchet.ChainKey;
 import org.session.libsignal.libsignal.ratchet.MessageKeys;
 import org.session.libsignal.libsignal.ratchet.RootKey;

@@ -9,7 +9,7 @@ import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.loki.api.SnodeAPI

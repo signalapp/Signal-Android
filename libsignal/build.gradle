@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation "androidx.annotation:annotation:1.1.0"
 
     implementation "com.google.protobuf:protobuf-java:$protobufVersion"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"

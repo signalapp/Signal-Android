@@ -22,7 +22,7 @@ import androidx.annotation.NonNull;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECPrivateKey;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.utilities.Hex;

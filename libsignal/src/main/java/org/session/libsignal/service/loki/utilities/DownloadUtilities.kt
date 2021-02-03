@@ -2,7 +2,7 @@ package org.session.libsignal.service.loki.utilities
 
 import okhttp3.HttpUrl
 import okhttp3.Request
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException

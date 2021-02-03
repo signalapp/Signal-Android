@@ -1,7 +1,7 @@
 package org.session.libsignal.service.loki.api
 
 import com.google.protobuf.ByteString
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.internal.websocket.WebSocketProtos.WebSocketMessage

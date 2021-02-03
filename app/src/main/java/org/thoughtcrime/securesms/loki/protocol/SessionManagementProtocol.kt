@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.SecurityEvent
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore

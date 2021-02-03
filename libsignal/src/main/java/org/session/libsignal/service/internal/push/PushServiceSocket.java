@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.state.PreKeyRecord;
 import org.session.libsignal.libsignal.state.SignedPreKeyRecord;

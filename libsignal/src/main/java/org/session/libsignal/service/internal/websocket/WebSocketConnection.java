@@ -2,7 +2,7 @@ package org.session.libsignal.service.internal.websocket;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.push.TrustStore;

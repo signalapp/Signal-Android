@@ -28,7 +28,7 @@ import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.session.libsignal.utilities.Base64;
 import org.session.libsession.utilities.Util;

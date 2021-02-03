@@ -16,8 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.InvalidKeyException;
-import org.session.libsignal.libsignal.logging.Log;
-import org.session.libsignal.utilities.Base64;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -23,7 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;

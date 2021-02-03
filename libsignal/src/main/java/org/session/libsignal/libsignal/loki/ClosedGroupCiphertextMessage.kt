@@ -1,7 +1,7 @@
 package org.session.libsignal.libsignal.loki
 
 import com.google.protobuf.ByteString
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.protocol.CiphertextMessage
 import org.session.libsignal.libsignal.protocol.SignalProtos
 

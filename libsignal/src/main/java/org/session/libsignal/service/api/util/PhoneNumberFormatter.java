@@ -11,8 +11,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberFormat;
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber;
 
-import org.session.libsignal.libsignal.logging.Log;
-import org.session.libsignal.service.api.util.InvalidNumberException;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.util.Locale;
 import java.util.regex.Pattern;

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.utilities.Hex;
 import org.session.libsession.utilities.concurrent.SignalExecutors;
 import org.session.libsignal.libsignal.InvalidMessageException;
