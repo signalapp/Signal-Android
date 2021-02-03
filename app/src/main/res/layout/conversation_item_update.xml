@@ -14,7 +14,6 @@
         android:id="@+id/conversation_update_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/conversation_update_vertical_margin"
         android:layout_marginBottom="@dimen/conversation_update_vertical_margin"
