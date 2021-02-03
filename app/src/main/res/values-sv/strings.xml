@@ -644,7 +644,7 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Misslyckades med att ställa in avatar</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Lägg till i systemkontakter</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person är i dina kontakter</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Denna person finns i dina kontakter</string>
   <string name="ManageRecipientActivity_disappearing_messages">Försvinnande meddelanden</string>
   <string name="ManageRecipientActivity_chat_color">Chattfärg</string>
   <string name="ManageRecipientActivity_chat_wallpaper">Chattbakgrund</string>

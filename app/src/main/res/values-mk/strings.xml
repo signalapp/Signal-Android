@@ -28,8 +28,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Постави ја Signal како стандардна SMS апликација</string>
   <string name="ApplicationPreferencesActivity_on">вклучено</string>
   <string name="ApplicationPreferencesActivity_On">Вклучено</string>
-  <string name="ApplicationPreferencesActivity_off">исклучи</string>
-  <string name="ApplicationPreferencesActivity_Off">Исклучи</string>
+  <string name="ApplicationPreferencesActivity_off">исклучено</string>
+  <string name="ApplicationPreferencesActivity_Off">Исклучено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Заклучување на екранот %1$s, Заклучување на регистрацијата %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Јазик %2$s</string>
@@ -419,7 +419,7 @@
   <string name="AddToGroupActivity_add_to_group">Додај во група</string>
   <string name="AddToGroupActivity_add_to_groups">Додај во групи</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во стари групи.</string>
-  <string name="AddToGroupActivity_add">Додадете…</string>
+  <string name="AddToGroupActivity_add">Додај…</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Избери нов администратор</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
@@ -550,7 +550,7 @@
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во стари групи.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">Да го додадам %1$s во %2$s?</item>
+    <item quantity="one">Да го/ја додадам %1$s во %2$s?</item>
     <item quantity="other">Да ги додадам %3$d членови во \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Додадете…</string>
@@ -604,7 +604,7 @@
   <string name="ManageGroupActivity_mentions">Спомнувања</string>
   <string name="ManageGroupActivity_chat_wallpaper">Позадина за разговорот</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
-  <string name="ManageGroupActivity_off">Исклучи</string>
+  <string name="ManageGroupActivity_off">Исклучено</string>
   <string name="ManageGroupActivity_on">Вклучи</string>
   <string name="ManageGroupActivity_view_all_members">Види ги сите членови</string>
   <string name="ManageGroupActivity_see_all">Види сѐ</string>
@@ -654,7 +654,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Исклучи известувања</string>
   <string name="ManageRecipientActivity_custom_notifications">Прилагодени известувања</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_off">Исклучи</string>
+  <string name="ManageRecipientActivity_off">Исклучено</string>
   <string name="ManageRecipientActivity_on">Вклучено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Додај во група</string>
   <string name="ManageRecipientActivity_view_all_groups">Види ги сите групи</string>
@@ -1697,6 +1697,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">За</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Неколку зборови за Вас…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Тука сум, кажи</string>
   <string name="EditAboutFragment_encrypted">Енкриптирано</string>
   <string name="EditAboutFragment_be_kind">Бидете љубезни</string>
@@ -1735,11 +1736,11 @@
   <string name="message_details_header__via">Преку</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекање</string>
-  <string name="message_details_recipient_header__sent_to">Испрати на</string>
+  <string name="message_details_recipient_header__sent_to">Испратено на</string>
   <string name="message_details_recipient_header__sent_from">Испратено од</string>
   <string name="message_details_recipient_header__delivered_to">Испорачано на</string>
   <string name="message_details_recipient_header__read_by">Прочитано од</string>
-  <string name="message_details_recipient_header__not_sent">Не е испратено</string>
+  <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспешно праќање</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>

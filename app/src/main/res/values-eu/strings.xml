@@ -1702,6 +1702,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Honi buruz</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Idatzi zuri buruzko hitz batzuk…</string>
+  <string name="EditAboutFragment_count">%1$d / %2$d</string>
   <string name="EditAboutFragment_speak_freely">Hitz egin</string>
   <string name="EditAboutFragment_encrypted">Zifratuta</string>
   <string name="EditAboutFragment_be_kind">Izan atsegina…</string>
@@ -2388,6 +2389,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ShareActivity__share">Elkarbanatu</string>
   <string name="ShareActivity__send">Bidali</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Hainbat solasalditara partekatzea Singal mezuekin bakarrik egin daiteke</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Huts egin du erabiltzaile batzuei bidaltzean</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Gehienez ere %1$d elkarrizketarekin parteka dezakezu</string>

@@ -1735,7 +1735,7 @@
   <string name="message_details_header__via">Μέσω</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Εκκρεμεί</string>
-  <string name="message_details_recipient_header__sent_to">Στάλθηκε προς</string>
+  <string name="message_details_recipient_header__sent_to">Στάλθηκε σε</string>
   <string name="message_details_recipient_header__sent_from">Στάλθηκε από</string>
   <string name="message_details_recipient_header__delivered_to">Παραδόθηκε σε</string>
   <string name="message_details_recipient_header__read_by">Διαβάστηκε από</string>

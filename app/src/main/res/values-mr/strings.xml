@@ -472,8 +472,8 @@
   <string name="GroupsV1MigrationInitiationReminder_update_group">गट अद्यतनित करा</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-    <item quantity="one">%1$d सदस्य गटात जोडणे शक्य झाले नाही. आपल्याला त्याला आता जोडायचे आहे का?</item>
-    <item quantity="other">%1$d सदस्य गटात जोडणे शक्य झाले नाहीत. आपल्याला त्यांना आता जोडायचे आहे का?</item>
+    <item quantity="one">%1$d सदस्य नवीन गटात पुन्हा जोडणे शक्य झाले नाही. आपल्याला त्याला आता जोडायचे आहे का?</item>
+    <item quantity="other">%1$d सदस्य नवीन गटात पुन्हा जोडणे शक्य झाले नाहीत. आपल्याला त्यांना आता जोडायचे आहे का?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">सदस्य जोडा</item>
@@ -625,7 +625,7 @@
   <string name="ManageGroupActivity_legacy_group">लेगसी गट</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">हा एक लेगसी गट आहे. गट अॅडमिन सारखे वैशिष्ट्ये फक्त नवीन गटांसाठी उपलब्ध आहेत.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">हा एक लेगसी गट आहे. @उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये अॅक्सेस करण्यासाठी, </string>
-  <string name="ManageGroupActivity_legacy_group_too_large">हा गट नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
+  <string name="ManageGroupActivity_legacy_group_too_large">हा लेगसी गट नवीन गटामध्ये श्रेणीसुधारित केला जाऊ शकत नाही कारण तो खूप मोठा आहे. गटाचा कमाल आकार %1$d आहे.</string>
   <string name="ManageGroupActivity_upgrade_this_group">हा गट श्रेणीसुधारित करा.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">हा एक असुरक्षित MMS गट आहे. खाजगीरीत्या चॅट करण्यासाठी, आपल्या संपर्कांना Signal वर आमंत्रित करा.</string>
   <string name="ManageGroupActivity_invite_now">आता आमंत्रित करा</string>
@@ -1698,6 +1698,8 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">याबद्दल</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">स्वतःबद्दल काही शब्द लिहा…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">मोकळेपणाने बोला</string>
   <string name="EditAboutFragment_encrypted">एन्क्रिप्टेड</string>
   <string name="EditAboutFragment_be_kind">दयाळू रहा</string>
   <string name="EditAboutFragment_coffee_lover">कॉफी प्रेमी</string>
@@ -1712,6 +1714,7 @@
   <string name="EditProfileNameFragment_first_name">नाव</string>
   <string name="EditProfileNameFragment_last_name_optional">शेवटचे नाव (पर्यायी)</string>
   <string name="EditProfileNameFragment_save">जतन करा</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">नेटवर्क त्रुटीमुळे जतन करण्यात अयशस्वी. नंतर पुन्हा प्रयत्न करा.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">सामायिक केलेली मिडिया</string>
   <!--recipients_panel-->
@@ -2382,6 +2385,7 @@
   <string name="ShareActivity__share">सामायिक करा</string>
   <string name="ShareActivity__send">पाठवा</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">अनेक चॅट यांना शेअर करणे फक्त Signal संदेशांसाठी समर्थित आहे</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">काही वापरकर्त्यांना पाठवण्यात अयशस्वी</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">आपण फक्त %1$d पर्यंत चॅट सोबत शेअर करू शकता</string>
@@ -2393,7 +2397,10 @@
   <string name="ChatWallpaperFragment__set_wallpaper">वॉलपेपर सेट करा</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">गडद थीम वॉलपेपर अस्पष्ट बनवतो</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">वॉलपेपर साफ करा</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">या चॅटसाठी वॉलपेपर साफ करायचा?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">वॉलपेपर साफ करायचा? आपण आपल्या चॅटसाठी सेट केलेले सानुकूलित वॉलपेपर हे साफ करणार नाही.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">सर्व वॉलपेपर रीसेट करा</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">सर्व वॉलपेपर रीसेट करा. आपण आपल्या चॅटसाठी सेट केलेले सानुकूलित वॉलपेपर देखील?</string>
   <string name="ChatWallpaperFragment__contact_name">संपर्क नाव</string>
   <string name="ChatWallpaperFragment__reset">रीसेट करा</string>
   <string name="ChatWallpaperFragment__clear">साफ करा</string>
@@ -2415,5 +2422,6 @@
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">सर्व चॅटसाठी वॉलपेपर सेट करा.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%s साठी वॉलपेपर सेट करा.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">वॉलपेपर सेट करण्यात त्रुटी.</string>
+  <string name="WallpaperCropActivity__blur_photo">फोटो अस्पष्ट करा</string>
   <!--EOF-->
 </resources>

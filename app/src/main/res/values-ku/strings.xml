@@ -980,6 +980,8 @@
   <string name="MessageRequestBottomView_block">Asteng bike</string>
   <string name="MessageRequestBottomView_unblock">Astengê rake</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Ev Koma Kevn êdî nikare bê bikaranîn, ji ber ku ew gelek mezine. Mezintaya koma a herî zêde %1$d  e.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Tu dixwazî tevlî vê komê bibî û nav û wêneyê xwe bi endamên komê re parve bikî? Heta tu qebûl nekî ew ê nizanibin ku te peyamên wan dîtiye.</string>
+  <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Li tevlî vê komê bibî? Heta tu qebûl nekî ew ê nizanibin ku te peyamên wan dîtine.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Tu dixwazî astenga vê komê rakî û nav û wêneyê xwe bi endamên komê re parve bikî? Heta ku tu astengê ranekî tu yê ti peyaman wernegirî.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Endamê koma %1$s\'ê</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Endamê komên %1$s û %2$s\'ê</string>
@@ -1509,6 +1511,7 @@
   <!--country_selection_fragment-->
   <string name="country_selection_fragment__loading_countries">Welat tên barkirin…</string>
   <string name="country_selection_fragment__search">Legerîn</string>
+  <string name="country_selection_fragment__no_matching_countries">Tu welatên lihevtên nînin</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Ji bo girê bidî, kamerayê bide ser QR koda li ser cîhazê tê xuyan</string>
   <!--device_link_fragment-->
@@ -1666,6 +1669,7 @@
   <string name="HelpFragment__next">Pêşve</string>
   <string name="HelpFragment__contact_us">Bi me re têkeve têkiliyê</string>
   <string name="HelpFragment__tell_us_whats_going_on">Ji me re bibêje çi diqewime</string>
+  <string name="HelpFragment__include_debug_log">Tomargeha neqandina çewtiyan bixe tev</string>
   <string name="HelpFragment__whats_this">Ev çi ye?</string>
   <string name="HelpFragment__how_do_you_feel">Tu xwe çawa his dikî?</string>
   <string name="HelpFragment__support_info">Agahiya piştgiriyê</string>
@@ -2012,6 +2016,7 @@
   <string name="KbsSplashFragment__disable_pin">PIN\'ê neçalak bike</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">PIN\'a Signala xwe bikevê</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">Ji bo ku em alîkariya bîranîn PINa we bikin, em ê dem bi dem ji we bipirsin ku hun wê bikevinê. Demê tên da emê wê kêmtir bipirsin.</string>
   <string name="KbsReminderDialog__skip">Derbas bibe</string>
   <string name="KbsReminderDialog__submit">Bişîne</string>
   <string name="KbsReminderDialog__forgot_pin">Te PIN\'a xwe ji bîr kir?</string>
@@ -2250,6 +2255,7 @@
   <string name="ShareActivity__share">Parve bike</string>
   <string name="ShareActivity__send">Bişîne</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Parvekirina zêdetir axaftina tenê ji bo peyamên Signal tê piştgirîkirin</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">Ji hinek bikarhêneran re nehate şandin</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Tu dikarî herî zêde bi %1$d gotûbêjan re parve bikî</string>

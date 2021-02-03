@@ -87,6 +87,7 @@
   <string name="BlockUnblockDialog_unblock_s">%1$s-നെ തടഞ്ഞത് മാറ്റണോ?</string>
   <string name="BlockUnblockDialog_block">തടയുക</string>
   <string name="BlockUnblockDialog_block_and_leave">ബ്ലോക്ക് ചെയ്ത് വിടുക</string>
+  <string name="BlockUnblockDialog_block_and_delete">തടഞ്ഞ് ഇല്ലാതാക്കൂ</string>
   <!--BucketedThreadMedia-->
   <string name="BucketedThreadMedia_Today">ഇന്ന്</string>
   <string name="BucketedThreadMedia_Yesterday">ഇന്നലെ</string>
@@ -162,6 +163,7 @@
   <string name="ConversationItem_error_network_not_delivered">അയയ്‌ക്കുന്നത് പരാജയപ്പെട്ടു</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">കീ കൈമാറ്റ സന്ദേശം ലഭിച്ചു, പ്രോസസ്സുചെയ്യാൻ തൊടുക</string>
   <string name="ConversationItem_group_action_left">%1$s ഈ ഗ്രൂപ്പില്‍ നിന്നും പോയി.</string>
+  <string name="ConversationItem_click_to_approve_unencrypted">അയയ്ക്കാൻ പറ്റിയില്ല, ഭദ്രമല്ലാത്ത ഇതരരീതിക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. പകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
@@ -196,6 +198,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">നമുക്ക് Signal ലേക്ക് മാറാം %1$s</string>
   <string name="ConversationActivity_specify_recipient">ദയവായി ഒരു കോൺ‌ടാക്റ്റ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ConversationActivity_unblock">തടഞ്ഞത് മാറ്റുക</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">അറ്റാച്ചുമെന്റ് നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശ ഇനത്തിന്റെ വലുപ്പ പരിധി കവിയുന്നു.</string>
   <string name="ConversationActivity_unable_to_record_audio">ഓഡിയോ റെക്കോർഡുചെയ്യാനായില്ല!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">നിങ്ങൾ മേലിൽ അംഗമല്ലാത്തതിനാൽ നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിലേക്ക് സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">നിങ്ങളുടെ ഉപകരണത്തിൽ ഈ ലിങ്ക് കൈകാര്യം ചെയ്യാൻ ഒരു അപ്ലിക്കേഷനും ലഭ്യമല്ല.</string>
@@ -319,13 +322,13 @@
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ഏൻഡ് ടു ഏൻഡ് എൻക്രിപ്റ്റഡാണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ChooseBackupFragment-->
-  <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യണോ?</string>
+  <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ വീണ്ടെടുക്കണോ?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
-  <string name="ChooseBackupFragment__icon_content_description">ബാക്കപ്പ് ഐക്കണിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യുക</string>
+  <string name="ChooseBackupFragment__icon_content_description">ബാക്കപ്പ് ഐക്കണിൽ നിന്ന് വീണ്ടെടുക്കൂ</string>
   <string name="ChooseBackupFragment__choose_backup">ബാക്കപ്പ് തിരഞ്ഞെടുക്കുക</string>
   <string name="ChooseBackupFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <!--RestoreBackupFragment-->
-  <string name="RestoreBackupFragment__restore_complete">റീസ്റ്റോര്‍ ചെയ്യല്‍ പൂർത്തിയായി</string>
+  <string name="RestoreBackupFragment__restore_complete">വീണ്ടെടുക്കൽ പൂർത്തിയായി</string>
   <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ, ദയവായി ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക. പുതിയ ബാക്കപ്പുകൾ ഇവിടെ സൂക്ഷിക്കും.</string>
   <string name="RestoreBackupFragment__choose_folder">ഫോൾഡർ തിരഞ്ഞെടുക്കുക </string>
   <string name="RestoreBackupFragment__not_now">ഇപ്പോൾ വേണ്ട</string>
@@ -364,22 +367,23 @@
   <string name="DecryptionFailedDialog_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
   <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal ആദ്യാവസാന-എൻക്രിപ്ഷൻ ഉപയോക്കുന്നതിനാൽ ചിലപ്പോൾ മുമ്പത്തെ ചാറ്റുകൾ പുതുക്കേണ്ടി വരും. ഇത് ചാറ്റിന്റെ സുരക്ഷയെ ബാധിക്കില്ല, പക്ഷെ ഈ കോണ്ടാക്ടിൽ നിന്നുള്ളൊരു മെസ്സേജ്  നിങ്ങൾക്ക് നഷ്ടപെട്ടിരിക്കാം, എങ്കിൽ അതവരോട് നിങ്ങൾക്ക് വീണ്ടുമയക്കാൻ പറയാം.</string>
   <!--DeviceListActivity-->
-  <string name="DeviceListActivity_unlink_s">അൺലിങ്ക് \'%s\'?</string>
+  <string name="DeviceListActivity_unlink_s">\'%s\' വിച്ഛേദിക്കണോ?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ഈ ഉപകരണം അൺലിങ്കുചെയ്യുന്നതിലൂടെ, ഇതിന് മേലിൽ സന്ദേശങ്ങൾ അയയ്‌ക്കാനോ സ്വീകരിക്കാനോ കഴിയില്ല.</string>
   <string name="DeviceListActivity_network_connection_failed">നെറ്റ്‌വർക്ക് കണക്ഷൻ പരാജയപ്പെട്ടു</string>
   <string name="DeviceListActivity_try_again">വീണ്ടും ശ്രമിക്കുക</string>
-  <string name="DeviceListActivity_unlinking_device">ഉപകരണം അൺലിങ്കുചെയ്യുന്നു…</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">ഉപകരണം അൺലിങ്കുചെയ്യുന്നു…</string>
+  <string name="DeviceListActivity_unlinking_device">ഉപകരണം വിച്ഛേദിക്കുന്നൂ…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">ഉപകരണം വിച്ഛേദിക്കുന്നൂ…</string>
   <string name="DeviceListActivity_network_failed">നെറ്റ്‌വർക്ക് പരാജയപ്പെട്ടു!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">പേരിടാത്ത ഉപകരണം</string>
-  <string name="DeviceListItem_linked_s">%sലിങ്കുചെയ്തു</string>
+  <string name="DeviceListItem_linked_s">%s ബന്ധിപ്പിച്ചൂ </string>
   <string name="DeviceListItem_last_active_s">അവസാനം സജീവമായ %s</string>
   <string name="DeviceListItem_today">ഇന്ന്</string>
   <!--DocumentView-->
   <string name="DocumentView_unnamed_file">പേരിടാത്ത ഫയൽ</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signal-ന് സംഭാവന ചെയ്യുക</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signal-ന്റെ പിന്നണിയിൽ നിങ്ങളെപോലുള്ളവരാണ്. നിങ്ങളുടെ പിന്തുണ അറിയിക്കൂ! </string>
   <string name="DonateMegaphone_donate">സംഭാവനചെയ്യുക</string>
   <string name="DonateMegaphone_no_thanks">വേണ്ട, നന്ദി</string>
   <!--GroupCallingMegaphone-->
@@ -575,15 +579,15 @@
     <item quantity="other">%d അംഗങ്ങൾ‌ക്ക് പുതിയ ഗ്രൂപ്പുകള്‍ പിന്തുണയ്‌ക്കുന്നില്ല, അതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal(സിഗ്നൽ) അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">“%1$s” Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="one">%1$d അംഗം Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal(സിഗ്നൽ) അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
-    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal(സിഗ്നൽ) അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
+    <item quantity="one">%1$d അംഗം Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
+    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഒരു ലെഗസി ഗ്രൂപ്പ് സൃഷ്ടിക്കപ്പെടും. അവര്‍ Signal അപ്‌ഡേറ്റുചെയ്‌തതിനുശേഷം നിങ്ങൾക്ക് അവരുടെ കൂടെ പുതിയ ശൈലിയില്‍ ഒരു ഗ്രൂപ്പ് സൃഷ്‌ടിക്കാൻ കഴിയും, അല്ലെങ്കിൽ ഗ്രൂപ്പ് സൃഷ്‌ടിക്കുന്നതിന് മുമ്പ് അവരെ നീക്കംചെയ്യുക.</item>
   </plurals>
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration"> \"%1$s\" Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration"> \"%1$s\" Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
     <item quantity="one">%1$d അംഗം Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
-    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal(സിഗ്നലി)ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
+    <item quantity="other">%1$d അംഗങ്ങള്‍ Signal ന്റെ പഴയ പതിപ്പ് ഉപയോഗിക്കുന്നതിനാൽ ഈ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയില്ല. ഗ്രൂപ്പ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് നിങ്ങൾ അവരെ നീക്കംചെയ്യണം.</item>
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">അംഗത്വ അഭ്യർത്ഥനകളും ക്ഷണങ്ങളും </string>
@@ -717,7 +721,7 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ഗ്രൂപ്പ് ലിങ്കുകൾ ഉപയോഗിക്കുന്നതിന് Signal അപ്‌ഡേറ്റുചെയ്യുക</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">നിങ്ങൾ ഉപയോഗിക്കുന്ന Signal-ന്റെ പതിപ്പ് ഈ ഗ്രൂപ്പ് ലിങ്കിനെ പിന്തുണയ്ക്കുന്നില്ല. ലിങ്ക് വഴി ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal അപ്ഡേറ്റ് ചെയ്യുക</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഒന്നോ അതിലധികമോ ഉപകരണങ്ങൾ ഗ്രൂപ്പ് ലിങ്കുകളെ പിന്തുണയ്‌ക്കാത്ത Signal(സിഗ്നലി)ന്റെ ഒരു പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ (ഉപകരണങ്ങളിൽ) സിഗ്നൽ അപ്‌ഡേറ്റുചെയ്യുക.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഒന്നോ അതിലധികമോ ഉപകരണങ്ങൾ ഗ്രൂപ്പ് ലിങ്കുകളെ പിന്തുണയ്‌ക്കാത്ത Signal ന്റെ ഒരു പതിപ്പ് പ്രവർത്തിപ്പിക്കുന്നു. ഈ ഗ്രൂപ്പിൽ ചേരുന്നതിന് നിങ്ങളുടെ ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ (ഉപകരണങ്ങളിൽ) സിഗ്നൽ അപ്‌ഡേറ്റുചെയ്യുക.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ഗ്രൂപ്പ് ലിങ്ക് അസാധുവാണ്</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
@@ -1071,15 +1075,15 @@
   <string name="DeviceProvisioningActivity_content_bullets">
   • നിങ്ങളുടെ എല്ലാ സന്ദേശങ്ങളും വായിക്കുക
  \n• നിങ്ങളുടെ പേരിൽ സന്ദേശങ്ങൾ അയയ്‌ക്കുക</string>
-  <string name="DeviceProvisioningActivity_content_progress_title">ഉപകരണം ലിങ്കുചെയ്യുന്നു</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">പുതിയ ഉപകരണം ലിങ്കുചെയ്യുന്നു…</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">ഉപകരണം ബന്ധിപ്പിക്കുന്നൂ</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">പുതിയ ഉപകരണം ബന്ധിപ്പിക്കുന്നൂ…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">ഉപകരണം അംഗീകരിച്ചു!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ഉപകരണങ്ങളൊന്നും കണ്ടെത്തിയില്ല.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">നെറ്റ്‌വർക്ക് പിശക്.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR കോഡ് അസാധുവാണ്.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ക്ഷമിക്കണം, നിങ്ങൾക്ക് ഇതിനകം തന്നെ നിരവധി ഉപകരണങ്ങൾ ലിങ്കുചെയ്തിട്ടുണ്ട്, ചിലത് നീക്കംചെയ്യാൻ ശ്രമിക്കുക</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ക്ഷമിക്കണം, ഇത് സാധുവായ ഉപകരണ ലിങ്ക് QR കോഡല്ല.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">ഒരു Signal ഉപകരണം ലിങ്കുചെയ്യണോ?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">ഒരു Signal ഉപകരണം ബന്ധിപ്പിക്കണോ?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ഒരു മൂന്നാം കക്ഷി സ്കാനർ ഉപയോഗിച്ച് നിങ്ങൾ ഒരു Signal ഉപകരണം ലിങ്കുചെയ്യാൻ ശ്രമിക്കുന്നതായി തോന്നുന്നു. നിങ്ങളുടെ പരിരക്ഷയ്‌ക്കായി, Signal-നുള്ളിൽ നിന്ന് കോഡ് വീണ്ടും സ്‌കാൻ ചെയ്യുക.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">ഒരു QR കോഡ് സ്കാൻ ചെയ്യുന്നതിന് Signal-ന് ക്യാമറ അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"ക്യാമറ\" പ്രവർത്തനക്ഷമമാക്കുക.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ക്യാമറ അനുമതിയില്ലാതെ ഒരു QR കോഡ് സ്കാൻ ചെയ്യാൻ കഴിയില്ല</string>
@@ -1099,7 +1103,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ഐക്കൺ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">പാസ്‌ഫ്രെയ്‌സ് സമർപ്പിക്കുക</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">പാസ്‌ഫ്രെയ്‌സ് അസാധുവാണ്!</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Signal അൺലോക്കുചെയ്യുക</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal തുറക്കൂ</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ഭൂപടം</string>
   <string name="PlacePickerActivity_drop_pin">ഡ്രോപ്പ് പിൻ</string>
@@ -1399,7 +1403,7 @@
   <string name="ApplicationMigrationService_system_database_import_is_complete">സിസ്റ്റം ഡാറ്റാബേസ് ഇറക്കുമതി പൂർത്തിയായി.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">തുറക്കാൻ തൊടുക</string>
-  <string name="KeyCachingService_passphrase_cached">Signal അൺലോക്കുചെയ്‌തിരിക്കുന്നു</string>
+  <string name="KeyCachingService_passphrase_cached">Signal തുറന്നിരിക്കുന്നൂ</string>
   <string name="KeyCachingService_lock">Signal പൂട്ടുക</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">നിങ്ങൾ</string>
@@ -1415,7 +1419,7 @@
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d സംഭാഷണങ്ങളിൽ %1$d പുതിയ സന്ദേശങ്ങൾ</string>
   <string name="MessageNotifier_most_recent_from_s">ഏറ്റവും പുതിയത്: %1$s നിന്ന്</string>
-  <string name="MessageNotifier_locked_message">ലോക്കുചെയ്‌ത സന്ദേശം</string>
+  <string name="MessageNotifier_locked_message">പൂട്ടിയ സന്ദേശം</string>
   <string name="MessageNotifier_message_delivery_failed">സന്ദേശ വിതരണം പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_failed_to_deliver_message">സന്ദേശം കൈമാറുന്നതിൽ പരാജയപ്പെട്ടു.</string>
   <string name="MessageNotifier_error_delivering_message">സന്ദേശം കൈമാറുന്നതിൽ പിശക്.</string>
@@ -1480,7 +1484,7 @@
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s നിന്നുള്ള കോളിന് മറുപടി നൽകാൻ, നിങ്ങളുടെ മൈക്രോഫോണിലേക്ക് Signal-ന് ആക്സസ് നൽകുക.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">കോളുകൾ വിളിക്കുന്നതിനോ സ്വീകരിക്കുന്നതിനോ Signal-ന് മൈക്രോഫോൺ, ക്യാമറ അനുമതികൾ ആവശ്യമാണ്, പക്ഷേ അവ ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിൽ തുടരുക, \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"മൈക്രോഫോൺ\", \"ക്യാമറ\" എന്നിവ പ്രവർത്തനക്ഷമമാക്കുക.</string>
-  <string name="WebRtcCallActivity__answered_on_a_linked_device">ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ ഉത്തരം നൽകി.</string>
+  <string name="WebRtcCallActivity__answered_on_a_linked_device">ഒരു ബന്ധിപ്പിച്ച ഉപകരണത്തിൽ ഉത്തരം നൽകി.</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ നിരസിച്ചു.</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">ലിങ്കുചെയ്‌ത ഉപകരണത്തിൽ തിരക്കിലാണ്.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">മാറ്റിയ സുരക്ഷാ നമ്പറുമായി ആരോ ഈ കോളിൽ ചേർന്നിട്ടുണ്ട്.</string>
@@ -1601,10 +1605,10 @@
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ലിങ്കുചെയ്യുന്നതിന് ഉപകരണത്തിൽ പ്രദർശിപ്പിച്ചിരിക്കുന്ന QR കോഡ് സ്‌കാൻ ചെയ്യുക</string>
   <!--device_link_fragment-->
-  <string name="device_link_fragment__link_device">ഉപകരണം ലിങ്കുചെയ്യുക</string>
+  <string name="device_link_fragment__link_device">ഉപകരണം ബന്ധിപ്പിക്കൂ </string>
   <!--device_list_fragment-->
   <string name="device_list_fragment__no_devices_linked">ഉപകരണങ്ങളൊന്നും ലിങ്കുചെയ്‌തിട്ടില്ല</string>
-  <string name="device_list_fragment__link_new_device">പുതിയ ഉപകരണം ലിങ്കുചെയ്യുക</string>
+  <string name="device_list_fragment__link_new_device">പുതിയ ഉപകരണം ബന്ധിപ്പിക്കൂ</string>
   <!--expiration-->
   <string name="expiration_off">ഓഫ്</string>
   <plurals name="expiration_seconds">
@@ -1675,7 +1679,7 @@
   </plurals>
   <string name="GroupUtil_group_name_is_now">ഗ്രൂപ്പിന്റെ പേര് ഇപ്പോൾ \'%1$s\' ആണ്.</string>
   <!--prompt_passphrase_activity-->
-  <string name="prompt_passphrase_activity__unlock">അൺലോക്കുചെയ്യുക</string>
+  <string name="prompt_passphrase_activity__unlock">അൺലോക്കുചെയ്യൂ</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">നിങ്ങളുടെ വയർലെസ് കാരിയർ വഴി മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും കൈമാറാൻ Signal-ന് MMS ക്രമീകരണങ്ങൾ ആവശ്യമാണ്. നിങ്ങളുടെ ഉപകരണം ഈ വിവരങ്ങൾ ലഭ്യമാക്കുന്നില്ല, ഇത് ലോക്കുചെയ്‌ത ഉപകരണങ്ങൾക്കും മറ്റ് നിയന്ത്രിത കോൺഫിഗറേഷനുകൾക്കും ഇടയ്ക്കിടെ ശരിയാണ്.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">മീഡിയയും ഗ്രൂപ്പ് സന്ദേശങ്ങളും അയയ്‌ക്കാൻ, \'ശരി\' ടാപ്പുചെയ്‌ത് അഭ്യർത്ഥിച്ച ക്രമീകരണങ്ങൾ പൂർത്തിയാക്കുക. \'നിങ്ങളുടെ കാരിയർ APN\' എന്നതിനായി തിരയുന്നതിലൂടെ നിങ്ങളുടെ കാരിയറിനായുള്ള MMS ക്രമീകരണങ്ങൾ സാധാരണയായി കണ്ടെത്താനാകും. നിങ്ങൾ ഇത് ഒരു തവണ ചെയ്താൽ മതി.</string>
@@ -1689,6 +1693,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">കുറിച്ച്</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">നിങ്ങളെ പറ്റി രണ്ടുവാക്ക് എഴുതൂ…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">സ്വതന്ത്രമായി സംസാരിക്കുക</string>
   <string name="EditAboutFragment_encrypted">എന്‍ക്രിപ്റ്റ് ചെയ്തത്</string>
   <string name="EditAboutFragment_be_kind">ദയ കാട്ടുക</string>
@@ -1743,7 +1748,7 @@
   <string name="AndroidManifest__log_submit">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="AndroidManifest__media_preview">മീഡിയ പ്രിവ്യൂ</string>
   <string name="AndroidManifest__message_details">സന്ദേശ വിശദാംശങ്ങൾ</string>
-  <string name="AndroidManifest__linked_devices">ലിങ്കുചെയ്‌ത ഉപകരണങ്ങൾ</string>
+  <string name="AndroidManifest__linked_devices">ബന്ധിപ്പിച്ച ഉപകരണങ്ങൾ</string>
   <string name="AndroidManifest__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
   <string name="AndroidManifest_archived_conversations">ആർക്കൈവുചെയ്‌ത സംഭാഷണങ്ങൾ</string>
   <string name="AndroidManifest_remove_photo">ഫോട്ടോ നീക്കംചെയ്യുക</string>
@@ -1872,7 +1877,7 @@
   <string name="preferences__conversation_length_limit">സംഭാഷണ ദൈർഘ്യ പരിധി</string>
   <string name="preferences__keep_messages">സന്ദേശങ്ങൾ സൂക്ഷിക്കുക</string>
   <string name="preferences__clear_message_history">സന്ദേശ ചരിത്രം മായ്‌ക്കുക</string>
-  <string name="preferences__linked_devices">ലിങ്കുചെയ്‌ത ഉപകരണങ്ങൾ</string>
+  <string name="preferences__linked_devices">ബന്ധിപ്പിച്ച ഉപകരണങ്ങൾ</string>
   <string name="preferences__light_theme">ലൈറ്റ്</string>
   <string name="preferences__dark_theme">ഡാർക്ക്</string>
   <string name="preferences__appearance">ദൃശ്യത</string>
@@ -2175,7 +2180,9 @@
   <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>ഞങ്ങൾ സ്വകാര്യതയിൽ വിശ്വസിക്കുന്നു.</b></p><p>Signal  നിങ്ങളെ ട്രാക്കുചെയ്യുകയോ നിങ്ങളുടെ ഡാറ്റ ശേഖരിക്കുകയോ ചെയ്യുന്നില്ല. എല്ലാവർക്കുമായി Signal മെച്ചപെടുത്താൻ, ഞങ്ങൾ ഉപയോക്തൃ ഫീഡ്‌ബാക്കിനെ ആശ്രയിക്കുന്നു, <b>നിങ്ങളുടെ ഫീഡ്‌ബാക്ക് ലഭിക്കാൻ ഞങ്ങൾ ആഗ്രഹിക്കുന്നു.</b></p><p> നിങ്ങൾ Signal എങ്ങനെ ഉപയോഗിക്കുന്നുവെന്ന് മനസിലാക്കാൻ ഞങ്ങൾ ഒരു സർവേ നടത്തുന്നുണ്ട് . നിങ്ങളെ തിരിച്ചറിയുന്ന ഒരു ഡാറ്റയും ഞങ്ങളുടെ സർവേ ശേഖരിക്കില്ല. അധിക ഫീഡ്‌ബാക്ക് പങ്കിടാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടെങ്കിൽ, നിങ്ങളെ ബന്ധപ്പെടാനുള്ള കോൺടാക്ട് വിവരങ്ങൾ നൽകാനുള്ള ഓപ്‌ഷൻ നിങ്ങൾക്ക് ലഭിക്കും.</p><p>നിങ്ങൾക്ക് കുറച്ച് സമയവും ഫീഡ്‌ബാക്കും വാഗ്ദാനം ചെയ്യാൻ ഉണ്ടെങ്കിൽ, അത് നിങ്ങളിൽ നിന്ന് കേൾക്കാൻ ഞങ്ങൾ സന്തോഷത്തോടെ ആഗ്രഹിക്കുന്നു.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">സർവേ എടുക്കുക</string>
   <string name="ResearchMegaphoneDialog_no_thanks">വേണ്ട, നന്ദി</string>
+  <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">സുരക്ഷിത ഡൊമെയ്ൻ ആയ surveys.signalusers.org-ൽ Alchemer ഹോസ്റ്റ് ചെയ്തതാണ് ഈ സർവേ</string>
   <!--transport_selection_list_item-->
+  <string name="transport_selection_list_item__transport_icon">ട്രാൻസ്‌പോർട് ഐക്കൺ</string>
   <string name="ConversationListFragment_loading">ലഭ്യമാക്കുന്നു…</string>
   <string name="CallNotificationBuilder_connecting">ബന്ധിപ്പിക്കുന്നു…</string>
   <string name="Permissions_permission_required">അനുമതി ആവശ്യമാണ്</string>
@@ -2185,23 +2192,23 @@
   <string name="conversation_activity__enable_signal_messages">SIGNAL സന്ദേശങ്ങൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ഡാറ്റാബേസ് മൈഗ്രേറ്റുചെയ്യുന്നു</string>
   <string name="PushDecryptJob_new_locked_message">ലോക്കുചെയ്‌ത പുതിയ സന്ദേശം</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">തീർ‌ച്ചപ്പെടുത്തിയിട്ടില്ലാത്ത സന്ദേശങ്ങൾ‌ കാണുന്നതിന് അൺ‌ലോക്ക് ചെയ്യുക</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">തീർ‌ച്ചപ്പെടുത്തിയിട്ടില്ലാത്ത സന്ദേശങ്ങൾ‌ കാണുന്നതിന് തുറക്കൂ</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">പാസ്‌ഫ്രേസ് ബാക്കപ്പ് ചെയ്യുക</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ബാക്കപ്പുകൾ ബാഹ്യ സ്റ്റോറേജിലെക് സംരക്ഷിക്കുകയും ചുവടെയുള്ള പാസ്‌ഫ്രെയ്‌സ് ഉപയോഗിച്ച് എൻ‌ക്രിപ്റ്റ് ചെയ്യുകയും ചെയ്യും. ഒരു ബാക്കപ്പ് പുന റിസ്റ്റോർ ചെയ്യാൻ നിങ്ങൾക്ക് ഈ പാസ്‌ഫ്രേസ് ഉണ്ടായിരിക്കണം.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">ഒരു ബാക്കപ്പ് പുന.സ്ഥാപിക്കുന്നതിന് നിങ്ങൾക്ക് ഈ പാസ്‌ഫ്രെയ്‌സ് ഉണ്ടായിരിക്കണം.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">ഒരു ബാക്കപ്പ് വീണ്ടെടുക്കുന്നതിന് നിങ്ങൾക്ക് ഈ പാസ്‌ഫ്രെയ്‌സ് ഉണ്ടായിരിക്കണം.</string>
   <string name="backup_enable_dialog__folder">ഫോള്‍ഡര്‍</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ഞാൻ ഈ പാസ്‌ഫ്രെയ്‌സ് എഴുതി. ഇത് ഇല്ലാതെ, എനിക്ക് ഒരു ബാക്കപ്പ് പുന റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
-  <string name="registration_activity__restore_backup">ബാക്കപ്പ് റിസ്റ്റോർ ചെയ്യുക</string>
+  <string name="registration_activity__restore_backup">ബാക്കപ്പ് വീണ്ടെടുക്കൂ</string>
   <string name="registration_activity__skip">ഒഴിവാക്കുക</string>
   <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ബാഹ്യ സ്റ്റോറേജിലെക് ചാറ്റുകൾ ബാക്കപ്പ്  ചെയ്യുക</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
-  <string name="RegistrationActivity_restore">റിസ്റ്റോർ</string>
+  <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ബാക്കപ്പുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിയില്ല</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">തെറ്റായ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ്</string>
   <string name="RegistrationActivity_checking">പരിശോധിക്കുന്നു…</string>
   <string name="RegistrationActivity_d_messages_so_far">ഇതുവരെ %d സന്ദേശങ്ങൾ…</string>
-  <string name="RegistrationActivity_restore_from_backup">ബാക്കപ്പിൽ നിന്ന് റിസ്റ്റോർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</string>
+  <string name="RegistrationActivity_restore_from_backup">ബാക്കപ്പിൽ നിന്ന് വീണ്ടെടുക്കണോ?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ഒരു ലോക്കൽ ബാക്കപ്പിൽ നിന്ന് നിങ്ങളുടെ സന്ദേശങ്ങളും മീഡിയയും റിസ്റ്റോർ ചെയ്യുക. നിങ്ങൾ ഇപ്പോൾ റിസ്റ്റോർ ചെയ്തില്ലെങ്കിൽ, നിങ്ങൾക്ക് പിന്നീട് റിസ്റ്റോർ ചെയ്യാൻ കഴിയില്ല.</string>
   <string name="RegistrationActivity_backup_size_s">ബാക്കപ്പ് വലുപ്പം: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">ബാക്കപ്പ് ടൈംസ്റ്റാമ്പ്: %s</string>
@@ -2248,6 +2255,7 @@
   <string name="preferences_app_protection__pin_reminders">PIN ഓർമ്മപ്പെടുത്തലുകൾ</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal എൻക്രിപ്റ്റ് ചെയ്ത് സ്റ്റോർ ചെയ്ത വിവരങ്ങൾ PIN കൾ സൂക്ഷിക്കുന്നു, അതിനാൽ നിങ്ങൾക്ക് മാത്രമെ അത് പ്രാപ്യമാവുകയുള്ളു.  നിങ്ങൾ Signal റീഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ, നിങ്ങളുടെ പ്രൊഫൈൽ, സെറ്റിംഗ്സ്, കോണ്ടാക്റ്റുകൾ എന്നിവ റീസ്റ്റോർ ചെയ്യപ്പെടും.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal ഉപയോഗിച്ച് നിങ്ങളുടെ ഫോൺ നമ്പർ വീണ്ടും രജിസ്റ്റർ ചെയ്യുന്നതിന് നിങ്ങളുടെ Signal PIN ആവശ്യപ്പെടുന്നതിലൂടെ അധിക സുരക്ഷ ചേർക്കുക.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">നിങ്ങളുടെ പിൻ വീണ്ടെടുക്കാൻ പറ്റാത്തതിനാൽ ഓർമ്മിക്കാൻ ഓർമ്മപ്പെടുത്തലുകൾ സഹായിക്കും. പലപ്പോഴായി നിങ്ങളോടു ചോദിക്കും.</string>
   <string name="preferences_app_protection__turn_off">ഓഫ് ആക്കുക</string>
   <string name="preferences_app_protection__confirm_pin">PIN ഉറപ്പാക്കു</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">നിങ്ങളുടെ Signal PIN ഉറപ്പാക്കു</string>
@@ -2264,8 +2272,8 @@
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <string name="RegistrationActivity_error_connecting_to_service">സേവനത്തിലേക്ക് കണക്റ്റുചെയ്യുന്നതിൽ പിശക്</string>
   <string name="preferences_chats__backups">ബാക്കപ്പുകൾ</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal പൂട്ടിയിരിക്കുന്നു</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">അൺലോക്കുചെയ്യാൻ തൊടുക</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Signal പൂട്ടിയിരിക്കുന്നൂ</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">തുറക്കാൻ തൊടുക</string>
   <string name="Recipient_unknown">അജ്ഞാതം</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>
@@ -2373,6 +2381,7 @@
   <string name="ShareActivity__share">പങ്കിടുക</string>
   <string name="ShareActivity__send">അയയ്‌ക്കുക</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">ഒന്നിലധികം ചാറ്റുകളിലേക്ക് പങ്കിടുന്നത് Signal സന്ദേശങ്ങൾക്ക് മാത്രമേ പിന്തുണക്കൂ</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">ചില ഉപയോക്താക്കള്‍ക്ക് അയയ്ക്കാന്‍ കഴിഞ്ഞില്ല</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">നിങ്ങൾക്ക് %1$d ചാറ്റുകൾക്ക് മാത്രമേ പങ്കിടാനാകൂ</string>

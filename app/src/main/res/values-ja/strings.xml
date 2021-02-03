@@ -114,7 +114,7 @@
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除する</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を削除しますか？</string>
-  <string name="ClearProfileActivity_remove_group_photo">グループ写真を削除しますか？</string>
+  <string name="ClearProfileActivity_remove_group_photo">グループアイコンを削除しますか？</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Signalをアップデートしてください</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">このバージョンはサポートされていません。メッセージの送受信を続けるには、最新バージョンにアップデートしてください。</string>
@@ -538,7 +538,7 @@
   <string name="AddGroupDetailsFragment__group_creation_failed">グループの作成に失敗しました</string>
   <string name="AddGroupDetailsFragment__try_again_later">あとで再度試してください。</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Signalグループに対応していない連絡先が選択されたため、このグループはMMSとなります。</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像はあなただけに表示されます。</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前とアイコンはあなただけに表示されます。</string>
   <string name="AddGroupDetailsFragment__remove">削除する</string>
   <string name="AddGroupDetailsFragment__sms_contact">SMS連絡先</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">このグループから %1$s を削除しますか？</string>
@@ -687,8 +687,8 @@
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">リンク済み端末で使用中のSignalがグループリンクをサポートしていません。このグループに参加するには、リンク済み端末のSignalをアップデートしてください。</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">グループリンクが正しくありません</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">友達を招待しましょう</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">友達とリンクを共有して、すぐにこのグループに参加できるようにしましょう。</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">友達を招待</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">友達とリンクを共有して、すぐにこのグループに参加してもらいましょう。</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">リンクを有効にして共有する</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">リンクを共有する</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">グループリンクを有効にできません。再度試してください。</string>
@@ -781,7 +781,7 @@
   <string name="Megaphones_verify_pin">PINの確認</string>
   <string name="Megaphones_get_started">始めましょう</string>
   <string name="Megaphones_new_group">新規グループ</string>
-  <string name="Megaphones_invite_friends">友達を招待する</string>
+  <string name="Megaphones_invite_friends">友達を招待しましょう</string>
   <string name="Megaphones_use_sms">SMSを使用する</string>
   <!--NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
@@ -848,7 +848,7 @@
   <!--GV2 specific-->
   <string name="MessageRecord_you_created_the_group">グループを作成しました。</string>
   <string name="MessageRecord_group_updated">グループが更新されました。</string>
-  <string name="MessageRecord_invite_friends_to_this_group">グループリンク経由で友達をこのグループに招待する</string>
+  <string name="MessageRecord_invite_friends_to_this_group">グループリンク経由で友達をこのグループに招待しましょう</string>
   <!--GV2 member additions-->
   <string name="MessageRecord_you_added_s">%1$s を追加しました。</string>
   <string name="MessageRecord_s_added_s">%1$s が %2$s を追加しました。</string>
@@ -908,9 +908,9 @@
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s がグループ名を「%2$s」に変更しました。</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">グループ名が「%1$s」に変更されました。</string>
   <!--GV2 avatar change-->
-  <string name="MessageRecord_you_changed_the_group_avatar">グループのアバターを変更しました。</string>
-  <string name="MessageRecord_s_changed_the_group_avatar">%1$s がグループの画像を変更しました。</string>
-  <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループのアバターが変更されました。</string>
+  <string name="MessageRecord_you_changed_the_group_avatar">グループアイコンを変更しました。</string>
+  <string name="MessageRecord_s_changed_the_group_avatar">%1$s がグループアイコンを変更しました。</string>
+  <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループアイコンが変更されました。</string>
   <!--GV2 attribute access level change-->
   <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザを「%1$s」に変更しました。</string>
   <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
@@ -1507,7 +1507,7 @@
   <string name="ConversationUpdateItem_join_call">通話に参加する</string>
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
-  <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
+  <string name="ConversationUpdateItem_invite_friends">友達を招待</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1615,7 +1615,7 @@
   <string name="CreateProfileActivity_next">次へ</string>
   <string name="CreateProfileActivity__username">ユーザ名</string>
   <string name="CreateProfileActivity__create_a_username">ユーザ名の作成</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前と画像はあなただけに表示されます。</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前とアイコンはあなただけに表示されます。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">自己紹介</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください…</string>
@@ -1628,7 +1628,7 @@
   <string name="EditAboutFragment_taking_a_break">休憩中</string>
   <string name="EditAboutFragment_working_on_something_new">新しいことをしています</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">グループ名と画像の編集</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">グループ名とアイコンの編集</string>
   <string name="EditProfileFragment__group_name">グループ名</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">あなたの名前</string>

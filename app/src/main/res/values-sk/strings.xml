@@ -1844,6 +1844,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Informácie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napíšte pár slov o sebe…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Hovorte slobodne</string>
   <string name="EditAboutFragment_encrypted">Šifrovaný</string>
   <string name="EditAboutFragment_be_kind">Buďte milí</string>
