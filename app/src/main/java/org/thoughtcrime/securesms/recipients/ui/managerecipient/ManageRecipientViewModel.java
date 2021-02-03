@@ -295,12 +295,14 @@ public final class ManageRecipientViewModel extends ViewModel {
                          "-- Profile Sharing --\n%s\n\n" +
                          "-- Profile Key (Base64) --\n%s\n\n" +
                          "-- Profile Key (Hex) --\n%s\n\n" +
+                         "-- Sealed Sender Mode --\n%s\n\n" +
                          "-- UUID --\n%s\n\n" +
                          "-- RecipientId --\n%s",
                          recipient.getProfileName().getGivenName(), recipient.getProfileName().getFamilyName(),
                          recipient.isProfileSharing(),
                          profileKeyBase64,
                          profileKeyHex,
+                         recipient.getUnidentifiedAccessMode(),
                          recipient.getUuid().transform(UUID::toString).or("None"),
                          recipient.getId().serialize());
   }
