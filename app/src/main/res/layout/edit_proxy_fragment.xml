@@ -17,6 +17,17 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
 
+  <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+      android:id="@+id/edit_proxy_switch_title_description"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_only_use_a_proxy_if"
+      style="@style/Signal.Text.Preview"
+      android:textColor="@color/signal_text_secondary"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
+
   <androidx.appcompat.widget.SwitchCompat
       android:id="@+id/edit_proxy_switch"
       android:layout_width="wrap_content"
