@@ -555,7 +555,7 @@
     <!-- GroupsV1MigrationInitiationReminder -->
     <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">To access new features like @mentions and admins, upgrade this group.</string>
     <string name="GroupsV1MigrationInitiationReminder_not_now">Not now</string>
-    <string name="GroupsV1MigrationInitiationReminder_update_group">Update group</string>
+    <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Upgrade group</string>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
