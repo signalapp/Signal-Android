@@ -148,6 +148,7 @@ public class EditProxyFragment extends Fragment {
                          requireActivity().onBackPressed();
                        })
                        .show();
+        requireActivity().onBackPressed();
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);

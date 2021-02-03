@@ -885,6 +885,10 @@ public class PushServiceSocket {
     }
   }
 
+  public void pingStorageService() throws IOException {
+    makeStorageRequest(null, "/ping", "GET", null);
+  }
+
   public RemoteConfigResponse getRemoteConfig() throws IOException {
     String response = makeServiceRequest("/v1/config", "GET", null);
     return JsonUtil.fromJson(response, RemoteConfigResponse.class);

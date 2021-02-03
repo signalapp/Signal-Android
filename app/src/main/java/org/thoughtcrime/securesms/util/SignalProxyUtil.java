@@ -6,12 +6,16 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.Observer;
 
 import org.conscrypt.Conscrypt;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.PipeConnectivityListener;
+import org.thoughtcrime.securesms.push.AccountManagerFactory;
+import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.concurrent.CountDownLatch;
@@ -69,8 +73,8 @@ public final class SignalProxyUtil {
     startListeningToWebsocket();
 
     if (TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null) {
-      Log.i(TAG, "User is unregistered! Assuming success.");
-      return true;
+      Log.i(TAG, "User is unregistered! Doing simple check.");
+      return testWebsocketConnectionUnregistered(timeout);
     }
 
     CountDownLatch latch   = new CountDownLatch(1);
@@ -155,5 +159,29 @@ public final class SignalProxyUtil {
     }
 
     return "https://" + PROXY_LINK_HOST + "/#" + host;
+  }
+
+  private static boolean testWebsocketConnectionUnregistered(long timeout) {
+    CountDownLatch              latch          = new CountDownLatch(1);
+    AtomicBoolean               success        = new AtomicBoolean(false);
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(ApplicationDependencies.getApplication(), "", "");
+
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        accountManager.checkNetworkConnection();
+        success.set(true);
+        latch.countDown();
+      } catch (IOException e) {
+        latch.countDown();
+      }
+    });
+
+    try {
+      latch.await(timeout, TimeUnit.MILLISECONDS);
+    } catch (InterruptedException e) {
+      Log.w(TAG, "Interrupted!", e);
+    }
+
+    return success.get();
   }
 }

@@ -632,6 +632,10 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getTurnServerInfo();
   }
 
+  public void checkNetworkConnection() throws IOException {
+    this.pushServiceSocket.pingStorageService();
+  }
+
   /**
    * @return The avatar URL path, if one was written.
    */
