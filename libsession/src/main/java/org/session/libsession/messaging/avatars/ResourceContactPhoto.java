@@ -19,15 +19,9 @@ import org.session.libsession.utilities.ThemeUtil;
 public class ResourceContactPhoto implements FallbackContactPhoto {
 
   private final int resourceId;
-  private final int callCardResourceId;
 
   public ResourceContactPhoto(@DrawableRes int resourceId) {
-    this(resourceId, resourceId);
-  }
-
-  public ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int callCardResourceId) {
-    this.resourceId         = resourceId;
-    this.callCardResourceId = callCardResourceId;
+    this.resourceId = resourceId;
   }
 
   @Override
