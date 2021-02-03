@@ -37,7 +37,8 @@ public interface BindableConversationItem extends Unbindable {
             @NonNull Recipient recipients,
             @Nullable String searchQuery,
             boolean pulseMention,
-            boolean hasWallpaper);
+            boolean hasWallpaper,
+            boolean isMessageRequestAccepted);
 
   ConversationMessage getConversationMessage();
 

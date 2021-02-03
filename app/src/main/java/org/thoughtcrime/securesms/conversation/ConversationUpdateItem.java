@@ -100,7 +100,8 @@ public final class ConversationUpdateItem extends FrameLayout
                    @NonNull Recipient conversationRecipient,
                    @Nullable String searchQuery,
                    boolean pulseMention,
-                   boolean hasWallpaper)
+                   boolean hasWallpaper,
+                   boolean isMessageRequestAccepted)
   {
     this.batchSelected = batchSelected;
 
