@@ -184,12 +184,10 @@ public class ApplicationDependencies {
     }
   }
 
-  public static void resetNetworkConnectionsAfterProxyChange() {
+  public static void closeConnectionsAfterProxyFailure() {
     synchronized (LOCK) {
-      getPipeListener().reset();
-
       if (incomingMessageObserver != null) {
-        incomingMessageObserver.terminate();
+        incomingMessageObserver.terminateAsync();
       }
 
       if (messageSender != null) {
@@ -200,6 +198,13 @@ public class ApplicationDependencies {
       messageReceiver         = null;
       accountManager          = null;
       messageSender           = null;
+    }
+  }
+
+  public static void resetNetworkConnectionsAfterProxyChange() {
+    synchronized (LOCK) {
+      getPipeListener().reset();
+      closeConnectionsAfterProxyFailure();
     }
   }
 

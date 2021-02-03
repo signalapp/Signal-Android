@@ -5,24 +5,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.PipeConnectivityListener;
+import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
@@ -62,12 +62,15 @@ public class EditProxyFragment extends Fragment {
     saveButton.setOnClickListener(v -> onSaveClicked());
     shareButton.setOnClickListener(v -> onShareClicked());
     proxySwitch.setOnCheckedChangeListener((buttonView, isChecked) -> viewModel.onToggleProxy(isChecked));
+
+    requireActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) requireActivity()).requireSupportActionBar().setTitle(R.string.preferences_use_proxy);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(R.string.preferences_use_proxy);
+    SignalProxyUtil.startListeningToWebsocket();
   }
 
   private void initViewModel() {
@@ -99,26 +102,30 @@ public class EditProxyFragment extends Fragment {
         shareButton.setEnabled(false);
         shareButton.setAlpha(0.5f);
         proxyTitle.setAlpha(0.5f);
-        proxyStatus.setVisibility(View.GONE);
+        proxyStatus.setVisibility(View.INVISIBLE);
         break;
     }
   }
 
   private void presentProxyState(@NonNull PipeConnectivityListener.State proxyState) {
-    switch (proxyState) {
-      case DISCONNECTED:
-      case CONNECTING:
-        proxyStatus.setText(R.string.preferences_connecting_to_proxy);
-        proxyStatus.setTextColor(getResources().getColor(R.color.signal_text_secondary));
-        break;
-      case CONNECTED:
-        proxyStatus.setText(R.string.preferences_connected_to_proxy);
-        proxyStatus.setTextColor(getResources().getColor(R.color.signal_accent_green));
-        break;
-      case FAILURE:
-        proxyStatus.setText(R.string.preferences_connection_failed);
-        proxyStatus.setTextColor(getResources().getColor(R.color.signal_alert_primary));
-        break;
+    if (SignalStore.proxy().getProxy() != null) {
+      switch (proxyState) {
+        case DISCONNECTED:
+        case CONNECTING:
+          proxyStatus.setText(R.string.preferences_connecting_to_proxy);
+          proxyStatus.setTextColor(getResources().getColor(R.color.signal_text_secondary));
+          break;
+        case CONNECTED:
+          proxyStatus.setText(R.string.preferences_connected_to_proxy);
+          proxyStatus.setTextColor(getResources().getColor(R.color.signal_accent_green));
+          break;
+        case FAILURE:
+          proxyStatus.setText(R.string.preferences_connection_failed);
+          proxyStatus.setTextColor(getResources().getColor(R.color.signal_alert_primary));
+          break;
+      }
+    } else {
+      proxyStatus.setText("");
     }
   }
 
@@ -134,7 +141,7 @@ public class EditProxyFragment extends Fragment {
                        .show();
         break;
       case PROXY_FAILURE:
-        proxyStatus.setVisibility(View.GONE);
+        proxyStatus.setVisibility(View.INVISIBLE);
         proxyText.setText(Optional.fromNullable(SignalStore.proxy().getProxy()).transform(SignalProxy::getHost).or(""));
         new AlertDialog.Builder(requireContext())
                        .setTitle(R.string.preferences_failed_to_connect)

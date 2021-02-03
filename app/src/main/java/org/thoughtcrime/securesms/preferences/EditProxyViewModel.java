@@ -11,20 +11,24 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 import java.util.concurrent.TimeUnit;
 
 public class EditProxyViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Event>     events;
-  private final MutableLiveData<UiState>   uiState;
-  private final MutableLiveData<SaveState> saveState;
+  private final SingleLiveEvent<Event>                   events;
+  private final MutableLiveData<UiState>                 uiState;
+  private final MutableLiveData<SaveState>               saveState;
+  private final LiveData<PipeConnectivityListener.State> pipeState;
 
   public EditProxyViewModel() {
     this.events    = new SingleLiveEvent<>();
     this.uiState   = new MutableLiveData<>();
     this.saveState = new MutableLiveData<>(SaveState.IDLE);
+    this.pipeState = TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null ? new MutableLiveData<>()
+                                                                                                            : ApplicationDependencies.getPipeListener().getState();
 
     if (SignalStore.proxy().isProxyEnabled()) {
       uiState.setValue(UiState.ALL_ENABLED);
@@ -78,7 +82,7 @@ public class EditProxyViewModel extends ViewModel {
   }
 
   @NonNull LiveData<PipeConnectivityListener.State> getProxyState() {
-    return ApplicationDependencies.getPipeListener().getState();
+    return pipeState;
   }
 
   public @NonNull LiveData<SaveState> getSaveState() {

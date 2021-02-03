@@ -94,6 +94,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_editProxy"
+            app:destination="@+id/registrationProxyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
     <fragment
@@ -266,5 +274,11 @@
         android:name="org.thoughtcrime.securesms.registration.fragments.RegistrationCompleteFragment"
         android:label="fragment_registration_complete_place_holder"
         tools:layout="@layout/fragment_registration_blank" />
+
+    <fragment
+        android:id="@+id/registrationProxyFragment"
+        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
+        android:label="fragment_registration_edit_proxy"
+        tools:layout="@layout/edit_proxy_fragment" />
 
 </navigation>

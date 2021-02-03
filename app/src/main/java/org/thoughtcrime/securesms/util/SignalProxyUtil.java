@@ -27,6 +27,11 @@ public final class SignalProxyUtil {
   private SignalProxyUtil() {}
 
   public static void startListeningToWebsocket() {
+    if (SignalStore.proxy().isProxyEnabled() && ApplicationDependencies.getPipeListener().getState().getValue() == PipeConnectivityListener.State.FAILURE) {
+      Log.w(TAG, "Proxy is in a failed state. Restarting.");
+      ApplicationDependencies.closeConnectionsAfterProxyFailure();
+    }
+
     ApplicationDependencies.getIncomingMessageObserver();
   }
 
@@ -62,6 +67,11 @@ public final class SignalProxyUtil {
   @WorkerThread
   public static boolean testWebsocketConnection(long timeout) {
     startListeningToWebsocket();
+
+    if (TextSecurePreferences.getLocalNumber(ApplicationDependencies.getApplication()) == null) {
+      Log.i(TAG, "User is unregistered! Assuming success.");
+      return true;
+    }
 
     CountDownLatch latch   = new CountDownLatch(1);
     AtomicBoolean  success = new AtomicBoolean(false);
@@ -105,17 +115,17 @@ public final class SignalProxyUtil {
         return null;
       }
 
-      String path = uri.getPath();
+      String fragment = uri.getFragment();
 
-      if (Util.isEmpty(path) || "/".equals(path)) {
+      if (Util.isEmpty(fragment)) {
         return null;
       }
 
-      if (path.startsWith("/")) {
-        return path.substring(1);
-      } else {
-        return path;
+      if (fragment.startsWith("#")) {
+        fragment = fragment.substring(1);
       }
+
+      return Util.isEmpty(fragment) ? null : fragment;
     } catch (URISyntaxException e) {
       return null;
     }

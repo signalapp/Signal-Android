@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -54,6 +59,12 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
   private Spinner                countrySpinner;
   private View                   cancel;
   private ScrollView             scrollView;
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,6 +110,25 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
     }
 
     countryCode.getInput().setImeOptions(EditorInfo.IME_ACTION_NEXT);
+
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+  }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    inflater.inflate(R.menu.enter_phone_number, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.phone_menu_use_proxy) {
+      Navigation.findNavController(requireView()).navigate(EnterPhoneNumberFragmentDirections.actionEditProxy());
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private void setUpNumberInput() {

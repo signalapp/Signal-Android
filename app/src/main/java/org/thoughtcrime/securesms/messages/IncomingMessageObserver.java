@@ -17,6 +17,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -160,10 +161,12 @@ public class IncomingMessageObserver {
     }
   }
 
-  public void terminate() {
-    Log.w(TAG, "Beginning termination.");
-    terminated = true;
-    shutdown(pipe, unidentifiedPipe);
+  public void terminateAsync() {
+    SignalExecutors.BOUNDED.execute(() -> {
+      Log.w(TAG, "Beginning termination.");
+      terminated = true;
+      shutdown(pipe, unidentifiedPipe);
+    });
   }
 
   private void shutdown(@Nullable SignalServiceMessagePipe pipe, @Nullable SignalServiceMessagePipe unidentifiedPipe) {
