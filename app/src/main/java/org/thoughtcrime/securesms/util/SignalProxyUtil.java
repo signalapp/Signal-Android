@@ -100,10 +100,10 @@ public final class SignalProxyUtil {
   }
 
   /**
-   * If this is a valid proxy link, this will return the embedded host. If not, it will return
+   * If this is a valid proxy deep link, this will return the embedded host. If not, it will return
    * null.
    */
-  public static @Nullable String parseHostFromProxyLink(@NonNull String proxyLink) {
+  public static @Nullable String parseHostFromProxyDeepLink(@NonNull String proxyLink) {
     try {
       URI uri = new URI(proxyLink);
 
@@ -129,5 +129,25 @@ public final class SignalProxyUtil {
     } catch (URISyntaxException e) {
       return null;
     }
+  }
+
+  /**
+   * Takes in an address that could be in various formats, and converts it to the format we should
+   * be storing and connecting to.
+   */
+  public static @NonNull String convertUserEnteredAddressToHost(@NonNull String host) {
+    String parsedHost = SignalProxyUtil.parseHostFromProxyDeepLink(host);
+    return parsedHost != null ? parsedHost : host;
+  }
+
+  public static @NonNull String generateProxyUrl(@NonNull String link) {
+    String host   = link;
+    String parsed = parseHostFromProxyDeepLink(link);
+
+    if (parsed != null) {
+      host = parsed;
+    }
+
+    return "https://" + PROXY_LINK_HOST + "/#" + host;
   }
 }

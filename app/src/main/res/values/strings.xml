@@ -2325,6 +2325,7 @@
     <string name="preferences_you_are_connected_to_the_proxy">You are connected to the proxy. You can turn the proxy off at any time from Settings.</string>
     <string name="preferences_success">Success</string>
     <string name="preferences_failed_to_connect">Failed to connect</string>
+    <string name="preferences_enter_proxy_address">Enter proxy address</string>
 
 
     <string name="configurable_single_select__customize_option">Customize option</string>

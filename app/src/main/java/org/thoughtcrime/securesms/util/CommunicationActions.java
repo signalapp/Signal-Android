@@ -213,7 +213,7 @@ public class CommunicationActions {
    * Otherwise returns false, indicating was not a proxy link.
    */
   public static boolean handlePotentialProxyLinkUrl(@NonNull FragmentActivity activity, @NonNull String potentialProxyLinkUrl) {
-    String proxy = SignalProxyUtil.parseHostFromProxyLink(potentialProxyLinkUrl);
+    String proxy = SignalProxyUtil.parseHostFromProxyDeepLink(potentialProxyLinkUrl);
 
     if (proxy != null) {
       ProxyBottomSheetFragment.showForProxy(activity.getSupportFragmentManager(), proxy);

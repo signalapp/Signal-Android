@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 public final class ProxyValues extends SignalStoreValues {
@@ -19,8 +20,11 @@ public final class ProxyValues extends SignalStoreValues {
   void onFirstEverAppLaunch() {
   }
 
-
   public void enableProxy(@NonNull SignalProxy proxy) {
+    if (Util.isEmpty(proxy.getHost())) {
+      throw new IllegalArgumentException("Empty host!");
+    }
+
     getStore().beginWrite()
               .putBoolean(KEY_PROXY_ENABLED, true)
               .putString(KEY_HOST, proxy.getHost())
@@ -66,5 +70,10 @@ public final class ProxyValues extends SignalStoreValues {
     } else {
       return null;
     }
+  }
+
+  public @Nullable String getProxyHost() {
+    SignalProxy proxy = getProxy();
+    return proxy !=  null ? proxy.getHost() : null;
   }
 }

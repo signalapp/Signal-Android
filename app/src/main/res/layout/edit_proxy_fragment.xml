@@ -40,6 +40,8 @@
       android:id="@+id/edit_proxy_host"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginStart="-2dp"
+      android:hint="@string/preferences_enter_proxy_address"
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_address_title"
       tools:hint="https://proxy.parker.org"/>
 

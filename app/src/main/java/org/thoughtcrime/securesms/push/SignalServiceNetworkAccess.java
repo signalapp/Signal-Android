@@ -243,7 +243,9 @@ public class SignalServiceNetworkAccess {
   }
 
   public SignalServiceConfiguration getConfiguration(@Nullable String localNumber) {
-    if (localNumber == null) return this.uncensoredConfiguration;
+    if (localNumber == null || SignalStore.proxy().isProxyEnabled()) {
+      return this.uncensoredConfiguration;
+    }
 
     if (SignalStore.internalValues().forcedCensorship()) {
       return this.censorshipConfiguration.get(COUNTRY_CODE_QATAR);

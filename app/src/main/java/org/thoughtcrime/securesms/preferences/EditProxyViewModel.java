@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,7 @@ public class EditProxyViewModel extends ViewModel {
     if (enabled) {
       SignalProxy currentProxy = SignalStore.proxy().getProxy();
 
-      if (currentProxy != null) {
+      if (currentProxy != null && !Util.isEmpty(currentProxy.getHost())) {
         SignalProxyUtil.enableProxy(currentProxy);
       }
       uiState.postValue(UiState.ALL_ENABLED);
@@ -52,8 +53,7 @@ public class EditProxyViewModel extends ViewModel {
   }
 
   public void onSaveClicked(@NonNull String host) {
-    String parsedHost = SignalProxyUtil.parseHostFromProxyLink(host);
-    String trueHost   = parsedHost != null ? parsedHost : host;
+    String trueHost = SignalProxyUtil.convertUserEnteredAddressToHost(host);
 
     saveState.postValue(SaveState.IN_PROGRESS);
 
