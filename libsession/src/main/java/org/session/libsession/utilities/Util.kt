@@ -1,13 +1,9 @@
 package org.session.libsession.utilities
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
-import android.app.ActivityManager
 import android.content.Context
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.Build.VERSION
-import android.os.Build.VERSION_CODES
 import android.os.Handler
 import android.os.Looper
 import android.provider.Telephony
@@ -15,7 +11,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.StyleSpan
-import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 import java.io.*
@@ -212,8 +207,8 @@ object Util {
     }
 
     @JvmStatic
-    fun isOwnNumber(context: Context, address: Address): Boolean {
-        return if (address.isGroup) false else TextSecurePreferences.getLocalNumber(context) == address.serialize()
+    fun isOwnNumber(context: Context, number: String): Boolean {
+        return TextSecurePreferences.getLocalNumber(context).equals(number)
     }
 
     @JvmStatic
@@ -317,14 +312,6 @@ object Util {
     @JvmStatic
     fun isEmpty(collection: Collection<*>?): Boolean {
         return collection == null || collection.isEmpty()
-    }
-
-    @JvmStatic
-    @TargetApi(VERSION_CODES.KITKAT)
-    fun isLowMemory(context: Context): Boolean {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        return VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice ||
-                activityManager.largeMemoryClass <= 64
     }
 
     @JvmStatic

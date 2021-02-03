@@ -17,32 +17,27 @@
 package org.thoughtcrime.securesms.util;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 import network.loki.messenger.BuildConfig;
 
 public class Util {
+
+  @TargetApi(VERSION_CODES.KITKAT)
+  public static boolean isLowMemory(Context context) {
+    ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+
+    return (VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice()) ||
+            activityManager.getLargeMemoryClass() <= 64;
+  }
 
   public static boolean isEmpty(ComposeText value) {
     return value == null || value.getText() == null || TextUtils.isEmpty(value.getTextTrimmed());

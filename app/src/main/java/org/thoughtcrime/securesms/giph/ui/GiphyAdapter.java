@@ -156,7 +156,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
                                                         .load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
                                                         .diskCacheStrategy(DiskCacheStrategy.ALL);
 
-    if (Util.isLowMemory(context)) {
+    if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
       glideRequests.load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
                    .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
                    .diskCacheStrategy(DiskCacheStrategy.ALL)

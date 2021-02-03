@@ -195,7 +195,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
-    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
+    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress().serialize());
 
     String quoteeDisplayName = author.toShortString();
 

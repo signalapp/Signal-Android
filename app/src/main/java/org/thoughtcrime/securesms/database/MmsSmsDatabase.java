@@ -96,8 +96,8 @@ public class MmsSmsDatabase extends Database {
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
+        if ((Util.isOwnNumber(context, author.serialize()) && messageRecord.isOutgoing()) ||
+            (!Util.isOwnNumber(context, author.serialize()) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
         {
           return messageRecord;
         }
@@ -180,7 +180,7 @@ public class MmsSmsDatabase extends Database {
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
       String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+      boolean isOwnNumber       = Util.isOwnNumber(context, address.serialize());
 
       while (cursor != null && cursor.moveToNext()) {
         boolean quoteIdMatches = cursor.getLong(0) == quoteId;
@@ -200,7 +200,7 @@ public class MmsSmsDatabase extends Database {
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.ADDRESS }, selection, order, null)) {
       String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+      boolean isOwnNumber       = Util.isOwnNumber(context, address.serialize());
 
       while (cursor != null && cursor.moveToNext()) {
         boolean timestampMatches = cursor.getLong(0) == receivedTimestamp;

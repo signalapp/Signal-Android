@@ -79,7 +79,7 @@ public class EmojiPageBitmap {
     InputStream           assetStream  = assetManager.open(model.getSprite());
     BitmapFactory.Options options      = new BitmapFactory.Options();
 
-    if (Util.isLowMemory(context)) {
+    if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
       Log.i(TAG, "Low memory detected. Changing sample size.");
       options.inSampleSize = 2;
       scale = decodeScale * 2;

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.content.Context;
 
-import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
 
 public class PushMediaConstraints extends MediaConstraints {
@@ -12,7 +11,7 @@ public class PushMediaConstraints extends MediaConstraints {
 
   @Override
   public int getImageMaxWidth(Context context) {
-    return Util.isLowMemory(context) ? MAX_IMAGE_DIMEN_LOWMEM : MAX_IMAGE_DIMEN;
+    return org.thoughtcrime.securesms.util.Util.isLowMemory(context) ? MAX_IMAGE_DIMEN_LOWMEM : MAX_IMAGE_DIMEN;
   }
 
   @Override

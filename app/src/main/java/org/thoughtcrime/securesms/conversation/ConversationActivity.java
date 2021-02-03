@@ -1855,7 +1855,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!TextSecurePreferences.isPushRegistered(this)) return false;
     if (recipient.isGroupRecipient())                         return false;
 
-    return Util.isOwnNumber(this, recipient.getAddress());
+    return Util.isOwnNumber(this, recipient.getAddress().serialize());
   }
 
   private boolean isGroupConversation() {
