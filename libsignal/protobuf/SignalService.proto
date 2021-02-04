@@ -35,14 +35,15 @@ message Envelope {
 }
 
 message Content {
-  optional DataMessage         dataMessage         = 1;
-  optional SyncMessage         syncMessage         = 2;
-  optional CallMessage         callMessage         = 3;
-  optional NullMessage         nullMessage         = 4;
-  optional ReceiptMessage      receiptMessage      = 5;
-  optional TypingMessage       typingMessage       = 6;
-  optional PreKeyBundleMessage preKeyBundleMessage = 101; // Loki
-  optional DeviceLinkMessage   deviceLinkMessage   = 103; // Loki
+  optional DataMessage          dataMessage           = 1;
+  optional SyncMessage          syncMessage           = 2 [deprecated=true];
+  optional CallMessage          callMessage           = 3;
+  optional NullMessage          nullMessage           = 4;
+  optional ReceiptMessage       receiptMessage        = 5;
+  optional TypingMessage        typingMessage         = 6;
+  optional ConfigurationMessage configurationMessage  = 7;
+  optional PreKeyBundleMessage  preKeyBundleMessage   = 101; // Loki
+  optional DeviceLinkMessage    deviceLinkMessage     = 103; // Loki
 }
 
 message DeviceLinkMessage {
@@ -217,6 +218,7 @@ message DataMessage {
   optional LokiUserProfile     profile             = 101; // Loki - The profile of the current user
   optional ClosedGroupUpdate   closedGroupUpdate   = 103; // Loki
   optional ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;
+  optional string              syncTarget          = 105;
 }
 
 message LokiUserProfile {
@@ -236,13 +238,6 @@ message ClosedGroupUpdateV2 {
     MEMBER_LEFT         = 7;
   }
 
-  message KeyPair {
-    // @required
-    required bytes publicKey  = 1;
-    // @required
-    required bytes privateKey = 2;
-  }
-
   message KeyPairWrapper {
     // @required
     required bytes publicKey        = 1; // The public key of the user the key pair is meant for
@@ -258,6 +253,13 @@ message ClosedGroupUpdateV2 {
   repeated bytes          members           = 5;
   repeated bytes          admins            = 6;
   repeated KeyPairWrapper wrappers          = 7;
+}
+
+message KeyPair {
+  // @required
+  required bytes publicKey  = 1;
+  // @required
+  required bytes privateKey = 2;
 }
 
 message ClosedGroupUpdate {
@@ -312,6 +314,20 @@ message TypingMessage {
     optional uint64 timestamp = 1;
     optional Action action    = 2;
     optional bytes  groupId   = 3;
+}
+
+message ConfigurationMessage {
+
+  message ClosedGroup {
+    optional bytes   publicKey         = 1;
+    optional string  name              = 2;
+    optional KeyPair encryptionKeyPair = 3;
+    repeated bytes   members           = 4;
+    repeated bytes   admins            = 5;
+  }
+
+  repeated ClosedGroup closedGroups = 1;
+  repeated string      openGroups   = 2;
 }
 
 message Verified {
