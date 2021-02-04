@@ -29,6 +29,7 @@ class ProfilePictureView : RelativeLayout {
     var additionalDisplayName: String? = null
     var isRSSFeed = false
     var isLarge = false
+    private val imagesCached = mutableSetOf<String>()
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -104,54 +105,78 @@ class ProfilePictureView : RelativeLayout {
     fun update() {
         val publicKey = publicKey ?: return
         val additionalPublicKey = additionalPublicKey
-        doubleModeImageViewContainer.visibility = if (additionalPublicKey != null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
-        singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
-        largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
+        doubleModeImageViewContainer.visibility = if (additionalPublicKey != null && !isRSSFeed) {
+            setProfilePictureIfNeeded(
+                    doubleModeImageView1,
+                    publicKey,
+                    displayName,
+                    R.dimen.small_profile_picture_size)
+            setProfilePictureIfNeeded(
+                    doubleModeImageView2,
+                    additionalPublicKey,
+                    additionalDisplayName,
+                    R.dimen.small_profile_picture_size)
+            View.VISIBLE
+        } else {
+            glide.clear(doubleModeImageView1)
+            glide.clear(doubleModeImageView2)
+            View.INVISIBLE
+        }
+        singleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && !isLarge) {
+            setProfilePictureIfNeeded(
+                    singleModeImageView,
+                    publicKey,
+                    displayName,
+                    R.dimen.medium_profile_picture_size)
+            View.VISIBLE
+        } else {
+            glide.clear(singleModeImageView)
+            View.INVISIBLE
+        }
+        largeSingleModeImageViewContainer.visibility = if (additionalPublicKey == null && !isRSSFeed && isLarge) {
+            setProfilePictureIfNeeded(
+                    largeSingleModeImageView,
+                    publicKey,
+                    displayName,
+                    R.dimen.large_profile_picture_size)
+            View.VISIBLE
+        } else {
+            glide.clear(largeSingleModeImageView)
+            View.INVISIBLE
+        }
         rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
-        setProfilePictureIfNeeded(
-                doubleModeImageView1,
-                publicKey,
-                displayName,
-                R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(
-                doubleModeImageView2,
-                additionalPublicKey ?: "",
-                additionalDisplayName,
-                R.dimen.small_profile_picture_size)
-        setProfilePictureIfNeeded(
-                singleModeImageView,
-                publicKey,
-                displayName,
-                R.dimen.medium_profile_picture_size)
-        setProfilePictureIfNeeded(
-                largeSingleModeImageView,
-                publicKey,
-                displayName,
-                R.dimen.large_profile_picture_size)
     }
 
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
-        glide.clear(imageView)
         if (publicKey.isNotEmpty()) {
-            val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false);
+            if (imagesCached.contains(publicKey)) return
+            val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
             val signalProfilePicture = recipient.contactPhoto
             if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
-                && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+                    && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
+                glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
+                imagesCached.add(publicKey)
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
                 val hepk = if (recipient.isLocalNumber && masterPublicKey != null) masterPublicKey else publicKey
+                glide.clear(imageView)
                 glide.load(AvatarPlaceholderGenerator.generate(
                         context,
                         sizeInPX,
                         hepk,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
+                imagesCached.add(publicKey)
             }
         } else {
             imageView.setImageDrawable(null)
         }
+    }
+
+    fun recycle() {
+        imagesCached.clear()
     }
     // endregion
 }
