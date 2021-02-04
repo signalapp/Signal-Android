@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
@@ -40,11 +40,11 @@ import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.session.libsession.messaging.avatars.AvatarHelper
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.crypto.ProfileCipher
 import org.session.libsignal.service.api.util.StreamDetails
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
@@ -64,7 +64,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private val hexEncodedPublicKey: String
         get() {
             val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)!!
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 
@@ -210,7 +210,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             }
             displayNameToBeUploaded = null
             if (isUpdatingProfilePicture && profilePicture != null) {
-                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), profilePicture)
+                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)!!), profilePicture)
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
                 ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
@@ -285,11 +285,6 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun showChatSettings() {
         val intent = Intent(this, ChatSettingsActivity::class.java)
-        push(intent)
-    }
-
-    private fun showLinkedDevices() {
-        val intent = Intent(this, LinkedDevicesActivity::class.java)
         push(intent)
     }
 

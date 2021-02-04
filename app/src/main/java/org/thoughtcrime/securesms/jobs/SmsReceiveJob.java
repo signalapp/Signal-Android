@@ -4,19 +4,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import org.session.libsignal.utilities.Base64;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -53,7 +55,8 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     String[] encoded = new String[pdus.length];
     for (int i = 0; i < pdus.length; i++) {
       encoded[i] = Base64.encodeBytes((byte[]) pdus[i]);

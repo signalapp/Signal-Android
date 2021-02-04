@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 public class MmsNotificationAttachment extends Attachment {
 

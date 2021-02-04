@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.gms:google-services:4.3.4"
         classpath files('libs/gradle-witness.jar')
@@ -59,7 +59,7 @@ allprojects {
 
     project.ext {
         androidBuildToolsVersion = '29.0.3'
-        androidCompileSdkVersion = 29
+        androidCompileSdkVersion = 29   // This is also our target SDK.
         androidMinSdkVersion = 21
     }
 }

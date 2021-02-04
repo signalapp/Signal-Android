@@ -16,16 +16,16 @@ import kotlinx.android.synthetic.main.fragment_view_my_qr_code.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.loki.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.utilities.toPx
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.FileProviderUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import java.io.File
 import java.io.FileOutputStream
@@ -56,7 +56,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
         val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
-        val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey), false)
+        val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey!!), false)
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
@@ -106,7 +106,7 @@ class ViewMyQRCodeFragment : Fragment() {
     private val hexEncodedPublicKey: String
         get() {
             val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext())
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())!!
             return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
         }
 

@@ -7,12 +7,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
-import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.ListenableFutureTask;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,7 +79,7 @@ public class EmojiPageBitmap {
     InputStream           assetStream  = assetManager.open(model.getSprite());
     BitmapFactory.Options options      = new BitmapFactory.Options();
 
-    if (Util.isLowMemory(context)) {
+    if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
       Log.i(TAG, "Low memory detected. Changing sample size.");
       options.inSampleSize = 2;
       scale = decodeScale * 2;

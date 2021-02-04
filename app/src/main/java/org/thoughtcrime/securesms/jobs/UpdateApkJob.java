@@ -13,15 +13,15 @@ import androidx.annotation.Nullable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.service.UpdateApkReadyListener;
-import org.thoughtcrime.securesms.util.FileUtils;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.FileUtils;
+import org.session.libsignal.utilities.Hex;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -51,7 +51,8 @@ public class UpdateApkJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return Data.EMPTY;
   }
 
@@ -75,7 +76,7 @@ public class UpdateApkJob extends BaseJob {
       throw new IOException("Bad response: " + response.message());
     }
 
-    UpdateDescriptor updateDescriptor = JsonUtils.fromJson(response.body().string(), UpdateDescriptor.class);
+    UpdateDescriptor updateDescriptor = JsonUtil.fromJson(response.body().string(), UpdateDescriptor.class);
     byte[]           digest           = Hex.fromStringCondensed(updateDescriptor.getDigest());
 
     Log.i(TAG, "Got descriptor: " + updateDescriptor);

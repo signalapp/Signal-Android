@@ -52,7 +52,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 import com.google.android.material.tabs.TabLayout;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader;
@@ -60,14 +60,13 @@ import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.Buc
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -86,17 +85,10 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   public static final String ADDRESS_EXTRA   = "address";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
   private Toolbar      toolbar;
   private TabLayout    tabLayout;
   private ViewPager    viewPager;
   private Recipient    recipient;
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
@@ -107,12 +99,6 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
     this.tabLayout.setupWithViewPager(viewPager);
     this.viewPager.setAdapter(new MediaOverviewPagerAdapter(getSupportFragmentManager()));
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -172,7 +158,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
       Bundle args = new Bundle();
       args.putString(MediaOverviewGalleryFragment.ADDRESS_EXTRA, recipient.getAddress().serialize());
-      args.putSerializable(MediaOverviewGalleryFragment.LOCALE_EXTRA, dynamicLanguage.getCurrentLocale());
+      args.putSerializable(MediaOverviewGalleryFragment.LOCALE_EXTRA, Locale.getDefault());
 
       fragment.setArguments(args);
 
@@ -212,7 +198,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       if (address == null)      throw new AssertionError();
       if (locale == null)       throw new AssertionError();
 
-      this.recipient    = Recipient.from(getContext(), Address.fromSerialized(address), true);
+      this.recipient    = Recipient.from(getContext(), Address.Companion.fromSerialized(address), true);
       this.locale       = locale;
 
       getLoaderManager().initLoader(0, null, this);

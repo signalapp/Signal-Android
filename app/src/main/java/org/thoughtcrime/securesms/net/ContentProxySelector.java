@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.net;
 
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import network.loki.messenger.BuildConfig;
 

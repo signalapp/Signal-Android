@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 public final class StickerSearchRepository {
 

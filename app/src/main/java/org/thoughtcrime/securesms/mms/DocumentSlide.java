@@ -6,8 +6,8 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 
 public class DocumentSlide extends Slide {
 

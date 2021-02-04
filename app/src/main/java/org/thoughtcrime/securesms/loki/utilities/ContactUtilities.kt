@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.loki.utilities
 
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 
 data class Contact(
@@ -29,7 +29,7 @@ object ContactUtilities {
     @JvmStatic
     fun getAllContacts(context: Context): Set<Contact> {
         val threadDatabase = DatabaseFactory.getThreadDatabase(context)
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
         val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey)
         val cursor = threadDatabase.conversationList

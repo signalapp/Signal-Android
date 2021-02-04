@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.notifications;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public enum ReplyMethod {
 

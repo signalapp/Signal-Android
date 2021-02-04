@@ -1,5 +1,5 @@
-include ':libsignal'
-include ':libsession'
 rootProject.name = "session-android"
 
 include ':app'
+include ':libsession'
+include ':libsignal'

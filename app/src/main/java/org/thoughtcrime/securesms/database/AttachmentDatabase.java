@@ -37,27 +37,34 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachmentAudioExtras;
+
+import org.session.libsession.utilities.MediaTypes;
+import org.session.libsignal.utilities.logging.Log;
+
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.logging.Log;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
+import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
+
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsession.utilities.Util;
+
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
+
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
 import java.io.File;
@@ -432,6 +439,30 @@ public class AttachmentDatabase extends Database {
     return insertedAttachments;
   }
 
+  /**
+   * Insert attachments in database and return the IDs of the inserted attachments
+   *
+   * @param mmsId message ID
+   * @param attachments attachments to persist
+   * @return IDs of the persisted attachments
+   * @throws MmsException
+   */
+  @NonNull List<Long> insertAttachments(long mmsId, @NonNull List<Attachment> attachments)
+          throws MmsException
+  {
+    Log.d(TAG, "insertParts(" + attachments.size() + ")");
+
+    List<Long> insertedAttachmentsIDs = new LinkedList<>();
+
+    for (Attachment attachment : attachments) {
+      AttachmentId attachmentId = insertAttachment(mmsId, attachment, attachment.isQuote());
+      insertedAttachmentsIDs.add(attachmentId.getRowId());
+      Log.i(TAG, "Inserted attachment at ID: " + attachmentId);
+    }
+
+    return insertedAttachmentsIDs;
+  }
+
   public @NonNull Attachment updateAttachmentData(@NonNull Attachment attachment,
                                                   @NonNull MediaStream mediaStream)
       throws MmsException
@@ -497,6 +528,7 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, values, PART_ID_WHERE, ((DatabaseAttachment)attachment).getAttachmentId().toStrings());
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
+    ((DatabaseAttachment) attachment).setUploaded(true);
   }
 
   public void setTransferState(long messageId, @NonNull Attachment attachment, int transferState) {
@@ -648,7 +680,7 @@ public class AttachmentDatabase extends Database {
         JSONArray                array  = new JSONArray(cursor.getString(cursor.getColumnIndexOrThrow(ATTACHMENT_JSON_ALIAS)));
 
         for (int i=0;i<array.length();i++) {
-          JsonUtils.SaneJSONObject object = new JsonUtils.SaneJSONObject(array.getJSONObject(i));
+          JsonUtil.SaneJSONObject object = new JsonUtil.SaneJSONObject(array.getJSONObject(i));
 
           if (!object.isNull(ROW_ID)) {
             result.add(new DatabaseAttachment(new AttachmentId(object.getLong(ROW_ID), object.getLong(UNIQUE_ID)),
@@ -766,7 +798,7 @@ public class AttachmentDatabase extends Database {
     if (thumbnailUri != null) {
       try (InputStream attachmentStream = PartAuthority.getAttachmentStream(context, thumbnailUri)) {
         Pair<Integer, Integer> dimens;
-        if (attachment.getContentType().equals(MediaUtil.IMAGE_GIF)) {
+        if (attachment.getContentType().equals(MediaTypes.IMAGE_GIF)) {
           dimens = new Pair<>(attachment.getWidth(), attachment.getHeight());
         } else {
           dimens = BitmapUtil.getDimensions(attachmentStream);

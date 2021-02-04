@@ -5,9 +5,9 @@ import androidx.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 /**
  * Represents the information required to find the {@link MessageRecord} pointed to by a quote.
@@ -50,7 +50,7 @@ public class QuoteId {
   public static @Nullable QuoteId deserialize(@NonNull String serialized) {
     try {
       JSONObject json = new JSONObject(serialized);
-      return new QuoteId(json.getLong(ID), Address.fromSerialized(json.getString(AUTHOR)));
+      return new QuoteId(json.getLong(ID), Address.Companion.fromSerialized(json.getString(AUTHOR)));
     } catch (JSONException e) {
       Log.e(TAG, "Failed to deserialize from json", e);
       return null;

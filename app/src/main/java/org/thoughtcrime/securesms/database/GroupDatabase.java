@@ -6,7 +6,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +15,14 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.Util;
+
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol;
@@ -119,19 +122,20 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     return new Reader(cursor);
   }
 
-  public String getOrCreateGroupForMembers(List<Address> members, boolean mms, List<Address> admins) {
+  // This function always creates a mms group
+  public String getOrCreateGroupForMembers(List<Address> members, List<Address> admins) {
     Collections.sort(members);
     Collections.sort(admins);
 
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
                                                                MEMBERS + " = ? AND " + MMS + " = ?",
-                                                               new String[] {Address.toSerializedList(members, ','), mms ? "1" : "0"},
+                                                               new String[] {Address.Companion.toSerializedList(members, ','), "1"},
                                                                null, null, null);
     try {
       if (cursor != null && cursor.moveToNext()) {
         return cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
       } else {
-        String groupId = GroupUtil.getEncodedId(allocateGroupId(), mms);
+        String groupId = GroupUtil.getEncodedMMSGroupID(allocateGroupId());
         create(groupId, null, members, null, null, admins);
         return groupId;
       }
@@ -151,10 +155,10 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     List<Recipient> recipients  = new LinkedList<>();
 
     for (Address member : members) {
-      if (!includeSelf && Util.isOwnNumber(context, member))
+      if (!includeSelf && Util.isOwnNumber(context, member.serialize()))
         continue;
 
-      if (member.isPhone()) {
+      if (member.isContact()) {
         recipients.add(Recipient.from(context, member, false));
       }
     }
@@ -164,12 +168,12 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
 
   public boolean isClosedGroupMember(String hexEncodedPublicKey) {
     try {
-      Address address = Address.fromSerialized(hexEncodedPublicKey);
+      Address address = Address.Companion.fromSerialized(hexEncodedPublicKey);
       Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups();
 
       GroupRecord record;
       while ((record = reader.getNext()) != null) {
-        if (record.isClosedGroup() && record.members.contains(address)) {
+        if (record.isClosedGroup() && record.getMembers().contains(address)) {
           return true;
         }
       }
@@ -188,7 +192,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     ContentValues contentValues = new ContentValues();
     contentValues.put(GROUP_ID, groupId);
     contentValues.put(TITLE, title);
-    contentValues.put(MEMBERS, Address.toSerializedList(members, ','));
+    contentValues.put(MEMBERS, Address.Companion.toSerializedList(members, ','));
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -204,12 +208,12 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 
     if (admins != null) {
-      contentValues.put(ADMINS, Address.toSerializedList(admins, ','));
+      contentValues.put(ADMINS, Address.Companion.toSerializedList(admins, ','));
     }
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+    Recipient.applyCached(Address.Companion.fromSerialized(groupId), recipient -> {
       recipient.setName(title);
       recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
       recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
@@ -222,7 +226,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     int result = databaseHelper.getWritableDatabase().delete(TABLE_NAME, GROUP_ID + " = ?", new String[]{groupId});
 
     if (result > 0) {
-      Recipient.removeCached(Address.fromSerialized(groupId));
+      Recipient.removeCached(Address.Companion.fromSerialized(groupId));
       notifyConversationListListeners();
       return true;
     } else {
@@ -246,7 +250,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+    Recipient.applyCached(Address.Companion.fromSerialized(groupId), recipient -> {
       recipient.setName(title);
       recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
     });
@@ -261,7 +265,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupID});
 
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupID), false);
+    Recipient recipient = Recipient.from(context, Address.Companion.fromSerialized(groupID), false);
     recipient.setName(newValue);
   }
 
@@ -284,20 +288,20 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupID});
 
-    Recipient.applyCached(Address.fromSerialized(groupID), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
+    Recipient.applyCached(Address.Companion.fromSerialized(groupID), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
   }
 
   public void updateMembers(String groupId, List<Address> members) {
     Collections.sort(members);
 
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Address.toSerializedList(members, ','));
+    contents.put(MEMBERS, Address.Companion.toSerializedList(members, ','));
     contents.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+    Recipient.applyCached(Address.Companion.fromSerialized(groupId), recipient -> {
       recipient.setParticipants(Stream.of(members).map(a -> Recipient.from(context, a, false)).toList());
     });
   }
@@ -306,7 +310,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     Collections.sort(admins);
 
     ContentValues contents = new ContentValues();
-    contents.put(ADMINS, Address.toSerializedList(admins, ','));
+    contents.put(ADMINS, Address.Companion.toSerializedList(admins, ','));
     contents.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?", new String[] {groupId});
@@ -317,12 +321,12 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     currentMembers.remove(source);
 
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Address.toSerializedList(currentMembers, ','));
+    contents.put(MEMBERS, Address.Companion.toSerializedList(currentMembers, ','));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
+    Recipient.applyCached(Address.Companion.fromSerialized(groupId), recipient -> {
       List<Recipient> current = recipient.getParticipants();
       Recipient       removal = Recipient.from(context, source, false);
 
@@ -342,7 +346,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
 
       if (cursor != null && cursor.moveToFirst()) {
         String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
-        return Address.fromSerializedList(serializedMembers, ',');
+        return Address.Companion.fromSerializedList(serializedMembers, ',');
       }
 
       return new LinkedList<>();
@@ -412,7 +416,8 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_DIGEST)),
                              cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1,
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_URL)),
-                             cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)));
+                              cursor.getString(cursor.getColumnIndexOrThrow(ADMINS)),
+                              cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)));
     }
 
     @Override
@@ -420,107 +425,5 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
       if (this.cursor != null)
         this.cursor.close();
     }
-  }
-
-  public static class GroupRecord {
-
-    private final String        id;
-    private final String        title;
-    private final List<Address> members;
-    private final byte[]        avatar;
-    private final long          avatarId;
-    private final byte[]        avatarKey;
-    private final byte[]        avatarDigest;
-    private final String        avatarContentType;
-    private final String        relay;
-    private final boolean       active;
-    private final boolean       mms;
-    private final String        url;
-    private final List<Address> admins;
-
-    public GroupRecord(String id, String title, String members, byte[] avatar,
-                       long avatarId, byte[] avatarKey, String avatarContentType,
-                       String relay, boolean active, byte[] avatarDigest, boolean mms, String url, String admins)
-    {
-      this.id                = id;
-      this.title             = title;
-      this.avatar            = avatar;
-      this.avatarId          = avatarId;
-      this.avatarKey         = avatarKey;
-      this.avatarDigest      = avatarDigest;
-      this.avatarContentType = avatarContentType;
-      this.relay             = relay;
-      this.active            = active;
-      this.mms               = mms;
-      this.url               = url;
-
-      if (!TextUtils.isEmpty(members)) this.members = Address.fromSerializedList(members, ',');
-      else                             this.members = new LinkedList<>();
-
-      if (!TextUtils.isEmpty(admins)) this.admins = Address.fromSerializedList(admins, ',');
-      else                            this.admins = new LinkedList<>();
-    }
-
-    public byte[] getId() {
-      try {
-        return GroupUtil.getDecodedId(id);
-      } catch (IOException ioe) {
-        throw new AssertionError(ioe);
-      }
-    }
-
-    public String getEncodedId() {
-      return id;
-    }
-
-    public String getTitle() {
-      return title;
-    }
-
-    public List<Address> getMembers() {
-      return members;
-    }
-
-    public byte[] getAvatar() {
-      return avatar;
-    }
-
-    public long getAvatarId() {
-      return avatarId;
-    }
-
-    public byte[] getAvatarKey() {
-      return avatarKey;
-    }
-
-    public byte[] getAvatarDigest() {
-      return avatarDigest;
-    }
-
-    public String getAvatarContentType() {
-      return avatarContentType;
-    }
-
-    public String getRelay() {
-      return relay;
-    }
-
-    public boolean isActive() {
-      return active;
-    }
-
-    public boolean isMms() {
-      return mms;
-    }
-
-    public boolean isOpenGroup() { return Address.fromSerialized(id).isOpenGroup(); }
-
-    public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
-
-    public boolean isClosedGroup() { return Address.fromSerialized(id).isClosedGroup(); }
-
-    public String getUrl() { return url; }
-
-    public List<Address> getAdmins() { return admins; }
   }
 }

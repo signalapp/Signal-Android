@@ -31,7 +31,7 @@ import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.ByteUtil;
-import org.session.libsignal.libsignal.util.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.util.Pair;
 
 import java.io.IOException;

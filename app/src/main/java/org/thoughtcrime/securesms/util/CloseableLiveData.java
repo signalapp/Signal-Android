@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.io.Closeable;
 
+import org.session.libsession.utilities.Util;
+
 /**
  * Implementation of {@link androidx.lifecycle.LiveData} that will handle closing the contained
  * {@link Closeable} when the value changes.

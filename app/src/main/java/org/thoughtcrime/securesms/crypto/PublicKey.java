@@ -17,13 +17,13 @@
  */
 package org.thoughtcrime.securesms.crypto;
 
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Hex;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.session.libsession.utilities.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

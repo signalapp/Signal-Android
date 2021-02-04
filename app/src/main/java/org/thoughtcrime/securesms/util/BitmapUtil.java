@@ -18,9 +18,12 @@ import android.util.Pair;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsession.utilities.MediaTypes;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+
+import org.session.libsession.utilities.Util;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -201,9 +204,9 @@ public class BitmapUtil {
     if (contentType == null) return CompressFormat.JPEG;
 
     switch (contentType) {
-      case MediaUtil.IMAGE_JPEG: return CompressFormat.JPEG;
-      case MediaUtil.IMAGE_PNG:  return CompressFormat.PNG;
-      case MediaUtil.IMAGE_WEBP: return CompressFormat.WEBP;
+      case MediaTypes.IMAGE_JPEG: return CompressFormat.JPEG;
+      case MediaTypes.IMAGE_PNG:  return CompressFormat.PNG;
+      case MediaTypes.IMAGE_WEBP: return CompressFormat.WEBP;
       default:                   return CompressFormat.JPEG;
     }
   }

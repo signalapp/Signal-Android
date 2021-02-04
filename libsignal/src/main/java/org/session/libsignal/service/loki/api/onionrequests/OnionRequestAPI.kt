@@ -6,9 +6,9 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
-import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.*
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.utilities.*
@@ -16,6 +16,7 @@ import org.session.libsignal.service.loki.api.utilities.EncryptionResult
 import org.session.libsignal.service.loki.api.utilities.getBodyForOnionRequest
 import org.session.libsignal.service.loki.api.utilities.getHeadersForOnionRequest
 import org.session.libsignal.service.loki.utilities.*
+import org.session.libsignal.utilities.*
 
 private typealias Path = List<Snode>
 
@@ -44,11 +45,11 @@ public object OnionRequestAPI {
     /**
      * The number of times a path can fail before it's replaced.
      */
-    private val pathFailureThreshold = 2
+    private val pathFailureThreshold = 1
     /**
      * The number of times a snode can fail before it's replaced.
      */
-    private val snodeFailureThreshold = 2
+    private val snodeFailureThreshold = 1
     /**
      * The number of paths to maintain.
      */
@@ -82,12 +83,12 @@ public object OnionRequestAPI {
      */
     private fun testSnode(snode: Snode): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
-        Thread { // No need to block the shared context for this
+        ThreadUtils.queue { // No need to block the shared context for this
             val url = "${snode.address}:${snode.port}/get_stats/v1"
             try {
                 val json = HTTP.execute(HTTP.Verb.GET, url)
                 val version = json["version"] as? String
-                if (version == null) { deferred.reject(Exception("Missing snode version.")); return@Thread }
+                if (version == null) { deferred.reject(Exception("Missing snode version.")); return@queue }
                 if (version >= "2.0.7") {
                     deferred.resolve(Unit)
                 } else {
@@ -98,7 +99,7 @@ public object OnionRequestAPI {
             } catch (exception: Exception) {
                 deferred.reject(exception)
             }
-        }.start()
+        }
         return deferred.promise
     }
 
@@ -293,10 +294,10 @@ public object OnionRequestAPI {
      */
     private fun sendOnionRequest(destination: Destination, payload: Map<*, *>, isJSONRequired: Boolean = true): Promise<Map<*, *>, Exception> {
         val deferred = deferred<Map<*, *>, Exception>()
-        lateinit var guardSnode: Snode
+        var guardSnode: Snode? = null
         buildOnionForDestination(payload, destination).success { result ->
             guardSnode = result.guardSnode
-            val url = "${guardSnode.address}:${guardSnode.port}/onion_req/v2"
+            val url = "${guardSnode!!.address}:${guardSnode!!.port}/onion_req/v2"
             val finalEncryptionResult = result.finalEncryptionResult
             val onion = finalEncryptionResult.ciphertext
             if (destination is Destination.Server && onion.count().toDouble() > 0.75 * FileServerAPI.maxFileSize.toDouble()) {
@@ -312,10 +313,10 @@ public object OnionRequestAPI {
                 return@success deferred.reject(exception)
             }
             val destinationSymmetricKey = result.destinationSymmetricKey
-            Thread {
+            ThreadUtils.queue {
                 try {
                     val json = HTTP.execute(HTTP.Verb.POST, url, body)
-                    val base64EncodedIVAndCiphertext = json["result"] as? String ?: return@Thread deferred.reject(Exception("Invalid JSON"))
+                    val base64EncodedIVAndCiphertext = json["result"] as? String ?: return@queue deferred.reject(Exception("Invalid JSON"))
                     val ivAndCiphertext = Base64.decode(base64EncodedIVAndCiphertext)
                     try {
                         val plaintext = DecryptionUtilities.decryptUsingAESGCM(ivAndCiphertext, destinationSymmetricKey)
@@ -325,7 +326,7 @@ public object OnionRequestAPI {
                             if (statusCode == 406) {
                                 @Suppress("NAME_SHADOWING") val body = mapOf( "result" to "Your clock is out of sync with the service node network." )
                                 val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
-                                return@Thread deferred.reject(exception)
+                                return@queue deferred.reject(exception)
                             } else if (json["body"] != null) {
                                 @Suppress("NAME_SHADOWING") val body: Map<*, *>
                                 if (json["body"] is Map<*, *>) {
@@ -340,13 +341,13 @@ public object OnionRequestAPI {
                                 }
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, body)
-                                    return@Thread deferred.reject(exception)
+                                    return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(body)
                             } else {
                                 if (statusCode != 200) {
                                     val exception = HTTPRequestFailedAtDestinationException(statusCode, json)
-                                    return@Thread deferred.reject(exception)
+                                    return@queue deferred.reject(exception)
                                 }
                                 deferred.resolve(json)
                             }
@@ -359,20 +360,20 @@ public object OnionRequestAPI {
                 } catch (exception: Exception) {
                     deferred.reject(exception)
                 }
-            }.start()
+            }
         }.fail { exception ->
             deferred.reject(exception)
         }
         val promise = deferred.promise
         promise.fail { exception ->
-            val path = paths.firstOrNull { it.contains(guardSnode) }
+            val path = if (guardSnode != null) paths.firstOrNull { it.contains(guardSnode!!) } else null
             if (exception is HTTP.HTTPRequestFailedException) {
                 fun handleUnspecificError() {
                     if (path == null) { return }
                     var pathFailureCount = OnionRequestAPI.pathFailureCount[path] ?: 0
                     pathFailureCount += 1
                     if (pathFailureCount >= pathFailureThreshold) {
-                        dropGuardSnode(guardSnode)
+                        dropGuardSnode(guardSnode!!)
                         path.forEach { snode ->
                             @Suppress("ThrowableNotThrown")
                             SnodeAPI.shared.handleSnodeError(exception.statusCode, exception.json, snode, null) // Intentionally don't throw

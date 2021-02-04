@@ -12,9 +12,9 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.contact_selection_list_fragment.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 
 class ContactSelectionListFragment : Fragment(), LoaderManager.LoaderCallbacks<List<ContactSelectionListItem>>, ContactClickListener {
     private var cursorFilter: String? = null

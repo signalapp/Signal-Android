@@ -22,11 +22,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.jobs.SmsReceiveJob;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 public class SmsListener extends BroadcastReceiver {
 

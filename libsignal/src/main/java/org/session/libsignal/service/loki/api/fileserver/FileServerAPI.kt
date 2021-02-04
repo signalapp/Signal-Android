@@ -1,14 +1,11 @@
 package org.session.libsignal.service.loki.api.fileserver
 
 import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import okhttp3.Request
-import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.libsignal.util.Hex
-import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.JsonUtil
-import org.session.libsignal.service.loki.api.SnodeAPI
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.LokiDotNetAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
@@ -16,7 +13,6 @@ import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLin
 import org.session.libsignal.service.loki.utilities.*
 import java.net.URL
 import java.util.concurrent.ConcurrentHashMap
-import kotlin.collections.set
 
 class FileServerAPI(public val server: String, userPublicKey: String, userPrivateKey: ByteArray, private val database: LokiAPIDatabaseProtocol) : LokiDotNetAPI(userPublicKey, userPrivateKey, database) {
 

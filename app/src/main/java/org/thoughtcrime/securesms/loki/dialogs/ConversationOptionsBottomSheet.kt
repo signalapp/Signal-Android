@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.fragment_closed_group_edit_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_conversation_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_device_list_bottom_sheet.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 
 public class ConversationOptionsBottomSheet : BottomSheetDialogFragment() {
 

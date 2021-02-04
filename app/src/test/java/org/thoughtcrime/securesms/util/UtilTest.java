@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import org.session.libsession.utilities.Util;
+
 import static org.junit.Assert.assertEquals;
 
 public class UtilTest {

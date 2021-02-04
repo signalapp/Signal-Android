@@ -129,7 +129,7 @@
             android:background="?android:dividerHorizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rvUserList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/view_user"/>
@@ -147,7 +147,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/loader"
+        android:id="@+id/loaderContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#A4000000"

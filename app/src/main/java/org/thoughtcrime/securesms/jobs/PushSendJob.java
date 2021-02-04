@@ -8,30 +8,31 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.utilities.MediaTypes;
+import org.session.libsignal.utilities.Base64;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.Hex;
+import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -71,13 +72,13 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   protected final void onSend() throws Exception {
-    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RotateSignedPreKeyJob());
-
-      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
-    }
+//    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
+//      ApplicationContext.getInstance(context)
+//                        .getJobManager()
+//                        .add(new RotateSignedPreKeyJob());
+//
+//      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
+//    }
 
     onPushSend();
   }
@@ -86,11 +87,6 @@ public abstract class PushSendJob extends SendJob {
   public void onRetry() {
     super.onRetry();
     Log.i(TAG, "onRetry()");
-
-    if (getRunAttempt() > 1) {
-      Log.i(TAG, "Scheduling service outage detection job.");
-      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
-    }
   }
 
   protected Optional<byte[]> getProfileKey(@NonNull Recipient recipient) {
@@ -103,7 +99,7 @@ public abstract class PushSendJob extends SendJob {
 
   protected SignalServiceAddress getPushAddress(Address address) {
     String relay = null;
-    return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
+    return new SignalServiceAddress(address.toString(), Optional.fromNullable(relay));
   }
 
   protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
@@ -196,7 +192,7 @@ public abstract class PushSendJob extends SendJob {
     for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
       BitmapUtil.ScaleResult  thumbnailData = null;
       SignalServiceAttachment thumbnail     = null;
-      String                  thumbnailType = MediaUtil.IMAGE_JPEG;
+      String                  thumbnailType = MediaTypes.IMAGE_JPEG;
 
       try {
         if (MediaUtil.isImageType(attachment.getContentType()) && attachment.getDataUri() != null) {

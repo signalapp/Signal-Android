@@ -7,18 +7,21 @@ import android.net.Uri
 import androidx.annotation.WorkerThread
 import net.sqlcipher.database.SQLiteDatabase
 import org.greenrobot.eventbus.EventBus
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.BackupProtos.*
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.*
-import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.util.BackupUtil
-import org.thoughtcrime.securesms.util.Conversions
-import org.thoughtcrime.securesms.util.Util
+
+import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.Conversions
+import org.session.libsession.utilities.Util
 import org.session.libsignal.libsignal.kdf.HKDFv3
 import org.session.libsignal.libsignal.util.ByteUtil
+
 import java.io.*
 import java.security.InvalidAlgorithmParameterException
 import java.security.InvalidKeyException

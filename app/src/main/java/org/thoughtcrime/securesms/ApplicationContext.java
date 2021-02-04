@@ -33,32 +33,38 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
+import org.session.libsession.messaging.MessagingConfiguration;
+import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+
+import org.session.libsession.utilities.dynamiclanguage.LocaleParser;
 import org.signal.aesgcmprovider.AesGcmProvider;
-import org.thoughtcrime.securesms.components.TypingStatusRepository;
+import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
+import org.thoughtcrime.securesms.sskenvironment.ProfileManager;
+import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
+import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
-import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
-import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
@@ -66,42 +72,31 @@ import org.thoughtcrime.securesms.loki.api.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.api.ClosedGroupPoller;
 import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionRequestMessageSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
-import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
-import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.thoughtcrime.securesms.util.dynamiclanguage.LocaleParseHelper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
-import org.session.libsignal.libsignal.SignalProtocolAddress;
-import org.session.libsignal.libsignal.logging.SignalProtocolLoggerProvider;
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
-import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.util.StreamDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.loki.api.Poller;
@@ -117,7 +112,6 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementationDelegate;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
@@ -157,6 +151,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private TypingStatusRepository  typingStatusRepository;
   private TypingStatusSender      typingStatusSender;
   private JobManager              jobManager;
+  private ReadReceiptManager      readReceiptManager;
+  private ProfileManager          profileManager;
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
@@ -198,6 +194,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase, this);
+    MessagingConfiguration.Companion.configure(this,
+                                                DatabaseFactory.getStorage(this),
+                                                sskDatabase,
+                                                DatabaseFactory.getAttachmentProvider(this),
+                                                new SessionProtocolImpl(this));
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
@@ -229,19 +230,19 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
-    initializeSignedPreKeyCheck();
+    initializeReadReceiptManager();
+    initializeProfileManager();
     initializePeriodicTasks();
     initializeWebRtc();
     initializePendingMessages();
-    initializeUnidentifiedDeliveryAbilityRefresh();
     initializeBlobProvider();
+    SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
   }
 
   @Override
   public void onStart(@NonNull LifecycleOwner owner) {
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
-    executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
     // Loki
     if (poller != null) { poller.setCaughtUp(false); }
@@ -275,6 +276,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
   }
 
+  public void initializeLocaleParser() {
+    LocaleParser.Companion.configure(new LocaleParseHelper());
+  }
+
   public JobManager getJobManager() {
     return jobManager;
   }
@@ -290,6 +295,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public TypingStatusSender getTypingStatusSender() {
     return typingStatusSender;
   }
+
+  public ReadReceiptManager getReadReceiptManager() { return readReceiptManager; }
+
+  public ProfileManager getProfileManager() { return profileManager; }
 
   public boolean isAppVisible() {
     return isAppVisible;
@@ -338,9 +347,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeLogging() {
     persistentLogger = new PersistentLogger(this);
-    org.thoughtcrime.securesms.logging.Log.initialize(new AndroidLogger(), persistentLogger);
-
-    SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
+    Log.initialize(new AndroidLogger(), persistentLogger);
   }
 
   private void initializeCrashHandling() {
@@ -365,14 +372,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeDependencyInjection() {
     communicationModule = new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this));
-    this.objectGraph = ObjectGraph.create(communicationModule, new AxolotlStorageModule(this));
+    this.objectGraph = ObjectGraph.create(communicationModule);
   }
 
-  private void initializeSignedPreKeyCheck() {
-    if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
-      jobManager.add(new CreateSignedPreKeyJob(this));
-    }
-  }
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
@@ -382,14 +384,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.typingStatusRepository = new TypingStatusRepository();
   }
 
+  private void initializeReadReceiptManager() {
+    this.readReceiptManager = new ReadReceiptManager();
+  }
+
+  private void initializeProfileManager() {
+    this.profileManager = new ProfileManager();
+  }
+
   private void initializeTypingStatusSender() {
     this.typingStatusSender = new TypingStatusSender(this);
   }
 
   private void initializePeriodicTasks() {
-    RotateSignedPreKeyListener.schedule(this);
     LocalBackupListener.schedule(this);
-    RotateSenderCertificateListener.schedule(this);
     BackgroundPollWorker.schedulePeriodic(this); // Loki
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
@@ -432,23 +440,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
   }
 
-  private void executePendingContactSync() {
-    if (TextSecurePreferences.needsFullContactSync(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(this, true));
-    }
-  }
-
   private void initializePendingMessages() {
     if (TextSecurePreferences.getNeedsMessagePull(this)) {
       Log.i(TAG, "Scheduling a message fetch.");
       ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
       TextSecurePreferences.setNeedsMessagePull(this, false);
-    }
-  }
-
-  private void initializeUnidentifiedDeliveryAbilityRefresh() {
-    if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
   }
 
@@ -460,6 +456,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   @Override
   protected void attachBaseContext(Context base) {
+    initializeLocaleParser();
     super.attachBaseContext(DynamicLanguageContextWrapper.updateContext(base, TextSecurePreferences.getLanguage(base)));
   }
 
@@ -553,7 +550,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
       byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
       try {
-        File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
+        File profilePicture = AvatarHelper.getAvatarFile(this, Address.Companion.fromSerialized(userPublicKey));
         StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
         FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
           TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
@@ -580,7 +577,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String url = TextSecurePreferences.getProfilePictureURL(this);
       String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
       if (userMasterDevice != null) {
-        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.fromSerialized(userMasterDevice), false).resolve();
+        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.Companion.fromSerialized(userMasterDevice), false).resolve();
         profileKey = userMasterDeviceAsRecipient.getProfileKey();
         url = userMasterDeviceAsRecipient.getProfileAvatar();
       }
@@ -593,14 +590,19 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     });
   }
 
-  public void clearData() {
+  public void clearAllData(boolean isMigratingToV2KeyPair) {
     String token = TextSecurePreferences.getFCMToken(this);
     if (token != null && !token.isEmpty()) {
       LokiPushNotificationManager.unregister(token, this);
     }
-    boolean wasUnlinked = TextSecurePreferences.getWasUnlinked(this);
+    String displayName = TextSecurePreferences.getProfileName(this);
+    boolean isUsingFCM = TextSecurePreferences.isUsingFCM(this);
     TextSecurePreferences.clearAll(this);
-    TextSecurePreferences.setWasUnlinked(this, wasUnlinked);
+    if (isMigratingToV2KeyPair) {
+      TextSecurePreferences.setIsMigratingKeyPair(this, true);
+      TextSecurePreferences.setIsUsingFCM(this, isUsingFCM);
+      TextSecurePreferences.setProfileName(this, displayName);
+    }
     MasterSecretUtil.clear(this);
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
@@ -614,39 +616,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Runtime.getRuntime().exit(0);
   }
 
-  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
-    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
-    if (timestamp != null) {
-      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
-      return new Date().getTime() > expiration;
-    } else {
-      return false;
-    }
-  }
+//  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
+//    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
+//    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
+//    if (timestamp != null) {
+//      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
+//      return new Date().getTime() > expiration;
+//    } else {
+//      return false;
+//    }
+//  }
 
   @Override
   public void sendSessionRequestIfNeeded(@NotNull String publicKey) {
-    // It's never necessary to establish a session with self
-    String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (publicKey.equals(userPublicKey)) { return; }
-    // Check that we don't already have a session
-    SignalProtocolAddress address = new SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID);
-    boolean hasSession = new TextSecureSessionStore(this).containsSession(address);
-    if (hasSession) { return; }
-    // Check that we didn't already send a session request
-    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-    boolean hasSentSessionRequest = (apiDB.getSessionRequestSentTimestamp(publicKey) != null);
-    boolean hasSentSessionRequestExpired = hasSentSessionRequestExpired(publicKey);
-    if (hasSentSessionRequestExpired) {
-      apiDB.setSessionRequestSentTimestamp(publicKey, 0);
-    }
-    if (hasSentSessionRequest && !hasSentSessionRequestExpired) { return; }
-    // Send the session request
-    long timestamp = new Date().getTime();
-    apiDB.setSessionRequestSentTimestamp(publicKey, timestamp);
-    SessionRequestMessageSendJob job = new SessionRequestMessageSendJob(publicKey, timestamp);
-    jobManager.add(job);
+
   }
 
   @Override

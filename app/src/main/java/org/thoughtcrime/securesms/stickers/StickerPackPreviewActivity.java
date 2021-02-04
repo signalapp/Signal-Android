@@ -1,36 +1,33 @@
 package org.thoughtcrime.securesms.stickers;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.session.libsignal.libsignal.util.Pair;
-import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsession.utilities.concurrent.SimpleTask;
 
 import network.loki.messenger.R;
 
@@ -41,8 +38,6 @@ import network.loki.messenger.R;
 public final class StickerPackPreviewActivity extends PassphraseRequiredActionBarActivity {
 
   private static final String TAG = Log.tag(StickerPackPreviewActivity.class);
-
-  private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private StickerPackPreviewViewModel viewModel;
 
@@ -66,12 +61,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
   }
 
   @Override
-  protected void onPreCreate() {
-    super.onPreCreate();
-    dynamicTheme.onCreate(this);
-  }
-
-  @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.sticker_preview_activity);
 
@@ -89,12 +78,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     initToolbar();
     initView();
     initViewModel(packId, packKey);
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicTheme.onResume(this);
   }
 
   @Override
@@ -129,11 +112,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     getSupportActionBar().setTitle(R.string.StickerPackPreviewActivity_stickers);
 
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
-    if (!ThemeUtil.isDarkTheme(this) && Build.VERSION.SDK_INT >= 23) {
-      setStatusBarColor(ThemeUtil.getThemedColor(this, R.attr.sticker_preview_status_bar_color));
-      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
   }
 
   private void initViewModel(@NonNull String packId, @NonNull String packKey) {

@@ -2,14 +2,15 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.GroupUtil;
+
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
@@ -57,9 +58,10 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_SOURCE, source)
-                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
+                             .putString(KEY_GROUP_ID, GroupUtil.getEncodedClosedGroupID(groupId))
                              .build();
   }
 
@@ -80,7 +82,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
                                                                .build();
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromExternal(context, source), false)),
                               message);
   }
 
@@ -98,13 +100,9 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
 
     @Override
     public @NonNull RequestGroupInfoJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      try {
-        return new RequestGroupInfoJob(parameters,
-                                       data.getString(KEY_SOURCE),
-                                       GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
+      return new RequestGroupInfoJob(parameters,
+                                     data.getString(KEY_SOURCE),
+                                     GroupUtil.getDecodedGroupIDAsData(data.getString(KEY_GROUP_ID)));
     }
   }
 }

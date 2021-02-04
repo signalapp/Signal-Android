@@ -6,10 +6,9 @@
 package org.session.libsignal.libsignal;
 
 
-import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.util.Hex;
+import org.session.libsignal.utilities.Hex;
 
 /**
  * A class for representing an identity key.

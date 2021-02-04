@@ -12,9 +12,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.util.CloseableLiveData;
-import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.Debouncer;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.Closeable;
 import java.util.List;
@@ -37,7 +37,6 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     debouncer        = new Debouncer(500);
     searchRepository = new SearchRepository(context,
                                             DatabaseFactory.getSearchDatabase(context),
-                                            DatabaseFactory.getContactsDatabase(context),
                                             DatabaseFactory.getThreadDatabase(context),
                                             ContactAccessor.getInstance(),
                                             SignalExecutors.SERIAL);

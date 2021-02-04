@@ -3,14 +3,14 @@ package org.thoughtcrime.securesms.loki.activities
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.lifecycleScope
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
@@ -18,15 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
-import nl.komponents.kovenant.ui.failUi
-import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
-import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import java.lang.Exception
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -77,13 +74,13 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             try {
                 OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
             } catch (e: Exception) {
+                Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
                 withContext(Dispatchers.Main) {
                     hideLoader()
                     Toast.makeText(this@JoinPublicChatActivity, R.string.activity_join_public_chat_error, Toast.LENGTH_SHORT).show()
                 }
                 return@launch
             }
-            SyncMessagesProtocol.syncAllOpenGroups(this@JoinPublicChatActivity)
             withContext(Dispatchers.Main) { finish() }
         }
     }

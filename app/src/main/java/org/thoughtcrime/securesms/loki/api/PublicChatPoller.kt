@@ -2,22 +2,21 @@ package org.thoughtcrime.securesms.loki.api
 
 import android.content.Context
 import android.os.Handler
-import android.util.Log
-import androidx.annotation.WorkerThread
+import org.session.libsignal.utilities.logging.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
-import org.thoughtcrime.securesms.loki.utilities.successBackground
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
+import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceContent
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage
@@ -31,7 +30,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChatMessage
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 import java.util.*
-import java.util.concurrent.CompletableFuture
 
 class PublicChatPoller(private val context: Context, private val group: PublicChat) {
     private val handler by lazy { Handler() }
@@ -40,7 +38,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
     public var isCaughtUp = false
 
     // region Convenience
-    private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+    private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)!!
     private var displayNameUpdatees = setOf<String>()
 
     private val api: PublicChatAPI

@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.model;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 public class Sticker {
 

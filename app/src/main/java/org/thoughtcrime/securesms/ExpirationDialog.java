@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.session.libsession.utilities.ExpirationUtil;
 
 import cn.carbswang.android.numberpickerview.library.NumberPickerView;
 import network.loki.messenger.R;

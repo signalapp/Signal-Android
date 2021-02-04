@@ -5,7 +5,7 @@
         id="LintError"
         message="Unexpected failure during lint analysis of JobManager.java (this is a bug in lint or one of the libraries it depends on)&#xA;&#xA;Stack: `NullPointerException:ClsFileImpl.getMirror(ClsFileImpl.java:343)←ClsElementImpl.getMirror(ClsElementImpl.java:159)←ClsElementImpl.getText(ClsElementImpl.java:202)←InferenceSession.argConstraints(InferenceSession.java:1817)←InferenceSession.isFunctionalTypeMoreSpecific(InferenceSession.java:1748)←InferenceSession.isFunctionalTypeMoreSpecificOnExpression(InferenceSession.java:1729)←JavaMethodsConflictResolver.isFunctionalTypeMoreSpecific(JavaMethodsConflictResolver.java:779)←JavaMethodsConflictResolver.isTypeMoreSpecific(JavaMethodsConflictResolver.java:673)`&#xA;&#xA;You can set environment variable `LINT_PRINT_STACKTRACE=true` to dump a full stacktrace to stdout.">
         <location
-            file="src/org/thoughtcrime/securesms/jobmanager/JobManager.java"/>
+            file="src/main/java/org/thoughtcrime/securesms/jobmanager/JobManager.java"/>
     </issue>
 
     <issue
@@ -14,7 +14,7 @@
         errorLine1="    List&lt;SubscriptionInfo> list = subscriptionManager.getActiveSubscriptionInfoList();"
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
+            file="src/main/java/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
             line="101"
             column="35"/>
     </issue>
@@ -25,7 +25,7 @@
         errorLine1="                drawables.getColor(1, 0xff000000);"
         errorLine2="                                   ~">
         <location
-            file="src/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
+            file="src/main/java/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
             line="187"
             column="36"/>
     </issue>

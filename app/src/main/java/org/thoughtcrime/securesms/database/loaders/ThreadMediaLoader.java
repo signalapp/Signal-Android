@@ -5,9 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
 
 public class ThreadMediaLoader extends AbstractCursorLoader {

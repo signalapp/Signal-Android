@@ -8,9 +8,12 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.loki.api.PublicChatManager;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.session.libsession.utilities.Debouncer;
 import org.session.libsignal.service.loki.api.Poller;
+import org.session.libsignal.utilities.ThreadUtils;
+
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 
 import java.util.concurrent.TimeUnit;
 
@@ -123,7 +126,7 @@ public class OptimizedMessageNotifier implements MessageNotifier {
 
   private void performOnBackgroundThreadIfNeeded(Runnable r) {
     if (Looper.myLooper() == Looper.getMainLooper()) {
-      new Thread(r).start();
+      ThreadUtils.queue(r);
     } else {
       r.run();
     }

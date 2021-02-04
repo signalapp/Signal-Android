@@ -12,12 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.UiThread;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.thoughtcrime.securesms.util.ThemeUtil;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.utilities.ThemeUtil;
 
 import java.util.List;
 

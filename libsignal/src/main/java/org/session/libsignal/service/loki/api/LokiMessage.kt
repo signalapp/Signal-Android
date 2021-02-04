@@ -2,10 +2,11 @@ package org.session.libsignal.service.loki.api
 
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import org.session.libsignal.libsignal.logging.Log
-import org.session.libsignal.service.internal.util.Base64
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 
 internal data class LokiMessage(
@@ -60,7 +61,7 @@ internal data class LokiMessage(
     internal fun calculatePoW(): Promise<LokiMessage, Exception> {
         val deferred = deferred<LokiMessage, Exception>()
         // Run PoW in a background thread
-        Thread {
+        ThreadUtils.queue {
             val now = System.currentTimeMillis()
             val nonce = ProofOfWork.calculate(data, recipientPublicKey, now, ttl)
             if (nonce != null ) {
@@ -68,7 +69,7 @@ internal data class LokiMessage(
             } else {
                 deferred.reject(SnodeAPI.Error.ProofOfWorkCalculationFailed)
             }
-        }.start()
+        }
         return deferred.promise
     }
 

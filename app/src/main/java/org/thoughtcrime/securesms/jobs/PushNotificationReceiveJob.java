@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
+
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.IOException;
 
@@ -39,7 +40,8 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return Data.EMPTY;
   }
 

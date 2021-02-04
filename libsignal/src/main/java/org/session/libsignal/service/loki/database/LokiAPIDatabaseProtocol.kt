@@ -1,7 +1,9 @@
 package org.session.libsignal.service.loki.database
 
+import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
+import java.util.*
 
 interface LokiAPIDatabaseProtocol {
 
@@ -31,6 +33,11 @@ interface LokiAPIDatabaseProtocol {
     fun setOpenGroupPublicKey(server: String, newValue: String)
     fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
     fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
+    fun getLastSnodePoolRefreshDate(): Date?
+    fun setLastSnodePoolRefreshDate(newValue: Date)
+    fun getUserX25519KeyPair(): ECKeyPair
+    fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): List<ECKeyPair>
+    fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
 
     // region Deprecated
     fun getDeviceLinks(publicKey: String): Set<DeviceLink>

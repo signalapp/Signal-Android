@@ -29,8 +29,8 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.ExpirationUtil;
 
 import network.loki.messenger.R;
 

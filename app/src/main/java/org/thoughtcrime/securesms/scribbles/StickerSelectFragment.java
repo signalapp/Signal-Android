@@ -33,6 +33,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+
+
+
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -40,7 +43,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 public class StickerSelectFragment extends Fragment implements LoaderManager.LoaderCallbacks<String[]> {
 
   private RecyclerView             recyclerView;
-  private GlideRequests            glideRequests;
+  private GlideRequests glideRequests;
   private String                   assetDirectory;
   private StickerSelectionListener listener;
 

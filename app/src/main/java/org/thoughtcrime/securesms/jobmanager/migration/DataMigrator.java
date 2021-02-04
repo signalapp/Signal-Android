@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.jobmanager.migration;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -24,13 +24,13 @@ import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import android.view.Surface;
 import android.view.View;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.Util;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;

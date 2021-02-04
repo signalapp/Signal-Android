@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.util.LinkedList;
 import java.util.List;

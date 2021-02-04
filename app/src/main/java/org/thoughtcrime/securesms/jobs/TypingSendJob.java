@@ -4,21 +4,22 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage.Action;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
+
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.Collections;
 import java.util.List;
@@ -59,7 +60,8 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_THREAD_ID, threadId)
                              .putBoolean(KEY_TYPING, typing)
                              .build();
@@ -89,7 +91,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
 
     if (recipient.isGroupRecipient()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-      groupId    = Optional.of(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
+      groupId    = Optional.of(GroupUtil.getDecodedGroupIDAsData(recipient.getAddress().toGroupString()));
     }
 
     List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();

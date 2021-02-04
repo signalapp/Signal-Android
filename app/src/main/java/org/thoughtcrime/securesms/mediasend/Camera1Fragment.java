@@ -27,7 +27,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
@@ -36,11 +35,11 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.ByteArrayOutputStream;
 

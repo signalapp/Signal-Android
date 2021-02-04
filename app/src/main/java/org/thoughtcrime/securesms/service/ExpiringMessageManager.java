@@ -1,19 +1,31 @@
 package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
-import org.thoughtcrime.securesms.logging.Log;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.SSKEnvironment;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.messages.SignalServiceGroup;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
+import org.session.libsignal.utilities.logging.Log;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class ExpiringMessageManager {
+public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationManagerProtocol {
 
   private static final String TAG = ExpiringMessageManager.class.getSimpleName();
 
@@ -49,6 +61,60 @@ public class ExpiringMessageManager {
   public void checkSchedule() {
     synchronized (expiringMessageReferences) {
       expiringMessageReferences.notifyAll();
+    }
+  }
+
+  @Override
+  public void setExpirationTimer(@Nullable Long messageID, int duration, @NotNull String senderPublicKey, @NotNull SignalServiceProtos.Content content) {
+    try {
+      MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
+      Address              address      = Address.Companion.fromSerialized(senderPublicKey);
+      Recipient            recipient    = Recipient.from(context, address, false);
+      Optional<SignalServiceGroup> groupInfo = Optional.absent();
+      if (content.getDataMessage().hasGroup()) {
+        GroupContext groupContext = content.getDataMessage().getGroup();
+        groupInfo = Optional.of(new SignalServiceGroup(groupContext.getId().toByteArray(), SignalServiceGroup.GroupType.SIGNAL));
+      }
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(address, content.getDataMessage().getTimestamp(), -1,
+              duration * 1000L, true,
+              false,
+              Optional.absent(),
+              groupInfo,
+              Optional.absent(),
+              Optional.absent(),
+              Optional.absent(),
+              Optional.absent(),
+              Optional.absent());
+
+      database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+
+      DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, duration);
+
+      if (messageID != null) {
+        DatabaseFactory.getSmsDatabase(context).deleteMessage(messageID);
+      }
+    } catch (MmsException e) {
+      Log.e("Loki", "Failed to insert expiration update message.");
+    }
+  }
+
+  @Override
+  public void disableExpirationTimer(@Nullable Long messageID, @NotNull String senderPublicKey, @NotNull SignalServiceProtos.Content content) {
+    setExpirationTimer(messageID, 0, senderPublicKey, content);
+  }
+
+  @Override
+  public void startAnyExpiration(long messageID) {
+    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(messageID);
+    if (messageRecord != null) {
+      boolean mms = messageRecord.isMms();
+      Recipient recipient = messageRecord.getRecipient();
+      if (mms) {
+        mmsDatabase.markExpireStarted(messageID);
+      } else {
+        smsDatabase.markExpireStarted(messageID);
+      }
+      scheduleDeletion(messageID, mms, recipient.getExpireMessages());
     }
   }
 

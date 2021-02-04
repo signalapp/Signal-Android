@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
@@ -174,7 +174,7 @@ public final class KeyStoreHelper {
 
     public String serialize() {
       try {
-        return JsonUtils.toJson(this);
+        return JsonUtil.toJsonThrows(this);
       } catch (IOException e) {
         throw new AssertionError(e);
       }
@@ -182,7 +182,7 @@ public final class KeyStoreHelper {
 
     public static SealedData fromString(@NonNull String value) {
       try {
-        return JsonUtils.fromJson(value, SealedData.class);
+        return JsonUtil.fromJson(value, SealedData.class);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

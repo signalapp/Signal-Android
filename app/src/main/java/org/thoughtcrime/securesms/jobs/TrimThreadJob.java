@@ -18,11 +18,12 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsignal.utilities.logging.Log;
+
+import org.session.libsession.utilities.TextSecurePreferences;
 
 public class TrimThreadJob extends BaseJob {
 
@@ -44,7 +45,8 @@ public class TrimThreadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_THREAD_ID, threadId).build();
   }
 

@@ -9,7 +9,7 @@ import net.sqlcipher.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.util.List;
 

@@ -24,8 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.utilities.MediaTypes;
 
 public class ImageSlide extends Slide {
 
@@ -41,7 +41,7 @@ public class ImageSlide extends Slide {
   }
 
   public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaTypes.IMAGE_JPEG, size, width, height, true, null, caption, null, false, false));
   }
 
   @Override

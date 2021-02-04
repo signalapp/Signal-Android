@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;

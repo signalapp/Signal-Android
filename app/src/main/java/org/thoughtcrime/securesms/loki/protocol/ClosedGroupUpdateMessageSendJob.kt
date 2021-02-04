@@ -1,17 +1,15 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.jobs.Data
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl
-import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
-import org.thoughtcrime.securesms.util.Hex
-import org.session.libsignal.libsignal.SignalProtocolAddress
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
@@ -23,10 +21,10 @@ import java.util.concurrent.TimeUnit
 class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters, private val destination: String, private val kind: Kind) : BaseJob(parameters) {
 
     sealed class Kind {
-        class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
-        class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
-        class SenderKey(val groupPublicKey: ByteArray, val senderKey: ClosedGroupSenderKey) : Kind()
+        data class New(val groupPublicKey: ByteArray, val name: String, val groupPrivateKey: ByteArray, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        data class Info(val groupPublicKey: ByteArray, val name: String, val senderKeys: Collection<ClosedGroupSenderKey>, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
+        data class SenderKeyRequest(val groupPublicKey: ByteArray) : Kind()
+        data class SenderKey(val groupPublicKey: ByteArray, val senderKey: ClosedGroupSenderKey) : Kind()
     }
 
     companion object {
@@ -124,7 +122,8 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
         val recipient = recipient(context, destination)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         val ttl = TTLUtilities.getTTL(TTLUtilities.MessageType.ClosedGroupUpdate)
-        val useFallbackEncryption = SignalProtocolStoreImpl(context).containsSession(SignalProtocolAddress(destination, 1))
+//        val useFallbackEncryption = SignalProtocolStoreImpl(context).containsSession(SignalProtocolAddress(destination, 1))
+        val useFallbackEncryption = true
         try {
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,

@@ -9,6 +9,7 @@ package org.session.libsignal.service.api.crypto;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.InvalidMetadataVersionException;
 import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -39,7 +40,6 @@ import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
-import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
@@ -75,6 +75,7 @@ import org.session.libsignal.service.internal.push.PushTransportDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Content;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Envelope.Type;
@@ -82,8 +83,11 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMe
 import org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Verified;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
+import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
+import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
+import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupUtilities;
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
@@ -114,25 +118,31 @@ public class SignalServiceCipher {
   private final SessionResetProtocol             sessionResetProtocol;
   private final SharedSenderKeysDatabaseProtocol sskDatabase;
   private final SignalServiceAddress             localAddress;
+  private final SessionProtocol                  sessionProtocolImpl;
+  private final LokiAPIDatabaseProtocol          apiDB;
   private final CertificateValidator             certificateValidator;
 
   public SignalServiceCipher(SignalServiceAddress localAddress,
                              SignalProtocolStore signalProtocolStore,
                              SharedSenderKeysDatabaseProtocol sskDatabase,
                              SessionResetProtocol sessionResetProtocol,
+                             SessionProtocol sessionProtocolImpl,
+                             LokiAPIDatabaseProtocol apiDB,
                              CertificateValidator certificateValidator)
   {
     this.signalProtocolStore  = signalProtocolStore;
     this.sessionResetProtocol = sessionResetProtocol;
     this.sskDatabase          = sskDatabase;
     this.localAddress         = localAddress;
+    this.sessionProtocolImpl  = sessionProtocolImpl;
+    this.apiDB                = apiDB;
     this.certificateValidator = certificateValidator;
   }
 
   public OutgoingPushMessage encrypt(SignalProtocolAddress        destination,
                                      Optional<UnidentifiedAccess> unidentifiedAccess,
                                      byte[]                       unpaddedMessage)
-      throws UntrustedIdentityException, InvalidKeyException, IOException
+          throws UntrustedIdentityException, InvalidKeyException, IOException
   {
     if (unidentifiedAccess.isPresent() && sskDatabase.isSSKBasedClosedGroup(destination.getName())) {
       String                userPublicKey         = localAddress.getNumber();
@@ -181,110 +191,110 @@ public class SignalServiceCipher {
    * @return a decrypted SignalServiceContent
    */
   public SignalServiceContent decrypt(SignalServiceEnvelope envelope)
-      throws InvalidMetadataMessageException, InvalidMetadataVersionException,
-      ProtocolInvalidKeyIdException, ProtocolLegacyMessageException,
-      ProtocolUntrustedIdentityException, ProtocolNoSessionException,
-      ProtocolInvalidVersionException, ProtocolInvalidMessageException,
-      ProtocolInvalidKeyException, ProtocolDuplicateMessageException,
-      SelfSendException, IOException
+          throws InvalidMetadataMessageException, InvalidMetadataVersionException,
+          ProtocolInvalidKeyIdException, ProtocolLegacyMessageException,
+          ProtocolUntrustedIdentityException, ProtocolNoSessionException,
+          ProtocolInvalidVersionException, ProtocolInvalidMessageException,
+          ProtocolInvalidKeyException, ProtocolDuplicateMessageException,
+          SelfSendException, IOException, SessionProtocol.Exception
 
   {
     try {
-        Plaintext plaintext = decrypt(envelope, envelope.getContent());
-        Content   message   = Content.parseFrom(plaintext.getData());
+      Plaintext plaintext = decrypt(envelope, envelope.getContent());
+      Content   message   = Content.parseFrom(plaintext.getData());
 
-        PreKeyBundleMessage preKeyBundleMessage = null;
-        if (message.hasPreKeyBundleMessage()) {
-          SignalServiceProtos.PreKeyBundleMessage protoPreKeyBundleMessage = message.getPreKeyBundleMessage();
-          preKeyBundleMessage = new PreKeyBundleMessage(protoPreKeyBundleMessage.getIdentityKey().toByteArray(),
-                                                        protoPreKeyBundleMessage.getDeviceId(),
-                                                        protoPreKeyBundleMessage.getPreKeyId(),
-                                                        protoPreKeyBundleMessage.getSignedKeyId(),
-                                                        protoPreKeyBundleMessage.getPreKey().toByteArray(),
-                                                        protoPreKeyBundleMessage.getSignedKey().toByteArray(),
-                                                        protoPreKeyBundleMessage.getSignature().toByteArray()
-          );
+      PreKeyBundleMessage preKeyBundleMessage = null;
+      if (message.hasPreKeyBundleMessage()) {
+        SignalServiceProtos.PreKeyBundleMessage protoPreKeyBundleMessage = message.getPreKeyBundleMessage();
+        preKeyBundleMessage = new PreKeyBundleMessage(protoPreKeyBundleMessage.getIdentityKey().toByteArray(),
+                protoPreKeyBundleMessage.getDeviceId(),
+                protoPreKeyBundleMessage.getPreKeyId(),
+                protoPreKeyBundleMessage.getSignedKeyId(),
+                protoPreKeyBundleMessage.getPreKey().toByteArray(),
+                protoPreKeyBundleMessage.getSignedKey().toByteArray(),
+                protoPreKeyBundleMessage.getSignature().toByteArray()
+        );
+      }
+
+      if (message.hasDeviceLinkMessage()) {
+        SignalServiceProtos.DeviceLinkMessage protoDeviceLinkMessage = message.getDeviceLinkMessage();
+        String masterPublicKey = protoDeviceLinkMessage.getPrimaryPublicKey();
+        String slavePublicKey = protoDeviceLinkMessage.getSecondaryPublicKey();
+        byte[] requestSignature = protoDeviceLinkMessage.hasRequestSignature() ? protoDeviceLinkMessage.getRequestSignature().toByteArray() : null;
+        byte[] authorizationSignature = protoDeviceLinkMessage.hasAuthorizationSignature() ? protoDeviceLinkMessage.getAuthorizationSignature().toByteArray() : null;
+        DeviceLink deviceLink = new DeviceLink(masterPublicKey, slavePublicKey, requestSignature, authorizationSignature);
+        SignalServiceCipher.Metadata metadata = plaintext.getMetadata();
+        SignalServiceContent content = new SignalServiceContent(deviceLink, metadata.getSender(), metadata.getSenderDevice(), metadata.getTimestamp());
+
+        content.setPreKeyBundleMessage(preKeyBundleMessage);
+
+        if (message.hasSyncMessage() && message.getSyncMessage().hasContacts()) {
+          SignalServiceSyncMessage syncMessage = createSynchronizeMessage(metadata, message.getSyncMessage());
+          content.setSyncMessage(syncMessage);
         }
 
-        if (message.hasDeviceLinkMessage()) {
-          SignalServiceProtos.DeviceLinkMessage protoDeviceLinkMessage = message.getDeviceLinkMessage();
-          String masterPublicKey = protoDeviceLinkMessage.getPrimaryPublicKey();
-          String slavePublicKey = protoDeviceLinkMessage.getSecondaryPublicKey();
-          byte[] requestSignature = protoDeviceLinkMessage.hasRequestSignature() ? protoDeviceLinkMessage.getRequestSignature().toByteArray() : null;
-          byte[] authorizationSignature = protoDeviceLinkMessage.hasAuthorizationSignature() ? protoDeviceLinkMessage.getAuthorizationSignature().toByteArray() : null;
-          DeviceLink deviceLink = new DeviceLink(masterPublicKey, slavePublicKey, requestSignature, authorizationSignature);
-          Metadata metadata = plaintext.getMetadata();
-          SignalServiceContent content = new SignalServiceContent(deviceLink, metadata.getSender(), metadata.getSenderDevice(), metadata.getTimestamp());
+        if (message.hasDataMessage()) {
+          setProfile(message.getDataMessage(), content);
+          SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(metadata, message.getDataMessage());
+          content.setDataMessage(signalServiceDataMessage);
+        }
 
-          content.setPreKeyBundleMessage(preKeyBundleMessage);
+        return content;
+      } else if (message.hasDataMessage()) {
+        DataMessage dataMessage = message.getDataMessage();
 
-          if (message.hasSyncMessage() && message.getSyncMessage().hasContacts()) {
-            SignalServiceSyncMessage syncMessage = createSynchronizeMessage(metadata, message.getSyncMessage());
-            content.setSyncMessage(syncMessage);
-          }
+        SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(plaintext.getMetadata(), dataMessage);
+        SignalServiceContent content = new SignalServiceContent(signalServiceDataMessage,
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp(),
+                plaintext.getMetadata().isNeedsReceipt(),
+                signalServiceDataMessage.isDeviceUnlinkingRequest());
 
-          if (message.hasDataMessage()) {
-            setProfile(message.getDataMessage(), content);
-            SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(metadata, message.getDataMessage());
-            content.setDataMessage(signalServiceDataMessage);
-          }
+        content.setPreKeyBundleMessage(preKeyBundleMessage);
 
-          return content;
-        } else if (message.hasDataMessage()) {
-          DataMessage dataMessage = message.getDataMessage();
+        setProfile(dataMessage, content);
 
-          SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(plaintext.getMetadata(), dataMessage);
-          SignalServiceContent content = new SignalServiceContent(signalServiceDataMessage,
-                                                                  plaintext.getMetadata().getSender(),
-                                                                  plaintext.getMetadata().getSenderDevice(),
-                                                                  plaintext.getMetadata().getTimestamp(),
-                                                                  plaintext.getMetadata().isNeedsReceipt(),
-                                                                  signalServiceDataMessage.isDeviceUnlinkingRequest());
+        return content;
+      } else if (message.hasSyncMessage()) {
+        SignalServiceContent content = new SignalServiceContent(createSynchronizeMessage(
+                plaintext.getMetadata(),
+                message.getSyncMessage()),
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp());
 
-          content.setPreKeyBundleMessage(preKeyBundleMessage);
-
+        if (message.getSyncMessage().hasSent() && message.getSyncMessage().getSent().hasMessage()) {
+          DataMessage dataMessage = message.getSyncMessage().getSent().getMessage();
           setProfile(dataMessage, content);
-
-          return content;
-        } else if (message.hasSyncMessage()) {
-          SignalServiceContent content = new SignalServiceContent(createSynchronizeMessage(
-                                                                  plaintext.getMetadata(),
-                                                                  message.getSyncMessage()),
-                                                                  plaintext.getMetadata().getSender(),
-                                                                  plaintext.getMetadata().getSenderDevice(),
-                                                                  plaintext.getMetadata().getTimestamp());
-
-          if (message.getSyncMessage().hasSent() && message.getSyncMessage().getSent().hasMessage()) {
-            DataMessage dataMessage = message.getSyncMessage().getSent().getMessage();
-            setProfile(dataMessage, content);
-          }
-
-          return content;
-        } else if (message.hasCallMessage()) {
-          return new SignalServiceContent(createCallMessage(message.getCallMessage()),
-                                          plaintext.getMetadata().getSender(),
-                                          plaintext.getMetadata().getSenderDevice(),
-                                          plaintext.getMetadata().getTimestamp());
-        } else if (message.hasReceiptMessage()) {
-          return new SignalServiceContent(createReceiptMessage(plaintext.getMetadata(), message.getReceiptMessage()),
-                                          plaintext.getMetadata().getSender(),
-                                          plaintext.getMetadata().getSenderDevice(),
-                                          plaintext.getMetadata().getTimestamp());
-        } else if (message.hasTypingMessage()) {
-          return new SignalServiceContent(createTypingMessage(plaintext.getMetadata(), message.getTypingMessage()),
-                                          plaintext.getMetadata().getSender(),
-                                          plaintext.getMetadata().getSenderDevice(),
-                                          plaintext.getMetadata().getTimestamp());
-        } else if (message.hasNullMessage()) {
-            SignalServiceContent content = new SignalServiceContent(new SignalServiceNullMessage(),
-                                                                    plaintext.getMetadata().getSender(),
-                                                                    plaintext.getMetadata().getSenderDevice(),
-                                                                    plaintext.getMetadata().getTimestamp());
-
-            content.setPreKeyBundleMessage(preKeyBundleMessage);
-
-            return content;
         }
+
+        return content;
+      } else if (message.hasCallMessage()) {
+        return new SignalServiceContent(createCallMessage(message.getCallMessage()),
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp());
+      } else if (message.hasReceiptMessage()) {
+        return new SignalServiceContent(createReceiptMessage(plaintext.getMetadata(), message.getReceiptMessage()),
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp());
+      } else if (message.hasTypingMessage()) {
+        return new SignalServiceContent(createTypingMessage(plaintext.getMetadata(), message.getTypingMessage()),
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp());
+      } else if (message.hasNullMessage()) {
+        SignalServiceContent content = new SignalServiceContent(new SignalServiceNullMessage(),
+                plaintext.getMetadata().getSender(),
+                plaintext.getMetadata().getSenderDevice(),
+                plaintext.getMetadata().getTimestamp());
+
+        content.setPreKeyBundleMessage(preKeyBundleMessage);
+
+        return content;
+      }
 
       return null;
     } catch (InvalidProtocolBufferException e) {
@@ -300,12 +310,12 @@ public class SignalServiceCipher {
   }
 
   protected Plaintext decrypt(SignalServiceEnvelope envelope, byte[] ciphertext)
-      throws InvalidMetadataMessageException, InvalidMetadataVersionException,
-      ProtocolDuplicateMessageException, ProtocolUntrustedIdentityException,
-      ProtocolLegacyMessageException, ProtocolInvalidKeyException,
-      ProtocolInvalidVersionException, ProtocolInvalidMessageException,
-      ProtocolInvalidKeyIdException, ProtocolNoSessionException,
-      SelfSendException, IOException
+          throws InvalidMetadataMessageException, InvalidMetadataVersionException,
+          ProtocolDuplicateMessageException, ProtocolUntrustedIdentityException,
+          ProtocolLegacyMessageException, ProtocolInvalidKeyException,
+          ProtocolInvalidVersionException, ProtocolInvalidMessageException,
+          ProtocolInvalidKeyIdException, ProtocolNoSessionException,
+          SelfSendException, IOException, SessionProtocol.Exception
   {
     try {
       SignalProtocolAddress sourceAddress       = new SignalProtocolAddress(envelope.getSource(), envelope.getSourceDevice());
@@ -317,11 +327,12 @@ public class SignalServiceCipher {
       int sessionVersion;
 
       if (envelope.isClosedGroupCiphertext()) {
-        Pair<byte[], String> plaintextAndSenderPublicKey = ClosedGroupUtilities.decrypt(envelope);
-        String               senderPublicKey             = plaintextAndSenderPublicKey.second();
+        String groupPublicKey = envelope.getSource();
+        kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = SessionProtocolUtilities.INSTANCE.decryptClosedGroupCiphertext(ciphertext, groupPublicKey, apiDB, sessionProtocolImpl);
+        paddedMessage = plaintextAndSenderPublicKey.getFirst();
+        String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
         if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
-        paddedMessage  = plaintextAndSenderPublicKey.first();
-        metadata       = new Metadata(senderPublicKey, envelope.getSourceDevice(), envelope.getTimestamp(), false);
+        metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isPreKeySignalMessage()) {
         paddedMessage  = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
@@ -332,10 +343,11 @@ public class SignalServiceCipher {
         metadata       = new Metadata(envelope.getSource(), envelope.getSourceDevice(), envelope.getTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isUnidentifiedSender()) {
-        Pair<SignalProtocolAddress, Pair<Integer, byte[]>> results = sealedSessionCipher.decrypt(certificateValidator, ciphertext, envelope.getServerTimestamp(), envelope.getSource());
-        Pair<Integer, byte[]>                              data    = results.second();
-        paddedMessage  = data.second();
-        metadata       = new Metadata(results.first().getName(), results.first().getDeviceId(), envelope.getTimestamp(), false);
+        ECKeyPair userX25519KeyPair = apiDB.getUserX25519KeyPair();
+        kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(ciphertext, userX25519KeyPair);
+        paddedMessage = plaintextAndSenderPublicKey.getFirst();
+        String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
+        metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
         sessionVersion = sealedSessionCipher.getSessionVersion(new SignalProtocolAddress(metadata.getSender(), metadata.getSenderDevice()));
       } else {
         throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());
@@ -375,6 +387,7 @@ public class SignalServiceCipher {
     List<Preview>                  previews                    = createPreviews(content);
     Sticker                        sticker                     = createSticker(content);
     ClosedGroupUpdate              closedGroupUpdate           = content.getClosedGroupUpdate();
+    ClosedGroupUpdateV2            closedGroupUpdateV2         = content.getClosedGroupUpdateV2();
     boolean                        isDeviceUnlinkingRequest    = ((content.getFlags() & DataMessage.Flags.DEVICE_UNLINKING_REQUEST_VALUE) != 0);
 
     for (AttachmentPointer pointer : content.getAttachmentsList()) {
@@ -383,31 +396,32 @@ public class SignalServiceCipher {
 
     if (content.hasTimestamp() && content.getTimestamp() != metadata.getTimestamp()) {
       throw new ProtocolInvalidMessageException(new InvalidMessageException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp()),
-                                                                            metadata.getSender(),
-                                                                            metadata.getSenderDevice());
+              metadata.getSender(),
+              metadata.getSenderDevice());
     }
 
     return new SignalServiceDataMessage(metadata.getTimestamp(),
-                                        groupInfo,
-                                        attachments,
-                                        content.getBody(),
-                                        endSession,
-                                        content.getExpireTimer(),
-                                        expirationUpdate,
-                                        content.hasProfileKey() ? content.getProfileKey().toByteArray() : null,
-                                        profileKeyUpdate,
-                                        quote,
-                                        sharedContacts,
-                                        previews,
-                                        sticker,
-                                        null,
-                                        null,
-                                        closedGroupUpdate,
-                                        isDeviceUnlinkingRequest);
+            groupInfo,
+            attachments,
+            content.getBody(),
+            endSession,
+            content.getExpireTimer(),
+            expirationUpdate,
+            content.hasProfileKey() ? content.getProfileKey().toByteArray() : null,
+            profileKeyUpdate,
+            quote,
+            sharedContacts,
+            previews,
+            sticker,
+            null,
+            null,
+            closedGroupUpdate,
+            closedGroupUpdateV2,
+            isDeviceUnlinkingRequest);
   }
 
   private SignalServiceSyncMessage createSynchronizeMessage(Metadata metadata, SyncMessage content)
-      throws ProtocolInvalidMessageException, ProtocolInvalidKeyException
+          throws ProtocolInvalidMessageException, ProtocolInvalidKeyException
   {
     if (content.hasSent()) {
       SyncMessage.Sent     sentContent          = content.getSent();
@@ -418,10 +432,10 @@ public class SignalServiceCipher {
       }
 
       return SignalServiceSyncMessage.forSentTranscript(new SentTranscriptMessage(sentContent.getDestination(),
-                                                                                  sentContent.getTimestamp(),
-                                                                                  createSignalServiceMessage(metadata, sentContent.getMessage()),
-                                                                                  sentContent.getExpirationStartTimestamp(),
-                                                                                  unidentifiedStatuses));
+              sentContent.getTimestamp(),
+              createSignalServiceMessage(metadata, sentContent.getMessage()),
+              sentContent.getExpirationStartTimestamp(),
+              unidentifiedStatuses));
     }
 
     if (content.hasRequest()) {
@@ -444,10 +458,10 @@ public class SignalServiceCipher {
       if (data != null && !data.isEmpty()) {
         byte[] bytes = data.toByteArray();
         SignalServiceAttachmentStream attachmentStream = SignalServiceAttachment.newStreamBuilder()
-            .withStream(new ByteArrayInputStream(data.toByteArray()))
-            .withContentType("application/octet-stream")
-            .withLength(bytes.length)
-            .build();
+                .withStream(new ByteArrayInputStream(data.toByteArray()))
+                .withContentType("application/octet-stream")
+                .withLength(bytes.length)
+                .build();
         return SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, contacts.getComplete()));
       }
     }
@@ -458,10 +472,10 @@ public class SignalServiceCipher {
       if (data != null && !data.isEmpty()) {
         byte[] bytes = data.toByteArray();
         SignalServiceAttachmentStream attachmentStream   = SignalServiceAttachment.newStreamBuilder()
-            .withStream(new ByteArrayInputStream(data.toByteArray()))
-            .withContentType("application/octet-stream")
-            .withLength(bytes.length)
-            .build();
+                .withStream(new ByteArrayInputStream(data.toByteArray()))
+                .withContentType("application/octet-stream")
+                .withLength(bytes.length)
+                .build();
         return SignalServiceSyncMessage.forGroups(attachmentStream);
       }
     }
@@ -482,7 +496,7 @@ public class SignalServiceCipher {
           verifiedState = VerifiedState.UNVERIFIED;
         } else {
           throw new ProtocolInvalidMessageException(new InvalidMessageException("Unknown state: " + verified.getState().getNumber()),
-                                                    metadata.getSender(), metadata.getSenderDevice());
+                  metadata.getSender(), metadata.getSenderDevice());
         }
 
         return SignalServiceSyncMessage.forVerified(new VerifiedMessage(destination, identityKey, verifiedState, System.currentTimeMillis()));
@@ -513,17 +527,17 @@ public class SignalServiceCipher {
 
     List<SyncMessage.OpenGroupDetails> openGroupDetails = content.getOpenGroupsList();
     if (openGroupDetails.size() > 0) {
-        List<PublicChat> openGroups = new LinkedList<>();
-        for (SyncMessage.OpenGroupDetails details : content.getOpenGroupsList()) {
-            openGroups.add(new PublicChat(details.getChannelID(), details.getUrl(), "", true));
-        }
-        return SignalServiceSyncMessage.forOpenGroups(openGroups);
+      List<PublicChat> openGroups = new LinkedList<>();
+      for (SyncMessage.OpenGroupDetails details : content.getOpenGroupsList()) {
+        openGroups.add(new PublicChat(details.getChannelID(), details.getUrl(), "", true));
+      }
+      return SignalServiceSyncMessage.forOpenGroups(openGroups);
     }
 
     if (content.hasBlocked()) {
-        SyncMessage.Blocked blocked = content.getBlocked();
-        List<String> publicKeys = blocked.getNumbersList();
-        return SignalServiceSyncMessage.forBlocked(new BlockedListMessage(publicKeys, new ArrayList<byte[]>()));
+      SyncMessage.Blocked blocked = content.getBlocked();
+      List<String> publicKeys = blocked.getNumbersList();
+      return SignalServiceSyncMessage.forBlocked(new BlockedListMessage(publicKeys, new ArrayList<byte[]>()));
     }
 
     return SignalServiceSyncMessage.empty();
@@ -574,13 +588,13 @@ public class SignalServiceCipher {
 
     if (content.hasTimestamp() && content.getTimestamp() != metadata.getTimestamp()) {
       throw new ProtocolInvalidMessageException(new InvalidMessageException("Timestamps don't match: " + content.getTimestamp() + " vs " + metadata.getTimestamp()),
-                                                metadata.getSender(),
-                                                metadata.getSenderDevice());
+              metadata.getSender(),
+              metadata.getSenderDevice());
     }
 
     return new SignalServiceTypingMessage(action, content.getTimestamp(),
-                                          content.hasGroupId() ? Optional.of(content.getGroupId().toByteArray()) :
-                                                                 Optional.<byte[]>absent());
+            content.hasGroupId() ? Optional.of(content.getGroupId().toByteArray()) :
+                    Optional.<byte[]>absent());
   }
 
   private SignalServiceDataMessage.Quote createQuote(DataMessage content) {
@@ -590,14 +604,14 @@ public class SignalServiceCipher {
 
     for (DataMessage.Quote.QuotedAttachment attachment : content.getQuote().getAttachmentsList()) {
       attachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.getContentType(),
-                                                                          attachment.getFileName(),
-                                                                          attachment.hasThumbnail() ? createAttachmentPointer(attachment.getThumbnail()) : null));
+              attachment.getFileName(),
+              attachment.hasThumbnail() ? createAttachmentPointer(attachment.getThumbnail()) : null));
     }
 
     return new SignalServiceDataMessage.Quote(content.getQuote().getId(),
-                                              new SignalServiceAddress(content.getQuote().getAuthor()),
-                                              content.getQuote().getText(),
-                                              attachments);
+            new SignalServiceAddress(content.getQuote().getAuthor()),
+            content.getQuote().getText(),
+            attachments);
   }
 
   private List<Preview> createPreviews(DataMessage content) {
@@ -613,8 +627,8 @@ public class SignalServiceCipher {
       }
 
       results.add(new Preview(preview.getUrl(),
-                              preview.getTitle(),
-                              Optional.fromNullable(attachment)));
+              preview.getTitle(),
+              Optional.fromNullable(attachment)));
     }
 
     return results;
@@ -622,10 +636,10 @@ public class SignalServiceCipher {
 
   private Sticker createSticker(DataMessage content) {
     if (!content.hasSticker()                ||
-        !content.getSticker().hasPackId()    ||
-        !content.getSticker().hasPackKey()   ||
-        !content.getSticker().hasStickerId() ||
-        !content.getSticker().hasData())
+            !content.getSticker().hasPackId()    ||
+            !content.getSticker().hasPackKey()   ||
+            !content.getSticker().hasStickerId() ||
+            !content.getSticker().hasData())
     {
       return null;
     }
@@ -633,9 +647,9 @@ public class SignalServiceCipher {
     DataMessage.Sticker sticker = content.getSticker();
 
     return new Sticker(sticker.getPackId().toByteArray(),
-                       sticker.getPackKey().toByteArray(),
-                       sticker.getStickerId(),
-                       createAttachmentPointer(sticker.getData()));
+            sticker.getPackKey().toByteArray(),
+            sticker.getStickerId(),
+            createAttachmentPointer(sticker.getData()));
   }
 
   private List<SharedContact> createSharedContacts(DataMessage content) {
@@ -645,14 +659,14 @@ public class SignalServiceCipher {
 
     for (DataMessage.Contact contact : content.getContactList()) {
       SharedContact.Builder builder = SharedContact.newBuilder()
-                                                   .setName(SharedContact.Name.newBuilder()
-                                                                              .setDisplay(contact.getName().getDisplayName())
-                                                                              .setFamily(contact.getName().getFamilyName())
-                                                                              .setGiven(contact.getName().getGivenName())
-                                                                              .setMiddle(contact.getName().getMiddleName())
-                                                                              .setPrefix(contact.getName().getPrefix())
-                                                                              .setSuffix(contact.getName().getSuffix())
-                                                                              .build());
+              .setName(SharedContact.Name.newBuilder()
+                      .setDisplay(contact.getName().getDisplayName())
+                      .setFamily(contact.getName().getFamilyName())
+                      .setGiven(contact.getName().getGivenName())
+                      .setMiddle(contact.getName().getMiddleName())
+                      .setPrefix(contact.getName().getPrefix())
+                      .setSuffix(contact.getName().getSuffix())
+                      .build());
 
       if (contact.getAddressCount() > 0) {
         for (DataMessage.Contact.PostalAddress address : contact.getAddressList()) {
@@ -665,16 +679,16 @@ public class SignalServiceCipher {
           }
 
           builder.withAddress(SharedContact.PostalAddress.newBuilder()
-                                                         .setCity(address.getCity())
-                                                         .setCountry(address.getCountry())
-                                                         .setLabel(address.getLabel())
-                                                         .setNeighborhood(address.getNeighborhood())
-                                                         .setPobox(address.getPobox())
-                                                         .setPostcode(address.getPostcode())
-                                                         .setRegion(address.getRegion())
-                                                         .setStreet(address.getStreet())
-                                                         .setType(type)
-                                                         .build());
+                  .setCity(address.getCity())
+                  .setCountry(address.getCountry())
+                  .setLabel(address.getLabel())
+                  .setNeighborhood(address.getNeighborhood())
+                  .setPobox(address.getPobox())
+                  .setPostcode(address.getPostcode())
+                  .setRegion(address.getRegion())
+                  .setStreet(address.getStreet())
+                  .setType(type)
+                  .build());
         }
       }
 
@@ -690,10 +704,10 @@ public class SignalServiceCipher {
           }
 
           builder.withPhone(SharedContact.Phone.newBuilder()
-                                               .setLabel(phone.getLabel())
-                                               .setType(type)
-                                               .setValue(phone.getValue())
-                                               .build());
+                  .setLabel(phone.getLabel())
+                  .setType(type)
+                  .setValue(phone.getValue())
+                  .build());
         }
       }
 
@@ -709,18 +723,18 @@ public class SignalServiceCipher {
           }
 
           builder.withEmail(SharedContact.Email.newBuilder()
-                                               .setLabel(email.getLabel())
-                                               .setType(type)
-                                               .setValue(email.getValue())
-                                               .build());
+                  .setLabel(email.getLabel())
+                  .setType(type)
+                  .setValue(email.getValue())
+                  .build());
         }
       }
 
       if (contact.hasAvatar()) {
         builder.setAvatar(SharedContact.Avatar.newBuilder()
-                                              .withAttachment(createAttachmentPointer(contact.getAvatar().getAvatar()))
-                                              .withProfileFlag(contact.getAvatar().getIsProfile())
-                                              .build());
+                .withAttachment(createAttachmentPointer(contact.getAvatar().getAvatar()))
+                .withProfileFlag(contact.getAvatar().getIsProfile())
+                .build());
       }
 
       if (contact.hasOrganization()) {
@@ -735,16 +749,16 @@ public class SignalServiceCipher {
 
   private SignalServiceAttachmentPointer createAttachmentPointer(AttachmentPointer pointer) {
     return new SignalServiceAttachmentPointer(pointer.getId(),
-                                              pointer.getContentType(),
-                                              pointer.getKey().toByteArray(),
-                                              pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
-                                              pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.<byte[]>absent(),
-                                              pointer.getWidth(), pointer.getHeight(),
-                                              pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.<byte[]>absent(),
-                                              pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
-                                              (pointer.getFlags() & AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) != 0,
-                                              pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
-                                              pointer.getUrl());
+            pointer.getContentType(),
+            pointer.getKey().toByteArray(),
+            pointer.hasSize() ? Optional.of(pointer.getSize()) : Optional.<Integer>absent(),
+            pointer.hasThumbnail() ? Optional.of(pointer.getThumbnail().toByteArray()): Optional.<byte[]>absent(),
+            pointer.getWidth(), pointer.getHeight(),
+            pointer.hasDigest() ? Optional.of(pointer.getDigest().toByteArray()) : Optional.<byte[]>absent(),
+            pointer.hasFileName() ? Optional.of(pointer.getFileName()) : Optional.<String>absent(),
+            (pointer.getFlags() & AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) != 0,
+            pointer.hasCaption() ? Optional.of(pointer.getCaption()) : Optional.<String>absent(),
+            pointer.getUrl());
 
   }
 
@@ -779,15 +793,15 @@ public class SignalServiceCipher {
         AttachmentPointer pointer = content.getGroup().getAvatar();
 
         avatar = new SignalServiceAttachmentPointer(pointer.getId(),
-                                                    pointer.getContentType(),
-                                                    pointer.getKey().toByteArray(),
-                                                    Optional.of(pointer.getSize()),
-                                                    Optional.<byte[]>absent(), 0, 0,
-                                                    Optional.fromNullable(pointer.hasDigest() ? pointer.getDigest().toByteArray() : null),
-                                                    Optional.<String>absent(),
-                                                    false,
-                                                    Optional.<String>absent(),
-                                                    pointer.getUrl());
+                pointer.getContentType(),
+                pointer.getKey().toByteArray(),
+                Optional.of(pointer.getSize()),
+                Optional.<byte[]>absent(), 0, 0,
+                Optional.fromNullable(pointer.hasDigest() ? pointer.getDigest().toByteArray() : null),
+                Optional.<String>absent(),
+                false,
+                Optional.<String>absent(),
+                pointer.getUrl());
       }
 
       if (content.getGroup().getAdminsCount() > 0) {

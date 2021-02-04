@@ -2,15 +2,15 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Hex;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 
@@ -78,7 +78,8 @@ public class StickerDownloadJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_PACK_ID, sticker.getPackId())
                              .putString(KEY_PACK_KEY, sticker.getPackKey())
                              .putString(KEY_PACK_TITLE, sticker.getPackTitle())

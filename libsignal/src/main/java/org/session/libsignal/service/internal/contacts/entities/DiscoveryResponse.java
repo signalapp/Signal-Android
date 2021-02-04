@@ -18,7 +18,7 @@ package org.session.libsignal.service.internal.contacts.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.session.libsignal.service.internal.util.Hex;
+import org.session.libsignal.utilities.Hex;
 
 public class DiscoveryResponse {
 

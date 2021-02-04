@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
@@ -46,7 +46,7 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
-    this.sender               = Address.fromSerialized(message.getDisplayOriginatingAddress());
+    this.sender               = Address.Companion.fromSerialized(message.getDisplayOriginatingAddress());
     this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
@@ -78,7 +78,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = unidentified;
 
     if (group.isPresent()) {
-      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get()));
+      this.groupId = Address.Companion.fromSerialized(GroupUtil.getEncodedId(group.get()));
     } else {
       this.groupId = null;
     }

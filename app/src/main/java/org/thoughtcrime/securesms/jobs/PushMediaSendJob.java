@@ -6,30 +6,31 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.threads.recipients.Recipient.UnidentifiedAccessMode;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
@@ -129,7 +130,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder()
                    .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
                    .putLong(KEY_MESSAGE_ID, messageId)
@@ -210,7 +212,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
       if (messageId >= 0) {
-        database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
+        database.addMismatchedIdentity(messageId, Address.Companion.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
         database.markAsSentFailed(messageId);
       }
     } catch (SnodeAPI.Error e) {
@@ -297,7 +299,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushMediaSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushMediaSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

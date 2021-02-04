@@ -9,7 +9,7 @@ package org.session.libsignal.service.api.messages.multidevice;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;

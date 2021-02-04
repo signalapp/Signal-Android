@@ -15,8 +15,9 @@ import android.webkit.MimeTypeMap;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.utilities.MediaTypes;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -38,17 +39,6 @@ import java.util.concurrent.ExecutionException;
 public class MediaUtil {
 
   private static final String TAG = MediaUtil.class.getSimpleName();
-
-  public static final String IMAGE_PNG         = "image/png";
-  public static final String IMAGE_JPEG        = "image/jpeg";
-  public static final String IMAGE_WEBP        = "image/webp";
-  public static final String IMAGE_GIF         = "image/gif";
-  public static final String AUDIO_AAC         = "audio/aac";
-  public static final String AUDIO_UNSPECIFIED = "audio/*";
-  public static final String VIDEO_UNSPECIFIED = "video/*";
-  public static final String VCARD             = "text/x-vcard";
-  public static final String LONG_TEXT         = "text/x-signal-plain";
-
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;
@@ -94,8 +84,8 @@ public class MediaUtil {
 
     switch(mimeType) {
     case "image/jpg":
-      return MimeTypeMap.getSingleton().hasMimeType(IMAGE_JPEG)
-             ? IMAGE_JPEG
+      return MimeTypeMap.getSingleton().hasMimeType(MediaTypes.IMAGE_JPEG)
+             ? MediaTypes.IMAGE_JPEG
              : mimeType;
     default:
       return mimeType;
@@ -206,7 +196,7 @@ public class MediaUtil {
   }
 
   public static boolean isVcard(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(VCARD);
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(MediaTypes.VCARD);
   }
 
   public static boolean isGif(String contentType) {
@@ -214,7 +204,7 @@ public class MediaUtil {
   }
 
   public static boolean isJpegType(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_JPEG);
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(MediaTypes.IMAGE_JPEG);
   }
 
   public static boolean isFile(Attachment attachment) {
@@ -240,7 +230,7 @@ public class MediaUtil {
   }
 
   public static boolean isLongTextType(String contentType) {
-    return (null != contentType) && contentType.equals(LONG_TEXT);
+    return (null != contentType) && contentType.equals(MediaTypes.LONG_TEXT);
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {

@@ -1,6 +1,6 @@
 package org.session.libsignal.service.internal.contacts.crypto;
 
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.net.URLDecoder;

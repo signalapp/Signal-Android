@@ -10,14 +10,17 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
-
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient.*;
+import org.session.libsignal.utilities.Base64;
+import org.session.libsession.utilities.Util;
+
 import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -70,67 +73,13 @@ public class RecipientDatabase extends Database {
                                                                .map(columnName -> TABLE_NAME + "." + columnName)
                                                                .toList();
 
-  public enum VibrateState {
-    DEFAULT(0), ENABLED(1), DISABLED(2);
-
-    private final int id;
-
-    VibrateState(int id) {
-      this.id = id;
-    }
-
-    public int getId() {
-      return id;
-    }
-
-    public static VibrateState fromId(int id) {
-      return values()[id];
-    }
-  }
-
-  public enum RegisteredState {
-    UNKNOWN(0), REGISTERED(1), NOT_REGISTERED(2);
-
-    private final int id;
-
-    RegisteredState(int id) {
-      this.id = id;
-    }
-
-    public int getId() {
-      return id;
-    }
-
-    public static RegisteredState fromId(int id) {
-      return values()[id];
-    }
-  }
-
-  public enum UnidentifiedAccessMode {
-    UNKNOWN(0), DISABLED(1), ENABLED(2), UNRESTRICTED(3);
-
-    private final int mode;
-
-    UnidentifiedAccessMode(int mode) {
-      this.mode = mode;
-    }
-
-    public int getMode() {
-      return mode;
-    }
-
-    public static UnidentifiedAccessMode fromMode(int mode) {
-      return values()[mode];
-    }
-  }
-
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
           ADDRESS + " TEXT UNIQUE, " +
           BLOCK + " INTEGER DEFAULT 0," +
           NOTIFICATION + " TEXT DEFAULT NULL, " +
-          VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
+          VIBRATE + " INTEGER DEFAULT " + Recipient.VibrateState.DEFAULT.getId() + ", " +
           MUTE_UNTIL + " INTEGER DEFAULT 0, " +
           COLOR + " TEXT DEFAULT NULL, " +
           SEEN_INVITE_REMINDER + " INTEGER DEFAULT 0, " +
@@ -146,7 +95,7 @@ public class RecipientDatabase extends Database {
           SIGNAL_PROFILE_AVATAR + " TEXT DEFAULT NULL, " +
           PROFILE_SHARING + " INTEGER DEFAULT 0, " +
           CALL_RINGTONE + " TEXT DEFAULT NULL, " +
-          CALL_VIBRATE + " INTEGER DEFAULT " + VibrateState.DEFAULT.getId() + ", " +
+          CALL_VIBRATE + " INTEGER DEFAULT " + Recipient.VibrateState.DEFAULT.getId() + ", " +
           NOTIFICATION_CHANNEL + " TEXT DEFAULT NULL, " +
           UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
           FORCE_SMS_SELECTION + " INTEGER DEFAULT 0);";
@@ -199,7 +148,6 @@ public class RecipientDatabase extends Database {
     int     callVibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
     long    muteUntil              = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
     String  serializedColor        = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-    boolean seenInviteReminder     = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
     int     defaultSubscriptionId  = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages         = cursor.getInt(cursor.getColumnIndexOrThrow(EXPIRE_MESSAGES));
     int     registeredState        = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
@@ -235,16 +183,15 @@ public class RecipientDatabase extends Database {
     }
 
     return Optional.of(new RecipientSettings(blocked, muteUntil,
-                                             VibrateState.fromId(messageVibrateState),
-                                             VibrateState.fromId(callVibrateState),
+                                             Recipient.VibrateState.fromId(messageVibrateState),
+                                             Recipient.VibrateState.fromId(callVibrateState),
                                              Util.uri(messageRingtone), Util.uri(callRingtone),
-                                             color, seenInviteReminder,
-                                             defaultSubscriptionId, expireMessages,
-                                             RegisteredState.fromId(registeredState),
+                                             color, defaultSubscriptionId, expireMessages,
+                                             Recipient.RegisteredState.fromId(registeredState),
                                              profileKey, systemDisplayName, systemContactPhoto,
                                              systemPhoneLabel, systemContactUri,
                                              signalProfileName, signalProfileAvatar, profileSharing,
-                                             notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
+                                             notificationChannel, Recipient.UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
                                              forceSmsSelection));
   }
 
@@ -326,13 +273,6 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setMuted(until);
   }
 
-  public void setSeenInviteReminder(@NonNull Recipient recipient, @SuppressWarnings("SameParameterValue") boolean seen) {
-    ContentValues values = new ContentValues(1);
-    values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setHasSeenInviteReminder(seen);
-  }
-
   public void setExpireMessages(@NonNull Recipient recipient, int expiration) {
     recipient.setExpireMessages(expiration);
 
@@ -390,7 +330,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromExternal(context, cursor.getString(0)));
+        results.add(Address.Companion.fromExternal(context, cursor.getString(0)));
       }
     }
 
@@ -430,7 +370,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, REGISTERED + " = ?", new String[] {"1"}, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromSerialized(cursor.getString(0)));
+        results.add(Address.Companion.fromSerialized(cursor.getString(0)));
       }
     }
 
@@ -443,7 +383,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromSerialized(cursor.getString(0)));
+        results.add(Address.Companion.fromSerialized(cursor.getString(0)));
       }
     }
 
@@ -457,7 +397,7 @@ public class RecipientDatabase extends Database {
     db.beginTransaction();
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS, COLOR, SYSTEM_DISPLAY_NAME}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address address = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
         MaterialColor newColor = updater.update(cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME)),
                                                 cursor.getString(cursor.getColumnIndexOrThrow(COLOR)));
 
@@ -545,165 +485,6 @@ public class RecipientDatabase extends Database {
     MaterialColor update(@NonNull String name, @Nullable String color);
   }
 
-  public static class RecipientSettings {
-    private final boolean                blocked;
-    private final long                   muteUntil;
-    private final VibrateState           messageVibrateState;
-    private final VibrateState           callVibrateState;
-    private final Uri                    messageRingtone;
-    private final Uri                    callRingtone;
-    private final MaterialColor          color;
-    private final boolean                seenInviteReminder;
-    private final int                    defaultSubscriptionId;
-    private final int                    expireMessages;
-    private final RegisteredState        registered;
-    private final byte[]                 profileKey;
-    private final String                 systemDisplayName;
-    private final String                 systemContactPhoto;
-    private final String                 systemPhoneLabel;
-    private final String                 systemContactUri;
-    private final String                 signalProfileName;
-    private final String                 signalProfileAvatar;
-    private final boolean                profileSharing;
-    private final String                 notificationChannel;
-    private final UnidentifiedAccessMode unidentifiedAccessMode;
-    private final boolean                forceSmsSelection;
-
-    RecipientSettings(boolean blocked, long muteUntil,
-                      @NonNull VibrateState messageVibrateState,
-                      @NonNull VibrateState callVibrateState,
-                      @Nullable Uri messageRingtone,
-                      @Nullable Uri callRingtone,
-                      @Nullable MaterialColor color,
-                      boolean seenInviteReminder,
-                      int defaultSubscriptionId,
-                      int expireMessages,
-                      @NonNull  RegisteredState registered,
-                      @Nullable byte[] profileKey,
-                      @Nullable String systemDisplayName,
-                      @Nullable String systemContactPhoto,
-                      @Nullable String systemPhoneLabel,
-                      @Nullable String systemContactUri,
-                      @Nullable String signalProfileName,
-                      @Nullable String signalProfileAvatar,
-                      boolean profileSharing,
-                      @Nullable String notificationChannel,
-                      @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
-                      boolean forceSmsSelection)
-    {
-      this.blocked                = blocked;
-      this.muteUntil              = muteUntil;
-      this.messageVibrateState    = messageVibrateState;
-      this.callVibrateState       = callVibrateState;
-      this.messageRingtone        = messageRingtone;
-      this.callRingtone           = callRingtone;
-      this.color                  = color;
-      this.seenInviteReminder     = seenInviteReminder;
-      this.defaultSubscriptionId  = defaultSubscriptionId;
-      this.expireMessages         = expireMessages;
-      this.registered             = registered;
-      this.profileKey             = profileKey;
-      this.systemDisplayName      = systemDisplayName;
-      this.systemContactPhoto     = systemContactPhoto;
-      this.systemPhoneLabel       = systemPhoneLabel;
-      this.systemContactUri       = systemContactUri;
-      this.signalProfileName      = signalProfileName;
-      this.signalProfileAvatar    = signalProfileAvatar;
-      this.profileSharing         = profileSharing;
-      this.notificationChannel    = notificationChannel;
-      this.unidentifiedAccessMode = unidentifiedAccessMode;
-      this.forceSmsSelection      = forceSmsSelection;
-    }
-
-    public @Nullable MaterialColor getColor() {
-      return color;
-    }
-
-    public boolean isBlocked() {
-      return blocked;
-    }
-
-    public long getMuteUntil() {
-      return muteUntil;
-    }
-
-    public @NonNull VibrateState getMessageVibrateState() {
-      return messageVibrateState;
-    }
-
-    public @NonNull VibrateState getCallVibrateState() {
-      return callVibrateState;
-    }
-
-    public @Nullable Uri getMessageRingtone() {
-      return messageRingtone;
-    }
-
-    public @Nullable Uri getCallRingtone() {
-      return callRingtone;
-    }
-
-    public boolean hasSeenInviteReminder() {
-      return seenInviteReminder;
-    }
-
-    public Optional<Integer> getDefaultSubscriptionId() {
-      return defaultSubscriptionId != -1 ? Optional.of(defaultSubscriptionId) : Optional.absent();
-    }
-
-    public int getExpireMessages() {
-      return expireMessages;
-    }
-
-    public RegisteredState getRegistered() {
-      return registered;
-    }
-
-    public @Nullable byte[] getProfileKey() {
-      return profileKey;
-    }
-
-    public @Nullable String getSystemDisplayName() {
-      return systemDisplayName;
-    }
-
-    public @Nullable String getSystemContactPhotoUri() {
-      return systemContactPhoto;
-    }
-
-    public @Nullable String getSystemPhoneLabel() {
-      return systemPhoneLabel;
-    }
-
-    public @Nullable String getSystemContactUri() {
-      return systemContactUri;
-    }
-
-    public @Nullable String getProfileName() {
-      return signalProfileName;
-    }
-
-    public @Nullable String getProfileAvatar() {
-      return signalProfileAvatar;
-    }
-
-    public boolean isProfileSharing() {
-      return profileSharing;
-    }
-
-    public @Nullable String getNotificationChannel() {
-      return notificationChannel;
-    }
-
-    public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {
-      return unidentifiedAccessMode;
-    }
-
-    public boolean isForceSmsSelection() {
-      return forceSmsSelection;
-    }
-  }
-
   public static class RecipientReader implements Closeable {
 
     private final Context context;
@@ -716,7 +497,7 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient getCurrent() {
       String serialized = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
-      return Recipient.from(context, Address.fromSerialized(serialized), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(serialized), false);
     }
 
     public @Nullable Recipient getNext() {

@@ -27,7 +27,9 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.utilities.Util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -76,6 +78,15 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
+  public @Nullable MessageRecord getMessageFor(long messageId) {
+    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
+
+    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.ID + " = " + messageId, null, null)) {
+      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+      return reader.getNext();
+    }
+  }
+
   public @Nullable MessageRecord getMessageFor(long timestamp, Address author) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 
@@ -85,8 +96,8 @@ public class MmsSmsDatabase extends Database {
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
+        if ((Util.isOwnNumber(context, author.serialize()) && messageRecord.isOutgoing()) ||
+            (!Util.isOwnNumber(context, author.serialize()) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
         {
           return messageRecord;
         }
@@ -169,7 +180,7 @@ public class MmsSmsDatabase extends Database {
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
       String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+      boolean isOwnNumber       = Util.isOwnNumber(context, address.serialize());
 
       while (cursor != null && cursor.moveToNext()) {
         boolean quoteIdMatches = cursor.getLong(0) == quoteId;
@@ -189,7 +200,7 @@ public class MmsSmsDatabase extends Database {
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.ADDRESS }, selection, order, null)) {
       String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+      boolean isOwnNumber       = Util.isOwnNumber(context, address.serialize());
 
       while (cursor != null && cursor.moveToNext()) {
         boolean timestampMatches = cursor.getLong(0) == receivedTimestamp;

@@ -8,9 +8,9 @@ import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.MediaRecorder;
 import android.os.Build;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.io.OutputStream;

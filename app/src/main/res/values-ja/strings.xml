@@ -1357,7 +1357,7 @@
   <string name="activity_create_closed_group_group_name_missing_error">グループ名を入力してください</string>
   <string name="activity_create_closed_group_group_name_too_long_error">短いグループ名を入力してください</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">グループメンバーを少なくとも 2 人選択してください</string>
-  <string name="activity_create_closed_group_too_many_group_members_error">閉じたグループは 20 人を超えるメンバーを抱えることはできません</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">閉じたグループは 100 人を超えるメンバーを抱えることはできません</string>
   <string name="activity_create_closed_group_invalid_session_id_error">グループのメンバーの 1 人の Session ID が無効です</string>
 
   <string name="activity_join_public_chat_title">オープングループに参加する</string>

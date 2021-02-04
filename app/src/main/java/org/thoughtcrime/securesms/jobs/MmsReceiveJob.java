@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import androidx.annotation.NonNull;
 import android.util.Pair;
@@ -13,12 +13,12 @@ import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.android.mms.pdu_alt.PduParser;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsignal.utilities.Base64;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 
@@ -46,7 +46,8 @@ public class MmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putString(KEY_DATA, Base64.encodeBytes(data))
                              .putInt(KEY_SUBSCRIPTION_ID, subscriptionId)
                              .build();
@@ -101,7 +102,7 @@ public class MmsReceiveJob extends BaseJob {
 
   private boolean isBlocked(GenericPdu pdu) {
     if (pdu.getFrom() != null && pdu.getFrom().getTextString() != null) {
-      Recipient recipients = Recipient.from(context, Address.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString())), false);
+      Recipient recipients = Recipient.from(context, Address.Companion.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString())), false);
       return recipients.isBlocked();
     }
 

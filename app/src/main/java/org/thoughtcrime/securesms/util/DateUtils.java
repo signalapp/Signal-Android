@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
 import android.os.Build;
 import android.text.format.DateFormat;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

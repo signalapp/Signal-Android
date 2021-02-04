@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Signal.Text.Headline" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0</item>
+    </style>
+
+    <style name="Signal.Text.Headline.Registration" parent="Signal.Text.Headline">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Signal.Text.Preview" parent="Base.TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
+    </style>
+
+    <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:letterSpacing" tools:ignore="NewApi">0.03</item>
+    </style>
+
+
+    <style name="Signal.Text.Caption.MessageSent">
+        <item name="android:textColor">?conversation_item_sent_text_secondary_color</item>
+        <item name="android:shadowRadius">0</item>
+    </style>
+
+    <style name="Signal.Text.Caption.MessageReceived">
+        <item name="android:textColor">?conversation_item_received_text_secondary_color</item>
+        <item name="android:shadowRadius">0</item>
+        <item name="android:alpha">0.7</item>
+    </style>
+
+    <style name="Signal.Text.Caption.MessageImageOverlay">
+        <item name="android:textColor">@color/core_white</item>
+    </style>
+
+</resources>

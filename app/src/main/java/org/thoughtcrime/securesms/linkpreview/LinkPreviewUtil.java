@@ -14,8 +14,9 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.utilities.Util;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -97,11 +98,15 @@ public final class LinkPreviewUtil {
     }
   }
 
-  public static boolean isVaildMimeType(@NonNull String url) {
-    String[] vaildMimeType = {"jpg", "png", "gif", "jpeg"};
+  public static boolean isValidMimeType(@NonNull String url) {
+    String[] validMimeType = {".jpg", ".png", ".gif", ".jpeg"};
     if (url.contains(".")) {
-      String extenstion = url.substring(url.lastIndexOf(".") + 1).toLowerCase();
-      return Arrays.asList(vaildMimeType).contains(extenstion);
+      for (String mimeType : validMimeType) {
+        if (url.contains(mimeType)) {
+          return true;
+        }
+      }
+      return false;
     }
     return true;
   }

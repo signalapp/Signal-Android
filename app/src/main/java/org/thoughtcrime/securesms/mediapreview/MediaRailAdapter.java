@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import network.loki.messenger.R;
+
+
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -21,7 +23,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   private static final int TYPE_MEDIA  = 1;
   private static final int TYPE_BUTTON = 2;
 
-  private final GlideRequests            glideRequests;
+  private final GlideRequests glideRequests;
   private final List<Media>              media;
   private final RailItemListener         listener;
   private final boolean                  editable;

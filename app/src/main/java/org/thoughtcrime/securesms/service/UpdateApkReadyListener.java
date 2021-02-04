@@ -12,15 +12,15 @@ import android.net.Uri;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
-import org.thoughtcrime.securesms.util.FileUtils;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.FileUtils;
+import org.session.libsignal.utilities.Hex;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.io.File;
 import java.io.FileInputStream;

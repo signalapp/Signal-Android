@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PNModeView
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 
 class PNModeActivity : BaseActionBarActivity() {
     private var selectedOptionView: PNModeView? = null
@@ -151,10 +151,7 @@ class PNModeActivity : BaseActionBarActivity() {
             return
         }
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
-        TextSecurePreferences.setPromptedPushRegistration(this, true)
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
-        TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
-        TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
         application.setUpP2PAPIIfNeeded()

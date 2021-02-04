@@ -6,7 +6,7 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.util.AbstractCursorLoader;
@@ -73,7 +73,7 @@ public class ConversationListLoader extends AbstractCursorLoader {
     List<Address> addresses = new LinkedList<>();
 
     for (String number : numbers) {
-      addresses.add(Address.fromExternal(context, number));
+      addresses.add(Address.Companion.fromExternal(context, number));
     }
 
     return DatabaseFactory.getThreadDatabase(context).getFilteredConversationList(addresses);

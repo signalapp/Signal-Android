@@ -10,6 +10,7 @@ import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate;
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
@@ -38,6 +39,7 @@ public class SignalServiceDataMessage {
   private final Optional<PreKeyBundle>                  preKeyBundle;
   private final Optional<DeviceLink>                    deviceLink;
   private final Optional<ClosedGroupUpdate>             closedGroupUpdate;
+  private final Optional<ClosedGroupUpdateV2>           closedGroupUpdateV2;
   private final boolean                                 isDeviceUnlinkingRequest;
 
   /**
@@ -132,7 +134,7 @@ public class SignalServiceDataMessage {
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
                                   Sticker sticker)
   {
-    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, false);
+    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, null, false);
   }
 
   /**
@@ -152,7 +154,8 @@ public class SignalServiceDataMessage {
                                   boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
                                   Sticker sticker, PreKeyBundle preKeyBundle, DeviceLink deviceLink,
-                                  ClosedGroupUpdate closedGroupUpdate, boolean isDeviceUnlinkingRequest)
+                                  ClosedGroupUpdate closedGroupUpdate, ClosedGroupUpdateV2 closedGroupUpdateV2,
+                                  boolean isDeviceUnlinkingRequest)
   {
     this.timestamp                   = timestamp;
     this.body                        = Optional.fromNullable(body);
@@ -167,6 +170,7 @@ public class SignalServiceDataMessage {
     this.preKeyBundle                = Optional.fromNullable(preKeyBundle);
     this.deviceLink                  = Optional.fromNullable(deviceLink);
     this.closedGroupUpdate           = Optional.fromNullable(closedGroupUpdate);
+    this.closedGroupUpdateV2         = Optional.fromNullable(closedGroupUpdateV2);
     this.isDeviceUnlinkingRequest    = isDeviceUnlinkingRequest;
 
     if (attachments != null && !attachments.isEmpty()) {
@@ -268,6 +272,8 @@ public class SignalServiceDataMessage {
   }
 
   public Optional<ClosedGroupUpdate> getClosedGroupUpdate() { return closedGroupUpdate; }
+
+  public Optional<ClosedGroupUpdateV2> getClosedGroupUpdateV2() { return closedGroupUpdateV2; }
 
   public Optional<PreKeyBundle> getPreKeyBundle() { return preKeyBundle; }
 
@@ -405,12 +411,13 @@ public class SignalServiceDataMessage {
 
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
-        // closedGroupUpdate is always null because we don't use SignalServiceDataMessage to send them (we use ClosedGroupUpdateMessageSendJob)
+      // closedGroupUpdate is always null because we don't use SignalServiceDataMessage to send them (we use ClosedGroupUpdateMessageSendJob)
       return new SignalServiceDataMessage(timestamp, group, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
                                           sticker, preKeyBundle, deviceLink,
-                                          null, isDeviceUnlinkingRequest);
+                        null, null,
+                                          isDeviceUnlinkingRequest);
     }
   }
 

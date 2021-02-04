@@ -3,16 +3,19 @@ package org.thoughtcrime.securesms.loki.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import org.thoughtcrime.securesms.database.Address
+
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.session.libsignal.libsignal.loki.SessionResetStatus
-import org.session.libsignal.service.internal.util.JsonUtil
+
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
+
+import org.session.libsignal.libsignal.loki.SessionResetStatus
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
@@ -119,7 +122,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 
     fun getSessionRestoreDevices(threadID: Long): Set<String> {
-        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")
+        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")!!
             .split(",")
             .filter { PublicKeyValidation.isValid(it) }
             .toSet()

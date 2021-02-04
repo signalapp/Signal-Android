@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.giph.ui;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 class GiphyActivityToolbarTextSecurePreferencesPersistence implements GiphyActivityToolbar.Persistence {
 

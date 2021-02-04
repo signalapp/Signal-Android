@@ -14,8 +14,6 @@ import network.loki.messenger.R;
 public class ContactPreference extends Preference {
 
   private ImageView messageButton;
-  private ImageView callButton;
-  private ImageView secureCallButton;
 
   private Listener listener;
   private boolean secure;
@@ -49,8 +47,6 @@ public class ContactPreference extends Preference {
     super.onBindViewHolder(view);
 
     this.messageButton    = (ImageView) view.findViewById(R.id.message);
-    this.callButton       = (ImageView) view.findViewById(R.id.call);
-    this.secureCallButton = (ImageView) view.findViewById(R.id.secure_call);
 
     if (listener != null) setListener(listener);
     setSecure(secure);
@@ -58,9 +54,6 @@ public class ContactPreference extends Preference {
 
   public void setSecure(boolean secure) {
     this.secure = secure;
-
-    if (secureCallButton != null) secureCallButton.setVisibility(secure ? View.VISIBLE : View.GONE);
-    if (callButton != null)       callButton.setVisibility(secure ? View.GONE : View.VISIBLE);
 
     int color;
 
@@ -71,16 +64,12 @@ public class ContactPreference extends Preference {
     }
 
     if (messageButton != null)    messageButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    if (secureCallButton != null) secureCallButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    if (callButton != null)       callButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
   }
 
   public void setListener(Listener listener) {
     this.listener = listener;
 
     if (this.messageButton != null)    this.messageButton.setOnClickListener(v -> listener.onMessageClicked());
-    if (this.secureCallButton != null) this.secureCallButton.setOnClickListener(v -> listener.onSecureCallClicked());
-    if (this.callButton != null)       this.callButton.setOnClickListener(v -> listener.onInSecureCallClicked());
   }
 
   public interface Listener {

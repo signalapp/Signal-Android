@@ -7,13 +7,14 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Debouncer;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsession.utilities.Debouncer;
 
 import java.util.ArrayList;
 import java.util.Collections;

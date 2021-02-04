@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.loki.utilities
 import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 
 object MentionManagerUtilities {
@@ -28,7 +28,7 @@ object MentionManagerUtilities {
                 }
             }
             reader.close()
-            result.add(TextSecurePreferences.getLocalNumber(context))
+            result.add(TextSecurePreferences.getLocalNumber(context)!!)
         }
         MentionsManager.shared.userPublicKeyCache[threadID] = result
     }

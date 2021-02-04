@@ -6,11 +6,10 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase
-import org.thoughtcrime.securesms.loki.utilities.successBackground
+import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
-import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.service.loki.api.SwarmAPI
 import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
@@ -29,7 +28,7 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
 
     // region Settings
     companion object {
-        private val pollInterval: Long = 2 * 1000
+        private val pollInterval: Long = 4 * 1000
 
         public lateinit var shared: ClosedGroupPoller
 

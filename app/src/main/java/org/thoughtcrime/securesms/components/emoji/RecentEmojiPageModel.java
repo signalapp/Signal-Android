@@ -11,8 +11,9 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsignal.utilities.logging.Log;
+
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
     try {
       CollectionType collectionType = TypeFactory.defaultInstance()
                                                  .constructCollectionType(LinkedHashSet.class, String.class);
-      return JsonUtils.getMapper().readValue(serialized, collectionType);
+      return JsonUtil.getMapper().readValue(serialized, collectionType);
     } catch (IOException e) {
       Log.w(TAG, e);
       return new LinkedHashSet<>();
@@ -88,7 +89,7 @@ public class RecentEmojiPageModel implements EmojiPageModel {
       @Override
       protected Void doInBackground(Void... params) {
         try {
-          String serialized = JsonUtils.toJson(latestRecentlyUsed);
+          String serialized = JsonUtil.toJsonThrows(latestRecentlyUsed);
           prefs.edit()
                .putString(EMOJI_LRU_PREFERENCE, serialized)
                .apply();

@@ -4,9 +4,11 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
+
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
+import org.session.libsignal.utilities.logging.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

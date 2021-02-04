@@ -9,9 +9,11 @@ import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.net.RequestController;
-import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Debouncer;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 
 import java.util.Collections;
 import java.util.List;

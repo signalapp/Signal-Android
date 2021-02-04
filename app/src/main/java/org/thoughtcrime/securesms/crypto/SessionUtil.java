@@ -4,7 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.session.libsignal.libsignal.SignalProtocolAddress;
 import org.session.libsignal.libsignal.state.SessionStore;
 import org.session.libsignal.service.api.push.SignalServiceAddress;

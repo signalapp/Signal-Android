@@ -10,11 +10,10 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
 
 import java.util.concurrent.ExecutionException;
 
@@ -116,12 +115,5 @@ public class ConversationPopupActivity extends ConversationActivity {
   protected void sendComplete(long threadId) {
     super.sendComplete(threadId);
     finish();
-  }
-
-  @Override
-  protected void updateReminders(boolean seenInvite) {
-    if (reminderView.resolved()) {
-      reminderView.get().setVisibility(View.GONE);
-    }
   }
 }

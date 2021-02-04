@@ -12,13 +12,12 @@ import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -34,8 +33,7 @@ class MediaSendViewModel extends ViewModel {
 
   private static final String TAG = MediaSendViewModel.class.getSimpleName();
 
-  private static final int MAX_PUSH = 32;
-  private static final int MAX_SMS  = 1;
+  private static final int MAX_SELECTION = 32;
 
   private final Application                        application;
   private final MediaRepository                    repository;
@@ -49,12 +47,12 @@ class MediaSendViewModel extends ViewModel {
   private final SingleLiveEvent<Error>             error;
   private final Map<Uri, Object>                   savedDrawState;
 
-  private MediaConstraints            mediaConstraints;
+  private final MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
+
   private CharSequence                body;
   private CountButtonState.Visibility countButtonVisibility;
   private boolean                     sentMedia;
   private Optional<Media>             lastImageCapture;
-  private int                         maxSelection;
 
   private MediaSendViewModel(@NonNull Application application, @NonNull MediaRepository repository) {
     this.application            = application;
@@ -77,16 +75,6 @@ class MediaSendViewModel extends ViewModel {
     cameraButtonVisibility.setValue(false);
   }
 
-  void setTransport(@NonNull TransportOption transport) {
-    if (transport.isSms()) {
-      maxSelection     = MAX_SMS;
-      mediaConstraints = MediaConstraints.getMmsMediaConstraints(transport.getSimSubscriptionId().or(-1));
-    } else {
-      maxSelection     = MAX_PUSH;
-      mediaConstraints = MediaConstraints.getPushMediaConstraints();
-    }
-  }
-
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
       Util.runOnMain(() -> {
@@ -95,8 +83,8 @@ class MediaSendViewModel extends ViewModel {
 
         if (filteredMedia.size() != newMedia.size()) {
           error.setValue(Error.ITEM_TOO_LARGE);
-        } else if (filteredMedia.size() > maxSelection) {
-          filteredMedia = filteredMedia.subList(0, maxSelection);
+        } else if (filteredMedia.size() > MAX_SELECTION) {
+          filteredMedia = filteredMedia.subList(0, MAX_SELECTION);
           error.setValue(Error.TOO_MANY_ITEMS);
         }
 
@@ -211,7 +199,7 @@ class MediaSendViewModel extends ViewModel {
       selected = new LinkedList<>();
     }
 
-    if (selected.size() >= maxSelection) {
+    if (selected.size() >= MAX_SELECTION) {
       error.setValue(Error.TOO_MANY_ITEMS);
       return;
     }
@@ -302,7 +290,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   int getMaxSelection() {
-    return maxSelection;
+    return MAX_SELECTION;
   }
 
   private @NonNull List<Media> getSelectedMediaOrDefault() {

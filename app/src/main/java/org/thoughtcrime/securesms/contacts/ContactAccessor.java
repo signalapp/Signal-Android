@@ -23,14 +23,14 @@ import android.os.Parcelable;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import network.loki.messenger.R;
 
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 /**
  * This class was originally a layer of indirection between

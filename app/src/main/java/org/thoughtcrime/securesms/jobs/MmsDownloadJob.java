@@ -10,33 +10,34 @@ import com.google.android.mms.pdu_alt.PduBody;
 import com.google.android.mms.pdu_alt.PduPart;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 
+import org.session.libsession.messaging.jobs.Data;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.session.libsignal.libsignal.DuplicateMessageException;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.LegacyMessageException;
 import org.session.libsignal.libsignal.NoSessionException;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -81,7 +82,8 @@ public class MmsDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
                              .putLong(KEY_THREAD_ID, threadId)
                              .putBoolean(KEY_AUTOMATIC, automatic)
@@ -204,27 +206,27 @@ public class MmsDownloadJob extends BaseJob {
     Address               from;
 
     if (retrieved.getFrom() != null) {
-      from = Address.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
+      from = Address.Companion.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
     } else if (notificationFrom != null) {
       from = notificationFrom;
     } else {
-      from = Address.UNKNOWN;
+      from = Address.Companion.getUNKNOWN();
     }
 
     if (retrieved.getTo() != null) {
       for (EncodedStringValue toValue : retrieved.getTo()) {
-        members.add(Address.fromExternal(context, Util.toIsoString(toValue.getTextString())));
+        members.add(Address.Companion.fromExternal(context, Util.toIsoString(toValue.getTextString())));
       }
     }
 
     if (retrieved.getCc() != null) {
       for (EncodedStringValue ccValue : retrieved.getCc()) {
-        members.add(Address.fromExternal(context, Util.toIsoString(ccValue.getTextString())));
+        members.add(Address.Companion.fromExternal(context, Util.toIsoString(ccValue.getTextString())));
       }
     }
 
     members.add(from);
-    members.add(Address.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
+    members.add(Address.Companion.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
 
     if (retrieved.getBody() != null) {
       body = PartParser.getMessageText(retrieved.getBody());
@@ -247,7 +249,7 @@ public class MmsDownloadJob extends BaseJob {
     }
 
     if (members.size() > 2) {
-      group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true, new LinkedList<>())));
+      group = Optional.of(Address.Companion.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), new LinkedList<>())));
     }
 
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);

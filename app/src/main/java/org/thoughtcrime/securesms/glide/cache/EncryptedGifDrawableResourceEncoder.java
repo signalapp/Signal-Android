@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.glide.cache;
 
 
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import com.bumptech.glide.load.EncodeStrategy;
 import com.bumptech.glide.load.Options;

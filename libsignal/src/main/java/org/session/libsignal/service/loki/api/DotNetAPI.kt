@@ -1,6 +1,5 @@
 package org.session.libsignal.service.loki.api
 
-import com.fasterxml.jackson.databind.JsonNode
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -9,7 +8,7 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.Request
 import okhttp3.RequestBody
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.loki.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -19,16 +18,16 @@ import org.session.libsignal.service.internal.push.ProfileAvatarData
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.DigestingRequestBody
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory
-import org.session.libsignal.service.internal.util.Base64
-import org.session.libsignal.service.internal.util.Hex
-import org.session.libsignal.service.internal.util.JsonUtil
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.api.utilities.HTTP
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.utilities.recover
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.recover
 import java.util.*
 
 /**

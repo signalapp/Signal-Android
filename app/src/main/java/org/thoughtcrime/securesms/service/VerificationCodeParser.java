@@ -18,7 +18,7 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.util.regex.Matcher;

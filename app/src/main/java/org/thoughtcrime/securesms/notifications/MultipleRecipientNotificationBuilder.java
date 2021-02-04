@@ -11,10 +11,10 @@ import android.text.SpannableStringBuilder;
 
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.utilities.NotificationUtilities;
-import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.preferences.NotificationPrivacyPreference;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -20,7 +21,7 @@ import network.loki.messenger.R;
 
 public class ConversationStickerSuggestionAdapter extends RecyclerView.Adapter<ConversationStickerSuggestionAdapter.StickerSuggestionViewHolder> {
 
-  private final GlideRequests       glideRequests;
+  private final GlideRequests glideRequests;
   private final EventListener       eventListener;
   private final List<StickerRecord> stickers;
 

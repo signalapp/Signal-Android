@@ -11,7 +11,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 
 class UserView : LinearLayout {
     var openGroupThreadID: Long = -1 // FIXME: This is a bit ugly
@@ -80,6 +80,10 @@ class UserView : LinearLayout {
                 actionIndicatorImageView.setImageResource(if (isSelected) R.drawable.ic_circle_check else R.drawable.ic_circle)
             }
         }
+    }
+
+    fun unbind() {
+
     }
     // endregion
 }

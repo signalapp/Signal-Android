@@ -11,14 +11,16 @@ import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask
 import java.io.File
 import java.io.IOException
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
 import kotlin.jvm.Throws
+
+import org.session.libsession.utilities.Util
 
 /**
  * Saves attachment files to an external storage using [MediaStore] API.

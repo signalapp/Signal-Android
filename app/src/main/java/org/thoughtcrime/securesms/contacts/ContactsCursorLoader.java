@@ -26,15 +26,14 @@ import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.Address;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.NumberUtil;
+
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.utilities.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +44,19 @@ import java.util.List;
  * @author Jake McGinty
  */
 public class ContactsCursorLoader extends CursorLoader {
-
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
+
+  static final int NORMAL_TYPE  = 0;
+  static final int PUSH_TYPE    = 1;
+  static final int NEW_TYPE     = 2;
+  static final int RECENT_TYPE  = 3;
+  static final int DIVIDER_TYPE = 4;
+
+  static final String CONTACT_TYPE_COLUMN = "contact_type";
+  static final String LABEL_COLUMN        = "label";
+  static final String NUMBER_TYPE_COLUMN  = "number_type";
+  static final String NUMBER_COLUMN       = "number";
+  static final String NAME_COLUMN         = "name";
 
   public static final class DisplayMode {
     public static final int FLAG_PUSH   = 1;
@@ -55,11 +65,11 @@ public class ContactsCursorLoader extends CursorLoader {
     public static final int FLAG_ALL    = FLAG_PUSH | FLAG_SMS | FLAG_GROUPS;
   }
 
-  private static final String[] CONTACT_PROJECTION = new String[]{ContactsDatabase.NAME_COLUMN,
-                                                                  ContactsDatabase.NUMBER_COLUMN,
-                                                                  ContactsDatabase.NUMBER_TYPE_COLUMN,
-                                                                  ContactsDatabase.LABEL_COLUMN,
-                                                                  ContactsDatabase.CONTACT_TYPE_COLUMN};
+  private static final String[] CONTACT_PROJECTION = new String[]{NAME_COLUMN,
+                                                                  NUMBER_COLUMN,
+                                                                  NUMBER_TYPE_COLUMN,
+                                                                  LABEL_COLUMN,
+                                                                  CONTACT_TYPE_COLUMN};
 
   private static final int RECENT_CONVERSATION_MAX = 25;
 
@@ -158,7 +168,7 @@ public class ContactsCursorLoader extends CursorLoader {
                                      "",
                                      ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                      "",
-                                     ContactsDatabase.DIVIDER_TYPE });
+                                     DIVIDER_TYPE });
     return groupHeader;
   }
 
@@ -175,17 +185,14 @@ public class ContactsCursorLoader extends CursorLoader {
                                                   threadRecord.getRecipient().getAddress().serialize(),
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
-                                                  ContactsDatabase.RECENT_TYPE });
+                                                  RECENT_TYPE });
       }
     }
     return recentConversations;
   }
 
   private List<Cursor> getContactsCursors() {
-    ContactsDatabase contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
-    List<Cursor>     cursorList       = new ArrayList<>(2);
-
-    return cursorList;
+    return new ArrayList<>(2);
     /*
     if (!Permissions.hasAny(getContext(), Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       return cursorList;
@@ -207,13 +214,13 @@ public class ContactsCursorLoader extends CursorLoader {
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = new MatrixCursor(CONTACT_PROJECTION);
     try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
-      GroupDatabase.GroupRecord groupRecord;
+      GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getTitle(),
                                             groupRecord.getEncodedId(),
                                             ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                             "",
-                                            ContactsDatabase.NORMAL_TYPE });
+                                            NORMAL_TYPE });
       }
     }
     return groupContacts;
@@ -225,31 +232,8 @@ public class ContactsCursorLoader extends CursorLoader {
                                           filter,
                                           ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                           "\u21e2",
-                                          ContactsDatabase.NEW_TYPE });
+                                          NEW_TYPE });
     return newNumberCursor;
-  }
-
-  private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {
-    try {
-      final long startMillis = System.currentTimeMillis();
-      final MatrixCursor matrix = new MatrixCursor(CONTACT_PROJECTION);
-      while (cursor.moveToNext()) {
-        final String    number    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-        final Recipient recipient = Recipient.from(getContext(), Address.fromExternal(getContext(), number), false);
-
-        if (recipient.resolve().getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
-          matrix.addRow(new Object[]{cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),
-                                     number,
-                                     cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_TYPE_COLUMN)),
-                                     cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.LABEL_COLUMN)),
-                                     ContactsDatabase.NORMAL_TYPE});
-        }
-      }
-      Log.i(TAG, "filterNonPushContacts() -> " + (System.currentTimeMillis() - startMillis) + "ms");
-      return matrix;
-    } finally {
-      cursor.close();
-    }
   }
 
   private static boolean isCursorListEmpty(List<Cursor> list) {

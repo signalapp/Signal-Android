@@ -8,8 +8,9 @@ import android.text.TextUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsignal.utilities.logging.Log;
+
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 
@@ -82,7 +83,7 @@ public class SignalPlace {
 
   public @Nullable String serialize() {
     try {
-      return JsonUtils.toJson(this);
+      return JsonUtil.toJsonThrows(this);
     } catch (IOException e) {
       Log.w(TAG, e);
       return null;
@@ -90,6 +91,6 @@ public class SignalPlace {
   }
 
   public static SignalPlace deserialize(@NonNull  String serialized) throws IOException {
-    return JsonUtils.fromJson(serialized, SignalPlace.class);
+    return JsonUtil.fromJson(serialized, SignalPlace.class);
   }
 }

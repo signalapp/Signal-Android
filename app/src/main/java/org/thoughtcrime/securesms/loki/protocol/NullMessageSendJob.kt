@@ -1,15 +1,15 @@
 package org.thoughtcrime.securesms.loki.protocol
 
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.jobs.Data
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
-import org.thoughtcrime.securesms.database.Address
-import org.thoughtcrime.securesms.jobmanager.Data
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities

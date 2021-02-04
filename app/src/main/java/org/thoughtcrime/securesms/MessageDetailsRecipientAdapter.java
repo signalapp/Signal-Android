@@ -8,11 +8,12 @@ import android.widget.BaseAdapter;
 
 import androidx.annotation.NonNull;
 
+
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.loki.views.UserView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.Conversions;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.Conversions;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,7 +22,7 @@ import java.util.List;
 class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
   private final Context                       context;
-  private final GlideRequests                 glideRequests;
+  private final GlideRequests glideRequests;
   private final MessageRecord                 record;
   private final List<RecipientDeliveryStatus> members;
   private final boolean                       isPushGroup;
@@ -67,7 +68,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
   @Override
   public void onMovedToScrapHeap(View view) {
-    ((MessageRecipientListItem)view).unbind();
+    ((UserView)view).unbind();
   }
 
 

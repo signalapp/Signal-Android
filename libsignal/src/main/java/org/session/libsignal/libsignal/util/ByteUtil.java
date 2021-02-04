@@ -5,6 +5,8 @@
  */
 package org.session.libsignal.libsignal.util;
 
+import org.session.libsignal.utilities.Hex;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;

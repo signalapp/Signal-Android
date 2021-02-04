@@ -5,7 +5,7 @@ import android.app.job.JobInfo;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 public class SqlCipherMigrationConstraint implements Constraint {
 

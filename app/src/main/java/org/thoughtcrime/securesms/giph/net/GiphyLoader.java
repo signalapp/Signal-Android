@@ -6,14 +6,14 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.GiphyResponse;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.util.AsyncLoader;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -58,7 +58,7 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
         throw new IOException("Unexpected code " + response);
       }
 
-      GiphyResponse    giphyResponse = JsonUtils.fromJson(response.body().byteStream(), GiphyResponse.class);
+      GiphyResponse    giphyResponse = JsonUtil.fromJson(response.body().byteStream(), GiphyResponse.class);
       List<GiphyImage> results       = giphyResponse.getData();
 
       if (results == null) return new LinkedList<>();

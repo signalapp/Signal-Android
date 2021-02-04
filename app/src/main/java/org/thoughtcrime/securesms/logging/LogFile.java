@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.logging;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.Conversions;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Conversions;
+import org.session.libsession.utilities.Util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -26,6 +26,18 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 class LogFile {
+
+  public static class GrowingBuffer {
+
+    private byte[] buffer;
+
+    public byte[] get(int minLength) {
+      if (buffer == null || buffer.length < minLength) {
+        buffer = new byte[minLength];
+      }
+      return buffer;
+    }
+  }
 
   public static class Writer {
 

@@ -16,8 +16,8 @@ import com.google.zxing.qrcode.QRCodeReader;
 
 import org.thoughtcrime.securesms.components.camera.CameraView;
 import org.thoughtcrime.securesms.components.camera.CameraView.PreviewFrame;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsession.utilities.Util;
 
 import java.util.HashMap;
 import java.util.Map;

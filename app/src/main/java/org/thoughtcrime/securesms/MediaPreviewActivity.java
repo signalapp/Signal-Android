@@ -53,28 +53,28 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.Util;
+
 import org.thoughtcrime.securesms.components.MediaView;
-import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.WeakHashMap;
 
 import network.loki.messenger.R;
@@ -95,8 +95,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public static final String CAPTION_EXTRA        = "caption";
   public static final String OUTGOING_EXTRA       = "outgoing";
   public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
-
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ViewPager             mediaPager;
   private View                  detailsContainer;
@@ -121,8 +119,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    dynamicLanguage.onCreate(this);
-
     viewModel = new ViewModelProvider(this).get(MediaPreviewViewModel.class);
 
     setContentView(R.layout.media_preview_activity);
@@ -138,6 +134,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     return super.dispatchTouchEvent(ev);
   }
 
+  @SuppressLint("MissingSuperCall")
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
@@ -173,7 +170,7 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
       CharSequence relativeTimeSpan;
 
       if (mediaItem.date > 0) {
-        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this,dynamicLanguage.getCurrentLocale(), mediaItem.date);
+        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this, Locale.getDefault(), mediaItem.date);
       } else {
         relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
       }
@@ -190,7 +187,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
   public void onResume() {
     super.onResume();
 
-    dynamicLanguage.onResume(this);
     initializeMedia();
   }
 
@@ -472,11 +468,14 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
   }
 
-  private class ViewPagerListener extends ExtendedOnPageChangedListener {
+  private class ViewPagerListener implements ViewPager.OnPageChangeListener {
+
+    private int currentPage = -1;
 
     @Override
     public void onPageSelected(int position) {
-      super.onPageSelected(position);
+      if (currentPage != -1 && currentPage != position) onPageUnselected(currentPage);
+      currentPage = position;
 
       MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
 
@@ -489,7 +488,6 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
     }
 
 
-    @Override
     public void onPageUnselected(int position) {
       MediaItemAdapter adapter = (MediaItemAdapter)mediaPager.getAdapter();
 
@@ -499,6 +497,16 @@ public class MediaPreviewActivity extends PassphraseRequiredActionBarActivity im
 
         adapter.pause(position);
       }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
   }
 

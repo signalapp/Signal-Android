@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 import android.content.Context;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
 /**

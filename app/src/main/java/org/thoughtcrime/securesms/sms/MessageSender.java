@@ -20,15 +20,14 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -39,18 +38,12 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.push.AccountManagerFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
-import org.session.libsignal.service.api.push.ContactTokenDetails;
-
-import java.io.IOException;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 public class MessageSender {
 
@@ -215,30 +208,6 @@ public class MessageSender {
            !recipient.getAddress().isMmsGroup();
   }
 
-  private static boolean isPushDestination(Context context, Recipient destination) {
-    if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      return true;
-    } else if (destination.resolve().getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
-      return false;
-    } else {
-      try {
-        SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.getAddress().serialize());
-
-        if (!registeredUser.isPresent()) {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.NOT_REGISTERED);
-          return false;
-        } else {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination, RecipientDatabase.RegisteredState.REGISTERED);
-          return true;
-        }
-      } catch (IOException e1) {
-        Log.w(TAG, e1);
-        return false;
-      }
-    }
-  }
-
   private static boolean isLocalSelfSend(@NonNull Context context, @NonNull Recipient recipient, boolean forceSms) {
     return recipient.isLocalNumber()                       &&
            !forceSms                                       &&
@@ -253,7 +222,7 @@ public class MessageSender {
       MmsDatabase            mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase     = DatabaseFactory.getMmsSmsDatabase(context);
       OutgoingMediaMessage   message            = mmsDatabase.getOutgoingMessage(messageId);
-      SyncMessageId          syncId             = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getSentTimeMillis());
+      SyncMessageId          syncId             = new SyncMessageId(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getSentTimeMillis());
 
       for (Attachment attachment : message.getAttachments()) {
         attachmentDatabase.markAttachmentUploaded(messageId, attachment);
@@ -280,7 +249,7 @@ public class MessageSender {
       SmsDatabase            smsDatabase       = DatabaseFactory.getSmsDatabase(context);
       MmsSmsDatabase         mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
       SmsMessageRecord       message           = smsDatabase.getMessage(messageId);
-      SyncMessageId          syncId            = new SyncMessageId(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getDateSent());
+      SyncMessageId          syncId            = new SyncMessageId(Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)), message.getDateSent());
 
       smsDatabase.markAsSent(messageId, true);
       smsDatabase.markUnidentified(messageId, true);

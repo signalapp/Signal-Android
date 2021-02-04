@@ -30,7 +30,7 @@
         android:textColor="@color/text"
         android:text="@string/activity_register_explanation" />
 
-    <org.thoughtcrime.securesms.loki.views.TapJackingProofTextView
+    <TextView
         style="@style/SessionIDTextView"
         android:id="@+id/publicKeyTextView"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:layout_marginRight="@dimen/massive_spacing"
         android:text="@string/continue_2" />
 
-    <org.thoughtcrime.securesms.loki.views.TapJackingProofButton
+    <Button
         style="@style/Widget.Session.Button.Common.ProminentOutline"
         android:id="@+id/copyButton"
         android:layout_width="match_parent"

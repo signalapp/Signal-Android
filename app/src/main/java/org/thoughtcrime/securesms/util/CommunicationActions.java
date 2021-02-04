@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -15,42 +13,12 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.database.Address;
+
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public class CommunicationActions {
-
-  public static void startVoiceCall(@NonNull Activity activity, @NonNull Recipient recipient) {
-    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
-      Toast.makeText(activity,
-                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT
-                    ).show();
-      return;
-    }
-
-    Permissions.with(activity)
-        .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-        .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera),
-                             R.drawable.ic_mic_white_48dp,
-                             R.drawable.ic_videocam_white_48dp)
-        .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString()))
-        .onAllGranted(() -> {
-          Intent intent = new Intent(activity, WebRtcCallService.class);
-          intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-          intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
-          activity.startService(intent);
-
-          Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
-          activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-          activity.startActivity(activityIntent);
-        })
-        .execute();
-  }
 
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
     startConversation(context, recipient, text, null);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider.TabIconProvider;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 

@@ -53,10 +53,10 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.task.ProgressDialogAsyncTask;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -507,7 +507,7 @@ public class SubmitLogFragment extends Fragment {
              .append(" ")
              .append(pm.getPackageInfo(context.getPackageName(), 0).versionName)
              .append(" (")
-             .append(Util.getManifestApkVersion(context))
+             .append(org.thoughtcrime.securesms.util.Util.getManifestApkVersion(context))
              .append(")\n");
     } catch (PackageManager.NameNotFoundException nnfe) {
       builder.append("Unknown\n");

@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
-import org.thoughtcrime.securesms.util.Util;
+import org.session.libsession.utilities.Util;
 
 import java.io.File;
 import java.io.IOException;

@@ -7,9 +7,9 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
@@ -47,7 +47,7 @@ public class QuickResponseService extends IntentService {
         number = URLDecoder.decode(number);
       }
 
-      Address   address        = Address.fromExternal(this, number);
+      Address   address        = Address.Companion.fromExternal(this, number);
       Recipient recipient      = Recipient.from(this, address, false);
       int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
       long      expiresIn      = recipient.getExpireMessages() * 1000L;

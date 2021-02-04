@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordRead
 import org.thoughtcrime.securesms.database.StickerDatabase.StickerRecordReader;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.util.ArrayList;
 import java.util.List;

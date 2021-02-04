@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.logging;
 
+import org.session.libsignal.utilities.logging.Log;
+
 import androidx.annotation.NonNull;
 
 public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler {

@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.service.api.push.TrustStore;
 import org.session.libsignal.service.internal.configuration.SignalCdnUrl;
 import org.session.libsignal.service.internal.configuration.SignalContactDiscoveryUrl;

@@ -17,29 +17,24 @@
 package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachmentProvider;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
-import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
-import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
 
@@ -54,12 +49,10 @@ public class DatabaseFactory {
   private final MediaDatabase         media;
   private final ThreadDatabase        thread;
   private final MmsSmsDatabase        mmsSmsDatabase;
-  private final IdentityDatabase      identityDatabase;
   private final DraftDatabase         draftDatabase;
   private final PushDatabase          pushDatabase;
   private final GroupDatabase         groupDatabase;
   private final RecipientDatabase     recipientDatabase;
-  private final ContactsDatabase      contactsDatabase;
   private final GroupReceiptDatabase  groupReceiptDatabase;
   private final OneTimePreKeyDatabase preKeyDatabase;
   private final SignedPreKeyDatabase  signedPreKeyDatabase;
@@ -70,13 +63,16 @@ public class DatabaseFactory {
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
-  private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
-  private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
   private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
   private final SharedSenderKeysDatabase sskDatabase;
+  private final SessionJobDatabase sessionJobDatabase;
+
+  // Refactor
+  private final Storage storage;
+  private final DatabaseAttachmentProvider attachmentProvider;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -111,10 +107,6 @@ public class DatabaseFactory {
     return getInstance(context).media;
   }
 
-  public static IdentityDatabase getIdentityDatabase(Context context) {
-    return getInstance(context).identityDatabase;
-  }
-
   public static DraftDatabase getDraftDatabase(Context context) {
     return getInstance(context).draftDatabase;
   }
@@ -129,10 +121,6 @@ public class DatabaseFactory {
 
   public static RecipientDatabase getRecipientDatabase(Context context) {
     return getInstance(context).recipientDatabase;
-  }
-
-  public static ContactsDatabase getContactsDatabase(Context context) {
-    return getInstance(context).contactsDatabase;
   }
 
   public static GroupReceiptDatabase getGroupReceiptDatabase(Context context) {
@@ -172,14 +160,6 @@ public class DatabaseFactory {
     return getInstance(context).lokiAPIDatabase;
   }
 
-  public static LokiPreKeyRecordDatabase getLokiPreKeyRecordDatabase(Context context) {
-    return getInstance(context).lokiContactPreKeyDatabase;
-  }
-
-  public static LokiPreKeyBundleDatabase getLokiPreKeyBundleDatabase(Context context) {
-    return getInstance(context).lokiPreKeyBundleDatabase;
-  }
-
   public static LokiMessageDatabase getLokiMessageDatabase(Context context) {
     return getInstance(context).lokiMessageDatabase;
   }
@@ -198,6 +178,20 @@ public class DatabaseFactory {
 
   public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
     return getInstance(context).sskDatabase;
+  }
+
+  public static SessionJobDatabase getSessionJobDatabase(Context context) {
+    return getInstance(context).sessionJobDatabase;
+  }
+  // endregion
+
+  // region Refactor
+  public static Storage getStorage(Context context) {
+    return getInstance(context).storage;
+  }
+
+  public static DatabaseAttachmentProvider getAttachmentProvider(Context context) {
+    return getInstance(context).attachmentProvider;
   }
   // endregion
 
@@ -219,13 +213,11 @@ public class DatabaseFactory {
     this.media                     = new MediaDatabase(context, databaseHelper);
     this.thread                    = new ThreadDatabase(context, databaseHelper);
     this.mmsSmsDatabase            = new MmsSmsDatabase(context, databaseHelper);
-    this.identityDatabase          = new IdentityDatabase(context, databaseHelper);
     this.draftDatabase             = new DraftDatabase(context, databaseHelper);
     this.pushDatabase              = new PushDatabase(context, databaseHelper);
     this.groupDatabase             = new GroupDatabase(context, databaseHelper);
     this.recipientDatabase         = new RecipientDatabase(context, databaseHelper);
     this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
-    this.contactsDatabase          = new ContactsDatabase(context);
     this.preKeyDatabase            = new OneTimePreKeyDatabase(context, databaseHelper);
     this.signedPreKeyDatabase      = new SignedPreKeyDatabase(context, databaseHelper);
     this.sessionDatabase           = new SessionDatabase(context, databaseHelper);
@@ -233,37 +225,14 @@ public class DatabaseFactory {
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
     this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
-    this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
-    this.lokiPreKeyBundleDatabase  = new LokiPreKeyBundleDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
     this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
-  }
-
-  public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                                        int fromVersion, DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
-  {
-    databaseHelper.getWritableDatabase();
-
-    ClassicOpenHelper legacyOpenHelper = null;
-
-    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
-      legacyOpenHelper = new ClassicOpenHelper(context);
-      legacyOpenHelper.onApplicationLevelUpgrade(context, masterSecret, fromVersion, listener);
-    }
-
-    if (fromVersion < DatabaseUpgradeActivity.SQLCIPHER && TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
-      if (legacyOpenHelper == null) {
-        legacyOpenHelper = new ClassicOpenHelper(context);
-      }
-
-      SQLCipherMigrationHelper.migrateCiphertext(context, masterSecret,
-                                                 legacyOpenHelper.getWritableDatabase(),
-                                                 databaseHelper.getWritableDatabase(),
-                                                 listener);
-    }
+    this.storage                   = new Storage(context, databaseHelper);
+    this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
+    this.sessionJobDatabase        = new SessionJobDatabase(context, databaseHelper);
   }
 
 }

@@ -21,18 +21,20 @@ import androidx.annotation.RequiresApi;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.ThemeUtil;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 
 import java.util.List;
@@ -193,7 +195,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
-    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
+    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress().serialize());
 
     String quoteeDisplayName = author.toShortString();
 

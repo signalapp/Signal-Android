@@ -54,7 +54,7 @@ public final class SignalProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -106,14 +106,14 @@ public final class SignalProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return SignalProtos.internal_static_signal_ServerCertificate_descriptor;
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return SignalProtos.internal_static_signal_ServerCertificate_fieldAccessorTable
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ServerCertificate.class, Builder.class);
+              org.session.libsignal.metadata.SignalProtos.ServerCertificate.class, org.session.libsignal.metadata.SignalProtos.ServerCertificate.Builder.class);
     }
 
     public static com.google.protobuf.Parser<ServerCertificate> PARSER =
@@ -126,7 +126,7 @@ public final class SignalProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ServerCertificate> getParserForType() {
       return PARSER;
     }
@@ -177,7 +177,7 @@ public final class SignalProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -229,14 +229,14 @@ public final class SignalProtos {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return SignalProtos.internal_static_signal_ServerCertificate_Certificate_fieldAccessorTable
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_Certificate_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Certificate.class, Builder.class);
+                org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.class, org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.Builder.class);
       }
 
       public static com.google.protobuf.Parser<Certificate> PARSER =
@@ -249,7 +249,7 @@ public final class SignalProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Certificate> getParserForType() {
         return PARSER;
       }
@@ -332,59 +332,59 @@ public final class SignalProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
 
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static Certificate parseFrom(byte[] data)
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static Certificate parseFrom(java.io.InputStream input)
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return PARSER.parseFrom(input);
       }
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return PARSER.parseFrom(input, extensionRegistry);
       }
-      public static Certificate parseDelimitedFrom(java.io.InputStream input)
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return PARSER.parseDelimitedFrom(input);
       }
-      public static Certificate parseDelimitedFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return PARSER.parseFrom(input);
       }
-      public static Certificate parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -393,12 +393,12 @@ public final class SignalProtos {
 
       public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder(Certificate prototype) {
+      public static Builder newBuilder(org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate prototype) {
         return newBuilder().mergeFrom(prototype);
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -409,17 +409,17 @@ public final class SignalProtos {
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
-         implements CertificateOrBuilder {
+         implements org.session.libsignal.metadata.SignalProtos.ServerCertificate.CertificateOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
         }
 
         protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return SignalProtos.internal_static_signal_ServerCertificate_Certificate_fieldAccessorTable
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_Certificate_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  Certificate.class, Builder.class);
+                  org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.class, org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.Builder.class);
         }
 
         // Construct using org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.newBuilder()
@@ -455,23 +455,23 @@ public final class SignalProtos {
 
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_Certificate_descriptor;
         }
 
-        public Certificate getDefaultInstanceForType() {
-          return Certificate.getDefaultInstance();
+        public org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate getDefaultInstanceForType() {
+          return org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.getDefaultInstance();
         }
 
-        public Certificate build() {
-          Certificate result = buildPartial();
+        public org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate build() {
+          org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
           return result;
         }
 
-        public Certificate buildPartial() {
-          Certificate result = new Certificate(this);
+        public org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate buildPartial() {
+          org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate result = new org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate(this);
           int from_bitField0_ = bitField0_;
           int to_bitField0_ = 0;
           if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -488,16 +488,16 @@ public final class SignalProtos {
         }
 
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof Certificate) {
-            return mergeFrom((Certificate)other);
+          if (other instanceof org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate) {
+            return mergeFrom((org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(Certificate other) {
-          if (other == Certificate.getDefaultInstance()) return this;
+        public Builder mergeFrom(org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate other) {
+          if (other == org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate.getDefaultInstance()) return this;
           if (other.hasId()) {
             setId(other.getId());
           }
@@ -516,11 +516,11 @@ public final class SignalProtos {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          Certificate parsedMessage = null;
+          org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (Certificate) e.getUnfinishedMessage();
+            parsedMessage = (org.session.libsignal.metadata.SignalProtos.ServerCertificate.Certificate) e.getUnfinishedMessage();
             throw e;
           } finally {
             if (parsedMessage != null) {
@@ -689,59 +689,59 @@ public final class SignalProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
 
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerCertificate parseFrom(byte[] data)
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerCertificate parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static ServerCertificate parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static ServerCertificate parseDelimitedFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static ServerCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.ServerCertificate parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -750,12 +750,12 @@ public final class SignalProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(ServerCertificate prototype) {
+    public static Builder newBuilder(org.session.libsignal.metadata.SignalProtos.ServerCertificate prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -766,17 +766,17 @@ public final class SignalProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements ServerCertificateOrBuilder {
+       implements org.session.libsignal.metadata.SignalProtos.ServerCertificateOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return SignalProtos.internal_static_signal_ServerCertificate_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return SignalProtos.internal_static_signal_ServerCertificate_fieldAccessorTable
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ServerCertificate.class, Builder.class);
+                org.session.libsignal.metadata.SignalProtos.ServerCertificate.class, org.session.libsignal.metadata.SignalProtos.ServerCertificate.Builder.class);
       }
 
       // Construct using org.session.libsignal.metadata.SignalProtos.ServerCertificate.newBuilder()
@@ -812,23 +812,23 @@ public final class SignalProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return SignalProtos.internal_static_signal_ServerCertificate_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_ServerCertificate_descriptor;
       }
 
-      public ServerCertificate getDefaultInstanceForType() {
-        return ServerCertificate.getDefaultInstance();
+      public org.session.libsignal.metadata.SignalProtos.ServerCertificate getDefaultInstanceForType() {
+        return org.session.libsignal.metadata.SignalProtos.ServerCertificate.getDefaultInstance();
       }
 
-      public ServerCertificate build() {
-        ServerCertificate result = buildPartial();
+      public org.session.libsignal.metadata.SignalProtos.ServerCertificate build() {
+        org.session.libsignal.metadata.SignalProtos.ServerCertificate result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public ServerCertificate buildPartial() {
-        ServerCertificate result = new ServerCertificate(this);
+      public org.session.libsignal.metadata.SignalProtos.ServerCertificate buildPartial() {
+        org.session.libsignal.metadata.SignalProtos.ServerCertificate result = new org.session.libsignal.metadata.SignalProtos.ServerCertificate(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -845,16 +845,16 @@ public final class SignalProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ServerCertificate) {
-          return mergeFrom((ServerCertificate)other);
+        if (other instanceof org.session.libsignal.metadata.SignalProtos.ServerCertificate) {
+          return mergeFrom((org.session.libsignal.metadata.SignalProtos.ServerCertificate)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ServerCertificate other) {
-        if (other == ServerCertificate.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.metadata.SignalProtos.ServerCertificate other) {
+        if (other == org.session.libsignal.metadata.SignalProtos.ServerCertificate.getDefaultInstance()) return this;
         if (other.hasCertificate()) {
           setCertificate(other.getCertificate());
         }
@@ -873,11 +873,11 @@ public final class SignalProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        ServerCertificate parsedMessage = null;
+        org.session.libsignal.metadata.SignalProtos.ServerCertificate parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (ServerCertificate) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.metadata.SignalProtos.ServerCertificate) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -982,7 +982,7 @@ public final class SignalProtos {
     /**
      * <code>optional string sender = 1;</code>
      */
-    String getSender();
+    java.lang.String getSender();
     /**
      * <code>optional string sender = 1;</code>
      */
@@ -1022,7 +1022,7 @@ public final class SignalProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -1074,14 +1074,14 @@ public final class SignalProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return SignalProtos.internal_static_signal_SenderCertificate_descriptor;
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_SenderCertificate_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return SignalProtos.internal_static_signal_SenderCertificate_fieldAccessorTable
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_SenderCertificate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              SenderCertificate.class, Builder.class);
+              org.session.libsignal.metadata.SignalProtos.SenderCertificate.class, org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder.class);
     }
 
     public static com.google.protobuf.Parser<SenderCertificate> PARSER =
@@ -1094,7 +1094,7 @@ public final class SignalProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SenderCertificate> getParserForType() {
       return PARSER;
     }
@@ -1102,7 +1102,7 @@ public final class SignalProtos {
     private int bitField0_;
     // optional string sender = 1;
     public static final int SENDER_FIELD_NUMBER = 1;
-    private Object sender_;
+    private java.lang.Object sender_;
     /**
      * <code>optional string sender = 1;</code>
      */
@@ -1112,14 +1112,14 @@ public final class SignalProtos {
     /**
      * <code>optional string sender = 1;</code>
      */
-    public String getSender() {
-      Object ref = sender_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSender() {
+      java.lang.Object ref = sender_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           sender_ = s;
         }
@@ -1131,11 +1131,11 @@ public final class SignalProtos {
      */
     public com.google.protobuf.ByteString
         getSenderBytes() {
-      Object ref = sender_;
-      if (ref instanceof String) {
+      java.lang.Object ref = sender_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         sender_ = b;
         return b;
       } else {
@@ -1204,59 +1204,59 @@ public final class SignalProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
 
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static SenderCertificate parseFrom(byte[] data)
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static SenderCertificate parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static SenderCertificate parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static SenderCertificate parseDelimitedFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static SenderCertificate parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.SenderCertificate parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1265,12 +1265,12 @@ public final class SignalProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(SenderCertificate prototype) {
+    public static Builder newBuilder(org.session.libsignal.metadata.SignalProtos.SenderCertificate prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1281,17 +1281,17 @@ public final class SignalProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements SenderCertificateOrBuilder {
+       implements org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return SignalProtos.internal_static_signal_SenderCertificate_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_SenderCertificate_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return SignalProtos.internal_static_signal_SenderCertificate_fieldAccessorTable
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_SenderCertificate_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                SenderCertificate.class, Builder.class);
+                org.session.libsignal.metadata.SignalProtos.SenderCertificate.class, org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder.class);
       }
 
       // Construct using org.session.libsignal.metadata.SignalProtos.SenderCertificate.newBuilder()
@@ -1327,23 +1327,23 @@ public final class SignalProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return SignalProtos.internal_static_signal_SenderCertificate_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_SenderCertificate_descriptor;
       }
 
-      public SenderCertificate getDefaultInstanceForType() {
-        return SenderCertificate.getDefaultInstance();
+      public org.session.libsignal.metadata.SignalProtos.SenderCertificate getDefaultInstanceForType() {
+        return org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance();
       }
 
-      public SenderCertificate build() {
-        SenderCertificate result = buildPartial();
+      public org.session.libsignal.metadata.SignalProtos.SenderCertificate build() {
+        org.session.libsignal.metadata.SignalProtos.SenderCertificate result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public SenderCertificate buildPartial() {
-        SenderCertificate result = new SenderCertificate(this);
+      public org.session.libsignal.metadata.SignalProtos.SenderCertificate buildPartial() {
+        org.session.libsignal.metadata.SignalProtos.SenderCertificate result = new org.session.libsignal.metadata.SignalProtos.SenderCertificate(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -1360,16 +1360,16 @@ public final class SignalProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof SenderCertificate) {
-          return mergeFrom((SenderCertificate)other);
+        if (other instanceof org.session.libsignal.metadata.SignalProtos.SenderCertificate) {
+          return mergeFrom((org.session.libsignal.metadata.SignalProtos.SenderCertificate)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(SenderCertificate other) {
-        if (other == SenderCertificate.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.metadata.SignalProtos.SenderCertificate other) {
+        if (other == org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance()) return this;
         if (other.hasSender()) {
           bitField0_ |= 0x00000001;
           sender_ = other.sender_;
@@ -1390,11 +1390,11 @@ public final class SignalProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        SenderCertificate parsedMessage = null;
+        org.session.libsignal.metadata.SignalProtos.SenderCertificate parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (SenderCertificate) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.metadata.SignalProtos.SenderCertificate) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -1406,7 +1406,7 @@ public final class SignalProtos {
       private int bitField0_;
 
       // optional string sender = 1;
-      private Object sender_ = "";
+      private java.lang.Object sender_ = "";
       /**
        * <code>optional string sender = 1;</code>
        */
@@ -1416,15 +1416,15 @@ public final class SignalProtos {
       /**
        * <code>optional string sender = 1;</code>
        */
-      public String getSender() {
-        Object ref = sender_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getSender() {
+        java.lang.Object ref = sender_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           sender_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1432,11 +1432,11 @@ public final class SignalProtos {
        */
       public com.google.protobuf.ByteString
           getSenderBytes() {
-        Object ref = sender_;
+        java.lang.Object ref = sender_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sender_ = b;
           return b;
         } else {
@@ -1447,7 +1447,7 @@ public final class SignalProtos {
        * <code>optional string sender = 1;</code>
        */
       public Builder setSender(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1579,7 +1579,7 @@ public final class SignalProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -1636,14 +1636,14 @@ public final class SignalProtos {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
     }
 
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_fieldAccessorTable
+      return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              UnidentifiedSenderMessage.class, Builder.class);
+              org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.class, org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Builder.class);
     }
 
     public static com.google.protobuf.Parser<UnidentifiedSenderMessage> PARSER =
@@ -1656,7 +1656,7 @@ public final class SignalProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<UnidentifiedSenderMessage> getParserForType() {
       return PARSER;
     }
@@ -1672,7 +1672,7 @@ public final class SignalProtos {
       /**
        * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
        */
-      Message.Type getType();
+      org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type getType();
 
       // optional .signal.SenderCertificate senderCertificate = 2;
       /**
@@ -1682,11 +1682,11 @@ public final class SignalProtos {
       /**
        * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
        */
-      SenderCertificate getSenderCertificate();
+      org.session.libsignal.metadata.SignalProtos.SenderCertificate getSenderCertificate();
       /**
        * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
        */
-      SenderCertificateOrBuilder getSenderCertificateOrBuilder();
+      org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder getSenderCertificateOrBuilder();
 
       // optional bytes content = 3;
       /**
@@ -1721,7 +1721,7 @@ public final class SignalProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -1751,7 +1751,7 @@ public final class SignalProtos {
               }
               case 8: {
                 int rawValue = input.readEnum();
-                Type value = Type.valueOf(rawValue);
+                org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type value = org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type.valueOf(rawValue);
                 if (value == null) {
                   unknownFields.mergeVarintField(1, rawValue);
                 } else {
@@ -1761,11 +1761,11 @@ public final class SignalProtos {
                 break;
               }
               case 18: {
-                SenderCertificate.Builder subBuilder = null;
+                org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder subBuilder = null;
                 if (((bitField0_ & 0x00000002) == 0x00000002)) {
                   subBuilder = senderCertificate_.toBuilder();
                 }
-                senderCertificate_ = input.readMessage(SenderCertificate.PARSER, extensionRegistry);
+                senderCertificate_ = input.readMessage(org.session.libsignal.metadata.SignalProtos.SenderCertificate.PARSER, extensionRegistry);
                 if (subBuilder != null) {
                   subBuilder.mergeFrom(senderCertificate_);
                   senderCertificate_ = subBuilder.buildPartial();
@@ -1792,14 +1792,14 @@ public final class SignalProtos {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_fieldAccessorTable
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                Message.class, Builder.class);
+                org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.class, org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Builder.class);
       }
 
       public static com.google.protobuf.Parser<Message> PARSER =
@@ -1812,7 +1812,7 @@ public final class SignalProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Message> getParserForType() {
         return PARSER;
       }
@@ -1883,7 +1883,7 @@ public final class SignalProtos {
         }
         public static final com.google.protobuf.Descriptors.EnumDescriptor
             getDescriptor() {
-          return Message.getDescriptor().getEnumTypes().get(0);
+          return org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.getDescriptor().getEnumTypes().get(0);
         }
 
         private static final Type[] VALUES = values();
@@ -1891,7 +1891,7 @@ public final class SignalProtos {
         public static Type valueOf(
             com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
           if (desc.getType() != getDescriptor()) {
-            throw new IllegalArgumentException(
+            throw new java.lang.IllegalArgumentException(
               "EnumValueDescriptor is not for this type.");
           }
           return VALUES[desc.getIndex()];
@@ -1911,7 +1911,7 @@ public final class SignalProtos {
       private int bitField0_;
       // optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;
       public static final int TYPE_FIELD_NUMBER = 1;
-      private Type type_;
+      private org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type type_;
       /**
        * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
        */
@@ -1921,13 +1921,13 @@ public final class SignalProtos {
       /**
        * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
        */
-      public Type getType() {
+      public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type getType() {
         return type_;
       }
 
       // optional .signal.SenderCertificate senderCertificate = 2;
       public static final int SENDERCERTIFICATE_FIELD_NUMBER = 2;
-      private SenderCertificate senderCertificate_;
+      private org.session.libsignal.metadata.SignalProtos.SenderCertificate senderCertificate_;
       /**
        * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
        */
@@ -1937,13 +1937,13 @@ public final class SignalProtos {
       /**
        * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
        */
-      public SenderCertificate getSenderCertificate() {
+      public org.session.libsignal.metadata.SignalProtos.SenderCertificate getSenderCertificate() {
         return senderCertificate_;
       }
       /**
        * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
        */
-      public SenderCertificateOrBuilder getSenderCertificateOrBuilder() {
+      public org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder getSenderCertificateOrBuilder() {
         return senderCertificate_;
       }
 
@@ -1964,8 +1964,8 @@ public final class SignalProtos {
       }
 
       private void initFields() {
-        type_ = Type.PREKEY_MESSAGE;
-        senderCertificate_ = SenderCertificate.getDefaultInstance();
+        type_ = org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type.PREKEY_MESSAGE;
+        senderCertificate_ = org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance();
         content_ = com.google.protobuf.ByteString.EMPTY;
       }
       private byte memoizedIsInitialized = -1;
@@ -2016,59 +2016,59 @@ public final class SignalProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
 
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static Message parseFrom(byte[] data)
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static Message parseFrom(java.io.InputStream input)
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return PARSER.parseFrom(input);
       }
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return PARSER.parseFrom(input, extensionRegistry);
       }
-      public static Message parseDelimitedFrom(java.io.InputStream input)
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return PARSER.parseDelimitedFrom(input);
       }
-      public static Message parseDelimitedFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return PARSER.parseDelimitedFrom(input, extensionRegistry);
       }
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return PARSER.parseFrom(input);
       }
-      public static Message parseFrom(
+      public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -2077,12 +2077,12 @@ public final class SignalProtos {
 
       public static Builder newBuilder() { return Builder.create(); }
       public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder(Message prototype) {
+      public static Builder newBuilder(org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message prototype) {
         return newBuilder().mergeFrom(prototype);
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -2093,17 +2093,17 @@ public final class SignalProtos {
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessage.Builder<Builder>
-         implements MessageOrBuilder {
+         implements org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.MessageOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
         }
 
         protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_fieldAccessorTable
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  Message.class, Builder.class);
+                  org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.class, org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Builder.class);
         }
 
         // Construct using org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.newBuilder()
@@ -2127,10 +2127,10 @@ public final class SignalProtos {
 
         public Builder clear() {
           super.clear();
-          type_ = Type.PREKEY_MESSAGE;
+          type_ = org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type.PREKEY_MESSAGE;
           bitField0_ = (bitField0_ & ~0x00000001);
           if (senderCertificateBuilder_ == null) {
-            senderCertificate_ = SenderCertificate.getDefaultInstance();
+            senderCertificate_ = org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance();
           } else {
             senderCertificateBuilder_.clear();
           }
@@ -2146,23 +2146,23 @@ public final class SignalProtos {
 
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
+          return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_Message_descriptor;
         }
 
-        public Message getDefaultInstanceForType() {
-          return Message.getDefaultInstance();
+        public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message getDefaultInstanceForType() {
+          return org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.getDefaultInstance();
         }
 
-        public Message build() {
-          Message result = buildPartial();
+        public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message build() {
+          org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
           return result;
         }
 
-        public Message buildPartial() {
-          Message result = new Message(this);
+        public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message buildPartial() {
+          org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message result = new org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message(this);
           int from_bitField0_ = bitField0_;
           int to_bitField0_ = 0;
           if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2187,16 +2187,16 @@ public final class SignalProtos {
         }
 
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof Message) {
-            return mergeFrom((Message)other);
+          if (other instanceof org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message) {
+            return mergeFrom((org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(Message other) {
-          if (other == Message.getDefaultInstance()) return this;
+        public Builder mergeFrom(org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message other) {
+          if (other == org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.getDefaultInstance()) return this;
           if (other.hasType()) {
             setType(other.getType());
           }
@@ -2218,11 +2218,11 @@ public final class SignalProtos {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          Message parsedMessage = null;
+          org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (Message) e.getUnfinishedMessage();
+            parsedMessage = (org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message) e.getUnfinishedMessage();
             throw e;
           } finally {
             if (parsedMessage != null) {
@@ -2234,7 +2234,7 @@ public final class SignalProtos {
         private int bitField0_;
 
         // optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;
-        private Type type_ = Type.PREKEY_MESSAGE;
+        private org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type type_ = org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type.PREKEY_MESSAGE;
         /**
          * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
          */
@@ -2244,13 +2244,13 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
          */
-        public Type getType() {
+        public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type getType() {
           return type_;
         }
         /**
          * <code>optional .signal.UnidentifiedSenderMessage.Message.Type type = 1;</code>
          */
-        public Builder setType(Type value) {
+        public Builder setType(org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type value) {
           if (value == null) {
             throw new NullPointerException();
           }
@@ -2264,15 +2264,15 @@ public final class SignalProtos {
          */
         public Builder clearType() {
           bitField0_ = (bitField0_ & ~0x00000001);
-          type_ = Type.PREKEY_MESSAGE;
+          type_ = org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Message.Type.PREKEY_MESSAGE;
           onChanged();
           return this;
         }
 
         // optional .signal.SenderCertificate senderCertificate = 2;
-        private SenderCertificate senderCertificate_ = SenderCertificate.getDefaultInstance();
+        private org.session.libsignal.metadata.SignalProtos.SenderCertificate senderCertificate_ = org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance();
         private com.google.protobuf.SingleFieldBuilder<
-            SenderCertificate, SenderCertificate.Builder, SenderCertificateOrBuilder> senderCertificateBuilder_;
+            org.session.libsignal.metadata.SignalProtos.SenderCertificate, org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder, org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder> senderCertificateBuilder_;
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
@@ -2282,7 +2282,7 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
-        public SenderCertificate getSenderCertificate() {
+        public org.session.libsignal.metadata.SignalProtos.SenderCertificate getSenderCertificate() {
           if (senderCertificateBuilder_ == null) {
             return senderCertificate_;
           } else {
@@ -2292,7 +2292,7 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
-        public Builder setSenderCertificate(SenderCertificate value) {
+        public Builder setSenderCertificate(org.session.libsignal.metadata.SignalProtos.SenderCertificate value) {
           if (senderCertificateBuilder_ == null) {
             if (value == null) {
               throw new NullPointerException();
@@ -2309,7 +2309,7 @@ public final class SignalProtos {
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
         public Builder setSenderCertificate(
-            SenderCertificate.Builder builderForValue) {
+            org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder builderForValue) {
           if (senderCertificateBuilder_ == null) {
             senderCertificate_ = builderForValue.build();
             onChanged();
@@ -2322,12 +2322,12 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
-        public Builder mergeSenderCertificate(SenderCertificate value) {
+        public Builder mergeSenderCertificate(org.session.libsignal.metadata.SignalProtos.SenderCertificate value) {
           if (senderCertificateBuilder_ == null) {
             if (((bitField0_ & 0x00000002) == 0x00000002) &&
-                senderCertificate_ != SenderCertificate.getDefaultInstance()) {
+                senderCertificate_ != org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance()) {
               senderCertificate_ =
-                SenderCertificate.newBuilder(senderCertificate_).mergeFrom(value).buildPartial();
+                org.session.libsignal.metadata.SignalProtos.SenderCertificate.newBuilder(senderCertificate_).mergeFrom(value).buildPartial();
             } else {
               senderCertificate_ = value;
             }
@@ -2343,7 +2343,7 @@ public final class SignalProtos {
          */
         public Builder clearSenderCertificate() {
           if (senderCertificateBuilder_ == null) {
-            senderCertificate_ = SenderCertificate.getDefaultInstance();
+            senderCertificate_ = org.session.libsignal.metadata.SignalProtos.SenderCertificate.getDefaultInstance();
             onChanged();
           } else {
             senderCertificateBuilder_.clear();
@@ -2354,7 +2354,7 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
-        public SenderCertificate.Builder getSenderCertificateBuilder() {
+        public org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder getSenderCertificateBuilder() {
           bitField0_ |= 0x00000002;
           onChanged();
           return getSenderCertificateFieldBuilder().getBuilder();
@@ -2362,7 +2362,7 @@ public final class SignalProtos {
         /**
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
-        public SenderCertificateOrBuilder getSenderCertificateOrBuilder() {
+        public org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder getSenderCertificateOrBuilder() {
           if (senderCertificateBuilder_ != null) {
             return senderCertificateBuilder_.getMessageOrBuilder();
           } else {
@@ -2373,11 +2373,11 @@ public final class SignalProtos {
          * <code>optional .signal.SenderCertificate senderCertificate = 2;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            SenderCertificate, SenderCertificate.Builder, SenderCertificateOrBuilder>
+            org.session.libsignal.metadata.SignalProtos.SenderCertificate, org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder, org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder> 
             getSenderCertificateFieldBuilder() {
           if (senderCertificateBuilder_ == null) {
             senderCertificateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-                SenderCertificate, SenderCertificate.Builder, SenderCertificateOrBuilder>(
+                org.session.libsignal.metadata.SignalProtos.SenderCertificate, org.session.libsignal.metadata.SignalProtos.SenderCertificate.Builder, org.session.libsignal.metadata.SignalProtos.SenderCertificateOrBuilder>(
                     senderCertificate_,
                     getParentForChildren(),
                     isClean());
@@ -2535,59 +2535,59 @@ public final class SignalProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
 
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static UnidentifiedSenderMessage parseFrom(byte[] data)
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static UnidentifiedSenderMessage parseFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseFrom(input, extensionRegistry);
     }
-    public static UnidentifiedSenderMessage parseDelimitedFrom(java.io.InputStream input)
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input);
     }
-    public static UnidentifiedSenderMessage parseDelimitedFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return PARSER.parseDelimitedFrom(input, extensionRegistry);
     }
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return PARSER.parseFrom(input);
     }
-    public static UnidentifiedSenderMessage parseFrom(
+    public static org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2596,12 +2596,12 @@ public final class SignalProtos {
 
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(UnidentifiedSenderMessage prototype) {
+    public static Builder newBuilder(org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -2612,17 +2612,17 @@ public final class SignalProtos {
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements UnidentifiedSenderMessageOrBuilder {
+       implements org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessageOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
       }
 
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_fieldAccessorTable
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                UnidentifiedSenderMessage.class, Builder.class);
+                org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.class, org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.Builder.class);
       }
 
       // Construct using org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.newBuilder()
@@ -2660,23 +2660,23 @@ public final class SignalProtos {
 
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
+        return org.session.libsignal.metadata.SignalProtos.internal_static_signal_UnidentifiedSenderMessage_descriptor;
       }
 
-      public UnidentifiedSenderMessage getDefaultInstanceForType() {
-        return UnidentifiedSenderMessage.getDefaultInstance();
+      public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage getDefaultInstanceForType() {
+        return org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.getDefaultInstance();
       }
 
-      public UnidentifiedSenderMessage build() {
-        UnidentifiedSenderMessage result = buildPartial();
+      public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage build() {
+        org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
         return result;
       }
 
-      public UnidentifiedSenderMessage buildPartial() {
-        UnidentifiedSenderMessage result = new UnidentifiedSenderMessage(this);
+      public org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage buildPartial() {
+        org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage result = new org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
@@ -2697,16 +2697,16 @@ public final class SignalProtos {
       }
 
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof UnidentifiedSenderMessage) {
-          return mergeFrom((UnidentifiedSenderMessage)other);
+        if (other instanceof org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage) {
+          return mergeFrom((org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(UnidentifiedSenderMessage other) {
-        if (other == UnidentifiedSenderMessage.getDefaultInstance()) return this;
+      public Builder mergeFrom(org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage other) {
+        if (other == org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage.getDefaultInstance()) return this;
         if (other.hasEphemeralPublic()) {
           setEphemeralPublic(other.getEphemeralPublic());
         }
@@ -2728,11 +2728,11 @@ public final class SignalProtos {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        UnidentifiedSenderMessage parsedMessage = null;
+        org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (UnidentifiedSenderMessage) e.getUnfinishedMessage();
+          parsedMessage = (org.session.libsignal.metadata.SignalProtos.UnidentifiedSenderMessage) e.getUnfinishedMessage();
           throw e;
         } finally {
           if (parsedMessage != null) {
@@ -2895,7 +2895,7 @@ public final class SignalProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\032UnidentifiedDelivery.proto\022\006signal\"c\n\021" +
       "ServerCertificate\022\023\n\013certificate\030\001 \001(\014\022\021" +
       "\n\tsignature\030\002 \001(\014\032&\n\013Certificate\022\n\n\002id\030\001" +
@@ -2908,8 +2908,8 @@ public final class SignalProtos {
       "age.Message.Type\0224\n\021senderCertificate\030\002 ",
       "\001(\0132\031.signal.SenderCertificate\022\017\n\007conten" +
       "t\030\003 \001(\014\"=\n\004Type\022\022\n\016PREKEY_MESSAGE\020\001\022\013\n\007M" +
-      "ESSAGE\020\002\022\024\n\020FALLBACK_MESSAGE\020\003B-\n\035org.si" +
-      "gnal.libsignal.metadataB\014SignalProtos"
+      "ESSAGE\020\002\022\024\n\020FALLBACK_MESSAGE\020\003B.\n\036org.se" +
+      "ssion.libsignal.metadataB\014SignalProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -2921,31 +2921,31 @@ public final class SignalProtos {
           internal_static_signal_ServerCertificate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_ServerCertificate_descriptor,
-              new String[] { "Certificate", "Signature", });
+              new java.lang.String[] { "Certificate", "Signature", });
           internal_static_signal_ServerCertificate_Certificate_descriptor =
             internal_static_signal_ServerCertificate_descriptor.getNestedTypes().get(0);
           internal_static_signal_ServerCertificate_Certificate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_ServerCertificate_Certificate_descriptor,
-              new String[] { "Id", "Key", });
+              new java.lang.String[] { "Id", "Key", });
           internal_static_signal_SenderCertificate_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_signal_SenderCertificate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_SenderCertificate_descriptor,
-              new String[] { "Sender", "SenderDevice", });
+              new java.lang.String[] { "Sender", "SenderDevice", });
           internal_static_signal_UnidentifiedSenderMessage_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_signal_UnidentifiedSenderMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_UnidentifiedSenderMessage_descriptor,
-              new String[] { "EphemeralPublic", "EncryptedStatic", "EncryptedMessage", });
+              new java.lang.String[] { "EphemeralPublic", "EncryptedStatic", "EncryptedMessage", });
           internal_static_signal_UnidentifiedSenderMessage_Message_descriptor =
             internal_static_signal_UnidentifiedSenderMessage_descriptor.getNestedTypes().get(0);
           internal_static_signal_UnidentifiedSenderMessage_Message_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_UnidentifiedSenderMessage_Message_descriptor,
-              new String[] { "Type", "SenderCertificate", "Content", });
+              new java.lang.String[] { "Type", "SenderCertificate", "Content", });
           return null;
         }
       };

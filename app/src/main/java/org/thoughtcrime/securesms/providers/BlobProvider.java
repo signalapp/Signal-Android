@@ -13,9 +13,9 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

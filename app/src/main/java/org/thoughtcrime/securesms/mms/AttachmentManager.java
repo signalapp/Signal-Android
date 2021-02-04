@@ -38,36 +38,38 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.thoughtcrime.securesms.util.ExternalStorageUtil;
+import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
-import org.thoughtcrime.securesms.util.views.Stub;
 import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.ThemeUtil;
+import org.session.libsession.utilities.ViewUtil;
+import org.session.libsession.utilities.views.Stub;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
+import org.session.libsignal.utilities.concurrent.ListenableFuture;
+import org.session.libsignal.utilities.concurrent.ListenableFuture.Listener;
+import org.session.libsignal.utilities.concurrent.SettableFuture;
 
 import java.io.File;
 import java.io.IOException;
@@ -211,7 +213,7 @@ public class AttachmentManager {
         byte[]        blob          = BitmapUtil.toByteArray(result);
         Uri           uri           = BlobProvider.getInstance()
                                                   .forData(blob)
-                                                  .withMimeType(MediaUtil.IMAGE_JPEG)
+                                                  .withMimeType(MediaTypes.IMAGE_JPEG)
                                                   .createForSingleSessionInMemory();
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
@@ -375,11 +377,11 @@ public class AttachmentManager {
     selectMediaType(activity, "*/*", null, requestCode);
   }
 
-  public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
+  public static void selectGallery(Activity activity, int requestCode, @NonNull Recipient recipient, @NonNull String body) {
     Permissions.with(activity)
                .request(Manifest.permission.READ_EXTERNAL_STORAGE)
                .withPermanentDenialDialog(activity.getString(R.string.AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio))
-               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body, transport), requestCode))
+               .onAllGranted(() -> activity.startActivityForResult(MediaSendActivity.buildGalleryIntent(activity, recipient, body), requestCode))
                .execute();
   }
 
@@ -414,9 +416,9 @@ public class AttachmentManager {
      */
   }
 
-  public static void selectGif(Activity activity, int requestCode, boolean isForMms) {
+  public static void selectGif(Activity activity, int requestCode) {
     Intent intent = new Intent(activity, GiphyActivity.class);
-    intent.putExtra(GiphyActivity.EXTRA_IS_MMS, isForMms);
+    intent.putExtra(GiphyActivity.EXTRA_IS_MMS, false);
     activity.startActivityForResult(intent, requestCode);
   }
 

@@ -7,8 +7,8 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.util.GroupUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import java.lang.Exception
 import java.lang.IllegalStateException
@@ -62,7 +62,7 @@ object OpenGroupUtilities {
                 ?: throw IllegalStateException("Public chat API is not initialized!")
 
         // Check if open group has a related DB record.
-        val groupId = GroupUtil.getEncodedOpenGroupId(PublicChat.getId(channel, url).toByteArray())
+        val groupId = GroupUtil.getEncodedOpenGroupID(PublicChat.getId(channel, url).toByteArray())
         if (!DatabaseFactory.getGroupDatabase(context).hasGroup(groupId)) {
             throw IllegalStateException("Attempt to update open group info for non-existent DB record: $groupId")
         }

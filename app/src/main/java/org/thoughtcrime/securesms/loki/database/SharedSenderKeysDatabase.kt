@@ -5,18 +5,19 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
-import org.thoughtcrime.securesms.util.Hex
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchet
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupRatchetCollectionType
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupSenderKey
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
+import org.thoughtcrime.securesms.database.DatabaseFactory
 
 class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), SharedSenderKeysDatabaseProtocol {
 
     companion object {
         // Shared
-        private val closedGroupPublicKey = "closed_group_public_key"
+        public val closedGroupPublicKey = "closed_group_public_key"
         // Ratchets
         private val oldClosedGroupRatchetTable = "old_closed_group_ratchet_table"
         private val currentClosedGroupRatchetTable = "closed_group_ratchet_table"
@@ -32,8 +33,8 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
             = "CREATE TABLE $currentClosedGroupRatchetTable ($closedGroupPublicKey STRING, $senderPublicKey STRING, $chainKey STRING, " +
                 "$keyIndex INTEGER DEFAULT 0, $messageKeys TEXT, PRIMARY KEY ($closedGroupPublicKey, $senderPublicKey));"
         // Private keys
-        private val closedGroupPrivateKeyTable = "closed_group_private_key_table"
-        private val closedGroupPrivateKey = "closed_group_private_key"
+        public val closedGroupPrivateKeyTable = "closed_group_private_key_table"
+        public val closedGroupPrivateKey = "closed_group_private_key"
         @JvmStatic val createClosedGroupPrivateKeyTableCommand
             = "CREATE TABLE $closedGroupPrivateKeyTable ($closedGroupPublicKey STRING PRIMARY KEY, $closedGroupPrivateKey STRING);"
     }
@@ -123,11 +124,14 @@ class SharedSenderKeysDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     override fun getAllClosedGroupPublicKeys(): Set<String> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(closedGroupPrivateKeyTable, null, null) { cursor ->
+        val result = mutableSetOf<String>()
+        result.addAll(database.getAll(closedGroupPrivateKeyTable, null, null) { cursor ->
             cursor.getString(Companion.closedGroupPublicKey)
         }.filter {
             PublicKeyValidation.isValid(it)
-        }.toSet()
+        })
+        result.addAll(DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys())
+        return result
     }
     // endregion
 

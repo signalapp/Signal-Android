@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ImageView;
 
+
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
@@ -21,8 +22,8 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardPageFragment.EventListener;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardRepository.PackListResult;
 import org.thoughtcrime.securesms.util.ResUtil;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Throttler;
+import org.session.libsession.utilities.ThemeUtil;
+import org.session.libsession.utilities.Throttler;
 
 import java.util.ArrayList;
 import java.util.HashMap;

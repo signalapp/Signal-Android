@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.loki.api
 
-import org.thoughtcrime.securesms.database.Address
-import org.thoughtcrime.securesms.jobmanager.Data
+import org.session.libsession.messaging.jobs.Data
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.logging.Log
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
@@ -63,7 +63,7 @@ class ResetThreadSessionJob private constructor(
     class Factory : Job.Factory<ResetThreadSessionJob> {
 
         override fun create(parameters: Parameters, data: Data): ResetThreadSessionJob {
-            val address = data.getParcelable(DATA_KEY_ADDRESS, Address.CREATOR)
+            val address = data.getParcelable(DATA_KEY_ADDRESS, Address.CREATOR)!!
             val threadId = data.getLong(DATA_KEY_THREAD_ID)
             return ResetThreadSessionJob(parameters, address, threadId)
         }

@@ -3,19 +3,19 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -65,7 +65,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_ROW_ID, attachmentId.getRowId())
                              .putLong(KEY_UNIQUE_ID, attachmentId.getUniqueId())
                              .putString(KEY_DESTINATION, destination.serialize())
@@ -161,8 +162,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {
     @Override
-    public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.fromSerialized(data.getString(KEY_DESTINATION)));
+    public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.Companion.fromSerialized(data.getString(KEY_DESTINATION)));
     }
   }
 }

@@ -10,13 +10,13 @@ import androidx.annotation.DimenRes
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.avatars.ProfileContactPhoto
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
@@ -80,7 +80,7 @@ class ProfilePictureView : RelativeLayout {
             }
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
-                val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+                val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
                 randomUsers.add(0, userPublicKey) // Ensure the current user is at the back visually
             }
             val pk = randomUsers.getOrNull(0) ?: ""

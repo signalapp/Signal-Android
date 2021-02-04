@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
+
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -32,7 +33,7 @@ final class StickerManagementAdapter extends RecyclerView.Adapter {
   private static final String TAG_MESSAGE_STICKERS = "MessageStickers";
   private static final String TAG_BLESSED_STICKERS = "BlessedStickers";
 
-  private final GlideRequests             glideRequests;
+  private final GlideRequests glideRequests;
   private final EventListener             eventListener;
   private final StableIdGenerator<String> stableIdGenerator;
 

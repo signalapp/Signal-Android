@@ -37,11 +37,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
@@ -52,21 +48,28 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
+
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
@@ -79,8 +82,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
 public class MmsDatabase extends MessagingDatabase {
 
@@ -267,7 +268,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
-          Address theirAddress = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+          Address theirAddress = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
           Address ourAddress   = messageId.getAddress();
           String  columnName   = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
 
@@ -332,7 +333,7 @@ public class MmsDatabase extends MessagingDatabase {
     String fromString = notification.getFrom() != null && notification.getFrom().getTextString() != null
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
-    Recipient recipient = Recipient.from(context, Address.fromExternal(context, fromString), false);
+    Recipient recipient = Recipient.from(context, Address.Companion.fromExternal(context, fromString), false);
     return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
   }
 
@@ -499,7 +500,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       while(cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          SyncMessageId  syncMessageId  = new SyncMessageId(Address.Companion.fromSerialized(cursor.getString(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), true);
 
           result.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
@@ -528,7 +529,7 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, ADDRESS}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
 
       while (cursor.moveToNext()) {
-        Address theirAddress = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address theirAddress = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
         Address ourAddress   = messageId.getAddress();
 
         if (ourAddress.equals(theirAddress) || theirAddress.isGroup()) {
@@ -641,18 +642,18 @@ public class MmsDatabase extends MessagingDatabase {
                                                                                .filterNot(previewAttachments::contains)
                                                                                .map(a -> (Attachment)a).toList();
 
-        Recipient                 recipient       = Recipient.from(context, Address.fromSerialized(address), false);
+        Recipient                 recipient       = Recipient.from(context, Address.Companion.fromSerialized(address), false);
         List<NetworkFailure>      networkFailures = new LinkedList<>();
         List<IdentityKeyMismatch> mismatches      = new LinkedList<>();
         QuoteModel                quote           = null;
 
         if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
-          quote = new QuoteModel(quoteId, Address.fromSerialized(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
+          quote = new QuoteModel(quoteId, Address.Companion.fromSerialized(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
         }
 
         if (!TextUtils.isEmpty(mismatchDocument)) {
           try {
-            mismatches = JsonUtils.fromJson(mismatchDocument, IdentityKeyMismatchList.class).getList();
+            mismatches = JsonUtil.fromJson(mismatchDocument, IdentityKeyMismatchList.class).getList();
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -660,7 +661,7 @@ public class MmsDatabase extends MessagingDatabase {
 
         if (!TextUtils.isEmpty(networkDocument)) {
           try {
-            networkFailures = JsonUtils.fromJson(networkDocument, NetworkFailureList.class).getList();
+            networkFailures = JsonUtil.fromJson(networkDocument, NetworkFailureList.class).getList();
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -711,9 +712,9 @@ public class MmsDatabase extends MessagingDatabase {
 
         if (contact.getAvatar() != null && contact.getAvatar().getAttachmentId() != null) {
           DatabaseAttachment attachment    = attachmentIdMap.get(contact.getAvatar().getAttachmentId());
-          Avatar             updatedAvatar = new Avatar(contact.getAvatar().getAttachmentId(),
-                                                        attachment,
-                                                        contact.getAvatar().isProfile());
+          Contact.Avatar     updatedAvatar = new Contact.Avatar(contact.getAvatar().getAttachmentId(),
+                                                                attachment,
+                                                                contact.getAvatar().isProfile());
           contacts.add(new Contact(contact, updatedAvatar));
         } else {
           contacts.add(contact);
@@ -861,7 +862,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(QUOTE_ID, retrieved.getQuote().getId());
       contentValues.put(QUOTE_BODY, retrieved.getQuote().getText());
       contentValues.put(QUOTE_AUTHOR, retrieved.getQuote().getAuthor().serialize());
-      contentValues.put(QUOTE_MISSING, retrieved.getQuote().isOriginalMissing() ? 1 : 0);
+      contentValues.put(QUOTE_MISSING, retrieved.getQuote().getMissing() ? 1 : 0);
 
       quoteAttachments = retrieved.getQuote().getAttachments();
     }
@@ -940,7 +941,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentBuilder.add(MESSAGE_TYPE, notification.getMessageType());
 
     if (notification.getFrom() != null) {
-      contentValues.put(ADDRESS, Address.fromExternal(context, Util.toIsoString(notification.getFrom().getTextString())).serialize());
+      contentValues.put(ADDRESS, Address.Companion.fromExternal(context, Util.toIsoString(notification.getFrom().getTextString())).serialize());
     }
 
     contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
@@ -962,7 +963,7 @@ public class MmsDatabase extends MessagingDatabase {
     notifyConversationListeners(threadId);
     DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
-    if (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context)) {
+    if (Util.isDefaultSmsProvider(context)) {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
@@ -1022,7 +1023,7 @@ public class MmsDatabase extends MessagingDatabase {
       contentValues.put(QUOTE_ID, message.getOutgoingQuote().getId());
       contentValues.put(QUOTE_AUTHOR, message.getOutgoingQuote().getAuthor().serialize());
       contentValues.put(QUOTE_BODY, message.getOutgoingQuote().getText());
-      contentValues.put(QUOTE_MISSING, message.getOutgoingQuote().isOriginalMissing() ? 1 : 0);
+      contentValues.put(QUOTE_MISSING, message.getOutgoingQuote().getMissing() ? 1 : 0);
 
       quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
     }
@@ -1152,9 +1153,7 @@ public class MmsDatabase extends MessagingDatabase {
           attachmentId = insertedAttachmentIds.get(contact.getAvatarAttachment());
         }
 
-        Avatar  updatedAvatar  = new Avatar(attachmentId,
-                                            contact.getAvatarAttachment(),
-                                            contact.getAvatar() != null && contact.getAvatar().isProfile());
+        Contact.Avatar updatedAvatar  = new Contact.Avatar(attachmentId, contact.getAvatarAttachment(), contact.getAvatar() != null && contact.getAvatar().isProfile());
         Contact updatedContact = new Contact(contact, updatedAvatar);
 
         sharedContactJson.put(new JSONObject(updatedContact.serialize()));
@@ -1321,7 +1320,7 @@ public class MmsDatabase extends MessagingDatabase {
     private final int     subscriptionId;
 
     MmsNotificationInfo(@Nullable String from, String contentLocation, String transactionId, int subscriptionId) {
-      this.from            = from == null ? null : Address.fromSerialized(from);
+      this.from            = from == null ? null : Address.Companion.fromSerialized(from);
       this.contentLocation = contentLocation;
       this.transactionId   = transactionId;
       this.subscriptionId  = subscriptionId;
@@ -1373,7 +1372,7 @@ public class MmsDatabase extends MessagingDatabase {
                                            new Quote(message.getOutgoingQuote().getId(),
                                                      message.getOutgoingQuote().getAuthor(),
                                                      message.getOutgoingQuote().getText(),
-                                                     message.getOutgoingQuote().isOriginalMissing(),
+                                                     message.getOutgoingQuote().getMissing(),
                                                      new SlideDeck(context, message.getOutgoingQuote().getAttachments())) :
                                            null,
                                        message.getSharedContacts(), message.getLinkPreviews(), false);
@@ -1432,10 +1431,10 @@ public class MmsDatabase extends MessagingDatabase {
       byte[]transactionIdBytes   = null;
 
       if (!TextUtils.isEmpty(contentLocation))
-        contentLocationBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(contentLocation);
+        contentLocationBytes = Util.toIsoBytes(contentLocation);
 
       if (!TextUtils.isEmpty(transactionId))
-        transactionIdBytes = org.thoughtcrime.securesms.util.Util.toIsoBytes(transactionId);
+        transactionIdBytes = Util.toIsoBytes(transactionId);
 
       SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
 
@@ -1492,9 +1491,9 @@ public class MmsDatabase extends MessagingDatabase {
       Address address;
 
       if (TextUtils.isEmpty(serialized) || "insert-address-token".equals(serialized)) {
-        address = Address.UNKNOWN;
+        address = Address.Companion.getUNKNOWN();
       } else {
-        address = Address.fromSerialized(serialized);
+        address = Address.Companion.fromSerialized(serialized);
 
       }
       return Recipient.from(context, address, true);
@@ -1503,7 +1502,7 @@ public class MmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {
       if (!TextUtils.isEmpty(document)) {
         try {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
+          return JsonUtil.fromJson(document, IdentityKeyMismatchList.class).getList();
         } catch (IOException e) {
           Log.w(TAG, e);
         }
@@ -1515,7 +1514,7 @@ public class MmsDatabase extends MessagingDatabase {
     private List<NetworkFailure> getFailures(String document) {
       if (!TextUtils.isEmpty(document)) {
         try {
-          return JsonUtils.fromJson(document, NetworkFailureList.class).getList();
+          return JsonUtil.fromJson(document, NetworkFailureList.class).getList();
         } catch (IOException ioe) {
           Log.w(TAG, ioe);
         }
@@ -1541,7 +1540,7 @@ public class MmsDatabase extends MessagingDatabase {
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
       if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
-        return new Quote(quoteId, Address.fromExternal(context, quoteAuthor), quoteText, quoteMissing, quoteDeck);
+        return new Quote(quoteId, Address.Companion.fromExternal(context, quoteAuthor), quoteText, quoteMissing, quoteDeck);
       } else {
         return null;
       }

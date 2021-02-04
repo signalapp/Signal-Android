@@ -15,7 +15,7 @@ import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.IdentityKeyPair;
 import org.session.libsignal.libsignal.InvalidKeyException;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.state.PreKeyRecord;
 import org.session.libsignal.libsignal.state.SignedPreKeyRecord;
 import org.session.libsignal.libsignal.util.Pair;
@@ -44,7 +44,7 @@ import org.session.libsignal.service.internal.crypto.ProvisioningCipher;
 import org.session.libsignal.service.internal.push.ProfileAvatarData;
 import org.session.libsignal.service.internal.push.PushServiceSocket;
 import org.session.libsignal.service.internal.push.http.ProfileCipherOutputStreamFactory;
-import org.session.libsignal.service.internal.util.Base64;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.service.internal.util.StaticCredentialsProvider;
 import org.session.libsignal.service.internal.util.Util;
 

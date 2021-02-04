@@ -2,10 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.NoExternalStorageException;
-import org.thoughtcrime.securesms.jobmanager.Data;
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.database.BackupFileRecord;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
@@ -35,7 +35,8 @@ public class LocalBackupJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return Data.EMPTY;
   }
 

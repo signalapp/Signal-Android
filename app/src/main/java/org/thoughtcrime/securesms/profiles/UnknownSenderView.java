@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientExporter;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.RecipientExporter;
+import org.session.libsession.utilities.ViewUtil;
 
 public class UnknownSenderView extends FrameLayout {
 
@@ -64,9 +64,9 @@ public class UnknownSenderView extends FrameLayout {
   private void handleProfileAccess() {
     final Context context = getContext();
 
-    new AlertDialog.Builder(getContext())
+    new AlertDialog.Builder(context)
         .setIconAttribute(R.attr.dialog_info_icon)
-        .setTitle(getContext().getString(R.string.UnknownSenderView_share_profile_with_s, recipient.toShortString()))
+        .setTitle(context.getString(R.string.UnknownSenderView_share_profile_with_s, recipient.toShortString()))
         .setMessage(R.string.UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts)
         .setPositiveButton(R.string.UnknownSenderView_share_profile, (dialog, which) -> {
           new AsyncTask<Void, Void, Void>() {

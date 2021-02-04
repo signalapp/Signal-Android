@@ -16,29 +16,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.session.libsession.utilities.MediaTypes;
+import org.session.libsignal.libsignal.util.guava.Optional;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import org.thoughtcrime.securesms.TransportOption;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
-import org.session.libsignal.libsignal.util.guava.Optional;
+
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.concurrent.SimpleTask;
+import org.session.libsession.utilities.Util;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import network.loki.messenger.R;
 
@@ -59,13 +56,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   public static final String EXTRA_MEDIA     = "media";
   public static final String EXTRA_MESSAGE   = "message";
-  public static final String EXTRA_TRANSPORT = "transport";
 
 
   private static final String KEY_ADDRESS   = "address";
   private static final String KEY_BODY      = "body";
   private static final String KEY_MEDIA     = "media";
-  private static final String KEY_TRANSPORT = "transport";
   private static final String KEY_IS_CAMERA = "is_camera";
 
   private static final String TAG_FOLDER_PICKER = "folder_picker";
@@ -73,10 +68,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private static final String TAG_SEND          = "send";
   private static final String TAG_CAMERA        = "camera";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private Recipient          recipient;
-  private TransportOption    transport;
   private MediaSendViewModel viewModel;
 
   private View     countButton;
@@ -86,10 +79,9 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   /**
    * Get an intent to launch the media send flow starting with the picker.
    */
-  public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
+  public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body) {
     Intent intent = new Intent(context, MediaSendActivity.class);
     intent.putExtra(KEY_ADDRESS, recipient.getAddress().serialize());
-    intent.putExtra(KEY_TRANSPORT, transport);
     intent.putExtra(KEY_BODY, body);
     return intent;
   }
@@ -97,8 +89,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   /**
    * Get an intent to launch the media send flow starting with the picker.
    */
-  public static Intent buildCameraIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull TransportOption transport) {
-    Intent intent = buildGalleryIntent(context, recipient, "", transport);
+  public static Intent buildCameraIntent(@NonNull Context context, @NonNull Recipient recipient) {
+    Intent intent = buildGalleryIntent(context, recipient, "");
     intent.putExtra(KEY_IS_CAMERA, true);
     return intent;
   }
@@ -110,17 +102,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   public static Intent buildEditorIntent(@NonNull Context context,
                                          @NonNull List<Media> media,
                                          @NonNull Recipient recipient,
-                                         @NonNull String body,
-                                         @NonNull TransportOption transport)
+                                         @NonNull String body)
   {
-    Intent intent = buildGalleryIntent(context, recipient, body, transport);
+    Intent intent = buildGalleryIntent(context, recipient, body);
     intent.putParcelableArrayListExtra(KEY_MEDIA, new ArrayList<>(media));
     return intent;
-  }
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
   }
 
   @Override
@@ -139,10 +125,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     cameraButton    = findViewById(R.id.mediasend_camera_button);
 
     viewModel = new ViewModelProvider(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
-    recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
-    transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
+    recipient = Recipient.from(this, Address.Companion.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
 
-    viewModel.setTransport(transport);
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 
     List<Media> media    = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
@@ -157,7 +141,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (!Util.isEmpty(media)) {
       viewModel.onSelectedMediaChanged(this, media);
 
-      Fragment fragment = MediaSendFragment.newInstance(recipient, transport, dynamicLanguage.getCurrentLocale());
+      Fragment fragment = MediaSendFragment.newInstance(recipient);
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
@@ -168,7 +152,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                  .commit();
     }
 
-    initializeCountButtonObserver(transport, dynamicLanguage.getCurrentLocale());
+    initializeCountButtonObserver();
     initializeCameraButtonObserver();
     initializeErrorObserver();
 
@@ -181,12 +165,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         navigateToCamera();
       }
     });
-  }
-
-  @Override
-  protected void onResume() {
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -203,6 +181,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
@@ -221,7 +200,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   @Override
   public void onMediaSelected(@NonNull Media media) {
     viewModel.onSingleMediaSelected(this, media);
-    navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+    navigateToMediaSend(recipient);
   }
 
   @Override
@@ -244,7 +223,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
-  public void onSendClicked(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
+  public void onSendClicked(@NonNull List<Media> media, @NonNull String message) {
     viewModel.onSendClicked();
 
     ArrayList<Media> mediaList = new ArrayList<>(media);
@@ -252,7 +231,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
     intent.putExtra(EXTRA_MESSAGE, message);
-    intent.putExtra(EXTRA_TRANSPORT, transport);
     setResult(RESULT_OK, intent);
     finish();
 
@@ -288,10 +266,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       try {
         Uri uri = BlobProvider.getInstance()
                               .forData(data)
-                              .withMimeType(MediaUtil.IMAGE_JPEG)
+                              .withMimeType(MediaTypes.IMAGE_JPEG)
                               .createForSingleSessionOnDisk(this, e -> Log.w(TAG, "Failed to write to disk.", e));
         return new Media(uri,
-                         MediaUtil.IMAGE_JPEG,
+                         MediaTypes.IMAGE_JPEG,
                          System.currentTimeMillis(),
                          width,
                          height,
@@ -310,7 +288,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
       viewModel.onImageCaptured(media);
-      navigateToMediaSend(recipient, transport, dynamicLanguage.getCurrentLocale());
+      navigateToMediaSend(recipient);
     });
   }
 
@@ -319,7 +297,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     return getWindowManager().getDefaultDisplay().getRotation();
   }
 
-  private void initializeCountButtonObserver(@NonNull TransportOption transport, @NonNull Locale locale) {
+  private void initializeCountButtonObserver() {
     viewModel.getCountButtonState().observe(this, buttonState -> {
       if (buttonState == null) return;
 
@@ -328,7 +306,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       animateButtonVisibility(countButton, countButton.getVisibility(), buttonState.isVisible() ? View.VISIBLE : View.GONE);
 
       if (buttonState.getCount() > 0) {
-        countButton.setOnClickListener(v -> navigateToMediaSend(recipient, transport, locale));
+        countButton.setOnClickListener(v -> navigateToMediaSend(recipient));
         if (buttonState.isVisible()) {
           animateButtonTextChange(countButton);
         }
@@ -361,8 +339,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     });
   }
 
-  private void navigateToMediaSend(@NonNull Recipient recipient, @NonNull TransportOption transport, @NonNull Locale locale) {
-    MediaSendFragment fragment     = MediaSendFragment.newInstance(recipient, transport, locale);
+  private void navigateToMediaSend(@NonNull Recipient recipient) {
+    MediaSendFragment fragment     = MediaSendFragment.newInstance(recipient);
     String            backstackTag = null;
 
     if (getSupportFragmentManager().findFragmentByTag(TAG_SEND) != null) {

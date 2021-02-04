@@ -191,7 +191,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -331,7 +331,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -348,7 +348,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SessionStructure> getParserForType() {
       return PARSER;
     }
@@ -438,7 +438,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -517,7 +517,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -534,7 +534,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Chain> getParserForType() {
         return PARSER;
       }
@@ -585,7 +585,7 @@ public final class StorageProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -640,7 +640,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_ChainKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_ChainKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -657,7 +657,7 @@ public final class StorageProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<ChainKey> getParserForType() {
           return PARSER;
         }
@@ -740,8 +740,8 @@ public final class StorageProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -806,9 +806,9 @@ public final class StorageProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -823,7 +823,7 @@ public final class StorageProtos {
             return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_ChainKey_descriptor;
           }
 
-          protected FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_ChainKey_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -836,7 +836,7 @@ public final class StorageProtos {
           }
 
           private Builder(
-              BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
@@ -1085,7 +1085,7 @@ public final class StorageProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -1150,7 +1150,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_MessageKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_MessageKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -1167,7 +1167,7 @@ public final class StorageProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<MessageKey> getParserForType() {
           return PARSER;
         }
@@ -1298,8 +1298,8 @@ public final class StorageProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -1364,9 +1364,9 @@ public final class StorageProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
           return builder;
         }
@@ -1381,7 +1381,7 @@ public final class StorageProtos {
             return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_MessageKey_descriptor;
           }
 
-          protected FieldAccessorTable
+          protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
               internalGetFieldAccessorTable() {
             return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_MessageKey_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
@@ -1394,7 +1394,7 @@ public final class StorageProtos {
           }
 
           private Builder(
-              BuilderParent parent) {
+              com.google.protobuf.GeneratedMessage.BuilderParent parent) {
             super(parent);
             maybeForceBuilderInitialization();
           }
@@ -1819,8 +1819,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -1885,9 +1885,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -1902,7 +1902,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_Chain_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -1915,7 +1915,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -2406,7 +2406,7 @@ public final class StorageProtos {
          * <code>repeated .textsecure.SessionStructure.Chain.MessageKey messageKeys = 4;</code>
          */
         public Builder addAllMessageKeys(
-            Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure.Chain.MessageKey> values) {
+            java.lang.Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure.Chain.MessageKey> values) {
           if (messageKeysBuilder_ == null) {
             ensureMessageKeysIsMutable();
             super.addAll(values, messageKeys_);
@@ -2614,7 +2614,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -2694,7 +2694,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingKeyExchange_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingKeyExchange_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2711,7 +2711,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<PendingKeyExchange> getParserForType() {
         return PARSER;
       }
@@ -2914,8 +2914,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -2980,9 +2980,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -2997,7 +2997,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingKeyExchange_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingKeyExchange_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -3010,7 +3010,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -3474,7 +3474,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -3534,7 +3534,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingPreKey_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3551,7 +3551,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<PendingPreKey> getParserForType() {
         return PARSER;
       }
@@ -3658,8 +3658,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -3724,9 +3724,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -3741,7 +3741,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingPreKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -3754,7 +3754,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -4359,8 +4359,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -4425,9 +4425,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4442,7 +4442,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SessionStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4455,7 +4455,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5147,7 +5147,7 @@ public final class StorageProtos {
        * <code>repeated .textsecure.SessionStructure.Chain receiverChains = 7;</code>
        */
       public Builder addAllReceiverChains(
-          Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure.Chain> values) {
+          java.lang.Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure.Chain> values) {
         if (receiverChainsBuilder_ == null) {
           ensureReceiverChainsIsMutable();
           super.addAll(values, receiverChains_);
@@ -5693,7 +5693,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -5762,7 +5762,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_RecordStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_RecordStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5779,7 +5779,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<RecordStructure> getParserForType() {
       return PARSER;
     }
@@ -5888,8 +5888,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -5954,9 +5954,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -5971,7 +5971,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_RecordStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_RecordStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5984,7 +5984,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -6385,7 +6385,7 @@ public final class StorageProtos {
        * <code>repeated .textsecure.SessionStructure previousSessions = 2;</code>
        */
       public Builder addAllPreviousSessions(
-          Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure> values) {
+          java.lang.Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SessionStructure> values) {
         if (previousSessionsBuilder_ == null) {
           ensurePreviousSessionsIsMutable();
           super.addAll(values, previousSessions_);
@@ -6553,7 +6553,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -6613,7 +6613,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -6630,7 +6630,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PreKeyRecordStructure> getParserForType() {
       return PARSER;
     }
@@ -6737,8 +6737,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -6803,9 +6803,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -6820,7 +6820,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -6833,7 +6833,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -7137,7 +7137,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -7207,7 +7207,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7224,7 +7224,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SignedPreKeyRecordStructure> getParserForType() {
       return PARSER;
     }
@@ -7379,8 +7379,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -7445,9 +7445,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -7462,7 +7462,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -7475,7 +7475,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -7836,7 +7836,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -7891,7 +7891,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_IdentityKeyPairStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_IdentityKeyPairStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -7908,7 +7908,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<IdentityKeyPairStructure> getParserForType() {
       return PARSER;
     }
@@ -7991,8 +7991,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -8057,9 +8057,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -8074,7 +8074,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_IdentityKeyPairStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_IdentityKeyPairStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8087,7 +8087,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -8362,7 +8362,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -8449,7 +8449,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -8466,7 +8466,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SenderKeyStateStructure> getParserForType() {
       return PARSER;
     }
@@ -8517,7 +8517,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -8572,7 +8572,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -8589,7 +8589,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<SenderChainKey> getParserForType() {
         return PARSER;
       }
@@ -8672,8 +8672,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -8738,9 +8738,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -8755,7 +8755,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -8768,7 +8768,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -8997,7 +8997,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -9052,7 +9052,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9069,7 +9069,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<SenderMessageKey> getParserForType() {
         return PARSER;
       }
@@ -9152,8 +9152,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -9218,9 +9218,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -9235,7 +9235,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -9248,7 +9248,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -9477,7 +9477,7 @@ public final class StorageProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -9532,7 +9532,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -9549,7 +9549,7 @@ public final class StorageProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<SenderSigningKey> getParserForType() {
         return PARSER;
       }
@@ -9632,8 +9632,8 @@ public final class StorageProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -9698,9 +9698,9 @@ public final class StorageProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
       }
@@ -9715,7 +9715,7 @@ public final class StorageProtos {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor;
         }
 
-        protected FieldAccessorTable
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
             internalGetFieldAccessorTable() {
           return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
@@ -9728,7 +9728,7 @@ public final class StorageProtos {
         }
 
         private Builder(
-            BuilderParent parent) {
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           super(parent);
           maybeForceBuilderInitialization();
         }
@@ -10072,8 +10072,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -10138,9 +10138,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -10155,7 +10155,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -10168,7 +10168,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -10746,7 +10746,7 @@ public final class StorageProtos {
        * <code>repeated .textsecure.SenderKeyStateStructure.SenderMessageKey senderMessageKeys = 4;</code>
        */
       public Builder addAllSenderMessageKeys(
-          Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> values) {
+          java.lang.Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SenderKeyStateStructure.SenderMessageKey> values) {
         if (senderMessageKeysBuilder_ == null) {
           ensureSenderMessageKeysIsMutable();
           super.addAll(values, senderMessageKeys_);
@@ -10909,7 +10909,7 @@ public final class StorageProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -10965,7 +10965,7 @@ public final class StorageProtos {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -10982,7 +10982,7 @@ public final class StorageProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SenderKeyRecordStructure> getParserForType() {
       return PARSER;
     }
@@ -11060,8 +11060,8 @@ public final class StorageProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -11126,9 +11126,9 @@ public final class StorageProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -11143,7 +11143,7 @@ public final class StorageProtos {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return org.session.libsignal.libsignal.state.StorageProtos.internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -11156,7 +11156,7 @@ public final class StorageProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -11420,7 +11420,7 @@ public final class StorageProtos {
        * <code>repeated .textsecure.SenderKeyStateStructure senderKeyStates = 1;</code>
        */
       public Builder addAllSenderKeyStates(
-          Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SenderKeyStateStructure> values) {
+          java.lang.Iterable<? extends org.session.libsignal.libsignal.state.StorageProtos.SenderKeyStateStructure> values) {
         if (senderKeyStatesBuilder_ == null) {
           ensureSenderKeyStatesIsMutable();
           super.addAll(values, senderKeyStates_);
@@ -11615,7 +11615,7 @@ public final class StorageProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\032LocalStorageProtocol.proto\022\ntextsecure" +
       "\"\323\010\n\020SessionStructure\022\026\n\016sessionVersion\030" +
       "\001 \001(\r\022\033\n\023localIdentityPublic\030\002 \001(\014\022\034\n\024re" +
@@ -11667,9 +11667,9 @@ public final class StorageProtos {
       "\n\004seed\030\002 \001(\014\0323\n\020SenderSigningKey\022\016\n\006publ" +
       "ic\030\001 \001(\014\022\017\n\007private\030\002 \001(\014\"X\n\030SenderKeyRe",
       "cordStructure\022<\n\017senderKeyStates\030\001 \003(\0132#" +
-      ".textsecure.SenderKeyStateStructureB3\n\"o" +
-      "rg.whispersystems.libsignal.stateB\rStora" +
-      "geProtos"
+      ".textsecure.SenderKeyStateStructureB6\n%o" +
+      "rg.session.libsignal.libsignal.stateB\rSt" +
+      "orageProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -11681,91 +11681,91 @@ public final class StorageProtos {
           internal_static_textsecure_SessionStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_descriptor,
-              new String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", "AliceBaseKey", });
+              new java.lang.String[] { "SessionVersion", "LocalIdentityPublic", "RemoteIdentityPublic", "RootKey", "PreviousCounter", "SenderChain", "ReceiverChains", "PendingKeyExchange", "PendingPreKey", "RemoteRegistrationId", "LocalRegistrationId", "NeedsRefresh", "AliceBaseKey", });
           internal_static_textsecure_SessionStructure_Chain_descriptor =
             internal_static_textsecure_SessionStructure_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_SessionStructure_Chain_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_Chain_descriptor,
-              new String[] { "SenderRatchetKey", "SenderRatchetKeyPrivate", "ChainKey", "MessageKeys", });
+              new java.lang.String[] { "SenderRatchetKey", "SenderRatchetKeyPrivate", "ChainKey", "MessageKeys", });
           internal_static_textsecure_SessionStructure_Chain_ChainKey_descriptor =
             internal_static_textsecure_SessionStructure_Chain_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_SessionStructure_Chain_ChainKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_Chain_ChainKey_descriptor,
-              new String[] { "Index", "Key", });
+              new java.lang.String[] { "Index", "Key", });
           internal_static_textsecure_SessionStructure_Chain_MessageKey_descriptor =
             internal_static_textsecure_SessionStructure_Chain_descriptor.getNestedTypes().get(1);
           internal_static_textsecure_SessionStructure_Chain_MessageKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_Chain_MessageKey_descriptor,
-              new String[] { "Index", "CipherKey", "MacKey", "Iv", });
+              new java.lang.String[] { "Index", "CipherKey", "MacKey", "Iv", });
           internal_static_textsecure_SessionStructure_PendingKeyExchange_descriptor =
             internal_static_textsecure_SessionStructure_descriptor.getNestedTypes().get(1);
           internal_static_textsecure_SessionStructure_PendingKeyExchange_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_PendingKeyExchange_descriptor,
-              new String[] { "Sequence", "LocalBaseKey", "LocalBaseKeyPrivate", "LocalRatchetKey", "LocalRatchetKeyPrivate", "LocalIdentityKey", "LocalIdentityKeyPrivate", });
+              new java.lang.String[] { "Sequence", "LocalBaseKey", "LocalBaseKeyPrivate", "LocalRatchetKey", "LocalRatchetKeyPrivate", "LocalIdentityKey", "LocalIdentityKeyPrivate", });
           internal_static_textsecure_SessionStructure_PendingPreKey_descriptor =
             internal_static_textsecure_SessionStructure_descriptor.getNestedTypes().get(2);
           internal_static_textsecure_SessionStructure_PendingPreKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SessionStructure_PendingPreKey_descriptor,
-              new String[] { "PreKeyId", "SignedPreKeyId", "BaseKey", });
+              new java.lang.String[] { "PreKeyId", "SignedPreKeyId", "BaseKey", });
           internal_static_textsecure_RecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_textsecure_RecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_RecordStructure_descriptor,
-              new String[] { "CurrentSession", "PreviousSessions", });
+              new java.lang.String[] { "CurrentSession", "PreviousSessions", });
           internal_static_textsecure_PreKeyRecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_textsecure_PreKeyRecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_PreKeyRecordStructure_descriptor,
-              new String[] { "Id", "PublicKey", "PrivateKey", });
+              new java.lang.String[] { "Id", "PublicKey", "PrivateKey", });
           internal_static_textsecure_SignedPreKeyRecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_textsecure_SignedPreKeyRecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SignedPreKeyRecordStructure_descriptor,
-              new String[] { "Id", "PublicKey", "PrivateKey", "Signature", "Timestamp", });
+              new java.lang.String[] { "Id", "PublicKey", "PrivateKey", "Signature", "Timestamp", });
           internal_static_textsecure_IdentityKeyPairStructure_descriptor =
             getDescriptor().getMessageTypes().get(4);
           internal_static_textsecure_IdentityKeyPairStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_IdentityKeyPairStructure_descriptor,
-              new String[] { "PublicKey", "PrivateKey", });
+              new java.lang.String[] { "PublicKey", "PrivateKey", });
           internal_static_textsecure_SenderKeyStateStructure_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_textsecure_SenderKeyStateStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SenderKeyStateStructure_descriptor,
-              new String[] { "SenderKeyId", "SenderChainKey", "SenderSigningKey", "SenderMessageKeys", });
+              new java.lang.String[] { "SenderKeyId", "SenderChainKey", "SenderSigningKey", "SenderMessageKeys", });
           internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor =
             internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(0);
           internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SenderKeyStateStructure_SenderChainKey_descriptor,
-              new String[] { "Iteration", "Seed", });
+              new java.lang.String[] { "Iteration", "Seed", });
           internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor =
             internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(1);
           internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SenderKeyStateStructure_SenderMessageKey_descriptor,
-              new String[] { "Iteration", "Seed", });
+              new java.lang.String[] { "Iteration", "Seed", });
           internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor =
             internal_static_textsecure_SenderKeyStateStructure_descriptor.getNestedTypes().get(2);
           internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SenderKeyStateStructure_SenderSigningKey_descriptor,
-              new String[] { "Public", "Private", });
+              new java.lang.String[] { "Public", "Private", });
           internal_static_textsecure_SenderKeyRecordStructure_descriptor =
             getDescriptor().getMessageTypes().get(6);
           internal_static_textsecure_SenderKeyRecordStructure_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_textsecure_SenderKeyRecordStructure_descriptor,
-              new String[] { "SenderKeyStates", });
+              new java.lang.String[] { "SenderKeyStates", });
           return null;
         }
       };

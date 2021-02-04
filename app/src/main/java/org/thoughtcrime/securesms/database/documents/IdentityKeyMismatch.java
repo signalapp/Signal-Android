@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.database.documents;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.util.Base64;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsignal.utilities.Base64;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.InvalidKeyException;
 
@@ -41,7 +41,7 @@ public class IdentityKeyMismatch {
 
   @JsonIgnore
   public Address getAddress() {
-    return Address.fromSerialized(address);
+    return Address.Companion.fromSerialized(address);
   }
 
   public IdentityKey getIdentityKey() {

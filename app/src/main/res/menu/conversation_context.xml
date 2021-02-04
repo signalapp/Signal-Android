@@ -11,6 +11,12 @@
         android:icon="?menu_trash_icon"
         app:showAsAction="always" />
 
+    <item android:title="@string/conversation_context__menu_ban_user"
+        android:id="@+id/menu_context_ban_user"
+        android:icon="?menu_block_icon"
+        android:visible="false"
+        app:showAsAction="always"/>
+
     <item android:title="@string/conversation_context__menu_copy_text"
           android:id="@+id/menu_context_copy"
           android:icon="?menu_copy_icon"

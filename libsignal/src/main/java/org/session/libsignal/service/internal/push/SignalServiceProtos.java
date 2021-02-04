@@ -29,7 +29,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string source = 2;</code>
      */
-    String getSource();
+    java.lang.String getSource();
     /**
      * <code>optional string source = 2;</code>
      */
@@ -54,7 +54,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string relay = 3;</code>
      */
-    String getRelay();
+    java.lang.String getRelay();
     /**
      * <code>optional string relay = 3;</code>
      */
@@ -115,7 +115,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string serverGuid = 9;</code>
      */
-    String getServerGuid();
+    java.lang.String getServerGuid();
     /**
      * <code>optional string serverGuid = 9;</code>
      */
@@ -155,7 +155,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -268,7 +268,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Envelope> getParserForType() {
       return PARSER;
     }
@@ -408,7 +408,7 @@ public final class SignalServiceProtos {
       public static Type valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -444,7 +444,7 @@ public final class SignalServiceProtos {
 
     // optional string source = 2;
     public static final int SOURCE_FIELD_NUMBER = 2;
-    private Object source_;
+    private java.lang.Object source_;
     /**
      * <code>optional string source = 2;</code>
      */
@@ -454,14 +454,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string source = 2;</code>
      */
-    public String getSource() {
-      Object ref = source_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSource() {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           source_ = s;
         }
@@ -473,11 +473,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getSourceBytes() {
-      Object ref = source_;
-      if (ref instanceof String) {
+      java.lang.Object ref = source_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         source_ = b;
         return b;
       } else {
@@ -503,7 +503,7 @@ public final class SignalServiceProtos {
 
     // optional string relay = 3;
     public static final int RELAY_FIELD_NUMBER = 3;
-    private Object relay_;
+    private java.lang.Object relay_;
     /**
      * <code>optional string relay = 3;</code>
      */
@@ -513,14 +513,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string relay = 3;</code>
      */
-    public String getRelay() {
-      Object ref = relay_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getRelay() {
+      java.lang.Object ref = relay_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           relay_ = s;
         }
@@ -532,11 +532,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getRelayBytes() {
-      Object ref = relay_;
-      if (ref instanceof String) {
+      java.lang.Object ref = relay_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         relay_ = b;
         return b;
       } else {
@@ -610,7 +610,7 @@ public final class SignalServiceProtos {
 
     // optional string serverGuid = 9;
     public static final int SERVERGUID_FIELD_NUMBER = 9;
-    private Object serverGuid_;
+    private java.lang.Object serverGuid_;
     /**
      * <code>optional string serverGuid = 9;</code>
      */
@@ -620,14 +620,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string serverGuid = 9;</code>
      */
-    public String getServerGuid() {
-      Object ref = serverGuid_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getServerGuid() {
+      java.lang.Object ref = serverGuid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           serverGuid_ = s;
         }
@@ -639,11 +639,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getServerGuidBytes() {
-      Object ref = serverGuid_;
-      if (ref instanceof String) {
+      java.lang.Object ref = serverGuid_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         serverGuid_ = b;
         return b;
       } else {
@@ -768,8 +768,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -834,7 +834,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -1073,7 +1073,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string source = 2;
-      private Object source_ = "";
+      private java.lang.Object source_ = "";
       /**
        * <code>optional string source = 2;</code>
        */
@@ -1083,15 +1083,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string source = 2;</code>
        */
-      public String getSource() {
-        Object ref = source_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getSource() {
+        java.lang.Object ref = source_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           source_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1099,11 +1099,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getSourceBytes() {
-        Object ref = source_;
+        java.lang.Object ref = source_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           source_ = b;
           return b;
         } else {
@@ -1114,7 +1114,7 @@ public final class SignalServiceProtos {
        * <code>optional string source = 2;</code>
        */
       public Builder setSource(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1180,7 +1180,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string relay = 3;
-      private Object relay_ = "";
+      private java.lang.Object relay_ = "";
       /**
        * <code>optional string relay = 3;</code>
        */
@@ -1190,15 +1190,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string relay = 3;</code>
        */
-      public String getRelay() {
-        Object ref = relay_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getRelay() {
+        java.lang.Object ref = relay_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           relay_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1206,11 +1206,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getRelayBytes() {
-        Object ref = relay_;
+        java.lang.Object ref = relay_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           relay_ = b;
           return b;
         } else {
@@ -1221,7 +1221,7 @@ public final class SignalServiceProtos {
        * <code>optional string relay = 3;</code>
        */
       public Builder setRelay(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1391,7 +1391,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string serverGuid = 9;
-      private Object serverGuid_ = "";
+      private java.lang.Object serverGuid_ = "";
       /**
        * <code>optional string serverGuid = 9;</code>
        */
@@ -1401,15 +1401,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string serverGuid = 9;</code>
        */
-      public String getServerGuid() {
-        Object ref = serverGuid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getServerGuid() {
+        java.lang.Object ref = serverGuid_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           serverGuid_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1417,11 +1417,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getServerGuidBytes() {
-        Object ref = serverGuid_;
+        java.lang.Object ref = serverGuid_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           serverGuid_ = b;
           return b;
         } else {
@@ -1432,7 +1432,7 @@ public final class SignalServiceProtos {
        * <code>optional string serverGuid = 9;</code>
        */
       public Builder setServerGuid(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1670,7 +1670,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -1836,7 +1836,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Content> getParserForType() {
       return PARSER;
     }
@@ -2057,6 +2057,18 @@ public final class SignalServiceProtos {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (hasDataMessage()) {
+        if (!getDataMessage().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasSyncMessage()) {
+        if (!getSyncMessage().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -2135,8 +2147,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -2201,7 +2213,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -2438,6 +2450,18 @@ public final class SignalServiceProtos {
       }
 
       public final boolean isInitialized() {
+        if (hasDataMessage()) {
+          if (!getDataMessage().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasSyncMessage()) {
+          if (!getSyncMessage().isInitialized()) {
+            
+            return false;
+          }
+        }
         return true;
       }
 
@@ -2564,7 +2588,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.DataMessage dataMessage = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessageOrBuilder> 
           getDataMessageFieldBuilder() {
         if (dataMessageBuilder_ == null) {
           dataMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -2681,7 +2705,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage syncMessage = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessageOrBuilder> 
           getSyncMessageFieldBuilder() {
         if (syncMessageBuilder_ == null) {
           syncMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -2798,7 +2822,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.CallMessage callMessage = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessageOrBuilder> 
           getCallMessageFieldBuilder() {
         if (callMessageBuilder_ == null) {
           callMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -2915,7 +2939,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.NullMessage nullMessage = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.NullMessageOrBuilder> 
           getNullMessageFieldBuilder() {
         if (nullMessageBuilder_ == null) {
           nullMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -3032,7 +3056,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.ReceiptMessage receiptMessage = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessageOrBuilder> 
           getReceiptMessageFieldBuilder() {
         if (receiptMessageBuilder_ == null) {
           receiptMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -3149,7 +3173,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.TypingMessage typingMessage = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessageOrBuilder> 
           getTypingMessageFieldBuilder() {
         if (typingMessageBuilder_ == null) {
           typingMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -3302,7 +3326,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.PreKeyBundleMessageOrBuilder> 
           getPreKeyBundleMessageFieldBuilder() {
         if (preKeyBundleMessageBuilder_ == null) {
           preKeyBundleMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -3455,7 +3479,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessageOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DeviceLinkMessageOrBuilder> 
           getDeviceLinkMessageFieldBuilder() {
         if (deviceLinkMessageBuilder_ == null) {
           deviceLinkMessageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -3490,7 +3514,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string primaryPublicKey = 1;</code>
      */
-    String getPrimaryPublicKey();
+    java.lang.String getPrimaryPublicKey();
     /**
      * <code>optional string primaryPublicKey = 1;</code>
      */
@@ -3505,7 +3529,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string secondaryPublicKey = 2;</code>
      */
-    String getSecondaryPublicKey();
+    java.lang.String getSecondaryPublicKey();
     /**
      * <code>optional string secondaryPublicKey = 2;</code>
      */
@@ -3555,7 +3579,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -3637,7 +3661,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<DeviceLinkMessage> getParserForType() {
       return PARSER;
     }
@@ -3645,7 +3669,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string primaryPublicKey = 1;
     public static final int PRIMARYPUBLICKEY_FIELD_NUMBER = 1;
-    private Object primaryPublicKey_;
+    private java.lang.Object primaryPublicKey_;
     /**
      * <code>optional string primaryPublicKey = 1;</code>
      */
@@ -3655,14 +3679,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string primaryPublicKey = 1;</code>
      */
-    public String getPrimaryPublicKey() {
-      Object ref = primaryPublicKey_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getPrimaryPublicKey() {
+      java.lang.Object ref = primaryPublicKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           primaryPublicKey_ = s;
         }
@@ -3674,11 +3698,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getPrimaryPublicKeyBytes() {
-      Object ref = primaryPublicKey_;
-      if (ref instanceof String) {
+      java.lang.Object ref = primaryPublicKey_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         primaryPublicKey_ = b;
         return b;
       } else {
@@ -3688,7 +3712,7 @@ public final class SignalServiceProtos {
 
     // optional string secondaryPublicKey = 2;
     public static final int SECONDARYPUBLICKEY_FIELD_NUMBER = 2;
-    private Object secondaryPublicKey_;
+    private java.lang.Object secondaryPublicKey_;
     /**
      * <code>optional string secondaryPublicKey = 2;</code>
      */
@@ -3698,14 +3722,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string secondaryPublicKey = 2;</code>
      */
-    public String getSecondaryPublicKey() {
-      Object ref = secondaryPublicKey_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getSecondaryPublicKey() {
+      java.lang.Object ref = secondaryPublicKey_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           secondaryPublicKey_ = s;
         }
@@ -3717,11 +3741,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getSecondaryPublicKeyBytes() {
-      Object ref = secondaryPublicKey_;
-      if (ref instanceof String) {
+      java.lang.Object ref = secondaryPublicKey_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         secondaryPublicKey_ = b;
         return b;
       } else {
@@ -3822,8 +3846,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -3888,7 +3912,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -4044,7 +4068,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string primaryPublicKey = 1;
-      private Object primaryPublicKey_ = "";
+      private java.lang.Object primaryPublicKey_ = "";
       /**
        * <code>optional string primaryPublicKey = 1;</code>
        */
@@ -4054,15 +4078,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string primaryPublicKey = 1;</code>
        */
-      public String getPrimaryPublicKey() {
-        Object ref = primaryPublicKey_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getPrimaryPublicKey() {
+        java.lang.Object ref = primaryPublicKey_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           primaryPublicKey_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4070,11 +4094,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getPrimaryPublicKeyBytes() {
-        Object ref = primaryPublicKey_;
+        java.lang.Object ref = primaryPublicKey_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           primaryPublicKey_ = b;
           return b;
         } else {
@@ -4085,7 +4109,7 @@ public final class SignalServiceProtos {
        * <code>optional string primaryPublicKey = 1;</code>
        */
       public Builder setPrimaryPublicKey(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4118,7 +4142,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string secondaryPublicKey = 2;
-      private Object secondaryPublicKey_ = "";
+      private java.lang.Object secondaryPublicKey_ = "";
       /**
        * <code>optional string secondaryPublicKey = 2;</code>
        */
@@ -4128,15 +4152,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string secondaryPublicKey = 2;</code>
        */
-      public String getSecondaryPublicKey() {
-        Object ref = secondaryPublicKey_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getSecondaryPublicKey() {
+        java.lang.Object ref = secondaryPublicKey_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           secondaryPublicKey_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4144,11 +4168,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getSecondaryPublicKeyBytes() {
-        Object ref = secondaryPublicKey_;
+        java.lang.Object ref = secondaryPublicKey_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           secondaryPublicKey_ = b;
           return b;
         } else {
@@ -4159,7 +4183,7 @@ public final class SignalServiceProtos {
        * <code>optional string secondaryPublicKey = 2;</code>
        */
       public Builder setSecondaryPublicKey(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -4370,7 +4394,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -4467,7 +4491,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<PreKeyBundleMessage> getParserForType() {
       return PARSER;
     }
@@ -4670,8 +4694,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -4736,7 +4760,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -5203,7 +5227,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate> 
         getIceUpdateList();
     /**
      * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
@@ -5216,7 +5240,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
         getIceUpdateOrBuilderList();
     /**
      * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
@@ -5275,7 +5299,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -5400,7 +5424,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CallMessage> getParserForType() {
       return PARSER;
     }
@@ -5426,7 +5450,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string description = 2;</code>
        */
-      String getDescription();
+      java.lang.String getDescription();
       /**
        * <code>optional string description = 2;</code>
        */
@@ -5456,7 +5480,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -5528,7 +5552,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Offer> getParserForType() {
         return PARSER;
       }
@@ -5552,7 +5576,7 @@ public final class SignalServiceProtos {
 
       // optional string description = 2;
       public static final int DESCRIPTION_FIELD_NUMBER = 2;
-      private Object description_;
+      private java.lang.Object description_;
       /**
        * <code>optional string description = 2;</code>
        */
@@ -5562,14 +5586,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string description = 2;</code>
        */
-      public String getDescription() {
-        Object ref = description_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             description_ = s;
           }
@@ -5581,11 +5605,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
-        Object ref = description_;
-        if (ref instanceof String) {
+        java.lang.Object ref = description_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           description_ = b;
           return b;
         } else {
@@ -5638,8 +5662,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -5704,7 +5728,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -5873,7 +5897,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string description = 2;
-        private Object description_ = "";
+        private java.lang.Object description_ = "";
         /**
          * <code>optional string description = 2;</code>
          */
@@ -5883,15 +5907,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string description = 2;</code>
          */
-        public String getDescription() {
-          Object ref = description_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getDescription() {
+          java.lang.Object ref = description_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             description_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -5899,11 +5923,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getDescriptionBytes() {
-          Object ref = description_;
+          java.lang.Object ref = description_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             description_ = b;
             return b;
           } else {
@@ -5914,7 +5938,7 @@ public final class SignalServiceProtos {
          * <code>optional string description = 2;</code>
          */
         public Builder setDescription(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -5978,7 +6002,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string description = 2;</code>
        */
-      String getDescription();
+      java.lang.String getDescription();
       /**
        * <code>optional string description = 2;</code>
        */
@@ -6008,7 +6032,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -6080,7 +6104,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Answer> getParserForType() {
         return PARSER;
       }
@@ -6104,7 +6128,7 @@ public final class SignalServiceProtos {
 
       // optional string description = 2;
       public static final int DESCRIPTION_FIELD_NUMBER = 2;
-      private Object description_;
+      private java.lang.Object description_;
       /**
        * <code>optional string description = 2;</code>
        */
@@ -6114,14 +6138,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string description = 2;</code>
        */
-      public String getDescription() {
-        Object ref = description_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getDescription() {
+        java.lang.Object ref = description_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             description_ = s;
           }
@@ -6133,11 +6157,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getDescriptionBytes() {
-        Object ref = description_;
-        if (ref instanceof String) {
+        java.lang.Object ref = description_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           description_ = b;
           return b;
         } else {
@@ -6190,8 +6214,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -6256,7 +6280,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -6425,7 +6449,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string description = 2;
-        private Object description_ = "";
+        private java.lang.Object description_ = "";
         /**
          * <code>optional string description = 2;</code>
          */
@@ -6435,15 +6459,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string description = 2;</code>
          */
-        public String getDescription() {
-          Object ref = description_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getDescription() {
+          java.lang.Object ref = description_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             description_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -6451,11 +6475,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getDescriptionBytes() {
-          Object ref = description_;
+          java.lang.Object ref = description_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             description_ = b;
             return b;
           } else {
@@ -6466,7 +6490,7 @@ public final class SignalServiceProtos {
          * <code>optional string description = 2;</code>
          */
         public Builder setDescription(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -6530,7 +6554,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sdpMid = 2;</code>
        */
-      String getSdpMid();
+      java.lang.String getSdpMid();
       /**
        * <code>optional string sdpMid = 2;</code>
        */
@@ -6555,7 +6579,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sdp = 4;</code>
        */
-      String getSdp();
+      java.lang.String getSdp();
       /**
        * <code>optional string sdp = 4;</code>
        */
@@ -6585,7 +6609,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -6667,7 +6691,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<IceUpdate> getParserForType() {
         return PARSER;
       }
@@ -6691,7 +6715,7 @@ public final class SignalServiceProtos {
 
       // optional string sdpMid = 2;
       public static final int SDPMID_FIELD_NUMBER = 2;
-      private Object sdpMid_;
+      private java.lang.Object sdpMid_;
       /**
        * <code>optional string sdpMid = 2;</code>
        */
@@ -6701,14 +6725,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sdpMid = 2;</code>
        */
-      public String getSdpMid() {
-        Object ref = sdpMid_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getSdpMid() {
+        java.lang.Object ref = sdpMid_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             sdpMid_ = s;
           }
@@ -6720,11 +6744,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getSdpMidBytes() {
-        Object ref = sdpMid_;
-        if (ref instanceof String) {
+        java.lang.Object ref = sdpMid_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sdpMid_ = b;
           return b;
         } else {
@@ -6750,7 +6774,7 @@ public final class SignalServiceProtos {
 
       // optional string sdp = 4;
       public static final int SDP_FIELD_NUMBER = 4;
-      private Object sdp_;
+      private java.lang.Object sdp_;
       /**
        * <code>optional string sdp = 4;</code>
        */
@@ -6760,14 +6784,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sdp = 4;</code>
        */
-      public String getSdp() {
-        Object ref = sdp_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getSdp() {
+        java.lang.Object ref = sdp_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             sdp_ = s;
           }
@@ -6779,11 +6803,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getSdpBytes() {
-        Object ref = sdp_;
-        if (ref instanceof String) {
+        java.lang.Object ref = sdp_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sdp_ = b;
           return b;
         } else {
@@ -6852,8 +6876,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -6918,7 +6942,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -7107,7 +7131,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string sdpMid = 2;
-        private Object sdpMid_ = "";
+        private java.lang.Object sdpMid_ = "";
         /**
          * <code>optional string sdpMid = 2;</code>
          */
@@ -7117,15 +7141,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string sdpMid = 2;</code>
          */
-        public String getSdpMid() {
-          Object ref = sdpMid_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getSdpMid() {
+          java.lang.Object ref = sdpMid_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             sdpMid_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -7133,11 +7157,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getSdpMidBytes() {
-          Object ref = sdpMid_;
+          java.lang.Object ref = sdpMid_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             sdpMid_ = b;
             return b;
           } else {
@@ -7148,7 +7172,7 @@ public final class SignalServiceProtos {
          * <code>optional string sdpMid = 2;</code>
          */
         public Builder setSdpMid(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -7214,7 +7238,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string sdp = 4;
-        private Object sdp_ = "";
+        private java.lang.Object sdp_ = "";
         /**
          * <code>optional string sdp = 4;</code>
          */
@@ -7224,15 +7248,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string sdp = 4;</code>
          */
-        public String getSdp() {
-          Object ref = sdp_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getSdp() {
+          java.lang.Object ref = sdp_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             sdp_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -7240,11 +7264,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getSdpBytes() {
-          Object ref = sdp_;
+          java.lang.Object ref = sdp_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             sdp_ = b;
             return b;
           } else {
@@ -7255,7 +7279,7 @@ public final class SignalServiceProtos {
          * <code>optional string sdp = 4;</code>
          */
         public Builder setSdp(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -7334,7 +7358,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -7401,7 +7425,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Busy> getParserForType() {
         return PARSER;
       }
@@ -7460,8 +7484,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -7526,7 +7550,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -7730,7 +7754,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -7797,7 +7821,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Hangup> getParserForType() {
         return PARSER;
       }
@@ -7856,8 +7880,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -7922,7 +7946,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -8147,7 +8171,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
         getIceUpdateOrBuilderList() {
       return iceUpdate_;
     }
@@ -8284,8 +8308,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -8350,7 +8374,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -8683,7 +8707,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.CallMessage.Offer offer = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Offer, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Offer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.OfferOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Offer, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Offer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.OfferOrBuilder> 
           getOfferFieldBuilder() {
         if (offerBuilder_ == null) {
           offerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -8800,7 +8824,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.CallMessage.Answer answer = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Answer, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Answer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.AnswerOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Answer, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Answer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.AnswerOrBuilder> 
           getAnswerFieldBuilder() {
         if (answerBuilder_ == null) {
           answerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -8952,7 +8976,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
       public Builder addAllIceUpdate(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate> values) {
         if (iceUpdateBuilder_ == null) {
           ensureIceUpdateIsMutable();
           super.addAll(values, iceUpdate_);
@@ -9008,7 +9032,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
            getIceUpdateOrBuilderList() {
         if (iceUpdateBuilder_ != null) {
           return iceUpdateBuilder_.getMessageOrBuilderList();
@@ -9034,12 +9058,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.CallMessage.IceUpdate iceUpdate = 3;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder> 
            getIceUpdateBuilderList() {
         return getIceUpdateFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdate.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.IceUpdateOrBuilder> 
           getIceUpdateFieldBuilder() {
         if (iceUpdateBuilder_ == null) {
           iceUpdateBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -9157,7 +9181,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.CallMessage.Hangup hangup = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Hangup, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Hangup.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.HangupOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Hangup, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Hangup.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.HangupOrBuilder> 
           getHangupFieldBuilder() {
         if (hangupBuilder_ == null) {
           hangupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -9274,7 +9298,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.CallMessage.Busy busy = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Busy, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Busy.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.BusyOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Busy, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.Busy.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage.BusyOrBuilder> 
           getBusyFieldBuilder() {
         if (busyBuilder_ == null) {
           busyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -9360,7 +9384,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -9432,7 +9456,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ClosedGroupCiphertextMessageWrapper> getParserForType() {
       return PARSER;
     }
@@ -9531,8 +9555,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -9597,7 +9621,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -9856,7 +9880,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string body = 1;</code>
      */
-    String getBody();
+    java.lang.String getBody();
     /**
      * <code>optional string body = 1;</code>
      */
@@ -9867,7 +9891,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer> 
         getAttachmentsList();
     /**
      * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
@@ -9880,7 +9904,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
         getAttachmentsOrBuilderList();
     /**
      * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
@@ -9960,7 +9984,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact> 
         getContactList();
     /**
      * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
@@ -9973,7 +9997,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder> 
         getContactOrBuilderList();
     /**
      * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
@@ -9985,7 +10009,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview> 
         getPreviewList();
     /**
      * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
@@ -9998,7 +10022,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder> 
         getPreviewOrBuilderList();
     /**
      * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
@@ -10071,6 +10095,20 @@ public final class SignalServiceProtos {
      * </pre>
      */
     org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateOrBuilder getClosedGroupUpdateOrBuilder();
+
+    // optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    boolean hasClosedGroupUpdateV2();
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 getClosedGroupUpdateV2();
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder getClosedGroupUpdateV2OrBuilder();
   }
   /**
    * Protobuf type {@code signalservice.DataMessage}
@@ -10095,7 +10133,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -10237,6 +10275,19 @@ public final class SignalServiceProtos {
               bitField0_ |= 0x00000200;
               break;
             }
+            case 834: {
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000400) == 0x00000400)) {
+                subBuilder = closedGroupUpdateV2_.toBuilder();
+              }
+              closedGroupUpdateV2_ = input.readMessage(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(closedGroupUpdateV2_);
+                closedGroupUpdateV2_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000400;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -10280,7 +10331,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<DataMessage> getParserForType() {
       return PARSER;
     }
@@ -10368,7 +10419,7 @@ public final class SignalServiceProtos {
       public static Flags valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -10406,7 +10457,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string author = 2;</code>
        */
-      String getAuthor();
+      java.lang.String getAuthor();
       /**
        * <code>optional string author = 2;</code>
        */
@@ -10421,7 +10472,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string text = 3;</code>
        */
-      String getText();
+      java.lang.String getText();
       /**
        * <code>optional string text = 3;</code>
        */
@@ -10432,7 +10483,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
        */
-      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment>
+      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment> 
           getAttachmentsList();
       /**
        * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
@@ -10445,7 +10496,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
        */
-      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder>
+      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder> 
           getAttachmentsOrBuilderList();
       /**
        * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
@@ -10476,7 +10527,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -10564,7 +10615,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Quote> getParserForType() {
         return PARSER;
       }
@@ -10580,7 +10631,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string contentType = 1;</code>
          */
-        String getContentType();
+        java.lang.String getContentType();
         /**
          * <code>optional string contentType = 1;</code>
          */
@@ -10595,7 +10646,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string fileName = 2;</code>
          */
-        String getFileName();
+        java.lang.String getFileName();
         /**
          * <code>optional string fileName = 2;</code>
          */
@@ -10639,7 +10690,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -10724,7 +10775,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<QuotedAttachment> getParserForType() {
           return PARSER;
         }
@@ -10732,7 +10783,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
         // optional string contentType = 1;
         public static final int CONTENTTYPE_FIELD_NUMBER = 1;
-        private Object contentType_;
+        private java.lang.Object contentType_;
         /**
          * <code>optional string contentType = 1;</code>
          */
@@ -10742,14 +10793,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string contentType = 1;</code>
          */
-        public String getContentType() {
-          Object ref = contentType_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getContentType() {
+          java.lang.Object ref = contentType_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               contentType_ = s;
             }
@@ -10761,11 +10812,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getContentTypeBytes() {
-          Object ref = contentType_;
-          if (ref instanceof String) {
+          java.lang.Object ref = contentType_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             contentType_ = b;
             return b;
           } else {
@@ -10775,7 +10826,7 @@ public final class SignalServiceProtos {
 
         // optional string fileName = 2;
         public static final int FILENAME_FIELD_NUMBER = 2;
-        private Object fileName_;
+        private java.lang.Object fileName_;
         /**
          * <code>optional string fileName = 2;</code>
          */
@@ -10785,14 +10836,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string fileName = 2;</code>
          */
-        public String getFileName() {
-          Object ref = fileName_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getFileName() {
+          java.lang.Object ref = fileName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               fileName_ = s;
             }
@@ -10804,11 +10855,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getFileNameBytes() {
-          Object ref = fileName_;
-          if (ref instanceof String) {
+          java.lang.Object ref = fileName_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             fileName_ = b;
             return b;
           } else {
@@ -10891,8 +10942,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -10957,7 +11008,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -11113,7 +11164,7 @@ public final class SignalServiceProtos {
           private int bitField0_;
 
           // optional string contentType = 1;
-          private Object contentType_ = "";
+          private java.lang.Object contentType_ = "";
           /**
            * <code>optional string contentType = 1;</code>
            */
@@ -11123,15 +11174,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string contentType = 1;</code>
            */
-          public String getContentType() {
-            Object ref = contentType_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getContentType() {
+            java.lang.Object ref = contentType_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               contentType_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -11139,11 +11190,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getContentTypeBytes() {
-            Object ref = contentType_;
+            java.lang.Object ref = contentType_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               contentType_ = b;
               return b;
             } else {
@@ -11154,7 +11205,7 @@ public final class SignalServiceProtos {
            * <code>optional string contentType = 1;</code>
            */
           public Builder setContentType(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -11187,7 +11238,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string fileName = 2;
-          private Object fileName_ = "";
+          private java.lang.Object fileName_ = "";
           /**
            * <code>optional string fileName = 2;</code>
            */
@@ -11197,15 +11248,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string fileName = 2;</code>
            */
-          public String getFileName() {
-            Object ref = fileName_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getFileName() {
+            java.lang.Object ref = fileName_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               fileName_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -11213,11 +11264,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getFileNameBytes() {
-            Object ref = fileName_;
+            java.lang.Object ref = fileName_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               fileName_ = b;
               return b;
             } else {
@@ -11228,7 +11279,7 @@ public final class SignalServiceProtos {
            * <code>optional string fileName = 2;</code>
            */
           public Builder setFileName(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -11364,7 +11415,7 @@ public final class SignalServiceProtos {
            * <code>optional .signalservice.AttachmentPointer thumbnail = 3;</code>
            */
           private com.google.protobuf.SingleFieldBuilder<
-              org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+              org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
               getThumbnailFieldBuilder() {
             if (thumbnailBuilder_ == null) {
               thumbnailBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -11407,7 +11458,7 @@ public final class SignalServiceProtos {
 
       // optional string author = 2;
       public static final int AUTHOR_FIELD_NUMBER = 2;
-      private Object author_;
+      private java.lang.Object author_;
       /**
        * <code>optional string author = 2;</code>
        */
@@ -11417,14 +11468,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string author = 2;</code>
        */
-      public String getAuthor() {
-        Object ref = author_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getAuthor() {
+        java.lang.Object ref = author_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             author_ = s;
           }
@@ -11436,11 +11487,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getAuthorBytes() {
-        Object ref = author_;
-        if (ref instanceof String) {
+        java.lang.Object ref = author_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           author_ = b;
           return b;
         } else {
@@ -11450,7 +11501,7 @@ public final class SignalServiceProtos {
 
       // optional string text = 3;
       public static final int TEXT_FIELD_NUMBER = 3;
-      private Object text_;
+      private java.lang.Object text_;
       /**
        * <code>optional string text = 3;</code>
        */
@@ -11460,14 +11511,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string text = 3;</code>
        */
-      public String getText() {
-        Object ref = text_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             text_ = s;
           }
@@ -11479,11 +11530,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getTextBytes() {
-        Object ref = text_;
-        if (ref instanceof String) {
+        java.lang.Object ref = text_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           text_ = b;
           return b;
         } else {
@@ -11503,7 +11554,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder> 
           getAttachmentsOrBuilderList() {
         return attachments_;
       }
@@ -11588,8 +11639,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -11654,7 +11705,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -11876,7 +11927,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string author = 2;
-        private Object author_ = "";
+        private java.lang.Object author_ = "";
         /**
          * <code>optional string author = 2;</code>
          */
@@ -11886,15 +11937,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string author = 2;</code>
          */
-        public String getAuthor() {
-          Object ref = author_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getAuthor() {
+          java.lang.Object ref = author_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             author_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -11902,11 +11953,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getAuthorBytes() {
-          Object ref = author_;
+          java.lang.Object ref = author_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             author_ = b;
             return b;
           } else {
@@ -11917,7 +11968,7 @@ public final class SignalServiceProtos {
          * <code>optional string author = 2;</code>
          */
         public Builder setAuthor(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -11950,7 +12001,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string text = 3;
-        private Object text_ = "";
+        private java.lang.Object text_ = "";
         /**
          * <code>optional string text = 3;</code>
          */
@@ -11960,15 +12011,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string text = 3;</code>
          */
-        public String getText() {
-          Object ref = text_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getText() {
+          java.lang.Object ref = text_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             text_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -11976,11 +12027,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getTextBytes() {
-          Object ref = text_;
+          java.lang.Object ref = text_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             text_ = b;
             return b;
           } else {
@@ -11991,7 +12042,7 @@ public final class SignalServiceProtos {
          * <code>optional string text = 3;</code>
          */
         public Builder setText(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -12162,7 +12213,7 @@ public final class SignalServiceProtos {
          * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
          */
         public Builder addAllAttachments(
-            Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment> values) {
+            java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment> values) {
           if (attachmentsBuilder_ == null) {
             ensureAttachmentsIsMutable();
             super.addAll(values, attachments_);
@@ -12218,7 +12269,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
          */
-        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder>
+        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder> 
              getAttachmentsOrBuilderList() {
           if (attachmentsBuilder_ != null) {
             return attachmentsBuilder_.getMessageOrBuilderList();
@@ -12244,12 +12295,12 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Quote.QuotedAttachment attachments = 4;</code>
          */
-        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment.Builder>
+        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment.Builder> 
              getAttachmentsBuilderList() {
           return getAttachmentsFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachment.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.QuotedAttachmentOrBuilder> 
             getAttachmentsFieldBuilder() {
           if (attachmentsBuilder_ == null) {
             attachmentsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -12295,7 +12346,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
        */
-      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone>
+      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone> 
           getNumberList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
@@ -12308,7 +12359,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
        */
-      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder>
+      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder> 
           getNumberOrBuilderList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
@@ -12320,7 +12371,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
        */
-      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email>
+      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email> 
           getEmailList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
@@ -12333,7 +12384,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
        */
-      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder>
+      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder> 
           getEmailOrBuilderList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
@@ -12345,7 +12396,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
        */
-      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress>
+      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress> 
           getAddressList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
@@ -12358,7 +12409,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
        */
-      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder>
+      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder> 
           getAddressOrBuilderList();
       /**
        * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
@@ -12388,7 +12439,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string organization = 7;</code>
        */
-      String getOrganization();
+      java.lang.String getOrganization();
       /**
        * <code>optional string organization = 7;</code>
        */
@@ -12418,7 +12469,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -12544,7 +12595,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Contact> getParserForType() {
         return PARSER;
       }
@@ -12560,7 +12611,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string givenName = 1;</code>
          */
-        String getGivenName();
+        java.lang.String getGivenName();
         /**
          * <code>optional string givenName = 1;</code>
          */
@@ -12575,7 +12626,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string familyName = 2;</code>
          */
-        String getFamilyName();
+        java.lang.String getFamilyName();
         /**
          * <code>optional string familyName = 2;</code>
          */
@@ -12590,7 +12641,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string prefix = 3;</code>
          */
-        String getPrefix();
+        java.lang.String getPrefix();
         /**
          * <code>optional string prefix = 3;</code>
          */
@@ -12605,7 +12656,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string suffix = 4;</code>
          */
-        String getSuffix();
+        java.lang.String getSuffix();
         /**
          * <code>optional string suffix = 4;</code>
          */
@@ -12620,7 +12671,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string middleName = 5;</code>
          */
-        String getMiddleName();
+        java.lang.String getMiddleName();
         /**
          * <code>optional string middleName = 5;</code>
          */
@@ -12635,7 +12686,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string displayName = 6;</code>
          */
-        String getDisplayName();
+        java.lang.String getDisplayName();
         /**
          * <code>optional string displayName = 6;</code>
          */
@@ -12665,7 +12716,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -12757,7 +12808,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<Name> getParserForType() {
           return PARSER;
         }
@@ -12765,7 +12816,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
         // optional string givenName = 1;
         public static final int GIVENNAME_FIELD_NUMBER = 1;
-        private Object givenName_;
+        private java.lang.Object givenName_;
         /**
          * <code>optional string givenName = 1;</code>
          */
@@ -12775,14 +12826,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string givenName = 1;</code>
          */
-        public String getGivenName() {
-          Object ref = givenName_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getGivenName() {
+          java.lang.Object ref = givenName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               givenName_ = s;
             }
@@ -12794,11 +12845,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getGivenNameBytes() {
-          Object ref = givenName_;
-          if (ref instanceof String) {
+          java.lang.Object ref = givenName_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             givenName_ = b;
             return b;
           } else {
@@ -12808,7 +12859,7 @@ public final class SignalServiceProtos {
 
         // optional string familyName = 2;
         public static final int FAMILYNAME_FIELD_NUMBER = 2;
-        private Object familyName_;
+        private java.lang.Object familyName_;
         /**
          * <code>optional string familyName = 2;</code>
          */
@@ -12818,14 +12869,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string familyName = 2;</code>
          */
-        public String getFamilyName() {
-          Object ref = familyName_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getFamilyName() {
+          java.lang.Object ref = familyName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               familyName_ = s;
             }
@@ -12837,11 +12888,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getFamilyNameBytes() {
-          Object ref = familyName_;
-          if (ref instanceof String) {
+          java.lang.Object ref = familyName_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             familyName_ = b;
             return b;
           } else {
@@ -12851,7 +12902,7 @@ public final class SignalServiceProtos {
 
         // optional string prefix = 3;
         public static final int PREFIX_FIELD_NUMBER = 3;
-        private Object prefix_;
+        private java.lang.Object prefix_;
         /**
          * <code>optional string prefix = 3;</code>
          */
@@ -12861,14 +12912,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string prefix = 3;</code>
          */
-        public String getPrefix() {
-          Object ref = prefix_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getPrefix() {
+          java.lang.Object ref = prefix_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               prefix_ = s;
             }
@@ -12880,11 +12931,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getPrefixBytes() {
-          Object ref = prefix_;
-          if (ref instanceof String) {
+          java.lang.Object ref = prefix_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             prefix_ = b;
             return b;
           } else {
@@ -12894,7 +12945,7 @@ public final class SignalServiceProtos {
 
         // optional string suffix = 4;
         public static final int SUFFIX_FIELD_NUMBER = 4;
-        private Object suffix_;
+        private java.lang.Object suffix_;
         /**
          * <code>optional string suffix = 4;</code>
          */
@@ -12904,14 +12955,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string suffix = 4;</code>
          */
-        public String getSuffix() {
-          Object ref = suffix_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getSuffix() {
+          java.lang.Object ref = suffix_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               suffix_ = s;
             }
@@ -12923,11 +12974,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getSuffixBytes() {
-          Object ref = suffix_;
-          if (ref instanceof String) {
+          java.lang.Object ref = suffix_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             suffix_ = b;
             return b;
           } else {
@@ -12937,7 +12988,7 @@ public final class SignalServiceProtos {
 
         // optional string middleName = 5;
         public static final int MIDDLENAME_FIELD_NUMBER = 5;
-        private Object middleName_;
+        private java.lang.Object middleName_;
         /**
          * <code>optional string middleName = 5;</code>
          */
@@ -12947,14 +12998,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string middleName = 5;</code>
          */
-        public String getMiddleName() {
-          Object ref = middleName_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getMiddleName() {
+          java.lang.Object ref = middleName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               middleName_ = s;
             }
@@ -12966,11 +13017,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getMiddleNameBytes() {
-          Object ref = middleName_;
-          if (ref instanceof String) {
+          java.lang.Object ref = middleName_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             middleName_ = b;
             return b;
           } else {
@@ -12980,7 +13031,7 @@ public final class SignalServiceProtos {
 
         // optional string displayName = 6;
         public static final int DISPLAYNAME_FIELD_NUMBER = 6;
-        private Object displayName_;
+        private java.lang.Object displayName_;
         /**
          * <code>optional string displayName = 6;</code>
          */
@@ -12990,14 +13041,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string displayName = 6;</code>
          */
-        public String getDisplayName() {
-          Object ref = displayName_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getDisplayName() {
+          java.lang.Object ref = displayName_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               displayName_ = s;
             }
@@ -13009,11 +13060,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getDisplayNameBytes() {
-          Object ref = displayName_;
-          if (ref instanceof String) {
+          java.lang.Object ref = displayName_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             displayName_ = b;
             return b;
           } else {
@@ -13098,8 +13149,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -13164,7 +13215,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -13346,7 +13397,7 @@ public final class SignalServiceProtos {
           private int bitField0_;
 
           // optional string givenName = 1;
-          private Object givenName_ = "";
+          private java.lang.Object givenName_ = "";
           /**
            * <code>optional string givenName = 1;</code>
            */
@@ -13356,15 +13407,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string givenName = 1;</code>
            */
-          public String getGivenName() {
-            Object ref = givenName_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getGivenName() {
+            java.lang.Object ref = givenName_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               givenName_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13372,11 +13423,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getGivenNameBytes() {
-            Object ref = givenName_;
+            java.lang.Object ref = givenName_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               givenName_ = b;
               return b;
             } else {
@@ -13387,7 +13438,7 @@ public final class SignalServiceProtos {
            * <code>optional string givenName = 1;</code>
            */
           public Builder setGivenName(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13420,7 +13471,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string familyName = 2;
-          private Object familyName_ = "";
+          private java.lang.Object familyName_ = "";
           /**
            * <code>optional string familyName = 2;</code>
            */
@@ -13430,15 +13481,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string familyName = 2;</code>
            */
-          public String getFamilyName() {
-            Object ref = familyName_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getFamilyName() {
+            java.lang.Object ref = familyName_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               familyName_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13446,11 +13497,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getFamilyNameBytes() {
-            Object ref = familyName_;
+            java.lang.Object ref = familyName_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               familyName_ = b;
               return b;
             } else {
@@ -13461,7 +13512,7 @@ public final class SignalServiceProtos {
            * <code>optional string familyName = 2;</code>
            */
           public Builder setFamilyName(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13494,7 +13545,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string prefix = 3;
-          private Object prefix_ = "";
+          private java.lang.Object prefix_ = "";
           /**
            * <code>optional string prefix = 3;</code>
            */
@@ -13504,15 +13555,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string prefix = 3;</code>
            */
-          public String getPrefix() {
-            Object ref = prefix_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getPrefix() {
+            java.lang.Object ref = prefix_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               prefix_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13520,11 +13571,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getPrefixBytes() {
-            Object ref = prefix_;
+            java.lang.Object ref = prefix_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               prefix_ = b;
               return b;
             } else {
@@ -13535,7 +13586,7 @@ public final class SignalServiceProtos {
            * <code>optional string prefix = 3;</code>
            */
           public Builder setPrefix(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13568,7 +13619,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string suffix = 4;
-          private Object suffix_ = "";
+          private java.lang.Object suffix_ = "";
           /**
            * <code>optional string suffix = 4;</code>
            */
@@ -13578,15 +13629,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string suffix = 4;</code>
            */
-          public String getSuffix() {
-            Object ref = suffix_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getSuffix() {
+            java.lang.Object ref = suffix_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               suffix_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13594,11 +13645,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getSuffixBytes() {
-            Object ref = suffix_;
+            java.lang.Object ref = suffix_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               suffix_ = b;
               return b;
             } else {
@@ -13609,7 +13660,7 @@ public final class SignalServiceProtos {
            * <code>optional string suffix = 4;</code>
            */
           public Builder setSuffix(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13642,7 +13693,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string middleName = 5;
-          private Object middleName_ = "";
+          private java.lang.Object middleName_ = "";
           /**
            * <code>optional string middleName = 5;</code>
            */
@@ -13652,15 +13703,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string middleName = 5;</code>
            */
-          public String getMiddleName() {
-            Object ref = middleName_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getMiddleName() {
+            java.lang.Object ref = middleName_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               middleName_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13668,11 +13719,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getMiddleNameBytes() {
-            Object ref = middleName_;
+            java.lang.Object ref = middleName_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               middleName_ = b;
               return b;
             } else {
@@ -13683,7 +13734,7 @@ public final class SignalServiceProtos {
            * <code>optional string middleName = 5;</code>
            */
           public Builder setMiddleName(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13716,7 +13767,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string displayName = 6;
-          private Object displayName_ = "";
+          private java.lang.Object displayName_ = "";
           /**
            * <code>optional string displayName = 6;</code>
            */
@@ -13726,15 +13777,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string displayName = 6;</code>
            */
-          public String getDisplayName() {
-            Object ref = displayName_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getDisplayName() {
+            java.lang.Object ref = displayName_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               displayName_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -13742,11 +13793,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getDisplayNameBytes() {
-            Object ref = displayName_;
+            java.lang.Object ref = displayName_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               displayName_ = b;
               return b;
             } else {
@@ -13757,7 +13808,7 @@ public final class SignalServiceProtos {
            * <code>optional string displayName = 6;</code>
            */
           public Builder setDisplayName(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -13811,7 +13862,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string value = 1;</code>
          */
-        String getValue();
+        java.lang.String getValue();
         /**
          * <code>optional string value = 1;</code>
          */
@@ -13836,7 +13887,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 3;</code>
          */
-        String getLabel();
+        java.lang.String getLabel();
         /**
          * <code>optional string label = 3;</code>
          */
@@ -13866,7 +13917,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -13949,7 +14000,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<Phone> getParserForType() {
           return PARSER;
         }
@@ -14037,7 +14088,7 @@ public final class SignalServiceProtos {
           public static Type valueOf(
               com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-              throw new IllegalArgumentException(
+              throw new java.lang.IllegalArgumentException(
                 "EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
@@ -14057,7 +14108,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
         // optional string value = 1;
         public static final int VALUE_FIELD_NUMBER = 1;
-        private Object value_;
+        private java.lang.Object value_;
         /**
          * <code>optional string value = 1;</code>
          */
@@ -14067,14 +14118,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string value = 1;</code>
          */
-        public String getValue() {
-          Object ref = value_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getValue() {
+          java.lang.Object ref = value_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               value_ = s;
             }
@@ -14086,11 +14137,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getValueBytes() {
-          Object ref = value_;
-          if (ref instanceof String) {
+          java.lang.Object ref = value_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             value_ = b;
             return b;
           } else {
@@ -14116,7 +14167,7 @@ public final class SignalServiceProtos {
 
         // optional string label = 3;
         public static final int LABEL_FIELD_NUMBER = 3;
-        private Object label_;
+        private java.lang.Object label_;
         /**
          * <code>optional string label = 3;</code>
          */
@@ -14126,14 +14177,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 3;</code>
          */
-        public String getLabel() {
-          Object ref = label_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               label_ = s;
             }
@@ -14145,11 +14196,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getLabelBytes() {
-          Object ref = label_;
-          if (ref instanceof String) {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             label_ = b;
             return b;
           } else {
@@ -14210,8 +14261,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -14276,7 +14327,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -14423,7 +14474,7 @@ public final class SignalServiceProtos {
           private int bitField0_;
 
           // optional string value = 1;
-          private Object value_ = "";
+          private java.lang.Object value_ = "";
           /**
            * <code>optional string value = 1;</code>
            */
@@ -14433,15 +14484,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string value = 1;</code>
            */
-          public String getValue() {
-            Object ref = value_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getValue() {
+            java.lang.Object ref = value_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               value_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -14449,11 +14500,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getValueBytes() {
-            Object ref = value_;
+            java.lang.Object ref = value_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               value_ = b;
               return b;
             } else {
@@ -14464,7 +14515,7 @@ public final class SignalServiceProtos {
            * <code>optional string value = 1;</code>
            */
           public Builder setValue(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -14533,7 +14584,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string label = 3;
-          private Object label_ = "";
+          private java.lang.Object label_ = "";
           /**
            * <code>optional string label = 3;</code>
            */
@@ -14543,15 +14594,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string label = 3;</code>
            */
-          public String getLabel() {
-            Object ref = label_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getLabel() {
+            java.lang.Object ref = label_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               label_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -14559,11 +14610,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getLabelBytes() {
-            Object ref = label_;
+            java.lang.Object ref = label_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               label_ = b;
               return b;
             } else {
@@ -14574,7 +14625,7 @@ public final class SignalServiceProtos {
            * <code>optional string label = 3;</code>
            */
           public Builder setLabel(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -14628,7 +14679,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string value = 1;</code>
          */
-        String getValue();
+        java.lang.String getValue();
         /**
          * <code>optional string value = 1;</code>
          */
@@ -14653,7 +14704,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 3;</code>
          */
-        String getLabel();
+        java.lang.String getLabel();
         /**
          * <code>optional string label = 3;</code>
          */
@@ -14683,7 +14734,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -14766,7 +14817,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<Email> getParserForType() {
           return PARSER;
         }
@@ -14854,7 +14905,7 @@ public final class SignalServiceProtos {
           public static Type valueOf(
               com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-              throw new IllegalArgumentException(
+              throw new java.lang.IllegalArgumentException(
                 "EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
@@ -14874,7 +14925,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
         // optional string value = 1;
         public static final int VALUE_FIELD_NUMBER = 1;
-        private Object value_;
+        private java.lang.Object value_;
         /**
          * <code>optional string value = 1;</code>
          */
@@ -14884,14 +14935,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string value = 1;</code>
          */
-        public String getValue() {
-          Object ref = value_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getValue() {
+          java.lang.Object ref = value_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               value_ = s;
             }
@@ -14903,11 +14954,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getValueBytes() {
-          Object ref = value_;
-          if (ref instanceof String) {
+          java.lang.Object ref = value_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             value_ = b;
             return b;
           } else {
@@ -14933,7 +14984,7 @@ public final class SignalServiceProtos {
 
         // optional string label = 3;
         public static final int LABEL_FIELD_NUMBER = 3;
-        private Object label_;
+        private java.lang.Object label_;
         /**
          * <code>optional string label = 3;</code>
          */
@@ -14943,14 +14994,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 3;</code>
          */
-        public String getLabel() {
-          Object ref = label_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               label_ = s;
             }
@@ -14962,11 +15013,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getLabelBytes() {
-          Object ref = label_;
-          if (ref instanceof String) {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             label_ = b;
             return b;
           } else {
@@ -15027,8 +15078,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -15093,7 +15144,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -15240,7 +15291,7 @@ public final class SignalServiceProtos {
           private int bitField0_;
 
           // optional string value = 1;
-          private Object value_ = "";
+          private java.lang.Object value_ = "";
           /**
            * <code>optional string value = 1;</code>
            */
@@ -15250,15 +15301,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string value = 1;</code>
            */
-          public String getValue() {
-            Object ref = value_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getValue() {
+            java.lang.Object ref = value_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               value_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -15266,11 +15317,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getValueBytes() {
-            Object ref = value_;
+            java.lang.Object ref = value_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               value_ = b;
               return b;
             } else {
@@ -15281,7 +15332,7 @@ public final class SignalServiceProtos {
            * <code>optional string value = 1;</code>
            */
           public Builder setValue(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -15350,7 +15401,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string label = 3;
-          private Object label_ = "";
+          private java.lang.Object label_ = "";
           /**
            * <code>optional string label = 3;</code>
            */
@@ -15360,15 +15411,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string label = 3;</code>
            */
-          public String getLabel() {
-            Object ref = label_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getLabel() {
+            java.lang.Object ref = label_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               label_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -15376,11 +15427,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getLabelBytes() {
-            Object ref = label_;
+            java.lang.Object ref = label_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               label_ = b;
               return b;
             } else {
@@ -15391,7 +15442,7 @@ public final class SignalServiceProtos {
            * <code>optional string label = 3;</code>
            */
           public Builder setLabel(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -15455,7 +15506,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 2;</code>
          */
-        String getLabel();
+        java.lang.String getLabel();
         /**
          * <code>optional string label = 2;</code>
          */
@@ -15470,7 +15521,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string street = 3;</code>
          */
-        String getStreet();
+        java.lang.String getStreet();
         /**
          * <code>optional string street = 3;</code>
          */
@@ -15485,7 +15536,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string pobox = 4;</code>
          */
-        String getPobox();
+        java.lang.String getPobox();
         /**
          * <code>optional string pobox = 4;</code>
          */
@@ -15500,7 +15551,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string neighborhood = 5;</code>
          */
-        String getNeighborhood();
+        java.lang.String getNeighborhood();
         /**
          * <code>optional string neighborhood = 5;</code>
          */
@@ -15515,7 +15566,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string city = 6;</code>
          */
-        String getCity();
+        java.lang.String getCity();
         /**
          * <code>optional string city = 6;</code>
          */
@@ -15530,7 +15581,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string region = 7;</code>
          */
-        String getRegion();
+        java.lang.String getRegion();
         /**
          * <code>optional string region = 7;</code>
          */
@@ -15545,7 +15596,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string postcode = 8;</code>
          */
-        String getPostcode();
+        java.lang.String getPostcode();
         /**
          * <code>optional string postcode = 8;</code>
          */
@@ -15560,7 +15611,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string country = 9;</code>
          */
-        String getCountry();
+        java.lang.String getCountry();
         /**
          * <code>optional string country = 9;</code>
          */
@@ -15590,7 +15641,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -15703,7 +15754,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<PostalAddress> getParserForType() {
           return PARSER;
         }
@@ -15782,7 +15833,7 @@ public final class SignalServiceProtos {
           public static Type valueOf(
               com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
             if (desc.getType() != getDescriptor()) {
-              throw new IllegalArgumentException(
+              throw new java.lang.IllegalArgumentException(
                 "EnumValueDescriptor is not for this type.");
             }
             return VALUES[desc.getIndex()];
@@ -15818,7 +15869,7 @@ public final class SignalServiceProtos {
 
         // optional string label = 2;
         public static final int LABEL_FIELD_NUMBER = 2;
-        private Object label_;
+        private java.lang.Object label_;
         /**
          * <code>optional string label = 2;</code>
          */
@@ -15828,14 +15879,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string label = 2;</code>
          */
-        public String getLabel() {
-          Object ref = label_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               label_ = s;
             }
@@ -15847,11 +15898,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getLabelBytes() {
-          Object ref = label_;
-          if (ref instanceof String) {
+          java.lang.Object ref = label_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             label_ = b;
             return b;
           } else {
@@ -15861,7 +15912,7 @@ public final class SignalServiceProtos {
 
         // optional string street = 3;
         public static final int STREET_FIELD_NUMBER = 3;
-        private Object street_;
+        private java.lang.Object street_;
         /**
          * <code>optional string street = 3;</code>
          */
@@ -15871,14 +15922,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string street = 3;</code>
          */
-        public String getStreet() {
-          Object ref = street_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getStreet() {
+          java.lang.Object ref = street_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               street_ = s;
             }
@@ -15890,11 +15941,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getStreetBytes() {
-          Object ref = street_;
-          if (ref instanceof String) {
+          java.lang.Object ref = street_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             street_ = b;
             return b;
           } else {
@@ -15904,7 +15955,7 @@ public final class SignalServiceProtos {
 
         // optional string pobox = 4;
         public static final int POBOX_FIELD_NUMBER = 4;
-        private Object pobox_;
+        private java.lang.Object pobox_;
         /**
          * <code>optional string pobox = 4;</code>
          */
@@ -15914,14 +15965,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string pobox = 4;</code>
          */
-        public String getPobox() {
-          Object ref = pobox_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getPobox() {
+          java.lang.Object ref = pobox_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               pobox_ = s;
             }
@@ -15933,11 +15984,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getPoboxBytes() {
-          Object ref = pobox_;
-          if (ref instanceof String) {
+          java.lang.Object ref = pobox_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             pobox_ = b;
             return b;
           } else {
@@ -15947,7 +15998,7 @@ public final class SignalServiceProtos {
 
         // optional string neighborhood = 5;
         public static final int NEIGHBORHOOD_FIELD_NUMBER = 5;
-        private Object neighborhood_;
+        private java.lang.Object neighborhood_;
         /**
          * <code>optional string neighborhood = 5;</code>
          */
@@ -15957,14 +16008,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string neighborhood = 5;</code>
          */
-        public String getNeighborhood() {
-          Object ref = neighborhood_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getNeighborhood() {
+          java.lang.Object ref = neighborhood_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               neighborhood_ = s;
             }
@@ -15976,11 +16027,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getNeighborhoodBytes() {
-          Object ref = neighborhood_;
-          if (ref instanceof String) {
+          java.lang.Object ref = neighborhood_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             neighborhood_ = b;
             return b;
           } else {
@@ -15990,7 +16041,7 @@ public final class SignalServiceProtos {
 
         // optional string city = 6;
         public static final int CITY_FIELD_NUMBER = 6;
-        private Object city_;
+        private java.lang.Object city_;
         /**
          * <code>optional string city = 6;</code>
          */
@@ -16000,14 +16051,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string city = 6;</code>
          */
-        public String getCity() {
-          Object ref = city_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getCity() {
+          java.lang.Object ref = city_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               city_ = s;
             }
@@ -16019,11 +16070,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getCityBytes() {
-          Object ref = city_;
-          if (ref instanceof String) {
+          java.lang.Object ref = city_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             city_ = b;
             return b;
           } else {
@@ -16033,7 +16084,7 @@ public final class SignalServiceProtos {
 
         // optional string region = 7;
         public static final int REGION_FIELD_NUMBER = 7;
-        private Object region_;
+        private java.lang.Object region_;
         /**
          * <code>optional string region = 7;</code>
          */
@@ -16043,14 +16094,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string region = 7;</code>
          */
-        public String getRegion() {
-          Object ref = region_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getRegion() {
+          java.lang.Object ref = region_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               region_ = s;
             }
@@ -16062,11 +16113,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getRegionBytes() {
-          Object ref = region_;
-          if (ref instanceof String) {
+          java.lang.Object ref = region_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             region_ = b;
             return b;
           } else {
@@ -16076,7 +16127,7 @@ public final class SignalServiceProtos {
 
         // optional string postcode = 8;
         public static final int POSTCODE_FIELD_NUMBER = 8;
-        private Object postcode_;
+        private java.lang.Object postcode_;
         /**
          * <code>optional string postcode = 8;</code>
          */
@@ -16086,14 +16137,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string postcode = 8;</code>
          */
-        public String getPostcode() {
-          Object ref = postcode_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getPostcode() {
+          java.lang.Object ref = postcode_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               postcode_ = s;
             }
@@ -16105,11 +16156,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getPostcodeBytes() {
-          Object ref = postcode_;
-          if (ref instanceof String) {
+          java.lang.Object ref = postcode_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             postcode_ = b;
             return b;
           } else {
@@ -16119,7 +16170,7 @@ public final class SignalServiceProtos {
 
         // optional string country = 9;
         public static final int COUNTRY_FIELD_NUMBER = 9;
-        private Object country_;
+        private java.lang.Object country_;
         /**
          * <code>optional string country = 9;</code>
          */
@@ -16129,14 +16180,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string country = 9;</code>
          */
-        public String getCountry() {
-          Object ref = country_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getCountry() {
+          java.lang.Object ref = country_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               country_ = s;
             }
@@ -16148,11 +16199,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getCountryBytes() {
-          Object ref = country_;
-          if (ref instanceof String) {
+          java.lang.Object ref = country_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             country_ = b;
             return b;
           } else {
@@ -16261,8 +16312,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -16327,7 +16378,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -16576,7 +16627,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string label = 2;
-          private Object label_ = "";
+          private java.lang.Object label_ = "";
           /**
            * <code>optional string label = 2;</code>
            */
@@ -16586,15 +16637,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string label = 2;</code>
            */
-          public String getLabel() {
-            Object ref = label_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getLabel() {
+            java.lang.Object ref = label_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               label_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16602,11 +16653,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getLabelBytes() {
-            Object ref = label_;
+            java.lang.Object ref = label_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               label_ = b;
               return b;
             } else {
@@ -16617,7 +16668,7 @@ public final class SignalServiceProtos {
            * <code>optional string label = 2;</code>
            */
           public Builder setLabel(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -16650,7 +16701,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string street = 3;
-          private Object street_ = "";
+          private java.lang.Object street_ = "";
           /**
            * <code>optional string street = 3;</code>
            */
@@ -16660,15 +16711,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string street = 3;</code>
            */
-          public String getStreet() {
-            Object ref = street_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getStreet() {
+            java.lang.Object ref = street_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               street_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16676,11 +16727,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getStreetBytes() {
-            Object ref = street_;
+            java.lang.Object ref = street_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               street_ = b;
               return b;
             } else {
@@ -16691,7 +16742,7 @@ public final class SignalServiceProtos {
            * <code>optional string street = 3;</code>
            */
           public Builder setStreet(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -16724,7 +16775,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string pobox = 4;
-          private Object pobox_ = "";
+          private java.lang.Object pobox_ = "";
           /**
            * <code>optional string pobox = 4;</code>
            */
@@ -16734,15 +16785,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string pobox = 4;</code>
            */
-          public String getPobox() {
-            Object ref = pobox_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getPobox() {
+            java.lang.Object ref = pobox_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               pobox_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16750,11 +16801,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getPoboxBytes() {
-            Object ref = pobox_;
+            java.lang.Object ref = pobox_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               pobox_ = b;
               return b;
             } else {
@@ -16765,7 +16816,7 @@ public final class SignalServiceProtos {
            * <code>optional string pobox = 4;</code>
            */
           public Builder setPobox(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -16798,7 +16849,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string neighborhood = 5;
-          private Object neighborhood_ = "";
+          private java.lang.Object neighborhood_ = "";
           /**
            * <code>optional string neighborhood = 5;</code>
            */
@@ -16808,15 +16859,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string neighborhood = 5;</code>
            */
-          public String getNeighborhood() {
-            Object ref = neighborhood_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getNeighborhood() {
+            java.lang.Object ref = neighborhood_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               neighborhood_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16824,11 +16875,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getNeighborhoodBytes() {
-            Object ref = neighborhood_;
+            java.lang.Object ref = neighborhood_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               neighborhood_ = b;
               return b;
             } else {
@@ -16839,7 +16890,7 @@ public final class SignalServiceProtos {
            * <code>optional string neighborhood = 5;</code>
            */
           public Builder setNeighborhood(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -16872,7 +16923,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string city = 6;
-          private Object city_ = "";
+          private java.lang.Object city_ = "";
           /**
            * <code>optional string city = 6;</code>
            */
@@ -16882,15 +16933,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string city = 6;</code>
            */
-          public String getCity() {
-            Object ref = city_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getCity() {
+            java.lang.Object ref = city_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               city_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16898,11 +16949,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getCityBytes() {
-            Object ref = city_;
+            java.lang.Object ref = city_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               city_ = b;
               return b;
             } else {
@@ -16913,7 +16964,7 @@ public final class SignalServiceProtos {
            * <code>optional string city = 6;</code>
            */
           public Builder setCity(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -16946,7 +16997,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string region = 7;
-          private Object region_ = "";
+          private java.lang.Object region_ = "";
           /**
            * <code>optional string region = 7;</code>
            */
@@ -16956,15 +17007,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string region = 7;</code>
            */
-          public String getRegion() {
-            Object ref = region_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getRegion() {
+            java.lang.Object ref = region_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               region_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -16972,11 +17023,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getRegionBytes() {
-            Object ref = region_;
+            java.lang.Object ref = region_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               region_ = b;
               return b;
             } else {
@@ -16987,7 +17038,7 @@ public final class SignalServiceProtos {
            * <code>optional string region = 7;</code>
            */
           public Builder setRegion(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -17020,7 +17071,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string postcode = 8;
-          private Object postcode_ = "";
+          private java.lang.Object postcode_ = "";
           /**
            * <code>optional string postcode = 8;</code>
            */
@@ -17030,15 +17081,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string postcode = 8;</code>
            */
-          public String getPostcode() {
-            Object ref = postcode_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getPostcode() {
+            java.lang.Object ref = postcode_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               postcode_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -17046,11 +17097,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getPostcodeBytes() {
-            Object ref = postcode_;
+            java.lang.Object ref = postcode_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               postcode_ = b;
               return b;
             } else {
@@ -17061,7 +17112,7 @@ public final class SignalServiceProtos {
            * <code>optional string postcode = 8;</code>
            */
           public Builder setPostcode(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -17094,7 +17145,7 @@ public final class SignalServiceProtos {
           }
 
           // optional string country = 9;
-          private Object country_ = "";
+          private java.lang.Object country_ = "";
           /**
            * <code>optional string country = 9;</code>
            */
@@ -17104,15 +17155,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string country = 9;</code>
            */
-          public String getCountry() {
-            Object ref = country_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getCountry() {
+            java.lang.Object ref = country_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               country_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -17120,11 +17171,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getCountryBytes() {
-            Object ref = country_;
+            java.lang.Object ref = country_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               country_ = b;
               return b;
             } else {
@@ -17135,7 +17186,7 @@ public final class SignalServiceProtos {
            * <code>optional string country = 9;</code>
            */
           public Builder setCountry(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -17228,7 +17279,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -17308,7 +17359,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<Avatar> getParserForType() {
           return PARSER;
         }
@@ -17397,8 +17448,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -17463,7 +17514,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -17709,7 +17760,7 @@ public final class SignalServiceProtos {
            * <code>optional .signalservice.AttachmentPointer avatar = 1;</code>
            */
           private com.google.protobuf.SingleFieldBuilder<
-              org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+              org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
               getAvatarFieldBuilder() {
             if (avatarBuilder_ == null) {
               avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -17801,7 +17852,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder> 
           getNumberOrBuilderList() {
         return number_;
       }
@@ -17837,7 +17888,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder> 
           getEmailOrBuilderList() {
         return email_;
       }
@@ -17873,7 +17924,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder> 
           getAddressOrBuilderList() {
         return address_;
       }
@@ -17921,7 +17972,7 @@ public final class SignalServiceProtos {
 
       // optional string organization = 7;
       public static final int ORGANIZATION_FIELD_NUMBER = 7;
-      private Object organization_;
+      private java.lang.Object organization_;
       /**
        * <code>optional string organization = 7;</code>
        */
@@ -17931,14 +17982,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string organization = 7;</code>
        */
-      public String getOrganization() {
-        Object ref = organization_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getOrganization() {
+        java.lang.Object ref = organization_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             organization_ = s;
           }
@@ -17950,11 +18001,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getOrganizationBytes() {
-        Object ref = organization_;
-        if (ref instanceof String) {
+        java.lang.Object ref = organization_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           organization_ = b;
           return b;
         } else {
@@ -18039,8 +18090,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -18105,7 +18156,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -18497,7 +18548,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.DataMessage.Contact.Name name = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Name, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Name.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.NameOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Name, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Name.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.NameOrBuilder> 
             getNameFieldBuilder() {
           if (nameBuilder_ == null) {
             nameBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -18649,7 +18700,7 @@ public final class SignalServiceProtos {
          * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
          */
         public Builder addAllNumber(
-            Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone> values) {
+            java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone> values) {
           if (numberBuilder_ == null) {
             ensureNumberIsMutable();
             super.addAll(values, number_);
@@ -18705,7 +18756,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
          */
-        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder>
+        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder> 
              getNumberOrBuilderList() {
           if (numberBuilder_ != null) {
             return numberBuilder_.getMessageOrBuilderList();
@@ -18731,12 +18782,12 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.Phone number = 3;</code>
          */
-        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone.Builder>
+        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone.Builder> 
              getNumberBuilderList() {
           return getNumberFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Phone.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PhoneOrBuilder> 
             getNumberFieldBuilder() {
           if (numberBuilder_ == null) {
             numberBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -18889,7 +18940,7 @@ public final class SignalServiceProtos {
          * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
          */
         public Builder addAllEmail(
-            Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email> values) {
+            java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email> values) {
           if (emailBuilder_ == null) {
             ensureEmailIsMutable();
             super.addAll(values, email_);
@@ -18945,7 +18996,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
          */
-        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder>
+        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder> 
              getEmailOrBuilderList() {
           if (emailBuilder_ != null) {
             return emailBuilder_.getMessageOrBuilderList();
@@ -18971,12 +19022,12 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.Email email = 4;</code>
          */
-        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email.Builder>
+        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email.Builder> 
              getEmailBuilderList() {
           return getEmailFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Email.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.EmailOrBuilder> 
             getEmailFieldBuilder() {
           if (emailBuilder_ == null) {
             emailBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -19129,7 +19180,7 @@ public final class SignalServiceProtos {
          * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
          */
         public Builder addAllAddress(
-            Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress> values) {
+            java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress> values) {
           if (addressBuilder_ == null) {
             ensureAddressIsMutable();
             super.addAll(values, address_);
@@ -19185,7 +19236,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
          */
-        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder>
+        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder> 
              getAddressOrBuilderList() {
           if (addressBuilder_ != null) {
             return addressBuilder_.getMessageOrBuilderList();
@@ -19211,12 +19262,12 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.DataMessage.Contact.PostalAddress address = 5;</code>
          */
-        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress.Builder>
+        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress.Builder> 
              getAddressBuilderList() {
           return getAddressFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddress.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.PostalAddressOrBuilder> 
             getAddressFieldBuilder() {
           if (addressBuilder_ == null) {
             addressBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -19334,7 +19385,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.DataMessage.Contact.Avatar avatar = 6;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.AvatarOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.AvatarOrBuilder> 
             getAvatarFieldBuilder() {
           if (avatarBuilder_ == null) {
             avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -19348,7 +19399,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string organization = 7;
-        private Object organization_ = "";
+        private java.lang.Object organization_ = "";
         /**
          * <code>optional string organization = 7;</code>
          */
@@ -19358,15 +19409,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string organization = 7;</code>
          */
-        public String getOrganization() {
-          Object ref = organization_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getOrganization() {
+          java.lang.Object ref = organization_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             organization_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -19374,11 +19425,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getOrganizationBytes() {
-          Object ref = organization_;
+          java.lang.Object ref = organization_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             organization_ = b;
             return b;
           } else {
@@ -19389,7 +19440,7 @@ public final class SignalServiceProtos {
          * <code>optional string organization = 7;</code>
          */
         public Builder setOrganization(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -19443,7 +19494,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string url = 1;</code>
        */
-      String getUrl();
+      java.lang.String getUrl();
       /**
        * <code>optional string url = 1;</code>
        */
@@ -19458,7 +19509,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string title = 2;</code>
        */
-      String getTitle();
+      java.lang.String getTitle();
       /**
        * <code>optional string title = 2;</code>
        */
@@ -19502,7 +19553,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -19587,7 +19638,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Preview> getParserForType() {
         return PARSER;
       }
@@ -19595,7 +19646,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string url = 1;
       public static final int URL_FIELD_NUMBER = 1;
-      private Object url_;
+      private java.lang.Object url_;
       /**
        * <code>optional string url = 1;</code>
        */
@@ -19605,14 +19656,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
-        Object ref = url_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             url_ = s;
           }
@@ -19624,11 +19675,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
-        Object ref = url_;
-        if (ref instanceof String) {
+        java.lang.Object ref = url_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           url_ = b;
           return b;
         } else {
@@ -19638,7 +19689,7 @@ public final class SignalServiceProtos {
 
       // optional string title = 2;
       public static final int TITLE_FIELD_NUMBER = 2;
-      private Object title_;
+      private java.lang.Object title_;
       /**
        * <code>optional string title = 2;</code>
        */
@@ -19648,14 +19699,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string title = 2;</code>
        */
-      public String getTitle() {
-        Object ref = title_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getTitle() {
+        java.lang.Object ref = title_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             title_ = s;
           }
@@ -19667,11 +19718,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getTitleBytes() {
-        Object ref = title_;
-        if (ref instanceof String) {
+        java.lang.Object ref = title_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           title_ = b;
           return b;
         } else {
@@ -19754,8 +19805,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -19820,7 +19871,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -19976,7 +20027,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string url = 1;
-        private Object url_ = "";
+        private java.lang.Object url_ = "";
         /**
          * <code>optional string url = 1;</code>
          */
@@ -19986,15 +20037,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string url = 1;</code>
          */
-        public String getUrl() {
-          Object ref = url_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getUrl() {
+          java.lang.Object ref = url_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             url_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -20002,11 +20053,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getUrlBytes() {
-          Object ref = url_;
+          java.lang.Object ref = url_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             url_ = b;
             return b;
           } else {
@@ -20017,7 +20068,7 @@ public final class SignalServiceProtos {
          * <code>optional string url = 1;</code>
          */
         public Builder setUrl(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -20050,7 +20101,7 @@ public final class SignalServiceProtos {
         }
 
         // optional string title = 2;
-        private Object title_ = "";
+        private java.lang.Object title_ = "";
         /**
          * <code>optional string title = 2;</code>
          */
@@ -20060,15 +20111,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string title = 2;</code>
          */
-        public String getTitle() {
-          Object ref = title_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getTitle() {
+          java.lang.Object ref = title_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             title_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -20076,11 +20127,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getTitleBytes() {
-          Object ref = title_;
+          java.lang.Object ref = title_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             title_ = b;
             return b;
           } else {
@@ -20091,7 +20142,7 @@ public final class SignalServiceProtos {
          * <code>optional string title = 2;</code>
          */
         public Builder setTitle(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -20227,7 +20278,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.AttachmentPointer image = 3;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
             getImageFieldBuilder() {
           if (imageBuilder_ == null) {
             imageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -20321,7 +20372,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -20411,7 +20462,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Sticker> getParserForType() {
         return PARSER;
       }
@@ -20548,8 +20599,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -20614,7 +20665,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -20983,7 +21034,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.AttachmentPointer data = 4;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
             getDataFieldBuilder() {
           if (dataBuilder_ == null) {
             dataBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -21010,7 +21061,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string body = 1;
     public static final int BODY_FIELD_NUMBER = 1;
-    private Object body_;
+    private java.lang.Object body_;
     /**
      * <code>optional string body = 1;</code>
      */
@@ -21020,14 +21071,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string body = 1;</code>
      */
-    public String getBody() {
-      Object ref = body_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getBody() {
+      java.lang.Object ref = body_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           body_ = s;
         }
@@ -21039,11 +21090,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getBodyBytes() {
-      Object ref = body_;
-      if (ref instanceof String) {
+      java.lang.Object ref = body_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         body_ = b;
         return b;
       } else {
@@ -21063,7 +21114,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
         getAttachmentsOrBuilderList() {
       return attachments_;
     }
@@ -21207,7 +21258,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder> 
         getContactOrBuilderList() {
       return contact_;
     }
@@ -21243,7 +21294,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder> 
         getPreviewOrBuilderList() {
       return preview_;
     }
@@ -21357,6 +21408,28 @@ public final class SignalServiceProtos {
       return closedGroupUpdate_;
     }
 
+    // optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;
+    public static final int CLOSEDGROUPUPDATEV2_FIELD_NUMBER = 104;
+    private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 closedGroupUpdateV2_;
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    public boolean hasClosedGroupUpdateV2() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 getClosedGroupUpdateV2() {
+      return closedGroupUpdateV2_;
+    }
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder getClosedGroupUpdateV2OrBuilder() {
+      return closedGroupUpdateV2_;
+    }
+
     private void initFields() {
       body_ = "";
       attachments_ = java.util.Collections.emptyList();
@@ -21371,12 +21444,19 @@ public final class SignalServiceProtos {
       sticker_ = org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Sticker.getDefaultInstance();
       profile_ = org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile.getDefaultInstance();
       closedGroupUpdate_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.getDefaultInstance();
+      closedGroupUpdateV2_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (hasClosedGroupUpdateV2()) {
+        if (!getClosedGroupUpdateV2().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -21422,6 +21502,9 @@ public final class SignalServiceProtos {
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeMessage(103, closedGroupUpdate_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeMessage(104, closedGroupUpdateV2_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -21484,14 +21567,18 @@ public final class SignalServiceProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(103, closedGroupUpdate_);
       }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(104, closedGroupUpdateV2_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -21556,7 +21643,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -21600,6 +21687,7 @@ public final class SignalServiceProtos {
           getStickerFieldBuilder();
           getProfileFieldBuilder();
           getClosedGroupUpdateFieldBuilder();
+          getClosedGroupUpdateV2FieldBuilder();
         }
       }
       private static Builder create() {
@@ -21666,6 +21754,12 @@ public final class SignalServiceProtos {
           closedGroupUpdateBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00001000);
+        if (closedGroupUpdateV2Builder_ == null) {
+          closedGroupUpdateV2_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance();
+        } else {
+          closedGroupUpdateV2Builder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00002000);
         return this;
       }
 
@@ -21780,6 +21874,14 @@ public final class SignalServiceProtos {
           result.closedGroupUpdate_ = closedGroupUpdate_;
         } else {
           result.closedGroupUpdate_ = closedGroupUpdateBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        if (closedGroupUpdateV2Builder_ == null) {
+          result.closedGroupUpdateV2_ = closedGroupUpdateV2_;
+        } else {
+          result.closedGroupUpdateV2_ = closedGroupUpdateV2Builder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -21907,11 +22009,20 @@ public final class SignalServiceProtos {
         if (other.hasClosedGroupUpdate()) {
           mergeClosedGroupUpdate(other.getClosedGroupUpdate());
         }
+        if (other.hasClosedGroupUpdateV2()) {
+          mergeClosedGroupUpdateV2(other.getClosedGroupUpdateV2());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
+        if (hasClosedGroupUpdateV2()) {
+          if (!getClosedGroupUpdateV2().isInitialized()) {
+            
+            return false;
+          }
+        }
         return true;
       }
 
@@ -21935,7 +22046,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string body = 1;
-      private Object body_ = "";
+      private java.lang.Object body_ = "";
       /**
        * <code>optional string body = 1;</code>
        */
@@ -21945,15 +22056,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string body = 1;</code>
        */
-      public String getBody() {
-        Object ref = body_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getBody() {
+        java.lang.Object ref = body_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           body_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -21961,11 +22072,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getBodyBytes() {
-        Object ref = body_;
+        java.lang.Object ref = body_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           body_ = b;
           return b;
         } else {
@@ -21976,7 +22087,7 @@ public final class SignalServiceProtos {
        * <code>optional string body = 1;</code>
        */
       public Builder setBody(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -22147,7 +22258,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
        */
       public Builder addAllAttachments(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer> values) {
         if (attachmentsBuilder_ == null) {
           ensureAttachmentsIsMutable();
           super.addAll(values, attachments_);
@@ -22203,7 +22314,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
            getAttachmentsOrBuilderList() {
         if (attachmentsBuilder_ != null) {
           return attachmentsBuilder_.getMessageOrBuilderList();
@@ -22229,12 +22340,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.AttachmentPointer attachments = 2;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder> 
            getAttachmentsBuilderList() {
         return getAttachmentsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
           getAttachmentsFieldBuilder() {
         if (attachmentsBuilder_ == null) {
           attachmentsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -22352,7 +22463,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.GroupContext group = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContextOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContextOrBuilder> 
           getGroupFieldBuilder() {
         if (groupBuilder_ == null) {
           groupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -22604,7 +22715,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.DataMessage.Quote quote = 8;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.QuoteOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Quote.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.QuoteOrBuilder> 
           getQuoteFieldBuilder() {
         if (quoteBuilder_ == null) {
           quoteBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -22756,7 +22867,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
        */
       public Builder addAllContact(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact> values) {
         if (contactBuilder_ == null) {
           ensureContactIsMutable();
           super.addAll(values, contact_);
@@ -22812,7 +22923,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder> 
            getContactOrBuilderList() {
         if (contactBuilder_ != null) {
           return contactBuilder_.getMessageOrBuilderList();
@@ -22838,12 +22949,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Contact contact = 9;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Builder> 
            getContactBuilderList() {
         return getContactFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Contact.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ContactOrBuilder> 
           getContactFieldBuilder() {
         if (contactBuilder_ == null) {
           contactBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -22996,7 +23107,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
        */
       public Builder addAllPreview(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview> values) {
         if (previewBuilder_ == null) {
           ensurePreviewIsMutable();
           super.addAll(values, preview_);
@@ -23052,7 +23163,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder> 
            getPreviewOrBuilderList() {
         if (previewBuilder_ != null) {
           return previewBuilder_.getMessageOrBuilderList();
@@ -23078,12 +23189,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.DataMessage.Preview preview = 10;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview.Builder> 
            getPreviewBuilderList() {
         return getPreviewFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Preview.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.PreviewOrBuilder> 
           getPreviewFieldBuilder() {
         if (previewBuilder_ == null) {
           previewBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -23201,7 +23312,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.DataMessage.Sticker sticker = 11;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Sticker, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Sticker.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.StickerOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Sticker, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Sticker.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.StickerOrBuilder> 
           getStickerFieldBuilder() {
         if (stickerBuilder_ == null) {
           stickerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -23354,7 +23465,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile, org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfileOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile, org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfileOrBuilder> 
           getProfileFieldBuilder() {
         if (profileBuilder_ == null) {
           profileBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -23507,7 +23618,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateOrBuilder> 
           getClosedGroupUpdateFieldBuilder() {
         if (closedGroupUpdateBuilder_ == null) {
           closedGroupUpdateBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -23518,6 +23629,123 @@ public final class SignalServiceProtos {
           closedGroupUpdate_ = null;
         }
         return closedGroupUpdateBuilder_;
+      }
+
+      // optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;
+      private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 closedGroupUpdateV2_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder> closedGroupUpdateV2Builder_;
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public boolean hasClosedGroupUpdateV2() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 getClosedGroupUpdateV2() {
+        if (closedGroupUpdateV2Builder_ == null) {
+          return closedGroupUpdateV2_;
+        } else {
+          return closedGroupUpdateV2Builder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public Builder setClosedGroupUpdateV2(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 value) {
+        if (closedGroupUpdateV2Builder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          closedGroupUpdateV2_ = value;
+          onChanged();
+        } else {
+          closedGroupUpdateV2Builder_.setMessage(value);
+        }
+        bitField0_ |= 0x00002000;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public Builder setClosedGroupUpdateV2(
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder builderForValue) {
+        if (closedGroupUpdateV2Builder_ == null) {
+          closedGroupUpdateV2_ = builderForValue.build();
+          onChanged();
+        } else {
+          closedGroupUpdateV2Builder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00002000;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public Builder mergeClosedGroupUpdateV2(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 value) {
+        if (closedGroupUpdateV2Builder_ == null) {
+          if (((bitField0_ & 0x00002000) == 0x00002000) &&
+              closedGroupUpdateV2_ != org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance()) {
+            closedGroupUpdateV2_ =
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.newBuilder(closedGroupUpdateV2_).mergeFrom(value).buildPartial();
+          } else {
+            closedGroupUpdateV2_ = value;
+          }
+          onChanged();
+        } else {
+          closedGroupUpdateV2Builder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00002000;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public Builder clearClosedGroupUpdateV2() {
+        if (closedGroupUpdateV2Builder_ == null) {
+          closedGroupUpdateV2_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance();
+          onChanged();
+        } else {
+          closedGroupUpdateV2Builder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00002000);
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder getClosedGroupUpdateV2Builder() {
+        bitField0_ |= 0x00002000;
+        onChanged();
+        return getClosedGroupUpdateV2FieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder getClosedGroupUpdateV2OrBuilder() {
+        if (closedGroupUpdateV2Builder_ != null) {
+          return closedGroupUpdateV2Builder_.getMessageOrBuilder();
+        } else {
+          return closedGroupUpdateV2_;
+        }
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder> 
+          getClosedGroupUpdateV2FieldBuilder() {
+        if (closedGroupUpdateV2Builder_ == null) {
+          closedGroupUpdateV2Builder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder>(
+                  closedGroupUpdateV2_,
+                  getParentForChildren(),
+                  isClean());
+          closedGroupUpdateV2_ = null;
+        }
+        return closedGroupUpdateV2Builder_;
       }
 
       // @@protoc_insertion_point(builder_scope:signalservice.DataMessage)
@@ -23542,7 +23770,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string displayName = 1;</code>
      */
-    String getDisplayName();
+    java.lang.String getDisplayName();
     /**
      * <code>optional string displayName = 1;</code>
      */
@@ -23557,7 +23785,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string profilePictureURL = 2;</code>
      */
-    String getProfilePictureURL();
+    java.lang.String getProfilePictureURL();
     /**
      * <code>optional string profilePictureURL = 2;</code>
      */
@@ -23587,7 +23815,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -23659,7 +23887,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<LokiUserProfile> getParserForType() {
       return PARSER;
     }
@@ -23667,7 +23895,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string displayName = 1;
     public static final int DISPLAYNAME_FIELD_NUMBER = 1;
-    private Object displayName_;
+    private java.lang.Object displayName_;
     /**
      * <code>optional string displayName = 1;</code>
      */
@@ -23677,14 +23905,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string displayName = 1;</code>
      */
-    public String getDisplayName() {
-      Object ref = displayName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getDisplayName() {
+      java.lang.Object ref = displayName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           displayName_ = s;
         }
@@ -23696,11 +23924,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getDisplayNameBytes() {
-      Object ref = displayName_;
-      if (ref instanceof String) {
+      java.lang.Object ref = displayName_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         displayName_ = b;
         return b;
       } else {
@@ -23710,7 +23938,7 @@ public final class SignalServiceProtos {
 
     // optional string profilePictureURL = 2;
     public static final int PROFILEPICTUREURL_FIELD_NUMBER = 2;
-    private Object profilePictureURL_;
+    private java.lang.Object profilePictureURL_;
     /**
      * <code>optional string profilePictureURL = 2;</code>
      */
@@ -23720,14 +23948,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string profilePictureURL = 2;</code>
      */
-    public String getProfilePictureURL() {
-      Object ref = profilePictureURL_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getProfilePictureURL() {
+      java.lang.Object ref = profilePictureURL_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           profilePictureURL_ = s;
         }
@@ -23739,11 +23967,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getProfilePictureURLBytes() {
-      Object ref = profilePictureURL_;
-      if (ref instanceof String) {
+      java.lang.Object ref = profilePictureURL_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         profilePictureURL_ = b;
         return b;
       } else {
@@ -23796,8 +24024,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -23862,7 +24090,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -24000,7 +24228,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string displayName = 1;
-      private Object displayName_ = "";
+      private java.lang.Object displayName_ = "";
       /**
        * <code>optional string displayName = 1;</code>
        */
@@ -24010,15 +24238,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string displayName = 1;</code>
        */
-      public String getDisplayName() {
-        Object ref = displayName_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getDisplayName() {
+        java.lang.Object ref = displayName_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           displayName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -24026,11 +24254,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getDisplayNameBytes() {
-        Object ref = displayName_;
+        java.lang.Object ref = displayName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           displayName_ = b;
           return b;
         } else {
@@ -24041,7 +24269,7 @@ public final class SignalServiceProtos {
        * <code>optional string displayName = 1;</code>
        */
       public Builder setDisplayName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -24074,7 +24302,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string profilePictureURL = 2;
-      private Object profilePictureURL_ = "";
+      private java.lang.Object profilePictureURL_ = "";
       /**
        * <code>optional string profilePictureURL = 2;</code>
        */
@@ -24084,15 +24312,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string profilePictureURL = 2;</code>
        */
-      public String getProfilePictureURL() {
-        Object ref = profilePictureURL_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getProfilePictureURL() {
+        java.lang.Object ref = profilePictureURL_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           profilePictureURL_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -24100,11 +24328,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getProfilePictureURLBytes() {
-        Object ref = profilePictureURL_;
+        java.lang.Object ref = profilePictureURL_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           profilePictureURL_ = b;
           return b;
         } else {
@@ -24115,7 +24343,7 @@ public final class SignalServiceProtos {
        * <code>optional string profilePictureURL = 2;</code>
        */
       public Builder setProfilePictureURL(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -24158,6 +24386,2870 @@ public final class SignalServiceProtos {
     // @@protoc_insertion_point(class_scope:signalservice.LokiUserProfile)
   }
 
+  public interface ClosedGroupUpdateV2OrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required .signalservice.ClosedGroupUpdateV2.Type type = 1;
+    /**
+     * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    boolean hasType();
+    /**
+     * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type getType();
+
+    // optional bytes publicKey = 2;
+    /**
+     * <code>optional bytes publicKey = 2;</code>
+     */
+    boolean hasPublicKey();
+    /**
+     * <code>optional bytes publicKey = 2;</code>
+     */
+    com.google.protobuf.ByteString getPublicKey();
+
+    // optional string name = 3;
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    boolean hasName();
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    // optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    boolean hasEncryptionKeyPair();
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair getEncryptionKeyPair();
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder getEncryptionKeyPairOrBuilder();
+
+    // repeated bytes members = 5;
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getMembersList();
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    int getMembersCount();
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    com.google.protobuf.ByteString getMembers(int index);
+
+    // repeated bytes admins = 6;
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    java.util.List<com.google.protobuf.ByteString> getAdminsList();
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    int getAdminsCount();
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    com.google.protobuf.ByteString getAdmins(int index);
+
+    // repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> 
+        getWrappersList();
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper getWrappers(int index);
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    int getWrappersCount();
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder> 
+        getWrappersOrBuilderList();
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder getWrappersOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code signalservice.ClosedGroupUpdateV2}
+   */
+  public static final class ClosedGroupUpdateV2 extends
+      com.google.protobuf.GeneratedMessage
+      implements ClosedGroupUpdateV2OrBuilder {
+    // Use ClosedGroupUpdateV2.newBuilder() to construct.
+    private ClosedGroupUpdateV2(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ClosedGroupUpdateV2(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ClosedGroupUpdateV2 defaultInstance;
+    public static ClosedGroupUpdateV2 getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ClosedGroupUpdateV2 getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ClosedGroupUpdateV2(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              int rawValue = input.readEnum();
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type value = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(1, rawValue);
+              } else {
+                bitField0_ |= 0x00000001;
+                type_ = value;
+              }
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              publicKey_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              name_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000008) == 0x00000008)) {
+                subBuilder = encryptionKeyPair_.toBuilder();
+              }
+              encryptionKeyPair_ = input.readMessage(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(encryptionKeyPair_);
+                encryptionKeyPair_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000008;
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                members_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              members_.add(input.readBytes());
+              break;
+            }
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                admins_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              admins_.add(input.readBytes());
+              break;
+            }
+            case 58: {
+              if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+                wrappers_ = new java.util.ArrayList<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper>();
+                mutable_bitField0_ |= 0x00000040;
+              }
+              wrappers_.add(input.readMessage(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          members_ = java.util.Collections.unmodifiableList(members_);
+        }
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          admins_ = java.util.Collections.unmodifiableList(admins_);
+        }
+        if (((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
+          wrappers_ = java.util.Collections.unmodifiableList(wrappers_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ClosedGroupUpdateV2> PARSER =
+        new com.google.protobuf.AbstractParser<ClosedGroupUpdateV2>() {
+      public ClosedGroupUpdateV2 parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ClosedGroupUpdateV2(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ClosedGroupUpdateV2> getParserForType() {
+      return PARSER;
+    }
+
+    /**
+     * Protobuf enum {@code signalservice.ClosedGroupUpdateV2.Type}
+     */
+    public enum Type
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>NEW = 1;</code>
+       *
+       * <pre>
+       * publicKey, name, encryptionKeyPair, members, admins
+       * </pre>
+       */
+      NEW(0, 1),
+      /**
+       * <code>UPDATE = 2;</code>
+       *
+       * <pre>
+       * name, members
+       * </pre>
+       */
+      UPDATE(1, 2),
+      /**
+       * <code>ENCRYPTION_KEY_PAIR = 3;</code>
+       *
+       * <pre>
+       * wrappers
+       * </pre>
+       */
+      ENCRYPTION_KEY_PAIR(2, 3),
+      /**
+       * <code>NAME_CHANGE = 4;</code>
+       *
+       * <pre>
+       * name
+       * </pre>
+       */
+      NAME_CHANGE(3, 4),
+      /**
+       * <code>MEMBERS_ADDED = 5;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      MEMBERS_ADDED(4, 5),
+      /**
+       * <code>MEMBERS_REMOVED = 6;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      MEMBERS_REMOVED(5, 6),
+      /**
+       * <code>MEMBER_LEFT = 7;</code>
+       */
+      MEMBER_LEFT(6, 7),
+      ;
+
+      /**
+       * <code>NEW = 1;</code>
+       *
+       * <pre>
+       * publicKey, name, encryptionKeyPair, members, admins
+       * </pre>
+       */
+      public static final int NEW_VALUE = 1;
+      /**
+       * <code>UPDATE = 2;</code>
+       *
+       * <pre>
+       * name, members
+       * </pre>
+       */
+      public static final int UPDATE_VALUE = 2;
+      /**
+       * <code>ENCRYPTION_KEY_PAIR = 3;</code>
+       *
+       * <pre>
+       * wrappers
+       * </pre>
+       */
+      public static final int ENCRYPTION_KEY_PAIR_VALUE = 3;
+      /**
+       * <code>NAME_CHANGE = 4;</code>
+       *
+       * <pre>
+       * name
+       * </pre>
+       */
+      public static final int NAME_CHANGE_VALUE = 4;
+      /**
+       * <code>MEMBERS_ADDED = 5;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      public static final int MEMBERS_ADDED_VALUE = 5;
+      /**
+       * <code>MEMBERS_REMOVED = 6;</code>
+       *
+       * <pre>
+       * members
+       * </pre>
+       */
+      public static final int MEMBERS_REMOVED_VALUE = 6;
+      /**
+       * <code>MEMBER_LEFT = 7;</code>
+       */
+      public static final int MEMBER_LEFT_VALUE = 7;
+
+
+      public final int getNumber() { return value; }
+
+      public static Type valueOf(int value) {
+        switch (value) {
+          case 1: return NEW;
+          case 2: return UPDATE;
+          case 3: return ENCRYPTION_KEY_PAIR;
+          case 4: return NAME_CHANGE;
+          case 5: return MEMBERS_ADDED;
+          case 6: return MEMBERS_REMOVED;
+          case 7: return MEMBER_LEFT;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<Type>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+              public Type findValueByNumber(int number) {
+                return Type.valueOf(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Type[] VALUES = values();
+
+      public static Type valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int index;
+      private final int value;
+
+      private Type(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:signalservice.ClosedGroupUpdateV2.Type)
+    }
+
+    public interface KeyPairOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // required bytes publicKey = 1;
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      boolean hasPublicKey();
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      com.google.protobuf.ByteString getPublicKey();
+
+      // required bytes privateKey = 2;
+      /**
+       * <code>required bytes privateKey = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      boolean hasPrivateKey();
+      /**
+       * <code>required bytes privateKey = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      com.google.protobuf.ByteString getPrivateKey();
+    }
+    /**
+     * Protobuf type {@code signalservice.ClosedGroupUpdateV2.KeyPair}
+     */
+    public static final class KeyPair extends
+        com.google.protobuf.GeneratedMessage
+        implements KeyPairOrBuilder {
+      // Use KeyPair.newBuilder() to construct.
+      private KeyPair(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private KeyPair(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final KeyPair defaultInstance;
+      public static KeyPair getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public KeyPair getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private KeyPair(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                bitField0_ |= 0x00000001;
+                publicKey_ = input.readBytes();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                privateKey_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<KeyPair> PARSER =
+          new com.google.protobuf.AbstractParser<KeyPair>() {
+        public KeyPair parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new KeyPair(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<KeyPair> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // required bytes publicKey = 1;
+      public static final int PUBLICKEY_FIELD_NUMBER = 1;
+      private com.google.protobuf.ByteString publicKey_;
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasPublicKey() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getPublicKey() {
+        return publicKey_;
+      }
+
+      // required bytes privateKey = 2;
+      public static final int PRIVATEKEY_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString privateKey_;
+      /**
+       * <code>required bytes privateKey = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasPrivateKey() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required bytes privateKey = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getPrivateKey() {
+        return privateKey_;
+      }
+
+      private void initFields() {
+        publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        privateKey_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        if (!hasPublicKey()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasPrivateKey()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, publicKey_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, privateKey_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, publicKey_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, privateKey_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code signalservice.ClosedGroupUpdateV2.KeyPair}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder.class);
+        }
+
+        // Construct using org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          publicKey_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          privateKey_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor;
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair getDefaultInstanceForType() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance();
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair build() {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair buildPartial() {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair result = new org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.publicKey_ = publicKey_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.privateKey_ = privateKey_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair) {
+            return mergeFrom((org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair other) {
+          if (other == org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance()) return this;
+          if (other.hasPublicKey()) {
+            setPublicKey(other.getPublicKey());
+          }
+          if (other.hasPrivateKey()) {
+            setPrivateKey(other.getPrivateKey());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          if (!hasPublicKey()) {
+            
+            return false;
+          }
+          if (!hasPrivateKey()) {
+            
+            return false;
+          }
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // required bytes publicKey = 1;
+        private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public boolean hasPublicKey() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public com.google.protobuf.ByteString getPublicKey() {
+          return publicKey_;
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder setPublicKey(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          publicKey_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder clearPublicKey() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          publicKey_ = getDefaultInstance().getPublicKey();
+          onChanged();
+          return this;
+        }
+
+        // required bytes privateKey = 2;
+        private com.google.protobuf.ByteString privateKey_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>required bytes privateKey = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public boolean hasPrivateKey() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>required bytes privateKey = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public com.google.protobuf.ByteString getPrivateKey() {
+          return privateKey_;
+        }
+        /**
+         * <code>required bytes privateKey = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder setPrivateKey(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          privateKey_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required bytes privateKey = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder clearPrivateKey() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          privateKey_ = getDefaultInstance().getPrivateKey();
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:signalservice.ClosedGroupUpdateV2.KeyPair)
+      }
+
+      static {
+        defaultInstance = new KeyPair(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:signalservice.ClosedGroupUpdateV2.KeyPair)
+    }
+
+    public interface KeyPairWrapperOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // required bytes publicKey = 1;
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      boolean hasPublicKey();
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      com.google.protobuf.ByteString getPublicKey();
+
+      // required bytes encryptedKeyPair = 2;
+      /**
+       * <code>required bytes encryptedKeyPair = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      boolean hasEncryptedKeyPair();
+      /**
+       * <code>required bytes encryptedKeyPair = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      com.google.protobuf.ByteString getEncryptedKeyPair();
+    }
+    /**
+     * Protobuf type {@code signalservice.ClosedGroupUpdateV2.KeyPairWrapper}
+     */
+    public static final class KeyPairWrapper extends
+        com.google.protobuf.GeneratedMessage
+        implements KeyPairWrapperOrBuilder {
+      // Use KeyPairWrapper.newBuilder() to construct.
+      private KeyPairWrapper(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private KeyPairWrapper(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final KeyPairWrapper defaultInstance;
+      public static KeyPairWrapper getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public KeyPairWrapper getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private KeyPairWrapper(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                bitField0_ |= 0x00000001;
+                publicKey_ = input.readBytes();
+                break;
+              }
+              case 18: {
+                bitField0_ |= 0x00000002;
+                encryptedKeyPair_ = input.readBytes();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<KeyPairWrapper> PARSER =
+          new com.google.protobuf.AbstractParser<KeyPairWrapper>() {
+        public KeyPairWrapper parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new KeyPairWrapper(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<KeyPairWrapper> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // required bytes publicKey = 1;
+      public static final int PUBLICKEY_FIELD_NUMBER = 1;
+      private com.google.protobuf.ByteString publicKey_;
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasPublicKey() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required bytes publicKey = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getPublicKey() {
+        return publicKey_;
+      }
+
+      // required bytes encryptedKeyPair = 2;
+      public static final int ENCRYPTEDKEYPAIR_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString encryptedKeyPair_;
+      /**
+       * <code>required bytes encryptedKeyPair = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasEncryptedKeyPair() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required bytes encryptedKeyPair = 2;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public com.google.protobuf.ByteString getEncryptedKeyPair() {
+        return encryptedKeyPair_;
+      }
+
+      private void initFields() {
+        publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        encryptedKeyPair_ = com.google.protobuf.ByteString.EMPTY;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        if (!hasPublicKey()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasEncryptedKeyPair()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeBytes(1, publicKey_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeBytes(2, encryptedKeyPair_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(1, publicKey_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, encryptedKeyPair_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code signalservice.ClosedGroupUpdateV2.KeyPairWrapper}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder.class);
+        }
+
+        // Construct using org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          publicKey_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          encryptedKeyPair_ = com.google.protobuf.ByteString.EMPTY;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor;
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper getDefaultInstanceForType() {
+          return org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.getDefaultInstance();
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper build() {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper buildPartial() {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper result = new org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.publicKey_ = publicKey_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.encryptedKeyPair_ = encryptedKeyPair_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper) {
+            return mergeFrom((org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper other) {
+          if (other == org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.getDefaultInstance()) return this;
+          if (other.hasPublicKey()) {
+            setPublicKey(other.getPublicKey());
+          }
+          if (other.hasEncryptedKeyPair()) {
+            setEncryptedKeyPair(other.getEncryptedKeyPair());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          if (!hasPublicKey()) {
+            
+            return false;
+          }
+          if (!hasEncryptedKeyPair()) {
+            
+            return false;
+          }
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // required bytes publicKey = 1;
+        private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public boolean hasPublicKey() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public com.google.protobuf.ByteString getPublicKey() {
+          return publicKey_;
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder setPublicKey(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          publicKey_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required bytes publicKey = 1;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder clearPublicKey() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          publicKey_ = getDefaultInstance().getPublicKey();
+          onChanged();
+          return this;
+        }
+
+        // required bytes encryptedKeyPair = 2;
+        private com.google.protobuf.ByteString encryptedKeyPair_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>required bytes encryptedKeyPair = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public boolean hasEncryptedKeyPair() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>required bytes encryptedKeyPair = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public com.google.protobuf.ByteString getEncryptedKeyPair() {
+          return encryptedKeyPair_;
+        }
+        /**
+         * <code>required bytes encryptedKeyPair = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder setEncryptedKeyPair(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+          encryptedKeyPair_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required bytes encryptedKeyPair = 2;</code>
+         *
+         * <pre>
+         * @required
+         * </pre>
+         */
+        public Builder clearEncryptedKeyPair() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          encryptedKeyPair_ = getDefaultInstance().getEncryptedKeyPair();
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:signalservice.ClosedGroupUpdateV2.KeyPairWrapper)
+      }
+
+      static {
+        defaultInstance = new KeyPairWrapper(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:signalservice.ClosedGroupUpdateV2.KeyPairWrapper)
+    }
+
+    private int bitField0_;
+    // required .signalservice.ClosedGroupUpdateV2.Type type = 1;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type type_;
+    /**
+     * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+     *
+     * <pre>
+     * @required
+     * </pre>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type getType() {
+      return type_;
+    }
+
+    // optional bytes publicKey = 2;
+    public static final int PUBLICKEY_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString publicKey_;
+    /**
+     * <code>optional bytes publicKey = 2;</code>
+     */
+    public boolean hasPublicKey() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bytes publicKey = 2;</code>
+     */
+    public com.google.protobuf.ByteString getPublicKey() {
+      return publicKey_;
+    }
+
+    // optional string name = 3;
+    public static final int NAME_FIELD_NUMBER = 3;
+    private java.lang.Object name_;
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;
+    public static final int ENCRYPTIONKEYPAIR_FIELD_NUMBER = 4;
+    private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair encryptionKeyPair_;
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    public boolean hasEncryptionKeyPair() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair getEncryptionKeyPair() {
+      return encryptionKeyPair_;
+    }
+    /**
+     * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder getEncryptionKeyPairOrBuilder() {
+      return encryptionKeyPair_;
+    }
+
+    // repeated bytes members = 5;
+    public static final int MEMBERS_FIELD_NUMBER = 5;
+    private java.util.List<com.google.protobuf.ByteString> members_;
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getMembersList() {
+      return members_;
+    }
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    public int getMembersCount() {
+      return members_.size();
+    }
+    /**
+     * <code>repeated bytes members = 5;</code>
+     */
+    public com.google.protobuf.ByteString getMembers(int index) {
+      return members_.get(index);
+    }
+
+    // repeated bytes admins = 6;
+    public static final int ADMINS_FIELD_NUMBER = 6;
+    private java.util.List<com.google.protobuf.ByteString> admins_;
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    public java.util.List<com.google.protobuf.ByteString>
+        getAdminsList() {
+      return admins_;
+    }
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    public int getAdminsCount() {
+      return admins_.size();
+    }
+    /**
+     * <code>repeated bytes admins = 6;</code>
+     */
+    public com.google.protobuf.ByteString getAdmins(int index) {
+      return admins_.get(index);
+    }
+
+    // repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;
+    public static final int WRAPPERS_FIELD_NUMBER = 7;
+    private java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> wrappers_;
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> getWrappersList() {
+      return wrappers_;
+    }
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder> 
+        getWrappersOrBuilderList() {
+      return wrappers_;
+    }
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    public int getWrappersCount() {
+      return wrappers_.size();
+    }
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper getWrappers(int index) {
+      return wrappers_.get(index);
+    }
+    /**
+     * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+     */
+    public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder getWrappersOrBuilder(
+        int index) {
+      return wrappers_.get(index);
+    }
+
+    private void initFields() {
+      type_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW;
+      publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      name_ = "";
+      encryptionKeyPair_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance();
+      members_ = java.util.Collections.emptyList();
+      admins_ = java.util.Collections.emptyList();
+      wrappers_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (hasEncryptionKeyPair()) {
+        if (!getEncryptionKeyPair().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      for (int i = 0; i < getWrappersCount(); i++) {
+        if (!getWrappers(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeEnum(1, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeMessage(4, encryptionKeyPair_);
+      }
+      for (int i = 0; i < members_.size(); i++) {
+        output.writeBytes(5, members_.get(i));
+      }
+      for (int i = 0; i < admins_.size(); i++) {
+        output.writeBytes(6, admins_.get(i));
+      }
+      for (int i = 0; i < wrappers_.size(); i++) {
+        output.writeMessage(7, wrappers_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(1, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, publicKey_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, encryptionKeyPair_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < members_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(members_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getMembersList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < admins_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(admins_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getAdminsList().size();
+      }
+      for (int i = 0; i < wrappers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, wrappers_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code signalservice.ClosedGroupUpdateV2}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2OrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.class, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Builder.class);
+      }
+
+      // Construct using org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getEncryptionKeyPairFieldBuilder();
+          getWrappersFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        type_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        publicKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        if (encryptionKeyPairBuilder_ == null) {
+          encryptionKeyPair_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance();
+        } else {
+          encryptionKeyPairBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        members_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        admins_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        if (wrappersBuilder_ == null) {
+          wrappers_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        } else {
+          wrappersBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.internal_static_signalservice_ClosedGroupUpdateV2_descriptor;
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 getDefaultInstanceForType() {
+        return org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance();
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 build() {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 buildPartial() {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 result = new org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.publicKey_ = publicKey_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        if (encryptionKeyPairBuilder_ == null) {
+          result.encryptionKeyPair_ = encryptionKeyPair_;
+        } else {
+          result.encryptionKeyPair_ = encryptionKeyPairBuilder_.build();
+        }
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          members_ = java.util.Collections.unmodifiableList(members_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.members_ = members_;
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          admins_ = java.util.Collections.unmodifiableList(admins_);
+          bitField0_ = (bitField0_ & ~0x00000020);
+        }
+        result.admins_ = admins_;
+        if (wrappersBuilder_ == null) {
+          if (((bitField0_ & 0x00000040) == 0x00000040)) {
+            wrappers_ = java.util.Collections.unmodifiableList(wrappers_);
+            bitField0_ = (bitField0_ & ~0x00000040);
+          }
+          result.wrappers_ = wrappers_;
+        } else {
+          result.wrappers_ = wrappersBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2) {
+          return mergeFrom((org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 other) {
+        if (other == org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.getDefaultInstance()) return this;
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasPublicKey()) {
+          setPublicKey(other.getPublicKey());
+        }
+        if (other.hasName()) {
+          bitField0_ |= 0x00000004;
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasEncryptionKeyPair()) {
+          mergeEncryptionKeyPair(other.getEncryptionKeyPair());
+        }
+        if (!other.members_.isEmpty()) {
+          if (members_.isEmpty()) {
+            members_ = other.members_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureMembersIsMutable();
+            members_.addAll(other.members_);
+          }
+          onChanged();
+        }
+        if (!other.admins_.isEmpty()) {
+          if (admins_.isEmpty()) {
+            admins_ = other.admins_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureAdminsIsMutable();
+            admins_.addAll(other.admins_);
+          }
+          onChanged();
+        }
+        if (wrappersBuilder_ == null) {
+          if (!other.wrappers_.isEmpty()) {
+            if (wrappers_.isEmpty()) {
+              wrappers_ = other.wrappers_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+            } else {
+              ensureWrappersIsMutable();
+              wrappers_.addAll(other.wrappers_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.wrappers_.isEmpty()) {
+            if (wrappersBuilder_.isEmpty()) {
+              wrappersBuilder_.dispose();
+              wrappersBuilder_ = null;
+              wrappers_ = other.wrappers_;
+              bitField0_ = (bitField0_ & ~0x00000040);
+              wrappersBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getWrappersFieldBuilder() : null;
+            } else {
+              wrappersBuilder_.addAllMessages(other.wrappers_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasType()) {
+          
+          return false;
+        }
+        if (hasEncryptionKeyPair()) {
+          if (!getEncryptionKeyPair().isInitialized()) {
+            
+            return false;
+          }
+        }
+        for (int i = 0; i < getWrappersCount(); i++) {
+          if (!getWrappers(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2 parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required .signalservice.ClosedGroupUpdateV2.Type type = 1;
+      private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type type_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW;
+      /**
+       * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type getType() {
+        return type_;
+      }
+      /**
+       * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder setType(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000001;
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required .signalservice.ClosedGroupUpdateV2.Type type = 1;</code>
+       *
+       * <pre>
+       * @required
+       * </pre>
+       */
+      public Builder clearType() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        type_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes publicKey = 2;
+      private com.google.protobuf.ByteString publicKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes publicKey = 2;</code>
+       */
+      public boolean hasPublicKey() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bytes publicKey = 2;</code>
+       */
+      public com.google.protobuf.ByteString getPublicKey() {
+        return publicKey_;
+      }
+      /**
+       * <code>optional bytes publicKey = 2;</code>
+       */
+      public Builder setPublicKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        publicKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes publicKey = 2;</code>
+       */
+      public Builder clearPublicKey() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        publicKey_ = getDefaultInstance().getPublicKey();
+        onChanged();
+        return this;
+      }
+
+      // optional string name = 3;
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 3;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;
+      private org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair encryptionKeyPair_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder> encryptionKeyPairBuilder_;
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public boolean hasEncryptionKeyPair() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair getEncryptionKeyPair() {
+        if (encryptionKeyPairBuilder_ == null) {
+          return encryptionKeyPair_;
+        } else {
+          return encryptionKeyPairBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public Builder setEncryptionKeyPair(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair value) {
+        if (encryptionKeyPairBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          encryptionKeyPair_ = value;
+          onChanged();
+        } else {
+          encryptionKeyPairBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public Builder setEncryptionKeyPair(
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder builderForValue) {
+        if (encryptionKeyPairBuilder_ == null) {
+          encryptionKeyPair_ = builderForValue.build();
+          onChanged();
+        } else {
+          encryptionKeyPairBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public Builder mergeEncryptionKeyPair(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair value) {
+        if (encryptionKeyPairBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              encryptionKeyPair_ != org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance()) {
+            encryptionKeyPair_ =
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.newBuilder(encryptionKeyPair_).mergeFrom(value).buildPartial();
+          } else {
+            encryptionKeyPair_ = value;
+          }
+          onChanged();
+        } else {
+          encryptionKeyPairBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000008;
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public Builder clearEncryptionKeyPair() {
+        if (encryptionKeyPairBuilder_ == null) {
+          encryptionKeyPair_ = org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.getDefaultInstance();
+          onChanged();
+        } else {
+          encryptionKeyPairBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder getEncryptionKeyPairBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getEncryptionKeyPairFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder getEncryptionKeyPairOrBuilder() {
+        if (encryptionKeyPairBuilder_ != null) {
+          return encryptionKeyPairBuilder_.getMessageOrBuilder();
+        } else {
+          return encryptionKeyPair_;
+        }
+      }
+      /**
+       * <code>optional .signalservice.ClosedGroupUpdateV2.KeyPair encryptionKeyPair = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder> 
+          getEncryptionKeyPairFieldBuilder() {
+        if (encryptionKeyPairBuilder_ == null) {
+          encryptionKeyPairBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairOrBuilder>(
+                  encryptionKeyPair_,
+                  getParentForChildren(),
+                  isClean());
+          encryptionKeyPair_ = null;
+        }
+        return encryptionKeyPairBuilder_;
+      }
+
+      // repeated bytes members = 5;
+      private java.util.List<com.google.protobuf.ByteString> members_ = java.util.Collections.emptyList();
+      private void ensureMembersIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          members_ = new java.util.ArrayList<com.google.protobuf.ByteString>(members_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getMembersList() {
+        return java.util.Collections.unmodifiableList(members_);
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public int getMembersCount() {
+        return members_.size();
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public com.google.protobuf.ByteString getMembers(int index) {
+        return members_.get(index);
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public Builder setMembers(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMembersIsMutable();
+        members_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public Builder addMembers(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureMembersIsMutable();
+        members_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public Builder addAllMembers(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensureMembersIsMutable();
+        super.addAll(values, members_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes members = 5;</code>
+       */
+      public Builder clearMembers() {
+        members_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+
+      // repeated bytes admins = 6;
+      private java.util.List<com.google.protobuf.ByteString> admins_ = java.util.Collections.emptyList();
+      private void ensureAdminsIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          admins_ = new java.util.ArrayList<com.google.protobuf.ByteString>(admins_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public java.util.List<com.google.protobuf.ByteString>
+          getAdminsList() {
+        return java.util.Collections.unmodifiableList(admins_);
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public int getAdminsCount() {
+        return admins_.size();
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public com.google.protobuf.ByteString getAdmins(int index) {
+        return admins_.get(index);
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public Builder setAdmins(
+          int index, com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAdminsIsMutable();
+        admins_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public Builder addAdmins(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureAdminsIsMutable();
+        admins_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public Builder addAllAdmins(
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+        ensureAdminsIsMutable();
+        super.addAll(values, admins_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated bytes admins = 6;</code>
+       */
+      public Builder clearAdmins() {
+        admins_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000020);
+        onChanged();
+        return this;
+      }
+
+      // repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;
+      private java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> wrappers_ =
+        java.util.Collections.emptyList();
+      private void ensureWrappersIsMutable() {
+        if (!((bitField0_ & 0x00000040) == 0x00000040)) {
+          wrappers_ = new java.util.ArrayList<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper>(wrappers_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder> wrappersBuilder_;
+
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> getWrappersList() {
+        if (wrappersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(wrappers_);
+        } else {
+          return wrappersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public int getWrappersCount() {
+        if (wrappersBuilder_ == null) {
+          return wrappers_.size();
+        } else {
+          return wrappersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper getWrappers(int index) {
+        if (wrappersBuilder_ == null) {
+          return wrappers_.get(index);
+        } else {
+          return wrappersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder setWrappers(
+          int index, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper value) {
+        if (wrappersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWrappersIsMutable();
+          wrappers_.set(index, value);
+          onChanged();
+        } else {
+          wrappersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder setWrappers(
+          int index, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder builderForValue) {
+        if (wrappersBuilder_ == null) {
+          ensureWrappersIsMutable();
+          wrappers_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          wrappersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder addWrappers(org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper value) {
+        if (wrappersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWrappersIsMutable();
+          wrappers_.add(value);
+          onChanged();
+        } else {
+          wrappersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder addWrappers(
+          int index, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper value) {
+        if (wrappersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWrappersIsMutable();
+          wrappers_.add(index, value);
+          onChanged();
+        } else {
+          wrappersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder addWrappers(
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder builderForValue) {
+        if (wrappersBuilder_ == null) {
+          ensureWrappersIsMutable();
+          wrappers_.add(builderForValue.build());
+          onChanged();
+        } else {
+          wrappersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder addWrappers(
+          int index, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder builderForValue) {
+        if (wrappersBuilder_ == null) {
+          ensureWrappersIsMutable();
+          wrappers_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          wrappersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder addAllWrappers(
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper> values) {
+        if (wrappersBuilder_ == null) {
+          ensureWrappersIsMutable();
+          super.addAll(values, wrappers_);
+          onChanged();
+        } else {
+          wrappersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder clearWrappers() {
+        if (wrappersBuilder_ == null) {
+          wrappers_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000040);
+          onChanged();
+        } else {
+          wrappersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public Builder removeWrappers(int index) {
+        if (wrappersBuilder_ == null) {
+          ensureWrappersIsMutable();
+          wrappers_.remove(index);
+          onChanged();
+        } else {
+          wrappersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder getWrappersBuilder(
+          int index) {
+        return getWrappersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder getWrappersOrBuilder(
+          int index) {
+        if (wrappersBuilder_ == null) {
+          return wrappers_.get(index);  } else {
+          return wrappersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder> 
+           getWrappersOrBuilderList() {
+        if (wrappersBuilder_ != null) {
+          return wrappersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(wrappers_);
+        }
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder addWrappersBuilder() {
+        return getWrappersFieldBuilder().addBuilder(
+            org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder addWrappersBuilder(
+          int index) {
+        return getWrappersFieldBuilder().addBuilder(
+            index, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .signalservice.ClosedGroupUpdateV2.KeyPairWrapper wrappers = 7;</code>
+       */
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder> 
+           getWrappersBuilderList() {
+        return getWrappersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder> 
+          getWrappersFieldBuilder() {
+        if (wrappersBuilder_ == null) {
+          wrappersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapperOrBuilder>(
+                  wrappers_,
+                  ((bitField0_ & 0x00000040) == 0x00000040),
+                  getParentForChildren(),
+                  isClean());
+          wrappers_ = null;
+        }
+        return wrappersBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:signalservice.ClosedGroupUpdateV2)
+    }
+
+    static {
+      defaultInstance = new ClosedGroupUpdateV2(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:signalservice.ClosedGroupUpdateV2)
+  }
+
   public interface ClosedGroupUpdateOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -24169,7 +27261,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 1;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 1;</code>
      */
@@ -24208,7 +27300,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey> 
         getSenderKeysList();
     /**
      * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
@@ -24221,7 +27313,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder> 
         getSenderKeysOrBuilderList();
     /**
      * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
@@ -24277,10 +27369,6 @@ public final class SignalServiceProtos {
   }
   /**
    * Protobuf type {@code signalservice.ClosedGroupUpdate}
-   *
-   * <pre>
-   * Loki
-   * </pre>
    */
   public static final class ClosedGroupUpdate extends
       com.google.protobuf.GeneratedMessage
@@ -24302,7 +27390,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -24423,7 +27511,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ClosedGroupUpdate> getParserForType() {
       return PARSER;
     }
@@ -24543,7 +27631,7 @@ public final class SignalServiceProtos {
       public static Type valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -24640,7 +27728,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -24717,7 +27805,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<SenderKey> getParserForType() {
         return PARSER;
       }
@@ -24848,8 +27936,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -24914,7 +28002,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -25223,7 +28311,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string name = 1;
     public static final int NAME_FIELD_NUMBER = 1;
-    private Object name_;
+    private java.lang.Object name_;
     /**
      * <code>optional string name = 1;</code>
      */
@@ -25233,14 +28321,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 1;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           name_ = s;
         }
@@ -25252,11 +28340,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -25316,7 +28404,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder> 
         getSenderKeysOrBuilderList() {
       return senderKeys_;
     }
@@ -25505,8 +28593,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -25571,7 +28659,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -25579,10 +28667,6 @@ public final class SignalServiceProtos {
     }
     /**
      * Protobuf type {@code signalservice.ClosedGroupUpdate}
-     *
-     * <pre>
-     * Loki
-     * </pre>
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
@@ -25805,7 +28889,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string name = 1;
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 1;</code>
        */
@@ -25815,15 +28899,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string name = 1;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -25831,11 +28915,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -25846,7 +28930,7 @@ public final class SignalServiceProtos {
        * <code>optional string name = 1;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -26105,7 +29189,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
        */
       public Builder addAllSenderKeys(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey> values) {
         if (senderKeysBuilder_ == null) {
           ensureSenderKeysIsMutable();
           super.addAll(values, senderKeys_);
@@ -26161,7 +29245,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder> 
            getSenderKeysOrBuilderList() {
         if (senderKeysBuilder_ != null) {
           return senderKeysBuilder_.getMessageOrBuilderList();
@@ -26187,12 +29271,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.ClosedGroupUpdate.SenderKey senderKeys = 4;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey.Builder> 
            getSenderKeysBuilderList() {
         return getSenderKeysFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKey.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate.SenderKeyOrBuilder> 
           getSenderKeysFieldBuilder() {
         if (senderKeysBuilder_ == null) {
           senderKeysBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -26262,7 +29346,7 @@ public final class SignalServiceProtos {
        * <code>repeated bytes members = 5;</code>
        */
       public Builder addAllMembers(
-          Iterable<? extends com.google.protobuf.ByteString> values) {
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
         ensureMembersIsMutable();
         super.addAll(values, members_);
         onChanged();
@@ -26334,7 +29418,7 @@ public final class SignalServiceProtos {
        * <code>repeated bytes admins = 6;</code>
        */
       public Builder addAllAdmins(
-          Iterable<? extends com.google.protobuf.ByteString> values) {
+          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
         ensureAdminsIsMutable();
         super.addAll(values, admins_);
         onChanged();
@@ -26449,7 +29533,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -26516,7 +29600,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<NullMessage> getParserForType() {
       return PARSER;
     }
@@ -26575,8 +29659,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -26641,7 +29725,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -26829,7 +29913,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated uint64 timestamp = 2;</code>
      */
-    java.util.List<Long> getTimestampList();
+    java.util.List<java.lang.Long> getTimestampList();
     /**
      * <code>repeated uint64 timestamp = 2;</code>
      */
@@ -26862,7 +29946,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -26903,7 +29987,7 @@ public final class SignalServiceProtos {
             }
             case 16: {
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
-                timestamp_ = new java.util.ArrayList<Long>();
+                timestamp_ = new java.util.ArrayList<java.lang.Long>();
                 mutable_bitField0_ |= 0x00000002;
               }
               timestamp_.add(input.readUInt64());
@@ -26913,7 +29997,7 @@ public final class SignalServiceProtos {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000002) == 0x00000002) && input.getBytesUntilLimit() > 0) {
-                timestamp_ = new java.util.ArrayList<Long>();
+                timestamp_ = new java.util.ArrayList<java.lang.Long>();
                 mutable_bitField0_ |= 0x00000002;
               }
               while (input.getBytesUntilLimit() > 0) {
@@ -26959,7 +30043,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ReceiptMessage> getParserForType() {
       return PARSER;
     }
@@ -27029,7 +30113,7 @@ public final class SignalServiceProtos {
       public static Type valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -27065,11 +30149,11 @@ public final class SignalServiceProtos {
 
     // repeated uint64 timestamp = 2;
     public static final int TIMESTAMP_FIELD_NUMBER = 2;
-    private java.util.List<Long> timestamp_;
+    private java.util.List<java.lang.Long> timestamp_;
     /**
      * <code>repeated uint64 timestamp = 2;</code>
      */
-    public java.util.List<Long>
+    public java.util.List<java.lang.Long>
         getTimestampList() {
       return timestamp_;
     }
@@ -27136,8 +30220,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -27202,7 +30286,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -27380,17 +30464,17 @@ public final class SignalServiceProtos {
       }
 
       // repeated uint64 timestamp = 2;
-      private java.util.List<Long> timestamp_ = java.util.Collections.emptyList();
+      private java.util.List<java.lang.Long> timestamp_ = java.util.Collections.emptyList();
       private void ensureTimestampIsMutable() {
         if (!((bitField0_ & 0x00000002) == 0x00000002)) {
-          timestamp_ = new java.util.ArrayList<Long>(timestamp_);
+          timestamp_ = new java.util.ArrayList<java.lang.Long>(timestamp_);
           bitField0_ |= 0x00000002;
          }
       }
       /**
        * <code>repeated uint64 timestamp = 2;</code>
        */
-      public java.util.List<Long>
+      public java.util.List<java.lang.Long>
           getTimestampList() {
         return java.util.Collections.unmodifiableList(timestamp_);
       }
@@ -27429,7 +30513,7 @@ public final class SignalServiceProtos {
        * <code>repeated uint64 timestamp = 2;</code>
        */
       public Builder addAllTimestamp(
-          Iterable<? extends Long> values) {
+          java.lang.Iterable<? extends java.lang.Long> values) {
         ensureTimestampIsMutable();
         super.addAll(values, timestamp_);
         onChanged();
@@ -27512,7 +30596,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -27595,7 +30679,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<TypingMessage> getParserForType() {
       return PARSER;
     }
@@ -27665,7 +30749,7 @@ public final class SignalServiceProtos {
       public static Action valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -27784,8 +30868,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -27850,7 +30934,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -28119,7 +31203,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string destination = 1;</code>
      */
-    String getDestination();
+    java.lang.String getDestination();
     /**
      * <code>optional string destination = 1;</code>
      */
@@ -28179,7 +31263,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -28267,7 +31351,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Verified> getParserForType() {
       return PARSER;
     }
@@ -28346,7 +31430,7 @@ public final class SignalServiceProtos {
       public static State valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -28366,7 +31450,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string destination = 1;
     public static final int DESTINATION_FIELD_NUMBER = 1;
-    private Object destination_;
+    private java.lang.Object destination_;
     /**
      * <code>optional string destination = 1;</code>
      */
@@ -28376,14 +31460,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string destination = 1;</code>
      */
-    public String getDestination() {
-      Object ref = destination_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getDestination() {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           destination_ = s;
         }
@@ -28395,11 +31479,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getDestinationBytes() {
-      Object ref = destination_;
-      if (ref instanceof String) {
+      java.lang.Object ref = destination_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         destination_ = b;
         return b;
       } else {
@@ -28516,8 +31600,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -28582,7 +31666,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -28736,7 +31820,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string destination = 1;
-      private Object destination_ = "";
+      private java.lang.Object destination_ = "";
       /**
        * <code>optional string destination = 1;</code>
        */
@@ -28746,15 +31830,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string destination = 1;</code>
        */
-      public String getDestination() {
-        Object ref = destination_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           destination_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -28762,11 +31846,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getDestinationBytes() {
-        Object ref = destination_;
+        java.lang.Object ref = destination_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           destination_ = b;
           return b;
         } else {
@@ -28777,7 +31861,7 @@ public final class SignalServiceProtos {
        * <code>optional string destination = 1;</code>
        */
       public Builder setDestination(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -28991,7 +32075,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read> 
         getReadList();
     /**
      * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
@@ -29004,7 +32088,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder> 
         getReadOrBuilderList();
     /**
      * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
@@ -29068,7 +32152,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation> 
         getStickerPackOperationList();
     /**
      * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
@@ -29081,7 +32165,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder> 
         getStickerPackOperationOrBuilderList();
     /**
      * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
@@ -29093,7 +32177,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
      */
-    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails>
+    java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails> 
         getOpenGroupsList();
     /**
      * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
@@ -29106,7 +32190,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
      */
-    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder>
+    java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder> 
         getOpenGroupsOrBuilderList();
     /**
      * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
@@ -29137,7 +32221,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -29328,7 +32412,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<SyncMessage> getParserForType() {
       return PARSER;
     }
@@ -29344,7 +32428,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string destination = 1;</code>
        */
-      String getDestination();
+      java.lang.String getDestination();
       /**
        * <code>optional string destination = 1;</code>
        */
@@ -29389,7 +32473,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
        */
-      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus>
+      java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus> 
           getUnidentifiedStatusList();
       /**
        * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
@@ -29402,7 +32486,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
        */
-      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder>
+      java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder> 
           getUnidentifiedStatusOrBuilderList();
       /**
        * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
@@ -29433,7 +32517,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -29534,7 +32618,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Sent> getParserForType() {
         return PARSER;
       }
@@ -29550,7 +32634,7 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string destination = 1;</code>
          */
-        String getDestination();
+        java.lang.String getDestination();
         /**
          * <code>optional string destination = 1;</code>
          */
@@ -29590,7 +32674,7 @@ public final class SignalServiceProtos {
         }
 
         private final com.google.protobuf.UnknownFieldSet unknownFields;
-        @Override
+        @java.lang.Override
         public final com.google.protobuf.UnknownFieldSet
             getUnknownFields() {
           return this.unknownFields;
@@ -29662,7 +32746,7 @@ public final class SignalServiceProtos {
           }
         };
 
-        @Override
+        @java.lang.Override
         public com.google.protobuf.Parser<UnidentifiedDeliveryStatus> getParserForType() {
           return PARSER;
         }
@@ -29670,7 +32754,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
         // optional string destination = 1;
         public static final int DESTINATION_FIELD_NUMBER = 1;
-        private Object destination_;
+        private java.lang.Object destination_;
         /**
          * <code>optional string destination = 1;</code>
          */
@@ -29680,14 +32764,14 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string destination = 1;</code>
          */
-        public String getDestination() {
-          Object ref = destination_;
-          if (ref instanceof String) {
-            return (String) ref;
+        public java.lang.String getDestination() {
+          java.lang.Object ref = destination_;
+          if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
           } else {
             com.google.protobuf.ByteString bs = 
                 (com.google.protobuf.ByteString) ref;
-            String s = bs.toStringUtf8();
+            java.lang.String s = bs.toStringUtf8();
             if (bs.isValidUtf8()) {
               destination_ = s;
             }
@@ -29699,11 +32783,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getDestinationBytes() {
-          Object ref = destination_;
-          if (ref instanceof String) {
+          java.lang.Object ref = destination_;
+          if (ref instanceof java.lang.String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             destination_ = b;
             return b;
           } else {
@@ -29772,8 +32856,8 @@ public final class SignalServiceProtos {
         }
 
         private static final long serialVersionUID = 0L;
-        @Override
-        protected Object writeReplace()
+        @java.lang.Override
+        protected java.lang.Object writeReplace()
             throws java.io.ObjectStreamException {
           return super.writeReplace();
         }
@@ -29838,7 +32922,7 @@ public final class SignalServiceProtos {
         }
         public Builder toBuilder() { return newBuilder(this); }
 
-        @Override
+        @java.lang.Override
         protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessage.BuilderParent parent) {
           Builder builder = new Builder(parent);
@@ -29974,7 +33058,7 @@ public final class SignalServiceProtos {
           private int bitField0_;
 
           // optional string destination = 1;
-          private Object destination_ = "";
+          private java.lang.Object destination_ = "";
           /**
            * <code>optional string destination = 1;</code>
            */
@@ -29984,15 +33068,15 @@ public final class SignalServiceProtos {
           /**
            * <code>optional string destination = 1;</code>
            */
-          public String getDestination() {
-            Object ref = destination_;
-            if (!(ref instanceof String)) {
-              String s = ((com.google.protobuf.ByteString) ref)
+          public java.lang.String getDestination() {
+            java.lang.Object ref = destination_;
+            if (!(ref instanceof java.lang.String)) {
+              java.lang.String s = ((com.google.protobuf.ByteString) ref)
                   .toStringUtf8();
               destination_ = s;
               return s;
             } else {
-              return (String) ref;
+              return (java.lang.String) ref;
             }
           }
           /**
@@ -30000,11 +33084,11 @@ public final class SignalServiceProtos {
            */
           public com.google.protobuf.ByteString
               getDestinationBytes() {
-            Object ref = destination_;
+            java.lang.Object ref = destination_;
             if (ref instanceof String) {
               com.google.protobuf.ByteString b = 
                   com.google.protobuf.ByteString.copyFromUtf8(
-                      (String) ref);
+                      (java.lang.String) ref);
               destination_ = b;
               return b;
             } else {
@@ -30015,7 +33099,7 @@ public final class SignalServiceProtos {
            * <code>optional string destination = 1;</code>
            */
           public Builder setDestination(
-              String value) {
+              java.lang.String value) {
             if (value == null) {
     throw new NullPointerException();
   }
@@ -30094,7 +33178,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string destination = 1;
       public static final int DESTINATION_FIELD_NUMBER = 1;
-      private Object destination_;
+      private java.lang.Object destination_;
       /**
        * <code>optional string destination = 1;</code>
        */
@@ -30104,14 +33188,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string destination = 1;</code>
        */
-      public String getDestination() {
-        Object ref = destination_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getDestination() {
+        java.lang.Object ref = destination_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             destination_ = s;
           }
@@ -30123,11 +33207,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getDestinationBytes() {
-        Object ref = destination_;
-        if (ref instanceof String) {
+        java.lang.Object ref = destination_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           destination_ = b;
           return b;
         } else {
@@ -30201,7 +33285,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder> 
           getUnidentifiedStatusOrBuilderList() {
         return unidentifiedStatus_;
       }
@@ -30237,6 +33321,12 @@ public final class SignalServiceProtos {
         byte isInitialized = memoizedIsInitialized;
         if (isInitialized != -1) return isInitialized == 1;
 
+        if (hasMessage()) {
+          if (!getMessage().isInitialized()) {
+            memoizedIsInitialized = 0;
+            return false;
+          }
+        }
         memoizedIsInitialized = 1;
         return true;
       }
@@ -30294,8 +33384,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -30360,7 +33450,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -30542,6 +33632,12 @@ public final class SignalServiceProtos {
         }
 
         public final boolean isInitialized() {
+          if (hasMessage()) {
+            if (!getMessage().isInitialized()) {
+              
+              return false;
+            }
+          }
           return true;
         }
 
@@ -30565,7 +33661,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string destination = 1;
-        private Object destination_ = "";
+        private java.lang.Object destination_ = "";
         /**
          * <code>optional string destination = 1;</code>
          */
@@ -30575,15 +33671,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string destination = 1;</code>
          */
-        public String getDestination() {
-          Object ref = destination_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getDestination() {
+          java.lang.Object ref = destination_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             destination_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -30591,11 +33687,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getDestinationBytes() {
-          Object ref = destination_;
+          java.lang.Object ref = destination_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             destination_ = b;
             return b;
           } else {
@@ -30606,7 +33702,7 @@ public final class SignalServiceProtos {
          * <code>optional string destination = 1;</code>
          */
         public Builder setDestination(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -30775,7 +33871,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.DataMessage message = 3;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessageOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessageOrBuilder> 
             getMessageFieldBuilder() {
           if (messageBuilder_ == null) {
             messageBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -30960,7 +34056,7 @@ public final class SignalServiceProtos {
          * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
          */
         public Builder addAllUnidentifiedStatus(
-            Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus> values) {
+            java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus> values) {
           if (unidentifiedStatusBuilder_ == null) {
             ensureUnidentifiedStatusIsMutable();
             super.addAll(values, unidentifiedStatus_);
@@ -31016,7 +34112,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
          */
-        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder>
+        public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder> 
              getUnidentifiedStatusOrBuilderList() {
           if (unidentifiedStatusBuilder_ != null) {
             return unidentifiedStatusBuilder_.getMessageOrBuilderList();
@@ -31042,12 +34138,12 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated .signalservice.SyncMessage.Sent.UnidentifiedDeliveryStatus unidentifiedStatus = 5;</code>
          */
-        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder>
+        public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder> 
              getUnidentifiedStatusBuilderList() {
           return getUnidentifiedStatusFieldBuilder().getBuilderList();
         }
         private com.google.protobuf.RepeatedFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatusOrBuilder> 
             getUnidentifiedStatusFieldBuilder() {
           if (unidentifiedStatusBuilder_ == null) {
             unidentifiedStatusBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -31132,7 +34228,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -31217,7 +34313,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Contacts> getParserForType() {
         return PARSER;
       }
@@ -31330,8 +34426,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -31396,7 +34492,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -31651,7 +34747,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.AttachmentPointer blob = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
             getBlobFieldBuilder() {
           if (blobBuilder_ == null) {
             blobBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -31794,7 +34890,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -31874,7 +34970,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Groups> getParserForType() {
         return PARSER;
       }
@@ -31963,8 +35059,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -32029,7 +35125,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -32275,7 +35371,7 @@ public final class SignalServiceProtos {
          * <code>optional .signalservice.AttachmentPointer blob = 1;</code>
          */
         private com.google.protobuf.SingleFieldBuilder<
-            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+            org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
             getBlobFieldBuilder() {
           if (blobBuilder_ == null) {
             blobBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -32342,7 +35438,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string numbers = 1;</code>
        */
-      java.util.List<String>
+      java.util.List<java.lang.String>
       getNumbersList();
       /**
        * <code>repeated string numbers = 1;</code>
@@ -32351,7 +35447,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string numbers = 1;</code>
        */
-      String getNumbers(int index);
+      java.lang.String getNumbers(int index);
       /**
        * <code>repeated string numbers = 1;</code>
        */
@@ -32395,7 +35491,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -32479,7 +35575,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Blocked> getParserForType() {
         return PARSER;
       }
@@ -32490,7 +35586,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string numbers = 1;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getNumbersList() {
         return numbers_;
       }
@@ -32503,7 +35599,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string numbers = 1;</code>
        */
-      public String getNumbers(int index) {
+      public java.lang.String getNumbers(int index) {
         return numbers_.get(index);
       }
       /**
@@ -32592,8 +35688,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -32658,7 +35754,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -32817,7 +35913,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated string numbers = 1;</code>
          */
-        public java.util.List<String>
+        public java.util.List<java.lang.String>
             getNumbersList() {
           return java.util.Collections.unmodifiableList(numbers_);
         }
@@ -32830,7 +35926,7 @@ public final class SignalServiceProtos {
         /**
          * <code>repeated string numbers = 1;</code>
          */
-        public String getNumbers(int index) {
+        public java.lang.String getNumbers(int index) {
           return numbers_.get(index);
         }
         /**
@@ -32844,7 +35940,7 @@ public final class SignalServiceProtos {
          * <code>repeated string numbers = 1;</code>
          */
         public Builder setNumbers(
-            int index, String value) {
+            int index, java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -32857,7 +35953,7 @@ public final class SignalServiceProtos {
          * <code>repeated string numbers = 1;</code>
          */
         public Builder addNumbers(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -32870,7 +35966,7 @@ public final class SignalServiceProtos {
          * <code>repeated string numbers = 1;</code>
          */
         public Builder addAllNumbers(
-            Iterable<String> values) {
+            java.lang.Iterable<java.lang.String> values) {
           ensureNumbersIsMutable();
           super.addAll(values, numbers_);
           onChanged();
@@ -32955,7 +36051,7 @@ public final class SignalServiceProtos {
          * <code>repeated bytes groupIds = 2;</code>
          */
         public Builder addAllGroupIds(
-            Iterable<? extends com.google.protobuf.ByteString> values) {
+            java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
           ensureGroupIdsIsMutable();
           super.addAll(values, groupIds_);
           onChanged();
@@ -33018,7 +36114,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -33091,7 +36187,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Request> getParserForType() {
         return PARSER;
       }
@@ -33188,7 +36284,7 @@ public final class SignalServiceProtos {
         public static Type valueOf(
             com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
           if (desc.getType() != getDescriptor()) {
-            throw new IllegalArgumentException(
+            throw new java.lang.IllegalArgumentException(
               "EnumValueDescriptor is not for this type.");
           }
           return VALUES[desc.getIndex()];
@@ -33259,8 +36355,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -33325,7 +36421,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -33507,7 +36603,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sender = 1;</code>
        */
-      String getSender();
+      java.lang.String getSender();
       /**
        * <code>optional string sender = 1;</code>
        */
@@ -33547,7 +36643,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -33619,7 +36715,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Read> getParserForType() {
         return PARSER;
       }
@@ -33627,7 +36723,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string sender = 1;
       public static final int SENDER_FIELD_NUMBER = 1;
-      private Object sender_;
+      private java.lang.Object sender_;
       /**
        * <code>optional string sender = 1;</code>
        */
@@ -33637,14 +36733,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string sender = 1;</code>
        */
-      public String getSender() {
-        Object ref = sender_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getSender() {
+        java.lang.Object ref = sender_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             sender_ = s;
           }
@@ -33656,11 +36752,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getSenderBytes() {
-        Object ref = sender_;
-        if (ref instanceof String) {
+        java.lang.Object ref = sender_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           sender_ = b;
           return b;
         } else {
@@ -33729,8 +36825,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -33795,7 +36891,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -33931,7 +37027,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string sender = 1;
-        private Object sender_ = "";
+        private java.lang.Object sender_ = "";
         /**
          * <code>optional string sender = 1;</code>
          */
@@ -33941,15 +37037,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string sender = 1;</code>
          */
-        public String getSender() {
-          Object ref = sender_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getSender() {
+          java.lang.Object ref = sender_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             sender_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -33957,11 +37053,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getSenderBytes() {
-          Object ref = sender_;
+          java.lang.Object ref = sender_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             sender_ = b;
             return b;
           } else {
@@ -33972,7 +37068,7 @@ public final class SignalServiceProtos {
          * <code>optional string sender = 1;</code>
          */
         public Builder setSender(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -34114,7 +37210,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -34196,7 +37292,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Configuration> getParserForType() {
         return PARSER;
       }
@@ -34327,8 +37423,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -34393,7 +37489,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -34743,7 +37839,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -34826,7 +37922,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<StickerPackOperation> getParserForType() {
         return PARSER;
       }
@@ -34896,7 +37992,7 @@ public final class SignalServiceProtos {
         public static Type valueOf(
             com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
           if (desc.getType() != getDescriptor()) {
-            throw new IllegalArgumentException(
+            throw new java.lang.IllegalArgumentException(
               "EnumValueDescriptor is not for this type.");
           }
           return VALUES[desc.getIndex()];
@@ -35015,8 +38111,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -35081,7 +38177,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -35353,7 +38449,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string url = 1;</code>
        */
-      String getUrl();
+      java.lang.String getUrl();
       /**
        * <code>optional string url = 1;</code>
        */
@@ -35393,7 +38489,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -35465,7 +38561,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<OpenGroupDetails> getParserForType() {
         return PARSER;
       }
@@ -35473,7 +38569,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string url = 1;
       public static final int URL_FIELD_NUMBER = 1;
-      private Object url_;
+      private java.lang.Object url_;
       /**
        * <code>optional string url = 1;</code>
        */
@@ -35483,14 +38579,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string url = 1;</code>
        */
-      public String getUrl() {
-        Object ref = url_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             url_ = s;
           }
@@ -35502,11 +38598,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
-        Object ref = url_;
-        if (ref instanceof String) {
+        java.lang.Object ref = url_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           url_ = b;
           return b;
         } else {
@@ -35575,8 +38671,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -35641,7 +38737,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -35777,7 +38873,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string url = 1;
-        private Object url_ = "";
+        private java.lang.Object url_ = "";
         /**
          * <code>optional string url = 1;</code>
          */
@@ -35787,15 +38883,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string url = 1;</code>
          */
-        public String getUrl() {
-          Object ref = url_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getUrl() {
+          java.lang.Object ref = url_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             url_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -35803,11 +38899,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getUrlBytes() {
-          Object ref = url_;
+          java.lang.Object ref = url_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             url_ = b;
             return b;
           } else {
@@ -35818,7 +38914,7 @@ public final class SignalServiceProtos {
          * <code>optional string url = 1;</code>
          */
         public Builder setUrl(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -35995,7 +39091,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder> 
         getReadOrBuilderList() {
       return read_;
     }
@@ -36113,7 +39209,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder> 
         getStickerPackOperationOrBuilderList() {
       return stickerPackOperation_;
     }
@@ -36149,7 +39245,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
      */
-    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder>
+    public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder> 
         getOpenGroupsOrBuilderList() {
       return openGroups_;
     }
@@ -36191,6 +39287,12 @@ public final class SignalServiceProtos {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (hasSent()) {
+        if (!getSent().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -36290,8 +39392,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -36356,7 +39458,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -36710,6 +39812,12 @@ public final class SignalServiceProtos {
       }
 
       public final boolean isInitialized() {
+        if (hasSent()) {
+          if (!getSent().isInitialized()) {
+            
+            return false;
+          }
+        }
         return true;
       }
 
@@ -36836,7 +39944,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Sent sent = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.SentOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Sent.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.SentOrBuilder> 
           getSentFieldBuilder() {
         if (sentBuilder_ == null) {
           sentBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -36953,7 +40061,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Contacts contacts = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Contacts, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Contacts.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ContactsOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Contacts, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Contacts.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ContactsOrBuilder> 
           getContactsFieldBuilder() {
         if (contactsBuilder_ == null) {
           contactsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37070,7 +40178,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Groups groups = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Groups, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Groups.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.GroupsOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Groups, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Groups.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.GroupsOrBuilder> 
           getGroupsFieldBuilder() {
         if (groupsBuilder_ == null) {
           groupsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37187,7 +40295,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Request request = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Request, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Request.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.RequestOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Request, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Request.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.RequestOrBuilder> 
           getRequestFieldBuilder() {
         if (requestBuilder_ == null) {
           requestBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37339,7 +40447,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
        */
       public Builder addAllRead(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read> values) {
         if (readBuilder_ == null) {
           ensureReadIsMutable();
           super.addAll(values, read_);
@@ -37395,7 +40503,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder> 
            getReadOrBuilderList() {
         if (readBuilder_ != null) {
           return readBuilder_.getMessageOrBuilderList();
@@ -37421,12 +40529,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.Read read = 5;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read.Builder> 
            getReadBuilderList() {
         return getReadFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Read.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ReadOrBuilder> 
           getReadFieldBuilder() {
         if (readBuilder_ == null) {
           readBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -37544,7 +40652,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Blocked blocked = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Blocked, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Blocked.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.BlockedOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Blocked, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Blocked.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.BlockedOrBuilder> 
           getBlockedFieldBuilder() {
         if (blockedBuilder_ == null) {
           blockedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37661,7 +40769,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.Verified verified = 7;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.Verified, org.session.libsignal.service.internal.push.SignalServiceProtos.Verified.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.VerifiedOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.Verified, org.session.libsignal.service.internal.push.SignalServiceProtos.Verified.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.VerifiedOrBuilder> 
           getVerifiedFieldBuilder() {
         if (verifiedBuilder_ == null) {
           verifiedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37778,7 +40886,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.SyncMessage.Configuration configuration = 9;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Configuration, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Configuration.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ConfigurationOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Configuration, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.Configuration.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.ConfigurationOrBuilder> 
           getConfigurationFieldBuilder() {
         if (configurationBuilder_ == null) {
           configurationBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -37966,7 +41074,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
        */
       public Builder addAllStickerPackOperation(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation> values) {
         if (stickerPackOperationBuilder_ == null) {
           ensureStickerPackOperationIsMutable();
           super.addAll(values, stickerPackOperation_);
@@ -38022,7 +41130,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder> 
            getStickerPackOperationOrBuilderList() {
         if (stickerPackOperationBuilder_ != null) {
           return stickerPackOperationBuilder_.getMessageOrBuilderList();
@@ -38048,12 +41156,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.StickerPackOperation stickerPackOperation = 10;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation.Builder> 
            getStickerPackOperationBuilderList() {
         return getStickerPackOperationFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperation.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.StickerPackOperationOrBuilder> 
           getStickerPackOperationFieldBuilder() {
         if (stickerPackOperationBuilder_ == null) {
           stickerPackOperationBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -38206,7 +41314,7 @@ public final class SignalServiceProtos {
        * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
        */
       public Builder addAllOpenGroups(
-          Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails> values) {
+          java.lang.Iterable<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails> values) {
         if (openGroupsBuilder_ == null) {
           ensureOpenGroupsIsMutable();
           super.addAll(values, openGroups_);
@@ -38262,7 +41370,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
        */
-      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder>
+      public java.util.List<? extends org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder> 
            getOpenGroupsOrBuilderList() {
         if (openGroupsBuilder_ != null) {
           return openGroupsBuilder_.getMessageOrBuilderList();
@@ -38288,12 +41396,12 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated .signalservice.SyncMessage.OpenGroupDetails openGroups = 100;</code>
        */
-      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails.Builder>
+      public java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails.Builder> 
            getOpenGroupsBuilderList() {
         return getOpenGroupsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetails.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage.OpenGroupDetailsOrBuilder> 
           getOpenGroupsFieldBuilder() {
         if (openGroupsBuilder_ == null) {
           openGroupsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
@@ -38339,7 +41447,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string contentType = 2;</code>
      */
-    String getContentType();
+    java.lang.String getContentType();
     /**
      * <code>optional string contentType = 2;</code>
      */
@@ -38394,7 +41502,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string fileName = 7;</code>
      */
-    String getFileName();
+    java.lang.String getFileName();
     /**
      * <code>optional string fileName = 7;</code>
      */
@@ -38439,7 +41547,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string caption = 11;</code>
      */
-    String getCaption();
+    java.lang.String getCaption();
     /**
      * <code>optional string caption = 11;</code>
      */
@@ -38454,7 +41562,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string url = 101;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>optional string url = 101;</code>
      */
@@ -38484,7 +41592,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -38606,7 +41714,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<AttachmentPointer> getParserForType() {
       return PARSER;
     }
@@ -38667,7 +41775,7 @@ public final class SignalServiceProtos {
       public static Flags valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -38703,7 +41811,7 @@ public final class SignalServiceProtos {
 
     // optional string contentType = 2;
     public static final int CONTENTTYPE_FIELD_NUMBER = 2;
-    private Object contentType_;
+    private java.lang.Object contentType_;
     /**
      * <code>optional string contentType = 2;</code>
      */
@@ -38713,14 +41821,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string contentType = 2;</code>
      */
-    public String getContentType() {
-      Object ref = contentType_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getContentType() {
+      java.lang.Object ref = contentType_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           contentType_ = s;
         }
@@ -38732,11 +41840,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getContentTypeBytes() {
-      Object ref = contentType_;
-      if (ref instanceof String) {
+      java.lang.Object ref = contentType_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         contentType_ = b;
         return b;
       } else {
@@ -38810,7 +41918,7 @@ public final class SignalServiceProtos {
 
     // optional string fileName = 7;
     public static final int FILENAME_FIELD_NUMBER = 7;
-    private Object fileName_;
+    private java.lang.Object fileName_;
     /**
      * <code>optional string fileName = 7;</code>
      */
@@ -38820,14 +41928,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string fileName = 7;</code>
      */
-    public String getFileName() {
-      Object ref = fileName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getFileName() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           fileName_ = s;
         }
@@ -38839,11 +41947,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getFileNameBytes() {
-      Object ref = fileName_;
-      if (ref instanceof String) {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         fileName_ = b;
         return b;
       } else {
@@ -38901,7 +42009,7 @@ public final class SignalServiceProtos {
 
     // optional string caption = 11;
     public static final int CAPTION_FIELD_NUMBER = 11;
-    private Object caption_;
+    private java.lang.Object caption_;
     /**
      * <code>optional string caption = 11;</code>
      */
@@ -38911,14 +42019,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string caption = 11;</code>
      */
-    public String getCaption() {
-      Object ref = caption_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getCaption() {
+      java.lang.Object ref = caption_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           caption_ = s;
         }
@@ -38930,11 +42038,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getCaptionBytes() {
-      Object ref = caption_;
-      if (ref instanceof String) {
+      java.lang.Object ref = caption_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         caption_ = b;
         return b;
       } else {
@@ -38944,7 +42052,7 @@ public final class SignalServiceProtos {
 
     // optional string url = 101;
     public static final int URL_FIELD_NUMBER = 101;
-    private Object url_;
+    private java.lang.Object url_;
     /**
      * <code>optional string url = 101;</code>
      */
@@ -38954,14 +42062,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string url = 101;</code>
      */
-    public String getUrl() {
-      Object ref = url_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           url_ = s;
         }
@@ -38973,11 +42081,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
-      Object ref = url_;
-      if (ref instanceof String) {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         url_ = b;
         return b;
       } else {
@@ -39110,8 +42218,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -39176,7 +42284,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -39441,7 +42549,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string contentType = 2;
-      private Object contentType_ = "";
+      private java.lang.Object contentType_ = "";
       /**
        * <code>optional string contentType = 2;</code>
        */
@@ -39451,15 +42559,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string contentType = 2;</code>
        */
-      public String getContentType() {
-        Object ref = contentType_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getContentType() {
+        java.lang.Object ref = contentType_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           contentType_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -39467,11 +42575,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getContentTypeBytes() {
-        Object ref = contentType_;
+        java.lang.Object ref = contentType_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           contentType_ = b;
           return b;
         } else {
@@ -39482,7 +42590,7 @@ public final class SignalServiceProtos {
        * <code>optional string contentType = 2;</code>
        */
       public Builder setContentType(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -39656,7 +42764,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string fileName = 7;
-      private Object fileName_ = "";
+      private java.lang.Object fileName_ = "";
       /**
        * <code>optional string fileName = 7;</code>
        */
@@ -39666,15 +42774,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string fileName = 7;</code>
        */
-      public String getFileName() {
-        Object ref = fileName_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getFileName() {
+        java.lang.Object ref = fileName_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           fileName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -39682,11 +42790,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getFileNameBytes() {
-        Object ref = fileName_;
+        java.lang.Object ref = fileName_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           fileName_ = b;
           return b;
         } else {
@@ -39697,7 +42805,7 @@ public final class SignalServiceProtos {
        * <code>optional string fileName = 7;</code>
        */
       public Builder setFileName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -39829,7 +42937,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string caption = 11;
-      private Object caption_ = "";
+      private java.lang.Object caption_ = "";
       /**
        * <code>optional string caption = 11;</code>
        */
@@ -39839,15 +42947,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string caption = 11;</code>
        */
-      public String getCaption() {
-        Object ref = caption_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getCaption() {
+        java.lang.Object ref = caption_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           caption_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -39855,11 +42963,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getCaptionBytes() {
-        Object ref = caption_;
+        java.lang.Object ref = caption_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           caption_ = b;
           return b;
         } else {
@@ -39870,7 +42978,7 @@ public final class SignalServiceProtos {
        * <code>optional string caption = 11;</code>
        */
       public Builder setCaption(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -39903,7 +43011,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string url = 101;
-      private Object url_ = "";
+      private java.lang.Object url_ = "";
       /**
        * <code>optional string url = 101;</code>
        */
@@ -39913,15 +43021,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string url = 101;</code>
        */
-      public String getUrl() {
-        Object ref = url_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           url_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -39929,11 +43037,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
-        Object ref = url_;
+        java.lang.Object ref = url_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           url_ = b;
           return b;
         } else {
@@ -39944,7 +43052,7 @@ public final class SignalServiceProtos {
        * <code>optional string url = 101;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -40018,7 +43126,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 3;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 3;</code>
      */
@@ -40029,7 +43137,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 4;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getMembersList();
     /**
      * <code>repeated string members = 4;</code>
@@ -40038,7 +43146,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 4;</code>
      */
-    String getMembers(int index);
+    java.lang.String getMembers(int index);
     /**
      * <code>repeated string members = 4;</code>
      */
@@ -40063,7 +43171,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 6;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getAdminsList();
     /**
      * <code>repeated string admins = 6;</code>
@@ -40072,7 +43180,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 6;</code>
      */
-    String getAdmins(int index);
+    java.lang.String getAdmins(int index);
     /**
      * <code>repeated string admins = 6;</code>
      */
@@ -40089,7 +43197,7 @@ public final class SignalServiceProtos {
      * DO NOT USE WHEN SENDING MESSAGES.
      * </pre>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getNewMembersList();
     /**
      * <code>repeated string newMembers = 998;</code>
@@ -40110,7 +43218,7 @@ public final class SignalServiceProtos {
      * DO NOT USE WHEN SENDING MESSAGES.
      * </pre>
      */
-    String getNewMembers(int index);
+    java.lang.String getNewMembers(int index);
     /**
      * <code>repeated string newMembers = 998;</code>
      *
@@ -40127,7 +43235,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string removedMembers = 999;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getRemovedMembersList();
     /**
      * <code>repeated string removedMembers = 999;</code>
@@ -40136,7 +43244,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string removedMembers = 999;</code>
      */
-    String getRemovedMembers(int index);
+    java.lang.String getRemovedMembers(int index);
     /**
      * <code>repeated string removedMembers = 999;</code>
      */
@@ -40166,7 +43274,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -40306,7 +43414,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<GroupContext> getParserForType() {
       return PARSER;
     }
@@ -40403,7 +43511,7 @@ public final class SignalServiceProtos {
       public static Type valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         return VALUES[desc.getIndex()];
@@ -40455,7 +43563,7 @@ public final class SignalServiceProtos {
 
     // optional string name = 3;
     public static final int NAME_FIELD_NUMBER = 3;
-    private Object name_;
+    private java.lang.Object name_;
     /**
      * <code>optional string name = 3;</code>
      */
@@ -40465,14 +43573,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 3;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           name_ = s;
         }
@@ -40484,11 +43592,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -40502,7 +43610,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 4;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getMembersList() {
       return members_;
     }
@@ -40515,7 +43623,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 4;</code>
      */
-    public String getMembers(int index) {
+    public java.lang.String getMembers(int index) {
       return members_.get(index);
     }
     /**
@@ -40554,7 +43662,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 6;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getAdminsList() {
       return admins_;
     }
@@ -40567,7 +43675,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 6;</code>
      */
-    public String getAdmins(int index) {
+    public java.lang.String getAdmins(int index) {
       return admins_.get(index);
     }
     /**
@@ -40590,7 +43698,7 @@ public final class SignalServiceProtos {
      * DO NOT USE WHEN SENDING MESSAGES.
      * </pre>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getNewMembersList() {
       return newMembers_;
     }
@@ -40615,7 +43723,7 @@ public final class SignalServiceProtos {
      * DO NOT USE WHEN SENDING MESSAGES.
      * </pre>
      */
-    public String getNewMembers(int index) {
+    public java.lang.String getNewMembers(int index) {
       return newMembers_.get(index);
     }
     /**
@@ -40638,7 +43746,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string removedMembers = 999;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getRemovedMembersList() {
       return removedMembers_;
     }
@@ -40651,7 +43759,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string removedMembers = 999;</code>
      */
-    public String getRemovedMembers(int index) {
+    public java.lang.String getRemovedMembers(int index) {
       return removedMembers_.get(index);
     }
     /**
@@ -40775,8 +43883,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -40841,7 +43949,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -41148,7 +44256,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string name = 3;
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 3;</code>
        */
@@ -41158,15 +44266,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string name = 3;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -41174,11 +44282,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -41189,7 +44297,7 @@ public final class SignalServiceProtos {
        * <code>optional string name = 3;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41232,7 +44340,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string members = 4;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getMembersList() {
         return java.util.Collections.unmodifiableList(members_);
       }
@@ -41245,7 +44353,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string members = 4;</code>
        */
-      public String getMembers(int index) {
+      public java.lang.String getMembers(int index) {
         return members_.get(index);
       }
       /**
@@ -41259,7 +44367,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 4;</code>
        */
       public Builder setMembers(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41272,7 +44380,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 4;</code>
        */
       public Builder addMembers(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41285,7 +44393,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 4;</code>
        */
       public Builder addAllMembers(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureMembersIsMutable();
         super.addAll(values, members_);
         onChanged();
@@ -41418,7 +44526,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.AttachmentPointer avatar = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointerOrBuilder> 
           getAvatarFieldBuilder() {
         if (avatarBuilder_ == null) {
           avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -41442,7 +44550,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string admins = 6;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getAdminsList() {
         return java.util.Collections.unmodifiableList(admins_);
       }
@@ -41455,7 +44563,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string admins = 6;</code>
        */
-      public String getAdmins(int index) {
+      public java.lang.String getAdmins(int index) {
         return admins_.get(index);
       }
       /**
@@ -41469,7 +44577,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 6;</code>
        */
       public Builder setAdmins(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41482,7 +44590,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 6;</code>
        */
       public Builder addAdmins(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41495,7 +44603,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 6;</code>
        */
       public Builder addAllAdmins(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureAdminsIsMutable();
         super.addAll(values, admins_);
         onChanged();
@@ -41541,7 +44649,7 @@ public final class SignalServiceProtos {
        * DO NOT USE WHEN SENDING MESSAGES.
        * </pre>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getNewMembersList() {
         return java.util.Collections.unmodifiableList(newMembers_);
       }
@@ -41566,7 +44674,7 @@ public final class SignalServiceProtos {
        * DO NOT USE WHEN SENDING MESSAGES.
        * </pre>
        */
-      public String getNewMembers(int index) {
+      public java.lang.String getNewMembers(int index) {
         return newMembers_.get(index);
       }
       /**
@@ -41592,7 +44700,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public Builder setNewMembers(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41611,7 +44719,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public Builder addNewMembers(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41630,7 +44738,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public Builder addAllNewMembers(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureNewMembersIsMutable();
         super.addAll(values, newMembers_);
         onChanged();
@@ -41682,7 +44790,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string removedMembers = 999;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getRemovedMembersList() {
         return java.util.Collections.unmodifiableList(removedMembers_);
       }
@@ -41695,7 +44803,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string removedMembers = 999;</code>
        */
-      public String getRemovedMembers(int index) {
+      public java.lang.String getRemovedMembers(int index) {
         return removedMembers_.get(index);
       }
       /**
@@ -41709,7 +44817,7 @@ public final class SignalServiceProtos {
        * <code>repeated string removedMembers = 999;</code>
        */
       public Builder setRemovedMembers(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41722,7 +44830,7 @@ public final class SignalServiceProtos {
        * <code>repeated string removedMembers = 999;</code>
        */
       public Builder addRemovedMembers(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -41735,7 +44843,7 @@ public final class SignalServiceProtos {
        * <code>repeated string removedMembers = 999;</code>
        */
       public Builder addAllRemovedMembers(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureRemovedMembersIsMutable();
         super.addAll(values, removedMembers_);
         onChanged();
@@ -41786,7 +44894,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string number = 1;</code>
      */
-    String getNumber();
+    java.lang.String getNumber();
     /**
      * <code>optional string number = 1;</code>
      */
@@ -41801,7 +44909,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 2;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -41830,7 +44938,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string color = 4;</code>
      */
-    String getColor();
+    java.lang.String getColor();
     /**
      * <code>optional string color = 4;</code>
      */
@@ -41897,7 +45005,7 @@ public final class SignalServiceProtos {
      * Loki
      * </pre>
      */
-    String getNickname();
+    java.lang.String getNickname();
     /**
      * <code>optional string nickname = 101;</code>
      *
@@ -41931,7 +45039,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -42054,7 +45162,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ContactDetails> getParserForType() {
       return PARSER;
     }
@@ -42070,7 +45178,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string contentType = 1;</code>
        */
-      String getContentType();
+      java.lang.String getContentType();
       /**
        * <code>optional string contentType = 1;</code>
        */
@@ -42110,7 +45218,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -42182,7 +45290,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Avatar> getParserForType() {
         return PARSER;
       }
@@ -42190,7 +45298,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string contentType = 1;
       public static final int CONTENTTYPE_FIELD_NUMBER = 1;
-      private Object contentType_;
+      private java.lang.Object contentType_;
       /**
        * <code>optional string contentType = 1;</code>
        */
@@ -42200,14 +45308,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string contentType = 1;</code>
        */
-      public String getContentType() {
-        Object ref = contentType_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getContentType() {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             contentType_ = s;
           }
@@ -42219,11 +45327,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getContentTypeBytes() {
-        Object ref = contentType_;
-        if (ref instanceof String) {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           contentType_ = b;
           return b;
         } else {
@@ -42292,8 +45400,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -42358,7 +45466,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -42494,7 +45602,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string contentType = 1;
-        private Object contentType_ = "";
+        private java.lang.Object contentType_ = "";
         /**
          * <code>optional string contentType = 1;</code>
          */
@@ -42504,15 +45612,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string contentType = 1;</code>
          */
-        public String getContentType() {
-          Object ref = contentType_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getContentType() {
+          java.lang.Object ref = contentType_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             contentType_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -42520,11 +45628,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getContentTypeBytes() {
-          Object ref = contentType_;
+          java.lang.Object ref = contentType_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             contentType_ = b;
             return b;
           } else {
@@ -42535,7 +45643,7 @@ public final class SignalServiceProtos {
          * <code>optional string contentType = 1;</code>
          */
         public Builder setContentType(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -42614,7 +45722,7 @@ public final class SignalServiceProtos {
     private int bitField0_;
     // optional string number = 1;
     public static final int NUMBER_FIELD_NUMBER = 1;
-    private Object number_;
+    private java.lang.Object number_;
     /**
      * <code>optional string number = 1;</code>
      */
@@ -42624,14 +45732,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string number = 1;</code>
      */
-    public String getNumber() {
-      Object ref = number_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getNumber() {
+      java.lang.Object ref = number_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           number_ = s;
         }
@@ -42643,11 +45751,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNumberBytes() {
-      Object ref = number_;
-      if (ref instanceof String) {
+      java.lang.Object ref = number_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         number_ = b;
         return b;
       } else {
@@ -42657,7 +45765,7 @@ public final class SignalServiceProtos {
 
     // optional string name = 2;
     public static final int NAME_FIELD_NUMBER = 2;
-    private Object name_;
+    private java.lang.Object name_;
     /**
      * <code>optional string name = 2;</code>
      */
@@ -42667,14 +45775,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 2;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           name_ = s;
         }
@@ -42686,11 +45794,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -42722,7 +45830,7 @@ public final class SignalServiceProtos {
 
     // optional string color = 4;
     public static final int COLOR_FIELD_NUMBER = 4;
-    private Object color_;
+    private java.lang.Object color_;
     /**
      * <code>optional string color = 4;</code>
      */
@@ -42732,14 +45840,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string color = 4;</code>
      */
-    public String getColor() {
-      Object ref = color_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getColor() {
+      java.lang.Object ref = color_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           color_ = s;
         }
@@ -42751,11 +45859,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getColorBytes() {
-      Object ref = color_;
-      if (ref instanceof String) {
+      java.lang.Object ref = color_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         color_ = b;
         return b;
       } else {
@@ -42835,7 +45943,7 @@ public final class SignalServiceProtos {
 
     // optional string nickname = 101;
     public static final int NICKNAME_FIELD_NUMBER = 101;
-    private Object nickname_;
+    private java.lang.Object nickname_;
     /**
      * <code>optional string nickname = 101;</code>
      *
@@ -42853,14 +45961,14 @@ public final class SignalServiceProtos {
      * Loki
      * </pre>
      */
-    public String getNickname() {
-      Object ref = nickname_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getNickname() {
+      java.lang.Object ref = nickname_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           nickname_ = s;
         }
@@ -42876,11 +45984,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNicknameBytes() {
-      Object ref = nickname_;
-      if (ref instanceof String) {
+      java.lang.Object ref = nickname_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         nickname_ = b;
         return b;
       } else {
@@ -42989,8 +46097,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -43055,7 +46163,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -43278,7 +46386,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
 
       // optional string number = 1;
-      private Object number_ = "";
+      private java.lang.Object number_ = "";
       /**
        * <code>optional string number = 1;</code>
        */
@@ -43288,15 +46396,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string number = 1;</code>
        */
-      public String getNumber() {
-        Object ref = number_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getNumber() {
+        java.lang.Object ref = number_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           number_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -43304,11 +46412,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNumberBytes() {
-        Object ref = number_;
+        java.lang.Object ref = number_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           number_ = b;
           return b;
         } else {
@@ -43319,7 +46427,7 @@ public final class SignalServiceProtos {
        * <code>optional string number = 1;</code>
        */
       public Builder setNumber(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -43352,7 +46460,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string name = 2;
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 2;</code>
        */
@@ -43362,15 +46470,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string name = 2;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -43378,11 +46486,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -43393,7 +46501,7 @@ public final class SignalServiceProtos {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -43529,7 +46637,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.ContactDetails.Avatar avatar = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.AvatarOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.ContactDetails.AvatarOrBuilder> 
           getAvatarFieldBuilder() {
         if (avatarBuilder_ == null) {
           avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -43543,7 +46651,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string color = 4;
-      private Object color_ = "";
+      private java.lang.Object color_ = "";
       /**
        * <code>optional string color = 4;</code>
        */
@@ -43553,15 +46661,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string color = 4;</code>
        */
-      public String getColor() {
-        Object ref = color_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getColor() {
+        java.lang.Object ref = color_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           color_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -43569,11 +46677,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getColorBytes() {
-        Object ref = color_;
+        java.lang.Object ref = color_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           color_ = b;
           return b;
         } else {
@@ -43584,7 +46692,7 @@ public final class SignalServiceProtos {
        * <code>optional string color = 4;</code>
        */
       public Builder setColor(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -43720,7 +46828,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.Verified verified = 5;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.Verified, org.session.libsignal.service.internal.push.SignalServiceProtos.Verified.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.VerifiedOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.Verified, org.session.libsignal.service.internal.push.SignalServiceProtos.Verified.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.VerifiedOrBuilder> 
           getVerifiedFieldBuilder() {
         if (verifiedBuilder_ == null) {
           verifiedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -43836,7 +46944,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string nickname = 101;
-      private Object nickname_ = "";
+      private java.lang.Object nickname_ = "";
       /**
        * <code>optional string nickname = 101;</code>
        *
@@ -43854,15 +46962,15 @@ public final class SignalServiceProtos {
        * Loki
        * </pre>
        */
-      public String getNickname() {
-        Object ref = nickname_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getNickname() {
+        java.lang.Object ref = nickname_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           nickname_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -43874,11 +46982,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNicknameBytes() {
-        Object ref = nickname_;
+        java.lang.Object ref = nickname_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           nickname_ = b;
           return b;
         } else {
@@ -43893,7 +47001,7 @@ public final class SignalServiceProtos {
        * </pre>
        */
       public Builder setNickname(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -43965,7 +47073,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 2;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>optional string name = 2;</code>
      */
@@ -43976,7 +47084,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 3;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getMembersList();
     /**
      * <code>repeated string members = 3;</code>
@@ -43985,7 +47093,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 3;</code>
      */
-    String getMembers(int index);
+    java.lang.String getMembers(int index);
     /**
      * <code>repeated string members = 3;</code>
      */
@@ -44034,7 +47142,7 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string color = 7;</code>
      */
-    String getColor();
+    java.lang.String getColor();
     /**
      * <code>optional string color = 7;</code>
      */
@@ -44055,7 +47163,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 9;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
     getAdminsList();
     /**
      * <code>repeated string admins = 9;</code>
@@ -44064,7 +47172,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 9;</code>
      */
-    String getAdmins(int index);
+    java.lang.String getAdmins(int index);
     /**
      * <code>repeated string admins = 9;</code>
      */
@@ -44094,7 +47202,7 @@ public final class SignalServiceProtos {
     }
 
     private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
         getUnknownFields() {
       return this.unknownFields;
@@ -44221,7 +47329,7 @@ public final class SignalServiceProtos {
       }
     };
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<GroupDetails> getParserForType() {
       return PARSER;
     }
@@ -44237,7 +47345,7 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string contentType = 1;</code>
        */
-      String getContentType();
+      java.lang.String getContentType();
       /**
        * <code>optional string contentType = 1;</code>
        */
@@ -44277,7 +47385,7 @@ public final class SignalServiceProtos {
       }
 
       private final com.google.protobuf.UnknownFieldSet unknownFields;
-      @Override
+      @java.lang.Override
       public final com.google.protobuf.UnknownFieldSet
           getUnknownFields() {
         return this.unknownFields;
@@ -44349,7 +47457,7 @@ public final class SignalServiceProtos {
         }
       };
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Parser<Avatar> getParserForType() {
         return PARSER;
       }
@@ -44357,7 +47465,7 @@ public final class SignalServiceProtos {
       private int bitField0_;
       // optional string contentType = 1;
       public static final int CONTENTTYPE_FIELD_NUMBER = 1;
-      private Object contentType_;
+      private java.lang.Object contentType_;
       /**
        * <code>optional string contentType = 1;</code>
        */
@@ -44367,14 +47475,14 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string contentType = 1;</code>
        */
-      public String getContentType() {
-        Object ref = contentType_;
-        if (ref instanceof String) {
-          return (String) ref;
+      public java.lang.String getContentType() {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
         } else {
           com.google.protobuf.ByteString bs = 
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           if (bs.isValidUtf8()) {
             contentType_ = s;
           }
@@ -44386,11 +47494,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getContentTypeBytes() {
-        Object ref = contentType_;
-        if (ref instanceof String) {
+        java.lang.Object ref = contentType_;
+        if (ref instanceof java.lang.String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           contentType_ = b;
           return b;
         } else {
@@ -44459,8 +47567,8 @@ public final class SignalServiceProtos {
       }
 
       private static final long serialVersionUID = 0L;
-      @Override
-      protected Object writeReplace()
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
           throws java.io.ObjectStreamException {
         return super.writeReplace();
       }
@@ -44525,7 +47633,7 @@ public final class SignalServiceProtos {
       }
       public Builder toBuilder() { return newBuilder(this); }
 
-      @Override
+      @java.lang.Override
       protected Builder newBuilderForType(
           com.google.protobuf.GeneratedMessage.BuilderParent parent) {
         Builder builder = new Builder(parent);
@@ -44661,7 +47769,7 @@ public final class SignalServiceProtos {
         private int bitField0_;
 
         // optional string contentType = 1;
-        private Object contentType_ = "";
+        private java.lang.Object contentType_ = "";
         /**
          * <code>optional string contentType = 1;</code>
          */
@@ -44671,15 +47779,15 @@ public final class SignalServiceProtos {
         /**
          * <code>optional string contentType = 1;</code>
          */
-        public String getContentType() {
-          Object ref = contentType_;
-          if (!(ref instanceof String)) {
-            String s = ((com.google.protobuf.ByteString) ref)
+        public java.lang.String getContentType() {
+          java.lang.Object ref = contentType_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
                 .toStringUtf8();
             contentType_ = s;
             return s;
           } else {
-            return (String) ref;
+            return (java.lang.String) ref;
           }
         }
         /**
@@ -44687,11 +47795,11 @@ public final class SignalServiceProtos {
          */
         public com.google.protobuf.ByteString
             getContentTypeBytes() {
-          Object ref = contentType_;
+          java.lang.Object ref = contentType_;
           if (ref instanceof String) {
             com.google.protobuf.ByteString b = 
                 com.google.protobuf.ByteString.copyFromUtf8(
-                    (String) ref);
+                    (java.lang.String) ref);
             contentType_ = b;
             return b;
           } else {
@@ -44702,7 +47810,7 @@ public final class SignalServiceProtos {
          * <code>optional string contentType = 1;</code>
          */
         public Builder setContentType(
-            String value) {
+            java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
@@ -44797,7 +47905,7 @@ public final class SignalServiceProtos {
 
     // optional string name = 2;
     public static final int NAME_FIELD_NUMBER = 2;
-    private Object name_;
+    private java.lang.Object name_;
     /**
      * <code>optional string name = 2;</code>
      */
@@ -44807,14 +47915,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string name = 2;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           name_ = s;
         }
@@ -44826,11 +47934,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -44844,7 +47952,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 3;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getMembersList() {
       return members_;
     }
@@ -44857,7 +47965,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string members = 3;</code>
      */
-    public String getMembers(int index) {
+    public java.lang.String getMembers(int index) {
       return members_.get(index);
     }
     /**
@@ -44924,7 +48032,7 @@ public final class SignalServiceProtos {
 
     // optional string color = 7;
     public static final int COLOR_FIELD_NUMBER = 7;
-    private Object color_;
+    private java.lang.Object color_;
     /**
      * <code>optional string color = 7;</code>
      */
@@ -44934,14 +48042,14 @@ public final class SignalServiceProtos {
     /**
      * <code>optional string color = 7;</code>
      */
-    public String getColor() {
-      Object ref = color_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getColor() {
+      java.lang.Object ref = color_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         if (bs.isValidUtf8()) {
           color_ = s;
         }
@@ -44953,11 +48061,11 @@ public final class SignalServiceProtos {
      */
     public com.google.protobuf.ByteString
         getColorBytes() {
-      Object ref = color_;
-      if (ref instanceof String) {
+      java.lang.Object ref = color_;
+      if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         color_ = b;
         return b;
       } else {
@@ -44987,7 +48095,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 9;</code>
      */
-    public java.util.List<String>
+    public java.util.List<java.lang.String>
         getAdminsList() {
       return admins_;
     }
@@ -45000,7 +48108,7 @@ public final class SignalServiceProtos {
     /**
      * <code>repeated string admins = 9;</code>
      */
-    public String getAdmins(int index) {
+    public java.lang.String getAdmins(int index) {
       return admins_.get(index);
     }
     /**
@@ -45122,8 +48230,8 @@ public final class SignalServiceProtos {
     }
 
     private static final long serialVersionUID = 0L;
-    @Override
-    protected Object writeReplace()
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
@@ -45188,7 +48296,7 @@ public final class SignalServiceProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
@@ -45452,7 +48560,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string name = 2;
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>optional string name = 2;</code>
        */
@@ -45462,15 +48570,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string name = 2;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -45478,11 +48586,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -45493,7 +48601,7 @@ public final class SignalServiceProtos {
        * <code>optional string name = 2;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45536,7 +48644,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string members = 3;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getMembersList() {
         return java.util.Collections.unmodifiableList(members_);
       }
@@ -45549,7 +48657,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string members = 3;</code>
        */
-      public String getMembers(int index) {
+      public java.lang.String getMembers(int index) {
         return members_.get(index);
       }
       /**
@@ -45563,7 +48671,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 3;</code>
        */
       public Builder setMembers(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45576,7 +48684,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 3;</code>
        */
       public Builder addMembers(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45589,7 +48697,7 @@ public final class SignalServiceProtos {
        * <code>repeated string members = 3;</code>
        */
       public Builder addAllMembers(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureMembersIsMutable();
         super.addAll(values, members_);
         onChanged();
@@ -45722,7 +48830,7 @@ public final class SignalServiceProtos {
        * <code>optional .signalservice.GroupDetails.Avatar avatar = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
-          org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.AvatarOrBuilder>
+          org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.Avatar, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.Avatar.Builder, org.session.libsignal.service.internal.push.SignalServiceProtos.GroupDetails.AvatarOrBuilder> 
           getAvatarFieldBuilder() {
         if (avatarBuilder_ == null) {
           avatarBuilder_ = new com.google.protobuf.SingleFieldBuilder<
@@ -45802,7 +48910,7 @@ public final class SignalServiceProtos {
       }
 
       // optional string color = 7;
-      private Object color_ = "";
+      private java.lang.Object color_ = "";
       /**
        * <code>optional string color = 7;</code>
        */
@@ -45812,15 +48920,15 @@ public final class SignalServiceProtos {
       /**
        * <code>optional string color = 7;</code>
        */
-      public String getColor() {
-        Object ref = color_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref)
+      public java.lang.String getColor() {
+        java.lang.Object ref = color_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
               .toStringUtf8();
           color_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -45828,11 +48936,11 @@ public final class SignalServiceProtos {
        */
       public com.google.protobuf.ByteString
           getColorBytes() {
-        Object ref = color_;
+        java.lang.Object ref = color_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           color_ = b;
           return b;
         } else {
@@ -45843,7 +48951,7 @@ public final class SignalServiceProtos {
        * <code>optional string color = 7;</code>
        */
       public Builder setColor(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45919,7 +49027,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string admins = 9;</code>
        */
-      public java.util.List<String>
+      public java.util.List<java.lang.String>
           getAdminsList() {
         return java.util.Collections.unmodifiableList(admins_);
       }
@@ -45932,7 +49040,7 @@ public final class SignalServiceProtos {
       /**
        * <code>repeated string admins = 9;</code>
        */
-      public String getAdmins(int index) {
+      public java.lang.String getAdmins(int index) {
         return admins_.get(index);
       }
       /**
@@ -45946,7 +49054,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 9;</code>
        */
       public Builder setAdmins(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45959,7 +49067,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 9;</code>
        */
       public Builder addAdmins(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -45972,7 +49080,7 @@ public final class SignalServiceProtos {
        * <code>repeated string admins = 9;</code>
        */
       public Builder addAllAdmins(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureAdminsIsMutable();
         super.addAll(values, admins_);
         onChanged();
@@ -46128,6 +49236,21 @@ public final class SignalServiceProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signalservice_LokiUserProfile_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signalservice_ClosedGroupUpdateV2_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signalservice_ClosedGroupUpdateV2_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signalservice_ClosedGroupUpdate_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -46250,7 +49373,7 @@ public final class SignalServiceProtos {
   private static com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\023SignalService.proto\022\rsignalservice\"\367\002\n" +
       "\010Envelope\022*\n\004type\030\001 \001(\0162\034.signalservice." +
       "Envelope.Type\022\016\n\006source\030\002 \001(\t\022\024\n\014sourceD" +
@@ -46293,7 +49416,7 @@ public final class SignalServiceProtos {
       "\030\003 \001(\r\022\013\n\003sdp\030\004 \001(\t\032\022\n\004Busy\022\n\n\002id\030\001 \001(\004\032",
       "\024\n\006Hangup\022\n\n\002id\030\001 \001(\004\"U\n#ClosedGroupCiph" +
       "ertextMessageWrapper\022\022\n\nciphertext\030\001 \001(\014" +
-      "\022\032\n\022ephemeralPublicKey\030\002 \001(\014\"\357\020\n\013DataMes" +
+      "\022\032\n\022ephemeralPublicKey\030\002 \001(\014\"\260\021\n\013DataMes" +
       "sage\022\014\n\004body\030\001 \001(\t\0225\n\013attachments\030\002 \003(\0132" +
       " .signalservice.AttachmentPointer\022*\n\005gro" +
       "up\030\003 \001(\0132\033.signalservice.GroupContext\022\r\n" +
@@ -46306,140 +49429,155 @@ public final class SignalServiceProtos {
       " \001(\0132\".signalservice.DataMessage.Sticker" +
       "\022/\n\007profile\030e \001(\0132\036.signalservice.LokiUs" +
       "erProfile\022;\n\021closedGroupUpdate\030g \001(\0132 .s" +
-      "ignalservice.ClosedGroupUpdate\032\351\001\n\005Quote" +
-      "\022\n\n\002id\030\001 \001(\004\022\016\n\006author\030\002 \001(\t\022\014\n\004text\030\003 \001" +
-      "(\t\022F\n\013attachments\030\004 \003(\01321.signalservice." +
-      "DataMessage.Quote.QuotedAttachment\032n\n\020Qu" +
-      "otedAttachment\022\023\n\013contentType\030\001 \001(\t\022\020\n\010f",
-      "ileName\030\002 \001(\t\0223\n\tthumbnail\030\003 \001(\0132 .signa" +
-      "lservice.AttachmentPointer\032\304\010\n\007Contact\0225" +
-      "\n\004name\030\001 \001(\0132\'.signalservice.DataMessage" +
-      ".Contact.Name\0228\n\006number\030\003 \003(\0132(.signalse" +
-      "rvice.DataMessage.Contact.Phone\0227\n\005email" +
-      "\030\004 \003(\0132(.signalservice.DataMessage.Conta" +
-      "ct.Email\022A\n\007address\030\005 \003(\01320.signalservic" +
-      "e.DataMessage.Contact.PostalAddress\0229\n\006a" +
-      "vatar\030\006 \001(\0132).signalservice.DataMessage." +
-      "Contact.Avatar\022\024\n\014organization\030\007 \001(\t\032v\n\004",
-      "Name\022\021\n\tgivenName\030\001 \001(\t\022\022\n\nfamilyName\030\002 " +
-      "\001(\t\022\016\n\006prefix\030\003 \001(\t\022\016\n\006suffix\030\004 \001(\t\022\022\n\nm" +
-      "iddleName\030\005 \001(\t\022\023\n\013displayName\030\006 \001(\t\032\226\001\n" +
-      "\005Phone\022\r\n\005value\030\001 \001(\t\022;\n\004type\030\002 \001(\0162-.si" +
-      "gnalservice.DataMessage.Contact.Phone.Ty" +
-      "pe\022\r\n\005label\030\003 \001(\t\"2\n\004Type\022\010\n\004HOME\020\001\022\n\n\006M" +
-      "OBILE\020\002\022\010\n\004WORK\020\003\022\n\n\006CUSTOM\020\004\032\226\001\n\005Email\022" +
-      "\r\n\005value\030\001 \001(\t\022;\n\004type\030\002 \001(\0162-.signalser" +
-      "vice.DataMessage.Contact.Email.Type\022\r\n\005l" +
-      "abel\030\003 \001(\t\"2\n\004Type\022\010\n\004HOME\020\001\022\n\n\006MOBILE\020\002",
-      "\022\010\n\004WORK\020\003\022\n\n\006CUSTOM\020\004\032\201\002\n\rPostalAddress" +
-      "\022C\n\004type\030\001 \001(\01625.signalservice.DataMessa" +
-      "ge.Contact.PostalAddress.Type\022\r\n\005label\030\002" +
-      " \001(\t\022\016\n\006street\030\003 \001(\t\022\r\n\005pobox\030\004 \001(\t\022\024\n\014n" +
-      "eighborhood\030\005 \001(\t\022\014\n\004city\030\006 \001(\t\022\016\n\006regio" +
-      "n\030\007 \001(\t\022\020\n\010postcode\030\010 \001(\t\022\017\n\007country\030\t \001" +
-      "(\t\"&\n\004Type\022\010\n\004HOME\020\001\022\010\n\004WORK\020\002\022\n\n\006CUSTOM" +
-      "\020\003\032M\n\006Avatar\0220\n\006avatar\030\001 \001(\0132 .signalser" +
-      "vice.AttachmentPointer\022\021\n\tisProfile\030\002 \001(" +
-      "\010\032V\n\007Preview\022\013\n\003url\030\001 \001(\t\022\r\n\005title\030\002 \001(\t",
-      "\022/\n\005image\030\003 \001(\0132 .signalservice.Attachme" +
-      "ntPointer\032m\n\007Sticker\022\016\n\006packId\030\001 \001(\014\022\017\n\007" +
-      "packKey\030\002 \001(\014\022\021\n\tstickerId\030\003 \001(\r\022.\n\004data" +
-      "\030\004 \001(\0132 .signalservice.AttachmentPointer" +
-      "\"l\n\005Flags\022\017\n\013END_SESSION\020\001\022\033\n\027EXPIRATION" +
-      "_TIMER_UPDATE\020\002\022\026\n\022PROFILE_KEY_UPDATE\020\004\022" +
-      "\035\n\030DEVICE_UNLINKING_REQUEST\020\200\001\"A\n\017LokiUs" +
-      "erProfile\022\023\n\013displayName\030\001 \001(\t\022\031\n\021profil" +
-      "ePictureURL\030\002 \001(\t\"\357\002\n\021ClosedGroupUpdate\022" +
-      "\014\n\004name\030\001 \001(\t\022\026\n\016groupPublicKey\030\002 \001(\014\022\027\n",
-      "\017groupPrivateKey\030\003 \001(\014\022>\n\nsenderKeys\030\004 \003" +
-      "(\0132*.signalservice.ClosedGroupUpdate.Sen" +
-      "derKey\022\017\n\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\022" +
-      "3\n\004type\030\007 \001(\0162%.signalservice.ClosedGrou" +
-      "pUpdate.Type\032B\n\tSenderKey\022\020\n\010chainKey\030\001 " +
-      "\001(\014\022\020\n\010keyIndex\030\002 \001(\r\022\021\n\tpublicKey\030\003 \001(\014" +
-      "\"A\n\004Type\022\007\n\003NEW\020\000\022\010\n\004INFO\020\001\022\026\n\022SENDER_KE" +
-      "Y_REQUEST\020\002\022\016\n\nSENDER_KEY\020\003\"\036\n\013NullMessa" +
-      "ge\022\017\n\007padding\030\001 \001(\014\"u\n\016ReceiptMessage\0220\n" +
-      "\004type\030\001 \001(\0162\".signalservice.ReceiptMessa",
-      "ge.Type\022\021\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DE" +
-      "LIVERY\020\000\022\010\n\004READ\020\001\"\214\001\n\rTypingMessage\022\021\n\t" +
-      "timestamp\030\001 \001(\004\0223\n\006action\030\002 \001(\0162#.signal" +
-      "service.TypingMessage.Action\022\017\n\007groupId\030" +
-      "\003 \001(\014\"\"\n\006Action\022\013\n\007STARTED\020\000\022\013\n\007STOPPED\020" +
-      "\001\"\253\001\n\010Verified\022\023\n\013destination\030\001 \001(\t\022\023\n\013i" +
-      "dentityKey\030\002 \001(\014\022,\n\005state\030\003 \001(\0162\035.signal" +
-      "service.Verified.State\022\023\n\013nullMessage\030\004 " +
-      "\001(\014\"2\n\005State\022\013\n\007DEFAULT\020\000\022\014\n\010VERIFIED\020\001\022" +
-      "\016\n\nUNVERIFIED\020\002\"\325\014\n\013SyncMessage\022-\n\004sent\030",
-      "\001 \001(\0132\037.signalservice.SyncMessage.Sent\0225" +
-      "\n\010contacts\030\002 \001(\0132#.signalservice.SyncMes" +
-      "sage.Contacts\0221\n\006groups\030\003 \001(\0132!.signalse" +
-      "rvice.SyncMessage.Groups\0223\n\007request\030\004 \001(" +
-      "\0132\".signalservice.SyncMessage.Request\022-\n" +
-      "\004read\030\005 \003(\0132\037.signalservice.SyncMessage." +
-      "Read\0223\n\007blocked\030\006 \001(\0132\".signalservice.Sy" +
-      "ncMessage.Blocked\022)\n\010verified\030\007 \001(\0132\027.si" +
-      "gnalservice.Verified\022?\n\rconfiguration\030\t " +
-      "\001(\0132(.signalservice.SyncMessage.Configur",
-      "ation\022\017\n\007padding\030\010 \001(\014\022M\n\024stickerPackOpe" +
-      "ration\030\n \003(\0132/.signalservice.SyncMessage" +
-      ".StickerPackOperation\022?\n\nopenGroups\030d \003(" +
-      "\0132+.signalservice.SyncMessage.OpenGroupD" +
-      "etails\032\236\002\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\t" +
-      "timestamp\030\002 \001(\004\022+\n\007message\030\003 \001(\0132\032.signa" +
-      "lservice.DataMessage\022 \n\030expirationStartT" +
-      "imestamp\030\004 \001(\004\022V\n\022unidentifiedStatus\030\005 \003" +
-      "(\0132:.signalservice.SyncMessage.Sent.Unid" +
-      "entifiedDeliveryStatus\032G\n\032UnidentifiedDe",
-      "liveryStatus\022\023\n\013destination\030\001 \001(\t\022\024\n\014uni" +
-      "dentified\030\002 \001(\010\032a\n\010Contacts\022.\n\004blob\030\001 \001(" +
-      "\0132 .signalservice.AttachmentPointer\022\027\n\010c" +
-      "omplete\030\002 \001(\010:\005false\022\014\n\004data\030e \001(\014\032F\n\006Gr" +
-      "oups\022.\n\004blob\030\001 \001(\0132 .signalservice.Attac" +
-      "hmentPointer\022\014\n\004data\030e \001(\014\032,\n\007Blocked\022\017\n" +
-      "\007numbers\030\001 \003(\t\022\020\n\010groupIds\030\002 \003(\014\032\217\001\n\007Req" +
-      "uest\0225\n\004type\030\001 \001(\0162\'.signalservice.SyncM" +
-      "essage.Request.Type\"M\n\004Type\022\013\n\007UNKNOWN\020\000" +
-      "\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS\020\002\022\013\n\007BLOCKED\020\003\022",
-      "\021\n\rCONFIGURATION\020\004\032)\n\004Read\022\016\n\006sender\030\001 \001" +
-      "(\t\022\021\n\ttimestamp\030\002 \001(\004\032}\n\rConfiguration\022\024" +
-      "\n\014readReceipts\030\001 \001(\010\022&\n\036unidentifiedDeli" +
-      "veryIndicators\030\002 \001(\010\022\030\n\020typingIndicators" +
-      "\030\003 \001(\010\022\024\n\014linkPreviews\030\004 \001(\010\032\234\001\n\024Sticker" +
-      "PackOperation\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey" +
-      "\030\002 \001(\014\022B\n\004type\030\003 \001(\01624.signalservice.Syn" +
-      "cMessage.StickerPackOperation.Type\"\037\n\004Ty" +
-      "pe\022\013\n\007INSTALL\020\000\022\n\n\006REMOVE\020\001\0322\n\020OpenGroup" +
-      "Details\022\013\n\003url\030\001 \001(\t\022\021\n\tchannelID\030\002 \001(\r\"",
-      "\354\001\n\021AttachmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013con" +
-      "tentType\030\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(" +
-      "\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010" +
-      "fileName\030\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t" +
-      " \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n" +
-      "\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\243" +
-      "\002\n\014GroupContext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(" +
-      "\0162 .signalservice.GroupContext.Type\022\014\n\004n" +
-      "ame\030\003 \001(\t\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001" +
-      "(\0132 .signalservice.AttachmentPointer\022\016\n\006",
-      "admins\030\006 \003(\t\022\023\n\nnewMembers\030\346\007 \003(\t\022\027\n\016rem" +
-      "ovedMembers\030\347\007 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022" +
-      "\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014RE" +
-      "QUEST_INFO\020\004\"\231\002\n\016ContactDetails\022\016\n\006numbe" +
-      "r\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0224\n\006avatar\030\003 \001(\0132$." +
-      "signalservice.ContactDetails.Avatar\022\r\n\005c" +
-      "olor\030\004 \001(\t\022)\n\010verified\030\005 \001(\0132\027.signalser" +
-      "vice.Verified\022\022\n\nprofileKey\030\006 \001(\014\022\017\n\007blo" +
-      "cked\030\007 \001(\010\022\023\n\013expireTimer\030\010 \001(\r\022\020\n\010nickn" +
-      "ame\030e \001(\t\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t",
-      "\022\016\n\006length\030\002 \001(\r\"\367\001\n\014GroupDetails\022\n\n\002id\030" +
-      "\001 \001(\014\022\014\n\004name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\0222\n\006" +
-      "avatar\030\004 \001(\0132\".signalservice.GroupDetail" +
-      "s.Avatar\022\024\n\006active\030\005 \001(\010:\004true\022\023\n\013expire" +
-      "Timer\030\006 \001(\r\022\r\n\005color\030\007 \001(\t\022\017\n\007blocked\030\010 " +
-      "\001(\010\022\016\n\006admins\030\t \003(\t\032-\n\006Avatar\022\023\n\013content" +
-      "Type\030\001 \001(\t\022\016\n\006length\030\002 \001(\rBE\n.org.whispe" +
-      "rsystems.signalservice.internal.pushB\023Si" +
-      "gnalServiceProtos"
+      "ignalservice.ClosedGroupUpdate\022?\n\023closed" +
+      "GroupUpdateV2\030h \001(\0132\".signalservice.Clos" +
+      "edGroupUpdateV2\032\351\001\n\005Quote\022\n\n\002id\030\001 \001(\004\022\016\n" +
+      "\006author\030\002 \001(\t\022\014\n\004text\030\003 \001(\t\022F\n\013attachmen" +
+      "ts\030\004 \003(\01321.signalservice.DataMessage.Quo",
+      "te.QuotedAttachment\032n\n\020QuotedAttachment\022" +
+      "\023\n\013contentType\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\0223" +
+      "\n\tthumbnail\030\003 \001(\0132 .signalservice.Attach" +
+      "mentPointer\032\304\010\n\007Contact\0225\n\004name\030\001 \001(\0132\'." +
+      "signalservice.DataMessage.Contact.Name\0228" +
+      "\n\006number\030\003 \003(\0132(.signalservice.DataMessa" +
+      "ge.Contact.Phone\0227\n\005email\030\004 \003(\0132(.signal" +
+      "service.DataMessage.Contact.Email\022A\n\007add" +
+      "ress\030\005 \003(\01320.signalservice.DataMessage.C" +
+      "ontact.PostalAddress\0229\n\006avatar\030\006 \001(\0132).s",
+      "ignalservice.DataMessage.Contact.Avatar\022" +
+      "\024\n\014organization\030\007 \001(\t\032v\n\004Name\022\021\n\tgivenNa" +
+      "me\030\001 \001(\t\022\022\n\nfamilyName\030\002 \001(\t\022\016\n\006prefix\030\003" +
+      " \001(\t\022\016\n\006suffix\030\004 \001(\t\022\022\n\nmiddleName\030\005 \001(\t" +
+      "\022\023\n\013displayName\030\006 \001(\t\032\226\001\n\005Phone\022\r\n\005value" +
+      "\030\001 \001(\t\022;\n\004type\030\002 \001(\0162-.signalservice.Dat" +
+      "aMessage.Contact.Phone.Type\022\r\n\005label\030\003 \001" +
+      "(\t\"2\n\004Type\022\010\n\004HOME\020\001\022\n\n\006MOBILE\020\002\022\010\n\004WORK" +
+      "\020\003\022\n\n\006CUSTOM\020\004\032\226\001\n\005Email\022\r\n\005value\030\001 \001(\t\022" +
+      ";\n\004type\030\002 \001(\0162-.signalservice.DataMessag",
+      "e.Contact.Email.Type\022\r\n\005label\030\003 \001(\t\"2\n\004T" +
+      "ype\022\010\n\004HOME\020\001\022\n\n\006MOBILE\020\002\022\010\n\004WORK\020\003\022\n\n\006C" +
+      "USTOM\020\004\032\201\002\n\rPostalAddress\022C\n\004type\030\001 \001(\0162" +
+      "5.signalservice.DataMessage.Contact.Post" +
+      "alAddress.Type\022\r\n\005label\030\002 \001(\t\022\016\n\006street\030" +
+      "\003 \001(\t\022\r\n\005pobox\030\004 \001(\t\022\024\n\014neighborhood\030\005 \001" +
+      "(\t\022\014\n\004city\030\006 \001(\t\022\016\n\006region\030\007 \001(\t\022\020\n\010post" +
+      "code\030\010 \001(\t\022\017\n\007country\030\t \001(\t\"&\n\004Type\022\010\n\004H" +
+      "OME\020\001\022\010\n\004WORK\020\002\022\n\n\006CUSTOM\020\003\032M\n\006Avatar\0220\n" +
+      "\006avatar\030\001 \001(\0132 .signalservice.Attachment",
+      "Pointer\022\021\n\tisProfile\030\002 \001(\010\032V\n\007Preview\022\013\n" +
+      "\003url\030\001 \001(\t\022\r\n\005title\030\002 \001(\t\022/\n\005image\030\003 \001(\013" +
+      "2 .signalservice.AttachmentPointer\032m\n\007St" +
+      "icker\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey\030\002 \001(\014\022\021" +
+      "\n\tstickerId\030\003 \001(\r\022.\n\004data\030\004 \001(\0132 .signal" +
+      "service.AttachmentPointer\"l\n\005Flags\022\017\n\013EN" +
+      "D_SESSION\020\001\022\033\n\027EXPIRATION_TIMER_UPDATE\020\002" +
+      "\022\026\n\022PROFILE_KEY_UPDATE\020\004\022\035\n\030DEVICE_UNLIN" +
+      "KING_REQUEST\020\200\001\"A\n\017LokiUserProfile\022\023\n\013di" +
+      "splayName\030\001 \001(\t\022\031\n\021profilePictureURL\030\002 \001",
+      "(\t\"\213\004\n\023ClosedGroupUpdateV2\0225\n\004type\030\001 \002(\016" +
+      "2\'.signalservice.ClosedGroupUpdateV2.Typ" +
+      "e\022\021\n\tpublicKey\030\002 \001(\014\022\014\n\004name\030\003 \001(\t\022E\n\021en" +
+      "cryptionKeyPair\030\004 \001(\0132*.signalservice.Cl" +
+      "osedGroupUpdateV2.KeyPair\022\017\n\007members\030\005 \003" +
+      "(\014\022\016\n\006admins\030\006 \003(\014\022C\n\010wrappers\030\007 \003(\01321.s" +
+      "ignalservice.ClosedGroupUpdateV2.KeyPair" +
+      "Wrapper\0320\n\007KeyPair\022\021\n\tpublicKey\030\001 \002(\014\022\022\n" +
+      "\nprivateKey\030\002 \002(\014\032=\n\016KeyPairWrapper\022\021\n\tp" +
+      "ublicKey\030\001 \002(\014\022\030\n\020encryptedKeyPair\030\002 \002(\014",
+      "\"~\n\004Type\022\007\n\003NEW\020\001\022\n\n\006UPDATE\020\002\022\027\n\023ENCRYPT" +
+      "ION_KEY_PAIR\020\003\022\017\n\013NAME_CHANGE\020\004\022\021\n\rMEMBE" +
+      "RS_ADDED\020\005\022\023\n\017MEMBERS_REMOVED\020\006\022\017\n\013MEMBE" +
+      "R_LEFT\020\007\"\357\002\n\021ClosedGroupUpdate\022\014\n\004name\030\001" +
+      " \001(\t\022\026\n\016groupPublicKey\030\002 \001(\014\022\027\n\017groupPri" +
+      "vateKey\030\003 \001(\014\022>\n\nsenderKeys\030\004 \003(\0132*.sign" +
+      "alservice.ClosedGroupUpdate.SenderKey\022\017\n" +
+      "\007members\030\005 \003(\014\022\016\n\006admins\030\006 \003(\014\0223\n\004type\030\007" +
+      " \001(\0162%.signalservice.ClosedGroupUpdate.T" +
+      "ype\032B\n\tSenderKey\022\020\n\010chainKey\030\001 \001(\014\022\020\n\010ke",
+      "yIndex\030\002 \001(\r\022\021\n\tpublicKey\030\003 \001(\014\"A\n\004Type\022" +
+      "\007\n\003NEW\020\000\022\010\n\004INFO\020\001\022\026\n\022SENDER_KEY_REQUEST" +
+      "\020\002\022\016\n\nSENDER_KEY\020\003\"\036\n\013NullMessage\022\017\n\007pad" +
+      "ding\030\001 \001(\014\"u\n\016ReceiptMessage\0220\n\004type\030\001 \001" +
+      "(\0162\".signalservice.ReceiptMessage.Type\022\021" +
+      "\n\ttimestamp\030\002 \003(\004\"\036\n\004Type\022\014\n\010DELIVERY\020\000\022" +
+      "\010\n\004READ\020\001\"\214\001\n\rTypingMessage\022\021\n\ttimestamp" +
+      "\030\001 \001(\004\0223\n\006action\030\002 \001(\0162#.signalservice.T" +
+      "ypingMessage.Action\022\017\n\007groupId\030\003 \001(\014\"\"\n\006" +
+      "Action\022\013\n\007STARTED\020\000\022\013\n\007STOPPED\020\001\"\253\001\n\010Ver",
+      "ified\022\023\n\013destination\030\001 \001(\t\022\023\n\013identityKe" +
+      "y\030\002 \001(\014\022,\n\005state\030\003 \001(\0162\035.signalservice.V" +
+      "erified.State\022\023\n\013nullMessage\030\004 \001(\014\"2\n\005St" +
+      "ate\022\013\n\007DEFAULT\020\000\022\014\n\010VERIFIED\020\001\022\016\n\nUNVERI" +
+      "FIED\020\002\"\325\014\n\013SyncMessage\022-\n\004sent\030\001 \001(\0132\037.s" +
+      "ignalservice.SyncMessage.Sent\0225\n\010contact" +
+      "s\030\002 \001(\0132#.signalservice.SyncMessage.Cont" +
+      "acts\0221\n\006groups\030\003 \001(\0132!.signalservice.Syn" +
+      "cMessage.Groups\0223\n\007request\030\004 \001(\0132\".signa" +
+      "lservice.SyncMessage.Request\022-\n\004read\030\005 \003",
+      "(\0132\037.signalservice.SyncMessage.Read\0223\n\007b" +
+      "locked\030\006 \001(\0132\".signalservice.SyncMessage" +
+      ".Blocked\022)\n\010verified\030\007 \001(\0132\027.signalservi" +
+      "ce.Verified\022?\n\rconfiguration\030\t \001(\0132(.sig" +
+      "nalservice.SyncMessage.Configuration\022\017\n\007" +
+      "padding\030\010 \001(\014\022M\n\024stickerPackOperation\030\n " +
+      "\003(\0132/.signalservice.SyncMessage.StickerP" +
+      "ackOperation\022?\n\nopenGroups\030d \003(\0132+.signa" +
+      "lservice.SyncMessage.OpenGroupDetails\032\236\002" +
+      "\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\ttimestamp",
+      "\030\002 \001(\004\022+\n\007message\030\003 \001(\0132\032.signalservice." +
+      "DataMessage\022 \n\030expirationStartTimestamp\030" +
+      "\004 \001(\004\022V\n\022unidentifiedStatus\030\005 \003(\0132:.sign" +
+      "alservice.SyncMessage.Sent.UnidentifiedD" +
+      "eliveryStatus\032G\n\032UnidentifiedDeliverySta" +
+      "tus\022\023\n\013destination\030\001 \001(\t\022\024\n\014unidentified" +
+      "\030\002 \001(\010\032a\n\010Contacts\022.\n\004blob\030\001 \001(\0132 .signa" +
+      "lservice.AttachmentPointer\022\027\n\010complete\030\002" +
+      " \001(\010:\005false\022\014\n\004data\030e \001(\014\032F\n\006Groups\022.\n\004b" +
+      "lob\030\001 \001(\0132 .signalservice.AttachmentPoin",
+      "ter\022\014\n\004data\030e \001(\014\032,\n\007Blocked\022\017\n\007numbers\030" +
+      "\001 \003(\t\022\020\n\010groupIds\030\002 \003(\014\032\217\001\n\007Request\0225\n\004t" +
+      "ype\030\001 \001(\0162\'.signalservice.SyncMessage.Re" +
+      "quest.Type\"M\n\004Type\022\013\n\007UNKNOWN\020\000\022\014\n\010CONTA" +
+      "CTS\020\001\022\n\n\006GROUPS\020\002\022\013\n\007BLOCKED\020\003\022\021\n\rCONFIG" +
+      "URATION\020\004\032)\n\004Read\022\016\n\006sender\030\001 \001(\t\022\021\n\ttim" +
+      "estamp\030\002 \001(\004\032}\n\rConfiguration\022\024\n\014readRec" +
+      "eipts\030\001 \001(\010\022&\n\036unidentifiedDeliveryIndic" +
+      "ators\030\002 \001(\010\022\030\n\020typingIndicators\030\003 \001(\010\022\024\n" +
+      "\014linkPreviews\030\004 \001(\010\032\234\001\n\024StickerPackOpera",
+      "tion\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey\030\002 \001(\014\022B\n" +
+      "\004type\030\003 \001(\01624.signalservice.SyncMessage." +
+      "StickerPackOperation.Type\"\037\n\004Type\022\013\n\007INS" +
+      "TALL\020\000\022\n\n\006REMOVE\020\001\0322\n\020OpenGroupDetails\022\013" +
+      "\n\003url\030\001 \001(\t\022\021\n\tchannelID\030\002 \001(\r\"\354\001\n\021Attac" +
+      "hmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030" +
+      "\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthum" +
+      "bnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030" +
+      "\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006h" +
+      "eight\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(",
+      "\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\243\002\n\014GroupC" +
+      "ontext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signa" +
+      "lservice.GroupContext.Type\022\014\n\004name\030\003 \001(\t" +
+      "\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .sign" +
+      "alservice.AttachmentPointer\022\016\n\006admins\030\006 " +
+      "\003(\t\022\023\n\nnewMembers\030\346\007 \003(\t\022\027\n\016removedMembe" +
+      "rs\030\347\007 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE" +
+      "\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INF" +
+      "O\020\004\"\231\002\n\016ContactDetails\022\016\n\006number\030\001 \001(\t\022\014" +
+      "\n\004name\030\002 \001(\t\0224\n\006avatar\030\003 \001(\0132$.signalser",
+      "vice.ContactDetails.Avatar\022\r\n\005color\030\004 \001(" +
+      "\t\022)\n\010verified\030\005 \001(\0132\027.signalservice.Veri" +
+      "fied\022\022\n\nprofileKey\030\006 \001(\014\022\017\n\007blocked\030\007 \001(" +
+      "\010\022\023\n\013expireTimer\030\010 \001(\r\022\020\n\010nickname\030e \001(\t" +
+      "\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006lengt" +
+      "h\030\002 \001(\r\"\367\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
+      "name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\0222\n\006avatar\030\004 " +
+      "\001(\0132\".signalservice.GroupDetails.Avatar\022" +
+      "\024\n\006active\030\005 \001(\010:\004true\022\023\n\013expireTimer\030\006 \001" +
+      "(\r\022\r\n\005color\030\007 \001(\t\022\017\n\007blocked\030\010 \001(\010\022\016\n\006ad",
+      "mins\030\t \003(\t\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(" +
+      "\t\022\016\n\006length\030\002 \001(\rBB\n+org.session.libsign" +
+      "al.service.internal.pushB\023SignalServiceP" +
+      "rotos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -46451,277 +49589,295 @@ public final class SignalServiceProtos {
           internal_static_signalservice_Envelope_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Envelope_descriptor,
-              new String[] { "Type", "Source", "SourceDevice", "Relay", "Timestamp", "LegacyMessage", "Content", "ServerGuid", "ServerTimestamp", });
+              new java.lang.String[] { "Type", "Source", "SourceDevice", "Relay", "Timestamp", "LegacyMessage", "Content", "ServerGuid", "ServerTimestamp", });
           internal_static_signalservice_Content_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_signalservice_Content_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Content_descriptor,
-              new String[] { "DataMessage", "SyncMessage", "CallMessage", "NullMessage", "ReceiptMessage", "TypingMessage", "PreKeyBundleMessage", "DeviceLinkMessage", });
+              new java.lang.String[] { "DataMessage", "SyncMessage", "CallMessage", "NullMessage", "ReceiptMessage", "TypingMessage", "PreKeyBundleMessage", "DeviceLinkMessage", });
           internal_static_signalservice_DeviceLinkMessage_descriptor =
             getDescriptor().getMessageTypes().get(2);
           internal_static_signalservice_DeviceLinkMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DeviceLinkMessage_descriptor,
-              new String[] { "PrimaryPublicKey", "SecondaryPublicKey", "RequestSignature", "AuthorizationSignature", });
+              new java.lang.String[] { "PrimaryPublicKey", "SecondaryPublicKey", "RequestSignature", "AuthorizationSignature", });
           internal_static_signalservice_PreKeyBundleMessage_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_signalservice_PreKeyBundleMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_PreKeyBundleMessage_descriptor,
-              new String[] { "IdentityKey", "DeviceId", "PreKeyId", "SignedKeyId", "PreKey", "SignedKey", "Signature", });
+              new java.lang.String[] { "IdentityKey", "DeviceId", "PreKeyId", "SignedKeyId", "PreKey", "SignedKey", "Signature", });
           internal_static_signalservice_CallMessage_descriptor =
             getDescriptor().getMessageTypes().get(4);
           internal_static_signalservice_CallMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_descriptor,
-              new String[] { "Offer", "Answer", "IceUpdate", "Hangup", "Busy", });
+              new java.lang.String[] { "Offer", "Answer", "IceUpdate", "Hangup", "Busy", });
           internal_static_signalservice_CallMessage_Offer_descriptor =
             internal_static_signalservice_CallMessage_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_CallMessage_Offer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_Offer_descriptor,
-              new String[] { "Id", "Description", });
+              new java.lang.String[] { "Id", "Description", });
           internal_static_signalservice_CallMessage_Answer_descriptor =
             internal_static_signalservice_CallMessage_descriptor.getNestedTypes().get(1);
           internal_static_signalservice_CallMessage_Answer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_Answer_descriptor,
-              new String[] { "Id", "Description", });
+              new java.lang.String[] { "Id", "Description", });
           internal_static_signalservice_CallMessage_IceUpdate_descriptor =
             internal_static_signalservice_CallMessage_descriptor.getNestedTypes().get(2);
           internal_static_signalservice_CallMessage_IceUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_IceUpdate_descriptor,
-              new String[] { "Id", "SdpMid", "SdpMLineIndex", "Sdp", });
+              new java.lang.String[] { "Id", "SdpMid", "SdpMLineIndex", "Sdp", });
           internal_static_signalservice_CallMessage_Busy_descriptor =
             internal_static_signalservice_CallMessage_descriptor.getNestedTypes().get(3);
           internal_static_signalservice_CallMessage_Busy_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_Busy_descriptor,
-              new String[] { "Id", });
+              new java.lang.String[] { "Id", });
           internal_static_signalservice_CallMessage_Hangup_descriptor =
             internal_static_signalservice_CallMessage_descriptor.getNestedTypes().get(4);
           internal_static_signalservice_CallMessage_Hangup_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_CallMessage_Hangup_descriptor,
-              new String[] { "Id", });
+              new java.lang.String[] { "Id", });
           internal_static_signalservice_ClosedGroupCiphertextMessageWrapper_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_signalservice_ClosedGroupCiphertextMessageWrapper_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ClosedGroupCiphertextMessageWrapper_descriptor,
-              new String[] { "Ciphertext", "EphemeralPublicKey", });
+              new java.lang.String[] { "Ciphertext", "EphemeralPublicKey", });
           internal_static_signalservice_DataMessage_descriptor =
             getDescriptor().getMessageTypes().get(6);
           internal_static_signalservice_DataMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_descriptor,
-              new String[] { "Body", "Attachments", "Group", "Flags", "ExpireTimer", "ProfileKey", "Timestamp", "Quote", "Contact", "Preview", "Sticker", "Profile", "ClosedGroupUpdate", });
+              new java.lang.String[] { "Body", "Attachments", "Group", "Flags", "ExpireTimer", "ProfileKey", "Timestamp", "Quote", "Contact", "Preview", "Sticker", "Profile", "ClosedGroupUpdate", "ClosedGroupUpdateV2", });
           internal_static_signalservice_DataMessage_Quote_descriptor =
             internal_static_signalservice_DataMessage_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_DataMessage_Quote_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Quote_descriptor,
-              new String[] { "Id", "Author", "Text", "Attachments", });
+              new java.lang.String[] { "Id", "Author", "Text", "Attachments", });
           internal_static_signalservice_DataMessage_Quote_QuotedAttachment_descriptor =
             internal_static_signalservice_DataMessage_Quote_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_DataMessage_Quote_QuotedAttachment_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Quote_QuotedAttachment_descriptor,
-              new String[] { "ContentType", "FileName", "Thumbnail", });
+              new java.lang.String[] { "ContentType", "FileName", "Thumbnail", });
           internal_static_signalservice_DataMessage_Contact_descriptor =
             internal_static_signalservice_DataMessage_descriptor.getNestedTypes().get(1);
           internal_static_signalservice_DataMessage_Contact_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_descriptor,
-              new String[] { "Name", "Number", "Email", "Address", "Avatar", "Organization", });
+              new java.lang.String[] { "Name", "Number", "Email", "Address", "Avatar", "Organization", });
           internal_static_signalservice_DataMessage_Contact_Name_descriptor =
             internal_static_signalservice_DataMessage_Contact_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_DataMessage_Contact_Name_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_Name_descriptor,
-              new String[] { "GivenName", "FamilyName", "Prefix", "Suffix", "MiddleName", "DisplayName", });
+              new java.lang.String[] { "GivenName", "FamilyName", "Prefix", "Suffix", "MiddleName", "DisplayName", });
           internal_static_signalservice_DataMessage_Contact_Phone_descriptor =
             internal_static_signalservice_DataMessage_Contact_descriptor.getNestedTypes().get(1);
           internal_static_signalservice_DataMessage_Contact_Phone_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_Phone_descriptor,
-              new String[] { "Value", "Type", "Label", });
+              new java.lang.String[] { "Value", "Type", "Label", });
           internal_static_signalservice_DataMessage_Contact_Email_descriptor =
             internal_static_signalservice_DataMessage_Contact_descriptor.getNestedTypes().get(2);
           internal_static_signalservice_DataMessage_Contact_Email_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_Email_descriptor,
-              new String[] { "Value", "Type", "Label", });
+              new java.lang.String[] { "Value", "Type", "Label", });
           internal_static_signalservice_DataMessage_Contact_PostalAddress_descriptor =
             internal_static_signalservice_DataMessage_Contact_descriptor.getNestedTypes().get(3);
           internal_static_signalservice_DataMessage_Contact_PostalAddress_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_PostalAddress_descriptor,
-              new String[] { "Type", "Label", "Street", "Pobox", "Neighborhood", "City", "Region", "Postcode", "Country", });
+              new java.lang.String[] { "Type", "Label", "Street", "Pobox", "Neighborhood", "City", "Region", "Postcode", "Country", });
           internal_static_signalservice_DataMessage_Contact_Avatar_descriptor =
             internal_static_signalservice_DataMessage_Contact_descriptor.getNestedTypes().get(4);
           internal_static_signalservice_DataMessage_Contact_Avatar_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Contact_Avatar_descriptor,
-              new String[] { "Avatar", "IsProfile", });
+              new java.lang.String[] { "Avatar", "IsProfile", });
           internal_static_signalservice_DataMessage_Preview_descriptor =
             internal_static_signalservice_DataMessage_descriptor.getNestedTypes().get(2);
           internal_static_signalservice_DataMessage_Preview_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Preview_descriptor,
-              new String[] { "Url", "Title", "Image", });
+              new java.lang.String[] { "Url", "Title", "Image", });
           internal_static_signalservice_DataMessage_Sticker_descriptor =
             internal_static_signalservice_DataMessage_descriptor.getNestedTypes().get(3);
           internal_static_signalservice_DataMessage_Sticker_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_DataMessage_Sticker_descriptor,
-              new String[] { "PackId", "PackKey", "StickerId", "Data", });
+              new java.lang.String[] { "PackId", "PackKey", "StickerId", "Data", });
           internal_static_signalservice_LokiUserProfile_descriptor =
             getDescriptor().getMessageTypes().get(7);
           internal_static_signalservice_LokiUserProfile_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_LokiUserProfile_descriptor,
-              new String[] { "DisplayName", "ProfilePictureURL", });
-          internal_static_signalservice_ClosedGroupUpdate_descriptor =
+              new java.lang.String[] { "DisplayName", "ProfilePictureURL", });
+          internal_static_signalservice_ClosedGroupUpdateV2_descriptor =
             getDescriptor().getMessageTypes().get(8);
+          internal_static_signalservice_ClosedGroupUpdateV2_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signalservice_ClosedGroupUpdateV2_descriptor,
+              new java.lang.String[] { "Type", "PublicKey", "Name", "EncryptionKeyPair", "Members", "Admins", "Wrappers", });
+          internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor =
+            internal_static_signalservice_ClosedGroupUpdateV2_descriptor.getNestedTypes().get(0);
+          internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signalservice_ClosedGroupUpdateV2_KeyPair_descriptor,
+              new java.lang.String[] { "PublicKey", "PrivateKey", });
+          internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor =
+            internal_static_signalservice_ClosedGroupUpdateV2_descriptor.getNestedTypes().get(1);
+          internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signalservice_ClosedGroupUpdateV2_KeyPairWrapper_descriptor,
+              new java.lang.String[] { "PublicKey", "EncryptedKeyPair", });
+          internal_static_signalservice_ClosedGroupUpdate_descriptor =
+            getDescriptor().getMessageTypes().get(9);
           internal_static_signalservice_ClosedGroupUpdate_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ClosedGroupUpdate_descriptor,
-              new String[] { "Name", "GroupPublicKey", "GroupPrivateKey", "SenderKeys", "Members", "Admins", "Type", });
+              new java.lang.String[] { "Name", "GroupPublicKey", "GroupPrivateKey", "SenderKeys", "Members", "Admins", "Type", });
           internal_static_signalservice_ClosedGroupUpdate_SenderKey_descriptor =
             internal_static_signalservice_ClosedGroupUpdate_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_ClosedGroupUpdate_SenderKey_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ClosedGroupUpdate_SenderKey_descriptor,
-              new String[] { "ChainKey", "KeyIndex", "PublicKey", });
+              new java.lang.String[] { "ChainKey", "KeyIndex", "PublicKey", });
           internal_static_signalservice_NullMessage_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_signalservice_NullMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_NullMessage_descriptor,
-              new String[] { "Padding", });
+              new java.lang.String[] { "Padding", });
           internal_static_signalservice_ReceiptMessage_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_signalservice_ReceiptMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ReceiptMessage_descriptor,
-              new String[] { "Type", "Timestamp", });
+              new java.lang.String[] { "Type", "Timestamp", });
           internal_static_signalservice_TypingMessage_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_signalservice_TypingMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_TypingMessage_descriptor,
-              new String[] { "Timestamp", "Action", "GroupId", });
+              new java.lang.String[] { "Timestamp", "Action", "GroupId", });
           internal_static_signalservice_Verified_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_signalservice_Verified_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_Verified_descriptor,
-              new String[] { "Destination", "IdentityKey", "State", "NullMessage", });
+              new java.lang.String[] { "Destination", "IdentityKey", "State", "NullMessage", });
           internal_static_signalservice_SyncMessage_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_signalservice_SyncMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_descriptor,
-              new String[] { "Sent", "Contacts", "Groups", "Request", "Read", "Blocked", "Verified", "Configuration", "Padding", "StickerPackOperation", "OpenGroups", });
+              new java.lang.String[] { "Sent", "Contacts", "Groups", "Request", "Read", "Blocked", "Verified", "Configuration", "Padding", "StickerPackOperation", "OpenGroups", });
           internal_static_signalservice_SyncMessage_Sent_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_SyncMessage_Sent_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Sent_descriptor,
-              new String[] { "Destination", "Timestamp", "Message", "ExpirationStartTimestamp", "UnidentifiedStatus", });
+              new java.lang.String[] { "Destination", "Timestamp", "Message", "ExpirationStartTimestamp", "UnidentifiedStatus", });
           internal_static_signalservice_SyncMessage_Sent_UnidentifiedDeliveryStatus_descriptor =
             internal_static_signalservice_SyncMessage_Sent_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_SyncMessage_Sent_UnidentifiedDeliveryStatus_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Sent_UnidentifiedDeliveryStatus_descriptor,
-              new String[] { "Destination", "Unidentified", });
+              new java.lang.String[] { "Destination", "Unidentified", });
           internal_static_signalservice_SyncMessage_Contacts_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(1);
           internal_static_signalservice_SyncMessage_Contacts_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Contacts_descriptor,
-              new String[] { "Blob", "Complete", "Data", });
+              new java.lang.String[] { "Blob", "Complete", "Data", });
           internal_static_signalservice_SyncMessage_Groups_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(2);
           internal_static_signalservice_SyncMessage_Groups_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Groups_descriptor,
-              new String[] { "Blob", "Data", });
+              new java.lang.String[] { "Blob", "Data", });
           internal_static_signalservice_SyncMessage_Blocked_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(3);
           internal_static_signalservice_SyncMessage_Blocked_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Blocked_descriptor,
-              new String[] { "Numbers", "GroupIds", });
+              new java.lang.String[] { "Numbers", "GroupIds", });
           internal_static_signalservice_SyncMessage_Request_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(4);
           internal_static_signalservice_SyncMessage_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Request_descriptor,
-              new String[] { "Type", });
+              new java.lang.String[] { "Type", });
           internal_static_signalservice_SyncMessage_Read_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(5);
           internal_static_signalservice_SyncMessage_Read_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Read_descriptor,
-              new String[] { "Sender", "Timestamp", });
+              new java.lang.String[] { "Sender", "Timestamp", });
           internal_static_signalservice_SyncMessage_Configuration_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(6);
           internal_static_signalservice_SyncMessage_Configuration_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_Configuration_descriptor,
-              new String[] { "ReadReceipts", "UnidentifiedDeliveryIndicators", "TypingIndicators", "LinkPreviews", });
+              new java.lang.String[] { "ReadReceipts", "UnidentifiedDeliveryIndicators", "TypingIndicators", "LinkPreviews", });
           internal_static_signalservice_SyncMessage_StickerPackOperation_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(7);
           internal_static_signalservice_SyncMessage_StickerPackOperation_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_StickerPackOperation_descriptor,
-              new String[] { "PackId", "PackKey", "Type", });
+              new java.lang.String[] { "PackId", "PackKey", "Type", });
           internal_static_signalservice_SyncMessage_OpenGroupDetails_descriptor =
             internal_static_signalservice_SyncMessage_descriptor.getNestedTypes().get(8);
           internal_static_signalservice_SyncMessage_OpenGroupDetails_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_SyncMessage_OpenGroupDetails_descriptor,
-              new String[] { "Url", "ChannelID", });
+              new java.lang.String[] { "Url", "ChannelID", });
           internal_static_signalservice_AttachmentPointer_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_signalservice_AttachmentPointer_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_AttachmentPointer_descriptor,
-              new String[] { "Id", "ContentType", "Key", "Size", "Thumbnail", "Digest", "FileName", "Flags", "Width", "Height", "Caption", "Url", });
+              new java.lang.String[] { "Id", "ContentType", "Key", "Size", "Thumbnail", "Digest", "FileName", "Flags", "Width", "Height", "Caption", "Url", });
           internal_static_signalservice_GroupContext_descriptor =
-            getDescriptor().getMessageTypes().get(15);
+            getDescriptor().getMessageTypes().get(16);
           internal_static_signalservice_GroupContext_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_GroupContext_descriptor,
-              new String[] { "Id", "Type", "Name", "Members", "Avatar", "Admins", "NewMembers", "RemovedMembers", });
+              new java.lang.String[] { "Id", "Type", "Name", "Members", "Avatar", "Admins", "NewMembers", "RemovedMembers", });
           internal_static_signalservice_ContactDetails_descriptor =
-            getDescriptor().getMessageTypes().get(16);
+            getDescriptor().getMessageTypes().get(17);
           internal_static_signalservice_ContactDetails_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ContactDetails_descriptor,
-              new String[] { "Number", "Name", "Avatar", "Color", "Verified", "ProfileKey", "Blocked", "ExpireTimer", "Nickname", });
+              new java.lang.String[] { "Number", "Name", "Avatar", "Color", "Verified", "ProfileKey", "Blocked", "ExpireTimer", "Nickname", });
           internal_static_signalservice_ContactDetails_Avatar_descriptor =
             internal_static_signalservice_ContactDetails_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_ContactDetails_Avatar_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ContactDetails_Avatar_descriptor,
-              new String[] { "ContentType", "Length", });
+              new java.lang.String[] { "ContentType", "Length", });
           internal_static_signalservice_GroupDetails_descriptor =
-            getDescriptor().getMessageTypes().get(17);
+            getDescriptor().getMessageTypes().get(18);
           internal_static_signalservice_GroupDetails_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_GroupDetails_descriptor,
-              new String[] { "Id", "Name", "Members", "Avatar", "Active", "ExpireTimer", "Color", "Blocked", "Admins", });
+              new java.lang.String[] { "Id", "Name", "Members", "Avatar", "Active", "ExpireTimer", "Color", "Blocked", "Admins", });
           internal_static_signalservice_GroupDetails_Avatar_descriptor =
             internal_static_signalservice_GroupDetails_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_GroupDetails_Avatar_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_GroupDetails_Avatar_descriptor,
-              new String[] { "ContentType", "Length", });
+              new java.lang.String[] { "ContentType", "Length", });
           return null;
         }
       };

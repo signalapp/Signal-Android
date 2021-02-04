@@ -3,39 +3,36 @@ package org.thoughtcrime.securesms.loki.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.Loader
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
-import kotlinx.android.synthetic.main.activity_create_closed_group.*
-import kotlinx.android.synthetic.main.activity_create_closed_group.emptyStateContainer
-import kotlinx.android.synthetic.main.activity_create_closed_group.mainContentContainer
-import kotlinx.android.synthetic.main.activity_edit_closed_group.*
-import kotlinx.android.synthetic.main.activity_edit_closed_group.loader
-import kotlinx.android.synthetic.main.activity_linked_devices.recyclerView
+import android.widget.*
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
+import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.GroupUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.ThemeUtil
-import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.ThemeUtil
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -60,6 +57,14 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         EditClosedGroupMembersAdapter(this, GlideApp.with(this), this::onMemberClick)
     }
 
+    private lateinit var mainContentContainer: LinearLayout
+    private lateinit var cntGroupNameEdit: LinearLayout
+    private lateinit var cntGroupNameDisplay: LinearLayout
+    private lateinit var edtGroupName: EditText
+    private lateinit var emptyStateContainer: LinearLayout
+    private lateinit var lblGroupNameDisplay: TextView
+    private lateinit var loaderContainer: View
+
     companion object {
         @JvmStatic val groupIDKey = "groupIDKey"
         private val loaderID = 0
@@ -79,15 +84,27 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         originalName = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().title
         name = originalName
 
-        addMembersClosedGroupButton.setOnClickListener { onAddMembersClick() }
+        mainContentContainer = findViewById(R.id.mainContentContainer)
+        cntGroupNameEdit = findViewById(R.id.cntGroupNameEdit)
+        cntGroupNameDisplay = findViewById(R.id.cntGroupNameDisplay)
+        edtGroupName = findViewById(R.id.edtGroupName)
+        emptyStateContainer = findViewById(R.id.emptyStateContainer)
+        lblGroupNameDisplay = findViewById(R.id.lblGroupNameDisplay)
+        loaderContainer = findViewById(R.id.loaderContainer)
 
-        recyclerView.adapter = memberListAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        findViewById<View>(R.id.addMembersClosedGroupButton).setOnClickListener {
+            onAddMembersClick()
+        }
+
+        findViewById<RecyclerView>(R.id.rvUserList).apply {
+            adapter = memberListAdapter
+            layoutManager = LinearLayoutManager(this@EditClosedGroupActivity)
+        }
 
         lblGroupNameDisplay.text = originalName
         cntGroupNameDisplay.setOnClickListener { isEditingName = true }
-        btnCancelGroupNameEdit.setOnClickListener { isEditingName = false }
-        btnSaveGroupNameEdit.setOnClickListener { saveName() }
+        findViewById<View>(R.id.btnCancelGroupNameEdit).setOnClickListener { isEditingName = false }
+        findViewById<View>(R.id.btnSaveGroupNameEdit).setOnClickListener { saveName() }
         edtGroupName.setImeActionLabel(getString(R.string.save), EditorInfo.IME_ACTION_DONE)
         edtGroupName.setOnEditorActionListener { _, actionId, _ ->
             when (actionId) {
@@ -161,8 +178,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         this.members.addAll(members)
         memberListAdapter.setMembers(members)
 
-        val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        memberListAdapter.setLockedMembers(arrayListOf(userPublicKey))
+        val admins = DatabaseFactory.getGroupDatabase(this).getGroup(groupID).get().admins.map { it.toString() }.toMutableSet()
+        admins.remove(TextSecurePreferences.getLocalNumber(this))
+        memberListAdapter.setLockedMembers(admins)
 
         mainContentContainer.visibility = if (members.isEmpty()) View.GONE else View.VISIBLE
         emptyStateContainer.visibility = if (members.isEmpty()) View.VISIBLE else View.GONE
@@ -211,7 +229,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun commitChanges() {
-        val hasMemberListChanges = members != originalMembers
+        val hasMemberListChanges = (members != originalMembers)
 
         if (!hasNameChanged && !hasMemberListChanges) {
             return finish()
@@ -220,6 +238,9 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         val name = if (hasNameChanged) this.name else originalName
 
         val members = this.members.map {
+            Recipient.from(this, Address.fromSerialized(it), false)
+        }.toSet()
+        val originalMembers = this.originalMembers.map {
             Recipient.from(this, Address.fromSerialized(it), false)
         }.toSet()
 
@@ -235,26 +256,54 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             isSSKBasedClosedGroup = false
         }
 
-        if (members.size < 1) {
+        if (members.isEmpty()) {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocol.groupSizeLimit else legacyGroupSizeLimit
+        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocolV2.groupSizeLimit else legacyGroupSizeLimit
         if (members.size >= maxGroupMembers) {
-            // TODO: Update copy for SSK based closed groups
-            return Toast.makeText(this, R.string.activity_edit_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+            return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
+        }
+
+        val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
+        val userAsRecipient = Recipient.from(this, Address.fromSerialized(userPublicKey), false)
+
+        if (!members.contains(userAsRecipient) && !members.map { it.address.toString() }.containsAll(originalMembers.minus(userPublicKey))) {
+            val message = "Can't leave while adding or removing other members."
+            return Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
         }
 
         if (isSSKBasedClosedGroup) {
             isLoading = true
-            loader.fadeIn()
-            ClosedGroupsProtocol.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name).successUi {
-                loader.fadeOut()
+            loaderContainer.fadeIn()
+            val promise: Promise<Any, Exception> = if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
+                ClosedGroupsProtocolV2.leave(this, groupPublicKey!!)
+            } else {
+//                TODO: uncomment when we switch to sending new explicit updates after clients update
+//                task {
+//                    val name =
+//                            if (hasNameChanged) ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity,groupPublicKey!!,name)
+//                            else Promise.of(Unit)
+//                    name.get()
+//                    members.filterNot { it in originalMembers }.let { adds ->
+//                        if (adds.isNotEmpty()) ClosedGroupsProtocolV2.explicitAddMembers(this@EditClosedGroupActivity, groupPublicKey!!, adds.map { it.address.serialize() })
+//                        else Promise.of(Unit)
+//                    }.get()
+//                    originalMembers.filterNot { it in members }.let { removes ->
+//                        if (removes.isNotEmpty()) ClosedGroupsProtocolV2.explicitRemoveMembers(this@EditClosedGroupActivity, groupPublicKey!!, removes.map { it.address.serialize() })
+//                        else Promise.of(Unit)
+//                    }.get()
+//                }
+                ClosedGroupsProtocolV2.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
+            }
+            promise.successUi {
+                loaderContainer.fadeOut()
                 isLoading = false
                 finish()
             }.failUi { exception ->
                 val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
+                loader.fadeOut()
                 isLoading = false
             }
         } else {

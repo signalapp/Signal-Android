@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.events;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 
 public class PartProgressEvent {
 

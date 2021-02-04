@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.security.SecureRandom;
 

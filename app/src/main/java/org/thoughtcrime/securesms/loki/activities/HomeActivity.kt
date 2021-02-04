@@ -6,8 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.database.Cursor
-import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -30,17 +28,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
-import org.thoughtcrime.securesms.loki.dialogs.ConversationOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.LightThemeFeatureIntroBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.MultiDeviceRemovalBottomSheet
-import org.thoughtcrime.securesms.loki.dialogs.UserDetailsBottomSheet
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
@@ -49,17 +40,20 @@ import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegat
 import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.TextSecurePreferences.getBooleanPreference
-import org.thoughtcrime.securesms.util.TextSecurePreferences.setBooleanPreference
-import org.thoughtcrime.securesms.util.Util
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
+import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
+import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.thoughtcrime.securesms.loki.dialogs.*
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
@@ -95,7 +89,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     private val publicKey: String
         get() {
             val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
+            val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
             return masterPublicKey ?: userPublicKey
         }
 
@@ -193,7 +187,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
             !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave
         }.map {
-            it.recipient.address.toPhoneString()
+            it.recipient.address.toString()
         }.toSet()
         FileServerAPI.shared.getDeviceLinks(publicKeys)
         // Observe blocked contacts changed events
@@ -205,14 +199,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
-        // Clear all data if this is a secondary device
-        if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) != null) {
-            TextSecurePreferences.setWasUnlinked(this, true)
-            ApplicationContext.getInstance(this).clearData()
-        }
-
-        // Perform chat sessions reset if requested (usually happens after backup restoration).
-        scheduleResetAllSessionsIfRequested(this)
     }
 
     override fun onResume() {
@@ -224,36 +210,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (hasViewedSeed || !isMasterDevice) {
             seedReminderView.visibility = View.GONE
         }
+        showKeyPairMigrationSheetIfNeeded()
+        showKeyPairMigrationSuccessSheetIfNeeded()
+    }
 
-        // Multi device removal sheet
-        if (!TextSecurePreferences.getHasSeenMultiDeviceRemovalSheet(this)) {
-            TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-            val deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey)
-            if (deviceLinks.isNotEmpty()) {
-                val bottomSheet = MultiDeviceRemovalBottomSheet()
-                bottomSheet.onOKTapped = {
-                    bottomSheet.dismiss()
-                }
-                bottomSheet.onLinkTapped = {
-                    bottomSheet.dismiss()
-                    val url = "https://getsession.org/faq"
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(intent)
-                }
-                bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-                return
-            }
-        }
+    private fun showKeyPairMigrationSheetIfNeeded() {
+        if (KeyPairUtilities.hasV2KeyPair(this)) { return }
+        val keyPairMigrationSheet = KeyPairMigrationBottomSheet()
+        keyPairMigrationSheet.show(supportFragmentManager, keyPairMigrationSheet.tag)
+    }
 
-        // Light theme introduction sheet
-        if (!TextSecurePreferences.hasSeenLightThemeIntroSheet(this) &&
-                UiModeUtilities.isDayUiMode(this)) {
-            TextSecurePreferences.setHasSeenLightThemeIntroSheet(this)
-            val bottomSheet = LightThemeFeatureIntroBottomSheet()
-            bottomSheet.show(supportFragmentManager, bottomSheet.tag)
-            return
-        }
+    private fun showKeyPairMigrationSuccessSheetIfNeeded() {
+        if (!KeyPairUtilities.hasV2KeyPair(this) || !TextSecurePreferences.getIsMigratingKeyPair(this)) { return }
+        val keyPairMigrationSuccessSheet = KeyPairMigrationSuccessBottomSheet()
+        keyPairMigrationSuccessSheet.show(supportFragmentManager, keyPairMigrationSuccessSheet.tag)
+        TextSecurePreferences.setIsMigratingKeyPair(this, false)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -298,7 +269,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             bottomSheet.dismiss()
             val userDetailsBottomSheet = UserDetailsBottomSheet()
             val bundle = Bundle()
-            bundle.putString("publicKey", thread.recipient.address.toPhoneString())
+            bundle.putString("publicKey", thread.recipient.address.toString())
             userDetailsBottomSheet.arguments = bundle
             userDetailsBottomSheet.show(supportFragmentManager, userDetailsBottomSheet.tag)
         }
@@ -327,14 +298,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setMessage(R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_block) { dialog, _ ->
-                Thread {
+                ThreadUtils.queue {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, true)
-                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()
                     }
-                }.start()
+                }
             }.show()
     }
 
@@ -344,14 +314,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             .setMessage(R.string.RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact)
             .setNegativeButton(android.R.string.cancel, null)
             .setPositiveButton(R.string.RecipientPreferenceActivity_unblock) { dialog, _ ->
-                Thread {
+                ThreadUtils.queue {
                     DatabaseFactory.getRecipientDatabase(this).setBlocked(thread.recipient, false)
-                    ApplicationContext.getInstance(this).jobManager.add(MultiDeviceBlockedUpdateJob())
                     Util.runOnMain {
                         recyclerView.adapter!!.notifyDataSetChanged()
                         dialog.dismiss()
                     }
-                }.start()
+                }
             }.show()
     }
 
@@ -359,13 +328,23 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val dialogMessage = if (recipient.isGroupRecipient) R.string.activity_home_leave_group_dialog_message else R.string.activity_home_delete_conversation_dialog_message
+        val isClosedGroup = recipient.address.isClosedGroup
+        val dialogMessage: String
+        if (recipient.isGroupRecipient) {
+            val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
+            if (group != null && group.admins.map { it.toString() }.contains(TextSecurePreferences.getLocalNumber(this))) {
+                dialogMessage = "Because you are the creator of this group it will be deleted for everyone. This cannot be undone."
+            } else {
+                dialogMessage = resources.getString(R.string.activity_home_leave_group_dialog_message)
+            }
+        } else {
+            dialogMessage = resources.getString(R.string.activity_home_delete_conversation_dialog_message)
+        }
         val dialog = AlertDialog.Builder(this)
         dialog.setMessage(dialogMessage)
         dialog.setPositiveButton(R.string.yes) { _, _ -> lifecycleScope.launch(Dispatchers.Main) {
             val context = this@HomeActivity as Context
 
-            val isClosedGroup = recipient.address.isClosedGroup
             // Send a leave group message if this is an active closed group
             if (isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
                 var isSSKBasedClosedGroup: Boolean
@@ -378,7 +357,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     isSSKBasedClosedGroup = false
                 }
                 if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocol.leave(context, groupPublicKey!!)
+                    ClosedGroupsProtocolV2.leave(context, groupPublicKey!!)
                 } else if (!ClosedGroupsProtocol.leaveLegacyGroup(context, recipient)) {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch

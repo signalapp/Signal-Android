@@ -6,8 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.service.api.push.SignedPreKeyEntity;
-import org.session.libsignal.service.internal.push.PreKeyEntity;
-import org.session.libsignal.service.internal.util.JsonUtil;
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.util.List;
 

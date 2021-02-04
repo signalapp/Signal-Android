@@ -10,9 +10,9 @@ import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
 import network.loki.messenger.R;
@@ -43,7 +43,7 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
       return;
     }
 
-    Address          address   = Address.fromSerialized(serializedAddress);
+    Address          address   = Address.Companion.fromSerialized(serializedAddress);
     Recipient        recipient = Recipient.from(this, address, true);
     TaskStackBuilder backStack = TaskStackBuilder.create(this)
                                                  .addNextIntent(new Intent(this, HomeActivity.class));

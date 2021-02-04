@@ -9,15 +9,14 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -53,21 +52,18 @@ public class SearchRepository {
 
   private final Context          context;
   private final SearchDatabase   searchDatabase;
-  private final ContactsDatabase contactsDatabase;
   private final ThreadDatabase   threadDatabase;
   private final ContactAccessor  contactAccessor;
   private final Executor         executor;
 
   public SearchRepository(@NonNull Context context,
                           @NonNull SearchDatabase searchDatabase,
-                          @NonNull ContactsDatabase contactsDatabase,
                           @NonNull ThreadDatabase threadDatabase,
                           @NonNull ContactAccessor contactAccessor,
                           @NonNull Executor executor)
   {
     this.context          = context.getApplicationContext();
     this.searchDatabase   = searchDatabase;
-    this.contactsDatabase = contactsDatabase;
     this.threadDatabase   = threadDatabase;
     this.contactAccessor  = contactAccessor;
     this.executor         = executor;
@@ -132,7 +128,7 @@ public class SearchRepository {
 
   private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
     List<String>  numbers   = contactAccessor.getNumbersForThreadSearchFilter(context, query);
-    List<Address> addresses = Stream.of(numbers).map(number -> Address.fromExternal(context, number)).toList();
+    List<Address> addresses = Stream.of(numbers).map(number -> Address.Companion.fromExternal(context, number)).toList();
 
     Cursor conversations = threadDatabase.getFilteredConversationList(addresses);
     return conversations != null ? new CursorList<>(conversations, new ThreadModelBuilder(threadDatabase))
@@ -183,7 +179,7 @@ public class SearchRepository {
 
     @Override
     public Recipient build(@NonNull Cursor cursor) {
-      Address address = Address.fromExternal(context, cursor.getString(1));
+      Address address = Address.Companion.fromExternal(context, cursor.getString(1));
       return Recipient.from(context, address, false);
     }
   }
@@ -212,8 +208,8 @@ public class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      Address   conversationAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
-      Address   messageAddress        = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
+      Address   conversationAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
+      Address   messageAddress        = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
       Recipient conversationRecipient = Recipient.from(context, conversationAddress, false);
       Recipient messageRecipient      = Recipient.from(context, messageAddress, false);
       String    body                  = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));

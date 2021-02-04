@@ -3,20 +3,17 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import network.loki.messenger.BuildConfig;
-import org.thoughtcrime.securesms.TextSecureExpiredException;
-import org.thoughtcrime.securesms.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -33,12 +30,6 @@ public abstract class SendJob extends BaseJob {
 
   @Override
   public final void onRun() throws Exception {
-    if (Util.getDaysTillBuildExpiry() <= 0) {
-      throw new TextSecureExpiredException(String.format("TextSecure expired (build %d, now %d)",
-                                                         BuildConfig.BUILD_TIMESTAMP,
-                                                         System.currentTimeMillis()));
-    }
-
     Log.i(TAG, "Starting message send attempt");
     onSend();
     Log.i(TAG, "Message send completed");

@@ -9,8 +9,9 @@ import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
+
+import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Function;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
@@ -25,7 +26,7 @@ import java.util.Set;
 
 public final class SubscriptionManagerCompat {
 
-  private static final String TAG = Log.tag(SubscriptionManagerCompat.class);
+  private static final String TAG = SubscriptionManagerCompat.class.getSimpleName();
 
   private final Context context;
 

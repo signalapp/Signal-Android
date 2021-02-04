@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.text.TextUtils;
-import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +14,8 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.InvalidMetadataVersionException;
 import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
@@ -27,18 +27,29 @@ import org.session.libsignal.metadata.ProtocolLegacyMessageException;
 import org.session.libsignal.metadata.ProtocolNoSessionException;
 import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SelfSendException;
+import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
+import org.session.libsignal.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.attachments.PointerAttachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.contactshare.Contact;
+
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
+import org.session.libsession.utilities.GroupUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -57,48 +68,37 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
-import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.linkpreview.Link;
-import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
+import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.protocol.shelved.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.shelved.SyncMessagesProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
-import org.thoughtcrime.securesms.loki.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.IdentityUtil;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
@@ -111,18 +111,8 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.calls.AnswerMessage;
-import org.session.libsignal.service.api.messages.calls.BusyMessage;
-import org.session.libsignal.service.api.messages.calls.HangupMessage;
-import org.session.libsignal.service.api.messages.calls.IceUpdateMessage;
-import org.session.libsignal.service.api.messages.calls.OfferMessage;
-import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
-import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
-import org.session.libsignal.service.api.messages.multidevice.RequestMessage;
 import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.multidevice.StickerPackOperationMessage;
-import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
@@ -185,7 +175,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public @NonNull Data serialize() {
+  public @NonNull
+  Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
                              .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
                              .build();
@@ -259,7 +250,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
       SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), sessionResetProtocol, UnidentifiedAccessUtil.getCertificateValidator());
+      LokiAPIDatabase apiDB                     = DatabaseFactory.getLokiAPIDatabase(context);
+      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), new SessionProtocolImpl(context), sessionResetProtocol, apiDB, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -273,17 +265,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.getDeviceLink().isPresent()) {
-        MultiDeviceProtocol.handleDeviceLinkMessageIfNeeded(context, content.getDeviceLink().get(), content);
+        throw new UnsupportedOperationException("Device link operations are not supported!");
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
         if (message.isDeviceUnlinkingRequest()) {
-          MultiDeviceProtocol.handleUnlinkingRequestIfNeeded(context, content);
+          throw new UnsupportedOperationException("Device link operations are not supported!");
         } else {
 
-          if (message.getClosedGroupUpdate().isPresent()) {
-            ClosedGroupsProtocol.handleSharedSenderKeysUpdate(context, message.getClosedGroupUpdate().get(), content.getSender());
+          if (message.getClosedGroupUpdateV2().isPresent()) {
+            ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupUpdateV2().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
           }
 
           if (message.isEndSession()) {
@@ -306,34 +298,27 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             SessionMetaProtocol.handleProfileKeyUpdate(context, content);
           }
 
-          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.fromSerialized(content.getSender()))) {
+          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.Companion.fromSerialized(content.getSender()))) {
             handleNeedsDeliveryReceipt(content, message);
           }
         }
       } else if (content.getSyncMessage().isPresent()) {
-        TextSecurePreferences.setMultiDevice(context, true);
+        throw new UnsupportedOperationException("Device link operations are not supported!");
 
-        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
-
-        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
-        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
-        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
-        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
-        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
-        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
-        else                                                         Log.w(TAG, "Contains no known sync types...");
-      } else if (content.getCallMessage().isPresent()) {
-        Log.i(TAG, "Got call message...");
-        SignalServiceCallMessage message = content.getCallMessage().get();
-
-        if      (message.getOfferMessage().isPresent())      handleCallOfferMessage(content, message.getOfferMessage().get(), smsMessageId);
-        else if (message.getAnswerMessage().isPresent())     handleCallAnswerMessage(content, message.getAnswerMessage().get());
-        else if (message.getIceUpdateMessages().isPresent()) handleCallIceUpdateMessage(content, message.getIceUpdateMessages().get());
-        else if (message.getHangupMessage().isPresent())     handleCallHangupMessage(content, message.getHangupMessage().get(), smsMessageId);
-        else if (message.getBusyMessage().isPresent())       handleCallBusyMessage(content, message.getBusyMessage().get());
+//        TextSecurePreferences.setMultiDevice(context, true);
+//
+//        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
+//
+//        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
+//        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
+//        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
+//        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
+//        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
+//        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
+//        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
+//        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
+//        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
+//        else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -345,11 +330,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.w(TAG, "Got unrecognized message...");
       }
 
-      resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
+      resetRecipientToPush(Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false));
 
-      if (envelope.isPreKeySignalMessage()) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-      }
+//      if (envelope.isPreKeySignalMessage()) {
+//        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
+//      }
     } catch (ProtocolInvalidVersionException e) {
       Log.w(TAG, e);
       handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
@@ -379,94 +364,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Log.i(TAG, "Dropping UD message from self.");
     } catch (IOException e) {
       Log.i(TAG, "IOException during message decryption.");
+    } catch (SessionProtocol.Exception e) {
+      Log.i(TAG, "Couldn't handle message due to error: " + e.getDescription());
     }
-  }
-
-  private void handleCallOfferMessage(@NonNull SignalServiceContent content,
-                                      @NonNull OfferMessage message,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    Log.w(TAG, "handleCallOfferMessage...");
-
-    if (smsMessageId.isPresent()) {
-      SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-      database.markAsMissedCall(smsMessageId.get());
-    } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_INCOMING_CALL);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-      intent.putExtra(WebRtcCallService.EXTRA_TIMESTAMP, content.getTimestamp());
-
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) context.startForegroundService(intent);
-      else                                                context.startService(intent);
-    }
-  }
-
-  private void handleCallAnswerMessage(@NonNull SignalServiceContent content,
-                                       @NonNull AnswerMessage message)
-  {
-    Log.i(TAG, "handleCallAnswerMessage...");
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_RESPONSE_MESSAGE);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_DESCRIPTION, message.getDescription());
-
-    context.startService(intent);
-  }
-
-  private void handleCallIceUpdateMessage(@NonNull SignalServiceContent content,
-                                          @NonNull List<IceUpdateMessage> messages)
-  {
-    Log.w(TAG, "handleCallIceUpdateMessage... " + messages.size());
-    for (IceUpdateMessage message : messages) {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_ICE_MESSAGE);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP, message.getSdp());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_MID, message.getSdpMid());
-      intent.putExtra(WebRtcCallService.EXTRA_ICE_SDP_LINE_INDEX, message.getSdpMLineIndex());
-
-      context.startService(intent);
-    }
-  }
-
-  private void handleCallHangupMessage(@NonNull SignalServiceContent content,
-                                       @NonNull HangupMessage message,
-                                       @NonNull Optional<Long> smsMessageId)
-  {
-    Log.i(TAG, "handleCallHangupMessage");
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).markAsMissedCall(smsMessageId.get());
-    } else {
-      Intent intent = new Intent(context, WebRtcCallService.class);
-      intent.setAction(WebRtcCallService.ACTION_REMOTE_HANGUP);
-      intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-      intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-
-      context.startService(intent);
-    }
-  }
-
-  private void handleCallBusyMessage(@NonNull SignalServiceContent content,
-                                     @NonNull BusyMessage message)
-  {
-    Intent intent = new Intent(context, WebRtcCallService.class);
-    intent.setAction(WebRtcCallService.ACTION_REMOTE_BUSY);
-    intent.putExtra(WebRtcCallService.EXTRA_CALL_ID, message.getId());
-    intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, Address.fromSerialized(content.getSender()));
-
-    context.startService(intent);
   }
 
   private void handleEndSessionMessage(@NonNull SignalServiceContent content,
                                        @NonNull Optional<Long>       smsMessageId)
   {
     SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
+    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.Companion.fromSerialized(content.getSender()),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
                                                                       "", Optional.absent(), 0,
@@ -576,10 +483,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void handleSynchronizeVerifiedMessage(@NonNull VerifiedMessage verifiedMessage) {
-    IdentityUtil.processVerifiedMessage(context, verifiedMessage);
-  }
-
   private void handleSynchronizeStickerPackOperation(@NonNull List<StickerPackOperationMessage> stickerPackOperations) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
@@ -633,8 +536,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (message.getMessage().getProfileKey().isPresent()) {
         Recipient recipient = null;
 
-        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
-        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
+        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
 
 
         if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
@@ -655,68 +558,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
     }
-  }
-
-  private void handleSynchronizeRequestMessage(@NonNull RequestMessage message)
-  {
-    if (message.isContactsRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob(context, true));
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RefreshUnidentifiedDeliveryAbilityJob());
-    }
-
-    if (message.isGroupsRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceGroupUpdateJob());
-    }
-
-    if (message.isBlockedListRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceBlockedUpdateJob());
-    }
-
-    if (message.isConfigurationRequest()) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(context),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(context),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(context),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(context)));
-
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceStickerPackSyncJob());
-    }
-  }
-
-  private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp)
-  {
-    for (ReadMessage readMessage : readMessages) {
-      List<Pair<Long, Long>> expiringText = DatabaseFactory.getSmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
-      List<Pair<Long, Long>> expiringMedia = DatabaseFactory.getMmsDatabase(context).setTimestampRead(new SyncMessageId(Address.fromSerialized(readMessage.getSender()), readMessage.getTimestamp()), envelopeTimestamp);
-
-      for (Pair<Long, Long> expiringMessage : expiringText) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first, false, envelopeTimestamp, expiringMessage.second);
-      }
-
-      for (Pair<Long, Long> expiringMessage : expiringMedia) {
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(expiringMessage.first, true, envelopeTimestamp, expiringMessage.second);
-      }
-    }
-
-    messageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
-    messageNotifier.cancelDelayedNotifications();
-    messageNotifier.updateNotification(context);
   }
 
   public void handleMediaMessage(@NonNull SignalServiceContent content,
@@ -1100,7 +941,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (canRecoverAutomatically(e)) {
-      Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
+      Recipient recipient = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
       LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
       long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
       threadDB.addSessionRestoreDevice(threadID, sender);
@@ -1184,7 +1025,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
+                      .add(new SendDeliveryReceiptJob(Address.Companion.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1192,9 +1033,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                      @NonNull SignalServiceReceiptMessage message)
   {
     // Redirect message to master device conversation
-    Address masterAddress = Address.fromSerialized(content.getSender());
+    Address masterAddress = Address.Companion.fromSerialized(content.getSender());
 
-    if (masterAddress.isPhone()) {
+    if (masterAddress.isContact()) {
       Recipient masterRecipient = getMessageMasterDestination(content.getSender());
       masterAddress = masterRecipient.getAddress();
     }
@@ -1213,9 +1054,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 
       // Redirect message to master device conversation
-      Address masterAddress = Address.fromSerialized(content.getSender());
+      Address masterAddress = Address.Companion.fromSerialized(content.getSender());
 
-      if (masterAddress.isPhone()) {
+      if (masterAddress.isContact()) {
         Recipient masterRecipient = getMessageMasterDestination(content.getSender());
         masterAddress = masterRecipient.getAddress();
       }
@@ -1236,13 +1077,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    Recipient author = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    Recipient author = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
 
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
       // Typing messages should only apply to closed groups, thus we use `getEncodedId`
-      Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
+      Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedClosedGroupID(typingMessage.getGroupId().get()));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
@@ -1259,10 +1100,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (typingMessage.isTypingStarted()) {
       Log.d(TAG, "Typing started on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStarted(context,threadId, author, content.getSenderDevice());
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStartedMessage(context,threadId, author.getAddress(), content.getSenderDevice());
     } else {
       Log.d(TAG, "Typing stopped on thread " + threadId);
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, content.getSenderDevice(), false);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStoppedMessage(context, threadId, author.getAddress(), content.getSenderDevice(), false);
     }
   }
 
@@ -1279,7 +1120,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Optional.absent();
     }
 
-    Address       author  = Address.fromSerialized(quote.get().getAuthor().getNumber());
+    Address       author  = Address.Companion.fromSerialized(quote.get().getAuthor().getNumber());
     MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
     if (message != null) {
@@ -1306,7 +1147,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                       author,
                                       quote.get().getText(),
                                       true,
-                                      PointerAttachment.forPointers(quote.get().getAttachments())));
+                                      PointerAttachment.forPointersOfDataMessage(quote.get().getAttachments())));
   }
 
   private Optional<Attachment> getStickerAttachment(Optional<SignalServiceDataMessage.Sticker> sticker) {
@@ -1329,7 +1170,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (stickerRecord != null) {
       return Optional.of(new UriAttachment(stickerRecord.getUri(),
                                            stickerRecord.getUri(),
-                                           MediaUtil.IMAGE_WEBP,
+                                           MediaTypes.IMAGE_WEBP,
                                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
                                            stickerRecord.getSize(),
                                            StickerSlide.WIDTH,
@@ -1394,21 +1235,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
-      return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
     }
   }
 
   private Recipient getSyncMessageMasterDestination(SentTranscriptMessage message) {
     if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
       String publicKey = message.getDestination().get();
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
@@ -1417,9 +1258,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
-          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
         } catch (Exception e) {
-          return Recipient.from(context, Address.fromSerialized(publicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
         }
       }
     }
@@ -1427,20 +1268,20 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedClosedGroupID(message.getGroupInfo().get().getGroupId())), false);
     } else {
-      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
+      return Recipient.from(context, Address.Companion.fromExternal(context, content.getSender()), false);
     }
   }
 
   private Recipient getMessageMasterDestination(String publicKey) {
     if (!PublicKeyValidation.isValid(publicKey)) {
-      return Recipient.from(context, Address.fromSerialized(publicKey), false);
+      return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
       Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
       if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
+        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
         try {
           // TODO: Burn this with fire when we can
@@ -1449,21 +1290,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (masterPublicKey == null) {
             masterPublicKey = publicKey;
           }
-          return Recipient.from(context, Address.fromSerialized(masterPublicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
         } catch (Exception e) {
-          return Recipient.from(context, Address.fromSerialized(publicKey), false);
+          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
         }
       }
     }
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
-    Recipient author   = Recipient.from(context, Address.fromSerialized(sender), false);
+    Recipient author   = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
     long      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0) {
       Log.d(TAG, "Typing stopped on thread " + threadId + " due to an incoming message.");
-      ApplicationContext.getInstance(context).getTypingStatusRepository().onTypingStopped(context, threadId, author, device, true);
+      ApplicationContext.getInstance(context).getTypingStatusRepository().didReceiveTypingStoppedMessage(context, threadId, author.getAddress(), device, true);
     }
   }
 
@@ -1478,7 +1319,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return true;
     }
 
-    Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    Recipient sender = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
 
     if (content.getDeviceLink().isPresent()) {
       return false;
@@ -1509,10 +1350,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
-      return sender.isBlocked();
     } else if (content.getSyncMessage().isPresent()) {
-      return SyncMessagesProtocol.shouldIgnoreSyncMessage(context, sender);
+      throw new UnsupportedOperationException("Device link operations are not supported!");
     }
 
     return false;

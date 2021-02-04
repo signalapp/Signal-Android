@@ -1312,7 +1312,7 @@
   <string name="activity_create_closed_group_empty_state_button_title">شروع Session</string>
   <string name="activity_create_closed_group_group_name_missing_error">لطفا یک نام گروه وارد کنید</string>
   <string name="activity_create_closed_group_group_name_too_long_error">لطفا نام گروه کوتاه‌تری وارد کنید</string>
-  <string name="activity_create_closed_group_too_many_group_members_error">یک گروه خصوصی نمی‌تواند بیش از بیست عضو داشته باشد</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">یک گروه خصوصی نمی‌تواند بیش از یکصد عضو داشته باشد</string>
   <string name="activity_create_closed_group_invalid_session_id_error">یکی از اعضای گروه شما دارای شناسه نامعتبر است</string>
 
   <string name="activity_join_public_chat_title">به گروه باز بپیوندید</string>

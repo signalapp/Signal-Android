@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.jobmanager.impl;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.JsonUtils;
+import org.session.libsession.messaging.jobs.Data;
+import org.session.libsignal.utilities.logging.Log;
+import org.session.libsignal.utilities.JsonUtil;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class JsonDataSerializer implements Data.Serializer {
   @Override
   public @NonNull String serialize(@NonNull Data data) {
     try {
-      return JsonUtils.toJson(data);
+      return JsonUtil.toJsonThrows(data);
     } catch (IOException e) {
       Log.e(TAG, "Failed to serialize to JSON.", e);
       throw new AssertionError(e);
@@ -25,7 +25,7 @@ public class JsonDataSerializer implements Data.Serializer {
   @Override
   public @NonNull Data deserialize(@NonNull String serialized) {
     try {
-      return JsonUtils.fromJson(serialized, Data.class);
+      return JsonUtil.fromJson(serialized, Data.class);
     } catch (IOException e) {
       Log.e(TAG, "Failed to deserialize JSON.", e);
       throw new AssertionError(e);

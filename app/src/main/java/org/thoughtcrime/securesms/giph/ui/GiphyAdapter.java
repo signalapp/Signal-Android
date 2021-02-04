@@ -7,7 +7,10 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import org.thoughtcrime.securesms.logging.Log;
+
+
+
+import org.session.libsignal.utilities.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +27,14 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.util.ByteBufferUtil;
 
 import network.loki.messenger.R;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.giph.model.GiphyImage;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+
+import org.session.libsession.utilities.color.MaterialColor;
+import org.session.libsession.utilities.Util;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -152,7 +156,7 @@ class GiphyAdapter extends RecyclerView.Adapter<GiphyAdapter.GiphyViewHolder> {
                                                         .load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
                                                         .diskCacheStrategy(DiskCacheStrategy.ALL);
 
-    if (Util.isLowMemory(context)) {
+    if (org.thoughtcrime.securesms.util.Util.isLowMemory(context)) {
       glideRequests.load(new ChunkedImageUrl(image.getStillUrl(), image.getStillSize()))
                    .placeholder(new ColorDrawable(Util.getRandomElement(MaterialColor.values()).toConversationColor(context)))
                    .diskCacheStrategy(DiskCacheStrategy.ALL)

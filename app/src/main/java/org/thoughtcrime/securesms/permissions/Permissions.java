@@ -23,7 +23,7 @@ import com.annimon.stream.Stream;
 import com.annimon.stream.function.Consumer;
 
 import org.thoughtcrime.securesms.util.LRUCache;
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.session.libsession.utilities.ServiceUtil;
 
 import java.lang.ref.WeakReference;
 import java.security.SecureRandom;

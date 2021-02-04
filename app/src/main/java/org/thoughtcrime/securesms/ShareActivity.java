@@ -37,22 +37,19 @@ import androidx.appcompat.widget.Toolbar;
 
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.database.Address;
+import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.loki.fragments.ContactSelectionListLoader.DisplayMode;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.session.libsession.utilities.ViewUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -75,7 +72,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public static final String EXTRA_ADDRESS_MARSHALLED = "address_marshalled";
   public static final String EXTRA_DISTRIBUTION_TYPE  = "distribution_type";
 
-  private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ContactSelectionListFragment contactsFragment;
   private SearchToolbar                searchToolbar;
@@ -84,11 +80,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Uri                          resolvedExtra;
   private String                       mimeType;
   private boolean                      isPassingAlongMedia;
-
-  @Override
-  protected void onPreCreate() {
-    dynamicLanguage.onCreate(this);
-  }
 
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
@@ -112,13 +103,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     super.onNewIntent(intent);
     setIntent(intent);
     initializeMedia();
-  }
-
-  @Override
-  public void onResume() {
-    Log.i(TAG, "onResume()");
-    super.onResume();
-    dynamicLanguage.onResume(this);
   }
 
   @Override
@@ -266,7 +250,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onContactSelected(String number) {
-    Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
+    Recipient recipient = Recipient.from(this, Address.Companion.fromExternal(this, number), true);
     long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
     createConversation(existingThread, recipient.getAddress(), ThreadDatabase.DistributionTypes.DEFAULT);
   }
@@ -293,7 +277,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
         InputStream inputStream;
 
         if ("file".equals(uris[0].getScheme())) {
-          inputStream = openFileUri(uris[0]);
+          inputStream = new FileInputStream(uris[0].getPath());
         } else {
           inputStream = context.getContentResolver().openInputStream(uris[0]);
         }
@@ -334,19 +318,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     protected void onPostExecute(Uri uri) {
       resolvedExtra = uri;
       handleResolvedMedia(getIntent(), true);
-    }
-
-    private InputStream openFileUri(Uri uri) throws IOException {
-      FileInputStream fin   = new FileInputStream(uri.getPath());
-      // TODO: Remove the commented code if there are no issues with reading shared files by October 2020
-//      int             owner = FileUtils.getFileDescriptorOwner(fin.getFD());
-
-//      if (owner == -1 || owner == Process.myUid()) {
-//        fin.close();
-//        throw new IOException("File owned by application");
-//      }
-
-      return fin;
     }
   }
 }

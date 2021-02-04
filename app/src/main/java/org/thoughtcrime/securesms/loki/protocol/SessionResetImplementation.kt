@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import android.content.Context
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.Address
+import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.loki.SessionResetStatus
@@ -36,8 +36,8 @@ class SessionResetImplementation(private val context: Context) : SessionResetPro
     }
 
     override fun validatePreKeySignalMessage(publicKey: String, message: PreKeySignalMessage) {
-        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(publicKey) ?: return
-        // TODO: Checking that the pre key record isn't null is causing issues when it shouldn't
-        check(preKeyRecord.id == (message.preKeyId ?: -1)) { "Received a background message from an unknown source." }
+//        val preKeyRecord = DatabaseFactory.getLokiPreKeyRecordDatabase(context).getPreKeyRecord(publicKey) ?: return
+//        // TODO: Checking that the pre key record isn't null is causing issues when it shouldn't
+//        check(preKeyRecord.id == (message.preKeyId ?: -1)) { "Received a background message from an unknown source." }
     }
 }

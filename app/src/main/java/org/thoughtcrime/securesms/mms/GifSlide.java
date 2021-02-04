@@ -4,8 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.util.MediaUtil;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.utilities.MediaTypes;
 
 public class GifSlide extends ImageSlide {
 
@@ -19,7 +19,7 @@ public class GifSlide extends ImageSlide {
   }
 
   public GifSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_GIF, size, width, height, true, null, caption, null, false, false));
+    super(context, constructAttachmentFromUri(context, uri, MediaTypes.IMAGE_GIF, size, width, height, true, null, caption, null, false, false));
   }
 
   @Override

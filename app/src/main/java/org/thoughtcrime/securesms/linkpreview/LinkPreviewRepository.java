@@ -6,18 +6,16 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.Html;
-import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.common.util.IOUtils;
 
+
+import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.logging.Log;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
@@ -26,9 +24,7 @@ import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
-import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -37,13 +33,15 @@ import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;
 import org.session.libsignal.service.api.messages.SignalServiceStickerManifest.StickerInfo;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
+import org.session.libsession.utilities.concurrent.SignalExecutors;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -147,7 +145,7 @@ public class LinkPreviewRepository implements InjectableType {
           imageUrl = Optional.absent();
         }
 
-        if (imageUrl.isPresent() && !LinkPreviewUtil.isVaildMimeType(imageUrl.get())) {
+        if (imageUrl.isPresent() && !LinkPreviewUtil.isValidMimeType(imageUrl.get())) {
           Log.i(TAG, "Image URL was invalid mime type. Skipping.");
           imageUrl = Optional.absent();
         }
@@ -177,7 +175,7 @@ public class LinkPreviewRepository implements InjectableType {
 
         byte[]               data      = IOUtils.readInputStreamFully(bodyStream);
         Bitmap               bitmap    = BitmapFactory.decodeByteArray(data, 0, data.length);
-        Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaUtil.IMAGE_JPEG);
+        Optional<Attachment> thumbnail = bitmapToAttachment(bitmap, Bitmap.CompressFormat.JPEG, MediaTypes.IMAGE_JPEG);
 
         if (bitmap != null) bitmap.recycle();
 
@@ -227,7 +225,7 @@ public class LinkPreviewRepository implements InjectableType {
           Uri                  uri       = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
           Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri,
                                                        uri,
-                                                       MediaUtil.IMAGE_WEBP,
+                                                       MediaTypes.IMAGE_WEBP,
                                                        AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
                                                        bytes.length,
                                                        bitmap.getWidth(),

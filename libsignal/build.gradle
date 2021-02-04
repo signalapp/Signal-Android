@@ -19,8 +19,8 @@ configurations.all {
 }
 
 android {
-    compileSdkVersion androidCompileSdkVersion
-    buildToolsVersion androidBuildToolsVersion
+    compileSdkVersion 30
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         minSdkVersion androidMinSdkVersion
@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation "androidx.annotation:annotation:1.1.0"
 
     implementation "com.google.protobuf:protobuf-java:$protobufVersion"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"

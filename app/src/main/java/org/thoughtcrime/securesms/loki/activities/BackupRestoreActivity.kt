@@ -35,12 +35,12 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.backup.FullBackupImporter.DatabaseDowngradeException
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.util.BackupUtil
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 
 class BackupRestoreActivity : BaseActionBarActivity() {
 
@@ -189,9 +189,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 TextSecurePreferences.setRestorationTime(context, System.currentTimeMillis())
                 TextSecurePreferences.setHasViewedSeed(context, true)
                 TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
-                TextSecurePreferences.setPromptedPushRegistration(context, true)
-                TextSecurePreferences.setHasSeenMultiDeviceRemovalSheet(context)
-                TextSecurePreferences.setHasSeenLightThemeIntroSheet(context)
                 val application = ApplicationContext.getInstance(context)
                 application.setUpStorageAPIIfNeeded()
                 application.setUpP2PAPIIfNeeded()

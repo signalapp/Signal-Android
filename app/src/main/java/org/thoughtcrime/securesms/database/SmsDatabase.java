@@ -30,6 +30,7 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
@@ -37,13 +38,15 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsignal.utilities.JsonUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -374,7 +377,7 @@ public class SmsDatabase extends MessagingDatabase {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           Address theirAddress = messageId.getAddress();
-          Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+          Address ourAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
           String  columnName   = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
 
           if (ourAddress.equals(theirAddress)) {
@@ -415,7 +418,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       while (cursor.moveToNext()) {
         Address theirAddress = messageId.getAddress();
-        Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address ourAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
         if (ourAddress.equals(theirAddress)) {
           long id            = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
@@ -466,7 +469,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       while (cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          SyncMessageId  syncMessageId  = new SyncMessageId(Address.Companion.fromSerialized(cursor.getString(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
 
           results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
@@ -614,7 +617,7 @@ public class SmsDatabase extends MessagingDatabase {
       groupRecipient = Recipient.from(context, message.getGroupId(), true);
     }
 
-    boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
+    boolean    unread     = (Util.isDefaultSmsProvider(context) ||
                             message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
                             !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
 
@@ -923,7 +926,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     public SmsMessageRecord getCurrent() {
       long    messageId            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-      Address address              = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS)));
+      Address address              = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS)));
       int     addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS_DEVICE_ID));
       long    type                 = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
       long    dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
@@ -957,7 +960,7 @@ public class SmsDatabase extends MessagingDatabase {
     private List<IdentityKeyMismatch> getMismatches(String document) {
       try {
         if (!TextUtils.isEmpty(document)) {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchList.class).getList();
+          return JsonUtil.fromJson(document, IdentityKeyMismatchList.class).getList();
         }
       } catch (IOException e) {
         Log.w(TAG, e);

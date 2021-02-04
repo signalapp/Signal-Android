@@ -10,7 +10,7 @@ import android.util.Range
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.session.libsession.utilities.TextSecurePreferences
 import java.util.regex.Pattern
 
 object MentionUtilities {
@@ -28,7 +28,7 @@ object MentionUtilities {
         val mentions = mutableListOf<Tuple2<Range<Int>, String>>()
         var startIndex = 0
         val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         if (matcher.find(startIndex)) {
             while (true) {
                 val publicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @

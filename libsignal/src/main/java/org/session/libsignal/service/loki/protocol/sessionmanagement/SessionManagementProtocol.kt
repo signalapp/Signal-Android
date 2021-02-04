@@ -1,16 +1,12 @@
 package org.session.libsignal.service.loki.protocol.sessionmanagement
 
-import org.session.libsignal.libsignal.SignalProtocolAddress
-import org.session.libsignal.libsignal.logging.Log
+import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.loki.SessionResetStatus
 import org.session.libsignal.libsignal.state.SignalProtocolStore
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.SignalServiceMessageSender
-import org.session.libsignal.service.api.messages.SignalServiceDataMessage
 import org.session.libsignal.service.api.push.SignalServiceAddress
-import org.session.libsignal.service.loki.api.SnodeAPI
-import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 
 public class SessionManagementProtocol(private val sessionResetImpl: SessionResetProtocol, private val sskDatabase: SharedSenderKeysDatabaseProtocol,
@@ -30,10 +26,11 @@ public class SessionManagementProtocol(private val sessionResetImpl: SessionRese
 
     // region Sending
     public fun shouldMessageUseFallbackEncryption(message: Any, publicKey: String, store: SignalProtocolStore): Boolean {
-        if (sskDatabase.isSSKBasedClosedGroup(publicKey)) { return true } // We don't actually use fallback encryption but this indicates that we don't need a session
-        if (message is SignalServiceDataMessage && message.preKeyBundle.isPresent) { return true; } // This covers session requests as well as end session messages
-        val recipient = SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID)
-        return !store.containsSession(recipient)
+//        if (sskDatabase.isSSKBasedClosedGroup(publicKey)) { return true } // We don't actually use fallback encryption but this indicates that we don't need a session
+//        if (message is SignalServiceDataMessage && message.preKeyBundle.isPresent) { return true; } // This covers session requests as well as end session messages
+//        val recipient = SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID)
+//        return !store.containsSession(recipient)
+        return true;
     }
 
     /**
