@@ -25,12 +25,13 @@ import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -178,7 +179,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     return rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270;
   }
   private int getDeviceRotation() {
-    return ServiceUtil.getWindowManager(getContext()).getDefaultDisplay().getRotation();
+    return ContextCompat.getSystemService(getContext(), WindowManager.class).getDefaultDisplay().getRotation();
   }
 
   private int getKeyboardLandscapeHeight() {

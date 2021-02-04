@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
@@ -30,7 +32,6 @@ import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
@@ -303,7 +304,8 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     pinEntry.setFocusable(true);
 
     if (pinEntry.requestFocus()) {
-      ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
+      ContextCompat.getSystemService(pinEntry.getContext(), InputMethodManager.class)
+        .showSoftInput(pinEntry, 0);
     }
   }
 

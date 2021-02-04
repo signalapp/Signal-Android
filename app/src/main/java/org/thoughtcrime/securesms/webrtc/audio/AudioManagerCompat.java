@@ -9,9 +9,9 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 public abstract class AudioManagerCompat {
 
@@ -27,7 +27,7 @@ public abstract class AudioManagerCompat {
   };
 
   private AudioManagerCompat(@NonNull Context context) {
-    audioManager = ServiceUtil.getAudioManager(context);
+    audioManager = ContextCompat.getSystemService(context, AudioManager.class);
   }
 
   abstract public SoundPool createSoundPool();

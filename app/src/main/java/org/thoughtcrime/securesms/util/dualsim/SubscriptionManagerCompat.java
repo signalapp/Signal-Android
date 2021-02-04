@@ -8,10 +8,10 @@ import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -92,7 +92,7 @@ public final class SubscriptionManagerCompat {
 
   @RequiresApi(api = 22)
   private @NonNull List<SubscriptionInfo> getActiveSubscriptionInfoList() {
-    SubscriptionManager subscriptionManager = ServiceUtil.getSubscriptionManager(context);
+    SubscriptionManager subscriptionManager = ContextCompat.getSystemService(context, SubscriptionManager.class);
 
     if (subscriptionManager == null) {
       Log.w(TAG, "Missing SubscriptionManager.");
@@ -143,7 +143,7 @@ public final class SubscriptionManagerCompat {
   private boolean isReady(@NonNull SubscriptionInfo subscriptionInfo) {
     if (Build.VERSION.SDK_INT < 24) return true;
 
-    TelephonyManager telephonyManager = ServiceUtil.getTelephonyManager(context);
+    TelephonyManager telephonyManager = context.getSystemService(TelephonyManager.class);
 
     TelephonyManager specificTelephonyManager = telephonyManager.createForSubscriptionId(subscriptionInfo.getSubscriptionId());
 

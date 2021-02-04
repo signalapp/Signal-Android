@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 
@@ -14,12 +15,8 @@ import java.util.Locale;
 public class TelephonyUtil {
   private static final String TAG = TelephonyUtil.class.getSimpleName();
 
-  public static TelephonyManager getManager(final Context context) {
-    return (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-  }
-
   public static String getMccMnc(final Context context) {
-    final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+    final TelephonyManager tm = ContextCompat.getSystemService(context, TelephonyManager.class);
     final int configMcc = context.getResources().getConfiguration().mcc;
     final int configMnc = context.getResources().getConfiguration().mnc;
     if (tm.getSimState() == TelephonyManager.SIM_STATE_READY) {
@@ -39,11 +36,11 @@ public class TelephonyUtil {
   }
 
   public static String getApn(final Context context) {
-    final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    final ConnectivityManager cm = ContextCompat.getSystemService(context, ConnectivityManager.class);
     return cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE_MMS).getExtraInfo();
   }
 
   public static boolean isAnyPstnLineBusy(@NonNull Context context) {
-    return getManager(context).getCallState() != TelephonyManager.CALL_STATE_IDLE;
+    return ContextCompat.getSystemService(context, TelephonyManager.class).getCallState() != TelephonyManager.CALL_STATE_IDLE;
   }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
@@ -429,7 +429,7 @@ public class ManageRecipientFragment extends LoggingFragment {
   private static void setCopyToClipboardOnLongPress(@NonNull TextView textView) {
     textView.setOnLongClickListener(v -> {
       Util.copyToClipboard(v.getContext(), textView.getText().toString());
-      ServiceUtil.getVibrator(v.getContext()).vibrate(250);
+      ContextCompat.getSystemService(v.getContext(), Vibrator.class).vibrate(250);
       Toast.makeText(v.getContext(), R.string.RecipientBottomSheet_copied_to_clipboard, Toast.LENGTH_SHORT).show();
       return true;
     });

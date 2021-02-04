@@ -39,6 +39,7 @@ import android.text.style.StyleSpan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -260,7 +261,7 @@ public class Util {
   @SuppressLint("MissingPermission")
   public static Optional<Phonenumber.PhoneNumber> getDeviceNumber(Context context) {
     try {
-      final String           localNumber = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getLine1Number();
+      final String           localNumber = ContextCompat.getSystemService(context, TelephonyManager.class).getLine1Number();
       final Optional<String> countryIso  = getSimCountryIso(context);
 
       if (TextUtils.isEmpty(localNumber)) return Optional.absent();
@@ -274,7 +275,7 @@ public class Util {
   }
 
   public static Optional<String> getSimCountryIso(Context context) {
-    String simCountryIso = ((TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE)).getSimCountryIso();
+    String simCountryIso = ContextCompat.getSystemService(context, TelephonyManager.class).getSimCountryIso();
     return Optional.fromNullable(simCountryIso != null ? simCountryIso.toUpperCase() : null);
   }
 
@@ -492,12 +493,10 @@ public class Util {
     else             return Uri.parse(uri);
   }
 
-  @TargetApi(VERSION_CODES.KITKAT)
   public static boolean isLowMemory(Context context) {
-    ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+    ActivityManager activityManager = ContextCompat.getSystemService(context, ActivityManager.class);
 
-    return (VERSION.SDK_INT >= VERSION_CODES.KITKAT && activityManager.isLowRamDevice()) ||
-           activityManager.getLargeMemoryClass() <= 64;
+    return activityManager.isLowRamDevice() || activityManager.getLargeMemoryClass() <= 64;
   }
 
   public static int clamp(int value, int min, int max) {
@@ -514,7 +513,7 @@ public class Util {
 
   public static @Nullable String readTextFromClipboard(@NonNull Context context) {
     {
-      ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+      ClipboardManager clipboardManager = ContextCompat.getSystemService(context, ClipboardManager.class);
 
       if (clipboardManager.hasPrimaryClip() && clipboardManager.getPrimaryClip().getItemCount() > 0) {
         return clipboardManager.getPrimaryClip().getItemAt(0).getText().toString();
@@ -526,7 +525,7 @@ public class Util {
 
   public static void writeTextToClipboard(@NonNull Context context, @NonNull String text) {
     {
-      ClipboardManager clipboardManager = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+      ClipboardManager clipboardManager = ContextCompat.getSystemService(context, ClipboardManager.class);
       clipboardManager.setPrimaryClip(ClipData.newPlainText("Safety numbers", text));
     }
   }
@@ -560,7 +559,8 @@ public class Util {
   }
 
   public static void copyToClipboard(@NonNull Context context, @NonNull String text) {
-    ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
+    ContextCompat.getSystemService(context, ClipboardManager.class)
+      .setPrimaryClip(ClipData.newPlainText("text", text));
   }
 
   private static Handler getHandler() {

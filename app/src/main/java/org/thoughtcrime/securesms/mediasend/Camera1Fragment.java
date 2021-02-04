@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -78,7 +78,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
       throw new IllegalStateException("Parent activity must implement the Controller interface.");
     }
 
-    WindowManager windowManager = ServiceUtil.getWindowManager(getActivity());
+    WindowManager windowManager = ContextCompat.getSystemService(requireContext(), WindowManager.class);
     Display       display       = windowManager.getDefaultDisplay();
     Point         displaySize   = new Point();
 

@@ -9,16 +9,17 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.TouchDelegate;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.DarkOverflowToolbar;
 
@@ -51,32 +52,25 @@ public final class ContactFilterToolbar extends DarkOverflowToolbar {
     this.clearToggle     = findViewById(R.id.search_clear);
     this.toggleContainer = findViewById(R.id.toggle_container);
 
-    this.keyboardToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(dialpadToggle);
-      }
+    this.keyboardToggle.setOnClickListener(v -> {
+      searchText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+      ContextCompat.getSystemService(getContext(), InputMethodManager.class)
+        .showSoftInput(searchText, 0);
+      displayTogglingView(dialpadToggle);
     });
 
-    this.dialpadToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setInputType(InputType.TYPE_CLASS_PHONE);
-        ServiceUtil.getInputMethodManager(getContext()).showSoftInput(searchText, 0);
-        displayTogglingView(keyboardToggle);
-      }
+    this.dialpadToggle.setOnClickListener(v -> {
+      searchText.setInputType(InputType.TYPE_CLASS_PHONE);
+      ContextCompat.getSystemService(getContext(), InputMethodManager.class)
+        .showSoftInput(searchText, 0);
+      displayTogglingView(keyboardToggle);
     });
 
-    this.clearToggle.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        searchText.setText("");
+    this.clearToggle.setOnClickListener(v -> {
+      searchText.setText("");
 
-        if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
-        else displayTogglingView(keyboardToggle);
-      }
+      if (SearchUtil.isTextInput(searchText)) displayTogglingView(dialpadToggle);
+      else displayTogglingView(keyboardToggle);
     });
 
     this.searchText.addTextChangedListener(new TextWatcher() {

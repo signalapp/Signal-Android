@@ -5,12 +5,12 @@ import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
@@ -30,7 +30,7 @@ public final class WebRtcUtil {
   }
 
   public static @NonNull LockManager.PhoneState getInCallPhoneState(@NonNull Context context) {
-    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
     if (audioManager.isSpeakerphoneOn() || audioManager.isBluetoothScoOn() || audioManager.isWiredHeadsetOn()) {
       return LockManager.PhoneState.IN_HANDS_FREE_CALL;
     } else {
@@ -47,7 +47,7 @@ public final class WebRtcUtil {
       return;
     }
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
+    AudioManager androidAudioManager = ContextCompat.getSystemService(context, AudioManager.class);
     //noinspection deprecation
     boolean      shouldEnable        = !(androidAudioManager.isSpeakerphoneOn() || androidAudioManager.isBluetoothScoOn() || androidAudioManager.isWiredHeadsetOn());
 

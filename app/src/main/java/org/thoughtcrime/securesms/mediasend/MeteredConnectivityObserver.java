@@ -8,13 +8,12 @@ import android.net.ConnectivityManager;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.net.ConnectivityManagerCompat;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 /**
  * Lifecycle-bound observer for whether or not the active network connection is metered.
@@ -28,7 +27,7 @@ class MeteredConnectivityObserver extends BroadcastReceiver implements DefaultLi
   @MainThread
   MeteredConnectivityObserver(@NonNull Context context, @NonNull LifecycleOwner lifecycleOwner) {
     this.context             = context;
-    this.connectivityManager = ServiceUtil.getConnectivityManager(context);
+    this.connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
     this.metered             = new MutableLiveData<>();
 
     this.metered.setValue(ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager));

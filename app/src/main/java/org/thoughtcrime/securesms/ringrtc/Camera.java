@@ -9,6 +9,7 @@ import android.hardware.camera2.CameraMetadata;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -203,7 +204,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
       super(context);
 
       this.context       = context;
-      this.cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+      this.cameraManager = ContextCompat.getSystemService(context, CameraManager.class);
       this.deviceNames   = null;
     }
 

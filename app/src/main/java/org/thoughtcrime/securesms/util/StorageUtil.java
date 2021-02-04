@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
@@ -64,7 +65,8 @@ public class StorageUtil {
     String backupVolume    = lastPathSegment.replaceFirst(":.*", "");
     String backupName      = lastPathSegment.replaceFirst(".*:", "");
 
-    StorageManager      storageManager = ServiceUtil.getStorageManager(context);
+    StorageManager      storageManager = ContextCompat.getSystemService(context,
+      StorageManager.class);
     List<StorageVolume> storageVolumes = storageManager.getStorageVolumes();
     StorageVolume       storageVolume  = null;
 

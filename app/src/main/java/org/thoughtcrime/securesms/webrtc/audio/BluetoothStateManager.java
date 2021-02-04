@@ -12,9 +12,9 @@ import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -89,7 +89,7 @@ public class BluetoothStateManager {
 
   public void setWantsConnection(boolean enabled) {
     synchronized (LOCK) {
-      AudioManager audioManager = ServiceUtil.getAudioManager(context);
+      AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
       this.wantsConnection = enabled;
 
@@ -124,7 +124,7 @@ public class BluetoothStateManager {
   private boolean isBluetoothAvailable() {
     try {
       synchronized (LOCK) {
-        AudioManager audioManager = ServiceUtil.getAudioManager(context);
+        AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
         if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) return false;
         if (!audioManager.isBluetoothScoAvailableOffCall())            return false;
@@ -161,7 +161,7 @@ public class BluetoothStateManager {
 
           synchronized (LOCK) {
             if (wantsConnection && isBluetoothAvailable() && scoConnection == ScoConnection.DISCONNECTED) {
-              AudioManager audioManager = ServiceUtil.getAudioManager(context);
+              AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
               audioManager.startBluetoothSco();
               scoConnection = ScoConnection.IN_PROGRESS;
             }
@@ -201,7 +201,7 @@ public class BluetoothStateManager {
                   scoConnection = ScoConnection.CONNECTED;
 
                   if (wantsConnection) {
-                    AudioManager audioManager = ServiceUtil.getAudioManager(context);
+                    AudioManager audioManager = ContextCompat.getSystemService(context, AudioManager.class);
                     audioManager.setBluetoothScoOn(true);
                   }
                 }

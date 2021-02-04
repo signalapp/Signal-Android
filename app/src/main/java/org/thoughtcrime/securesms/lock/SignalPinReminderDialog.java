@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
 import androidx.core.app.DialogCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 
 import org.signal.core.util.logging.Log;
@@ -31,7 +32,6 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
 import org.thoughtcrime.securesms.lock.v2.KbsConstants;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -54,7 +54,7 @@ public final class SignalPinReminderDialog {
                                         .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))
                                         .create();
 
-    WindowManager  windowManager = ServiceUtil.getWindowManager(context);
+    WindowManager  windowManager = ContextCompat.getSystemService(context, WindowManager.class);
     Display        display       = windowManager.getDefaultDisplay();
     DisplayMetrics metrics       = new DisplayMetrics();
     display.getMetrics(metrics);

@@ -23,6 +23,7 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.mms.pdu_alt.PduParser;
 import com.google.android.mms.pdu_alt.SendConf;
@@ -146,7 +147,7 @@ public class OutgoingLegacyMmsConnection extends LegacyMmsConnection implements 
 
   public static boolean isConnectionPossible(Context context) {
     try {
-      ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      ConnectivityManager connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
       NetworkInfo         networkInfo         = connectivityManager.getNetworkInfo(MmsRadio.TYPE_MOBILE_MMS);
       if (networkInfo == null) {
         Log.w(TAG, "MMS network info was null, unsupported by this device");

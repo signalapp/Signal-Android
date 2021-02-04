@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import org.signal.core.util.logging.Log;
@@ -101,11 +102,9 @@ public class BackupDialog {
     textView.setOnClickListener(v -> checkBox.toggle());
 
     dialog.findViewById(R.id.number_table).setOnClickListener(v -> {
-      ((ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", Util.join(password, " ")));
+      ContextCompat.getSystemService(context, ClipboardManager.class).setPrimaryClip(ClipData.newPlainText("text", Util.join(password, " ")));
       Toast.makeText(context, R.string.BackupDialog_copied_to_clipboard, Toast.LENGTH_LONG).show();
     });
-
-
   }
 
   @RequiresApi(29)

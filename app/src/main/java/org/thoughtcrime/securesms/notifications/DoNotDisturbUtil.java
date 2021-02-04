@@ -9,11 +9,11 @@ import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +28,7 @@ public final class DoNotDisturbUtil {
   public static boolean shouldDisturbUserWithCall(@NonNull Context context, @NonNull Recipient recipient) {
     if (Build.VERSION.SDK_INT <= 23) return true;
 
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
     switch (notificationManager.getCurrentInterruptionFilter()) {
       case NotificationManager.INTERRUPTION_FILTER_PRIORITY:

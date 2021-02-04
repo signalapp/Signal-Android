@@ -31,6 +31,7 @@ import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -45,7 +46,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.concurrent.TimeUnit;
@@ -102,7 +102,8 @@ public class KeyCachingService extends Service {
   }
 
   public static void onAppForegrounded(@NonNull Context context) {
-    ServiceUtil.getAlarmManager(context).cancel(buildExpirationPendingIntent(context));
+    ContextCompat.getSystemService(context, AlarmManager.class)
+      .cancel(buildExpirationPendingIntent(context));
   }
 
   public static void onAppBackgrounded(@NonNull Context context) {
@@ -246,7 +247,7 @@ public class KeyCachingService extends Service {
 
       Log.i(TAG, "Starting timeout: " + timeoutMillis);
 
-      AlarmManager  alarmManager     = ServiceUtil.getAlarmManager(context);
+      AlarmManager  alarmManager     = ContextCompat.getSystemService(context, AlarmManager.class);
       PendingIntent expirationIntent = buildExpirationPendingIntent(context);
 
       alarmManager.cancel(expirationIntent);

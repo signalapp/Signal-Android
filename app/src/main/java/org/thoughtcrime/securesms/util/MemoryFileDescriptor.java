@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.ParcelFileDescriptor;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 
@@ -81,7 +82,7 @@ public final class MemoryFileDescriptor implements Closeable {
     if (sizeEstimate < 0) throw new IllegalArgumentException();
 
     if (sizeEstimate > 0) {
-      ActivityManager            activityManager = ServiceUtil.getActivityManager(context);
+      ActivityManager            activityManager = ContextCompat.getSystemService(context, ActivityManager.class);
       ActivityManager.MemoryInfo memoryInfo      = new ActivityManager.MemoryInfo();
 
       synchronized (MemoryFileDescriptor.class) {

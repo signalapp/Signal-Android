@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -37,7 +39,6 @@ import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -269,7 +270,8 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     pinEntry.setFocusable(true);
 
     if (pinEntry.requestFocus()) {
-      ServiceUtil.getInputMethodManager(pinEntry.getContext()).showSoftInput(pinEntry, 0);
+      ContextCompat.getSystemService(pinEntry.getContext(), InputMethodManager.class)
+        .showSoftInput(pinEntry, 0);
     }
   }
 

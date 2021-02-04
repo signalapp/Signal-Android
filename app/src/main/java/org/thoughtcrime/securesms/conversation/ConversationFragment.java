@@ -51,6 +51,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.HtmlCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -702,7 +703,7 @@ public class ConversationFragment extends LoggingFragment {
     Collections.sort(messageList, (lhs, rhs) -> Long.compare(lhs.getMessageRecord().getDateReceived(), rhs.getMessageRecord().getDateReceived()));
 
     SpannableStringBuilder bodyBuilder = new SpannableStringBuilder();
-    ClipboardManager       clipboard   = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipboardManager       clipboard   = ContextCompat.getSystemService(requireContext(), ClipboardManager.class);
 
     for (ConversationMessage message : messageList) {
       CharSequence body = message.getDisplayBody(requireContext());

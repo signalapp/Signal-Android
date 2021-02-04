@@ -16,6 +16,7 @@ import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
@@ -122,7 +123,7 @@ public class ApplicationMigrationService extends Service
   private void updateBackgroundNotification(int total, int complete) {
     notification.setProgress(total, complete, false);
 
-    ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE))
+    ContextCompat.getSystemService(this, NotificationManager.class)
       .notify(NotificationIds.APPLICATION_MIGRATION, notification.build());
   }
 
@@ -151,7 +152,7 @@ public class ApplicationMigrationService extends Service
     @Override
     public void run() {
       notification              = initializeBackgroundNotification();
-      PowerManager powerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+      PowerManager powerManager = ContextCompat.getSystemService(ApplicationMigrationService.this, PowerManager.class);
       WakeLock     wakeLock     = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "signal:migration");
 
       try {
@@ -194,7 +195,8 @@ public class ApplicationMigrationService extends Service
       builder.setAutoCancel(true);
 
       Notification notification = builder.build();
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NotificationIds.SMS_IMPORT_COMPLETE, notification);
+      ContextCompat.getSystemService(context, NotificationManager.class)
+        .notify(NotificationIds.SMS_IMPORT_COMPLETE, notification);
     }
   }
 

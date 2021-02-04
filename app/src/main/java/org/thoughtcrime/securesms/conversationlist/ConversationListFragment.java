@@ -53,6 +53,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -119,7 +120,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -441,7 +441,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void hideKeyboard() {
-    InputMethodManager imm = ServiceUtil.getInputMethodManager(requireContext());
+    InputMethodManager imm = ContextCompat.getSystemService(requireContext(), InputMethodManager.class);
     imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0);
   }
 

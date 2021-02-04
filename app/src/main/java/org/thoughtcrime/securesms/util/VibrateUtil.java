@@ -6,6 +6,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 public final class VibrateUtil {
 
@@ -14,7 +15,7 @@ public final class VibrateUtil {
   private VibrateUtil() { }
 
   public static void vibrateTick(@NonNull Context context) {
-    Vibrator vibrator = ServiceUtil.getVibrator(context);
+    Vibrator vibrator = ContextCompat.getSystemService(context, Vibrator.class);
 
     if (Build.VERSION.SDK_INT >= 26) {
       VibrationEffect effect = VibrationEffect.createOneShot(TICK_LENGTH, 64);

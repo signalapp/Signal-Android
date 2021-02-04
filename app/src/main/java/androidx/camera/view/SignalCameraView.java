@@ -60,6 +60,7 @@ import androidx.camera.core.impl.LensFacingConverter;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 
@@ -285,16 +286,14 @@ public final class SignalCameraView extends FrameLayout {
   @Override
   protected void onAttachedToWindow() {
     super.onAttachedToWindow();
-    DisplayManager dpyMgr =
-        (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
+    DisplayManager dpyMgr = ContextCompat.getSystemService(getContext(), DisplayManager.class);
     dpyMgr.registerDisplayListener(mDisplayListener, new Handler(Looper.getMainLooper()));
   }
 
   @Override
   protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
-    DisplayManager dpyMgr =
-        (DisplayManager) getContext().getSystemService(Context.DISPLAY_SERVICE);
+    DisplayManager dpyMgr = ContextCompat.getSystemService(getContext(), DisplayManager.class);
     dpyMgr.unregisterDisplayListener(mDisplayListener);
   }
 

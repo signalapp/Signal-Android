@@ -16,7 +16,6 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 /**
  * A lifecycle-safe way to retrieve a single location update. If a cached location is available,
@@ -33,7 +32,7 @@ class LocationRetriever implements DefaultLifecycleObserver, LocationListener {
 
   LocationRetriever(@NonNull Context context, @NonNull LifecycleOwner lifecycleOwner, @NonNull SuccessListener successListener, @NonNull FailureListener failureListener) {
     this.context         = context;
-    this.locationManager = ServiceUtil.getLocationManager(context);
+    this.locationManager = ContextCompat.getSystemService(context, LocationManager.class);
     this.successListener = successListener;
     this.failureListener = failureListener;
 

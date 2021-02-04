@@ -89,7 +89,7 @@ public class PushRecipientsPanel extends RelativeLayout implements RecipientFore
   }
 
   private void initialize() {
-    LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    LayoutInflater inflater = LayoutInflater.from(getContext());
     inflater.inflate(R.layout.push_recipients_panel, this, true);
 
     View imageButton = findViewById(R.id.contacts_button);

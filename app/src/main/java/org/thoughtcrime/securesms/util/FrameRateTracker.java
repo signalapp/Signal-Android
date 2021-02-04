@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.view.Choreographer;
 import android.view.Display;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 
@@ -57,7 +59,7 @@ public class FrameRateTracker {
    * has a dynamic refresh rate.
    */
   public static float getDisplayRefreshRate(@NonNull Context context) {
-    Display display = ServiceUtil.getWindowManager(context).getDefaultDisplay();
+    Display display = ContextCompat.getSystemService(context, WindowManager.class).getDefaultDisplay();
     return display.getRefreshRate();
   }
 

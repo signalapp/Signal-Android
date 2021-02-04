@@ -3,11 +3,11 @@ package org.thoughtcrime.securesms.service.webrtc;
 import android.media.AudioManager;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 
 /**
  * Encapsulates the shared logic to deal with local device actions. Other action processors inherit
@@ -24,7 +24,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleWiredHeadsetChange(@NonNull WebRtcServiceState currentState, boolean present) {
     Log.i(tag, "handleWiredHeadsetChange():");
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
+    AudioManager androidAudioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
     if (present && androidAudioManager.isSpeakerphoneOn()) {
       androidAudioManager.setSpeakerphoneOn(false);
@@ -52,7 +52,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   protected @NonNull WebRtcServiceState handleSetSpeakerAudio(@NonNull WebRtcServiceState currentState, boolean isSpeaker) {
     Log.i(tag, "handleSetSpeakerAudio(): " + isSpeaker);
 
-    AudioManager androidAudioManager = ServiceUtil.getAudioManager(context);
+    AudioManager androidAudioManager = ContextCompat.getSystemService(context, AudioManager.class);
 
     webRtcInteractor.setWantsBluetoothConnection(false);
     androidAudioManager.setSpeakerphoneOn(isSpeaker);

@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
-import android.annotation.TargetApi;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.R;
 
@@ -46,20 +47,7 @@ public class LongClickCopySpan extends URLSpan {
   }
 
   private void copyUrl(Context context, String url) {
-    int sdk = android.os.Build.VERSION.SDK_INT;
-    if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
-      @SuppressWarnings("deprecation") android.text.ClipboardManager clipboard =
-              (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-      clipboard.setText(url);
-    } else {
-      copyUriSdk11(context, url);
-    }
-  }
-
-  @TargetApi(android.os.Build.VERSION_CODES.HONEYCOMB)
-  private void copyUriSdk11(Context context, String url) {
-    android.content.ClipboardManager clipboard =
-            (android.content.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+    ClipboardManager clipboard = ContextCompat.getSystemService(context, ClipboardManager.class);
     ClipData clip = ClipData.newPlainText(context.getString(R.string.app_name), url);
     clipboard.setPrimaryClip(clip);
   }

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 /**
  * Easy access to various properties of the device, typically to make performance-related decisions.
@@ -31,20 +32,17 @@ public final class DeviceProperties {
   }
 
   public static boolean isLowMemoryDevice(@NonNull Context context) {
-    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
-    return activityManager.isLowRamDevice();
+    return ContextCompat.getSystemService(context, ActivityManager.class).isLowRamDevice();
   }
 
   public static int getMemoryClass(@NonNull Context context) {
-    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
-    return activityManager.getMemoryClass();
+    return ContextCompat.getSystemService(context, ActivityManager.class).getMemoryClass();
   }
 
   public static @NonNull MemoryInfo getMemoryInfo(@NonNull Context context) {
-    MemoryInfo      info            = new MemoryInfo();
-    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+    MemoryInfo info = new MemoryInfo();
 
-    activityManager.getMemoryInfo(info);
+    ContextCompat.getSystemService(context, ActivityManager.class).getMemoryInfo(info);
 
     return info;
   }

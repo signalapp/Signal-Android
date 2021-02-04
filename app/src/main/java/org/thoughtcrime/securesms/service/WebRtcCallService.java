@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 
@@ -42,7 +43,6 @@ import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -60,7 +60,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
-import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.UncaughtExceptionHandlerManager;
@@ -248,7 +247,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
     registerWiredHeadsetStateReceiver();
     registerNetworkReceiver();
 
-    TelephonyUtil.getManager(this)
+    ContextCompat.getSystemService(this, TelephonyManager.class)
                  .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE);
   }
 
@@ -336,7 +335,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
 
     unregisterNetworkReceiver();
 
-    TelephonyUtil.getManager(this)
+    ContextCompat.getSystemService(this, TelephonyManager.class)
                  .listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE);
   }
 
@@ -529,7 +528,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   private static class NetworkReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-      ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+      ConnectivityManager connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager.class);
       NetworkInfo         activeNetworkInfo   = connectivityManager.getActiveNetworkInfo();
       Intent              serviceIntent       = new Intent(context, WebRtcCallService.class);
 

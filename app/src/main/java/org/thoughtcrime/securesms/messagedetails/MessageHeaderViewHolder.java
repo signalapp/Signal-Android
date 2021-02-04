@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.messagedetails;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -178,7 +178,8 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
   }
 
   private void copyToClipboard(String text) {
-    ((ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("text", text));
+    ContextCompat.getSystemService(itemView.getContext(), ClipboardManager.class)
+      .setPrimaryClip(ClipData.newPlainText("text", text));
   }
 
   private class ExpiresUpdater implements Runnable {

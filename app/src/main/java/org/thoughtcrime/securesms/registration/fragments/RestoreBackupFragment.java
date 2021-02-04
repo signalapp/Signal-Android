@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
@@ -216,7 +217,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                    .setTitle(R.string.RegistrationActivity_enter_backup_passphrase)
                    .setView(view)
                    .setPositiveButton(R.string.RegistrationActivity_restore, (dialog, which) -> {
-                     InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                     InputMethodManager inputMethodManager = ContextCompat.getSystemService(context, InputMethodManager.class);
                      inputMethodManager.hideSoftInputFromWindow(prompt.getWindowToken(), 0);
 
                      setSpinning(restoreButton);

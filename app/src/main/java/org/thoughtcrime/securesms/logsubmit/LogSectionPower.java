@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.util.BucketInfo;
 
@@ -20,7 +21,7 @@ public class LogSectionPower implements LogSection {
 
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
-    final UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
+    final UsageStatsManager usageStatsManager = ContextCompat.getSystemService(context, UsageStatsManager.class);
 
     if (usageStatsManager == null) {
       return "UsageStatsManager not available";

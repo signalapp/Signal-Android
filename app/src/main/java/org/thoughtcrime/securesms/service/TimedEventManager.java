@@ -12,8 +12,7 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-
-import org.thoughtcrime.securesms.util.ServiceUtil;
+import androidx.core.content.ContextCompat;
 
 /**
  * Class to help manage scheduling events to happen in the future, whether the app is open or not.
@@ -85,7 +84,7 @@ public abstract class TimedEventManager<E> {
   protected static void setAlarm(@NonNull Context context, long delay, @NonNull Class alarmClass) {
     Intent        intent        = new Intent(context, alarmClass);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-    AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
+    AlarmManager  alarmManager  = ContextCompat.getSystemService(context, AlarmManager.class);
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);

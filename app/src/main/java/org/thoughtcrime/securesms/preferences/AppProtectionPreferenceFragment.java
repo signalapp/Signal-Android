@@ -13,6 +13,7 @@ import android.text.style.TextAppearanceSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.autofill.HintConstants;
 import androidx.core.app.DialogCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
@@ -57,7 +59,6 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -219,7 +220,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_INTERVAL_PREF).setVisible(false);
       findPreference(TextSecurePreferences.PASSPHRASE_TIMEOUT_PREF).setVisible(false);
 
-      KeyguardManager keyguardManager = (KeyguardManager)getContext().getSystemService(Context.KEYGUARD_SERVICE);
+      KeyguardManager keyguardManager = ContextCompat.getSystemService(requireContext(), KeyguardManager.class);
       if (!keyguardManager.isKeyguardSecure()) {
         ((SwitchPreferenceCompat)findPreference(TextSecurePreferences.SCREEN_LOCK)).setChecked(false);
         findPreference(TextSecurePreferences.SCREEN_LOCK).setEnabled(false);
@@ -513,7 +514,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
 
         pinEditText.post(() -> {
           if (pinEditText.requestFocus()) {
-            ServiceUtil.getInputMethodManager(pinEditText.getContext()).showSoftInput(pinEditText, 0);
+            ContextCompat.getSystemService(pinEditText.getContext(), InputMethodManager.class)
+              .showSoftInput(pinEditText, 0);
           }
         });
 

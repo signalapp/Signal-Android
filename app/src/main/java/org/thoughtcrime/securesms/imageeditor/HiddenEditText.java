@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
@@ -142,7 +143,7 @@ final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
 
     if (currentTextEntity != null && focus) {
       currentTextEntity.setFocused(true);
-      InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+      InputMethodManager imm = ContextCompat.getSystemService(getContext(), InputMethodManager.class);
       imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT);
       if (!imm.isAcceptingText()) {
         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -153,7 +154,7 @@ final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
   }
 
   public void hideKeyboard() {
-    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+    InputMethodManager imm = ContextCompat.getSystemService(getContext(), InputMethodManager.class);
     imm.hideSoftInputFromWindow(getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
   }
 

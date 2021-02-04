@@ -71,7 +71,7 @@ public final class ConversationUtil {
   @WorkerThread
   public static void pushShortcutForRecipientIfNeededSync(@NonNull Context context, @NonNull Recipient recipient) {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
-      ShortcutManager    shortcutManager = ServiceUtil.getShortcutManager(context);
+      ShortcutManager    shortcutManager = context.getSystemService(ShortcutManager.class);
       String             shortcutId      = getShortcutId(recipient);
       List<ShortcutInfo> shortcuts       = shortcutManager.getDynamicShortcuts();
 
@@ -91,7 +91,7 @@ public final class ConversationUtil {
    */
   public static void clearAllShortcuts(@NonNull Context context) {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
-      ShortcutManager    shortcutManager = ServiceUtil.getShortcutManager(context);
+      ShortcutManager    shortcutManager = context.getSystemService(ShortcutManager.class);
       List<ShortcutInfo> shortcutInfos   = shortcutManager.getDynamicShortcuts();
 
       shortcutManager.removeLongLivedShortcuts(Stream.of(shortcutInfos).map(ShortcutInfo::getId).toList());
@@ -105,7 +105,7 @@ public final class ConversationUtil {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
       SignalExecutors.BOUNDED.execute(() -> {
         List<RecipientId> recipientIds    = DatabaseFactory.getThreadDatabase(context).getRecipientIdsForThreadIds(threadIds);
-        ShortcutManager   shortcutManager = ServiceUtil.getShortcutManager(context);
+        ShortcutManager   shortcutManager = context.getSystemService(ShortcutManager.class);
 
         shortcutManager.removeLongLivedShortcuts(Stream.of(recipientIds).map(ConversationUtil::getShortcutId).toList());
       });
@@ -136,8 +136,7 @@ public final class ConversationUtil {
 
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   public static int getMaxShortcuts(@NonNull Context context) {
-    ShortcutManager shortcutManager  = ServiceUtil.getShortcutManager(context);
-    return shortcutManager.getMaxShortcutCountPerActivity();
+    return context.getSystemService(ShortcutManager.class).getMaxShortcutCountPerActivity();
   }
 
   /**
@@ -151,7 +150,7 @@ public final class ConversationUtil {
   @RequiresApi(CONVERSATION_SUPPORT_VERSION)
   @WorkerThread
   public static boolean setActiveShortcuts(@NonNull Context context, @NonNull List<Recipient> rankedRecipients) {
-    ShortcutManager shortcutManager  = ServiceUtil.getShortcutManager(context);
+    ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
 
     if (shortcutManager.isRateLimitingActive()) {
       return false;
@@ -181,9 +180,8 @@ public final class ConversationUtil {
   @WorkerThread
   private static void pushShortcutForRecipientInternal(@NonNull Context context, @NonNull Recipient recipient, int rank) {
     ShortcutInfo    shortcutInfo    = buildShortcutInfo(context, recipient, rank);
-    ShortcutManager shortcutManager = ServiceUtil.getShortcutManager(context);
 
-    shortcutManager.pushDynamicShortcut(shortcutInfo);
+    context.getSystemService(ShortcutManager.class).pushDynamicShortcut(shortcutInfo);
   }
 
   /**

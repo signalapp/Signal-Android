@@ -124,7 +124,7 @@ public class DeviceActivity extends PassphraseRequiredActivity
   @Override
   public void onQrDataFound(final String data) {
     Util.runOnMain(() -> {
-      ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
+      ContextCompat.getSystemService(this, Vibrator.class).vibrate(50);
       Uri uri = Uri.parse(data);
       deviceLinkFragment.setLinkClickedListener(uri, DeviceActivity.this);
 
