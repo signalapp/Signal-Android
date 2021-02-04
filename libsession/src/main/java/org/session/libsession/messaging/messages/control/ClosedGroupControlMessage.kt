@@ -118,7 +118,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW
                     closedGroupUpdate.publicKey = kind.publicKey
                     closedGroupUpdate.name = kind.name
-                    val encryptionKeyPairAsProto = SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.newBuilder()
+                    val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
                     encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(kind.encryptionKeyPair.publicKey.serialize())
                     encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(kind.encryptionKeyPair.privateKey.serialize())
 

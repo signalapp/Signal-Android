@@ -360,7 +360,7 @@ object ClosedGroupsProtocolV2 {
         // Generate the new encryption key pair
         val newKeyPair = Curve.generateKeyPair()
         // Distribute it
-        val proto = SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.newBuilder()
+        val proto = SignalServiceProtos.KeyPair.newBuilder()
         proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
         proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
         val plaintext = proto.build().toByteArray()
@@ -677,7 +677,7 @@ object ClosedGroupsProtocolV2 {
         val encryptedKeyPair = wrapper.encryptedKeyPair.toByteArray()
         val plaintext = SessionProtocolImpl(context).decrypt(encryptedKeyPair, userKeyPair).first
         // Parse it
-        val proto = SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.parseFrom(plaintext)
+        val proto = SignalServiceProtos.KeyPair.parseFrom(plaintext)
         val keyPair = ECKeyPair(DjbECPublicKey(proto.publicKey.toByteArray().removing05PrefixIfNeeded()), DjbECPrivateKey(proto.privateKey.toByteArray()))
         // Store it
         apiDB.addClosedGroupEncryptionKeyPair(keyPair, groupPublicKey)

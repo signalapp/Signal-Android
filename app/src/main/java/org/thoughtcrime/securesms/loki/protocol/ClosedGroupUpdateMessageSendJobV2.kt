@@ -174,7 +174,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW
                 closedGroupUpdate.publicKey = ByteString.copyFrom(kind.publicKey)
                 closedGroupUpdate.name = kind.name
-                val encryptionKeyPair = SignalServiceProtos.ClosedGroupUpdateV2.KeyPair.newBuilder()
+                val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
                 encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
                 encryptionKeyPair.privateKey = ByteString.copyFrom(kind.encryptionKeyPair.privateKey.serialize())
                 closedGroupUpdate.encryptionKeyPair =  encryptionKeyPair.build()
