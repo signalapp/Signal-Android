@@ -95,15 +95,18 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
-    if (accountManager == null) {
-      synchronized (LOCK) {
-        if (accountManager == null) {
-          accountManager = provider.provideSignalServiceAccountManager();
-        }
-      }
+    SignalServiceAccountManager local = accountManager;
+
+    if (local != null) {
+      return local;
     }
 
-    return accountManager;
+    synchronized (LOCK) {
+      if (accountManager == null) {
+        accountManager = provider.provideSignalServiceAccountManager();
+      }
+      return accountManager;
+    }
   }
 
   public static @NonNull GroupsV2Authorization getGroupsV2Authorization() {
@@ -152,6 +155,12 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
+    SignalServiceMessageSender local = messageSender;
+
+    if (local != null) {
+      return local;
+    }
+
     synchronized (LOCK) {
       if (messageSender == null) {
         messageSender = provider.provideSignalServiceMessageSender();
@@ -161,21 +170,23 @@ public class ApplicationDependencies {
             IncomingMessageObserver.getUnidentifiedPipe(),
             TextSecurePreferences.isMultiDevice(application));
       }
+      return messageSender;
     }
-
-    return messageSender;
   }
 
   public static @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
-    if (messageReceiver == null) {
-      synchronized (LOCK) {
-        if (messageReceiver == null) {
-          messageReceiver = provider.provideSignalServiceMessageReceiver();
-        }
-      }
+    SignalServiceMessageReceiver local = messageReceiver;
+
+    if (local != null) {
+      return local;
     }
 
-    return messageReceiver;
+    synchronized (LOCK) {
+      if (messageReceiver == null) {
+        messageReceiver = provider.provideSignalServiceMessageReceiver();
+      }
+      return messageReceiver;
+    }
   }
 
   public static void resetSignalServiceMessageReceiver() {
@@ -301,15 +312,18 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull IncomingMessageObserver getIncomingMessageObserver() {
-    if (incomingMessageObserver == null) {
-      synchronized (LOCK) {
-        if (incomingMessageObserver == null) {
-          incomingMessageObserver = provider.provideIncomingMessageObserver();
-        }
-      }
+    IncomingMessageObserver local = incomingMessageObserver;
+
+    if (local != null) {
+      return local;
     }
 
-    return incomingMessageObserver;
+    synchronized (LOCK) {
+      if (incomingMessageObserver == null) {
+        incomingMessageObserver = provider.provideIncomingMessageObserver();
+      }
+      return incomingMessageObserver;
+    }
   }
 
   public static @NonNull TrimThreadsByDateManager getTrimThreadsByDateManager() {
