@@ -2,7 +2,7 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter {
+        jcenter { //NOTE: JetBrains will release this trove4j version into Maven central (so, this 'jecenter' reference will be also removed
             content {
                 includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
                 includeGroupByRegex "com\\.archinamon.*"
@@ -33,7 +33,7 @@ wrapper {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

@@ -34,15 +34,9 @@ repositories {
             includeGroupByRegex "org\\.signal.*"
         }
     }
-    maven { // textdrawable
-        url 'https://dl.bintray.com/amulyakhare/maven'
-        content {
-            includeGroupByRegex "com\\.amulyakhare.*"
-        }
-    }
+    flatDir  { dir "${project.rootDir}/lib" }
     google()
     mavenCentral()
-    jcenter()
     mavenLocal()
 }
 
