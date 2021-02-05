@@ -150,11 +150,10 @@ public class EditProxyFragment extends Fragment {
                        .setTitle(R.string.preferences_success)
                        .setMessage(R.string.preferences_you_are_connected_to_the_proxy)
                        .setPositiveButton(android.R.string.ok, (d, i) -> {
-                         d.dismiss();
                          requireActivity().onBackPressed();
+                         d.dismiss();
                        })
                        .show();
-        requireActivity().onBackPressed();
         break;
       case PROXY_FAILURE:
         proxyStatus.setVisibility(View.INVISIBLE);
