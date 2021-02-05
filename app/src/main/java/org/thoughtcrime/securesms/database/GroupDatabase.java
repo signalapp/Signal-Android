@@ -150,6 +150,16 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     return new Reader(cursor);
   }
 
+  public List<GroupRecord> getAllGroups() {
+    Reader reader = getGroups();
+    GroupRecord record;
+    List<GroupRecord> groups = new LinkedList<>();
+    while ((record = reader.getNext()) != null) {
+      if (record.isActive()) { groups.add(record); }
+    }
+    return groups;
+  }
+
   public @NonNull List<Recipient> getGroupMembers(String groupId, boolean includeSelf) {
     List<Address>   members     = getCurrentMembers(groupId);
     List<Recipient> recipients  = new LinkedList<>();

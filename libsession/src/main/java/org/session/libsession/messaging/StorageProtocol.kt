@@ -108,6 +108,8 @@ interface StorageProtocol {
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
+    // Groups
+    fun getAllGroups(): List<GroupRecord>
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)

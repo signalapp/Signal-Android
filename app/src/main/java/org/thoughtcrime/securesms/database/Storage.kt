@@ -371,6 +371,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getLokiAPIDatabase(context).getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
     }
 
+    override fun getAllGroups(): List<GroupRecord> {
+        return DatabaseFactory.getGroupDatabase(context).allGroups
+    }
+
     override fun setProfileSharing(address: Address, value: Boolean) {
         val recipient = Recipient.from(context, address, false)
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, value)
