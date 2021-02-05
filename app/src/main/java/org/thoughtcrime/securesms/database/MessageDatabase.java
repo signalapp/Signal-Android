@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.SqlUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -173,6 +174,14 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns 
 
   public abstract void ensureMigration();
 
+  final @NonNull String getOutgoingTypeClause() {
+    List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);
+    for (long outgoingMessageType : Types.OUTGOING_MESSAGE_TYPES) {
+      segments.add("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + " = " + outgoingMessageType + ")");
+    }
+
+    return Util.join(segments, " OR ");
+  }
 
   final int getInsecureMessagesSentForThread(long threadId) {
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
