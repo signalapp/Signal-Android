@@ -120,4 +120,6 @@
     <color name="tooltip_default_color">@color/core_white</color>
 
     <color name="wallpaper_preview_background">@color/transparent_white_30</color>
+    <color name="wallpaper_compose_background">@color/transparent_white_80</color>
+    <color name="wallpaper_toolbar_background">@color/core_white</color>
 </resources>

@@ -1403,6 +1403,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       } else {
         viewModel.getRecentMedia().observe(this, media -> attachmentKeyboardStub.get().onMediaChanged(media));
         attachmentKeyboardStub.get().setCallback(this);
+        attachmentKeyboardStub.get().setWallpaperEnabled(recipient.get().hasWallpaper());
         container.show(composeText, attachmentKeyboardStub.get());
 
         viewModel.onAttachmentKeyboardOpen();
@@ -1996,9 +1997,17 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (chatWallpaper != null) {
       chatWallpaper.loadInto(wallpaper);
       ChatWallpaperDimLevelUtil.applyDimLevelForNightMode(wallpaperDim, chatWallpaper);
+      inputPanel.setWallpaperEnabled(true);
+      if (attachmentKeyboardStub.resolved()) {
+        attachmentKeyboardStub.get().setWallpaperEnabled(true);
+      }
     } else {
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
+      inputPanel.setWallpaperEnabled(false);
+      if (attachmentKeyboardStub.resolved()) {
+        attachmentKeyboardStub.get().setWallpaperEnabled(false);
+      }
     }
     fragment.onWallpaperChanged(chatWallpaper);
   }
@@ -2503,7 +2512,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     if (supportActionBar == null) throw new AssertionError();
     int actionBarColor = color.toActionBarColor(this);
     supportActionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-    WindowUtil.setStatusBarColor(getWindow(), color.toStatusBarColor(this));
+    WindowUtil.setStatusBarColor(getWindow(), actionBarColor);
 
     joinGroupCallButton.setTextColor(actionBarColor);
     joinGroupCallButton.setIconTint(ColorStateList.valueOf(actionBarColor));

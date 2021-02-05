@@ -120,4 +120,6 @@
     <color name="tooltip_default_color">@color/core_grey_75</color>
 
     <color name="wallpaper_preview_background">@color/transparent_black_60</color>
+    <color name="wallpaper_compose_background">@color/transparent_black_80</color>
+    <color name="wallpaper_toolbar_background">@color/core_black</color>
 </resources>

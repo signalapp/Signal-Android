@@ -74,6 +74,7 @@ public class InputPanel extends LinearLayout
   private View            buttonToggle;
   private View            recordingContainer;
   private View            recordLockCancel;
+  private View            composeContainer;
 
   private MicrophoneRecorderView microphoneRecorderView;
   private SlideToCancel          slideToCancel;
@@ -103,6 +104,7 @@ public class InputPanel extends LinearLayout
 
     View quoteDismiss = findViewById(R.id.quote_dismiss);
 
+    this.composeContainer       = findViewById(R.id.compose_bubble);
     this.stickerSuggestion      = findViewById(R.id.input_panel_sticker_suggestion);
     this.quoteView              = findViewById(R.id.quote_view);
     this.linkPreview            = findViewById(R.id.link_preview);
@@ -284,6 +286,16 @@ public class InputPanel extends LinearLayout
 
   public View getMediaKeyboardToggleAnchorView() {
     return mediaKeyboard;
+  }
+
+  public void setWallpaperEnabled(boolean enabled) {
+    if (enabled) {
+      setBackgroundColor(getContext().getResources().getColor(R.color.wallpaper_compose_background));
+      composeContainer.setBackgroundResource(R.drawable.compose_background_wallpaper);
+    } else {
+      setBackgroundColor(getResources().getColor(R.color.signal_background_primary));
+      composeContainer.setBackgroundResource(R.drawable.compose_background);
+    }
   }
 
   @Override
