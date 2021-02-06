@@ -60,6 +60,7 @@ public class RatingManager {
            TextSecurePreferences.setRatingLaterTimestamp(context, waitUntil);
          }
        })
+       .setCancelable(false)
        .show();
   }
 
