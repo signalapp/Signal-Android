@@ -367,10 +367,7 @@ dependencies {
         exclude group: 'com.squareup.okhttp', module: 'okhttp-urlconnection'
     }
     implementation 'com.annimon:stream:1.1.8'
-    implementation ('com.takisoft.fix:colorpicker:0.9.1') {
-        exclude group: 'com.android.support', module: 'appcompat-v7'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-    }
+    implementation 'com.takisoft.colorpicker:colorpicker:1.0.0'
 
     implementation 'com.airbnb.android:lottie:3.0.7'
 

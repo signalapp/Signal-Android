@@ -282,8 +282,8 @@ dependencyVerification {
         ['com.google.android.material:material:1.2.1',
          'd3d0cc776f2341da8e572586c7d390a5b356ce39a0deb2768071dc40b364ac80'],
 
-        ['com.google.android:flexbox:0.3.0',
-         'a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935'],
+        ['com.google.android:flexbox:1.1.0',
+         'dad5455217068ebc99f4c09ea8917f3b22cc31686e89a47d22e3123b9a9084db'],
 
         ['com.google.auto.value:auto-value-annotations:1.6.5',
          '3677f725f5b1b6cd6a4cc8aa8cf8f5fd2b76d170205cbdc3e9bfd9b58f934b3b'],
@@ -363,8 +363,8 @@ dependencyVerification {
         ['com.squareup.okio:okio:1.17.4',
          'd78fac588458fc099e6c82e91fe5f0375c67434626451a3a77772c65d9eee85b'],
 
-        ['com.takisoft.fix:colorpicker:0.9.1',
-         'f5d0dbabe406a1800498ca9c1faf34db36e021d8488bf10360f29961fe3ab0d1'],
+        ['com.takisoft.colorpicker:colorpicker:1.0.0',
+         '7df0b6ea7bec31917c59d1d0f03da9a209dcdf51da6213de4795e3d72be3f545'],
 
         ['com.tomergoldst.android:tooltips:1.0.6',
          '4c56697dd1ad64b8066535c61f961a6d901e7ae5d97ae27084ba40ad620349b6'],
