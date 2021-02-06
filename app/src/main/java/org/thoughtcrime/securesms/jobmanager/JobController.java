@@ -314,7 +314,7 @@ class JobController {
 
       boolean exceedsQueue   = solo.getParameters().getQueue() != null                                    &&
                                solo.getParameters().getMaxInstancesForQueue() != Job.Parameters.UNLIMITED &&
-                               jobStorage.getJobCountForQueue(solo.getParameters().getQueue()) >= solo.getParameters().getMaxInstancesForQueue();
+                               jobStorage.getJobCountForFactoryAndQueue(solo.getFactoryKey(), solo.getParameters().getQueue()) >= solo.getParameters().getMaxInstancesForQueue();
 
       if (exceedsQueue) {
         return true;

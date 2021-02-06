@@ -547,13 +547,14 @@ public class FastJobStorageTest {
   }
 
   @Test
-  public void getJobCountForQueue_general() {
+  public void getJobCountForFactoryAndQueue_general() {
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
 
     subject.init();
 
-    assertEquals(1, subject.getJobCountForQueue("q1"));
-    assertEquals(0, subject.getJobCountForQueue("does-not-exist"));
+    assertEquals(1, subject.getJobCountForFactoryAndQueue("f1", "q1"));
+    assertEquals(0, subject.getJobCountForFactoryAndQueue("f2", "q1"));
+    assertEquals(0, subject.getJobCountForFactoryAndQueue("f1", "does-not-exist"));
   }
 
   private JobDatabase noopDatabase() {

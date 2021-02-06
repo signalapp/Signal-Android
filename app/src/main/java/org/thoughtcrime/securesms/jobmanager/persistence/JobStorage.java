@@ -30,7 +30,7 @@ public interface JobStorage {
   int getJobCountForFactory(@NonNull String factoryKey);
 
   @WorkerThread
-  int getJobCountForQueue(@NonNull String queueKey);
+  int getJobCountForFactoryAndQueue(@NonNull String factoryKey, @NonNull String queueKey);
 
   @WorkerThread
   void updateJobRunningState(@NonNull String id, boolean isRunning);
