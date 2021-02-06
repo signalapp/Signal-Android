@@ -767,7 +767,7 @@ public class SmsDatabase extends MessageDatabase {
 
           sameEraId = groupCallUpdateDetails.getEraId().equals(messageGroupCallEraId) && !Util.isEmpty(messageGroupCallEraId);
 
-          if (!sameEraId) {
+          if (sameEraId) {
             String body = GroupCallUpdateDetailsUtil.createUpdatedBody(groupCallUpdateDetails, Collections.emptyList(), false);
 
             ContentValues contentValues = new ContentValues();
