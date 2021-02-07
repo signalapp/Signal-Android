@@ -201,6 +201,19 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   private final Context context;
 
+  private OnLayoutChangeListener newOnLayoutChangedListener(Optional<MessageRecord> previousMessageRecord,
+                                                            Optional<MessageRecord> nextMessageRecord)
+  {
+    return new OnLayoutChangeListener() {
+      @Override
+      public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+        setGutterSizes(messageRecord, groupThread);
+        setMessageSpacing(view.getContext(), messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+        removeOnLayoutChangeListener(this);
+      }
+    };
+  }
+
   public ConversationItem(Context context) {
     this(context, null);
   }
@@ -279,7 +292,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.recipient.observeForever(this);
     this.conversationRecipient.observeForever(this);
 
-    setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted);
     setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);
@@ -291,9 +303,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setGroupAuthorColor(messageRecord, hasWallpaper);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper);
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
+
+    addOnLayoutChangeListener(newOnLayoutChangedListener(previousMessageRecord, nextMessageRecord));
   }
 
   @Override
