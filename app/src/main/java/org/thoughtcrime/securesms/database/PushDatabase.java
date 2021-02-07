@@ -6,8 +6,6 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;

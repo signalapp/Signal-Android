@@ -18,7 +18,6 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 
 import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
@@ -30,9 +29,6 @@ import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
-import org.thoughtcrime.securesms.database.MegaphoneDatabase;
 import org.thoughtcrime.securesms.database.MentionDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;

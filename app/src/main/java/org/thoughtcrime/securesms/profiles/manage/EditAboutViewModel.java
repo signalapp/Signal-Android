@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 
 public final class EditAboutViewModel extends ViewModel {

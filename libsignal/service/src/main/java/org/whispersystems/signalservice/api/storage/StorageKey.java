@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.whispersystems.signalservice.api.kbs.MasterKey;
-import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.util.Base64;
 import org.whispersystems.util.StringUtil;
 

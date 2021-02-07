@@ -3,8 +3,6 @@ package org.whispersystems.signalservice.internal.util.concurrent;
 import org.whispersystems.libsignal.logging.Log;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

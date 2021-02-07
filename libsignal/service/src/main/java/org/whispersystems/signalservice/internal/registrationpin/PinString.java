@@ -1,10 +1,5 @@
 package org.whispersystems.signalservice.internal.registrationpin;
 
-import org.whispersystems.signalservice.api.kbs.HashedPin;
-
-import java.nio.charset.StandardCharsets;
-import java.text.Normalizer;
-
 final class PinString {
 
   static boolean allNumeric(CharSequence pin) {

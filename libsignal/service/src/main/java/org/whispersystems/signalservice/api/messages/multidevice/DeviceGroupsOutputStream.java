@@ -9,7 +9,6 @@ package org.whispersystems.signalservice.api.messages.multidevice;
 import com.google.protobuf.ByteString;
 
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupDetails;
 
 import java.io.IOException;

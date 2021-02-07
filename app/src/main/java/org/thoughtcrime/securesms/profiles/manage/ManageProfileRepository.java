@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.profiles.manage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;

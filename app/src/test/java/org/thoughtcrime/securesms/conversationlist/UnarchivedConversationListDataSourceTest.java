@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.app.Application;
 import android.database.Cursor;
 
-import androidx.test.core.app.ApplicationProvider;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +17,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.util.paging.Invalidator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

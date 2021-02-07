@@ -21,7 +21,6 @@ import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
-import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherOutputStream;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Api;

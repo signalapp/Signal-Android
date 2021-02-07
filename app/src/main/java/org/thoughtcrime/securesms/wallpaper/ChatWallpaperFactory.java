@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.wallpaper;
 
 import android.net.Uri;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;

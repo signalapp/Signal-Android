@@ -9,8 +9,6 @@ package org.whispersystems.signalservice.api.account;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
-
 public class AccountAttributes {
 
   @JsonProperty

@@ -3,7 +3,6 @@ package org.whispersystems.signalservice.internal.contacts.crypto;
 import org.whispersystems.util.Base64;
 
 import java.io.ByteArrayInputStream;
-import java.net.URLDecoder;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;

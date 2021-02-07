@@ -10,7 +10,6 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
-import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory;
 import org.thoughtcrime.securesms.wallpaper.WallpaperStorage;

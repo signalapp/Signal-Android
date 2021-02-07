@@ -5,15 +5,10 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MappingAdapter;
 import org.thoughtcrime.securesms.util.MappingViewHolder;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.viewholders.RecipientMappingModel;
 
 public class ShareSelectionViewHolder extends MappingViewHolder<ShareSelectionMappingModel> {
 
