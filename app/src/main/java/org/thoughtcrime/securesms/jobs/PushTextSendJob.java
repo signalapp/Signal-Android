@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.session.libsignal.utilities.logging.Log;
 
 import org.session.libsession.messaging.threads.Address;
@@ -192,8 +193,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, SnodeAPI.Error
   {
     try {
+      String                           userPublicKey      = TextSecurePreferences.getLocalNumber(context);
       Recipient                        recipient          = Recipient.from(context, destination, false);
       SignalServiceAddress             address            = getPushAddress(recipient.getAddress());
+      SignalServiceAddress             localAddress       = new SignalServiceAddress(userPublicKey);
       Optional<byte[]>                 profileKey         = getProfileKey(recipient);
       Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
 
@@ -205,13 +208,21 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 //      }
 
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
-                                                                           .withTimestamp(message.getDateSent())
-                                                                           .withBody(message.getBody())
-                                                                           .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                           .withProfileKey(profileKey.orNull())
-//                                                                           .withPreKeyBundle(preKeyBundle)
-                                                                           .asEndSessionMessage(message.isEndSession())
-                                                                           .build();
+              .withTimestamp(message.getDateSent())
+              .withBody(message.getBody())
+              .withExpiration((int)(message.getExpiresIn() / 1000))
+              .withProfileKey(profileKey.orNull())
+              .asEndSessionMessage(message.isEndSession())
+              .build();
+
+      SignalServiceDataMessage textSecureSelfSendMessage = SignalServiceDataMessage.newBuilder()
+              .withTimestamp(message.getDateSent())
+              .withBody(message.getBody())
+              .withSyncTarget(destination.serialize())
+              .withExpiration((int)(message.getExpiresIn() / 1000))
+              .withProfileKey(profileKey.orNull())
+              .asEndSessionMessage(message.isEndSession())
+              .build();
 
       if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
         // Loki - Device link messages don't go through here
@@ -225,7 +236,19 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         if (result.getLokiAPIError() != null) {
           throw result.getLokiAPIError();
         } else {
-          return result.getSuccess().isUnidentified();
+          boolean isUnidentified = result.getSuccess().isUnidentified();
+
+          try {
+            // send to ourselves to sync multi-device
+            Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+            SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, textSecureSelfSendMessage);
+            if (selfSendResult.getLokiAPIError() != null) {
+              throw selfSendResult.getLokiAPIError();
+            }
+          } catch (Exception e) {
+            Log.e("Loki", "Error sending message to ourselves", e);
+          }
+          return isUnidentified;
         }
       }
     } catch (UnregisteredUserException e) {

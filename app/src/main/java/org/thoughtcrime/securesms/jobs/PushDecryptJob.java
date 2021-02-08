@@ -28,6 +28,7 @@ import org.session.libsignal.metadata.ProtocolNoSessionException;
 import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SelfSendException;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
+import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
 
@@ -568,6 +569,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     Recipient originalRecipient = getMessageDestination(content, message);
     Recipient masterRecipient = getMessageMasterDestination(content.getSender());
+    String      syncTarget        = message.getSyncTarget().orNull();
+
 
     notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
@@ -582,75 +585,79 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       masterAddress = getMessageMasterDestination(content.getSender()).getAddress();
     }
 
-    IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
-      message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
-      quote, sharedContacts, linkPreviews, sticker);
+    if (syncTarget != null && !syncTarget.isEmpty()) {
+//      OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(masterAddress, message.getTimestamp(), -1,
+//              message.getExpiresInSeconds() * 1000L, false, )
+    } else {
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
+              message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
+              quote, sharedContacts, linkPreviews, sticker);
+      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+      database.beginTransaction();
 
-    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-    database.beginTransaction();
+      // Ignore message if it has no body and no attachments
+      if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
+        return;
+      }
 
-    // Ignore message if it has no body and no attachments
-    if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
-      return;
-    }
+      Optional<InsertResult> insertResult;
 
-    Optional<InsertResult> insertResult;
+      try {
+        if (message.isGroupMessage()) {
+          insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1, content.getTimestamp());
+        } else {
+          insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+        }
 
-    try {
-      if (message.isGroupMessage()) {
-        insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1, content.getTimestamp());
-      } else {
-        insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+        if (insertResult.isPresent()) {
+          List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
+          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
+          List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
+
+          forceStickerDownloadIfNecessary(stickerAttachments);
+
+          for (DatabaseAttachment attachment : attachments) {
+            ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
+          }
+
+          if (smsMessageId.isPresent()) {
+            DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
+          }
+
+          database.setTransactionSuccessful();
+        }
+      } catch (MmsException e) {
+        throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
+      } finally {
+        database.endTransaction();
       }
 
       if (insertResult.isPresent()) {
-        List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
-        List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-        List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-        forceStickerDownloadIfNecessary(stickerAttachments);
-
-        for (DatabaseAttachment attachment : attachments) {
-          ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
-        }
-
-        if (smsMessageId.isPresent()) {
-          DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
-        }
-
-        database.setTransactionSuccessful();
-      }
-    } catch (MmsException e) {
-      throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
-    } finally {
-      database.endTransaction();
-    }
-
-    if (insertResult.isPresent()) {
-      messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-    }
-
-    if (insertResult.isPresent()) {
-      InsertResult result = insertResult.get();
-
-      // Loki - Cache the user hex encoded public key (for mentions)
-      MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
-      MentionsManager.shared.cache(content.getSender(), result.getThreadId());
-
-      // Loki - Store message open group server ID if needed
-      if (messageServerIDOrNull.isPresent()) {
-        long messageID = result.getMessageId();
-        long messageServerID = messageServerIDOrNull.get();
-        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-        lokiMessageDatabase.setServerID(messageID, messageServerID);
+        messageNotifier.updateNotification(context, insertResult.get().getThreadId());
       }
 
-      // Loki - Update mapping of message ID to original thread ID
-      if (result.getMessageId() > -1) {
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-        long originalThreadId = threadDatabase.getOrCreateThreadIdFor(originalRecipient);
-        lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
+      if (insertResult.isPresent()) {
+        InsertResult result = insertResult.get();
+
+        // Loki - Cache the user hex encoded public key (for mentions)
+        MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
+        MentionsManager.shared.cache(content.getSender(), result.getThreadId());
+
+        // Loki - Store message open group server ID if needed
+        if (messageServerIDOrNull.isPresent()) {
+          long messageID = result.getMessageId();
+          long messageServerID = messageServerIDOrNull.get();
+          LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+          lokiMessageDatabase.setServerID(messageID, messageServerID);
+        }
+
+        // Loki - Update mapping of message ID to original thread ID
+        if (result.getMessageId() > -1) {
+          ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+          LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+          long originalThreadId = threadDatabase.getOrCreateThreadIdFor(originalRecipient);
+          lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
+        }
       }
     }
   }
@@ -769,6 +776,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     String      body              = message.getBody().isPresent() ? message.getBody().get() : "";
     Recipient   originalRecipient = getMessageDestination(content, message);
     Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
+    String      syncTarget        = message.getSyncTarget().orNull();
 
     if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
@@ -778,14 +786,45 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
+    } else if (syncTarget != null && !syncTarget.isEmpty()) {
+      Address targetAddress = Address.fromSerialized(syncTarget);
+
+      OutgoingTextMessage tm = new OutgoingTextMessage(Recipient.from(context, targetAddress, false),
+              body, message.getExpiresInSeconds(), -1);
+
+      // Ignore the message if it has no body
+      if (tm.getMessageBody().length() == 0) { return; }
+
+      // Check if we have the thread already
+      long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(syncTarget);
+
+
+      // Insert the message into the database
+      Optional<InsertResult> insertResult;
+      insertResult = database.insertMessageOutbox(threadID, tm, content.getTimestamp());
+
+      if (insertResult.isPresent()) {
+        threadId = insertResult.get().getThreadId();
+      }
+
+      if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+      if (threadId != null) {
+        messageNotifier.updateNotification(context, threadId);
+      }
+
+      if (insertResult.isPresent()) {
+        InsertResult result = insertResult.get();
+
+        // Loki - Cache the user hex encoded public key (for mentions)
+        MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(result.getThreadId(), context);
+        MentionsManager.shared.cache(content.getSender(), result.getThreadId());
+      }
+
     } else {
       notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
       Address masterAddress = masterRecipient.getAddress();
-
-      if (message.isGroupMessage()) {
-        masterAddress = getMessageMasterDestination(content.getSender()).getAddress();
-      }
 
       IncomingTextMessage tm = new IncomingTextMessage(masterAddress,
                                                        content.getSenderDevice(),

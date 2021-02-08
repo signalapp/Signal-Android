@@ -389,6 +389,7 @@ public class SignalServiceCipher {
     ClosedGroupUpdate              closedGroupUpdate           = content.getClosedGroupUpdate();
     ClosedGroupUpdateV2            closedGroupUpdateV2         = content.getClosedGroupUpdateV2();
     boolean                        isDeviceUnlinkingRequest    = ((content.getFlags() & DataMessage.Flags.DEVICE_UNLINKING_REQUEST_VALUE) != 0);
+    String                         syncTarget                  = content.getSyncTarget();
 
     for (AttachmentPointer pointer : content.getAttachmentsList()) {
       attachments.add(createAttachmentPointer(pointer));
@@ -417,7 +418,8 @@ public class SignalServiceCipher {
             null,
             closedGroupUpdate,
             closedGroupUpdateV2,
-            isDeviceUnlinkingRequest);
+            isDeviceUnlinkingRequest,
+            syncTarget);
   }
 
   private SignalServiceSyncMessage createSynchronizeMessage(Metadata metadata, SyncMessage content)

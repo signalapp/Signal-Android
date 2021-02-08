@@ -9,6 +9,7 @@ import org.session.libsession.messaging.jobs.Data
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
@@ -221,7 +222,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedContentMessage, false, ttl, false,
-                    true, false, false, false)
+                    true, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")
         }
