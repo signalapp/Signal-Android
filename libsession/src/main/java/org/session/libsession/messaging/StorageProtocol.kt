@@ -21,6 +21,7 @@ import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 interface StorageProtocol {
 
@@ -109,6 +110,8 @@ interface StorageProtocol {
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
     // Groups
+    fun getAllClosedGroupPublicKeys(): Set<String>
+    fun getAllOpenGroups(): Map<Long, PublicChat>
     fun getAllGroups(): List<GroupRecord>
 
     // Settings

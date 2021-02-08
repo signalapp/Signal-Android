@@ -27,6 +27,7 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
@@ -369,6 +370,14 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair? {
         return DatabaseFactory.getLokiAPIDatabase(context).getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+    }
+
+    override fun getAllClosedGroupPublicKeys(): Set<String> {
+        return DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+    }
+
+    override fun getAllOpenGroups(): Map<Long, PublicChat> {
+        return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
     }
 
     override fun getAllGroups(): List<GroupRecord> {

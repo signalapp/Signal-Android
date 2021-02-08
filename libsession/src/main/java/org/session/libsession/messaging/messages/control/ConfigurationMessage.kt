@@ -10,6 +10,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Hex
 
 class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>): ControlMessage() {
 
@@ -36,14 +37,14 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
 
         fun toProto(): SignalServiceProtos.ConfigurationMessage.ClosedGroup? {
             val result = SignalServiceProtos.ConfigurationMessage.ClosedGroup.newBuilder()
-            result.publicKey = ByteString.copyFrom(publicKey.toByteArray())
+            result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.name = name
             val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
             encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
             encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
-            result.addAllMembers(members.map { ByteString.copyFrom(it.toByteArray()) })
-            result.addAllAdmins(admins.map { ByteString.copyFrom(it.toByteArray()) })
+            result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
+            result.addAllAdmins(admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             return result.build()
         }
     }
@@ -61,7 +62,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             for (groupRecord in groups) {
                 if (groupRecord.isClosedGroup) {
                     if (!groupRecord.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
-                    val groupPublicKey = GroupUtil.getDecodedGroupID(groupRecord.encodedId) // TODO: Check if this is correct. Does it need to be double decoded?
+                    val groupPublicKey = GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupID(groupRecord.encodedId)).toHexString() // Double decoded
                     if (!storage.isClosedGroup(groupPublicKey)) continue
                     val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: continue
                     val closedGroup = ClosedGroup(groupPublicKey, groupRecord.title, encryptionKeyPair, groupRecord.members.map { it.serialize() }, groupRecord.admins.map { it.serialize() })

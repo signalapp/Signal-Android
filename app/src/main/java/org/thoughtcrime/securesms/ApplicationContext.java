@@ -206,6 +206,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
+    org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);

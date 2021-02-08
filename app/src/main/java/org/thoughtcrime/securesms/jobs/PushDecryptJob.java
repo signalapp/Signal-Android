@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
@@ -264,8 +265,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
-      if (content.getDeviceLink().isPresent()) {
-        throw new UnsupportedOperationException("Device link operations are not supported!");
+      if (content.configurationMessageProto.isPresent()) {
+        MultiDeviceProtocol.handleConfigurationMessage(context, content.configurationMessageProto.get(), content.getSender());
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
@@ -277,7 +278,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           if (message.getClosedGroupUpdateV2().isPresent()) {
             ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupUpdateV2().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
           }
-
           if (message.isEndSession()) {
             handleEndSessionMessage(content, smsMessageId);
           } else if (message.isGroupUpdate()) {

@@ -157,6 +157,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     while ((record = reader.getNext()) != null) {
       if (record.isActive()) { groups.add(record); }
     }
+    reader.close();
     return groups;
   }
 

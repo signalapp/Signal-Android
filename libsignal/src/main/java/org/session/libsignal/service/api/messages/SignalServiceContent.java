@@ -12,7 +12,9 @@ import org.session.libsignal.service.api.messages.SignalServiceNullMessage;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
 import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
+import org.session.libsignal.service.api.messages.multidevice.ConfigurationMessage;
 import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
 
@@ -33,10 +35,11 @@ public class SignalServiceContent {
   private final Optional<SignalServiceTypingMessage>  typingMessage;
 
   // Loki
-  private final Optional<DeviceLink>   deviceLink;
-  public Optional<PreKeyBundleMessage> preKeyBundleMessage     = Optional.absent();
-  public Optional<String>              senderDisplayName       = Optional.absent();
-  public Optional<String>              senderProfilePictureURL = Optional.absent();
+  private final Optional<DeviceLink>           deviceLink;
+  public Optional<SignalServiceProtos.Content> configurationMessageProto = Optional.absent();
+  public Optional<PreKeyBundleMessage>         preKeyBundleMessage       = Optional.absent();
+  public Optional<String>                      senderDisplayName         = Optional.absent();
+  public Optional<String>                      senderProfilePictureURL   = Optional.absent();
 
   public SignalServiceContent(SignalServiceDataMessage message, String sender, int senderDevice, long timestamp, boolean needsReceipt, boolean isDeviceUnlinkingRequest) {
     this.sender                   = sender;
@@ -126,6 +129,22 @@ public class SignalServiceContent {
     this.typingMessage            = Optional.absent();
     this.deviceLink               = Optional.fromNullable(deviceLink);
     this.isDeviceUnlinkingRequest = false;
+  }
+
+  public SignalServiceContent(SignalServiceProtos.Content configurationMessageProto, String sender, int senderDevice, long timestamp) {
+    this.sender                    = sender;
+    this.senderDevice              = senderDevice;
+    this.timestamp                 = timestamp;
+    this.needsReceipt              = false;
+    this.message                   = Optional.absent();
+    this.synchronizeMessage        = Optional.absent();
+    this.callMessage               = Optional.absent();
+    this.nullMessage               = Optional.absent();
+    this.readMessage               = Optional.absent();
+    this.typingMessage             = Optional.absent();
+    this.deviceLink                = Optional.absent();
+    this.configurationMessageProto = Optional.fromNullable(configurationMessageProto);
+    this.isDeviceUnlinkingRequest  = false;
   }
 
   public SignalServiceContent(SignalServiceNullMessage nullMessage, String sender, int senderDevice, long timestamp) {

@@ -216,7 +216,18 @@ public class SignalServiceCipher {
         );
       }
 
-      if (message.hasDeviceLinkMessage()) {
+      if (message.hasConfigurationMessage()) {
+        SignalServiceCipher.Metadata metadata = plaintext.getMetadata();
+        SignalServiceContent content = new SignalServiceContent(message, metadata.getSender(), metadata.getSenderDevice(), metadata.getTimestamp());
+
+        if (message.hasDataMessage()) {
+          setProfile(message.getDataMessage(), content);
+          SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(metadata, message.getDataMessage());
+          content.setDataMessage(signalServiceDataMessage);
+        }
+
+        return content;
+      } else if (message.hasDeviceLinkMessage()) {
         SignalServiceProtos.DeviceLinkMessage protoDeviceLinkMessage = message.getDeviceLinkMessage();
         String masterPublicKey = protoDeviceLinkMessage.getPrimaryPublicKey();
         String slavePublicKey = protoDeviceLinkMessage.getSecondaryPublicKey();

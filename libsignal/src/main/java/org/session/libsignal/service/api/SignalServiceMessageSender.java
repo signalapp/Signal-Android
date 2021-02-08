@@ -381,7 +381,6 @@ public class SignalServiceMessageSender {
     } else if (message.getStickerPackOperations().isPresent()) {
       content = createMultiDeviceStickerPackOperationContent(message.getStickerPackOperations().get());
     } else if (message.getVerified().isPresent()) {
-      sendMessage(message.getVerified().get(), unidentifiedAccess);
       return;
     } else {
       throw new IOException("Unsupported sync message!");
@@ -450,12 +449,6 @@ public class SignalServiceMessageSender {
                                               attachment.getVoiceNote(),
                                               attachment.getCaption(),
                                               result.getUrl());
-  }
-
-  private void sendMessage(VerifiedMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
-      throws IOException, UntrustedIdentityException
-  {
-
   }
 
   private byte[] createTypingContent(SignalServiceTypingMessage message) {
@@ -1155,7 +1148,7 @@ public class SignalServiceMessageSender {
                                                      final boolean                notifyPNServer)
       throws IOException, UntrustedIdentityException
   {
-    if (recipient.getNumber().equals(userPublicKey)) { return SendMessageResult.success(recipient, false, false); }
+//    if (recipient.getNumber().equals(userPublicKey)) { return SendMessageResult.success(recipient, false, false); }
     final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
     OutgoingPushMessageList messages = getSessionProtocolEncryptedMessage(recipient, timestamp, content);
     // Loki - Remove this when we have shared sender keys
