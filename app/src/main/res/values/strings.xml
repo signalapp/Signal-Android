@@ -1775,6 +1775,7 @@
     <string name="activity_settings_notifications_button_title">Notifications</string>
     <string name="activity_settings_chats_button_title">Chats</string>
     <string name="activity_settings_devices_button_title">Devices</string>
+    <string name="activity_settings_invite_button_title">Invite</string>
     <string name="activity_settings_recovery_phrase_button_title">Recovery Phrase</string>
     <string name="activity_settings_clear_all_data_button_title">Clear Data</string>
 
