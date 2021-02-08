@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.Hex;
@@ -49,9 +50,10 @@ public class ApplicationDependencies {
   private static final Object FRAME_RATE_TRACKER_LOCK = new Object();
   private static final Object JOB_MANAGER_LOCK        = new Object();
 
-  private static Application     application;
-  private static Provider        provider;
-  private static MessageNotifier messageNotifier;
+  private static Application           application;
+  private static Provider              provider;
+  private static MessageNotifier       messageNotifier;
+  private static AppForegroundObserver appForegroundObserver;
 
   private static volatile SignalServiceAccountManager  accountManager;
   private static volatile SignalServiceMessageSender   messageSender;
@@ -80,9 +82,12 @@ public class ApplicationDependencies {
         throw new IllegalStateException("Already initialized!");
       }
 
-      ApplicationDependencies.application     = application;
-      ApplicationDependencies.provider        = provider;
-      ApplicationDependencies.messageNotifier = provider.provideMessageNotifier();
+      ApplicationDependencies.application           = application;
+      ApplicationDependencies.provider              = provider;
+      ApplicationDependencies.messageNotifier       = provider.provideMessageNotifier();
+      ApplicationDependencies.appForegroundObserver = provider.provideAppForegroundObserver();
+
+      ApplicationDependencies.appForegroundObserver.begin();
     }
   }
 
@@ -378,6 +383,11 @@ public class ApplicationDependencies {
     return shakeToReport;
   }
 
+  public static @NonNull AppForegroundObserver getAppForegroundObserver() {
+    return appForegroundObserver;
+  }
+
+
   public interface Provider {
     @NonNull PipeConnectivityListener providePipeListener();
     @NonNull GroupsV2Operations provideGroupsV2Operations();
@@ -399,5 +409,6 @@ public class ApplicationDependencies {
     @NonNull TypingStatusSender provideTypingStatusSender();
     @NonNull DatabaseObserver provideDatabaseObserver();
     @NonNull ShakeToReport provideShakeToReport();
+    @NonNull AppForegroundObserver provideAppForegroundObserver();
   }
 }

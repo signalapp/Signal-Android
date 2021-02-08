@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.TrimThreadsByDateManager;
 import org.thoughtcrime.securesms.shakereport.ShakeToReport;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.ByteUnit;
 import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -222,6 +223,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull ShakeToReport provideShakeToReport() {
     return new ShakeToReport(context);
+  }
+
+  @Override
+  public @NonNull AppForegroundObserver provideAppForegroundObserver() {
+    return new AppForegroundObserver();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

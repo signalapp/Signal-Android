@@ -446,7 +446,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void setCallInProgressNotification(int type, @NonNull Recipient recipient) {
-    startForeground(CallNotificationBuilder.getNotificationId(getApplicationContext(), type),
+    startForeground(CallNotificationBuilder.getNotificationId(type),
                     CallNotificationBuilder.getCallInProgressNotification(this, type, recipient));
   }
 
@@ -480,7 +480,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void startCallCardActivityIfPossible() {
-    if (Build.VERSION.SDK_INT >= 29 && !ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
+    if (Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
       return;
     }
 

@@ -107,7 +107,7 @@ public class BackgroundMessageRetriever {
    *         care of it.
    */
   public static boolean shouldIgnoreFetch(@NonNull Context context) {
-    return ApplicationContext.getInstance(context).isAppVisible() &&
+    return ApplicationDependencies.getAppForegroundObserver().isForegrounded() &&
            !ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(context);
   }
 

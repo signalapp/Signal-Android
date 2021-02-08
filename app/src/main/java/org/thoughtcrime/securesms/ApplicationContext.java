@@ -23,9 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
@@ -69,6 +66,7 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -94,15 +92,13 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DefaultLifecycleObserver {
+public class ApplicationContext extends MultiDexApplication implements AppForegroundObserver.Listener {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private ExpiringMessageManager expiringMessageManager;
   private ViewOnceMessageManager viewOnceMessageManager;
   private PersistentLogger       persistentLogger;
-
-  private volatile boolean isAppVisible;
 
   public static ApplicationContext getInstance(Context context) {
     return (ApplicationContext)context.getApplicationContext();
@@ -133,7 +129,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
                             .addBlocking("mark-registration", () -> RegistrationUtil.maybeMarkRegistrationComplete(this))
-                            .addBlocking("lifecycle-observer", () -> ProcessLifecycleOwner.get().getLifecycle().addObserver(this))
+                            .addBlocking("lifecycle-observer", () -> ApplicationDependencies.getAppForegroundObserver().addListener(this))
                             .addBlocking("message-retriever", this::initializeMessageRetrieval)
                             .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
                             .addBlocking("vector-compat", () -> {
@@ -164,16 +160,13 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                             .addPostRender(() -> NotificationChannels.create(this))
                             .execute();
 
-    ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
-
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     Tracer.getInstance().end("Application#onCreate()");
   }
 
   @Override
-  public void onStart(@NonNull LifecycleOwner owner) {
+  public void onForeground() {
     long startTime = System.currentTimeMillis();
-    isAppVisible = true;
     Log.i(TAG, "App is now visible.");
 
     ApplicationDependencies.getFrameRateTracker().begin();
@@ -194,8 +187,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   @Override
-  public void onStop(@NonNull LifecycleOwner owner) {
-    isAppVisible = false;
+  public void onBackground() {
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
@@ -212,10 +204,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   public ViewOnceMessageManager getViewOnceMessageManager() {
     return viewOnceMessageManager;
-  }
-
-  public boolean isAppVisible() {
-    return isAppVisible;
   }
 
   public PersistentLogger getPersistentLogger() {

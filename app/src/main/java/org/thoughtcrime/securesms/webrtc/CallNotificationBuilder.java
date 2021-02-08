@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
@@ -55,7 +56,7 @@ public class CallNotificationBuilder {
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_DENY_CALL, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
       builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
 
-      if (callActivityRestricted(context)) {
+      if (callActivityRestricted()) {
         builder.setFullScreenIntent(pendingIntent, true);
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
         builder.setCategory(NotificationCompat.CATEGORY_CALL);
@@ -71,8 +72,8 @@ public class CallNotificationBuilder {
     return builder.build();
   }
 
-  public static int getNotificationId(@NonNull Context context, int type) {
-    if (callActivityRestricted(context) && type == TYPE_INCOMING_RINGING) {
+  public static int getNotificationId(int type) {
+    if (callActivityRestricted() && type == TYPE_INCOMING_RINGING) {
       return WEBRTC_NOTIFICATION_RINGING;
     } else {
       return WEBRTC_NOTIFICATION;
@@ -85,7 +86,7 @@ public class CallNotificationBuilder {
   }
 
   private static @NonNull String getNotificationChannel(@NonNull Context context, int type) {
-    if (callActivityRestricted(context) && type == TYPE_INCOMING_RINGING) {
+    if (callActivityRestricted() && type == TYPE_INCOMING_RINGING) {
       return NotificationChannels.CALLS;
     } else {
       return NotificationChannels.OTHER;
@@ -112,7 +113,7 @@ public class CallNotificationBuilder {
     return new NotificationCompat.Action(iconResId, context.getString(titleResId), pendingIntent);
   }
 
-  private static boolean callActivityRestricted(@NonNull Context context) {
-    return Build.VERSION.SDK_INT >= 29 && !ApplicationContext.getInstance(context).isAppVisible();
+  private static boolean callActivityRestricted() {
+    return Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded();
   }
 }
