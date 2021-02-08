@@ -28,7 +28,6 @@ import org.session.libsignal.metadata.ProtocolNoSessionException;
 import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SelfSendException;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
-import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
 
@@ -567,17 +566,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                  @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    Recipient originalRecipient = getMessageDestination(content, message);
-    Recipient masterRecipient = getMessageMasterDestination(content.getSender());
+    Recipient   originalRecipient = getMessageDestination(content, message);
+    Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
     String      syncTarget        = message.getSyncTarget().orNull();
 
 
     notifyTypingStoppedFromIncomingMessage(masterRecipient, content.getSender(), content.getSenderDevice());
 
-    Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
-    Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
-    Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
-    Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
+    Optional<QuoteModel>         quote          = getValidatedQuote(message.getQuote());
+    Optional<List<Contact>>      sharedContacts = getContacts(message.getSharedContacts());
+    Optional<List<LinkPreview>>  linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
+    Optional<Attachment>         sticker        = getStickerAttachment(message.getSticker());
 
     Address masterAddress = masterRecipient.getAddress();
 
@@ -586,8 +585,57 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (syncTarget != null && !syncTarget.isEmpty()) {
-//      OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(masterAddress, message.getTimestamp(), -1,
-//              message.getExpiresInSeconds() * 1000L, false, )
+      List<Attachment>             attachments    = PointerAttachment.forPointers(message.getAttachments());
+
+      OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(masterRecipient, message.getBody().orNull(),
+              attachments,
+              message.getTimestamp(), -1,
+              message.getExpiresInSeconds() * 1000,
+              ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
+              sharedContacts.or(Collections.emptyList()),
+              linkPreviews.or(Collections.emptyList()),
+              Collections.emptyList(), Collections.emptyList());
+
+      MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+      database.beginTransaction();
+
+      // Ignore message if it has no body and no attachments
+      if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
+        return;
+      }
+
+      Optional<InsertResult> insertResult;
+
+      try {
+        if (message.isGroupMessage()) {
+          insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, -1, content.getTimestamp());
+        } else {
+          insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, -1);
+        }
+
+        if (insertResult.isPresent()) {
+          List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
+          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
+          List<DatabaseAttachment> dbAttachments      = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
+
+          forceStickerDownloadIfNecessary(stickerAttachments);
+
+          for (DatabaseAttachment attachment : dbAttachments) {
+            ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
+          }
+
+          if (smsMessageId.isPresent()) {
+            DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
+          }
+
+          database.setTransactionSuccessful();
+        }
+      } catch (MmsException e) {
+        throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
+      } finally {
+        database.endTransaction();
+      }
+
     } else {
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
