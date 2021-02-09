@@ -41,6 +41,7 @@ object MessageSender {
 
         // Closed groups
         object NoThread : Error("Couldn't find a thread associated with the given group public key.")
+        object NoKeyPair: Error("Couldn't find a private key associated with the given group public key.")
         object NoPrivateKey : Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
 

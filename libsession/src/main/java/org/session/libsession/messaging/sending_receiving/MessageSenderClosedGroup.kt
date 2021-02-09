@@ -13,7 +13,9 @@ import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Hex
 
 import org.session.libsignal.libsignal.ecc.Curve
@@ -67,6 +69,147 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
     }
     // Return
     return deferred.promise
+}
+
+fun MessageSender.v2_update(groupPublicKey: String, members: List<String>, name: String) {
+    val context = MessagingConfiguration.shared.context
+    val storage = MessagingConfiguration.shared.storage
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't update nonexistent closed group.")
+        throw Error.NoThread
+    }
+    // Update name if needed
+    if (name != group.title) { setName(groupPublicKey, name) }
+    // Add members if needed
+    val addedMembers = members - group.members.map { it.serialize() }
+    if (!addedMembers.isEmpty()) { addMembers(groupPublicKey, addedMembers) }
+    // Remove members if needed
+    val removedMembers = group.members.map { it.serialize() } - members
+    if (removedMembers.isEmpty()) { removeMembers(groupPublicKey, removedMembers) }
+}
+
+fun MessageSender.setName(groupPublicKey: String, newName: String) {
+    val context = MessagingConfiguration.shared.context
+    val storage = MessagingConfiguration.shared.storage
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't change name for nonexistent closed group.")
+        throw Error.NoThread
+    }
+    val members = group.members.map { it.serialize() }.toSet()
+    val admins = group.admins.map { it.serialize() }
+    // Send the update to the group
+    val kind = ClosedGroupControlMessage.Kind.NameChange(newName)
+    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
+    send(closedGroupControlMessage, Address.fromSerialized(groupID))
+    // Update the group
+    storage.updateTitle(groupID, newName)
+    // Notify the user
+    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID)
+}
+
+fun MessageSender.addMembers(groupPublicKey: String, membersToAdd: List<String>) {
+    val context = MessagingConfiguration.shared.context
+    val storage = MessagingConfiguration.shared.storage
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't add members to nonexistent closed group.")
+        throw Error.NoThread
+    }
+    if (membersToAdd.isEmpty()) {
+        Log.d("Loki", "Invalid closed group update.")
+        throw Error.InvalidClosedGroupUpdate
+    }
+    val updatedMembers = group.members.map { it.serialize() }.toSet() + membersToAdd
+    // Save the new group members
+    storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
+    val membersAsData = updatedMembers.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+    val newMembersAsData = membersToAdd.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+    val admins = group.admins.map { it.serialize() }
+    val adminsAsData = admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+    val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: run {
+        Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+        throw Error.NoKeyPair
+    }
+    val name = group.title
+    // Send the update to the group
+    val memberUpdateKind = ClosedGroupControlMessage.Kind.MembersAdded(newMembersAsData)
+    val closedGroupControlMessage = ClosedGroupControlMessage(memberUpdateKind)
+    send(closedGroupControlMessage, Address.fromSerialized(groupID))
+    // Send closed group update messages to any new members individually
+    for (member in membersToAdd) {
+        val closedGroupNewKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupNewKind)
+        send(closedGroupControlMessage, Address.fromSerialized(member))
+    }
+    // Notify the user
+    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+}
+
+fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<String>) {
+    val context = MessagingConfiguration.shared.context
+    val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = storage.getUserPublicKey()!!
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't remove members from nonexistent closed group.")
+        throw Error.NoThread
+    }
+    if (membersToRemove.isEmpty()) {
+        Log.d("Loki", "Invalid closed group update.")
+        throw Error.InvalidClosedGroupUpdate
+    }
+    val updatedMembers = group.members.map { it.serialize() }.toSet() - membersToRemove
+    // Save the new group members
+    storage.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
+    val removeMembersAsData = membersToRemove.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+    val admins = group.admins.map { it.serialize() }
+    if (membersToRemove.any { it in admins } && updatedMembers.isNotEmpty()) {
+        Log.d("Loki", "Can't remove admin from closed group unless the group is destroyed entirely.")
+        throw Error.InvalidClosedGroupUpdate
+    }
+    val name = group.title
+    // Send the update to the group
+    val memberUpdateKind = ClosedGroupControlMessage.Kind.MembersRemoved(removeMembersAsData)
+    val closedGroupControlMessage = ClosedGroupControlMessage(memberUpdateKind)
+    send(closedGroupControlMessage, Address.fromSerialized(groupID))
+    val isCurrentUserAdmin = admins.contains(userPublicKey)
+    if (isCurrentUserAdmin) {
+        generateAndSendNewEncryptionKeyPair(groupPublicKey, updatedMembers)
+    }
+    // Notify the user
+    val infoType = SignalServiceProtos.GroupContext.Type.UPDATE
+    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+}
+
+fun MessageSender.v2_leave(groupPublicKey: String) {
+    val context = MessagingConfiguration.shared.context
+    val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = storage.getUserPublicKey()!!
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't leave nonexistent closed group.")
+        throw Error.NoThread
+    }
+    val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
+    val admins = group.admins.map { it.serialize() }
+    val name = group.title
+    // Send the update to the group
+    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft)
+    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
+        // Remove the group private key and unsubscribe from PNs
+        MessageReceiver.disableLocalGroupAndUnsubscribe(groupPublicKey, groupID, userPublicKey)
+    }
+    // Notify the user
+    val infoType = SignalServiceProtos.GroupContext.Type.QUIT
+    val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+    storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
 }
 
 fun MessageSender.update(groupPublicKey: String, members: Collection<String>, name: String): Promise<Unit, Exception> {
