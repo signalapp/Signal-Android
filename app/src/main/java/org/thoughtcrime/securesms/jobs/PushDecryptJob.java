@@ -83,6 +83,7 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
+import org.thoughtcrime.securesms.loki.utilities.DatabaseUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -584,8 +585,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       masterAddress = getMessageMasterDestination(content.getSender()).getAddress();
     }
 
+    // Handle sync message from ourselves
     if (syncTarget != null && !syncTarget.isEmpty()) {
       List<Attachment>             attachments    = PointerAttachment.forPointers(message.getAttachments());
+
+      Address targetAddress = Address.fromSerialized(syncTarget);
 
       OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(masterRecipient, message.getBody().orNull(),
               attachments,
@@ -595,6 +599,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               sharedContacts.or(Collections.emptyList()),
               linkPreviews.or(Collections.emptyList()),
               Collections.emptyList(), Collections.emptyList());
+
+      if (DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(message.getTimestamp(), targetAddress) != null) {
+        Log.d("Loki","Message already exists, don't insert again");
+        return;
+      }
 
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
       database.beginTransaction();
@@ -607,11 +616,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Optional<InsertResult> insertResult;
 
       try {
-        if (message.isGroupMessage()) {
-          insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, -1, content.getTimestamp());
-        } else {
-          insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, -1);
-        }
+
+        // Check if we have the thread already
+        long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(syncTarget);
+
+        insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, threadID, content.getTimestamp());
 
         if (insertResult.isPresent()) {
           List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
@@ -836,6 +845,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else if (syncTarget != null && !syncTarget.isEmpty()) {
       Address targetAddress = Address.fromSerialized(syncTarget);
+
+      if (DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(message.getTimestamp(), targetAddress) != null) {
+        Log.d("Loki","Message already exists, don't insert again");
+        return;
+      }
 
       OutgoingTextMessage tm = new OutgoingTextMessage(Recipient.from(context, targetAddress, false),
               body, message.getExpiresInSeconds(), -1);

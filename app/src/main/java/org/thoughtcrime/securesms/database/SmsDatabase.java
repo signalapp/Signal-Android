@@ -725,15 +725,6 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(Long::longValue).sum());
     contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
-    SQLiteDatabase readDb        = databaseHelper.getReadableDatabase();
-    Cursor existingRecord = readDb.query(TABLE_NAME, null, String.format("%s = ? AND %s = ? AND %s = ?",ADDRESS, THREAD_ID, DATE_SENT),
-            new String[] { address.serialize(), Long.toString(threadId), Long.toString(date) }, null, null, null);
-    int existingRecordCount = existingRecord.getCount();
-    if (existingRecordCount > 0) {
-      // return -1 because record exists from Address to ThreadID with the same date sent (probably sent from us)
-      return -1;
-    }
-
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
     if (insertListener != null) {
