@@ -33,6 +33,7 @@ import java.io.OutputStream;
 import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTask.Attachment, Void, Pair<Integer, String>> {
   private static final String TAG = SaveAttachmentTask.class.getSimpleName();
@@ -98,8 +99,9 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     if (fileName == null) fileName = generateOutputFileName(contentType, attachment.date);
     fileName = sanitizeOutputFileName(fileName);
 
-    Uri outputUri = getMediaStoreContentUriForType(contentType);
-    Uri mediaUri  = createOutputUri(outputUri, contentType, fileName);
+    Uri           outputUri    = getMediaStoreContentUriForType(contentType);
+    Uri           mediaUri     = createOutputUri(outputUri, contentType, fileName);
+    ContentValues updateValues = new ContentValues();
 
     try (InputStream inputStream = PartAuthority.getAttachmentStream(context, attachment.uri)) {
 
@@ -114,15 +116,20 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
         }
       } else {
         try (OutputStream outputStream = context.getContentResolver().openOutputStream(mediaUri, "w")) {
-          StreamUtil.copy(inputStream, outputStream);
+          long total = StreamUtil.copy(inputStream, outputStream);
+          if (total > 0) {
+            updateValues.put(MediaStore.MediaColumns.SIZE, total);
+          }
         }
       }
     }
 
     if (Build.VERSION.SDK_INT > 28) {
-      ContentValues updatePendingValues = new ContentValues();
-      updatePendingValues.put(MediaStore.MediaColumns.IS_PENDING, 0);
-      getContext().getContentResolver().update(mediaUri, updatePendingValues, null, null);
+      updateValues.put(MediaStore.MediaColumns.IS_PENDING, 0);
+    }
+
+    if (updateValues.size() > 0) {
+      getContext().getContentResolver().update(mediaUri, updateValues, null, null);
     }
 
     return outputUri.getLastPathSegment();
@@ -180,8 +187,8 @@ public class SaveAttachmentTask extends ProgressDialogAsyncTask<SaveAttachmentTa
     ContentValues contentValues = new ContentValues();
     contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
     contentValues.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
-    contentValues.put(MediaStore.MediaColumns.DATE_ADDED, System.currentTimeMillis());
-    contentValues.put(MediaStore.MediaColumns.DATE_MODIFIED, System.currentTimeMillis());
+    contentValues.put(MediaStore.MediaColumns.DATE_ADDED, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+    contentValues.put(MediaStore.MediaColumns.DATE_MODIFIED, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
 
     if (Build.VERSION.SDK_INT > 28) {
       contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
