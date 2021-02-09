@@ -10,6 +10,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class VisibleMessage : Message()  {
 
+    var syncTarget: String? = null
     var text: String? = null
     var attachmentIDs = ArrayList<Long>()
     var quote: Quote? = null
@@ -17,12 +18,15 @@ class VisibleMessage : Message()  {
     var contact: Contact? = null
     var profile: Profile? = null
 
+    override val isSelfSendValid: Boolean = true
+
     companion object {
         const val TAG = "VisibleMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): VisibleMessage? {
             val dataMessage = proto.dataMessage ?: return null
             val result = VisibleMessage()
+            result.syncTarget = dataMessage.syncTarget
             result.text = dataMessage.body
             // Attachments are handled in MessageReceiver
             val quoteProto = dataMessage.quote
@@ -103,6 +107,10 @@ class VisibleMessage : Message()  {
         }
         val attachmentProtos = attachments.mapNotNull { it.toProto() }
         dataMessage.addAllAttachments(attachmentProtos)
+        // Sync target
+        if (syncTarget != null) {
+            dataMessage.syncTarget = syncTarget
+        }
         // TODO Contact
         // Build
         try {
