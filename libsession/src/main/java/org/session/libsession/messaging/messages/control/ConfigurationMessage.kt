@@ -62,7 +62,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             for (groupRecord in groups) {
                 if (groupRecord.isClosedGroup) {
                     if (!groupRecord.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
-                    val groupPublicKey = GroupUtil.getDecodedGroupIDAsData(GroupUtil.getDecodedGroupID(groupRecord.encodedId)).toHexString() // Double decoded
+                    val groupPublicKey = GroupUtil.getDecodedGroupIDAsData(groupRecord.encodedId).toHexString()
                     if (!storage.isClosedGroup(groupPublicKey)) continue
                     val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: continue
                     val closedGroup = ClosedGroup(groupPublicKey, groupRecord.title, encryptionKeyPair, groupRecord.members.map { it.serialize() }, groupRecord.admins.map { it.serialize() })

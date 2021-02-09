@@ -1,5 +1,6 @@
 package org.session.libsession.messaging.sending_receiving.notifications
 
+import android.annotation.SuppressLint
 import nl.komponents.kovenant.functional.map
 import okhttp3.*
 import org.session.libsession.messaging.MessagingConfiguration

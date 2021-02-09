@@ -2,6 +2,8 @@ package org.session.libsession.utilities
 
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.utilities.Hex
+import java.io.IOException
+import kotlin.jvm.Throws
 
 object GroupUtil {
     const val CLOSED_GROUP_PREFIX = "__textsecure_group__!"
@@ -64,5 +66,19 @@ object GroupUtil {
 
     fun isClosedGroup(groupId: String): Boolean {
         return groupId.startsWith(CLOSED_GROUP_PREFIX)
+    }
+
+    // NOTE: Signal group ID handling is weird. The ID is double encoded in the database, but not in a `GroupContext`.
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun doubleEncodeGroupID(groupPublicKey: String): String {
+        return getEncodedClosedGroupID(getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray())
+    }
+
+    @JvmStatic
+    @Throws(IOException::class)
+    fun doubleDecodeGroupID(groupID: String): ByteArray {
+        return getDecodedGroupIDAsData(getDecodedGroupID(groupID))
     }
 }

@@ -376,6 +376,22 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
     }
 
+    override fun addClosedGroupPublicKey(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).addClosedGroupPublicKey(groupPublicKey)
+    }
+
+    override fun removeClosedGroupPublicKey(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeClosedGroupPublicKey(groupPublicKey)
+    }
+
+    override fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
+    }
+
+    override fun removeAllClosedGroupEncryptionKeyPairs(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeAllClosedGroupEncryptionKeyPairs(groupPublicKey)
+    }
+
     override fun getAllOpenGroups(): Map<Long, PublicChat> {
         return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
     }
