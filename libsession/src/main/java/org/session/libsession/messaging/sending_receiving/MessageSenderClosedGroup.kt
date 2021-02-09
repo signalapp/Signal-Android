@@ -24,52 +24,47 @@ import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeys
 import org.session.libsignal.service.loki.utilities.hexEncodedPrivateKey
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.ThreadUtils
 import java.util.*
 
 fun MessageSender.createClosedGroup(name: String, members: Collection<String>): Promise<String, Exception> {
     val deferred = deferred<String, Exception>()
-    // Prepare
-    val context = MessagingConfiguration.shared.context
-    val storage = MessagingConfiguration.shared.storage
-    val members = members
-    val userPublicKey = storage.getUserPublicKey()!!
-    // Generate a key pair for the group
-    val groupKeyPair = Curve.generateKeyPair()
-    val groupPublicKey = groupKeyPair.hexEncodedPublicKey // Includes the "05" prefix
-    members.plus(userPublicKey)
-    val membersAsData = members.map { Hex.fromStringCondensed(it) }
-    // Create ratchets for all members
-    val senderKeys: List<ClosedGroupSenderKey> = members.map { publicKey ->
-        val ratchet = SharedSenderKeysImplementation.shared.generateRatchet(groupPublicKey, publicKey)
-        ClosedGroupSenderKey(Hex.fromStringCondensed(ratchet.chainKey), ratchet.keyIndex, Hex.fromStringCondensed(publicKey))
+    ThreadUtils.queue {
+        // Prepare
+        val context = MessagingConfiguration.shared.context
+        val storage = MessagingConfiguration.shared.storage
+        val userPublicKey = storage.getUserPublicKey()!!
+        val membersAsData = members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+        // Generate the group's public key
+        val groupPublicKey = Curve.generateKeyPair().hexEncodedPublicKey // Includes the "05" prefix
+        // Generate the key pair that'll be used for encryption and decryption
+        val encryptionKeyPair = Curve.generateKeyPair()
+        // Create the group
+        val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+        val admins = setOf( userPublicKey )
+        val adminsAsData = admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
+        storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
+                null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
+        storage.setProfileSharing(Address.fromSerialized(groupID), true)
+        // Send a closed group update message to all members individually
+        val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        for (member in members) {
+            if (member == userPublicKey) { continue }
+            val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
+            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).get()
+        }
+        // Add the group to the user's set of public keys to poll for
+        storage.addClosedGroupPublicKey(groupPublicKey)
+        // Store the encryption key pair
+        storage.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
+        // Notify the user
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID)
+        // Notify the PN server
+        PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
+        // Fulfill the promise
+        deferred.resolve(groupID)
     }
-    // Create the group
-    val admins = setOf( userPublicKey )
-    val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
-    val groupID = GroupUtil.getEncodedClosedGroupID(GroupUtil.getEncodedClosedGroupID(Hex.fromStringCondensed(groupPublicKey)).toByteArray()) //double encoded
-    storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }), null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
-    storage.setProfileSharing(Address.fromSerialized(groupID), true)
-    // Send a closed group update message to all members using established channels
-    val promises = mutableListOf<Promise<Unit, Exception>>()
-    for (member in members) {
-        if (member == userPublicKey) { continue }
-        val closedGroupUpdateKind = ClosedGroupUpdate.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, groupKeyPair.privateKey.serialize(),
-                senderKeys, membersAsData, adminsAsData)
-        val closedGroupUpdate = ClosedGroupUpdate()
-        closedGroupUpdate.kind = closedGroupUpdateKind
-        val address = Address.fromSerialized(member)
-        val promise = MessageSender.sendNonDurably(closedGroupUpdate, address)
-        promises.add(promise)
-    }
-    // Add the group to the user's set of public keys to poll for
-    MessagingConfiguration.shared.sskDatabase.setClosedGroupPrivateKey(groupPublicKey, groupKeyPair.hexEncodedPrivateKey)
-    // Notify the PN server
-    PushNotificationAPI.performOperation(PushNotificationAPI.ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
-    // Notify the user
-    val threadID =storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
-    storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID)
-    // Fulfill the promise
-    deferred.resolve(groupPublicKey)
     // Return
     return deferred.promise
 }
