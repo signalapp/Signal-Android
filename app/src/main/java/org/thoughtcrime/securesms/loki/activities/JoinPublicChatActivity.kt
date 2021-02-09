@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
@@ -73,6 +74,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 OpenGroupUtilities.addGroup(this@JoinPublicChatActivity, url, channel)
+                MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@JoinPublicChatActivity)
             } catch (e: Exception) {
                 Log.e("JoinPublicChatActivity", "Fialed to join open group.", e)
                 withContext(Dispatchers.Main) {
