@@ -36,17 +36,20 @@ import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdap
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.stickers.StickerRolloverTouchListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
@@ -56,7 +59,9 @@ public class InputPanel extends LinearLayout
     implements MicrophoneRecorderView.Listener,
                KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiKeyboardProvider.EmojiEventListener,
-               ConversationStickerSuggestionAdapter.EventListener
+               ConversationStickerSuggestionAdapter.EventListener,
+               StickerRolloverTouchListener.RolloverEventListener,
+               StickerRolloverTouchListener.RolloverStickerRetriever
 {
 
   private static final String TAG = InputPanel.class.getSimpleName();
@@ -84,6 +89,7 @@ public class InputPanel extends LinearLayout
   private           boolean  emojiVisible;
 
   private ConversationStickerSuggestionAdapter stickerSuggestionAdapter;
+  private StickerRolloverTouchListener         listTouchListener;
 
   public InputPanel(Context context) {
     super(context);
@@ -139,10 +145,41 @@ public class InputPanel extends LinearLayout
       }
     });
 
-    stickerSuggestionAdapter = new ConversationStickerSuggestionAdapter(GlideApp.with(this), this);
+    GlideRequests glideRequests = GlideApp.with(this);
+    stickerSuggestionAdapter = new ConversationStickerSuggestionAdapter(glideRequests, this);
+    listTouchListener = new StickerRolloverTouchListener(getContext(), glideRequests, this, this);
 
     stickerSuggestion.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     stickerSuggestion.setAdapter(stickerSuggestionAdapter);
+    stickerSuggestion.addOnItemTouchListener(listTouchListener);
+  }
+
+  @Nullable
+  @Override
+  public Pair<Object, String> getStickerDataFromView(@NonNull View view) {
+    if (stickerSuggestion != null) {
+      ConversationStickerSuggestionAdapter.StickerSuggestionViewHolder holder = (ConversationStickerSuggestionAdapter.StickerSuggestionViewHolder) stickerSuggestion.getChildViewHolder(view);
+      if (holder != null && holder.getCurrentSticker() != null) {
+        return new Pair<>(new DecryptableStreamUriLoader.DecryptableUri(holder.getCurrentSticker().getUri()),
+                holder.getCurrentSticker().getEmoji());
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public void onStickerLongPress(@NonNull View view) {
+    if (listTouchListener != null) {
+      listTouchListener.enterHoverMode(stickerSuggestion, view);
+    }
+  }
+
+  @Override
+  public void onStickerPopupStarted() {
+  }
+
+  @Override
+  public void onStickerPopupEnded() {
   }
 
   public void setListener(final @NonNull Listener listener) {
