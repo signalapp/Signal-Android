@@ -59,6 +59,7 @@ object MultiDeviceProtocol {
 
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String) {
+        if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
         val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         if (senderPublicKey != userPublicKey) return
@@ -85,5 +86,6 @@ object MultiDeviceProtocol {
             if (allOpenGroups.contains(openGroup)) continue
             OpenGroupUtilities.addGroup(context, openGroup, 1)
         }
+        TextSecurePreferences.setConfigurationMessageSynced(context, true)
     }
 }

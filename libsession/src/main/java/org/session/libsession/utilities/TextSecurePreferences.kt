@@ -131,6 +131,7 @@ object TextSecurePreferences {
     // region Multi Device
     private const val IS_USING_MULTI_DEVICE = "pref_is_using_multi_device"
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
+    private const val CONFIGURATION_SYNCED = "pref_configuration_synced"
 
     @JvmStatic
     fun isUsingMultiDevice(context: Context): Boolean {
@@ -150,6 +151,16 @@ object TextSecurePreferences {
     @JvmStatic
     fun setLastConfigurationSyncTime(context: Context, value: Long) {
         setLongPreference(context, LAST_CONFIGURATION_SYNC_TIME, value)
+    }
+
+    @JvmStatic
+    fun getConfigurationMessageSynced(context: Context): Boolean {
+        return getBooleanPreference(context, CONFIGURATION_SYNCED, false)
+    }
+
+    @JvmStatic
+    fun setConfigurationMessageSynced(context: Context, value: Boolean) {
+        setBooleanPreference(context, CONFIGURATION_SYNCED, value)
     }
 
     @JvmStatic

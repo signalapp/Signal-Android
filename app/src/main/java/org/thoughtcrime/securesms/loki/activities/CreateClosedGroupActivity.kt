@@ -111,8 +111,6 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         isLoading = true
         loaderContainer.fadeIn()
         ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
-            // Force sync configuration message
-            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this)
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
