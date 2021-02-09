@@ -84,8 +84,6 @@ object ClosedGroupsProtocolV2 {
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
             // Notify the PN server
             LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
-            // Force sync configuration message
-            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(context)
             // Fulfill the promise
             deferred.resolve(groupID)
         }

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -110,6 +111,8 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         isLoading = true
         loaderContainer.fadeIn()
         ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
+            // Force sync configuration message
+            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this)
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))
