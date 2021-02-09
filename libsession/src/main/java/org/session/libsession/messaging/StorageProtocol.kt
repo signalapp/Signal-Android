@@ -58,6 +58,7 @@ interface StorageProtocol {
     fun getOpenGroup(threadID: String): OpenGroup?
     fun getThreadID(openGroupID: String): String?
     fun getAllOpenGroups(): Map<Long, PublicChat>
+    fun addOpenGroup(server: String, channel: Long)
 
     // Open Group Public Keys
     fun getOpenGroupPublicKey(server: String): String?

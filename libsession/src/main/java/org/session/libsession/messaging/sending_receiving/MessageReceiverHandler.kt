@@ -113,7 +113,7 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
     for (openGroup in message.openGroups) {
         if (allOpenGroups.contains(openGroup)) continue
-        // TODO
+        storage.addOpenGroup(openGroup, 1)
     }
 }
 

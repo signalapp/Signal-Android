@@ -31,6 +31,7 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
@@ -394,6 +395,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getAllOpenGroups(): Map<Long, PublicChat> {
         return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
+    }
+
+    override fun addOpenGroup(server: String, channel: Long) {
+        OpenGroupUtilities.addGroup(context, server, channel)
     }
 
     override fun getAllGroups(): List<GroupRecord> {
