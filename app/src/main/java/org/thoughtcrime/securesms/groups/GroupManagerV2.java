@@ -132,10 +132,11 @@ final class GroupManagerV2 {
 
   @WorkerThread
   @NonNull Map<UUID, UuidCiphertext> getUuidCipherTexts(@NonNull GroupId.V2 groupId) {
-    GroupDatabase.GroupRecord groupRecord         = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
-    GroupMasterKey            groupMasterKey      = groupRecord.requireV2GroupProperties().getGroupMasterKey();
-    ClientZkGroupCipher       clientZkGroupCipher = new ClientZkGroupCipher(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
-    List<Recipient>           recipients          = Recipient.resolvedList(groupRecord.getMembers());
+    GroupDatabase.GroupRecord       groupRecord         = DatabaseFactory.getGroupDatabase(context).requireGroup(groupId);
+    GroupDatabase.V2GroupProperties v2GroupProperties   = groupRecord.requireV2GroupProperties();
+    GroupMasterKey                  groupMasterKey      = v2GroupProperties.getGroupMasterKey();
+    ClientZkGroupCipher             clientZkGroupCipher = new ClientZkGroupCipher(GroupSecretParams.deriveFromMasterKey(groupMasterKey));
+    List<Recipient>                 recipients          = v2GroupProperties.getMemberRecipients(GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
 
     Map<UUID, UuidCiphertext> uuidCipherTexts = new HashMap<>();
     for (Recipient recipient : recipients) {
