@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceConfigurationUpdateJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.keyvalue.KbsValues;
@@ -239,6 +240,9 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       Intent intent = new Intent(getContext(), KeyCachingService.class);
       intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
       getContext().startService(intent);
+
+      ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
+
       return true;
     }
   }
