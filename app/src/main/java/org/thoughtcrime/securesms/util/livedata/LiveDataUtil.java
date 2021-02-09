@@ -198,6 +198,22 @@ public final class LiveDataUtil {
     return outputLiveData;
   }
 
+  /**
+   * Observes a source until the predicate is met. The final value matching the predicate is emitted.
+   */
+  public static @NonNull <A> LiveData<A> until(@NonNull LiveData<A> source, @NonNull Predicate<A> predicate) {
+    MediatorLiveData<A> mediator = new MediatorLiveData<>();
+
+    mediator.addSource(source, newValue -> {
+      mediator.setValue(newValue);
+      if (predicate.test(newValue)) {
+        mediator.removeSource(source);
+      }
+    });
+
+    return mediator;
+  }
+
   public interface Combine<A, B, R> {
     @NonNull R apply(@NonNull A a, @NonNull B b);
   }

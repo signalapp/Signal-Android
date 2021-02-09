@@ -34,6 +34,7 @@ public final class LiveRecipient {
   private final Context                       context;
   private final MutableLiveData<Recipient>    liveData;
   private final LiveData<Recipient>           observableLiveData;
+  private final LiveData<Recipient>           observableLiveDataResolved;
   private final Set<RecipientForeverObserver> observers;
   private final Observer<Recipient>           foreverObserver;
   private final AtomicReference<Recipient>    recipient;
@@ -53,10 +54,11 @@ public final class LiveRecipient {
         o.onRecipientChanged(recipient);
       }
     };
-    this.refreshForceNotify = new MutableLiveData<>(System.currentTimeMillis());
+    this.refreshForceNotify = new MutableLiveData<>(new Object());
     this.observableLiveData = LiveDataUtil.combineLatest(LiveDataUtil.distinctUntilChanged(liveData, Recipient::hasSameContent),
                                                          refreshForceNotify,
                                                          (recipient, force) -> recipient);
+    this.observableLiveDataResolved = LiveDataUtil.filter(this.observableLiveData, r -> !r.isResolving());
   }
 
   public @NonNull RecipientId getId() {
@@ -181,6 +183,10 @@ public final class LiveRecipient {
 
   public @NonNull LiveData<Recipient> getLiveData() {
     return observableLiveData;
+  }
+
+  public @NonNull LiveData<Recipient> getLiveDataResolved() {
+    return observableLiveDataResolved;
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {

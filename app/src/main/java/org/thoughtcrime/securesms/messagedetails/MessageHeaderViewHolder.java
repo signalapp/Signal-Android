@@ -88,7 +88,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder {
         conversationItem = (ConversationItem) receivedStub.inflate();
       }
     }
-    conversationItem.bind(lifecycleOwner, conversationMessage, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), conversationMessage.getMessageRecord().getRecipient(), null, false, false);
+    conversationItem.bind(lifecycleOwner, conversationMessage, Optional.absent(), Optional.absent(), glideRequests, Locale.getDefault(), new HashSet<>(), conversationMessage.getMessageRecord().getRecipient(), null, false, false, false);
   }
 
   private void bindErrorState(MessageRecord messageRecord) {

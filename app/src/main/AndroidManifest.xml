@@ -64,7 +64,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <!-- So we can add a TextSecure 'Account' -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
@@ -255,6 +254,16 @@
             <data android:scheme="https"
                   android:host="signal.group"/>
         </intent-filter>
+
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"
+                  android:host="signal.tube" />
+            <data android:scheme="sgnl"
+                  android:host="signal.tube" />
+        </intent-filter>
     </activity>
 
     <activity android:name=".conversation.ConversationActivity"
@@ -350,7 +359,8 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ApplicationPreferencesActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+              android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.NOTIFICATION_PREFERENCES" />

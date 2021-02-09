@@ -28,10 +28,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Постави ја Signal како стандардна SMS апликација</string>
   <string name="ApplicationPreferencesActivity_on">вклучено</string>
   <string name="ApplicationPreferencesActivity_On">Вклучено</string>
-  <string name="ApplicationPreferencesActivity_off">исклучи</string>
-  <string name="ApplicationPreferencesActivity_Off">Исклучи</string>
+  <string name="ApplicationPreferencesActivity_off">исклучено</string>
+  <string name="ApplicationPreferencesActivity_Off">Исклучено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Заклучување на екранот %1$s, Заклучување на регистрацијата %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Заклучување на екранот %1$s; Заклучување на регистрацијата %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Јазик %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN кодовите се потребни за заклучување на регистрацијата. За да ги исклучите PIN кодовите, Ве молиме прво исклучете го заклучувањето на регистрацијата.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN-от е создаден.</string>
@@ -234,7 +234,7 @@
   <string name="ConversationActivity_full">Полно е</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
-    <item quantity="one">%d не прочитана порака</item>
+    <item quantity="one">%d непрочитана порака</item>
     <item quantity="other">%d непрочитани пораки</item>
   </plurals>
   <!--ConversationFragment-->
@@ -419,7 +419,7 @@
   <string name="AddToGroupActivity_add_to_group">Додај во група</string>
   <string name="AddToGroupActivity_add_to_groups">Додај во групи</string>
   <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во стари групи.</string>
-  <string name="AddToGroupActivity_add">Додадете…</string>
+  <string name="AddToGroupActivity_add">Додај…</string>
   <!--ChooseNewAdminActivity-->
   <string name="ChooseNewAdminActivity_choose_new_admin">Избери нов администратор</string>
   <string name="ChooseNewAdminActivity_done">Готово</string>
@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">За пристап до нови опции како @спомнувања и администратори надградете ја оваа група.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Ажурирај група</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Ажурирај група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можеше да биде повторно додаден во нова група. Дали сакате да го додадете сега?</item>
@@ -550,7 +550,7 @@
   <string name="AddMembersActivity__done">Готово</string>
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Оваа личност не може да биде додадена во стари групи.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
-    <item quantity="one">Да го додадам %1$s во %2$s?</item>
+    <item quantity="one">Да го/ја додадам %1$s во %2$s?</item>
     <item quantity="other">Да ги додадам %3$d членови во \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Додадете…</string>
@@ -604,7 +604,7 @@
   <string name="ManageGroupActivity_mentions">Спомнувања</string>
   <string name="ManageGroupActivity_chat_wallpaper">Позадина за разговорот</string>
   <string name="ManageGroupActivity_until_s">До %1$s</string>
-  <string name="ManageGroupActivity_off">Исклучи</string>
+  <string name="ManageGroupActivity_off">Исклучено</string>
   <string name="ManageGroupActivity_on">Вклучи</string>
   <string name="ManageGroupActivity_view_all_members">Види ги сите членови</string>
   <string name="ManageGroupActivity_see_all">Види сѐ</string>
@@ -654,7 +654,7 @@
   <string name="ManageRecipientActivity_mute_notifications">Исклучи известувања</string>
   <string name="ManageRecipientActivity_custom_notifications">Прилагодени известувања</string>
   <string name="ManageRecipientActivity_until_s">До %1$s</string>
-  <string name="ManageRecipientActivity_off">Исклучи</string>
+  <string name="ManageRecipientActivity_off">Исклучено</string>
   <string name="ManageRecipientActivity_on">Вклучено</string>
   <string name="ManageRecipientActivity_add_to_a_group">Додај во група</string>
   <string name="ManageRecipientActivity_view_all_groups">Види ги сите групи</string>
@@ -1202,6 +1202,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не добивам аудио &amp; видео од %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не можам да добијам аудио и видео од %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случува бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или пак Ве имаат блокирано.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете држава</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Внесете го повикувачкиот број
@@ -1697,7 +1698,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">За</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Неколку зборови за Вас…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Тука сум, кажи</string>
   <string name="EditAboutFragment_encrypted">Енкриптирано</string>
   <string name="EditAboutFragment_be_kind">Бидете љубезни</string>
@@ -1736,11 +1737,11 @@
   <string name="message_details_header__via">Преку</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">На чекање</string>
-  <string name="message_details_recipient_header__sent_to">Испрати на</string>
+  <string name="message_details_recipient_header__sent_to">Испратено на</string>
   <string name="message_details_recipient_header__sent_from">Испратено од</string>
   <string name="message_details_recipient_header__delivered_to">Испорачано на</string>
   <string name="message_details_recipient_header__read_by">Прочитано од</string>
-  <string name="message_details_recipient_header__not_sent">Не е испратено</string>
+  <string name="message_details_recipient_header__not_sent">Не е испратено на</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">Неуспешно праќање</string>
   <string name="message_details_recipient__new_safety_number">Нов сигурносен број</string>
@@ -1851,7 +1852,7 @@
   <string name="preferences__three_times">Три пати</string>
   <string name="preferences__five_times">Пет пати</string>
   <string name="preferences__ten_times">Десет пати</string>
-  <string name="preferences__vibrate">Вибрација</string>
+  <string name="preferences__vibrate">Вибрации</string>
   <string name="preferences__green">Зелена</string>
   <string name="preferences__red">Црвена</string>
   <string name="preferences__blue">Сина</string>
@@ -1966,6 +1967,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Овозможете го запечатениот испраќач за дојдовни пораки од нерегистрирани контакти и луѓе со кои не сте го споделиле Вашиот профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Дознајте повеќе</string>
   <string name="preferences_setup_a_username">Поставете корисничко име</string>
+  <string name="preferences_off">Исклучи</string>
+  <string name="preferences_on">Вклучено</string>
+  <string name="preferences_share">Сподели</string>
+  <string name="preferences_save">Зачувај</string>
   <string name="configurable_single_select__customize_option">Сопствена опција</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2293,7 +2298,7 @@
   <string name="RecipientBottomSheet_insecure_voice_call_description">Небезбеден гласовен повик</string>
   <string name="RecipientBottomSheet_video_call_description">Видео повик</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Да го/ја отстранам %1$s од администратори на групата?</string>
-  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ ќе може да ја уредува оваа групиа и нејзините членови.</string>
+  <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">„%1$s“ ќе може да ја уредува оваа група и нејзините членови.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Да го/ја отстранам %1$s од групата?</string>
   <string name="RecipientBottomSheet_remove">Отстрани</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Ископирано на таблата со исечоци</string>

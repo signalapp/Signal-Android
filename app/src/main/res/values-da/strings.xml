@@ -470,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">For adgang til nye funktioner som @omtaler og administrator, skal gruppen opgraderes</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ikke nu</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Opdatér gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Opdatér gruppe</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikke tilføjes igen til den nye gruppe. Ønsker du at tilføje dem nu?</item>
@@ -1106,6 +1106,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Lås Signal op</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Lås skærm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kort</string>
   <string name="PlacePickerActivity_drop_pin">Placér pin</string>
@@ -1202,6 +1203,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Der modtages ikke lyd &amp; video fra %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Der modtages ikke lyd og video fra %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes at de ikke har verificeret dit skifte af sikkerhedsnummer, det er et problem med deres enhed eller at de har blokeret dig.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy-adresse</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vil du bruge denne proxy-adresse?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Brug proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Forbundet til proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vælg land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du skal vælge din
@@ -1701,7 +1708,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
-  <string name="EditAboutFragment_count">%d%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Tal frit</string>
   <string name="EditAboutFragment_encrypted">Krypteret</string>
   <string name="EditAboutFragment_be_kind">Vær venlig</string>
@@ -1970,6 +1977,20 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivér \"Sikker afsender\" for indgående beskeder fra personer som ikke er kontakter, og som du ikke har delt din profil med</string>
   <string name="preferences_communication__sealed_sender_learn_more">Læs mere</string>
   <string name="preferences_setup_a_username">Opret et brugernavn</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Brug proxy</string>
+  <string name="preferences_off">Deaktiveret</string>
+  <string name="preferences_on">Aktivér</string>
+  <string name="preferences_proxy_address">Proxy-adresse</string>
+  <string name="preferences_share">Del</string>
+  <string name="preferences_save">Gem</string>
+  <string name="preferences_connecting_to_proxy">Forbinder til proxy…</string>
+  <string name="preferences_connected_to_proxy">Forbundet til proxy.</string>
+  <string name="preferences_connection_failed">Forbindelsen mislykkedes</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Forbindelse til proxyen kunne ikke oprettes. Tjek proxy-adressen, og prøv igen.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Du er forbundet til proxyen. Du kan til enhver tid deaktivere proxyen via Indstillinger.</string>
+  <string name="preferences_success">Fuldført</string>
+  <string name="preferences_failed_to_connect">Forbindelsen fejlede</string>
   <string name="configurable_single_select__customize_option">Tilpas mulighed</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2152,6 +2173,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RegistrationLockFragment__incorrect_pin">Forkert PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Glemt din PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Ikke mange forsøg tilbage!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registrering af Signal - Brug for hjælp til PIN til Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registrering af Signal - Brug for hjælp til PIN til Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
     <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>

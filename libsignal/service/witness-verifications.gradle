@@ -15,8 +15,8 @@ dependencyVerification {
         ['com.google.protobuf:protobuf-javalite:3.10.0',
          '215a94dbe100130295906b531bb72a26965c7ac8fcd9a75bf8054a8ac2abf4b4'],
 
-        ['com.googlecode.libphonenumber:libphonenumber:8.12.16',
-         '5a81a02dc6586d333765f5388bd53c81703449ee760667e505ce5f42544bee63'],
+        ['com.googlecode.libphonenumber:libphonenumber:8.12.17',
+         '729483057ef874b01537da8395d67e23b419d504f8ff29ddf5f69da21bf816ac'],
 
         ['com.squareup.okhttp3:okhttp:3.12.10',
          '3cb8e21cd3ab10d390448f5a475c960732efab583a09c39f06f866a7ed819ebc'],

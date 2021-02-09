@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
@@ -58,6 +57,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
     this.glideRequests               = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
+
+    this.setHasStableIds(true);
   }
 
   @Override
@@ -168,6 +169,19 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
 
     return super.getItem(position);
+  }
+
+  @Override
+  public long getItemId(int position) {
+    Conversation item = getItem(position);
+
+    switch (item.getType()) {
+      case THREAD:          return item.getThreadRecord().getThreadId();
+      case PINNED_HEADER:   return -1;
+      case UNPINNED_HEADER: return -2;
+      case ARCHIVED_FOOTER: return -3;
+      default:              throw new AssertionError();
+    }
   }
 
   public void setPagingController(@Nullable PagingController pagingController) {

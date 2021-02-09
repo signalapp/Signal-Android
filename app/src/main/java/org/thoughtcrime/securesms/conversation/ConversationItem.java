@@ -259,7 +259,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
                    @NonNull Recipient conversationRecipient,
                    @Nullable String searchQuery,
                    boolean pulse,
-                   boolean hasWallpaper)
+                   boolean hasWallpaper,
+                   boolean isMessageRequestAccepted)
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
@@ -280,8 +281,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     setGutterSizes(messageRecord, groupThread);
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread, hasWallpaper);
-    setBodyText(messageRecord, searchQuery);
+    setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, groupThread, hasWallpaper, isMessageRequestAccepted);
+    setBodyText(messageRecord, searchQuery, isMessageRequestAccepted);
     setBubbleState(messageRecord, hasWallpaper);
     setInteractionState(conversationMessage, pulse);
     setStatusIcons(messageRecord, hasWallpaper);
@@ -627,7 +628,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   }
 
   private void setBodyText(@NonNull MessageRecord messageRecord,
-                           @Nullable String searchQuery)
+                           @Nullable String searchQuery,
+                           boolean messageRequestAccepted)
   {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
@@ -649,7 +651,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     } else if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      Spannable styledText = linkifyMessageBody(conversationMessage.getDisplayBody(getContext()), batchSelected.isEmpty());
+      Spannable styledText = conversationMessage.getDisplayBody(getContext());
+      if (messageRequestAccepted) {
+        linkifyMessageBody(styledText, batchSelected.isEmpty());
+      }
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
       styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
 
@@ -673,9 +678,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private void setMediaAttributes(@NonNull MessageRecord           messageRecord,
                                   @NonNull Optional<MessageRecord> previousRecord,
                                   @NonNull Optional<MessageRecord> nextRecord,
-                                  @NonNull Recipient               conversationRecipient,
                                            boolean                 isGroupThread,
-                                           boolean                 hasWallpaper)
+                                           boolean                 hasWallpaper,
+                                           boolean                 messageRequestAccepted)
   {
     boolean showControls = !messageRecord.isFailed();
 
@@ -717,7 +722,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParamsIfNonNull(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       footer.setVisibility(GONE);
-    } else if (hasLinkPreview(messageRecord)) {
+    } else if (hasLinkPreview(messageRecord) && messageRequestAccepted) {
       linkPreviewStub.get().setVisibility(View.VISIBLE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
@@ -982,8 +987,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     contactPhoto.setAvatar(glideRequests, recipient, false);
   }
 
-  private SpannableString linkifyMessageBody(@NonNull SpannableString messageBody,
-                                             boolean shouldLinkifyAllLinks)
+  private void linkifyMessageBody(@NonNull Spannable messageBody,
+                                  boolean shouldLinkifyAllLinks)
   {
     int     linkPattern = Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES | Linkify.PHONE_NUMBERS;
     boolean hasLinks    = Linkify.addLinks(messageBody, shouldLinkifyAllLinks ? linkPattern : 0);
@@ -1007,8 +1012,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     for (Annotation annotation : mentionAnnotations) {
       messageBody.setSpan(new MentionClickableSpan(RecipientId.from(annotation.getValue())), messageBody.getSpanStart(annotation), messageBody.getSpanEnd(annotation), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
-
-    return messageBody;
   }
 
   private void setStatusIcons(MessageRecord messageRecord, boolean hasWallpaper) {

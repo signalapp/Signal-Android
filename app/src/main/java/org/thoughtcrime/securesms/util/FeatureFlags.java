@@ -70,6 +70,7 @@ public final class FeatureFlags {
   private static final String AUTOMATIC_SESSION_RESET           = "android.automaticSessionReset.2";
   private static final String AUTOMATIC_SESSION_INTERVAL        = "android.automaticSessionResetInterval";
   private static final String DEFAULT_MAX_BACKOFF               = "android.defaultMaxBackoff";
+  private static final String SERVER_ERROR_MAX_BACKOFF          = "android.serverErrorMaxBackoff";
   private static final String OKHTTP_AUTOMATIC_RETRY            = "android.okhttpAutomaticRetry";
   private static final String SHARE_SELECTION_LIMIT             = "android.share.limit";
   private static final String ANIMATED_STICKER_MIN_MEMORY       = "android.animatedStickerMinMemory";
@@ -101,6 +102,7 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
+      SERVER_ERROR_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
       SHARE_SELECTION_LIMIT,
       ANIMATED_STICKER_MIN_MEMORY,
@@ -142,6 +144,7 @@ public final class FeatureFlags {
       AUTOMATIC_SESSION_RESET,
       AUTOMATIC_SESSION_INTERVAL,
       DEFAULT_MAX_BACKOFF,
+      SERVER_ERROR_MAX_BACKOFF,
       OKHTTP_AUTOMATIC_RETRY,
       SHARE_SELECTION_LIMIT,
       ANIMATED_STICKER_MIN_MEMORY,
@@ -321,8 +324,14 @@ public final class FeatureFlags {
     return getInteger(AUTOMATIC_SESSION_RESET, (int) TimeUnit.HOURS.toSeconds(1));
   }
 
-  public static int getDefaultMaxBackoffSeconds() {
-    return getInteger(DEFAULT_MAX_BACKOFF, 60);
+  /** The default maximum backoff for jobs. */
+  public static long getDefaultMaxBackoff() {
+    return TimeUnit.SECONDS.toMillis(getInteger(DEFAULT_MAX_BACKOFF, 60));
+  }
+
+  /** The maximum backoff for network jobs that hit a 5xx error. */
+  public static long getServerErrorMaxBackoff() {
+    return TimeUnit.SECONDS.toMillis(getInteger(SERVER_ERROR_MAX_BACKOFF, (int) TimeUnit.HOURS.toSeconds(6)));
   }
 
   /** Whether or not to allow automatic retries from OkHttp */

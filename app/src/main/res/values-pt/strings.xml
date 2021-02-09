@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para aceder a novos recursos como @menções e administradores, faça o upgrade deste grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pode ser readicionado ao \'Novo grupo\'. Deseja adiciona-lo novamente?</item>
@@ -1104,6 +1104,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Submeter frase-passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-passe inválida!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Desbloquear o Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Ecrã de bloqueio</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Colocar pino</string>
@@ -1200,6 +1201,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Não pode receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não pode receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isto poderá dever-se a ele(s) ainda não ter(em) verificado a alteração do seu número de segurança, a existir um problema com os dispositivos dele(s), ou porque ele(s) o bloquearam.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Endereço proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Deseja utilizar este endereço de proxy?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Utilizar proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Ligado com sucesso ao proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Escolha o seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Deve escolher o
@@ -1697,7 +1704,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Acerca</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Escreva algumas palavras acerca de si…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Fale à vontade</string>
   <string name="EditAboutFragment_encrypted">Encriptado(a)</string>
   <string name="EditAboutFragment_be_kind">Seja gentil</string>
@@ -1966,6 +1973,20 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ativar o emissor selado para mensagens recebidas de não-contactos e pessoas com as quais não partilhou o seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saber mais</string>
   <string name="preferences_setup_a_username">Defina um nome de utilizador</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Utilizar proxy</string>
+  <string name="preferences_off">Off</string>
+  <string name="preferences_on">On</string>
+  <string name="preferences_proxy_address">Endereço proxy</string>
+  <string name="preferences_share">Partilhar</string>
+  <string name="preferences_save">Guardar</string>
+  <string name="preferences_connecting_to_proxy">A ligar ao proxy…</string>
+  <string name="preferences_connected_to_proxy">Ligado ao proxy</string>
+  <string name="preferences_connection_failed">Falha de ligação</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Não é possível ligar ao proxy. Consulte o endereço de proxy e tente novamente.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Não é possível ligar ao proxy. Consulte o endereço de proxy e tente novamente.</string>
+  <string name="preferences_success">Sucesso</string>
+  <string name="preferences_failed_to_connect">Falha na ligação</string>
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2148,6 +2169,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu-se do seu PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Restam poucas tentativas!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registo Signal - Necessita de Ajuda com o PIN para Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registo Signal - Necessita de Ajuda com o PIN para Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dia de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>
     <item quantity="other">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dias de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>

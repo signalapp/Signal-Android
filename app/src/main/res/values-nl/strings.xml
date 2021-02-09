@@ -22,9 +22,9 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-berichten en -oproepen uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal je telefoonnummer uitschrijven bij de servers, je kunt dan niet langer Signal-berichten en -oproepen ontvangen of verzenden. Je zult je telefoonnummer opnieuw moeten registreren als je die functies weer wilt gebruiken.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">Sms ingeschakeld</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">Sms is ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tik hier als je je standaard-sms-applicatie wilt wijzigen</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">Sms uitgeschakeld</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">Sms is uitgeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tik hier als je Signal naast gebruik voor internetberichten ook wilt instellen als je standaard-sms-applicatie</string>
   <string name="ApplicationPreferencesActivity_on">aan</string>
   <string name="ApplicationPreferencesActivity_On">Aan</string>
@@ -470,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Om nieuwe functionaliteiten zoals @vermeldigen en beheerders te kunnen gebruiken, moet je deze groep omzetten in een nieuwe groep.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Niet nu</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Groep bijwerken</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Groep bijwerken</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d groepslid kon bij het omzetten van de groep in een nieuwe groep niet automatisch opnieuw worden toegevoegd. Wil je ze hem of haar nu alsnog toevoegen?</item>
@@ -561,7 +561,7 @@
   <string name="AddGroupDetailsFragment__create_group">Groep aanmaken</string>
   <string name="AddGroupDetailsFragment__create">Aanmaken</string>
   <string name="AddGroupDetailsFragment__members">Leden</string>
-  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Je kan na het maken van deze groep kennissen uitnodigen of toevoegen.</string>
+  <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Je kunt na het maken van deze groep kennissen ervoor uitnodigen of eraan toevoegen.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Groepsnaam (vereist)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Groepsnaam (optioneel)</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">Dit veld is vereist.</string>
@@ -1107,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal ontgrendelen</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal-Android - Vergrendelingsscherm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kaart</string>
   <string name="PlacePickerActivity_drop_pin">Aanwijzer</string>
@@ -1203,6 +1204,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan geen beeld &amp; geluid van %1$s ontvangen</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan geen beeld en geluid van %1$s ontvangen</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dit kan gebeuren als je jullie veiligheidsnummer niet opnieuw hebt geverifieerd nadat die is veranderd, als er een probleem is met je apparaat of als hij of zij jou heeft geblokkeerd.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxyserver</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxyadres</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Wil je dit proxyadres gebruiken?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Proxy gebruiken</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Sucesvol verbonden met de proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecteer je land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Je moet jouw
@@ -1705,7 +1712,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Spreek vrijuit</string>
   <string name="EditAboutFragment_encrypted">Versleuteld</string>
   <string name="EditAboutFragment_be_kind">Wees aardig</string>
@@ -1908,7 +1915,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__delete_account">Al je gegevens wissen</string>
   <string name="preferences__support_wifi_calling">‘Bellen via wifi’-compatibiliteitsmodus</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
-  <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
+  <string name="preferences__incognito_keyboard">Incognito-toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld kunnen anderen niet zien of je hun berichten hebt gelezen, maar je zult ook niet kunnen zien of anderen jouw berichten hebben gelezen.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
@@ -1968,12 +1975,26 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictorgram</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van niet-contactpersonen voor wie je ook je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren hierover</string>
   <string name="preferences_setup_a_username">Gebruikersnaam aanmaken</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Proxy gebruiken</string>
+  <string name="preferences_off">Uit</string>
+  <string name="preferences_on">Aan</string>
+  <string name="preferences_proxy_address">Proxyadres</string>
+  <string name="preferences_share">Proxyadres delen via andere app</string>
+  <string name="preferences_save">Opslaan</string>
+  <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy …</string>
+  <string name="preferences_connected_to_proxy">Verbonden met de proxy</string>
+  <string name="preferences_connection_failed">Verbinding is verbroken</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Verbinding maken is mislukt. Ga na dat je het juiste proxyadres het ingevuld en probeer het opnieuw.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Signal is verbonden met de proxy. Je kunt de proxy op elk gewenst moment uitschakelen vanuit Signal\'s instellingen.</string>
+  <string name="preferences_success">Succesvol</string>
+  <string name="preferences_failed_to_connect">Verbinding maken is mislukt</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2156,6 +2177,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationLockFragment__incorrect_pin">Incorrecte pincode</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Pincode vergeten?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Weinig pogingen resterend.</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registratie - Hulp nodig met de pincode voor Signal-Android (pincode versie 1)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registratie - Hulp nodig met de pincode voor Signal-Android (pincode versie 2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dag waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>
     <item quantity="other">Om je privacy en beveiliging te beschermen is er geen mogelijkheid om je pincode terug te zien. Als je je je pincode niet kunt herinneren dan kun je je, na %1$d dagen waarin Signal voor dit telefoonnummer niet wordt gebruikt, opnieuw verifiëren via sms. In dat geval zal alle inhoud worden gewist.</item>

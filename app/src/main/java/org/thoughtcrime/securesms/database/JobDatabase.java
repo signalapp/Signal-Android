@@ -40,7 +40,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
     private static final String NEXT_RUN_ATTEMPT_TIME = "next_run_attempt_time";
     private static final String RUN_ATTEMPT           = "run_attempt";
     private static final String MAX_ATTEMPTS          = "max_attempts";
-    private static final String MAX_BACKOFF           = "max_backoff";
     private static final String LIFESPAN              = "lifespan";
     private static final String SERIALIZED_DATA       = "serialized_data";
     private static final String SERIALIZED_INPUT_DATA = "serialized_input_data";
@@ -54,7 +53,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
                                                                                     NEXT_RUN_ATTEMPT_TIME + " INTEGER, " +
                                                                                     RUN_ATTEMPT           + " INTEGER, " +
                                                                                     MAX_ATTEMPTS          + " INTEGER, " +
-                                                                                    MAX_BACKOFF           + " INTEGER, " +
                                                                                     LIFESPAN              + " INTEGER, " +
                                                                                     SERIALIZED_DATA       + " TEXT, " +
                                                                                     SERIALIZED_INPUT_DATA + " TEXT DEFAULT NULL, " +
@@ -232,7 +230,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
               values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, job.getNextRunAttemptTime());
               values.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
               values.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
-              values.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
               values.put(Jobs.LIFESPAN, job.getLifespan());
               values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
               values.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
@@ -308,7 +305,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
     contentValues.put(Jobs.NEXT_RUN_ATTEMPT_TIME, job.getNextRunAttemptTime());
     contentValues.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
     contentValues.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
-    contentValues.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
     contentValues.put(Jobs.LIFESPAN, job.getLifespan());
     contentValues.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
     contentValues.put(Jobs.SERIALIZED_INPUT_DATA, job.getSerializedInputData());
@@ -347,7 +343,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
                        cursor.getLong(cursor.getColumnIndexOrThrow(Jobs.NEXT_RUN_ATTEMPT_TIME)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.RUN_ATTEMPT)),
                        cursor.getInt(cursor.getColumnIndexOrThrow(Jobs.MAX_ATTEMPTS)),
-                       cursor.getLong(cursor.getColumnIndexOrThrow(Jobs.MAX_BACKOFF)),
                        cursor.getLong(cursor.getColumnIndexOrThrow(Jobs.LIFESPAN)),
                        cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_DATA)),
                        cursor.getString(cursor.getColumnIndexOrThrow(Jobs.SERIALIZED_INPUT_DATA)),
@@ -399,7 +394,6 @@ public class JobDatabase extends SQLiteOpenHelper implements SignalDatabase {
         values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, CursorUtil.requireLong(cursor, "next_run_attempt_time"));
         values.put(Jobs.RUN_ATTEMPT, CursorUtil.requireInt(cursor, "run_attempt"));
         values.put(Jobs.MAX_ATTEMPTS, CursorUtil.requireInt(cursor, "max_attempts"));
-        values.put(Jobs.MAX_BACKOFF, CursorUtil.requireLong(cursor, "max_backoff"));
         values.put(Jobs.LIFESPAN, CursorUtil.requireLong(cursor, "lifespan"));
         values.put(Jobs.SERIALIZED_DATA, CursorUtil.requireString(cursor, "serialized_data"));
         values.put(Jobs.SERIALIZED_INPUT_DATA, CursorUtil.requireString(cursor, "serialized_input_data"));

@@ -342,7 +342,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Chyba pri nastavení profilu</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavte si svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Váš profil využíva koncové šifrovanie. Váš profil a jeho zmeny budú vidieť vaše kontakty, keď začnete alebo prijmete nové konverzácie a keď sa pridáte do nových skupín.</string>
-  <string name="CreateProfileActivity_set_avatar_description">Nastaviť avatar</string>
+  <string name="CreateProfileActivity_set_avatar_description">Nastaviť profilový obrázok</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Obnoviť zo zálohy?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">Obnovte Vaše správy a médiá z úložiska. Keď nevykonáte obnovu teraz, neskôr nebude možná.</string>
@@ -503,7 +503,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pre prístup k novým funkciám ako @spomenutia a administrátori modernizujte túto skupinu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Teraz nie</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizuj skupinu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizuj skupinu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohol byť znovu pridaný do Novej skupiny. Chcete ho pridať teraz?</item>
@@ -666,6 +666,7 @@
   <string name="ManageGroupActivity_mute_notifications">Stlmiť upozornenia</string>
   <string name="ManageGroupActivity_custom_notifications">Vlastné upozornenia</string>
   <string name="ManageGroupActivity_mentions">Spomenutia</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Pozadie chatu</string>
   <string name="ManageGroupActivity_until_s">Do %1$s</string>
   <string name="ManageGroupActivity_off">Vypnuté</string>
   <string name="ManageGroupActivity_on">Zapnuté</string>
@@ -703,12 +704,16 @@
   <string name="ManageProfileFragment_profile_name">Názov profilu</string>
   <string name="ManageProfileFragment_username">Používateľské meno</string>
   <string name="ManageProfileFragment_about">Informácie</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Napíšte pár slov o sebe</string>
   <string name="ManageProfileFragment_your_name">Vaše meno</string>
+  <string name="ManageProfileFragment_your_username">Vaše používateľské meno</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Nepodarilo sa nastaviť profilový obrázok</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Pridať do systémových kontaktov</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Táto osoba je vo vašich kontaktoch</string>
   <string name="ManageRecipientActivity_disappearing_messages">Miznúce správy</string>
   <string name="ManageRecipientActivity_chat_color">Farba chatu</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Pozadie chatu</string>
   <string name="ManageRecipientActivity_block">Blokovať</string>
   <string name="ManageRecipientActivity_unblock">Odblokovať</string>
   <string name="ManageRecipientActivity_view_safety_number">Zobraziť bezpečnostné číslo</string>
@@ -1213,6 +1218,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Odomknúť Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Zámok obrazovky</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Umiestniť značku</string>
@@ -1315,6 +1321,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nie je možné prijať audio a video od používateľa %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Môže to byť pre to, že dotyčný používateľ nepotvrdil zmenu vášho bezpečnostného čísla, že sa vyskytol problém s jeho zariadením, alebo že vás zablokoval.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy adresa</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Chcete použiť túto proxy adresu?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Použiť proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Úspešne pripojené ku proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vyberte svoju krajinu</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Musíte zadať
@@ -1436,6 +1448,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Skopírujte túto URL adresu a pridajte ju k hláseniu o chybe alebo e-mailu určenému tímu podpory:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Zdieľať</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Filter:</string>
   <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
   <string name="SupportEmailUtil_android_version">Verzia Androidu:</string>
   <string name="SupportEmailUtil_signal_version">Verzia Signalu:</string>
@@ -1838,6 +1851,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Informácie</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napíšte pár slov o sebe…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">Hovorte slobodne</string>
   <string name="EditAboutFragment_encrypted">Šifrovaný</string>
   <string name="EditAboutFragment_be_kind">Buďte milí</string>
   <string name="EditAboutFragment_coffee_lover">Milovník kávy</string>
@@ -1849,8 +1864,10 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="EditProfileFragment__group_name">Názov skupiny</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše meno</string>
+  <string name="EditProfileNameFragment_first_name">Krstné meno</string>
   <string name="EditProfileNameFragment_last_name_optional">Priezvisko (povinné)</string>
   <string name="EditProfileNameFragment_save">Uložiť</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Kvôli chybe v sieti uloženie zlyhalo. Skúste znovu neskôr.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Zdieľané médiá</string>
   <!--recipients_panel-->
@@ -2025,6 +2042,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__dark_theme">Tmavý</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Motív</string>
+  <string name="preferences__chat_wallpaper">Pozadie chatu</string>
   <string name="preferences__disable_pin">Vypnúť PIN</string>
   <string name="preferences__enable_pin">Zapnúť PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Ak vypnete PIN, opätovnou registráciou Signalu prídete o všetky vaše dáta, ak ich manuálne nezálohujete a neobnovíte. Kým bude PIN vypnutý, nebudete môcť zapnúť registračný zámok.</string>
@@ -2043,6 +2061,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Keď máte vypnuté potvrdenia o prečítaní, nebudete dostávať potvrdenia ani od ostatných.</string>
   <string name="preferences__typing_indicators">Indikátory písania</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Požiadajte klávesnicu o zakázanie personalizovaného učenia. Nastavenie nie je garanciou a klávesnica ho môže ignorovať.</string>
   <string name="preferences_app_protection__blocked_users">Blokovaní používatelia</string>
   <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
   <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
@@ -2103,6 +2122,16 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
   <string name="preferences_setup_a_username">Založiť používateľské meno</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Použiť proxy</string>
+  <string name="preferences_off">Vypnuté</string>
+  <string name="preferences_on">Zapnuté</string>
+  <string name="preferences_proxy_address">Proxy adresa</string>
+  <string name="preferences_share">Zdieľať</string>
+  <string name="preferences_save">Uložiť</string>
+  <string name="preferences_connecting_to_proxy">Pripája sa ku proxy…</string>
+  <string name="preferences_connected_to_proxy">Pripojené ku proxy</string>
+  <string name="preferences_connection_failed">Pripojenie zlyhalo</string>
   <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2538,23 +2567,44 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Zdieľať</string>
   <string name="ShareActivity__send">Poslať</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Zdieľanie do viacerých chatov je možné iba Signal správami.</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Zlyhalo odoslanie niektorým používateľom</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Môžete zdieľať maximálne s %1$d chatmi</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Preposlať správu</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Pozadie chatu</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Nastaviť pozadie</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tmavý motív stlmí pozadie</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Odstrániť pozadie</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Odstrániť pozadie pre tento chat?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Odstrániť pozadie? Neodstránia sa tým vlastné pozadia, čo ste si pre vaše chaty nastavili.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Zresetovať všetky pozadia</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Zresetovať všetky pozadia vrátane vlastných pozadí, čo ste si pre vaše chaty nastavili?</string>
+  <string name="ChatWallpaperFragment__contact_name">Názov kontaktu</string>
   <string name="ChatWallpaperFragment__reset">Resetovať</string>
+  <string name="ChatWallpaperFragment__clear">Zmazať</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhľad pozadia</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Vybrať z fotiek</string>
   <string name="ChatWallpaperSelectionFragment__presets">Predvoľby</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Náhľad</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Nastaviť pozadie</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Potiahnite pre zobrazenie viacerých pozadí</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Nastaviť pozadie pre všetky chaty</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Nastaviť pozadie pre %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Prezeranie galérie vyžaduje prístup k úložisku dát.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vybrať obrázok ako pozadie</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Štipnite pre priblíženie, potiahnite pre úpravu.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Nastaviť tapetu pre všetky chaty.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Nastaviť pozadie pre %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Chyba pri nastavení pozadia.</string>
+  <string name="WallpaperCropActivity__blur_photo">Rozmazať fotku</string>
   <!--EOF-->
 </resources>

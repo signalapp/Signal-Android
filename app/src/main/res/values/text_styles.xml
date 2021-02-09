@@ -22,6 +22,18 @@
         <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
     </style>
 
+    <style name="Signal.Text.Preview.Medium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Signal.Text.Preview.Medium.Primary">
+        <item name="android:textColor">@color/signal_text_primary</item>
+    </style>
+
+    <style name="Signal.Text.Preview.Medium.Secondary">
+        <item name="android:textColor">@color/signal_text_secondary</item>
+    </style>
+
     <style name="Signal.Text.Caption" parent="Base.TextAppearance.AppCompat.Caption">
         <item name="android:textSize">12sp</item>
         <item name="android:lineSpacingExtra">2sp</item>

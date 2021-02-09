@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
-    api 'com.googlecode.libphonenumber:libphonenumber:8.12.16'
+    api 'com.googlecode.libphonenumber:libphonenumber:8.12.17'
     api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
 
     api 'org.whispersystems:signal-client-java:0.1.5'

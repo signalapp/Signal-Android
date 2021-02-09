@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -35,10 +36,12 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.BackgroundMessageRetriever;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor;
+import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
@@ -53,18 +56,22 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import java.util.UUID;
+
+import okhttp3.Response;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -73,16 +80,21 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   private static final String TAG = Log.tag(ApplicationDependencyProvider.class);
 
-  private final Application                context;
-  private final SignalServiceNetworkAccess networkAccess;
+  private final Application              context;
+  private final PipeConnectivityListener pipeListener;
 
-  public ApplicationDependencyProvider(@NonNull Application context, @NonNull SignalServiceNetworkAccess networkAccess) {
-    this.context       = context;
-    this.networkAccess = networkAccess;
+  public ApplicationDependencyProvider(@NonNull Application context) {
+    this.context      = context;
+    this.pipeListener = new PipeConnectivityListener(context);
   }
 
   private @NonNull ClientZkOperations provideClientZkOperations() {
-    return ClientZkOperations.create(networkAccess.getConfiguration(context));
+    return ClientZkOperations.create(provideSignalServiceNetworkAccess().getConfiguration(context));
+  }
+
+  @Override
+  public @NonNull PipeConnectivityListener providePipeListener() {
+    return pipeListener;
   }
 
   @Override
@@ -92,7 +104,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
-    return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
+    return new SignalServiceAccountManager(provideSignalServiceNetworkAccess().getConfiguration(context),
                                            new DynamicCredentialsProvider(context),
                                            BuildConfig.SIGNAL_AGENT,
                                            provideGroupsV2Operations(),
@@ -101,7 +113,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender() {
-      return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
+      return new SignalServiceMessageSender(provideSignalServiceNetworkAccess().getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             new SignalProtocolStoreImpl(context),
                                             BuildConfig.SIGNAL_AGENT,
@@ -119,10 +131,10 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
     SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
                                                                          : new UptimeSleepTimer();
-    return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
+    return new SignalServiceMessageReceiver(provideSignalServiceNetworkAccess().getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             BuildConfig.SIGNAL_AGENT,
-                                            new PipeConnectivityListener(),
+                                            pipeListener,
                                             sleepTimer,
                                             provideClientZkOperations().getProfileOperations(),
                                             FeatureFlags.okHttpAutomaticRetry());
@@ -130,7 +142,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
-    return networkAccess;
+    return new SignalServiceNetworkAccess(context);
   }
 
   @Override
@@ -238,32 +250,6 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     @Override
     public String getSignalingKey() {
       return TextSecurePreferences.getSignalingKey(context);
-    }
-  }
-
-  private class PipeConnectivityListener implements ConnectivityListener {
-
-    @Override
-    public void onConnected() {
-      Log.i(TAG, "onConnected()");
-      TextSecurePreferences.setUnauthorizedReceived(context, false);
-    }
-
-    @Override
-    public void onConnecting() {
-      Log.i(TAG, "onConnecting()");
-    }
-
-    @Override
-    public void onDisconnected() {
-      Log.w(TAG, "onDisconnected()");
-    }
-
-    @Override
-    public void onAuthenticationFailure() {
-      Log.w(TAG, "onAuthenticationFailure()");
-      TextSecurePreferences.setUnauthorizedReceived(context, true);
-      EventBus.getDefault().post(new ReminderUpdateEvent());
     }
   }
 }

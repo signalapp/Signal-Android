@@ -159,9 +159,9 @@ public final class PersistentLogger extends Log.Logger {
 
     if (cachedThreadString.get() == null) {
       if (Looper.myLooper() == Looper.getMainLooper()) {
-        threadString = "main";
+        threadString = "main ";
       } else {
-        threadString = String.format("%-4s", Thread.currentThread().getId());
+        threadString = String.format("%-5s", Thread.currentThread().getId());
       }
 
       cachedThreadString.set(threadString);

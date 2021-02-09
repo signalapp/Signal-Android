@@ -56,7 +56,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private final Boundary horizontalEmojiBoundary = new Boundary();
   private final Boundary verticalScrubBoundary   = new Boundary();
   private final PointF   deadzoneTouchPoint      = new PointF();
-  private final PointF   lastSeenDownPoint       = new PointF();
 
   private Activity      activity;
   private Recipient     conversationRecipient;
@@ -142,14 +141,15 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   public void setListVerticalTranslation(float translationY) {
-    maskView.setTargetParentTranslationY(translationY - ViewUtil.getStatusBarHeight(maskView));
+    maskView.setTargetParentTranslationY(translationY);
   }
 
   public void show(@NonNull Activity activity,
                    @NonNull View maskTarget,
                    @NonNull Recipient conversationRecipient,
                    @NonNull MessageRecord messageRecord,
-                   int maskPaddingBottom)
+                   int maskPaddingBottom,
+                   @NonNull PointF lastSeenDownPoint)
   {
 
     if (overlayState != OverlayState.HIDDEN) {
@@ -292,10 +292,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
   public boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
     if (!isShowing()) {
-      if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-        lastSeenDownPoint.set(motionEvent.getX(), motionEvent.getY());
-      }
-      return false;
+      throw new IllegalStateException("Touch events should only be propagated to this method if we are displaying the scrubber.");
     }
 
     if ((motionEvent.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK) != 0) {

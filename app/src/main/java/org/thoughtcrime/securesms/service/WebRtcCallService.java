@@ -28,7 +28,6 @@ import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.CallManager.CallEvent;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.HttpHeader;
-import org.signal.ringrtc.IceCandidate;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.zkgroup.VerificationFailedException;
@@ -930,7 +929,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   @Override
-  public void onSendOffer(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @Nullable byte[] opaque, @Nullable String sdp, @NonNull CallManager.CallMediaType callMediaType) {
+  public void onSendOffer(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull byte[] opaque, @NonNull CallManager.CallMediaType callMediaType) {
     Log.i(TAG, "onSendOffer: id: " + callId.format(remoteDevice) + " type: " + callMediaType.name());
 
     if (remote instanceof RemotePeer) {
@@ -944,7 +943,6 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
             .putExtra(EXTRA_REMOTE_DEVICE, remoteDevice)
             .putExtra(EXTRA_BROADCAST,     broadcast)
             .putExtra(EXTRA_OFFER_OPAQUE,  opaque)
-            .putExtra(EXTRA_OFFER_SDP,     sdp)
             .putExtra(EXTRA_OFFER_TYPE,    offerType);
 
       startService(intent);
@@ -954,7 +952,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   @Override
-  public void onSendAnswer(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @Nullable byte[] opaque, @Nullable String sdp) {
+  public void onSendAnswer(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull byte[] opaque) {
     Log.i(TAG, "onSendAnswer: id: " + callId.format(remoteDevice));
 
     if (remote instanceof RemotePeer) {
@@ -966,8 +964,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
             .putExtra(EXTRA_REMOTE_PEER,   remotePeer)
             .putExtra(EXTRA_REMOTE_DEVICE, remoteDevice)
             .putExtra(EXTRA_BROADCAST,     broadcast)
-            .putExtra(EXTRA_ANSWER_OPAQUE, opaque)
-            .putExtra(EXTRA_ANSWER_SDP,    sdp);
+            .putExtra(EXTRA_ANSWER_OPAQUE, opaque);
 
       startService(intent);
     } else {
@@ -976,7 +973,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   @Override
-  public void onSendIceCandidates(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull List<IceCandidate> iceCandidates) {
+  public void onSendIceCandidates(@NonNull CallId callId, @Nullable Remote remote, @NonNull Integer remoteDevice, @NonNull Boolean broadcast, @NonNull List<byte[]> iceCandidates) {
     Log.i(TAG, "onSendIceCandidates: id: " + callId.format(remoteDevice));
 
     if (remote instanceof RemotePeer) {
@@ -984,7 +981,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
       Intent     intent     = new Intent(this, WebRtcCallService.class);
 
       ArrayList<IceCandidateParcel> iceCandidateParcels = new ArrayList<>(iceCandidates.size());
-      for (IceCandidate iceCandidate : iceCandidates) {
+      for (byte[] iceCandidate : iceCandidates) {
         iceCandidateParcels.add(new IceCandidateParcel(iceCandidate));
       }
 

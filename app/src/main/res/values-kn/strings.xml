@@ -462,7 +462,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">ಹೊಸ ವೈಶಿಷ್ಟ್ಯ ಗಳಾದ  @ಉಲ್ಲೇಖಗಳು ಮತ್ತು ಗುಂಪು  ನಿರ್ವಾಹಕರಂತಹ  ಲಕ್ಷಣಗಳನ್ನು  ಪಡೆಯಲು ಈ ಗುಂಪನ್ನು ಸುಧಾರಿಸಿ </string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ಈಗಲ್ಲ</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">ಗುಂಪನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಿ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ಗುಂಪನ್ನು ಅಪ್ಡೇಟ್ ಮಾಡಿ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</item>

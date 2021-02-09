@@ -9,6 +9,8 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain;
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public abstract class BaseJob extends Job {
 
@@ -35,7 +37,7 @@ public abstract class BaseJob extends Job {
     } catch (Exception e) {
       if (onShouldRetry(e)) {
         Log.i(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
-        return Result.retry();
+        return Result.retry(getNextRunAttemptBackoff(getRunAttempt() + 1, e));
       } else {
         Log.w(TAG, JobLogger.format(this, "Encountered a failing exception."), e);
         return Result.failure();
@@ -45,6 +47,18 @@ public abstract class BaseJob extends Job {
         Tracer.getInstance().end(getClass().getSimpleName());
       }
     }
+  }
+
+  /**
+   * Should return how long you'd like to wait until the next retry, given the attempt count and
+   * exception that caused the retry. The attempt count is the number of attempts that have been
+   * made already, so this value will be at least 1.
+   *
+   * There is a sane default implementation here that uses exponential backoff, but jobs can
+   * override this behavior to define custom backoff behavior.
+   */
+  public long getNextRunAttemptBackoff(int pastAttemptCount, @NonNull Exception exception) {
+    return BackoffUtil.exponentialBackoff(pastAttemptCount, FeatureFlags.getDefaultMaxBackoff());
   }
 
   protected abstract void onRun() throws Exception;

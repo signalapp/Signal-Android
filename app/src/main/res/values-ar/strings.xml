@@ -538,7 +538,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">للوصول إلى الميزات الجديدة مثل ‎@mentions والمشرفين، قم بترقية هذه المجموعة.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ليس الآن</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">تحديث المجموعة</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">تحديث المجموعة</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="zero">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخص الآن ؟</item>
@@ -1333,6 +1333,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
   <string name="PassphrasePromptActivity_unlock_signal">فك قفل Signal </string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - قفل الشاشة</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">الخريطة</string>
   <string name="PlacePickerActivity_drop_pin">إدخال إشارة </string>
@@ -1442,6 +1443,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">لا يمكن تلقي الصوت والصورة من %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ربما يكون ذلك بسبب عدم تحقق الشخص من تغيير رقم أمانك، أو بسبب وجود مشكلة في جهازه، أو قيامه بحظرك.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">الخادم الوكيل</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">عنوان الوكيل</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ألديك رغبة في استخدام عنوان الوكيل هذا ؟</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">استخدم الوكيل</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">نجح في الاتصال بالوكيل.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">يجب عليك اختيار بلدك</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">يجب عليك تحديد رمز دولتك</string>
@@ -1986,7 +1993,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">حول</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">اكتب عدة كلمات عن نفسك….</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">ما عليك إلا التحدث بكل حرية</string>
   <string name="EditAboutFragment_encrypted">مُعمَّى</string>
   <string name="EditAboutFragment_be_kind">كن لطيفا</string>
@@ -2259,6 +2266,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">تفعيل استقبال الرّسائل من جهة غير معروفة أي ليست من ضمن جهات اتصالك أو لم تشاركها ملفّك الشخصي.</string>
   <string name="preferences_communication__sealed_sender_learn_more">لمعرفة المزيد</string>
   <string name="preferences_setup_a_username">إعداد اسم المستخدم</string>
+  <string name="preferences_proxy">الوكيل</string>
+  <string name="preferences_use_proxy">استخدم الوكيل</string>
+  <string name="preferences_off">غير مُشغَّل</string>
+  <string name="preferences_on">مُشغَّل</string>
+  <string name="preferences_proxy_address">عنوان الوكيل</string>
+  <string name="preferences_share">المشاركة</string>
+  <string name="preferences_save">حفظ</string>
+  <string name="preferences_connecting_to_proxy">يجري الاتصال بالوكيل…</string>
+  <string name="preferences_connected_to_proxy">متصل بالوكيل</string>
+  <string name="preferences_connection_failed">فشِل الاتصال</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">تعذر الاتصال بالوكيل. عليك بالتحقق من عنوانه ثم إعادة المحاولة مرة أخرى.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">إنك متصل بالوكيل. يمكنك تعطيله في أي وقت، انطلاقا من اﻹعدادات.</string>
+  <string name="preferences_success">نجحت</string>
+  <string name="preferences_failed_to_connect">فشِل الاتصال</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2449,6 +2470,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">الرقم التعريفي الشخصي غير صحيح</string>
   <string name="RegistrationLockFragment__forgot_your_pin">هل نسيت الرقم التعريفي الشخصي؟</string>
   <string name="RegistrationLockFragment__not_many_tries_left">لم يتبق الكثير من المحاولات!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي في أندرويد (النسخة الأولى للرقم التعريفي الشخصي)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">تسجيل Signal - تحتاج مساعدة بالرقم التعريفي الشخصي في أندرويد (النسخة الثانية للرقم التعريفي الشخصي)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="zero">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d أيام من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
     <item quantity="one">لخصوصيتك ولأمانك، لا توجد طريقة لاسترجاع رقمك التعريفي الشخصي. إن لم تستطع تذكره، يمكنك إعادة التسجيل باستخدام رسالة قصيرة بعد %1$d يوم من عدم الاستخدام. في هذه الحالة، سيتم حذف حسابك وجميع المحتوى الخاص بك. </item>
@@ -2738,7 +2761,7 @@
   <string name="ChatWallpaperSelectionFragment__presets">الإعدادات المسبقة</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">مُعاينة</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper">ضبط الخلفية</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين خلفية</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">يُرجى السحب لمعاينة بقية الخلفيات</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">ضبط الخلفية لجميع المحادثات</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">ضبط الخلفية لـ %1$s</string>

@@ -22,7 +22,7 @@ class FixedSizePagingController<E> implements PagingController {
 
   private static final String TAG = FixedSizePagingController.class.getSimpleName();
 
-  private static final Executor FETCH_EXECUTOR = SignalExecutors.newFixedLifoThreadExecutor("signal-FixedSizePagingController", 1, 1);
+  private static final Executor FETCH_EXECUTOR = SignalExecutors.newCachedSingleThreadExecutor("signal-FixedSizePagingController");
   private static final boolean  DEBUG          = false;
 
   private final PagedDataSource<E>       dataSource;
@@ -49,7 +49,7 @@ class FixedSizePagingController<E> implements PagingController {
   /**
    * We assume this method is always called on the same thread, so we can read our
    * {@code loadState} and construct the parameters of a fetch request. That fetch request can
-   * then be performed on separate single-thread LIFO executor.
+   * then be performed on separate single-thread executor.
    */
   @Override
   public void onDataNeededAroundIndex(int aroundIndex) {

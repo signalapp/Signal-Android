@@ -192,6 +192,7 @@
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintStart_toEndOf="@id/manage_profile_about_icon"
           app:layout_constraintEnd_toEndOf="parent"
+          app:emoji_forceCustom="true"
           tools:text="Photographer for the Daily Bugle"/>
 
       <TextView

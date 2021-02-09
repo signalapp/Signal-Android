@@ -38,7 +38,8 @@
         android:gravity="center"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         tools:text="Hangin' on the web"
-        app:layout_constraintTop_toBottomOf="@id/message_request_title" />
+        app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:emoji_forceCustom="true"/>
 
     <TextView
         android:id="@+id/message_request_subtitle"

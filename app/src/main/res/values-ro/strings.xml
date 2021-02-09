@@ -486,7 +486,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pentru a accesa funcții precum @mențiuni și administratori, actualizați acest grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nu acum</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizează grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizează grup</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membru nu a putut fi adăugat la noul grup. Doriți să-l adăugați acum?</item>
@@ -1162,6 +1162,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Deblochează Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Ecran de blocare</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Hartă</string>
   <string name="PlacePickerActivity_drop_pin">Alege marcaj</string>
@@ -1261,6 +1262,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nu se poate primi audio &amp; video de la %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nu se poate primi audio și video de la %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Acest lucru se poate datora faptului că nu au verificat modificarea numărului dvs. de siguranță, există o problemă cu dispozitivul lor sau v-au blocat.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Server proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Adresă proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Doriți să folosiți această adresă proxy?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Utilizează proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Conectat cu succes la proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Alegeți ţara dvs.</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Trebuie să introduceți
@@ -1769,7 +1776,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Despre</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Scrie câteva cuvinte despre tine…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Vorbește liber</string>
   <string name="EditAboutFragment_encrypted">Criptat</string>
   <string name="EditAboutFragment_be_kind">Fii bun</string>
@@ -2040,6 +2047,20 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activează funcția de expeditor ascuns pentru mesajele primite de la non-contacte și persoane cu care nu ai partajat profilul tău.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Aflați mai multe</string>
   <string name="preferences_setup_a_username">Configurați un nume de utilizator</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Utilizează proxy</string>
+  <string name="preferences_off">Dezactivate</string>
+  <string name="preferences_on">Activate</string>
+  <string name="preferences_proxy_address">Adresă proxy</string>
+  <string name="preferences_share">Partajați</string>
+  <string name="preferences_save">Salvează</string>
+  <string name="preferences_connecting_to_proxy">Se conectează la proxy…</string>
+  <string name="preferences_connected_to_proxy">Conectat la proxy</string>
+  <string name="preferences_connection_failed">Conexiune eșuată</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Conexiunea la proxy nu a reușit. Verificați adresa proxy și încercați din nou.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Sunteți conectat la proxy. Puteți dezactiva proxy-ul în orice moment din Setări.</string>
+  <string name="preferences_success">Succes</string>
+  <string name="preferences_failed_to_connect">Conexiunea a eșuat</string>
   <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2224,6 +2245,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorect</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Ați uitat PIN-ul?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Nu mai sunt multe încercări rămase!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android (PIN v1)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Înregistrare Signal - Am nevoie de asistență pentru PIN Android (PIN v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zi de inactivitate. În acest caz, contul dvs. va fi șters și tot conținutul va fi șters.</item>
     <item quantity="few">Pentru confidențialitatea și securitatea dvs., nu există nici o modalitate de a recupera codul PIN. Dacă nu vă mai amintiți codul PIN, puteți verifica din nou cu SMS după %1$d zile de inactivitate. În acest caz, contul dvs. va fi șters și tot conținutul va fi șters.</item>

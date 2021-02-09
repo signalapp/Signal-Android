@@ -63,7 +63,7 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
       callManager.setCommunicationMode();
       callManager.setAudioEnable(currentState.getLocalDeviceState().isMicrophoneEnabled());
       callManager.setVideoEnable(currentState.getLocalDeviceState().getCameraState().isEnabled());
-      callManager.setLowBandwidthMode(NetworkUtil.useLowBandwidthCalling(context));
+      callManager.updateBandwidthMode(NetworkUtil.getCallingBandwidthMode(context));
     } catch (CallException e) {
       return callFailure(currentState, "Enabling audio/video failed: ", e);
     }

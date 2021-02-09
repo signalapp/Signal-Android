@@ -444,7 +444,7 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅਪਗ੍ਰੇਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ਹਾਲੇ ਨਹੀਂ</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ਸਦੱਸ ਸ਼ਾਮਲ ਕਰੋ</item>
@@ -934,6 +934,7 @@
   <!--CallParticipantsListDialog-->
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">ਹੋਰ ਜਾਣਕਾਰੀ</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ਆਪਣਾ ਦੇਸ਼ ਚੁਣੋ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">ਤੁਹਾਨੂੰ ਇਹ ਦੱਸਣ ਦੀ ਜਰੂਰਤ ਹੈ 
@@ -1655,6 +1656,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ਗੈਰ-ਸੰਪਰਕਾਂ ਅਤੇ ਉਨ੍ਹਾਂ ਲੋਕਾਂ ਨਾਲ ਆਉਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਲਈ ਸੀਲਡ ਪ੍ਰੇਸ਼ਕ ਨੂੰ ਸਮਰੱਥ ਕਰੋ ਜਿਨ੍ਹਾਂ ਨਾਲ ਤੁਸੀਂ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਨਹੀਂ ਕੀਤੀ ਹੈ.</string>
   <string name="preferences_communication__sealed_sender_learn_more">ਜਿਆਦਾ ਜਾਣੋ</string>
   <string name="preferences_setup_a_username">ਵਰਤੋਂਕਾਰ ਨਾਂ ਸੈਟਅੱਪ ਕਰੋ</string>
+  <string name="preferences_off">ਬੰਦ </string>
+  <string name="preferences_on">ਚਾਲੂ</string>
+  <string name="preferences_share">ਸਾਂਝਾ ਕਰੋ</string>
+  <string name="preferences_save">ਸੰਭਾਲੋ</string>
   <string name="configurable_single_select__customize_option">ਕਸਟਮਾਈਜ਼ ਚੋਣ</string>
   <!--Internal only preferences-->
   <!--****************************************-->

@@ -199,18 +199,31 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isSelfCreatedGroup() {
-    if (!isGroupUpdate() || !isGroupV2()) return false;
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
 
-    try {
-      byte[]               decoded = Base64.decode(getBody());
-      DecryptedGroupChange change  = DecryptedGroupV2Context.parseFrom(decoded)
-                                                               .getChange();
-
-      return selfCreatedGroup(change);
-    } catch (IOException e) {
-      Log.w(TAG, "GV2 Message update detail could not be read", e);
+    if (decryptedGroupV2Context == null) {
       return false;
     }
+    DecryptedGroupChange change = decryptedGroupV2Context.getChange();
+
+    return selfCreatedGroup(change);
+  }
+
+  private  @Nullable DecryptedGroupV2Context getDecryptedGroupV2Context() {
+    if (!isGroupUpdate() || !isGroupV2()) {
+      return null;
+    }
+
+    DecryptedGroupV2Context decryptedGroupV2Context;
+    try {
+      byte[] decoded = Base64.decode(getBody());
+      decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded);
+
+    } catch (IOException e) {
+      Log.w(TAG, "GV2 Message update detail could not be read", e);
+      decryptedGroupV2Context = null;
+    }
+    return decryptedGroupV2Context;
   }
 
   private static boolean selfCreatedGroup(@NonNull DecryptedGroupChange change) {
@@ -240,26 +253,25 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public @Nullable InviteAddState getGv2AddInviteState() {
-    try {
-      byte[]                  decoded                 = Base64.decode(getBody());
-      DecryptedGroupV2Context decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded);
-      DecryptedGroup          groupState              = decryptedGroupV2Context.getGroupState();
-      boolean                 invited                 = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), Recipient.self().requireUuid()).isPresent();
+    DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
 
-      if (decryptedGroupV2Context.hasChange()) {
-        UUID changeEditor = UuidUtil.fromByteStringOrNull(decryptedGroupV2Context.getChange().getEditor());
-
-        if (changeEditor != null) {
-          return new InviteAddState(invited, changeEditor);
-        }
-      }
-
-      Log.w(TAG, "GV2 Message editor could not be determined");
-      return null;
-    } catch (IOException e) {
-      Log.w(TAG, "GV2 Message update detail could not be read", e);
+    if (decryptedGroupV2Context == null) {
       return null;
     }
+
+    DecryptedGroup groupState = decryptedGroupV2Context.getGroupState();
+    boolean        invited    = DecryptedGroupUtil.findPendingByUuid(groupState.getPendingMembersList(), Recipient.self().requireUuid()).isPresent();
+
+    if (decryptedGroupV2Context.hasChange()) {
+      UUID changeEditor = UuidUtil.fromByteStringOrNull(decryptedGroupV2Context.getChange().getEditor());
+
+      if (changeEditor != null) {
+        return new InviteAddState(invited, changeEditor);
+      }
+    }
+
+    Log.w(TAG, "GV2 Message editor could not be determined");
+    return null;
   }
 
   private @NonNull String getCallDateString(@NonNull Context context) {

@@ -34,9 +34,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.Arrays;
-import java.util.Locale;
-
 public final class WelcomeFragment extends BaseRegistrationFragment {
 
   private static final String TAG = Log.tag(WelcomeFragment.class);
@@ -196,14 +193,7 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
     if (localNumber.isPresent()) {
       Log.i(TAG, "Phone number detected");
       Phonenumber.PhoneNumber phoneNumber    = localNumber.get();
-      String                  nationalNumber = String.valueOf(phoneNumber.getNationalNumber());
-
-      if (phoneNumber.getNumberOfLeadingZeros() != 0) {
-        char[] value = new char[phoneNumber.getNumberOfLeadingZeros()];
-        Arrays.fill(value, '0');
-        nationalNumber = new String(value) + nationalNumber;
-        Log.i(TAG, String.format(Locale.US, "Padded national number with %d zeros", phoneNumber.getNumberOfLeadingZeros()));
-      }
+      String                  nationalNumber = PhoneNumberUtil.getInstance().format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
 
       getModel().onNumberDetected(phoneNumber.getCountryCode(), nationalNumber);
     } else {

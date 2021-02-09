@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 import androidx.annotation.NonNull;
 
+import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public final class NetworkUtil {
@@ -27,7 +28,11 @@ public final class NetworkUtil {
     return info != null && info.isConnected() && info.isRoaming() && info.getType() == ConnectivityManager.TYPE_MOBILE;
   }
 
-  public static boolean useLowBandwidthCalling(@NonNull Context context) {
+  public static @NonNull CallManager.BandwidthMode getCallingBandwidthMode(@NonNull Context context) {
+    return useLowBandwidthCalling(context) ? CallManager.BandwidthMode.LOW : CallManager.BandwidthMode.NORMAL;
+  }
+
+  private static boolean useLowBandwidthCalling(@NonNull Context context) {
     switch (SignalStore.settings().getCallBandwidthMode()) {
       case HIGH_ON_WIFI:
         return !NetworkUtil.isConnectedWifi(context);

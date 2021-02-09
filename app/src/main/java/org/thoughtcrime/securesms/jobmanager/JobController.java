@@ -161,9 +161,13 @@ class JobController {
   }
 
   @WorkerThread
-  synchronized void onRetry(@NonNull Job job) {
+  synchronized void onRetry(@NonNull Job job, long backoffInterval) {
+    if (backoffInterval <= 0) {
+      throw new IllegalArgumentException("Invalid backoff interval! " + backoffInterval);
+    }
+
     int    nextRunAttempt     = job.getRunAttempt() + 1;
-    long   nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, TimeUnit.SECONDS.toMillis(FeatureFlags.getDefaultMaxBackoffSeconds()));
+    long   nextRunAttemptTime = System.currentTimeMillis() + backoffInterval;
     String serializedData     = dataSerializer.serialize(job.serialize());
 
     jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
@@ -355,7 +359,6 @@ class JobController {
                                   job.getNextRunAttemptTime(),
                                   job.getRunAttempt(),
                                   job.getParameters().getMaxAttempts(),
-                                  job.getParameters().getMaxBackoff(),
                                   job.getParameters().getLifespan(),
                                   dataSerializer.serialize(job.serialize()),
                                   null,
@@ -447,20 +450,8 @@ class JobController {
                   .setMaxAttempts(jobSpec.getMaxAttempts())
                   .setQueue(jobSpec.getQueueKey())
                   .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
-                  .setMaxBackoff(jobSpec.getMaxBackoff())
                   .setInputData(jobSpec.getSerializedInputData() != null ? dataSerializer.deserialize(jobSpec.getSerializedInputData()) : null)
                   .build();
-  }
-
-  private long calculateNextRunAttemptTime(long currentTime, int nextAttempt, long maxBackoff) {
-    int    boundedAttempt     = Math.min(nextAttempt, 30);
-    long   exponentialBackoff = (long) Math.pow(2, boundedAttempt) * 1000;
-    long   actualBackoff      = Math.min(exponentialBackoff, maxBackoff);
-    double jitter             = 0.75 + (Math.random() * 0.5);
-
-    actualBackoff = (long) (actualBackoff * jitter);
-
-    return currentTime + actualBackoff;
   }
 
   private @NonNull JobSpec mapToJobWithInputData(@NonNull JobSpec jobSpec, @NonNull Data inputData) {
@@ -471,7 +462,6 @@ class JobController {
                        jobSpec.getNextRunAttemptTime(),
                        jobSpec.getRunAttempt(),
                        jobSpec.getMaxAttempts(),
-                       jobSpec.getMaxBackoff(),
                        jobSpec.getLifespan(),
                        jobSpec.getSerializedData(),
                        dataSerializer.serialize(inputData),

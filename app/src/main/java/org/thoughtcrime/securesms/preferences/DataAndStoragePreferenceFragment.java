@@ -25,6 +25,7 @@ public class DataAndStoragePreferenceFragment extends ListSummaryPreferenceFragm
 
   private static final String TAG                = Log.tag(DataAndStoragePreferenceFragment.class);
   private static final String MANAGE_STORAGE_KEY = "pref_data_manage";
+  private static final String USE_PROXY_KEY      = "pref_use_proxy";
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -52,6 +53,12 @@ public class DataAndStoragePreferenceFragment extends ListSummaryPreferenceFragm
     viewModel.getStorageBreakdown()
              .observe(requireActivity(),
                       breakdown -> manageStorage.setSummary(Util.getPrettyFileSize(breakdown.getTotalSize())));
+
+
+    findPreference(USE_PROXY_KEY).setOnPreferenceClickListener(unused -> {
+      requireApplicationPreferencesActivity().pushFragment(EditProxyFragment.newInstance());
+      return false;
+    });
   }
 
   @Override
@@ -65,6 +72,7 @@ public class DataAndStoragePreferenceFragment extends ListSummaryPreferenceFragm
     requireApplicationPreferencesActivity().getSupportActionBar().setTitle(R.string.preferences__data_and_storage);
     setMediaDownloadSummaries();
     ApplicationPreferencesViewModel.getApplicationPreferencesViewModel(requireActivity()).refreshStorageBreakdown(requireContext());
+    findPreference(USE_PROXY_KEY).setSummary(SignalStore.proxy().isProxyEnabled() ? R.string.preferences_on : R.string.preferences_off);
   }
 
   private @NonNull ApplicationPreferencesActivity requireApplicationPreferencesActivity() {

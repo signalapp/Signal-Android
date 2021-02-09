@@ -63,6 +63,7 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
         app:layout_constraintTop_toBottomOf="@+id/recipient_name"
+        app:emoji_forceCustom="true"
         tools:text="Hangin' around the web" />
 
     <TextView

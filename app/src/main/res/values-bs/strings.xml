@@ -486,7 +486,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Da biste mogli koristiti nove mogućnosti poput @spomena i administracije grupe, nadogradite ovu grupu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne sada</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Ažuriraj grupu</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Ažuriraj grupu</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člana nije bilo moguće ponovo dodati u novu grupu. Želite li ga dodati sada?</item>
@@ -677,7 +677,7 @@
   <string name="ManageProfileFragment_failed_to_set_avatar">Neuspjelo postavljanje slike profila</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Dodaj među kontakte u telefonski adresar</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ova osoba ne nalazi se među Vašim kontaktima</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Ova se osoba nalazi među Vašim kontaktima</string>
   <string name="ManageRecipientActivity_disappearing_messages">Nestajuće poruke</string>
   <string name="ManageRecipientActivity_chat_color">Boja poruka</string>
   <string name="ManageRecipientActivity_chat_wallpaper">Pozadinska slika</string>
@@ -1162,6 +1162,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Unesite lozinku</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pogrešna lozinka!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Otključajte Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android – Zaključan ekran</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Karta</string>
   <string name="PlacePickerActivity_drop_pin">Stavite pribadaču</string>
@@ -1261,6 +1262,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Nije moguće primiti zvuk i sliku od %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Nije moguće primiti zvuk i sliku od %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Mogući razlog jeste taj što nisu verifikovali promjenu Vašeg sigurnosnog broja, ili postoji problem s njihovim uređajem, ili su Vas blokirali.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy adresa</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Želite li koristiti ovu proxy adresu?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Koristi proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Uspjelo je povezivanje s proxyjem.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati
@@ -1773,7 +1780,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">O kontaktu</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Napišite nekoliko riječi o sebi…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Govorite slobodno</string>
   <string name="EditAboutFragment_encrypted">Šifrirano</string>
   <string name="EditAboutFragment_be_kind">Budite ljubazni</string>
@@ -2043,6 +2050,20 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivira opciju zapečaćenog pošiljaoca za poruke koje dolaze od osoba koje nisu među Vašim kontaktima i s kojima niste razmijenili profile.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saznajte više</string>
   <string name="preferences_setup_a_username">Odredite korisničko ime</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Koristi proxy</string>
+  <string name="preferences_off">Isključeno</string>
+  <string name="preferences_on">Uključeno</string>
+  <string name="preferences_proxy_address">Proxy adresa</string>
+  <string name="preferences_share">Dijeli</string>
+  <string name="preferences_save">Pohrani</string>
+  <string name="preferences_connecting_to_proxy">Povezivanje s proxyjem…</string>
+  <string name="preferences_connected_to_proxy">Povezano s proxyjem</string>
+  <string name="preferences_connection_failed">Povezivanje neuspjelo</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Neuspjelo povezivanje s proxyjem. Provjerite proxy adresu i pokušajte ponovo.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Povezani ste s proxyjem. Proxy uvijek možete isključiti kroz Podešavanja.</string>
+  <string name="preferences_success">Uspješno završeno</string>
+  <string name="preferences_failed_to_connect">Povezivanje nije uspjelo</string>
   <string name="configurable_single_select__customize_option">Prilagodi</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2227,6 +2248,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Netačan PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Zaboravili ste svoj PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Preostalo je svega nekoliko pokušaja!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal registracija – trebate pomoć u vezi s PIN-om za Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registracija – trebate pomoć u vezi s PIN-om za Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Radi zaštite Vaše privatnosti i sigurnosti, PIN je nemoguće obnoviti. Ako se ne možete sjetiti svog PIN-a, moći ćete ponovo verifikovati telefonski broj putem SMS-a nakon %1$d dana neaktivnosti. U ovom slučaju, Vaš će račun biti počišćen i sav raniji sadržaj izbrisan.</item>
     <item quantity="few">Radi zaštite Vaše privatnosti i sigurnosti, PIN je nemoguće obnoviti. Ako se ne možete sjetiti svog PIN-a, moći ćete ponovo verifikovati telefonski broj putem SMS-a nakon %1$d dana neaktivnosti. U ovom slučaju, Vaš će račun biti počišćen i sav raniji sadržaj izbrisan.</item>
@@ -2487,7 +2510,7 @@
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadinske slike</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Poništiti pozadinske slike, uključujući i ručno podešene u svim Vašim konverzacijama?</string>
   <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
-  <string name="ChatWallpaperFragment__reset">Ponovi</string>
+  <string name="ChatWallpaperFragment__reset">Poništi</string>
   <string name="ChatWallpaperFragment__clear">Ukloni</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Prikaz pozadinske slike</string>
   <!--ChatWallpaperSelectionFragment-->

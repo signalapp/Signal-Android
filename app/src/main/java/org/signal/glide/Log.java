@@ -24,7 +24,7 @@ public final class Log {
   }
 
   public static void e(@NonNull String tag, @NonNull String message) {
-    e(tag, message, null);
+    SignalGlideCodecs.getLogProvider().e(tag, message, null);
   }
 
   public static void e(@NonNull String tag, @NonNull String message, @Nullable Throwable throwable) {

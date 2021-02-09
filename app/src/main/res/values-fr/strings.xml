@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pour accéder aux nouvelles fonctions telles que les @mentions et l’administration, convertissez ce groupe.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Pas maintenant</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre le groupe à jour</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Mettre le groupe à jour</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membre n’a pas pu être rajouté au Nouveau groupe. Voulez-vous l’ajouter maintenant ?</item>
@@ -602,7 +602,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran des conversations</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
@@ -647,7 +647,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
   <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran des conversations</string>
   <string name="ManageRecipientActivity_block">Bloquer</string>
   <string name="ManageRecipientActivity_unblock">Débloquer</string>
   <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string>
@@ -1105,6 +1105,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Envoyer la phrase de passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">La phrase de passe est erronée.</string>
   <string name="PassphrasePromptActivity_unlock_signal">Déverrouiller Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android – Écran de verrouillage</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Carte</string>
   <string name="PlacePickerActivity_drop_pin">Marquer</string>
@@ -1201,6 +1202,12 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Impossible de recevoir ni le son ni la vidéo de %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Impossible de recevoir ni le son ni la vidéo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Cette personne n’a peut-être pas confirmé le changement de votre numéro de sécurité, il y a peut-être un problème avec son appareil ou elle vous a bloqué.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Serveur mandataire</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Adresse du mandataire</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Voulez-vous utiliser cette adresse de mandataire ?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Utiliser un mandataire</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Connectée avec succès au mandataire.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Sélectionner votre pays</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Vous devez indiquer votre indicatif de pays</string>
@@ -1692,7 +1699,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">À propos</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Écrivez quelques mots à votre sujet…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Exprimez-vous librement</string>
   <string name="EditAboutFragment_encrypted">Chiffré</string>
   <string name="EditAboutFragment_be_kind">Sois gentil</string>
@@ -1881,7 +1888,7 @@
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
-  <string name="preferences__chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="preferences__chat_wallpaper">Fond d’écran des conversations</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
@@ -1961,6 +1968,19 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Activer l’option « expéditeur scellé » pour les messages entrants provenant d’expéditeurs qui ne sont pas dans vos contacts et de personnes avec qui vous n’avez pas partagé votre profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">En apprendre davantage</string>
   <string name="preferences_setup_a_username">Définir un nom d’utilisateur</string>
+  <string name="preferences_proxy">Mandataire</string>
+  <string name="preferences_use_proxy">Utiliser un mandataire</string>
+  <string name="preferences_off">Désactivé</string>
+  <string name="preferences_on">Activé</string>
+  <string name="preferences_proxy_address">Adresse du mandataire</string>
+  <string name="preferences_share">Partager</string>
+  <string name="preferences_save">Enregistrer</string>
+  <string name="preferences_connecting_to_proxy">Connexion au mandataire…</string>
+  <string name="preferences_connected_to_proxy">Connectée au mandataire</string>
+  <string name="preferences_connection_failed">Échec de connexion</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Impossible de se connecter au mandataire. Veuillez vérifier l’adresse du mandataire et réessayer.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Signal est connectée au mandataire. Vous pouvez désactiver le mandataire n’importe quand dans les paramètres.</string>
+  <string name="preferences_failed_to_connect">Échec de connexion</string>
   <string name="configurable_single_select__customize_option">Personnaliser l’option</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2143,6 +2163,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Le NIP est erroné</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Avez-vous oublié votre NIP ?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Il vous reste peu d’essais</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android (NIP v1)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Inscription à Signal – Besoin d’aide avec le NIP sur Android (NIP v2)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jour d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
     <item quantity="other">Pour des raisons de sécurité et de protection de vos données personnelles, votre NIP ne peut pas être récupéré. Si vous avez oublié votre NIP, vous pourrez reconfirmer votre numéro par texto après %1$d jours d’inactivité. Dans ce cas, votre compte sera effacé et toutes ses données supprimées.</item>
@@ -2386,7 +2408,7 @@
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Transférer le message</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de conversation</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran des conversations</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string>

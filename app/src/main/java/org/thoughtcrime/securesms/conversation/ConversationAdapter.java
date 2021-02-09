@@ -17,7 +17,6 @@
 package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +43,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -112,6 +112,7 @@ public class ConversationAdapter
   private View                footerView;
   private PagingController    pagingController;
   private boolean             hasWallpaper;
+  private boolean             isMessageRequestAccepted;
 
   ConversationAdapter(@NonNull LifecycleOwner lifecycleOwner,
                       @NonNull GlideRequests glideRequests,
@@ -133,16 +134,17 @@ public class ConversationAdapter
 
     this.lifecycleOwner = lifecycleOwner;
 
-    this.glideRequests       = glideRequests;
-    this.locale              = locale;
-    this.clickListener       = clickListener;
-    this.recipient           = recipient;
-    this.selected            = new HashSet<>();
-    this.fastRecords         = new ArrayList<>();
-    this.releasedFastRecords = new HashSet<>();
-    this.calendar            = Calendar.getInstance();
-    this.digest              = getMessageDigestOrThrow();
-    this.hasWallpaper        = recipient.hasWallpaper();
+    this.glideRequests            = glideRequests;
+    this.locale                   = locale;
+    this.clickListener            = clickListener;
+    this.recipient                = recipient;
+    this.selected                 = new HashSet<>();
+    this.fastRecords              = new ArrayList<>();
+    this.releasedFastRecords      = new HashSet<>();
+    this.calendar                 = Calendar.getInstance();
+    this.digest                   = getMessageDigestOrThrow();
+    this.hasWallpaper             = recipient.hasWallpaper();
+    this.isMessageRequestAccepted = true;
 
     setHasStableIds(true);
   }
@@ -254,7 +256,8 @@ public class ConversationAdapter
                                                   recipient,
                                                   searchQuery,
                                                   conversationMessage == recordToPulse,
-                                                  hasWallpaper);
+                                                  hasWallpaper,
+                                                  isMessageRequestAccepted);
 
         if (conversationMessage == recordToPulse) {
           recordToPulse = null;
@@ -593,6 +596,13 @@ public class ConversationAdapter
 
   public @Nullable ConversationMessage getLastVisibleConversationMessage(int position) {
     return getItem(position - ((hasFooter() && position == getItemCount() - 1) ? 1 : 0));
+  }
+
+  public void setMessageRequestAccepted(boolean messageRequestAccepted) {
+    if (this.isMessageRequestAccepted != messageRequestAccepted) {
+      this.isMessageRequestAccepted = messageRequestAccepted;
+      notifyDataSetChanged();
+    }
   }
 
   static class ConversationViewHolder extends RecyclerView.ViewHolder {

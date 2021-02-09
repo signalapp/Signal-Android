@@ -375,7 +375,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
       if (mainImage.getRenderer() != null) {
         Bitmap bitmap = ((UriGlideRenderer) mainImage.getRenderer()).getBitmap();
         if (bitmap != null) {
-          FaceDetector detector = new FirebaseFaceDetector();
+          FaceDetector detector = new AndroidFaceDetector();
 
           Point size = model.getOutputSizeMaxWidth(1000);
           Bitmap render = model.render(ApplicationDependencies.getApplication(), size);
@@ -486,7 +486,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private void renderFaceBlurs(@NonNull FaceDetectionResult result) {
-    List<RectF> faces = result.rects;
+    List<FaceDetector.Face> faces = result.faces;
 
     if (faces.isEmpty()) {
       cachedFaceDetection = null;
@@ -497,12 +497,12 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
     Matrix faceMatrix = new Matrix();
 
-    for (RectF face : faces) {
-      FaceBlurRenderer faceBlurRenderer = new FaceBlurRenderer();
+    for (FaceDetector.Face face : faces) {
+      Renderer         faceBlurRenderer = new FaceBlurRenderer();
       EditorElement    element          = new EditorElement(faceBlurRenderer, EditorModel.Z_MASK);
       Matrix           localMatrix      = element.getLocalMatrix();
 
-      faceMatrix.setRectToRect(Bounds.FULL_BOUNDS, face, Matrix.ScaleToFit.FILL);
+      faceMatrix.setRectToRect(Bounds.FULL_BOUNDS, face.getBounds(), Matrix.ScaleToFit.FILL);
 
       localMatrix.set(result.position);
       localMatrix.preConcat(faceMatrix);
@@ -574,11 +574,11 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   private static class FaceDetectionResult {
-    private final List<RectF> rects;
-    private final Matrix      position;
+    private final List<FaceDetector.Face> faces;
+    private final Matrix                  position;
 
-    private FaceDetectionResult(@NonNull List<RectF> rects, @NonNull Point imageSize, @NonNull Matrix position) {
-      this.rects    = rects;
+    private FaceDetectionResult(@NonNull List<FaceDetector.Face> faces, @NonNull Point imageSize, @NonNull Matrix position) {
+      this.faces    = faces;
       this.position = new Matrix(position);
 
       Matrix imageProjectionMatrix = new Matrix();

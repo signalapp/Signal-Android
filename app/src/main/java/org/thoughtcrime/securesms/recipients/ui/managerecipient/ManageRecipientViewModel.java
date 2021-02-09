@@ -63,6 +63,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   private final LiveData<Boolean>                                canCollapseMemberList;
   private final DefaultValueLiveData<CollapseState>              groupListCollapseState;
   private final LiveData<Boolean>                                canBlock;
+  private final LiveData<Boolean>                                canUnblock;
   private final LiveData<List<GroupMemberEntry.FullMember>>      visibleSharedGroups;
   private final LiveData<String>                                 sharedGroupsCountSummary;
   private final LiveData<Boolean>                                canAddToAGroup;
@@ -79,7 +80,8 @@ public final class ManageRecipientViewModel extends ViewModel {
     this.disappearingMessageTimer  = Transformations.map(this.recipient, r -> ExpirationUtil.getExpirationDisplayValue(context, r.getExpireMessages()));
     this.muteState                 = Transformations.map(this.recipient, r -> new MuteState(r.getMuteUntil(), r.isMuted()));
     this.hasCustomNotifications    = Transformations.map(this.recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
-    this.canBlock                  = Transformations.map(this.recipient, r -> !r.isBlocked());
+    this.canBlock                  = Transformations.map(this.recipient, r -> RecipientUtil.isBlockable(r) && !r.isBlocked());
+    this.canUnblock                = Transformations.map(this.recipient, Recipient::isBlocked);
     this.internalDetails           = Transformations.map(this.recipient, this::populateInternalDetails);
 
     manageRecipientRepository.getThreadId(this::onThreadIdLoaded);
@@ -179,6 +181,10 @@ public final class ManageRecipientViewModel extends ViewModel {
 
   LiveData<Boolean> getCanBlock() {
     return canBlock;
+  }
+
+  LiveData<Boolean> getCanUnblock() {
+    return canUnblock;
   }
 
   void handleExpirationSelection(@NonNull Context context) {
@@ -285,16 +291,18 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     String profileKeyBase64 = recipient.getProfileKey() != null ? Base64.encodeBytes(recipient.getProfileKey()) : "None";
     String profileKeyHex    = recipient.getProfileKey() != null ? Hex.toStringCondensed(recipient.getProfileKey()) : "None";
-    return String.format("-- Profile Name --\n%s\n\n" +
+    return String.format("-- Profile Name --\n[%s] [%s]\n\n" +
                          "-- Profile Sharing --\n%s\n\n" +
                          "-- Profile Key (Base64) --\n%s\n\n" +
                          "-- Profile Key (Hex) --\n%s\n\n" +
+                         "-- Sealed Sender Mode --\n%s\n\n" +
                          "-- UUID --\n%s\n\n" +
                          "-- RecipientId --\n%s",
-                         recipient.getProfileName().toString(),
+                         recipient.getProfileName().getGivenName(), recipient.getProfileName().getFamilyName(),
                          recipient.isProfileSharing(),
                          profileKeyBase64,
                          profileKeyHex,
+                         recipient.getUnidentifiedAccessMode(),
                          recipient.getUuid().transform(UUID::toString).or("None"),
                          recipient.getId().serialize());
   }

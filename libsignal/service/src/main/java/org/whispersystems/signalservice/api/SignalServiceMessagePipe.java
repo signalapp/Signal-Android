@@ -262,7 +262,7 @@ public class SignalServiceMessagePipe {
       if (response.getStatus() == 404) {
         throw new NotFoundException("Not found");
       } else if (response.getStatus() < 200 || response.getStatus() >= 300) {
-        throw new NonSuccessfulResponseCodeException("Non-successful response: " + response.getStatus());
+        throw new NonSuccessfulResponseCodeException(response.getStatus(), "Non-successful response: " + response.getStatus());
       }
 
       SignalServiceProfile signalServiceProfile = JsonUtil.fromJson(response.getBody(), SignalServiceProfile.class);

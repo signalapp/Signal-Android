@@ -29,7 +29,9 @@ import org.thoughtcrime.securesms.pin.PinRestoreRepository.TokenData;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.util.concurrent.TimeUnit;
@@ -47,6 +49,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
   private TextView               errorLabel;
   private TextView               keyboardToggle;
   private long                   timeRemaining;
+  private boolean                isV1RegistrationLock;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -67,9 +70,10 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     RegistrationLockFragmentArgs args = RegistrationLockFragmentArgs.fromBundle(requireArguments());
 
-    timeRemaining = args.getTimeRemaining();
+    timeRemaining        = args.getTimeRemaining();
+    isV1RegistrationLock = args.getIsV1RegistrationLock();
 
-    if (args.getIsV1RegistrationLock()) {
+    if (isV1RegistrationLock) {
       keyboardToggle.setVisibility(View.GONE);
     }
 
@@ -117,6 +121,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
                        .setTitle(R.string.RegistrationLockFragment__not_many_tries_left)
                        .setMessage(getTriesRemainingDialogMessage(triesRemaining, daysRemaining))
                        .setPositiveButton(android.R.string.ok, null)
+                       .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> sendEmailToSupport())
                        .show();
       }
 
@@ -148,11 +153,13 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
     int trimmedLength = pin.replace(" ", "").length();
     if (trimmedLength == 0) {
       Toast.makeText(requireContext(), R.string.RegistrationActivity_you_must_enter_your_registration_lock_PIN, Toast.LENGTH_LONG).show();
+      enableAndFocusPinEntry();
       return;
     }
 
     if (trimmedLength < MINIMUM_PIN_LENGTH) {
       Toast.makeText(requireContext(), getString(R.string.RegistrationActivity_your_pin_has_at_least_d_digits_or_characters, MINIMUM_PIN_LENGTH), Toast.LENGTH_LONG).show();
+      enableAndFocusPinEntry();
       return;
     }
 
@@ -262,6 +269,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
                    .setTitle(R.string.RegistrationLockFragment__forgot_your_pin)
                    .setMessage(requireContext().getResources().getQuantityString(R.plurals.RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover, lockoutDays, lockoutDays))
                    .setPositiveButton(android.R.string.ok, null)
+                   .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> sendEmailToSupport())
                    .show();
   }
 
@@ -317,5 +325,19 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       cancelSpinning(pinButton);
       Navigation.findNavController(requireView()).navigate(RegistrationLockFragmentDirections.actionSuccessfulRegistration());
     });
+  }
+
+  private void sendEmailToSupport() {
+    int subject = isV1RegistrationLock ? R.string.RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin
+                                       : R.string.RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin;
+
+    String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
+                                                            subject,
+                                                            null,
+                                                            null);
+    CommunicationActions.openEmail(requireContext(),
+                                   SupportEmailUtil.getSupportEmailAddress(requireContext()),
+                                   getString(subject),
+                                   body);
   }
 }

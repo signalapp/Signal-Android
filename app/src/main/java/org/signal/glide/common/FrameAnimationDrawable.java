@@ -21,7 +21,7 @@ import android.os.Message;
 import androidx.annotation.NonNull;
 import androidx.vectordrawable.graphics.drawable.Animatable2Compat;
 
-import org.signal.glide.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.glide.common.decode.FrameSeqDecoder;
 import org.signal.glide.common.loader.Loader;
 

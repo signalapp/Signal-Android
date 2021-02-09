@@ -474,7 +474,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Oppgrader denne gruppa for å få nye funksjonar som @nemningar og administratorar.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ikkje no</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikkje bli lagt til i den Nye gruppa igjen. Vil du legga dei til no?</item>
@@ -1109,6 +1109,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
   <string name="PassphrasePromptActivity_unlock_signal">Lås opp Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android – låseskjerm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kart</string>
   <string name="PlacePickerActivity_drop_pin">Slepp nåla</string>
@@ -1207,6 +1208,12 @@ Viss du ikkje klarer å hugsa PIN-en, kan du oppretta ein ny ein. Du kan registr
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Kan ikkje motta lyd &amp; video frå %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Kan ikkje motta lyd og video frå %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan vera fordi dei ikkje har godkjend det nye tryggleiksnummeret ditt, dei har eit problem med eininga si, eller dei har blokkert deg.</string>
+  <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Proxy-tenar</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Proxy-adresse</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Vil du bruka denne proxy-adressa?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Bruk proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Klarte å kopla til proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Vel land</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Du må oppgje
@@ -1705,7 +1712,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv nokre ord om deg sjølv …</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Tal fritt</string>
   <string name="EditAboutFragment_encrypted">Kryptert</string>
   <string name="EditAboutFragment_be_kind">Ver god</string>
@@ -1974,6 +1981,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tillat forsegla sendar på meldingar du får frå folk som ikkje er i kontaktlista di, og folk du ikkje har delt profilen din med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Lær meir</string>
   <string name="preferences_setup_a_username">Lag eit brukarnamn</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Bruk proxy</string>
+  <string name="preferences_off">Av</string>
+  <string name="preferences_on">På</string>
+  <string name="preferences_proxy_address">Proxy-adresse</string>
+  <string name="preferences_share">Del</string>
+  <string name="preferences_save">Lagra</string>
+  <string name="preferences_connecting_to_proxy">Koplar til proxy …</string>
+  <string name="preferences_connected_to_proxy">Kopla til proxy</string>
+  <string name="preferences_connection_failed">Feil ved tilkopling</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Klarte ikkje kopla til proxyen. Sjekk proxy-adressa og prøv igjen.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Du er kopla til proxyen. Du kan skru av proxyen når som helst frå Innstillingar.</string>
+  <string name="preferences_success">Vellykka</string>
+  <string name="preferences_failed_to_connect">Klarte ikkje kopla til</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2157,6 +2178,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="RegistrationLockFragment__incorrect_pin">Feil PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Gløymt PIN-koden?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Ikkje mange forsøk igjen!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registrering – treng hjelp med PIN for Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering – treng hjelp med PIN for Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">For ditt personvern og din tryggleik er det ingen måte å gjenoppretta PIN-koden. Om du ikkje kan hugsa PIN-koden, kan du stadfesta på nytt med SMS etter %1$d dag med inaktivitet. Om du gjer dette, vil kontoen din bli tømt og alt innhaldet sletta.</item>
     <item quantity="other">For ditt personvern og din tryggleik er det ingen måte å gjenoppretta PIN-koden. Om du ikkje kan hugsa PIN-koden, kan du stadfesta på nytt med SMS etter %1$d dagar med inaktivitet. Om du gjer dette, vil kontoen din bli tømt og alt innhaldet sletta.</item>

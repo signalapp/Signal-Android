@@ -359,7 +359,7 @@
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Снимане трябва разрешение на камерата.</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Гледане на галерията трябва пазрешение на паметта.</string>
   <!--DateUtils-->
-  <string name="DateUtils_just_now">Сега</string>
+  <string name="DateUtils_just_now">Току що</string>
   <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Днес</string>
   <string name="DateUtils_yesterday">Вчера</string>
@@ -469,7 +469,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Обновете тази група за достъп до нови функционалности като @споменаване и администратори.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Обнови група</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Обнови група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можа да бъде добавен към новата група. Искате ли да го/я добавите сега?</item>
@@ -622,8 +622,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Актуализирането на групата не бе успешно, опитайте отново по-късно</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Актуализирането на групата не бе успешно поради мрежова грешка, моля, опитайте отново по-късно</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Редактирайте име и снимка</string>
-  <string name="ManageGroupActivity_legacy_group">Група от стар вид</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Това е група от стар вид. Функции като администратори на групи са достъпни само за Нови Групи.</string>
+  <string name="ManageGroupActivity_legacy_group">Стар вид група</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Това е група от стар вид. Функции като администратори на групи са достъпни само за нов вид групи.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Това е група от стар вид. За достъп до нови функции като @споменавяния и администратори,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Тази група не може да бъде обновена до Нова, защото е прекалено голяма. Максиналният размер на група е %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">Обновете тази група</string>
@@ -778,7 +778,7 @@
   <string name="MediaOverviewActivity_Media">Медия</string>
   <string name="MediaOverviewActivity_Files">Файлове</string>
   <string name="MediaOverviewActivity_Audio">Аудио</string>
-  <string name="MediaOverviewActivity_All">Lir\'ur</string>
+  <string name="MediaOverviewActivity_All">Всички</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Да се изтрие ли избраният елемент?</item>
     <item quantity="other">Да се изтрият ли избраните елементи?</item>
@@ -792,8 +792,8 @@
   <string name="MediaOverviewActivity_Select_all">Избери всичко</string>
   <string name="MediaOverviewActivity_collecting_attachments">Събиране на прикачени файлове…</string>
   <string name="MediaOverviewActivity_Sort_by">Сортиране по</string>
-  <string name="MediaOverviewActivity_Newest">Най нови</string>
-  <string name="MediaOverviewActivity_Oldest">Най стари</string>
+  <string name="MediaOverviewActivity_Newest">Най-нови</string>
+  <string name="MediaOverviewActivity_Oldest">Най-стари</string>
   <string name="MediaOverviewActivity_Storage_used">Памет изпозвана</string>
   <string name="MediaOverviewActivity_All_storage_use">Цялото пространство за съхранение</string>
   <string name="MediaOverviewActivity_Grid_view_description">Изглед на мрежа</string>
@@ -866,8 +866,8 @@
   <string name="MessageRecord_you_updated_group">Обновихте групата.</string>
   <string name="MessageRecord_the_group_was_updated">Групата беше актуализирана.</string>
   <string name="MessageRecord_you_called_date">Ти се обади на %1$s</string>
-  <string name="MessageRecord_missed_audio_call_date">Пропуснато аудио повикване от %1$s</string>
-  <string name="MessageRecord_missed_video_call_date">Пропуснато видео повикване от %1$s</string>
+  <string name="MessageRecord_missed_audio_call_date">Пропуснато гласово обаждане от %1$s</string>
+  <string name="MessageRecord_missed_video_call_date">Пропуснато видео обаждане от %1$s</string>
   <string name="MessageRecord_s_updated_group">%s обнови групата.</string>
   <string name="MessageRecord_s_called_you_date">%1$s ти се обади · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s е в Signal!</string>
@@ -1157,7 +1157,7 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">Вдигане</string>
   <string name="RedPhone_ending_call">Край на обаждането</string>
-  <string name="RedPhone_ringing">Повикване…</string>
+  <string name="RedPhone_ringing">Звъни…</string>
   <string name="RedPhone_busy">Зает</string>
   <string name="RedPhone_recipient_unavailable">Получателят не е на линия</string>
   <string name="RedPhone_network_failed">Грешка в мрежата!</string>
@@ -1174,7 +1174,7 @@
   <string name="WebRtcCallView__signal_video_call">Видео разговор чрез Signal</string>
   <string name="WebRtcCallView__start_call">Започни разговор</string>
   <string name="WebRtcCallView__join_call">Присъеди се към разговор</string>
-  <string name="WebRtcCallView__call_is_full">Повикването е пълно</string>
+  <string name="WebRtcCallView__call_is_full">Обаждането е пълно</string>
   <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">За този разговор е достигнат максималният брой участници от %1$d. Опитайте отново по-късно.</string>
   <string name="WebRtcCallView__s_group_call">\"%1$s\" групов разговор</string>
   <string name="WebRtcCallView__view_participants_list">Вижте участниците</string>
@@ -1201,6 +1201,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Не може да приемате аудио и видео от %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да приемате аудио и видео от %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Това може да се дължи на факта, че те не са проверили промяната на номера ви за безопасност, има проблем с устройството им или са ви блокирали.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете държавата си</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Трябва да посочите
@@ -1211,7 +1212,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Посоченият номер
 (%s) е невалиден.</string>
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Ще бъде изпратен код за потвърждение до:</string>
-  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ще получите повикване, за да потвърдите този номер.</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Ще получите обаждане, за да потвърдите този номер.</string>
   <string name="RegistrationActivity_is_your_phone_number_above_correct">Телефонният ви номер по-горе правилен ли е?</string>
   <string name="RegistrationActivity_edit_number">Редакция на номер</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Services не са налични</string>
@@ -1235,7 +1236,7 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Въведете телефонния си номер, за да започнете</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ще получите код за потвърждение. Може да се начислят такси от оператора.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %s</string>
-  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Уверете се, че телефонът ви има обхват, за да можете да получите SMS или повикване</string>
+  <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Уверете се, че телефонът ви има обхват, за да можете да получите SMS или обаждане</string>
   <string name="RegistrationActivity_phone_number_description">Телефонен номер</string>
   <string name="RegistrationActivity_country_code_description">Код на държавата</string>
   <string name="RegistrationActivity_call">Обаждане</string>
@@ -1259,12 +1260,12 @@
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Покани в Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal-ско съобщение</string>
+  <string name="SharedContactDetailsActivity_signal_message">Съобщение в Signal</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal обаждане</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Добавяне към контакти</string>
   <string name="SharedContactView_invite_to_signal">Покани в Signal</string>
-  <string name="SharedContactView_message">Signal-ско съобщение</string>
+  <string name="SharedContactView_message">Съобщение в Signal</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Ще ви напомним отново по-късно.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Ще ви припомним отново утре.</string>
@@ -1330,8 +1331,8 @@
   <string name="ThreadRecord_draft">Чернова:</string>
   <string name="ThreadRecord_called">Вие се обадихте</string>
   <string name="ThreadRecord_called_you">Ви се обади</string>
-  <string name="ThreadRecord_missed_audio_call">Пропуснато аудио повикване</string>
-  <string name="ThreadRecord_missed_video_call">Пропуснато видео повикване</string>
+  <string name="ThreadRecord_missed_audio_call">Пропуснато гласово обаждане</string>
+  <string name="ThreadRecord_missed_video_call">Пропуснато видео обаждане</string>
   <string name="ThreadRecord_media_message">Медийно съобщение</string>
   <string name="ThreadRecord_sticker">Стикер</string>
   <string name="ThreadRecord_view_once_photo">Снимка за еднократно гледане</string>
@@ -1433,7 +1434,7 @@
   <string name="MessageNotifier_view_once_photo">Снимка за еднократно гледане</string>
   <string name="MessageNotifier_view_once_video">Видео за еднократно гледане</string>
   <string name="MessageNotifier_reply">Отговори</string>
-  <string name="MessageNotifier_signal_message">Signal-ско съобщение</string>
+  <string name="MessageNotifier_signal_message">Съобщение в Signal</string>
   <string name="MessageNotifier_unsecured_sms">Некриптиран SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Вие може да имате нови съобщения</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Отворете Signal за да проверите за скорошни известия</string>
@@ -1545,7 +1546,7 @@
     <item quantity="other">%1$d членове</item>
   </plurals>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal-ско съобщение</string>
+  <string name="conversation_activity__type_message_push">Съобщение в Signal</string>
   <string name="conversation_activity__type_message_sms_insecure">Некриптиран SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Некриптиран MMS</string>
   <string name="conversation_activity__from_sim_name">От %1$s</string>
@@ -1577,7 +1578,7 @@
   <string name="ConversationUpdateItem_learn_more">Научете повече</string>
   <string name="ConversationUpdateItem_join_call">Присъединете се към разговор</string>
   <string name="ConversationUpdateItem_return_to_call">Върнете се към разговор</string>
-  <string name="ConversationUpdateItem_call_is_full">Повикването е пълно</string>
+  <string name="ConversationUpdateItem_call_is_full">Обаждането е пълно</string>
   <string name="ConversationUpdateItem_invite_friends">Покани приятели</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">Пусни … Пауза</string>
@@ -1598,7 +1599,7 @@
   <string name="safety_number_change_dialog__call_anyway">Обади се все пак</string>
   <string name="safety_number_change_dialog__join_call">Присъединете се към разговор</string>
   <string name="safety_number_change_dialog__continue_call">Продължи разговор</string>
-  <string name="safety_number_change_dialog__leave_call">Напусни повикването</string>
+  <string name="safety_number_change_dialog__leave_call">Напусни обаждането</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следнити контаки може да са преинсталирали или сменили устройствата си. Потвърдете номерата за сигурност.</string>
   <string name="safety_number_change_dialog__view">Преглед</string>
   <string name="safety_number_change_dialog__previous_verified">Предишно потвърдено</string>
@@ -1672,7 +1673,7 @@
   <string name="load_more_header__see_full_conversation">Разгледай целия разговор</string>
   <string name="load_more_header__loading">Зареждане</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">Без медия</string>
+  <string name="media_overview_activity__no_media">Няма нищо</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ПРЕГЛЕД</string>
   <string name="message_recipients_list_item__resend">ПОВТОРНО ИЗПРАЩАНЕ</string>
@@ -1697,7 +1698,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Относно</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напиши нещо за себе си…</string>
-  <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Говори свободно</string>
   <string name="EditAboutFragment_encrypted">Криптирано</string>
   <string name="EditAboutFragment_be_kind">Бъде добър</string>
@@ -1966,6 +1967,10 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Активиране на скрит изпращач за входящи съобщения от хора, които не са Ваши контакти, и хора скоито не сте споделяли своят профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Научете повече</string>
   <string name="preferences_setup_a_username">Настройте потребителско име</string>
+  <string name="preferences_off">Деактивирано</string>
+  <string name="preferences_on">Активирано</string>
+  <string name="preferences_share">Споделяне</string>
+  <string name="preferences_save">Запази</string>
   <string name="configurable_single_select__customize_option">Опция за персонализиране</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2405,7 +2410,7 @@
   <string name="ChatWallpaperFragment__clear">Изчистване</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Преглед на тапета</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Изери от снимки</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Избери от снимки</string>
   <string name="ChatWallpaperSelectionFragment__presets">Предварително зададени</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Преглед</string>

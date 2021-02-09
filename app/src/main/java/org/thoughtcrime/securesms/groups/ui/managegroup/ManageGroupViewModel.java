@@ -77,6 +77,7 @@ public class ManageGroupViewModel extends ViewModel {
   private final DefaultValueLiveData<CollapseState>         memberListCollapseState   = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
   private final LiveData<Boolean>                           canLeaveGroup;
   private final LiveData<Boolean>                           canBlockGroup;
+  private final LiveData<Boolean>                           canUnblockGroup;
   private final LiveData<Boolean>                           showLegacyIndicator;
   private final LiveData<String>                            mentionSetting;
   private final LiveData<Boolean>                           groupLinkOn;
@@ -119,7 +120,8 @@ public class ManageGroupViewModel extends ViewModel {
     this.hasCustomNotifications    = Transformations.map(this.groupRecipient,
                                                          recipient -> recipient.getNotificationChannel() != null || !NotificationChannels.supported());
     this.canLeaveGroup             = liveGroup.isActive();
-    this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> !recipient.isBlocked());
+    this.canBlockGroup             = Transformations.map(this.groupRecipient, recipient -> RecipientUtil.isBlockable(recipient) && !recipient.isBlocked());
+    this.canUnblockGroup           = Transformations.map(this.groupRecipient, Recipient::isBlocked);
     this.mentionSetting            = Transformations.distinctUntilChanged(Transformations.map(this.groupRecipient,
                                                                                               recipient -> MentionUtil.getMentionSettingDisplayValue(context, recipient.getMentionSetting())));
     this.groupLinkOn               = Transformations.map(liveGroup.getGroupLink(), GroupLinkUrlAndStatus::isEnabled);
@@ -218,6 +220,10 @@ public class ManageGroupViewModel extends ViewModel {
 
   LiveData<Boolean> getCanBlockGroup() {
     return canBlockGroup;
+  }
+
+  LiveData<Boolean> getCanUnblockGroup() {
+    return canUnblockGroup;
   }
 
   LiveData<Boolean> getCanLeaveGroup() {

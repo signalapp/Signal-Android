@@ -101,6 +101,11 @@ public final class GroupsV1MigrationUtil {
         List<Recipient> possibleMembers = forced ? getMigratableManualMigrationMembers(registeredMembers)
                                                  : getMigratableAutoMigrationMembers(registeredMembers);
 
+        if (!forced && !groupRecipient.hasName()) {
+          Log.w(TAG, "Group has no name. Skipping auto-migration.");
+          throw new InvalidMigrationStateException();
+        }
+
         if (!forced && possibleMembers.size() != registeredMembers.size()) {
           Log.w(TAG, "Not allowed to invite or leave registered users behind in an auto-migration! Skipping.");
           throw new InvalidMigrationStateException();

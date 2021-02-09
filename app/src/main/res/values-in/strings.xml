@@ -451,7 +451,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Untuk mengakses fitur-fitur baru seperti @mention dan admin, perbarui grup ini.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nanti saja</string>
-  <string name="GroupsV1MigrationInitiationReminder_update_group">Perbarui grup</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Perbarui grup</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d anggota tidak dapat ditambahkan ulang ke dalam Grup Baru. Apa Anda ingin menambahkan mereka sekarang?</item>
@@ -569,6 +569,7 @@
   <string name="ManageGroupActivity_mute_notifications">Senyapkan pemberitahuan</string>
   <string name="ManageGroupActivity_custom_notifications">Notifikasi khusus</string>
   <string name="ManageGroupActivity_mentions">Menyebut</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Gambar latar percakapan</string>
   <string name="ManageGroupActivity_until_s">Sampai %1$s</string>
   <string name="ManageGroupActivity_off">Mati</string>
   <string name="ManageGroupActivity_on">Aktif</string>
@@ -608,6 +609,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Orang ini ada di kontak Anda</string>
   <string name="ManageRecipientActivity_disappearing_messages">Penghilangan pesan</string>
   <string name="ManageRecipientActivity_chat_color">Warna percakapan</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Gambar latar percakapan</string>
   <string name="ManageRecipientActivity_block">Blokir</string>
   <string name="ManageRecipientActivity_unblock">Buka blokir</string>
   <string name="ManageRecipientActivity_view_safety_number">Lihat nomor keamanan</string>
@@ -1115,6 +1117,7 @@
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Tidak dapat menerima audio &amp; video dari %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Tidak dapat menerima audio dan video dari %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ini mungkin terjadi karena mereka belum memverifikasi pergantian nomor keamanan, ada masalah dengan perangkat, atau mereka memblokir Anda.</string>
+  <!--ProxyBottomSheetFragment-->
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi
@@ -1595,6 +1598,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nama grup MMS khusus dan foto-foto hanya bisa dilihat oleh Anda.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Tentang</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_be_kind">Ramah</string>
+  <string name="EditAboutFragment_coffee_lover">Penyuka kopi</string>
+  <string name="EditAboutFragment_free_to_chat">Seggang untuk mengobrol</string>
+  <string name="EditAboutFragment_taking_a_break">Istirahat</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Ubah nama grup dan foto</string>
   <string name="EditProfileFragment__group_name">Nama grup</string>
@@ -1762,6 +1770,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__mmsc_password">Kata Sandi MMSC</string>
   <string name="preferences__sms_delivery_reports">Laporan pengiriman SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Minta laporan pengiriman untuk tiap SMS yang dikirim</string>
+  <string name="preferences__data_and_storage">Data dan penyimpanan</string>
   <string name="preferences__storage">Penyimpanan</string>
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
   <string name="preferences__keep_messages">Simpan pesan</string>
@@ -1771,6 +1780,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__dark_theme">Gelap</string>
   <string name="preferences__appearance">Penampilan</string>
   <string name="preferences__theme">Tema</string>
+  <string name="preferences__chat_wallpaper">Gambar latar percakapan</string>
   <string name="preferences__disable_pin">Nonaktifkan PIN</string>
   <string name="preferences__enable_pin">Aktifkan PIN</string>
   <string name="preferences__system_default">Pengaturan dasar sistem</string>
@@ -1846,6 +1856,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktifkan pengirim tertutup untuk pesan masuk dari non-kontak dan orang yang tidak Anda beri profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Pelajari lebih lanjut</string>
   <string name="preferences_setup_a_username">Atur nama pengguna</string>
+  <string name="preferences_off">Mati</string>
+  <string name="preferences_on">Aktif</string>
+  <string name="preferences_share">Bagikan</string>
+  <string name="preferences_save">Simpan</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2247,12 +2261,29 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Teruskan pesan</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Gambar latar percakapan</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Atur gambar latar</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Tema gelap meredupkan gambar latar</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Hapus gambar latar</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Hapus gambar latar percakapan ini?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hapus gambar latar? Anda akan menghapus gambar latar semua percakapan.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Kembalikan semua gambar latar, termasuk gambar untuk percakapan?</string>
   <string name="ChatWallpaperFragment__reset">Atur ulang</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratinjau gambar latar</string>
   <!--ChatWallpaperSelectionFragment-->
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Atur gambar latar</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Usap untuk lihat lebih banyak</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Atur gambar latar untuk semua percakapan</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Atur gambar latar untuk %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Melihat galeri Anda memerlukan izin akses ke penyimpanan.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Pilih gambar latar</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Atur gambar latar semua percakapan.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Atur gambar latar untuk %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Gagal mengatur gambar latar.</string>
   <!--EOF-->
 </resources>

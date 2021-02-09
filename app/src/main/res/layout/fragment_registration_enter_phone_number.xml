@@ -12,6 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <FrameLayout
             android:id="@+id/country_spinner_frame"
             android:layout_width="match_parent"
@@ -74,14 +80,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="40dp"
             android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <TextView
             android:id="@+id/verify_subheader"

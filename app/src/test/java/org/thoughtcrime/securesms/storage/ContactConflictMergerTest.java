@@ -151,6 +151,16 @@ public class ContactConflictMergerTest {
   }
 
   @Test
+  public void getInvalidEntries_nothingInvalid() {
+    SignalContactRecord a    = new SignalContactRecord.Builder(byteArray(1), new SignalServiceAddress(UUID_A, E164_A)).build();
+    SignalContactRecord b    = new SignalContactRecord.Builder(byteArray(2), new SignalServiceAddress(UUID_B, E164_B)).build();
+
+    Collection<SignalContactRecord> invalid = new ContactConflictMerger(Collections.emptyList(), SELF).getInvalidEntries(setOf(a, b));
+
+    assertContentsEqual(setOf(), invalid);
+  }
+
+  @Test
   public void getInvalidEntries_selfIsInvalid() {
     SignalContactRecord a    = new SignalContactRecord.Builder(byteArray(1), new SignalServiceAddress(UUID_A, E164_A)).build();
     SignalContactRecord b    = new SignalContactRecord.Builder(byteArray(2), new SignalServiceAddress(UUID_B, E164_B)).build();
@@ -159,5 +169,18 @@ public class ContactConflictMergerTest {
     Collection<SignalContactRecord> invalid = new ContactConflictMerger(Collections.emptyList(), SELF).getInvalidEntries(setOf(a, b, self));
 
     assertContentsEqual(setOf(self), invalid);
+  }
+
+  @Test
+  public void getInvalidEntries_duplicatesInvalid() {
+    SignalContactRecord aLocal   = new SignalContactRecord.Builder(byteArray(1), new SignalServiceAddress(UUID_A, E164_A)).build();
+    SignalContactRecord bRemote  = new SignalContactRecord.Builder(byteArray(2), new SignalServiceAddress(UUID_B, E164_B)).build();
+    SignalContactRecord aRemote1 = new SignalContactRecord.Builder(byteArray(3), new SignalServiceAddress(UUID_A, null)).build();
+    SignalContactRecord aRemote2 = new SignalContactRecord.Builder(byteArray(4), new SignalServiceAddress(null,   E164_A)).build();
+    SignalContactRecord aRemote3 = new SignalContactRecord.Builder(byteArray(5), new SignalServiceAddress(UUID_A, E164_A)).build();
+
+    Collection<SignalContactRecord> invalid = new ContactConflictMerger(Collections.singleton(aLocal), SELF).getInvalidEntries(setOf(aRemote1, aRemote2, aRemote3, bRemote));
+
+    assertContentsEqual(setOf(aRemote1, aRemote2, aRemote3), invalid);
   }
 }

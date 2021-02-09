@@ -105,8 +105,7 @@ public class PushMediaSendJob extends PushSendJob {
 
   @Override
   public void onPushSend()
-      throws RetryLaterException, MmsException, NoSuchMessageException,
-             UndeliverableMessageException
+      throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException
   {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MessageDatabase        database          = DatabaseFactory.getMmsDatabase(context);
@@ -176,20 +175,13 @@ public class PushMediaSendJob extends PushSendJob {
   }
 
   @Override
-  public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof RetryLaterException) return true;
-    return false;
-  }
-
-  @Override
   public void onFailure() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
   private boolean deliver(OutgoingMediaMessage message)
-      throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
-             UndeliverableMessageException
+      throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
   {
     if (message.getRecipient() == null) {
       throw new UndeliverableMessageException("No destination address.");
@@ -239,9 +231,6 @@ public class PushMediaSendJob extends PushSendJob {
       throw new UndeliverableMessageException(e);
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
-    } catch (IOException e) {
-      warn(TAG, String.valueOf(message.getSentTimeMillis()), e);
-      throw new RetryLaterException(e);
     }
   }
 

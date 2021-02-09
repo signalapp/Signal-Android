@@ -104,6 +104,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsActivity;
+import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -130,6 +131,7 @@ import org.thoughtcrime.securesms.util.HtmlUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SetUtil;
+import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -309,7 +311,9 @@ public class ConversationFragment extends LoggingFragment {
       list.setTranslationY(Math.min(0, -chTop));
       list.setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
-    listener.onListVerticalTranslationChanged(list.getTranslationY());
+
+    int offset = WindowUtil.isStatusBarPresent(requireActivity().getWindow()) ? ViewUtil.getStatusBarHeight(list) : 0;
+    listener.onListVerticalTranslationChanged(list.getTranslationY() - offset);
   }
 
   @Override
@@ -333,6 +337,7 @@ public class ConversationFragment extends LoggingFragment {
   public void onStart() {
     super.onStart();
     initializeTypingObserver();
+    SignalProxyUtil.startListeningToWebsocket();
   }
 
   @Override
@@ -420,6 +425,13 @@ public class ConversationFragment extends LoggingFragment {
     messageRequestViewModel.getRecipientInfo().observe(getViewLifecycleOwner(), recipientInfo -> {
       presentMessageRequestProfileView(requireContext(), recipientInfo, conversationBanner);
       presentMessageRequestProfileView(requireContext(), recipientInfo, emptyConversationBanner);
+    });
+
+    messageRequestViewModel.getMessageData().observe(getViewLifecycleOwner(), data -> {
+      ConversationAdapter adapter = getListAdapter();
+      if (adapter != null) {
+        adapter.setMessageRequestAccepted(data.getMessageState() == MessageRequestState.NONE);
+      }
     });
   }
 
@@ -1426,7 +1438,8 @@ public class ConversationFragment extends LoggingFragment {
 
     @Override
     public boolean onUrlClicked(@NonNull String url) {
-      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url);
+      return CommunicationActions.handlePotentialGroupLinkUrl(requireActivity(), url) ||
+             CommunicationActions.handlePotentialProxyLinkUrl(requireActivity(), url);
     }
 
     @Override
