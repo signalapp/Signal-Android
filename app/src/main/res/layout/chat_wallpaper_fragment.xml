@@ -101,7 +101,7 @@
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintEnd_toStartOf="@id/chat_wallpaper_preview_top_bar_voice"
-            app:srcCompat="@drawable/ic_video_solid_24"
+            app:srcCompat="@drawable/ic_video_call_24"
             app:tint="@color/core_white" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -112,7 +112,7 @@
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_top_bar"
-            app:srcCompat="@drawable/ic_phone_right_solid_24"
+            app:srcCompat="@drawable/ic_phone_right_24"
             app:tint="@color/core_white" />
 
         <View

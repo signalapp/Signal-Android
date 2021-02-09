@@ -26,12 +26,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ShortcutManager;
-import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -106,7 +104,6 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
@@ -255,8 +252,8 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
-import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
@@ -381,6 +378,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private   boolean                  callingTooltipShown;
   private   ImageView                wallpaper;
   private   View                     wallpaperDim;
+  private   Toolbar                  toolbar;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -401,7 +399,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
   private boolean       isSecurityInitialized         = false;
 
   private       IdentityRecordList identityRecords = new IdentityRecordList(Collections.emptyList());
-  private final DynamicTheme       dynamicTheme    = new DynamicDarkToolbarTheme();
+  private final DynamicTheme       dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
 
   @Override
@@ -428,7 +426,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     setContentView(R.layout.conversation_activity);
 
     getWindow().getDecorView().setBackgroundResource(R.color.signal_background_primary);
-    WindowUtil.setLightNavigationBarFromTheme(this);
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
 
@@ -529,6 +526,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
     dynamicTheme.onResume(this);
     dynamicLanguage.onResume(this);
 
+    WindowUtil.setLightNavigationBarFromTheme(this);
+    WindowUtil.setLightStatusBarFromTheme(this);
+
     EventBus.getDefault().register(this);
     initializeMmsEnabledCheck();
     initializeIdentityRecords();
@@ -537,7 +537,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     Recipient recipientSnapshot = recipient.get();
 
     titleView.setTitle(glideRequests, recipientSnapshot);
-    setActionBarColor(recipientSnapshot.getColor());
     setBlockedUserState(recipientSnapshot, isSecureText, isDefaultSms);
     calculateCharactersRemaining();
 
@@ -1933,7 +1932,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     noLongerMemberBanner   = findViewById(R.id.conversation_no_longer_member_banner);
     requestingMemberBanner = findViewById(R.id.conversation_requesting_banner);
     cancelJoinRequest      = findViewById(R.id.conversation_cancel_request);
-    joinGroupCallButton    = findViewById(R.id.conversation_group_cal_join);
+    joinGroupCallButton    = findViewById(R.id.conversation_group_call_join);
 
     container.addOnKeyboardShownListener(this);
     inputPanel.setListener(this);
@@ -2001,6 +2000,10 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (attachmentKeyboardStub.resolved()) {
         attachmentKeyboardStub.get().setWallpaperEnabled(true);
       }
+
+      int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color_wallpaper);
+      toolbar.setBackgroundColor(toolbarColor);
+      WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
     } else {
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
@@ -2008,12 +2011,16 @@ public class ConversationActivity extends PassphraseRequiredActivity
       if (attachmentKeyboardStub.resolved()) {
         attachmentKeyboardStub.get().setWallpaperEnabled(false);
       }
+
+      int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color);
+      toolbar.setBackgroundColor(toolbarColor);
+      WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
     }
     fragment.onWallpaperChanged(chatWallpaper);
   }
 
   protected void initializeActionBar() {
-    Toolbar toolbar = findViewById(R.id.toolbar);
+    toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
     ActionBar supportActionBar = getSupportActionBar();
@@ -2305,7 +2312,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     titleView.setTitle(glideRequests, recipient);
     titleView.setVerified(identityRecords.isVerified());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
-    setActionBarColor(recipient.getColor());
     updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
@@ -2505,18 +2511,6 @@ public class ConversationActivity extends PassphraseRequiredActivity
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, thisThreadId);
 
     return future;
-  }
-
-  private void setActionBarColor(MaterialColor color) {
-    ActionBar supportActionBar = getSupportActionBar();
-    if (supportActionBar == null) throw new AssertionError();
-    int actionBarColor = color.toActionBarColor(this);
-    supportActionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-    WindowUtil.setStatusBarColor(getWindow(), actionBarColor);
-
-    joinGroupCallButton.setTextColor(actionBarColor);
-    joinGroupCallButton.setIconTint(ColorStateList.valueOf(actionBarColor));
-    joinGroupCallButton.setRippleColor(ColorStateList.valueOf(actionBarColor));
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {

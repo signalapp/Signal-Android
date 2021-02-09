@@ -39,7 +39,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   private MessageDetailsViewModel viewModel;
   private MessageDetailsAdapter   adapter;
 
-  private DynamicTheme dynamicTheme = new DynamicDarkActionBarTheme();
+  private DynamicTheme dynamicTheme = new DynamicTheme();
 
   public static @NonNull Intent getIntentForMessageDetails(@NonNull Context context, @NonNull MessageRecord message, @NonNull RecipientId recipientId, long threadId) {
     Intent intent = new Intent(context, MessageDetailsActivity.class);
@@ -116,15 +116,6 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   private void initializeActionBar() {
     requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
     requireSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
-
-    viewModel.getRecipientColor().observe(this, this::setActionBarColor);
-  }
-
-  private void setActionBarColor(MaterialColor color) {
-    assert getSupportActionBar() != null;
-    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
-
-    WindowUtil.setStatusBarColor(getWindow(), color.toStatusBarColor(this));
   }
 
   private List<MessageDetailsViewState<?>> convertToRows(MessageDetails details) {

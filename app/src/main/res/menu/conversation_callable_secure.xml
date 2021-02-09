@@ -4,12 +4,14 @@
 
     <item android:title="@string/conversation_callable_secure__menu_video"
           android:id="@+id/menu_video_secure"
-          android:icon="@drawable/ic_video_solid_24"
+          android:icon="@drawable/ic_video_call_24"
+          app:iconTint="@color/signal_icon_tint_primary"
           app:showAsAction="always" />
 
     <item android:title="@string/conversation_callable_secure__menu_call"
           android:id="@+id/menu_call_secure"
-          android:icon="@drawable/ic_phone_right_solid_24"
+          android:icon="@drawable/ic_phone_right_24"
+          app:iconTint="@color/signal_icon_tint_primary"
           app:showAsAction="always" />
 
 </menu>
