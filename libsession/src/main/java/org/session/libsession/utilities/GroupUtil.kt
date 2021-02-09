@@ -58,10 +58,12 @@ object GroupUtil {
         return groupId.startsWith(MMS_GROUP_PREFIX)
     }
 
+    @JvmStatic
     fun isOpenGroup(groupId: String): Boolean {
         return groupId.startsWith(OPEN_GROUP_PREFIX)
     }
 
+    @JvmStatic
     fun isClosedGroup(groupId: String): Boolean {
         return groupId.startsWith(CLOSED_GROUP_PREFIX)
     }
