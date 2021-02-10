@@ -194,22 +194,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       if (existingNetworkFailures.isEmpty() && networkFailures.isEmpty() && identityMismatches.isEmpty() && existingIdentityMismatches.isEmpty()) {
-        Address address = message.getRecipient().getAddress();
-        if (!address.isOpenGroup()) {
-          try {
-            SignalServiceDataMessage selfSend = getDataMessage(address, message)
-                    .withSyncTarget(address.toGroupString())
-                    .build();
-            // send to ourselves to sync multi-device
-            Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
-            SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, selfSend);
-            if (selfSendResult.getLokiAPIError() != null) {
-              throw selfSendResult.getLokiAPIError();
-            }
-          } catch (Exception e) {
-            Log.e("Loki", "Error sending message to ourselves", e);
-          }
-        }
         database.markAsSent(messageId, true);
 
         markAttachmentsUploaded(messageId, message.getAttachments());
@@ -290,7 +274,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) {
+  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) throws IOException {
 
     SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
 

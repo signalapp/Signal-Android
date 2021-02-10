@@ -586,10 +586,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     // Handle sync message from ourselves
-    if (syncTarget != null && !syncTarget.isEmpty()) {
+    if (syncTarget != null && !syncTarget.isEmpty() || TextSecurePreferences.getLocalNumber(context).equals(content.getSender())) {
+      Address targetAddress = masterRecipient.getAddress();
+      if (message.getGroupInfo().isPresent()) {
+        targetAddress = Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
+      } else if (syncTarget != null && !syncTarget.isEmpty()) {
+        targetAddress = Address.fromSerialized(syncTarget);
+      }
       List<Attachment>             attachments    = PointerAttachment.forPointers(message.getAttachments());
-
-      Address targetAddress = Address.fromSerialized(syncTarget);
 
       OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(masterRecipient, message.getBody().orNull(),
               attachments,
@@ -618,7 +622,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       try {
 
         // Check if we have the thread already
-        long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(syncTarget);
+        long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(targetAddress.serialize());
 
         insertResult = database.insertSecureDecryptedMessageOutbox(mediaMessage, threadID, content.getTimestamp());
 
@@ -843,8 +847,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
-    } else if (syncTarget != null && !syncTarget.isEmpty()) {
-      Address targetAddress = Address.fromSerialized(syncTarget);
+    } else if (syncTarget != null && !syncTarget.isEmpty() || TextSecurePreferences.getLocalNumber(context).equals(content.getSender())) {
+      Address targetAddress = masterRecipient.getAddress();
+      if (message.getGroupInfo().isPresent()) {
+        targetAddress = Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
+      } else if (syncTarget != null && !syncTarget.isEmpty()) {
+        targetAddress = Address.fromSerialized(syncTarget);
+      }
 
       if (DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(message.getTimestamp(), targetAddress) != null) {
         Log.d("Loki","Message already exists, don't insert again");
@@ -858,7 +867,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (tm.getMessageBody().length() == 0) { return; }
 
       // Check if we have the thread already
-      long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(syncTarget);
+      long threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(targetAddress.serialize());
 
 
       // Insert the message into the database

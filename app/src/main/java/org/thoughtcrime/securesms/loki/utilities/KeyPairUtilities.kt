@@ -14,7 +14,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 
 object KeyPairUtilities {
 
-    private val sodium = LazySodiumAndroid(SodiumAndroid())
+    private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
 
     fun generate(): KeyPairGenerationResult {
         val seed = sodium.randomBytesBuf(16)

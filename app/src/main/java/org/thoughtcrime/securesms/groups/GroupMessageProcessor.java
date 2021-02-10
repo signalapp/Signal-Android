@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.session.libsignal.utilities.logging.Log;
@@ -123,10 +124,18 @@ public class GroupMessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
+    Address                   address         = Address.Companion.fromExternal(context, GroupUtil.getEncodedId(group));
+    Recipient                 recipient       = Recipient.from(context, address, false);
 
     String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
     if (userMasterDevice == null) { userMasterDevice = TextSecurePreferences.getLocalNumber(context); }
+
+    if (content.getSender().equals(userMasterDevice)) {
+      long threadId = threadDatabase.getThreadIdIfExistsFor(recipient);
+      return threadId == -1 ? null : threadId;
+    }
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message

@@ -331,7 +331,6 @@ public class SignalServiceCipher {
         kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = SessionProtocolUtilities.INSTANCE.decryptClosedGroupCiphertext(ciphertext, groupPublicKey, apiDB, sessionProtocolImpl);
         paddedMessage = plaintextAndSenderPublicKey.getFirst();
         String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-        if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
         metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isPreKeySignalMessage()) {

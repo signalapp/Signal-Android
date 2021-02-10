@@ -70,7 +70,6 @@ object ClosedGroupsProtocolV2 {
             // Send a closed group update message to all members individually
             val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, encryptionKeyPair, membersAsData, adminsAsData)
             for (member in members) {
-                if (member == userPublicKey) { continue }
                 val job = ClosedGroupUpdateMessageSendJobV2(member, closedGroupUpdateKind)
                 job.setContext(context)
                 job.onRun() // Run the job immediately to make all of this sync
