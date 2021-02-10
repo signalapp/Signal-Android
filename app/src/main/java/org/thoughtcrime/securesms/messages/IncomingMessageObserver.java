@@ -249,8 +249,6 @@ public class IncomingMessageObserver {
               }
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");
-            } catch (InvalidVersionException e) {
-              Log.w(TAG, e);
             }
           }
         } catch (Throwable e) {

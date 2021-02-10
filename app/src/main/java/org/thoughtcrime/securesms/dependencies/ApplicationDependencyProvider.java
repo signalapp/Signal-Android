@@ -252,10 +252,5 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     public String getPassword() {
       return TextSecurePreferences.getPushServerPassword(context);
     }
-
-    @Override
-    public String getSignalingKey() {
-      return TextSecurePreferences.getSignalingKey(context);
-    }
   }
 }

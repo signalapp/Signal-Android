@@ -153,7 +153,7 @@ public class SignalServiceMessageSender {
                                     ExecutorService executor,
                                     boolean automaticNetworkRetry)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, null), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor, 0, automaticNetworkRetry);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor, 0, automaticNetworkRetry);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,

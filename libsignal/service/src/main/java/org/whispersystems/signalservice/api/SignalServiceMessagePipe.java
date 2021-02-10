@@ -139,17 +139,15 @@ public class SignalServiceMessagePipe {
    * connection breaks (if, for instance, you lose and regain network).
    */
   public Optional<SignalServiceEnvelope> readOrEmpty(long timeout, TimeUnit unit, MessagePipeCallback callback)
-      throws TimeoutException, IOException, InvalidVersionException
+      throws TimeoutException, IOException
   {
     if (!credentialsProvider.isPresent()) {
       throw new IllegalArgumentException("You can't read messages if you haven't specified credentials");
     }
 
     while (true) {
-      WebSocketRequestMessage  request            = websocket.readRequest(unit.toMillis(timeout));
-      WebSocketResponseMessage response           = createWebSocketResponse(request);
-      boolean                  signalKeyEncrypted = isSignalKeyEncrypted(request);
-
+      WebSocketRequestMessage  request  = websocket.readRequest(unit.toMillis(timeout));
+      WebSocketResponseMessage response = createWebSocketResponse(request);
       try {
         if (isSignalServiceEnvelope(request)) {
           Optional<String> timestampHeader = findHeader(request, SERVER_DELIVERED_TIMESTAMP_HEADER);
@@ -163,10 +161,7 @@ public class SignalServiceMessagePipe {
             }
           }
 
-          SignalServiceEnvelope envelope = new SignalServiceEnvelope(request.getBody().toByteArray(),
-                                                                     credentialsProvider.get().getSignalingKey(),
-                                                                     signalKeyEncrypted,
-                                                                     timestamp);
+          SignalServiceEnvelope envelope = new SignalServiceEnvelope(request.getBody().toByteArray(), timestamp);
 
           callback.onMessage(envelope);
           return Optional.of(envelope);
@@ -327,26 +322,6 @@ public class SignalServiceMessagePipe {
 
   private boolean isSocketEmptyRequest(WebSocketRequestMessage message) {
     return "PUT".equals(message.getVerb()) && "/api/v1/queue/empty".equals(message.getPath());
-  }
-
-  private boolean isSignalKeyEncrypted(WebSocketRequestMessage message) {
-    List<String> headers = message.getHeadersList();
-
-    if (headers == null || headers.isEmpty()) {
-      return true;
-    }
-
-    for (String header : headers) {
-      String[] parts = header.split(":");
-
-      if (parts.length == 2 && parts[0] != null && parts[0].trim().equalsIgnoreCase("X-Signal-Key")) {
-        if (parts[1] != null && parts[1].trim().equalsIgnoreCase("false")) {
-          return false;
-        }
-      }
-    }
-
-    return true;
   }
 
   private WebSocketResponseMessage createWebSocketResponse(WebSocketRequestMessage request) {

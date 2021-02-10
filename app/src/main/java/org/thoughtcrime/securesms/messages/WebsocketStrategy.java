@@ -76,8 +76,6 @@ class WebsocketStrategy extends MessageRetrievalStrategy {
           }
         } catch (TimeoutException e) {
           Log.w(TAG, "Websocket timeout." + timeSuffix(startTime));
-        } catch (InvalidVersionException e) {
-          Log.w(TAG, e);
         }
       }
     } finally {
