@@ -4,6 +4,7 @@
   <string name="yes">Oui</string>
   <string name="no">Non</string>
   <string name="delete">Supprimer</string>
+  <string name="ban">Bannir</string>
   <string name="please_wait">Veuillez patienter…</string>
   <string name="save">Enregistrer</string>
   <string name="note_to_self">Note à mon intention</string>
@@ -176,6 +177,7 @@
     <item quantity="one">Le message sélectionné sera irrémédiablement supprimé.</item>
     <item quantity="other">Les %1$d messages sélectionnés seront irrémédiablement supprimés</item>
   </plurals>
+  <string name="ConversationFragment_ban_selected_user">Bannir cet utilisateur?</string>
   <string name="ConversationFragment_save_to_sd_card">Enregistrer dans la mémoire ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">La sauvegarde du média dans l’espace de stockage autorisera d’autres applications à y accéder.\n\nContinuer ?</item>
@@ -200,6 +202,8 @@
   <string name="ConversationFragment_sms">Textos</string>
   <string name="ConversationFragment_deleting">Suppression</string>
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
+  <string name="ConversationFragment_banning">Bannir</string>
+  <string name="ConversationFragment_banning_user">Bannissement de l’utilisateur…</string>
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <!--ConversationListActivity-->
@@ -1110,6 +1114,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_context__menu_message_details">Détails du message</string>
   <string name="conversation_context__menu_copy_text">Copier le texte</string>
   <string name="conversation_context__menu_delete_message">Supprimer le message</string>
+  <string name="conversation_context__menu_ban_user">Bannir l’utilisateur</string>
   <string name="conversation_context__menu_forward_message">Transférer le message</string>
   <string name="conversation_context__menu_resend_message">Renvoyer le message</string>
   <string name="conversation_context__menu_reply_to_message">Répondre au message</string>
@@ -1413,6 +1418,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="activity_settings_notifications_button_title">Notifications</string>
   <string name="activity_settings_chats_button_title">Chats</string>
   <string name="activity_settings_devices_button_title">Appareils reliés</string>
+  <string name="activity_settings_invite_button_title">Inviter</string>
   <string name="activity_settings_recovery_phrase_button_title">Phrase de récupération</string>
   <string name="activity_settings_clear_all_data_button_title">Effacer les données</string>
 

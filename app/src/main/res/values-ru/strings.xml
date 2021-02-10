@@ -1471,6 +1471,7 @@
   <string name="activity_settings_notifications_button_title">Уведомления</string>
   <string name="activity_settings_chats_button_title">Чаты</string>
   <string name="activity_settings_devices_button_title">Устройства</string>
+  <string name="activity_settings_invite_button_title">Пригласить</string>
   <string name="activity_settings_recovery_phrase_button_title">Секретная фраза</string>
   <string name="activity_settings_clear_all_data_button_title">Очистить данные</string>
 
