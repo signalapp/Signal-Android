@@ -179,7 +179,7 @@ public class StickerDatabase extends Database {
     String         selection = PACK_ID + " = ? AND " + COVER + " = ?";
     String[]       args      = new String[] { packId, "0" };
 
-    Cursor cursor = db.query(TABLE_NAME, null, selection, args, null, null, null);
+    Cursor cursor = db.query(TABLE_NAME, null, selection, args, null, STICKER_ID + " ASC", null);
     setNotifyStickerListeners(cursor);
 
     return cursor;
