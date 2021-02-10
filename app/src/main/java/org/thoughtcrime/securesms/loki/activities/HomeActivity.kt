@@ -130,6 +130,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
         val homeAdapter = HomeAdapter(this, cursor)
+        homeAdapter.setHasStableIds(true)
         homeAdapter.glide = glide
         homeAdapter.conversationClickListener = this
         recyclerView.adapter = homeAdapter

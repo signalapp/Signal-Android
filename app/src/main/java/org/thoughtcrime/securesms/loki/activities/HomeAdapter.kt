@@ -35,6 +35,11 @@ class HomeAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<
         viewHolder.view.bind(thread, isTyping, glide)
     }
 
+    override fun onItemViewRecycled(holder: ViewHolder?) {
+        super.onItemViewRecycled(holder)
+        holder?.view?.recycle()
+    }
+
     private fun getThread(cursor: Cursor): ThreadRecord? {
         return threadDatabase.readerFor(cursor).current
     }
