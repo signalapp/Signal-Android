@@ -2,17 +2,15 @@ package org.session.libsession.messaging.sending_receiving
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
-import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
-import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
-import org.session.libsession.messaging.messages.control.ReadReceipt
-import org.session.libsession.messaging.messages.control.TypingIndicator
+import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsignal.libsignal.ecc.ECKeyPair
 
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import java.lang.Error
 
 object MessageReceiver {
+
+    private val lastEncryptionKeyPairRequest = mutableMapOf<String, Long>()
+
     internal sealed class Error(val description: String) : Exception() {
         object DuplicateMessage: Error("Duplicate message.")
         object InvalidMessage: Error("Invalid message.")
@@ -20,6 +18,7 @@ object MessageReceiver {
         object UnknownEnvelopeType: Error("Unknown envelope type.")
         object NoUserX25519KeyPair: Error("Couldn't find user X25519 key pair.")
         object NoUserED25519KeyPair: Error("Couldn't find user ED25519 key pair.")
+        object InvalidSignature: Error("Invalid message signature.")
         object NoData: Error("Received an empty envelope.")
         object SenderBlocked: Error("Received a message from a blocked user.")
         object NoThread: Error("Couldn't find thread for message.")
@@ -28,12 +27,13 @@ object MessageReceiver {
         // Shared sender keys
         object InvalidGroupPublicKey: Error("Invalid group public key.")
         object NoGroupKeyPair: Error("Missing group key pair.")
-        object SharedSecretGenerationFailed: Error("Couldn't generate a shared secret.")
 
         internal val isRetryable: Boolean = when (this) {
+            is DuplicateMessage -> false
             is InvalidMessage -> false
             is UnknownMessage -> false
             is UnknownEnvelopeType -> false
+            is InvalidSignature -> false
             is NoData -> false
             is SenderBlocked -> false
             is SelfSend -> false
@@ -41,13 +41,16 @@ object MessageReceiver {
         }
     }
 
-    internal fun parse(data: ByteArray, openGroupServerID: Long?): Pair<Message, SignalServiceProtos.Content> {
+    internal fun parse(data: ByteArray, openGroupServerID: Long?, isRetry: Boolean = false): Pair<Message, SignalServiceProtos.Content> {
         val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val isOpenGroupMessage = openGroupServerID != null
         // Parse the envelope
         val envelope = SignalServiceProtos.Envelope.parseFrom(data)
-        if (storage.getReceivedMessageTimestamps().contains(envelope.timestamp)) throw Error.DuplicateMessage
+        // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
+        // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
+        // for this issue.
+        if (storage.getReceivedMessageTimestamps().contains(envelope.timestamp) && !isRetry) throw Error.DuplicateMessage
         storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
@@ -89,16 +92,27 @@ object MessageReceiver {
                             }
                         }
                     }
-                    decrypt()
                     groupPublicKey = envelope.source
+                    try {
+                        decrypt()
+                    } catch(error: Exception) {
+                        val now = System.currentTimeMillis()
+                        var shouldRequestEncryptionKeyPair = true
+                        lastEncryptionKeyPairRequest[groupPublicKey!!]?.let {
+                            shouldRequestEncryptionKeyPair = now - it > 30 * 1000
+                        }
+                        if (shouldRequestEncryptionKeyPair) {
+                            MessageSender.requestEncryptionKeyPair(groupPublicKey)
+                            lastEncryptionKeyPairRequest[groupPublicKey] = now
+                        }
+                        throw error
+                    }
                 }
                 else -> throw Error.UnknownEnvelopeType
             }
         }
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
-        // Ignore self sends
-        if (sender == userPublicKey) throw Error.SelfSend
         // Parse the proto
         val proto = SignalServiceProtos.Content.parseFrom(plaintext)
         // Parse the message
@@ -106,17 +120,24 @@ object MessageReceiver {
                                TypingIndicator.fromProto(proto) ?:
                                ClosedGroupUpdate.fromProto(proto) ?:
                                ExpirationTimerUpdate.fromProto(proto) ?:
+                               ConfigurationMessage.fromProto(proto) ?:
                                VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage
+        // Ignore self sends if needed
+        if (!message.isSelfSendValid && sender == userPublicKey) throw Error.SelfSend
+        // Guard against control messages in open groups
         if (isOpenGroupMessage && message !is VisibleMessage) throw Error.InvalidMessage
+        // Finish parsing
         message.sender = sender
         message.recipient = userPublicKey
         message.sentTimestamp = envelope.timestamp
         message.receivedTimestamp = System.currentTimeMillis()
         message.groupPublicKey = groupPublicKey
         message.openGroupServerMessageID = openGroupServerID
+        // Validate
         var isValid = message.isValid()
         if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount == 0) { isValid = true }
         if (!isValid) { throw Error.InvalidMessage }
+        // Return
         return Pair(message, proto)
     }
 }

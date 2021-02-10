@@ -8,7 +8,7 @@ import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
 import java.io.File
 import java.io.FileInputStream
 
-class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Long): Job {
+class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long): Job {
 
     override var delegate: JobDelegate? = null
     override var id: String? = null
@@ -34,17 +34,17 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
     override fun execute() {
         val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
         val attachmentStream = messageDataProvider.getAttachmentStream(attachmentID) ?: return handleFailure(Error.NoAttachment)
-        messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.tsIncomingMessageID)
+        messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
         val tempFile = createTempFile()
         val handleFailure: (java.lang.Exception) -> Unit = { exception ->
             tempFile.delete()
             if(exception is Error && exception == Error.NoAttachment) {
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, tsIncomingMessageID)
+                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
             } else if (exception is DotNetAPI.Error && exception == DotNetAPI.Error.ParsingFailed) {
                 // No need to retry if the response is invalid. Most likely this means we (incorrectly)
                 // got a "Cannot GET ..." error from the file server.
-                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, tsIncomingMessageID)
+                MessagingConfiguration.shared.messageDataProvider.setAttachmentState(AttachmentState.FAILED, attachmentID, databaseMessageID)
                 this.handlePermanentFailure(exception)
             } else {
                 this.handleFailure(exception)
@@ -62,7 +62,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
         var stream = if (!attachmentStream.digest.isPresent || attachmentStream.key == null) FileInputStream(tempFile)
             else AttachmentCipherInputStream.createForAttachment(tempFile, attachmentStream.length.or(0).toLong(), attachmentStream.key?.toByteArray(), attachmentStream?.digest.get())
 
-        messageDataProvider.insertAttachment(tsIncomingMessageID, attachmentID, stream)
+        messageDataProvider.insertAttachment(databaseMessageID, attachmentID, stream)
 
         tempFile.delete()
 
@@ -90,7 +90,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val tsIncomingMessageID: Lon
 
     override fun serialize(): Data {
         return Data.Builder().putLong(KEY_ATTACHMENT_ID, attachmentID)
-                .putLong(KEY_TS_INCOMING_MESSAGE_ID, tsIncomingMessageID)
+                .putLong(KEY_TS_INCOMING_MESSAGE_ID, databaseMessageID)
                 .build();
     }
 

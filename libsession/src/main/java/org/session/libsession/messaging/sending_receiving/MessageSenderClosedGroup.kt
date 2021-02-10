@@ -51,7 +51,6 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
         // Send a closed group update message to all members individually
         val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
         for (member in members) {
-            if (member == userPublicKey) { continue }
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
             sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).get()
         }
@@ -160,7 +159,7 @@ fun MessageSender.removeMembers(groupPublicKey: String, membersToRemove: List<St
         Log.d("Loki", "Can't remove members from nonexistent closed group.")
         throw Error.NoThread
     }
-    if (membersToRemove.isEmpty()) {
+    if (membersToRemove.isEmpty() || membersToRemove.contains(userPublicKey)) {
         Log.d("Loki", "Invalid closed group update.")
         throw Error.InvalidClosedGroupUpdate
     }
@@ -212,6 +211,53 @@ fun MessageSender.v2_leave(groupPublicKey: String) {
     storage.insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
 }
 
+fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, targetMembers: Collection<String>) {
+    // Prepare
+    val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = storage.getUserPublicKey()!!
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't update nonexistent closed group.")
+        throw Error.NoThread
+    }
+    if (!group.admins.map { it.toString() }.contains(userPublicKey)) {
+        Log.d("Loki", "Can't distribute new encryption key pair as non-admin.")
+        throw Error.InvalidClosedGroupUpdate
+    }
+    // Generate the new encryption key pair
+    val newKeyPair = Curve.generateKeyPair()
+    // Distribute it
+    val proto = SignalServiceProtos.KeyPair.newBuilder()
+    proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
+    proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
+    val plaintext = proto.build().toByteArray()
+    val wrappers = targetMembers.map { publicKey ->
+        val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
+        ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
+    }
+    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(null, wrappers)
+    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
+    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
+        // Store it * after * having sent out the message to the group
+        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+    }
+}
+
+fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
+    val storage = MessagingConfiguration.shared.storage
+    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
+    val group = storage.getGroup(groupID) ?: run {
+        Log.d("Loki", "Can't request encryption key pair for nonexistent closed group.")
+        throw Error.NoThread
+    }
+    val members = group.members.map { it.serialize() }.toSet()
+    if (!members.contains(storage.getUserPublicKey()!!)) return
+    // Send the request to the group
+    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest)
+    send(closedGroupControlMessage, Address.fromSerialized(groupID))
+}
+
+/// - Note: Deprecated.
 fun MessageSender.update(groupPublicKey: String, members: Collection<String>, name: String): Promise<Unit, Exception> {
     val deferred = deferred<Unit, Exception>()
     val context = MessagingConfiguration.shared.context
@@ -342,6 +388,7 @@ fun MessageSender.update(groupPublicKey: String, members: Collection<String>, na
     return deferred.promise
 }
 
+/// - Note: Deprecated.
 fun MessageSender.leave(groupPublicKey: String) {
     val storage = MessagingConfiguration.shared.storage
     val userPublicKey = storage.getUserPublicKey()!!
@@ -355,36 +402,4 @@ fun MessageSender.leave(groupPublicKey: String) {
     val oldMembers = group.members.map { it.serialize() }.toSet()
     val newMembers = oldMembers.minus(userPublicKey)
     return update(groupPublicKey, newMembers, name).get()
-}
-
-fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, targetMembers: Collection<String>) {
-    // Prepare
-    val storage = MessagingConfiguration.shared.storage
-    val userPublicKey = storage.getUserPublicKey()!!
-    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    val group = storage.getGroup(groupID) ?: run {
-        Log.d("Loki", "Can't update nonexistent closed group.")
-        throw Error.NoThread
-    }
-    if (!group.admins.map { it.toString() }.contains(userPublicKey)) {
-        Log.d("Loki", "Can't distribute new encryption key pair as non-admin.")
-        throw Error.InvalidClosedGroupUpdate
-    }
-    // Generate the new encryption key pair
-    val newKeyPair = Curve.generateKeyPair()
-    // Distribute it
-    val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
-    proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
-    val plaintext = proto.build().toByteArray()
-    val wrappers = targetMembers.map { publicKey ->
-        val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
-        ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
-    }
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(wrappers)
-    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
-    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
-        // Store it * after * having sent out the message to the group
-        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
-    }
 }
