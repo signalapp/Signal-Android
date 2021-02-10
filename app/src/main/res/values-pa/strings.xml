@@ -444,7 +444,6 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅਪਗ੍ਰੇਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ਹਾਲੇ ਨਹੀਂ</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ਸਦੱਸ ਸ਼ਾਮਲ ਕਰੋ</item>

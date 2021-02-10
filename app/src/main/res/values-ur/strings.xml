@@ -470,7 +470,6 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ذکر, خصوصیات اور منتظمین جیسی نئی خصوصیات تک رسائی حاصل کرنے کے لیئے اس گروپ کو اپ گریڈ کریں۔</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ابھی نہیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">گروپ تازہ کاری</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">نئے گروپ میں %1$d ممبر کو دوبارہ شامل نہیں کیا جاسکا۔ کیا آپ انہیں ابھی شامل کرنا چاہتے ہیں؟</item>
