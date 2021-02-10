@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.LogSecretProvider;
+import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -312,6 +313,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     DirectoryRefreshListener.schedule(this);
     LocalBackupListener.schedule(this);
     RotateSenderCertificateListener.schedule(this);
+    MessageProcessReceiver.startOrUpdateAlarm(this);
 
     if (BuildConfig.PLAY_STORE_DISABLED) {
       UpdateApkRefreshListener.schedule(this);
@@ -377,7 +379,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
       if (Build.VERSION.SDK_INT >= 26) {
         FcmJobService.schedule(this);
       } else {
-        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
+        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
       }
       TextSecurePreferences.setNeedsMessagePull(this, false);
     }

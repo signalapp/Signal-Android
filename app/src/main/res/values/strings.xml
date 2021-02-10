@@ -82,6 +82,9 @@
     <string name="AttachmentUploadJob_uploading_media">Uploading media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Compressing video…</string>
 
+    <!-- BackgroundMessageRetriever -->
+    <string name="BackgroundMessageRetriever_checking_for_messages">Checking for messages…</string>
+
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blocked users</string>
     <string name="BlockedUsersActivity__add_blocked_user">Add blocked user</string>

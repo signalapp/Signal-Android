@@ -78,7 +78,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     super.onResume();
 
     if (networkAccess.isCensored(this)) {
-      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
+      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
     }
   }
 
