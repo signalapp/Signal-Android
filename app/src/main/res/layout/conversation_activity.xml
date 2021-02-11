@@ -9,11 +9,13 @@
     <include layout="@layout/system_ui_guidelines" />
 
     <ImageView
-        android:importantForAccessibility="no"
         android:id="@+id/conversation_wallpaper"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline" />
 
     <View
         android:id="@+id/conversation_wallpaper_dim"
@@ -150,7 +152,7 @@
 
     <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/conversation_toolbar_color"
         android:theme="?attr/actionBarStyle"
@@ -220,10 +222,12 @@
 
     <View
         android:id="@+id/conversation_toolbar_shadow"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="5dp"
         android:background="@drawable/toolbar_shadow"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"/>
 
     <ViewStub
         android:id="@+id/conversation_reaction_scrubber_stub"
