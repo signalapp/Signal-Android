@@ -1052,7 +1052,6 @@ public class SignalServiceMessageSender {
                                                      Optional<String>             syncTarget)
       throws IOException, UntrustedIdentityException
   {
-    if (recipient.getNumber().equals(userPublicKey) && !syncTarget.isPresent()) { return SendMessageResult.success(recipient, false, false); }
     final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
     OutgoingPushMessageList messages = getSessionProtocolEncryptedMessage(recipient, timestamp, content);
     // Loki - Remove this when we have shared sender keys

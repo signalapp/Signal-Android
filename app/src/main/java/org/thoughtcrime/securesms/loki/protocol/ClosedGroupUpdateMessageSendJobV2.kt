@@ -27,7 +27,7 @@ import org.session.libsignal.utilities.Hex
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Parameters, private val destination: String, private val kind: Kind) : BaseJob(parameters) {
+class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Parameters, private val destination: String, private val kind: Kind, private val sentTime: Long) : BaseJob(parameters) {
 
     sealed class Kind {
         class New(val publicKey: ByteArray, val name: String, val encryptionKeyPair: ECKeyPair, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
@@ -61,20 +61,22 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         }
     }
 
-    constructor(destination: String, kind: Kind) : this(Parameters.Builder()
+    constructor(destination: String, kind: Kind, sentTime: Long) : this(Parameters.Builder()
             .addConstraint(NetworkConstraint.KEY)
             .setQueue(KEY)
             .setLifespan(TimeUnit.DAYS.toMillis(1))
             .setMaxAttempts(20)
             .build(),
             destination,
-            kind)
+            kind,
+            sentTime)
 
     override fun getFactoryKey(): String { return KEY }
 
     override fun serialize(): Data {
         val builder = Data.Builder()
         builder.putString("destination", destination)
+        builder.putLong("sentTime", sentTime)
         when (kind) {
             is Kind.New -> {
                 builder.putString("kind", "New")
@@ -124,6 +126,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         override fun create(parameters: Parameters, data: Data): ClosedGroupUpdateMessageSendJobV2 {
             val destination = data.getString("destination")
             val rawKind = data.getString("kind")
+            val sentTime = data.getLong("sentTime")
             val kind: Kind
             when (rawKind) {
                 "New" -> {
@@ -162,7 +165,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 }
                 else -> throw Exception("Invalid closed group update message kind: $rawKind.")
             }
-            return ClosedGroupUpdateMessageSendJobV2(parameters, destination, kind)
+            return ClosedGroupUpdateMessageSendJobV2(parameters, destination, kind, sentTime)
         }
     }
 
@@ -221,7 +224,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         try {
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
-                    Date().time, serializedContentMessage, false, ttl, false,
+                    sentTime, serializedContentMessage, false, ttl, false,
                     true, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")

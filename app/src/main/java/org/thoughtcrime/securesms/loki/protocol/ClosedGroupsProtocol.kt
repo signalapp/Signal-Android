@@ -285,7 +285,7 @@ object ClosedGroupsProtocol {
             .setName(name)
             .addAllMembers(members)
             .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, System.currentTimeMillis(), 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
         mmsDB.markAsSent(infoMessageID, true)
@@ -324,6 +324,6 @@ object ClosedGroupsProtocol {
                 .setId(decodedGroupId)
                 .setType(GroupContext.Type.QUIT)
                 .build()
-        return OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, null, emptyList(), emptyList())
+        return OutgoingGroupMediaMessage(groupRecipient, groupContext, null, 0, null, emptyList(), emptyList())
     }
 }

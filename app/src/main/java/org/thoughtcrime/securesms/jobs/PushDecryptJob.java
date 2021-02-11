@@ -47,7 +47,6 @@ import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -83,7 +82,6 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
-import org.thoughtcrime.securesms.loki.utilities.DatabaseUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -97,7 +95,6 @@ import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
@@ -399,33 +396,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message)
-  {
-    SmsDatabase               database                  = DatabaseFactory.getSmsDatabase(context);
-    Recipient                 recipient                 = getSyncMessageDestination(message);
-    OutgoingTextMessage       outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
-    OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
-
-    long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-
-    if (!recipient.isGroupRecipient()) {
-      // TODO: Handle session reset on sync messages
-      /*
-      SessionStore sessionStore = new TextSecureSessionStore(context);
-      sessionStore.deleteAllSessions(recipient.getAddress().toPhoneString());
-       */
-
-      SecurityEvent.broadcastSecurityUpdateEvent(context);
-
-      long messageId = database.insertMessageOutbox(threadId, outgoingEndSessionMessage,
-                                                    false, message.getTimestamp(),
-                                                    null);
-      database.markAsSent(messageId, true);
-    }
-
-    return threadId;
-  }
-
   private void handleGroupMessage(@NonNull SignalServiceContent content,
                                   @NonNull SignalServiceDataMessage message,
                                   @NonNull Optional<Long> smsMessageId)
@@ -479,83 +449,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (smsMessageId.isPresent()) {
         DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
       }
-    } catch (MmsException e) {
-      throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
-    }
-  }
-
-  private void handleSynchronizeStickerPackOperation(@NonNull List<StickerPackOperationMessage> stickerPackOperations) {
-    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-
-    for (StickerPackOperationMessage operation : stickerPackOperations) {
-      if (operation.getPackId().isPresent() && operation.getPackKey().isPresent() && operation.getType().isPresent()) {
-        String packId  = Hex.toStringCondensed(operation.getPackId().get());
-        String packKey = Hex.toStringCondensed(operation.getPackKey().get());
-
-        switch (operation.getType().get()) {
-          case INSTALL:
-            jobManager.add(new StickerPackDownloadJob(packId, packKey, false));
-            break;
-          case REMOVE:
-            DatabaseFactory.getStickerDatabase(context).uninstallPack(packId);
-            break;
-        }
-      } else {
-        Log.w(TAG, "Received incomplete sticker pack operation sync.");
-      }
-    }
-  }
-
-  private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,
-                                            @NonNull SentTranscriptMessage message)
-      throws StorageFailedException
-
-  {
-    try {
-      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-
-      Long threadId;
-
-      if (message.getMessage().isEndSession()) {
-        threadId = handleSynchronizeSentEndSessionMessage(message);
-      } else if (message.getMessage().isGroupUpdate()) {
-        threadId = GroupMessageProcessor.process(context, content, message.getMessage(), true);
-      } else if (message.getMessage().isExpirationUpdate()) {
-        threadId = handleSynchronizeSentExpirationUpdate(message);
-      } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent()) {
-        threadId = handleSynchronizeSentMediaMessage(message);
-      } else {
-        threadId = handleSynchronizeSentTextMessage(message);
-      }
-
-      if (threadId == -1L) { threadId = null; }
-
-      if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get()))) {
-        handleUnknownGroupMessage(content, message.getMessage().getGroupInfo().get());
-      }
-
-      if (message.getMessage().getProfileKey().isPresent()) {
-        Recipient recipient = null;
-
-        if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
-        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
-
-
-        if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
-          DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
-        }
-
-        SessionMetaProtocol.handleProfileKeyUpdate(context, content);
-      }
-
-      SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
-
-      if (threadId != null) {
-        DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
-        messageNotifier.updateNotification(context);
-      }
-
-      messageNotifier.setLastDesktopActivityTimestamp(message.getTimestamp());
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
     }
@@ -1426,6 +1319,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     if (SessionMetaProtocol.shouldIgnoreMessage(content.getTimestamp())) {
       Log.d("Loki", "Ignoring duplicate message.");
+      return true;
+    }
+
+    if (content.getSender().equals(TextSecurePreferences.getLocalNumber(context)) &&
+            DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(content.getTimestamp(), content.getSender()) != null) {
+      Log.d("Loki", "Skipping message from self we already have");
       return true;
     }
 

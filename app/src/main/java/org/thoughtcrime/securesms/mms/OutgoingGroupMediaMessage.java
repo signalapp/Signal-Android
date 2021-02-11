@@ -40,7 +40,6 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
   public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
                                    @NonNull GroupContext group,
                                    @Nullable final Attachment avatar,
-                                   long sentTimeMillis,
                                    long expireIn,
                                    @Nullable QuoteModel quote,
                                    @NonNull List<Contact> contacts,
