@@ -63,7 +63,7 @@ object MessageReceiver {
         } else {
             when (envelope.type) {
                 SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER -> {
-                    val userX25519KeyPair = MessagingConfiguration.shared.storage.getUserX25519KeyPair() ?: throw Error.NoUserX25519KeyPair
+                    val userX25519KeyPair = MessagingConfiguration.shared.storage.getUserX25519KeyPair()
                     val decryptionResult = MessageReceiverDecryption.decryptWithSessionProtocol(ciphertext.toByteArray(), userX25519KeyPair)
                     plaintext = decryptionResult.first
                     sender = decryptionResult.second

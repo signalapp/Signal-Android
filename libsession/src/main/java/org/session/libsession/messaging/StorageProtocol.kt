@@ -88,6 +88,7 @@ interface StorageProtocol {
     // Message Handling
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
+    fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
     // Returns the IDs of the saved attachments.
     fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
 

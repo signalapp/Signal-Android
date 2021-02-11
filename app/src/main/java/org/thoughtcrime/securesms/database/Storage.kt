@@ -308,6 +308,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         TODO("Not yet implemented")
     }
 
+    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
+        TODO("Not yet implemented")
+    }
+
     override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val address = Address.fromSerialized(author)
