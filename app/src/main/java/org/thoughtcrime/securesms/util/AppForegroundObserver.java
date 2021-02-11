@@ -62,7 +62,7 @@ public final class AppForegroundObserver {
   }
 
   public boolean isForegrounded() {
-    return isForegrounded;
+    return isForegrounded != null && isForegrounded;
   }
 
   @MainThread
