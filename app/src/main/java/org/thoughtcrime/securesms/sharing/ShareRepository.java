@@ -104,7 +104,8 @@ class ShareRepository {
                               .forData(stream, size)
                               .withMimeType(mimeType)
                               .withFileName(fileName)
-                              .createForMultipleSessionsOnDisk(context);
+                              .createForSingleSessionOnDisk(context);
+        // TODO Convert to multi-session after file drafts are fixed.
       }
 
       return ShareData.forIntentData(blobUri, mimeType, true, isMmsSupported(context, mimeType, size));

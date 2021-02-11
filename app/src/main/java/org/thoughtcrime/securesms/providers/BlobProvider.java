@@ -141,7 +141,7 @@ public class BlobProvider {
       } else {
         String id        = uri.getPathSegments().get(ID_PATH_SEGMENT);
         String directory = getDirectory(storageType);
-        File   file      = new File(getOrCreateCacheDirectory(context, directory), buildFileName(id));
+        File   file      = new File(getOrCreateDirectory(context, directory), buildFileName(id));
 
         return getFileRepresentation.apply(file);
       }
@@ -163,6 +163,8 @@ public class BlobProvider {
       return;
     }
 
+    Log.d(TAG, "Deleting " + uri);
+
     try {
       StorageType storageType = StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT));
 
@@ -171,9 +173,11 @@ public class BlobProvider {
       } else {
         String id        = uri.getPathSegments().get(ID_PATH_SEGMENT);
         String directory = getDirectory(storageType);
-        File   file      = new File(getOrCreateCacheDirectory(context, directory), buildFileName(id));
+        File   file      = new File(getOrCreateDirectory(context, directory), buildFileName(id));
 
-        if (!file.delete()) {
+        if (file.delete()) {
+          Log.d(TAG, "Successfully deleted " + uri);
+        } else {
           throw new IOException("File wasn't deleted.");
         }
       }
@@ -186,9 +190,13 @@ public class BlobProvider {
    * Indicates a new app session has started, allowing old single-session blobs to be deleted.
    */
   public synchronized void onSessionStart(@NonNull Context context) {
-    File directory = getOrCreateCacheDirectory(context, SINGLE_SESSION_DIRECTORY);
+    File directory = getOrCreateDirectory(context, SINGLE_SESSION_DIRECTORY);
     for (File file : directory.listFiles()) {
-      file.delete();
+      if (file.delete()) {
+        Log.d(TAG, "Deleted single-session file: " + file.getName());
+      } else {
+        Log.w(TAG, "Failed to delete single-session file! " + file.getName());
+      }
     }
   }
 
@@ -266,7 +274,7 @@ public class BlobProvider {
   {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     String           directory        = getDirectory(blobSpec.getStorageType());
-    File             outputFile       = new File(getOrCreateCacheDirectory(context, directory), buildFileName(blobSpec.id));
+    File             outputFile       = new File(getOrCreateDirectory(context, directory), buildFileName(blobSpec.id));
     OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
 
     SignalExecutors.UNBOUNDED.execute(() -> {
@@ -310,13 +318,8 @@ public class BlobProvider {
                       .build();
   }
 
-  private static File getOrCreateCacheDirectory(@NonNull Context context, @NonNull String directory) {
-    File file = new File(context.getCacheDir(), directory);
-    if (!file.exists()) {
-      file.mkdir();
-    }
-
-    return file;
+  private static File getOrCreateDirectory(@NonNull Context context, @NonNull String directory) {
+    return context.getDir(directory, Context.MODE_PRIVATE);
   }
 
   public class BlobBuilder {
