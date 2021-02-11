@@ -1109,7 +1109,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
       try {
         if (isSSKBasedClosedGroup) {
-          ClosedGroupsProtocolV2.leave(this, groupPublicKey);
+          ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey);
           initializeEnabledCheck();
         } else if (ClosedGroupsProtocol.leaveLegacyGroup(this, groupRecipient)) {
           initializeEnabledCheck();

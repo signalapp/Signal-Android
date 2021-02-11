@@ -358,7 +358,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     isSSKBasedClosedGroup = false
                 }
                 if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocolV2.leave(context, groupPublicKey!!)
+                    ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
                 } else if (!ClosedGroupsProtocol.leaveLegacyGroup(context, recipient)) {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch
