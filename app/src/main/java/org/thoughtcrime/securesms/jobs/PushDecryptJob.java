@@ -264,7 +264,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.configurationMessageProto.isPresent()) {
-        MultiDeviceProtocol.handleConfigurationMessage(context, content.configurationMessageProto.get(), content.getSender());
+        MultiDeviceProtocol.handleConfigurationMessage(context, content.configurationMessageProto.get(), content.getSender(), content.getTimestamp());
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
