@@ -65,19 +65,20 @@ object DownloadUtilities {
                 Log.d("Loki", "Attachment size limit exceeded.")
                 throw PushNetworkException("Max response size exceeded.")
             }
-            val input = body.inputStream()
-            val buffer = ByteArray(32768)
-            var count = 0
-            var bytes = input.read(buffer)
-            while (bytes >= 0) {
-                outputStream.write(buffer, 0, bytes)
-                count += bytes
-                if (count > maxSize) {
-                    Log.d("Loki", "Attachment size limit exceeded.")
-                    throw PushNetworkException("Max response size exceeded.")
+            body.inputStream().use { input ->
+                val buffer = ByteArray(32768)
+                var count = 0
+                var bytes = input.read(buffer)
+                while (bytes >= 0) {
+                    outputStream.write(buffer, 0, bytes)
+                    count += bytes
+                    if (count > maxSize) {
+                        Log.d("Loki", "Attachment size limit exceeded.")
+                        throw PushNetworkException("Max response size exceeded.")
+                    }
+                    listener?.onAttachmentProgress(body.size.toLong(), count.toLong())
+                    bytes = input.read(buffer)
                 }
-                listener?.onAttachmentProgress(body.size.toLong(), count.toLong())
-                bytes = input.read(buffer)
             }
         } catch (e: Exception) {
             Log.d("Loki", "Couldn't download attachment due to error: $e.")

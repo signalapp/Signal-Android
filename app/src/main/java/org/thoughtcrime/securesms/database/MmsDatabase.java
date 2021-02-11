@@ -902,6 +902,17 @@ public class MmsDatabase extends MessagingDatabase {
     return insertMessageInbox(retrieved, contentLocation, threadId, type, 0);
   }
 
+  public Optional<InsertResult> insertSecureDecryptedMessageOutbox(OutgoingMediaMessage retrieved, long threadId, long serverTimestamp)
+          throws MmsException
+  {
+    long messageId = insertMessageOutbox(retrieved, threadId, false, null, serverTimestamp);
+    if (messageId == -1) {
+      return Optional.absent();
+    }
+    markAsSent(messageId, true);
+    return Optional.fromNullable(new InsertResult(messageId, threadId));
+  }
+
   public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId, long serverTimestamp)
           throws MmsException
   {

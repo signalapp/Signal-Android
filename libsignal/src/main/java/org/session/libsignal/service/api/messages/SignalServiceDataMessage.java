@@ -41,6 +41,7 @@ public class SignalServiceDataMessage {
   private final Optional<ClosedGroupUpdate>             closedGroupUpdate;
   private final Optional<ClosedGroupUpdateV2>           closedGroupUpdateV2;
   private final boolean                                 isDeviceUnlinkingRequest;
+  private final Optional<String>                        syncTarget;
 
   /**
    * Construct a SignalServiceDataMessage with a body and no attachments.
@@ -134,7 +135,7 @@ public class SignalServiceDataMessage {
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
                                   Sticker sticker)
   {
-    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, null, false);
+    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, null, false, null);
   }
 
   /**
@@ -155,7 +156,7 @@ public class SignalServiceDataMessage {
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
                                   Sticker sticker, PreKeyBundle preKeyBundle, DeviceLink deviceLink,
                                   ClosedGroupUpdate closedGroupUpdate, ClosedGroupUpdateV2 closedGroupUpdateV2,
-                                  boolean isDeviceUnlinkingRequest)
+                                  boolean isDeviceUnlinkingRequest, String syncTarget)
   {
     this.timestamp                   = timestamp;
     this.body                        = Optional.fromNullable(body);
@@ -172,6 +173,7 @@ public class SignalServiceDataMessage {
     this.closedGroupUpdate           = Optional.fromNullable(closedGroupUpdate);
     this.closedGroupUpdateV2         = Optional.fromNullable(closedGroupUpdateV2);
     this.isDeviceUnlinkingRequest    = isDeviceUnlinkingRequest;
+    this.syncTarget                  = Optional.fromNullable(syncTarget);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -250,6 +252,10 @@ public class SignalServiceDataMessage {
     return profileKey;
   }
 
+  public Optional<String> getSyncTarget() {
+    return syncTarget;
+  }
+
   public Optional<Quote> getQuote() {
     return quote;
   }
@@ -307,6 +313,7 @@ public class SignalServiceDataMessage {
     private Sticker              sticker;
     private PreKeyBundle         preKeyBundle;
     private DeviceLink           deviceLink;
+    private String               syncTarget;
     private boolean              isDeviceUnlinkingRequest;
 
     private Builder() {}
@@ -333,6 +340,11 @@ public class SignalServiceDataMessage {
 
     public Builder withBody(String body) {
       this.body = body;
+      return this;
+    }
+
+    public Builder withSyncTarget(String syncTarget) {
+      this.syncTarget = syncTarget;
       return this;
     }
 
@@ -417,7 +429,7 @@ public class SignalServiceDataMessage {
                                           profileKeyUpdate, quote, sharedContacts, previews,
                                           sticker, preKeyBundle, deviceLink,
                         null, null,
-                                          isDeviceUnlinkingRequest);
+                                          isDeviceUnlinkingRequest, syncTarget);
     }
   }
 

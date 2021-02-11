@@ -18,10 +18,11 @@ import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 
 class SessionProtocolImpl(private val context: Context) : SessionProtocol {
 
+    private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
+
     override fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray {
         val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: throw SessionProtocol.Exception.NoUserED25519KeyPair
         val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())
-        val sodium = LazySodiumAndroid(SodiumAndroid())
 
         val verificationData = plaintext + userED25519KeyPair.publicKey.asBytes + recipientX25519PublicKey
         val signature = ByteArray(Sign.BYTES)
@@ -47,7 +48,6 @@ class SessionProtocolImpl(private val context: Context) : SessionProtocol {
         val recipientX25519PrivateKey = x25519KeyPair.privateKey.serialize()
         val recipientX25519PublicKey = Hex.fromStringCondensed(x25519KeyPair.hexEncodedPublicKey.removing05PrefixIfNeeded())
         Log.d("Test", "recipientX25519PublicKey: $recipientX25519PublicKey")
-        val sodium = LazySodiumAndroid(SodiumAndroid())
         val signatureSize = Sign.BYTES
         val ed25519PublicKeySize = Sign.PUBLICKEYBYTES
 

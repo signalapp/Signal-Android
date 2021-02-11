@@ -11,12 +11,7 @@ public class IncomingGroupMessage extends IncomingTextMessage {
     this.groupContext = groupContext;
   }
 
-  @Override
-  public IncomingGroupMessage withMessageBody(String body) {
-    return new IncomingGroupMessage(this, groupContext, body);
-  }
-
-  @Override
+    @Override
   public boolean isGroup() {
     return true;
   }

@@ -686,6 +686,15 @@ public class SmsDatabase extends MessagingDatabase {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE, serverTimestamp);
   }
 
+  public Optional<InsertResult> insertMessageOutbox(long threadId, OutgoingTextMessage message, long serverTimestamp) {
+    long messageId = insertMessageOutbox(threadId, message, false, serverTimestamp, null);
+    if (messageId == -1) {
+      return Optional.absent();
+    }
+    markAsSent(messageId, true);
+    return Optional.fromNullable(new InsertResult(messageId, threadId));
+  }
+
   public long insertMessageOutbox(long threadId, OutgoingTextMessage message,
                                   boolean forceSms, long date, InsertListener insertListener)
   {
@@ -718,7 +727,6 @@ public class SmsDatabase extends MessagingDatabase {
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
-
     if (insertListener != null) {
       insertListener.onComplete();
     }

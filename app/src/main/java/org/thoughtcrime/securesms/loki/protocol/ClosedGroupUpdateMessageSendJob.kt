@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki.protocol
 
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.jobs.Data
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -128,7 +129,7 @@ class ClosedGroupUpdateMessageSendJob private constructor(parameters: Parameters
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedContentMessage, false, ttl, false,
-                    useFallbackEncryption, false, false, false)
+                    useFallbackEncryption, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")
         }
