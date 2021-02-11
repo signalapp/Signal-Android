@@ -390,7 +390,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSessionで暗号化されているので解読不能です。Sessionを更新して再送するよう送信者にお願いしてください。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSessionで暗号化されているので解読不能です。Sessionを更新して再送するよう送信者に頼んでください。</string>
   <string name="MessageRecord_left_group">グループを抜けました</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました</string>
   <string name="MessageRecord_you_called">発信</string>
@@ -572,7 +572,7 @@
   <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSessionを使っています。Sessionを更新してから安全番号の検証を行うようお願いしてください。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSessionを使っています。Sessionを更新してから安全番号の検証を行うよう頼んでください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSessionを使っているため，QRコードの形式が異なります。Sessionを更新してから改めて比較してください。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは、適正な安全番号認証コードではありません。もう一度読み取って下さい。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">次の方法で安全番号を共有...</string>
