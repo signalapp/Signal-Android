@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <View
+        android:layout_height="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:background="@drawable/toolbar_shadow" />
 
-        <ViewStub
-            android:id="@+id/longmessage_sent_stub"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout="@layout/longmessage_bubble_sent"/>
+            android:padding="16dp">
 
-        <ViewStub
-            android:id="@+id/longmessage_received_stub"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout="@layout/longmessage_bubble_received"/>
+            <ViewStub
+                android:id="@+id/longmessage_sent_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/longmessage_bubble_sent"/>
 
-    </FrameLayout>
+            <ViewStub
+                android:id="@+id/longmessage_received_stub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/longmessage_bubble_received"/>
 
-</ScrollView>
+        </FrameLayout>
+
+    </ScrollView>
+
+</FrameLayout>
