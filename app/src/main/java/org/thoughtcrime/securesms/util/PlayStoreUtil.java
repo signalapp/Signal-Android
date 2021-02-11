@@ -11,9 +11,6 @@ import org.thoughtcrime.securesms.BuildConfig;
 
 public final class PlayStoreUtil {
 
-  private PlayStoreUtil() {
-  }
-
   public static void openPlayStoreOrOurApkDownloadPage(@NonNull Context context) {
     if (BuildConfig.PLAY_STORE_DISABLED) {
       CommunicationActions.openBrowserLink(context, "https://signal.org/android/apk");
