@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Качване на медия…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Компресиране на видео…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани потребители</string>
   <string name="BlockedUsersActivity__add_blocked_user">Добавяне на блокиран потребител</string>

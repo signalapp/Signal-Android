@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ਮੀਡੀਆ ਅਪਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
   <string name="AttachmentUploadJob_compressing_video_start">ਕੰਪ੍ਰੈਸਿੰਗ ਵੀਡੀਓ …</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ਪਾਬੰਦੀ ਲਾਏ ਵਰਤੋਂਕਾਰ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ਪਾਬੰਦੀ ਲਾਇਆ ਵਰਤੋਂਕਾਰ ਜੋੜੋ</string>

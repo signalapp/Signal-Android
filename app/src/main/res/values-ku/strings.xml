@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Medya tê barkirin…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Vîdyo tê dewisandin…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Bikarhênerên astengkirî</string>
   <string name="BlockedUsersActivity__add_blocked_user">Tevlî bikarhênerên astengkirî bike</string>

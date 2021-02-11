@@ -64,6 +64,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">メディアをアップロードしています…</string>
   <string name="AttachmentUploadJob_compressing_video_start">動画を圧縮しています…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">メッセージを確認しています…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザを追加する</string>

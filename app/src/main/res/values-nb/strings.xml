@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Laster opp media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokkerte brukere</string>
   <string name="BlockedUsersActivity__add_blocked_user">Legg til blokkert bruker</string>

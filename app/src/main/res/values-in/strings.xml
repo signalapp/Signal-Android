@@ -64,6 +64,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Mengunggah media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Mengompresi video…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Pengguna diblokir</string>
   <string name="BlockedUsersActivity__add_blocked_user">Tambah pengguna diblokir</string>

@@ -67,6 +67,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">מעלה מדיה…</string>
   <string name="AttachmentUploadJob_compressing_video_start">דוחס סרטון…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">משתמשים חסומים</string>
   <string name="BlockedUsersActivity__add_blocked_user">הוסף משתמש חסום</string>

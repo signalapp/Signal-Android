@@ -64,6 +64,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">미디어 업로드 중…</string>
   <string name="AttachmentUploadJob_compressing_video_start">동영상 압축 중…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">차단된 사용자</string>
   <string name="BlockedUsersActivity__add_blocked_user">차단된 사용자 추가</string>

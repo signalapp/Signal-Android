@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Medieninhalte werden hochgeladen …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video wird komprimiert …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Prüfen auf Nachrichten …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
   <string name="BlockedUsersActivity__add_blocked_user">Zu blockierenden Nutzer hinzufügen</string>
@@ -1971,7 +1973,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_off">Aus</string>
   <string name="preferences_on">Ein</string>
   <string name="preferences_proxy_address">Proxyadresse</string>
-  <string name="preferences_only_use_a_proxy_if">Verwende nur einen Proxy, wenn du über WLAN oder Mobilfunk keine Verbindung zu Signal herstellen kannst.</string>
+  <string name="preferences_only_use_a_proxy_if">Verwende Proxies nur, falls trotz bestehender Internetverbindung die App sich nicht mit dem Signal-Server verbinden kann.</string>
   <string name="preferences_share">Teilen</string>
   <string name="preferences_save">Speichern</string>
   <string name="preferences_connecting_to_proxy">Verbindung mit Proxy wird hergestellt …</string>

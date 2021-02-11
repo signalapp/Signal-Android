@@ -67,6 +67,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimování videa…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Zablokovaní uživatelé</string>
   <string name="BlockedUsersActivity__add_blocked_user">Přidat blokovaného uživatele</string>

@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nusiunčiama medija…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Glaudinamas vaizdo įrašas…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Tikrinama, ar yra žinučių…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Užblokuoti naudotojai</string>
   <string name="BlockedUsersActivity__add_blocked_user">Pridėti užblokuotą naudotoją</string>

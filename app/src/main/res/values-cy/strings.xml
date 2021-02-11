@@ -67,6 +67,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="BlockedUsersActivity__add_blocked_user">Ychwanegu defnyddiwr sydd wedi\'i rwystro</string>

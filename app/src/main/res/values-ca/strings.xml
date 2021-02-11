@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Es penja el contingut…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Es comprimeix el vídeo…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Usuaris blocats</string>
   <string name="BlockedUsersActivity__add_blocked_user">Afegeix un usuari blocat</string>

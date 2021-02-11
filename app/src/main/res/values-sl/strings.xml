@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Prenos multimedijske datoteke …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Kompresija videa …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Pregled sporočil …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani/e uporabniki/ce</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranega uporabnika/co</string>

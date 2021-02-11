@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">A carregar multimédia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">A comprimir vídeo…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">A procurar por mensagens…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utilizadores bloqueados</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adicionar utilizador bloqueado</string>

@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">بارگزاری رسانه…</string>
   <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
   <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>

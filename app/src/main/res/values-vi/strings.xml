@@ -64,6 +64,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Đang tải tệp lên…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Đang nén video…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Người dùng đã chặn</string>
   <string name="BlockedUsersActivity__add_blocked_user">Thêm người dùng vào danh sách chặn</string>

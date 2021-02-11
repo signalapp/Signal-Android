@@ -64,6 +64,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">上傳多媒體檔案中…</string>
   <string name="AttachmentUploadJob_compressing_video_start">壓縮影片中…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">正在檢查訊息…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">被封鎖的使用者</string>
   <string name="BlockedUsersActivity__add_blocked_user">新增被封鎖的使用者</string>
