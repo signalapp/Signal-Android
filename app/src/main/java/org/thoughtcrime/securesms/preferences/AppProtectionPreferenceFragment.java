@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -241,7 +242,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       intent.setAction(KeyCachingService.LOCK_TOGGLED_EVENT);
       getContext().startService(intent);
 
-      ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
+      ConversationUtil.refreshRecipientShortcuts();
 
       return true;
     }
