@@ -377,7 +377,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
 
-    implementation 'com.airbnb.android:lottie:3.0.7'
+    implementation 'com.airbnb.android:lottie:3.6.0'
 
     implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
