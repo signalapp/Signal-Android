@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.Guideline;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class InsetAwareConstraintLayout extends ConstraintLayout {
 
@@ -45,11 +46,19 @@ public class InsetAwareConstraintLayout extends ConstraintLayout {
     }
 
     if (parentStartGuideline != null) {
-      parentStartGuideline.setGuidelineBegin(insets.left);
+      if (ViewUtil.isLtr(this)) {
+        parentStartGuideline.setGuidelineBegin(insets.left);
+      } else {
+        parentStartGuideline.setGuidelineBegin(insets.right);
+      }
     }
 
     if (parentEndGuideline != null) {
-      parentEndGuideline.setGuidelineEnd(insets.right);
+      if (ViewUtil.isLtr(this)) {
+        parentEndGuideline.setGuidelineEnd(insets.right);
+      } else {
+        parentEndGuideline.setGuidelineEnd(insets.left);
+      }
     }
 
     return true;

@@ -176,10 +176,10 @@ public final class ConversationReactionOverlay extends RelativeLayout {
 
     final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
     final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
-    final float downX                = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? lastSeenDownPoint.x : screenWidth - lastSeenDownPoint.x;
+    final float downX                = ViewUtil.isLtr(this) ? lastSeenDownPoint.x : screenWidth - lastSeenDownPoint.x;
     final float scrubberTranslationX = Util.clamp(downX - halfWidth,
                                                   scrubberHorizontalMargin,
-                                                  screenWidth + scrubberHorizontalMargin - halfWidth * 2) * (getLayoutDirection() == LAYOUT_DIRECTION_LTR ? 1 : -1);
+                                                  screenWidth + scrubberHorizontalMargin - halfWidth * 2) * (ViewUtil.isLtr(this) ? 1 : -1);
 
     backgroundView.setTranslationX(scrubberTranslationX);
     backgroundView.setTranslationY(scrubberTranslationY);
@@ -275,7 +275,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private int getStart(@NonNull Rect rect) {
-    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+    if (ViewUtil.isLtr(this)) {
       return rect.left;
     } else {
       return rect.right;
@@ -283,7 +283,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private int getEnd(@NonNull Rect rect) {
-    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+    if (ViewUtil.isLtr(this)) {
       return rect.right;
     } else {
       return rect.left;
