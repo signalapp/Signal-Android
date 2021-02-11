@@ -38,10 +38,13 @@ import org.session.libsession.utilities.TextSecurePreferences
 
 import java.io.IOException
 import java.util.*
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.jvm.Throws
 
 object ClosedGroupsProtocolV2 {
     const val groupSizeLimit = 100
+
+    private val pendingKeyPair = AtomicReference<ECKeyPair?>(null)
 
     sealed class Error(val description: String) : Exception() {
         object NoThread : Error("Couldn't find a thread associated with the given group public key")
@@ -364,7 +367,7 @@ object ClosedGroupsProtocolV2 {
             return
         }
         // Generate the new encryption key pair
-        val newKeyPair = Curve.generateKeyPair()
+        val newKeyPair = pendingKeyPair.getAndSet(Curve.generateKeyPair()) ?: Curve.generateKeyPair()
         // Distribute it
         val proto = SignalServiceProtos.KeyPair.newBuilder()
         proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
