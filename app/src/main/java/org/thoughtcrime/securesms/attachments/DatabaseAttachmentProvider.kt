@@ -8,6 +8,8 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -30,6 +32,18 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
         return databaseAttachment.toAttachmentPointer()
+    }
+
+    override fun getSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream? {
+        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
+        return databaseAttachment.toSignalAttachmentStream(context)
+    }
+
+    override fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer? {
+        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
+        return databaseAttachment.toSignalAttachmentPointer()
     }
 
     override fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long) {
@@ -101,6 +115,17 @@ fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttac
     attachmentStream.url = this.url
 
     return attachmentStream
+}
+
+fun DatabaseAttachment.toSignalAttachmentPointer(): SignalServiceAttachmentPointer {
+    return SignalServiceAttachmentPointer(attachmentId.rowId, contentType, key?.toByteArray(), Optional.fromNullable(size.toInt()), Optional.absent(), width, height, Optional.fromNullable(digest), Optional.fromNullable(fileName), isVoiceNote, Optional.fromNullable(caption), url)
+}
+
+fun DatabaseAttachment.toSignalAttachmentStream(context: Context): SignalServiceAttachmentStream {
+    val stream = PartAuthority.getAttachmentStream(context, this.dataUri!!)
+    val listener = SignalServiceAttachment.ProgressListener { total: Long, progress: Long -> EventBus.getDefault().postSticky(PartProgressEvent(this, total, progress))}
+
+    return SignalServiceAttachmentStream(stream, this.contentType, this.size, Optional.fromNullable(this.fileName), this.isVoiceNote, Optional.absent(), this.width, this.height, Optional.fromNullable(this.caption), listener)
 }
 
 fun DatabaseAttachment.shouldHaveImageSize(): Boolean {

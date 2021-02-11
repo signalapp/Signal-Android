@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -12,6 +14,7 @@ import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPrevie
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -84,6 +87,17 @@ public class OutgoingMediaMessage {
     this.networkFailures.addAll(that.networkFailures);
     this.contacts.addAll(that.contacts);
     this.linkPreviews.addAll(that.linkPreviews);
+  }
+
+  public static OutgoingMediaMessage from(VisibleMessage message,
+                                          Recipient recipient,
+                                          List<Attachment> attachments,
+                                          @Nullable QuoteModel outgoingQuote,
+                                          @NonNull List<LinkPreview> linkPreviews)
+  {
+    return new OutgoingMediaMessage(recipient, message.getText(), attachments, message.getSentTimestamp(), -1,
+            recipient.getExpireMessages() * 1000, ThreadDatabase.DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
+            linkPreviews, Collections.emptyList(), Collections.emptyList());
   }
 
   public Recipient getRecipient() {

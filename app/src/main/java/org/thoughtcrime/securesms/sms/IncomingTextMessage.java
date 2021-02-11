@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -153,6 +154,14 @@ public class IncomingTextMessage implements Parcelable {
     this.subscriptionId       = -1;
     this.expiresInMillis      = 0;
     this.unidentified         = false;
+  }
+
+  public static IncomingTextMessage from(VisibleMessage message,
+                                         Address sender,
+                                         Optional<SignalServiceGroup> group,
+                                         long expiresInMillis)
+  {
+    return new IncomingTextMessage(sender, 1, message.getReceivedTimestamp(), message.getText(), group, expiresInMillis, false);
   }
 
   public int getSubscriptionId() {

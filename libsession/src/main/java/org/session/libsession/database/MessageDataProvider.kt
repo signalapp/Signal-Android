@@ -6,6 +6,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.SessionSer
 import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachmentStream
 import org.session.libsession.messaging.threads.Address
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
 import java.io.InputStream
 
 interface MessageDataProvider {
@@ -14,8 +15,10 @@ interface MessageDataProvider {
     fun deleteMessage(messageID: Long)
 
     fun getAttachmentStream(attachmentId: Long): SessionServiceAttachmentStream?
-
     fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer?
+
+    fun getSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream?
+    fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer?
 
     fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
 

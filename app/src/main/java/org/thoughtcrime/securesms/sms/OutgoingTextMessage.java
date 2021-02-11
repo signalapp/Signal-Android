@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.sms;
 
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
@@ -26,6 +27,10 @@ public class OutgoingTextMessage {
     this.subscriptionId = base.getSubscriptionId();
     this.expiresIn      = base.getExpiresIn();
     this.message        = body;
+  }
+
+  public static OutgoingTextMessage from(VisibleMessage message, Recipient recipient) {
+    return new OutgoingTextMessage(recipient, message.getText(), recipient.getExpireMessages() * 1000, -1);
   }
 
   public long getExpiresIn() {
