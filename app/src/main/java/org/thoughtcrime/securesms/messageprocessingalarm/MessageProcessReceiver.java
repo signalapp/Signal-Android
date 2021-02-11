@@ -28,8 +28,8 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
   private static final String TAG = Log.tag(MessageProcessReceiver.class);
 
   private static final long FIRST_RUN_DELAY  = TimeUnit.MINUTES.toMillis(3);
-  private static final long FOREGROUND_DELAY = TimeUnit.SECONDS.toMillis(2);
-  private static final long JOB_TIMEOUT      = TimeUnit.SECONDS.toMillis(5);
+  private static final long FOREGROUND_DELAY = 300;
+  private static final long JOB_TIMEOUT      = FOREGROUND_DELAY + 200;
 
   public static final String BROADCAST_ACTION = "org.thoughtcrime.securesms.action.PROCESS_MESSAGES";
 
