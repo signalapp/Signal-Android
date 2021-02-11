@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -26,6 +27,11 @@ public class RatingManager {
 
   public static void showRatingDialogIfNecessary(Context context) {
     if (!TextSecurePreferences.isRatingEnabled(context)) return;
+    
+    if (BuildConfig.PLAY_STORE_DISABLED) {
+      TextSecurePreferences.setRatingEnabled(context, false);
+      return;
+    }
 
     long daysSinceInstall = VersionTracker.getDaysSinceFirstInstalled(context);
     long laterTimestamp   = TextSecurePreferences.getRatingLaterTimestamp(context);
