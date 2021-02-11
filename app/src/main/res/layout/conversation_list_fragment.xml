@@ -109,7 +109,7 @@
   <View
       android:id="@+id/conversation_list_toolbar_shadow"
       android:layout_width="match_parent"
-      android:layout_height="4dp"
+      android:layout_height="5dp"
       android:background="@drawable/toolbar_shadow"
       android:visibility="gone"
       app:layout_constraintEnd_toEndOf="parent"
