@@ -1349,24 +1349,24 @@
   <string name="fragment_scan_qr_code_camera_access_explanation">Session で QR コードをスキャンするにはカメラへのアクセスが必要です</string>
   <string name="fragment_scan_qr_code_grant_camera_access_button_title">カメラへのアクセスを許可する</string>
 
-  <string name="activity_create_closed_group_title">新しいクローズドグループ</string>
+  <string name="activity_create_closed_group_title">新しい非公開グループ</string>
   <string name="activity_create_closed_group_edit_text_hint">グループ名を入力してください</string>
-  <string name="activity_create_closed_group_explanation">クローズドグループは最大 10 人のメンバーをサポートし、1 対 1 の Session と同じプライバシー保護を提供します。</string>
+  <string name="activity_create_closed_group_explanation">非公開グループは最大 10 人のメンバーをサポートし、1 対 1 の Session と同じプライバシー保護を提供します。</string>
   <string name="activity_create_closed_group_empty_state_message">まだ連絡先がありません</string>
   <string name="activity_create_closed_group_empty_state_button_title">Session を開始する</string>
   <string name="activity_create_closed_group_group_name_missing_error">グループ名を入力してください</string>
   <string name="activity_create_closed_group_group_name_too_long_error">短いグループ名を入力してください</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">グループメンバーを少なくとも 2 人選択してください</string>
-  <string name="activity_create_closed_group_too_many_group_members_error">閉じたグループは 100 人を超えるメンバーを抱えることはできません</string>
+  <string name="activity_create_closed_group_too_many_group_members_error">非公開グループは 100 人を超えるメンバーを抱えることはできません</string>
   <string name="activity_create_closed_group_invalid_session_id_error">グループのメンバーの 1 人の Session ID が無効です</string>
 
-  <string name="activity_join_public_chat_title">オープングループに参加する</string>
+  <string name="activity_join_public_chat_title">公開グループに参加する</string>
   <string name="activity_join_public_chat_error">グループに参加できませんでした</string>
   <string name="activity_join_public_chat_enter_group_url_tab_title">グループの URL を開く</string>
   <string name="activity_join_public_chat_scan_qr_code_tab_title">QR コードをスキャンする</string>
-  <string name="activity_join_public_chat_scan_qr_code_explanation">参加したいオープングループの QR コードをスキャンする</string>
+  <string name="activity_join_public_chat_scan_qr_code_explanation">参加したい公開グループの QR コードをスキャンする</string>
 
-  <string name="fragment_enter_chat_url_edit_text_hint">オープングループの URL を入力する</string>
+  <string name="fragment_enter_chat_url_edit_text_hint">公開グループの URL を入力する</string>
 
   <string name="activity_settings_title">設定</string>
   <string name="activity_settings_display_name_edit_text_hint">表示名を入力してください</string>
@@ -1436,7 +1436,7 @@
   <string name="session_reset_banner_restore_button_title">戻す</string>
 
   <string name="fragment_contact_selection_contacts_title">連絡先</string>
-  <string name="fragment_contact_selection_closed_groups_title">閉じたグループ</string>
-  <string name="fragment_contact_selection_open_groups_title">オープングループ</string>
+  <string name="fragment_contact_selection_closed_groups_title">非公開グループ</string>
+  <string name="fragment_contact_selection_open_groups_title">公開グループ</string>
 
 </resources>
