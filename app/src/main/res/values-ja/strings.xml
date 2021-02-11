@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">登録取り消し</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Sessionの登録を解除します...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Sessionでのメッセージ・通話を無効にしますか？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバーから登録を取消します。Signalを使ったメッセージのやり取りや通話はできなくなります。 再びSessionを使うためには、あなたの電話番号を再登録をする必要があります。</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバーから登録を取消します。Sessionを使ったメッセージのやり取りや通話はできなくなります。 再びSessionを使うためには、あなたの電話番号を再登録をする必要があります。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 有効</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">タッチしてデフォルトのSMSアプリを変更</string>
@@ -286,7 +286,7 @@
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的なSession通信のエラー！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google PlayサービスにSignalを登録できなかったため、Sessionのメッセージと通話は無効になっています。設定 &gt; 詳細設定で再登録を試してください。</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google PlayサービスにSessionを登録できなかったため、Sessionのメッセージと通話は無効になっています。設定 &gt; 詳細設定で再登録を試してください。</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIFファイルの取り込みでエラー</string>
   <!--GiphyFragmentPageAdapter-->
@@ -298,7 +298,7 @@
   <string name="GroupCreateActivity_group_name_hint">グループ名</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新規MMSグループ</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">Sessionユーザーでない人がいるため、このグループはMMSとなります。</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signalに未登録のためSessionグループを利用できません。設定 &gt; 詳細設定で再登録を試してください。</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sessionに未登録のためSessionグループを利用できません。設定 &gt; 詳細設定で再登録を試してください。</string>
   <string name="GroupCreateActivity_contacts_no_members">グループには最低でも１人は必要です！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">グループのメンバーで電話番号が正しくない人がいます。番号を修正するか、そのメンバーを削除してからやり直してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
@@ -390,7 +390,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSignalで暗号化されているので解読不能です。Sessionをアップデートして再送するよう送信者にお願いしてください。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">受信したメッセージは古いSessionで暗号化されているので解読不能です。Sessionをアップデートして再送するよう送信者にお願いしてください。</string>
   <string name="MessageRecord_left_group">グループを抜けました</string>
   <string name="MessageRecord_you_updated_group">グループを更新しました</string>
   <string name="MessageRecord_you_called">発信</string>
@@ -572,8 +572,8 @@
   <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Sessionをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSignalを使ってるため，QRコードの形式が異なります。Sessionをアップデートしてから改めて比較してください。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSessionを使っています。Sessionをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSessionを使ってるため，QRコードの形式が異なります。Sessionをアップデートしてから改めて比較してください。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは、適正な安全番号認証コードではありません。もう一度読み取って下さい。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">次の方法で安全番号を共有...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">私たちの安全番号:</string>
@@ -878,7 +878,7 @@
   <string name="redphone_call_controls__flip_camera_rear">カメラを切り替える</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">電話番号</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">コミュニケーションを簡単にするために、Signalはあなたの連絡先の電話番号を活用します。あなたの電話番号を以前から知っている人はSessionを使って簡単にあなたに連絡することができます。\n\n登録を行うと連絡先に関する情報の一部がサーバーに送信されますが、保存はされません。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">コミュニケーションを簡単にするために、Sessionはあなたの連絡先の電話番号を活用します。あなたの電話番号を以前から知っている人はSessionを使って簡単にあなたに連絡することができます。\n\n登録を行うと連絡先に関する情報の一部がサーバーに送信されますが、保存はされません。</string>
   <string name="registration_activity__verify_your_number">番号を確認する</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">自分の電話番号を入力して、認証コードを取得してください。通信会社の料金がかかる場合があります。</string>
   <!--recipients_panel-->
@@ -1135,7 +1135,7 @@
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Sessionのバージョンが古すぎます</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">このバージョンのSignalは%d日後に期限が切れます。タップしてSessionをアプデートしてお願いします。</item>
+    <item quantity="other">このバージョンのSessionは%d日後に期限が切れます。タップしてSessionをアプデートしてお願いします。</item>
   </plurals>
   <string name="reminder_header_outdated_build_details_today">このバージョンのSessionは本日で期限切れとなります。タップして最新版にアップデートしてください。</string>
   <string name="reminder_header_expired_build">このバージョンのSessionは期限切れになりました</string>
