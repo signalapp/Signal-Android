@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 
@@ -44,7 +45,7 @@ public class RatingManager {
           @Override
           public void onClick(DialogInterface dialog, int which) {
             TextSecurePreferences.setRatingEnabled(context, false);
-            startPlayStore(context);
+            PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(context);
          }
        })
        .setNegativeButton(R.string.RatingManager_no_thanks, new DialogInterface.OnClickListener() {
@@ -62,15 +63,4 @@ public class RatingManager {
        })
        .show();
   }
-
-  private static void startPlayStore(Context context) {
-    Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-    try {
-      context.startActivity(new Intent(Intent.ACTION_VIEW, uri));
-    } catch (ActivityNotFoundException e) {
-      Log.w(TAG, e);
-      Toast.makeText(context, R.string.RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed, Toast.LENGTH_LONG).show();
-    }
-  }
-
 }
