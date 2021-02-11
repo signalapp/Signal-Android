@@ -130,6 +130,7 @@ class JobController {
     if (jobTracker.haveAnyFailed(allDependsOn)) {
       Log.w(TAG, "This job depends on a job that failed! Failing this job immediately.");
       List<Job> dependents = onFailure(job);
+      job.setContext(application);
       job.onFailure();
       Stream.of(dependents).forEach(Job::onFailure);
       return;
