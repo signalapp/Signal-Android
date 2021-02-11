@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Po ngarkohet media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Po ngjeshet video…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Po kontrollohet për mesazhe…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Përdorues të bllokuar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Shtoni përdorues të bllokuar</string>

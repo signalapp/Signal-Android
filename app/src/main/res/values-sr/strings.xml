@@ -67,6 +67,7 @@
   <string name="AttachmentUploadJob_uploading_media">Отпремам медије…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Компресујем видео…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Тражење порука…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани корисници</string>
   <string name="BlockedUsersActivity__add_blocked_user">Додајте блокираног корисника</string>

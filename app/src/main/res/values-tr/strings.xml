@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">İçerik yükleniyor…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video sıkıştırılıyor…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">İletiler denetleniyor…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Engellenen kullanıcılar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Engellenmiş kullanıcılara ekle</string>

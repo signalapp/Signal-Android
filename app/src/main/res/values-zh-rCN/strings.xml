@@ -65,6 +65,7 @@
   <string name="AttachmentUploadJob_uploading_media">上传媒体中…</string>
   <string name="AttachmentUploadJob_compressing_video_start">压缩视频中…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">正在检查消息…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">已屏蔽的用户</string>
   <string name="BlockedUsersActivity__add_blocked_user">屏蔽更多用户</string>

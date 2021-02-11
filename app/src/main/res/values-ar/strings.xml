@@ -70,6 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الملف …</string>
   <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">يجلب الرسائل…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
   <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدما محظورا</string>

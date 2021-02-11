@@ -68,6 +68,7 @@
   <string name="AttachmentUploadJob_uploading_media">Nahrávanie prílohy…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimuje sa video…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Kontrolujú sa správy…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokovaní používatelia</string>
   <string name="BlockedUsersActivity__add_blocked_user">Pridať blokovaného používateľa</string>

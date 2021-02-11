@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Alŝuto de aŭdvidaĵo…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Densigo de la videaĵo…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Kontrolo pri mesaĝoj…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokataj uzantoj</string>
   <string name="BlockedUsersActivity__add_blocked_user">Aldoni blokatan uzanton</string>

@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Asali n umidya…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Tussda n tvidyut…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Asenqed n yiznan…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Iseqdacen yettusweḥlen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Rnu iseqdacen yettusweḥlen</string>
@@ -1204,7 +1205,7 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ur yezmir ara ad d-yermes ameslaw neɣ tavidyut seg %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Yezmer yella-d waya ssebba n usenqed ur sneqden ara abeddel n wuṭṭun-ik·im n tɣellist, neɣ yella wugur d yibenk-nsen neɣ sweḥlen-k.</string>
   <!--ProxyBottomSheetFragment-->
-  <string name="ProxyBottomSheetFragment_proxy_server">Aqeddac n pṛuksi</string>
+  <string name="ProxyBottomSheetFragment_proxy_server">Aqeddac n upṛuksi</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Tansa n upṛusi</string>
   <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Tebɣiḍ ad tesqedceḍ tansa-a n upṛuksi?</string>
   <string name="ProxyBottomSheetFragment_use_proxy">Seqdec apṛuksi</string>

@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Lähetetään media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Pakataan videota…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Tarkistetaan viestejä…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Estetyt käyttäjät</string>
   <string name="BlockedUsersActivity__add_blocked_user">Lisää estetty käyttäjä</string>

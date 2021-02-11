@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">മീഡിയ അപ്‌ലോഡുചെയ്യുന്നു…</string>
   <string name="AttachmentUploadJob_compressing_video_start">വീഡിയോ കം‌പ്രസ്സുചെയ്യുന്നു…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">സന്ദേശങ്ങൾക്കായി പരിശോധിക്കുന്നു…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">തടഞ്ഞ ഉപയോക്താക്കൾ</string>
   <string name="BlockedUsersActivity__add_blocked_user">തടഞ്ഞ ഉപയോക്താവിനെ ചേർക്കുക</string>
@@ -470,6 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@സൂചനകള്‍ അഡ്‌മിനുകള്‍ പോലുള്ള പുതിയ സവിശേഷതകൾ ആക്‌സസ് ചെയ്യുന്നതിന്, ഈ ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ഇപ്പോൾ വേണ്ട</string>
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ഗ്രൂപ്പ് അപ്‌ഗ്രേഡുചെയ്യുക</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d അംഗത്തെപുതിയ ഗ്രൂപ്പിലേക്ക് വീണ്ടും ചേർക്കാൻ കഴിഞ്ഞില്ല. അവരെ ഇപ്പോൾ ചേർക്കാൻ ആഗ്രഹിക്കുന്നുണ്ടോ?</item>
@@ -1974,6 +1976,7 @@
   <string name="preferences_off">ഓഫ്</string>
   <string name="preferences_on">ഓൺ</string>
   <string name="preferences_proxy_address">പ്രോക്സി വിലാസം</string>
+  <string name="preferences_only_use_a_proxy_if">സെല്ലുലാർ അല്ലെങ്കിൽ Wi-Fi വഴി Signal-ലേക്ക് കണക്റ്റുചെയ്യാൻ നിങ്ങൾക്ക് കഴിയുന്നില്ലെങ്കിൽ മാത്രം ഒരു പ്രോക്സി ഉപയോഗിക്കുക.</string>
   <string name="preferences_share">പങ്കിടുക</string>
   <string name="preferences_save">സംരക്ഷിക്കൂ</string>
   <string name="preferences_connecting_to_proxy">പ്രോക്‌സിയിലേക്ക് കണക്റ്റുചെയ്യുന്നു…</string>
@@ -1983,6 +1986,7 @@
   <string name="preferences_you_are_connected_to_the_proxy">നിങ്ങൾ പ്രോക്സിയുമായ് കണക്ട് ചെയ്തിരിക്കുന്നു . പ്രോക്സി ഓഫ് ചെയ്യണമെങ്കിൽ ക്രമീകരണങ്ങളിൽ പോവുക </string>
   <string name="preferences_success">വിജയകരം</string>
   <string name="preferences_failed_to_connect">ബന്ധിപ്പിക്കാനായില്ല</string>
+  <string name="preferences_enter_proxy_address">പ്രോക്സി വിലാസം നൽകുക</string>
   <string name="configurable_single_select__customize_option">ഓപ്ഷൻ ഇച്ഛാനുസൃതമാക്കുക</string>
   <!--Internal only preferences-->
   <!--****************************************-->
