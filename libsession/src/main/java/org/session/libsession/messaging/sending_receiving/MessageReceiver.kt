@@ -93,20 +93,21 @@ object MessageReceiver {
                         }
                     }
                     groupPublicKey = envelope.source
-                    try {
-                        decrypt()
-                    } catch(error: Exception) {
-                        val now = System.currentTimeMillis()
-                        var shouldRequestEncryptionKeyPair = true
-                        lastEncryptionKeyPairRequest[groupPublicKey!!]?.let {
-                            shouldRequestEncryptionKeyPair = now - it > 30 * 1000
-                        }
-                        if (shouldRequestEncryptionKeyPair) {
-                            MessageSender.requestEncryptionKeyPair(groupPublicKey)
-                            lastEncryptionKeyPairRequest[groupPublicKey] = now
-                        }
-                        throw error
-                    }
+                    decrypt()
+//                    try {
+//                        decrypt()
+//                    } catch(error: Exception) {
+//                        val now = System.currentTimeMillis()
+//                        var shouldRequestEncryptionKeyPair = true
+//                        lastEncryptionKeyPairRequest[groupPublicKey!!]?.let {
+//                            shouldRequestEncryptionKeyPair = now - it > 30 * 1000
+//                        }
+//                        if (shouldRequestEncryptionKeyPair) {
+//                            MessageSender.requestEncryptionKeyPair(groupPublicKey)
+//                            lastEncryptionKeyPairRequest[groupPublicKey] = now
+//                        }
+//                        throw error
+//                    }
                 }
                 else -> throw Error.UnknownEnvelopeType
             }

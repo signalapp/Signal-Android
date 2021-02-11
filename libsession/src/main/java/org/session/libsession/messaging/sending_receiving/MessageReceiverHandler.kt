@@ -379,12 +379,16 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val members = group.members.map { it.serialize() }
     val admins = group.admins.map { it.serialize() }
 
-    // Users that are part of this remove update
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
-    // newMembers to save is old members minus removed members
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
-
+    // Send the latest encryption key pair to the added members if the current user is the admin of the group
+    val isCurrentUserAdmin = admins.contains(storage.getUserPublicKey()!!)
+    if (isCurrentUserAdmin) {
+        for (member in updateMembers) {
+            MessageSender.sendLatestEncryptionKeyPair(member, groupPublicKey)
+        }
+    }
     storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
 }
 
