@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
@@ -44,6 +46,8 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
     } else if (BROADCAST_ACTION.equals(intent.getAction())) {
       PendingResult pendingResult = goAsync();
 
+      new Handler(Looper.getMainLooper()).postDelayed(pendingResult::finish, JOB_TIMEOUT);
+
       SignalExecutors.BOUNDED.submit(() -> {
         Log.i(TAG, "Running PushNotificationReceiveJob");
 
@@ -51,8 +55,6 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
                                                                         .runSynchronously(PushNotificationReceiveJob.withDelayedForegroundService(FOREGROUND_DELAY), JOB_TIMEOUT);
 
         Log.i(TAG, "PushNotificationReceiveJob ended: " + (jobState.isPresent() ? jobState.get().toString() : "Job did not complete"));
-
-        pendingResult.finish();
       });
     }
   }
