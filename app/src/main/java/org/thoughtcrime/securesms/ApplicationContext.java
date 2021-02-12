@@ -124,6 +124,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                                 Log.i(TAG, "onCreate()");
                             })
                             .addBlocking("crash-handling", this::initializeCrashHandling)
+                            .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
@@ -158,7 +159,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
                             .addPostRender(this::initializeExpiringMessageManager)
                             .addPostRender(this::initializeBlobProvider)
-                            .addPostRender(() -> NotificationChannels.create(this))
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
