@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,9 +27,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 /**
  * Banner displayed within a conversation when a review is suggested.
  */
-public class ReviewBannerView extends ConstraintLayout {
-
-  private static final @Px int ELEVATION = ViewUtil.dpToPx(4);
+public class ReviewBannerView extends LinearLayout {
 
   private ImageView       bannerIcon;
   private TextView        bannerMessage;
@@ -62,16 +61,6 @@ public class ReviewBannerView extends ConstraintLayout {
     bottomRightAvatar.setFallbackPhotoProvider(provider);
 
     bannerClose.setOnClickListener(v -> setVisibility(GONE));
-
-    if (Build.VERSION.SDK_INT >= 21) {
-      setOutlineProvider(new ViewOutlineProvider() {
-        @Override
-        public void getOutline(View view, Outline outline) {
-          outline.setRect(-100, -100, view.getWidth() + 100, view.getHeight() + ELEVATION);
-        }
-      });
-      setElevation(ELEVATION);
-    }
   }
 
   public void setBannerMessage(@Nullable CharSequence charSequence) {
