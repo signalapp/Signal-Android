@@ -97,7 +97,9 @@ public class MmsSmsDatabase extends Database {
 
       while ((messageRecord = reader.getNext()) != null) {
         if ((Util.isOwnNumber(context, serializedAuthor) && messageRecord.isOutgoing()) ||
-                (!Util.isOwnNumber(context, serializedAuthor) && messageRecord.getIndividualRecipient().getAddress().equals(serializedAuthor)))
+                (!Util.isOwnNumber(context, serializedAuthor)
+                        && messageRecord.getIndividualRecipient().getAddress().serialize().equals(serializedAuthor)
+                ))
         {
           return messageRecord;
         }
