@@ -40,8 +40,12 @@ public class ZoomingImageView extends FrameLayout {
   private static final int ZOOM_TRANSITION_DURATION = 300;
 
   private static final float ZOOM_LEVEL_MIN = 1.0f;
-  private static final float ZOOM_LEVEL_MID = 1.5f;
-  private static final float ZOOM_LEVEL_MAX = 2.0f;
+
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MID = 1.5f;
+  private static final float LARGE_IMAGES_ZOOM_LEVEL_MAX = 2.0f;
+
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
 
   private final PhotoView                 photoView;
   private final SubsamplingScaleImageView subsamplingImageView;
@@ -65,10 +69,11 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
 
     this.photoView.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
-    this.photoView.setScaleLevels(ZOOM_LEVEL_MIN, ZOOM_LEVEL_MID, ZOOM_LEVEL_MAX);
+    this.photoView.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
 
     this.subsamplingImageView.setDoubleTapZoomDuration(ZOOM_TRANSITION_DURATION);
-    this.subsamplingImageView.setDoubleTapZoomScale(ZOOM_LEVEL_MID);
+    this.subsamplingImageView.setDoubleTapZoomScale(LARGE_IMAGES_ZOOM_LEVEL_MID);
+    this.subsamplingImageView.setMaxScale(LARGE_IMAGES_ZOOM_LEVEL_MAX);
 
     this.photoView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
