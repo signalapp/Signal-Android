@@ -112,6 +112,7 @@ public final class GenericForegroundService extends Service {
                                                            .setContentTitle(active.title)
                                                            .setProgress(active.progressMax, active.progress, active.indeterminate)
                                                            .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), 0))
+                                                           .setVibrate(new long[]{0})
                                                            .build());
   }
 
