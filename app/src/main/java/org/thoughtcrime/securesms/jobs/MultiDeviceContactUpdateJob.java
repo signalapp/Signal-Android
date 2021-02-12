@@ -136,7 +136,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Set<RecipientId>                          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
 
       out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                  Optional.of(recipient.getDisplayName(context)),
+                                  Optional.fromNullable(recipient.getName(context)),
                                   getAvatar(recipient.getId(), recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
                                   verifiedMessage,
