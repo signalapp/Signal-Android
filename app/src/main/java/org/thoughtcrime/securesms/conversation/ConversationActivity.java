@@ -2003,7 +2003,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color_wallpaper);
       toolbar.setBackgroundColor(toolbarColor);
-      WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
+      if (Build.VERSION.SDK_INT > 21) {
+        WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
+      }
     } else {
       wallpaper.setImageDrawable(null);
       wallpaperDim.setVisibility(View.GONE);
@@ -2014,7 +2016,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       int toolbarColor = getResources().getColor(R.color.conversation_toolbar_color);
       toolbar.setBackgroundColor(toolbarColor);
-      WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
+      if (Build.VERSION.SDK_INT > 21) {
+        WindowUtil.setStatusBarColor(getWindow(), toolbarColor);
+      }
     }
     fragment.onWallpaperChanged(chatWallpaper);
   }
