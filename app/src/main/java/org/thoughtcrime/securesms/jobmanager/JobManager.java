@@ -58,17 +58,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
     this.application   = application;
     this.configuration = configuration;
-    this.executor      = new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"),
-                                              () -> {
-                                                 if (Util.isMainThread()) {
-                                                   return true;
-                                                 } else if (DatabaseFactory.inTransaction(application)) {
-                                                   Log.w(TAG, "Tried to add a job while in a transaction!", new Throwable());
-                                                   return true;
-                                                 } else {
-                                                   return false;
-                                                 }
-                                              });
+    this.executor      = new FilteredExecutor(configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager"), Util::isMainThread);
     this.jobTracker    = configuration.getJobTracker();
     this.jobController = new JobController(application,
                                            configuration.getJobStorage(),
