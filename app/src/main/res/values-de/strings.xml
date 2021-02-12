@@ -1094,7 +1094,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere zur neuesten Version.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere auf die neueste Version.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Diese Signal-Version wird morgen ablaufen. Aktualisiere auf die neueste Version.</item>
     <item quantity="other">Diese Signal-Version wird in %d Tagen ablaufen. Aktualisiere auf die neueste Version.</item>
@@ -1222,7 +1222,7 @@
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte versuche es erneut.</string>
   <string name="RegistrationActivity_terms_and_privacy">Nutzungsbedingungen und Datenschutzerklärung</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, damit du Nachrichten an Freunde senden und sichere Anrufe tätigen kannst.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Freunde kontaktieren und sichere Anrufe tätigen kannst.</string>
@@ -2127,7 +2127,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wähle eine stärkere PIN</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte erneut versuchen.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte versuche es erneut.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bestätige deine PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN konnte nicht erstellt werden</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Deine PIN wurde nicht gespeichert. Wir werden dich später daran erinnern, eine PIN zu erstellen.</string>
@@ -2150,7 +2150,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsReminderDialog__skip">Überspringen</string>
   <string name="KbsReminderDialog__submit">Übermitteln</string>
   <string name="KbsReminderDialog__forgot_pin">PIN vergessen?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto gesperrt</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Rufnummer ohne PIN erneut registrieren. Alle Inhalte werden dabei gelöscht.</string>
@@ -2161,7 +2161,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Gib die PIN ein, die du für dein Konto erstellt hast. Sie unterscheidet sich von deinem SMS-Verifikationscode.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alphanumerische PIN eingeben</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Numerische PIN eingeben</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <string name="RegistrationLockFragment__forgot_pin">PIN vergessen?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Falsche PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">PIN vergessen?</string>
@@ -2283,7 +2283,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__confirm_pin">PIN bestätigen</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bestätige deine Signal-PIN</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sorge dafür, dass du dir deine PIN einprägst oder sicher verwahrst, da sie nicht wiederhergestellt werden kann. Falls du deine PIN vergisst, könntest du bei erneutem Registrieren deines Signal-Kontos deine Daten verlieren.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
