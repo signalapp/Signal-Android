@@ -112,7 +112,7 @@ public class IncomingMessageObserver {
   }
 
   public boolean isDecryptionDrained() {
-    return decryptionDrained;
+    return decryptionDrained || networkAccess.isCensored(context);
   }
 
   public void notifyDecryptionsDrained() {
