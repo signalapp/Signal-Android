@@ -226,7 +226,7 @@ public class KeyCachingService extends Service {
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
-    boolean appVisible       = ApplicationContext.getInstance(context).isAppVisible();
+    boolean appVisible       = ApplicationDependencies.getAppForegroundObserver().isForegrounded();
     boolean secretSet        = KeyCachingService.masterSecret != null;
 
     boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);

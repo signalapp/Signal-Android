@@ -92,7 +92,7 @@ public class ConversationTitleView extends RelativeLayout {
     }
 
     title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, 0, endDrawable, 0);
-    TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_white_90)));
+    TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_80)));
 
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);

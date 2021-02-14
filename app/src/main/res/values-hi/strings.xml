@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">मीडिया अपलोड कर रहा है…</string>
   <string name="AttachmentUploadJob_compressing_video_start">वीडियो को कंप्रेस कर रहा है…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ब्लॉक किए गए उपयोगकर्ता</string>
   <string name="BlockedUsersActivity__add_blocked_user">ब्लॉक किए गए उपयोगकर्ता से जुड़े </string>
@@ -469,7 +470,6 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">नए फ़ीचर्स जैसे कि @mentions और एडमिन तक पहुँच प्राप्त करने के लिए, इस ग्रुप को अपग्रेड करें।</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">अभी नहीं</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">अपडेट समूह </string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d मेंबर को नए ग्रुप में दोबारा शामिल नहीं किया जा सका। क्या आप उन्हें अब शामिल करना चाहते हैं?</item>

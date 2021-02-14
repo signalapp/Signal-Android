@@ -19,6 +19,8 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
   private final List<AttachmentKeyboardButton> buttons;
   private final Listener                       listener;
 
+  private boolean wallpaperEnabled;
+
   AttachmentKeyboardButtonAdapter(@NonNull Listener listener) {
     this.buttons  = new ArrayList<>();
     this.listener = listener;
@@ -39,7 +41,7 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
 
   @Override
   public void onBindViewHolder(@NonNull ButtonViewHolder holder, int position) {
-    holder.bind(buttons.get(position), listener);
+    holder.bind(buttons.get(position), wallpaperEnabled, listener);
   }
 
   @Override
@@ -52,11 +54,17 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
     return buttons.size();
   }
 
-
   public void setButtons(@NonNull List<AttachmentKeyboardButton> buttons) {
     this.buttons.clear();
     this.buttons.addAll(buttons);
     notifyDataSetChanged();
+  }
+
+  public void setWallpaperEnabled(boolean enabled) {
+    if (wallpaperEnabled != enabled) {
+      wallpaperEnabled = enabled;
+      notifyDataSetChanged();
+    }
   }
 
   interface Listener {
@@ -75,11 +83,17 @@ class AttachmentKeyboardButtonAdapter extends RecyclerView.Adapter<AttachmentKey
       this.title = itemView.findViewById(R.id.attachment_button_title);
     }
 
-    void bind(@NonNull AttachmentKeyboardButton button, @NonNull Listener listener) {
+    void bind(@NonNull AttachmentKeyboardButton button,boolean wallpaperEnabled, @NonNull Listener listener) {
       image.setImageResource(button.getIconRes());
       title.setText(button.getTitleRes());
 
       itemView.setOnClickListener(v -> listener.onClick(button));
+
+      if (wallpaperEnabled) {
+        itemView.setBackgroundResource(R.drawable.attachment_keyboard_button_wallpaper_background);
+      } else {
+        itemView.setBackgroundResource(R.drawable.attachment_keyboard_button_background);
+      }
     }
 
     void recycle() {

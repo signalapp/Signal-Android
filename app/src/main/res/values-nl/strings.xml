@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Je telefoonnummer wordt afgemeld voor Signal-berichten en -oproepen …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal-berichten en -oproepen uitschakelen?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dit zal je telefoonnummer uitschrijven bij de servers, je kunt dan niet langer Signal-berichten en -oproepen ontvangen of verzenden. Je zult je telefoonnummer opnieuw moeten registreren als je die functies weer wilt gebruiken.</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server!</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fout bij verbinden met de server.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Sms is ingeschakeld</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tik hier als je je standaard-sms-applicatie wilt wijzigen</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Sms is uitgeschakeld</string>
@@ -58,13 +58,15 @@
   <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen en video\'s weer te kunnen geven.</string>
   <string name="AttachmentKeyboard_give_access">Toestemming geven</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
+  <string name="AttachmentManager_cant_open_media_selection">Er is geen app gevonden waarmee je media zou kunnen selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Media aan het uploaden …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video aan het comprimeren …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Aan het nagaan of er nieuwe berichten zijn …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
@@ -157,7 +159,7 @@
   <string name="ContactShareEditActivity_type_mobile">Mobiel</string>
   <string name="ContactShareEditActivity_type_work">Werk</string>
   <string name="ContactShareEditActivity_type_missing">Anders</string>
-  <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
+  <string name="ContactShareEditActivity_invalid_contact">De geselecteerde contactpersoon was ongeldig</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_sent_tap_for_details">Niet verzonden, tik hier voor details</string>
   <string name="ConversationItem_error_partially_not_delivered">Gedeeltelijk verzonden, tik hier voor details</string>
@@ -470,7 +472,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Om nieuwe functionaliteiten zoals @vermeldigen en beheerders te kunnen gebruiken, moet je deze groep omzetten in een nieuwe groep.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Niet nu</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Groep bijwerken</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Groep omzetten</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d groepslid kon bij het omzetten van de groep in een nieuwe groep niet automatisch opnieuw worden toegevoegd. Wil je ze hem of haar nu alsnog toevoegen?</item>
@@ -615,7 +617,7 @@
     <item quantity="other">%d personen toegevoegd.</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing in- of uitschakelen.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Uitsluitend beheerders kunnen de beheerderstoestemming-vereiste om lid te mogen worden van de groep in- of uitschakelen.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Uitsluitend beheerders kunnen de groepsverwijzing vernieuwen.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Je hebt geen recht om dit te doen</string>
   <string name="ManageGroupActivity_not_capable">Één of meer van de door jou toegevoegde personen ondersteunen de nieuwe groepsgesprekken nog niet. Zij moeten Signal bijwerken.</string>
@@ -973,21 +975,21 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s heeft de instelling voor wie de groepslidmaatschap kan aanpassen op ‘%2$s’ ingesteld.</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">De instelling voor wie de groepslidmaatschap kan aanpassen is op ‘%1$s’ ingesteld.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming vereiste om lid te mogen worden.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Je hebt de groepsverwijzingen ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Je hebt de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Je hebt de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming vereiste om lid te mogen worden ook ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming vereiste om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s heeft de groepsverwijzing ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s heeft de groepsverwijzing ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s heeft de groepsverwijzing uitgeschakeld.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld zonder beheerderstoestemming vereiste om lid te mogen worden.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing is ingeschakeld met beheerderstoestemming om lid te mogen worden ook ingeschakeld.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">De groepsverwijzing is ingeschakeld zonder beheerderstoestemming-vereiste om lid te mogen worden.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">De groepsverwijzing is ingeschakeld met beheerderstoestemming-vereiste om lid te mogen worden ook ingeschakeld.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">De groepsverwijzing is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden uitgeschakeld.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep uitgeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep is uitgeschakeld.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming vereiste om via de groepsverwijzing lid te mogen worden van de groep ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming vereiste voor personen wie lid willen worden via de groepsverwijzing ingeschakeld.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming vereiste om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden uitgeschakeld.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep uitgeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep is uitgeschakeld.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste voor personen wie lid willen worden via de groepsverwijzing ingeschakeld.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepsverwijzing vernieuwd.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s heeft de groepsverwijzing vernieuwd.</string>
@@ -1001,9 +1003,9 @@
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s heeft je verzoek om lid te worden van de groep gehonoreerd.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s heeft het verzoek van %2$s om lid te worden van de groep gehonoreerd.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Je hebt een verzoek van %1$s om lid te worden van de groep gohonoreerd.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Je hebt een verzoek van %1$s om lid te worden van de groep gehonoreerd.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">Je verzoek om lid te worden van de groep is door een beheerder gehonoreerd.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is gohonoreerd.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">Een verzoek van %1$s om lid te worden van de groep is gehonoreerd.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">Je verzoek om lid te worden van de groep is door een beheerder afgewezen.</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s heeft een verzoek van %2$s om lid te worden van de groep afgewezen.</string>
@@ -1362,7 +1364,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>
   <string name="ThreadRecord_you_marked_unverified">Door jou als niet geverifieerd gemarkeerd</string>
   <string name="ThreadRecord_message_could_not_be_processed">Bericht kon niet worden verwerkt</string>
-  <string name="ThreadRecord_message_request">Gespreksverzoeken</string>
+  <string name="ThreadRecord_message_request">Gespreksverzoek</string>
   <string name="ThreadRecord_photo">Afbeelding</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Audiobericht</string>
@@ -1464,7 +1466,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="MessageNotifier_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Zet meldingen uit over mensen die bereikbaar zijn via Signal. Je kunt ze opnieuw aanzetten in  Signal &gt; Instellingen &gt; Meldingen.</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Systeemstandaard</string>
+  <string name="NotificationChannel_messages">Standaardmeldingen</string>
   <string name="NotificationChannel_calls">Oproepen</string>
   <string name="NotificationChannel_failures">Mislukkingen</string>
   <string name="NotificationChannel_backups">Back-ups</string>
@@ -1891,7 +1893,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__mmsc_password">MMSC-wachtwoord</string>
   <string name="preferences__sms_delivery_reports">Sms-ontvangstbevestigingen</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Vraag een ontvangstbevestiging voor ieder verzonden sms-bericht</string>
-  <string name="preferences__data_and_storage">Gegevens en opslag</string>
+  <string name="preferences__data_and_storage">Gegevensoverdracht en -opslag</string>
   <string name="preferences__storage">Opslag</string>
   <string name="preferences__conversation_length_limit">Gesprekslengtelimiet</string>
   <string name="preferences__keep_messages">Berichten bewaren</string>
@@ -1986,6 +1988,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_off">Uit</string>
   <string name="preferences_on">Aan</string>
   <string name="preferences_proxy_address">Proxyadres</string>
+  <string name="preferences_only_use_a_proxy_if">Gebruik alleen een proxy als de app niet uit zichzelf in staat is om verbinding te maken met Signal\'s servers, ander heeft het geen toegevoegde waarde maar levert het wel vertraging op.</string>
   <string name="preferences_share">Proxyadres delen via andere app</string>
   <string name="preferences_save">Opslaan</string>
   <string name="preferences_connecting_to_proxy">Aan het verbinden met de proxy …</string>
@@ -1995,6 +1998,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_you_are_connected_to_the_proxy">Signal is verbonden met de proxy. Je kunt de proxy op elk gewenst moment uitschakelen vanuit Signal\'s instellingen.</string>
   <string name="preferences_success">Succesvol</string>
   <string name="preferences_failed_to_connect">Verbinding maken is mislukt</string>
+  <string name="preferences_enter_proxy_address">Voer een proxyadres in</string>
   <string name="configurable_single_select__customize_option">Instelling personaliseren</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2355,8 +2359,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="BlockedUsersActivity__failed_to_block_s">“%1$s” blokkeren is mislukt.</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">“%1$s” is gedeblokkeerd.</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">Evalueer groepsleden</string>
-  <string name="ReviewCardDialogFragment__review_request">Evalueer verzoeken</string>
+  <string name="ReviewCardDialogFragment__review_members">Groepsleden evalueren</string>
+  <string name="ReviewCardDialogFragment__review_request">Verzoek evalueren</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde namen. Evalueer de groepsleden hieronder en neem actie indien nodig.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Evalueer de contactpersonen hieronder en onderneem actie als je niet zeker bent van wie het verzoek afkomstig is.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen.</string>

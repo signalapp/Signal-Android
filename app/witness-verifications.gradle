@@ -195,8 +195,8 @@ dependencyVerification {
         ['cn.carbswang.android:NumberPickerView:1.0.9',
          '18b3c316d62c7c277978a8d4ed57a5b8f4e943762264960f579a8a549c756729'],
 
-        ['com.airbnb.android:lottie:3.0.7',
-         '6819ff968eb768096133c7873d63351705fd4ac424a0917d86c4145f5035097d'],
+        ['com.airbnb.android:lottie:3.6.0',
+         '70ea0650e82fd858e317af60ee1ffd84bc6f406bbcf017cedcc45217408e20d1'],
 
         ['com.amulyakhare:com.amulyakhare.textdrawable:1.0.1',
          '54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb'],
@@ -411,8 +411,8 @@ dependencyVerification {
         ['org.signal:argon2:13.1',
          '0f686ccff0d4842bfcc74d92e8dc780a5f159b9376e37a1189fabbcdac458bef'],
 
-        ['org.signal:ringrtc-android:2.9.0',
-         '058ff7dc0c01c1c0db363e7396e357bdcfc6f9a3ddc313c2abae032e979d691f'],
+        ['org.signal:ringrtc-android:2.9.2',
+         'baf77e1f314dce89278af205637d607dbf4607651dee02384f111f43fea29cf6'],
 
         ['org.signal:zkgroup-android:0.7.0',
          '52b172565bd01526e93ebf1796b834bdc449d4fe3422c1b827e49cb8d4f13fbd'],

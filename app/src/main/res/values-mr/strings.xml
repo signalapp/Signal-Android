@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">मिडिया अपलोड करत आहे…</string>
   <string name="AttachmentUploadJob_compressing_video_start">व्हिडिओ काँप्रेस करत आहे…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">अवरोधित वापरकर्ते</string>
   <string name="BlockedUsersActivity__add_blocked_user">अवरोधित वापरकर्ता जोडा</string>
@@ -469,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@उल्लेख आणि अॅडमिन सारखे वैशिष्ट्ये अॅक्सेस करण्यासाठी, हा गट श्रेणीसुधारित करा.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">आता नाही</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">गट अद्यतनित करा</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">गटात श्रेणीसुधारणा करा</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d सदस्य नवीन गटात पुन्हा जोडणे शक्य झाले नाही. आपल्याला त्याला आता जोडायचे आहे का?</item>
@@ -1105,6 +1106,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेझ प्रविष्ट करा</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अवैध पासफ्रेझ!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal अनलॉक करा</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - लॉक स्क्रीन</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">नकाशा</string>
   <string name="PlacePickerActivity_drop_pin">पिन ड्रॉप करा</string>
@@ -1202,6 +1204,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s कडून ऑडिओ आणि व्हिडिओ प्राप्त करू शकत नाही</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">त्यांनी आपला सुरक्षितता नंबर बदल सत्यापित न केल्यामुळे, त्यांच्या डिव्हाईसमध्ये काहीतरी समस्या असल्यामुळे, किंवा त्यांनी आपल्याला ब्लॉक केल्यामुळे असे असू शकते.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">प्रॉक्सी सर्व्हर</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">प्रॉक्सी पत्ता</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">आपण हा प्रॉक्सी पत्ता वापरू इच्छिता?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी वापरा</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">प्रॉक्सी शी यशस्वीरीत्या कनेक्ट केले.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">आपला देश निवडा</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">आपण आपला देश कोड
@@ -1968,10 +1975,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">विना-संपर्क आणि आपण ज्यांच्या सोबत आपली प्रोफाईल सामायिक केलेली नाही त्यांच्याकडून येणाऱ्या संदेशांकरिता सीलबंद प्रेषक सक्षम करा.</string>
   <string name="preferences_communication__sealed_sender_learn_more">अधिक जाणा</string>
   <string name="preferences_setup_a_username">एक वापरकर्तानाव सेटअप करा</string>
+  <string name="preferences_proxy">प्रॉक्सी</string>
+  <string name="preferences_use_proxy">प्रॉक्सी वापरा</string>
   <string name="preferences_off">बंद</string>
   <string name="preferences_on">चालू</string>
+  <string name="preferences_proxy_address">प्रॉक्सी पत्ता</string>
+  <string name="preferences_only_use_a_proxy_if">जर आपण सेल्यूलर किंवा Wi-Fi वरून Signal ला कनेक्ट करू शकत नसाल तरच प्रॉक्सी वापरा.</string>
   <string name="preferences_share">सामायिक करा</string>
   <string name="preferences_save">जतन करा</string>
+  <string name="preferences_connecting_to_proxy">प्रॉक्सी शी कनेक्ट करत आहे…</string>
+  <string name="preferences_connected_to_proxy">प्रॉक्सी शी कनेक्ट केले</string>
+  <string name="preferences_connection_failed">कनेक्शन अयशस्वी</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">प्रॉक्सी शी कनेक्ट करणे शक्य झाले नाही. प्रॉक्सी पत्ता तपासा आणि पुन्हा प्रयत्न करा.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">आपण प्रॉक्सी शी कनेक्ट आहात. आपण सेटिंग मधून कोणत्याही वेळी प्रॉक्सी बंद करू शकता.</string>
+  <string name="preferences_success">यशस्वी</string>
+  <string name="preferences_failed_to_connect">कनेक्ट करण्यात अयशस्वी</string>
+  <string name="preferences_enter_proxy_address">प्रॉक्सी पत्ता प्रविष्ट करा</string>
   <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2154,6 +2173,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">चुकीचा PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">आपला PIN विसरलात?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">जास्ती प्रयत्न उरलेले नाहीत!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal नोंदणी - Android (v1 PIN) साठी PIN ची मदत पाहिजे</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal नोंदणी - Android (v2 PIN) साठी PIN ची मदत पाहिजे</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसाच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>
     <item quantity="other">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी, आपला PIN पुनर्स्थापित करण्याचा कुठलाही मार्ग नाही. जर आपल्याला आपला PIN आठवत नसेल, तर आपण %1$d दिवसांच्या निष्क्रियतेनंतर आपण पुनःसत्यापित करू शकता. या परिस्थितीमध्ये, आपले खाते साफ केले जाईल आणि सर्व मजकूर हटविला जाईल.</item>

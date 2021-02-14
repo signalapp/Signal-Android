@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Medieninhalte werden hochgeladen …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video wird komprimiert …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Prüfen auf Nachrichten …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blockierte Nutzer</string>
   <string name="BlockedUsersActivity__add_blocked_user">Zu blockierenden Nutzer hinzufügen</string>
@@ -469,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Aktualisiere diese Gruppe für neue Funktionen wie @Erwähnungen und Admins.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Jetzt nicht</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Gruppe aktualisieren</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Gruppe aktualisieren</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d Mitglied konnte der Gruppe neuen Typs nicht wieder hinzugefügt werden. Möchtest du es jetzt hinzufügen?</item>
@@ -543,7 +545,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Ausstehende Beitrittsanfragen</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Keine Beitrittsanfragen vorhanden.</string>
-  <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste versuchen der Gruppe über den Gruppen-Link beizutreten.</string>
+  <string name="RequestingMembersFragment_explanation">Personen auf dieser Liste möchten der Gruppe über den Gruppen-Link beitreten.</string>
   <string name="RequestingMembersFragment_added_s">%1$s hinzugefügt</string>
   <string name="RequestingMembersFragment_denied_s">%1$s abgelehnt</string>
   <!--AddMembersActivity-->
@@ -706,7 +708,7 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Du bist bereits Mitglied</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Beitreten</string>
-  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Beitrittsanfrage</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Beitritt anfragen</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Beitritt zur Gruppe nicht möglich. Bitte versuche es später erneut.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Dieser Gruppen-Link ist nicht aktiv</string>
@@ -980,12 +982,12 @@
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Der Gruppen-Link wurde mit ausgeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Der Gruppen-Link wurde mit eingeschalteter Admin-Bestätigung aktiviert.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Der Gruppen-Link wurde deaktiviert.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du hast die Admin-Bestätigung für den Gruppen-Link ausgeschaltet.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s hat die Admin-Bestätigung für den Gruppen-Link ausgeschaltet.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Die Admin-Bestätigung für den Gruppen-Link wurde ausgeschaltet.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du hast die Admin-Bestätigung für den Gruppen-Link eingeschaltet.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s hat die Admin-Bestätigung für den Gruppen-Link eingeschaltet.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Die Admin-Bestätigung für den Gruppen-Link wurde eingeschaltet.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Du hast Admin-Bestätigungen für den Gruppen-Link ausgeschaltet.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s hat Admin-Bestätigungen für den Gruppen-Link ausgeschaltet.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Admin-Bestätigungen für den Gruppen-Link wurden ausgeschaltet.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Du hast Admin-Bestätigungen für den Gruppen-Link eingeschaltet.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s hat Admin-Bestätigungen für den Gruppen-Link eingeschaltet.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Admin-Bestätigungen für den Gruppen-Link wurden eingeschaltet.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Du hast den Gruppen-Link zurückgesetzt.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s hat den Gruppen-Link zurückgesetzt.</string>
@@ -1092,7 +1094,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">In dieser Unterhaltung gesendete und empfangene Nachrichten werden %s nach dem Lesen verschwinden.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Jetzt aktualisieren</string>
-  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere zur neuesten Version.</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Diese Signal-Version wird heute ablaufen. Aktualisiere auf die neueste Version.</string>
   <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
     <item quantity="one">Diese Signal-Version wird morgen ablaufen. Aktualisiere auf die neueste Version.</item>
     <item quantity="other">Diese Signal-Version wird in %d Tagen ablaufen. Aktualisiere auf die neueste Version.</item>
@@ -1103,7 +1105,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Passphrase übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal entsperren</string>
-  <string name="PassphrasePromptActivity_signal_android_lock_screen">SIgnal Android – Sperrbildschirm</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android – Sperrbildschirm</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Karte</string>
   <string name="PlacePickerActivity_drop_pin">Markierung platzieren</string>
@@ -1220,7 +1222,7 @@
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">Auf diesem Gerät fehlen die Google-Play-Dienste. Signal kann immer noch verwendet werden, allerdings beeinträchtigt diese Konfiguration eventuell die Zuverlässigkeit oder die Leistung.\n\nFalls du kein erfahrener Nutzer bist, kein Custom-ROM verwendest oder glaubst, dass diese Meldung irrtümlich angezeigt wird, kontaktiere bitte support@signal.org für Hilfe bei der Problembehandlung.</string>
   <string name="RegistrationActivity_i_understand">Verstanden</string>
   <string name="RegistrationActivity_play_services_error">Fehler bei den Google-Play-Diensten</string>
-  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte erneut versuchen.</string>
+  <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google-Play-Dienste werden aktualisiert oder sind vorübergehend nicht verfügbar. Bitte versuche es erneut.</string>
   <string name="RegistrationActivity_terms_and_privacy">Nutzungsbedingungen und Datenschutzerklärung</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte und Medien, damit du Nachrichten an Freunde senden und sichere Anrufe tätigen kannst.</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal benötigt Zugriff auf deine Kontakte, damit du Freunde kontaktieren und sichere Anrufe tätigen kannst.</string>
@@ -1971,6 +1973,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_off">Aus</string>
   <string name="preferences_on">Ein</string>
   <string name="preferences_proxy_address">Proxyadresse</string>
+  <string name="preferences_only_use_a_proxy_if">Verwende Proxies nur, falls trotz bestehender Internetverbindung die App sich nicht mit dem Signal-Server verbinden kann.</string>
   <string name="preferences_share">Teilen</string>
   <string name="preferences_save">Speichern</string>
   <string name="preferences_connecting_to_proxy">Verbindung mit Proxy wird hergestellt …</string>
@@ -1980,6 +1983,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_you_are_connected_to_the_proxy">Signal ist mit dem Proxy verbunden. In »Einstellungen« kannst du ihn jederzeit ausschalten.</string>
   <string name="preferences_success">Erfolgreich</string>
   <string name="preferences_failed_to_connect">Verbindung konnte nicht hergestellt werden</string>
+  <string name="preferences_enter_proxy_address">Proxyadresse eingeben</string>
   <string name="configurable_single_select__customize_option">Option anpassen</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2123,7 +2127,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wähle eine stärkere PIN</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte erneut versuchen.</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte versuche es erneut.</string>
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bestätige deine PIN.</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN konnte nicht erstellt werden</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Deine PIN wurde nicht gespeichert. Wir werden dich später daran erinnern, eine PIN zu erstellen.</string>
@@ -2146,7 +2150,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="KbsReminderDialog__skip">Überspringen</string>
   <string name="KbsReminderDialog__submit">Übermitteln</string>
   <string name="KbsReminderDialog__forgot_pin">PIN vergessen?</string>
-  <string name="KbsReminderDialog__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="KbsReminderDialog__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Konto gesperrt</string>
   <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Dein Konto wurde gesperrt, um deine Privatsphäre und Sicherheit zu schützen. Nach Ablauf von %1$d Tagen ohne Kontoaktivität kannst du diese Rufnummer ohne PIN erneut registrieren. Alle Inhalte werden dabei gelöscht.</string>
@@ -2157,7 +2161,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockFragment__enter_the_pin_you_created">Gib die PIN ein, die du für dein Konto erstellt hast. Sie unterscheidet sich von deinem SMS-Verifikationscode.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Alphanumerische PIN eingeben</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Numerische PIN eingeben</string>
-  <string name="RegistrationLockFragment__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="RegistrationLockFragment__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <string name="RegistrationLockFragment__forgot_pin">PIN vergessen?</string>
   <string name="RegistrationLockFragment__incorrect_pin">Falsche PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">PIN vergessen?</string>
@@ -2279,7 +2283,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_app_protection__confirm_pin">PIN bestätigen</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bestätige deine Signal-PIN</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Sorge dafür, dass du dir deine PIN einprägst oder sicher verwahrst, da sie nicht wiederhergestellt werden kann. Falls du deine PIN vergisst, könntest du bei erneutem Registrieren deines Signal-Kontos deine Daten verlieren.</string>
-  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte erneut versuchen.</string>
+  <string name="preferences_app_protection__incorrect_pin_try_again">Falsche PIN. Bitte versuche es erneut.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Registrierungssperre konnte nicht aktiviert werden.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Registrierungssperre konnte nicht deaktiviert werden.</string>
   <string name="AppProtectionPreferenceFragment_none">Keine</string>
@@ -2402,7 +2406,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ShareActivity__s_comma">%1$s,</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">Das Weiterleiten an mehrere Unterhaltungen wird nur für Signal-Nachrichten unterstützt.</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte an einige Nutzer nicht gesendet werden</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Die Nachricht konnte nicht an alle Nutzer gesendet werden</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">Du kannst mit maximal %1$d Unterhaltungen teilen</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Nachricht weiterleiten</string>

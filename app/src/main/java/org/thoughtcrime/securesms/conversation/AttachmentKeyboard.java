@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,6 +24,7 @@ import java.util.List;
 
 public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.InputView {
 
+  private View                            container;
   private AttachmentKeyboardMediaAdapter  mediaAdapter;
   private AttachmentKeyboardButtonAdapter buttonAdapter;
   private Callback                        callback;
@@ -44,8 +46,9 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
   private void init(@NonNull Context context) {
     inflate(context, R.layout.attachment_keyboard, this);
 
-    this.mediaList        = findViewById(R.id.attachment_keyboard_media_list       );
-    this.permissionText   = findViewById(R.id.attachment_keyboard_permission_text  );
+    this.container        = findViewById(R.id.attachment_keyboard_container);
+    this.mediaList        = findViewById(R.id.attachment_keyboard_media_list);
+    this.permissionText   = findViewById(R.id.attachment_keyboard_permission_text);
     this.permissionButton = findViewById(R.id.attachment_keyboard_permission_button);
 
     RecyclerView buttonList = findViewById(R.id.attachment_keyboard_button_list);
@@ -97,6 +100,16 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
       });
     }
   }
+
+  public void setWallpaperEnabled(boolean wallpaperEnabled) {
+    if (wallpaperEnabled) {
+      container.setBackgroundColor(getContext().getResources().getColor(R.color.wallpaper_compose_background));
+    } else {
+      container.setBackgroundColor(getContext().getResources().getColor(R.color.signal_background_primary));
+    }
+    buttonAdapter.setWallpaperEnabled(wallpaperEnabled);
+  }
+
 
   @Override
   public void show(int height, boolean immediate) {

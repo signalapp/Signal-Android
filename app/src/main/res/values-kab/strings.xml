@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Asali n umidya…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Tussda n tvidyut…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Asenqed n yiznan…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Iseqdacen yettusweḥlen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Rnu iseqdacen yettusweḥlen</string>
@@ -469,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I unekcum ɣer tmahilin timaynutin am @mentions akked yinedbalen, leqqem agraw-a.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Mačči tura</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Leqqem agraw</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Leqqem agraw</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d n uεeggal ur yezmir ara ad yettwarnu i tikkelt-nniḍen ɣer ugraw amaynut. Tebɣiḍ ad t-ternuḍ tura?</item>
@@ -1105,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Azen tafyirt tuffirt</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Tafyirt tuffirt d tarameɣtut!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Kkes asekkeṛ i Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Sekkeṛ agdil</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Takarḍa</string>
   <string name="PlacePickerActivity_drop_pin">Kkes pin</string>
@@ -1202,6 +1205,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Ur yezmir ara ad d-yermes ameslaw neɣ tavidyut seg %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Yezmer yella-d waya ssebba n usenqed ur sneqden ara abeddel n wuṭṭun-ik·im n tɣellist, neɣ yella wugur d yibenk-nsen neɣ sweḥlen-k.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Aqeddac n upṛuksi</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Tansa n upṛusi</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Tebɣiḍ ad tesqedceḍ tansa-a n upṛuksi?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Seqdec apṛuksi</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Yeqqen akken iwata ɣer upṛuksi.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Fren tamurt-ik.im</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Yessefk ad d-tefkeḍ
@@ -1968,10 +1976,22 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Rmed amazan yettuḥebsen i yiznan i d-kecmen seg yinermisen ur tesεiḍ d yimdanen wukud ur tebḍiḍ ara amaɣnu-inek·inem.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Issin ugar</string>
   <string name="preferences_setup_a_username">Sbadu isem n useqdac</string>
+  <string name="preferences_proxy">Apṛuksi</string>
+  <string name="preferences_use_proxy">Seqdec apṛuksi</string>
   <string name="preferences_off">Yensa</string>
   <string name="preferences_on">Yermed</string>
+  <string name="preferences_proxy_address">Tansa n upṛusi</string>
+  <string name="preferences_only_use_a_proxy_if">Seqdec apṛuksi ticki kan ur tezmireḍ ara ad teqneḍ ɣer Signal s uziraz neɣ s Wi-Fi.</string>
   <string name="preferences_share">Bḍu</string>
   <string name="preferences_save">Sekles</string>
+  <string name="preferences_connecting_to_proxy">Tuqqna ɣer upṛuksi…</string>
+  <string name="preferences_connected_to_proxy">Yeqqen ɣer upṛuksi</string>
+  <string name="preferences_connection_failed">Tuqqna tecceḍ</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Ur issaweḍ ara ad iqqen ɣer upṛuksi. Senqed tansa n upṛuksi syen εreḍ tikkelt-nniḍen.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Aql-ak·akem teqqneḍ ɣer upṛusi. Tzemreḍ ad tsenseḍ apṛuksi melmi i tebɣiḍ seg yiɣewwaren.</string>
+  <string name="preferences_success">Yedda</string>
+  <string name="preferences_failed_to_connect">Tuqqna ur teddi ara</string>
+  <string name="preferences_enter_proxy_address">Sekcem tansa n upṛuksi</string>
   <string name="configurable_single_select__customize_option">Taxtiṛt tudmawant</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2154,6 +2174,8 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN ur yeɣti ara</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Tettuḍ tangalt-ik.im PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Ur d-mazal ara aṭas n yineεruḍen!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Ajerred n Signal - Tesriḍ tallalt s tengalt PIN n Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Ajerred n Signal - Tesriḍ tallalt s tengalt PIN n Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">I tudert tabaḍnit d tɣellist inek·inem, ulac abrid amek ara d-terreḍ tangalt-ik·im PIN. Ma yella ur tezmireḍ ara ad d-temmektiḍ tangalt-ik·im PIN, tzemreḍ ad talseḍ asenqed-is s SMS seld %1$d n wussan n war armad. Deg tegnit am ta, amiḍan-ik·im ad yettwasfeḍ, agbur akk ad yettwakkes.</item>
     <item quantity="other">I tudert tabaḍnit d tɣellist inek·inem, ulac abrid amek ara d-terreḍ tangalt-ik·im PIN. Ma yella ur tezmireḍ ara ad d-temmektiḍ tangalt-ik·im PIN, tzemreḍ ad talseḍ asenqed-is s SMS seld %1$d n wussan n war armad. Deg tegnit am ta, amiḍan-ik·im ad yettwasfeḍ, agbur akk ad yettwakkes.</item>

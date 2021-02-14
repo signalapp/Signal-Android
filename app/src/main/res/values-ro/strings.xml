@@ -66,6 +66,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Se încarcă media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Se comprimă video-ul…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utilizatori blocați</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adaugă un utilizator blocat</string>
@@ -80,7 +81,7 @@
   <!--BlockUnblockDialog-->
   <string name="BlockUnblockDialog_block_and_leave_s">Blocați și părăsiți %1$s?</string>
   <string name="BlockUnblockDialog_block_s">Blochez %1$s?</string>
-  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nu veți mai putea primi mesaje sau actualizări de la acest grup, iar membrii nu vă vor mai putea adăuga la acest grup.</string>
+  <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Nu veți mai putea primi mesaje sau actualizări de la acest grup, iar membri nu vă vor mai putea adăuga la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Membrii grupului nu vă vor mai putea adăuga din nou la acest grup.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Membrii grupului vă vor putea adăuga din nou la acest grup.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Veţi putea trimite mesaje și vă veţi putea apela reciproc, iar numele și fotografia dvs. va fi împărtășită cu ei.</string>
@@ -284,7 +285,7 @@
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Fișierele trimise de tip media vizibile o singură dată sunt eliminate automat după ce sunt trimise</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ați văzut deja acest mesaj</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Puteți adăuga notiţe pentru dvs. în această conversație.\nDacă contul dvs. are dispozitive asociate, notiţele noi vor fi sincronizate.</string>
-  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membrii ai grupului au același nume.</string>
+  <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membri ai grupului au același nume.</string>
   <string name="ConversationFragment__tap_to_review">Atingeți pentru examinare</string>
   <string name="ConversationFragment__review_requests_carefully">Examinați cu atenție solicitările</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal a găsit un alt contact cu același nume.</string>
@@ -440,7 +441,7 @@
   <string name="GroupMembersDialog_you">Tu</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">Oricine</string>
-  <string name="GroupManagement_access_level_all_members">Toți membrii</string>
+  <string name="GroupManagement_access_level_all_members">Toți membri</string>
   <string name="GroupManagement_access_level_only_admins">Doar administratorii</string>
   <string name="GroupManagement_access_level_no_one">Nimeni</string>
   <!--GV2 invites sent-->
@@ -486,7 +487,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pentru a accesa funcții precum @mențiuni și administratori, actualizați acest grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nu acum</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizează grup</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizați grupul</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membru nu a putut fi adăugat la noul grup. Doriți să-l adăugați acum?</item>
@@ -495,15 +496,15 @@
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">Adăugați membru</item>
-    <item quantity="few">Adăugați membrii</item>
-    <item quantity="other">Adăugați membrii</item>
+    <item quantity="few">Adăugați membri</item>
+    <item quantity="other">Adăugați membri</item>
   </plurals>
   <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nu, mulţumesc</string>
   <!--GroupsV1MigrationSuggestionsDialog-->
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
     <item quantity="one">Adăugați membru?</item>
-    <item quantity="few">Adăugați membrii?</item>
-    <item quantity="other">Adăugați membrii?</item>
+    <item quantity="few">Adăugați membri?</item>
+    <item quantity="other">Adăugați membri?</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
     <item quantity="one">Acest membru nu a putut fi adăugat automat la noul grup când a fost actualizat:</item>
@@ -512,8 +513,8 @@
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
     <item quantity="one">Adăugați membru</item>
-    <item quantity="few">Adăugați membrii</item>
-    <item quantity="other">Adăugați membrii</item>
+    <item quantity="few">Adăugați membri</item>
+    <item quantity="other">Adăugați membri</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
     <item quantity="one">Nu s-a putut adăuga membrul. Încercați mai târziu.</item>
@@ -543,8 +544,8 @@
   <!--LinkPreviewRepository-->
   <plurals name="LinkPreviewRepository_d_members">
     <item quantity="one">%1$d membru</item>
-    <item quantity="few">%1$d membrii</item>
-    <item quantity="other">%1$d membrii</item>
+    <item quantity="few">%1$d membri</item>
+    <item quantity="other">%1$d membri</item>
   </plurals>
   <!--PendingMembersActivity-->
   <string name="PendingMembersActivity_pending_group_invites">Invitații la grup în așteptare</string>
@@ -578,15 +579,15 @@
   <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Acestă persoană nu poate fi adăugată la grupurile vechi.</string>
   <plurals name="AddMembersActivity__add_d_members_to_s">
     <item quantity="one">Adăugaţi \"%1$s\" la \"%2$s\"?</item>
-    <item quantity="few">Adăugați %3$d membrii la \"%2$s\"?</item>
-    <item quantity="other">Adăugați %3$d membrii la \"%2$s\"?</item>
+    <item quantity="few">Adăugați %3$d membri la \"%2$s\"?</item>
+    <item quantity="other">Adăugați %3$d membri la \"%2$s\"?</item>
   </plurals>
   <string name="AddMembersActivity__add">Adaugă</string>
   <!--AddGroupDetailsFragment-->
   <string name="AddGroupDetailsFragment__name_this_group">Numiți acest grup</string>
   <string name="AddGroupDetailsFragment__create_group">Creează grup </string>
   <string name="AddGroupDetailsFragment__create">Creează</string>
-  <string name="AddGroupDetailsFragment__members">Membrii</string>
+  <string name="AddGroupDetailsFragment__members">Membri</string>
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Puteți adăuga sau invita prieteni după crearea acestui grup.</string>
   <string name="AddGroupDetailsFragment__group_name_required">Nume grup (obligatoriu)</string>
   <string name="AddGroupDetailsFragment__group_name_optional">Nume grup (opțional)</string>
@@ -600,8 +601,8 @@
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">Eliminați pe %1$s din acest grup?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="one">%d membriu nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
-    <item quantity="few"> %d membrii nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
-    <item quantity="other">%d membrii nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="few"> %d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
+    <item quantity="other">%d membri nu suportă Noile Grupuri, astfel acest grup va fi un Grup Vechi.</item>
   </plurals>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups_so_this_group_cannot_be_created">
     <item quantity="one">%d membru nu acceptă grupurile noi, prin urmare acest grup nu poate fi creat.</item>
@@ -612,8 +613,8 @@
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Un Grup Vechi ca fi creat deoarece “%1$s” folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="one">Un Grup Vechi ca fi creat deoarece %1$d membriu folosește o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îl eliminați înainte de a crea grupul.</item>
-    <item quantity="few">Un Grup Vechi ca fi creat deoarece %1$d membrii folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
-    <item quantity="other">Un Grup Vechi ca fi creat deoarece %1$d membrii folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
+    <item quantity="few">Un Grup Vechi ca fi creat deoarece %1$d membri folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
+    <item quantity="other">Un Grup Vechi ca fi creat deoarece %1$d membri folosesc o versiune veche de Signal. Puteți crea un Grup de tip Nou cu ei după ce își actualizează Signal, sau îi eliminați înainte de a crea grupul.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Acest grup nu poate fi creat pentru că „%1$s” utilizează o versiune veche a aplicației Signal. Trebuie să-i eliminați înainte de a crea grupul.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -623,9 +624,9 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Solicitări și invitații ale membrilor</string>
-  <string name="ManageGroupActivity_add_members">Adăugare membrii</string>
+  <string name="ManageGroupActivity_add_members">Adăugare membri</string>
   <string name="ManageGroupActivity_edit_group_info">Editare informații despre grup</string>
-  <string name="ManageGroupActivity_who_can_add_new_members">Cine poate adăuga membrii?</string>
+  <string name="ManageGroupActivity_who_can_add_new_members">Cine poate adăuga membri?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Cine poate edita informațiile grupului?</string>
   <string name="ManageGroupActivity_group_link">Link grup</string>
   <string name="ManageGroupActivity_block_group">Blocați grupul</string>
@@ -638,15 +639,15 @@
   <string name="ManageGroupActivity_until_s">Până la %1$s</string>
   <string name="ManageGroupActivity_off">Dezactivate</string>
   <string name="ManageGroupActivity_on">Activate</string>
-  <string name="ManageGroupActivity_view_all_members">Vizualizați toți membrii</string>
+  <string name="ManageGroupActivity_view_all_members">Vizualizați toți membri</string>
   <string name="ManageGroupActivity_see_all">Vezi tot</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="one">%d membru adăugat.</item>
-    <item quantity="few">%d membrii adăugaţi</item>
-    <item quantity="other">%d membrii adăugaţi</item>
+    <item quantity="few">%d membri adăugaţi</item>
+    <item quantity="other">%d membri adăugaţi</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Numai administratorii pot activa sau dezactiva link-ul partajabil către grup.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Numai administratorii pot activa sau dezactiva opțiunea de aprobare a noilor membrii.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Numai administratorii pot activa sau dezactiva opțiunea de aprobare a noilor membri.</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Numai administratorii pot reseta link-ul partajabil către grup.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nu aveți drepturile pentru a face acest lucru</string>
   <string name="ManageGroupActivity_not_capable">Cineva pe care l-ai adăugat nu acceptă noile grupuri și trebuie să-și actualizeze Signal</string>
@@ -724,9 +725,9 @@
   <string name="ShareableGroupLinkDialogFragment__group_link">Link grup</string>
   <string name="ShareableGroupLinkDialogFragment__share">Partajați</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Resetare link</string>
-  <string name="ShareableGroupLinkDialogFragment__member_requests">Cereri membrii</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobare membrii noi</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Solicitați unui administrator să aprobe membrii noi care se alătură prin link-ul grupului.</string>
+  <string name="ShareableGroupLinkDialogFragment__member_requests">Cereri membri</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobare membri noi</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Solicitați unui administrator să aprobe membri noi care se alătură prin link-ul grupului.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Sigur doriți să resetați linkul de grup? Oamenii nu vor mai putea să se alăture grupului folosind link-ul curent.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Cod QR</string>
@@ -751,8 +752,8 @@
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un administrator al acestui grup trebuie să vă aprobe solicitarea înainte de a vă putea alătura acestui grup. Când solicitați să vă înscrieți, numele și fotografia dvs. vor fi partajate membrilor săi.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grup · %1$d membru</item>
-    <item quantity="few">Grup · %1$d membrii</item>
-    <item quantity="other">Grup · %1$d membrii</item>
+    <item quantity="few">Grup · %1$d membri</item>
+    <item quantity="other">Grup · %1$d membri</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualizați Signal pentru a folosi link-uri la grupuri</string>
@@ -1107,13 +1108,13 @@
   <string name="MessageRequestProfileView_member_of_many_groups">Membru al %1$s, %2$s, și %3$s</string>
   <plurals name="MessageRequestProfileView_members">
     <item quantity="one">%1$d membru</item>
-    <item quantity="few">%1$d membrii</item>
-    <item quantity="other">%1$d membrii</item>
+    <item quantity="few">%1$d membri</item>
+    <item quantity="other">%1$d membri</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one">%1$d membru (+%2$d invitați)</item>
-    <item quantity="few">%1$d membrii (+%2$d invitați)</item>
-    <item quantity="other">%1$d membrii (+%2$d invitați)</item>
+    <item quantity="few">%1$d membri (+%2$d invitați)</item>
+    <item quantity="other">%1$d membri (+%2$d invitați)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">%d grup adițional</item>
@@ -1599,13 +1600,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nu este un utilizator de Signal. Verificați numele de utilizator și încercați din nou.</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Nu trebuie să vă adăugați pe sine la grup</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Mărimea maximă a grupului a fost atinsă</string>
-  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Grupurile Signal pot avea un maximum de %1$d membrii.</string>
+  <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Grupurile Signal pot avea un maximum de %1$d membri.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">A fost atinsă limita de membri recomandată</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Grupurile Signal se comportă cel mai bine cu %1$d membrii sau mai puțini. Adăugarea mai multor membri va provoca întârzieri la trimiterea și primirea mesajelor.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Grupurile Signal se comportă cel mai bine cu %1$d membri sau mai puțini. Adăugarea mai multor membri va provoca întârzieri la trimiterea și primirea mesajelor.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d membru</item>
-    <item quantity="few">%1$dmembrii</item>
-    <item quantity="other">%1$d membrii</item>
+    <item quantity="few">%1$d membri</item>
+    <item quantity="other">%1$d membri</item>
   </plurals>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
@@ -1613,8 +1614,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--contact_selection_list_item-->
   <plurals name="contact_selection_list_item__number_of_members">
     <item quantity="one">%1$d membru</item>
-    <item quantity="few">%1$d membrii</item>
-    <item quantity="other">%1$d membrii</item>
+    <item quantity="few">%1$d membri</item>
+    <item quantity="other">%1$d membri</item>
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Mesaj Signal</string>
@@ -2052,6 +2053,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_off">Dezactivate</string>
   <string name="preferences_on">Activate</string>
   <string name="preferences_proxy_address">Adresă proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Folosiți un proxy numai dacă nu vă puteți conecta la Signal pe date mobile sau Wi-Fi.</string>
   <string name="preferences_share">Partajați</string>
   <string name="preferences_save">Salvează</string>
   <string name="preferences_connecting_to_proxy">Se conectează la proxy…</string>
@@ -2061,6 +2063,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_you_are_connected_to_the_proxy">Sunteți conectat la proxy. Puteți dezactiva proxy-ul în orice moment din Setări.</string>
   <string name="preferences_success">Succes</string>
   <string name="preferences_failed_to_connect">Conexiunea a eșuat</string>
+  <string name="preferences_enter_proxy_address">Introduceți adresa proxy</string>
   <string name="configurable_single_select__customize_option">Personalizați opțiunea</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2428,9 +2431,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BlockedUsersActivity__failed_to_block_s">Blocarea utilizatorului \"%1$s\" a eșuat</string>
   <string name="BlockedUsersActivity__s_has_been_unblocked">\"%1$s\" a fost deblocat.</string>
   <!--ReviewCardDialogFragment-->
-  <string name="ReviewCardDialogFragment__review_members">Revizuire membrii</string>
+  <string name="ReviewCardDialogFragment__review_members">Revizuire membri</string>
   <string name="ReviewCardDialogFragment__review_request">Revizuire solicitări</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membrii ai grupului au același nume, revizuiți membrii de mai jos și alegeți să luați o decizie.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d membri ai grupului au același nume, revizuiți membrii de mai jos și alegeți să luați o decizie.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Dacă nu sunteți sigur de la cine provine solicitarea, consultați persoanele de contact de mai jos și luați o decizie.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>

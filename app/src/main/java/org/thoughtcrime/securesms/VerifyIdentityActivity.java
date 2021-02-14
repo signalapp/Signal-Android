@@ -113,7 +113,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   private static final String IDENTITY_EXTRA  = "recipient_identity";
   private static final String VERIFIED_EXTRA  = "verified_state";
 
-  private final DynamicTheme dynamicTheme = new DynamicDarkActionBarTheme();
+  private final DynamicTheme dynamicTheme = new DynamicTheme();
 
   private final VerifyDisplayFragment displayFragment = new VerifyDisplayFragment();
   private final VerifyScanFragment    scanFragment    = new VerifyScanFragment();
@@ -160,11 +160,6 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
   protected void onCreate(Bundle state, boolean ready) {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setTitle(R.string.AndroidManifest__verify_safety_number);
-
-    LiveRecipient recipient = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
-    recipient.observe(this, r -> setActionBarNotificationBarColor(r.getColor()));
-
-    setActionBarNotificationBarColor(recipient.get().getColor());
 
     Bundle extras = new Bundle();
     extras.putParcelable(VerifyDisplayFragment.RECIPIENT_ID, getIntent().getParcelableExtra(RECIPIENT_EXTRA));

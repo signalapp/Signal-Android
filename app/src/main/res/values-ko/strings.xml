@@ -64,6 +64,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">미디어 업로드 중…</string>
   <string name="AttachmentUploadJob_compressing_video_start">동영상 압축 중…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">차단된 사용자</string>
   <string name="BlockedUsersActivity__add_blocked_user">차단된 사용자 추가</string>
@@ -351,6 +352,7 @@
   <string name="DateUtils_today">오늘</string>
   <string name="DateUtils_yesterday">어제</string>
   <!--DecryptionFailedDialog-->
+  <string name="DecryptionFailedDialog_chat_session_refreshed">챗 세션 새로고침됨</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' 기기를 연결 해제하시겠습니까?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">기기를 연결 해제하면 메시지를 보내거나 받을 수 없습니다.</string>
@@ -448,7 +450,6 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">그룹을 업그레이드하여 @멘션 및 관리자와 같은 새로운 기능에 액세스하세요.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">나중에</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">그룹 업데이트</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d명의 멤버를 새 그룹에 다시 추가할 수 없습니다. 지금 추가하시겠습니까?</item>
@@ -600,6 +601,8 @@
   <string name="ManageProfileFragment_username">사용자 이름</string>
   <string name="ManageProfileFragment_about">정보</string>
   <string name="ManageProfileFragment_your_name">내 이름</string>
+  <string name="ManageProfileFragment_your_username">당신의 사용자 이름</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">아바타 설정을 실패했습니다.</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">시스템 연락처에 추가</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">이 사람은 내 연락처에 있습니다.</string>
@@ -824,6 +827,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">사라지는 메시지 타이머가 %1$s(으)로 설정되었습니다.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">그룹이 새 그룹으로 업데이트되었습니다.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">귀하를 새 그룹에 추가할 수 없었으며 가입하도록 초대되었습니다.</string>
+  <string name="MessageRecord_chat_session_refreshed">챗 세션 새로고침됨</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="other">%1$s명의 멤버를 새 그룹에 추가할 수 없었으며 가입하도록 초대되었습니다.</item>
   </plurals>
@@ -1037,6 +1041,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">암호 제출</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">잘못된 암호입니다!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal 잠금 해제</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - 잠금 화면</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">지도</string>
   <string name="PlacePickerActivity_drop_pin">고정</string>
@@ -1131,6 +1136,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s 님의 음성 및 동영상 수신 불가</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">이는 안전 번호 변경을 확인하지 않았거나, 기기에 문제가 있거나 사용자를 차단했기 때문일 수 있습니다.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">프록시 서버</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">프록시 주소</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">이 프록시 주소를 사용하시겠습니까?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">프록시 사용하기</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">프록시에 성공적으로 연결됨</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">국가 선택</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를
@@ -1249,6 +1259,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">다음 URL을 복사하여 문제 보고서 또는 지원 이메일에 추가하세요. \n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">공유</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">필터:</string>
   <string name="SupportEmailUtil_device_info">기기 정보:</string>
   <string name="SupportEmailUtil_android_version">안드로이드 버전:</string>
   <string name="SupportEmailUtil_signal_version">Signal 버전:</string>
@@ -1285,6 +1296,7 @@
   <string name="ThreadRecord_voice_message">음성 메시지</string>
   <string name="ThreadRecord_file">파일</string>
   <string name="ThreadRecord_video">동영상</string>
+  <string name="ThreadRecord_chat_session_refreshed">챗 세션 새로고침됨</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal 업데이트</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">새 Signal 버전 출시, 탭하여 업데이트</string>
@@ -1616,11 +1628,20 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">사용자 정의 MMS 그룹 이름과 사진은 나에게만 표시됩니다.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">정보</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">자유롭게 말하기</string>
+  <string name="EditAboutFragment_encrypted">암호화됨</string>
+  <string name="EditAboutFragment_be_kind">친절함</string>
+  <string name="EditAboutFragment_coffee_lover">커피 애호가</string>
+  <string name="EditAboutFragment_free_to_chat">채팅 해도 됨</string>
+  <string name="EditAboutFragment_taking_a_break">쉬는 중</string>
+  <string name="EditAboutFragment_working_on_something_new">새로운 것에 도전하는 중</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">그룹 이름 및 사진 수정</string>
   <string name="EditProfileFragment__group_name">그룹 이름</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">내 이름</string>
+  <string name="EditProfileNameFragment_first_name">이름</string>
   <string name="EditProfileNameFragment_last_name_optional">성(선택 사항)</string>
   <string name="EditProfileNameFragment_save">저장</string>
   <!--recipient_preferences_activity-->
@@ -1782,6 +1803,7 @@
   <string name="preferences__mmsc_password">MMSC 비밀번호</string>
   <string name="preferences__sms_delivery_reports">SMS 전송 확인</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">SMS 메시지를 보낼 때마다 전송 확인 요청</string>
+  <string name="preferences__data_and_storage">데이터와 저장소</string>
   <string name="preferences__storage">저장 공간</string>
   <string name="preferences__conversation_length_limit">대화 저장 한도</string>
   <string name="preferences__keep_messages">메시지 보관</string>
@@ -1846,6 +1868,8 @@
   <string name="preferences_chats__chats">대화</string>
   <string name="preferences_data_and_storage__calls">전화</string>
   <string name="preferences_data_and_storage__never">없음</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi 및 셀룰러</string>
+  <string name="preferences_data_and_storage__cellular_only">셀룰러 데이터만 사용</string>
   <string name="preferences_notifications__messages">메시지</string>
   <string name="preferences_notifications__events">이벤트</string>
   <string name="preferences_notifications__in_chat_sounds">대화 내 사운드</string>
@@ -1864,10 +1888,19 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">연락처에 없는 사람과 프로필을 공유하지 않은 사람이 나에게 보내는 메시지에도 발신자 암호화를 허용합니다.</string>
   <string name="preferences_communication__sealed_sender_learn_more">더 알아보기</string>
   <string name="preferences_setup_a_username">사용자 이름 설정하기</string>
+  <string name="preferences_proxy">프록시</string>
+  <string name="preferences_use_proxy">프록시 사용하기</string>
   <string name="preferences_off">꺼짐</string>
   <string name="preferences_on">켜짐</string>
+  <string name="preferences_proxy_address">프록시 주소</string>
   <string name="preferences_share">공유</string>
   <string name="preferences_save">저장</string>
+  <string name="preferences_connecting_to_proxy">프록시에 연결 중…</string>
+  <string name="preferences_connected_to_proxy">프록시에 연결됨</string>
+  <string name="preferences_connection_failed">연결 실패함</string>
+  <string name="preferences_success">성공</string>
+  <string name="preferences_failed_to_connect">연결 실패함</string>
+  <string name="preferences_enter_proxy_address">프록시 주소 입력하기</string>
   <string name="configurable_single_select__customize_option">옵션 설정하기</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2276,6 +2309,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">공유</string>
   <string name="ShareActivity__send">보내기</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
   <!--MultiShareDialogs-->
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">메시지 전달</string>
@@ -2283,10 +2317,12 @@
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__reset">초기화</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__presets">프리셋</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">미리보기</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">갤러리를 보려면 저장 권한이 필요합니다.</string>
   <!--WallpaperImageSelectionActivity-->
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__blur_photo">사진 블러하기</string>
   <!--EOF-->
 </resources>

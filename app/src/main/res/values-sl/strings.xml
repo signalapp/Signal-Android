@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Prenos multimedijske datoteke …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Kompresija videa …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Pregled sporočil …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokirani/e uporabniki/ce</string>
   <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranega uporabnika/co</string>
@@ -503,7 +505,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Za uporabo naprednih funkcij, kot so @omembe in skrbniki/ce skupin, nadgradite to skupino.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ne zdaj</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Posodobi skupino</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nadgradi skupino</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d član/ica ni mogel/la biti ponovno dodan/a v Novo skupino. Ga/jo želite dodati zdaj?</item>
@@ -2119,6 +2121,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_off">Izklopljena</string>
   <string name="preferences_on">Vklopljena</string>
   <string name="preferences_proxy_address">Naslov proksi</string>
+  <string name="preferences_only_use_a_proxy_if">Proksi uporabite samo, če se ne morete povezati na Signal preko mobilnega omrežja ali Wi-Fija.</string>
   <string name="preferences_share">Deli</string>
   <string name="preferences_save">Shrani</string>
   <string name="preferences_connecting_to_proxy">Povezovanje s proksijem …</string>
@@ -2128,6 +2131,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_you_are_connected_to_the_proxy">Povezani ste s proksijem. Povezavo lahko kadarkoli prekinete v Nastavitvah.</string>
   <string name="preferences_success">Uspeh</string>
   <string name="preferences_failed_to_connect">Povezovanje ni uspelo</string>
+  <string name="preferences_enter_proxy_address">Vnesite naslov proksi</string>
   <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
   <!--Internal only preferences-->
   <!--****************************************-->

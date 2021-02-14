@@ -34,6 +34,7 @@ import org.signal.zkgroup.VerificationFailedException;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -140,6 +141,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String EXTRA_GROUP_CALL_UPDATE_GROUP    = "group_call_update_group";
   public static final String EXTRA_GROUP_CALL_ERA_ID          = "era_id";
   public static final String EXTRA_RECIPIENT_IDS              = "recipient_ids";
+  public static final String EXTRA_ORIENTATION_DEGREES        = "orientation_degrees";
 
   public static final String ACTION_PRE_JOIN_CALL                       = "CALL_PRE_JOIN";
   public static final String ACTION_CANCEL_PRE_JOIN_CALL                = "CANCEL_PRE_JOIN_CALL";
@@ -197,6 +199,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   public static final String ACTION_HTTP_FAILURE                        = "HTTP_FAILURE";
   public static final String ACTION_SEND_OPAQUE_MESSAGE                 = "SEND_OPAQUE_MESSAGE";
   public static final String ACTION_RECEIVE_OPAQUE_MESSAGE              = "RECEIVE_OPAQUE_MESSAGE";
+  public static final String ACTION_ORIENTATION_CHANGED                 = "ORIENTATION_CHANGED";
 
   public static final String ACTION_GROUP_LOCAL_DEVICE_STATE_CHANGED  = "GROUP_LOCAL_DEVICE_CHANGE";
   public static final String ACTION_GROUP_REMOTE_DEVICE_STATE_CHANGED = "GROUP_REMOTE_DEVICE_CHANGE";
@@ -443,7 +446,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void setCallInProgressNotification(int type, @NonNull Recipient recipient) {
-    startForeground(CallNotificationBuilder.getNotificationId(getApplicationContext(), type),
+    startForeground(CallNotificationBuilder.getNotificationId(type),
                     CallNotificationBuilder.getCallInProgressNotification(this, type, recipient));
   }
 
@@ -477,7 +480,7 @@ public class WebRtcCallService extends Service implements CallManager.Observer,
   }
 
   public void startCallCardActivityIfPossible() {
-    if (Build.VERSION.SDK_INT >= 29 && !ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
+    if (Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
       return;
     }
 

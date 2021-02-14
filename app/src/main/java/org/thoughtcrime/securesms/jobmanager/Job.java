@@ -406,8 +406,8 @@ public abstract class Job {
 
       /**
        * Specify the maximum number of instances you'd want of this job at any given time, as
-       * determined by the job's queue key. If enqueueing this job would put it over that limit,
-       * it will be ignored.
+       * determined by the job's factory key and queue key. If enqueueing this job would put it over
+       * that limit, it will be ignored.
        *
        * This property is ignored if the job is submitted as part of a {@link JobManager.Chain}, or
        * if the job has no queue key.

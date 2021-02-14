@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Lastar opp media …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Ser etter meldingar …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokkerte brukarar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Legg til blokkert brukar</string>
@@ -474,7 +476,7 @@ Dei er invitert inn, og ser inga gruppemeldingar før dei godtek.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Oppgrader denne gruppa for å få nye funksjonar som @nemningar og administratorar.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ikkje no</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Oppdater gruppe</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Oppgrader gruppa</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d medlem kunne ikkje bli lagt til i den Nye gruppa igjen. Vil du legga dei til no?</item>
@@ -1986,6 +1988,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences_off">Av</string>
   <string name="preferences_on">På</string>
   <string name="preferences_proxy_address">Proxy-adresse</string>
+  <string name="preferences_only_use_a_proxy_if">Berre bruk ein proxy dersom du ikkje kan kopla til Signal med mobildata eller trådlausnett.</string>
   <string name="preferences_share">Del</string>
   <string name="preferences_save">Lagra</string>
   <string name="preferences_connecting_to_proxy">Koplar til proxy …</string>
@@ -1995,6 +1998,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="preferences_you_are_connected_to_the_proxy">Du er kopla til proxyen. Du kan skru av proxyen når som helst frå Innstillingar.</string>
   <string name="preferences_success">Vellykka</string>
   <string name="preferences_failed_to_connect">Klarte ikkje kopla til</string>
+  <string name="preferences_enter_proxy_address">Skriv inn proxy-adresse</string>
   <string name="configurable_single_select__customize_option">Endra val</string>
   <!--Internal only preferences-->
   <!--****************************************-->

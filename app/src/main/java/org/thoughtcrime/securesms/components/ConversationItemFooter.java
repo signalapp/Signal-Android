@@ -275,8 +275,8 @@ public class ConversationItemFooter extends LinearLayout {
     addView(audioDuration, 0);
 
     int padStart = ViewUtil.dpToPx(60);
-    int padLeft  = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? padStart : 0;
-    int padRight = getLayoutDirection() == LAYOUT_DIRECTION_RTL ? padStart : 0;
+    int padLeft  = ViewUtil.isLtr(this) ? padStart : 0;
+    int padRight = ViewUtil.isRtl(this) ? padStart : 0;
 
     audioDuration.setPadding(padLeft, 0, padRight, 0);
   }

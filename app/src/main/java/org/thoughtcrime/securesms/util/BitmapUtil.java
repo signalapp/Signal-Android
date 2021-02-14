@@ -48,6 +48,11 @@ public class BitmapUtil {
   private static final int MIN_COMPRESSION_QUALITY_DECREASE = 5;
   private static final int MAX_IMAGE_HALF_SCALES            = 3;
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
+  @Deprecated
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(@NonNull Context context, @NonNull T model, @NonNull MediaConstraints constraints)
       throws BitmapDecodingException
@@ -58,6 +63,10 @@ public class BitmapUtil {
                              constraints.getImageMaxSize(context));
   }
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(@NonNull Context context,
                                                   @NonNull T model,
@@ -69,6 +78,10 @@ public class BitmapUtil {
     return createScaledBytes(context, model, maxImageWidth, maxImageHeight, maxImageSize, CompressFormat.JPEG);
   }
 
+  /**
+   * @deprecated You probably want to use {@link ImageCompressionUtil} instead, which has a clearer
+   *             contract and handles mimetypes properly.
+   */
   @WorkerThread
   public static <T> ScaleResult createScaledBytes(Context context,
                                                   T model,

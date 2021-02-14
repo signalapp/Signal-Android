@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.media.MediaDataSource;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import com.google.android.exoplayer2.util.MimeTypes;
 
@@ -31,8 +33,8 @@ import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor.MemoryFileException;
@@ -141,7 +143,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
                                             : MediaConstraints.getPushMediaConstraints();
 
-    scaleAndStripExif(database, mediaConstraints, databaseAttachment);
+    compress(database, mediaConstraints, databaseAttachment);
   }
 
   @Override
@@ -152,30 +154,25 @@ public final class AttachmentCompressionJob extends BaseJob {
     return exception instanceof IOException;
   }
 
-  private void scaleAndStripExif(@NonNull AttachmentDatabase attachmentDatabase,
-                                 @NonNull MediaConstraints constraints,
-                                 @NonNull DatabaseAttachment attachment)
+  private void compress(@NonNull AttachmentDatabase attachmentDatabase,
+                        @NonNull MediaConstraints constraints,
+                        @NonNull DatabaseAttachment attachment)
       throws UndeliverableMessageException
   {
     try {
       if (MediaUtil.isVideo(attachment)) {
+        Log.i(TAG, "Compressing video.");
         attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
         if (!constraints.isSatisfied(context, attachment)) {
           throw new UndeliverableMessageException("Size constraints could not be met on video!");
         }
-      } else if (MediaUtil.isHeic(attachment) || MediaUtil.isHeif(attachment)) {
-        MediaStream converted = getResizedMedia(context, attachment, constraints);
+      } else if (constraints.canResize(attachment)) {
+        Log.i(TAG, "Compressing image.");
+        MediaStream converted = compressImage(context, attachment, constraints);
         attachmentDatabase.updateAttachmentData(attachment, converted, false);
         attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else if (constraints.isSatisfied(context, attachment)) {
-        if (MediaUtil.isJpeg(attachment)) {
-          MediaStream stripped = getResizedMedia(context, attachment, constraints);
-          attachmentDatabase.updateAttachmentData(attachment, stripped, false);
-        }
-        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
-      } else if (constraints.canResize(attachment)) {
-        MediaStream resized = getResizedMedia(context, attachment, constraints);
-        attachmentDatabase.updateAttachmentData(attachment, resized, false);
+        Log.i(TAG, "Not compressing.");
         attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else {
         throw new UndeliverableMessageException("Size constraints could not be met!");
@@ -295,27 +292,48 @@ public final class AttachmentCompressionJob extends BaseJob {
     return attachment;
   }
 
-  private static MediaStream getResizedMedia(@NonNull Context context,
-                                             @NonNull Attachment attachment,
-                                             @NonNull MediaConstraints constraints)
-      throws IOException
+  /**
+   * Compresses the images. Given that we compress every image, this has the fun side effect of
+   * stripping all EXIF data.
+   */
+  @WorkerThread
+  private static MediaStream compressImage(@NonNull Context context,
+                                           @NonNull Attachment attachment,
+                                           @NonNull MediaConstraints mediaConstraints)
+      throws UndeliverableMessageException
   {
-    if (!constraints.canResize(attachment)) {
-      throw new UnsupportedOperationException("Cannot resize this content type");
+    Uri uri = attachment.getUri();
+
+    if (uri == null) {
+      throw new UndeliverableMessageException("No attachment URI!");
     }
+
+    ImageCompressionUtil.Result result = null;
 
     try {
-      BitmapUtil.ScaleResult scaleResult = BitmapUtil.createScaledBytes(context,
-                                                                        new DecryptableStreamUriLoader.DecryptableUri(attachment.getUri()),
-                                                                        constraints);
-
-      return new MediaStream(new ByteArrayInputStream(scaleResult.getBitmap()),
-                             MediaUtil.IMAGE_JPEG,
-                             scaleResult.getWidth(),
-                             scaleResult.getHeight());
+      for (int size : mediaConstraints.getImageDimensionTargets(context)) {
+        result = ImageCompressionUtil.compressWithinConstraints(context,
+                                                                attachment.getContentType(),
+                                                                new DecryptableStreamUriLoader.DecryptableUri(uri),
+                                                                size,
+                                                                mediaConstraints.getImageMaxSize(context),
+                                                                70);
+        if (result != null) {
+          break;
+        }
+      }
     } catch (BitmapDecodingException e) {
-      throw new IOException(e);
+      throw new UndeliverableMessageException(e);
     }
+
+    if (result == null) {
+      throw new UndeliverableMessageException("Somehow couldn't meet the constraints!");
+    }
+
+    return new MediaStream(new ByteArrayInputStream(result.getData()),
+                           result.getMimeType(),
+                           result.getWidth(),
+                           result.getHeight());
   }
 
   public static final class Factory implements Job.Factory<AttachmentCompressionJob> {

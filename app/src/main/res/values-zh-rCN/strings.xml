@@ -64,6 +64,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">上传媒体中…</string>
   <string name="AttachmentUploadJob_compressing_video_start">压缩视频中…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">正在检查消息…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">已屏蔽的用户</string>
   <string name="BlockedUsersActivity__add_blocked_user">屏蔽更多用户</string>
@@ -452,7 +454,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">若要解锁@提醒和管理员的功能，请升级该群组。</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">稍后再说</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">更新群组</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">升级群组</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">无法转移%1$d位成员到新版群组，您现要再尝试添加其到新版群组吗？</item>
@@ -1048,6 +1050,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密码</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">无效密码！</string>
   <string name="PassphrasePromptActivity_unlock_signal">解锁 Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - 锁定屏幕</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地图</string>
   <string name="PlacePickerActivity_drop_pin">标注</string>
@@ -1142,6 +1145,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">无法从%1$s接收音频与视频</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">这可能是因为他们还没验证过你的安全码发生的变更，或是因为他们的设备有问题，又或者是因为他们已经屏蔽了你。</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">代理服务器</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">代理地址</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">是否使用该代理地址？</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">使用代理</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">成功连接代理。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">选择国家</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">必须指定
@@ -1899,10 +1907,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">对于非联系人和未与其分享个人资料的其他人，启用传入消息的加密发送人功能。</string>
   <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
   <string name="preferences_setup_a_username">设置用户名</string>
+  <string name="preferences_proxy">代理</string>
+  <string name="preferences_use_proxy">使用代理</string>
   <string name="preferences_off">关</string>
   <string name="preferences_on">开</string>
+  <string name="preferences_proxy_address">代理地址</string>
+  <string name="preferences_only_use_a_proxy_if">仅当无法通过手机网络或 Wi-Fi 连接 Signal 时，使用代理。</string>
   <string name="preferences_share">分享</string>
   <string name="preferences_save">保存</string>
+  <string name="preferences_connecting_to_proxy">正在连接代理…</string>
+  <string name="preferences_connected_to_proxy">已连接代理</string>
+  <string name="preferences_connection_failed">连接失败</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">无法连接代理。请检查代理地址并重试。</string>
+  <string name="preferences_you_are_connected_to_the_proxy">已连接代理。可在“设置”下随时关闭该代理。</string>
+  <string name="preferences_success">成功</string>
+  <string name="preferences_failed_to_connect">无法连接</string>
+  <string name="preferences_enter_proxy_address">请输入代理地址</string>
   <string name="configurable_single_select__customize_option">自定义选项</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2083,6 +2103,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">PIN 错误</string>
   <string name="RegistrationLockFragment__forgot_your_pin">忘记 PIN？</string>
   <string name="RegistrationLockFragment__not_many_tries_left">可尝试的次数不多了！</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal 注册 - 关于 Android 版 PIN 需要帮助（v1 PIN）</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 注册 - 关于 Android 版本 PIN 需要帮助（v2 PIN）</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="other">为了保护你的隐私和安全，你无法找回你的PIN码。如果您记不住您的PIN码，你可以在%1$d天的帐户不活跃后用短信重新验证。在这种情况下，你的帐户会被抹除并且所有的信息都会被删除。</item>
   </plurals>

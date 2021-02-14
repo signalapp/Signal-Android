@@ -7,6 +7,7 @@
     android:layout_height="wrap_content">
 
   <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/attachment_keyboard_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@color/signal_background_primary"
@@ -29,6 +30,7 @@
         android:id="@+id/attachment_keyboard_button_list"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
         android:paddingStart="8dp"
         android:clipToPadding="false"
         android:clipChildren="false"

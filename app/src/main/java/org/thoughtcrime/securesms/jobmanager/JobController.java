@@ -16,11 +16,14 @@ import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.SetUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -110,17 +113,30 @@ class JobController {
       return;
     }
 
-    Set<String> dependsOnSet = Stream.of(dependsOn)
-                                     .filter(id -> jobStorage.getJobSpec(id) != null)
-                                     .collect(Collectors.toSet());
+    Set<String> allDependsOn   = new HashSet<>(dependsOn);
+    Set<String> aliveDependsOn = Stream.of(dependsOn)
+                                       .filter(id -> jobStorage.getJobSpec(id) != null)
+                                       .collect(Collectors.toSet());
 
     if (dependsOnQueue != null) {
-      dependsOnSet.addAll(Stream.of(jobStorage.getJobsInQueue(dependsOnQueue))
-                                .map(JobSpec::getId)
-                                .toList());
+      List<String> inQueue = Stream.of(jobStorage.getJobsInQueue(dependsOnQueue))
+                                   .map(JobSpec::getId)
+                                   .toList();
+
+      allDependsOn.addAll(inQueue);
+      aliveDependsOn.addAll(inQueue);
     }
 
-    FullSpec fullSpec = buildFullSpec(job, dependsOnSet);
+    if (jobTracker.haveAnyFailed(allDependsOn)) {
+      Log.w(TAG, "This job depends on a job that failed! Failing this job immediately.");
+      List<Job> dependents = onFailure(job);
+      job.setContext(application);
+      job.onFailure();
+      Stream.of(dependents).forEach(Job::onFailure);
+      return;
+    }
+
+    FullSpec fullSpec = buildFullSpec(job, aliveDependsOn);
     jobStorage.insertJobs(Collections.singletonList(fullSpec));
 
     scheduleJobs(Collections.singletonList(job));
@@ -144,8 +160,9 @@ class JobController {
         Log.w(TAG, JobLogger.format(job, "Job failed."));
 
         job.cancel();
+        List<Job> dependents = onFailure(job);
         job.onFailure();
-        onFailure(job);
+        Stream.of(dependents).forEach(Job::onFailure);
       } else {
         Log.w(TAG, "Tried to cancel JOB::" + id + ", but it could not be found.");
       }
@@ -313,7 +330,7 @@ class JobController {
 
       boolean exceedsQueue   = solo.getParameters().getQueue() != null                                    &&
                                solo.getParameters().getMaxInstancesForQueue() != Job.Parameters.UNLIMITED &&
-                               jobStorage.getJobCountForQueue(solo.getParameters().getQueue()) >= solo.getParameters().getMaxInstancesForQueue();
+                               jobStorage.getJobCountForFactoryAndQueue(solo.getFactoryKey(), solo.getParameters().getQueue()) >= solo.getParameters().getMaxInstancesForQueue();
 
       if (exceedsQueue) {
         return true;

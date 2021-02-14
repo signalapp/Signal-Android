@@ -76,6 +76,13 @@
 
             </LinearLayout>
 
+            <ProgressBar
+                android:id="@+id/gv1_migrate_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginTop="23dp"
+                android:indeterminate="true" />
+
             <LinearLayout
                 android:id="@+id/gv1_migrate_invite_container"
                 android:layout_width="match_parent"

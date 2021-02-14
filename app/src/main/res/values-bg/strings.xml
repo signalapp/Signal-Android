@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Качване на медия…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Компресиране на видео…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани потребители</string>
   <string name="BlockedUsersActivity__add_blocked_user">Добавяне на блокиран потребител</string>
@@ -469,7 +470,6 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Обновете тази група за достъп до нови функционалности като @споменаване и администратори.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Обнови група</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можа да бъде добавен към новата група. Искате ли да го/я добавите сега?</item>

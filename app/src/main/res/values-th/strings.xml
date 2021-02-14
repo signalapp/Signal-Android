@@ -64,6 +64,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">กำลังอัพโหลดสื่อ…</string>
   <string name="AttachmentUploadJob_compressing_video_start">กำลังบีบอัดวิดีโอ…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกปิดกั้นอยู่</string>
   <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ปิดกั้น</string>
@@ -172,7 +174,7 @@
   <string name="ConversationItem_to_s">ถึง %s</string>
   <string name="ConversationItem_read_more">อ่านเพิ่มเติม</string>
   <string name="ConversationItem_download_more">ดาวน์โหลดเพิ่มเติม</string>
-  <string name="ConversationItem_pending">อยู่ระหว่างดำเนินการ</string>
+  <string name="ConversationItem_pending">  อยู่ระหว่างดำเนินการ</string>
   <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
   <string name="ConversationItem_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
   <!--ConversationActivity-->
@@ -253,7 +255,7 @@
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="other">กำลังบันทึกแฟ้มแนบ %1$d ไปยังที่เก็บข้อมูล…</item>
   </plurals>
-  <string name="ConversationFragment_pending">อยู่ในระหว่างดำเนินการ…</string>
+  <string name="ConversationFragment_pending">อยู่ระหว่างดำเนินการ…</string>
   <string name="ConversationFragment_push">ข้อมูล (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -261,7 +263,7 @@
   <string name="ConversationFragment_deleting_messages">กำลังลบข้อความ…</string>
   <string name="ConversationFragment_delete_for_me">ลบของฉัน</string>
   <string name="ConversationFragment_delete_for_everyone">ลบของทุกคน</string>
-  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ข้อความนี้จะถูกลบสำหรับทุกคนที่อยู่ในบทสนทนาถ้าทุกคนได้อัพเดทเวอร์ชันล่าสุดของ Signal พวกเขาจะเห็นว่าคุณลบข้อความ</string>
+  <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">ถ้าคนในกลุ่มใช้ Signal รุ่นที่ปรับปรุงไม่นานนี้ ข้อความนี้จะถูกลบไปจากการสนทนาของทุกคน พวกเขาจะเห็นด้วยว่าคุณได้ลบข้อความ</string>
   <string name="ConversationFragment_quoted_message_not_found">ไม่พบข้อความเดิม</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">ข้อความเดิมไม่มีอยู่แล้ว</string>
   <string name="ConversationFragment_failed_to_open_message">การเปิดข้อความล้มเหลว</string>
@@ -269,7 +271,7 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">คุณสามารถปัดด้านซ้ายเพื่อตอบข้อความอย่างรวดเร็ว</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ไฟล์สื่อที่ดูได้ครั้งเดียวที่กำลังถูกส่งออกไปจะถูกลบอัตโนมัติหลังจากส่งไปแล้ว</string>
   <string name="ConversationFragment_you_already_viewed_this_message">คุณเห็นข้อความนี้แล้ว</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกสำหรับตัวคุณในบทสนทนานี้ \n หากบัญชีของคุณเชื่อมต่อกับอุปกรณ์อื่น บันทึกใหม่ของคุณจะถูกเชื่อมโยงเช่นกัน</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">คุณสามารถเพิ่มบันทึกสำหรับตัวคุณเองในบทสนทนานี้\nหากบัญชีของคุณมีอุปกรณ์ใดเชื่อมโยงอยู่ บันทึกใหม่จะถูกปรับประสานถึงกัน</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d สมาชิกกลุ่มมีชื่อเหมือนกัน</string>
   <string name="ConversationFragment__tap_to_review">แตะเพื่อทบทวน</string>
   <string name="ConversationFragment__review_requests_carefully">ทบทวนคำขออย่างระวัง</string>
@@ -278,7 +280,7 @@
   <string name="ConversationFragment_verify">ตรวจยืนยัน</string>
   <string name="ConversationFragment_not_now">ไม่ใช่ตอนนี้</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s เปลี่ยนไป น่าจะเป็นเพราะว่าหมายเลขนั้นมีการติดตั้ง Sinal ใหม่หรือเปลี่ยนอุปกรณ์ แตะปุ่มตรวจยืนยันเพื่อยืนยันหมายเลขความปลอดภัยเลขใหม่ สิ่งนี้เป็นตัวเลือก</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">หมายเลขความปลอดภัยของคุณกับ %s ได้เปลี่ยนไป น่าจะเป็นเพราะหมายเลขนั้นได้ติดตั้ง Signal ใหม่หรือเปลี่ยนอุปกรณ์ แตะปุ่มตรวจยืนยันเพื่อยืนยันหมายเลขความปลอดภัยเลขใหม่ สิ่งนี้จะทำหรือไม่ก็ได้</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="other">ลบการสนทนาที่เลือกหรือไม่?</item>
   </plurals>
@@ -308,12 +310,12 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
   <string name="CreateProfileActivity_problem_setting_profile">ปัญหาการตั้งค่าโปรไฟล์</string>
   <string name="CreateProfileActivity_set_up_your_profile">สร้างโปรไฟล์ของคุณ</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">โปรไฟล์ของคุณคือการเข้ารหัสต้นทางถึงปลายทาง เมื่อคุณเริ่มต้นหรือยอมรับบทสนทนาใหม่และเมื่อคุณเข้าร่วมกลุ่มใหม่ ผู้ติดต่อของคุณจะมองเห็นโปรไฟล์ของคุณและความเปลี่ยนแปลงของโปรไฟล์คุณ </string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">โปรไฟล์ของคุณถูกเข้ารหัสลับจากต้นทางถึงปลายทาง เมื่อคุณเริ่มต้นหรือยอมรับบทสนทนาใหม่และเมื่อคุณเข้าร่วมกลุ่มใหม่ ผู้ติดต่อของคุณจะมองเห็นโปรไฟล์และความเปลี่ยนแปลงที่เกิดขึ้นกับโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_set_avatar_description">สร้างอวตาร</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">กู้คืนจากข้อมูลสำรองหรือไม่?</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">กู้คืนข้อความและสื่อของคุณจากข้อมูลสำรองในเครื่อง หากคุณไม่กู้คืนตอนนี้ คุณจะไม่สามารถกู้คืนได้อีกในภายหลัง</string>
-  <string name="ChooseBackupFragment__icon_content_description">กู้คืนจากปุ่มข้อมูลสำรอง</string>
+  <string name="ChooseBackupFragment__icon_content_description">กู้คืนจากข้อมูลสำรอง</string>
   <string name="ChooseBackupFragment__choose_backup">เลือกข้อมูลสำรอง</string>
   <string name="ChooseBackupFragment__learn_more">เรียนรู้เพิ่มเติม</string>
   <!--RestoreBackupFragment-->
@@ -377,12 +379,12 @@
   <string name="DonateMegaphone_no_thanks">ไม่ ขอบคุณ</string>
   <!--GroupCallingMegaphone-->
   <string name="GroupCallingMegaphone__introducing_group_calls">แนะนำการโทรแบบกลุ่ม</string>
-  <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัส</string>
+  <string name="GroupCallingMegaphone__open_a_new_group_to_start">เปิดกลุ่มใหม่เพื่อเริ่มการโทรแบบกลุ่มที่เข้ารหัสลับ</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
   <!--ExpiredBuildReminder-->
-  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">เวอร์ชันนี้ของ Signal หมดอายุแล้ว อัปเดตตอนนี้เพื่อส่งและรับข้อความ</string>
+  <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal รุ่นนี้หมดอายุแล้ว ปรับปรุงเดี๋ยวนี้เพื่อรับและส่งข้อความ</string>
   <string name="ExpiredBuildReminder_update_now">ปรับปรุงเดี๋ยวนี้</string>
   <!--PendingGroupJoinRequestsReminder-->
   <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -426,7 +428,7 @@
   <string name="GroupManagement_invite_single_user">คุณไม่สามารถเพิ่ม %1$s เข้ากลุ่มนี้โดยอัตโนมัติ \n\nพวกเขาได้รับเชิญให้เข้ากลุ่มและจะไม่เห็นข้อความในกลุ่มจนกว่าพวกเขาจะตอบรับคำเชิญ </string>
   <string name="GroupManagement_invite_multiple_users">คุณไม่สามารถเพิ่มผู้ใช้เหล่านี้เข้ากลุ่มนี้โดยอัตโนมัติ \n\nพวกเขาได้รับเชิญให้เข้ากลุ่มและจะไม่เห็นข้อความในกลุ่มจนกว่าพวกเขาจะตอบรับคำเชิญ </string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
-  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">อะไรคือกลุ่มใหม่</string>
+  <string name="GroupsV1MigrationLearnMore_what_are_new_groups">อะไรคือกลุ่มแบบใหม่</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">กลุ่มใหม่มีคุณลักษณะเช่นการ @mentions และผู้ดูแลกลุ่ม และจะการสนับสนุนคุณลักษณะเพิ่มเติมในอนาคต</string>
   <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">ประวัติข้อความและสื่อทั้งหมดถูกเก็บก่อนการอัปเกรด</string>
   <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">คุณต้องยอมรับการเชิญเข้ากลุ่มนี้อีกครั้ง และจะไม่ได้รับข้อความในกลุ่มจนกว่าคุณจะยอมรับคำเชิญ</string>
@@ -452,7 +454,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">อัปเกรดกลุ่มนี้เพื่อเข้าถึงคุณลักษณะใหม่เช่นการ @mentions และผู้ดูแลกลุ่ม </string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ไม่ใช่ตอนนี้</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ปรับปรุงกลุ่ม</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ปรับรุ่นกลุ่ม</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">ไม่สามารถเพิ่มสมาชิก%1$dเข้ากลุ่มใหม่ได้ คุณต้องการเพิ่มสมาชิกตอนนี้หรือไม่? </item>
@@ -662,6 +664,8 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">คุณเป็นสมาชิกอยู่แล้ว</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">เข้าร่วม</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">คำขอเข้ากลุ่ม</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ไม่สามารถเข้าร่วมกลุ่ม กรุณาลองอีกครั้งภายหลัง</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">ลิงค์กลุ่มนี้ไม่มีความเคลื่อนไหว</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
@@ -670,12 +674,15 @@
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ปรับปรุง Signal เพื่อใช้ลิงก์กลุ่ม</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ปรับปรุง Signal</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ลิงก์กลุ่มไม่ถูกต้อง</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">เชิญเพื่อน</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">แบ่งปันลิงก์</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">คุณไม่ได้เป็นสมาชิกของกลุ่มดังกล่าว</string>
   <!--GV2 Request confirmation dialog-->
   <string name="RequestConfirmationDialog_add_s_to_the_group">เพิ่ม “%1$s” เข้ากลุ่มหรือไม่?</string>
+  <string name="RequestConfirmationDialog_deny_request_from_s">ปฏิเสธคำขอจาก “%1$s” หรือไม่?</string>
   <string name="RequestConfirmationDialog_add">เพิ่ม</string>
   <string name="RequestConfirmationDialog_deny">ปฏิเสธ</string>
   <!--ImageEditorHud-->
@@ -825,6 +832,7 @@
   <string name="MessageRecord_s_removed_you_from_the_group">%1$s ได้นำคุณออกจากกลุ่ม</string>
   <string name="MessageRecord_you_left_the_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_s_left_the_group">%1$s ออกจากกลุ่ม</string>
+  <string name="MessageRecord_you_are_no_longer_in_the_group">คุณไม่ได้อยู่ในกลุ่มอีกต่อไปแล้ว</string>
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">คุณได้ตั้ง %1$s เป็นผู้ดูแล</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s ได้ตั้ง %2$s เป็นผู้ดูแล</string>
@@ -833,6 +841,7 @@
   <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจากคุณ</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ได้เพิกถอนสิทธิ์ผู้ดูแลจาก %2$s</string>
   <string name="MessageRecord_you_are_now_an_admin">ตอนนี้คุณเป็นผู้ดูแลแล้ว</string>
+  <string name="MessageRecord_you_are_no_longer_an_admin">คุณไม่ได้เป็นผู้ดูแลอีกต่อไปแล้ว</string>
   <!--GV2 invitations-->
   <string name="MessageRecord_you_invited_s_to_the_group">คุณได้เชิญ %1$s เข้ากลุ่ม</string>
   <string name="MessageRecord_s_invited_you_to_the_group">%1$s ได้เชิญคุณเข้ากลุ่ม</string>
@@ -873,6 +882,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">คุณทำเครื่องหมายว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">คุณทำเครื่องหมายจากอีกอุปกรณ์ว่า หมายเลขความปลอดภัยของคุณกับ %s ยังไม่ถูกตรวจยืนยัน</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_group_call_s">โทรกลุ่ม · %1$s</string>
   <string name="MessageRecord_you_are_in_the_group_call">คุณอยู่ในการโทรแบบกลุ่ม</string>
   <string name="MessageRecord_you">คุณ</string>
   <!--MessageRequestBottomView-->
@@ -971,6 +981,8 @@
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">กลุ่มที่ไม่มีชื่อ</string>
   <!--RedPhone-->
+  <string name="RedPhone_answering">กำลังรับสาย…</string>
+  <string name="RedPhone_ending_call">กำลังวางสาย…</string>
   <string name="RedPhone_ringing">กำลังเรียกสาย…</string>
   <string name="RedPhone_busy">ไม่ว่าง</string>
   <string name="RedPhone_recipient_unavailable">ผู้รับไม่พร้อมใช้งาน</string>
@@ -1295,6 +1307,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <string name="ContactSelectionListFragment_username_not_found">ไม่พบชื่อผู้ใช้</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">%1$sไม่ใช่ผู้ใช้ Signal โปรดตรวจสอบชื่อผู้ใช้และลองอีกครั้ง</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">กลุ่มของ Signal ทำงานได้ดีที่สุดเมื่อมีสมาชิกไม่เกิน %1$d ราย การเพิ่มสมาชิกจะทำให้การส่งและรับข้อความล่าช้าขึ้น</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="other">%1$d สมาชิก</item>
   </plurals>
@@ -1466,6 +1479,7 @@
   <string name="message_details_header__disappears">ลบตัวเอง</string>
   <string name="message_details_header__via">ผ่าน</string>
   <!--message_details_recipient_header-->
+  <string name="message_details_recipient_header__pending_send">อยู่ระหว่างดำเนินการ</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">การส่งล้มเหลว</string>
   <string name="message_details_recipient__new_safety_number">หมายเลขความปลอดภัยใหม่</string>

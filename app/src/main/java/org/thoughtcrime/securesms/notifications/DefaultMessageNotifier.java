@@ -271,6 +271,10 @@ public class DefaultMessageNotifier implements MessageNotifier {
                                  int      reminderCount,
                                  @NonNull BubbleUtil.BubbleState defaultBubbleState)
   {
+    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
+      return;
+    }
+
     boolean isReminder  = reminderCount > 0;
     Cursor  telcoCursor = null;
     Cursor  pushCursor  = null;

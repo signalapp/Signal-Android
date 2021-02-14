@@ -12,12 +12,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
-import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.signalservice.api.SignalServiceSessionStore;
 
 import java.util.Collections;
 import java.util.List;
 
-public class TextSecureSessionStore implements SessionStore {
+public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   private static final String TAG = TextSecureSessionStore.class.getSimpleName();
 
@@ -99,6 +99,16 @@ public class TextSecureSessionStore implements SessionStore {
       } else {
         Log.w(TAG, "Tried to get sub device sessions for " + name + ", but none existed!");
         return Collections.emptyList();
+      }
+    }
+  }
+
+  @Override
+  public void archiveSession(SignalProtocolAddress address) {
+    synchronized (FILE_LOCK) {
+      if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
+        RecipientId recipientId = Recipient.external(context, address.getName()).getId();
+        archiveSession(recipientId, address.getDeviceId());
       }
     }
   }

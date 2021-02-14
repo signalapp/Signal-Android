@@ -76,7 +76,7 @@
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintStart_toEndOf="@id/chat_wallpaper_preview_top_bar_navigation"
             app:srcCompat="@drawable/circle_tintable"
-            app:tint="@color/core_white" />
+            app:tint="@color/core_ultramarine" />
 
         <TextView
             android:layout_width="0dp"
@@ -86,7 +86,7 @@
             android:layout_marginBottom="4dp"
             android:text="@string/ChatWallpaperFragment__contact_name"
             android:textAppearance="@style/Signal.Text.Body"
-            android:textColor="@color/core_white"
+            android:textColor="@color/signal_text_primary"
             android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintEnd_toStartOf="@id/chat_wallpaper_preview_top_bar_video"
@@ -101,8 +101,8 @@
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintEnd_toStartOf="@id/chat_wallpaper_preview_top_bar_voice"
-            app:srcCompat="@drawable/ic_video_solid_24"
-            app:tint="@color/core_white" />
+            app:srcCompat="@drawable/ic_video_call_24"
+            app:tint="@color/signal_icon_tint_primary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/chat_wallpaper_preview_top_bar_voice"
@@ -112,8 +112,8 @@
             android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
             app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_top_bar"
-            app:srcCompat="@drawable/ic_phone_right_solid_24"
-            app:tint="@color/core_white" />
+            app:srcCompat="@drawable/ic_phone_right_24"
+            app:tint="@color/signal_icon_tint_primary" />
 
         <View
             android:id="@+id/chat_wallpaper_preview_bottom_bar"

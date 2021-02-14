@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">A carregar multimédia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">A comprimir vídeo…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">A procurar por mensagens…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utilizadores bloqueados</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adicionar utilizador bloqueado</string>
@@ -469,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para aceder a novos recursos como @menções e administradores, faça o upgrade deste grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Upgrade do grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pode ser readicionado ao \'Novo grupo\'. Deseja adiciona-lo novamente?</item>
@@ -1978,6 +1980,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_off">Off</string>
   <string name="preferences_on">On</string>
   <string name="preferences_proxy_address">Endereço proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Apenas utilize um proxy se você não conseguir ligar-se ao Signal através dos dados móveis ou Wi-Fi. </string>
   <string name="preferences_share">Partilhar</string>
   <string name="preferences_save">Guardar</string>
   <string name="preferences_connecting_to_proxy">A ligar ao proxy…</string>
@@ -1987,6 +1990,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_you_are_connected_to_the_proxy">Não é possível ligar ao proxy. Consulte o endereço de proxy e tente novamente.</string>
   <string name="preferences_success">Sucesso</string>
   <string name="preferences_failed_to_connect">Falha na ligação</string>
+  <string name="preferences_enter_proxy_address">Introduza o endereço proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opção</string>
   <!--Internal only preferences-->
   <!--****************************************-->

@@ -350,6 +350,11 @@ public class GroupActionProcessor extends DeviceAwareActionProcessor {
     return terminateGroupCall(currentState);
   }
 
+  @Override
+  protected @NonNull WebRtcServiceState handleOrientationChanged(@NonNull WebRtcServiceState currentState, int orientationDegrees) {
+    return currentState;
+  }
+
   public synchronized @NonNull WebRtcServiceState terminateGroupCall(@NonNull WebRtcServiceState currentState) {
     return terminateGroupCall(currentState, true);
   }

@@ -69,6 +69,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الملف …</string>
   <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">يجلب الرسائل…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
   <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدما محظورا</string>
@@ -137,8 +139,8 @@
   <string name="CommunicationActions_insecure_call">مكالمة غير آمنة</string>
   <string name="CommunicationActions_carrier_charges_may_apply">قد تُطبَّق عليك رسوم شركة الاتصال. الرقم الذي تتصل به غير مسجل في Signal. سيتم إجراء هذه المكالمة من خلال مشغِّل شبكة الجوال، وليس عبر الانترنت.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة مع %1$s. وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ربما ترغب بالتحقق من رقم السلامة مع جهة الاتصال هذه.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تغيَّر رقم الأمان مع %1$s. وهذا يعني إما محاولة أحدٍ اعتراض المحادثة أو ببساطة قيام %2$s بإعادة تثبيت Signal.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ربما ترغب بالتحقق من رقم الأمان مع جهة الاتصال هذه.</string>
   <string name="ConfirmIdentityDialog_accept">موافقة</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">المحادثات الأحدث</string>
@@ -538,7 +540,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">للوصول إلى الميزات الجديدة مثل ‎@mentions والمشرفين، قم بترقية هذه المجموعة.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ليس الآن</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">تحديث المجموعة</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">رقِّ المجموعة</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="zero">تعذرت إضافة %1$d عضو مرة ثانية إلى المجموعة الجديدة. ألديك نية ﻹضافة الشخص الآن ؟</item>
@@ -1214,11 +1216,11 @@
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">لقد ألغيت طلب انضمامك للمجموعة.</string>
   <string name="MessageRecord_s_canceled_their_request_to_join_the_group">ألغي طلب الانضمام للمجموعة من طرف %1$s.</string>
   <!--End of GV2 specific update messages-->
-  <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير رقم السلامة الخاص بينك وبين %s.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">لقد قمت بالتحقق من رقم السلامة مع %s</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">لقد قمت بالإشعار بأنّك تحقّقت من رقم السلامة مع %s عن طريق جهاز آخر</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">لقد قمت بالإشعار بأنّ رقم السلامة مع %s لم يتم التحقّق منه</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم السلامة مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
+  <string name="MessageRecord_your_safety_number_with_s_has_changed">تم تغيير  رقم الأمان الخاص بينك وبين %s.</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">لقد قمت بالتحقق من رقم الأمان مع %s</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">لقد قمت بالإشعار بأنك تحققت من رقم الأمان مع %s عن طريق جهاز آخر</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">لقد قمت بالإشعار بأنّ رقم الأمان مع %s لم يتم التحقّق منه عن طريق جهاز آخر</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">العضو %1$s موجود في المكالمة الجماعية · %2$s</string>
@@ -1594,8 +1596,8 @@
   <string name="ThreadRecord_s_is_on_signal">%sمتواجد على Signal !</string>
   <string name="ThreadRecord_disappearing_messages_disabled">الرسائل المختفية غير مفعّلة</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %s</string>
-  <string name="ThreadRecord_safety_number_changed">هناك تغيير في رقم السلامة</string>
-  <string name="ThreadRecord_your_safety_number_with_s_has_changed">لقد تغيّر رقم السلامة بينك وبـين %s.</string>
+  <string name="ThreadRecord_safety_number_changed">هناك تغيير في رقم الأمان</string>
+  <string name="ThreadRecord_your_safety_number_with_s_has_changed">لقد تغيّر رقم الأمان بينك وبـين %s.</string>
   <string name="ThreadRecord_you_marked_verified">لقد قمت بالإشارة بالتحقّق </string>
   <string name="ThreadRecord_you_marked_unverified">لقد قمت بإلغاء التحقق</string>
   <string name="ThreadRecord_message_could_not_be_processed">لم يمكن معالجة الرسالة</string>
@@ -1637,11 +1639,11 @@
     <item quantity="other">%d جهة اتصال تستخدم Signal !</item>
   </plurals>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">جهة الاتصال هذه تستخدم إصدار قديم من Signal. اطلب منه تحديث التطبيق قبل التحقق من رقم السلامة.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">جهة الاتصال هذه تستخدم إصدار قديم من Signal. اطلب منه تحديث التطبيق قبل التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">جهة الاتصال هذه تستخدم نسخة أحدث من تطبيق Signal وصيغة رمز الاستجابة السريع أو QR فيها لا تتوافق مع نسختك. يرجى تحديث النسخة للمقارنة.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">إن رمز الاستجابة السّريع الذي تمّ مسحه ليس برمز تحقق لرقم سلامة مُصاغ بشكل صحيح. يُرجى محاولة المسح من جديد.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم السلامة بواسطة…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">رقم السلامة الخاص بنا في Signal:</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم الأمان بواسطة…</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم سلامة يمكن مقارنته في الحافظة</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل مسح رمز الاستجابة السريع QR ولكن تم إيقاف الإذن على نحو دائم، الرجاء زيارة إعدادات التطبيق واختيار \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
@@ -1867,7 +1869,7 @@
   <string name="safety_number_change_dialog__join_call">الانضمام للمكالمة</string>
   <string name="safety_number_change_dialog__continue_call">استئناف المكالمة</string>
   <string name="safety_number_change_dialog__leave_call">مغادرة المكالمة</string>
-  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">هؤلاء الأشخاص قاموا بإعادة تثبيت أو قاموا بتغيبر أجهزتهم. يرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
+  <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">ربما قام هؤلاء الأشخاص بإعادة تثبيت التطبيق أو قاموا بتغيير أجهزتهم. يُرجى تأكيد رقم الأمان معهم لضمان الخصوصية.</string>
   <string name="safety_number_change_dialog__view">إظهار</string>
   <string name="safety_number_change_dialog__previous_verified">سبق التحقق منه</string>
   <!--country_selection_fragment-->
@@ -1930,13 +1932,13 @@
   <string name="expiration_weeks_abbreviated">%d أسبوع</string>
   <string name="expiration_combined">‏%1$s‏%2$s‏</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">رقم السلامة مع %s قد تغيير ولم يعد التحقّق السابق منه وافٍ.</string>
+  <string name="IdentityUtil_unverified_banner_one">رقم اﻷمان مع %s قد تغير ولم يعد التحقُّق السابق منه وافٍ.</string>
   <string name="IdentityUtil_unverified_banner_two">التحقق من أرقام السلامة مع كل من %1$s و%2$s لم يعد واف بعد الآن.</string>
   <string name="IdentityUtil_unverified_banner_many">أرقام السلامة مع كل من %1$s، %2$s، و%3$s قد تغيّيرت، والتحقّق غير وافٍ بعد الآن.</string>
-  <string name="IdentityUtil_unverified_dialog_one">لقد تغيير رقم السلامة مع %1$s والتحقّق السابق غير وافٍ، قد يعني هذا  إما محاولة أحد ما لاعتراض المحادثة أو ببساطة قيام %1$s بإعادة تثبيت Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">لقد تغيير رقم السلامة مع كل من %1$s و%2$s، والتحقّق السابق غير وافٍ، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيامهم بإعادة تثبيت Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">لقد تغير رقم اﻷمان مع %1$s والتحقُّق السابق غير وافٍ، قد يعني هذا  إما محاولة أحد ما اعتراض المحادثة أو ببساطة قيام %1$s بإعادة تثبيت Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">لقد تغير رقم اﻷمان مع كل من %1$s و%2$s، والتحقُّق السابق غير وافٍ، وهذا يعني إما محاولة أحدٍ اعتراض المحادثة أو ببساطة قيامهما بإعادة تثبيت Signal.</string>
   <string name="IdentityUtil_unverified_dialog_many">تم تغيير أرقام السلامة مع %1$s، %2$s، و%3$s، والتحقّق السابق غير وافٍ، وهذا يعني إما محاولة أحداً لاعتراض المحادثة أو ببساطة قيامهم بإعادة تثبيت Signal.</string>
-  <string name="IdentityUtil_untrusted_dialog_one">لقد تغير رقم السلامة بينك وبين %s للتو.</string>
+  <string name="IdentityUtil_untrusted_dialog_one">لقد تغير رقم اﻷمان بينك وبين %s للتو.</string>
   <string name="IdentityUtil_untrusted_dialog_two">لقد تغيرت أرقام السلامة للتو مع كل من%1$s و%2$s.</string>
   <string name="IdentityUtil_untrusted_dialog_many">لقد تغيرت أرقام السلامة مع كل من %1$s و %2$s و %3$s للتو.</string>
   <plurals name="identity_others">
@@ -2020,7 +2022,7 @@
   <string name="verify_display_fragment__loading">قيد التحميل…</string>
   <string name="verify_display_fragment__verified"> تمّ التحقق </string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">شارك رقم السلامة</string>
+  <string name="verify_identity__share_safety_number">شارك رقم اﻷمان</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">إسحب للأعلى للإجابة</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">إسحب للأسفل لرفض المكالمة</string>
@@ -2044,7 +2046,7 @@
   <string name="AndroidManifest__create_passphrase">إنشاء عبارة سرية</string>
   <string name="AndroidManifest__select_contacts">اخر جهات الاتصال</string>
   <string name="AndroidManifest__change_passphrase">غير العبارة السرية</string>
-  <string name="AndroidManifest__verify_safety_number">تحقق من رقم السلامة</string>
+  <string name="AndroidManifest__verify_safety_number">تحقق من رقم اﻷمان</string>
   <string name="AndroidManifest__log_submit">إرسال سِجل التصحيح</string>
   <string name="AndroidManifest__media_preview">معاينة الوسائط</string>
   <string name="AndroidManifest__message_details">تفاصيل الرسالة</string>
@@ -2271,6 +2273,7 @@
   <string name="preferences_off">غير مُشغَّل</string>
   <string name="preferences_on">مُشغَّل</string>
   <string name="preferences_proxy_address">عنوان الوكيل</string>
+  <string name="preferences_only_use_a_proxy_if">عليك باستخدام وكيل فقط إذا تعذر عليك الاتصال بـ Signal (عبر البيانات الخلوية أو عبر Wi-Fi).</string>
   <string name="preferences_share">المشاركة</string>
   <string name="preferences_save">حفظ</string>
   <string name="preferences_connecting_to_proxy">يجري الاتصال بالوكيل…</string>
@@ -2280,6 +2283,7 @@
   <string name="preferences_you_are_connected_to_the_proxy">إنك متصل بالوكيل. يمكنك تعطيله في أي وقت، انطلاقا من اﻹعدادات.</string>
   <string name="preferences_success">نجحت</string>
   <string name="preferences_failed_to_connect">فشِل الاتصال</string>
+  <string name="preferences_enter_proxy_address">عليك بإدخال عنوان الوكيل</string>
   <string name="configurable_single_select__customize_option">تخصيص الخيارات</string>
   <!--Internal only preferences-->
   <!--****************************************-->

@@ -64,6 +64,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">メディアをアップロードしています…</string>
   <string name="AttachmentUploadJob_compressing_video_start">動画を圧縮しています…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">メッセージを確認しています…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザを追加する</string>
@@ -452,7 +454,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@メンションや管理者などの新機能を使用するには、このグループをアップグレードしてください。</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">いまはしない</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">グループをアップデートしてください</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">グループをアップグレードする</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d人のメンバーが、新しいグループに再参加できませんでした。このメンバーをいま追加しますか？</item>
@@ -502,7 +504,7 @@
   <string name="PendingMembersActivity_invites">招待</string>
   <string name="PendingMembersActivity_people_you_invited">あなたが招待した人々</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">保留中の招待はありません。</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">グループの他のメンバーからの招待</string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">他のグループメンバーによる招待</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">他のグループメンバーによる保留中の招待はありません。</string>
   <string name="PendingMembersActivity_missing_detail_explanation">他のグループメンバーが招待したユーザの詳細は表示されません。招待されたユーザが参加を選択した時点で、グループ内で共有されます。招待されたユーザは、参加するまでグループ内のメッセージを閲覧できません。</string>
   <string name="PendingMembersActivity_revoke_invite">招待を取り消す</string>
@@ -656,7 +658,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">リンクをリセットする</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">メンバー申請</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">新メンバーを承認制にする</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバーの参加時に、管理者の承認を要求します。</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">グループリンク経由での新メンバー参加時に、管理者の承認を要求します。</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">本当にグループリンクをリセットしますか？リセットすると現在のリンクからグループに参加できなくなります。</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QRコード</string>
@@ -886,17 +888,17 @@
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="other">このグループへの招待のうち%1$d件を取り消しました。</item>
+    <item quantity="other">このグループへの招待%1$d件を取り消しました。</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">
-    <item quantity="other">%1$s がこのグループへの招待のうち%2$d件を取り消しました。</item>
+    <item quantity="other">%1$s がこのグループへの招待%2$d件を取り消しました。</item>
   </plurals>
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">誰かがこのグループへの招待を辞退しました。</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">このグループへの招待を辞退しました。</string>
-  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$sがあなたが送ったグループへの招待を取り消しました。</string>
+  <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s があなたが送ったグループへの招待を取り消しました。</string>
   <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">管理者があなたが送ったグループへの招待を取り消しました。</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
-    <item quantity="other">このグループへの招待のうち%1$d件が取り消されました。</item>
+    <item quantity="other">このグループへの招待%1$d件が取り消されました。</item>
   </plurals>
   <!--GV2 invitation acceptance-->
   <string name="MessageRecord_you_accepted_invite">このグループへの招待を承認しました。</string>
@@ -920,13 +922,13 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">管理者承認が不要なグループリンクを有効にしました。</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">管理者承認の不要なグループリンクを有効にしました。</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">管理者承認制のグループリンクを有効にしました。</string>
   <string name="MessageRecord_you_turned_off_the_group_link">グループリンクを無効にしました。</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s が管理者承認が不要なグループリンクを有効にしました。</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s が管理者承認の不要なグループリンクを有効にしました。</string>
   <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s が管理者承認制のグループリンクを有効にしました。</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s がグループリンクを無効にしました。</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">管理者承認が不要なグループリンクが有効になりました。</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">管理者承認の不要なグループリンクが有効になりました。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">管理者承認制のグループリンクが有効になりました。</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">グループリンクが無効になりました。</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">グループリンクの管理者承認を不要にしました。</string>
@@ -950,13 +952,13 @@
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申請を承認しました。</string>
   <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s にグループ参加申請を承認されました。</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">このグループへの参加申請は承認されました。</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s からのグループ参加申請は承認されました。</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s からのグループ参加申請が承認されました。</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">このグループへの参加申請は、管理者によって拒否されました。</string>
   <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s が %2$s からのグループ参加申請を拒否しました。</string>
   <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s からのグループ参加申請は拒否されました。</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">グループ参加申請をキャンセルしました。</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s はグループ参加申請をキャンセルしました。</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s がグループ参加申請をキャンセルしました。</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s に対する安全番号が変わりました。</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s に対する安全番号を検証済みにしました</string>
@@ -1142,11 +1144,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s からの音声と映像を受信できません</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">相手があなたの安全番号の変更を検証していないか、相手の端末に問題があるか、あなたがブロックされている可能性があります。</string>
   <!--ProxyBottomSheetFragment-->
-  <string name="ProxyBottomSheetFragment_proxy_server">プロクシサーバ</string>
-  <string name="ProxyBottomSheetFragment_proxy_address">プロクシアドレス</string>
-  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">このプロクシアドレスを使用しますか？</string>
-  <string name="ProxyBottomSheetFragment_use_proxy">プロクシを使用する</string>
-  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">プロクシに接続しました。</string>
+  <string name="ProxyBottomSheetFragment_proxy_server">プロキシサーバ</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">プロキシアドレス</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">このプロキシアドレスを使用しますか？</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">プロキシを使用する</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">プロキシに接続しました。</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">国を選択してください</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力してください</string>
@@ -1514,7 +1516,7 @@
   <string name="ConversationUpdateItem_join_call">通話に参加する</string>
   <string name="ConversationUpdateItem_return_to_call">通話に戻る</string>
   <string name="ConversationUpdateItem_call_is_full">満席です</string>
-  <string name="ConversationUpdateItem_invite_friends">友達を招待</string>
+  <string name="ConversationUpdateItem_invite_friends">友達を招待する</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
@@ -1798,8 +1800,8 @@
   <string name="preferences__mms_user_agent">MMSユーザエージェント</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMSプロクシホスト</string>
-  <string name="preferences__mms_proxy_port">MMSプロクシポート</string>
+  <string name="preferences__mms_proxy_host">MMSプロキシホスト</string>
+  <string name="preferences__mms_proxy_port">MMSプロキシポート</string>
   <string name="preferences__mmsc_username">MMSCユーザ名</string>
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信レポート</string>
@@ -1894,20 +1896,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
   <string name="preferences_setup_a_username">ユーザ名の設定</string>
-  <string name="preferences_proxy">プロクシ</string>
-  <string name="preferences_use_proxy">プロクシを使用する</string>
+  <string name="preferences_proxy">プロキシ</string>
+  <string name="preferences_use_proxy">プロキシの使用</string>
   <string name="preferences_off">オフ</string>
   <string name="preferences_on">オン</string>
-  <string name="preferences_proxy_address">プロクシアドレス</string>
+  <string name="preferences_proxy_address">プロキシアドレス</string>
+  <string name="preferences_only_use_a_proxy_if">携帯電話回線やWi-FiでSignalに接続できない場合のみ、プロキシを使用してください。</string>
   <string name="preferences_share">共有する</string>
   <string name="preferences_save">保存</string>
-  <string name="preferences_connecting_to_proxy">プロクシに接続しています…</string>
-  <string name="preferences_connected_to_proxy">プロクシ接続済み</string>
+  <string name="preferences_connecting_to_proxy">プロキシに接続しています…</string>
+  <string name="preferences_connected_to_proxy">接続済み</string>
   <string name="preferences_connection_failed">接続失敗</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">プロクシに接続できませんでした。プロクシアドレスを確認して、再度試してください。</string>
-  <string name="preferences_you_are_connected_to_the_proxy">プロクシに接続しました。いつでも設定でプロクシを無効にできます。</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">プロキシに接続できませんでした。プロキシアドレスを確認して、再度試してください。</string>
+  <string name="preferences_you_are_connected_to_the_proxy">プロキシに接続しました。いつでも設定でプロキシを無効にできます。</string>
   <string name="preferences_success">成功</string>
   <string name="preferences_failed_to_connect">接続に失敗しました</string>
+  <string name="preferences_enter_proxy_address">プロキシアドレスを入力してください</string>
   <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2028,7 +2032,7 @@
   <string name="FirstInviteReminder__title">Signalへの招待</string>
   <string name="FirstInviteReminder__description">暗号化された送信メッセージの数を%1$d%%増やすことができます</string>
   <string name="SecondInviteReminder__title">あなたのSignalをブースト</string>
-  <string name="SecondInviteReminder__description">%1$s を招待</string>
+  <string name="SecondInviteReminder__description">%1$s を招待しましょう</string>
   <string name="InsightsReminder__view_insights">統計を見る</string>
   <string name="InsightsReminder__invite">招待する</string>
   <!--Edit KBS Pin-->

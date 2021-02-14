@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
@@ -15,29 +13,43 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-public class PushNotificationReceiveJob extends BaseJob {
+public final class PushNotificationReceiveJob extends BaseJob {
 
   public static final String KEY = "PushNotificationReceiveJob";
 
-  private static final String TAG = PushNotificationReceiveJob.class.getSimpleName();
+  private static final String TAG = Log.tag(PushNotificationReceiveJob.class);
 
-  public PushNotificationReceiveJob(Context context) {
+  private static final String KEY_FOREGROUND_SERVICE_DELAY = "foreground_delay";
+
+  private final long foregroundServiceDelayMs;
+
+  public PushNotificationReceiveJob() {
+    this(BackgroundMessageRetriever.DO_NOT_SHOW_IN_FOREGROUND);
+  }
+
+  private PushNotificationReceiveJob(long foregroundServiceDelayMs) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("__notification_received")
                            .setMaxAttempts(3)
                            .setMaxInstancesForFactory(1)
-                           .build());
-    setContext(context);
+                           .build(),
+         foregroundServiceDelayMs);
   }
 
-  private PushNotificationReceiveJob(@NonNull Job.Parameters parameters) {
+  private PushNotificationReceiveJob(@NonNull Job.Parameters parameters, long foregroundServiceDelayMs) {
     super(parameters);
+    this.foregroundServiceDelayMs = foregroundServiceDelayMs;
+  }
+
+  public static Job withDelayedForegroundService(long foregroundServiceAfterMs) {
+    return new PushNotificationReceiveJob(foregroundServiceAfterMs);
   }
 
   @Override
   public @NonNull Data serialize() {
-    return Data.EMPTY;
+    return new Data.Builder().putLong(KEY_FOREGROUND_SERVICE_DELAY, foregroundServiceDelayMs)
+                             .build();
   }
 
   @Override
@@ -48,7 +60,7 @@ public class PushNotificationReceiveJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     BackgroundMessageRetriever retriever = ApplicationDependencies.getBackgroundMessageRetriever();
-    boolean                    result    = retriever.retrieveMessages(context, new RestStrategy());
+    boolean                    result    = retriever.retrieveMessages(context, foregroundServiceDelayMs, new RestStrategy());
 
     if (result) {
       Log.i(TAG, "Successfully pulled messages.");
@@ -69,14 +81,11 @@ public class PushNotificationReceiveJob extends BaseJob {
 //    MessageNotifier.notifyMessagesPending(getContext());
   }
 
-  private static String timeSuffix(long startTime) {
-    return " (" + (System.currentTimeMillis() - startTime) + " ms elapsed)";
-  }
-
   public static final class Factory implements Job.Factory<PushNotificationReceiveJob> {
     @Override
     public @NonNull PushNotificationReceiveJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new PushNotificationReceiveJob(parameters);
+      return new PushNotificationReceiveJob(parameters,
+                                            data.getLongOrDefault(KEY_FOREGROUND_SERVICE_DELAY, BackgroundMessageRetriever.DO_NOT_SHOW_IN_FOREGROUND));
     }
   }
 }

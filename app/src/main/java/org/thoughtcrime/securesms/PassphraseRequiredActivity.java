@@ -78,7 +78,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
     super.onResume();
 
     if (networkAccess.isCensored(this)) {
-      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
+      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob());
     }
   }
 
@@ -91,8 +91,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   @Override
   public void onMasterSecretCleared() {
     Log.d(TAG, "onMasterSecretCleared()");
-    if (ApplicationContext.getInstance(this).isAppVisible()) routeApplicationState(true);
-    else                                                     finish();
+    if (ApplicationDependencies.getAppForegroundObserver().isForegrounded()) routeApplicationState(true);
+    else                                                                     finish();
   }
 
   protected <T extends Fragment> T initFragment(@IdRes int target,

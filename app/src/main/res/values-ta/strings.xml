@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">மீடியா பதிவேற்றுகிறது …</string>
   <string name="AttachmentUploadJob_compressing_video_start">காணொளி சுறுக்கப்படுகிறது…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">தடைசெய்த பயனர்கள்</string>
   <string name="BlockedUsersActivity__add_blocked_user">தடுக்கப்பட்ட பயனரைச் சேர்க்கவும்</string>
@@ -469,7 +470,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ குறிப்புகள் மற்றும் நிர்வாகிகள் போன்ற புதிய அம்சங்களை அணுக, இந்த குழுவை மேம்படுத்தவும்.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">இப்போது இல்லை</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">குழுவை மேம்படுத்து</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">குழுவை மேம்படுத்து</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">புதிய குழுவில் %1$dஉறுப்பினரை மீண்டும் சேர்க்க முடியவில்லை. இப்போது அந்த உறுப்பினரை சேர்க்க விரும்புகிறீர்களா?</item>
@@ -1105,6 +1106,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal லைத் திற</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal ஆண்ட்ராய்டு - திரைப் பூட்டு</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">வரைபடம்</string>
   <string name="PlacePickerActivity_drop_pin">கடவை கைவிடு </string>
@@ -1202,6 +1204,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$sஇலிருந்து ஆடியோ மற்றும் வீடியோவைப் பெற முடியவில்லை </string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">இது உங்கள் பாதுகாப்பு எண் மாற்றத்தை அவர்கள் சரிபார்க்கவில்லை அல்லது அவர்களின் சாதனத்தில் சிக்கல் இருப்பதால் அல்லது அவர்கள் உங்களைத் தடுத்ததால் இருக்கலாம்.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">பதிலி சேவையகம்</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">பதிலி முகவரி</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">நீங்கள் இந்த பதிலி முகவரியை பயன்படுத்த வேண்டுமா?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">பதிலியைப் பயன்படுத்து.</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">பதிலியுடன் வெற்றிகரமாய் இணைந்து விட்டது.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக  குறிப்பிடவேண்டியது உங்கள்:
@@ -1699,6 +1706,7 @@
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">பற்றி</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">உங்களைப் பற்றி சில வார்த்தைகளை எழுதுங்கள்…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">எதுவேண்டுமானாலும் பேசுங்கள்</string>
   <string name="EditAboutFragment_encrypted">மறையாக்கப்பட்ட </string>
   <string name="EditAboutFragment_be_kind">தயவுசெய்து இருங்கள்</string>
@@ -1968,10 +1976,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">தொடர்புகள் அல்லாதவர்களிடமிருந்தும், உங்கள் சுயவிவரத்தைப் பகிராத நபர்களிடமிருந்தும் உள்வரும் செய்திகளுக்கு சீல் அனுப்பியவரை இயக்கவும்.</string>
   <string name="preferences_communication__sealed_sender_learn_more">மேலும் அறிக</string>
   <string name="preferences_setup_a_username">பயனர்பெயரை அமைக்கவும்</string>
+  <string name="preferences_proxy">பதிலி</string>
+  <string name="preferences_use_proxy">பதிலியைப் பயன்படுத்து.</string>
   <string name="preferences_off">அணை</string>
   <string name="preferences_on">இயக்கு</string>
+  <string name="preferences_proxy_address">பதிலி முகவரி</string>
+  <string name="preferences_only_use_a_proxy_if">நீங்கள் கைபேசியிலோ வைஃபையிலோ Signal உடன் இணைய முடியவில்லை என்றால் மட்டும் ஒரு பதிலியைப் பயன்படுத்துங்கள்.</string>
   <string name="preferences_share">பகிர்</string>
   <string name="preferences_save">சேமி</string>
+  <string name="preferences_connecting_to_proxy">பதிலியுடன் இணைகிறது…</string>
+  <string name="preferences_connected_to_proxy">பதிலியுடன் இணைந்து விட்டது.</string>
+  <string name="preferences_connection_failed">இணைப்புத் தோல்வி அடைந்தது.</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">பதிலியுடன் இணைய முடியவில்லை. பதிலி முகவரியை சரிபார்த்துவிட்டு மீண்டும் முயற்சிக்கவும்.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">பதிலியுடன் நீங்கள் இணைந்து விட்டீர்கள். நீங்கள் எப்பொழுது வேண்டுமானாலும் அமைப்புகளில் பதிலியை நிறுத்தி விடலாம்.</string>
+  <string name="preferences_success">வெற்றி</string>
+  <string name="preferences_failed_to_connect">இணைப்பது இயலவில்லை.</string>
+  <string name="preferences_enter_proxy_address">பதிலி முகவரியைப் பதியவும்</string>
   <string name="configurable_single_select__customize_option">விருப்ப அமைப்பைத் தனிப்பயனாக்கவும்</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2154,6 +2174,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">தவறான பின்</string>
   <string name="RegistrationLockFragment__forgot_your_pin">உங்கள் பின்னை மறந்துவிட்டீர்களா?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">பல முயற்சிகள் மீதமில்லை!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal பதிவு - ஆண்ட்ராய்டுக்கான ரகசிய எண் சம்பந்தமாய் உதவி வேண்டுமா (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal பதிவு - ஆண்ட்ராய்டுக்கான ரகசிய எண் சம்பந்தமாய் உதவி வேண்டுமா (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் எஸ்எம்எஸ் மூலம் மீண்டும் சரிபார்க்கலாம். இந்த வழக்கில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்கமும் நீக்கப்படும்.</item>
     <item quantity="other">உங்கள் தனியுரிமை மற்றும் பாதுகாப்பிற்காக, உங்கள் பின்னை மீட்டெடுக்க வழி இல்லை. உங்கள் பின்னை நினைவில் கொள்ள முடியாவிட்டால், %1$d நாட்கள் செயலற்ற நிலைக்குப் பிறகு நீங்கள் SMS மூலம் மீண்டும் சரிபார்க்கலாம். இந்த நிலையில், உங்கள் கணக்கு அழிக்கப்பட்டு அனைத்து உள்ளடக்களும் நீக்கப்படும்.</item>
@@ -2390,6 +2412,7 @@
   <string name="ShareActivity__share">பகிர்</string>
   <string name="ShareActivity__send">அனுப்புக</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">பல அரட்டைகளிலும் பகிர்வது Signal செய்திகளில் மட்டுமே சாத்தியம்.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">சில பயனர்களுக்கு அனுப்புவதில் தோல்வி</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to"> நீங்கள் அரட்டைகள் %1$d வரை மட்டுமே பகிர முடியும்</string>

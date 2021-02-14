@@ -40,12 +40,12 @@
       android:id="@+id/edit_proxy_address_title"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="50dp"
+      android:layout_marginTop="25dp"
       style="@style/Signal.Text.Preview"
       android:fontFamily="sans-serif-medium"
       android:textColor="@color/signal_accent_primary"
       android:text="@string/preferences_proxy_address"
-      app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title"/>
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title_description"/>
 
   <EditText
       android:id="@+id/edit_proxy_host"

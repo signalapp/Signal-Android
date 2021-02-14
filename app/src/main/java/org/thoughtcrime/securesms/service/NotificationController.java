@@ -8,12 +8,17 @@ import android.os.IBinder;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
+
 import java.util.concurrent.atomic.AtomicReference;
 
-public final class NotificationController implements AutoCloseable {
+public final class NotificationController implements AutoCloseable,
+                                                     ServiceConnection
+{
+  private static final String TAG = Log.tag(NotificationController.class);
 
-  private final @NonNull Context context;
-  private final int id;
+  private final Context context;
+  private final int     id;
 
   private int     progress;
   private int     progressMax;
@@ -30,22 +35,7 @@ public final class NotificationController implements AutoCloseable {
   }
 
   private void bindToService() {
-    context.bindService(new Intent(context, GenericForegroundService.class), new ServiceConnection() {
-      @Override
-      public void onServiceConnected(ComponentName name, IBinder service) {
-        GenericForegroundService.LocalBinder binder       = (GenericForegroundService.LocalBinder) service;
-        GenericForegroundService genericForegroundService = binder.getService();
-
-        NotificationController.this.service.set(genericForegroundService);
-
-        updateProgressOnService();
-      }
-
-      @Override
-      public void onServiceDisconnected(ComponentName name) {
-        service.set(null);
-      }
-    }, Context.BIND_AUTO_CREATE);
+    context.bindService(new Intent(context, GenericForegroundService.class), this, Context.BIND_AUTO_CREATE);
   }
 
   public int getId() {
@@ -54,6 +44,7 @@ public final class NotificationController implements AutoCloseable {
 
   @Override
   public void close() {
+    context.unbindService(this);
     GenericForegroundService.stopForegroundTask(context, id);
   }
 
@@ -86,5 +77,24 @@ public final class NotificationController implements AutoCloseable {
     if (genericForegroundService == null) return;
 
     genericForegroundService.replaceProgress(id, progressMax, progress, indeterminate);
+  }
+
+  @Override
+  public void onServiceConnected(ComponentName name, IBinder service) {
+    Log.i(TAG, "Service connected " + name);
+
+    GenericForegroundService.LocalBinder binder                   = (GenericForegroundService.LocalBinder) service;
+    GenericForegroundService             genericForegroundService = binder.getService();
+
+    this.service.set(genericForegroundService);
+
+    updateProgressOnService();
+  }
+
+  @Override
+  public void onServiceDisconnected(ComponentName name) {
+    Log.i(TAG, "Service disconnected " + name);
+
+    service.set(null);
   }
 }

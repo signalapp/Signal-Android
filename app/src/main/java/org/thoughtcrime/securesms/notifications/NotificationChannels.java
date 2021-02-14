@@ -44,9 +44,10 @@ public class NotificationChannels {
   private static class Version {
     static final int MESSAGES_CATEGORY   = 2;
     static final int CALLS_PRIORITY_BUMP = 3;
+    static final int VIBRATE_OFF_OTHER   = 4;
   }
 
-  private static final int VERSION = 3;
+  private static final int VERSION = 4;
 
   private static final String CATEGORY_MESSAGES = "messages";
   private static final String CONTACT_PREFIX    = "contact_";
@@ -57,7 +58,7 @@ public class NotificationChannels {
   public static final String APP_UPDATES   = "app_updates";
   public static final String BACKUPS       = "backups_v2";
   public static final String LOCKED_STATUS = "locked_status_v2";
-  public static final String OTHER         = "other_v2";
+  public static final String OTHER         = "other_v3";
   public static final String VOICE_NOTES   = "voice_notes";
 
   /**
@@ -462,6 +463,8 @@ public class NotificationChannels {
     backups.setShowBadge(false);
     lockedStatus.setShowBadge(false);
     other.setShowBadge(false);
+    other.setVibrationPattern(new long[]{0});
+    other.enableVibration(true);
     voiceNotes.setShowBadge(false);
 
     notificationManager.createNotificationChannels(Arrays.asList(messages, calls, failures, backups, lockedStatus, other, voiceNotes));
@@ -488,6 +491,10 @@ public class NotificationChannels {
 
     if (oldVersion < Version.CALLS_PRIORITY_BUMP) {
       notificationManager.deleteNotificationChannel("calls_v2");
+    }
+
+    if (oldVersion < Version.VIBRATE_OFF_OTHER) {
+      notificationManager.deleteNotificationChannel("other_v2");
     }
   }
 

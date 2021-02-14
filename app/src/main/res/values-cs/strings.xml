@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Komprimování videa…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Kontroluji zprávy…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Zablokovaní uživatelé</string>
   <string name="BlockedUsersActivity__add_blocked_user">Přidat blokovaného uživatele</string>
@@ -503,7 +505,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Pro přístup k funkcím jako @zmínky a správci aktualizujete tuto skupinu.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Teď ne</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Aktualizovat skupinu</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Povýšit skupinu</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d člen nemohl být znovu přidán do nové skupiny. Chcete ho nyní přidat?</item>
@@ -689,7 +691,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nepodařilo se aktualizovat skupinu kvůli chybě sítě. Prosím, zkuste to později</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Upravit název a obrázek</string>
   <string name="ManageGroupActivity_legacy_group">Starší skupina</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Toto je starší skupina. Funkce jako správci skupin jsou dostupné pouze pro nové skupiny.</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Toto je starší verze skupiny. Funkce jako správci skupin jsou dostupné pouze pro nové skupiny.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Toto je starší verze skupiny. Pro přístup k novým funkcím jako @zmínky a správci,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Tuto starší verzi skupiny nelze aktualizovat na novou skupinu, protože je příliš velká. Maximální velikost skupiny je %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">aktualizovat tuto skupinu.</string>
@@ -2127,6 +2129,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_off">Vyp.</string>
   <string name="preferences_on">Zap.</string>
   <string name="preferences_proxy_address">Proxy adresa</string>
+  <string name="preferences_only_use_a_proxy_if">Proxy používat pouze v případě, kdy se nelze připojit k Signal prostřednictvím mobilní sítě nebo WiFi.</string>
   <string name="preferences_share">Sdílet</string>
   <string name="preferences_save">Uložit</string>
   <string name="preferences_connecting_to_proxy">Připojuji k proxy…</string>
@@ -2136,6 +2139,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_you_are_connected_to_the_proxy">Jste připojeni k proxy. Proxy můžete kdykoliv vypnout z Nastavení.</string>
   <string name="preferences_success">Úspěch</string>
   <string name="preferences_failed_to_connect">Připojení selhalo</string>
+  <string name="preferences_enter_proxy_address">Zadat adresu proxy</string>
   <string name="configurable_single_select__customize_option">Nastavit předvolbu</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2472,13 +2476,13 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RecipientBottomSheet_add_to_another_group">Přidat do jiné skupiny</string>
   <string name="RecipientBottomSheet_view_safety_number">Zobrazit bezpečnostní číslo</string>
   <string name="RecipientBottomSheet_make_group_admin">Nastavit správce skupiny</string>
-  <string name="RecipientBottomSheet_remove_as_admin">Odebrat jako správce</string>
+  <string name="RecipientBottomSheet_remove_as_admin">Odebrat oprávnění správce</string>
   <string name="RecipientBottomSheet_remove_from_group">Odebrat ze skupiny</string>
   <string name="RecipientBottomSheet_message_description">Zpráva</string>
   <string name="RecipientBottomSheet_voice_call_description">Hlasový hovor</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Nezabezpečený hlasový hovor</string>
   <string name="RecipientBottomSheet_video_call_description">Videohovor</string>
-  <string name="RecipientBottomSheet_remove_s_as_group_admin">Odebrat %1$s jako správce skupiny?</string>
+  <string name="RecipientBottomSheet_remove_s_as_group_admin">Odebrat oprávnění správce skupiny uživateli %1$s?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" bude moci upravovat tuto skupinu a její členy.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Odebrat %1$s ze skupiny?</string>
   <string name="RecipientBottomSheet_remove">Odebrat</string>

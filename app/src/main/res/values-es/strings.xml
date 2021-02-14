@@ -5,7 +5,7 @@
   <string name="delete">Eliminar</string>
   <string name="please_wait">Espera, por favor …</string>
   <string name="save">Guardar</string>
-  <string name="note_to_self">Notas personales</string>
+  <string name="note_to_self">Notas privadas</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--AlbumThumbnailView-->
@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Transfiriendo adjunto …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimiendo vídeo …</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando mensajes …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Personas bloqueadas</string>
   <string name="BlockedUsersActivity__add_blocked_user">Añadir persona bloqueada</string>
@@ -469,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acceder a funciones que incluyen @menciones y admins, actualiza este grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Ahora no</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Actualizar grupo</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Actualizar grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">No se ha podido añadir a %1$d participante al nuevo grupo. ¿Deseas hacerlo ahora?</item>
@@ -612,9 +614,9 @@
     <item quantity="one">%d participante añadid@.</item>
     <item quantity="other">%d participantes añadid@s.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Sólo admins pueden activar o desactivar el enlace para compartir el grupo.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Sólo admins pueden activar o desactivar el enlace para unirse al grupo.</string>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Sólo admins pueden activar o desactivar la opción de aprobar nuev@s participantes.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Sólo admins pueden restablecer el enlace para compartir el grupo.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Sólo admins pueden restablecer el enlace para unirse al grupo.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">No dispones de permisos para hacerlo</string>
   <string name="ManageGroupActivity_not_capable">Alguien a quien has añadido no soporta el nuevo sistema de grupos y debe actualizar Signal.</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Fallo al actualizar el grupo</string>
@@ -658,7 +660,7 @@
   <string name="ManageRecipientActivity_on">Activo</string>
   <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string>
   <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
-  <string name="ManageRecipientActivity_see_all">Ver tod@s</string>
+  <string name="ManageRecipientActivity_see_all">Ver todos</string>
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>
@@ -684,15 +686,15 @@
   <string name="CustomNotificationsDialogFragment__disabled">Desactivada</string>
   <string name="CustomNotificationsDialogFragment__default">Por defecto</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enlace para compartir grupo</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Enlace para unirse al grupo</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gestionar y compartir</string>
   <string name="ShareableGroupLinkDialogFragment__group_link">Enlace al grupo</string>
   <string name="ShareableGroupLinkDialogFragment__share">Compartir</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">Restablecer enlace</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Solicitudes de participantes</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprobar solicitudes</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada.</string>
-  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para compartir el grupo? Si lo restableces, nadie podrá unirse al chat usando el enlace actual.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Con la opción activa se genera una solicitud de acceso al grupo que debe ser aprobada por un(a) admin.</string>
+  <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">¿Deseas restablecer el enlace para unirse al grupo? Si lo restableces, nadie podrá unirse al chat usando el enlace actual.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">Código QR</string>
   <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Las personas que escaneen este código podrán unirse al grupo. L@s admins deberán aprobar nuev@s participantes si se ha activado esa opción.</string>
@@ -712,23 +714,23 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al grupo no está disponible</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Al seguir el enlace se genera una solicitud de acceso que debe ser aprobada antes de unirte. Al unirte al grupo, tu nombre y foto se compartirán con sus participantes.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un(a) admin de este grupo debe aprobar tu solicitud de acceso para unirte al grupo. Al solicitar unirte, tu nombre y foto se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupo · %1$d participante</item>
     <item quantity="other">Grupo · %1$d participantes</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Actualiza Signal para usar enlaces a grupos</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta este enlace para compartir grupos. Actualiza Signal para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versión de Signal que usas no soporta este enlace para unirse a grupos. Actualiza Signal para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Actualiza Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Alguno(s) de tus dispositivos enlazados no soporta enlaces para compartir grupos. Actualiza Signal en esos dispositivos para unirte a este grupo vía enlace.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Alguno(s) de tus dispositivos enlazados no soporta enlaces para unirse a grupos. Actualiza Signal en esos dispositivos para unirte a este grupo vía enlace.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Enlace a grupo inválido</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invitar amistades</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">Comparte con tus amistades el enlace a este grupo para que se unan.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">Activar y compartir enlace</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">Compartir enlace</string>
-  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Fallo al activar el enlace al grupo. Inténtalo más tarde</string>
+  <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">Fallo al activar el enlace para unirse al grupo. Inténtalo más tarde</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">No dispones de permisos para activar el enlace al grupo. Solicítalo a un@ admin.</string>
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">Todavía no participas en este grupo.</string>
@@ -899,7 +901,7 @@
   <string name="MessageRecord_you_added_s">Has añadido a %1$s.</string>
   <string name="MessageRecord_s_added_s">%1$s ha añadido a %2$s.</string>
   <string name="MessageRecord_s_added_you">%1$s te ha añadido al grupo.</string>
-  <string name="MessageRecord_you_joined_the_group">Te has incorporado al grupo.</string>
+  <string name="MessageRecord_you_joined_the_group">Te has unido al grupo.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s se ha unido al grupo.</string>
   <!--GV2 member removals-->
   <string name="MessageRecord_you_removed_s">Has expulsado a «%1$s».</string>
@@ -971,25 +973,25 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ha actualizado quien puede añadir participantes al grupo a «%2$s».</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ahora, «%1$s» pueden añadir participantes al grupo.</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para compartir el grupo sin necesitar confirmación de admin.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Has activado el enlace para compartir el grupo tras confirmación de admin.</string>
-  <string name="MessageRecord_you_turned_off_the_group_link">Has desactivado el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ha activado el enlace para compartir el grupo sin necesitar confirmación de admin.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ha activado el enlace para compartir el grupo tras confirmación de admin.</string>
-  <string name="MessageRecord_s_turned_off_the_group_link">%1$s ha desactivado el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para compartir el grupo sin necesitar confirmación de admin.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para compartir el grupo tras confirmación de admin.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se ha desactivado la función de compartir el chat en grupo vía enlace.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para compartir el grupo vía enlace.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la función de compartir el chat en grupo vía enlace.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Has activado el enlace para unirse al grupo sin confirmación de admin.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Has activado el enlace para unirse al grupo tras confirmación de admin.</string>
+  <string name="MessageRecord_you_turned_off_the_group_link">Has desactivado el enlace para unirse al grupo.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ha activado el enlace para unirse al grupo sin confirmación de admin.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ha activado el enlace para unirse al grupo tras confirmación de admin.</string>
+  <string name="MessageRecord_s_turned_off_the_group_link">%1$s ha desactivado el enlace para unirse al grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Se ha activado el enlace para unirse al grupo sin confirmación de admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Se ha activado el enlace para unirse al grupo tras confirmación de admin.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_off">Se ha desactivado el enlace para unirse al grupo.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Has desactivado la confirmación de admin para unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ha desactivado la confirmación de admin para unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Se a confirmación de admin para unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Has activado la confirmación de admin para unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ha activado la confirmación de admin para unirse al grupo vía enlace.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Se ha activado la confirmación de admin para unirse al grupo vía enlace.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_s_reset_the_group_link">%1$s ha restablecido el enlace para compartir el grupo.</string>
-  <string name="MessageRecord_the_group_link_has_been_reset">Se ha restablecido el enlace para compartir el grupo.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Has restablecido el enlace para unirse al grupo.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s ha restablecido el enlace para unirse al grupo.</string>
+  <string name="MessageRecord_the_group_link_has_been_reset">Se ha restablecido el enlace para unirse al grupo.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">Te has unido al grupo vía enlace.</string>
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s se ha unido al grupo vía enlace.</string>
@@ -1105,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Clave de acceso no válida!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Desbloquear Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Pantalla bloqueada</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Situar chincheta</string>
@@ -1908,8 +1911,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__free_private_messages_and_calls">Llamadas y mensajes cifrados a través de Signal ¡gratis! </string>
   <string name="preferences__submit_debug_log">Enviar registro de depuración</string>
   <string name="preferences__delete_account">Eliminar cuenta</string>
-  <string name="preferences__support_wifi_calling">Modo de compatibilidad «Llamada por WiFi»</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Actívalo si tu dispositivo utiliza entrega de SMS/MMS vía WiFi (actívalo sólo cuando «Llamada por WiFi» esté activada en el dispositivo)</string>
+  <string name="preferences__support_wifi_calling">Modo de compatibilidad «Llamada por Wi-Fi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Actívalo si tu dispositivo utiliza entrega de SMS/MMS vía Wi-Fi (actívalo sólo cuando «Llamada por Wi-Fi» esté activada en el dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado en modo incógnito</string>
   <string name="preferences__read_receipts">Notificaciones de lectura</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Si las notificaciones de lectura están desactivadas, no podrás comprobar cuándo se han leído tus mensajes.</string>
@@ -1981,15 +1984,17 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_off">Inactivo</string>
   <string name="preferences_on">Activo</string>
   <string name="preferences_proxy_address">Dirección del proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Un proxy sólo es necesario en el caso que Signal no pueda conectarse a su servidor en una red Wi-Fi o en la red móvil.</string>
   <string name="preferences_share">Compartir</string>
   <string name="preferences_save">Guardar</string>
   <string name="preferences_connecting_to_proxy">Conectando con el proxy …</string>
   <string name="preferences_connected_to_proxy">Conectada con el proxy</string>
   <string name="preferences_connection_failed">Fallo al conectarse</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">No se ha podido conectar en el proxy. Comprueba la dirección e inténtalo de nuevo.</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">No se ha podido conectar con el proxy. Comprueba la dirección e inténtalo de nuevo.</string>
   <string name="preferences_you_are_connected_to_the_proxy">Signal está conectada con el proxy. Puedes desactivar el proxy en cualquier momento desde los Ajustes.</string>
   <string name="preferences_success">Funcionó</string>
   <string name="preferences_failed_to_connect">Fallo al conectar</string>
+  <string name="preferences_enter_proxy_address">Introduce la dirección del proxy</string>
   <string name="configurable_single_select__customize_option">Personalizar opción</string>
   <!--Internal only preferences-->
   <!--****************************************-->

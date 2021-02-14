@@ -19,8 +19,8 @@
     <View
         android:id="@+id/camera_contacts_top_shadow"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@drawable/search_toolbar_shadow"
+        android:layout_height="5dp"
+        android:background="@drawable/toolbar_shadow"
         app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar" />
 
     <LinearLayout

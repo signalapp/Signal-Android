@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">میڈیا اپ لوڈ ہو رہا ہے۔</string>
   <string name="AttachmentUploadJob_compressing_video_start">ویڈیو مختصر ہو رہی ہے۔۔۔</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">پیغامات کی جانچ ہو رہی ہے…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">مسدود صارفین</string>
   <string name="BlockedUsersActivity__add_blocked_user">مسدود صارف کو شامل کریں</string>
@@ -470,7 +472,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ذکر, خصوصیات اور منتظمین جیسی نئی خصوصیات تک رسائی حاصل کرنے کے لیئے اس گروپ کو اپ گریڈ کریں۔</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ابھی نہیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">گروپ تازہ کاری</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">گروپ کو اپ گریڈ کریں</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">نئے گروپ میں %1$d ممبر کو دوبارہ شامل نہیں کیا جاسکا۔ کیا آپ انہیں ابھی شامل کرنا چاہتے ہیں؟</item>
@@ -603,6 +605,7 @@
   <string name="ManageGroupActivity_mute_notifications">خاموش اطلاعات</string>
   <string name="ManageGroupActivity_custom_notifications">اپنی مرضی کے مطابق اطلاعات</string>
   <string name="ManageGroupActivity_mentions">ذکر</string>
+  <string name="ManageGroupActivity_chat_wallpaper">چیٹ وال پیپر</string>
   <string name="ManageGroupActivity_until_s">جب تک %1$s</string>
   <string name="ManageGroupActivity_off">بند کریں</string>
   <string name="ManageGroupActivity_on">چلائیں</string>
@@ -638,12 +641,16 @@
   <string name="ManageProfileFragment_profile_name">پروفائل کا نام</string>
   <string name="ManageProfileFragment_username">صارف کا نام</string>
   <string name="ManageProfileFragment_about">متعلق</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">اپنے بارے میں کچھ الفاظ لکھیں</string>
   <string name="ManageProfileFragment_your_name">آپ کا نام</string>
+  <string name="ManageProfileFragment_your_username">اپکا اسم رکنیت</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">اوتار سیٹ کرنے میں ناکام</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">سسٹم رابطوں میں شامل کریں</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">یہ شخص آپ کے رابطوں میں ہے</string>
   <string name="ManageRecipientActivity_disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
   <string name="ManageRecipientActivity_chat_color">چیٹ کا رنگ</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">چیٹ وال پیپر</string>
   <string name="ManageRecipientActivity_block">بلاک</string>
   <string name="ManageRecipientActivity_unblock">ان بلاک</string>
   <string name="ManageRecipientActivity_view_safety_number">حفاظتی نمبر دیکھیں</string>
@@ -1100,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">پاسفریز جمع کریں</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">غلط پاسفریز!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal ان لاک کریں</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - لاک اسکرین</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشہ</string>
   <string name="PlacePickerActivity_drop_pin">ڈراپ پن</string>
@@ -1197,6 +1205,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s سے آڈیو اور ویڈیو موصول نہیں ہوسکتی ہے</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">اس کی وجہ یہ ہوسکتی ہے کہ انہوں نے آپ کے حفاظتی نمبر میں تبدیلی کی توثیق نہیں کی ہے ، ان کے آلے میں کوئی مسئلہ ہے یا انہوں نے آپ کو مسدود کردیا ہے۔</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">پراکسی سرور</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">پراکسی ایڈریس</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">کیا آپ یہ پراکسی ایڈریس استعمال کرنا چاہتے ہیں؟</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">پروکسی استعمال کرو</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">پراکسی سے کامیابی کے ساتھ منسلک ہوا۔</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">اپنے ملک کا انتخاب کریں</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">آپ لازمی ملک کا کوڈ واضع کریں</string>
@@ -1307,6 +1320,7 @@
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">اس یو آر ایل کو کاپی کریں اور اسے اپنی ایشو رپورٹ یا سپورٹ ای میل میں شامل کریں:. n \ n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">فلٹر:</string>
   <string name="SupportEmailUtil_device_info">Device کی معلومات:</string>
   <string name="SupportEmailUtil_android_version">Android ورژن:</string>
   <string name="SupportEmailUtil_signal_version">Signal ورژن:</string>
@@ -1686,13 +1700,24 @@
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">کسٹم MMS گروپ کے نام اور تصاویر صرف آپ کو نظر آئیں گی۔</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">متعلق</string>
+  <string name="EditAboutFragment_write_a_few_words_about_yourself">اپنے بارے میں کچھ الفاظ لکھیں…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">آزادانہ طور پر بولیں</string>
+  <string name="EditAboutFragment_encrypted">خفیہ کردہ</string>
+  <string name="EditAboutFragment_be_kind">مہربانی سے پیش آؤ</string>
+  <string name="EditAboutFragment_coffee_lover">کافی کا دیوانہ</string>
+  <string name="EditAboutFragment_free_to_chat">چیٹ کرنے کے لئے دستیاب</string>
+  <string name="EditAboutFragment_taking_a_break">ایک وقفے پر</string>
+  <string name="EditAboutFragment_working_on_something_new">کسی نئی چیز پر کام کرنا</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">گروپ کے نام اور تصویر میں ترمیم کریں</string>
   <string name="EditProfileFragment__group_name">گروپ کا نام</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">آپ کا نام</string>
+  <string name="EditProfileNameFragment_first_name">پہلا نام</string>
   <string name="EditProfileNameFragment_last_name_optional">آخری نام (اختیاری)</string>
   <string name="EditProfileNameFragment_save">محفوظ کریں</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">نیٹ ورک کے مسائل کی وجہ سے بچانے میں ناکام۔ بعد میں دوبارہ کوشش کریں۔</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">میڈیا اشتراک کریں</string>
   <!--recipients_panel-->
@@ -1865,6 +1890,7 @@
   <string name="preferences__dark_theme">اندھیرا</string>
   <string name="preferences__appearance">ظہور ہونا</string>
   <string name="preferences__theme">موضوع</string>
+  <string name="preferences__chat_wallpaper">چیٹ وال پیپر</string>
   <string name="preferences__disable_pin">PIN کو غیر فعال کریں</string>
   <string name="preferences__enable_pin">PIN کو فعال کریں</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">اگر آپ PIN کو غیر فعال کردیتے ہیں تو ، آپ جب تک دستی طور پر بیک اپ اور بحالی نہیں کرتے ہیں تب تک آپ تمام اعداد و شمار کو کھو دیں گے۔ جب PIN غیر فعال ہو تو آپ رجسٹریشن لاک آن نہیں کرسکتے ہیں۔</string>
@@ -1883,6 +1909,7 @@
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر پڑھنے کی رسیدیں غیر فعال کردی گئی ہیں تو ، آپ دوسروں کی پڑھی ہوئی رسیدیں نہیں دیکھ پائیں گے۔</string>
   <string name="preferences__typing_indicators">ٹائپنگ انڈیکیٹرز</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر ٹائپنگ اندیکیٹرز غیر فعال ہیں، آپ دوسروں سے ٹائپنگ انڈیکیٹرز دیکھنے کے قابل نہیں ہیں۔</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">ذاتی سیکھنے کو غیر فعال کرنے کے لئے کی بورڈ سے درخواست کریں۔ یہ ترتیب ضمانت نہیں ہے ، اور آپ کا کی بورڈ اسے نظرانداز کرسکتا ہے۔</string>
   <string name="preferences_app_protection__blocked_users">مسدود صارفین</string>
   <string name="preferences_chats__when_using_mobile_data">جب موبائل ڈیٹا استعمال کریں</string>
   <string name="preferences_chats__when_using_wifi">جب وائی فائی استعمال کریں</string>
@@ -1943,10 +1970,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">غیر رابطوں اور ان لوگوں کی طرف سے آنے والے پیغامات کے لئے مہر بند مرسل کو اہل بنائیں جن کے ساتھ آپ نے اپنا پروفائل اشتراک نہیں کیا ہے۔</string>
   <string name="preferences_communication__sealed_sender_learn_more">مزید پڑھیں</string>
   <string name="preferences_setup_a_username">ایک صارف کا نام مرتب کریں</string>
+  <string name="preferences_proxy">پراکسی</string>
+  <string name="preferences_use_proxy">پروکسی استعمال کرو</string>
   <string name="preferences_off">بند کریں</string>
   <string name="preferences_on">چلائیں</string>
+  <string name="preferences_proxy_address">پراکسی ایڈریس</string>
+  <string name="preferences_only_use_a_proxy_if">صرف ایک پراکسی استعمال کریں اگر آپ سیلولر یا Wi-Fi پر Signal سے رابطہ قائم کرنے کے قابل نہیں ہیں۔</string>
   <string name="preferences_share">اشتراک کریں</string>
   <string name="preferences_save">محفوظ کریں</string>
+  <string name="preferences_connecting_to_proxy">پراکسی سے منسلک ہو رہا ہے…</string>
+  <string name="preferences_connected_to_proxy">پراکسی سے منسلک</string>
+  <string name="preferences_connection_failed">رابطہ ناکام</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">پراکسی سے رابطہ قائم نہیں ہوسکا۔ پراکسی ایڈریس چیک کریں اور دوبارہ کوشش کریں۔</string>
+  <string name="preferences_you_are_connected_to_the_proxy">آپ پراکسی سے جڑے ہوئے ہیں۔ آپ کسی بھی وقت ترتیبات سے پراکسی بند کرسکتے ہیں۔</string>
+  <string name="preferences_success">کامیابی</string>
+  <string name="preferences_failed_to_connect">رابطہ ناکام ہوگیا</string>
+  <string name="preferences_enter_proxy_address">پراکسی ایڈریس درج کریں</string>
   <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2129,6 +2168,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">غلط پن</string>
   <string name="RegistrationLockFragment__forgot_your_pin">آپ کا پن بھول گیا؟</string>
   <string name="RegistrationLockFragment__not_many_tries_left">بہت ساری کوششیں باقی نہیں ہیں!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal اندراج - Android کے لئے پن کے ساتھ مدد کی ضرورت ہے (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal اندراج - Android کے لئے پن کے ساتھ مدد کی ضرورت ہے (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">آپ کی رازداری اور سیکیورٹی کے لیئے آپ کے PIN کی بازیافت کا کوئی راستہ نہیں ہے۔ اگر آپ اپنا PIN یاد نہیں کرسکتے ہیں تو ، غیر فعال ہونے کے%1$d دن کے بعد آپ SMS کے ذریعے دوبارہ تصدیق کر سکتے ہیں۔ اس معاملے میں ، آپ کا اکاؤنٹ صاف ہوجائے گا اور تمام مواد حذف ہوجائے گا۔</item>
     <item quantity="other">آپ کی رازداری اور سیکیورٹی کے لیئے ، آپ کے PIN کی بازیافت کا کوئی راستہ نہیں ہے۔ اگر آپ اپنا PIN یاد نہیں کرسکتے ہیں تو ، آپ غیر فعال%1$d دنوں کے بعد ایس ایم ایس کے ذریعے دوبارہ تصدیق کر سکتے ہیں۔ اس معاملے میں ، آپ کا اکاؤنٹ صاف ہوجائے گا اور تمام مواد حذف ہوجائے گا۔</item>
@@ -2364,16 +2405,44 @@
   <!--ShareActivity-->
   <string name="ShareActivity__share">اشتراک کریں</string>
   <string name="ShareActivity__send">بھیجیں</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">متعدد چیٹس پر اشتراک صرف Signal پیغامات کیلئے معاون ہے</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">کچھ صارفین کو بھیجنے میں ناکام</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">آپ صرف %1$d چیٹس تک اشتراک کرسکتے ہیں</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">پیغام آگے بھیجیں</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">چیٹ وال پیپر</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">وال پیپر سیٹ کریں</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">سیاہ تھیم وال پیپر کو مدھم کرتا ہے</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">وال پیپر صاف کریں</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">اس چیٹ کے لئے وال پیپر صاف کریں؟</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">وال پیپر صاف کریں؟ اس سے وہ کسٹم وال پیپر صاف نہیں ہوں گے جو آپ نے اپنی چیٹس کے لیئے رکھے ہیں۔</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">تمام وال پیپر کو دوبارہ ترتیب دیں</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">آپ نے اپنی چیٹس کیلئے مرتب کردہ کسٹم وال پیپرز سمیت تمام وال پیپرز کو دوبارہ ترتیب دیں۔</string>
+  <string name="ChatWallpaperFragment__contact_name">رابطے کا نام</string>
   <string name="ChatWallpaperFragment__reset">دوبارہ بحال کریں</string>
+  <string name="ChatWallpaperFragment__clear">صاف</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">وال پیپر پیش نظارہ</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">فوٹو میں سے انتخاب کریں</string>
+  <string name="ChatWallpaperSelectionFragment__presets">پریسیٹس</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">پیش نظارہ</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">وال پیپر سیٹ کریں</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">مزید وال پیپرز کا پیش نظارہ کرنے کے لئے سوائپ کریں</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">تمام چیٹس کیلئے وال پیپر مرتب کریں</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$s کے لئے وال پیپر سیٹ کریں</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">اپنے گیلری کو دیکھنے کیلئے اسٹوریج کی اجازت درکار ہے۔</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">وال پیپر کی تصویر منتخب کریں</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">زوم کرنے کے لئے pinch ، ایڈجسٹ کرنے کے لئے گھسیٹیں۔</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تمام چیٹس کیلئے وال پیپر مرتب کریں۔</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">%s کے لئے وال پیپر سیٹ کریں۔</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">وال پیپر کی ترتیب میں خامی۔</string>
+  <string name="WallpaperCropActivity__blur_photo">تصویر کو دھندلا کرو</string>
   <!--EOF-->
 </resources>

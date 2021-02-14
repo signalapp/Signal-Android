@@ -58,9 +58,7 @@ public final class ConversationUtil {
    * Enqueues a job to update the list of shortcuts.
    */
   public static void refreshRecipientShortcuts() {
-    if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
-      ApplicationDependencies.getJobManager().add(new ConversationShortcutUpdateJob());
-    }
+    ConversationShortcutUpdateJob.enqueue();
   }
 
   /**

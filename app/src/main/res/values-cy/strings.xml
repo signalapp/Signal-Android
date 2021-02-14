@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Gwirio am negeseuon…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Defnyddwyr wedi\'u rhwystro</string>
   <string name="BlockedUsersActivity__add_blocked_user">Ychwanegu defnyddiwr sydd wedi\'i rwystro</string>
@@ -505,7 +507,7 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">I gyrchu nodweddion newydd fel @crybwyll a gweinyddwyr, uwchraddiwch y grŵp hwn.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Nid nawr</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Diweddaru grŵp</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Uwchraddio\'r grŵp</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">Nid oes modd ail-ychwanegu aelod %1$d at y Grŵp Newydd. Ydych chi am eu hychwanegu nawr?</item>
@@ -1221,6 +1223,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Cyflwyno cyfrinymadrodd</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cyfrinymadrodd annilys!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Datgloi Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Sgrin Cloi</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Map</string>
   <string name="PlacePickerActivity_drop_pin">Gollwng pin</string>
@@ -1324,6 +1327,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Methu derbyn sain a fideo gan %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Gall hyn fod oherwydd nad ydyn nhw wedi gwirio\'ch newid rhif diogelwch, mae problem gyda\'u dyfais, neu maen nhw wedi\'ch rhwystro chi.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Gweinydd dirprwyol</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Cyfeiriad dirprwyol</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Ydych chi am ddefnyddio\'r cyfeiriad dirprwyol hwn?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Defnyddiwch ddirprwy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Wedi\'i gysylltu\'n llwyddiannus â dirprwy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Dewiswch eich gwlad</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Rhaid i chi roi
@@ -2119,10 +2127,22 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Galluogwch anfon dan sêl ar gyfer negeseuon i mewn gan y sawl sydd ddim yn gysylltiad a phobl nad ydych wedi rhannu eich proffil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Dysgu rhagor</string>
   <string name="preferences_setup_a_username">Gosod enw defnyddiwr</string>
+  <string name="preferences_proxy">Dirprwy</string>
+  <string name="preferences_use_proxy">Defnyddiwch ddirprwy</string>
   <string name="preferences_off">I ffwrdd</string>
   <string name="preferences_on">Ymlaen</string>
+  <string name="preferences_proxy_address">Cyfeiriad dirprwyol</string>
+  <string name="preferences_only_use_a_proxy_if">Defnyddiwch ddirprwy dim ond os nad ydych chi\'n gallu cysylltu â Signal ar gellog neu ddiwifr.</string>
   <string name="preferences_share">Rhannu</string>
   <string name="preferences_save">Cadw</string>
+  <string name="preferences_connecting_to_proxy">Yn cysylltu â dirprwy …</string>
+  <string name="preferences_connected_to_proxy">Wedi cysylltu â dirprwy</string>
+  <string name="preferences_connection_failed">Methodd y cysylltiad</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Methu cysylltu â\'r dirprwy. Gwiriwch y cyfeiriad dirprwy a cheisiwch eto.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Rydych wedi cysylltu â\'r dirprwy. Gallwch ddiffodd y dirprwy ar unrhyw adeg o Gosodiadau.</string>
+  <string name="preferences_success">Llwyddiant</string>
+  <string name="preferences_failed_to_connect">Wedi methu cysylltu</string>
+  <string name="preferences_enter_proxy_address">Rhowch gyfeiriad dirprwy</string>
   <string name="configurable_single_select__customize_option">Cyfaddasu opsiwn</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2309,6 +2329,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN anghywir</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Wedi anghofio eich PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Dim llawer o geisiadau ar ôl!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Cofrestru Signal - Angen Cymorth gyda PIN ar gyfer Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Cofrestru Signal - Angen Cymorth gyda PIN ar gyfer Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>
     <item quantity="two">Er lles eich preifatrwydd a\'ch diogelwch, does dim modd i adfer eich PIN. Os fyddwch yn rhedeg allan o geisiadau bydd modd ail ddilysu gyda SMS ar ôl %1$d diwrnod o anweithgaredd. Yn yr achos yma, bydd eich cyfrif yn cael ei dynnu a\'r holl ddata ei ddileu.</item>

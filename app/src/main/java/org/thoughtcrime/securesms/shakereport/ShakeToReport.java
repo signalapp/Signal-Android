@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -131,7 +132,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
   }
 
   private void enableIfVisible() {
-    if (ApplicationContext.getInstance(application).isAppVisible()) {
+    if (ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
       enable();
     }
   }

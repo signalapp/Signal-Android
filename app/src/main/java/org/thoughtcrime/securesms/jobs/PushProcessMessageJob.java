@@ -124,6 +124,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMes
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -236,10 +237,11 @@ public final class PushProcessMessageJob extends BaseJob {
                                                  .setMaxAttempts(Parameters.UNLIMITED);
 
     if (content != null) {
-      if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
+      SignalServiceGroupContext signalServiceGroupContext = getGroupContextIfPresent(content);
+
+      if (signalServiceGroupContext != null) {
         try {
-          SignalServiceGroupContext signalServiceGroupContext = content.getDataMessage().get().getGroupContext().get();
-          GroupId                   groupId                   = GroupUtil.idFromGroupContext(signalServiceGroupContext);
+          GroupId groupId = GroupUtil.idFromGroupContext(signalServiceGroupContext);
 
           queueName = getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
 
@@ -443,6 +445,19 @@ public final class PushProcessMessageJob extends BaseJob {
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
     } catch (BadGroupIdException e) {
       warn(TAG, String.valueOf(content.getTimestamp()), "Ignoring message with bad group id", e);
+    }
+  }
+
+  private static @Nullable SignalServiceGroupContext getGroupContextIfPresent(@NonNull SignalServiceContent content) {
+    if (content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupContext().isPresent()) {
+      return content.getDataMessage().get().getGroupContext().get();
+    } else if (content.getSyncMessage().isPresent()                 &&
+               content.getSyncMessage().get().getSent().isPresent() &&
+               content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().isPresent())
+    {
+      return content.getSyncMessage().get().getSent().get().getMessage().getGroupContext().get();
+    } else {
+      return null;
     }
   }
 

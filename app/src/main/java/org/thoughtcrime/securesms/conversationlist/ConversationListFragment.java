@@ -56,7 +56,6 @@ import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
@@ -116,6 +115,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
@@ -175,7 +175,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Stub<ViewGroup>                   megaphoneContainer;
   private SnapToTopDataObserver             snapToTopDataObserver;
   private Drawable                          archiveDrawable;
-  private LifecycleObserver                 visibilityLifecycleObserver;
+  private AppForegroundObserver.Listener    appForegroundObserver;
 
   private Stopwatch startupStopwatch;
 
@@ -277,7 +277,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onStart() {
     super.onStart();
     ConversationFragment.prepare(requireContext());
-    ProcessLifecycleOwner.get().getLifecycle().addObserver(visibilityLifecycleObserver);
+    ApplicationDependencies.getAppForegroundObserver().addListener(appForegroundObserver);
   }
 
   @Override
@@ -292,7 +292,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onStop() {
     super.onStop();
-    ProcessLifecycleOwner.get().getLifecycle().removeObserver(visibilityLifecycleObserver);
+    ApplicationDependencies.getAppForegroundObserver().removeListener(appForegroundObserver);
   }
 
   @Override
@@ -554,11 +554,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     viewModel.hasNoConversations().observe(getViewLifecycleOwner(), this::updateEmptyState);
     viewModel.getPipeState().observe(getViewLifecycleOwner(), this::updateProxyStatus);
 
-    visibilityLifecycleObserver = new DefaultLifecycleObserver() {
+    appForegroundObserver = new AppForegroundObserver.Listener() {
       @Override
-      public void onStart(@NonNull LifecycleOwner owner) {
+      public void onForeground() {
         viewModel.onVisible();
       }
+
+      @Override
+      public void onBackground() { }
     };
   }
 

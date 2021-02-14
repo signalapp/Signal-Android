@@ -12,6 +12,7 @@
     <color name="transparent_black_40">#66000000</color>
     <color name="transparent_black_60">#99000000</color>
     <color name="transparent_black_80">#CC000000</color>
+    <color name="transparent_black_90">#e6000000</color>
 
     <color name="transparent_white_15">#26ffffff</color>
     <color name="transparent_white_20">#33ffffff</color>
@@ -20,6 +21,7 @@
     <color name="transparent_white_60">#99ffffff</color>
     <color name="transparent_white_80">#ccffffff</color>
     <color name="transparent_white_90">#e6ffffff</color>
+    <color name="transparent_white_95">#f3ffffff</color>
 
     <color name="conversation_compose_divider">#32000000</color>
 

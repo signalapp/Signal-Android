@@ -23,6 +23,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -35,6 +37,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -196,6 +199,7 @@ public class ConversationFragment extends LoggingFragment {
   private OnScrollListener            conversationScrollListener;
   private int                         pulsePosition = -1;
   private VoiceNoteMediaController    voiceNoteMediaController;
+  private View                        toolbarShadow;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -225,6 +229,7 @@ public class ConversationFragment extends LoggingFragment {
     scrollToMentionButton   = view.findViewById(R.id.scroll_to_mention);
     scrollDateHeader        = view.findViewById(R.id.scroll_date_header);
     emptyConversationBanner = view.findViewById(R.id.empty_conversation_banner);
+    toolbarShadow           = requireActivity().findViewById(R.id.conversation_toolbar_shadow);
 
     final LinearLayoutManager layoutManager = new SmoothScrollingLinearLayoutManager(getActivity(), true);
     list.setHasFixedSize(false);
@@ -282,6 +287,8 @@ public class ConversationFragment extends LoggingFragment {
 
     scrollToBottomButton.setOnClickListener(v -> scrollToBottom());
     scrollToMentionButton.setOnClickListener(v -> scrollToNextMention());
+
+    updateToolbarDependentMargins();
 
     return view;
   }
@@ -361,6 +368,12 @@ public class ConversationFragment extends LoggingFragment {
   public void onStop() {
     super.onStop();
     ApplicationDependencies.getTypingStatusRepository().getTypists(threadId).removeObservers(this);
+  }
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    updateToolbarDependentMargins();
   }
 
   public void onNewIntent() {
@@ -526,6 +539,7 @@ public class ConversationFragment extends LoggingFragment {
 
     conversationScrollListener = new ConversationScrollListener(requireContext());
     list.addOnScrollListener(conversationScrollListener);
+    list.addOnScrollListener(new ShadowScrollListener());
 
     if (oldThreadId != threadId) {
       ApplicationDependencies.getTypingStatusRepository().getTypists(oldThreadId).removeObservers(this);
@@ -548,6 +562,7 @@ public class ConversationFragment extends LoggingFragment {
       emptyConversationBanner.setVisibility(View.GONE);
     } else if (threadId == -1) {
       emptyConversationBanner.setVisibility(View.VISIBLE);
+      toolbarShadow.setVisibility(View.GONE);
     }
   }
 
@@ -1069,8 +1084,8 @@ public class ConversationFragment extends LoggingFragment {
 
   private void maybeShowSwipeToReplyTooltip() {
     if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
-      int text = getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
-                                                                                                     : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
+      int text = ViewUtil.isLtr(requireContext()) ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
+                                                  : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
       TooltipPopup.forTarget(requireActivity().findViewById(R.id.menu_context_reply))
                   .setText(text)
                   .setTextColor(getResources().getColor(R.color.core_white))
@@ -1125,6 +1140,22 @@ public class ConversationFragment extends LoggingFragment {
         markReadHelper.onViewsRevealed(timestamp);
       }
     }
+  }
+
+  private void updateToolbarDependentMargins() {
+    Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+    toolbar.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+      @Override
+      public void onGlobalLayout() {
+        Rect rect = new Rect();
+        toolbar.getGlobalVisibleRect(rect);
+        ViewUtil.setTopMargin(scrollDateHeader, rect.bottom + ViewUtil.dpToPx(8));
+        ViewUtil.setTopMargin(conversationBanner, rect.bottom + ViewUtil.dpToPx(16));
+        ViewUtil.setTopMargin(emptyConversationBanner, rect.bottom + ViewUtil.dpToPx(16));
+        toolbar.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+      }
+    });
+
   }
 
   public interface ConversationFragmentListener {
@@ -1249,6 +1280,7 @@ public class ConversationFragment extends LoggingFragment {
         listener.handleReaction(maskTarget, messageRecord, new ReactionsToolbarListener(conversationMessage), () -> {
           isReacting = false;
           list.setLayoutFrozen(false);
+          WindowUtil.setLightStatusBarFromTheme(requireActivity());
         });
       } else {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(conversationMessage);
@@ -1605,7 +1637,7 @@ public class ConversationFragment extends LoggingFragment {
 
       mode.setTitle("1");
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      if (Build.VERSION.SDK_INT >= 21) {
         Window window = getActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
         WindowUtil.setStatusBarColor(window, getResources().getColor(R.color.action_mode_status_bar));
@@ -1631,11 +1663,11 @@ public class ConversationFragment extends LoggingFragment {
       ((ConversationAdapter)list.getAdapter()).clearSelection();
       list.getAdapter().notifyDataSetChanged();
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+      if (Build.VERSION.SDK_INT >= 21) {
         WindowUtil.setStatusBarColor(requireActivity().getWindow(), statusBarColor);
       }
 
-      WindowUtil.clearLightStatusBar(getActivity().getWindow());
+      WindowUtil.setLightStatusBarFromTheme(requireActivity());
       actionMode = null;
     }
 
@@ -1722,4 +1754,18 @@ public class ConversationFragment extends LoggingFragment {
     }
   }
 
+  private class ShadowScrollListener extends RecyclerView.OnScrollListener {
+    @Override
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+      if (recyclerView.canScrollVertically(-1)) {
+        if (toolbarShadow.getVisibility() != View.VISIBLE) {
+          ViewUtil.fadeIn(toolbarShadow, 250);
+        }
+      } else {
+        if (toolbarShadow.getVisibility() != View.GONE) {
+          ViewUtil.fadeOut(toolbarShadow, 250);
+        }
+      }
+    }
+  }
 }

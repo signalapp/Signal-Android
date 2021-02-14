@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Загружаем медиафайл…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Сжимаем видео…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Проверка наличия новых сообщений…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Заблокированные пользователи</string>
   <string name="BlockedUsersActivity__add_blocked_user">Добавить заблокированного пользователя</string>
@@ -503,7 +505,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Чтобы получить доступ к новым функциям, таким как @упоминания и администраторы групп, обновите эту группу.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сейчас</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Обновить группу</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Обновить группу</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d участника не удалось автоматически добавить в Новую группу. Добавить сейчас?</item>
@@ -2121,6 +2123,7 @@
   <string name="preferences_off">Отключено</string>
   <string name="preferences_on">Включено</string>
   <string name="preferences_proxy_address">Адрес прокси</string>
+  <string name="preferences_only_use_a_proxy_if">Используйте прокси, только если вы не можете подключиться к Signal через мобильный интернет или Wi-Fi.</string>
   <string name="preferences_share">Поделиться</string>
   <string name="preferences_save">Сохранить</string>
   <string name="preferences_connecting_to_proxy">Подключение к прокси…</string>
@@ -2130,6 +2133,7 @@
   <string name="preferences_you_are_connected_to_the_proxy">Signal подключён к прокси. Вы можете отключить прокси в любое время в настройках.</string>
   <string name="preferences_success">Успех</string>
   <string name="preferences_failed_to_connect">Не удалось подключиться</string>
+  <string name="preferences_enter_proxy_address">Введите адрес прокси</string>
   <string name="configurable_single_select__customize_option">Изменить опцию</string>
   <!--Internal only preferences-->
   <!--****************************************-->

@@ -901,9 +901,9 @@ public class MmsDatabase extends MessageDatabase {
   @Override
   public List<MarkedMessageInfo> setMessagesReadSince(long threadId, long sinceTimestamp) {
     if (sinceTimestamp == -1) {
-      return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
+      return setMessagesRead(THREAD_ID + " = ? AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + ")))", new String[] {String.valueOf(threadId)});
     } else {
-      return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0 AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
+      return setMessagesRead(THREAD_ID + " = ? AND (" + READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND ( " + getOutgoingTypeClause() + " ))) AND " + DATE_RECEIVED + " <= ?", new String[]{String.valueOf(threadId), String.valueOf(sinceTimestamp)});
     }
   }
 
@@ -914,7 +914,7 @@ public class MmsDatabase extends MessageDatabase {
 
   @Override
   public List<MarkedMessageInfo> setAllMessagesRead() {
-    return setMessagesRead(READ + " = 0", null);
+    return setMessagesRead(READ + " = 0 OR (" + REACTIONS_UNREAD + " = 1 AND (" + getOutgoingTypeClause() + "))", null);
   }
 
   private List<MarkedMessageInfo> setMessagesRead(String where, String[] arguments) {
@@ -925,10 +925,10 @@ public class MmsDatabase extends MessageDatabase {
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID}, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID }, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(cursor.getLong(cursor.getColumnIndex(MESSAGE_BOX)))) {
+        if (Types.isSecureType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
           long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
           RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
           long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
@@ -944,6 +944,8 @@ public class MmsDatabase extends MessageDatabase {
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(READ, 1);
+      contentValues.put(REACTIONS_UNREAD, 0);
+      contentValues.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
       database.update(TABLE_NAME, contentValues, where, arguments);
       database.setTransactionSuccessful();
@@ -968,7 +970,7 @@ public class MmsDatabase extends MessageDatabase {
         RecipientId theirRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
         RecipientId ourRecipientId   = messageId.getRecipientId();
 
-        if (ourRecipientId.equals(theirRecipientId) || Recipient.resolved(theirRecipientId).isGroup()) {
+        if (ourRecipientId.equals(theirRecipientId) || Recipient.resolved(theirRecipientId).isGroup() || ourRecipientId.equals(Recipient.self().getId())) {
           long id            = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
           long threadId      = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
           long expiresIn     = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
@@ -978,6 +980,8 @@ public class MmsDatabase extends MessageDatabase {
 
           ContentValues values = new ContentValues();
           values.put(READ, 1);
+          values.put(REACTIONS_UNREAD, 0);
+          values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
           if (expiresIn > 0) {
             values.put(EXPIRE_STARTED, expireStarted);

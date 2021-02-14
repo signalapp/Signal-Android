@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Enviando mídia…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimindo vídeo…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Procurando mensagens…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Pessoas bloqueadas</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adicionar uma pessoa bloqueada</string>
@@ -469,7 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Para acessar novos recursos como @menções e administradores, atualize este grupo.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Agora não</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Atualizar grupo</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Atualizar grupo</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d membro não pôde ser adicionado ao Novo Grupo. Você deseja adicioná-lo agora?</item>
@@ -543,7 +545,7 @@
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">Solicitações de membros pendentes</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Nenhuma solicitação de membros.</string>
-  <string name="RequestingMembersFragment_explanation">As pessoas desta lista estão tentando se conectar a este grupo através do link de grupo.</string>
+  <string name="RequestingMembersFragment_explanation">As pessoas nessa lista estão tentando entrar no grupo através do link do grupo.</string>
   <string name="RequestingMembersFragment_added_s">Adicionou \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Recusou \"%1$s\"</string>
   <!--AddMembersActivity-->
@@ -706,7 +708,7 @@
   <!--GroupJoinBottomSheetDialogFragment-->
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Você já é um membro</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">Entrar</string>
-  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Pedido de participação</string>
+  <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Pedir para entrar</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Não foi possível entrar no grupo. Por favor, tente novamente mais tarde</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Ocorreu um erro de rede.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este link do grupo não está ativo</string>
@@ -991,23 +993,23 @@
   <string name="MessageRecord_s_reset_the_group_link">%1$s redefiniu o link do grupo.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">O link do grupo foi redefinido.</string>
   <!--GV2 group link joins-->
-  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você entrou no grupo via o link do grupo.</string>
-  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via o link do grupo.</string>
+  <string name="MessageRecord_you_joined_the_group_via_the_group_link">Você entrou no grupo via link do grupo.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s entrou no grupo via link do grupo.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Você enviou um pedido para entrar no grupo.</string>
   <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s solicitou entrar via link do grupo.</string>
   <!--GV2 group link approvals-->
-  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou seu pedido de participação no grupo.</string>
-  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de participação no grupo de %2$s.</string>
-  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de %1$s para participar do grupo.</string>
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s aprovou o seu pedido para entrar no grupo.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s aprovou o pedido de %2$s para entrar no grupo.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">Você aprovou o pedido de %1$s para entrar no grupo.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">O seu pedido para entrar no grupo foi aprovado.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O pedido de participação no grupo de %1$s foi aprovado.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">O pedido de %1$s para entrar no grupo foi aprovado.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">O seu pedido para entrar no grupo foi recusado por um admin.</string>
-  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s recusou o pedido para entrar no grupo de %2$s.</string>
-  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">O pedido de participação no grupo de %1$s foi recusado.</string>
-  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Você cancelou seu pedido de participação no grupo.</string>
-  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s cancelou o pedido de participação no grupo.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s recusou o pedido de %2$s para entrar no grupo.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">O pedido de %1$s para entrar no grupo foi recusado.</string>
+  <string name="MessageRecord_you_canceled_your_request_to_join_the_group">Você cancelou o seu pedido para entrar no grupo.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s cancelou o pedido para entrar no grupo.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Você marcou o seu número de segurança com %s como verificado</string>
@@ -1105,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Destrancar Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Tela de bloqueio</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_drop_pin">Soltar pin</string>
@@ -1202,6 +1205,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Não é possível receber áudio e vídeo de %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Isso pode acontecer porque: ou essa pessoa não verificou a alteração do seu número de segurança, ou há um problema com o dispositivo dela, ou ela bloqueou você.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Servidor proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Endereço de proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Você quer usar este endereço de proxy?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Usar proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Conectado com sucesso ao proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o
@@ -1971,10 +1979,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Habilitar remetente oculto para mensagens recebidas de não contatos e pessoas com quem você não compartilhou seu perfil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Saiba mais</string>
   <string name="preferences_setup_a_username">Definir um nome de usuário</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Usar proxy</string>
   <string name="preferences_off">Desligado</string>
   <string name="preferences_on">Ligado</string>
+  <string name="preferences_proxy_address">Endereço de proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Somente use um proxy se você não conseguir se conectar ao Signal com dados móveis ou Wi-Fi.</string>
   <string name="preferences_share">Compartilhar</string>
   <string name="preferences_save">Salvar</string>
+  <string name="preferences_connecting_to_proxy">Conectando-se ao proxy…</string>
+  <string name="preferences_connected_to_proxy">Conectado ao proxy</string>
+  <string name="preferences_connection_failed">Falha na conexão</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Não foi possível se conectar ao proxy. Verifique o endereço do proxy e tente novamente.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Você está conectado ao proxy. Você pode desligar o proxy a qualquer momento em Configurações.</string>
+  <string name="preferences_success">Deu certo</string>
+  <string name="preferences_failed_to_connect">Falha de conexão</string>
+  <string name="preferences_enter_proxy_address">Digite o endereço de proxy</string>
   <string name="configurable_single_select__customize_option">Opção para personalizar</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2157,6 +2177,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu seu PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Restam poucas tentativas!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registro no Signal - Preciso de ajuda com o PIN para Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registro no Signal - Preciso de ajuda com o PIN para Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá re-registrar seu número de telefone após %1$d dias de inatividade. Nesse caso, sua conta será suprimida e todo o conteúdo excluído.</item>
     <item quantity="other">Para sua privacidade e segurança, não há como recuperar seu PIN. Se você não conseguir se lembrar do seu PIN, poderá re-registrar seu número de telefone após %1$d dias de inatividade. Nesse caso, sua conta será suprimida e todo o conteúdo excluído.</item>
@@ -2178,7 +2200,7 @@
     <item quantity="other">%1$d tentativas restantes.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s receberá um pedido para conversar com você. Você poderá ligar assim que sua solicitação for aceita.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s receberá um pedido para conversar com você. Você poderá ligar assim que seu pedido for aceito.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Crie um PIN</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">O PIN guarda informações que são armazenadas no Signal criptografadas.</string>

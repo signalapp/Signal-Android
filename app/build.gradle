@@ -61,8 +61,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 785
-def canonicalVersionName = "5.3.12"
+def canonicalVersionCode = 790
+def canonicalVersionName = "5.4.4"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -108,6 +108,7 @@ android {
         project.ext.set("archivesBaseName", "Signal");
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
+        buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
         buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
         buildConfigField "String", "STORAGE_URL", "\"https://storage.signal.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
@@ -338,7 +339,7 @@ dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 
-    implementation 'org.signal:ringrtc-android:2.9.0'
+    implementation 'org.signal:ringrtc-android:2.9.2'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -376,7 +377,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
 
-    implementation 'com.airbnb.android:lottie:3.0.7'
+    implementation 'com.airbnb.android:lottie:3.6.0'
 
     implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
@@ -484,6 +485,15 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
+}
+
+def getGitHash() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
 }
 
 tasks.withType(Test) {

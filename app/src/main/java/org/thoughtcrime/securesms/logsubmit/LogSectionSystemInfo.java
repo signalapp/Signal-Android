@@ -73,7 +73,8 @@ public class LogSectionSystemInfo implements LogSection {
              .append(BuildConfig.CANONICAL_VERSION_CODE)
              .append(", ")
              .append(Util.getManifestApkVersion(context))
-             .append(")\n");
+             .append(") (")
+             .append(BuildConfig.GIT_HASH).append(") \n");
     } catch (PackageManager.NameNotFoundException nnfe) {
       builder.append("Unknown\n");
     }

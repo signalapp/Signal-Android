@@ -86,6 +86,8 @@
       android:layout_gravity="bottom|end"
       android:layout_marginEnd="16dp"
       android:layout_marginBottom="16dp"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp"
       android:textColor="@color/white"
       android:text="@string/EditProfileNameFragment_save"
       app:cornerRadius="80dp"

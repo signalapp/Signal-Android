@@ -65,6 +65,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Po ngarkohet media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Po ngjeshet video…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Po kontrollohet për mesazhe…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Përdorues të bllokuar</string>
   <string name="BlockedUsersActivity__add_blocked_user">Shtoni përdorues të bllokuar</string>
@@ -470,7 +472,7 @@ grupit dhe s’do të marrë mesazhe grupi përpara se ta pranojë:</item>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Që të përdorni veçori të tilla si, @përmendje dhe përgjegjës, përmirësojeni këtë grup.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Jo tani</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">Fresko grupiin</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Përmirësoni grupin</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d anëtar s’u rishtua dot te Grupi i Ri. Doni të shtohet tani?</item>
@@ -1984,6 +1986,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_off">Off</string>
   <string name="preferences_on">On</string>
   <string name="preferences_proxy_address">Adresë ndërmjetësi</string>
+  <string name="preferences_only_use_a_proxy_if">Përdorni një ndërmjetës vetëm nëse s’jeni në gjendje të lidheni me Signal-in në celular ose Wi-Fi.</string>
   <string name="preferences_share">Ndajeni Me të Tjerë</string>
   <string name="preferences_save">Ruaje</string>
   <string name="preferences_connecting_to_proxy">Po lidhet te ndërmjetës…</string>
@@ -1993,6 +1996,7 @@ aktivizoni Kyçje Regjistrimi, teksa PIN-i është i çaktivizuar.</string>
   <string name="preferences_you_are_connected_to_the_proxy">Jeni i lidhur te ndërmjetësi. Ndërmjetësin mund ta çaktivizoni në çfarëdo kohe, që nga Rregullimet.</string>
   <string name="preferences_success">Sukses</string>
   <string name="preferences_failed_to_connect">S’u arrit të lidhej</string>
+  <string name="preferences_enter_proxy_address">Jepni adresë ndërmjetësi</string>
   <string name="configurable_single_select__customize_option">Përshtatë një mundësi</string>
   <!--Internal only preferences-->
   <!--****************************************-->

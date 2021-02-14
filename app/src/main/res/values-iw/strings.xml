@@ -67,6 +67,8 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">מעלה מדיה…</string>
   <string name="AttachmentUploadJob_compressing_video_start">דוחס סרטון…</string>
+  <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">בודק אחר הודעות…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">משתמשים חסומים</string>
   <string name="BlockedUsersActivity__add_blocked_user">הוסף משתמש חסום</string>
@@ -503,7 +505,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">כדי להשיג גישה אל מאפיינים חדשים כמו @אזכורים ומנהלנים, שדרג קבוצה זו.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">לא עכשיו</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">עדכון קבוצה</string> -->
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">שדרג קבוצה</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d חבר קבוצה לא היה יכול להתווסף מחדש אל הקבוצה החדשה. האם אתה רוצה להוסיף אותו עכשיו?</item>
@@ -2128,12 +2130,17 @@
   <string name="preferences_off">כבוי</string>
   <string name="preferences_on">מופעל</string>
   <string name="preferences_proxy_address">כתובת יפוי כוח</string>
+  <string name="preferences_only_use_a_proxy_if">השתמש ביפוי כוח רק אם אתה לא מסוגל להתחבר אל Signal על סלולר או Wi-Fi.</string>
   <string name="preferences_share">שתף</string>
   <string name="preferences_save">שמור</string>
   <string name="preferences_connecting_to_proxy">מתחבר אל יפוי כוח…</string>
   <string name="preferences_connected_to_proxy">מחובר אל יפוי כוח</string>
+  <string name="preferences_connection_failed">חיבור נכשל</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">לא היה ניתן להתחבר אל יפוי הכוח. בדוק את כתובת יפוי הכוח ונסה שוב.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">אתה מחובר אל יפוי הכוח. אתה יכול לכבות את יפוי הכוח בכל זמן מתוך ההגדרות.</string>
   <string name="preferences_success">הצלחה</string>
   <string name="preferences_failed_to_connect">נכשל בהתחברות</string>
+  <string name="preferences_enter_proxy_address">הכנס כתובת יפוי כוח</string>
   <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
   <!--Internal only preferences-->
   <!--****************************************-->

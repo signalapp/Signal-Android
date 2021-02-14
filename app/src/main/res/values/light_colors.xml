@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="conversation_toolbar_color">@color/core_white</color>
+    <color name="conversation_toolbar_color_wallpaper">@color/transparent_white_95</color>
+
     <color name="signal_accent_primary">@color/core_ultramarine</color>
     <color name="signal_accent_stroke_primary">@color/core_white</color>
 
@@ -120,4 +123,6 @@
     <color name="tooltip_default_color">@color/core_white</color>
 
     <color name="wallpaper_preview_background">@color/transparent_white_30</color>
+    <color name="wallpaper_compose_background">#ccf6f6f6</color>
+    <color name="wallpaper_toolbar_background">@color/core_white</color>
 </resources>

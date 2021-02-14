@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:gravity="center_vertical"
-    tools:background="#007fff"
     tools:layout_height="?actionBarSize">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
@@ -22,7 +21,6 @@
         android:cropToPadding="true"
         android:foreground="@drawable/contact_photo_background"
         android:transitionName="contact_photo"
-        app:inverted="true"
         app:fallbackImageSize="small"
         tools:src="@drawable/ic_contact_picture" />
 
@@ -36,7 +34,7 @@
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/title"
-            style="@style/TextSecure.TitleTextStyle.Dark"
+            style="@style/TextSecure.TitleTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|start"
@@ -45,7 +43,7 @@
             android:gravity="center_vertical"
             android:maxLines="1"
             android:transitionName="recipient_name"
-            android:drawableTint="@color/transparent_white_90"
+            android:drawableTint="@color/signal_inverse_transparent_80"
             tools:ignore="UnusedAttribute"
             tools:text="J. Jonah Jameson" />
 
@@ -62,14 +60,14 @@
                 android:layout_width="12dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="3dp"
-                android:tint="@color/signal_text_toolbar_subtitle"
+                android:tint="@color/signal_inverse_transparent_80"
                 app:srcCompat="@drawable/ic_check_24"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/verified_subtitle"
-                style="@style/TextSecure.SubtitleTextStyle.Dark"
+                style="@style/TextSecure.SubtitleTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"
@@ -77,19 +75,19 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="@color/signal_text_toolbar_subtitle"
+                android:textColor="@color/signal_inverse_transparent_80"
                 android:text="@string/ConversationTitleView_verified"
                 android:textDirection="ltr" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
                 android:id="@+id/subtitle"
-                style="@style/TextSecure.SubtitleTextStyle.Dark"
+                style="@style/TextSecure.SubtitleTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|start"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:textColor="@color/signal_text_toolbar_subtitle"
+                android:textColor="@color/signal_inverse_transparent_80"
                 android:maxLines="1"
                 android:textDirection="ltr"
                 tools:text="(123) 123-1234" />

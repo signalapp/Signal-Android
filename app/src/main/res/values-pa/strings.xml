@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ਮੀਡੀਆ ਅਪਲੋਡ ਹੋ ਰਿਹਾ ਹੈ</string>
   <string name="AttachmentUploadJob_compressing_video_start">ਕੰਪ੍ਰੈਸਿੰਗ ਵੀਡੀਓ …</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ਪਾਬੰਦੀ ਲਾਏ ਵਰਤੋਂਕਾਰ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ਪਾਬੰਦੀ ਲਾਇਆ ਵਰਤੋਂਕਾਰ ਜੋੜੋ</string>
@@ -444,7 +445,6 @@
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ਅਪਗ੍ਰੇਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ.</string>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_not_now">ਹਾਲੇ ਨਹੀਂ</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕਰੋ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
     <item quantity="one">ਸਦੱਸ ਸ਼ਾਮਲ ਕਰੋ</item>

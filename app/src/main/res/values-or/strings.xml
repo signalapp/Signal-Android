@@ -65,6 +65,7 @@
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">ମିଡ଼ିଆ ଅପଲୋଡ଼୍ ହେଉଛି…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ଭିଡ଼ିଓ ସଙ୍କୋଚନ କରାଯାଉଛି…</string>
+  <!--BackgroundMessageRetriever-->
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ ଯୋଡ଼ନ୍ତୁ</string>
@@ -469,7 +470,6 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ଉଲ୍ଲେଖ ଏବଂ ପରିଚାଳକ ପରି ନୂତନ ବୈଶିଷ୍ଟ୍ୟଗୁଡିକୁ ପ୍ରବେଶ କରିବାକୁ, ଏହି ଗୋଷ୍ଠୀକୁ ନବୀକରଣ କରନ୍ତୁ</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ଏବେ ନୁହେଁ</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsV1MigrationInitiationReminder_update_group">ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରନ୍ତୁ</string> -->
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$dଜଣେ ସଦସ୍ୟ ନୂତନ ଗୋଷ୍ଠୀରେ ପୁନଃଯୋଡି ହୋଇପାରିଲେ ନାହିଁ | ଆପଣ ବର୍ତ୍ତମାନ ସେଗୁଡିକୁ ଯୋଡିବାକୁ ଚାହୁଁଛନ୍ତି କି?</item>
