@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import android.util.Log
 import com.google.protobuf.ByteString
-import kotlinx.coroutines.delay
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.task
@@ -39,13 +38,13 @@ import org.session.libsession.utilities.TextSecurePreferences
 
 import java.io.IOException
 import java.util.*
-import java.util.concurrent.atomic.AtomicReference
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.jvm.Throws
 
 object ClosedGroupsProtocolV2 {
     const val groupSizeLimit = 100
 
-    private val pendingKeyPair = AtomicReference<ECKeyPair>(null)
+    private val pendingKeyPair = ConcurrentHashMap<String,Optional<ECKeyPair>>()
 
     sealed class Error(val description: String) : Exception() {
         object NoThread : Error("Couldn't find a thread associated with the given group public key")
@@ -141,7 +140,9 @@ object ClosedGroupsProtocolV2 {
             val admins = group.admins.map { it.serialize() }
             val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
             val sentTime = System.currentTimeMillis()
-            val encryptionKeyPair = pendingKeyPair.get() ?: apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+            val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
+                Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
+            }.orNull()
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
                 return@task Error.NoKeyPair
@@ -190,7 +191,6 @@ object ClosedGroupsProtocolV2 {
                 Log.d("Loki", "Can't remove admin from closed group unless the group is destroyed entirely.")
                 return@task Error.InvalidUpdate
             }
-            val name = group.title
             // Send the update to the group
             val memberUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.RemoveMembers(removeMembersAsData)
             val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind, sentTime)
@@ -351,11 +351,19 @@ object ClosedGroupsProtocolV2 {
         }
         // Generate the new encryption key pair
         val newKeyPair = Curve.generateKeyPair()
+        // replace call will not succeed if no value already set
+        pendingKeyPair.putIfAbsent(groupPublicKey,Optional.absent())
         do {
             // make sure we set the pendingKeyPair or wait until it is not null
-        } while (!pendingKeyPair.compareAndSet(null, newKeyPair))
-
+        } while (!pendingKeyPair.replace(groupPublicKey,Optional.absent(),Optional.fromNullable(newKeyPair)))
         // Distribute it
+        sendEncryptionKeyPair(context, groupPublicKey, newKeyPair, targetMembers)
+        // Store it * after * having sent out the message to the group
+        apiDB.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+        pendingKeyPair[groupPublicKey] = Optional.absent()
+    }
+
+    private fun sendEncryptionKeyPair(context: Context, groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, force: Boolean = true) {
         val proto = SignalServiceProtos.KeyPair.newBuilder()
         proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
         proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
@@ -365,11 +373,12 @@ object ClosedGroupsProtocolV2 {
             ClosedGroupUpdateMessageSendJobV2.KeyPairWrapper(publicKey, ciphertext)
         }
         val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.EncryptionKeyPair(wrappers), System.currentTimeMillis())
-        job.setContext(context)
-        job.onRun() // Run the job immediately
-        // Store it * after * having sent out the message to the group
-        apiDB.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
-        pendingKeyPair.set(null)
+        if (force) {
+            job.setContext(context)
+            job.onRun() // Run the job immediately
+        } else {
+            ApplicationContext.getInstance(context).jobManager.add(job)
+        }
     }
 
     @JvmStatic
@@ -509,6 +518,7 @@ object ClosedGroupsProtocolV2 {
 
     fun handleClosedGroupMembersAdded(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
@@ -535,6 +545,17 @@ object ClosedGroupsProtocolV2 {
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
             insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        }
+        if (userPublicKey in admins) {
+            // send current encryption key to the latest added members
+            val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
+                Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
+            }.orNull()
+            if (encryptionKeyPair == null) {
+                Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+            } else {
+                sendEncryptionKeyPair(context, groupPublicKey, encryptionKeyPair, newMembers, false)
+            }
         }
     }
 
