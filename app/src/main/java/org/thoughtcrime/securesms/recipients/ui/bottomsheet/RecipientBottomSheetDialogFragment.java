@@ -183,22 +183,14 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
 
       noteToSelfDescription.setVisibility(recipient.isSelf() ? View.VISIBLE : View.GONE);
 
-      if (RecipientUtil.isBlockable(recipient)) {
-        boolean blocked = recipient.isBlocked();
+      blockButton          .setVisibility(!recipient.isMmsGroup()   && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      unblockButton        .setVisibility(!recipient.isMmsGroup()   &&  recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      messageButton        .setVisibility(!recipient.isMmsGroup()   && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      secureCallButton     .setVisibility( recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      insecureCallButton   .setVisibility(!recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
+      secureVideoCallButton.setVisibility( recipient.isRegistered() && !recipient.isBlocked() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
 
-        blockButton  .setVisibility(recipient.isSelf() ||  blocked ? View.GONE : View.VISIBLE);
-        unblockButton.setVisibility(recipient.isSelf() || !blocked ? View.GONE : View.VISIBLE);
-      } else {
-        blockButton  .setVisibility(View.GONE);
-        unblockButton.setVisibility(View.GONE);
-      }
-
-      messageButton.setVisibility(!recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      insecureCallButton.setVisibility(!recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-      secureVideoCallButton.setVisibility(recipient.isRegistered() && !recipient.isSelf() ? View.VISIBLE : View.GONE);
-
-      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf()) {
+      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isBlocked() || recipient.isSelf()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);
