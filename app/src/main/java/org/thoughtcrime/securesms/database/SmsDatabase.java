@@ -730,7 +730,6 @@ public class SmsDatabase extends MessagingDatabase {
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
     long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
-
     if (insertListener != null) {
       insertListener.onComplete();
     }

@@ -184,10 +184,6 @@ public class IncomingTextMessage implements Parcelable {
     return message;
   }
 
-  public IncomingTextMessage withMessageBody(String message) {
-    return new IncomingTextMessage(this, message);
-  }
-
   public Address getSender() {
     return sender;
   }
@@ -259,7 +255,6 @@ public class IncomingTextMessage implements Parcelable {
   public boolean isUnidentified() {
     return unidentified;
   }
-
   @Override
   public int describeContents() {
     return 0;

@@ -15,6 +15,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -143,6 +144,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
+    String                    userPublicKey              = TextSecurePreferences.getLocalNumber(context);
+    SignalServiceAddress      localAddress               = new SignalServiceAddress(userPublicKey);
+
     if (database.isSent(messageId)) {
       log(TAG, "Message " + messageId + " was already sent. Ignoring.");
       return;
@@ -238,25 +242,18 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 //      return results;
 //    }
 
-    String                                     groupId            = address.toGroupString();
-    Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
-    Optional<Quote>                            quote              = getQuoteFor(message);
-    Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
-    List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
-    List<Preview>                              previews           = getPreviewsFor(message);
     List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
-    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-    List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
-
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
                                                                       .map(a -> Address.Companion.fromSerialized(a.getNumber()))
                                                                       .map(a -> Recipient.from(context, a, false))
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
 
-    SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
-
     if (message.isGroup() && address.isClosedGroup()) {
+      SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
+      String                                     groupId            = address.toGroupString();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
       // Loki - Only send GroupUpdate or GroupQuit messages to closed groups
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
@@ -271,23 +268,38 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupDataMessage);
     } else {
-      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupId), groupType);
-      SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
-                                                                      .withTimestamp(message.getSentTimeMillis())
-                                                                      .asGroupMessage(group)
-                                                                      .withAttachments(attachmentPointers)
-                                                                      .withBody(message.getBody())
-                                                                      .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                      .asExpirationUpdate(message.isExpirationUpdate())
-                                                                      .withProfileKey(profileKey.orNull())
-                                                                      .withQuote(quote.orNull())
-                                                                      .withSticker(sticker.orNull())
-                                                                      .withSharedContacts(sharedContacts)
-                                                                      .withPreviews(previews)
-                                                                      .build();
+      SignalServiceDataMessage groupMessage = getDataMessage(address, message).build();
 
       return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupMessage);
     }
+  }
+
+  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) throws IOException {
+
+    SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
+
+    String                                     groupId            = address.toGroupString();
+    Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
+    Optional<Quote>                            quote              = getQuoteFor(message);
+    Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
+    List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
+    List<Preview>                              previews           = getPreviewsFor(message);
+    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+    List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
+
+    SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupId), groupType);
+    return SignalServiceDataMessage.newBuilder()
+            .withTimestamp(message.getSentTimeMillis())
+            .asGroupMessage(group)
+            .withAttachments(attachmentPointers)
+            .withBody(message.getBody())
+            .withExpiration((int)(message.getExpiresIn() / 1000))
+            .asExpirationUpdate(message.isExpirationUpdate())
+            .withProfileKey(profileKey.orNull())
+            .withQuote(quote.orNull())
+            .withSticker(sticker.orNull())
+            .withSharedContacts(sharedContacts)
+            .withPreviews(previews);
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

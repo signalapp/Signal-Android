@@ -195,7 +195,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     }
   }
 
-  public void create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
+  public long create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
                      @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay, @Nullable List<Address> admins)
   {
     Collections.sort(members);
@@ -222,7 +222,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
       contentValues.put(ADMINS, Address.Companion.toSerializedList(admins, ','));
     }
 
-    databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
+    long threadId = databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
     Recipient.applyCached(Address.Companion.fromSerialized(groupId), recipient -> {
       recipient.setName(title);
@@ -231,6 +231,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     });
 
     notifyConversationListListeners();
+    return threadId;
   }
 
   public boolean delete(@NonNull String groupId) {

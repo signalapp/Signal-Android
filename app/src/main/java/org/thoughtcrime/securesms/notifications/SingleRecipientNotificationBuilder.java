@@ -326,8 +326,8 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   private static Drawable getPlaceholderDrawable(Context context, Recipient recipient) {
     String publicKey = recipient.getAddress().serialize();
-    String hepk = (recipient.isLocalNumber() && publicKey != null)
-            ? TextSecurePreferences.getLocalNumber(context)
+    String hepk = (recipient.isLocalNumber() && publicKey == null)
+            ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
             : publicKey;
     String displayName = recipient.getName();
     return AvatarPlaceholderGenerator.generate(context, 128, hepk, displayName);

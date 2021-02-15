@@ -5,6 +5,7 @@ import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
@@ -33,7 +34,7 @@ object MultiDeviceProtocol {
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
-                    true, false, true, false)
+                    true, false, true, Optional.absent())
             TextSecurePreferences.setLastConfigurationSyncTime(context, now)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
@@ -51,14 +52,14 @@ object MultiDeviceProtocol {
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
-                    true, false, true, false)
+                    true, false, true, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
         }
     }
 
     @JvmStatic
-    fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String) {
+    fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
         if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
         val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
@@ -79,7 +80,7 @@ object MultiDeviceProtocol {
             closedGroupUpdate.addAllMembers(closedGroup.members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             closedGroupUpdate.addAllAdmins(closedGroup.admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
 
-            ClosedGroupsProtocolV2.handleNewClosedGroup(context, closedGroupUpdate.build(), userPublicKey)
+            ClosedGroupsProtocolV2.handleNewClosedGroup(context, closedGroupUpdate.build(), userPublicKey, timestamp)
         }
         val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
         for (openGroup in configurationMessage.openGroups) {

@@ -277,24 +277,22 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             isLoading = true
             loaderContainer.fadeIn()
             val promise: Promise<Any, Exception> = if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
-                ClosedGroupsProtocolV2.leave(this, groupPublicKey!!)
+                ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey!!)
             } else {
-//                TODO: uncomment when we switch to sending new explicit updates after clients update
-//                task {
-//                    val name =
-//                            if (hasNameChanged) ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity,groupPublicKey!!,name)
-//                            else Promise.of(Unit)
-//                    name.get()
-//                    members.filterNot { it in originalMembers }.let { adds ->
-//                        if (adds.isNotEmpty()) ClosedGroupsProtocolV2.explicitAddMembers(this@EditClosedGroupActivity, groupPublicKey!!, adds.map { it.address.serialize() })
-//                        else Promise.of(Unit)
-//                    }.get()
-//                    originalMembers.filterNot { it in members }.let { removes ->
-//                        if (removes.isNotEmpty()) ClosedGroupsProtocolV2.explicitRemoveMembers(this@EditClosedGroupActivity, groupPublicKey!!, removes.map { it.address.serialize() })
-//                        else Promise.of(Unit)
-//                    }.get()
-//                }
-                ClosedGroupsProtocolV2.update(this, groupPublicKey!!, members.map { it.address.serialize() }, name)
+                task {
+                    val name =
+                            if (hasNameChanged) ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity,groupPublicKey!!,name)
+                            else Promise.of(Unit)
+                    name.get()
+                    members.filterNot { it in originalMembers }.let { adds ->
+                        if (adds.isNotEmpty()) ClosedGroupsProtocolV2.explicitAddMembers(this@EditClosedGroupActivity, groupPublicKey!!, adds.map { it.address.serialize() })
+                        else Promise.of(Unit)
+                    }.get()
+                    originalMembers.filterNot { it in members }.let { removes ->
+                        if (removes.isNotEmpty()) ClosedGroupsProtocolV2.explicitRemoveMembers(this@EditClosedGroupActivity, groupPublicKey!!, removes.map { it.address.serialize() })
+                        else Promise.of(Unit)
+                    }.get()
+                }
             }
             promise.successUi {
                 loaderContainer.fadeOut()
