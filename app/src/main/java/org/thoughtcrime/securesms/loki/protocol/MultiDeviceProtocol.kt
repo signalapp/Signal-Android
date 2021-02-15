@@ -19,6 +19,7 @@ import java.util.*
 
 object MultiDeviceProtocol {
 
+    // TODO: refactor this to use new message sending job
     @JvmStatic
     fun syncConfigurationIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
@@ -41,6 +42,7 @@ object MultiDeviceProtocol {
         }
     }
 
+    // TODO: refactor this to use new message sending job
     fun forceSyncConfigurationNowIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         val configurationMessage = ConfigurationMessage.getCurrent()
@@ -58,6 +60,7 @@ object MultiDeviceProtocol {
         }
     }
 
+    // TODO: remove this after we migrate to new message sending pipeline
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
         if (TextSecurePreferences.getConfigurationMessageSynced(context)) return

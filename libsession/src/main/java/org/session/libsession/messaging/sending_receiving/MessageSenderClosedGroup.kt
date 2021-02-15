@@ -2,7 +2,6 @@
 
 package org.session.libsession.messaging.sending_receiving
 
-import android.util.Log
 import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
@@ -22,6 +21,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.ThreadUtils
+import org.session.libsignal.utilities.logging.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 

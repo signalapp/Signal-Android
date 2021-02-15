@@ -1,7 +1,6 @@
 package org.session.libsession.messaging.sending_receiving
 
 import android.text.TextUtils
-import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.AttachmentDownloadJob
 import org.session.libsession.messaging.jobs.JobQueue
@@ -28,7 +27,6 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
-import org.session.libsignal.utilities.Hex
 import java.security.MessageDigest
 import java.util.*
 import kotlin.collections.ArrayList
