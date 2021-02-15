@@ -492,19 +492,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: C
         return
     }
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
-    // Get the latest encryption key pair
-    val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
-    // Send it
-    val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize())
-    proto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
-    val plaintext = proto.build().toByteArray()
-    val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, senderPublicKey)
-    Log.d("Loki", "Responding to closed group encryption key pair request from: $senderPublicKey.")
-    val wrapper = ClosedGroupControlMessage.KeyPairWrapper(senderPublicKey, ByteString.copyFrom(ciphertext))
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), listOf(wrapper))
-    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
-    MessageSender.send(closedGroupControlMessage, Address.fromSerialized(senderPublicKey))
+    MessageSender.sendLatestEncryptionKeyPair(senderPublicKey, groupPublicKey)
 }
 
 private fun isValidGroupUpdate(group: GroupRecord,
