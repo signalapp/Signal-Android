@@ -548,9 +548,8 @@ object ClosedGroupsProtocolV2 {
         }
         if (userPublicKey in admins) {
             // send current encryption key to the latest added members
-            val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
-                Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
-            }.orNull()
+            val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+                ?: apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
             } else {
