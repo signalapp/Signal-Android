@@ -347,7 +347,7 @@ public class SignalServiceMessageSender {
     for (String device : linkedDevices) {
       SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
       boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, device, store);
-      // sendMessageToPrivateChat(0, deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, content, false, message.getTTL(), useFallbackEncryption, false, false);
+      sendMessageToPrivateChat(0, deviceAsAddress, Optional.absent(), timestamp, content, false, message.getTTL(), useFallbackEncryption, false, false, Optional.absent());
     }
   }
 
