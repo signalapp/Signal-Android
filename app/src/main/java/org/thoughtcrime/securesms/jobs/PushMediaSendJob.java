@@ -287,11 +287,12 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
       if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
         // Loki - Device link messages don't go through here
-        Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
-        SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
-
-        messageSender.sendMessage(syncMessage, syncAccess);
-        return syncAccess.isPresent();
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
+        if (result.getLokiAPIError() != null) {
+          throw result.getLokiAPIError();
+        } else {
+          return result.getSuccess().isUnidentified();
+        }
       } else {
         SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
         if (result.getLokiAPIError() != null) {
