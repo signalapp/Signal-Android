@@ -640,7 +640,7 @@ object ClosedGroupsProtocolV2 {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins)
         }
     }
 
