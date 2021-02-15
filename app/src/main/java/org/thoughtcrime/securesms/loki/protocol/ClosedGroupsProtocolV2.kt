@@ -104,6 +104,9 @@ object ClosedGroupsProtocolV2 {
             val groupDB = DatabaseFactory.getGroupDatabase(context)
             val groupID = doubleEncodeGroupID(groupPublicKey)
             val group = groupDB.getGroup(groupID).orNull()
+            val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
+            val admins = group.admins.map { it.serialize() }
+            val name = group.title
             val sentTime = System.currentTimeMillis()
             if (group == null) {
                 Log.d("Loki", "Can't leave nonexistent closed group.")
@@ -114,6 +117,10 @@ object ClosedGroupsProtocolV2 {
             val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.Leave, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.QUIT
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             // Remove the group private key and unsubscribe from PNs
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
@@ -153,6 +160,10 @@ object ClosedGroupsProtocolV2 {
             val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.UPDATE
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             // Send closed group update messages to any new members individually
             for (member in membersToAdd) {
                 @Suppress("NAME_SHADOWING")
@@ -191,11 +202,16 @@ object ClosedGroupsProtocolV2 {
                 Log.d("Loki", "Can't remove admin from closed group unless the group is destroyed entirely.")
                 return@task Error.InvalidUpdate
             }
+            val name = group.title
             // Send the update to the group
             val memberUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.RemoveMembers(removeMembersAsData)
             val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.UPDATE
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             val isCurrentUserAdmin = admins.contains(userPublicKey)
             if (isCurrentUserAdmin) {
                 generateAndSendNewEncryptionKeyPair(context, groupPublicKey, updatedMembers)
@@ -223,6 +239,10 @@ object ClosedGroupsProtocolV2 {
             val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, kind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.UPDATE
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID, sentTime)
             // Update the group
             groupDB.updateTitle(groupID, newName)
             deferred.resolve(Unit)
@@ -753,6 +773,7 @@ object ClosedGroupsProtocolV2 {
     private fun insertOutgoingInfoMessage(context: Context, groupID: String, type: GroupContext.Type, name: String,
                                           members: Collection<String>, admins: Collection<String>, threadID: Long,
                                           sentTime: Long) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = GroupContext.newBuilder()
                 .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
@@ -760,8 +781,10 @@ object ClosedGroupsProtocolV2 {
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTime, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
+        val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
+        if (mmsSmsDB.getMessageFor(sentTime,userPublicKey) != null) return
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null, sentTime)
         mmsDB.markAsSent(infoMessageID, true)
     }

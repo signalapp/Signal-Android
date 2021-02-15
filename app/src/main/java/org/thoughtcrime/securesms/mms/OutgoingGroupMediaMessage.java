@@ -46,8 +46,25 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
                                    @NonNull List<LinkPreview> previews)
   {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
+            new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
+            System.currentTimeMillis(),
+            ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
+
+    this.group = group;
+  }
+
+  public OutgoingGroupMediaMessage(@NonNull Recipient recipient,
+                                   @NonNull GroupContext group,
+                                   @Nullable final Attachment avatar,
+                                   long sentTime,
+                                   long expireIn,
+                                   @Nullable QuoteModel quote,
+                                   @NonNull List<Contact> contacts,
+                                   @NonNull List<LinkPreview> previews)
+  {
+    super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
-          System.currentTimeMillis(),
+          sentTime,
           ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
 
     this.group = group;
