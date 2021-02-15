@@ -275,11 +275,8 @@ fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey:
         return
     }
     // Get the latest encryption key pair
-    val encryptionKeyPair = if (pendingKeyPair[groupPublicKey] != null && pendingKeyPair[groupPublicKey]!!.isPresent) {
-        pendingKeyPair[groupPublicKey]!!.get()
-    } else {
-        storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
-    } ?: return
+    val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+            ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
     // Send it
     val proto = SignalServiceProtos.KeyPair.newBuilder()
     proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize())
