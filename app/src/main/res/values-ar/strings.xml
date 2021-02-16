@@ -70,7 +70,7 @@
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الملف …</string>
   <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">يجلب الرسائل…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">يبحث عن الرسائل…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
   <string name="BlockedUsersActivity__add_blocked_user">أضف مستخدما محظورا</string>
@@ -2762,7 +2762,7 @@
   <string name="ChatWallpaperFragment__wallpaper_preview_description">معاينة الخلفية</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">الاختيار من الصور</string>
-  <string name="ChatWallpaperSelectionFragment__presets">الإعدادات المسبقة</string>
+  <string name="ChatWallpaperSelectionFragment__presets">الإعدادات الأولية</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">مُعاينة</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">تعيين خلفية</string>

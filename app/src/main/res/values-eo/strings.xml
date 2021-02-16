@@ -1349,7 +1349,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_view_once_photo">Nurunufoje videbla foto</string>
   <string name="ThreadRecord_view_once_video">Nurunufoje videbla videaĵo</string>
   <string name="ThreadRecord_view_once_media">Nurunufoje videbla aŭdvidaĵo</string>
-  <string name="ThreadRecord_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
+  <string name="ThreadRecord_this_message_was_deleted">Tiu ĉi mesaĝo estis forviŝita.</string>
   <string name="ThreadRecord_you_deleted_this_message">Vi forviŝis tiun mesaĝon.</string>
   <string name="ThreadRecord_s_is_on_signal">%s estas ĉe Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Memviŝontaj mesaĝoj malŝaltita</string>
@@ -1458,7 +1458,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagis per %1$s al via aŭdaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagis per %1$s al via nurunufoje videbla videaĵo.</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Reagis per %1$s al via glumarko.</string>
-  <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo forviŝiĝis.</string>
+  <string name="MessageNotifier_this_message_was_deleted">Tiu ĉi mesaĝo estis forviŝita.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Ĉu malŝalti sciigojn pri aliĝo de kontakto al Signal? Vi povos reŝalti ilin ĉe Signal → Agordoj → Sciigoj.</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Defaŭlta</string>

@@ -67,6 +67,7 @@
   <string name="AttachmentUploadJob_uploading_media">Se încarcă media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Se comprimă video-ul…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Se caută mesaje…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utilizatori blocați</string>
   <string name="BlockedUsersActivity__add_blocked_user">Adaugă un utilizator blocat</string>

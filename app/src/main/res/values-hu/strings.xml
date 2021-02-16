@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Médiafájl feltöltése…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Videó tömörítése…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Új üzenetek keresése…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Letiltott felhasználók</string>
   <string name="BlockedUsersActivity__add_blocked_user">Felhasználó letiltása</string>

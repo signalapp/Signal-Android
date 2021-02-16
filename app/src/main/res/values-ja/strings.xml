@@ -1810,7 +1810,7 @@
   <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">チャットの最大メッセージ件数</string>
   <string name="preferences__keep_messages">メッセージの保存期間</string>
-  <string name="preferences__clear_message_history">メッセージ履歴を削除する</string>
+  <string name="preferences__clear_message_history">メッセージ履歴を削除</string>
   <string name="preferences__linked_devices">リンク済み端末</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
@@ -1873,7 +1873,7 @@
   <string name="preferences_chats__chats">チャット</string>
   <string name="preferences_data_and_storage__manage_storage">ストレージの管理</string>
   <string name="preferences_data_and_storage__calls">通話</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">通話でのデータ通信量を抑える</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">通話でのデータ通信量の抑制</string>
   <string name="preferences_data_and_storage__never">なし</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fiと携帯電話回線</string>
   <string name="preferences_data_and_storage__cellular_only">携帯電話回線のみ</string>
@@ -1902,7 +1902,7 @@
   <string name="preferences_on">オン</string>
   <string name="preferences_proxy_address">プロキシアドレス</string>
   <string name="preferences_only_use_a_proxy_if">携帯電話回線やWi-FiでSignalに接続できない場合のみ、プロキシを使用してください。</string>
-  <string name="preferences_share">共有する</string>
+  <string name="preferences_share">共有</string>
   <string name="preferences_save">保存</string>
   <string name="preferences_connecting_to_proxy">プロキシに接続しています…</string>
   <string name="preferences_connected_to_proxy">接続済み</string>
@@ -2072,7 +2072,7 @@
   <string name="KbsSplashFragment__disable_pin">PINを無効にする</string>
   <!--KBS Reminder Dialog-->
   <string name="KbsReminderDialog__enter_your_signal_pin">SignalのPINを入力</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">あなたがPINを忘れないよう、Signalは定期的に確認します。頻度は次第に減ってゆきます。</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">PINを覚えていただくため、定期的に入力をお願いしています。頻度は次第に少なくなります。</string>
   <string name="KbsReminderDialog__skip">スキップ</string>
   <string name="KbsReminderDialog__submit">送信する</string>
   <string name="KbsReminderDialog__forgot_pin">PINを忘れましたか？</string>

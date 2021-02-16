@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">மீடியா பதிவேற்றுகிறது …</string>
   <string name="AttachmentUploadJob_compressing_video_start">காணொளி சுறுக்கப்படுகிறது…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">செய்திகளைச் சரிபார்க்கிறது…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">தடைசெய்த பயனர்கள்</string>
   <string name="BlockedUsersActivity__add_blocked_user">தடுக்கப்பட்ட பயனரைச் சேர்க்கவும்</string>

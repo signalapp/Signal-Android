@@ -167,7 +167,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">发送失败，点击使用不安全的方式发送</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">使用未加密的短信？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">使用未加密的彩信？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已不再使用 Signal，该消息将<b>不是</b>加密的。\n\n发送不加密的信息？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由于对方已不再使用 Signal，该消息<b>不是</b>加密的。\n\n是否发送不安全消息？</string>
   <string name="ConversationItem_unable_to_open_media">未找到可打开该媒体的应用。</string>
   <string name="ConversationItem_copied_text">已复制 %s</string>
   <string name="ConversationItem_from_s">来自 %s</string>
@@ -1386,7 +1386,7 @@
   <string name="MessageNotifier_view_once_video">一次性图片</string>
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
-  <string name="MessageNotifier_unsecured_sms">未加密短信</string>
+  <string name="MessageNotifier_unsecured_sms">不安全短信</string>
   <string name="MessageNotifier_you_may_have_new_messages">您有新的消息</string>
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">打开 Signal 查看最近通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
@@ -1428,7 +1428,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">新消息</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">播放视频</string>
-  <string name="ThumbnailView_Has_a_caption_description">具有标题</string>
+  <string name="ThumbnailView_Has_a_caption_description">带有描述</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d 个条目</item>
@@ -1495,8 +1495,8 @@
   </plurals>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">发送 Signal 消息</string>
-  <string name="conversation_activity__type_message_sms_insecure">未加密短信</string>
-  <string name="conversation_activity__type_message_mms_insecure">未加密彩信</string>
+  <string name="conversation_activity__type_message_sms_insecure">不安全短信</string>
+  <string name="conversation_activity__type_message_mms_insecure">不安全彩信</string>
   <string name="conversation_activity__from_sim_name">来自 %1$s</string>
   <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">发送</string>

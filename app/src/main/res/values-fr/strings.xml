@@ -1107,7 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Envoyer la phrase de passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">La phrase de passe est erronée.</string>
   <string name="PassphrasePromptActivity_unlock_signal">Déverrouiller Signal</string>
-  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android – Écran de verrouillage</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal pour Android – Écran de verrouillage</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Carte</string>
   <string name="PlacePickerActivity_drop_pin">Marquer</string>

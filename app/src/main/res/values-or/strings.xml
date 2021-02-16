@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">ମିଡ଼ିଆ ଅପଲୋଡ଼୍ ହେଉଛି…</string>
   <string name="AttachmentUploadJob_compressing_video_start">ଭିଡ଼ିଓ ସଙ୍କୋଚନ କରାଯାଉଛି…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">ବାର୍ତ୍ତା ପାଇଁ ଯାଞ୍ଚ କରୁଛି…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ</string>
   <string name="BlockedUsersActivity__add_blocked_user">ବ୍ଲକ୍ ହୋଇଥିବା ବ୍ୟବହାରକାରୀ ଯୋଡ଼ନ୍ତୁ</string>
@@ -470,6 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">@ଉଲ୍ଲେଖ ଏବଂ ପରିଚାଳକ ପରି ନୂତନ ବୈଶିଷ୍ଟ୍ୟଗୁଡିକୁ ପ୍ରବେଶ କରିବାକୁ, ଏହି ଗୋଷ୍ଠୀକୁ ନବୀକରଣ କରନ୍ତୁ</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">ଏବେ ନୁହେଁ</string>
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରନ୍ତୁ</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$dଜଣେ ସଦସ୍ୟ ନୂତନ ଗୋଷ୍ଠୀରେ ପୁନଃଯୋଡି ହୋଇପାରିଲେ ନାହିଁ | ଆପଣ ବର୍ତ୍ତମାନ ସେଗୁଡିକୁ ଯୋଡିବାକୁ ଚାହୁଁଛନ୍ତି କି?</item>
@@ -1105,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">ପାସ୍-ଫ୍ରେଜ ଦାଖଲ କରନ୍ତୁ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ଅବୈଧ ପାସ୍-ଫ୍ରେଜ</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal ତାଲା ଫିଟାନ୍ତୁ</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal ଆଣ୍ଡ୍ରଏଡ୍-ଚିତ୍ରପଟ୍ଟ ତାଲା </string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ମାନଚିତ୍ର</string>
   <string name="PlacePickerActivity_drop_pin">ଡ୍ରପ୍ ପିନ୍</string>
@@ -1202,6 +1205,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$sଙ୍କ ଠାରୁ ଅଡିଓ ଏବଂ ଭିଡିଓ ଗ୍ରହଣ କରିପାରିବ ନାହିଁ</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">ଏହା ହୋଇପାରେ କାରଣ ସେମାନେ ଆପଣଙ୍କର \"ସୁରକ୍ଷା ନମ୍ବର ପରିବର୍ତ୍ତନ\" ଯାଞ୍ଚ କରିନାହାଁନ୍ତି, ସେମାନଙ୍କ ଉପକରଣ ରେ ଏକ ସମସ୍ୟା ଅଛି, କିମ୍ବା ସେମାନେ ଆପଣଙ୍କୁ ଅବରୋଧ କରିଛନ୍ତି</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">ପ୍ରକ୍ସି ସର୍ଭର</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">ପ୍ରକ୍ସି ଠିକଣା </string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">ଆପଣ ଏହି ପ୍ରକ୍ସି ଠିକଣା ବ୍ୟବହାର କରିବାକୁ ଚାହାଁନ୍ତି କି?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">ପ୍ରକ୍ସି ବ୍ୟବହାର କରନ୍ତୁ </string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">ପ୍ରକ୍ସି ସହିତ ସଫଳତାର ସହିତ ସଂଯୁକ୍ତ</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">ନିଜ ଦେଶ ବାଛନ୍ତୁ</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">ଆପଣ ନିଶ୍ଚିତ ଭାବରେ ଯୋଗାଇବେ ଆପଣଙ୍କର
@@ -1966,10 +1974,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">ସଂପର୍କ ରେ ନଥିବା ଏବଂ ଯାହାଙ୍କ ସହିତ ଆପଣ ଆପଣଙ୍କର ପ୍ରୋଫାଇଲ୍ ଅଂଶୀଦାର କରିନାହାଁନ୍ତି, ସେମାନଙ୍କ ଠାରୁ ଆସୁଥିବା ବାର୍ତ୍ତାଗୁଡିକ ପାଇଁ ସିଲ୍ ହେଇଥିବା ପ୍ରେରକ ସକ୍ଷମ କରନ୍ତୁ </string>
   <string name="preferences_communication__sealed_sender_learn_more">ଅଧିକ ଜାଣନ୍ତୁ</string>
   <string name="preferences_setup_a_username">ବ୍ୟବହାରିକ-ନାମ ସୃଷ୍ଟି କରନ୍ତୁ</string>
+  <string name="preferences_proxy">ପ୍ରକ୍ସି</string>
+  <string name="preferences_use_proxy">ପ୍ରକ୍ସି ବ୍ୟବହାର କରନ୍ତୁ </string>
   <string name="preferences_off">ବନ୍ଦ</string>
   <string name="preferences_on">ଚାଲୁ</string>
+  <string name="preferences_proxy_address">ପ୍ରକ୍ସି ଠିକଣା </string>
+  <string name="preferences_only_use_a_proxy_if">ଯଦି ଆପଣ ସେଲୁଲାର୍ କିମ୍ବା ୱାଇ-ଫାଇରେ Signal ସହିତ ସଂଯୋଗ କରିବାକୁ ସକ୍ଷମ ନୁହଁନ୍ତି ତେବେ କେବଳ ଏକ ପ୍ରକ୍ସି ବ୍ୟବହାର କରନ୍ତୁ</string>
   <string name="preferences_share">ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="preferences_save">ସଞ୍ଚୟ କରନ୍ତୁ</string>
+  <string name="preferences_connecting_to_proxy">ପ୍ରକ୍ସି ସହିତ ସଂଯୋଜିତ ହେଉଛି …</string>
+  <string name="preferences_connected_to_proxy">ପ୍ରକ୍ସି ସହିତ ସଂଯୋଜିତ ହେଲା …</string>
+  <string name="preferences_connection_failed">ସଂଯୋଗ ବିଫଳ ହେଲା </string>
+  <string name="preferences_couldnt_connect_to_the_proxy">ପ୍ରକ୍ସି ସହିତ ସଂଯୋଗ ହୋଇପାରିଲା ନାହିଁ | ପ୍ରକ୍ସି ଠିକଣା ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
+  <string name="preferences_you_are_connected_to_the_proxy">ଆପଣ ପ୍ରକ୍ସି ସହିତ ସଂଯୁକ୍ତ ଅଟନ୍ତି | ଆପଣ ସେଟିଂମୂହରୁ ଯେକୌଣସି ସମୟରେ ପ୍ରକ୍ସି ବନ୍ଦ କରିପାରିବେ</string>
+  <string name="preferences_success">ସଫଳତା!</string>
+  <string name="preferences_failed_to_connect">ସଂଯୋଗ କରିବାରେ ବିଫଳ</string>
+  <string name="preferences_enter_proxy_address">ପ୍ରକ୍ସି ଠିକଣା ପ୍ରବେଶ କରନ୍ତୁ</string>
   <string name="configurable_single_select__customize_option">ବିକଳ୍ପ କଷ୍ଟମାଇଜ୍ କରନ୍ତୁ</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2152,6 +2172,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">ଭୁଲ ପିନ୍</string>
   <string name="RegistrationLockFragment__forgot_your_pin">ପିନ୍ ଭୁଲିଗଲେ କି?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">ବେଶୀ ପ୍ରଚେଷ୍ଟା ବାକି ନାହିଁ!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal ପଞ୍ଜୀକରଣ - ଆଣ୍ଡ୍ରଏଡ୍ (v1 ପିନ୍) ପାଇଁ ପିନ୍ ସହିତ ସାହାଯ୍ୟ ଆବଶ୍ୟକ</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal ପଞ୍ଜୀକରଣ - ଆଣ୍ଡ୍ରଏଡ୍ (v2 ପିନ୍) ପାଇଁ ପିନ୍ ସହିତ ସାହାଯ୍ୟ ଆବଶ୍ୟକ</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">ଆପଣଙ୍କର ଗୋପନୀୟତା ଏବଂ ସୁରକ୍ଷା ପାଇଁ, ଆପଣଙ୍କର ପିନ୍ ପୁନରୁଦ୍ଧାର କରିବାର କୌଣସି ଉପାୟ ନାହିଁ | ଯଦି ଆପଣ ଆପଣଙ୍କର ପିନ୍ ମନେ ପକାଇପାରିବେ ନାହିଁ, ଆପଣ %1$d ଦିନର ନିଷ୍କ୍ରିୟତା ପରେ SMS ସହିତ ପୁନଃଯାଞ୍ଚ କରିପାରିବେ | ଏହି କ୍ଷେତ୍ରରେ, ଆପଣଙ୍କର ଖାତା ଏବଂ ସମସ୍ତ ବିଷୟବସ୍ତୁ ବିଲୋପ ହେବ</item>
     <item quantity="other">ଆପଣଙ୍କର ଗୋପନୀୟତା ଏବଂ ସୁରକ୍ଷା ପାଇଁ, ଆପଣଙ୍କର ପିନ୍ ପୁନରୁଦ୍ଧାର କରିବାର କୌଣସି ଉପାୟ ନାହିଁ | ଯଦି ଆପଣ ଆପଣଙ୍କର ପିନ୍ ମନେ ପକାଇପାରିବେ ନାହିଁ, ଆପଣ %1$d ଦିନର ନିଷ୍କ୍ରିୟତା ପରେ SMS ସହିତ ପୁନଃଯାଞ୍ଚ କରିପାରିବେ | ଏହି କ୍ଷେତ୍ରରେ, ଆପଣଙ୍କର ଖାତା ଏବଂ ସମସ୍ତ ବିଷୟବସ୍ତୁ ବିଲୋପ ହେବ</item>

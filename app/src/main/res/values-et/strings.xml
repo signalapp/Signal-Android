@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Meedia üleslaadimine…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Video tihendamine…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Sõnumite kontrollimine…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokeeritud kasutajad</string>
   <string name="BlockedUsersActivity__add_blocked_user">Lisa blokeeritud kasutaja</string>

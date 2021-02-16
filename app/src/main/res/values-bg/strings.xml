@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Качване на медия…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Компресиране на видео…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Проверка за съобщения…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Блокирани потребители</string>
   <string name="BlockedUsersActivity__add_blocked_user">Добавяне на блокиран потребител</string>
@@ -312,7 +313,7 @@
   <string name="ConversationListItemAction_archived_conversations_d">Архивирани разговори (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Потвърдено</string>
-  <string name="ConversationTitleView_you">Вие</string>
+  <string name="ConversationTitleView_you">Ти</string>
   <!--CreateGroupActivity-->
   <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Някои контакти не могат да бъдат в стари групи.</string>
   <!--CreateProfileActivity-->
@@ -470,6 +471,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Обновете тази група за достъп до нови функционалности като @споменаване и администратори.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Не сега</string>
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Награждане на група</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="one">%1$d член не можа да бъде добавен към новата група. Искате ли да го/я добавите сега?</item>
@@ -506,7 +508,7 @@
   <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Вече няма да може да изпращате или получавате съобщения в тази група.</string>
   <string name="LeaveGroupDialog_leave">Напусни</string>
   <string name="LeaveGroupDialog_choose_new_admin">Изберете нов администратор</string>
-  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Преди да напуснете, вие трябва да изберете поне един нов администртор за тази група.</string>
+  <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Преди да напуснеш, трябва да избереш поне един нов администртор за тази група.</string>
   <string name="LeaveGroupDialog_choose_admin">Изберете администратор</string>
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Изключи</string>
@@ -544,7 +546,7 @@
   <string name="RequestingMembersFragment_pending_member_requests">Изчакващи членства.</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Няма членства за показване.</string>
   <string name="RequestingMembersFragment_explanation">Хората от този списък се опитват да се присъединят към тази група чрез връзката към групата.</string>
-  <string name="RequestingMembersFragment_added_s">Вие добавихте \"%1$s\"</string>
+  <string name="RequestingMembersFragment_added_s">Ти добави \"%1$s\"</string>
   <string name="RequestingMembersFragment_denied_s">Вие отхвърлихте \"%1$s\"</string>
   <!--AddMembersActivity-->
   <string name="AddMembersActivity__done">Готово</string>
@@ -1105,6 +1107,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Задай паролата</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Грешна парола!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Отключи Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Заключен екран</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Карта</string>
   <string name="PlacePickerActivity_drop_pin">Пуснете пин</string>
@@ -1202,6 +1205,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не може да приемате аудио и видео от %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Това може да се дължи на факта, че те не са проверили промяната на номера ви за безопасност, има проблем с устройството им или са ви блокирали.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Прокси сървър</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Прокси адрес</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Желаеш ли да използваш този прокси адрес?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Използвай прокси</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Успешна връзка към проксито.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Изберете държавата си</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Трябва да посочите
@@ -1967,10 +1975,22 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Активиране на скрит изпращач за входящи съобщения от хора, които не са Ваши контакти, и хора скоито не сте споделяли своят профил.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Научете повече</string>
   <string name="preferences_setup_a_username">Настройте потребителско име</string>
+  <string name="preferences_proxy">Прокси</string>
+  <string name="preferences_use_proxy">Използвай прокси</string>
   <string name="preferences_off">Деактивирано</string>
   <string name="preferences_on">Активирано</string>
+  <string name="preferences_proxy_address">Прокси адрес</string>
+  <string name="preferences_only_use_a_proxy_if">Използвай прокси сако ако не можеш да се свържеш с Signal през моблната мрежа или Wi-Fi.</string>
   <string name="preferences_share">Споделяне</string>
   <string name="preferences_save">Запази</string>
+  <string name="preferences_connecting_to_proxy">Свързване с проксито…</string>
+  <string name="preferences_connected_to_proxy">Свързан с проксито</string>
+  <string name="preferences_connection_failed">Връзката е неуспешна</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Неуспешно свързане с проксито. Провери прокси адреса и опитай отново.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Свързан си с проксито. Може да изключиш проксито по всяка време в Настройки.</string>
+  <string name="preferences_success">Успех</string>
+  <string name="preferences_failed_to_connect">Неуспешна връзка</string>
+  <string name="preferences_enter_proxy_address">Въведи прокси адрес</string>
   <string name="configurable_single_select__customize_option">Опция за персонализиране</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2153,6 +2173,8 @@
   <string name="RegistrationLockFragment__incorrect_pin">Грешен ПИН</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Забравили сте си ПИН кода?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Не ви остават много опити!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal регистрация - Имаш нужа от помощ с ПИН-а за Андроид (v1 ПИН)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal регистрация - Имаш нужа от помощ с ПИН-а за Андроид (v2ПИН)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">В името на вашата поверителност и безопасност няма начин да възстановите своя ПИН. Ако не го помните, можете да потвърдите отново чрез SMS след %1$d ден бездействие. В този случай акаунтът ви ще бъде изчистен и всичкото му съдържание ще бъде изтрито.</item>
     <item quantity="other">В името на вашата поверителност и безопасност няма как да възстановите своя ПИН. Ако не го помните, можете да потвърдите отново чрез SMS след %1$d дни бездействие. В такъв случай акаунтът ви ще бъде изчистен и всичкото му съдържание ще бъде изтрито.</item>

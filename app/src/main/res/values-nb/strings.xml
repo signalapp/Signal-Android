@@ -1183,7 +1183,7 @@
   <string name="WebRtcCallView__your_video_is_off">Din video er skrudd av</string>
   <string name="WebRtcCallView__reconnecting">Kobler til på nytt…</string>
   <string name="WebRtcCallView__joining">Blir med…</string>
-  <string name="WebRtcCallView__disconnected">Koplet fra</string>
+  <string name="WebRtcCallView__disconnected">Koblet fra</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre er her</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$ser i denne samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen.</string>

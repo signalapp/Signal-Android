@@ -114,9 +114,9 @@
   <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
   <string name="CameraContacts__menu_search">Tìm kiếm</string>
   <!--ClearProfileActivity-->
-  <string name="ClearProfileActivity_remove">Loại bỏ</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
-  <string name="ClearProfileActivity_remove_group_photo">Loại bỏ ảnh nhóm?</string>
+  <string name="ClearProfileActivity_remove">Xoá</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Gỡ ảnh đại diện?</string>
+  <string name="ClearProfileActivity_remove_group_photo">Gỡ ảnh nhóm?</string>
   <!--ClientDeprecatedActivity-->
   <string name="ClientDeprecatedActivity_update_signal">Cập nhật Signal</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">Phiên bản ứng dụng này không còn được hỗ trợ. Để tiếp tục gửi và nhận tin nhắn, vui lòng cập nhật lên phiên bản mới nhất.</string>
@@ -436,7 +436,7 @@
     <item quantity="other">Những thành viên này sẽ cần đồng ý lời mời để tham gia nhóm này lần nữa và sẽ không nhận được tin nhắn của nhóm cho tới khi họ đồng ý:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-    <item quantity="other">Những thành viên này đã được loại bỏ khỏi nhóm và sẽ không thể tham gia lại cho tới khi họ nâng cấp:</item>
+    <item quantity="other">Những thành viên này đã được xóa khỏi nhóm và sẽ không thể tham gia lại cho tới khi họ nâng cấp:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Nâng cấp lên Nhóm Mới</string>
@@ -449,7 +449,7 @@
     <item quantity="other">Những thành viên này sẽ cần đồng ý lời mời để tham gia nhóm lần nữa và sẽ không nhận được tin nhắn nhóm cho tới khi họ đồng ý:</item>
   </plurals>
   <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
-    <item quantity="other">Những thành viên này không có khả năng tham gia Nhóm Mới, và sẽ được loại khỏi nhóm:</item>
+    <item quantity="other">Những thành viên này không có khả năng tham gia Nhóm Mới, và sẽ được xóa khỏi nhóm:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Để truy cập các tính năng mới như @nhắc tên và quản trị viên, hãy nâng cấp nhóm này.</string>
@@ -489,7 +489,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Tắt</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Xem trước tất cả liên kết</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào trong tin nhắn bạn gửi.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">Từ giờ bạn có thể thêm xem trước liên kết từ bất cứ trang web nào vào những tin nhắn bạn gửi.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Xem trước liên kết không khả dụng</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
@@ -502,11 +502,11 @@
   <string name="PendingMembersActivity_pending_group_invites">Lời mời vào nhóm đang chờ</string>
   <string name="PendingMembersActivity_requests">Yêu cầu</string>
   <string name="PendingMembersActivity_invites">Lời mời</string>
-  <string name="PendingMembersActivity_people_you_invited">Người dùng bạn đã mời</string>
+  <string name="PendingMembersActivity_people_you_invited">Những người mà bạn đã mời</string>
   <string name="PendingMembersActivity_you_have_no_pending_invites">Bạn không có lời mời đang chờ nào.</string>
-  <string name="PendingMembersActivity_invites_by_other_group_members">Thư mời bởi các thành viên nhóm khác</string>
-  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Không có lời mời đang chờ nào từ các thành viên khác trong nhóm.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Thông tin của các người dùng được mời bởi các thành viên nhóm khác không được hiển thị. Nếu người được mời chấp nhận tham gia, thông tin của họ sẽ được chia sẻ với nhóm vào lúc đó. Họ sẽ không thấy tin nhắn trong nhóm cho đến khi họ tham gia. </string>
+  <string name="PendingMembersActivity_invites_by_other_group_members">Lời mời từ các thành viên nhóm khác</string>
+  <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Không có lời mời đang chờ nào từ các thành viên nhóm khác.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Thông tin của những người được mời bởi các thành viên nhóm khác sẽ không được hiển thị. Nếu người được mời chấp nhận tham gia, thông tin của họ sẽ được chia sẻ với nhóm vào lúc đó. Họ sẽ không thấy tin nhắn trong nhóm cho đến khi họ tham gia. </string>
   <string name="PendingMembersActivity_revoke_invite">Thu hồi lời mời</string>
   <string name="PendingMembersActivity_revoke_invites">Thu hồi các lời mời</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -516,7 +516,7 @@
     <item quantity="other">Lỗi khi thu hồi lời mời</item>
   </plurals>
   <!--RequestingMembersFragment-->
-  <string name="RequestingMembersFragment_pending_member_requests">Yêu cầu đang chờ</string>
+  <string name="RequestingMembersFragment_pending_member_requests">Yêu cầu tham gia đang chờ</string>
   <string name="RequestingMembersFragment_no_member_requests_to_show">Không có yêu cầu tham gia nhóm.</string>
   <string name="RequestingMembersFragment_explanation">Những người trong danh sách này đã cố gia nhập nhóm bằng đường dẫn nhóm.</string>
   <string name="RequestingMembersFragment_added_s">Đã thêm \"%1$s\"</string>
@@ -541,9 +541,9 @@
   <string name="AddGroupDetailsFragment__try_again_later">Hãy thử lại sau.</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">Bạn đã chọn một liên hệ không hỗ trợ Nhóm Signal, vì vậy đây sẽ là nhóm MMS.</string>
   <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tên nhóm MMS và ảnh sẽ chỉ hiển thị với bạn.</string>
-  <string name="AddGroupDetailsFragment__remove">Loại bỏ</string>
+  <string name="AddGroupDetailsFragment__remove">Xóa</string>
   <string name="AddGroupDetailsFragment__sms_contact">Liên hệ SMS</string>
-  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Loại bỏ %1$s khỏi nhóm này?</string>
+  <string name="AddGroupDetailsFragment__remove_s_from_this_group">Xóa %1$s khỏi nhóm này?</string>
   <plurals name="AddGroupDetailsFragment__d_members_do_not_support_new_groups">
     <item quantity="other">%d thành viên không hỗ trợ Nhóm Mới, vì vậy nhóm này sẽ là Nhóm Cũ.</item>
   </plurals>
@@ -551,9 +551,9 @@
     <item quantity="other">%d thành viên không hỗ trợ Nhóm Mới, vì vậy nhóm này không thể được tạo.</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Một Nhóm Cũ sẽ được tạo vì \"%1$s\" đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc loại họ khỏi danh sách thành viên trước khi tạo nhóm.</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Một Nhóm Cũ sẽ được tạo vì \"%1$s\" đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc xóa họ khỏi danh sách thành viên trước khi tạo nhóm.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="other">Một Nhóm Cũ sẽ được tạo vì %1$d thành viên đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc loại họ khỏi danh sách thành viên trước khi tạo nhóm.</item>
+    <item quantity="other">Một Nhóm Cũ sẽ được tạo vì %1$d thành viên đang sử dụng phiên bản cũ của Signal. Bạn có thể tạo Nhóm Mới với họ sau khi họ cập nhật Signal, hoặc xóa họ khỏi danh sách thành viên trước khi tạo nhóm.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Nhóm này không thể được tạo vì \"%1$s\" đang sử dụng một phiên bản cũ của Signal. Bạn cần phải bỏ chọn họ trước khi tạo nhóm.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -610,7 +610,7 @@
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">Viết một vài từ về bản thân bạn</string>
   <string name="ManageProfileFragment_your_name">Tên của bạn</string>
   <string name="ManageProfileFragment_your_username">Tên người dùng của bạn</string>
-  <string name="ManageProfileFragment_failed_to_set_avatar">Không thể cài ảnh đại diện</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Không thể đặt ảnh đại diện</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Thêm vào danh bạ điện thoại</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Người này có trong danh bạ của bạn</string>
@@ -675,7 +675,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Yêu cầu tham gia</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Không thể tham gia nhóm. Vui lòng thử lại sau.</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Lỗi mạng.</string>
-  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không hoạt động</string>
+  <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Đường dẫn nhóm không khả dụng</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Không thể lấy thông tin nhóm, vui lòng thử lại sau</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Bạn có muốn tham gia nhóm này và công khai tên và ảnh đại diện với các thành viên trong nhóm?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Cần một quản trị viên chấp nhận yêu cầu trước khi bạn tham gia nhóm này. Khi bạn yêu cầu tham gia, tên và ảnh đại diện của bạn sẽ được công khai với các thành viên nhóm.</string>
@@ -802,7 +802,7 @@
   <string name="MediaPickerActivity__menu_open_camera">Mở camera</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Thêm chú thích…</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị loại bỏ vì quá kích cỡ giới hạn</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị bỏ chọn vì quá kích cỡ giới hạn</string>
   <string name="MediaSendActivity_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="MediaSendActivity_message_to_s">Tin nhắn đến %s</string>
   <string name="MediaSendActivity_message">Tin nhắn</string>
@@ -841,7 +841,7 @@
     <item quantity="other">%1$s thành viên không thể được thêm vào Nhóm Mới và đã được mời tham gia.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
-    <item quantity="other">%1$s thành viên không thể được thêm vào Nhóm Mới và đã được loại bỏ.</item>
+    <item quantity="other">%1$s thành viên không thể được thêm vào Nhóm Mới và đã được xóa khỏi nhóm.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s đã đổi tên hồ sơ thành %2$s.</string>
@@ -858,9 +858,9 @@
   <string name="MessageRecord_you_joined_the_group">Bạn đã tham gia nhóm.</string>
   <string name="MessageRecord_s_joined_the_group">%1$s đã tham gia nhóm.</string>
   <!--GV2 member removals-->
-  <string name="MessageRecord_you_removed_s">Bạn đã loại bỏ %1$s.</string>
-  <string name="MessageRecord_s_removed_s">%1$s đã loại bỏ %2$s.</string>
-  <string name="MessageRecord_s_removed_you_from_the_group">%1$s loại bỏ bạn khỏi nhóm.</string>
+  <string name="MessageRecord_you_removed_s">Bạn đã xóa %1$s.</string>
+  <string name="MessageRecord_s_removed_s">%1$s đã xóa %2$s.</string>
+  <string name="MessageRecord_s_removed_you_from_the_group">%1$s đã xóa bạn khỏi nhóm.</string>
   <string name="MessageRecord_you_left_the_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_s_left_the_group">%1$s đã rời nhóm.</string>
   <string name="MessageRecord_you_are_no_longer_in_the_group">Bạn không còn trong nhóm này.</string>
@@ -1249,7 +1249,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="StickerPackPreviewActivity_untitled">Chưa đặt tên</string>
   <string name="StickerPackPreviewActivity_unknown">Không rõ</string>
   <string name="StickerPackPreviewActivity_install">Cài đặt</string>
-  <string name="StickerPackPreviewActivity_remove">Loại bỏ</string>
+  <string name="StickerPackPreviewActivity_remove">Gỡ bỏ</string>
   <string name="StickerPackPreviewActivity_stickers">Nhãn dán</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Không thể tải gói nhãn dán</string>
   <!--SubmitDebugLogActivity-->
@@ -1634,7 +1634,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Viết một vài từ về bản thân mình…</string>
   <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <string name="EditAboutFragment_speak_freely">Nói chuyện tự do</string>
-  <string name="EditAboutFragment_encrypted">Đã được bảo mật</string>
+  <string name="EditAboutFragment_encrypted">Đã được mã hóa</string>
   <string name="EditAboutFragment_be_kind">Mở lòng tốt</string>
   <string name="EditAboutFragment_coffee_lover">Nghiện cà phê</string>
   <string name="EditAboutFragment_free_to_chat">Rảnh để trò chuyện</string>
@@ -1645,10 +1645,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditProfileFragment__group_name">Tên nhóm</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tên của bạn</string>
-  <string name="EditProfileNameFragment_first_name">Tên đầu</string>
+  <string name="EditProfileNameFragment_first_name">Tên</string>
   <string name="EditProfileNameFragment_last_name_optional">Họ (không bắt buộc)</string>
   <string name="EditProfileNameFragment_save">Lưu</string>
-  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Không thể lưu do vấn đề về kết nối. Hãy thử lại sau.</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Không thể lưu do lỗi mạng. Hãy thử lại sau.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Tệp đa phương tiện đã chia sẻ</string>
   <!--recipients_panel-->
@@ -1760,7 +1760,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__pref_use_address_book_photos">Sử dụng hình ảnh trong danh bạ</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Hiển thị hình ảnh của liên lạc từ danh bạ nếu có</string>
   <string name="preferences__generate_link_previews">Tạo xem trước liên kết</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Thêm xem trước liên kết trang web vào trong tin nhắn bạn gửi.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Thêm xem trước liên kết trang web vào những tin nhắn bạn gửi.</string>
   <string name="preferences__choose_identity">Chọn danh tính</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chọn khoản mục liên lạc của bạn trong danh sách liên lạc.</string>
   <string name="preferences__change_passphrase">Đổi mật khẩu</string>
@@ -1839,7 +1839,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
   <string name="preferences__typing_indicators">Thông báo đang nhập</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím để tắt việc học cá nhân hoá. Cài đặt này không phải là đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím tắt học thói quen gõ chữ. Cài đặt này không đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string>
   <string name="preferences_app_protection__blocked_users">Người dùng đã chặn</string>
   <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
@@ -1858,7 +1858,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Thao tác này sẽ xóa lịch sử cuộc trò chuyện đến %1$s tin nhắn gần đây nhất.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Thao tác này sẽ xóa vĩnh viễn tất cả lịch sử tin nhắn và đa phương tiện khỏi máy bạn.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Bạn có muốn xóa tất cả lịch sử tin nhắn?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tất cả lịch sử tin nhắn đã được xóa vĩnh viễn. Thao tác này không thể được hoàn tác.</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Tất cả lịch sử tin nhắn sẽ được xóa vĩnh viễn. Thao tác này không thể được hoàn tác.</string>
   <string name="preferences_storage__delete_all_now">Xóa tất cả</string>
   <string name="preferences_storage__forever">Vĩnh viễn</string>
   <string name="preferences_storage__one_year">1 năm</string>
@@ -1908,11 +1908,11 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_only_use_a_proxy_if">Chỉ sử dụng proxy nếu như bạn không thể kết nối vào Signal bằng dữ liệu di động hoặc Wi-Fi. </string>
   <string name="preferences_share">Chia sẻ</string>
   <string name="preferences_save">Lưu</string>
-  <string name="preferences_connecting_to_proxy">Đang kết nối vào proxy…</string>
-  <string name="preferences_connected_to_proxy">Đã kết nối vào proxy</string>
-  <string name="preferences_connection_failed">Kết nối không thành công</string>
-  <string name="preferences_couldnt_connect_to_the_proxy">Không thể kết nối vào proxy. Kiểm tra địa chỉ proxy và thử lại.</string>
-  <string name="preferences_you_are_connected_to_the_proxy">Bạn đã kết nối vào proxy. Bạn có thể tắt proxy bất kì lúc nào từ Cài đặt.</string>
+  <string name="preferences_connecting_to_proxy">Đang kết nối tới proxy…</string>
+  <string name="preferences_connected_to_proxy">Đã kết tới vào proxy</string>
+  <string name="preferences_connection_failed">Không thể kết nối</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Không thể kết nối tới proxy. Kiểm tra địa chỉ proxy và thử lại.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Bạn đã kết nối tớ proxy. Bạn có thể tắt proxy bất kì lúc nào trong Cài đặt.</string>
   <string name="preferences_success">Thành công</string>
   <string name="preferences_failed_to_connect">Không thể kết nối</string>
   <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
@@ -2232,15 +2232,15 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RecipientBottomSheet_view_safety_number">Xem số an toàn</string>
   <string name="RecipientBottomSheet_make_group_admin">Đặt làm quản trị viên</string>
   <string name="RecipientBottomSheet_remove_as_admin">Bỏ quyền quản trị</string>
-  <string name="RecipientBottomSheet_remove_from_group">Loại bỏ khỏi nhóm</string>
+  <string name="RecipientBottomSheet_remove_from_group">Xóa khỏi nhóm</string>
   <string name="RecipientBottomSheet_message_description">Tin nhắn</string>
   <string name="RecipientBottomSheet_voice_call_description">Gọi thoại</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Gọi thoại không bảo mật</string>
   <string name="RecipientBottomSheet_video_call_description">Gọi video</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Loại bỏ quyền quản trị của %1$s?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" sẽ có thể chỉnh sửa được nhóm này và các thành viên nhóm.</string>
-  <string name="RecipientBottomSheet_remove_s_from_the_group">Loại bỏ %1$s khỏi nhóm?</string>
-  <string name="RecipientBottomSheet_remove">Loại bỏ</string>
+  <string name="RecipientBottomSheet_remove_s_from_the_group">Xóa %1$s khỏi nhóm?</string>
+  <string name="RecipientBottomSheet_remove">Xóa</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">Đã sao chép vào clipboard</string>
   <string name="GroupRecipientListItem_admin">Quản trị viên</string>
   <string name="GroupRecipientListItem_approve_description">Đồng ý</string>
@@ -2281,14 +2281,14 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="other">%d nhóm chung</item>
   </plurals>
-  <string name="ReviewCardDialogFragment__remove_s_from_group">Loại bỏ %1$s khỏi nhóm?</string>
-  <string name="ReviewCardDialogFragment__remove">Loại bỏ</string>
-  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Không thể loại bỏ thành viên nhóm.</string>
+  <string name="ReviewCardDialogFragment__remove_s_from_group">Xóa %1$s khỏi nhóm?</string>
+  <string name="ReviewCardDialogFragment__remove">Xóa</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Không thể xóa thành viên nhóm.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Thành viên</string>
   <string name="ReviewCard__request">Yêu cầu</string>
   <string name="ReviewCard__your_contact">Liên hệ của bạn</string>
-  <string name="ReviewCard__remove_from_group">Loại bỏ khỏi nhóm</string>
+  <string name="ReviewCard__remove_from_group">Xóa khỏi nhóm</string>
   <string name="ReviewCard__update_contact">Cập nhật liên hệ</string>
   <string name="ReviewCard__block">Chặn</string>
   <string name="ReviewCard__delete">Xóa</string>
@@ -2337,7 +2337,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Cài ảnh nền</string>
-  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Chế độ tối làm mờ ảnh nền</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Chế độ tối làm tối ảnh nền</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Xoá ảnh nền</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Xoá ảnh nền cho cuộc trò chuyện?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Xoá ảnh nền? Việc này sẽ không xoá các ảnh nền tuỳ chọn đã cài cho các cuộc trò chuyện của bạn.</string>

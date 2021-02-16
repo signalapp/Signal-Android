@@ -1987,7 +1987,7 @@
   <string name="preferences__generate_link_previews">חולל תצוגות מקדימות של קישורים</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">אחזר תצוגות מקדימות של קישורים ישירות מאתרים עבור הודעות שאתה שולח.</string>
   <string name="preferences__choose_identity">בחר זהות</string>
-  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את כניסת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
+  <string name="preferences__choose_your_contact_entry_from_the_contacts_list">בחר את רשומת איש הקשר שלך מתוך רשימת אנשי הקשר.</string>
   <string name="preferences__change_passphrase">שנה משפט־סיסמה</string>
   <string name="preferences__change_your_passphrase">שנה את משפט־הסיסמה שלך</string>
   <string name="preferences__enable_passphrase">אפשר נעילת מסך עם משפט־סיסמה</string>
