@@ -44,7 +44,7 @@ fun MessageSender.createClosedGroup(name: String, members: Collection<String>): 
         val admins = setOf( userPublicKey )
         val adminsAsData = admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) }
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
+                null, null, LinkedList(admins.map { Address.fromSerialized(it) }), System.currentTimeMillis())
         storage.setProfileSharing(Address.fromSerialized(groupID), true)
         // Send a closed group update message to all members individually
         val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
