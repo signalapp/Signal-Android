@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.loki.SessionResetStatus
 import org.session.libsignal.service.api.messages.SignalServiceContent
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.util.*
 
 object SessionManagementProtocol {
@@ -95,13 +94,12 @@ object SessionManagementProtocol {
 
     @JvmStatic
     fun triggerSessionRestorationUI(context: Context, publicKey: String, errorTimestamp: Long) {
-        val masterDevicePublicKey = MultiDeviceProtocol.shared.getMasterDevice(publicKey) ?: publicKey
-        val masterDeviceAsRecipient = recipient(context, masterDevicePublicKey)
-        if (masterDeviceAsRecipient.isGroupRecipient) { return }
+        val recipient = recipient(context, publicKey)
+        if (recipient.isGroupRecipient) { return }
         if (TextSecurePreferences.getRestorationTime(context) > errorTimestamp) {
             return ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(publicKey)
         }
-        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(masterDeviceAsRecipient)
+        val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
         DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, publicKey)
     }
 }

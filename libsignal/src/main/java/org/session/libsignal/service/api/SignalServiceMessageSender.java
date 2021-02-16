@@ -78,8 +78,6 @@ import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
-import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 import org.session.libsignal.service.loki.utilities.Broadcaster;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory;
@@ -248,7 +246,7 @@ public class SignalServiceMessageSender {
     long              timestamp             = message.getTimestamp();
     boolean           useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), message.getDeviceLink().isPresent(), useFallbackEncryption, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
+    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), useFallbackEncryption, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
 
 //    // Loki - This shouldn't get invoked for note to self
 //    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
@@ -298,18 +296,6 @@ public class SignalServiceMessageSender {
       }
     }
 
-    // Loki - This shouldn't get invoked for note to self
-    if (needsSyncInResults && SyncMessagesProtocol.shared.shouldSyncMessage(message)) {
-      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.<SignalServiceAddress>absent(), timestamp, results);
-      // Loki - Customize multi device logic
-      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      for (String device : linkedDevices) {
-        SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
-        boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(syncMessage, device, store);
-        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryption);
-      }
-    }
-
     return results;
   }
 
@@ -340,14 +326,6 @@ public class SignalServiceMessageSender {
       return;
     } else {
       throw new IOException("Unsupported sync message!");
-    }
-
-    // Loki - Customize multi device logic
-    Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-    for (String device : linkedDevices) {
-      SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
-      boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, device, store);
-      sendMessageToPrivateChat(0, deviceAsAddress, Optional.absent(), timestamp, content, false, message.getTTL(), useFallbackEncryption, false, false, Optional.absent());
     }
   }
 
@@ -460,10 +438,6 @@ public class SignalServiceMessageSender {
 
     if (message.isProfileKeyUpdate()) {
       builder.setFlags(DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE);
-    }
-
-    if (message.isDeviceUnlinkingRequest()) {
-      builder.setFlags(DataMessage.Flags.DEVICE_UNLINKING_REQUEST_VALUE);
     }
 
     if (message.getExpiresInSeconds() > 0) {
@@ -881,7 +855,7 @@ public class SignalServiceMessageSender {
 
       try {
         boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(content, recipient.getNumber(), store);
-        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, false, useFallbackEncryption, isClosedGroup, notifyPNServer, Optional.absent());
+        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer, Optional.absent());
         results.add(result);
       } catch (UnregisteredUserException e) {
         Log.w(TAG, e);
@@ -905,7 +879,7 @@ public class SignalServiceMessageSender {
       throws IOException
   {
     // Loki - This method is only invoked for various types of control messages
-    return sendMessage(0, recipient, unidentifiedAccess, timestamp, content, online, ttl, false, false, useFallbackEncryption, false,Optional.absent());
+    return sendMessage(0, recipient, unidentifiedAccess, timestamp, content, online, ttl, false, useFallbackEncryption, false,Optional.absent());
   }
 
   public SendMessageResult sendMessage(final long messageID,
@@ -915,7 +889,6 @@ public class SignalServiceMessageSender {
                                        byte[] content,
                                        boolean online,
                                        int ttl,
-                                       boolean isDeviceLinkMessage,
                                        boolean useFallbackEncryption,
                                        boolean isClosedGroup,
                                        boolean notifyPNServer,

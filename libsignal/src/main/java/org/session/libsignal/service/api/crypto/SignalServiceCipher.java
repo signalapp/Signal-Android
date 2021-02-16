@@ -91,7 +91,6 @@ import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupUtilities;
 import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -227,30 +226,6 @@ public class SignalServiceCipher {
         }
 
         return content;
-      } else if (message.hasDeviceLinkMessage()) {
-        SignalServiceProtos.DeviceLinkMessage protoDeviceLinkMessage = message.getDeviceLinkMessage();
-        String masterPublicKey = protoDeviceLinkMessage.getPrimaryPublicKey();
-        String slavePublicKey = protoDeviceLinkMessage.getSecondaryPublicKey();
-        byte[] requestSignature = protoDeviceLinkMessage.hasRequestSignature() ? protoDeviceLinkMessage.getRequestSignature().toByteArray() : null;
-        byte[] authorizationSignature = protoDeviceLinkMessage.hasAuthorizationSignature() ? protoDeviceLinkMessage.getAuthorizationSignature().toByteArray() : null;
-        DeviceLink deviceLink = new DeviceLink(masterPublicKey, slavePublicKey, requestSignature, authorizationSignature);
-        SignalServiceCipher.Metadata metadata = plaintext.getMetadata();
-        SignalServiceContent content = new SignalServiceContent(deviceLink, metadata.getSender(), metadata.getSenderDevice(), metadata.getTimestamp());
-
-        content.setPreKeyBundleMessage(preKeyBundleMessage);
-
-        if (message.hasSyncMessage() && message.getSyncMessage().hasContacts()) {
-          SignalServiceSyncMessage syncMessage = createSynchronizeMessage(metadata, message.getSyncMessage());
-          content.setSyncMessage(syncMessage);
-        }
-
-        if (message.hasDataMessage()) {
-          setProfile(message.getDataMessage(), content);
-          SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(metadata, message.getDataMessage());
-          content.setDataMessage(signalServiceDataMessage);
-        }
-
-        return content;
       } else if (message.hasDataMessage()) {
         DataMessage dataMessage = message.getDataMessage();
 
@@ -259,8 +234,7 @@ public class SignalServiceCipher {
                 plaintext.getMetadata().getSender(),
                 plaintext.getMetadata().getSenderDevice(),
                 plaintext.getMetadata().getTimestamp(),
-                plaintext.getMetadata().isNeedsReceipt(),
-                signalServiceDataMessage.isDeviceUnlinkingRequest());
+                plaintext.getMetadata().isNeedsReceipt());
 
         content.setPreKeyBundleMessage(preKeyBundleMessage);
 
@@ -425,10 +399,8 @@ public class SignalServiceCipher {
             previews,
             sticker,
             null,
-            null,
             closedGroupUpdate,
             closedGroupUpdateV2,
-            isDeviceUnlinkingRequest,
             syncTarget);
   }
 

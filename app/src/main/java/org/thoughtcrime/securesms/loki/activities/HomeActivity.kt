@@ -44,12 +44,9 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
 import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
 import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
-import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
@@ -177,20 +174,11 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-            SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
         SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
-        MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
         application.registerForFCMIfNeeded(false)
-        // Preload device links to make message sending quicker
-        val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
-            !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave
-        }.map {
-            it.recipient.address.toString()
-        }.toSet()
-        FileServerAPI.shared.getDeviceLinks(publicKeys)
         // Observe blocked contacts changed events
         val broadcastReceiver = object : BroadcastReceiver() {
 

@@ -38,7 +38,6 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.session.libsession.messaging.avatars.ContactColors;
 import org.session.libsession.messaging.avatars.ContactPhoto;
 import org.session.libsession.messaging.avatars.GroupRecordContactPhoto;
@@ -550,12 +549,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized boolean isBlocked() {
-    String masterPublicKey = MultiDeviceProtocol.shared.getMasterDevice(this.address.serialize());
-    if (masterPublicKey != null) {
-      return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false).blocked;
-    } else {
-      return blocked;
-    }
+    return blocked;
   }
 
   public void setBlocked(boolean blocked) {

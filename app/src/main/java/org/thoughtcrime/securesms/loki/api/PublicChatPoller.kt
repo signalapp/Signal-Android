@@ -27,7 +27,6 @@ import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI
 import org.session.libsignal.service.loki.api.opengroups.PublicChatMessage
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
 import java.security.MessageDigest
 import java.util.*
 
@@ -161,14 +160,11 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
     fun pollForNewMessages(): Promise<Unit, Exception> {
         fun processIncomingMessage(message: PublicChatMessage) {
             // If the sender of the current message is not a slave device, set the display name in the database
-            val masterHexEncodedPublicKey = MultiDeviceProtocol.shared.getMasterDevice(message.senderPublicKey)
-            if (masterHexEncodedPublicKey == null) {
-                val senderDisplayName = "${message.displayName} (...${message.senderPublicKey.takeLast(8)})"
-                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.senderPublicKey, senderDisplayName)
-            }
-            val senderHexEncodedPublicKey = masterHexEncodedPublicKey ?: message.senderPublicKey
+            val senderDisplayName = "${message.displayName} (...${message.senderPublicKey.takeLast(8)})"
+            DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.senderPublicKey, senderDisplayName)
+            val senderHexEncodedPublicKey = message.senderPublicKey
             val serviceDataMessage = getDataMessage(message)
-            val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.serverTimestamp, false, false)
+            val serviceContent = SignalServiceContent(serviceDataMessage, senderHexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.serverTimestamp, false)
             if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {
@@ -221,8 +217,6 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         }
         if (isPollOngoing) { return Promise.of(Unit) }
         isPollOngoing = true
-        val userDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userHexEncodedPublicKey)
-        var uniqueDevices = setOf<String>()
         val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         FileServerAPI.configure(userHexEncodedPublicKey, userPrivateKey, apiDB)
@@ -240,20 +234,10 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
              */
             Promise.of(messages)
         }
-        promise.successBackground {
-            /*
-            val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
-                // This will return null if the current device is a master device
-                MultiDeviceProtocol.shared.getMasterDevice(it)
-            }.toSet()
-            // Fetch the display names of the master devices
-            displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
-             */
-        }
         promise.successBackground { messages ->
             // Process messages in the background
             messages.forEach { message ->
-                if (userDevices.contains(message.senderPublicKey)) {
+                if (message.senderPublicKey == userHexEncodedPublicKey) {
                     processOutgoingMessage(message)
                 } else {
                     processIncomingMessage(message)
