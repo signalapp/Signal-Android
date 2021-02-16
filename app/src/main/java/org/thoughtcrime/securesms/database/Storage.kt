@@ -33,6 +33,7 @@ import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
@@ -279,6 +280,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(group, server)
     }
 
+    override fun isMessageDuplicated(timestamp: Long, sender: String): Boolean {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        return if (sender.isEmpty()) {
+            database.getMessageForTimestamp(timestamp) != null
+        } else {
+            database.getMessageFor(timestamp, sender) != null
+        }
+    }
+
     override fun setUserCount(group: Long, server: String, newValue: Int) {
         DatabaseFactory.getLokiAPIDatabase(context).setUserCount(group, server, newValue)
     }
@@ -300,16 +310,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getReceivedMessageTimestamps(): Set<Long> {
-        TODO("Not yet implemented")
+        return SessionMetaProtocol.getTimestamps()
     }
 
     override fun addReceivedMessageTimestamp(timestamp: Long) {
-        TODO("Not yet implemented")
+        SessionMetaProtocol.addTimestamp(timestamp)
     }
 
-    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
-        TODO("Not yet implemented")
-    }
+//    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
+//        TODO("Not yet implemented")
+//    }
 
     override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
         val database = DatabaseFactory.getMmsSmsDatabase(context)

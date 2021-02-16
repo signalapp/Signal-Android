@@ -50,7 +50,7 @@ object MessageReceiver {
         // If the message failed to process the first time around we retry it later (if the error is retryable). In this case the timestamp
         // will already be in the database but we don't want to treat the message as a duplicate. The isRetry flag is a simple workaround
         // for this issue.
-        if (storage.getReceivedMessageTimestamps().contains(envelope.timestamp) && !isRetry) throw Error.DuplicateMessage
+        if (storage.isMessageDuplicated(envelope.timestamp, envelope.source) && !isRetry) throw Error.DuplicateMessage
         storage.addReceivedMessageTimestamp(envelope.timestamp)
         // Decrypt the contents
         val ciphertext = envelope.content ?: throw Error.NoData
