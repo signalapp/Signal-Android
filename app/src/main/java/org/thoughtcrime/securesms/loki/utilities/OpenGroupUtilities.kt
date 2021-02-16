@@ -27,7 +27,7 @@ object OpenGroupUtilities {
         val groupID = PublicChat.getId(channel, url)
         val threadID = GroupManager.getOpenGroupThreadID(groupID, context)
         val openGroup = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
-        if (openGroup != null) return openGroup
+        if (openGroup != null) { return openGroup }
 
         // Add the new group.
         val application = ApplicationContext.getInstance(context)

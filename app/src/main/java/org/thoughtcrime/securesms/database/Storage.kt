@@ -8,7 +8,6 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
-import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
@@ -27,9 +26,11 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
@@ -351,7 +352,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, System.currentTimeMillis(), 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
         val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
         mmsDB.markAsSent(infoMessageID, true)
@@ -369,6 +370,38 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair? {
         return DatabaseFactory.getLokiAPIDatabase(context).getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+    }
+
+    override fun getAllClosedGroupPublicKeys(): Set<String> {
+        return DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+    }
+
+    override fun addClosedGroupPublicKey(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).addClosedGroupPublicKey(groupPublicKey)
+    }
+
+    override fun removeClosedGroupPublicKey(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeClosedGroupPublicKey(groupPublicKey)
+    }
+
+    override fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
+    }
+
+    override fun removeAllClosedGroupEncryptionKeyPairs(groupPublicKey: String) {
+        DatabaseFactory.getLokiAPIDatabase(context).removeAllClosedGroupEncryptionKeyPairs(groupPublicKey)
+    }
+
+    override fun getAllOpenGroups(): Map<Long, PublicChat> {
+        return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
+    }
+
+    override fun addOpenGroup(server: String, channel: Long) {
+        OpenGroupUtilities.addGroup(context, server, channel)
+    }
+
+    override fun getAllGroups(): List<GroupRecord> {
+        return DatabaseFactory.getGroupDatabase(context).allGroups
     }
 
     override fun setProfileSharing(address: Address, value: Boolean) {

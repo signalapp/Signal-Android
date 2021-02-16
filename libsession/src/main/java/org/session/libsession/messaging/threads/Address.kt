@@ -152,6 +152,7 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
         val UNKNOWN = Address("Unknown")
         private val TAG = Address::class.java.simpleName
         private val cachedFormatter = AtomicReference<Pair<String, ExternalAddressFormatter>>()
+        @JvmStatic
         fun fromSerialized(serialized: String): Address {
             return Address(serialized)
         }

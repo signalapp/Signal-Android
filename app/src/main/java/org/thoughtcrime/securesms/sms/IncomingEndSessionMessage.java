@@ -10,12 +10,7 @@ public class IncomingEndSessionMessage extends IncomingTextMessage {
     super(base, newBody);
   }
 
-  @Override
-  public IncomingEndSessionMessage withMessageBody(String messageBody) {
-    return new IncomingEndSessionMessage(this, messageBody);
-  }
-
-  @Override
+    @Override
   public boolean isEndSession() {
     return true;
   }

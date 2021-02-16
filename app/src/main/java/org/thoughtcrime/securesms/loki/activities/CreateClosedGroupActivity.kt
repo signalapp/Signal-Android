@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.os.AsyncTask
 import android.os.Bundle
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
@@ -20,15 +18,13 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.guava.Optional
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
-import java.lang.ref.WeakReference
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -122,6 +118,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
                 openConversationActivity(this, threadID, Recipient.from(this, Address.fromSerialized(groupID), false))
                 finish()
             }
+
         }
     }
     // endregion

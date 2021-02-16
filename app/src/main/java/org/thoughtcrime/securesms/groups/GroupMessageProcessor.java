@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.session.libsignal.utilities.logging.Log;
@@ -123,10 +125,18 @@ public class GroupMessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
+    Address                   address         = Address.Companion.fromExternal(context, GroupUtil.getEncodedId(group));
+    Recipient                 recipient       = Recipient.from(context, address, false);
 
     String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
     if (userMasterDevice == null) { userMasterDevice = TextSecurePreferences.getLocalNumber(context); }
+
+    if (content.getSender().equals(userMasterDevice)) {
+      long threadId = threadDatabase.getThreadIdIfExistsFor(recipient);
+      return threadId == -1 ? null : threadId;
+    }
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message
@@ -260,9 +270,16 @@ public class GroupMessageProcessor {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
         Address                   address         = Address.Companion.fromExternal(context, GroupUtil.getEncodedId(group));
         Recipient                 recipient       = Recipient.from(context, address, false);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-        long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+        Address                   senderAddress   = Address.Companion.fromExternal(context, content.getSender());
+        MessageRecord             existingMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(content.getTimestamp(), senderAddress);
+        long                      messageId;
+        if (existingMessage != null) {
+          messageId = existingMessage.getId();
+        } else {
+          messageId = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
+        }
 
         mmsDatabase.markAsSent(messageId, true);
 

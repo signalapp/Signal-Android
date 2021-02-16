@@ -6,6 +6,8 @@ import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.Hex
 
 class ClosedGroupControlMessage() : ControlMessage() {
 
@@ -33,11 +35,23 @@ class ClosedGroupControlMessage() : ControlMessage() {
         class NameChange(val name: String) : Kind()
         class MembersAdded(val members: List<ByteString>) : Kind()
         class MembersRemoved( val members: List<ByteString>) : Kind()
-        class MemberLeft() : Kind()
+        object MemberLeft : Kind()
+
+        val description: String = run {
+            when(this) {
+                is New -> "new"
+                is Update -> "update"
+                is EncryptionKeyPair -> "encryptionKeyPair"
+                is NameChange -> "nameChange"
+                is MembersAdded -> "membersAdded"
+                is MembersRemoved -> "membersRemoved"
+                MemberLeft -> "memberLeft"
+            }
+        }
     }
 
     companion object {
-        const val TAG = "ClosedGroupUpdateV2"
+        const val TAG = "ClosedGroupControlMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupControlMessage? {
             val closedGroupUpdateProto = proto.dataMessage?.closedGroupUpdateV2 ?: return null
@@ -75,7 +89,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     kind = Kind.MembersRemoved(closedGroupUpdateProto.membersList)
                 }
                 SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBER_LEFT -> {
-                    kind = Kind.MemberLeft()
+                    kind = Kind.MemberLeft
                 }
             }
             return ClosedGroupControlMessage(kind)
@@ -168,10 +182,15 @@ class ClosedGroupControlMessage() : ControlMessage() {
         }
     }
 
-    final class KeyPairWrapper(val publicKey: String?, private val encryptedKeyPair: ByteString?) {
+    class KeyPairWrapper(val publicKey: String?, val encryptedKeyPair: ByteString?) {
+
+        val isValid: Boolean = run {
+            this.publicKey != null && this.encryptedKeyPair != null
+        }
+
         companion object {
             fun fromProto(proto: SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper): KeyPairWrapper {
-                return KeyPairWrapper(proto.publicKey.toString(), proto.encryptedKeyPair)
+                return KeyPairWrapper(proto.publicKey.toByteArray().toHexString(), proto.encryptedKeyPair)
             }
         }
 
@@ -179,7 +198,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             val publicKey = publicKey ?: return null
             val encryptedKeyPair = encryptedKeyPair ?: return null
             val result = SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.newBuilder()
-            result.publicKey = ByteString.copyFrom(publicKey.toByteArray())
+            result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.encryptedKeyPair = encryptedKeyPair
 
             return try {

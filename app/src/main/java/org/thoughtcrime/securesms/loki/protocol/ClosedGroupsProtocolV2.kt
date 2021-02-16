@@ -38,10 +38,13 @@ import org.session.libsession.utilities.TextSecurePreferences
 
 import java.io.IOException
 import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.jvm.Throws
 
 object ClosedGroupsProtocolV2 {
     const val groupSizeLimit = 100
+
+    private val pendingKeyPair = ConcurrentHashMap<String,Optional<ECKeyPair>>()
 
     sealed class Error(val description: String) : Exception() {
         object NoThread : Error("Couldn't find a thread associated with the given group public key")
@@ -58,6 +61,7 @@ object ClosedGroupsProtocolV2 {
             val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
             // Generate the group's public key
             val groupPublicKey = Curve.generateKeyPair().hexEncodedPublicKey // Includes the "05" prefix
+            val sentTime = System.currentTimeMillis()
             // Generate the key pair that'll be used for encryption and decryption
             val encryptionKeyPair = Curve.generateKeyPair()
             // Create the group
@@ -68,20 +72,20 @@ object ClosedGroupsProtocolV2 {
                     null, null, LinkedList(admins.map { Address.fromSerialized(it!!) }))
             DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
             // Send a closed group update message to all members individually
-            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, encryptionKeyPair, membersAsData, adminsAsData)
-            for (member in members) {
-                if (member == userPublicKey) { continue }
-                val job = ClosedGroupUpdateMessageSendJobV2(member, closedGroupUpdateKind)
-                job.setContext(context)
-                job.onRun() // Run the job immediately to make all of this sync
-            }
             // Add the group to the user's set of public keys to poll for
             apiDB.addClosedGroupPublicKey(groupPublicKey)
             // Store the encryption key pair
             apiDB.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
             // Notify the user
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID)
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTime)
+
+            val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, encryptionKeyPair, membersAsData, adminsAsData)
+            for (member in members) {
+                val job = ClosedGroupUpdateMessageSendJobV2(member, closedGroupUpdateKind, sentTime)
+                job.setContext(context)
+                job.onRun() // Run the job immediately to make all of this sync
+            }
             // Notify the PN server
             LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
             // Fulfill the promise
@@ -103,21 +107,22 @@ object ClosedGroupsProtocolV2 {
             val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
             val admins = group.admins.map { it.serialize() }
             val name = group.title
+            val sentTime = System.currentTimeMillis()
             if (group == null) {
                 Log.d("Loki", "Can't leave nonexistent closed group.")
                 return@queue deferred.reject(Error.NoThread)
             }
             // Send the update to the group
             @Suppress("NAME_SHADOWING")
-            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.Leave)
+            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.Leave, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
-            // Remove the group private key and unsubscribe from PNs
-            disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             // Notify the user
             val infoType = GroupContext.Type.QUIT
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            // Remove the group private key and unsubscribe from PNs
+            disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
         }
         return deferred.promise
@@ -141,7 +146,10 @@ object ClosedGroupsProtocolV2 {
             val newMembersAsData = membersToAdd.map { Hex.fromStringCondensed(it) }
             val admins = group.admins.map { it.serialize() }
             val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
-            val encryptionKeyPair = apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+            val sentTime = System.currentTimeMillis()
+            val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
+                Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
+            }.orNull()
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
                 return@task Error.NoKeyPair
@@ -149,21 +157,21 @@ object ClosedGroupsProtocolV2 {
             val name = group.title
             // Send the update to the group
             val memberUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.AddMembers(newMembersAsData)
-            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind)
+            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.UPDATE
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             // Send closed group update messages to any new members individually
             for (member in membersToAdd) {
                 @Suppress("NAME_SHADOWING")
                 val closedGroupNewKind = ClosedGroupUpdateMessageSendJobV2.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, encryptionKeyPair, membersAsData, adminsAsData)
                 @Suppress("NAME_SHADOWING")
-                val newMemberJob = ClosedGroupUpdateMessageSendJobV2(member, closedGroupNewKind)
+                val newMemberJob = ClosedGroupUpdateMessageSendJobV2(member, closedGroupNewKind, sentTime)
                 ApplicationContext.getInstance(context).jobManager.add(newMemberJob)
             }
-            // Notify the user
-            val infoType = GroupContext.Type.UPDATE
-            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
         }
     }
 
@@ -184,6 +192,7 @@ object ClosedGroupsProtocolV2 {
             groupDB.updateMembers(groupID, updatedMembers.map { Address.fromSerialized(it) })
             val removeMembersAsData = membersToRemove.map { Hex.fromStringCondensed(it) }
             val admins = group.admins.map { it.serialize() }
+            val sentTime = System.currentTimeMillis()
             val encryptionKeyPair = apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
@@ -196,17 +205,18 @@ object ClosedGroupsProtocolV2 {
             val name = group.title
             // Send the update to the group
             val memberUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.RemoveMembers(removeMembersAsData)
-            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind)
+            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, memberUpdateKind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
+            // Notify the user
+            val infoType = GroupContext.Type.UPDATE
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             val isCurrentUserAdmin = admins.contains(userPublicKey)
             if (isCurrentUserAdmin) {
                 generateAndSendNewEncryptionKeyPair(context, groupPublicKey, updatedMembers)
             }
-            // Notify the user
-            val infoType = GroupContext.Type.UPDATE
-            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID)
+            return@task Unit
         }
     }
 
@@ -219,21 +229,22 @@ object ClosedGroupsProtocolV2 {
             val group = groupDB.getGroup(groupID).orNull()
             val members = group.members.map { it.serialize() }.toSet()
             val admins = group.admins.map { it.serialize() }
+            val sentTime = System.currentTimeMillis()
             if (group == null) {
                 Log.d("Loki", "Can't leave nonexistent closed group.")
                 return@queue deferred.reject(Error.NoThread)
             }
             // Send the update to the group
             val kind = ClosedGroupUpdateMessageSendJobV2.Kind.NameChange(newName)
-            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, kind)
+            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, kind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
-            // Update the group
-            groupDB.updateTitle(groupID, newName)
             // Notify the user
             val infoType = GroupContext.Type.UPDATE
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID)
+            insertOutgoingInfoMessage(context, groupID, infoType, newName, members, admins, threadID, sentTime)
+            // Update the group
+            groupDB.updateTitle(groupID, newName)
             deferred.resolve(Unit)
         }
         return deferred.promise
@@ -273,6 +284,7 @@ object ClosedGroupsProtocolV2 {
                 Log.d("Loki", "Can't update nonexistent closed group.")
                 return@queue deferred.reject(Error.NoThread)
             }
+            val sentTime = System.currentTimeMillis()
             val oldMembers = group.members.map { it.serialize() }.toSet()
             val newMembers = members.minus(oldMembers)
             val membersAsData = members.map { Hex.fromStringCondensed(it) }
@@ -299,7 +311,7 @@ object ClosedGroupsProtocolV2 {
             @Suppress("NAME_SHADOWING")
             val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.Update(name, membersAsData)
             @Suppress("NAME_SHADOWING")
-            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, closedGroupUpdateKind)
+            val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, closedGroupUpdateKind, sentTime)
             job.setContext(context)
             job.onRun() // Run the job immediately
             if (isUserLeaving) {
@@ -323,7 +335,7 @@ object ClosedGroupsProtocolV2 {
                     @Suppress("NAME_SHADOWING")
                     val closedGroupUpdateKind = ClosedGroupUpdateMessageSendJobV2.Kind.New(Hex.fromStringCondensed(groupPublicKey), name, encryptionKeyPair, membersAsData, adminsAsData)
                     @Suppress("NAME_SHADOWING")
-                    val job = ClosedGroupUpdateMessageSendJobV2(member, closedGroupUpdateKind)
+                    val job = ClosedGroupUpdateMessageSendJobV2(member, closedGroupUpdateKind, sentTime)
                     ApplicationContext.getInstance(context).jobManager.add(job)
                 }
             }
@@ -336,7 +348,7 @@ object ClosedGroupsProtocolV2 {
             // Notify the user
             val infoType = if (isUserLeaving) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID)
+            insertOutgoingInfoMessage(context, groupID, infoType, name, members, admins, threadID, sentTime)
             deferred.resolve(Unit)
         }
         return deferred.promise
@@ -359,7 +371,19 @@ object ClosedGroupsProtocolV2 {
         }
         // Generate the new encryption key pair
         val newKeyPair = Curve.generateKeyPair()
+        // replace call will not succeed if no value already set
+        pendingKeyPair.putIfAbsent(groupPublicKey,Optional.absent())
+        do {
+            // make sure we set the pendingKeyPair or wait until it is not null
+        } while (!pendingKeyPair.replace(groupPublicKey,Optional.absent(),Optional.fromNullable(newKeyPair)))
         // Distribute it
+        sendEncryptionKeyPair(context, groupPublicKey, newKeyPair, targetMembers)
+        // Store it * after * having sent out the message to the group
+        apiDB.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+        pendingKeyPair[groupPublicKey] = Optional.absent()
+    }
+
+    private fun sendEncryptionKeyPair(context: Context, groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, force: Boolean = true) {
         val proto = SignalServiceProtos.KeyPair.newBuilder()
         proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
         proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
@@ -368,18 +392,20 @@ object ClosedGroupsProtocolV2 {
             val ciphertext = SessionProtocolImpl(context).encrypt(plaintext, publicKey)
             ClosedGroupUpdateMessageSendJobV2.KeyPairWrapper(publicKey, ciphertext)
         }
-        val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.EncryptionKeyPair(wrappers))
-        job.setContext(context)
-        job.onRun() // Run the job immediately
-        // Store it * after * having sent out the message to the group
-        apiDB.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+        val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.EncryptionKeyPair(wrappers), System.currentTimeMillis())
+        if (force) {
+            job.setContext(context)
+            job.onRun() // Run the job immediately
+        } else {
+            ApplicationContext.getInstance(context).jobManager.add(job)
+        }
     }
 
     @JvmStatic
     fun handleMessage(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
-        if (!isValid(closedGroupUpdate, senderPublicKey)) { return }
+        if (!isValid(context, closedGroupUpdate, senderPublicKey, sentTimestamp)) { return }
         when (closedGroupUpdate.type) {
-            SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate, senderPublicKey)
+            SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW -> handleNewClosedGroup(context, closedGroupUpdate, senderPublicKey, sentTimestamp)
             SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_REMOVED -> handleClosedGroupMembersRemoved(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
             SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_ADDED -> handleClosedGroupMembersAdded(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
             SignalServiceProtos.ClosedGroupUpdateV2.Type.NAME_CHANGE -> handleClosedGroupNameChange(context, closedGroupUpdate, sentTimestamp, groupPublicKey, senderPublicKey)
@@ -392,7 +418,10 @@ object ClosedGroupsProtocolV2 {
         }
     }
 
-    private fun isValid(closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, senderPublicKey: String): Boolean {
+    private fun isValid(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, senderPublicKey: String, sentTimestamp: Long): Boolean {
+        val record = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(sentTimestamp, senderPublicKey)
+        if (record != null) return false
+
         return when (closedGroupUpdate.type) {
             SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW -> {
                 (!closedGroupUpdate.publicKey.isEmpty && !closedGroupUpdate.name.isNullOrEmpty() && !(closedGroupUpdate.encryptionKeyPair.privateKey ?: ByteString.copyFrom(ByteArray(0))).isEmpty
@@ -414,7 +443,7 @@ object ClosedGroupsProtocolV2 {
         }
     }
 
-    public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, senderPublicKey: String) {
+    public fun handleNewClosedGroup(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, senderPublicKey: String, sentTimestamp: Long) {
         // Prepare
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
@@ -427,7 +456,8 @@ object ClosedGroupsProtocolV2 {
         // Create the group
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
-        if (groupDB.getGroup(groupID).orNull() != null) {
+        val prevGroup = groupDB.getGroup(groupID).orNull()
+        if (prevGroup != null) {
             // Update the group
             groupDB.updateTitle(groupID, name)
             groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
@@ -441,8 +471,14 @@ object ClosedGroupsProtocolV2 {
         // Store the encryption key pair
         val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removing05PrefixIfNeeded()), DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
         apiDB.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
-        // Notify the user
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        // Notify the user (if we didn't make the group)
+        if (userPublicKey != senderPublicKey) {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        } else if (prevGroup == null) {
+            // only notify if we created this group
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+        }
         // Notify the PN server
         LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
     }
@@ -452,8 +488,8 @@ object ClosedGroupsProtocolV2 {
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        if (group == null || !group.isActive) {
+            Log.d("Loki", "Ignoring closed group info message for nonexistent or inactive group.")
             return
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -492,16 +528,22 @@ object ClosedGroupsProtocolV2 {
         val (contextType, signalType) =
                 if (senderLeft) GroupContext.Type.QUIT to SignalServiceGroup.Type.QUIT
                 else GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
-
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins)
+        if (userPublicKey == senderPublicKey) {
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, sentTimestamp)
+        } else {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins)
+        }
     }
 
     fun handleClosedGroupMembersAdded(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        if (group == null || !group.isActive) {
+            Log.d("Loki", "Ignoring closed group info message for nonexistent or inactive group.")
             return
         }
         if (!isValidGroupUpdate(group, sentTimestamp, senderPublicKey)) {
@@ -518,16 +560,32 @@ object ClosedGroupsProtocolV2 {
         val newMembers = members + updateMembers
         groupDB.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
 
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        if (userPublicKey == senderPublicKey) {
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+        } else {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        }
+        if (userPublicKey in admins) {
+            // send current encryption key to the latest added members
+            val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+                ?: apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+            if (encryptionKeyPair == null) {
+                Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+            } else {
+                sendEncryptionKeyPair(context, groupPublicKey, encryptionKeyPair, newMembers, false)
+            }
+        }
     }
 
     fun handleClosedGroupNameChange(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         // Check that the sender is a member of the group (before the update)
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        if (group == null || !group.isActive) {
+            Log.d("Loki", "Ignoring closed group info message for nonexistent or inactive group.")
             return
         }
         // Check common group update logic
@@ -539,21 +597,23 @@ object ClosedGroupsProtocolV2 {
         val name = closedGroupUpdate.name
         groupDB.updateTitle(groupID, name)
 
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        if (userPublicKey == senderPublicKey) {
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+        } else {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
+        }
     }
 
     private fun handleClosedGroupMemberLeft(context: Context, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         // Check the user leaving isn't us, will already be handled
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
-        if (senderPublicKey == userPublicKey) {
-            return
-        }
         val apiDB = DatabaseFactory.getLokiAPIDatabase(context)
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        if (group == null || !group.isActive) {
+            Log.d("Loki", "Ignoring closed group info message for nonexistent or inactive group.")
             return
         }
         val name = group.title
@@ -576,7 +636,12 @@ object ClosedGroupsProtocolV2 {
                 generateAndSendNewEncryptionKeyPair(context, groupPublicKey, updatedMemberList)
             }
         }
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins)
+        if (userPublicKey == senderPublicKey) {
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
+        } else {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins)
+        }
     }
 
     private fun handleClosedGroupUpdate(context: Context, closedGroupUpdate: SignalServiceProtos.ClosedGroupUpdateV2, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
@@ -589,8 +654,8 @@ object ClosedGroupsProtocolV2 {
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = doubleEncodeGroupID(groupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
-        if (group == null) {
-            Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
+        if (group == null || !group.isActive) {
+            Log.d("Loki", "Ignoring closed group info message for nonexistent or inactive group.")
             return
         }
         val oldMembers = group.members.map { it.serialize() }
@@ -624,7 +689,13 @@ object ClosedGroupsProtocolV2 {
         val wasSenderRemoved = !members.contains(senderPublicKey)
         val type0 = if (wasSenderRemoved) GroupContext.Type.QUIT else GroupContext.Type.UPDATE
         val type1 = if (wasSenderRemoved) SignalServiceGroup.Type.QUIT else SignalServiceGroup.Type.UPDATE
-        insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, group.admins.map { it.toString() })
+        val admins = group.admins.map { it.toString() }
+        if (userPublicKey == senderPublicKey) {
+            val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
+            insertOutgoingInfoMessage(context, groupID, type0, name, members, admins, threadID, sentTimestamp)
+        } else {
+            insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, admins)
+        }
     }
 
     private fun disableLocalGroupAndUnsubscribe(context: Context, apiDB: LokiAPIDatabase, groupPublicKey: String, groupDB: GroupDatabase, groupID: String, userPublicKey: String) {
@@ -700,7 +771,9 @@ object ClosedGroupsProtocolV2 {
     }
 
     private fun insertOutgoingInfoMessage(context: Context, groupID: String, type: GroupContext.Type, name: String,
-                                          members: Collection<String>, admins: Collection<String>, threadID: Long) {
+                                          members: Collection<String>, admins: Collection<String>, threadID: Long,
+                                          sentTime: Long) {
+        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
         val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
         val groupContextBuilder = GroupContext.newBuilder()
                 .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
@@ -708,9 +781,11 @@ object ClosedGroupsProtocolV2 {
                 .setName(name)
                 .addAllMembers(members)
                 .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, System.currentTimeMillis(), 0, null, listOf(), listOf())
+        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTime, 0, null, listOf(), listOf())
         val mmsDB = DatabaseFactory.getMmsDatabase(context)
-        val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null)
+        val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
+        if (mmsSmsDB.getMessageFor(sentTime,userPublicKey) != null) return
+        val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null, sentTime)
         mmsDB.markAsSent(infoMessageID, true)
     }
 

@@ -9,12 +9,7 @@ public class IncomingPreKeyBundleMessage extends IncomingTextMessage {
     this.legacy = legacy;
   }
 
-  @Override
-  public IncomingPreKeyBundleMessage withMessageBody(String messageBody) {
-    return new IncomingPreKeyBundleMessage(this, messageBody, legacy);
-  }
-
-  @Override
+    @Override
   public boolean isLegacyPreKeyBundle() {
     return legacy;
   }

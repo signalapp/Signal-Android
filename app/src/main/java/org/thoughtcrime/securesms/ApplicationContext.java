@@ -77,6 +77,7 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
@@ -115,7 +116,6 @@ import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
 import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 
 import java.io.File;
@@ -206,7 +206,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
       SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
-    MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
+    org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
@@ -249,6 +249,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     startPollingIfNeeded();
     publicChatManager.markAllAsNotCaughtUp();
     publicChatManager.startPollersIfNeeded();
+    MultiDeviceProtocol.syncConfigurationIfNeeded(this);
   }
 
   @Override

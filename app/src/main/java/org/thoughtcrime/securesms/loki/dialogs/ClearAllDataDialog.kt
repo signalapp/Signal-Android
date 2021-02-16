@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.dialog_clear_all_data.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 
 class ClearAllDataDialog : DialogFragment() {
@@ -27,6 +28,7 @@ class ClearAllDataDialog : DialogFragment() {
 
     private fun clearAllData() {
         if (KeyPairUtilities.hasV2KeyPair(requireContext())) {
+            MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(requireContext())
             ApplicationContext.getInstance(context).clearAllData(false)
         } else {
             val dialog = AlertDialog.Builder(requireContext())

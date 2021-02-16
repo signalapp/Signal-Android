@@ -216,7 +216,18 @@ public class SignalServiceCipher {
         );
       }
 
-      if (message.hasDeviceLinkMessage()) {
+      if (message.hasConfigurationMessage()) {
+        SignalServiceCipher.Metadata metadata = plaintext.getMetadata();
+        SignalServiceContent content = new SignalServiceContent(message, metadata.getSender(), metadata.getSenderDevice(), metadata.getTimestamp());
+
+        if (message.hasDataMessage()) {
+          setProfile(message.getDataMessage(), content);
+          SignalServiceDataMessage signalServiceDataMessage = createSignalServiceMessage(metadata, message.getDataMessage());
+          content.setDataMessage(signalServiceDataMessage);
+        }
+
+        return content;
+      } else if (message.hasDeviceLinkMessage()) {
         SignalServiceProtos.DeviceLinkMessage protoDeviceLinkMessage = message.getDeviceLinkMessage();
         String masterPublicKey = protoDeviceLinkMessage.getPrimaryPublicKey();
         String slavePublicKey = protoDeviceLinkMessage.getSecondaryPublicKey();
@@ -331,7 +342,6 @@ public class SignalServiceCipher {
         kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = SessionProtocolUtilities.INSTANCE.decryptClosedGroupCiphertext(ciphertext, groupPublicKey, apiDB, sessionProtocolImpl);
         paddedMessage = plaintextAndSenderPublicKey.getFirst();
         String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
-        if (senderPublicKey.equals(localAddress.getNumber())) { throw new SelfSendException(); } // Will be caught and ignored in PushDecryptJob
         metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isPreKeySignalMessage()) {
@@ -389,6 +399,7 @@ public class SignalServiceCipher {
     ClosedGroupUpdate              closedGroupUpdate           = content.getClosedGroupUpdate();
     ClosedGroupUpdateV2            closedGroupUpdateV2         = content.getClosedGroupUpdateV2();
     boolean                        isDeviceUnlinkingRequest    = ((content.getFlags() & DataMessage.Flags.DEVICE_UNLINKING_REQUEST_VALUE) != 0);
+    String                         syncTarget                  = content.getSyncTarget();
 
     for (AttachmentPointer pointer : content.getAttachmentsList()) {
       attachments.add(createAttachmentPointer(pointer));
@@ -417,7 +428,8 @@ public class SignalServiceCipher {
             null,
             closedGroupUpdate,
             closedGroupUpdateV2,
-            isDeviceUnlinkingRequest);
+            isDeviceUnlinkingRequest,
+            syncTarget);
   }
 
   private SignalServiceSyncMessage createSynchronizeMessage(Metadata metadata, SyncMessage content)

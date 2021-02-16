@@ -245,7 +245,9 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   {
     try {
       Recipient                                  recipient          = Recipient.from(context, destination, false);
+      String                                     userPublicKey      = TextSecurePreferences.getLocalNumber(context);
       SignalServiceAddress                       address            = getPushAddress(recipient.getAddress());
+      SignalServiceAddress                       localAddress       = new SignalServiceAddress(userPublicKey);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
@@ -253,6 +255,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<Preview>                              previews           = getPreviewsFor(message);
+
+      Optional<UnidentifiedAccessPair> unidentifiedAccessPair = UnidentifiedAccessUtil.getAccessFor(context, recipient);
 
       SignalServiceDataMessage mediaMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withBody(message.getBody())
@@ -267,19 +271,47 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .build();
 
+      SignalServiceDataMessage mediaSelfSendMessage = SignalServiceDataMessage.newBuilder()
+              .withBody(message.getBody())
+              .withAttachments(serviceAttachments)
+              .withTimestamp(message.getSentTimeMillis())
+              .withSyncTarget(destination.serialize())
+              .withExpiration((int)(message.getExpiresIn() / 1000))
+              .withProfileKey(profileKey.orNull())
+              .withQuote(quote.orNull())
+              .withSticker(sticker.orNull())
+              .withSharedContacts(sharedContacts)
+              .withPreviews(previews)
+              .asExpirationUpdate(message.isExpirationUpdate())
+              .build();
+
       if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
         // Loki - Device link messages don't go through here
-        Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
-        SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
-
-        messageSender.sendMessage(syncMessage, syncAccess);
-        return syncAccess.isPresent();
-      } else {
-        SendMessageResult result = messageSender.sendMessage(messageId, address, UnidentifiedAccessUtil.getAccessFor(context, recipient), mediaMessage);
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
         if (result.getLokiAPIError() != null) {
           throw result.getLokiAPIError();
         } else {
           return result.getSuccess().isUnidentified();
+        }
+      } else {
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
+        if (result.getLokiAPIError() != null) {
+          throw result.getLokiAPIError();
+        } else {
+          boolean isUnidentified = result.getSuccess().isUnidentified();
+
+          try {
+            // send to ourselves to sync multi-device
+            Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+            SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, mediaSelfSendMessage);
+            if (selfSendResult.getLokiAPIError() != null) {
+              throw selfSendResult.getLokiAPIError();
+            }
+          } catch (Exception e) {
+            Log.e("Loki", "Error sending message to ourselves", e);
+          }
+
+          return isUnidentified;
         }
       }
     } catch (UnregisteredUserException e) {

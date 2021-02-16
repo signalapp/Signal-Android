@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
@@ -56,7 +57,7 @@ class NullMessageSendJob private constructor(parameters: Parameters, private val
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                 Date().time, serializedContentMessage, false, ttl, false,
-                false, false, false, false)
+                false, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send null message to: $publicKey due to error: $e.")
             throw e

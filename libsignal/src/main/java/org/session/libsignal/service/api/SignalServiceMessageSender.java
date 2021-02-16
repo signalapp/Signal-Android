@@ -26,10 +26,6 @@ import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.calls.AnswerMessage;
-import org.session.libsignal.service.api.messages.calls.IceUpdateMessage;
-import org.session.libsignal.service.api.messages.calls.OfferMessage;
-import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
 import org.session.libsignal.service.api.messages.multidevice.BlockedListMessage;
 import org.session.libsignal.service.api.messages.multidevice.ConfigurationMessage;
 import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
@@ -51,7 +47,6 @@ import org.session.libsignal.service.internal.push.PushServiceSocket;
 import org.session.libsignal.service.internal.push.PushTransportDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.CallMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Content;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
@@ -217,34 +212,14 @@ public class SignalServiceMessageSender {
    * @param recipient The sender of the received message you're acknowledging.
    * @param message The read receipt to deliver.
    * @throws IOException
-   * @throws UntrustedIdentityException
    */
   public void sendReceipt(SignalServiceAddress recipient,
                           Optional<UnidentifiedAccessPair> unidentifiedAccess,
                           SignalServiceReceiptMessage message)
-      throws IOException, UntrustedIdentityException
-  {
+      throws IOException {
     byte[] content = createReceiptContent(message);
     boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false, message.getTTL(), useFallbackEncryption, false);
-  }
-
-  /**
-   * Send a typing indicator.
-   *
-   * @param recipient The destination
-   * @param message The typing indicator to deliver
-   * @throws IOException
-   * @throws UntrustedIdentityException
-   */
-  public void sendTyping(SignalServiceAddress recipient,
-                         Optional<UnidentifiedAccessPair> unidentifiedAccess,
-                         SignalServiceTypingMessage message)
-      throws IOException, UntrustedIdentityException
-  {
-    byte[] content = createTypingContent(message);
-    boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true, message.getTTL(), useFallbackEncryption, false);
+    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false, message.getTTL(), useFallbackEncryption);
   }
 
   public void sendTyping(List<SignalServiceAddress>             recipients,
@@ -257,41 +232,23 @@ public class SignalServiceMessageSender {
   }
 
   /**
-   * Send a call setup message to a single recipient.
-   *
-   * @param recipient The message's destination.
-   * @param message The call message.
-   * @throws IOException
-   */
-  public void sendCallMessage(SignalServiceAddress recipient,
-                              Optional<UnidentifiedAccessPair> unidentifiedAccess,
-                              SignalServiceCallMessage message)
-      throws IOException, UntrustedIdentityException
-  {
-    byte[] content = createCallContent(message);
-    boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), System.currentTimeMillis(), content, false, message.getTTL(), useFallbackEncryption, false);
-  }
-
-  /**
    * Send a message to a single recipient.
    *
    * @param recipient The message's destination.
    * @param message The message.
-   * @throws UntrustedIdentityException
    * @throws IOException
    */
   public SendMessageResult sendMessage(long                             messageID,
                                        SignalServiceAddress             recipient,
                                        Optional<UnidentifiedAccessPair> unidentifiedAccess,
                                        SignalServiceDataMessage         message)
-      throws UntrustedIdentityException, IOException
+      throws IOException
   {
     byte[]            content               = createMessageContent(message, recipient);
     long              timestamp             = message.getTimestamp();
     boolean           useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), message.getDeviceLink().isPresent(), useFallbackEncryption, isClosedGroup, false, message.hasVisibleContent());
+    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), message.getDeviceLink().isPresent(), useFallbackEncryption, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
 
 //    // Loki - This shouldn't get invoked for note to self
 //    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
@@ -325,8 +282,7 @@ public class SignalServiceMessageSender {
                                              List<SignalServiceAddress>             recipients,
                                              List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
                                              SignalServiceDataMessage               message)
-      throws IOException, UntrustedIdentityException
-  {
+      throws IOException {
     // Loki - We only need the first recipient in the line below. This is because the recipient is only used to determine
     // whether an attachment is being sent to an open group or not.
     byte[]                  content            = createMessageContent(message, recipients.get(0));
@@ -350,7 +306,7 @@ public class SignalServiceMessageSender {
       for (String device : linkedDevices) {
         SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
         boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(syncMessage, device, store);
-        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryption, true);
+        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryption);
       }
     }
 
@@ -381,7 +337,6 @@ public class SignalServiceMessageSender {
     } else if (message.getStickerPackOperations().isPresent()) {
       content = createMultiDeviceStickerPackOperationContent(message.getStickerPackOperations().get());
     } else if (message.getVerified().isPresent()) {
-      sendMessage(message.getVerified().get(), unidentifiedAccess);
       return;
     } else {
       throw new IOException("Unsupported sync message!");
@@ -392,16 +347,8 @@ public class SignalServiceMessageSender {
     for (String device : linkedDevices) {
       SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
       boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, device, store);
-      sendMessageToPrivateChat(0, deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, content, false, message.getTTL(), useFallbackEncryption, false, false);
+      sendMessageToPrivateChat(0, deviceAsAddress, Optional.absent(), timestamp, content, false, message.getTTL(), useFallbackEncryption, false, false, Optional.absent());
     }
-  }
-
-  public void setSoTimeoutMillis(long soTimeoutMillis) {
-    socket.setSoTimeoutMillis(soTimeoutMillis);
-  }
-
-  public void cancelInFlightRequests() {
-    socket.cancelInFlightRequests();
   }
 
   public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
@@ -452,12 +399,6 @@ public class SignalServiceMessageSender {
                                               result.getUrl());
   }
 
-  private void sendMessage(VerifiedMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
-      throws IOException, UntrustedIdentityException
-  {
-
-  }
-
   private byte[] createTypingContent(SignalServiceTypingMessage message) {
     Content.Builder       container = Content.newBuilder();
     TypingMessage.Builder builder   = TypingMessage.newBuilder();
@@ -493,32 +434,6 @@ public class SignalServiceMessageSender {
       throws IOException
   {
     Content.Builder container = Content.newBuilder();
-
-//    if (message.getPreKeyBundle().isPresent()) {
-//      PreKeyBundle preKeyBundle = message.getPreKeyBundle().get();
-//      PreKeyBundleMessage.Builder preKeyBundleMessageBuilder = PreKeyBundleMessage.newBuilder()
-//          .setDeviceId(preKeyBundle.getDeviceId())
-//          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()))
-//          .setPreKeyId(preKeyBundle.getPreKeyId())
-//          .setPreKey(ByteString.copyFrom(preKeyBundle.getPreKey().serialize()))
-//          .setSignedKeyId(preKeyBundle.getSignedPreKeyId())
-//          .setSignedKey(ByteString.copyFrom(preKeyBundle.getSignedPreKey().serialize()))
-//          .setSignature(ByteString.copyFrom(preKeyBundle.getSignedPreKeySignature()))
-//          .setIdentityKey(ByteString.copyFrom(preKeyBundle.getIdentityKey().serialize()));
-//      container.setPreKeyBundleMessage(preKeyBundleMessageBuilder);
-//    }
-
-//    if (message.getDeviceLink().isPresent()) {
-//      DeviceLink deviceLink = message.getDeviceLink().get();
-//      SignalServiceProtos.DeviceLinkMessage.Builder deviceLinkMessageBuilder = SignalServiceProtos.DeviceLinkMessage.newBuilder()
-//          .setPrimaryPublicKey(deviceLink.getMasterPublicKey())
-//          .setSecondaryPublicKey(deviceLink.getSlavePublicKey())
-//          .setRequestSignature(ByteString.copyFrom(Objects.requireNonNull(deviceLink.getRequestSignature())));
-//      if (deviceLink.getAuthorizationSignature() != null) {
-//          deviceLinkMessageBuilder.setAuthorizationSignature(ByteString.copyFrom(deviceLink.getAuthorizationSignature()));
-//      }
-//      container.setDeviceLinkMessage(deviceLinkMessageBuilder.build());
-//    }
 
     DataMessage.Builder builder = DataMessage.newBuilder();
     List<AttachmentPointer> pointers = createAttachmentPointers(message.getAttachments(), recipient);
@@ -557,6 +472,10 @@ public class SignalServiceMessageSender {
 
     if (message.getProfileKey().isPresent()) {
       builder.setProfileKey(ByteString.copyFrom(message.getProfileKey().get()));
+    }
+
+    if (message.getSyncTarget().isPresent()) {
+      builder.setSyncTarget(message.getSyncTarget().get());
     }
 
     if (message.getQuote().isPresent()) {
@@ -633,40 +552,6 @@ public class SignalServiceMessageSender {
 
     container.setDataMessage(builder);
 
-    return container.build().toByteArray();
-  }
-
-  private byte[] createCallContent(SignalServiceCallMessage callMessage) {
-    Content.Builder     container = Content.newBuilder();
-    CallMessage.Builder builder   = CallMessage.newBuilder();
-
-    if (callMessage.getOfferMessage().isPresent()) {
-      OfferMessage offer = callMessage.getOfferMessage().get();
-      builder.setOffer(CallMessage.Offer.newBuilder()
-                                        .setId(offer.getId())
-                                        .setDescription(offer.getDescription()));
-    } else if (callMessage.getAnswerMessage().isPresent()) {
-      AnswerMessage answer = callMessage.getAnswerMessage().get();
-      builder.setAnswer(CallMessage.Answer.newBuilder()
-                                          .setId(answer.getId())
-                                          .setDescription(answer.getDescription()));
-    } else if (callMessage.getIceUpdateMessages().isPresent()) {
-      List<IceUpdateMessage> updates = callMessage.getIceUpdateMessages().get();
-
-      for (IceUpdateMessage update : updates) {
-        builder.addIceUpdate(CallMessage.IceUpdate.newBuilder()
-                                                  .setId(update.getId())
-                                                  .setSdp(update.getSdp())
-                                                  .setSdpMid(update.getSdpMid())
-                                                  .setSdpMLineIndex(update.getSdpMLineIndex()));
-      }
-    } else if (callMessage.getHangupMessage().isPresent()) {
-      builder.setHangup(CallMessage.Hangup.newBuilder().setId(callMessage.getHangupMessage().get().getId()));
-    } else if (callMessage.getBusyMessage().isPresent()) {
-      builder.setBusy(CallMessage.Busy.newBuilder().setId(callMessage.getBusyMessage().get().getId()));
-    }
-
-    container.setCallMessage(builder);
     return container.build().toByteArray();
   }
 
@@ -987,6 +872,7 @@ public class SignalServiceMessageSender {
       throws IOException
   {
     List<SendMessageResult>                results                    = new LinkedList<>();
+    SignalServiceAddress                   ownAddress                 = localAddress;
     Iterator<SignalServiceAddress>         recipientIterator          = recipients.iterator();
     Iterator<Optional<UnidentifiedAccess>> unidentifiedAccessIterator = unidentifiedAccess.iterator();
 
@@ -995,7 +881,7 @@ public class SignalServiceMessageSender {
 
       try {
         boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(content, recipient.getNumber(), store);
-        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, false, useFallbackEncryption, isClosedGroup, false, notifyPNServer);
+        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, false, useFallbackEncryption, isClosedGroup, notifyPNServer, Optional.absent());
         results.add(result);
       } catch (UnregisteredUserException e) {
         Log.w(TAG, e);
@@ -1009,41 +895,46 @@ public class SignalServiceMessageSender {
     return results;
   }
 
-  private SendMessageResult sendMessage(SignalServiceAddress         recipient,
+  private SendMessageResult sendMessage(SignalServiceAddress recipient,
                                         Optional<UnidentifiedAccess> unidentifiedAccess,
-                                        long                         timestamp,
-                                        byte[]                       content,
-                                        boolean                      online,
-                                        int                          ttl,
-                                        boolean                      useFallbackEncryption,
-                                        boolean                      isSyncMessage)
+                                        long timestamp,
+                                        byte[] content,
+                                        boolean online,
+                                        int ttl,
+                                        boolean useFallbackEncryption)
       throws IOException
   {
     // Loki - This method is only invoked for various types of control messages
-    return sendMessage(0, recipient, unidentifiedAccess, timestamp, content, online, ttl, false, false, useFallbackEncryption, isSyncMessage, false);
+    return sendMessage(0, recipient, unidentifiedAccess, timestamp, content, online, ttl, false, false, useFallbackEncryption, false,Optional.absent());
   }
 
-  public SendMessageResult sendMessage(final long                   messageID,
-                                       final SignalServiceAddress   recipient,
+  public SendMessageResult sendMessage(final long messageID,
+                                       final SignalServiceAddress recipient,
                                        Optional<UnidentifiedAccess> unidentifiedAccess,
-                                       long                         timestamp,
-                                       byte[]                       content,
-                                       boolean                      online,
-                                       int                          ttl,
-                                       boolean                      isDeviceLinkMessage,
-                                       boolean                      useFallbackEncryption,
-                                       boolean                      isClosedGroup,
-                                       boolean                      isSyncMessage,
-                                       boolean                      notifyPNServer)
+                                       long timestamp,
+                                       byte[] content,
+                                       boolean online,
+                                       int ttl,
+                                       boolean isDeviceLinkMessage,
+                                       boolean useFallbackEncryption,
+                                       boolean isClosedGroup,
+                                       boolean notifyPNServer,
+                                       Optional<String> syncTarget)
       throws IOException
   {
-    long threadID = threadDatabase.getThreadID(recipient.getNumber());
+    boolean isSelfSend = syncTarget.isPresent() && !syncTarget.get().isEmpty();
+    long threadID;
+    if (isSelfSend) {
+      threadID = threadDatabase.getThreadID(syncTarget.get());
+    } else {
+      threadID = threadDatabase.getThreadID(recipient.getNumber());
+    }
     PublicChat publicChat = threadDatabase.getPublicChat(threadID);
     try {
       if (publicChat != null) {
         return sendMessageToPublicChat(messageID, recipient, timestamp, content, publicChat);
       } else {
-        return sendMessageToPrivateChat(messageID, recipient, unidentifiedAccess, timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer);
+        return sendMessageToPrivateChat(messageID, recipient, unidentifiedAccess, timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer, syncTarget);
       }
     } catch (PushNetworkException e) {
       return SendMessageResult.networkFailure(recipient);
@@ -1152,10 +1043,10 @@ public class SignalServiceMessageSender {
                                                      int                          ttl,
                                                      boolean                      useFallbackEncryption,
                                                      boolean                      isClosedGroup,
-                                                     final boolean                notifyPNServer)
+                                                     final boolean                notifyPNServer,
+                                                     Optional<String>             syncTarget)
       throws IOException, UntrustedIdentityException
   {
-    if (recipient.getNumber().equals(userPublicKey)) { return SendMessageResult.success(recipient, false, false); }
     final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
     OutgoingPushMessageList messages = getSessionProtocolEncryptedMessage(recipient, timestamp, content);
     // Loki - Remove this when we have shared sender keys
@@ -1221,14 +1112,10 @@ public class SignalServiceMessageSender {
         }
         return Unit.INSTANCE;
       }
-    }).fail(new Function1<Exception, Unit>() {
-
-      @Override
-      public Unit invoke(Exception exception) {
-        @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-        f.setException(exception);
-        return Unit.INSTANCE;
-      }
+    }).fail(exception -> {
+      @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
+      f.setException(exception);
+      return Unit.INSTANCE;
     });
 
     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
@@ -1302,12 +1189,6 @@ public class SignalServiceMessageSender {
     }
 
     return builder.build();
-  }
-
-  private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentStream attachment)
-      throws IOException
-  {
-    return createAttachmentPointer(attachment, false, null);
   }
 
   private AttachmentPointer createAttachmentPointer(SignalServiceAttachmentStream attachment, SignalServiceAddress recipient)

@@ -87,7 +87,7 @@ public class MmsSmsDatabase extends Database {
     }
   }
 
-  public @Nullable MessageRecord getMessageFor(long timestamp, Address author) {
+  public @Nullable MessageRecord getMessageFor(long timestamp, String serializedAuthor) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
@@ -96,8 +96,10 @@ public class MmsSmsDatabase extends Database {
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author.serialize()) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author.serialize()) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
+        if ((Util.isOwnNumber(context, serializedAuthor) && messageRecord.isOutgoing()) ||
+                (!Util.isOwnNumber(context, serializedAuthor)
+                        && messageRecord.getIndividualRecipient().getAddress().serialize().equals(serializedAuthor)
+                ))
         {
           return messageRecord;
         }
@@ -105,6 +107,10 @@ public class MmsSmsDatabase extends Database {
     }
 
     return null;
+  }
+
+  public @Nullable MessageRecord getMessageFor(long timestamp, Address author) {
+    return getMessageFor(timestamp, author.serialize());
   }
 
   public Cursor getConversation(long threadId, long offset, long limit) {

@@ -13,7 +13,7 @@ import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair
 
 object UnidentifiedAccessUtil {
     private val TAG = UnidentifiedAccessUtil::class.simpleName
-    private val sodium = LazySodiumAndroid(SodiumAndroid())
+    private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
 
     fun getAccessFor(recipientPublicKey: String): UnidentifiedAccessPair? {
         try {

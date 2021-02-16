@@ -21,6 +21,7 @@ import org.session.libsignal.libsignal.ecc.ECPrivateKey
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
 interface StorageProtocol {
 
@@ -56,6 +57,8 @@ interface StorageProtocol {
     // Open Groups
     fun getOpenGroup(threadID: String): OpenGroup?
     fun getThreadID(openGroupID: String): String?
+    fun getAllOpenGroups(): Map<Long, PublicChat>
+    fun addOpenGroup(server: String, channel: Long)
 
     // Open Group Public Keys
     fun getOpenGroupPublicKey(server: String): String?
@@ -64,6 +67,13 @@ interface StorageProtocol {
     // Open Group User Info
     fun setOpenGroupDisplayName(publicKey: String, channel: Long, server: String, displayName: String)
     fun getOpenGroupDisplayName(publicKey: String, channel: Long, server: String): String?
+
+    // Open Group Metadata
+    fun setUserCount(group: Long, server: String, newValue: Int)
+    fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
+    fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
+    fun updateTitle(groupID: String, newValue: String)
+    fun updateProfilePicture(groupID: String, newValue: ByteArray)
 
     // Last Message Server ID
     fun getLastMessageServerID(group: Long, server: String): Long?
@@ -74,13 +84,6 @@ interface StorageProtocol {
     fun getLastDeletionServerID(group: Long, server: String): Long?
     fun setLastDeletionServerID(group: Long, server: String, newValue: Long)
     fun removeLastDeletionServerID(group: Long, server: String)
-
-    // Open Group Metadata
-    fun setUserCount(group: Long, server: String, newValue: Int)
-    fun setOpenGroupProfilePictureURL(group: Long, server: String, newValue: String)
-    fun getOpenGroupProfilePictureURL(group: Long, server: String): String?
-    fun updateTitle(groupID: String, newValue: String)
-    fun updateProfilePicture(groupID: String, newValue: ByteArray)
 
     // Message Handling
     fun getReceivedMessageTimestamps(): Set<Long>
@@ -101,6 +104,11 @@ interface StorageProtocol {
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)
     // Closed Group
+    fun getAllClosedGroupPublicKeys(): Set<String>
+    fun addClosedGroupPublicKey(groupPublicKey: String)
+    fun removeClosedGroupPublicKey(groupPublicKey: String)
+    fun addClosedGroupEncryptionKeyPair(encryptionKeyPair: ECKeyPair, groupPublicKey: String)
+    fun removeAllClosedGroupEncryptionKeyPairs(groupPublicKey: String)
     fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: SignalServiceProtos.GroupContext.Type, type1: SignalServiceGroup.Type,
                                   name: String, members: Collection<String>, admins: Collection<String>)
     fun insertOutgoingInfoMessage(context: Context, groupID: String, type: SignalServiceProtos.GroupContext.Type, name: String,
@@ -108,6 +116,9 @@ interface StorageProtocol {
     fun isClosedGroup(publicKey: String): Boolean
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
+
+    // Groups
+    fun getAllGroups(): List<GroupRecord>
 
     // Settings
     fun setProfileSharing(address: Address, value: Boolean)
