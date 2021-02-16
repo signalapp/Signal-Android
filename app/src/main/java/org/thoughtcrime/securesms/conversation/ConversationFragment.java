@@ -1066,9 +1066,9 @@ public class ConversationFragment extends LoggingFragment {
                                    pulsePosition = position;
                                  }
 
-                                 list.smoothScrollToPosition(p);
+                                 layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                } else {
-                                 layoutManager.scrollToPosition(p);
+                                 layoutManager.scrollToPositionWithOffset(p, list.getHeight() / 4);
                                  getListAdapter().pulseAtPosition(position);
                                }
                              })
