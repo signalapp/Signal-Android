@@ -110,7 +110,7 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
     val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
     for (closeGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closeGroup.publicKey)) continue
-        handleNewClosedGroup(message.sender!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair, closeGroup.members, closeGroup.admins)
+        handleNewClosedGroup(message.sender!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
     for (openGroup in message.openGroups) {
@@ -221,11 +221,11 @@ private fun MessageReceiver.handleNewClosedGroup(message: ClosedGroupControlMess
     val groupPublicKey = kind.publicKey.toByteArray().toHexString()
     val members = kind.members.map { it.toByteArray().toHexString() }
     val admins = kind.admins.map { it.toByteArray().toHexString() }
-    handleNewClosedGroup(message.sender!!, groupPublicKey, kind.name, kind.encryptionKeyPair, members, admins)
+    handleNewClosedGroup(message.sender!!, groupPublicKey, kind.name, kind.encryptionKeyPair, members, admins, message.sentTimestamp!!)
 }
 
 // Parameter @sender:String is just for inserting incoming info message
-private fun handleNewClosedGroup(sender: String, groupPublicKey: String, name: String, encryptionKeyPair: ECKeyPair, members: List<String>, admins: List<String>) {
+private fun handleNewClosedGroup(sender: String, groupPublicKey: String, name: String, encryptionKeyPair: ECKeyPair, members: List<String>, admins: List<String>, formationTimestamp: Long) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
     // Create the group
@@ -236,7 +236,7 @@ private fun handleNewClosedGroup(sender: String, groupPublicKey: String, name: S
         storage.updateMembers(groupID, members.map { Address.fromSerialized(it) })
     } else {
         storage.createGroup(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                            null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
+                            null, null, LinkedList(admins.map { Address.fromSerialized(it) }), formationTimestamp)
         // Notify the user
         storage.insertIncomingInfoMessage(context, sender, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins)
     }
@@ -498,7 +498,7 @@ private fun isValidGroupUpdate(group: GroupRecord,
                                senderPublicKey: String): Boolean  {
     val oldMembers = group.members.map { it.serialize() }
     // Check that the message isn't from before the group was created
-    if (group.createdAt > sentTimestamp) {
+    if (group.formationTimestamp > sentTimestamp) {
         android.util.Log.d("Loki", "Ignoring closed group update from before thread was created.")
         return false
     }

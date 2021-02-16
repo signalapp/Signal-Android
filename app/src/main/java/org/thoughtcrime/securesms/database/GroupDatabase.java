@@ -136,7 +136,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
         return cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
       } else {
         String groupId = GroupUtil.getEncodedMMSGroupID(allocateGroupId());
-        create(groupId, null, members, null, null, admins);
+        create(groupId, null, members, null, null, admins, System.currentTimeMillis());
         return groupId;
       }
     } finally {
@@ -196,7 +196,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
   }
 
   public long create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
-                     @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay, @Nullable List<Address> admins)
+                     @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay, @Nullable List<Address> admins, @NonNull Long formationTimestamp)
   {
     Collections.sort(members);
 
@@ -214,7 +214,7 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     }
 
     contentValues.put(AVATAR_RELAY, relay);
-    contentValues.put(TIMESTAMP, System.currentTimeMillis());
+    contentValues.put(TIMESTAMP, formationTimestamp);
     contentValues.put(ACTIVE, 1);
     contentValues.put(MMS, GroupUtil.isMmsGroup(groupId));
 

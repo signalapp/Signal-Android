@@ -362,8 +362,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return if (group.isPresent) { group.get() } else null
     }
 
-    override fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>) {
-        DatabaseFactory.getGroupDatabase(context).create(groupId, title, members, avatar, relay, admins)
+    override fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long) {
+        DatabaseFactory.getGroupDatabase(context).create(groupId, title, members, avatar, relay, admins, formationTimestamp)
     }
 
     override fun setActive(groupID: String, value: Boolean) {

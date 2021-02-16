@@ -69,7 +69,7 @@ object ClosedGroupsProtocolV2 {
             val admins = setOf( userPublicKey )
             val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
             DatabaseFactory.getGroupDatabase(context).create(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                    null, null, LinkedList(admins.map { Address.fromSerialized(it!!) }))
+                    null, null, LinkedList(admins.map { Address.fromSerialized(it!!) }), System.currentTimeMillis())
             DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
             // Send a closed group update message to all members individually
             // Add the group to the user's set of public keys to poll for
@@ -463,7 +463,7 @@ object ClosedGroupsProtocolV2 {
             groupDB.updateMembers(groupID, members.map { Address.fromSerialized(it) })
         } else {
             groupDB.create(groupID, name, LinkedList(members.map { Address.fromSerialized(it) }),
-                    null, null, LinkedList(admins.map { Address.fromSerialized(it) }))
+                    null, null, LinkedList(admins.map { Address.fromSerialized(it) }), sentTimestamp)
         }
         DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.from(context, Address.fromSerialized(groupID), false), true)
         // Add the group to the user's set of public keys to poll for
@@ -714,7 +714,7 @@ object ClosedGroupsProtocolV2 {
                                    senderPublicKey: String): Boolean  {
         val oldMembers = group.members.map { it.serialize() }
         // Check that the message isn't from before the group was created
-        if (group.createdAt > sentTimestamp) {
+        if (group.formationTimestamp > sentTimestamp) {
             Log.d("Loki", "Ignoring closed group update from before thread was created.")
             return false
         }

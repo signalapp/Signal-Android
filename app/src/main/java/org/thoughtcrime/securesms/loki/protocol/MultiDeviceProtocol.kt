@@ -60,7 +60,7 @@ object MultiDeviceProtocol {
         }
     }
 
-    // TODO: remove this after we migrate to new message sending pipeline
+    // TODO: remove this after we migrate to new message receiving pipeline
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
         if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
