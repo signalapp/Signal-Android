@@ -124,9 +124,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                                 Log.i(TAG, "onCreate()");
                             })
                             .addBlocking("crash-handling", this::initializeCrashHandling)
-                            .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("eat-db", () -> DatabaseFactory.getInstance(this))
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
+                            .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("ring-rtc", this::initializeRingRtc)
