@@ -26,12 +26,7 @@ public class RatingManager {
   private static final String TAG = RatingManager.class.getSimpleName();
 
   public static void showRatingDialogIfNecessary(Context context) {
-    if (!TextSecurePreferences.isRatingEnabled(context)) return;
-    
-    if (BuildConfig.PLAY_STORE_DISABLED) {
-      TextSecurePreferences.setRatingEnabled(context, false);
-      return;
-    }
+    if (!TextSecurePreferences.isRatingEnabled(context) || BuildConfig.PLAY_STORE_DISABLED) return;
 
     long daysSinceInstall = VersionTracker.getDaysSinceFirstInstalled(context);
     long laterTimestamp   = TextSecurePreferences.getRatingLaterTimestamp(context);
