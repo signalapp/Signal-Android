@@ -626,8 +626,9 @@ object ClosedGroupsProtocolV2 {
         // If admin leaves the group is disbanded
         val didAdminLeave = admins.contains(senderPublicKey)
         val updatedMemberList = members - senderPublicKey
+        val userLeft = userPublicKey == senderPublicKey
 
-        if (didAdminLeave) {
+        if (didAdminLeave || userLeft) {
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
         } else {
             val isCurrentUserAdmin = admins.contains(userPublicKey)
@@ -636,7 +637,8 @@ object ClosedGroupsProtocolV2 {
                 generateAndSendNewEncryptionKeyPair(context, groupPublicKey, updatedMemberList)
             }
         }
-        if (userPublicKey == senderPublicKey) {
+        // Notify user
+        if (userLeft) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
             insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
         } else {
