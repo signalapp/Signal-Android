@@ -26,10 +26,10 @@
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre din standard SMS applikation</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS deaktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Signal til din standard SMS app</string>
-  <string name="ApplicationPreferencesActivity_on">aktivér</string>
-  <string name="ApplicationPreferencesActivity_On">Aktivér</string>
-  <string name="ApplicationPreferencesActivity_off">déaktiver</string>
-  <string name="ApplicationPreferencesActivity_Off">Déaktiver</string>
+  <string name="ApplicationPreferencesActivity_on">aktiveret</string>
+  <string name="ApplicationPreferencesActivity_On">Aktiveret</string>
+  <string name="ApplicationPreferencesActivity_off">deaktiveret</string>
+  <string name="ApplicationPreferencesActivity_Off">Deaktiveret</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Skærmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
@@ -344,7 +344,7 @@
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificer kodeord for backup</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test dit kodeord for backup og verificer at det virker</string>
   <string name="BackupsPreferenceFragment__turn_on">Aktivér</string>
-  <string name="BackupsPreferenceFragment__turn_off">Déaktiver</string>
+  <string name="BackupsPreferenceFragment__turn_off">Deaktiver</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">For at gendanne fra backup, skal du installere Signal igen. Åbn app\'en og tap \"Gendan backup\", vælg derefter en backup fil %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Læs mere</string>
   <string name="BackupsPreferenceFragment__in_progress">I gang…</string>
@@ -657,8 +657,8 @@
   <string name="ManageRecipientActivity_mute_notifications">Udsæt notifikationer</string>
   <string name="ManageRecipientActivity_custom_notifications">Brugerdefinerede notifikationer</string>
   <string name="ManageRecipientActivity_until_s">Indtil %1$s</string>
-  <string name="ManageRecipientActivity_off">Déaktiver</string>
-  <string name="ManageRecipientActivity_on">Aktivér</string>
+  <string name="ManageRecipientActivity_off">Deaktiveret</string>
+  <string name="ManageRecipientActivity_on">Aktiveret</string>
   <string name="ManageRecipientActivity_add_to_a_group">Tilføj til en gruppe</string>
   <string name="ManageRecipientActivity_view_all_groups">Vis alle grupper</string>
   <string name="ManageRecipientActivity_see_all">Se alle</string>
@@ -1256,7 +1256,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">Déaktiver registreringslås?</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">Hvis du glemmer din PIN-kode til Signal ved genregistrering af Signal, vil du blive låst ude af din konto i 7 dage</string>
   <string name="RegistrationLockV2Dialog_turn_on">Aktivér</string>
-  <string name="RegistrationLockV2Dialog_turn_off">Deaktivér</string>
+  <string name="RegistrationLockV2Dialog_turn_off">Deaktiver</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vis billede</string>
   <string name="RevealableMessageView_view_video">Se video</string>
@@ -1442,7 +1442,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_error_delivering_message">Fejl ved levering af besked</string>
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
-  <string name="MessageNotifier_turn_off_these_notifications">Déaktiver disse notifikationer</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Deaktiver disse notifikationer</string>
   <string name="MessageNotifier_view_once_photo">Se billed én gang</string>
   <string name="MessageNotifier_view_once_video">Se video én gang</string>
   <string name="MessageNotifier_reply">Svar</string>
@@ -1982,7 +1982,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_proxy">Proxy</string>
   <string name="preferences_use_proxy">Brug proxy</string>
   <string name="preferences_off">Deaktiveret</string>
-  <string name="preferences_on">Aktivér</string>
+  <string name="preferences_on">Aktiveret</string>
   <string name="preferences_proxy_address">Proxy-adresse</string>
   <string name="preferences_only_use_a_proxy_if">Brug kun en proxy, hvis du ikke er i stand til at oprette forbindelse til Signal på mobil eller Wi-Fi.</string>
   <string name="preferences_share">Del</string>
@@ -2290,7 +2290,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-koder sikrer information lagret med Signal er krypteret, så kun du kan få adgang til den. Din profil, indstillinger og kontakter gendannes, når du installerer Signal igen.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Tilføj ekstra sikkerhed ved at kræve din Signal-pinkode til at registrere dit telefonnummer med Signal igen.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Påmindelser hjælper dig med at huske din PIN, da den ikke kan gendannes. Over tid vil der gå længere tid imellem du bliver spurgt.</string>
-  <string name="preferences_app_protection__turn_off">Deaktivér</string>
+  <string name="preferences_app_protection__turn_off">Deaktiver</string>
   <string name="preferences_app_protection__confirm_pin">Bekræft PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal PIN</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller sikkert gemmer din PIN, da den ikke kan gendannes. Hvis du glemmer din PIN, kan du miste data når du genregistrerer din Signal konto</string>

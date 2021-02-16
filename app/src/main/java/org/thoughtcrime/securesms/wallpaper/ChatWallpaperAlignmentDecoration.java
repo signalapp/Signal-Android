@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thoughtcrime.securesms.util.ViewUtil;
+
 class ChatWallpaperAlignmentDecoration extends RecyclerView.ItemDecoration {
   @Override
   public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
@@ -27,14 +29,14 @@ class ChatWallpaperAlignmentDecoration extends RecyclerView.ItemDecoration {
 
       int extraCellsNeeded = itemsPerRow - ((itemPosition + 1) % itemsPerRow);
 
-      setEnd(outRect, view.getLayoutDirection(), extraCellsNeeded * viewWidth);
+      setEnd(outRect, ViewUtil.isLtr(view), extraCellsNeeded * viewWidth);
     } else {
       super.getItemOffsets(outRect, view, parent, state);
     }
   }
 
-  private void setEnd(@NonNull Rect outRect, int layoutDirection, int end) {
-    if (layoutDirection == View.LAYOUT_DIRECTION_LTR) {
+  private void setEnd(@NonNull Rect outRect, boolean ltr, int end) {
+    if (ltr) {
       outRect.right = end;
     } else {
       outRect.left = end;

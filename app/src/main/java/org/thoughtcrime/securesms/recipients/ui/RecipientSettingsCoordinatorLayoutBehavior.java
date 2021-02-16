@@ -16,6 +16,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import com.google.android.material.appbar.AppBarLayout;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.lang.ref.WeakReference;
 
@@ -92,7 +93,7 @@ public final class RecipientSettingsCoordinatorLayoutBehavior extends Coordinato
   }
 
   private static int getStart(@NonNull CoordinatorLayout parent, @NonNull Rect rect) {
-    return parent.getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? rect.left : rect.right;
+    return ViewUtil.isLtr(parent) ? rect.left : rect.right;
   }
 
   private static final class ViewReference {

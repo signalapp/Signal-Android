@@ -61,8 +61,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 787
-def canonicalVersionName = "5.4.1"
+def canonicalVersionCode = 790
+def canonicalVersionName = "5.4.4"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -335,7 +335,7 @@ dependencies {
     implementation project(':video')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
-    implementation 'org.whispersystems:signal-client-android:0.2.3'
+    implementation 'org.whispersystems:signal-client-android:0.1.5'
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
     implementation 'org.signal:argon2:13.1@aar'
 
@@ -377,7 +377,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
 
-    implementation 'com.airbnb.android:lottie:3.0.7'
+    implementation 'com.airbnb.android:lottie:3.6.0'
 
     implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'

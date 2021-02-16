@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LifecycleCursorWrapper;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity;
 
 import java.util.Locale;
@@ -351,7 +352,7 @@ public class ManageRecipientFragment extends LoggingFragment {
     threadPhotoRailView.setListener(mediaRecord ->
         startActivityForResult(MediaPreviewActivity.intentFromMediaRecord(requireContext(),
                                                                           mediaRecord,
-                                                                          ViewCompat.getLayoutDirection(threadPhotoRailView) == ViewCompat.LAYOUT_DIRECTION_LTR),
+                                                                          ViewUtil.isLtr(threadPhotoRailView)),
                                REQUEST_CODE_RETURN_FROM_MEDIA));
   }
 

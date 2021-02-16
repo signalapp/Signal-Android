@@ -23,6 +23,7 @@ import androidx.core.view.ViewCompat;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public final class MicrophoneRecorderView extends FrameLayout implements View.OnTouchListener {
 
@@ -224,8 +225,8 @@ public final class MicrophoneRecorderView extends FrameLayout implements View.On
     }
 
     private float getXOffset(float x) {
-      return ViewCompat.getLayoutDirection(recordButtonFab) == ViewCompat.LAYOUT_DIRECTION_LTR ?
-          -Math.max(0, this.startPositionX - x) : Math.max(0, x - this.startPositionX);
+      return ViewUtil.isLtr(recordButtonFab) ? -Math.max(0, this.startPositionX - x)
+                                             : Math.max(0, x - this.startPositionX);
     }
 
     private float getYOffset(float y) {

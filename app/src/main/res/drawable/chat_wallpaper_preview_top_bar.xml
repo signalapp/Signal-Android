@@ -7,7 +7,7 @@
     </item>
     <item>
         <shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/signal_accent_primary" />
+            <solid android:color="@color/conversation_toolbar_color" />
             <corners android:topLeftRadius="8dp" android:topRightRadius="8dp" />
         </shape>
     </item>

@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Ανέβασμα πολυμέσου…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Το βίντεο συμπιέζεται…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Ελέγχουμε για μηνύματα…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Φραγμένοι χρήστες/τριες</string>
   <string name="BlockedUsersActivity__add_blocked_user">Προσθήκη φραγμένου/ης χρήστη/τριας</string>

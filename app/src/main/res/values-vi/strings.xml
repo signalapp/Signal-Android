@@ -65,6 +65,7 @@
   <string name="AttachmentUploadJob_uploading_media">Đang tải tệp lên…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Đang nén video…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Đang kiểm tra tin nhắn…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Người dùng đã chặn</string>
   <string name="BlockedUsersActivity__add_blocked_user">Thêm người dùng vào danh sách chặn</string>
@@ -453,6 +454,7 @@
   <!--GroupsV1MigrationInitiationReminder-->
   <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">Để truy cập các tính năng mới như @nhắc tên và quản trị viên, hãy nâng cấp nhóm này.</string>
   <string name="GroupsV1MigrationInitiationReminder_not_now">Để sau</string>
+  <string name="GroupsV1MigrationInitiationReminder_upgrade_group">Nâng cấp nhóm</string>
   <!--GroupsV1MigrationSuggestionsReminder-->
   <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
     <item quantity="other">%1$d thành viên đã không thể được thêm lại vào Nhóm Mới. Bạn có muốn thêm họ bây giờ không?</item>
@@ -570,6 +572,7 @@
   <string name="ManageGroupActivity_mute_notifications">Tạm im thông báo</string>
   <string name="ManageGroupActivity_custom_notifications">Thông báo tuỳ chỉnh</string>
   <string name="ManageGroupActivity_mentions">Nhắc tên</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <string name="ManageGroupActivity_until_s">Cho đến %1$s</string>
   <string name="ManageGroupActivity_off">Tắt</string>
   <string name="ManageGroupActivity_on">Bật</string>
@@ -604,12 +607,16 @@
   <string name="ManageProfileFragment_profile_name">Tên hồ sơ</string>
   <string name="ManageProfileFragment_username">Tên người dùng</string>
   <string name="ManageProfileFragment_about">Thông tin</string>
+  <string name="ManageProfileFragment_write_a_few_words_about_yourself">Viết một vài từ về bản thân bạn</string>
   <string name="ManageProfileFragment_your_name">Tên của bạn</string>
+  <string name="ManageProfileFragment_your_username">Tên người dùng của bạn</string>
+  <string name="ManageProfileFragment_failed_to_set_avatar">Không thể cài ảnh đại diện</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">Thêm vào danh bạ điện thoại</string>
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Người này có trong danh bạ của bạn</string>
   <string name="ManageRecipientActivity_disappearing_messages">Tin nhắn tự hủy</string>
   <string name="ManageRecipientActivity_chat_color">Màu trò chuyện</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <string name="ManageRecipientActivity_block">Chặn</string>
   <string name="ManageRecipientActivity_unblock">Bỏ chặn</string>
   <string name="ManageRecipientActivity_view_safety_number">Xem mã số an toàn</string>
@@ -1043,6 +1050,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi mật khẩu</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Mật khẩu không đúng!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Mở khóa Signal</string>
+  <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Màn hình Khoá</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Bản đồ</string>
   <string name="PlacePickerActivity_drop_pin">Thả ghim</string>
@@ -1137,6 +1145,11 @@
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Không thể nhận được âm thanh và video từ %1$s</string>
   <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Điều này có thể vì họ chưa xác minh việc thay đổi mã số an toàn của bạn, có vấn đề với thiết bị của họ, hoặc họ đã chặn bạn.</string>
   <!--ProxyBottomSheetFragment-->
+  <string name="ProxyBottomSheetFragment_proxy_server">Máy chủ proxy</string>
+  <string name="ProxyBottomSheetFragment_proxy_address">Địa chỉ proxy</string>
+  <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Bạn có muốn dùng địa chỉ proxy này không?</string>
+  <string name="ProxyBottomSheetFragment_use_proxy">Sử dụng proxy</string>
+  <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Đã kết nối thành công với proxy.</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết
@@ -1249,6 +1262,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Sao chép URL này và thêm nó vào báo cáo lỗi hoặc email hỗ trợ:\n\n<b>%1$s</b></string>
   <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
   <!--SupportEmailUtil-->
+  <string name="SupportEmailUtil_filter">Bộ lọc:</string>
   <string name="SupportEmailUtil_device_info">Thông tin thiết bị:</string>
   <string name="SupportEmailUtil_android_version">Phiên bản Android:</string>
   <string name="SupportEmailUtil_signal_version">Phiên bản Signal:</string>
@@ -1618,6 +1632,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Thông tin</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Viết một vài từ về bản thân mình…</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
+  <string name="EditAboutFragment_speak_freely">Nói chuyện tự do</string>
+  <string name="EditAboutFragment_encrypted">Đã được bảo mật</string>
   <string name="EditAboutFragment_be_kind">Mở lòng tốt</string>
   <string name="EditAboutFragment_coffee_lover">Nghiện cà phê</string>
   <string name="EditAboutFragment_free_to_chat">Rảnh để trò chuyện</string>
@@ -1628,8 +1645,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="EditProfileFragment__group_name">Tên nhóm</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Tên của bạn</string>
+  <string name="EditProfileNameFragment_first_name">Tên đầu</string>
   <string name="EditProfileNameFragment_last_name_optional">Họ (không bắt buộc)</string>
   <string name="EditProfileNameFragment_save">Lưu</string>
+  <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Không thể lưu do vấn đề về kết nối. Hãy thử lại sau.</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Tệp đa phương tiện đã chia sẻ</string>
   <!--recipients_panel-->
@@ -1801,6 +1820,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__dark_theme">Tối</string>
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Chủ đề</string>
+  <string name="preferences__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <string name="preferences__disable_pin">Tắt PIN</string>
   <string name="preferences__enable_pin">Bật PIN</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Nếu bạn tắt PIN, bạn sẽ mất toàn bộ dữ liệu khi bạn đăng kí lại với Signal trừ khi bạn sao lưu và khôi phục dữ liệu thủ công. Bạn không thể bật Khóa đăng kí khi PIN đang tắt.</string>
@@ -1819,6 +1839,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Nếu thông báo đã xem bị tắt, bạn sẽ không thể biết người kia đã xem tin nhắn hay chưa.</string>
   <string name="preferences__typing_indicators">Thông báo đang nhập</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Nếu thông báo đang nhập bị tắt, bạn sẽ không thể biết người kia có đang nhập tin nhắn hay không.</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Yêu cầu bàn phím để tắt việc học cá nhân hoá. Cài đặt này không phải là đảm bảo, và bàn phím của bạn có thể bỏ qua yêu cầu này.</string>
   <string name="preferences_app_protection__blocked_users">Người dùng đã chặn</string>
   <string name="preferences_chats__when_using_mobile_data">Khi dùng dữ liệu di động</string>
   <string name="preferences_chats__when_using_wifi">Khi dùng Wi-Fi</string>
@@ -1879,10 +1900,22 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Bật \'Lá thư không chủ\' cho tin nhắn từ người gửi không có trong danh bạ và người bạn chưa chia sẻ hồ sơ.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Tìm hiểu thêm</string>
   <string name="preferences_setup_a_username">Đặt tên người dùng</string>
+  <string name="preferences_proxy">Proxy</string>
+  <string name="preferences_use_proxy">Sử dụng proxy</string>
   <string name="preferences_off">Tắt</string>
   <string name="preferences_on">Bật</string>
+  <string name="preferences_proxy_address">Địa chỉ proxy</string>
+  <string name="preferences_only_use_a_proxy_if">Chỉ sử dụng proxy nếu như bạn không thể kết nối vào Signal bằng dữ liệu di động hoặc Wi-Fi. </string>
   <string name="preferences_share">Chia sẻ</string>
   <string name="preferences_save">Lưu</string>
+  <string name="preferences_connecting_to_proxy">Đang kết nối vào proxy…</string>
+  <string name="preferences_connected_to_proxy">Đã kết nối vào proxy</string>
+  <string name="preferences_connection_failed">Kết nối không thành công</string>
+  <string name="preferences_couldnt_connect_to_the_proxy">Không thể kết nối vào proxy. Kiểm tra địa chỉ proxy và thử lại.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Bạn đã kết nối vào proxy. Bạn có thể tắt proxy bất kì lúc nào từ Cài đặt.</string>
+  <string name="preferences_success">Thành công</string>
+  <string name="preferences_failed_to_connect">Không thể kết nối</string>
+  <string name="preferences_enter_proxy_address">Nhập địa chỉ proxy</string>
   <string name="configurable_single_select__customize_option">Sửa cài đặt</string>
   <!--Internal only preferences-->
   <!--****************************************-->
@@ -2063,6 +2096,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockFragment__incorrect_pin">Mã PIN không chính xác</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Quên mã PIN của bạn?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Không còn nhiều lần thử đâu!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal Registration - Need Help with PIN for Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registration - Need Help with PIN for Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="other">Để đảm bảo quyền riêng tư và bảo mật của bạn, không có cách nào khôi phục mã PIN. Nếu bạn không nhớ mã PIN, bạn có thể đăng kí lại số điện thoại này sau %1$d ngày không sử dụng. Trong trường hợp này, dữ liệu tài khoản của bạn sẽ bị xóa.</item>
   </plurals>
@@ -2291,16 +2326,44 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ShareActivity-->
   <string name="ShareActivity__share">Chia sẻ</string>
   <string name="ShareActivity__send">Gửi</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Chia sẻ cho nhiều cuộc trò chuyện chỉ được hỗ trợ cho tin nhắn Signal</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Không thể gửi cho một số người dùng</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Bạn chỉ có thể chia sẻ tới tối đa %1$d cuộc trò chuyện</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Chuyển tiếp tin nhắn</string>
   <!--ChatWallpaperActivity-->
+  <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
+  <string name="ChatWallpaperFragment__set_wallpaper">Cài ảnh nền</string>
+  <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Chế độ tối làm mờ ảnh nền</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Xoá ảnh nền</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Xoá ảnh nền cho cuộc trò chuyện?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Xoá ảnh nền? Việc này sẽ không xoá các ảnh nền tuỳ chọn đã cài cho các cuộc trò chuyện của bạn.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Cài lại tất cả các ảnh nền</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Cài lại tất cả ảnh nền, bao gồm ảnh nền tuỳ chọn mà bạn đã cài cho tất cả các cuộc trò chuyện?</string>
+  <string name="ChatWallpaperFragment__contact_name">Tên liên hệ</string>
   <string name="ChatWallpaperFragment__reset">Đặt lại</string>
+  <string name="ChatWallpaperFragment__clear">Xoá</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Chọn từ ảnh</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Bộ cài sẵn</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Xem trước</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper">Cài ảnh nền</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Kéo trượt để xem trước thêm ảnh nền</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Cài ảnh nền cho %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Cần quyền truy cập bộ nhớ để xem bộ sưu tập.</string>
   <!--WallpaperImageSelectionActivity-->
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Chọn ảnh nền</string>
   <!--WallpaperCropActivity-->
+  <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Dùng hai ngón để phóng to, kéo để tuỳ chỉnh.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Cài ảnh nền cho %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Lỗi cài đặt ảnh nền.</string>
+  <string name="WallpaperCropActivity__blur_photo">Mờ ảnh</string>
   <!--EOF-->
 </resources>

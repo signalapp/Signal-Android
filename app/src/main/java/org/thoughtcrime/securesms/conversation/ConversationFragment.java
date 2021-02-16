@@ -1084,8 +1084,8 @@ public class ConversationFragment extends LoggingFragment {
 
   private void maybeShowSwipeToReplyTooltip() {
     if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
-      int text = getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
-                                                                                                     : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
+      int text = ViewUtil.isLtr(requireContext()) ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
+                                                  : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
       TooltipPopup.forTarget(requireActivity().findViewById(R.id.menu_context_reply))
                   .setText(text)
                   .setTextColor(getResources().getColor(R.color.core_white))

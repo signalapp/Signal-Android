@@ -335,11 +335,10 @@ public class InputPanel extends LinearLayout
   public void onRecordMoved(float offsetX, float absoluteX) {
     slideToCancel.moveTo(offsetX);
 
-    int   direction = ViewCompat.getLayoutDirection(this);
     float position  = absoluteX / recordingContainer.getWidth();
 
-    if (direction == ViewCompat.LAYOUT_DIRECTION_LTR && position <= 0.5 ||
-        direction == ViewCompat.LAYOUT_DIRECTION_RTL && position >= 0.6)
+    if (ViewUtil.isLtr(this) && position <= 0.5 ||
+        ViewUtil.isRtl(this) && position >= 0.6)
     {
       this.microphoneRecorderView.cancelAction();
     }

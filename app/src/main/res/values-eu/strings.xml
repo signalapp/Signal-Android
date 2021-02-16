@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Multimedia igotzen…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Bideoa konprimatzen…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Mezuak dauden bilatzen…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Blokeatutako erabiltzaileak</string>
   <string name="BlockedUsersActivity__add_blocked_user">Gehitu blokeatutako erabiltzailea</string>

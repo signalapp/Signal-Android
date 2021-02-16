@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Caricamento media…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Compressione video…</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Controllo messaggi in corso…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Utenti bloccati</string>
   <string name="BlockedUsersActivity__add_blocked_user">Aggiungi utente bloccato</string>
@@ -512,7 +513,7 @@
   <!--LinkPreviewsMegaphone-->
   <string name="LinkPreviewsMegaphone_disable">Disabilita</string>
   <string name="LinkPreviewsMegaphone_preview_any_link">Visualizza l\'anteprima di qualsiasi link</string>
-  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">È ora possibile recuperare le anteprime dei collegamenti direttamente da qualsiasi sito web per i messaggi che invii.</string>
+  <string name="LinkPreviewsMegaphone_you_can_now_retrieve_link_previews_directly_from_any_website">È ora possibile recuperare le anteprime dei link direttamente da qualsiasi sito web per i messaggi che invii.</string>
   <!--LinkPreviewView-->
   <string name="LinkPreviewView_no_link_preview_available">Nessuna anteprima del link disponibile</string>
   <string name="LinkPreviewView_this_group_link_is_not_active">Questo link del gruppo non è attivo</string>
@@ -719,10 +720,10 @@
     <item quantity="other">Gruppo · %1$d membri</item>
   </plurals>
   <!--GroupJoinUpdateRequiredBottomSheetDialogFragment-->
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Signal per utilizzare i collegamenti dei gruppi</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Aggiorna Signal per utilizzare i link dei gruppi</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">La versione di Signal che stai utilizzando non supporta questo link del gruppo. Aggiorna alla versione più recente per unirti a questo gruppo tramite link.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aggiorna Signal</string>
-  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Uno o più dei tuoi dispositivi collegati eseguono una versione di Signal che non supporta i collegamenti dei gruppi. Aggiorna Signal sui tuoi dispositivi collegati per unirti a questo gruppo.</string>
+  <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Uno o più dei tuoi dispositivi collegati eseguono una versione di Signal che non supporta i link dei gruppi. Aggiorna Signal sui tuoi dispositivi collegati per unirti a questo gruppo.</string>
   <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Il link del gruppo non è valido</string>
   <!--GroupInviteLinkEnableAndShareBottomSheetDialogFragment-->
   <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">Invita amici</string>
@@ -1837,8 +1838,8 @@
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Il tasto Invio manderà il messaggio</string>
   <string name="preferences__pref_use_address_book_photos">Usa le foto della rubrica</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Mostra le foto dei contatti dalla tua rubrica se disponibili</string>
-  <string name="preferences__generate_link_previews">Genera anteprime dei collegamenti</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei collegamenti direttamente dai siti web per i messaggi che invii.</string>
+  <string name="preferences__generate_link_previews">Genera anteprime dei link</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupera le anteprime dei link direttamente dai siti web per i messaggi che invii.</string>
   <string name="preferences__choose_identity">Scegli identità</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Scegli il tuo contatto dalla rubrica.</string>
   <string name="preferences__change_passphrase">Cambia password</string>

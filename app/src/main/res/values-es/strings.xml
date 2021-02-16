@@ -5,7 +5,7 @@
   <string name="delete">Eliminar</string>
   <string name="please_wait">Espera, por favor …</string>
   <string name="save">Guardar</string>
-  <string name="note_to_self">Notas personales</string>
+  <string name="note_to_self">Notas privadas</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--AlbumThumbnailView-->
@@ -66,6 +66,7 @@
   <string name="AttachmentUploadJob_uploading_media">Transfiriendo adjunto …</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimiendo vídeo …</string>
   <!--BackgroundMessageRetriever-->
+  <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando mensajes …</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Personas bloqueadas</string>
   <string name="BlockedUsersActivity__add_blocked_user">Añadir persona bloqueada</string>
@@ -659,7 +660,7 @@
   <string name="ManageRecipientActivity_on">Activo</string>
   <string name="ManageRecipientActivity_add_to_a_group">Añadir a un grupo</string>
   <string name="ManageRecipientActivity_view_all_groups">Ver todos los grupos</string>
-  <string name="ManageRecipientActivity_see_all">Ver tod@s</string>
+  <string name="ManageRecipientActivity_see_all">Ver todos</string>
   <string name="ManageRecipientActivity_no_groups_in_common">No hay grupos en común</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
     <item quantity="one">%d grupo en común</item>

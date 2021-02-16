@@ -144,6 +144,41 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     maskView.setTargetParentTranslationY(translationY);
   }
 
+  private OnLayoutChangeListener createUpdateViewPositionsOnLayoutChangeListener(@NonNull View maskTarget,
+                                                                                 int maskPaddingBottom,
+                                                                                 @NonNull PointF lastSeenDownPoint)
+  {
+    return new OnLayoutChangeListener() {
+      @Override
+      public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+        final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + actionBarHeight,
+                                                    lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown - statusBarHeight);
+
+        final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
+        final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
+        final float downX                = ViewUtil.isLtr(ConversationReactionOverlay.this) ? lastSeenDownPoint.x : screenWidth - lastSeenDownPoint.x;
+        final float scrubberTranslationX = Util.clamp(downX - halfWidth,
+                                                      scrubberHorizontalMargin,
+                                                      screenWidth + scrubberHorizontalMargin - halfWidth * 2) * (ViewUtil.isLtr(ConversationReactionOverlay.this) ? 1 : -1);
+
+        backgroundView.setTranslationX(scrubberTranslationX);
+        backgroundView.setTranslationY(scrubberTranslationY);
+
+        foregroundView.setTranslationX(scrubberTranslationX);
+        foregroundView.setTranslationY(scrubberTranslationY);
+
+        verticalScrubBoundary.update(lastSeenDownPoint.y - distanceFromTouchDownPointToTopOfScrubberDeadZone,
+                                     lastSeenDownPoint.y + distanceFromTouchDownPointToBottomOfScrubberDeadZone);
+
+        maskView.setPadding(0, 0, 0, maskPaddingBottom);
+        maskView.setTarget(maskTarget);
+
+        removeOnLayoutChangeListener(this);
+      }
+    };
+  }
+
   public void show(@NonNull Activity activity,
                    @NonNull View maskTarget,
                    @NonNull Recipient conversationRecipient,
@@ -171,27 +206,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       statusBarHeight = ViewUtil.getStatusBarHeight(this);
     }
 
-    final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + actionBarHeight,
-                                                lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown - statusBarHeight);
-
-    final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
-    final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
-    final float downX                = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? lastSeenDownPoint.x : screenWidth - lastSeenDownPoint.x;
-    final float scrubberTranslationX = Util.clamp(downX - halfWidth,
-                                                  scrubberHorizontalMargin,
-                                                  screenWidth + scrubberHorizontalMargin - halfWidth * 2) * (getLayoutDirection() == LAYOUT_DIRECTION_LTR ? 1 : -1);
-
-    backgroundView.setTranslationX(scrubberTranslationX);
-    backgroundView.setTranslationY(scrubberTranslationY);
-
-    foregroundView.setTranslationX(scrubberTranslationX);
-    foregroundView.setTranslationY(scrubberTranslationY);
-
-    verticalScrubBoundary.update(lastSeenDownPoint.y - distanceFromTouchDownPointToTopOfScrubberDeadZone,
-                                 lastSeenDownPoint.y + distanceFromTouchDownPointToBottomOfScrubberDeadZone);
-
-    maskView.setPadding(0, 0, 0, maskPaddingBottom);
-    maskView.setTarget(maskTarget);
+    addOnLayoutChangeListener(createUpdateViewPositionsOnLayoutChangeListener(maskTarget, maskPaddingBottom, lastSeenDownPoint));
 
     hideAnimatorSet.end();
     toolbar.setVisibility(VISIBLE);
@@ -275,7 +290,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private int getStart(@NonNull Rect rect) {
-    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+    if (ViewUtil.isLtr(this)) {
       return rect.left;
     } else {
       return rect.right;
@@ -283,7 +298,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private int getEnd(@NonNull Rect rect) {
-    if (getLayoutDirection() == LAYOUT_DIRECTION_LTR) {
+    if (ViewUtil.isLtr(this)) {
       return rect.right;
     } else {
       return rect.left;
