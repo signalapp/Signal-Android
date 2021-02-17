@@ -36,7 +36,6 @@ import org.session.libsignal.service.api.messages.SignalServiceContent;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceGroup.Type;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -141,9 +140,7 @@ public class GroupMessageProcessor {
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message
-      String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
-      if (masterDevice == null) { masterDevice = content.getSender(); }
-      if (!groupRecord.getAdmins().contains(Address.Companion.fromSerialized(masterDevice))) {
+      if (!groupRecord.getAdmins().contains(Address.Companion.fromSerialized(content.getSender()))) {
         Log.d("Loki", "Received a group update message from a non-admin user for: " + id +"; ignoring.");
         return null;
       }
@@ -219,9 +216,7 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
-    if (masterDevice == null) { masterDevice = content.getSender(); }
-    if (record.getMembers().contains(Address.Companion.fromSerialized(masterDevice))) {
+    if (record.getMembers().contains(Address.Companion.fromSerialized(content.getSender()))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
@@ -242,10 +237,8 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    String masterDevice = MultiDeviceProtocol.shared.getMasterDevice(content.getSender());
-    if (masterDevice == null) { masterDevice = content.getSender(); }
-    if (members.contains(Address.Companion.fromExternal(context, masterDevice))) {
-      database.removeMember(id, Address.Companion.fromExternal(context, masterDevice));
+    if (members.contains(Address.Companion.fromExternal(context, content.getSender()))) {
+      database.removeMember(id, Address.Companion.fromExternal(context, content.getSender()));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);

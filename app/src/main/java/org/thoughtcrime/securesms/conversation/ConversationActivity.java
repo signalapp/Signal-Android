@@ -92,7 +92,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.protocol.mentions.Mention;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -2620,10 +2619,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   private void updateTitleTextView(Recipient recipient) {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    Set<String> allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
     if (recipient == null) {
       titleTextView.setText("Compose");
-    } else if (allUserDevices.contains(recipient.getAddress().toString().toLowerCase())) {
+    } else if (recipient.getAddress().toString().toLowerCase() == userPublicKey) {
       titleTextView.setText("Note to Self");
     } else {
       boolean hasName = (recipient.getName() != null && !recipient.getName().isEmpty());

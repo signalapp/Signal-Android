@@ -115,8 +115,6 @@ import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
-import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -204,18 +202,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
-      SyncMessagesProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
-    org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.Companion.configureIfNeeded(apiDB);
     SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
-    if (setUpStorageAPIIfNeeded()) {
-      if (userPublicKey != null) {
-        Set<DeviceLink> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getDeviceLinks(userPublicKey);
-        FileServerAPI.shared.setDeviceLinks(deviceLinks);
-      }
-    }
+    setUpStorageAPIIfNeeded();
     resubmitProfilePictureIfNeeded();
     publicChatManager = new PublicChatManager(this);
     updateOpenGroupProfilePicturesIfNeeded();

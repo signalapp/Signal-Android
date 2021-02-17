@@ -269,54 +269,34 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if (message.isDeviceUnlinkingRequest()) {
-          throw new UnsupportedOperationException("Device link operations are not supported!");
-        } else {
+        if (message.getClosedGroupUpdateV2().isPresent()) {
+          ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupUpdateV2().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
+        }
+        if (message.isEndSession()) {
+          handleEndSessionMessage(content, smsMessageId);
+        } else if (message.isGroupUpdate()) {
+          handleGroupMessage(content, message, smsMessageId);
+        } else if (message.isExpirationUpdate()) {
+          handleExpirationUpdate(content, message, smsMessageId);
+        } else if (isMediaMessage) {
+          handleMediaMessage(content, message, smsMessageId, Optional.absent());
+        } else if (message.getBody().isPresent()) {
+          handleTextMessage(content, message, smsMessageId, Optional.absent());
+        }
 
-          if (message.getClosedGroupUpdateV2().isPresent()) {
-            ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupUpdateV2().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
-          }
-          if (message.isEndSession()) {
-            handleEndSessionMessage(content, smsMessageId);
-          } else if (message.isGroupUpdate()) {
-            handleGroupMessage(content, message, smsMessageId);
-          } else if (message.isExpirationUpdate()) {
-            handleExpirationUpdate(content, message, smsMessageId);
-          } else if (isMediaMessage) {
-            handleMediaMessage(content, message, smsMessageId, Optional.absent());
-          } else if (message.getBody().isPresent()) {
-            handleTextMessage(content, message, smsMessageId, Optional.absent());
-          }
+        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
+          handleUnknownGroupMessage(content, message.getGroupInfo().get());
+        }
 
-          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
-            handleUnknownGroupMessage(content, message.getGroupInfo().get());
-          }
+        if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
+          SessionMetaProtocol.handleProfileKeyUpdate(context, content);
+        }
 
-          if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
-            SessionMetaProtocol.handleProfileKeyUpdate(context, content);
-          }
-
-          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.Companion.fromSerialized(content.getSender()))) {
-            handleNeedsDeliveryReceipt(content, message);
-          }
+        if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.Companion.fromSerialized(content.getSender()))) {
+          handleNeedsDeliveryReceipt(content, message);
         }
       } else if (content.getSyncMessage().isPresent()) {
         throw new UnsupportedOperationException("Device link operations are not supported!");
-
-//        TextSecurePreferences.setMultiDevice(context, true);
-//
-//        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
-//
-//        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
-//        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
-//        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-//        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-//        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-//        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
-//        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
-//        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
-//        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
-//        else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -1250,21 +1230,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       String publicKey = message.getDestination().get();
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      if (allUserDevices.contains(publicKey)) {
+      if (publicKey.equals(userPublicKey)) {
         return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
-        try {
-          // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-          if (masterPublicKey == null) {
-            masterPublicKey = publicKey;
-          }
-          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
-        } catch (Exception e) {
-          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
-        }
+        return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
       }
     }
   }
@@ -1282,21 +1251,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      if (allUserDevices.contains(publicKey)) {
+      if (publicKey.equals(userPublicKey)) {
         return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
       } else {
-        try {
-          // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-          if (masterPublicKey == null) {
-            masterPublicKey = publicKey;
-          }
-          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
-        } catch (Exception e) {
-          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
-        }
+        return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
       }
     }
   }
@@ -1330,9 +1288,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     Recipient sender = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
 
-    if (content.getDeviceLink().isPresent()) {
-      return false;
-    } else if (content.getDataMessage().isPresent()) {
+    if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
       Recipient                conversation = getMessageDestination(content, message);
 
