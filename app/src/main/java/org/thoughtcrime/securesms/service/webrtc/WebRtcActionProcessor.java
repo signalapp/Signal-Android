@@ -533,7 +533,7 @@ public abstract class WebRtcActionProcessor {
 
     if (errorCallState == WebRtcViewModel.State.UNTRUSTED_IDENTITY) {
       CallParticipant participant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
-      CallParticipant untrusted   = participant.withIdentityKey(identityKey.get());
+      CallParticipant untrusted   = participant.withIdentityKey(identityKey.orNull());
 
       builder.changeCallInfoState()
              .callState(WebRtcViewModel.State.UNTRUSTED_IDENTITY)

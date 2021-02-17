@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,5 +59,24 @@ public class ParcelUtil {
 
   public static boolean readBoolean(@NonNull Parcel in) {
     return in.readByte() != 0;
+  }
+
+  public static void writeByteArray(@NonNull Parcel dest, @Nullable byte[] data) {
+    if (data == null) {
+      dest.writeInt(-1);
+    } else {
+      dest.writeInt(data.length);
+      dest.writeByteArray(data);
+    }
+  }
+
+  public static @Nullable byte[] readByteArray(@NonNull Parcel in) {
+    int length = in.readInt();
+    if (length == -1) {
+      return null;
+    }
+    byte[] data = new byte[length];
+    in.readByteArray(data);
+    return data;
   }
 }

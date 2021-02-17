@@ -85,7 +85,7 @@ public final class CallParticipant {
     this.deviceOrdinal     = deviceOrdinal;
   }
 
-  public @NonNull CallParticipant withIdentityKey(@NonNull IdentityKey identityKey) {
+  public @NonNull CallParticipant withIdentityKey(@Nullable IdentityKey identityKey) {
     return new CallParticipant(callParticipantId, recipient, identityKey, videoSink, cameraState, videoEnabled, microphoneEnabled, lastSpoke, mediaKeysReceived, addedToCallTime, deviceOrdinal);
   }
 

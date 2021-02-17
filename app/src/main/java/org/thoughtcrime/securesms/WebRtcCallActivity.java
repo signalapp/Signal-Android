@@ -518,6 +518,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
     final Recipient   recipient = event.getRemoteParticipants().get(0).getRecipient();
 
     if (theirKey == null) {
+      Log.w(TAG, "Untrusted identity without an identity key, terminating call.");
       handleTerminate(recipient, HangupMessage.Type.NORMAL);
     }
 
