@@ -65,7 +65,10 @@ public final class DeviceOrientationMonitor implements DefaultLifecycleObserver 
   }
 
   private void updateOrientationAngles() {
-    SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading);
+    boolean success = SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading);
+    if (!success) {
+      SensorUtil.getRotationMatrixWithoutMagneticSensorData(rotationMatrix, accelerometerReading);
+    }
     SensorManager.getOrientation(rotationMatrix, orientationAngles);
 
     float pitch = orientationAngles[1];
