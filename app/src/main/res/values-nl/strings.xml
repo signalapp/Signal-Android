@@ -1187,7 +1187,7 @@
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
   <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
-  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jou in dit gesprek</string>
+  <string name="WebRtcCallView__no_one_else_is_here">Er is niemand behalve jij in dit gesprek</string>
   <string name="WebRtcCallView__s_is_in_this_call">Gesprek met %1$s</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
