@@ -28,7 +28,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.UriUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -76,10 +75,6 @@ class ShareRepository {
 
     if (uri == null) {
       return ShareData.forPrimitiveTypes();
-    }
-
-    if (!UriUtil.isValidExternalUri(context, uri)) {
-      throw new IOException("Invalid external URI!");
     }
 
     mimeType = getMimeType(context, uri, mimeType);
