@@ -160,7 +160,9 @@ public final class AttachmentCompressionJob extends BaseJob {
       throws UndeliverableMessageException
   {
     try {
-      if (MediaUtil.isVideo(attachment)) {
+      if (attachment.isSticker()) {
+        Log.d(TAG, "Sticker, not compressing.");
+      } else if (MediaUtil.isVideo(attachment)) {
         Log.i(TAG, "Compressing video.");
         attachment = transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
         if (!constraints.isSatisfied(context, attachment)) {
