@@ -56,9 +56,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
   private static final int lokiV19                          = 40;
   private static final int lokiV20                          = 41;
+  private static final int lokiV21                          = 42;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV20;
+  private static final int    DATABASE_VERSION = lokiV21;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -250,6 +251,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "ServiceOutageDetectionJob",
                 "SessionRequestMessageSendJob"
         );
+      }
+
+      if (oldVersion < lokiV21) {
+        deleteJobRecords(db, "ClosedGroupUpdateMessageSendJob");
       }
 
       db.setTransactionSuccessful();
