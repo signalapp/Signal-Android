@@ -54,7 +54,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV16                          = 37;
   private static final int lokiV17                          = 38;
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
-  //TODO Merge all "refactor" migrations to one before pushing to the main repo.
   private static final int lokiV19                          = 40;
   private static final int lokiV20                          = 41;
 

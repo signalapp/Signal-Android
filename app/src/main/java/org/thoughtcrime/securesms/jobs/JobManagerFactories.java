@@ -19,15 +19,20 @@ import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJobV2;
 import org.thoughtcrime.securesms.loki.protocol.NullMessageSendJob;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public final class JobManagerFactories {
 
+  private static Collection<String> factoryKeys = new ArrayList<>();
+
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
-    return new HashMap<String, Job.Factory>() {{
+    HashMap<String, Job.Factory> factoryHashMap = new HashMap<String, Job.Factory>() {{
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
@@ -59,6 +64,8 @@ public final class JobManagerFactories {
       put(PrepareAttachmentAudioExtrasJob.KEY,       new PrepareAttachmentAudioExtrasJob.Factory());
       put(ResetThreadSessionJob.KEY,                 new ResetThreadSessionJob.Factory());
     }};
+    factoryKeys.addAll(factoryHashMap.keySet());
+    return factoryHashMap;
   }
 
   public static Map<String, Constraint.Factory> getConstraintFactories(@NonNull Application application) {
@@ -74,5 +81,9 @@ public final class JobManagerFactories {
     return Arrays.asList(new CellServiceConstraintObserver(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver());
+  }
+
+  public static boolean hasFactoryForKey(String factoryKey) {
+    return factoryKeys.contains(factoryKey);
   }
 }
