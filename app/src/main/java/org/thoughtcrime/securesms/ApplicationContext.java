@@ -108,12 +108,8 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPI;
 import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
-import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementation;
-import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysImplementationDelegate;
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
-import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocolDelegate;
 
 import java.io.File;
 import java.io.FileInputStream;
