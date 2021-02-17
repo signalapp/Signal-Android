@@ -56,12 +56,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
   //TODO Merge all "refactor" migrations to one before pushing to the main repo.
   private static final int lokiV19                          = 40;
-  private static final int lokiV19_REFACTOR1                = 41;
-  private static final int lokiV19_REFACTOR2                = 42;
-
+  private static final int lokiV20                          = 41;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV19;
+  private static final int    DATABASE_VERSION = lokiV20;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -220,22 +218,38 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       // Many classes were removed. We need to update DB structure and data to match the code changes.
-      //TODO Merge "refactor" changes in one migration.
       if (oldVersion < lokiV19) {
         db.execSQL(LokiAPIDatabase.getCreateClosedGroupEncryptionKeyPairsTable());
         db.execSQL(LokiAPIDatabase.getCreateClosedGroupPublicKeysTable());
         ClosedGroupsMigration.INSTANCE.perform(db);
-      }
-      if (oldVersion < lokiV19_REFACTOR1) {
         db.execSQL("DROP TABLE identities");
         deleteJobRecords(db, "RetrieveProfileJob");
-      }
-      if (oldVersion < lokiV19_REFACTOR2) {
         deleteJobRecords(db,
                 "RefreshAttributesJob",
                 "RotateProfileKeyJob",
                 "RefreshUnidentifiedDeliveryAbilityJob",
                 "RotateCertificateJob"
+        );
+      }
+
+      if (oldVersion < lokiV20) {
+        deleteJobRecords(db,
+                "CleanPreKeysJob",
+                "RefreshPreKeysJob",
+                "CreateSignedPreKeyJob",
+                "RotateSignedPreKeyJob",
+                "MultiDeviceBlockedUpdateJob",
+                "MultiDeviceConfigurationUpdateJob",
+                "MultiDeviceContactUpdateJob",
+                "MultiDeviceGroupUpdateJob",
+                "MultiDeviceOpenGroupUpdateJob",
+                "MultiDeviceProfileKeyUpdateJob",
+                "MultiDeviceReadUpdateJob",
+                "MultiDeviceStickerPackOperationJob",
+                "MultiDeviceStickerPackSyncJob",
+                "MultiDeviceVerifiedUpdateJob",
+                "ServiceOutageDetectionJob",
+                "SessionRequestMessageSendJob"
         );
       }
 
