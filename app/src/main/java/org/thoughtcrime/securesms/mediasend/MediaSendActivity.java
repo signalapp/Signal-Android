@@ -703,7 +703,7 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
           countButton.setVisibility(View.GONE);
           continueButton.setVisibility(View.VISIBLE);
 
-          if (!TextSecurePreferences.hasSeenCameraFirstTooltip(this)) {
+          if (!TextSecurePreferences.hasSeenCameraFirstTooltip(this) && !getIntent().hasExtra(KEY_RECIPIENTS)) {
             TooltipPopup.forTarget(continueButton)
                         .setText(R.string.MediaSendActivity_select_recipients)
                         .show(TooltipPopup.POSITION_ABOVE);
