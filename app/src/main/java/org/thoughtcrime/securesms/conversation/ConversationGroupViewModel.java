@@ -190,11 +190,12 @@ final class ConversationGroupViewModel extends ViewModel {
 
   @WorkerThread
   private static boolean mapToGroupV1MigrationReminder(@Nullable GroupRecord record) {
-    if (record == null                          ||
-        !record.isV1Group()                     ||
-        !record.isActive()                      ||
-        !FeatureFlags.groupsV1ManualMigration() ||
-        FeatureFlags.groupsV1ForcedMigration()  ||
+    if (record == null                                                                      ||
+        !record.isV1Group()                                                                 ||
+        !record.isActive()                                                                  ||
+        !FeatureFlags.groupsV1ManualMigration()                                             ||
+        FeatureFlags.groupsV1ForcedMigration()                                              ||
+        Recipient.self().getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED ||
         !Recipient.resolved(record.getRecipientId()).isProfileSharing())
     {
       return false;
