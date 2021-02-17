@@ -236,8 +236,20 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         deleteJobRecords(db,
                 "CleanPreKeysJob",
                 "RefreshPreKeysJob",
-                "CreateSignedPreKeysJob",
-                "RotateSignedPreKeyJob"
+                "CreateSignedPreKeyJob",
+                "RotateSignedPreKeyJob",
+                "MultiDeviceBlockedUpdateJob",
+                "MultiDeviceConfigurationUpdateJob",
+                "MultiDeviceContactUpdateJob",
+                "MultiDeviceGroupUpdateJob",
+                "MultiDeviceOpenGroupUpdateJob",
+                "MultiDeviceProfileKeyUpdateJob",
+                "MultiDeviceReadUpdateJob",
+                "MultiDeviceStickerPackOperationJob",
+                "MultiDeviceStickerPackSyncJob",
+                "MultiDeviceVerifiedUpdateJob",
+                "ServiceOutageDetectionJob",
+                "SessionRequestMessageSendJob"
         );
       }
 
