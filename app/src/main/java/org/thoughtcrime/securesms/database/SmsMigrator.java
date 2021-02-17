@@ -90,7 +90,7 @@ public class SmsMigrator {
                                              long threadId, SQLiteStatement statement)
   {
     String theirAddress = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    statement.bindString(1, Address.Companion.fromExternal(context, theirAddress).serialize());
+    statement.bindString(1, Address.fromExternal(context, theirAddress).serialize());
 
     addIntToStatement(statement, cursor, 2, SmsDatabase.PERSON);
     addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_RECEIVED);
@@ -137,7 +137,7 @@ public class SmsMigrator {
       String address          = getTheirCanonicalAddress(context, theirRecipientId);
 
       if (address != null) {
-        recipientList.add(Recipient.from(context, Address.Companion.fromExternal(context, address), true));
+        recipientList.add(Recipient.from(context, Address.fromExternal(context, address), true));
       }
     }
 
@@ -213,7 +213,7 @@ public class SmsMigrator {
             long ourThreadId = threadDatabase.getOrCreateThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
-            ourRecipients.add(Recipient.from(context, Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
+            ourRecipients.add(Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
 
             List<Address> memberAddresses = new LinkedList<>();
 
@@ -222,7 +222,7 @@ public class SmsMigrator {
             }
 
             String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, null);
-            Recipient ourGroupRecipient = Recipient.from(context, Address.Companion.fromSerialized(ourGroupId), true);
+            Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
             long      ourThreadId       = threadDatabase.getOrCreateThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);

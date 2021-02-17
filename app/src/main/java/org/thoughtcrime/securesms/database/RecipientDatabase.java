@@ -330,7 +330,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.Companion.fromExternal(context, cursor.getString(0)));
+        results.add(Address.fromExternal(context, cursor.getString(0)));
       }
     }
 
@@ -370,7 +370,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, REGISTERED + " = ?", new String[] {"1"}, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.Companion.fromSerialized(cursor.getString(0)));
+        results.add(Address.fromSerialized(cursor.getString(0)));
       }
     }
 
@@ -383,7 +383,7 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.Companion.fromSerialized(cursor.getString(0)));
+        results.add(Address.fromSerialized(cursor.getString(0)));
       }
     }
 
@@ -397,7 +397,7 @@ public class RecipientDatabase extends Database {
     db.beginTransaction();
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS, COLOR, SYSTEM_DISPLAY_NAME}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        Address address = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
         MaterialColor newColor = updater.update(cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME)),
                                                 cursor.getString(cursor.getColumnIndexOrThrow(COLOR)));
 
@@ -497,7 +497,7 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient getCurrent() {
       String serialized = cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS));
-      return Recipient.from(context, Address.Companion.fromSerialized(serialized), false);
+      return Recipient.from(context, Address.fromSerialized(serialized), false);
     }
 
     public @Nullable Recipient getNext() {

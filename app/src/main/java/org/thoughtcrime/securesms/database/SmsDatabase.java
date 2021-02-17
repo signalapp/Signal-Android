@@ -377,7 +377,7 @@ public class SmsDatabase extends MessagingDatabase {
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
           Address theirAddress = messageId.getAddress();
-          Address ourAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+          Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
           String  columnName   = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
 
           if (ourAddress.equals(theirAddress)) {
@@ -418,7 +418,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       while (cursor.moveToNext()) {
         Address theirAddress = messageId.getAddress();
-        Address ourAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
 
         if (ourAddress.equals(theirAddress)) {
           long id            = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
@@ -469,7 +469,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       while (cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.Companion.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
 
           results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
@@ -937,7 +937,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     public SmsMessageRecord getCurrent() {
       long    messageId            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-      Address address              = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS)));
+      Address address              = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS)));
       int     addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS_DEVICE_ID));
       long    type                 = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
       long    dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));

@@ -102,7 +102,7 @@ public class SessionDatabase extends Database {
     try (Cursor cursor = database.query(TABLE_NAME, null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         try {
-          results.add(new SessionRow(Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))),
+          results.add(new SessionRow(Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))),
                                      cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE)),
                                      new SessionRecord(cursor.getBlob(cursor.getColumnIndexOrThrow(RECORD)))));
         } catch (IOException e) {

@@ -29,10 +29,10 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.GroupUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
@@ -46,7 +46,6 @@ import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreferen
 import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
-import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
@@ -176,7 +175,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
-        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
         IP2Country.configureIfNeeded(this)
         application.registerForFCMIfNeeded(false)
         // Observe blocked contacts changed events
@@ -339,7 +337,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 var isSSKBasedClosedGroup: Boolean
                 var groupPublicKey: String?
                 try {
-                    groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
+                    groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
                     isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)
                 } catch (e: IOException) {
                     groupPublicKey = null
@@ -347,7 +345,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 }
                 if (isSSKBasedClosedGroup) {
                     ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
-                } else if (!ClosedGroupsProtocol.leaveLegacyGroup(context, recipient)) {
+                } else {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch
                 }

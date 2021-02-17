@@ -268,7 +268,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
-          Address theirAddress = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+          Address theirAddress = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
           Address ourAddress   = messageId.getAddress();
           String  columnName   = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
 
@@ -333,7 +333,7 @@ public class MmsDatabase extends MessagingDatabase {
     String fromString = notification.getFrom() != null && notification.getFrom().getTextString() != null
                       ? Util.toIsoString(notification.getFrom().getTextString())
                       : "";
-    Recipient recipient = Recipient.from(context, Address.Companion.fromExternal(context, fromString), false);
+    Recipient recipient = Recipient.from(context, Address.fromExternal(context, fromString), false);
     return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
   }
 
@@ -500,7 +500,7 @@ public class MmsDatabase extends MessagingDatabase {
 
       while(cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.Companion.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), true);
 
           result.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
@@ -529,7 +529,7 @@ public class MmsDatabase extends MessagingDatabase {
       cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, ADDRESS}, DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())}, null, null, null, null);
 
       while (cursor.moveToNext()) {
-        Address theirAddress = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        Address theirAddress = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
         Address ourAddress   = messageId.getAddress();
 
         if (ourAddress.equals(theirAddress) || theirAddress.isGroup()) {
@@ -642,13 +642,13 @@ public class MmsDatabase extends MessagingDatabase {
                                                                                .filterNot(previewAttachments::contains)
                                                                                .map(a -> (Attachment)a).toList();
 
-        Recipient                 recipient       = Recipient.from(context, Address.Companion.fromSerialized(address), false);
+        Recipient                 recipient       = Recipient.from(context, Address.fromSerialized(address), false);
         List<NetworkFailure>      networkFailures = new LinkedList<>();
         List<IdentityKeyMismatch> mismatches      = new LinkedList<>();
         QuoteModel                quote           = null;
 
         if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
-          quote = new QuoteModel(quoteId, Address.Companion.fromSerialized(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
+          quote = new QuoteModel(quoteId, Address.fromSerialized(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
         }
 
         if (!TextUtils.isEmpty(mismatchDocument)) {
@@ -955,7 +955,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentBuilder.add(MESSAGE_TYPE, notification.getMessageType());
 
     if (notification.getFrom() != null) {
-      contentValues.put(ADDRESS, Address.Companion.fromExternal(context, Util.toIsoString(notification.getFrom().getTextString())).serialize());
+      contentValues.put(ADDRESS, Address.fromExternal(context, Util.toIsoString(notification.getFrom().getTextString())).serialize());
     }
 
     contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
@@ -1334,7 +1334,7 @@ public class MmsDatabase extends MessagingDatabase {
     private final int     subscriptionId;
 
     MmsNotificationInfo(@Nullable String from, String contentLocation, String transactionId, int subscriptionId) {
-      this.from            = from == null ? null : Address.Companion.fromSerialized(from);
+      this.from            = from == null ? null : Address.fromSerialized(from);
       this.contentLocation = contentLocation;
       this.transactionId   = transactionId;
       this.subscriptionId  = subscriptionId;
@@ -1507,7 +1507,7 @@ public class MmsDatabase extends MessagingDatabase {
       if (TextUtils.isEmpty(serialized) || "insert-address-token".equals(serialized)) {
         address = Address.Companion.getUNKNOWN();
       } else {
-        address = Address.Companion.fromSerialized(serialized);
+        address = Address.fromSerialized(serialized);
 
       }
       return Recipient.from(context, address, true);
@@ -1554,7 +1554,7 @@ public class MmsDatabase extends MessagingDatabase {
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
       if (quoteId > 0 && !TextUtils.isEmpty(quoteAuthor)) {
-        return new Quote(quoteId, Address.Companion.fromExternal(context, quoteAuthor), quoteText, quoteMissing, quoteDeck);
+        return new Quote(quoteId, Address.fromExternal(context, quoteAuthor), quoteText, quoteMissing, quoteDeck);
       } else {
         return null;
       }

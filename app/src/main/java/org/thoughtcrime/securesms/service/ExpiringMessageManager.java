@@ -68,7 +68,7 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   public void setExpirationTimer(@Nullable Long messageID, int duration, @NotNull String senderPublicKey, @NotNull SignalServiceProtos.Content content) {
     try {
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
-      Address              address      = Address.Companion.fromSerialized(senderPublicKey);
+      Address              address      = Address.fromSerialized(senderPublicKey);
       Recipient            recipient    = Recipient.from(context, address, false);
       Optional<SignalServiceGroup> groupInfo = Optional.absent();
       if (content.getDataMessage().hasGroup()) {

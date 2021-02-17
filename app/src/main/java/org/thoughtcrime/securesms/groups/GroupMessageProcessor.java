@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.session.libsignal.utilities.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
@@ -96,23 +95,19 @@ public class GroupMessageProcessor {
 
     if (group.getMembers().isPresent()) {
       for (String member : group.getMembers().get()) {
-        members.add(Address.Companion.fromExternal(context, member));
+        members.add(Address.fromExternal(context, member));
       }
     }
 
     // Loki - Parse admins
     if (group.getAdmins().isPresent()) {
       for (String admin : group.getAdmins().get()) {
-        admins.add(Address.Companion.fromExternal(context, admin));
+        admins.add(Address.fromExternal(context, admin));
       }
     }
 
     database.create(id, group.getName().orNull(), members,
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins, formationTimestamp);
-
-    if (group.getMembers().isPresent()) {
-      ClosedGroupsProtocol.establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
-    }
 
     return storeMessage(context, content, group, builder.build(), outgoing);
   }
@@ -127,7 +122,7 @@ public class GroupMessageProcessor {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
-    Address                   address         = Address.Companion.fromExternal(context, GroupUtil.getEncodedId(group));
+    Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
     Recipient                 recipient       = Recipient.from(context, address, false);
 
     String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
@@ -140,13 +135,13 @@ public class GroupMessageProcessor {
 
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
       // Loki - Only update the group if the group admin sent the message
-      if (!groupRecord.getAdmins().contains(Address.Companion.fromSerialized(content.getSender()))) {
+      if (!groupRecord.getAdmins().contains(Address.fromSerialized(content.getSender()))) {
         Log.d("Loki", "Received a group update message from a non-admin user for: " + id +"; ignoring.");
         return null;
       }
 
       // Loki - Only process update messages if we're part of the group
-      Address userMasterDeviceAddress = Address.Companion.fromSerialized(userMasterDevice);
+      Address userMasterDeviceAddress = Address.fromSerialized(userMasterDevice);
       if (!groupRecord.getMembers().contains(userMasterDeviceAddress) &&
           !group.getMembers().or(Collections.emptyList()).contains(userMasterDevice)) {
         Log.d("Loki", "Received a group update message from a group we're not a member of:  " + id + "; ignoring.");
@@ -159,7 +154,7 @@ public class GroupMessageProcessor {
     Set<Address> newMembers = new HashSet<>();
 
     for (String messageMember : group.getMembers().get()) {
-      newMembers.add(Address.Companion.fromExternal(context, messageMember));
+      newMembers.add(Address.fromExternal(context, messageMember));
     }
 
     // Added members are the members who are present in newMembers but not in currentMembers
@@ -198,14 +193,10 @@ public class GroupMessageProcessor {
     }
 
     // If we were removed then we need to disable the chat
-    if (removedMembers.contains(Address.Companion.fromSerialized(userMasterDevice))) {
+    if (removedMembers.contains(Address.fromSerialized(userMasterDevice))) {
       database.setActive(id, false);
     } else {
       if (!groupRecord.isActive()) database.setActive(id, true);
-
-      if (group.getMembers().isPresent()) {
-        ClosedGroupsProtocol.establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
-      }
     }
 
     return storeMessage(context, content, group, builder.build(), outgoing);
@@ -216,7 +207,7 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    if (record.getMembers().contains(Address.Companion.fromSerialized(content.getSender()))) {
+    if (record.getMembers().contains(Address.fromSerialized(content.getSender()))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
@@ -237,8 +228,8 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(Address.Companion.fromExternal(context, content.getSender()))) {
-      database.removeMember(id, Address.Companion.fromExternal(context, content.getSender()));
+    if (members.contains(Address.fromExternal(context, content.getSender()))) {
+      database.removeMember(id, Address.fromExternal(context, content.getSender()));
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
@@ -262,11 +253,11 @@ public class GroupMessageProcessor {
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Address                   address         = Address.Companion.fromExternal(context, GroupUtil.getEncodedId(group));
+        Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
         Recipient                 recipient       = Recipient.from(context, address, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-        Address                   senderAddress   = Address.Companion.fromExternal(context, content.getSender());
+        Address                   senderAddress   = Address.fromExternal(context, content.getSender());
         MessageRecord             existingMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(content.getTimestamp(), senderAddress);
         long                      messageId;
         if (existingMessage != null) {
@@ -281,7 +272,7 @@ public class GroupMessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.Companion.fromExternal(context, content.getSender()), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Address.fromExternal(context, content.getSender()), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

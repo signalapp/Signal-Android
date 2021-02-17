@@ -116,7 +116,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedClosedGroupID(groupId));
+    Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedClosedGroupID(groupId));
     Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
@@ -126,7 +126,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                                .build();
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(source), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
                               message);
   }
 

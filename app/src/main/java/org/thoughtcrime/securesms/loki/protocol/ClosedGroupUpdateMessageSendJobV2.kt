@@ -224,7 +224,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         try {
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
-                    sentTime, serializedContentMessage, false, ttl, false,
+                    sentTime, serializedContentMessage, false, ttl,
                     true, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")

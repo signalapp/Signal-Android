@@ -76,7 +76,6 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
@@ -139,8 +138,7 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate,
-      SessionManagementProtocolDelegate, SharedSenderKeysImplementationDelegate {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
   private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
@@ -191,7 +189,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
-    SharedSenderKeysImplementation.Companion.configureIfNeeded(sskDatabase, this);
     MessagingConfiguration.Companion.configure(this,
                                                 DatabaseFactory.getStorage(this),
                                                 sskDatabase,
@@ -203,7 +200,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
       SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
-    SessionManagementProtocol.Companion.configureIfNeeded(sessionResetImpl, sskDatabase, this);
     setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
     setUpStorageAPIIfNeeded();
@@ -542,7 +538,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this);
       byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey);
       try {
-        File profilePicture = AvatarHelper.getAvatarFile(this, Address.Companion.fromSerialized(userPublicKey));
+        File profilePicture = AvatarHelper.getAvatarFile(this, Address.fromSerialized(userPublicKey));
         StreamDetails stream = new StreamDetails(new FileInputStream(profilePicture), "image/jpeg", profilePicture.length());
         FileServerAPI.shared.uploadProfilePicture(FileServerAPI.shared.getServer(), profileKey, stream, () -> {
           TextSecurePreferences.setLastProfilePictureUpload(this, new Date().getTime());
@@ -569,7 +565,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       String url = TextSecurePreferences.getProfilePictureURL(this);
       String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
       if (userMasterDevice != null) {
-        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.Companion.fromSerialized(userMasterDevice), false).resolve();
+        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.fromSerialized(userMasterDevice), false).resolve();
         profileKey = userMasterDeviceAsRecipient.getProfileKey();
         url = userMasterDeviceAsRecipient.getProfileAvatar();
       }
@@ -608,25 +604,5 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     Runtime.getRuntime().exit(0);
   }
 
-//  public boolean hasSentSessionRequestExpired(@NotNull String publicKey) {
-//    LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
-//    Long timestamp = apiDB.getSessionRequestSentTimestamp(publicKey);
-//    if (timestamp != null) {
-//      long expiration = timestamp + TTLUtilities.getTTL(TTLUtilities.MessageType.SessionRequest);
-//      return new Date().getTime() > expiration;
-//    } else {
-//      return false;
-//    }
-//  }
-
-  @Override
-  public void sendSessionRequestIfNeeded(@NotNull String publicKey) {
-
-  }
-
-  @Override
-  public void requestSenderKey(@NotNull String groupPublicKey, @NotNull String senderPublicKey) {
-    ClosedGroupsProtocol.requestSenderKey(this, groupPublicKey, senderPublicKey);
-  }
   // endregion
 }

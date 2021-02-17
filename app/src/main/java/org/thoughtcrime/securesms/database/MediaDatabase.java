@@ -108,7 +108,7 @@ public class MediaDatabase extends Database {
       Address                  address            = null;
 
       if (serializedAddress != null) {
-        address = Address.Companion.fromSerialized(serializedAddress);
+        address = Address.fromSerialized(serializedAddress);
       }
 
       long date;

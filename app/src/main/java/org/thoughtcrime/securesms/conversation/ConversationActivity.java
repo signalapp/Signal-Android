@@ -85,6 +85,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -142,7 +143,6 @@ import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
@@ -1100,7 +1100,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       String groupPublicKey;
       boolean isSSKBasedClosedGroup;
       try {
-        groupPublicKey = HexEncodingKt.toHexString(ClosedGroupsProtocol.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
+        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
         isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
       } catch (IOException e) {
         groupPublicKey = null;
@@ -1109,8 +1109,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       try {
         if (isSSKBasedClosedGroup) {
           ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey);
-          initializeEnabledCheck();
-        } else if (ClosedGroupsProtocol.leaveLegacyGroup(this, groupRecipient)) {
           initializeEnabledCheck();
         } else {
           Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
@@ -2062,10 +2060,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     sendComplete(result);
     future.set(null);
 
@@ -2091,10 +2085,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     long result = MessageSender.send(context, message, threadId, false, () -> fragment.releaseOutgoingMessage(id));
-
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
 
     sendComplete(result);
   }
@@ -2517,7 +2507,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Recipient author;
 
     if (messageRecord.isOutgoing()) {
-      author = Recipient.from(this, Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
+      author = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
     } else {
       author = messageRecord.getIndividualRecipient();
     }

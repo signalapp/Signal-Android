@@ -25,14 +25,6 @@ public class SessionManagementProtocol(private val sessionResetImpl: SessionRese
     // endregion
 
     // region Sending
-    public fun shouldMessageUseFallbackEncryption(message: Any, publicKey: String, store: SignalProtocolStore): Boolean {
-//        if (sskDatabase.isSSKBasedClosedGroup(publicKey)) { return true } // We don't actually use fallback encryption but this indicates that we don't need a session
-//        if (message is SignalServiceDataMessage && message.preKeyBundle.isPresent) { return true; } // This covers session requests as well as end session messages
-//        val recipient = SignalProtocolAddress(publicKey, SignalServiceAddress.DEFAULT_DEVICE_ID)
-//        return !store.containsSession(recipient)
-        return true;
-    }
-
     /**
      * Called after an end session message is sent.
      */

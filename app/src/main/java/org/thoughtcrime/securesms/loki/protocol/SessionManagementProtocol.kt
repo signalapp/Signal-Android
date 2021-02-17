@@ -96,9 +96,6 @@ object SessionManagementProtocol {
     fun triggerSessionRestorationUI(context: Context, publicKey: String, errorTimestamp: Long) {
         val recipient = recipient(context, publicKey)
         if (recipient.isGroupRecipient) { return }
-        if (TextSecurePreferences.getRestorationTime(context) > errorTimestamp) {
-            return ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(publicKey)
-        }
         val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
         DatabaseFactory.getLokiThreadDatabase(context).addSessionRestoreDevice(threadID, publicKey)
     }

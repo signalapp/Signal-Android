@@ -19,20 +19,20 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
-import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.ThemeUtil
+import org.session.libsignal.service.loki.utilities.toHexString
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -249,7 +249,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
         var isSSKBasedClosedGroup: Boolean
         var groupPublicKey: String?
         try {
-            groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(groupID).toHexString()
+            groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString()
             isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
         } catch (e: IOException) {
             groupPublicKey = null
@@ -299,7 +299,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 isLoading = false
                 finish()
             }.failUi { exception ->
-                val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
+                val message = if (exception is ClosedGroupsProtocolV2.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
                 loader.fadeOut()
                 isLoading = false

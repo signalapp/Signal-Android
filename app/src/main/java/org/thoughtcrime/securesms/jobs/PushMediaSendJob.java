@@ -212,7 +212,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
       if (messageId >= 0) {
-        database.addMismatchedIdentity(messageId, Address.Companion.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
+        database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
         database.markAsSentFailed(messageId);
       }
     } catch (SnodeAPI.Error e) {
@@ -331,7 +331,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushMediaSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushMediaSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

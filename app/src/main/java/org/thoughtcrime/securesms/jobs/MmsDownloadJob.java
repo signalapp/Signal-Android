@@ -206,7 +206,7 @@ public class MmsDownloadJob extends BaseJob {
     Address               from;
 
     if (retrieved.getFrom() != null) {
-      from = Address.Companion.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
+      from = Address.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
     } else if (notificationFrom != null) {
       from = notificationFrom;
     } else {
@@ -215,18 +215,18 @@ public class MmsDownloadJob extends BaseJob {
 
     if (retrieved.getTo() != null) {
       for (EncodedStringValue toValue : retrieved.getTo()) {
-        members.add(Address.Companion.fromExternal(context, Util.toIsoString(toValue.getTextString())));
+        members.add(Address.fromExternal(context, Util.toIsoString(toValue.getTextString())));
       }
     }
 
     if (retrieved.getCc() != null) {
       for (EncodedStringValue ccValue : retrieved.getCc()) {
-        members.add(Address.Companion.fromExternal(context, Util.toIsoString(ccValue.getTextString())));
+        members.add(Address.fromExternal(context, Util.toIsoString(ccValue.getTextString())));
       }
     }
 
     members.add(from);
-    members.add(Address.Companion.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
+    members.add(Address.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
 
     if (retrieved.getBody() != null) {
       body = PartParser.getMessageText(retrieved.getBody());
@@ -249,7 +249,7 @@ public class MmsDownloadJob extends BaseJob {
     }
 
     if (members.size() > 2) {
-      group = Optional.of(Address.Companion.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), new LinkedList<>())));
+      group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), new LinkedList<>())));
     }
 
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);

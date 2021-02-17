@@ -163,7 +163,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {
     @Override
     public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.Companion.fromSerialized(data.getString(KEY_DESTINATION)));
+      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.fromSerialized(data.getString(KEY_DESTINATION)));
     }
   }
 }

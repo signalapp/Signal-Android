@@ -216,7 +216,7 @@ public class SignalServiceMessageSender {
                           SignalServiceReceiptMessage message)
       throws IOException {
     byte[] content = createReceiptContent(message);
-    boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
+    boolean useFallbackEncryption = true;
     sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false, message.getTTL(), useFallbackEncryption);
   }
 
@@ -244,9 +244,8 @@ public class SignalServiceMessageSender {
   {
     byte[]            content               = createMessageContent(message, recipient);
     long              timestamp             = message.getTimestamp();
-    boolean           useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(message, recipient.getNumber(), store);
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), useFallbackEncryption, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
+    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
 
 //    // Loki - This shouldn't get invoked for note to self
 //    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
@@ -854,8 +853,7 @@ public class SignalServiceMessageSender {
       SignalServiceAddress recipient = recipientIterator.next();
 
       try {
-        boolean useFallbackEncryption = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(content, recipient.getNumber(), store);
-        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer, Optional.absent());
+        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, true, isClosedGroup, notifyPNServer, Optional.absent());
         results.add(result);
       } catch (UnregisteredUserException e) {
         Log.w(TAG, e);

@@ -134,7 +134,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     @Override
     public @NonNull RetrieveProfileAvatarJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new RetrieveProfileAvatarJob(parameters,
-                                          Recipient.from(application, Address.Companion.fromSerialized(data.getString(KEY_ADDRESS)), true),
+                                          Recipient.from(application, Address.fromSerialized(data.getString(KEY_ADDRESS)), true),
                                           data.getString(KEY_PROFILE_AVATAR));
     }
   }

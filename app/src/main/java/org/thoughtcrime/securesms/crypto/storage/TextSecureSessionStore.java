@@ -29,7 +29,7 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public SessionRecord loadSession(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.Companion.fromSerialized(address.getName()), address.getDeviceId());
+      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.fromSerialized(address.getName()), address.getDeviceId());
 
       if (sessionRecord == null) {
         Log.w(TAG, "No existing session information found.");
@@ -43,14 +43,14 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public void storeSession(@NonNull SignalProtocolAddress address, @NonNull SessionRecord record) {
     synchronized (FILE_LOCK) {
-      DatabaseFactory.getSessionDatabase(context).store(Address.Companion.fromSerialized(address.getName()), address.getDeviceId(), record);
+      DatabaseFactory.getSessionDatabase(context).store(Address.fromSerialized(address.getName()), address.getDeviceId(), record);
     }
   }
 
   @Override
   public boolean containsSession(SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.Companion.fromSerialized(address.getName()), address.getDeviceId());
+      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(Address.fromSerialized(address.getName()), address.getDeviceId());
 
       return sessionRecord != null &&
              sessionRecord.getSessionState().hasSenderChain() &&
@@ -61,27 +61,27 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public void deleteSession(SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      DatabaseFactory.getSessionDatabase(context).delete(Address.Companion.fromSerialized(address.getName()), address.getDeviceId());
+      DatabaseFactory.getSessionDatabase(context).delete(Address.fromSerialized(address.getName()), address.getDeviceId());
     }
   }
 
   @Override
   public void deleteAllSessions(String name) {
     synchronized (FILE_LOCK) {
-      DatabaseFactory.getSessionDatabase(context).deleteAllFor(Address.Companion.fromSerialized(name));
+      DatabaseFactory.getSessionDatabase(context).deleteAllFor(Address.fromSerialized(name));
     }
   }
 
   @Override
   public List<Integer> getSubDeviceSessions(String name) {
     synchronized (FILE_LOCK) {
-      return DatabaseFactory.getSessionDatabase(context).getSubDevices(Address.Companion.fromSerialized(name));
+      return DatabaseFactory.getSessionDatabase(context).getSubDevices(Address.fromSerialized(name));
     }
   }
 
   public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAllFor(Address.Companion.fromSerialized(address.getName()));
+      List<SessionDatabase.SessionRow> sessions = DatabaseFactory.getSessionDatabase(context).getAllFor(Address.fromSerialized(address.getName()));
 
       for (SessionDatabase.SessionRow row : sessions) {
         if (row.getDeviceId() != address.getDeviceId()) {

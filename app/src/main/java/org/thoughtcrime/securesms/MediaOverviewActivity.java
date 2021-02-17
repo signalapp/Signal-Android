@@ -198,7 +198,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       if (address == null)      throw new AssertionError();
       if (locale == null)       throw new AssertionError();
 
-      this.recipient    = Recipient.from(getContext(), Address.Companion.fromSerialized(address), true);
+      this.recipient    = Recipient.from(getContext(), Address.fromSerialized(address), true);
       this.locale       = locale;
 
       getLoaderManager().initLoader(0, null, this);

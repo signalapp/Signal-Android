@@ -155,7 +155,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Couldn't send message due to error: ", e);
       if (messageId >= 0) {
-        database.addMismatchedIdentity(record.getId(), Address.Companion.fromSerialized(e.getE164Number()), e.getIdentityKey());
+        database.addMismatchedIdentity(record.getId(), Address.fromSerialized(e.getE164Number()), e.getIdentityKey());
         database.markAsSentFailed(record.getId());
         database.markAsPush(record.getId());
       }
@@ -266,7 +266,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushTextSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushTextSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

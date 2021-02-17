@@ -25,7 +25,7 @@ public abstract class PushReceivedJob extends BaseJob {
     synchronized (RECEIVE_LOCK) {
       try {
         if (envelope.hasSource()) {
-          Address source = Address.Companion.fromExternal(context, envelope.getSource());
+          Address source = Address.fromExternal(context, envelope.getSource());
           Recipient recipient = Recipient.from(context, source, false);
 
           if (!isActiveNumber(recipient)) {
@@ -54,7 +54,7 @@ public abstract class PushReceivedJob extends BaseJob {
   @SuppressLint("DefaultLocale")
   private void handleReceipt(SignalServiceEnvelope envelope) {
     Log.i(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(Address.Companion.fromExternal(context, envelope.getSource()),
+    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()),
                                                                                                envelope.getTimestamp()), System.currentTimeMillis());
   }
 

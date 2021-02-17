@@ -56,7 +56,7 @@ class NullMessageSendJob private constructor(parameters: Parameters, private val
         val ttl = TTLUtilities.getTTL(TTLUtilities.MessageType.Ephemeral)
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
-                Date().time, serializedContentMessage, false, ttl, false,
+                Date().time, serializedContentMessage, false, ttl,
                 false, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send null message to: $publicKey due to error: $e.")
