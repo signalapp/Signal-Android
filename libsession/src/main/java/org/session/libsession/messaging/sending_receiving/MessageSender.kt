@@ -9,7 +9,6 @@ import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
-import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.Profile
@@ -192,7 +191,7 @@ object MessageSender {
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
-                        if (message is ClosedGroupUpdate && message.kind is ClosedGroupUpdate.Kind.New) {
+                        if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) {
                             shouldNotify = true
                         }
                         if (shouldNotify) {

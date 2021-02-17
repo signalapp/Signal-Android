@@ -119,7 +119,7 @@ object MessageReceiver {
         // Parse the message
         val message: Message = ReadReceipt.fromProto(proto) ?:
                                TypingIndicator.fromProto(proto) ?:
-                               ClosedGroupUpdate.fromProto(proto) ?:
+                               ClosedGroupControlMessage.fromProto(proto) ?:
                                ExpirationTimerUpdate.fromProto(proto) ?:
                                ConfigurationMessage.fromProto(proto) ?:
                                VisibleMessage.fromProto(proto) ?: throw Error.UnknownMessage

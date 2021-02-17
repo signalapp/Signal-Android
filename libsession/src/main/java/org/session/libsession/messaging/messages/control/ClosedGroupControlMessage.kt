@@ -185,7 +185,7 @@ class ClosedGroupControlMessage() : ControlMessage() {
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {
-            Log.w(ClosedGroupUpdate.TAG, "Couldn't construct closed group update proto from: $this")
+            Log.w(TAG, "Couldn't construct closed group update proto from: $this")
             return null
         }
     }
