@@ -90,6 +90,7 @@ public class FastJobStorage implements JobStorage {
   @Override
   public synchronized @NonNull List<JobSpec> getPendingJobsWithNoDependenciesInCreatedOrder(long currentTime) {
     return Stream.of(jobs)
+                 .filter(j -> JobManagerFactories.hasFactoryForKey(j.getFactoryKey()))
                  .filterNot(JobSpec::isRunning)
                  .filter(this::firstInQueue)
                  .filter(j -> !dependenciesByJobId.containsKey(j.getId()) || dependenciesByJobId.get(j.getId()).isEmpty())
