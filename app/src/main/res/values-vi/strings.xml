@@ -597,7 +597,7 @@
   <string name="ManageGroupActivity_legacy_group_too_large">Nhóm Cũ này không thể được nâng cấp thành Nhóm Mới vì nhóm quá lớn. Kích cỡ nhóm tối đa là %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">nâng cấp nhóm này.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Đây là một Nhóm MMS không bảo mật. Để nhắn tin bảo mật, mời các liên hệ của bạn vào Signal.</string>
-  <string name="ManageGroupActivity_invite_now">Mời ngay bây giờ</string>
+  <string name="ManageGroupActivity_invite_now">Mời ngay</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">Thông báo khi tôi được nhắc tên</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Nhận thông báo khi bạn được nhắc tên trong cuộc trò chuyện đã im lặng?</string>
@@ -630,7 +630,7 @@
   <string name="ManageRecipientActivity_see_all">Xem tất cả</string>
   <string name="ManageRecipientActivity_no_groups_in_common">Không có nhóm chung</string>
   <plurals name="ManageRecipientActivity_d_groups_in_common">
-    <item quantity="other">Có chung %d nhóm</item>
+    <item quantity="other">Có %d nhóm chung</item>
   </plurals>
   <string name="ManageRecipientActivity_message_description">Tin nhắn</string>
   <string name="ManageRecipientActivity_voice_call_description">Gọi thoại</string>
@@ -914,19 +914,19 @@
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s đã đổi ảnh nhóm.</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">Ảnh nhóm đã được thay đổi.</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Bạn đã đổi quyền sửa thông tin nhóm thành \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s đã đổi quyền sửa thông tin nhóm thành \"%2$s\".</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Quyền thay đổi thông tin nhóm đã được sửa thành \"%1$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">Bạn đã đổi những người có quyền sửa thông tin nhóm thành \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s đã đổi những người có quyền sửa thông tin nhóm thành \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">Những người có quyền thay đổi thông tin nhóm đã được sửa thành \"%1$s\".</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Bạn đã đổi quyển quản lí thành viên thành \"%1$s\".</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s đã đổi quyền quản lí thành viên thành \"%2$s\".</string>
-  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Quyền thay đổi thành viên nhóm đã được sửa thành \"%1$s\".</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">Bạn đã đổi những người có quyền quản lí thành viên thành \"%1$s\".</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s đã đổi những người có quyền quản lí thành viên thành \"%2$s\".</string>
+  <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Những người có quyền quản lí thành viên đã được sửa thành \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Bạn đã bật đường dẫn nhóm với cài đặt quản trị viên xét duyệt Tắt. </string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Bạn đã bật đường dẫn nhóm với cài đặt quản trị viên xét duyệt Bật.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Bạn đã bật đường dẫn nhóm không yêu cầu quản trị viên xét duyệt.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Bạn đã bật đường dẫn nhóm bắt buộc quản trị viên xét duyệt.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Bạn đã tắt đường dẫn nhóm.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s đã bật đường dẫn nhóm với cài đặt quản trị viên xét duyệt Tắt. </string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s đã bật đường dẫn nhóm với cài đặt quản trị viên xét duyệt Bật.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s đã bật đường dẫn nhóm không yêu cầu quản trị viên xét duyệt</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s đã bật đường dẫn nhóm bắt buộc quản trị viên xét duyệt</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s đã tắt đường dẫn nhóm.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Đường dẫn nhóm đã được bật với cài đặt quản trị viên xét duyệt ở trạng thái Tắt.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Đường dẫn nhóm đã được bật với cài đặt quản trị viên xét duyệt ở trạng thái Bật</string>

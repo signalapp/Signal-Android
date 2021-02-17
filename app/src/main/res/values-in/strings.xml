@@ -2273,6 +2273,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Tinjau Anggota</string>
   <string name="ReviewCardDialogFragment__review_request">Tinjau Permintaan</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$danggota grup memiliki nama yang sama, tinjau anggota-anggota di bawah dan pilih tindakan.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Jika anda tidak yakin dari mana permintaannya berasal, tinjau kontak-kontak dibawah dan ambil tindakan.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Tidak ada grup lain yang sama.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Tidak ada grup yang sama.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2325,7 +2327,11 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ShareActivity-->
   <string name="ShareActivity__share">Bagikan</string>
   <string name="ShareActivity__send">Kirim</string>
+  <string name="ShareActivity__s_comma">%1$s,</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">Berbagi ke beberapa percakapan hanya didukung untuk pesan Signal.</string>
   <!--MultiShareDialogs-->
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">Gagal mengirim ke beberapa pengguna</string>
+  <string name="MultiShareDialogs__you_can_only_share_with_up_to">Anda hanya dapat berbagi dengan maksimal %1$d percakapan</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Teruskan pesan</string>
   <!--ChatWallpaperActivity-->
@@ -2338,10 +2344,15 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Hapus gambar latar? Anda akan menghapus gambar latar semua percakapan.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Kembalikan semua gambar latar.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Kembalikan semua gambar latar, termasuk gambar untuk percakapan?</string>
+  <string name="ChatWallpaperFragment__contact_name">Nama kontak</string>
   <string name="ChatWallpaperFragment__reset">Atur ulang</string>
+  <string name="ChatWallpaperFragment__clear">Bersihkan</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Pratinjau gambar latar</string>
   <!--ChatWallpaperSelectionFragment-->
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Pilih dari galeri</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Preset</string>
   <!--ChatWallpaperPreviewActivity-->
+  <string name="ChatWallpaperPreviewActivity__preview">Pratinjau</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Atur gambar latar</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Usap untuk lihat lebih banyak</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Atur gambar latar untuk semua percakapan</string>

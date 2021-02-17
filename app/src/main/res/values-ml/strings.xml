@@ -1120,7 +1120,7 @@
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">നിങ്ങൾ സൃഷ്ടിച്ച %1$d+ അക്ക കോഡാണ് നിങ്ങളുടെ PIN, അത് സംഖ്യാ അല്ലെങ്കിൽ ആൽഫാന്യൂമെറിക് ആകാം. \n\nനിങ്ങളുടെ PIN ഓർമിക്കാൻ കഴിയുന്നില്ലെങ്കിൽ, നിങ്ങൾക്ക് പുതിയൊരെണ്ണം സൃഷ്ടിക്കാൻ കഴിയും. നിങ്ങൾക്ക് അക്കൗണ്ട് രജിസ്റ്റർ ചെയ്യാനും ഉപയോഗിക്കാനും കഴിയും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലുള്ള ചില സംരക്ഷിച്ച ക്രമീകരണങ്ങൾ നഷ്‌ടപ്പെടും.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">നിങ്ങൾക്ക് നിങ്ങളുടെ PIN ഓർമ്മിക്കാൻ കഴിയുന്നില്ലായെങ്കിൽ, നിങ്ങൾക്ക് പുതിയ ഒരെണ്ണം സൃഷ്ടിക്കാവുന്നതാണ്.  നിങ്ങൾക്ക് രജിസ്റ്റർ ചെയ്യാനും നിങ്ങളുടെ അക്കൗണ്ട് ഉപയോഗിക്കാനും സാധിക്കും, പക്ഷേ നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പോലെ സേവ് ചെയ്തിട്ടുള്ള ചില സെറ്റിംഗ്സ് നിങ്ങൾക്ക് നഷ്ടമാകും.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">പുതിയ PIN സൃഷ്ടിക്കുക</string>
-  <string name="PinRestoreEntryFragment_contact_support">കോൺടാക്ട് സഹായം</string>
+  <string name="PinRestoreEntryFragment_contact_support">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
   <string name="PinRestoreEntryFragment_cancel">റദ്ദാക്കുക</string>
   <string name="PinRestoreEntryFragment_skip">ഒഴിവാക്കുക</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">

@@ -1923,7 +1923,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences_chats__when_using_mobile_data">Al usar datos móviles</string>
   <string name="preferences_chats__when_using_wifi">Al usar Wi-Fi</string>
   <string name="preferences_chats__when_roaming">En itinerancia (roaming)</string>
-  <string name="preferences_chats__media_auto_download">Autodescarga de adjuntos</string>
+  <string name="preferences_chats__media_auto_download">Descarga automática de adjuntos</string>
   <string name="preferences_chats__message_history">Historial de mensajes</string>
   <string name="preferences_storage__storage_usage">Uso de almacenamiento</string>
   <string name="preferences_storage__photos">Fotos</string>

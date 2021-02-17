@@ -936,7 +936,7 @@
   </plurals>
   <!--GV2 invitation revokes-->
   <plurals name="MessageRecord_you_revoked_invites">
-    <item quantity="one">%@ ரத்து செய்யப்பட்டது உங்கள் குழுவிற்கு அழைப்பு.</item>
+    <item quantity="one">ரத்து செய்யப்பட்டது உங்கள் குழுவிற்கு அழைப்பு.</item>
     <item quantity="other"> குழுவிற்கான %1$d அழைப்புகளை நீங்கள் ரத்து செய்தீர்கள்.</item>
   </plurals>
   <plurals name="MessageRecord_s_revoked_invites">

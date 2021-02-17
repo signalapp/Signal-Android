@@ -31,7 +31,7 @@
   <string name="ApplicationPreferencesActivity_off">désactivé</string>
   <string name="ApplicationPreferencesActivity_Off">Désactivé</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">Textos %1$s, messages multimédias %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Verrouillage de l’écran %1$s, blocage de l’inscription %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Verrou d’écran %1$s, blocage de l’inscription %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Thème %1$s, langue %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Un NIP est requis pour le blocage de l’inscription. Pour désactiver le NIP, veuillez d’abord désactiver le blocage de l’inscription.</string>
   <string name="ApplicationPreferencesActivity_pin_created">Le NIP a été créé.</string>
@@ -274,8 +274,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
   <string name="ConversationFragment_failed_to_open_message">Échec d’ouverture du message</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vous pouvez faire glisser un message vers la droite pour y répondre rapidement</string>
-  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez faire glisser un message vers la gauche pour y répondre rapidement</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vous pouvez balayer un message vers la droite pour y répondre rapidement</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vous pouvez balayer un message vers la gauche pour y répondre rapidement</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Les fichiers multimédias éphémères sortants sont supprimés automatiquement après l’envoi</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà visualisé ce message</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Vous pouvez ajouter des notes à votre intention dans cette conversation.\nSi des appareils sont reliés à votre compte, les nouvelles notes seront synchronisées.</string>
@@ -604,7 +604,7 @@
   <string name="ManageGroupActivity_mute_notifications">Notifications en sourdine</string>
   <string name="ManageGroupActivity_custom_notifications">Notifications personnalisées</string>
   <string name="ManageGroupActivity_mentions">Mentions</string>
-  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran des conversations</string>
+  <string name="ManageGroupActivity_chat_wallpaper">Fond d’écran de la conversation</string>
   <string name="ManageGroupActivity_until_s">Jusqu’à %1$s</string>
   <string name="ManageGroupActivity_off">Désactivé</string>
   <string name="ManageGroupActivity_on">Activé</string>
@@ -649,7 +649,7 @@
   <string name="ManageRecipientActivity_this_person_is_in_your_contacts">Cette personne est dans vos contacts</string>
   <string name="ManageRecipientActivity_disappearing_messages">Messages éphémères</string>
   <string name="ManageRecipientActivity_chat_color">Couleur de la conversation</string>
-  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran des conversations</string>
+  <string name="ManageRecipientActivity_chat_wallpaper">Fond d’écran de la conversation</string>
   <string name="ManageRecipientActivity_block">Bloquer</string>
   <string name="ManageRecipientActivity_unblock">Débloquer</string>
   <string name="ManageRecipientActivity_view_safety_number">Afficher le numéro de sécurité</string>
@@ -1497,7 +1497,7 @@
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Occupé sur un appareil relié.</string>
   <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Quelqu’un s’est joint à cet appel avec un numéro de sécurité qui a changé.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_swipe_up_to_change_views">Faire glisser vers le haut pour changer de vue</string>
+  <string name="WebRtcCallScreen_swipe_up_to_change_views">Balayer vers le haut pour changer de vue</string>
   <!--WebRtcCallScreen V2-->
   <string name="WebRtcCallScreen__decline">Refuser</string>
   <string name="WebRtcCallScreen__answer">Répondre</string>
@@ -1730,8 +1730,8 @@
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Partager le numéro de sécurité</string>
   <!--webrtc_answer_decline_button-->
-  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Faire glisser vers le haut pour répondre</string>
-  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Faire glisser vers le bas pour refuser</string>
+  <string name="webrtc_answer_decline_button__swipe_up_to_answer">Balayer vers le haut pour répondre</string>
+  <string name="webrtc_answer_decline_button__swipe_down_to_reject">Balayer vers le bas pour refuser</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Des problèmes demandent votre attention</string>
   <string name="message_details_header__sent">Envoyé</string>
@@ -1835,11 +1835,11 @@
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choisissez votre entrée de contact dans la liste de contacts.</string>
   <string name="preferences__change_passphrase">Changer la phrase de passe</string>
   <string name="preferences__change_your_passphrase">Changer votre phrase de passe</string>
-  <string name="preferences__enable_passphrase">Activer le verrouillage d’écran par phrase de passe</string>
+  <string name="preferences__enable_passphrase">Activer le verrou d’écran avec phrase de passe</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Verrouiller l’écran et les notifications avec une phrase de passe</string>
   <string name="preferences__screen_security">Sécurité de l’écran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquer les captures d’écran dans la liste des récents et dans l’appli</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Verrouiller Signal automatiquement après un délai précis d’inactivité</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Verrouiller Signal automatiquement après un délai d’inactivité déterminé</string>
   <string name="preferences__inactivity_timeout_passphrase">Phrase de passe du délai d’inactivité</string>
   <string name="preferences__inactivity_timeout_interval">Délai d’inactivité</string>
   <string name="preferences__notifications">Notifications</string>
@@ -1890,7 +1890,7 @@
   <string name="preferences__dark_theme">Sombre</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
-  <string name="preferences__chat_wallpaper">Fond d’écran des conversations</string>
+  <string name="preferences__chat_wallpaper">Fond d’écran de la conversation</string>
   <string name="preferences__disable_pin">Désactiver le NIP</string>
   <string name="preferences__enable_pin">Activer le NIP</string>
   <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Si vous désactivez le NIP, vous perdrez toutes vos données lors de votre réinscription sur Signal, à moins que vous ne les sauvegardiez et les restauriez manuellement. Vous ne pouvez pas activer le blocage de l’inscription si le NIP est désactivé.</string>
@@ -2271,8 +2271,8 @@
   <string name="PhoneNumberPrivacy_nobody">Personne</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">Votre numéro de téléphone sera visible par toutes les personnes et tous les groupes avec lesquels vous échangez des messages.</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">Quiconque a votre numéro de téléphone dans ses contacts vous verra comme contact sur Signal. Les autres pourront vous trouver dans Recherche.</string>
-  <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrouillage de l’écran d’Android ou une empreinte</string>
+  <string name="preferences_app_protection__screen_lock">Verrou d’écran</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Verrouiller l’accès à Signal avec le verrou d’écran d’Android ou avec une empreinte</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Délai d’inactivité avant verrouillage de l’écran</string>
   <string name="preferences_app_protection__signal_pin">NIP Signal</string>
   <string name="preferences_app_protection__create_a_pin">Créer un NIP</string>
@@ -2413,13 +2413,13 @@
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">Transférer le message</string>
   <!--ChatWallpaperActivity-->
-  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran des conversations</string>
+  <string name="ChatWallpaperActivity__chat_wallpaper">Fond d’écran de la conversation</string>
   <!--ChatWallpaperFragment-->
   <string name="ChatWallpaperFragment__set_wallpaper">Définir un fond d’écran</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Le thème sombre atténue le fond d’écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper">Effacer le fond d’écran</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Effacer le fond d’écran pour cette conversation ?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Effacer le fond d’écran ? Les fonds d’écran personnalisés que vous avez définis pour vos conversations ne seront pas effacés.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper">Réinitialiser le fond d’écran</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Réinitialiser le fond d’écran de cette conversation ?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Réinitialiser le fond d’écran ? Les fonds d’écran personnalisés que vous avez définis pour vos conversations ne seront pas réinitialisés.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Réinitialiser tous les fonds d’écran</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Réinitialiser tous les fonds d’écran, dont les fonds d’écran personnalisés que vous avez définis pour vos conversations ?</string>
   <string name="ChatWallpaperFragment__contact_name">Nom du contact</string>
@@ -2432,7 +2432,7 @@
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Aperçu</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Définir le fond d’écran</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Faire glisser pour prévisualiser d’autres fonds d’écran</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Balayez pour prévisualiser d’autres fonds d’écran</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Définir le fond d’écran pour toutes les conversations</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Définir le fond d’écran pour %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">L’autorisation Stockage est exigée pour afficher votre galerie.</string>
