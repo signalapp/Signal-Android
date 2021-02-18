@@ -44,39 +44,39 @@ public final class CameraXModelBlacklist {
     put("EVR-TL00",ALL_SDK_VERSION);
 
     // Huawei P20
-    put("EML-L29C",ALL_SDK_VERSION);
-    put("EML-L09C",ALL_SDK_VERSION);
-    put("EML-AL00",ALL_SDK_VERSION);
-    put("EML-TL00",ALL_SDK_VERSION);
-    put("EML-L29",ALL_SDK_VERSION);
-    put("EML-L09",ALL_SDK_VERSION);
+    put("EML-L29C",28);
+    put("EML-L09C",28);
+    put("EML-AL00",28);
+    put("EML-TL00",28);
+    put("EML-L29",28);
+    put("EML-L09",28);
 
     // Huawei P20 Pro
-    put("CLT-L29C",ALL_SDK_VERSION);
-    put("CLT-L29",ALL_SDK_VERSION);
-    put("CLT-L09C",ALL_SDK_VERSION);
-    put("CLT-L09",ALL_SDK_VERSION);
-    put("CLT-AL00",ALL_SDK_VERSION);
-    put("CLT-AL01",ALL_SDK_VERSION);
-    put("CLT-TL01",ALL_SDK_VERSION);
-    put("CLT-AL00L",ALL_SDK_VERSION);
-    put("CLT-L04",ALL_SDK_VERSION);
-    put("HW-01K",ALL_SDK_VERSION);
+    put("CLT-L29C",28);
+    put("CLT-L29",28);
+    put("CLT-L09C",28);
+    put("CLT-L09",28);
+    put("CLT-AL00",28);
+    put("CLT-AL01",28);
+    put("CLT-TL01",28);
+    put("CLT-AL00L",28);
+    put("CLT-L04",28);
+    put("HW-01K",28);
 
     // Huawei P30
-    put("ELE-L29",ALL_SDK_VERSION);
-    put("ELE-L09",ALL_SDK_VERSION);
-    put("ELE-AL00",ALL_SDK_VERSION);
-    put("ELE-TL00",ALL_SDK_VERSION);
-    put("ELE-L04",ALL_SDK_VERSION);
+    put("ELE-L29",28);
+    put("ELE-L09",28);
+    put("ELE-AL00",28);
+    put("ELE-TL00",28);
+    put("ELE-L04",28);
 
     // Huawei P30 Pro
-    put("VOG-L29",ALL_SDK_VERSION);
-    put("VOG-L09",ALL_SDK_VERSION);
-    put("VOG-AL00",ALL_SDK_VERSION);
-    put("VOG-TL00",ALL_SDK_VERSION);
-    put("VOG-L04",ALL_SDK_VERSION);
-    put("VOG-AL10",ALL_SDK_VERSION);
+    put("VOG-L29",28);
+    put("VOG-L09",28);
+    put("VOG-AL00",28);
+    put("VOG-TL00",28);
+    put("VOG-L04",28);
+    put("VOG-AL10",28);
 
     // Huawei Honor 10
     put("COL-AL10",ALL_SDK_VERSION);
