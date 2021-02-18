@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.preferences.widgets;
 
+import androidx.annotation.NonNull;
+
 public class NotificationPrivacyPreference {
 
   private final String preference;
@@ -16,4 +18,8 @@ public class NotificationPrivacyPreference {
     return "all".equals(preference);
   }
 
+  @Override
+  public @NonNull String toString() {
+    return preference;
+  }
 }
