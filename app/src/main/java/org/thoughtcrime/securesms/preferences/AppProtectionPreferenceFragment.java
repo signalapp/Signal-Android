@@ -235,6 +235,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class ScreenLockListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+      Log.w(TAG, "Screen lock preference changed: " + newValue);
+
       boolean enabled = (Boolean)newValue;
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
