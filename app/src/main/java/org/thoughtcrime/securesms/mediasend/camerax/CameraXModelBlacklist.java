@@ -2,116 +2,119 @@ package org.thoughtcrime.securesms.mediasend.camerax;
 
 import android.os.Build;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 public final class CameraXModelBlacklist {
-  private static final Set<String> BLACKLIST = new HashSet<String>() {{
+  // we list here the name of the phone and the maximum sdk version to be blacklisted
+  // if the device is listed here and has a sdk version <= the value listed, it will be blacklisted
+  private static Integer ALL_SDK_VERSION = Integer.MAX_VALUE;
+  private static final HashMap<String, Integer> BLACKLIST = new HashMap<String, Integer>() {{
     // Pixel 4
-    add("Pixel 4");
-    add("Pixel 4 XL");
+    put("Pixel 4", ALL_SDK_VERSION);
+    put("Pixel 4 XL", ALL_SDK_VERSION);
 
     // Huawei Mate 10
-    add("ALP-L29");
-    add("ALP-L09");
-    add("ALP-AL00");
+    put("ALP-L29",ALL_SDK_VERSION);
+    put("ALP-L09",ALL_SDK_VERSION);
+    put("ALP-AL00",ALL_SDK_VERSION);
 
     // Huawei Mate 10 Pro
-    add("BLA-L29");
-    add("BLA-L09");
-    add("BLA-AL00");
-    add("BLA-A09");
+    put("BLA-L29",ALL_SDK_VERSION);
+    put("BLA-L09",ALL_SDK_VERSION);
+    put("BLA-AL00",ALL_SDK_VERSION);
+    put("BLA-A09",ALL_SDK_VERSION);
 
     // Huawei Mate 20
-    add("HMA-L29");
-    add("HMA-L09");
-    add("HMA-LX9");
-    add("HMA-AL00");
+    put("HMA-L29",ALL_SDK_VERSION);
+    put("HMA-L09",ALL_SDK_VERSION);
+    put("HMA-LX9",ALL_SDK_VERSION);
+    put("HMA-AL00",ALL_SDK_VERSION);
 
     // Huawei Mate 20 Pro
-    add("LYA-L09");
-    add("LYA-L29");
-    add("LYA-AL00");
-    add("LYA-AL10");
-    add("LYA-TL00");
-    add("LYA-L0C");
+    put("LYA-L09",ALL_SDK_VERSION);
+    put("LYA-L29",ALL_SDK_VERSION);
+    put("LYA-AL00",ALL_SDK_VERSION);
+    put("LYA-AL10",ALL_SDK_VERSION);
+    put("LYA-TL00",ALL_SDK_VERSION);
+    put("LYA-L0C",ALL_SDK_VERSION);
 
     // Huawei Mate 20 X
-    add("EVR-L29");
-    add("EVR-AL00");
-    add("EVR-TL00");
+    put("EVR-L29",ALL_SDK_VERSION);
+    put("EVR-AL00",ALL_SDK_VERSION);
+    put("EVR-TL00",ALL_SDK_VERSION);
 
     // Huawei P20
-    add("EML-L29C");
-    add("EML-L09C");
-    add("EML-AL00");
-    add("EML-TL00");
-    add("EML-L29");
-    add("EML-L09");
+    put("EML-L29C",ALL_SDK_VERSION);
+    put("EML-L09C",ALL_SDK_VERSION);
+    put("EML-AL00",ALL_SDK_VERSION);
+    put("EML-TL00",ALL_SDK_VERSION);
+    put("EML-L29",ALL_SDK_VERSION);
+    put("EML-L09",ALL_SDK_VERSION);
 
     // Huawei P20 Pro
-    add("CLT-L29C");
-    add("CLT-L29");
-    add("CLT-L09C");
-    add("CLT-L09");
-    add("CLT-AL00");
-    add("CLT-AL01");
-    add("CLT-TL01");
-    add("CLT-AL00L");
-    add("CLT-L04");
-    add("HW-01K");
+    put("CLT-L29C",ALL_SDK_VERSION);
+    put("CLT-L29",ALL_SDK_VERSION);
+    put("CLT-L09C",ALL_SDK_VERSION);
+    put("CLT-L09",ALL_SDK_VERSION);
+    put("CLT-AL00",ALL_SDK_VERSION);
+    put("CLT-AL01",ALL_SDK_VERSION);
+    put("CLT-TL01",ALL_SDK_VERSION);
+    put("CLT-AL00L",ALL_SDK_VERSION);
+    put("CLT-L04",ALL_SDK_VERSION);
+    put("HW-01K",ALL_SDK_VERSION);
 
     // Huawei P30
-    add("ELE-L29");
-    add("ELE-L09");
-    add("ELE-AL00");
-    add("ELE-TL00");
-    add("ELE-L04");
+    put("ELE-L29",ALL_SDK_VERSION);
+    put("ELE-L09",ALL_SDK_VERSION);
+    put("ELE-AL00",ALL_SDK_VERSION);
+    put("ELE-TL00",ALL_SDK_VERSION);
+    put("ELE-L04",ALL_SDK_VERSION);
 
     // Huawei P30 Pro
-    add("VOG-L29");
-    add("VOG-L09");
-    add("VOG-AL00");
-    add("VOG-TL00");
-    add("VOG-L04");
-    add("VOG-AL10");
+    put("VOG-L29",ALL_SDK_VERSION);
+    put("VOG-L09",ALL_SDK_VERSION);
+    put("VOG-AL00",ALL_SDK_VERSION);
+    put("VOG-TL00",ALL_SDK_VERSION);
+    put("VOG-L04",ALL_SDK_VERSION);
+    put("VOG-AL10",ALL_SDK_VERSION);
 
     // Huawei Honor 10
-    add("COL-AL10");
-    add("COL-L29");
-    add("COL-L19");
+    put("COL-AL10",ALL_SDK_VERSION);
+    put("COL-L29",ALL_SDK_VERSION);
+    put("COL-L19",ALL_SDK_VERSION);
 
     // Huawei Honor 20
-    add("YAL-L21");
-    add("YAL-AL00");
-    add("YAL-TL00");
+    put("YAL-L21",ALL_SDK_VERSION);
+    put("YAL-AL00",ALL_SDK_VERSION);
+    put("YAL-TL00",ALL_SDK_VERSION);
 
     // Samsung Galaxy S6
-    add("SM-G920F");
+    put("SM-G920F",ALL_SDK_VERSION);
 
     // Honor View 10
-    add("BKL-AL20");
-    add("BKL-L04");
-    add("BKL-L09");
-    add("BKL-AL00");
+    put("BKL-AL20",ALL_SDK_VERSION);
+    put("BKL-L04",ALL_SDK_VERSION);
+    put("BKL-L09",ALL_SDK_VERSION);
+    put("BKL-AL00",ALL_SDK_VERSION);
 
     // Honor View 20
-    add("PCT-AL10");
-    add("PCT-TL10");
-    add("PCT-L29");
+    put("PCT-AL10",ALL_SDK_VERSION);
+    put("PCT-TL10",ALL_SDK_VERSION);
+    put("PCT-L29",ALL_SDK_VERSION);
 
     // Honor Play
-    add("COR-L29");
-    add("COR-L09");
-    add("COR-AL00");
-    add("COR-AL10");
-    add("COR-TL10");
+    put("COR-L29",ALL_SDK_VERSION);
+    put("COR-L09",ALL_SDK_VERSION);
+    put("COR-AL00",ALL_SDK_VERSION);
+    put("COR-AL10",ALL_SDK_VERSION);
+    put("COR-TL10",ALL_SDK_VERSION);
   }};
 
   private CameraXModelBlacklist() {
   }
 
   public static boolean isBlacklisted() {
-    return BLACKLIST.contains(Build.MODEL);
+    final Integer max_invalid_sdk = BLACKLIST.get(Build.MODEL);
+    return max_invalid_sdk != null && Build.VERSION.SDK_INT <= max_invalid_sdk;
   }
 }
