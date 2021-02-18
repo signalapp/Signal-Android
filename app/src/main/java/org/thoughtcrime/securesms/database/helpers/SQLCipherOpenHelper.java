@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -131,9 +130,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -186,8 +182,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV12) {
         db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-        db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
-        db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateCurrentClosedGroupRatchetTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateClosedGroupPrivateKeyTableCommand());
       }
 
       if (oldVersion < lokiV13) {
@@ -199,7 +195,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV15) {
-        db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateOldClosedGroupRatchetTableCommand());
       }
       
       if (oldVersion < lokiV16) {

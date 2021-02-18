@@ -37,4 +37,5 @@ interface LokiAPIDatabaseProtocol {
     fun getUserX25519KeyPair(): ECKeyPair
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): List<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
+    fun isClosedGroup(groupPublicKey: String): Boolean
 }

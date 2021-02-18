@@ -3,23 +3,20 @@ package org.session.libsignal.service.loki.protocol.sessionmanagement
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.loki.SessionResetProtocol
 import org.session.libsignal.libsignal.loki.SessionResetStatus
-import org.session.libsignal.libsignal.state.SignalProtocolStore
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.SignalServiceMessageSender
 import org.session.libsignal.service.api.push.SignalServiceAddress
-import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol
 
-public class SessionManagementProtocol(private val sessionResetImpl: SessionResetProtocol, private val sskDatabase: SharedSenderKeysDatabaseProtocol,
-    private val delegate: SessionManagementProtocolDelegate) {
+public class SessionManagementProtocol(private val sessionResetImpl: SessionResetProtocol, private val delegate: SessionManagementProtocolDelegate) {
 
     // region Initialization
     companion object {
 
         public lateinit var shared: SessionManagementProtocol
 
-        public fun configureIfNeeded(sessionResetImpl: SessionResetProtocol, sskDatabase: SharedSenderKeysDatabaseProtocol, delegate: SessionManagementProtocolDelegate) {
+        public fun configureIfNeeded(sessionResetImpl: SessionResetProtocol, delegate: SessionManagementProtocolDelegate) {
             if (::shared.isInitialized) { return; }
-            shared = SessionManagementProtocol(sessionResetImpl, sskDatabase, delegate)
+            shared = SessionManagementProtocol(sessionResetImpl, delegate)
         }
     }
     // endregion

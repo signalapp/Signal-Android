@@ -16,6 +16,7 @@ import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.session.libsignal.utilities.Hex
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import java.util.*
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
@@ -452,6 +453,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         return database.getAll(closedGroupPublicKeysTable, null, null) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(Companion.groupPublicKey))
         }.toSet()
+    }
+
+    override fun isClosedGroup(groupPublicKey: String): Boolean {
+        if (!PublicKeyValidation.isValid(groupPublicKey)) { return false }
+        return getAllClosedGroupPublicKeys().contains(groupPublicKey)
     }
 
     fun removeClosedGroupPublicKey(groupPublicKey: String) {

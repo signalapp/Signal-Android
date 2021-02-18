@@ -61,7 +61,7 @@ class ClosedGroupPoller {
     // region Private API
     private fun poll(): List<Promise<Unit, Exception>> {
         if (!isPolling) { return listOf() }
-        val publicKeys = MessagingConfiguration.shared.sskDatabase.getAllClosedGroupPublicKeys()
+        val publicKeys = MessagingConfiguration.shared.storage.getAllClosedGroupPublicKeys()
         return publicKeys.map { publicKey ->
             val promise = SnodeAPI.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure

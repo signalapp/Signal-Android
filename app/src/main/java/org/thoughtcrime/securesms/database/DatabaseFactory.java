@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 
 public class DatabaseFactory {
 
@@ -67,7 +66,6 @@ public class DatabaseFactory {
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
-  private final SharedSenderKeysDatabase sskDatabase;
   private final SessionJobDatabase sessionJobDatabase;
 
   // Refactor
@@ -176,10 +174,6 @@ public class DatabaseFactory {
     return getInstance(context).lokiBackupFilesDatabase;
   }
 
-  public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
-    return getInstance(context).sskDatabase;
-  }
-
   public static SessionJobDatabase getSessionJobDatabase(Context context) {
     return getInstance(context).sessionJobDatabase;
   }
@@ -229,7 +223,6 @@ public class DatabaseFactory {
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
-    this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
     this.storage                   = new Storage(context, databaseHelper);
     this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
     this.sessionJobDatabase        = new SessionJobDatabase(context, databaseHelper);

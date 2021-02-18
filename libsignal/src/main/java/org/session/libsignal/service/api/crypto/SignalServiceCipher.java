@@ -88,8 +88,6 @@ import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
-import org.session.libsignal.service.loki.protocol.closedgroups.ClosedGroupUtilities;
-import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
 
 import java.io.ByteArrayInputStream;
@@ -115,7 +113,6 @@ public class SignalServiceCipher {
 
   private final SignalProtocolStore              signalProtocolStore;
   private final SessionResetProtocol             sessionResetProtocol;
-  private final SharedSenderKeysDatabaseProtocol sskDatabase;
   private final SignalServiceAddress             localAddress;
   private final SessionProtocol                  sessionProtocolImpl;
   private final LokiAPIDatabaseProtocol          apiDB;
@@ -123,7 +120,6 @@ public class SignalServiceCipher {
 
   public SignalServiceCipher(SignalServiceAddress localAddress,
                              SignalProtocolStore signalProtocolStore,
-                             SharedSenderKeysDatabaseProtocol sskDatabase,
                              SessionResetProtocol sessionResetProtocol,
                              SessionProtocol sessionProtocolImpl,
                              LokiAPIDatabaseProtocol apiDB,
@@ -131,56 +127,55 @@ public class SignalServiceCipher {
   {
     this.signalProtocolStore  = signalProtocolStore;
     this.sessionResetProtocol = sessionResetProtocol;
-    this.sskDatabase          = sskDatabase;
     this.localAddress         = localAddress;
     this.sessionProtocolImpl  = sessionProtocolImpl;
     this.apiDB                = apiDB;
     this.certificateValidator = certificateValidator;
   }
 
-  public OutgoingPushMessage encrypt(SignalProtocolAddress        destination,
-                                     Optional<UnidentifiedAccess> unidentifiedAccess,
-                                     byte[]                       unpaddedMessage)
-          throws UntrustedIdentityException, InvalidKeyException, IOException
-  {
-    if (unidentifiedAccess.isPresent() && sskDatabase.isSSKBasedClosedGroup(destination.getName())) {
-      String                userPublicKey         = localAddress.getNumber();
-      SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(userPublicKey, 1);
-      SealedSessionCipher   sessionCipher         = new SealedSessionCipher(signalProtocolStore, sessionResetProtocol, signalProtocolAddress);
-      PushTransportDetails  transportDetails      = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
-      byte[]                plaintext             = transportDetails.getPaddedMessageBody(unpaddedMessage);
-      byte[]                ciphertext            = ClosedGroupUtilities.encrypt(plaintext, destination.getName(), userPublicKey);
-      String                body                  = Base64.encodeBytes(ciphertext);
-      int                   remoteRegistrationId  = sessionCipher.getRemoteRegistrationId(destination);
-      return new OutgoingPushMessage(Type.CLOSED_GROUP_CIPHERTEXT_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
-    } else if (unidentifiedAccess.isPresent()) {
-      SealedSessionCipher  sessionCipher        = new SealedSessionCipher(signalProtocolStore, sessionResetProtocol, new SignalProtocolAddress(localAddress.getNumber(), 1));
-      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
-      byte[]               ciphertext           = sessionCipher.encrypt(destination, unidentifiedAccess.get().getUnidentifiedCertificate(), transportDetails.getPaddedMessageBody(unpaddedMessage));
-      String               body                 = Base64.encodeBytes(ciphertext);
-      int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId(destination);
-
-      return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
-    } else {
-      SessionCipher        sessionCipher        = new SessionCipher(signalProtocolStore, destination);
-      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion());
-      CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
-      int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
-      String               body                 = Base64.encodeBytes(message.serialize());
-
-      int type;
-
-      switch (message.getType()) {
-        case CiphertextMessage.PREKEY_TYPE:             type = Type.PREKEY_BUNDLE_VALUE;    break;
-        case CiphertextMessage.WHISPER_TYPE:            type = Type.CIPHERTEXT_VALUE;       break;
-        case CiphertextMessage.FALLBACK_MESSAGE_TYPE:   type = Type.FALLBACK_MESSAGE_VALUE; break;
-        case CiphertextMessage.CLOSED_GROUP_CIPHERTEXT: type = Type.CLOSED_GROUP_CIPHERTEXT_VALUE; break;
-        default: throw new AssertionError("Bad type: " + message.getType());
-      }
-
-      return new OutgoingPushMessage(type, destination.getDeviceId(), remoteRegistrationId, body);
-    }
-  }
+//  public OutgoingPushMessage encrypt(SignalProtocolAddress        destination,
+//                                     Optional<UnidentifiedAccess> unidentifiedAccess,
+//                                     byte[]                       unpaddedMessage)
+//          throws UntrustedIdentityException, InvalidKeyException, IOException
+//  {
+//    if (unidentifiedAccess.isPresent() && sskDatabase.isSSKBasedClosedGroup(destination.getName())) {
+//      String                userPublicKey         = localAddress.getNumber();
+//      SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(userPublicKey, 1);
+//      SealedSessionCipher   sessionCipher         = new SealedSessionCipher(signalProtocolStore, sessionResetProtocol, signalProtocolAddress);
+//      PushTransportDetails  transportDetails      = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
+//      byte[]                plaintext             = transportDetails.getPaddedMessageBody(unpaddedMessage);
+//      byte[]                ciphertext            = ClosedGroupUtilities.encrypt(plaintext, destination.getName(), userPublicKey);
+//      String                body                  = Base64.encodeBytes(ciphertext);
+//      int                   remoteRegistrationId  = sessionCipher.getRemoteRegistrationId(destination);
+//      return new OutgoingPushMessage(Type.CLOSED_GROUP_CIPHERTEXT_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
+//    } else if (unidentifiedAccess.isPresent()) {
+//      SealedSessionCipher  sessionCipher        = new SealedSessionCipher(signalProtocolStore, sessionResetProtocol, new SignalProtocolAddress(localAddress.getNumber(), 1));
+//      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
+//      byte[]               ciphertext           = sessionCipher.encrypt(destination, unidentifiedAccess.get().getUnidentifiedCertificate(), transportDetails.getPaddedMessageBody(unpaddedMessage));
+//      String               body                 = Base64.encodeBytes(ciphertext);
+//      int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId(destination);
+//
+//      return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
+//    } else {
+//      SessionCipher        sessionCipher        = new SessionCipher(signalProtocolStore, destination);
+//      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion());
+//      CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
+//      int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
+//      String               body                 = Base64.encodeBytes(message.serialize());
+//
+//      int type;
+//
+//      switch (message.getType()) {
+//        case CiphertextMessage.PREKEY_TYPE:             type = Type.PREKEY_BUNDLE_VALUE;    break;
+//        case CiphertextMessage.WHISPER_TYPE:            type = Type.CIPHERTEXT_VALUE;       break;
+//        case CiphertextMessage.FALLBACK_MESSAGE_TYPE:   type = Type.FALLBACK_MESSAGE_VALUE; break;
+//        case CiphertextMessage.CLOSED_GROUP_CIPHERTEXT: type = Type.CLOSED_GROUP_CIPHERTEXT_VALUE; break;
+//        default: throw new AssertionError("Bad type: " + message.getType());
+//      }
+//
+//      return new OutgoingPushMessage(type, destination.getDeviceId(), remoteRegistrationId, body);
+//    }
+//  }
 
   /**
    * Decrypt a received {@link SignalServiceEnvelope}

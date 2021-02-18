@@ -1098,16 +1098,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient groupRecipient = getRecipient();
       String groupPublicKey;
-      boolean isSSKBasedClosedGroup;
+      boolean isClosedGroup;
       try {
         groupPublicKey = HexEncodingKt.toHexString(GroupUtil.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
-        isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
+        isClosedGroup = DatabaseFactory.getLokiAPIDatabase(this).isClosedGroup(groupPublicKey);
       } catch (IOException e) {
         groupPublicKey = null;
-        isSSKBasedClosedGroup = false;
+        isClosedGroup = false;
       }
       try {
-        if (isSSKBasedClosedGroup) {
+        if (isClosedGroup) {
           ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey);
           initializeEnabledCheck();
         } else {

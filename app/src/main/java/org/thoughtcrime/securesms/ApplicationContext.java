@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.loki.api.PublicChatManager;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
@@ -182,12 +181,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiAPIDatabase apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
     LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
-    SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     MessagingConfiguration.Companion.configure(this,
                                                 DatabaseFactory.getStorage(this),
-                                                sskDatabase,
                                                 DatabaseFactory.getAttachmentProvider(this),
                                                 new SessionProtocolImpl(this));
     if (userPublicKey != null) {
@@ -507,8 +504,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
       return Unit.INSTANCE;
     });
-    SharedSenderKeysDatabase sskDatabase = DatabaseFactory.getSSKDatabase(this);
-    ClosedGroupPoller.Companion.configureIfNeeded(this, sskDatabase);
+    ClosedGroupPoller.Companion.configureIfNeeded(this);
     closedGroupPoller = ClosedGroupPoller.Companion.getShared();
   }
 

@@ -75,7 +75,6 @@ import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiPreKeyBundleDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol;
-import org.session.libsignal.service.loki.protocol.closedgroups.SharedSenderKeysDatabaseProtocol;
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
 import org.session.libsignal.service.loki.utilities.Broadcaster;
@@ -121,7 +120,6 @@ public class SignalServiceMessageSender {
   // Loki
   private final String                                              userPublicKey;
   private final LokiAPIDatabaseProtocol                             apiDatabase;
-  private final SharedSenderKeysDatabaseProtocol                    sskDatabase;
   private final LokiThreadDatabaseProtocol                          threadDatabase;
   private final LokiMessageDatabaseProtocol                         messageDatabase;
   private final LokiPreKeyBundleDatabaseProtocol                    preKeyBundleDatabase;
@@ -151,7 +149,6 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
-                                    SharedSenderKeysDatabaseProtocol sskDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
                                     LokiMessageDatabaseProtocol messageDatabase,
                                     LokiPreKeyBundleDatabaseProtocol preKeyBundleDatabase,
@@ -161,7 +158,7 @@ public class SignalServiceMessageSender {
                                     LokiOpenGroupDatabaseProtocol openGroupDatabase,
                                     Broadcaster broadcaster)
   {
-    this(urls, new StaticCredentialsProvider(user, password, null), store, userAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, userPublicKey, apiDatabase, sskDatabase, threadDatabase, messageDatabase, preKeyBundleDatabase, sessionProtocolImpl, sessionResetImpl, userDatabase, openGroupDatabase, broadcaster);
+    this(urls, new StaticCredentialsProvider(user, password, null), store, userAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, userPublicKey, apiDatabase, threadDatabase, messageDatabase, preKeyBundleDatabase, sessionProtocolImpl, sessionResetImpl, userDatabase, openGroupDatabase, broadcaster);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
@@ -174,7 +171,6 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
-                                    SharedSenderKeysDatabaseProtocol sskDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
                                     LokiMessageDatabaseProtocol messageDatabase,
                                     LokiPreKeyBundleDatabaseProtocol preKeyBundleDatabase,
@@ -193,7 +189,6 @@ public class SignalServiceMessageSender {
     this.eventListener             = eventListener;
     this.userPublicKey             = userPublicKey;
     this.apiDatabase               = apiDatabase;
-    this.sskDatabase               = sskDatabase;
     this.threadDatabase            = threadDatabase;
     this.messageDatabase           = messageDatabase;
     this.preKeyBundleDatabase      = preKeyBundleDatabase;
@@ -1181,9 +1176,9 @@ public class SignalServiceMessageSender {
 
     PushTransportDetails transportDetails = new PushTransportDetails(3);
     String publicKey = recipient.getNumber(); // Could be a contact's public key or the public key of a SSK group
-    boolean isSSKBasedClosedGroup = sskDatabase.isSSKBasedClosedGroup(publicKey);
+    boolean isClosedGroup = apiDatabase.isClosedGroup(publicKey);
     String encryptionPublicKey;
-    if (isSSKBasedClosedGroup) {
+    if (isClosedGroup) {
       ECKeyPair encryptionKeyPair = apiDatabase.getLatestClosedGroupEncryptionKeyPair(publicKey);
       encryptionPublicKey = HexEncodingKt.getHexEncodedPublicKey(encryptionKeyPair);
     } else {
@@ -1191,7 +1186,7 @@ public class SignalServiceMessageSender {
     }
     byte[] ciphertext = sessionProtocolImpl.encrypt(transportDetails.getPaddedMessageBody(plaintext), encryptionPublicKey);
     String body = Base64.encodeBytes(ciphertext);
-    int type = isSSKBasedClosedGroup ? SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE :
+    int type = isClosedGroup ? SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE :
             SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
     OutgoingPushMessage message = new OutgoingPushMessage(type, 1, 0, body);
     messages.add(message);

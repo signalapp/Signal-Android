@@ -7,14 +7,14 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase
 import org.session.libsignal.utilities.successBackground
 import org.session.libsignal.service.api.messages.SignalServiceEnvelope
 import org.session.libsignal.service.loki.api.SnodeAPI
 import org.session.libsignal.service.loki.api.SwarmAPI
 import org.session.libsignal.service.loki.utilities.getRandomElementOrNull
+import org.thoughtcrime.securesms.database.DatabaseFactory
 
-class ClosedGroupPoller private constructor(private val context: Context, private val database: SharedSenderKeysDatabase) {
+class ClosedGroupPoller private constructor(private val context: Context) {
     private var isPolling = false
     private val handler: Handler by lazy { Handler() }
 
@@ -32,9 +32,9 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
 
         public lateinit var shared: ClosedGroupPoller
 
-        public fun configureIfNeeded(context: Context, sskDatabase: SharedSenderKeysDatabase) {
+        public fun configureIfNeeded(context: Context) {
             if (::shared.isInitialized) { return; }
-            shared = ClosedGroupPoller(context, sskDatabase)
+            shared = ClosedGroupPoller(context)
         }
     }
     // endregion
@@ -66,7 +66,7 @@ class ClosedGroupPoller private constructor(private val context: Context, privat
     // region Private API
     private fun poll(): List<Promise<Unit, Exception>> {
         if (!isPolling) { return listOf() }
-        val publicKeys = database.getAllClosedGroupPublicKeys()
+        val publicKeys = DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
         return publicKeys.map { publicKey ->
             val promise = SwarmAPI.shared.getSwarm(publicKey).bind { swarm ->
                 val snode = swarm.getRandomElementOrNull() ?: throw InsufficientSnodesException() // Should be cryptographically secure

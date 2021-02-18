@@ -167,7 +167,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
-        val sskDatabase = DatabaseFactory.getSSKDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
         val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
@@ -315,7 +314,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val isClosedGroup = recipient.address.isClosedGroup
         val dialogMessage: String
         if (recipient.isGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
@@ -333,17 +331,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val context = this@HomeActivity as Context
 
             // Send a leave group message if this is an active closed group
-            if (isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
-                var isSSKBasedClosedGroup: Boolean
+            if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
+                var isClosedGroup: Boolean
                 var groupPublicKey: String?
                 try {
                     groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                    isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)
+                    isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
                 } catch (e: IOException) {
                     groupPublicKey = null
-                    isSSKBasedClosedGroup = false
+                    isClosedGroup = false
                 }
-                if (isSSKBasedClosedGroup) {
+                if (isClosedGroup) {
                     ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
                 } else {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
