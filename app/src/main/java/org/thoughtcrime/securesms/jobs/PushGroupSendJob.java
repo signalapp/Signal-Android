@@ -16,6 +16,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -28,6 +29,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.session.libsignal.utilities.logging.Log;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -158,7 +160,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       if      (filterAddress != null)              targets = Collections.singletonList(Address.fromSerialized(filterAddress));
       else if (!existingNetworkFailures.isEmpty()) targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
-      else                                         targets = Collections.singletonList(Address.fromSerialized(message.getRecipient().getAddress().toGroupString()));
+      else                                         targets = ClosedGroupsProtocolV2.getMessageDestinations(context, message.getRecipient().getAddress().toGroupString());
 
       List<SendMessageResult>   results                  = deliver(message, targets);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
