@@ -225,19 +225,16 @@ public class SignalServiceMessageReceiver {
       if (entity.getSource() != null && entity.getSourceDevice() > 0) {
         envelope = new SignalServiceEnvelope(entity.getType(), entity.getSource(),
                                              entity.getSourceDevice(), entity.getTimestamp(),
-                                             entity.getMessage(), entity.getContent(),
-                                             entity.getServerTimestamp(), entity.getServerUuid());
+                                             entity.getContent(), entity.getServerTimestamp());
       } else {
         envelope = new SignalServiceEnvelope(entity.getType(), entity.getTimestamp(),
-                                             entity.getMessage(), entity.getContent(),
-                                             entity.getServerTimestamp(), entity.getServerUuid());
+                                             entity.getContent(), entity.getServerTimestamp());
       }
 
       callback.onMessage(envelope);
       results.add(envelope);
 
-      if (envelope.hasUuid()) socket.acknowledgeMessage(envelope.getUuid());
-      else                    socket.acknowledgeMessage(entity.getSource(), entity.getTimestamp());
+      socket.acknowledgeMessage(entity.getSource(), entity.getTimestamp());
     }
 
     return results;

@@ -10,8 +10,7 @@ import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
 
 import java.util.LinkedList;
@@ -26,18 +25,13 @@ public class SignalServiceDataMessage {
   private final Optional<String>                        body;
   public  final Optional<SignalServiceGroup>            group;
   private final Optional<byte[]>                        profileKey;
-  private final boolean                                 endSession;
   private final boolean                                 expirationUpdate;
   private final int                                     expiresInSeconds;
-  private final boolean                                 profileKeyUpdate;
   private final Optional<Quote>                         quote;
   public  final Optional<List<SharedContact>>           contacts;
   private final Optional<List<Preview>>                 previews;
-  private final Optional<Sticker>                       sticker;
   // Loki
-  private final Optional<PreKeyBundle>                  preKeyBundle;
-  private final Optional<ClosedGroupUpdate>             closedGroupUpdate;
-  private final Optional<ClosedGroupUpdateV2>           closedGroupUpdateV2;
+  private final Optional<ClosedGroupControlMessage>     closedGroupControlMessage;
   private final Optional<String>                        syncTarget;
 
   /**
@@ -112,7 +106,7 @@ public class SignalServiceDataMessage {
    * @param expiresInSeconds The number of seconds in which a message should disappear after having been seen.
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group, List<SignalServiceAttachment> attachments, String body, int expiresInSeconds) {
-    this(timestamp, group, attachments, body, false, expiresInSeconds, false, null, false, null, null, null, null);
+    this(timestamp, group, attachments, body, expiresInSeconds, false, null, null, null, null);
   }
 
   /**
@@ -122,17 +116,15 @@ public class SignalServiceDataMessage {
    * @param group The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
-   * @param endSession Flag indicating whether this message should close a session.
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group,
                                   List<SignalServiceAttachment> attachments,
-                                  String body, boolean endSession, int expiresInSeconds,
-                                  boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
-                                  Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker)
+                                  String body, int expiresInSeconds,
+                                  boolean expirationUpdate, byte[] profileKey,
+                                  Quote quote, List<SharedContact> sharedContacts, List<Preview> previews)
   {
-    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, null);
+    this(timestamp, group, attachments, body, expiresInSeconds, expirationUpdate, profileKey, quote, sharedContacts, previews, null, null);
   }
 
   /**
@@ -142,32 +134,24 @@ public class SignalServiceDataMessage {
    * @param group The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
-   * @param endSession Flag indicating whether this message should close a session.
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
-   * @param preKeyBundle The pre key bundle to attach to this message (or null if none).
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group,
                                   List<SignalServiceAttachment> attachments,
-                                  String body, boolean endSession, int expiresInSeconds,
-                                  boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
+                                  String body, int expiresInSeconds,
+                                  boolean expirationUpdate, byte[] profileKey,
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker, PreKeyBundle preKeyBundle,
-                                  ClosedGroupUpdate closedGroupUpdate, ClosedGroupUpdateV2 closedGroupUpdateV2,
+                                  ClosedGroupControlMessage closedGroupControlMessage,
                                   String syncTarget)
   {
     this.timestamp                   = timestamp;
     this.body                        = Optional.fromNullable(body);
     this.group                       = Optional.fromNullable(group);
-    this.endSession                  = endSession;
     this.expiresInSeconds            = expiresInSeconds;
     this.expirationUpdate            = expirationUpdate;
     this.profileKey                  = Optional.fromNullable(profileKey);
-    this.profileKeyUpdate            = profileKeyUpdate;
     this.quote                       = Optional.fromNullable(quote);
-    this.sticker                     = Optional.fromNullable(sticker);
-    this.preKeyBundle                = Optional.fromNullable(preKeyBundle);
-    this.closedGroupUpdate           = Optional.fromNullable(closedGroupUpdate);
-    this.closedGroupUpdateV2         = Optional.fromNullable(closedGroupUpdateV2);
+    this.closedGroupControlMessage   = Optional.fromNullable(closedGroupControlMessage);
     this.syncTarget                  = Optional.fromNullable(syncTarget);
 
     if (attachments != null && !attachments.isEmpty()) {
@@ -221,16 +205,8 @@ public class SignalServiceDataMessage {
     return group;
   }
 
-  public boolean isEndSession() {
-    return endSession;
-  }
-
   public boolean isExpirationUpdate() {
     return expirationUpdate;
-  }
-
-  public boolean isProfileKeyUpdate() {
-    return profileKeyUpdate;
   }
 
   public boolean isGroupMessage() {
@@ -263,16 +239,8 @@ public class SignalServiceDataMessage {
     return previews;
   }
 
-  public Optional<Sticker> getSticker() {
-    return sticker;
-  }
-
   // Loki
-  public Optional<ClosedGroupUpdate> getClosedGroupUpdate() { return closedGroupUpdate; }
-
-  public Optional<ClosedGroupUpdateV2> getClosedGroupUpdateV2() { return closedGroupUpdateV2; }
-
-  public Optional<PreKeyBundle> getPreKeyBundle() { return preKeyBundle; }
+  public Optional<ClosedGroupControlMessage> getClosedGroupControlMessage() { return closedGroupControlMessage; }
 
   public boolean hasVisibleContent() {
     return (body.isPresent() && !body.get().isEmpty())
@@ -399,11 +367,8 @@ public class SignalServiceDataMessage {
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       // closedGroupUpdate is always null because we don't use SignalServiceDataMessage to send them (we use ClosedGroupUpdateMessageSendJob)
-      return new SignalServiceDataMessage(timestamp, group, attachments, body, endSession,
-                                          expiresInSeconds, expirationUpdate, profileKey,
-                                          profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, preKeyBundle, null, null,
-                                          syncTarget);
+      return new SignalServiceDataMessage(timestamp, group, attachments, body, expiresInSeconds, expirationUpdate, profileKey, quote, sharedContacts, previews,
+                                          null, syncTarget);
     }
   }
 

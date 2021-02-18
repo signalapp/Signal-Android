@@ -11,12 +11,10 @@ public class SignalServiceTypingMessage {
 
   private final Action           action;
   private final long             timestamp;
-  private final Optional<byte[]> groupId;
 
-  public SignalServiceTypingMessage(Action action, long timestamp, Optional<byte[]> groupId) {
+  public SignalServiceTypingMessage(Action action, long timestamp) {
     this.action    = action;
     this.timestamp = timestamp;
-    this.groupId   = groupId;
   }
 
   public Action getAction() {
@@ -25,10 +23,6 @@ public class SignalServiceTypingMessage {
 
   public long getTimestamp() {
     return timestamp;
-  }
-
-  public Optional<byte[]> getGroupId() {
-    return groupId;
   }
 
   public boolean isTypingStarted() {

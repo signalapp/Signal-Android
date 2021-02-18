@@ -70,8 +70,7 @@ public class IncomingMediaMessage {
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
-                              Optional<List<LinkPreview>> linkPreviews,
-                              Optional<Attachment> sticker)
+                              Optional<List<LinkPreview>> linkPreviews)
   {
     this.push             = true;
     this.from             = from;
@@ -89,10 +88,6 @@ public class IncomingMediaMessage {
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
     this.linkPreviews.addAll(linkPreviews.or(Collections.emptyList()));
-
-    if (sticker.isPresent()) {
-      this.attachments.add(sticker.get());
-    }
   }
 
   public static IncomingMediaMessage from(VisibleMessage message,
@@ -104,7 +99,7 @@ public class IncomingMediaMessage {
                                           Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getReceivedTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews, Optional.absent());
+            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews);
   }
 
   public int getSubscriptionId() {

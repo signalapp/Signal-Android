@@ -24,7 +24,6 @@ import org.session.libsignal.service.api.crypto.InvalidCiphertextException;
 import org.session.libsignal.service.api.crypto.ProfileCipher;
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream;
 import org.session.libsignal.service.api.messages.calls.TurnServerInfo;
-import org.session.libsignal.service.api.messages.multidevice.DeviceInfo;
 import org.session.libsignal.service.api.push.ContactTokenDetails;
 import org.session.libsignal.service.api.push.SignedPreKeyEntity;
 import org.session.libsignal.service.api.util.CredentialsProvider;
@@ -374,10 +373,6 @@ public class SignalServiceAccountManager {
 
     byte[] ciphertext = cipher.encrypt(message.build());
     this.pushServiceSocket.sendProvisioningMessage(deviceIdentifier, ciphertext);
-  }
-
-  public List<DeviceInfo> getDevices() throws IOException {
-    return this.pushServiceSocket.getDevices();
   }
 
   public void removeDevice(long deviceId) throws IOException {

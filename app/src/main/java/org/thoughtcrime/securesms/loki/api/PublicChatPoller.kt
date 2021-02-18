@@ -21,7 +21,6 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceContent
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage
 import org.session.libsignal.service.api.messages.SignalServiceGroup
-import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
@@ -222,16 +221,6 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
         FileServerAPI.configure(userHexEncodedPublicKey, userPrivateKey, apiDB)
         // Kovenant propagates a context to chained promises, so LokiPublicChatAPI.sharedContext should be used for all of the below
         val promise = api.getMessages(group.channel, group.server).bind(PublicChatAPI.sharedContext) { messages ->
-            /*
-            if (messages.isNotEmpty()) {
-                // We need to fetch the device mapping for any devices we don't have
-                uniqueDevices = messages.map { it.senderPublicKey }.toSet()
-                val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && FileServerAPI.shared.hasDeviceLinkCacheExpired(publicKey = it) }
-                if (devicesToUpdate.isNotEmpty()) {
-                    return@bind FileServerAPI.shared.getDeviceLinks(devicesToUpdate.toSet()).then { messages }
-                }
-            }
-             */
             Promise.of(messages)
         }
         promise.successBackground { messages ->

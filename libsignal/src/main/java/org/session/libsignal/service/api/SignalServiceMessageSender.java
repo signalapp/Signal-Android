@@ -26,13 +26,6 @@ import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.multidevice.BlockedListMessage;
-import org.session.libsignal.service.api.messages.multidevice.ConfigurationMessage;
-import org.session.libsignal.service.api.messages.multidevice.ReadMessage;
-import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
-import org.session.libsignal.service.api.messages.multidevice.StickerPackOperationMessage;
-import org.session.libsignal.service.api.messages.multidevice.VerifiedMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
@@ -50,9 +43,8 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.Attachmen
 import org.session.libsignal.service.internal.push.SignalServiceProtos.Content;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.LokiUserProfile;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.LokiProfile;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.ReceiptMessage;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.SyncMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMessage;
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.session.libsignal.service.internal.push.http.OutputStreamFactory;
@@ -238,24 +230,6 @@ public class SignalServiceMessageSender {
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
     SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
 
-//    // Loki - This shouldn't get invoked for note to self
-//    boolean wouldSignalSendSyncMessage = (result.getSuccess() != null && result.getSuccess().isNeedsSync()) || unidentifiedAccess.isPresent();
-//    if (wouldSignalSendSyncMessage && SyncMessagesProtocol.shared.shouldSyncMessage(message)) {
-//      byte[] syncMessage = createMultiDeviceSentTranscriptContent(content, Optional.of(recipient), timestamp, Collections.singletonList(result));
-//      // Loki - Customize multi device logic
-//      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-//      for (String device : linkedDevices) {
-//        SignalServiceAddress deviceAsAddress = new SignalServiceAddress(device);
-//        boolean useFallbackEncryptionForSyncMessage = SessionManagementProtocol.shared.shouldMessageUseFallbackEncryption(syncMessage, device, store);
-//        sendMessage(deviceAsAddress, Optional.<UnidentifiedAccess>absent(), timestamp, syncMessage, false, message.getTTL(), useFallbackEncryptionForSyncMessage, true);
-//      }
-//    }
-
-    // Loki - Start a session reset if needed
-    if (message.isEndSession()) {
-      SessionManagementProtocol.shared.setSessionResetStatusToInProgressIfNeeded(recipient, eventListener);
-    }
-
     return result;
   }
 
@@ -287,36 +261,6 @@ public class SignalServiceMessageSender {
     }
 
     return results;
-  }
-
-  public void sendMessage(SignalServiceSyncMessage message, Optional<UnidentifiedAccessPair> unidentifiedAccess)
-      throws IOException, UntrustedIdentityException
-  {
-    byte[] content;
-    long timestamp = System.currentTimeMillis();
-
-    if (message.getContacts().isPresent()) {
-      content = createMultiDeviceContactsContent(message.getContacts().get().getContactsStream().asStream(), message.getContacts().get().isComplete());
-    } else if (message.getGroups().isPresent()) {
-      content = createMultiDeviceGroupsContent(message.getGroups().get().asStream());
-    } else if (message.getOpenGroups().isPresent()) {
-      content = createMultiDeviceOpenGroupsContent(message.getOpenGroups().get());
-    } else if (message.getRead().isPresent()) {
-      content = createMultiDeviceReadContent(message.getRead().get());
-    } else if (message.getBlockedList().isPresent()) {
-      content = createMultiDeviceBlockedContent(message.getBlockedList().get());
-    } else if (message.getConfiguration().isPresent()) {
-      content = createMultiDeviceConfigurationContent(message.getConfiguration().get());
-    } else if (message.getSent().isPresent()) {
-      content = createMultiDeviceSentTranscriptContent(message.getSent().get(), unidentifiedAccess);
-      timestamp = message.getSent().get().getTimestamp();
-    } else if (message.getStickerPackOperations().isPresent()) {
-      content = createMultiDeviceStickerPackOperationContent(message.getStickerPackOperations().get());
-    } else if (message.getVerified().isPresent()) {
-      return;
-    } else {
-      throw new IOException("Unsupported sync message!");
-    }
   }
 
   public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
@@ -373,10 +317,6 @@ public class SignalServiceMessageSender {
     else if (message.isTypingStopped()) builder.setAction(TypingMessage.Action.STOPPED);
     else                                throw new IllegalArgumentException("Unknown typing indicator");
 
-    if (message.getGroupId().isPresent()) {
-      builder.setGroupId(ByteString.copyFrom(message.getGroupId().get()));
-    }
-
     return container.setTypingMessage(builder).build().toByteArray();
   }
 
@@ -414,16 +354,8 @@ public class SignalServiceMessageSender {
       builder.setGroup(createGroupContent(message.getGroupInfo().get(), recipient));
     }
 
-    if (message.isEndSession()) {
-      builder.setFlags(DataMessage.Flags.END_SESSION_VALUE);
-    }
-
     if (message.isExpirationUpdate()) {
       builder.setFlags(DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE);
-    }
-
-    if (message.isProfileKeyUpdate()) {
-      builder.setFlags(DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE);
     }
 
     if (message.getExpiresInSeconds() > 0) {
@@ -485,27 +417,11 @@ public class SignalServiceMessageSender {
       }
     }
 
-    if (message.getSticker().isPresent()) {
-      DataMessage.Sticker.Builder stickerBuilder = DataMessage.Sticker.newBuilder();
-
-      stickerBuilder.setPackId(ByteString.copyFrom(message.getSticker().get().getPackId()));
-      stickerBuilder.setPackKey(ByteString.copyFrom(message.getSticker().get().getPackKey()));
-      stickerBuilder.setStickerId(message.getSticker().get().getStickerId());
-
-      if (message.getSticker().get().getAttachment().isStream()) {
-        stickerBuilder.setData(createAttachmentPointer(message.getSticker().get().getAttachment().asStream(), true, recipient));
-      } else {
-        stickerBuilder.setData(createAttachmentPointer(message.getSticker().get().getAttachment().asPointer()));
-      }
-
-      builder.setSticker(stickerBuilder.build());
-    }
-
-    LokiUserProfile.Builder lokiUserProfileBuilder = LokiUserProfile.newBuilder();
+    LokiProfile.Builder lokiUserProfileBuilder = LokiProfile.newBuilder();
     String displayName = userDatabase.getDisplayName(userPublicKey);
     if (displayName != null) { lokiUserProfileBuilder.setDisplayName(displayName); }
     String profilePictureURL = userDatabase.getProfilePictureURL(userPublicKey);
-    if (profilePictureURL != null) { lokiUserProfileBuilder.setProfilePictureURL(profilePictureURL); }
+    if (profilePictureURL != null) { lokiUserProfileBuilder.setProfilePicture(profilePictureURL); }
     builder.setProfile(lokiUserProfileBuilder.build());
 
     builder.setTimestamp(message.getTimestamp());
@@ -513,183 +429,6 @@ public class SignalServiceMessageSender {
     container.setDataMessage(builder);
 
     return container.build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceContactsContent(SignalServiceAttachmentStream contacts, boolean complete)
-      throws IOException
-  {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder();
-    builder.setContacts(SyncMessage.Contacts.newBuilder()
-                                            .setData(ByteString.readFrom(contacts.getInputStream()))
-                                            .setComplete(complete));
-
-    return container.setSyncMessage(builder).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceGroupsContent(SignalServiceAttachmentStream groups)
-      throws IOException
-  {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder();
-    builder.setGroups(SyncMessage.Groups.newBuilder()
-                                        .setData(ByteString.readFrom(groups.getInputStream())));
-
-    return container.setSyncMessage(builder).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceOpenGroupsContent(List<PublicChat> openGroups)
-      throws IOException
-  {
-      Content.Builder     container = Content.newBuilder();
-      SyncMessage.Builder builder   = createSyncMessageBuilder();
-      for (PublicChat openGroup : openGroups) {
-          String url = openGroup.getServer();
-          int channel = Long.valueOf(openGroup.getChannel()).intValue();
-          SyncMessage.OpenGroupDetails details = SyncMessage.OpenGroupDetails.newBuilder()
-                                                                              .setUrl(url)
-                                                                              .setChannelID(channel)
-                                                                              .build();
-          builder.addOpenGroups(details);
-      }
-
-      return container.setSyncMessage(builder).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceSentTranscriptContent(SentTranscriptMessage transcript, Optional<UnidentifiedAccessPair> unidentifiedAccess)
-      throws IOException
-  {
-    SignalServiceAddress address = new SignalServiceAddress(transcript.getDestination().get());
-    SendMessageResult    result  = SendMessageResult.success(address, unidentifiedAccess.isPresent(), true);
-
-    return createMultiDeviceSentTranscriptContent(createMessageContent(transcript.getMessage(), address),
-                                                  Optional.of(address),
-                                                  transcript.getTimestamp(),
-                                                  Collections.singletonList(result));
-  }
-
-  private byte[] createMultiDeviceSentTranscriptContent(byte[] content, Optional<SignalServiceAddress> recipient,
-    long timestamp, List<SendMessageResult> sendMessageResults)
-  {
-    try {
-      Content.Builder          container   = Content.newBuilder();
-      SyncMessage.Builder      syncMessage = createSyncMessageBuilder();
-      SyncMessage.Sent.Builder sentMessage = SyncMessage.Sent.newBuilder();
-      DataMessage              dataMessage = Content.parseFrom(content).getDataMessage();
-
-      sentMessage.setTimestamp(timestamp);
-      sentMessage.setMessage(dataMessage);
-
-      for (SendMessageResult result : sendMessageResults) {
-        if (result.getSuccess() != null) {
-          sentMessage.addUnidentifiedStatus(SyncMessage.Sent.UnidentifiedDeliveryStatus.newBuilder()
-                                                                                       .setDestination(result.getAddress().getNumber())
-                                                                                       .setUnidentified(result.getSuccess().isUnidentified()));
-        }
-      }
-
-      if (recipient.isPresent()) {
-        sentMessage.setDestination(recipient.get().getNumber());
-      }
-
-      if (dataMessage.getExpireTimer() > 0) {
-        sentMessage.setExpirationStartTimestamp(System.currentTimeMillis());
-      }
-
-      return container.setSyncMessage(syncMessage.setSent(sentMessage)).build().toByteArray();
-    } catch (InvalidProtocolBufferException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  private byte[] createMultiDeviceReadContent(List<ReadMessage> readMessages) {
-    Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = createSyncMessageBuilder();
-
-    for (ReadMessage readMessage : readMessages) {
-      builder.addRead(SyncMessage.Read.newBuilder()
-                                      .setTimestamp(readMessage.getTimestamp())
-                                      .setSender(readMessage.getSender()));
-    }
-
-    return container.setSyncMessage(builder).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceBlockedContent(BlockedListMessage blocked) {
-    Content.Builder             container      = Content.newBuilder();
-    SyncMessage.Builder         syncMessage    = createSyncMessageBuilder();
-    SyncMessage.Blocked.Builder blockedMessage = SyncMessage.Blocked.newBuilder();
-
-    blockedMessage.addAllNumbers(blocked.getNumbers());
-
-    for (byte[] groupId : blocked.getGroupIds()) {
-      blockedMessage.addGroupIds(ByteString.copyFrom(groupId));
-    }
-
-    return container.setSyncMessage(syncMessage.setBlocked(blockedMessage)).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceConfigurationContent(ConfigurationMessage configuration) {
-    Content.Builder                   container            = Content.newBuilder();
-    SyncMessage.Builder               syncMessage          = createSyncMessageBuilder();
-    SyncMessage.Configuration.Builder configurationMessage = SyncMessage.Configuration.newBuilder();
-
-    if (configuration.getReadReceipts().isPresent()) {
-      configurationMessage.setReadReceipts(configuration.getReadReceipts().get());
-    }
-
-    if (configuration.getUnidentifiedDeliveryIndicators().isPresent()) {
-      configurationMessage.setUnidentifiedDeliveryIndicators(configuration.getUnidentifiedDeliveryIndicators().get());
-    }
-
-    if (configuration.getTypingIndicators().isPresent()) {
-      configurationMessage.setTypingIndicators(configuration.getTypingIndicators().get());
-    }
-
-    if (configuration.getLinkPreviews().isPresent()) {
-      configurationMessage.setLinkPreviews(configuration.getLinkPreviews().get());
-    }
-
-    return container.setSyncMessage(syncMessage.setConfiguration(configurationMessage)).build().toByteArray();
-  }
-
-  private byte[] createMultiDeviceStickerPackOperationContent(List<StickerPackOperationMessage> stickerPackOperations) {
-    Content.Builder     container   = Content.newBuilder();
-    SyncMessage.Builder syncMessage = createSyncMessageBuilder();
-
-    for (StickerPackOperationMessage stickerPackOperation : stickerPackOperations) {
-      SyncMessage.StickerPackOperation.Builder builder = SyncMessage.StickerPackOperation.newBuilder();
-
-      if (stickerPackOperation.getPackId().isPresent()) {
-        builder.setPackId(ByteString.copyFrom(stickerPackOperation.getPackId().get()));
-      }
-
-      if (stickerPackOperation.getPackKey().isPresent()) {
-        builder.setPackKey(ByteString.copyFrom(stickerPackOperation.getPackKey().get()));
-      }
-
-      if (stickerPackOperation.getType().isPresent()) {
-        switch (stickerPackOperation.getType().get()) {
-          case INSTALL: builder.setType(SyncMessage.StickerPackOperation.Type.INSTALL); break;
-          case REMOVE:  builder.setType(SyncMessage.StickerPackOperation.Type.REMOVE); break;
-        }
-      }
-
-      syncMessage.addStickerPackOperation(builder);
-    }
-
-    return container.setSyncMessage(syncMessage).build().toByteArray();
-  }
-
-  private SyncMessage.Builder createSyncMessageBuilder() {
-    SecureRandom random  = new SecureRandom();
-    byte[]       padding = Util.getRandomLengthBytes(512);
-    random.nextBytes(padding);
-
-    SyncMessage.Builder builder = SyncMessage.newBuilder();
-    builder.setPadding(ByteString.copyFrom(padding));
-
-    return builder;
   }
 
   private GroupContext createGroupContent(SignalServiceGroup group, SignalServiceAddress recipient)

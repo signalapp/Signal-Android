@@ -1,9 +1,3 @@
-/**
- * Copyright (C) 2014-2016 Open Whisper Systems
- *
- * Licensed according to the LICENSE file in this repository.
- */
-
 syntax = "proto2";
 
 package signalservice;
@@ -12,88 +6,40 @@ option java_package = "org.session.libsignal.service.internal.push";
 option java_outer_classname = "SignalServiceProtos";
 
 message Envelope {
+
   enum Type {
-    UNKNOWN                 = 0;
-    CIPHERTEXT              = 1;
-    KEY_EXCHANGE            = 2;
-    PREKEY_BUNDLE           = 3;
-    RECEIPT                 = 5;
     UNIDENTIFIED_SENDER     = 6;
-    CLOSED_GROUP_CIPHERTEXT = 7; // Loki
-    FALLBACK_MESSAGE        = 101; // Loki - Encrypted using the fallback session cipher. Contains a pre key bundle if it's a session request.
+    CLOSED_GROUP_CIPHERTEXT = 7;
   }
 
-  optional Type   type            = 1;
+  // @required
+  required Type   type            = 1;
   optional string source          = 2;
   optional uint32 sourceDevice    = 7;
-  optional string relay           = 3;
+  // @required
   optional uint64 timestamp       = 5;
-  optional bytes  legacyMessage   = 6; // Contains an encrypted DataMessage
-  optional bytes  content         = 8; // Contains an encrypted Content
-  optional string serverGuid      = 9;
+  optional bytes  content         = 8;
   optional uint64 serverTimestamp = 10;
 }
 
+message TypingMessage {
+
+  enum Action {
+    STARTED = 0;
+    STOPPED = 1;
+  }
+
+  // @required
+  optional uint64 timestamp = 1;
+  // @required
+  optional Action action = 2;
+}
+
 message Content {
-  optional DataMessage          dataMessage           = 1;
-  optional SyncMessage          syncMessage           = 2 [deprecated=true];
-  optional CallMessage          callMessage           = 3;
-  optional NullMessage          nullMessage           = 4;
-  optional ReceiptMessage       receiptMessage        = 5;
-  optional TypingMessage        typingMessage         = 6;
-  optional ConfigurationMessage configurationMessage  = 7;
-  optional PreKeyBundleMessage  preKeyBundleMessage   = 101; // Loki
-  optional DeviceLinkMessage    deviceLinkMessage     = 103; // Loki
-}
-
-message DeviceLinkMessage {
-  optional string primaryPublicKey       = 1;
-  optional string secondaryPublicKey     = 2;
-  optional bytes  requestSignature       = 3;
-  optional bytes  authorizationSignature = 4;
-}
-
-message PreKeyBundleMessage {
-  optional bytes  identityKey = 1;
-  optional uint32 deviceId    = 2;
-  optional uint32 preKeyId    = 3;
-  optional uint32 signedKeyId = 4;
-  optional bytes  preKey      = 5;
-  optional bytes  signedKey   = 6;
-  optional bytes  signature   = 7;
-}
-
-message CallMessage {
-  message Offer {
-    optional uint64 id          = 1;
-    optional string description = 2;
-  }
-
-  message Answer {
-    optional uint64 id          = 1;
-    optional string description = 2;
-  }
-
-  message IceUpdate {
-    optional uint64 id            = 1;
-    optional string sdpMid        = 2;
-    optional uint32 sdpMLineIndex = 3;
-    optional string sdp           = 4;
-  }
-
-  message Busy {
-    optional uint64 id = 1;
-  }
-
-  message Hangup {
-    optional uint64 id = 1;
-  }
-
-  optional Offer     offer     = 1;
-  optional Answer    answer    = 2;
-  repeated IceUpdate iceUpdate = 3;
-  optional Hangup    hangup    = 4;
-  optional Busy      busy      = 5;
+  optional DataMessage          dataMessage          = 1;
+  optional ReceiptMessage       receiptMessage       = 5;
+  optional TypingMessage        typingMessage        = 6;
+  optional ConfigurationMessage configurationMessage = 7;
 }
 
 message ClosedGroupCiphertextMessageWrapper {
@@ -103,28 +49,43 @@ message ClosedGroupCiphertextMessageWrapper {
   optional bytes ephemeralPublicKey = 2;
 }
 
+message KeyPair {
+  // @required
+  required bytes publicKey  = 1;
+  // @required
+  required bytes privateKey = 2;
+}
+
 message DataMessage {
+
   enum Flags {
-    END_SESSION                 = 1;
-    EXPIRATION_TIMER_UPDATE     = 2;
-    PROFILE_KEY_UPDATE          = 4;
-    DEVICE_UNLINKING_REQUEST    = 128;
+    EXPIRATION_TIMER_UPDATE = 2;
   }
 
   message Quote {
+
     message QuotedAttachment {
+
+      enum Flags {
+        VOICE_MESSAGE = 1;
+      }
+
       optional string            contentType = 1;
       optional string            fileName    = 2;
       optional AttachmentPointer thumbnail   = 3;
+      optional uint32            flags       = 4;
     }
 
-    optional uint64           id          = 1;
-    optional string           author      = 2;
-    optional string           text        = 3;
-    repeated QuotedAttachment attachments = 4;
+    // @required
+    optional uint64            id          = 1;
+    // @required
+    optional string            author      = 2;
+    optional string            text        = 3;
+    repeated QuotedAttachment  attachments = 4;
   }
 
   message Contact {
+
     message Name {
       optional string givenName   = 1;
       optional string familyName  = 2;
@@ -135,6 +96,7 @@ message DataMessage {
     }
 
     message Phone {
+
       enum Type {
         HOME   = 1;
         MOBILE = 2;
@@ -148,6 +110,7 @@ message DataMessage {
     }
 
     message Email {
+
       enum Type {
         HOME   = 1;
         MOBILE = 2;
@@ -161,6 +124,7 @@ message DataMessage {
     }
 
     message PostalAddress {
+
       enum Type {
         HOME   = 1;
         WORK   = 2;
@@ -192,128 +156,61 @@ message DataMessage {
   }
 
   message Preview {
+    // @required
     optional string            url   = 1;
     optional string            title = 2;
     optional AttachmentPointer image = 3;
   }
 
-  message Sticker {
-    optional bytes             packId    = 1;
-    optional bytes             packKey   = 2;
-    optional uint32            stickerId = 3;
-    optional AttachmentPointer data      = 4;
+  message LokiProfile {
+    optional string displayName = 1;
+    optional string profilePicture = 2;
   }
 
-  optional string              body                = 1;
-  repeated AttachmentPointer   attachments         = 2;
-  optional GroupContext        group               = 3;
-  optional uint32              flags               = 4;
-  optional uint32              expireTimer         = 5;
-  optional bytes               profileKey          = 6;
-  optional uint64              timestamp           = 7;
-  optional Quote               quote               = 8;
-  repeated Contact             contact             = 9;
-  repeated Preview             preview             = 10;
-  optional Sticker             sticker             = 11;
-  optional LokiUserProfile     profile             = 101; // Loki - The profile of the current user
-  optional ClosedGroupUpdate   closedGroupUpdate   = 103; // Loki
-  optional ClosedGroupUpdateV2 closedGroupUpdateV2 = 104;
-  optional string              syncTarget          = 105;
-}
+  message ClosedGroupControlMessage {
 
-message LokiUserProfile {
-  optional string displayName       = 1;
-  optional string profilePictureURL = 2;
-}
-
-message ClosedGroupUpdateV2 {
-
-  enum Type {
-    NEW                 = 1; // publicKey, name, encryptionKeyPair, members, admins
-    UPDATE              = 2; // name, members
-    ENCRYPTION_KEY_PAIR = 3; // wrappers
-    NAME_CHANGE         = 4; // name
-    MEMBERS_ADDED       = 5; // members
-    MEMBERS_REMOVED     = 6; // members
-    MEMBER_LEFT         = 7;
-  }
-
-  message KeyPairWrapper {
-    // @required
-    required bytes publicKey        = 1; // The public key of the user the key pair is meant for
-    // @required
-    required bytes encryptedKeyPair = 2; // The encrypted key pair
-  }
-
-  // @required
-  required Type           type              = 1;
-  optional bytes          publicKey         = 2;
-  optional string         name              = 3;
-  optional KeyPair        encryptionKeyPair = 4;
-  repeated bytes          members           = 5;
-  repeated bytes          admins            = 6;
-  repeated KeyPairWrapper wrappers          = 7;
-}
-
-message KeyPair {
-  // @required
-  required bytes publicKey  = 1;
-  // @required
-  required bytes privateKey = 2;
-}
-
-message ClosedGroupUpdate {
-
-  enum Type {
-    NEW                = 0; // groupPublicKey, name, groupPrivateKey, senderKeys, members, admins
-    INFO               = 1; // groupPublicKey, name, senderKeys, members, admins
-    SENDER_KEY_REQUEST = 2; // groupPublicKey
-    SENDER_KEY         = 3; // groupPublicKey, senderKeys
-  }
-
-  message SenderKey {
-    // @required
-    optional bytes  chainKey  = 1;
-    // @required
-    optional uint32 keyIndex  = 2;
-    // @required
-    optional bytes  publicKey = 3;
-  }
-
-  optional string    name            = 1;
-  // @required
-  optional bytes     groupPublicKey  = 2;
-  optional bytes     groupPrivateKey = 3;
-  repeated SenderKey senderKeys      = 4;
-  repeated bytes     members         = 5;
-  repeated bytes     admins          = 6;
-  // @required
-  optional Type      type            = 7;
-}
-
-message NullMessage {
-  optional bytes padding = 1;
-}
-
-message ReceiptMessage {
-  enum Type {
-    DELIVERY = 0;
-    READ     = 1;
-  }
-
-  optional Type   type      = 1;
-  repeated uint64 timestamp = 2;
-}
-
-message TypingMessage {
-    enum Action {
-        STARTED = 0;
-        STOPPED = 1;
+    enum Type {
+      NEW                         = 1; // publicKey, name, encryptionKeyPair, members, admins
+      UPDATE                      = 2; // name, members
+      ENCRYPTION_KEY_PAIR         = 3; // publicKey, wrappers
+      NAME_CHANGE                 = 4; // name
+      MEMBERS_ADDED               = 5; // members
+      MEMBERS_REMOVED             = 6; // members
+      MEMBER_LEFT                 = 7;
+      ENCRYPTION_KEY_PAIR_REQUEST = 8;
     }
 
-    optional uint64 timestamp = 1;
-    optional Action action    = 2;
-    optional bytes  groupId   = 3;
+    message KeyPairWrapper {
+      // @required
+      required bytes publicKey        = 1; // The public key of the user the key pair is meant for
+      // @required
+      required bytes encryptedKeyPair = 2; // The encrypted key pair
+    }
+
+    // @required
+    required Type           type              = 1;
+    optional bytes          publicKey         = 2;
+    optional string         name              = 3;
+    optional KeyPair        encryptionKeyPair = 4;
+    repeated bytes          members           = 5;
+    repeated bytes          admins            = 6;
+    repeated KeyPairWrapper wrappers          = 7;
+  }
+
+  optional string                    body                      = 1;
+  repeated AttachmentPointer         attachments               = 2;
+  optional GroupContext              group                     = 3;
+  optional uint32                    flags                     = 4;
+  optional uint32                    expireTimer               = 5;
+  optional bytes                     profileKey                = 6;
+  optional uint64                    timestamp                 = 7;
+  optional Quote                     quote                     = 8;
+  repeated Contact                   contact                   = 9;
+  repeated Preview                   preview                   = 10;
+  optional LokiProfile               profile                   = 101;
+  optional ClosedGroupControlMessage closedGroupControlMessage = 104;
+  optional string                    syncTarget                = 105;
+  optional PublicChatInfo            publicChatInfo            = 999;
 }
 
 message ConfigurationMessage {
@@ -330,107 +227,25 @@ message ConfigurationMessage {
   repeated string      openGroups   = 2;
 }
 
-message Verified {
-  enum State {
-    DEFAULT    = 0;
-    VERIFIED   = 1;
-    UNVERIFIED = 2;
+message ReceiptMessage {
+
+  enum Type {
+    DELIVERY = 0;
+    READ     = 1;
   }
 
-  optional string destination = 1;
-  optional bytes  identityKey = 2;
-  optional State  state       = 3;
-  optional bytes  nullMessage = 4;
-}
-
-message SyncMessage {
-  message Sent {
-    message UnidentifiedDeliveryStatus {
-      optional string destination  = 1;
-      optional bool   unidentified = 2;
-    }
-
-    optional string                     destination              = 1;
-    optional uint64                     timestamp                = 2;
-    optional DataMessage                message                  = 3;
-    optional uint64                     expirationStartTimestamp = 4;
-    repeated UnidentifiedDeliveryStatus unidentifiedStatus       = 5;
-  }
-
-  message Contacts {
-    optional AttachmentPointer blob     = 1;
-    optional bool              complete = 2 [default = false];
-    optional bytes             data     = 101;
-  }
-
-  message Groups {
-    optional AttachmentPointer blob = 1;
-    optional bytes             data = 101;
-  }
-
-  message Blocked {
-    repeated string numbers  = 1;
-    repeated bytes  groupIds = 2;
-  }
-
-  message Request {
-    enum Type {
-      UNKNOWN       = 0;
-      CONTACTS      = 1;
-      GROUPS        = 2;
-      BLOCKED       = 3;
-      CONFIGURATION = 4;
-    }
-
-    optional Type type = 1;
-  }
-
-  message Read {
-    optional string sender    = 1;
-    optional uint64 timestamp = 2;
-  }
-
-  message Configuration {
-    optional bool readReceipts                   = 1;
-    optional bool unidentifiedDeliveryIndicators = 2;
-    optional bool typingIndicators               = 3;
-    optional bool linkPreviews                   = 4;
-  }
-
-  message StickerPackOperation {
-    enum Type {
-      INSTALL = 0;
-      REMOVE  = 1;
-    }
-
-    optional bytes packId  = 1;
-    optional bytes packKey = 2;
-    optional Type  type    = 3;
-  }
-
-  message OpenGroupDetails {
-    optional string url       = 1;
-    optional uint32 channelID = 2;
-  }
-
-  optional Sent                 sent                 = 1;
-  optional Contacts             contacts             = 2;
-  optional Groups               groups               = 3;
-  optional Request              request              = 4;
-  repeated Read                 read                 = 5;
-  optional Blocked              blocked              = 6;
-  optional Verified             verified             = 7;
-  optional Configuration        configuration        = 9;
-  optional bytes                padding              = 8;
-  repeated StickerPackOperation stickerPackOperation = 10;
-  repeated OpenGroupDetails     openGroups           = 100;
+  // @required
+  optional Type   type      = 1;
+  repeated uint64 timestamp = 2;
 }
 
 message AttachmentPointer {
+
   enum Flags {
     VOICE_MESSAGE = 1;
   }
 
+  // @required
   optional fixed64 id          = 1;
   optional string  contentType = 2;
   optional bytes   key         = 3;
@@ -446,6 +261,7 @@ message AttachmentPointer {
 }
 
 message GroupContext {
+
   enum Type {
     UNKNOWN      = 0;
     UPDATE       = 1;
@@ -453,43 +269,43 @@ message GroupContext {
     QUIT         = 3;
     REQUEST_INFO = 4;
   }
+
+  // @required
   optional bytes             id      = 1;
+  // @required
   optional Type              type    = 2;
   optional string            name    = 3;
   repeated string            members = 4;
   optional AttachmentPointer avatar  = 5;
   repeated string            admins  = 6;
-
-  // Loki - These fields are only used internally for the Android code base.
-  // This is so that we can differentiate adding/kicking.
-  // DO NOT USE WHEN SENDING MESSAGES.
-  repeated string           newMembers     = 998;
-  repeated string           removedMembers = 999;
 }
 
 message ContactDetails {
+
   message Avatar {
     optional string contentType = 1;
     optional uint32 length      = 2;
   }
 
+  // @required
   optional string   number      = 1;
   optional string   name        = 2;
   optional Avatar   avatar      = 3;
   optional string   color       = 4;
-  optional Verified verified    = 5;
   optional bytes    profileKey  = 6;
   optional bool     blocked     = 7;
   optional uint32   expireTimer = 8;
-  optional string   nickname    = 101; // Loki
+  optional string   nickname    = 101;
 }
 
 message GroupDetails {
+
   message Avatar {
     optional string contentType = 1;
     optional uint32 length      = 2;
   }
 
+  // @required
   optional bytes  id          = 1;
   optional string name        = 2;
   repeated string members     = 3;
@@ -499,4 +315,8 @@ message GroupDetails {
   optional string color       = 7;
   optional bool   blocked     = 8;
   repeated string admins      = 9;
+}
+
+message PublicChatInfo { // Intended for internal use only
+  optional uint64 serverID = 1;
 }

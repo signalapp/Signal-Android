@@ -107,19 +107,13 @@ public class SignalServiceEnvelope {
     }
     builder.setTimestamp(proto.getTimestamp());
     builder.setServerTimestamp(proto.getServerTimestamp());
-    if (proto.getServerGuid() != null) {
-      builder.setServerGuid(proto.getServerGuid());
-    }
-    if (proto.getLegacyMessage() != null) {
-      builder.setLegacyMessage(ByteString.copyFrom(proto.getLegacyMessage().toByteArray()));
-    }
     if (proto.getContent() != null) {
       builder.setContent(ByteString.copyFrom(proto.getContent().toByteArray()));
     }
     this.envelope = builder.build();
   }
 
-  public SignalServiceEnvelope(int type, String sender, int senderDevice, long timestamp, byte[] legacyMessage, byte[] content, long serverTimestamp, String uuid) {
+  public SignalServiceEnvelope(int type, String sender, int senderDevice, long timestamp, byte[] content, long serverTimestamp) {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setSource(sender)
@@ -127,38 +121,20 @@ public class SignalServiceEnvelope {
                                        .setTimestamp(timestamp)
                                        .setServerTimestamp(serverTimestamp);
 
-    if (uuid != null) {
-      builder.setServerGuid(uuid);
-    }
-
-    if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
     if (content != null)       builder.setContent(ByteString.copyFrom(content));
 
     this.envelope = builder.build();
   }
 
-  public SignalServiceEnvelope(int type, long timestamp, byte[] legacyMessage, byte[] content, long serverTimestamp, String uuid) {
+  public SignalServiceEnvelope(int type, long timestamp, byte[] content, long serverTimestamp) {
     Envelope.Builder builder = Envelope.newBuilder()
                                        .setType(Envelope.Type.valueOf(type))
                                        .setTimestamp(timestamp)
                                        .setServerTimestamp(serverTimestamp);
 
-    if (uuid != null) {
-      builder.setServerGuid(uuid);
-    }
-
-    if (legacyMessage != null) builder.setLegacyMessage(ByteString.copyFrom(legacyMessage));
     if (content != null)       builder.setContent(ByteString.copyFrom(content));
 
     this.envelope = builder.build();
-  }
-
-  public String getUuid() {
-    return envelope.getServerGuid();
-  }
-
-  public boolean hasUuid() {
-    return envelope.hasServerGuid();
   }
 
   public boolean hasSource() {
@@ -209,20 +185,6 @@ public class SignalServiceEnvelope {
   }
 
   /**
-   * @return Whether the envelope contains a SignalServiceDataMessage
-   */
-  public boolean hasLegacyMessage() {
-    return envelope.hasLegacyMessage();
-  }
-
-  /**
-   * @return The envelope's containing SignalService message.
-   */
-  public byte[] getLegacyMessage() {
-    return envelope.getLegacyMessage().toByteArray();
-  }
-
-  /**
    * @return Whether the envelope contains an encrypted SignalServiceContent
    */
   public boolean hasContent() {
@@ -236,33 +198,8 @@ public class SignalServiceEnvelope {
     return envelope.getContent().toByteArray();
   }
 
-  /**
-   * @return true if the containing message is a {@link org.session.libsignal.libsignal.protocol.SignalMessage}
-   */
-  public boolean isSignalMessage() {
-    return envelope.getType().getNumber() == Envelope.Type.CIPHERTEXT_VALUE;
-  }
-
-  /**
-   * @return true if the containing message is a {@link org.session.libsignal.libsignal.protocol.PreKeySignalMessage}
-   */
-  public boolean isPreKeySignalMessage() {
-    return envelope.getType().getNumber() == Envelope.Type.PREKEY_BUNDLE_VALUE;
-  }
-
-  /**
-   * @return true if the containing message is a delivery receipt.
-   */
-  public boolean isReceipt() {
-    return envelope.getType().getNumber() == Envelope.Type.RECEIPT_VALUE;
-  }
-
   public boolean isUnidentifiedSender() {
     return envelope.getType().getNumber() == Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
-  }
-
-  public boolean isFallbackMessage() {
-    return envelope.getType().getNumber() == Envelope.Type.FALLBACK_MESSAGE_VALUE;
   }
 
   public boolean isClosedGroupCiphertext() {

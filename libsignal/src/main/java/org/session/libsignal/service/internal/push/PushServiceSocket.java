@@ -20,7 +20,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment.ProgressListener;
 import org.session.libsignal.service.api.messages.calls.TurnServerInfo;
-import org.session.libsignal.service.api.messages.multidevice.DeviceInfo;
 import org.session.libsignal.service.api.profiles.SignalServiceProfile;
 import org.session.libsignal.service.api.push.ContactTokenDetails;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
@@ -215,11 +214,6 @@ public class PushServiceSocket {
   public String getNewDeviceVerificationCode() throws IOException {
     String responseText = makeServiceRequest(PROVISIONING_CODE_PATH, "GET", null);
     return JsonUtil.fromJson(responseText, DeviceCode.class).getVerificationCode();
-  }
-
-  public List<DeviceInfo> getDevices() throws IOException {
-    String responseText = makeServiceRequest(String.format(DEVICE_PATH, ""), "GET", null);
-    return JsonUtil.fromJson(responseText, DeviceInfoList.class).getDevices();
   }
 
   public void removeDevice(long deviceId) throws IOException {

@@ -20,16 +20,10 @@ public class SignalServiceEnvelopeEntity {
   private int sourceDevice;
 
   @JsonProperty
-  private byte[] message;
-
-  @JsonProperty
   private byte[] content;
 
   @JsonProperty
   private long serverTimestamp;
-
-  @JsonProperty
-  private String guid;
 
   public SignalServiceEnvelopeEntity() {}
 
@@ -53,19 +47,11 @@ public class SignalServiceEnvelopeEntity {
     return sourceDevice;
   }
 
-  public byte[] getMessage() {
-    return message;
-  }
-
   public byte[] getContent() {
     return content;
   }
 
   public long getServerTimestamp() {
     return serverTimestamp;
-  }
-
-  public String getServerUuid() {
-    return guid;
   }
 }
