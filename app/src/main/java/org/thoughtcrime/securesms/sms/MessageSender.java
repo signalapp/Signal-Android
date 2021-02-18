@@ -211,8 +211,7 @@ public class MessageSender {
   private static boolean isLocalSelfSend(@NonNull Context context, @NonNull Recipient recipient, boolean forceSms) {
     return recipient.isLocalNumber()                       &&
            !forceSms                                       &&
-           TextSecurePreferences.isPushRegistered(context) &&
-           !TextSecurePreferences.isMultiDevice(context);
+           TextSecurePreferences.isPushRegistered(context);
   }
 
   private static void sendLocalMediaSelf(Context context, long messageId) {

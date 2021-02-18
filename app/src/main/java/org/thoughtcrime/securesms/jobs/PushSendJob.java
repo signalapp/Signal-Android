@@ -276,17 +276,5 @@ public abstract class PushSendJob extends SendJob {
     // Loki - We don't need verification on sender certificates
   }
 
-  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String                masterPublicKey       = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
-    SentTranscriptMessage transcript            = new SentTranscriptMessage(masterPublicKey,
-                                                                            message.getTimestamp(),
-                                                                            message,
-                                                                            message.getExpiresInSeconds(),
-                                                                            Collections.singletonMap(masterPublicKey, syncAccess.isPresent()));
-    return SignalServiceSyncMessage.forSentTranscript(transcript);
-  }
-
-
   protected abstract void onPushSend() throws Exception;
 }

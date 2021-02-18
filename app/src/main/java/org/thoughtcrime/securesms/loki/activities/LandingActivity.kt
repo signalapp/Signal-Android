@@ -28,10 +28,6 @@ class LandingActivity : BaseActionBarActivity() {
         findViewById<View>(R.id.restoreButton).setOnClickListener { restoreFromRecoveryPhrase() }
         findViewById<View>(R.id.restoreBackupButton).setOnClickListener { restoreFromBackup() }
 
-        if (TextSecurePreferences.getWasUnlinked(this)) {
-            Toast.makeText(this, R.string.activity_landing_device_unlinked_dialog_title, Toast.LENGTH_LONG).show()
-        }
-
         // Setup essentials for a new user.
         IdentityKeyUtil.generateIdentityKeyPair(this)
 

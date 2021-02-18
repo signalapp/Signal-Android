@@ -84,9 +84,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private val publicKey: String
         get() {
-            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
-            return masterPublicKey ?: userPublicKey
+            return TextSecurePreferences.getLocalNumber(this)!!
         }
 
     // region Lifecycle
@@ -111,9 +109,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
-        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
-        if (!hasViewedSeed && isMasterDevice) {
+        if (!hasViewedSeed) {
             val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
             seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             seedReminderView.title = seedReminderViewTitle
@@ -191,9 +188,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         super.onResume()
         if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
         profileButton.update()
-        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
-        if (hasViewedSeed || !isMasterDevice) {
+        if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
         showKeyPairMigrationSheetIfNeeded()

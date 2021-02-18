@@ -555,12 +555,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       if (publicChatAPI == null) { return; }
       byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
       String url = TextSecurePreferences.getProfilePictureURL(this);
-      String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-      if (userMasterDevice != null) {
-        Recipient userMasterDeviceAsRecipient = Recipient.from(this, Address.fromSerialized(userMasterDevice), false).resolve();
-        profileKey = userMasterDeviceAsRecipient.getProfileKey();
-        url = userMasterDeviceAsRecipient.getProfileAvatar();
-      }
       Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
       for (String server : servers) {
         if (profileKey != null) {

@@ -18,7 +18,7 @@ class GroupDescription(context: Context, groupContext: SignalServiceProtos.Group
     private val groupContext: SignalServiceProtos.GroupContext?
     private val newMembers: MutableList<Recipient>
     private val removedMembers: MutableList<Recipient>
-    private var wasCurrentUserRemoved: Boolean
+    private var wasCurrentUserRemoved: Boolean = false
     private fun toRecipient(hexEncodedPublicKey: String): Recipient {
         val address = Address.fromSerialized(hexEncodedPublicKey)
         return Recipient.from(context, address, false)
@@ -74,7 +74,6 @@ class GroupDescription(context: Context, groupContext: SignalServiceProtos.Group
         this.groupContext = groupContext
         newMembers = LinkedList()
         removedMembers = LinkedList()
-        wasCurrentUserRemoved = false
         if (groupContext != null) {
             val newMembers = groupContext.newMembersList
             for (member in newMembers) {
@@ -84,15 +83,7 @@ class GroupDescription(context: Context, groupContext: SignalServiceProtos.Group
             for (member in removedMembers) {
                 this.removedMembers.add(toRecipient(member))
             }
-
-            // If we were the one that quit then we need to leave the group (only relevant for slave
-            // devices in a multi device context)
-            if (!removedMembers.isEmpty()) {
-                val masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                val masterPublicKey = masterPublicKeyOrNull
-                        ?: TextSecurePreferences.getLocalNumber(context)
-                wasCurrentUserRemoved = removedMembers.contains(masterPublicKey)
-            }
+            wasCurrentUserRemoved = removedMembers.contains(TextSecurePreferences.getLocalNumber(context))
         }
     }
 

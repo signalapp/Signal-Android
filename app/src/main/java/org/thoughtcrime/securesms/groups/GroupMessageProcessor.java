@@ -125,10 +125,9 @@ public class GroupMessageProcessor {
     Address                   address         = Address.fromExternal(context, GroupUtil.getEncodedId(group));
     Recipient                 recipient       = Recipient.from(context, address, false);
 
-    String userMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    if (userMasterDevice == null) { userMasterDevice = TextSecurePreferences.getLocalNumber(context); }
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
 
-    if (content.getSender().equals(userMasterDevice)) {
+    if (content.getSender().equals(userPublicKey)) {
       long threadId = threadDatabase.getThreadIdIfExistsFor(recipient);
       return threadId == -1 ? null : threadId;
     }
@@ -141,9 +140,9 @@ public class GroupMessageProcessor {
       }
 
       // Loki - Only process update messages if we're part of the group
-      Address userMasterDeviceAddress = Address.fromSerialized(userMasterDevice);
+      Address userMasterDeviceAddress = Address.fromSerialized(userPublicKey);
       if (!groupRecord.getMembers().contains(userMasterDeviceAddress) &&
-          !group.getMembers().or(Collections.emptyList()).contains(userMasterDevice)) {
+          !group.getMembers().or(Collections.emptyList()).contains(userPublicKey)) {
         Log.d("Loki", "Received a group update message from a group we're not a member of:  " + id + "; ignoring.");
         database.setActive(id, false);
         return null;
@@ -193,7 +192,7 @@ public class GroupMessageProcessor {
     }
 
     // If we were removed then we need to disable the chat
-    if (removedMembers.contains(Address.fromSerialized(userMasterDevice))) {
+    if (removedMembers.contains(Address.fromSerialized(userPublicKey))) {
       database.setActive(id, false);
     } else {
       if (!groupRecord.isActive()) database.setActive(id, true);

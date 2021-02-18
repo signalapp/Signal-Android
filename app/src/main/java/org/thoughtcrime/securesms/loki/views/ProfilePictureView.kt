@@ -75,10 +75,6 @@ class ProfilePictureView : RelativeLayout {
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
             val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
             users.remove(TextSecurePreferences.getLocalNumber(context))
-            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-            if (masterPublicKey != null) {
-                users.remove(masterPublicKey)
-            }
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
                 val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -159,13 +155,11 @@ class ProfilePictureView : RelativeLayout {
                 imagesCached.add(publicKey)
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
-                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                val hepk = if (recipient.isLocalNumber && masterPublicKey != null) masterPublicKey else publicKey
                 glide.clear(imageView)
                 glide.load(AvatarPlaceholderGenerator.generate(
                         context,
                         sizeInPX,
-                        hepk,
+                        publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 imagesCached.add(publicKey)

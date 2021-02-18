@@ -115,7 +115,6 @@ public class SignalServiceMessageSender {
 
   private final AtomicReference<Optional<SignalServiceMessagePipe>> pipe;
   private final AtomicReference<Optional<SignalServiceMessagePipe>> unidentifiedPipe;
-  private final AtomicBoolean                                       isMultiDevice;
 
   // Loki
   private final String                                              userPublicKey;
@@ -143,7 +142,6 @@ public class SignalServiceMessageSender {
                                     String user, String password,
                                     SignalProtocolStore store,
                                     String userAgent,
-                                    boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     Optional<EventListener> eventListener,
@@ -158,14 +156,13 @@ public class SignalServiceMessageSender {
                                     LokiOpenGroupDatabaseProtocol openGroupDatabase,
                                     Broadcaster broadcaster)
   {
-    this(urls, new StaticCredentialsProvider(user, password, null), store, userAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, userPublicKey, apiDatabase, threadDatabase, messageDatabase, preKeyBundleDatabase, sessionProtocolImpl, sessionResetImpl, userDatabase, openGroupDatabase, broadcaster);
+    this(urls, new StaticCredentialsProvider(user, password, null), store, userAgent, pipe, unidentifiedPipe, eventListener, userPublicKey, apiDatabase, threadDatabase, messageDatabase, preKeyBundleDatabase, sessionProtocolImpl, sessionResetImpl, userDatabase, openGroupDatabase, broadcaster);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
                                     CredentialsProvider credentialsProvider,
                                     SignalProtocolStore store,
                                     String userAgent,
-                                    boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     Optional<EventListener> eventListener,
@@ -185,7 +182,6 @@ public class SignalServiceMessageSender {
     this.localAddress              = new SignalServiceAddress(credentialsProvider.getUser());
     this.pipe                      = new AtomicReference<>(pipe);
     this.unidentifiedPipe          = new AtomicReference<>(unidentifiedPipe);
-    this.isMultiDevice             = new AtomicBoolean(isMultiDevice);
     this.eventListener             = eventListener;
     this.userPublicKey             = userPublicKey;
     this.apiDatabase               = apiDatabase;
@@ -326,10 +322,6 @@ public class SignalServiceMessageSender {
   public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
     this.pipe.set(Optional.fromNullable(pipe));
     this.unidentifiedPipe.set(Optional.fromNullable(unidentifiedPipe));
-  }
-
-  public void setIsMultiDevice(boolean isMultiDevice) {
-    this.isMultiDevice.set(isMultiDevice);
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment, boolean usePadding, @Nullable SignalServiceAddress recipient)

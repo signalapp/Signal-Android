@@ -37,11 +37,7 @@ class MultiDeviceRemovalBottomSheet : BottomSheetDialogFragment() {
     }
 
     private val explanation by lazy {
-        if (TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext()) != null) {
-            "You’re seeing this because this is a secondary device in a multi-device setup. To improve reliability and stability, we’ve decided to temporarily disable Session’s multi-device functionality. Device linking has been disabled, and existing secondary clients will be erased on $removalDateDescription.\n\nTo read more about this change, visit the Session FAQ at getsession.org/faq."
-        } else {
-            "You’re seeing this because you have a secondary device linked to your Session ID. To improve reliability and stability, we’ve decided to temporarily disable Session’s multi-device functionality. Device linking has been disabled, and existing secondary clients will be erased on $removalDateDescription.\n\nTo read more about this change, visit the Session FAQ at getsession.org/faq"
-        }
+        "You’re seeing this because you have a secondary device linked to your Session ID. To improve reliability and stability, we’ve decided to temporarily disable Session’s multi-device functionality. Device linking has been disabled, and existing secondary clients will be erased on $removalDateDescription.\n\nTo read more about this change, visit the Session FAQ at getsession.org/faq"
     }
 
     private val decoratedExplanation by lazy {

@@ -92,7 +92,6 @@ public class SignalCommunicationModule {
                                                           new DynamicCredentialsProvider(context),
                                                           new SignalProtocolStoreImpl(context),
                                                           BuildConfig.USER_AGENT,
-                                                          TextSecurePreferences.isMultiDevice(context),
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           Optional.of(new MessageSenderEventListener(context)),
@@ -108,7 +107,6 @@ public class SignalCommunicationModule {
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
-      this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
     }
 
     return this.messageSender;

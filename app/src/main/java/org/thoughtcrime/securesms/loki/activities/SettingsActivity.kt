@@ -63,9 +63,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private val hexEncodedPublicKey: String
         get() {
-            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)!!
-            return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
+            return TextSecurePreferences.getLocalNumber(this)!!
         }
 
     // region Lifecycle
@@ -85,17 +83,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
-        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         linkedDevicesButtonTopSeparator.visibility = View.GONE
         linkedDevicesButton.visibility = View.GONE
-        if (!isMasterDevice) {
-            seedButtonTopSeparator.visibility = View.GONE
-            seedButton.visibility = View.GONE
-        }
         privacyButton.setOnClickListener { showPrivacySettings() }
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
-//        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         sendInvitationButton.setOnClickListener { sendInvitation() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }

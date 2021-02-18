@@ -73,10 +73,9 @@ public class GroupManager {
     final Set<Address>  memberAddresses = getMemberAddresses(members);
     final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
-    String masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
+    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
 
-    memberAddresses.add(Address.fromSerialized(masterPublicKey));
+    memberAddresses.add(Address.fromSerialized(userPublicKey));
     groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses), System.currentTimeMillis());
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
