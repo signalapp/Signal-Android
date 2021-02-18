@@ -12,6 +12,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
@@ -48,13 +49,13 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
 
         companion object {
 
-            fun fromProto(proto: SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper): KeyPairWrapper {
+            fun fromProto(proto: DataMessage.ClosedGroupControlMessage.KeyPairWrapper): KeyPairWrapper {
                 return KeyPairWrapper(proto.publicKey.toString(), proto.encryptedKeyPair.toByteArray())
             }
         }
 
-        fun toProto(): SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper {
-            val result = SignalServiceProtos.ClosedGroupUpdateV2.KeyPairWrapper.newBuilder()
+        fun toProto(): DataMessage.ClosedGroupControlMessage.KeyPairWrapper {
+            val result = DataMessage.ClosedGroupControlMessage.KeyPairWrapper.newBuilder()
             result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.encryptedKeyPair = ByteString.copyFrom(encryptedKeyPair)
             return result.build()
@@ -171,11 +172,11 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
 
     public override fun onRun() {
         val contentMessage = SignalServiceProtos.Content.newBuilder()
-        val dataMessage = SignalServiceProtos.DataMessage.newBuilder()
-        val closedGroupUpdate = SignalServiceProtos.ClosedGroupUpdateV2.newBuilder()
+        val dataMessage = DataMessage.newBuilder()
+        val closedGroupUpdate = DataMessage.ClosedGroupControlMessage.newBuilder()
         when (kind) {
             is Kind.New -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.NEW
                 closedGroupUpdate.publicKey = ByteString.copyFrom(kind.publicKey)
                 closedGroupUpdate.name = kind.name
                 val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
@@ -186,31 +187,31 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 closedGroupUpdate.addAllAdmins(kind.admins.map { ByteString.copyFrom(it) })
             }
             is Kind.Update -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.UPDATE
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.UPDATE
                 closedGroupUpdate.name = kind.name
                 closedGroupUpdate.addAllMembers(kind.members.map { ByteString.copyFrom(it) })
             }
             is Kind.EncryptionKeyPair -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR
                 closedGroupUpdate.addAllWrappers(kind.wrappers.map { it.toProto() })
             }
             Kind.Leave -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBER_LEFT
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT
             }
             is Kind.RemoveMembers -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_REMOVED
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.MEMBERS_REMOVED
                 closedGroupUpdate.addAllMembers(kind.members.map { ByteString.copyFrom(it) })
             }
             is Kind.AddMembers -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBERS_ADDED
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.MEMBERS_ADDED
                 closedGroupUpdate.addAllMembers(kind.members.map { ByteString.copyFrom(it) })
             }
             is Kind.NameChange -> {
-                closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NAME_CHANGE
+                closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.NAME_CHANGE
                 closedGroupUpdate.name = kind.name
             }
         }
-        dataMessage.closedGroupUpdateV2 = closedGroupUpdate.build()
+        dataMessage.closedGroupControlMessage = closedGroupUpdate.build()
         contentMessage.dataMessage = dataMessage.build()
         val serializedContentMessage = contentMessage.build().toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()

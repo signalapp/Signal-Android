@@ -153,7 +153,7 @@ class PublicChatPoller(private val context: Context, private val group: PublicCh
             signalLinkPreviews.add(SignalServiceDataMessage.Preview(linkPreview.linkPreviewURL!!, linkPreview.linkPreviewTitle!!, Optional.of(attachment)))
         }
         val body = if (message.body == message.timestamp.toString()) "" else message.body // Workaround for the fact that the back-end doesn't accept messages without a body
-        return SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
+        return SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, 0, false, null, quote, null, signalLinkPreviews)
     }
 
     fun pollForNewMessages(): Promise<Unit, Exception> {
