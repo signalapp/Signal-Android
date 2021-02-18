@@ -423,9 +423,6 @@ dependencyVerification {
         ['org.slf4j:slf4j-api:1.7.24',
          'baf3c7fe15fefeaf9e5b000d94547379dc48370f22a8797e239c127e7d7756ec'],
 
-        ['org.threeten:threetenbp:1.3.6',
-         'f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7'],
-
         ['org.whispersystems:signal-client-android:0.1.5',
          'a95f4d8125a22552da99b5db15589454789eee322e84d9ba613c258150366a64'],
 
