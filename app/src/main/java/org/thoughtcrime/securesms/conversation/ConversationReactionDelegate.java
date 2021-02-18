@@ -115,6 +115,7 @@ final class ConversationReactionDelegate {
 
   private @NonNull ConversationReactionOverlay resolveOverlay() {
     ConversationReactionOverlay overlay = overlayStub.get();
+    overlay.requestFitSystemWindows();
 
     overlay.setListVerticalTranslation(translationY);
     overlay.setOnHideListener(onHideListener);
