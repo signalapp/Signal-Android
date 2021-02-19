@@ -53,9 +53,6 @@ public class DatabaseFactory {
   private final GroupDatabase         groupDatabase;
   private final RecipientDatabase     recipientDatabase;
   private final GroupReceiptDatabase  groupReceiptDatabase;
-  private final OneTimePreKeyDatabase preKeyDatabase;
-  private final SignedPreKeyDatabase  signedPreKeyDatabase;
-  private final SessionDatabase       sessionDatabase;
   private final SearchDatabase        searchDatabase;
   private final JobDatabase           jobDatabase;
   private final StickerDatabase       stickerDatabase;
@@ -123,18 +120,6 @@ public class DatabaseFactory {
 
   public static GroupReceiptDatabase getGroupReceiptDatabase(Context context) {
     return getInstance(context).groupReceiptDatabase;
-  }
-
-  public static OneTimePreKeyDatabase getPreKeyDatabase(Context context) {
-    return getInstance(context).preKeyDatabase;
-  }
-
-  public static SignedPreKeyDatabase getSignedPreKeyDatabase(Context context) {
-    return getInstance(context).signedPreKeyDatabase;
-  }
-
-  public static SessionDatabase getSessionDatabase(Context context) {
-    return getInstance(context).sessionDatabase;
   }
 
   public static SearchDatabase getSearchDatabase(Context context) {
@@ -212,9 +197,6 @@ public class DatabaseFactory {
     this.groupDatabase             = new GroupDatabase(context, databaseHelper);
     this.recipientDatabase         = new RecipientDatabase(context, databaseHelper);
     this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
-    this.preKeyDatabase            = new OneTimePreKeyDatabase(context, databaseHelper);
-    this.signedPreKeyDatabase      = new SignedPreKeyDatabase(context, databaseHelper);
-    this.sessionDatabase           = new SessionDatabase(context, databaseHelper);
     this.searchDatabase            = new SearchDatabase(context, databaseHelper);
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
     this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);

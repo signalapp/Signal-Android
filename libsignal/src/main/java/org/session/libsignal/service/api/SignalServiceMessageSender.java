@@ -9,8 +9,8 @@ import com.google.protobuf.ByteString;
 
 import org.jetbrains.annotations.Nullable;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
+import org.session.libsignal.libsignal.state.IdentityKeyStore;
 import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
@@ -29,12 +29,10 @@ import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
 import org.session.libsignal.service.api.util.CredentialsProvider;
-import org.session.libsignal.service.internal.configuration.SignalServiceConfiguration;
 import org.session.libsignal.service.internal.crypto.PaddingInputStream;
 import org.session.libsignal.service.internal.push.OutgoingPushMessage;
 import org.session.libsignal.service.internal.push.OutgoingPushMessageList;
 import org.session.libsignal.service.internal.push.PushAttachmentData;
-import org.session.libsignal.service.internal.push.PushServiceSocket;
 import org.session.libsignal.service.internal.push.PushTransportDetails;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer;
@@ -62,7 +60,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChatMessage;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiMessageDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol;
-import org.session.libsignal.service.loki.database.LokiPreKeyBundleDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol;
 import org.session.libsignal.service.loki.utilities.TTLUtilities;
@@ -94,7 +91,7 @@ public class SignalServiceMessageSender {
 
   private static final String TAG = SignalServiceMessageSender.class.getSimpleName();
 
-  private final SignalProtocolStore                                 store;
+  private final IdentityKeyStore                                    store;
   private final SignalServiceAddress                                localAddress;
 
   private final AtomicReference<Optional<SignalServiceMessagePipe>> pipe;
@@ -118,7 +115,7 @@ public class SignalServiceMessageSender {
    * @param store The SignalProtocolStore.
    */
   public SignalServiceMessageSender(String user, String password,
-                                    SignalProtocolStore store,
+                                    IdentityKeyStore store,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     String userPublicKey,
@@ -134,7 +131,7 @@ public class SignalServiceMessageSender {
   }
 
   public SignalServiceMessageSender(CredentialsProvider credentialsProvider,
-                                    SignalProtocolStore store,
+                                    IdentityKeyStore store,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     String userPublicKey,

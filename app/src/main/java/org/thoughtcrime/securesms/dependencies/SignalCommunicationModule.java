@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceAccountManager;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.util.CredentialsProvider;
@@ -74,7 +73,6 @@ public class SignalCommunicationModule {
   private final Context                      context;
   private final SignalServiceNetworkAccess   networkAccess;
 
-  private SignalServiceAccountManager  accountManager;
   private SignalServiceMessageSender   messageSender;
   private SignalServiceMessageReceiver messageReceiver;
 

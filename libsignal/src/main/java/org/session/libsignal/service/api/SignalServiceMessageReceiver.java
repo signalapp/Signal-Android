@@ -108,12 +108,6 @@ public class SignalServiceMessageReceiver {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null);
   }
 
-  public SignalServiceProfile retrieveProfile(SignalServiceAddress address, Optional<UnidentifiedAccess> unidentifiedAccess)
-    throws IOException
-  {
-    return socket.retrieveProfile(address, unidentifiedAccess);
-  }
-
   public InputStream retrieveProfileAvatar(String path, File destination, byte[] profileKey, int maxSizeBytes)
     throws IOException
   {
@@ -207,10 +201,6 @@ public class SignalServiceMessageReceiver {
                                                             sleepTimer);
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
-  }
-
-  public List<SignalServiceEnvelope> retrieveMessages() throws IOException {
-    return retrieveMessages(new NullMessageReceivedCallback());
   }
 
   public List<SignalServiceEnvelope> retrieveMessages(MessageReceivedCallback callback)

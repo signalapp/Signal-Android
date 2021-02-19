@@ -210,7 +210,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
               .withBody(message.getBody())
               .withExpiration((int)(message.getExpiresIn() / 1000))
               .withProfileKey(profileKey.orNull())
-              .asEndSessionMessage(message.isEndSession())
               .build();
 
       SignalServiceDataMessage textSecureSelfSendMessage = SignalServiceDataMessage.newBuilder()
@@ -219,7 +218,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
               .withSyncTarget(destination.serialize())
               .withExpiration((int)(message.getExpiresIn() / 1000))
               .withProfileKey(profileKey.orNull())
-              .asEndSessionMessage(message.isEndSession())
               .build();
 
       if (userPublicKey.equals(address.getNumber())) {

@@ -120,10 +120,7 @@ object FullBackupExporter {
     }
 
     private inline fun shouldExportTable(table: String): Boolean {
-        return  table != SignedPreKeyDatabase.TABLE_NAME &&
-                table != OneTimePreKeyDatabase.TABLE_NAME &&
-                table != SessionDatabase.TABLE_NAME &&
-                table != PushDatabase.TABLE_NAME &&
+        return  table != PushDatabase.TABLE_NAME &&
 
                 table != LokiBackupFilesDatabase.TABLE_NAME &&
                 table != LokiAPIDatabase.openGroupProfilePictureTable &&

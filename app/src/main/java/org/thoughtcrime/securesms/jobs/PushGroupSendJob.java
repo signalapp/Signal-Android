@@ -290,7 +290,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
             .asExpirationUpdate(message.isExpirationUpdate())
             .withProfileKey(profileKey.orNull())
             .withQuote(quote.orNull())
-            .withSticker(sticker.orNull())
             .withSharedContacts(sharedContacts)
             .withPreviews(previews);
   }

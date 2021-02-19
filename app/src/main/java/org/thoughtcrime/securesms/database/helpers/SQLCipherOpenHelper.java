@@ -17,12 +17,9 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
-import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -94,9 +91,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(GroupDatabase.CREATE_TABLE);
     db.execSQL(RecipientDatabase.CREATE_TABLE);
     db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
-    db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE);
-    db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
-    db.execSQL(SessionDatabase.CREATE_TABLE);
     for (String sql : SearchDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }

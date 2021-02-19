@@ -6,7 +6,6 @@
 
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
@@ -259,14 +258,10 @@ public class SignalServiceDataMessage {
     private long                 timestamp;
     private SignalServiceGroup   group;
     private String               body;
-    private boolean              endSession;
     private int                  expiresInSeconds;
     private boolean              expirationUpdate;
     private byte[]               profileKey;
-    private boolean              profileKeyUpdate;
     private Quote                quote;
-    private Sticker              sticker;
-    private PreKeyBundle         preKeyBundle;
     private String               syncTarget;
 
     private Builder() {}
@@ -301,15 +296,6 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder asEndSessionMessage() {
-      return asEndSessionMessage(true);
-    }
-
-    public Builder asEndSessionMessage(boolean endSession) {
-      this.endSession = endSession;
-      return this;
-    }
-
     public Builder asExpirationUpdate() {
       return asExpirationUpdate(true);
     }
@@ -326,11 +312,6 @@ public class SignalServiceDataMessage {
 
     public Builder withProfileKey(byte[] profileKey) {
       this.profileKey = profileKey;
-      return this;
-    }
-
-    public Builder asProfileKeyUpdate(boolean profileKeyUpdate) {
-      this.profileKeyUpdate = profileKeyUpdate;
       return this;
     }
 
@@ -351,16 +332,6 @@ public class SignalServiceDataMessage {
 
     public Builder withPreviews(List<Preview> previews) {
       this.previews.addAll(previews);
-      return this;
-    }
-
-    public Builder withSticker(Sticker sticker) {
-      this.sticker = sticker;
-      return this;
-    }
-
-    public Builder withPreKeyBundle(PreKeyBundle preKeyBundle) {
-      this.preKeyBundle = preKeyBundle;
       return this;
     }
 
