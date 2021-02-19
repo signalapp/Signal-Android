@@ -128,6 +128,8 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Le destinataire n’est pas une adresse texto ou courriel valide !</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Le message est vide !</string>
   <string name="ConversationActivity_group_members">Membres du groupe</string>
+  <string name="ConversationActivity_note_to_self">Note à mon intention</string>
+  <string name="ConversationActivity_message">Message</string>
   <string name="ConversationActivity_invalid_recipient">Le destinataire est invalide !</string>
   <string name="ConversationActivity_added_to_home_screen">Ajouté à l’écran d’accueil</string>
   <string name="ConversationActivity_calls_not_supported">Appels non pris en charge</string>
