@@ -196,11 +196,11 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     return intent;
   }
 
-  public static Intent buildShareIntent(@NonNull Context context,
-                                        @NonNull List<Media> media,
-                                        @NonNull List<RecipientId> recipientIds,
-                                        @NonNull CharSequence body,
-                                        @NonNull TransportOption transportOption)
+  public static Intent buildShareIntent(@NonNull  Context context,
+                                        @NonNull  List<Media> media,
+                                        @NonNull  List<RecipientId> recipientIds,
+                                        @Nullable CharSequence body,
+                                        @NonNull  TransportOption transportOption)
   {
     Intent intent = new Intent(context, MediaSendActivity.class);
     intent.putParcelableArrayListExtra(KEY_MEDIA, new ArrayList<>(media));
