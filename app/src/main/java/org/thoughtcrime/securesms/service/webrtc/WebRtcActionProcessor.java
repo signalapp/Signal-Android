@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.ResultReceiver;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
-import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -43,6 +41,7 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -558,7 +557,19 @@ public abstract class WebRtcActionProcessor {
   }
 
   protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState, @NonNull CallMetadata callMetadata, @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels) {
-    Log.i(tag, "handleReceivedIceCandidates not processed");
+    Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidateParcels.size());
+
+    LinkedList<byte[]> iceCandidates = new LinkedList<>();
+    for (IceCandidateParcel parcel : iceCandidateParcels) {
+      iceCandidates.add(parcel.getIceCandidate());
+    }
+
+    try {
+      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
+    } catch (CallException e) {
+      return callFailure(currentState, "receivedIceCandidates() failed: ", e);
+    }
+
     return currentState;
   }
 

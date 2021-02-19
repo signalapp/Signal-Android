@@ -89,27 +89,6 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
   }
 
   @Override
-  protected @NonNull WebRtcServiceState handleReceivedIceCandidates(@NonNull WebRtcServiceState currentState,
-                                                                    @NonNull WebRtcData.CallMetadata callMetadata,
-                                                                    @NonNull ArrayList<IceCandidateParcel> iceCandidateParcels)
-  {
-    Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidateParcels.size());
-
-    LinkedList<byte[]> iceCandidates = new LinkedList<>();
-    for (IceCandidateParcel parcel : iceCandidateParcels) {
-      iceCandidates.add(parcel.getIceCandidate());
-    }
-
-    try {
-      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
-    } catch (CallException e) {
-      return callFailure(currentState, "receivedIceCandidates() failed: ", e);
-    }
-
-    return currentState;
-  }
-
-  @Override
   protected @NonNull  WebRtcServiceState handleRemoteVideoEnable(@NonNull WebRtcServiceState currentState, boolean enable) {
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
