@@ -383,7 +383,7 @@ object ClosedGroupsProtocolV2 {
         pendingKeyPair[groupPublicKey] = Optional.absent()
     }
 
-    private fun sendEncryptionKeyPair(context: Context, groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, force: Boolean = true) {
+    private fun sendEncryptionKeyPair(context: Context, target: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, force: Boolean = true) {
         val proto = SignalServiceProtos.KeyPair.newBuilder()
         proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
         proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
@@ -392,7 +392,7 @@ object ClosedGroupsProtocolV2 {
             val ciphertext = SessionProtocolImpl(context).encrypt(plaintext, publicKey)
             ClosedGroupUpdateMessageSendJobV2.KeyPairWrapper(publicKey, ciphertext)
         }
-        val job = ClosedGroupUpdateMessageSendJobV2(groupPublicKey, ClosedGroupUpdateMessageSendJobV2.Kind.EncryptionKeyPair(wrappers), System.currentTimeMillis())
+        val job = ClosedGroupUpdateMessageSendJobV2(target, ClosedGroupUpdateMessageSendJobV2.Kind.EncryptionKeyPair(wrappers), System.currentTimeMillis())
         if (force) {
             job.setContext(context)
             job.onRun() // Run the job immediately
@@ -573,7 +573,9 @@ object ClosedGroupsProtocolV2 {
             if (encryptionKeyPair == null) {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
             } else {
-                sendEncryptionKeyPair(context, groupPublicKey, encryptionKeyPair, newMembers, false)
+                for (user in updateMembers) {
+                    sendEncryptionKeyPair(context, user, encryptionKeyPair, newMembers, false)
+                }
             }
         }
     }
