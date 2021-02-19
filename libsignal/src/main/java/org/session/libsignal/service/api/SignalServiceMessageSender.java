@@ -878,7 +878,6 @@ public class SignalServiceMessageSender {
   {
     List<OutgoingPushMessage> messages = new LinkedList<>();
 
-    PushTransportDetails transportDetails = new PushTransportDetails(3);
     String publicKey = recipient.getNumber(); // Could be a contact's public key or the public key of a SSK group
     boolean isClosedGroup = apiDatabase.isClosedGroup(publicKey);
     String encryptionPublicKey;
@@ -888,7 +887,7 @@ public class SignalServiceMessageSender {
     } else {
       encryptionPublicKey = publicKey;
     }
-    byte[] ciphertext = sessionProtocolImpl.encrypt(transportDetails.getPaddedMessageBody(plaintext), encryptionPublicKey);
+    byte[] ciphertext = sessionProtocolImpl.encrypt(PushTransportDetails.getPaddedMessageBody(plaintext), encryptionPublicKey);
     String body = Base64.encodeBytes(ciphertext);
     int type = isClosedGroup ? SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE :
             SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE;

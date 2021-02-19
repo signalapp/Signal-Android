@@ -218,10 +218,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId, boolean isPushNotification) {
     try {
       GroupDatabase        groupDatabase        = DatabaseFactory.getGroupDatabase(context);
-      SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
-      SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiAPIDatabase apiDB                     = DatabaseFactory.getLokiAPIDatabase(context);
-      SignalServiceCipher cipher                = new SignalServiceCipher(localAddress, axolotlStore, new SessionProtocolImpl(context), apiDB);
+      SignalServiceCipher cipher                = new SignalServiceCipher(new SessionProtocolImpl(context), apiDB);
 
       SignalServiceContent content = cipher.decrypt(envelope);
 

@@ -154,10 +154,4 @@ public class SignalMessage implements CiphertextMessage {
   public int getType() {
     return CiphertextMessage.WHISPER_TYPE;
   }
-
-  public static boolean isLegacy(byte[] message) {
-    return message != null && message.length >= 1 &&
-        ByteUtil.highBitsToInt(message[0]) != CiphertextMessage.CURRENT_VERSION;
-  }
-
 }

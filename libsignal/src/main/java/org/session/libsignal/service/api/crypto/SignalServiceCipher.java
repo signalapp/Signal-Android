@@ -11,11 +11,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
-import org.session.libsignal.metadata.SealedSessionCipher;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.SessionCipher;
-import org.session.libsignal.libsignal.SignalProtocolAddress;
-import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
@@ -55,18 +51,12 @@ public class SignalServiceCipher {
   @SuppressWarnings("unused")
   private static final String TAG = SignalServiceCipher.class.getSimpleName();
 
-  private final SignalProtocolStore              signalProtocolStore;
-  private final SignalServiceAddress             localAddress;
   private final SessionProtocol                  sessionProtocolImpl;
   private final LokiAPIDatabaseProtocol          apiDB;
 
-  public SignalServiceCipher(SignalServiceAddress localAddress,
-                             SignalProtocolStore signalProtocolStore,
-                             SessionProtocol sessionProtocolImpl,
+  public SignalServiceCipher(SessionProtocol sessionProtocolImpl,
                              LokiAPIDatabaseProtocol apiDB)
   {
-    this.signalProtocolStore  = signalProtocolStore;
-    this.localAddress         = localAddress;
     this.sessionProtocolImpl  = sessionProtocolImpl;
     this.apiDB                = apiDB;
   }
@@ -135,13 +125,8 @@ public class SignalServiceCipher {
 
   protected Plaintext decrypt(SignalServiceEnvelope envelope, byte[] ciphertext) throws InvalidMetadataMessageException
   {
-    SignalProtocolAddress sourceAddress       = new SignalProtocolAddress(envelope.getSource(), envelope.getSourceDevice());
-    SessionCipher         sessionCipher       = new SessionCipher(signalProtocolStore, sourceAddress);
-    SealedSessionCipher   sealedSessionCipher = new SealedSessionCipher(signalProtocolStore, new SignalProtocolAddress(localAddress.getNumber(), 1));
-
     byte[] paddedMessage;
     Metadata metadata;
-    int sessionVersion;
 
     if (envelope.isClosedGroupCiphertext()) {
       String groupPublicKey = envelope.getSource();
@@ -149,20 +134,16 @@ public class SignalServiceCipher {
       paddedMessage = plaintextAndSenderPublicKey.getFirst();
       String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
       metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-      sessionVersion = sessionCipher.getSessionVersion();
     } else if (envelope.isUnidentifiedSender()) {
       ECKeyPair userX25519KeyPair = apiDB.getUserX25519KeyPair();
       kotlin.Pair<byte[], String> plaintextAndSenderPublicKey = sessionProtocolImpl.decrypt(ciphertext, userX25519KeyPair);
       paddedMessage = plaintextAndSenderPublicKey.getFirst();
       String senderPublicKey = plaintextAndSenderPublicKey.getSecond();
       metadata = new Metadata(senderPublicKey, 1, envelope.getTimestamp(), false);
-      sessionVersion = sealedSessionCipher.getSessionVersion(new SignalProtocolAddress(metadata.getSender(), metadata.getSenderDevice()));
     } else {
       throw new InvalidMetadataMessageException("Unknown type: " + envelope.getType());
     }
-
-    PushTransportDetails transportDetails = new PushTransportDetails(sessionVersion);
-    byte[]               data             = transportDetails.getStrippedPaddingMessageBody(paddedMessage);
+    byte[] data = PushTransportDetails.getStrippedPaddingMessageBody(paddedMessage);
 
     return new Plaintext(metadata, data);
   }
