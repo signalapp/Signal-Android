@@ -8,7 +8,6 @@ package org.session.libsignal.libsignal;
 import org.session.libsignal.libsignal.ecc.Curve;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.session.libsignal.libsignal.loki.FallbackSessionCipher;
 import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
@@ -332,7 +331,7 @@ public class SessionCipher {
     synchronized (SESSION_LOCK) {
       if (!sessionStore.containsSession(remoteAddress)) {
           // Loki - If we have no session then we must be using the FallbackSessionCipher
-          return FallbackSessionCipher.getSessionVersion();
+          return 3;
       }
 
       SessionRecord record = sessionStore.loadSession(remoteAddress);

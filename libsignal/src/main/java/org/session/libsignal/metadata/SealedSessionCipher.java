@@ -23,7 +23,6 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.session.libsignal.libsignal.kdf.HKDFv3;
-import org.session.libsignal.libsignal.loki.FallbackSessionCipher;
 import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
@@ -197,14 +196,6 @@ public class SealedSessionCipher {
     switch (message.getType()) {
       case CiphertextMessage.WHISPER_TYPE: return new SessionCipher(signalProtocolStore, sender).decrypt(new SignalMessage(message.getContent()));
       case CiphertextMessage.PREKEY_TYPE:  return new SessionCipher(signalProtocolStore, sender).decrypt(new PreKeySignalMessage(message.getContent()));
-      case CiphertextMessage.FALLBACK_MESSAGE_TYPE: {
-          try {
-              byte[] privateKey = signalProtocolStore.getIdentityKeyPair().getPrivateKey().serialize();
-              return new FallbackSessionCipher(privateKey, sender.getName()).decrypt(message.getContent());
-          } catch (Exception e) {
-              throw new InvalidMessageException("Failed to decrypt fallback message.");
-          }
-      }
       default: throw new InvalidMessageException("Unknown type: " + message.getType());
     }
   }

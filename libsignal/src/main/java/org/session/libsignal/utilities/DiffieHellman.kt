@@ -1,4 +1,4 @@
-package org.session.libsignal.libsignal.loki
+package org.session.libsignal.utilities
 
 import org.whispersystems.curve25519.Curve25519
 import org.session.libsignal.service.internal.util.Util
