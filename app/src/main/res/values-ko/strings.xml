@@ -35,7 +35,7 @@
   <string name="ApplicationPreferencesActivity_appearance_summary">테마 %1$s, 언어 %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">등록 잠금을 위해 PIN이 필요합니다. PIN을 비활성화하려면 먼저 등록 잠금을 비활성화하세요.</string>
   <string name="ApplicationPreferencesActivity_pin_created">PIN이 생성되었습니다.</string>
-  <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 중지되었습니다.</string>
+  <string name="ApplicationPreferencesActivity_pin_disabled">PIN 사용이 비활성화 되었습니다.</string>
   <string name="ApplicationPreferencesActivity_hide">숨기기</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">리마인더를 숨기시겠습니까?</string>
   <!--AppProtectionPreferenceFragment-->
@@ -118,7 +118,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">프로필 사진을 삭제하시겠습니까?</string>
   <string name="ClearProfileActivity_remove_group_photo">그룹 사진을 지우시겠습니까?</string>
   <!--ClientDeprecatedActivity-->
-  <string name="ClientDeprecatedActivity_update_signal">시그널 업데이트하기</string>
+  <string name="ClientDeprecatedActivity_update_signal">시그널 최신 버전으로 업데이트</string>
   <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">이 버전의 앱은 더 이상 지원되지 않습니다. 메시지를 주고받을려면, 가장 최근 버전으로 업데이트해주세요</string>
   <string name="ClientDeprecatedActivity_update">업데이트</string>
   <string name="ClientDeprecatedActivity_dont_update">업데이트하지 않음</string>

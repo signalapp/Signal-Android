@@ -34,7 +34,7 @@
   <string name="ApplicationPreferencesActivity_privacy_summary">Skærmlås %1$s, Registreringslås %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Sprog %2$s</string>
   <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs er påkrævet for registreringslås. For at deaktivere PINs skal registreringslås først deaktiveres</string>
-  <string name="ApplicationPreferencesActivity_pin_created">PIN oprettet</string>
+  <string name="ApplicationPreferencesActivity_pin_created">PIN oprettet.</string>
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN deaktiveret</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påmindelse?</string>
@@ -864,7 +864,7 @@
   <string name="MediaRepository__camera">Kamera</string>
   <!--MessageRecord-->
   <string name="MessageRecord_unknown">Ukendt</string>
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen.</string>
   <string name="MessageRecord_left_group">Du har forladt gruppen</string>
   <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_the_group_was_updated">Gruppen blev opdateret</string>
@@ -1838,7 +1838,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
   <string name="preferences__pref_use_address_book_photos">Brug fotos i adressebogen</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige</string>
-  <string name="preferences__generate_link_previews">Genererer eksempelvisning af link</string>
+  <string name="preferences__generate_link_previews">Generer eksempelvisning af link</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent eksempelvisninger af links direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vælg din kontakt fra kontaktlisten</string>
@@ -1974,7 +1974,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Sikker afsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Vis indikator</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis status ikon når du vælger \"Besked detaljer\" på beskeder som er modtaget ved brug af sikker afsender</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Vis status ikon når du vælger \"Besked detaljer\" på beskeder som er modtaget ved brug af sikker afsender.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Tillad fra alle</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Aktivér \"Sikker afsender\" for indgående beskeder fra personer som ikke er kontakter, og som du ikke har delt din profil med.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Læs mere</string>
@@ -2105,7 +2105,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Kommunikér sikkert og aktiver nye funktioner som går længere end blot usikre SMS beskeder, ved at invitere flere kontakter til at bruge Signal</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed, og kan kun ses af dig. De bliver ikke videredelt</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed, og kan kun ses af dig. De bliver ikke videredelt.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
@@ -2142,7 +2142,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConfirmKbsPinFragment__confirm_your_pin">Bekræft din PIN</string>
   <string name="ConfirmKbsPinFragment__pin_creation_failed">Fejl ved oprettelse af PIN</string>
   <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN koden blev ikke gemt. Du bliver bedt om at oprette en PIN kode senere</string>
-  <string name="ConfirmKbsPinFragment__pin_created">PIN oprettet</string>
+  <string name="ConfirmKbsPinFragment__pin_created">PIN oprettet.</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">Indtast din pinkode igen</string>
   <string name="ConfirmKbsPinFragment__creating_pin">Opretter PIN…</string>
   <!--KbsSplashFragment-->
@@ -2169,7 +2169,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="AccountLockedFragment__learn_more">Lær mere</string>
   <!--KbsLockFragment-->
   <string name="RegistrationLockFragment__enter_your_pin">Skriv din PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv den PIN du oprettede til din konto. Den er anderledes end din SMS verifikationskode</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">Skriv den PIN du oprettede til din konto. Den er anderledes end din SMS verifikationskode.</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">Skriv alfanumerisk PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">Skriv numerisk PIN</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
@@ -2229,9 +2229,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at læse indkommende beskeder</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup kodeord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups vil blive gemt til ekstern placering og krypteret med koden herunder. Du skal kende koden for at kunne gendanne fra backup.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du skal have denne adgangskode, for at kunne gendanne fra backup</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Du skal have denne adgangskode, for at kunne gendanne fra backup.</string>
   <string name="backup_enable_dialog__folder">Mappe</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at gendanne fra backup</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at gendanne fra backup.</string>
   <string name="registration_activity__restore_backup">Gendan backup</string>
   <string name="registration_activity__skip">Spring over</string>
   <string name="preferences_chats__chat_backups">Backup chats</string>
@@ -2243,7 +2243,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RegistrationActivity_checking">Tjekker…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d beskeder indtil videre…</string>
   <string name="RegistrationActivity_restore_from_backup">Gendan fra backup?</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og mediefiler fra en lokal backup. Hvis du ikke gendanner nu kan det ikke gøres senere</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og mediefiler fra en lokal backup. Hvis du ikke gendanner nu kan det ikke gøres senere.</string>
   <string name="RegistrationActivity_backup_size_s">Backup størrelse: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Backup tidsstempel: %s</string>
   <string name="BackupDialog_enable_local_backups">Aktivér lokale backups?</string>
@@ -2258,7 +2258,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="BackupDialog_no_file_picker_available">Ingen filvælger tilgængelig.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">Skriv dit kodeord for backup for verificering</string>
   <string name="BackupDialog_verify">Verificér</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Dit kodeord for backup er oprettet</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du indtastede det korrekte backup kodeord</string>
   <string name="BackupDialog_passphrase_was_not_correct">Forkert kodeord</string>
   <string name="LocalBackupJob_creating_backup">Opretter backup…</string>
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhedskopiering mislykkedes</string>
@@ -2293,7 +2293,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__turn_off">Deaktiver</string>
   <string name="preferences_app_protection__confirm_pin">Bekræft PIN</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Bekræft din Signal PIN</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller sikkert gemmer din PIN, da den ikke kan gendannes. Hvis du glemmer din PIN, kan du miste data når du genregistrerer din Signal konto</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Vær sikker på at du husker eller sikkert gemmer din PIN, da den ikke kan gendannes. Hvis du glemmer din PIN, kan du miste data når du genregistrerer din Signal konto.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Forkert PIN. Prøv igen</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Aktivering af registreringslås mislykkedes</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Deaktivering af registreringslås mislykkedes</string>
@@ -2334,9 +2334,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">Forældede vs. nye grupper</string>
   <string name="GroupsLearnMore_what_are_legacy_groups">Hvad er forældede grupper?</string>
-  <string name="GroupsLearnMore_paragraph_1">Forældede grupper, er grupper der ikke er kompatible med nye gruppefunktioner, som administratorer og mere beskrivende opdateringer af grupper</string>
+  <string name="GroupsLearnMore_paragraph_1">Forældede grupper, er grupper der ikke er kompatible med nye gruppefunktioner, som administratorer og mere beskrivende opdateringer af grupper.</string>
   <string name="GroupsLearnMore_can_i_upgrade_a_legacy_group">Kan jeg opgradere en forældet gruppe?</string>
-  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan endnu ikke opgraderes til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer, hvis de har den nyeste version af Signal</string>
+  <string name="GroupsLearnMore_paragraph_2">Forældede grupper kan endnu ikke opgraderes til nye grupper, men du kan oprette en ny gruppe med de samme medlemmer, hvis de har den nyeste version af Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal vil tilbyde en måde at opgradere Forældede grupper på, i fremtiden</string>
   <!--GroupLinkBottomSheetDialogFragment-->
   <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
@@ -2357,8 +2357,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Gennemgå medlemmer</string>
   <string name="ReviewCardDialogFragment__review_request">Gennemgå forespørgsel</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d medlemmer af gruppen har det samme navn, gennemgå medlemmer herunder og vælg en handling</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørgslen er fra, gennemgå kontakterne herunder og vælg en handling </string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d medlemmer af gruppen har det samme navn, gennemgå medlemmer herunder og vælg en handling.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Hvis du ikke er sikker på hvem forespørgslen er fra, gennemgå kontakterne herunder og vælg en handling.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Ingen andre grupper til fælles</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Ingen grupper til fælles</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
@@ -2371,7 +2371,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   </plurals>
   <string name="ReviewCardDialogFragment__remove_s_from_group">Fjern %1$s fra gruppen?</string>
   <string name="ReviewCardDialogFragment__remove">Fjern</string>
-  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Fejl ved fjernelse af gruppemedlem</string>
+  <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Fejl ved fjernelse af gruppemedlem.</string>
   <!--ReviewCard-->
   <string name="ReviewCard__member">Medlem</string>
   <string name="ReviewCard__request">Forespørgsel</string>

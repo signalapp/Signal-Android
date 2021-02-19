@@ -600,7 +600,7 @@
   <string name="ManageGroupActivity_invite_now">招待する</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">メンションの通知</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートしたチャットでメンションがあった際に通知を受け取りますか？</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ミュートしたチャットでメンションがあった際に、通知を受け取りますか？</string>
   <string name="GroupMentionSettingDialog_always_notify_me">常に通知を受け取る</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">通知を受け取らない</string>
   <!--ManageProfileFragment-->
