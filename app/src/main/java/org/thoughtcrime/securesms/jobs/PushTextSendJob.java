@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
@@ -124,17 +123,15 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
       }
 
-      if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-        if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
-          log(TAG, "Marking recipient as UD-unrestricted following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
-        } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
-          log(TAG, "Marking recipient as UD-enabled following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
-        } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
-          log(TAG, "Marking recipient as UD-disabled following a non-UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
-        }
+      if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
+        log(TAG, "Marking recipient as UD-unrestricted following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
+      } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
+        log(TAG, "Marking recipient as UD-enabled following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
+      } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
+        log(TAG, "Marking recipient as UD-disabled following a non-UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
       }
 
       if (record.getExpiresIn() > 0 && messageId >= 0) {
@@ -196,14 +193,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       SignalServiceAddress             address            = getPushAddress(recipient.getAddress());
       SignalServiceAddress             localAddress       = new SignalServiceAddress(userPublicKey);
       Optional<byte[]>                 profileKey         = getProfileKey(recipient);
-      Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
+      Optional<UnidentifiedAccess>     unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
 
       log(TAG, "Have access key to use: " + unidentifiedAccess.isPresent());
-
-//      PreKeyBundle preKeyBundle = null;
-//      if (message.isEndSession()) {
-//        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(destination.serialize());
-//      }
 
       SignalServiceDataMessage textSecureMessage = SignalServiceDataMessage.newBuilder()
               .withTimestamp(message.getDateSent())
@@ -237,7 +229,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
           try {
             // send to ourselves to sync multi-device
-            Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+            Optional<UnidentifiedAccess> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
             SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, textSecureSelfSendMessage);
             if (selfSendResult.getLokiAPIError() != null) {
               throw selfSendResult.getLokiAPIError();

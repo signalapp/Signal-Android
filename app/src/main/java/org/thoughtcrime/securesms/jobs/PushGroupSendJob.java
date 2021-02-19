@@ -16,6 +16,7 @@ import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 
 import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
@@ -37,7 +38,6 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -236,7 +236,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Address address = message.getRecipient().getAddress();
 
     List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
+    List<Optional<UnidentifiedAccess>>         unidentifiedAccess = Stream.of(addresses)
                                                                       .map(a -> Address.fromSerialized(a.getNumber()))
                                                                       .map(a -> Recipient.from(context, a, false))
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))

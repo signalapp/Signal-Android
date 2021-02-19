@@ -1,39 +1,42 @@
 package org.session.libsession.messaging.utilities
 
+import android.content.Context
 import com.goterl.lazycode.lazysodium.LazySodiumAndroid
 import com.goterl.lazycode.lazysodium.SodiumAndroid
-
 import org.session.libsession.messaging.MessagingConfiguration
-
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.utilities.TextSecurePreferences.isUniversalUnidentifiedAccess
+import org.session.libsession.utilities.Util.getSecretBytes
 import org.session.libsignal.metadata.SignalProtos
-import org.session.libsignal.metadata.certificate.InvalidCertificateException
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair
+import org.session.libsignal.utilities.logging.Log
 
 object UnidentifiedAccessUtil {
     private val TAG = UnidentifiedAccessUtil::class.simpleName
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
 
-    fun getAccessFor(recipientPublicKey: String): UnidentifiedAccessPair? {
-        try {
-            val theirUnidentifiedAccessKey = getTargetUnidentifiedAccessKey(recipientPublicKey)
-            val ourUnidentifiedAccessKey = getSelfUnidentifiedAccessKey()
-            val ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate()
+    fun getAccessFor(recipientPublicKey: String): UnidentifiedAccess? {
+        val theirUnidentifiedAccessKey = getTargetUnidentifiedAccessKey(recipientPublicKey)
+        val ourUnidentifiedAccessKey = getSelfUnidentifiedAccessKey()
+        val ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate()
 
-            Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null) +
-                    " | Our access key present? " + (ourUnidentifiedAccessKey != null) +
-                    " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null))
+        Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null) +
+                " | Our access key present? " + (ourUnidentifiedAccessKey != null) +
+                " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null))
 
-            if (theirUnidentifiedAccessKey != null && ourUnidentifiedAccessKey != null && ourUnidentifiedAccessCertificate != null) {
-                return UnidentifiedAccessPair(UnidentifiedAccess(theirUnidentifiedAccessKey, ourUnidentifiedAccessCertificate),
-                        UnidentifiedAccess(ourUnidentifiedAccessKey, ourUnidentifiedAccessCertificate))
-            }
-            return null
-        } catch (e: InvalidCertificateException) {
-            Log.w(TAG, e)
-            return null
+        return if (theirUnidentifiedAccessKey != null && ourUnidentifiedAccessKey != null && ourUnidentifiedAccessCertificate != null) {
+           UnidentifiedAccess(theirUnidentifiedAccessKey)
+        } else null
+    }
+
+    fun getAccessForSync(context: Context): UnidentifiedAccess? {
+        var ourUnidentifiedAccessKey = getSelfUnidentifiedAccessKey()
+        val ourUnidentifiedAccessCertificate = getUnidentifiedAccessCertificate()
+        if (isUniversalUnidentifiedAccess(context)) {
+            ourUnidentifiedAccessKey = getSecretBytes(16)
         }
+        return if (ourUnidentifiedAccessKey != null && ourUnidentifiedAccessCertificate != null) {
+            UnidentifiedAccess(ourUnidentifiedAccessKey)
+        } else null
     }
 
     private fun getTargetUnidentifiedAccessKey(recipientPublicKey: String): ByteArray? {

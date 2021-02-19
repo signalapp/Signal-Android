@@ -34,7 +34,7 @@ object MultiDeviceProtocol {
         val recipient = recipient(context, userPublicKey)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
-            messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
+            messageSender.sendMessage(0, address, udAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
                     true, false, true, Optional.absent())
             TextSecurePreferences.setLastConfigurationSyncTime(context, now)
@@ -53,7 +53,7 @@ object MultiDeviceProtocol {
         val recipient = recipient(context, userPublicKey)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
-            messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
+            messageSender.sendMessage(0, address, udAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
                     true, false, true, Optional.absent())
         } catch (e: Exception) {

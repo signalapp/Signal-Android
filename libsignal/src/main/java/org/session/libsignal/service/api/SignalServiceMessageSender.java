@@ -14,7 +14,6 @@ import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -165,21 +164,21 @@ public class SignalServiceMessageSender {
    * @throws IOException
    */
   public void sendReceipt(SignalServiceAddress recipient,
-                          Optional<UnidentifiedAccessPair> unidentifiedAccess,
+                          Optional<UnidentifiedAccess> unidentifiedAccess,
                           SignalServiceReceiptMessage message)
       throws IOException {
     byte[] content = createReceiptContent(message);
     boolean useFallbackEncryption = true;
-    sendMessage(recipient, getTargetUnidentifiedAccess(unidentifiedAccess), message.getWhen(), content, false, message.getTTL(), useFallbackEncryption);
+    sendMessage(recipient, unidentifiedAccess, message.getWhen(), content, false, message.getTTL(), useFallbackEncryption);
   }
 
   public void sendTyping(List<SignalServiceAddress>             recipients,
-                         List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
+                         List<Optional<UnidentifiedAccess>>     unidentifiedAccess,
                          SignalServiceTypingMessage             message)
       throws IOException
   {
     byte[] content = createTypingContent(message);
-    sendMessage(0, recipients, getTargetUnidentifiedAccess(unidentifiedAccess), message.getTimestamp(), content, true, message.getTTL(), false, false);
+    sendMessage(0, recipients, unidentifiedAccess, message.getTimestamp(), content, true, message.getTTL(), false, false);
   }
 
   /**
@@ -191,14 +190,14 @@ public class SignalServiceMessageSender {
    */
   public SendMessageResult sendMessage(long                             messageID,
                                        SignalServiceAddress             recipient,
-                                       Optional<UnidentifiedAccessPair> unidentifiedAccess,
+                                       Optional<UnidentifiedAccess> unidentifiedAccess,
                                        SignalServiceDataMessage         message)
       throws IOException
   {
     byte[]            content               = createMessageContent(message, recipient);
     long              timestamp             = message.getTimestamp();
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                = sendMessage(messageID, recipient, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
+    SendMessageResult result                = sendMessage(messageID, recipient, unidentifiedAccess, timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
 
     return result;
   }
@@ -212,7 +211,7 @@ public class SignalServiceMessageSender {
    */
   public List<SendMessageResult> sendMessage(long                                   messageID,
                                              List<SignalServiceAddress>             recipients,
-                                             List<Optional<UnidentifiedAccessPair>> unidentifiedAccess,
+                                             List<Optional<UnidentifiedAccess>>     unidentifiedAccess,
                                              SignalServiceDataMessage               message)
       throws IOException {
     // Loki - We only need the first recipient in the line below. This is because the recipient is only used to determine
@@ -221,7 +220,7 @@ public class SignalServiceMessageSender {
     long                    timestamp          = message.getTimestamp();
     boolean                 isClosedGroup      = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
 
-    return sendMessage(messageID, recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), isClosedGroup, message.hasVisibleContent());
+    return sendMessage(messageID, recipients, unidentifiedAccess, timestamp, content, false, message.getTTL(), isClosedGroup, message.hasVisibleContent());
   }
 
   public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
@@ -883,25 +882,6 @@ public class SignalServiceMessageSender {
     messages.add(message);
 
     return new OutgoingPushMessageList(publicKey, timestamp, messages, false);
-  }
-
-  private Optional<UnidentifiedAccess> getTargetUnidentifiedAccess(Optional<UnidentifiedAccessPair> unidentifiedAccess) {
-    if (unidentifiedAccess.isPresent()) {
-      return unidentifiedAccess.get().getTargetUnidentifiedAccess();
-    }
-
-    return Optional.absent();
-  }
-
-  private List<Optional<UnidentifiedAccess>> getTargetUnidentifiedAccess(List<Optional<UnidentifiedAccessPair>> unidentifiedAccess) {
-    List<Optional<UnidentifiedAccess>> results = new LinkedList<>();
-
-    for (Optional<UnidentifiedAccessPair> item : unidentifiedAccess) {
-      if (item.isPresent()) results.add(item.get().getTargetUnidentifiedAccess());
-      else                  results.add(Optional.<UnidentifiedAccess>absent());
-    }
-
-    return results;
   }
 
   public static interface EventListener {

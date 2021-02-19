@@ -5,20 +5,19 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage.Action;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import java.util.Collections;
@@ -93,7 +92,7 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     }
 
     List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
+    List<Optional<UnidentifiedAccess>>     unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis());
 
     messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage);

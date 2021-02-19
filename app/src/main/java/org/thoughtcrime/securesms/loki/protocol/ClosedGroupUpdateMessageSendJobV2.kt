@@ -223,7 +223,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         }
         try {
             // isClosedGroup can always be false as it's only used in the context of legacy closed groups
-            messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
+            messageSender.sendMessage(0, address, udAccess,
                     sentTime, serializedContentMessage, false, ttl,
                     true, false, false, Optional.absent())
         } catch (e: Exception) {

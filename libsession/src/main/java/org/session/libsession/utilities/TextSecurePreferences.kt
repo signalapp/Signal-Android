@@ -449,13 +449,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun isUnidentifiedDeliveryEnabled(context: Context): Boolean {
-        // Loki - Always enable unidentified sender
-        return true
-        // return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
-    }
-
-    @JvmStatic
     fun getUpdateApkRefreshTime(context: Context): Long {
         return getLongPreference(context, UPDATE_APK_REFRESH_TIME_PREF, 0L)
     }
