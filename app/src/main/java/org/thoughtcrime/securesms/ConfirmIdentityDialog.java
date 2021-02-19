@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
@@ -27,12 +28,11 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
-
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 public class ConfirmIdentityDialog extends AlertDialog {
 
@@ -94,7 +94,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
       {
         @Override
         protected Void doInBackground(Void... params) {
-          synchronized (SESSION_LOCK) {
+          try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
             SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(Recipient.resolved(recipientId).requireServiceId(), 1);
             TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(getContext());
 

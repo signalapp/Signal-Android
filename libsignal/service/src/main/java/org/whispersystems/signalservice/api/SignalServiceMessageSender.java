@@ -14,11 +14,11 @@ import org.whispersystems.libsignal.SessionBuilder;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyBundle;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
+import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -120,6 +120,7 @@ public class SignalServiceMessageSender {
 
   private final PushServiceSocket                                   socket;
   private final SignalServiceProtocolStore                          store;
+  private final SignalSessionLock                                   sessionLock;
   private final SignalServiceAddress                                localAddress;
   private final Optional<EventListener>                             eventListener;
 
@@ -144,6 +145,7 @@ public class SignalServiceMessageSender {
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
                                     UUID uuid, String e164, String password,
                                     SignalServiceProtocolStore store,
+                                    SignalSessionLock sessionLock,
                                     String signalAgent,
                                     boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
@@ -153,12 +155,13 @@ public class SignalServiceMessageSender {
                                     ExecutorService executor,
                                     boolean automaticNetworkRetry)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password), store, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor, 0, automaticNetworkRetry);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password), store, sessionLock, signalAgent, isMultiDevice, pipe, unidentifiedPipe, eventListener, clientZkProfileOperations, executor, 0, automaticNetworkRetry);
   }
 
   public SignalServiceMessageSender(SignalServiceConfiguration urls,
                                     CredentialsProvider credentialsProvider,
                                     SignalServiceProtocolStore store,
+                                    SignalSessionLock sessionLock,
                                     String signalAgent,
                                     boolean isMultiDevice,
                                     Optional<SignalServiceMessagePipe> pipe,
@@ -171,6 +174,7 @@ public class SignalServiceMessageSender {
   {
     this.socket           = new PushServiceSocket(urls, credentialsProvider, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
     this.store            = store;
+    this.sessionLock      = sessionLock;
     this.localAddress     = new SignalServiceAddress(credentialsProvider.getUuid(), credentialsProvider.getE164());
     this.pipe             = new AtomicReference<>(pipe);
     this.unidentifiedPipe = new AtomicReference<>(unidentifiedPipe);
@@ -1549,7 +1553,7 @@ public class SignalServiceMessageSender {
       throws IOException, InvalidKeyException, UntrustedIdentityException
   {
     SignalProtocolAddress signalProtocolAddress = new SignalProtocolAddress(recipient.getIdentifier(), deviceId);
-    SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, store, null);
+    SignalServiceCipher   cipher                = new SignalServiceCipher(localAddress, store, sessionLock, null);
 
     if (!store.containsSession(signalProtocolAddress)) {
       try {
@@ -1558,7 +1562,7 @@ public class SignalServiceMessageSender {
         for (PreKeyBundle preKey : preKeys) {
           try {
             SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
-            SessionBuilder        sessionBuilder = new SessionBuilder(store, preKeyAddress);
+            SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(store, preKeyAddress));
             sessionBuilder.process(preKey);
           } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
@@ -1598,7 +1602,7 @@ public class SignalServiceMessageSender {
         PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
 
         try {
-          SessionBuilder sessionBuilder = new SessionBuilder(store, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId));
+          SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(store, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
           sessionBuilder.process(preKey);
         } catch (org.whispersystems.libsignal.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());

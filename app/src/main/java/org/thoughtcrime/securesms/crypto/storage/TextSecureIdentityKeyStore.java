@@ -5,6 +5,7 @@ import android.content.Context;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
@@ -18,6 +19,7 @@ import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.util.concurrent.TimeUnit;
 
@@ -45,7 +47,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   }
 
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
-    synchronized (LOCK) {
+    try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
       Recipient                recipient        = Recipient.external(context, address.getName());
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getId());
@@ -91,7 +93,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    synchronized (LOCK) {
+    try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
       if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
         IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
         RecipientId      ourRecipientId   = Recipient.self().getId();

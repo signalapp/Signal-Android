@@ -37,6 +37,7 @@ import org.whispersystems.libsignal.protocol.PreKeySignalMessage;
 import org.whispersystems.libsignal.protocol.SignalMessage;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceMetadata;
@@ -63,14 +64,17 @@ public class SignalServiceCipher {
   private static final String TAG = SignalServiceCipher.class.getSimpleName();
 
   private final SignalProtocolStore  signalProtocolStore;
+  private final SignalSessionLock    sessionLock;
   private final SignalServiceAddress localAddress;
   private final CertificateValidator certificateValidator;
 
   public SignalServiceCipher(SignalServiceAddress localAddress,
                              SignalProtocolStore signalProtocolStore,
+                             SignalSessionLock sessionLock,
                              CertificateValidator certificateValidator)
   {
     this.signalProtocolStore  = signalProtocolStore;
+    this.sessionLock          = sessionLock;
     this.localAddress         = localAddress;
     this.certificateValidator = certificateValidator;
   }
@@ -81,15 +85,15 @@ public class SignalServiceCipher {
       throws UntrustedIdentityException, InvalidKeyException
   {
     if (unidentifiedAccess.isPresent()) {
-      SealedSessionCipher  sessionCipher        = new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1);
-      PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
-      byte[]               ciphertext           = sessionCipher.encrypt(destination, unidentifiedAccess.get().getUnidentifiedCertificate(), transportDetails.getPaddedMessageBody(unpaddedMessage));
-      String               body                 = Base64.encodeBytes(ciphertext);
-      int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId(destination);
+      SignalSealedSessionCipher sessionCipher        = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1));
+      PushTransportDetails      transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion(destination));
+      byte[]                    ciphertext           = sessionCipher.encrypt(destination, unidentifiedAccess.get().getUnidentifiedCertificate(), transportDetails.getPaddedMessageBody(unpaddedMessage));
+      String                    body                 = Base64.encodeBytes(ciphertext);
+      int                       remoteRegistrationId = sessionCipher.getRemoteRegistrationId(destination);
 
       return new OutgoingPushMessage(Type.UNIDENTIFIED_SENDER_VALUE, destination.getDeviceId(), remoteRegistrationId, body);
     } else {
-      SessionCipher        sessionCipher        = new SessionCipher(signalProtocolStore, destination);
+      SignalSessionCipher  sessionCipher        = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, destination));
       PushTransportDetails transportDetails     = new PushTransportDetails(sessionCipher.getSessionVersion());
       CiphertextMessage    message              = sessionCipher.encrypt(transportDetails.getPaddedMessageBody(unpaddedMessage));
       int                  remoteRegistrationId = sessionCipher.getRemoteRegistrationId();
@@ -173,23 +177,23 @@ public class SignalServiceCipher {
 
       if (envelope.isPreKeySignalMessage()) {
         SignalProtocolAddress sourceAddress = getPreferredProtocolAddress(signalProtocolStore, envelope.getSourceAddress(), envelope.getSourceDevice());
-        SessionCipher         sessionCipher = new SessionCipher(signalProtocolStore, sourceAddress);
+        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
         paddedMessage  = sessionCipher.decrypt(new PreKeySignalMessage(ciphertext));
         metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isSignalMessage()) {
         SignalProtocolAddress sourceAddress = getPreferredProtocolAddress(signalProtocolStore, envelope.getSourceAddress(), envelope.getSourceDevice());
-        SessionCipher         sessionCipher = new SessionCipher(signalProtocolStore, sourceAddress);
+        SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
         paddedMessage  = sessionCipher.decrypt(new SignalMessage(ciphertext));
         metadata       = new SignalServiceMetadata(envelope.getSourceAddress(), envelope.getSourceDevice(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), false);
         sessionVersion = sessionCipher.getSessionVersion();
       } else if (envelope.isUnidentifiedSender()) {
-        SealedSessionCipher   sealedSessionCipher = new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1);
-        DecryptionResult      result              = sealedSessionCipher.decrypt(certificateValidator, ciphertext, envelope.getServerReceivedTimestamp());
-        SignalServiceAddress  resultAddress       = new SignalServiceAddress(UuidUtil.parse(result.getSenderUuid().orNull()), result.getSenderE164());
-        SignalProtocolAddress protocolAddress     = getPreferredProtocolAddress(signalProtocolStore, resultAddress, result.getDeviceId());
+        SignalSealedSessionCipher sealedSessionCipher = new SignalSealedSessionCipher(sessionLock, new SealedSessionCipher(signalProtocolStore, localAddress.getUuid().orNull(), localAddress.getNumber().orNull(), 1));
+        DecryptionResult          result              = sealedSessionCipher.decrypt(certificateValidator, ciphertext, envelope.getServerReceivedTimestamp());
+        SignalServiceAddress      resultAddress       = new SignalServiceAddress(UuidUtil.parse(result.getSenderUuid().orNull()), result.getSenderE164());
+        SignalProtocolAddress     protocolAddress     = getPreferredProtocolAddress(signalProtocolStore, resultAddress, result.getDeviceId());
 
         paddedMessage  = result.getPaddedMessage();
         metadata       = new SignalServiceMetadata(resultAddress, result.getDeviceId(), envelope.getTimestamp(), envelope.getServerReceivedTimestamp(), envelope.getServerDeliveredTimestamp(), true);

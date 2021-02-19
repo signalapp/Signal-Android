@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -26,6 +25,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -111,7 +111,11 @@ public final class PushDecryptMessageJob extends BaseJob {
     JobManager            jobManager = ApplicationDependencies.getJobManager();
 
     try {
-      List<Job> jobs = handleMessage(envelope);
+      List<Job> jobs;
+
+      try (DatabaseSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+        jobs = handleMessage(envelope);
+      }
 
       for (Job job: jobs) {
         jobManager.add(job);
@@ -156,7 +160,7 @@ public final class PushDecryptMessageJob extends BaseJob {
     try {
       SignalProtocolStore  axolotlStore = new SignalProtocolStoreImpl(context);
       SignalServiceAddress localAddress = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));
-      SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+      SignalServiceCipher  cipher       = new SignalServiceCipher(localAddress, axolotlStore, DatabaseSessionLock.INSTANCE, UnidentifiedAccessUtil.getCertificateValidator());
 
       SignalServiceContent content = cipher.decrypt(envelope);
 

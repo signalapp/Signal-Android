@@ -63,6 +63,7 @@ import androidx.fragment.app.FragmentTransaction;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.camera.CameraView;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -91,13 +92,12 @@ import org.whispersystems.libsignal.fingerprint.Fingerprint;
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.util.Locale;
-
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 /**
  * Activity for verifying identity keys.
@@ -620,7 +620,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
       new AsyncTask<Recipient, Void, Void>() {
         @Override
         protected Void doInBackground(Recipient... params) {
-          synchronized (SESSION_LOCK) {
+          try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
             if (isChecked) {
               Log.i(TAG, "Saving identity: " + params[0].getId());
               DatabaseFactory.getIdentityDatabase(getActivity())

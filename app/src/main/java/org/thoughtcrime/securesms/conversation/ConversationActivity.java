@@ -141,6 +141,7 @@ import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog
 import org.thoughtcrime.securesms.conversation.ui.groupcall.GroupCallViewModel;
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
@@ -279,6 +280,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -295,7 +297,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
 /**
  * Activity for displaying a message thread, as well as
@@ -3620,7 +3621,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          synchronized (SESSION_LOCK) {
+          try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
             for (IdentityRecord identityRecord : unverifiedIdentities) {
               identityDatabase.setVerified(identityRecord.getRecipientId(),
                                            identityRecord.getIdentityKey(),
