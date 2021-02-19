@@ -76,14 +76,13 @@ class JobQueue : JobDelegate {
 
     private fun getRetryInterval(job: Job): Long {
         // Arbitrary backoff factor...
-        // try  1 delay:  0ms
-        // try  2 delay:  190ms
+        // try  1 delay: 0.5s
+        // try  2 delay: 1s
         // ...
-        // try  5 delay:  1300ms
+        // try  5 delay: 16s
         // ...
-        // try 11 delay: 61310ms
-        val backoffFactor = 1.9
-        val maxBackoff = (60 * 60 * 1000).toDouble()
-        return (100 * min(maxBackoff, backoffFactor.pow(job.failureCount))).roundToLong()
+        // try 11 delay: 512s
+        val maxBackoff = (10 * 60).toDouble() // 10 minutes
+        return (1000 * 0.25 * min(maxBackoff, (2.0).pow(job.failureCount))).roundToLong()
     }
 }

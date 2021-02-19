@@ -905,6 +905,9 @@ public class MmsDatabase extends MessagingDatabase {
   public Optional<InsertResult> insertSecureDecryptedMessageOutbox(OutgoingMediaMessage retrieved, long threadId, long serverTimestamp)
           throws MmsException
   {
+    if (threadId == -1) {
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(retrieved.getRecipient());
+    }
     long messageId = insertMessageOutbox(retrieved, threadId, false, null, serverTimestamp);
     if (messageId == -1) {
       return Optional.absent();

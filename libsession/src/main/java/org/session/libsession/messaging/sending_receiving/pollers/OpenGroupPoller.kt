@@ -184,21 +184,13 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                 groupProto.setType(GroupContext.Type.DELIVER)
                 groupProto.setName(openGroup.displayName)
                 dataMessageProto.setGroup(groupProto.build())
+                // Sync target
+                if (wasSentByCurrentUser) {
+                    dataMessageProto.setSyncTarget(openGroup.id)
+                }
                 // Content
                 val content = Content.newBuilder()
-                if (!wasSentByCurrentUser) { // Incoming message
-                    content.setDataMessage(dataMessageProto.build())
-                } else { // Outgoing message
-                    // FIXME: This needs to be updated as we removed sync message handling
-                    val syncMessageSentBuilder = SyncMessage.Sent.newBuilder()
-                    syncMessageSentBuilder.setMessage(dataMessageProto)
-                    syncMessageSentBuilder.setDestination(userHexEncodedPublicKey)
-                    syncMessageSentBuilder.setTimestamp(message.timestamp)
-                    val syncMessageSent = syncMessageSentBuilder.build()
-                    val syncMessageBuilder = SyncMessage.newBuilder()
-                    syncMessageBuilder.setSent(syncMessageSent)
-                    content.setSyncMessage(syncMessageBuilder.build())
-                }
+                content.setDataMessage(dataMessageProto.build())
                 // Envelope
                 val builder = Envelope.newBuilder()
                 builder.type = Envelope.Type.UNIDENTIFIED_SENDER

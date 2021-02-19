@@ -86,8 +86,10 @@ interface StorageProtocol {
     fun removeLastDeletionServerID(group: Long, server: String)
 
     // Message Handling
+    fun isMessageDuplicated(timestamp: Long, sender: String): Boolean
     fun getReceivedMessageTimestamps(): Set<Long>
     fun addReceivedMessageTimestamp(timestamp: Long)
+//    fun removeReceivedMessageTimestamps(timestamps: Set<Long>)
     // Returns the IDs of the saved attachments.
     fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
 
@@ -99,7 +101,7 @@ interface StorageProtocol {
 
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?
-    fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>)
+    fun createGroup(groupID: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long)
     fun setActive(groupID: String, value: Boolean)
     fun removeMember(groupID: String, member: Address)
     fun updateMembers(groupID: String, members: List<Address>)

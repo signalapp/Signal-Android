@@ -8,7 +8,9 @@ import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ClosedGroupUpdate
+import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.Profile
 import org.session.libsession.messaging.messages.visible.VisibleMessage
@@ -86,7 +88,7 @@ object MessageSender {
     }
 
     // One-on-One Chats & Closed Groups
-    fun sendToSnodeDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
+    fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
@@ -113,8 +115,13 @@ object MessageSender {
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
-            // Stop here if this is a self-send
-            if (isSelfSend) {
+            // Stop here if this is a self-send, unless it's:
+            // • a configuration message
+            // • a sync message
+            // • a closed group control message of type `new`
+            var isNewClosedGroupControlMessage = false
+            if (message is ClosedGroupControlMessage && message.kind is ClosedGroupControlMessage.Kind.New) isNewClosedGroupControlMessage = true
+            if (isSelfSend && message !is ConfigurationMessage && !isSyncMessage && !isNewClosedGroupControlMessage) {
                 handleSuccessfulMessageSend(message, destination)
                 deferred.resolve(Unit)
                 return promise
@@ -183,8 +190,8 @@ object MessageSender {
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                             //TODO Notify user for message sent
                         }
-                        handleSuccessfulMessageSend(message, destination)
-                        var shouldNotify = (message is VisibleMessage)
+                        handleSuccessfulMessageSend(message, destination, isSyncMessage)
+                        var shouldNotify = (message is VisibleMessage && !isSyncMessage)
                         if (message is ClosedGroupUpdate && message.kind is ClosedGroupUpdate.Kind.New) {
                             shouldNotify = true
                         }
@@ -261,15 +268,28 @@ object MessageSender {
     }
 
     // Result Handling
-    fun handleSuccessfulMessageSend(message: Message, destination: Destination) {
+    fun handleSuccessfulMessageSend(message: Message, destination: Destination, isSyncMessage: Boolean = false) {
         val storage = MessagingConfiguration.shared.storage
         val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
+        // Ignore future self-sends
+        storage.addReceivedMessageTimestamp(message.sentTimestamp!!)
+        // Track the open group server message ID
         if (message.openGroupServerMessageID != null) {
             storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
         }
+        // Mark the message as sent
         storage.markAsSent(messageId)
         storage.markUnidentified(messageId)
+        // Start the disappearing messages timer if needed
         SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(messageId)
+        // Sync the message if:
+        // • it's a visible message
+        // • the destination was a contact
+        // • we didn't sync it already
+        val userPublicKey = storage.getUserPublicKey()!!
+        if (destination is Destination.Contact && !isSyncMessage && message is VisibleMessage) {
+            sendToSnodeDestination(Destination.Contact(userPublicKey), message, true).get()
+        }
     }
 
     fun handleFailedMessageSend(message: Message, error: Exception) {

@@ -687,6 +687,9 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   public Optional<InsertResult> insertMessageOutbox(long threadId, OutgoingTextMessage message, long serverTimestamp) {
+    if (threadId == -1) {
+      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(message.getRecipient());
+    }
     long messageId = insertMessageOutbox(threadId, message, false, serverTimestamp, null);
     if (messageId == -1) {
       return Optional.absent();

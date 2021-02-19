@@ -69,7 +69,7 @@ public class GroupMessageProcessor {
     if (record.isPresent() && group.getType() == Type.UPDATE) {
       return handleGroupUpdate(context, content, group, record.get(), outgoing);
     } else if (!record.isPresent() && group.getType() == Type.UPDATE) {
-      return handleGroupCreate(context, content, group, outgoing);
+      return handleGroupCreate(context, content, group, outgoing, message.getTimestamp());
     } else if (record.isPresent() && group.getType() == Type.QUIT) {
       return handleGroupLeave(context, content, group, record.get(), outgoing);
     } else if (record.isPresent() && group.getType() == Type.REQUEST_INFO) {
@@ -83,7 +83,8 @@ public class GroupMessageProcessor {
   private static @Nullable Long handleGroupCreate(@NonNull Context context,
                                                   @NonNull SignalServiceContent content,
                                                   @NonNull SignalServiceGroup group,
-                                                  boolean outgoing)
+                                                  boolean outgoing,
+                                                  Long formationTimestamp)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
     String               id       = GroupUtil.getEncodedId(group);
@@ -108,7 +109,7 @@ public class GroupMessageProcessor {
     }
 
     database.create(id, group.getName().orNull(), members,
-                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins);
+                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins, formationTimestamp);
 
     if (group.getMembers().isPresent()) {
       ClosedGroupsProtocol.establishSessionsWithMembersIfNeeded(context, group.getMembers().get());

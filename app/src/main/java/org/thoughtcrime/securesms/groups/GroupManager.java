@@ -77,7 +77,7 @@ public class GroupManager {
     String masterPublicKey = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
 
     memberAddresses.add(Address.Companion.fromSerialized(masterPublicKey));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses), System.currentTimeMillis());
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
     DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
@@ -104,7 +104,7 @@ public class GroupManager {
     final Set<Address>  memberAddresses = new HashSet<>();
 
     memberAddresses.add(Address.Companion.fromSerialized(Objects.requireNonNull(TextSecurePreferences.getLocalNumber(context))));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>());
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(), System.currentTimeMillis());
 
     groupDatabase.updateProfilePicture(groupId, avatarBytes);
 

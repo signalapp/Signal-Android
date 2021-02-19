@@ -12,6 +12,8 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
+import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
@@ -27,17 +29,21 @@ import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
+import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import org.thoughtcrime.securesms.loki.utilities.get
 import org.thoughtcrime.securesms.loki.utilities.getString
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
+import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -90,9 +96,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long? {
         var messageID: Long? = null
-        val address = Address.fromSerialized(message.sender!!)
-        val recipient = Recipient.from(context, address, false)
-        val body: Optional<String> = if (message.text != null) Optional.of(message.text) else Optional.absent()
+        val senderAddress = Address.fromSerialized(message.sender!!)
+        val senderRecipient = Recipient.from(context, senderAddress, false)
         var group: Optional<SignalServiceGroup> = Optional.absent()
         if (openGroupID != null) {
             group = Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
@@ -100,17 +105,39 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             group = Optional.of(SignalServiceGroup(groupPublicKey.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
         }
         if (message.isMediaMessage()) {
-            val attachments: Optional<List<SignalServiceAttachment>> = Optional.absent() // TODO figure out how to get SignalServiceAttachment with attachmentID
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
-            val mediaMessage = IncomingMediaMessage(address, message.receivedTimestamp!!, -1, recipient.expireMessages * 1000L, false, false, body, group, attachments, quote, Optional.absent(), linkPreviews, Optional.absent())
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             mmsDatabase.beginTransaction()
-            val insertResult: Optional<MessagingDatabase.InsertResult>
-            if (group.isPresent) {
-                insertResult = mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!);
+            val insertResult = if (message.sender == getUserPublicKey()) {
+                val targetAddress = if (message.syncTarget != null) {
+                    Address.fromSerialized(message.syncTarget!!)
+                } else {
+                    if (group.isPresent) {
+                        Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
+                    } else {
+                        Log.d("Loki", "Cannot handle message from self.")
+                        return null
+                    }
+                }
+                val attachments = message.attachmentIDs.mapNotNull {
+                    DatabaseFactory.getAttachmentProvider(context).getSignalAttachmentPointer(it)
+                }.mapNotNull {
+                    PointerAttachment.forPointer(Optional.of(it)).orNull()
+                }
+                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull())
+                mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
-                insertResult = mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1)
+                // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
+                val attachments: Optional<List<SignalServiceAttachment>> = Optional.of(message.attachmentIDs.mapNotNull {
+                    DatabaseFactory.getAttachmentProvider(context).getSignalAttachmentPointer(it)
+                })
+                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, attachments, quote, linkPreviews)
+                if (group.isPresent) {
+                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
+                } else {
+                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1)
+                }
             }
             if (insertResult.isPresent) {
                 mmsDatabase.setTransactionSuccessful()
@@ -118,9 +145,28 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             }
             mmsDatabase.endTransaction()
         } else {
-            val textMessage = IncomingTextMessage(address, 1, message.receivedTimestamp!!, body.get(), group, recipient.expireMessages * 1000L, false)
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-            val insertResult = smsDatabase.insertMessageInbox(textMessage)
+            val insertResult = if (message.sender == getUserPublicKey()) {
+                val targetAddress = if (message.syncTarget != null) {
+                    Address.fromSerialized(message.syncTarget!!)
+                } else {
+                    if (group.isPresent) {
+                        Address.fromSerialized(GroupUtil.getEncodedId(group.get()))
+                    } else {
+                        Log.d("Loki", "Cannot handle message from self.")
+                        return null
+                    }
+                }
+                val textMessage = OutgoingTextMessage.from(message, Recipient.from(context, targetAddress, false))
+                smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
+            } else {
+                val textMessage = IncomingTextMessage.from(message, senderAddress, group, senderRecipient.expireMessages * 1000L)
+                if (group.isPresent) {
+                    smsDatabase.insertMessageInbox(textMessage, message.sentTimestamp!!)
+                } else {
+                    smsDatabase.insertMessageInbox(textMessage)
+                }
+            }
             if (insertResult.isPresent) {
                 messageID = insertResult.get().messageId
             }
@@ -129,7 +175,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     // JOBS
-
     override fun persistJob(job: Job) {
         DatabaseFactory.getSessionJobDatabase(context).persistJob(job)
     }
@@ -235,6 +280,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiAPIDatabase(context).removeLastDeletionServerID(group, server)
     }
 
+    override fun isMessageDuplicated(timestamp: Long, sender: String): Boolean {
+        val database = DatabaseFactory.getMmsSmsDatabase(context)
+        return if (sender.isEmpty()) {
+            database.getMessageForTimestamp(timestamp) != null
+        } else {
+            database.getMessageFor(timestamp, sender) != null
+        }
+    }
+
     override fun setUserCount(group: Long, server: String, newValue: Int) {
         DatabaseFactory.getLokiAPIDatabase(context).setUserCount(group, server, newValue)
     }
@@ -256,12 +310,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getReceivedMessageTimestamps(): Set<Long> {
-        TODO("Not yet implemented")
+        return SessionMetaProtocol.getTimestamps()
     }
 
     override fun addReceivedMessageTimestamp(timestamp: Long) {
-        TODO("Not yet implemented")
+        SessionMetaProtocol.addTimestamp(timestamp)
     }
+
+//    override fun removeReceivedMessageTimestamps(timestamps: Set<Long>) {
+//        TODO("Not yet implemented")
+//    }
 
     override fun getMessageIdInDatabase(timestamp: Long, author: String): Long? {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
@@ -314,8 +372,8 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return if (group.isPresent) { group.get() } else null
     }
 
-    override fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>) {
-        DatabaseFactory.getGroupDatabase(context).create(groupId, title, members, avatar, relay, admins)
+    override fun createGroup(groupId: String, title: String?, members: List<Address>, avatar: SignalServiceAttachmentPointer?, relay: String?, admins: List<Address>, formationTimestamp: Long) {
+        DatabaseFactory.getGroupDatabase(context).create(groupId, title, members, avatar, relay, admins, formationTimestamp)
     }
 
     override fun setActive(groupID: String, value: Boolean) {

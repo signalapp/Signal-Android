@@ -78,6 +78,14 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
+  public @Nullable MessageRecord getMessageForTimestamp(long timestamp) {
+    MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
+    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
+      MmsSmsDatabase.Reader reader = db.readerFor(cursor);
+      return reader.getNext();
+    }
+  }
+
   public @Nullable MessageRecord getMessageFor(long messageId) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 

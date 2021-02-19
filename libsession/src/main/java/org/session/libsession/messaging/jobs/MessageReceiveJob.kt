@@ -32,17 +32,21 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     fun executeAsync(): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         try {
-            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID)
+            val isRetry: Boolean = failureCount != 0
+            val (message, proto) = MessageReceiver.parse(this.data, this.openGroupMessageServerID, isRetry)
             MessageReceiver.handle(message, proto, this.openGroupID)
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
             Log.d(TAG, "Couldn't receive message due to error: $e.")
             val error = e as? MessageReceiver.Error
-            error?.let {
-                if (!error.isRetryable) this.handlePermanentFailure(error)
+            if (error != null && !error.isRetryable) {
+                Log.d("Loki", "Message receive job permanently failed due to error: $error.")
+                this.handlePermanentFailure(error)
+            } else {
+                Log.d("Loki", "Couldn't receive message due to error: $e.")
+                this.handleFailure(e)
             }
-            this.handleFailure(e)
             deferred.resolve(Unit) // The promise is just used to keep track of when we're done
         }
         return deferred.promise
