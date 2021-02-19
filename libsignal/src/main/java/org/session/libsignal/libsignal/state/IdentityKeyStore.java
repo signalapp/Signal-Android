@@ -5,9 +5,7 @@
  */
 package org.session.libsignal.libsignal.state;
 
-import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.IdentityKeyPair;
-import org.session.libsignal.libsignal.SignalProtocolAddress;
 
 /**
  * Provides an interface to identity information.
@@ -15,11 +13,6 @@ import org.session.libsignal.libsignal.SignalProtocolAddress;
  * @author Moxie Marlinspike
  */
 public interface IdentityKeyStore {
-
-  public enum Direction {
-    SENDING, RECEIVING
-  }
-
   /**
    * Get the local client's identity key pair.
    *

@@ -26,10 +26,6 @@ import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.session.libsignal.libsignal.DuplicateMessageException;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.LegacyMessageException;
-import org.session.libsignal.libsignal.NoSessionException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -160,18 +156,6 @@ public class MmsDownloadJob extends BaseJob {
       handleDownloadError(messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
                           automatic);
-    } catch (DuplicateMessageException e) {
-      Log.w(TAG, e);
-      database.markAsDecryptDuplicate(messageId, threadId);
-    } catch (LegacyMessageException e) {
-      Log.w(TAG, e);
-      database.markAsLegacyVersion(messageId, threadId);
-    } catch (NoSessionException e) {
-      Log.w(TAG, e);
-      database.markAsNoSession(messageId, threadId);
-    } catch (InvalidMessageException e) {
-      Log.w(TAG, e);
-      database.markAsDecryptFailed(messageId, threadId);
     }
   }
 
@@ -194,8 +178,7 @@ public class MmsDownloadJob extends BaseJob {
   private void storeRetrievedMms(String contentLocation,
                                  long messageId, long threadId, RetrieveConf retrieved,
                                  int subscriptionId, @Nullable Address notificationFrom)
-      throws MmsException, NoSessionException, DuplicateMessageException, InvalidMessageException,
-             LegacyMessageException
+      throws MmsException
   {
     MmsDatabase           database    = DatabaseFactory.getMmsDatabase(context);
     Optional<Address>     group       = Optional.absent();

@@ -220,17 +220,8 @@ public class SignalServiceMessageSender {
     byte[]                  content            = createMessageContent(message, recipients.get(0));
     long                    timestamp          = message.getTimestamp();
     boolean                 isClosedGroup      = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    List<SendMessageResult> results            = sendMessage(messageID, recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), isClosedGroup, message.hasVisibleContent());
-    boolean                 needsSyncInResults = false;
 
-    for (SendMessageResult result : results) {
-      if (result.getSuccess() != null && result.getSuccess().isNeedsSync()) {
-        needsSyncInResults = true;
-        break;
-      }
-    }
-
-    return results;
+    return sendMessage(messageID, recipients, getTargetUnidentifiedAccess(unidentifiedAccess), timestamp, content, false, message.getTTL(), isClosedGroup, message.hasVisibleContent());
   }
 
   public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
