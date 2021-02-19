@@ -5,13 +5,11 @@
  */
 package org.session.libsignal.libsignal.groups;
 
-import org.session.libsignal.libsignal.DecryptionCallback;
 import org.session.libsignal.libsignal.DuplicateMessageException;
 import org.session.libsignal.libsignal.InvalidKeyIdException;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.LegacyMessageException;
 import org.session.libsignal.libsignal.NoSessionException;
-import org.session.libsignal.libsignal.groups.SenderKeyName;
 import org.session.libsignal.libsignal.groups.ratchet.SenderChainKey;
 import org.session.libsignal.libsignal.groups.ratchet.SenderMessageKey;
 import org.session.libsignal.libsignal.groups.state.SenderKeyRecord;
@@ -82,39 +80,7 @@ public class GroupCipher {
     }
   }
 
-  /**
-   * Decrypt a SenderKey group message.
-   *
-   * @param senderKeyMessageBytes The received ciphertext.
-   * @return Plaintext
-   * @throws LegacyMessageException
-   * @throws InvalidMessageException
-   * @throws DuplicateMessageException
-   */
-  public byte[] decrypt(byte[] senderKeyMessageBytes)
-      throws LegacyMessageException, DuplicateMessageException, InvalidMessageException, NoSessionException
-  {
-    return decrypt(senderKeyMessageBytes, new NullDecryptionCallback());
-  }
-
-  /**
-   * Decrypt a SenderKey group message.
-   *
-   * @param senderKeyMessageBytes The received ciphertext.
-   * @param callback   A callback that is triggered after decryption is complete,
-   *                    but before the updated session state has been committed to the session
-   *                    DB.  This allows some implementations to store the committed plaintext
-   *                    to a DB first, in case they are concerned with a crash happening between
-   *                    the time the session state is updated but before they're able to store
-   *                    the plaintext to disk.
-   * @return Plaintext
-   * @throws LegacyMessageException
-   * @throws InvalidMessageException
-   * @throws DuplicateMessageException
-   */
-  public byte[] decrypt(byte[] senderKeyMessageBytes, DecryptionCallback callback)
-      throws LegacyMessageException, InvalidMessageException, DuplicateMessageException,
-             NoSessionException
+  public byte[] decrypt(byte[] senderKeyMessageBytes) throws LegacyMessageException, InvalidMessageException, DuplicateMessageException, NoSessionException
   {
     synchronized (LOCK) {
       try {
@@ -132,8 +98,6 @@ public class GroupCipher {
         SenderMessageKey senderKey = getSenderKey(senderKeyState, senderKeyMessage.getIteration());
 
         byte[] plaintext = getPlainText(senderKey.getIv(), senderKey.getCipherKey(), senderKeyMessage.getCipherText());
-
-        callback.handlePlaintext(plaintext);
 
         senderKeyStore.storeSenderKey(senderKeyId, record);
 
@@ -220,10 +184,4 @@ public class GroupCipher {
       throw new AssertionError(e);
     }
   }
-
-  private static class NullDecryptionCallback implements DecryptionCallback {
-    @Override
-    public void handlePlaintext(byte[] plaintext) {}
-  }
-
 }
