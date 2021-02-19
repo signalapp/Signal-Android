@@ -72,7 +72,9 @@ public final class MultiShareSender {
       boolean         forceSms       = recipient.isForceSmsSelection() && transport.isSms();
       int             subscriptionId = transport.getSimSubscriptionId().or(-1);
       long            expiresIn      = recipient.getExpireMessages() * 1000L;
-      boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
+      boolean         needsSplit     = !transport.isSms() &&
+                                       message != null    &&
+                                       message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = !multiShareArgs.getMedia().isEmpty()                                              ||
                                        (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                                        multiShareArgs.getStickerLocator() != null                                        ||
@@ -132,7 +134,7 @@ public final class MultiShareSender {
                                        int subscriptionId)
   {
     String body = multiShareArgs.getDraftText();
-    if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms) {
+    if (transportOption.isType(TransportOption.Type.TEXTSECURE) && !forceSms && body != null) {
       MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(context, body, transportOption.calculateCharacters(body).maxPrimaryMessageSize);
       body = splitMessage.getBody();
 

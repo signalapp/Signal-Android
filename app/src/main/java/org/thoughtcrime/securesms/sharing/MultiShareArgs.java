@@ -82,7 +82,7 @@ public final class MultiShareArgs implements Parcelable {
     return dataType;
   }
 
-  public String getDraftText() {
+  public @Nullable String getDraftText() {
     return draftText;
   }
 
