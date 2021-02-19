@@ -27,7 +27,10 @@ import org.session.libsignal.utilities.Hex
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Parameters, private val destination: String, private val kind: Kind, private val sentTime: Long) : BaseJob(parameters) {
+class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Parameters,
+                                                            private val destination: String,
+                                                            private val kind: Kind,
+                                                            private val sentTime: Long) : BaseJob(parameters) {
 
     sealed class Kind {
         class New(val publicKey: ByteArray, val name: String, val encryptionKeyPair: ECKeyPair, val members: Collection<ByteArray>, val admins: Collection<ByteArray>) : Kind()
@@ -36,7 +39,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         class RemoveMembers(val members: Collection<ByteArray>) : Kind()
         class AddMembers(val members: Collection<ByteArray>) : Kind()
         class NameChange(val name: String) : Kind()
-        class EncryptionKeyPair(val wrappers: Collection<KeyPairWrapper>) : Kind() // The new encryption key pair encrypted for each member individually
+        class EncryptionKeyPair(val wrappers: Collection<KeyPairWrapper>, val targetUser: String?) : Kind() // The new encryption key pair encrypted for each member individually
     }
 
     companion object {
@@ -116,6 +119,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 builder.putString("kind", "EncryptionKeyPair")
                 val wrappers = kind.wrappers.joinToString(" - ") { Json.encodeToString(it) }
                 builder.putString("wrappers", wrappers)
+                builder.putString("targetUser", kind.targetUser)
             }
         }
         return builder.build()
@@ -146,7 +150,8 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 }
                 "EncryptionKeyPair" -> {
                     val wrappers: Collection<KeyPairWrapper> = data.getString("wrappers").split(" - ").map { Json.decodeFromString(it) }
-                    kind = Kind.EncryptionKeyPair(wrappers)
+                    val targetUser = data.getString("targetUser")
+                    kind = Kind.EncryptionKeyPair(wrappers, targetUser)
                 }
                 "RemoveMembers" -> {
                     val members = data.getString("members").split(" - ").map { Hex.fromStringCondensed(it) }
@@ -170,6 +175,11 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
     }
 
     public override fun onRun() {
+        val sendDestination = if (kind is Kind.EncryptionKeyPair && kind.targetUser != null) {
+            kind.targetUser
+        } else {
+            destination
+        }
         val contentMessage = SignalServiceProtos.Content.newBuilder()
         val dataMessage = SignalServiceProtos.DataMessage.newBuilder()
         val closedGroupUpdate = SignalServiceProtos.ClosedGroupUpdateV2.newBuilder()
@@ -193,6 +203,9 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
             is Kind.EncryptionKeyPair -> {
                 closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR
                 closedGroupUpdate.addAllWrappers(kind.wrappers.map { it.toProto() })
+                if (kind.targetUser != null) {
+                    closedGroupUpdate.publicKey = ByteString.copyFrom(kind.targetUser.toByteArray())
+                }
             }
             Kind.Leave -> {
                 closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.MEMBER_LEFT
@@ -214,8 +227,8 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         contentMessage.dataMessage = dataMessage.build()
         val serializedContentMessage = contentMessage.build().toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
-        val address = SignalServiceAddress(destination)
-        val recipient = recipient(context, destination)
+        val address = SignalServiceAddress(sendDestination)
+        val recipient = recipient(context, sendDestination)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         val ttl = when (kind) {
             is Kind.EncryptionKeyPair -> 4 * 24 * 60 * 60 * 1000
