@@ -14,7 +14,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
-import org.session.libsignal.libsignal.loki.SessionResetStatus
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
@@ -37,34 +36,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
         return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
-    }
-
-    fun getThreadID(messageID: Long): Long {
-        return DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID)
-    }
-
-    fun getSessionResetStatus(hexEncodedPublicKey: String): SessionResetStatus {
-        val threadID = getThreadID(hexEncodedPublicKey)
-        val database = databaseHelper.readableDatabase
-        val result = database.get(sessionResetTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
-            cursor.getInt(sessionResetStatus)
-        }
-        return if (result != null) {
-            SessionResetStatus.values().first { it.rawValue == result }
-        } else {
-            SessionResetStatus.NONE
-        }
-    }
-
-    fun setSessionResetStatus(hexEncodedPublicKey: String, sessionResetStatus: SessionResetStatus) {
-        val threadID = getThreadID(hexEncodedPublicKey)
-        val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
-        contentValues.put(Companion.threadID, threadID)
-        contentValues.put(Companion.sessionResetStatus, sessionResetStatus.rawValue)
-        database.insertOrUpdate(sessionResetTable, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
-        notifyConversationListListeners()
-        notifyConversationListeners(threadID)
     }
 
     fun getAllPublicChats(): Map<Long, PublicChat> {

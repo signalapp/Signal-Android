@@ -33,10 +33,7 @@ public abstract class PushReceivedJob extends BaseJob {
           }
         }
 
-        if (envelope.isReceipt()) {
-          handleReceipt(envelope);
-        } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage()
-            || envelope.isUnidentifiedSender() || envelope.isFallbackMessage() || envelope.isClosedGroupCiphertext()) {
+        if (envelope.isUnidentifiedSender() || envelope.isClosedGroupCiphertext()) {
           handleMessage(envelope, isPushNotification);
         } else {
           Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
@@ -49,13 +46,6 @@ public abstract class PushReceivedJob extends BaseJob {
 
   private void handleMessage(SignalServiceEnvelope envelope, boolean isPushNotification) {
     new PushDecryptJob(context).processMessage(envelope, isPushNotification);
-  }
-
-  @SuppressLint("DefaultLocale")
-  private void handleReceipt(SignalServiceEnvelope envelope) {
-    Log.i(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()),
-                                                                                               envelope.getTimestamp()), System.currentTimeMillis());
   }
 
   private boolean isActiveNumber(@NonNull Recipient recipient) {

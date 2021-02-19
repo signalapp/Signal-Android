@@ -13,7 +13,7 @@ import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
+import org.session.libsignal.service.loki.utilities.TTLUtilities
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.ApplicationContext
@@ -25,7 +25,6 @@ import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.session.libsignal.utilities.Hex
 
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Parameters, private val destination: String, private val kind: Kind, private val sentTime: Long) : BaseJob(parameters) {

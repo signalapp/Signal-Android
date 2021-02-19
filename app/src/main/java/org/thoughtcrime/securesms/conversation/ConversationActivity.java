@@ -90,9 +90,8 @@ import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.protocol.mentions.Mention;
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
+import org.session.libsignal.service.loki.utilities.mentions.Mention;
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -144,7 +143,6 @@ import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
-import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
@@ -404,7 +402,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     sessionRestoreBannerView.setOnRestore(() -> {
-      SessionManagementProtocol.startSessionReset(this, recipient.getAddress().serialize());
       updateSessionRestoreBanner();
       return Unit.INSTANCE;
     });
@@ -2003,7 +2000,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w(TAG, ex);
     }
 
-    if (messageStatus == null && !isGroupConversation() && !SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize())) {
+    if (messageStatus == null && !isGroupConversation() && !(TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize()))) {
       messageStatus = "calculatingPoW";
       updateSubtitleTextView();
       updateMessageStatusProgressBar();
@@ -2680,7 +2677,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleMessageStatusChanged(String newMessageStatus, long timestamp) {
-    if (timestamp == 0 || SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize()) ) { return; }
+    if (timestamp == 0 || (TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize())) ) { return; }
     updateForNewMessageStatusIfNeeded(newMessageStatus, timestamp);
     if (newMessageStatus.equals("messageFailed") || newMessageStatus.equals("messageSent")) {
       new Handler().postDelayed(() -> clearMessageStatusIfNeeded(timestamp), 1000);

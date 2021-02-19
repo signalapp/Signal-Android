@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.protocol.mentions
+package org.session.libsignal.service.loki.utilities.mentions
 
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol

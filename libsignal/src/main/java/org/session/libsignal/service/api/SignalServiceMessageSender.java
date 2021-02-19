@@ -6,12 +6,10 @@
 package org.session.libsignal.service.api;
 
 import com.google.protobuf.ByteString;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.jetbrains.annotations.Nullable;
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.utilities.logging.Log;
-import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.crypto.AttachmentCipherOutputStream;
@@ -67,24 +65,20 @@ import org.session.libsignal.service.loki.database.LokiOpenGroupDatabaseProtocol
 import org.session.libsignal.service.loki.database.LokiPreKeyBundleDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol;
 import org.session.libsignal.service.loki.database.LokiUserDatabaseProtocol;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
-import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol;
+import org.session.libsignal.service.loki.utilities.TTLUtilities;
 import org.session.libsignal.service.loki.utilities.Broadcaster;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
@@ -100,10 +94,8 @@ public class SignalServiceMessageSender {
 
   private static final String TAG = SignalServiceMessageSender.class.getSimpleName();
 
-  private final PushServiceSocket                                   socket;
   private final SignalProtocolStore                                 store;
   private final SignalServiceAddress                                localAddress;
-  private final Optional<EventListener>                             eventListener;
 
   private final AtomicReference<Optional<SignalServiceMessagePipe>> pipe;
   private final AtomicReference<Optional<SignalServiceMessagePipe>> unidentifiedPipe;
@@ -113,9 +105,7 @@ public class SignalServiceMessageSender {
   private final LokiAPIDatabaseProtocol                             apiDatabase;
   private final LokiThreadDatabaseProtocol                          threadDatabase;
   private final LokiMessageDatabaseProtocol                         messageDatabase;
-  private final LokiPreKeyBundleDatabaseProtocol                    preKeyBundleDatabase;
   private final SessionProtocol                                     sessionProtocolImpl;
-  private final SessionResetProtocol                                sessionResetImpl;
   private final LokiUserDatabaseProtocol                            userDatabase;
   private final LokiOpenGroupDatabaseProtocol                       openGroupDatabase;
   private final Broadcaster                                         broadcaster;
@@ -123,65 +113,48 @@ public class SignalServiceMessageSender {
   /**
    * Construct a SignalServiceMessageSender.
    *
-   * @param urls The URL of the Signal Service.
    * @param user The Signal Service username (eg phone number).
    * @param password The Signal Service user password.
    * @param store The SignalProtocolStore.
-   * @param eventListener An optional event listener, which fires whenever sessions are
-   *                      setup or torn down for a recipient.
    */
-  public SignalServiceMessageSender(SignalServiceConfiguration urls,
-                                    String user, String password,
+  public SignalServiceMessageSender(String user, String password,
                                     SignalProtocolStore store,
-                                    String userAgent,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
-                                    Optional<EventListener> eventListener,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
                                     LokiMessageDatabaseProtocol messageDatabase,
-                                    LokiPreKeyBundleDatabaseProtocol preKeyBundleDatabase,
                                     SessionProtocol sessionProtocolImpl,
-                                    SessionResetProtocol sessionResetImpl,
                                     LokiUserDatabaseProtocol userDatabase,
                                     LokiOpenGroupDatabaseProtocol openGroupDatabase,
                                     Broadcaster broadcaster)
   {
-    this(urls, new StaticCredentialsProvider(user, password, null), store, userAgent, pipe, unidentifiedPipe, eventListener, userPublicKey, apiDatabase, threadDatabase, messageDatabase, preKeyBundleDatabase, sessionProtocolImpl, sessionResetImpl, userDatabase, openGroupDatabase, broadcaster);
+    this(new StaticCredentialsProvider(user, password, null), store, pipe, unidentifiedPipe, userPublicKey, apiDatabase, threadDatabase, messageDatabase, sessionProtocolImpl, userDatabase, openGroupDatabase, broadcaster);
   }
 
-  public SignalServiceMessageSender(SignalServiceConfiguration urls,
-                                    CredentialsProvider credentialsProvider,
+  public SignalServiceMessageSender(CredentialsProvider credentialsProvider,
                                     SignalProtocolStore store,
-                                    String userAgent,
                                     Optional<SignalServiceMessagePipe> pipe,
                                     Optional<SignalServiceMessagePipe> unidentifiedPipe,
-                                    Optional<EventListener> eventListener,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
                                     LokiMessageDatabaseProtocol messageDatabase,
-                                    LokiPreKeyBundleDatabaseProtocol preKeyBundleDatabase,
                                     SessionProtocol sessionProtocolImpl,
-                                    SessionResetProtocol sessionResetImpl,
                                     LokiUserDatabaseProtocol userDatabase,
                                     LokiOpenGroupDatabaseProtocol openGroupDatabase,
                                     Broadcaster broadcaster)
   {
-    this.socket                    = new PushServiceSocket(urls, credentialsProvider, userAgent);
     this.store                     = store;
     this.localAddress              = new SignalServiceAddress(credentialsProvider.getUser());
     this.pipe                      = new AtomicReference<>(pipe);
     this.unidentifiedPipe          = new AtomicReference<>(unidentifiedPipe);
-    this.eventListener             = eventListener;
     this.userPublicKey             = userPublicKey;
     this.apiDatabase               = apiDatabase;
     this.threadDatabase            = threadDatabase;
     this.messageDatabase           = messageDatabase;
-    this.preKeyBundleDatabase      = preKeyBundleDatabase;
     this.sessionProtocolImpl       = sessionProtocolImpl;
-    this.sessionResetImpl          = sessionResetImpl;
     this.userDatabase              = userDatabase;
     this.openGroupDatabase         = openGroupDatabase;
     this.broadcaster               = broadcaster;

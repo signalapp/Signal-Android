@@ -10,31 +10,11 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
-import org.session.libsignal.metadata.InvalidMetadataVersionException;
-import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyIdException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidVersionException;
-import org.session.libsignal.metadata.ProtocolLegacyMessageException;
-import org.session.libsignal.metadata.ProtocolNoSessionException;
-import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.session.libsignal.metadata.SealedSessionCipher;
-import org.session.libsignal.metadata.SelfSendException;
-import org.session.libsignal.libsignal.DuplicateMessageException;
-import org.session.libsignal.libsignal.InvalidKeyException;
-import org.session.libsignal.libsignal.InvalidKeyIdException;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.InvalidVersionException;
-import org.session.libsignal.libsignal.LegacyMessageException;
-import org.session.libsignal.libsignal.NoSessionException;
 import org.session.libsignal.libsignal.SessionCipher;
 import org.session.libsignal.libsignal.SignalProtocolAddress;
-import org.session.libsignal.libsignal.UntrustedIdentityException;
-import org.session.libsignal.libsignal.loki.LokiSessionCipher;
-import org.session.libsignal.libsignal.loki.SessionResetProtocol;
-import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
-import org.session.libsignal.libsignal.protocol.SignalMessage;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -60,7 +40,6 @@ import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
 import org.session.libsignal.service.loki.api.crypto.SessionProtocolUtilities;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,19 +56,16 @@ public class SignalServiceCipher {
   private static final String TAG = SignalServiceCipher.class.getSimpleName();
 
   private final SignalProtocolStore              signalProtocolStore;
-  private final SessionResetProtocol             sessionResetProtocol;
   private final SignalServiceAddress             localAddress;
   private final SessionProtocol                  sessionProtocolImpl;
   private final LokiAPIDatabaseProtocol          apiDB;
 
   public SignalServiceCipher(SignalServiceAddress localAddress,
                              SignalProtocolStore signalProtocolStore,
-                             SessionResetProtocol sessionResetProtocol,
                              SessionProtocol sessionProtocolImpl,
                              LokiAPIDatabaseProtocol apiDB)
   {
     this.signalProtocolStore  = signalProtocolStore;
-    this.sessionResetProtocol = sessionResetProtocol;
     this.localAddress         = localAddress;
     this.sessionProtocolImpl  = sessionProtocolImpl;
     this.apiDB                = apiDB;
@@ -160,8 +136,8 @@ public class SignalServiceCipher {
   protected Plaintext decrypt(SignalServiceEnvelope envelope, byte[] ciphertext) throws InvalidMetadataMessageException
   {
     SignalProtocolAddress sourceAddress       = new SignalProtocolAddress(envelope.getSource(), envelope.getSourceDevice());
-    SessionCipher         sessionCipher       = new LokiSessionCipher(signalProtocolStore, sessionResetProtocol, sourceAddress);
-    SealedSessionCipher   sealedSessionCipher = new SealedSessionCipher(signalProtocolStore, sessionResetProtocol, new SignalProtocolAddress(localAddress.getNumber(), 1));
+    SessionCipher         sessionCipher       = new SessionCipher(signalProtocolStore, sourceAddress);
+    SealedSessionCipher   sealedSessionCipher = new SealedSessionCipher(signalProtocolStore, new SignalProtocolAddress(localAddress.getNumber(), 1));
 
     byte[] paddedMessage;
     Metadata metadata;

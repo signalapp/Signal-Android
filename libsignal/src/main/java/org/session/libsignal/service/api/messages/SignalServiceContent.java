@@ -7,9 +7,7 @@
 package org.session.libsignal.service.api.messages;
 
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.messages.calls.SignalServiceCallMessage;
 import org.session.libsignal.service.internal.push.SignalServiceProtos;
-import org.session.libsignal.service.loki.protocol.sessionmanagement.PreKeyBundleMessage;
 
 public class SignalServiceContent {
   private final String  sender;
@@ -24,7 +22,6 @@ public class SignalServiceContent {
 
   // Loki
   public Optional<SignalServiceProtos.Content> configurationMessageProto = Optional.absent();
-  public Optional<PreKeyBundleMessage>         preKeyBundleMessage       = Optional.absent();
   public Optional<String>                      senderDisplayName         = Optional.absent();
   public Optional<String>                      senderProfilePictureURL   = Optional.absent();
 

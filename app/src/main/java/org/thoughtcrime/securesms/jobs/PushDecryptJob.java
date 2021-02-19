@@ -17,19 +17,8 @@ import com.annimon.stream.Stream;
 import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
-import org.session.libsignal.metadata.InvalidMetadataVersionException;
-import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyIdException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidVersionException;
-import org.session.libsignal.metadata.ProtocolLegacyMessageException;
-import org.session.libsignal.metadata.ProtocolNoSessionException;
-import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
-import org.session.libsignal.metadata.SelfSendException;
 import org.session.libsignal.service.api.crypto.SignalServiceCipher;
-import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
-import org.session.libsignal.utilities.PromiseUtilities;
 import org.thoughtcrime.securesms.ApplicationContext;
 
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -48,13 +37,10 @@ import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -79,26 +65,19 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.session.libsignal.utilities.Hex;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
@@ -111,16 +90,14 @@ import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -242,10 +219,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     try {
       GroupDatabase        groupDatabase        = DatabaseFactory.getGroupDatabase(context);
       SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
-      SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
       SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiAPIDatabase apiDB                     = DatabaseFactory.getLokiAPIDatabase(context);
-      SignalServiceCipher cipher                = new SignalServiceCipher(localAddress, axolotlStore, sessionResetProtocol, new SessionProtocolImpl(context), apiDB);
+      SignalServiceCipher cipher                = new SignalServiceCipher(localAddress, axolotlStore, new SessionProtocolImpl(context), apiDB);
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -253,8 +229,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.i(TAG, "Ignoring message.");
         return;
       }
-
-      SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content);
 
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
@@ -341,7 +315,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
-      SessionManagementProtocol.handleEndSessionMessageIfNeeded(context, content);
       messageNotifier.updateNotification(context, threadId);
     }
   }
@@ -706,82 +679,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsDecryptFailed(smsMessageId.get());
       }
     }
-
-    if (canRecoverAutomatically(e)) {
-      Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
-      LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-      threadDB.addSessionRestoreDevice(threadID, sender);
-      SessionManagementProtocol.startSessionReset(context, sender);
-    } else {
-      SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
-    }
-  }
-
-  private boolean canRecoverAutomatically(Throwable e) {
-    // Corrupt message exception
-    if (e.getCause() != null) {
-      Throwable e2 = e.getCause();
-      if (e2.getCause() != null) {
-        Throwable e3 = e2.getCause();
-        if (e3 instanceof InvalidMessageException) {
-          String message = e3.getMessage();
-          return (message != null && message.startsWith("Bad Mac!"));
-        }
-      }
-    }
-    return false;
-  }
-
-  private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    if (!SessionMetaProtocol.shouldIgnoreDecryptionException(context, timestamp)) {
-      if (!smsMessageId.isPresent()) {
-        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-        if (insertResult.isPresent()) {
-          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-          messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-        }
-      } else {
-        smsDatabase.markAsNoSession(smsMessageId.get());
-      }
-    }
-  }
-
-  private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                   @NonNull Optional<Long> smsMessageId)
-  {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-
-    if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsLegacyVersion(insertResult.get().getMessageId());
-        messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-      }
-    } else {
-      smsDatabase.markAsLegacyVersion(smsMessageId.get());
-    }
-  }
-
-  @SuppressWarnings("unused")
-  private void handleDuplicateMessage(@NonNull String sender, int senderDeviceId, long timestamp,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    // Let's start ignoring these now
-//    SmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-//
-//    if (smsMessageId <= 0) {
-//      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
-//      smsDatabase.markAsDecryptDuplicate(messageAndThreadId.first);
-//      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
-//    } else {
-//      smsDatabase.markAsDecryptDuplicate(smsMessageId);
-//    }
   }
 
   private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
@@ -903,42 +800,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                       quote.get().getText(),
                                       true,
                                       PointerAttachment.forPointersOfDataMessage(quote.get().getAttachments())));
-  }
-
-  private Optional<Attachment> getStickerAttachment(Optional<SignalServiceDataMessage.Sticker> sticker) {
-    if (!sticker.isPresent()) {
-      return Optional.absent();
-    }
-
-    if (sticker.get().getPackId() == null || sticker.get().getPackKey() == null || sticker.get().getAttachment() == null) {
-      Log.w(TAG, "Malformed sticker!");
-      return Optional.absent();
-    }
-
-    String          packId          = Hex.toStringCondensed(sticker.get().getPackId());
-    String          packKey         = Hex.toStringCondensed(sticker.get().getPackKey());
-    int             stickerId       = sticker.get().getStickerId();
-    StickerLocator  stickerLocator  = new StickerLocator(packId, packKey, stickerId);
-    StickerDatabase stickerDatabase = DatabaseFactory.getStickerDatabase(context);
-    StickerRecord   stickerRecord   = stickerDatabase.getSticker(stickerLocator.getPackId(), stickerLocator.getStickerId(), false);
-
-    if (stickerRecord != null) {
-      return Optional.of(new UriAttachment(stickerRecord.getUri(),
-                                           stickerRecord.getUri(),
-                                           MediaTypes.IMAGE_WEBP,
-                                           AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                           stickerRecord.getSize(),
-                                           StickerSlide.WIDTH,
-                                           StickerSlide.HEIGHT,
-                                           null,
-                                           String.valueOf(new SecureRandom().nextLong()),
-                                           false,
-                                           false,
-                                           null,
-                                           stickerLocator));
-    } else {
-      return Optional.of(PointerAttachment.forPointer(Optional.of(sticker.get().getAttachment()), stickerLocator).get());
-    }
   }
 
   private Optional<List<Contact>> getContacts(Optional<List<SharedContact>> sharedContacts) {
@@ -1067,10 +928,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     return false;
-  }
-
-  private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupMessage();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {

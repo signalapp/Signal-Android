@@ -32,7 +32,6 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -88,20 +87,15 @@ public class SignalCommunicationModule {
   @Provides
   public synchronized SignalServiceMessageSender provideSignalMessageSender() {
     if (this.messageSender == null) {
-      this.messageSender = new SignalServiceMessageSender(networkAccess.getConfiguration(context),
-                                                          new DynamicCredentialsProvider(context),
+      this.messageSender = new SignalServiceMessageSender(new DynamicCredentialsProvider(context),
                                                           new SignalProtocolStoreImpl(context),
-                                                          BuildConfig.USER_AGENT,
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                                          Optional.of(new MessageSenderEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
                                                           DatabaseFactory.getLokiMessageDatabase(context),
-                                                          null, // DatabaseFactory.getLokiPreKeyBundleDatabase(context)
                                                           new SessionProtocolImpl(context),
-                                                          new SessionResetImplementation(context),
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           DatabaseFactory.getGroupDatabase(context),
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);

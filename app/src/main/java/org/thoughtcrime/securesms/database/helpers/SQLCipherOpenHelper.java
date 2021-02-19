@@ -250,7 +250,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV21) {
-        deleteJobRecords(db, "ClosedGroupUpdateMessageSendJob");
+        deleteJobRecords(db,
+                "ClosedGroupUpdateMessageSendJob",
+                "NullMessageSendJob");
       }
 
       db.setTransactionSuccessful();

@@ -5,7 +5,7 @@ import nl.komponents.kovenant.deferred
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities
+import org.session.libsignal.service.loki.utilities.TTLUtilities
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.prettifiedDescription
 

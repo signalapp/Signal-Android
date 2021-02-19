@@ -8,6 +8,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
@@ -72,8 +73,8 @@ object MultiDeviceProtocol {
         for (closedGroup in configurationMessage.closedGroups) {
             if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
 
-            val closedGroupUpdate = SignalServiceProtos.ClosedGroupUpdateV2.newBuilder()
-            closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW
+            val closedGroupUpdate = DataMessage.ClosedGroupControlMessage.newBuilder()
+            closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.NEW
             closedGroupUpdate.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(closedGroup.publicKey))
             closedGroupUpdate.name = closedGroup.name
             val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()

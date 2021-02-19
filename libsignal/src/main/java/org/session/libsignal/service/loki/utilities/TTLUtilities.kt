@@ -1,4 +1,4 @@
-package org.session.libsignal.service.loki.protocol.meta
+package org.session.libsignal.service.loki.utilities
 
 public object TTLUtilities {
 

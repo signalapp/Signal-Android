@@ -1,7 +1,6 @@
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
+import org.session.libsignal.service.loki.utilities.TTLUtilities;
 
 public class SignalServiceTypingMessage {
 

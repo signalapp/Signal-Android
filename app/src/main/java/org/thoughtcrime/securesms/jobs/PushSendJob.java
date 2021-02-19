@@ -12,7 +12,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,13 +33,10 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
-import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 
@@ -55,7 +51,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class PushSendJob extends SendJob {
 
   private static final String TAG                           = PushSendJob.class.getSimpleName();
-  private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
   protected PushSendJob(Job.Parameters parameters) {
     super(parameters);
@@ -72,14 +67,6 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   protected final void onSend() throws Exception {
-//    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
-//      ApplicationContext.getInstance(context)
-//                        .getJobManager()
-//                        .add(new RotateSignedPreKeyJob());
-//
-//      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
-//    }
-
     onPushSend();
   }
 

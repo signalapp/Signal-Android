@@ -24,8 +24,6 @@ import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
 import org.session.libsignal.libsignal.kdf.HKDFv3;
 import org.session.libsignal.libsignal.loki.FallbackSessionCipher;
-import org.session.libsignal.libsignal.loki.LokiSessionCipher;
-import org.session.libsignal.libsignal.loki.SessionResetProtocol;
 import org.session.libsignal.libsignal.protocol.CiphertextMessage;
 import org.session.libsignal.libsignal.protocol.PreKeySignalMessage;
 import org.session.libsignal.libsignal.protocol.SignalMessage;
@@ -51,15 +49,11 @@ import javax.crypto.spec.SecretKeySpec;
 public class SealedSessionCipher {
 
   private final SignalProtocolStore signalProtocolStore;
-  private final SessionResetProtocol sessionResetProtocol;
   private final SignalProtocolAddress localAddress;
 
-  public SealedSessionCipher(SignalProtocolStore signalProtocolStore,
-                             SessionResetProtocol sessionResetProtocol,
-                             SignalProtocolAddress localAddress)
+  public SealedSessionCipher(SignalProtocolStore signalProtocolStore, SignalProtocolAddress localAddress)
   {
     this.signalProtocolStore  = signalProtocolStore;
-    this.sessionResetProtocol = sessionResetProtocol;
     this.localAddress         = localAddress;
   }
 
@@ -201,8 +195,8 @@ public class SealedSessionCipher {
     SignalProtocolAddress sender = new SignalProtocolAddress(message.getSenderCertificate().getSender(), message.getSenderCertificate().getSenderDeviceId());
 
     switch (message.getType()) {
-      case CiphertextMessage.WHISPER_TYPE: return new LokiSessionCipher(signalProtocolStore, sessionResetProtocol, sender).decrypt(new SignalMessage(message.getContent()));
-      case CiphertextMessage.PREKEY_TYPE:  return new LokiSessionCipher(signalProtocolStore, sessionResetProtocol, sender).decrypt(new PreKeySignalMessage(message.getContent()));
+      case CiphertextMessage.WHISPER_TYPE: return new SessionCipher(signalProtocolStore, sender).decrypt(new SignalMessage(message.getContent()));
+      case CiphertextMessage.PREKEY_TYPE:  return new SessionCipher(signalProtocolStore, sender).decrypt(new PreKeySignalMessage(message.getContent()));
       case CiphertextMessage.FALLBACK_MESSAGE_TYPE: {
           try {
               byte[] privateKey = signalProtocolStore.getIdentityKeyPair().getPrivateKey().serialize();

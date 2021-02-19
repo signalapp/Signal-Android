@@ -76,7 +76,6 @@ import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
 import org.thoughtcrime.securesms.notifications.DefaultMessageNotifier;
@@ -84,7 +83,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -107,8 +105,7 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPI;
 import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -136,7 +133,6 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
 public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
-  private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
 
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;
@@ -144,7 +140,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private JobManager              jobManager;
   private ReadReceiptManager      readReceiptManager;
   private ProfileManager          profileManager;
-  private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
 
@@ -182,7 +177,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(this);
     LokiUserDatabase userDB = DatabaseFactory.getLokiUserDatabase(this);
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    SessionResetImplementation sessionResetImpl = new SessionResetImplementation(this);
     MessagingConfiguration.Companion.configure(this,
                                                 DatabaseFactory.getStorage(this),
                                                 DatabaseFactory.getAttachmentProvider(this),
@@ -191,7 +185,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
-      SessionMetaProtocol.Companion.configureIfNeeded(apiDB, userPublicKey);
     }
     setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
@@ -206,7 +199,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     UiModeUtilities.setupUiModeToUserSelected(this);
     // ========
     initializeJobManager();
-    initializeMessageRetrieval();
     initializeExpiringMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
@@ -345,10 +337,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                                                                        .setDependencyInjector(this)
                                                                        .build());
-  }
-
-  public void initializeMessageRetrieval() {
-    this.incomingMessageObserver = new IncomingMessageObserver(this);
   }
 
   private void initializeDependencyInjection() {

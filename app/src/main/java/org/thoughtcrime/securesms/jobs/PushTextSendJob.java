@@ -30,11 +30,9 @@ import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
 import org.session.libsignal.service.loki.api.SnodeAPI;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.IOException;
 
@@ -224,7 +222,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
               .asEndSessionMessage(message.isEndSession())
               .build();
 
-      if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
+      if (userPublicKey.equals(address.getNumber())) {
         // Loki - Device link messages don't go through here
         SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccess, textSecureMessage);
         if (result.getLokiAPIError() != null) {

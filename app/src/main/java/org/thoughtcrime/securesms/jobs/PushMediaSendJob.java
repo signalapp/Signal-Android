@@ -39,12 +39,10 @@ import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
 import org.session.libsignal.service.loki.api.SnodeAPI;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -285,7 +283,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
               .asExpirationUpdate(message.isExpirationUpdate())
               .build();
 
-      if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
+      if (userPublicKey == address.getNumber()) {
         // Loki - Device link messages don't go through here
         SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
         if (result.getLokiAPIError() != null) {

@@ -33,7 +33,6 @@ import org.session.libsession.utilities.GroupUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -44,8 +43,7 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
 import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
 import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
@@ -53,31 +51,6 @@ import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
-
-    companion object {
-        private const val PREF_RESET_ALL_SESSIONS_ON_START_UP = "pref_reset_all_sessions_on_start_up"
-
-        @JvmStatic
-        fun requestResetAllSessionsOnStartup(context: Context) {
-            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, true)
-        }
-
-        @JvmStatic
-        fun scheduleResetAllSessionsIfRequested(context: Context) {
-            if (!getBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)) return
-            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)
-
-            val jobManager = ApplicationContext.getInstance(context).jobManager
-
-            DatabaseFactory.getThreadDatabase(context).conversationListQuick.forEach { tuple ->
-                val threadId: Long = tuple.first
-                val recipientAddress: String = tuple.second
-                jobManager.add(ResetThreadSessionJob(
-                        Address.fromSerialized(recipientAddress),
-                        threadId))
-            }
-        }
-    }
 
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
@@ -165,10 +138,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
-            SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
         IP2Country.configureIfNeeded(this)

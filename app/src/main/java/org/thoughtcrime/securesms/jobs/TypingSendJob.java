@@ -87,16 +87,14 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     }
 
     List<Recipient>  recipients = Collections.singletonList(recipient);
-    Optional<byte[]> groupId    = Optional.absent();
 
     if (recipient.isGroupRecipient()) {
       recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-      groupId    = Optional.of(GroupUtil.getDecodedGroupIDAsData(recipient.getAddress().toGroupString()));
     }
 
     List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
-    SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
+    SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis());
 
     messageSender.sendTyping(addresses, unidentifiedAccess, typingMessage);
   }

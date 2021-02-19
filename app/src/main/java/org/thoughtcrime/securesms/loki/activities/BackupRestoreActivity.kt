@@ -193,8 +193,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 application.setUpStorageAPIIfNeeded()
                 application.setUpP2PAPIIfNeeded()
 
-                HomeActivity.requestResetAllSessionsOnStartup(context)
-
                 BackupRestoreResult.SUCCESS
             } catch (e: DatabaseDowngradeException) {
                 Log.w(TAG, "Failed due to the backup being from a newer version of Signal.", e)

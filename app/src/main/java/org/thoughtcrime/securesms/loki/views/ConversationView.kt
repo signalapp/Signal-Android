@@ -15,8 +15,6 @@ import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities.populat
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities.highlightMentions
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
 import java.util.*
 
 class ConversationView : LinearLayout {
