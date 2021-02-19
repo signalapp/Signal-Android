@@ -163,7 +163,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
     if (!isCursorListEmpty(contacts)) {
       cursorList.add(getContactsHeaderCursor());
-      cursorList.addAll(getContactsCursors());
+      cursorList.addAll(contacts);
     }
   }
 
