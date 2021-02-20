@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;

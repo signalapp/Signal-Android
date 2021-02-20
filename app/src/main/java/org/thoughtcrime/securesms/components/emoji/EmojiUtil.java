@@ -6,8 +6,6 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 

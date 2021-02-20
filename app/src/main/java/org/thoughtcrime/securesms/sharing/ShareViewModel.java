@@ -5,7 +5,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -20,7 +19,6 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.MappingModel;
-import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;

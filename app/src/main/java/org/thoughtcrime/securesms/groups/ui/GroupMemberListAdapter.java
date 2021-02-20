@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LifecycleRecyclerAdapter;
 import org.thoughtcrime.securesms.util.LifecycleViewHolder;
 import org.thoughtcrime.securesms.util.Util;

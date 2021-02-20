@@ -10,7 +10,6 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 

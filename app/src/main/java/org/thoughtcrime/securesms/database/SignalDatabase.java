@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.database;
 
-import androidx.annotation.NonNull;
-
 import net.sqlcipher.database.SQLiteDatabase;
 
 /**

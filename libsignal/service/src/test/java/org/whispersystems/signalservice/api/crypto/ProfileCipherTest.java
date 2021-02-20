@@ -11,7 +11,6 @@ import org.whispersystems.util.Base64;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.Security;
 
 public class ProfileCipherTest extends TestCase {

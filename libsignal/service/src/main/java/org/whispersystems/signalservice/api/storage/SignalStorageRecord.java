@@ -1,7 +1,6 @@
 package org.whispersystems.signalservice.api.storage;
 
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.internal.storage.protos.AccountRecord;
 
 import java.util.Objects;
 

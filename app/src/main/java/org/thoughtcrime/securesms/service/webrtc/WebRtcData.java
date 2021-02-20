@@ -7,16 +7,12 @@ import androidx.annotation.Nullable;
 
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.UUID;
 
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_ERA_ID;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_GROUP;
-import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_GROUP_CALL_UPDATE_SENDER;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_DEVICE_ID;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_IS_LEGACY;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HANGUP_TYPE;
@@ -26,7 +22,6 @@ import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_HTTP_RE
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_MESSAGE_AGE_SECONDS;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_DELIVERED_TIMESTAMP;
 import static org.thoughtcrime.securesms.service.WebRtcCallService.EXTRA_SERVER_RECEIVED_TIMESTAMP;
-import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRecipientId;
 import static org.thoughtcrime.securesms.service.webrtc.WebRtcIntentParser.getRemoteDevice;
 
 /**

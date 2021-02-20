@@ -18,7 +18,6 @@ import org.whispersystems.signalservice.internal.keybackup.protos.BackupResponse
 import org.whispersystems.signalservice.internal.keybackup.protos.RestoreResponse;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
-import org.whispersystems.signalservice.internal.util.Hex;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;

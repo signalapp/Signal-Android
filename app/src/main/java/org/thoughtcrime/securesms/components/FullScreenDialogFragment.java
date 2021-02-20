@@ -13,7 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 /**
  * Base dialog fragment for rendering as a full screen dialog with animation

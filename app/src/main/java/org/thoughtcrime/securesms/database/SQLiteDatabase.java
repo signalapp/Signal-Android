@@ -10,7 +10,6 @@ import net.sqlcipher.database.SQLiteStatement;
 import net.sqlcipher.database.SQLiteTransactionListener;
 
 import org.signal.core.util.tracing.Tracer;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
 import java.util.HashMap;
 import java.util.Locale;

@@ -7,7 +7,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
@@ -15,7 +14,6 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.util.CursorUtil;
-import org.thoughtcrime.securesms.util.SqlUtil;
 
 import java.util.Collection;
 import java.util.Map;

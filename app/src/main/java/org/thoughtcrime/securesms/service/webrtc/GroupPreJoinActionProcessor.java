@@ -8,7 +8,6 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
-import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.BuildConfig;

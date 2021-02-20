@@ -2,10 +2,8 @@ package org.whispersystems.signalservice.api.storage;
 
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
-import org.whispersystems.signalservice.internal.storage.protos.StorageManifest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

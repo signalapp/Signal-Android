@@ -3,8 +3,6 @@ package org.whispersystems.signalservice.internal.push.http;
 import com.google.protobuf.ByteString;
 
 import org.signal.protos.resumableuploads.ResumableUploads;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.libsignal.util.guava.Preconditions;
 import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvalidException;
 import org.whispersystems.util.Base64;
 

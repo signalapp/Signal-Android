@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.contacts.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
 import java.util.Map;
 
 public class MultiRemoteAttestationResponse {

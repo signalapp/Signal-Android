@@ -26,8 +26,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;

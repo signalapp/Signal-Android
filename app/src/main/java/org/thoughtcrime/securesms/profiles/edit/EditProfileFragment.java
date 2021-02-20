@@ -35,17 +35,14 @@ import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity;
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.InputStream;

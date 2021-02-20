@@ -43,7 +43,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.google.android.material.button.MaterialButton;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;

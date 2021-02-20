@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
 import org.thoughtcrime.securesms.preferences.widgets.UsernamePreference;
-import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
