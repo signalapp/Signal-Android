@@ -2035,7 +2035,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     supportActionBar.setDisplayShowTitleEnabled(false);
 
     if (isInBubble()) {
-      supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_notification));
+      supportActionBar.setHomeAsUpIndicator(DrawableUtil.tint(ContextUtil.requireDrawable(this, R.drawable.ic_notification),
+                                                              ContextCompat.getColor(this, R.color.signal_accent_primary)));
       toolbar.setNavigationOnClickListener(unused -> startActivity(MainActivity.clearTop(this)));
     }
   }
