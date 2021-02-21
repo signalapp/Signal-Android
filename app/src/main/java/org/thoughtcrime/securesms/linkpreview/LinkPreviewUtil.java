@@ -12,7 +12,6 @@ import android.text.util.Linkify;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
@@ -62,7 +61,6 @@ public final class LinkPreviewUtil {
    */
   public static boolean isValidLinkUrl(@Nullable String linkUrl) {
     if (linkUrl == null)                      return false;
-    if (StickerUrl.isValidShareLink(linkUrl)) return true;
 
     HttpUrl url = HttpUrl.parse(linkUrl);
     return url != null                                   &&

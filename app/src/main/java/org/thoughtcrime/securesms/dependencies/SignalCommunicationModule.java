@@ -6,8 +6,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.util.CredentialsProvider;
-import org.session.libsignal.service.api.util.SleepTimer;
-import org.session.libsignal.service.api.util.UptimeSleepTimer;
 import org.session.libsignal.service.api.websocket.ConnectivityListener;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
@@ -24,16 +22,11 @@ import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
-import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
-import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
-import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
-import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
 import org.session.libsession.utilities.TextSecurePreferences;
 
@@ -55,10 +48,6 @@ import network.loki.messenger.BuildConfig;
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,
                                      PushDecryptJob.class,
-                                     StickerDownloadJob.class,
-                                     StickerPackPreviewRepository.class,
-                                     StickerRemoteUriLoader.Factory.class,
-                                     StickerPackDownloadJob.class,
                                      LinkPreviewRepository.class})
 
 public class SignalCommunicationModule {
@@ -95,12 +84,7 @@ public class SignalCommunicationModule {
   @Provides
   synchronized SignalServiceMessageReceiver provideSignalMessageReceiver() {
     if (this.messageReceiver == null) {
-      SleepTimer sleepTimer =  TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context) : new UptimeSleepTimer();
-
-      this.messageReceiver = new SignalServiceMessageReceiver(new DynamicCredentialsProvider(context),
-                                                              BuildConfig.USER_AGENT,
-                                                              new PipeConnectivityListener(),
-                                                              sleepTimer);
+      this.messageReceiver = new SignalServiceMessageReceiver();
     }
 
     return this.messageReceiver;

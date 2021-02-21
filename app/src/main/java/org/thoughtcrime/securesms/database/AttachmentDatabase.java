@@ -548,18 +548,6 @@ public class AttachmentDatabase extends Database {
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
   }
 
-  /**
-   * Returns (pack_id, pack_key) pairs that are referenced in attachments but not in the stickers
-   * database.
-   */
-  public @Nullable Cursor getUnavailableStickerPacks() {
-    String query = "SELECT DISTINCT " + STICKER_PACK_ID + ", " + STICKER_PACK_KEY + " FROM " + TABLE_NAME + " WHERE " + STICKER_PACK_ID + " NOT IN (" +
-                     "SELECT DISTINCT " + StickerDatabase.PACK_ID + " FROM " + StickerDatabase.TABLE_NAME +
-                   ")";
-
-    return databaseHelper.getReadableDatabase().rawQuery(query, null);
-  }
-
   public boolean hasStickerAttachments() {
     String selection = STICKER_PACK_ID + " NOT NULL";
 

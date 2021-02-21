@@ -7,30 +7,20 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.common.util.IOUtils;
-
 
 import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.session.libsignal.utilities.logging.Log;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.net.CallRequestController;
 import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
-import org.thoughtcrime.securesms.stickers.StickerUrl;
-import org.session.libsignal.utilities.Hex;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.util.Pair;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.messages.SignalServiceStickerManifest;
-import org.session.libsignal.service.api.messages.SignalServiceStickerManifest.StickerInfo;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil.OpenGraph;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
@@ -41,7 +31,6 @@ import org.session.libsession.utilities.concurrent.SignalExecutors;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 
@@ -82,31 +71,27 @@ public class LinkPreviewRepository implements InjectableType {
 
     RequestController metadataController;
 
-    if (StickerUrl.isValidShareLink(url)) {
-      metadataController = fetchStickerPackLinkPreview(context, url, callback);
-    } else {
-      metadataController = fetchMetadata(url, metadata -> {
-        if (metadata.isEmpty()) {
+    metadataController = fetchMetadata(url, metadata -> {
+      if (metadata.isEmpty()) {
+        callback.onComplete(Optional.absent());
+        return;
+      }
+
+      if (!metadata.getImageUrl().isPresent()) {
+        callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().get(), Optional.absent())));
+        return;
+      }
+
+      RequestController imageController = fetchThumbnail(context, metadata.getImageUrl().get(), attachment -> {
+        if (!metadata.getTitle().isPresent() && !attachment.isPresent()) {
           callback.onComplete(Optional.absent());
-          return;
+        } else {
+          callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().or(""), attachment)));
         }
-
-        if (!metadata.getImageUrl().isPresent()) {
-          callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().get(), Optional.absent())));
-          return;
-        }
-
-        RequestController imageController = fetchThumbnail(context, metadata.getImageUrl().get(), attachment -> {
-          if (!metadata.getTitle().isPresent() && !attachment.isPresent()) {
-            callback.onComplete(Optional.absent());
-          } else {
-            callback.onComplete(Optional.of(new LinkPreview(url, metadata.getTitle().or(""), attachment)));
-          }
-        });
-
-        compositeController.addController(imageController);
       });
-    }
+
+      compositeController.addController(imageController);
+    });
 
     compositeController.addController(metadataController);
     return compositeController;
@@ -188,66 +173,6 @@ public class LinkPreviewRepository implements InjectableType {
     });
 
     return controller;
-  }
-
-  private RequestController fetchStickerPackLinkPreview(@NonNull Context context,
-                                                        @NonNull String packUrl,
-                                                        @NonNull Callback<Optional<LinkPreview>> callback)
-  {
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        Pair<String, String> stickerParams = StickerUrl.parseShareLink(packUrl).or(new Pair<>("", ""));
-        String               packIdString  = stickerParams.first();
-        String               packKeyString = stickerParams.second();
-        byte[]               packIdBytes   = Hex.fromStringCondensed(packIdString);
-        byte[]               packKeyBytes  = Hex.fromStringCondensed(packKeyString);
-
-        SignalServiceStickerManifest manifest = messageReceiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
-
-        String                title        = manifest.getTitle().or(manifest.getAuthor()).or("");
-        Optional<StickerInfo> firstSticker = Optional.fromNullable(manifest.getStickers().size() > 0 ? manifest.getStickers().get(0) : null);
-        Optional<StickerInfo> cover        = manifest.getCover().or(firstSticker);
-
-        if (cover.isPresent()) {
-          Bitmap bitmap = GlideApp.with(context).asBitmap()
-                                                .load(new StickerRemoteUri(packIdString, packKeyString, cover.get().getId()))
-                                                .skipMemoryCache(true)
-                                                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                                .centerInside()
-                                                .submit(512, 512)
-                                                .get();
-
-          ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-          bitmap.compress(Bitmap.CompressFormat.WEBP, 80, baos);
-
-          byte[]               bytes     = baos.toByteArray();
-          Uri                  uri       = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
-          Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri,
-                                                       uri,
-                                                       MediaTypes.IMAGE_WEBP,
-                                                       AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
-                                                       bytes.length,
-                                                       bitmap.getWidth(),
-                                                       bitmap.getHeight(),
-                                                       null,
-                                                       null,
-                                                       false,
-                                                       false,
-                                                       null,
-                                                       null));
-
-          callback.onComplete(Optional.of(new LinkPreview(packUrl, title, thumbnail)));
-        } else {
-          callback.onComplete(Optional.absent());
-        }
-      } catch (IOException | InvalidMessageException | ExecutionException | InterruptedException e) {
-        Log.w(TAG, "Failed to fetch sticker pack link preview.");
-        callback.onComplete(Optional.absent());
-      }
-    });
-
-    return () -> Log.i(TAG, "Cancelled sticker pack link preview fetch -- no effect.");
   }
 
   private static Optional<Attachment> bitmapToAttachment(@Nullable Bitmap bitmap,

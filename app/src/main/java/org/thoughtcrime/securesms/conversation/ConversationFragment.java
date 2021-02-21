@@ -85,7 +85,6 @@ import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -1082,13 +1081,6 @@ public class ConversationFragment extends Fragment
     public void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms) {
       if (getContext() != null && getActivity() != null) {
         startActivity(LongMessageActivity.getIntent(getContext(), conversationAddress, messageId, isMms));
-      }
-    }
-
-    @Override
-    public void onStickerClicked(@NonNull StickerLocator sticker) {
-      if (getContext() != null && getActivity() != null) {
-        startActivity(StickerPackPreviewActivity.getIntent(sticker.getPackId(), sticker.getPackKey()));
       }
     }
   }

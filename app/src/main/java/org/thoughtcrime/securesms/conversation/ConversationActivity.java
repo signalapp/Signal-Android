@@ -182,10 +182,6 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
-import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
-import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
-import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -205,7 +201,6 @@ import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
 import org.session.libsignal.utilities.concurrent.ListenableFuture;
 import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.TextSecurePreferences.MediaKeyboardMode;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -239,7 +234,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
                ConversationSearchBottomBar.EventListener,
-               StickerKeyboardProvider.StickerEventListener,
                LokiThreadDatabaseDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
@@ -303,7 +297,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
-  private ConversationStickerViewModel stickerViewModel;
 
   private Recipient  recipient;
   private long       threadId;
@@ -361,7 +354,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeResources();
     initializeLinkPreviewObserver();
     initializeSearchObserver();
-    initializeStickerObserver();
     initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -1513,52 +1505,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
-  private void initializeStickerObserver() {
-    StickerSearchRepository repository = new StickerSearchRepository(this);
-
-    stickerViewModel = ViewModelProviders.of(this, new ConversationStickerViewModel.Factory(getApplication(), repository))
-                                         .get(ConversationStickerViewModel.class);
-
-    stickerViewModel.getStickerResults().observe(this, stickers -> {
-      if (stickers == null) return;
-
-      inputPanel.setStickerSuggestions(stickers);
-    });
-
-    stickerViewModel.getStickersAvailability().observe(this, stickersAvailable -> {
-      if (stickersAvailable == null) return;
-
-      boolean           isSystemEmojiPreferred = TextSecurePreferences.isSystemEmojiPreferred(this);
-      MediaKeyboardMode keyboardMode           = TextSecurePreferences.getMediaKeyboardMode(this);
-      boolean           stickerIntro           = !TextSecurePreferences.hasSeenStickerIntroTooltip(this);
-
-      if (stickersAvailable) {
-        inputPanel.showMediaKeyboardToggle(true);
-        inputPanel.setMediaKeyboardToggleMode(isSystemEmojiPreferred || keyboardMode == MediaKeyboardMode.STICKER);
-        if (stickerIntro) showStickerIntroductionTooltip();
-      }
-
-      if (emojiDrawerStub.resolved()) {
-        initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable);
-      }
-    });
-  }
-
-  private void showStickerIntroductionTooltip() {
-    TextSecurePreferences.setMediaKeyboardMode(this, MediaKeyboardMode.STICKER);
-    inputPanel.setMediaKeyboardToggleMode(true);
-
-    TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setBackgroundTint(getResources().getColor(R.color.core_blue))
-                .setTextColor(getResources().getColor(R.color.core_white))
-                .setText(R.string.ConversationActivity_new_say_it_with_stickers)
-                .setOnDismissListener(() -> {
-                  TextSecurePreferences.setHasSeenStickerIntroTooltip(this, true);
-                  EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent.class);
-                })
-                .show(TooltipPopup.POSITION_ABOVE);
-  }
-
   @Override
   public void onSearchMoveUpPressed() {
     searchViewModel.onMoveUp();
@@ -1586,17 +1532,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         invalidateOptionsMenu();
       }
     });
-  }
-
-  @Subscribe(threadMode =  ThreadMode.MAIN, sticky = true)
-  public void onStickerPackInstalled(final StickerPackInstallEvent event) {
-    if (!TextSecurePreferences.hasSeenStickerIntroTooltip(this)) return;
-
-    EventBus.getDefault().removeStickyEvent(event);
-    TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setText(R.string.ConversationActivity_sticker_pack_installed)
-                .setIconGlideModel(event.getIconGlideModel())
-                .show(TooltipPopup.POSITION_ABOVE);
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1813,21 +1748,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard, boolean stickersAvailable) {
+  private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard) {
     boolean isSystemEmojiPreferred   = TextSecurePreferences.isSystemEmojiPreferred(this);
-
-    if (stickersAvailable) {
-      if (isSystemEmojiPreferred) {
-        mediaKeyboard.setProviders(0, new StickerKeyboardProvider(this, this));
-      } else {
-        MediaKeyboardMode keyboardMode = TextSecurePreferences.getMediaKeyboardMode(this);
-        int               index        = keyboardMode == MediaKeyboardMode.STICKER ? 1 : 0;
-
-        mediaKeyboard.setProviders(index,
-                                   new EmojiKeyboardProvider(this, inputPanel),
-                                   new StickerKeyboardProvider(this, this));
-      }
-    } else if (!isSystemEmojiPreferred) {
+    if (!isSystemEmojiPreferred) {
       mediaKeyboard.setProviders(0, new EmojiKeyboardProvider(this, inputPanel));
     }
   }
@@ -2230,9 +2153,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onEmojiToggle() {
     if (!emojiDrawerStub.resolved()) {
-      Boolean stickersAvailable = stickerViewModel.getStickersAvailability().getValue();
-
-      initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable == null ? false : stickersAvailable);
+      initializeMediaKeyboardProviders(emojiDrawerStub.get());
 
       inputPanel.setMediaKeyboard(emojiDrawerStub.get());
     }
@@ -2272,23 +2193,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), start, end);
   }
 
-  @Override
-  public void onStickerSelected(@NonNull StickerRecord stickerRecord) {
-    sendSticker(stickerRecord, false);
-  }
-
-  @Override
-  public void onStickerManagementClicked() {
-    startActivity(StickerManagementActivity.getIntent(this));
-    container.hideAttachedInput(true);
-  }
-
   private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
     sendSticker(new StickerLocator(stickerRecord.getPackId(), stickerRecord.getPackKey(), stickerRecord.getStickerId()), stickerRecord.getUri(), stickerRecord.getSize(), clearCompose);
-
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-      DatabaseFactory.getStickerDatabase(this).updateStickerLastUsedTime(stickerRecord.getRowId(), System.currentTimeMillis());
-    });
   }
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
@@ -2404,12 +2310,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void afterTextChanged(Editable s) {
-
       if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(ConversationActivity.this::updateToggleButtonState, 50);
       }
-
-      stickerViewModel.onInputTextUpdated(s.toString());
     }
 
     @Override

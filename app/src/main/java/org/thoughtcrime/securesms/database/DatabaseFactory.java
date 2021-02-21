@@ -55,7 +55,6 @@ public class DatabaseFactory {
   private final GroupReceiptDatabase  groupReceiptDatabase;
   private final SearchDatabase        searchDatabase;
   private final JobDatabase           jobDatabase;
-  private final StickerDatabase       stickerDatabase;
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
@@ -130,10 +129,6 @@ public class DatabaseFactory {
     return getInstance(context).jobDatabase;
   }
 
-  public static StickerDatabase getStickerDatabase(Context context) {
-    return getInstance(context).stickerDatabase;
-  }
-
   public static SQLiteDatabase getBackupDatabase(Context context) {
     return getInstance(context).databaseHelper.getReadableDatabase();
   }
@@ -199,7 +194,6 @@ public class DatabaseFactory {
     this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
     this.searchDatabase            = new SearchDatabase(context, databaseHelper);
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
-    this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);

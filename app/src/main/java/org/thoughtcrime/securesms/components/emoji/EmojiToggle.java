@@ -7,8 +7,6 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
-
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
 import org.session.libsession.utilities.TextSecurePreferences;
 
 import network.loki.messenger.R;
@@ -82,8 +80,5 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
 
   @Override
   public void onKeyboardProviderChanged(@NonNull MediaKeyboardProvider provider) {
-    setStickerMode(provider instanceof StickerKeyboardProvider);
-    TextSecurePreferences.setMediaKeyboardMode(getContext(), (provider instanceof StickerKeyboardProvider) ? TextSecurePreferences.MediaKeyboardMode.STICKER
-                                                                                                           : TextSecurePreferences.MediaKeyboardMode.EMOJI);
   }
 }

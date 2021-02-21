@@ -116,10 +116,6 @@ object TextSecurePreferences {
 
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
 
-    private const val SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip"
-
-    private const val MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode"
-
     // region FCM
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
@@ -762,27 +758,6 @@ object TextSecurePreferences {
     @JvmStatic
     fun setNotificationMessagesChannelVersion(context: Context, version: Int) {
         setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
-    }
-
-    @JvmStatic
-    fun hasSeenStickerIntroTooltip(context: Context): Boolean {
-        return getBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, false)
-    }
-
-    @JvmStatic
-    fun setHasSeenStickerIntroTooltip(context: Context, seenStickerTooltip: Boolean) {
-        setBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, seenStickerTooltip)
-    }
-
-    @JvmStatic
-    fun setMediaKeyboardMode(context: Context, mode: MediaKeyboardMode) {
-        setStringPreference(context, MEDIA_KEYBOARD_MODE, mode.name)
-    }
-
-    @JvmStatic
-    fun getMediaKeyboardMode(context: Context): MediaKeyboardMode {
-        val name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name)!!
-        return MediaKeyboardMode.valueOf(name)
     }
 
     @JvmStatic

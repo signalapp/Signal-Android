@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
@@ -97,8 +96,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     for (String sql : JobDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }
-    db.execSQL(StickerDatabase.CREATE_TABLE);
-
     db.execSQL(LokiAPIDatabase.getCreateSnodePoolTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSwarmTableCommand());
@@ -132,7 +129,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     executeStatements(db, DraftDatabase.CREATE_INDEXS);
     executeStatements(db, GroupDatabase.CREATE_INDEXS);
     executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
-    executeStatements(db, StickerDatabase.CREATE_INDEXES);
   }
 
   @Override
@@ -246,7 +242,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV21) {
         deleteJobRecords(db,
                 "ClosedGroupUpdateMessageSendJob",
-                "NullMessageSendJob");
+                "NullMessageSendJob",
+                "StickerDownloadJob",
+                "StickerPackDownloadJob");
       }
 
       db.setTransactionSuccessful();

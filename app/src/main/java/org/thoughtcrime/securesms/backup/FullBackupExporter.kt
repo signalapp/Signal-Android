@@ -86,12 +86,6 @@ object FullBackupExporter {
                                     },
                                     count)
                         }
-                        StickerDatabase.TABLE_NAME -> {
-                            exportTable(table, input, outputStream,
-                                    { true },
-                                    { cursor: Cursor -> exportSticker(attachmentSecret, cursor, outputStream) },
-                                    count)
-                        }
                         else -> {
                             exportTable(table, input, outputStream, null, null, count)
                         }
@@ -230,20 +224,6 @@ object FullBackupExporter {
                     ClassicDecryptingPartInputStream.createFor(attachmentSecret, File(data))
                 }
                 outputStream.writeAttachment(AttachmentId(rowId, uniqueId), inputStream, size)
-            }
-        } catch (e: IOException) {
-            Log.w(TAG, e)
-        }
-    }
-
-    private fun exportSticker(attachmentSecret: AttachmentSecret, cursor: Cursor, outputStream: BackupFrameOutputStream) {
-        try {
-            val rowId = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID))
-            val size = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH))
-            val data = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH))
-            val random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM))
-            if (!TextUtils.isEmpty(data) && size > 0) {
-                ModernDecryptingPartInputStream.createFor(attachmentSecret, random, File(data), 0).use { inputStream -> outputStream.writeSticker(rowId, inputStream, size) }
             }
         } catch (e: IOException) {
             Log.w(TAG, e)

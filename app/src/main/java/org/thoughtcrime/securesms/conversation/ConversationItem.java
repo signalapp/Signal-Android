@@ -96,7 +96,6 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -460,8 +459,7 @@ public class ConversationItem extends LinearLayout
     int         minWidth    = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width);
 
     return linkPreview.getThumbnail().isPresent()                  &&
-           linkPreview.getThumbnail().get().getWidth() >= minWidth &&
-           !StickerUrl.isValidShareLink(linkPreview.getUrl());
+           linkPreview.getThumbnail().get().getWidth() >= minWidth;
   }
 
   private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery, boolean isGroupThread) {
@@ -1154,9 +1152,6 @@ public class ConversationItem extends LinearLayout
     public void onClick(View v, Slide slide) {
       if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
         performClick();
-      } else if (eventListener != null && hasSticker(messageRecord)){
-        //noinspection ConstantConditions
-        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide().asAttachment().getSticker());
       }
     }
   }

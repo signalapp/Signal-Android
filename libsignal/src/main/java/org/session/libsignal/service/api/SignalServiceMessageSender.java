@@ -864,7 +864,7 @@ public class SignalServiceMessageSender {
     String body = Base64.encodeBytes(ciphertext);
     int type = isClosedGroup ? SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT_VALUE :
             SignalServiceProtos.Envelope.Type.UNIDENTIFIED_SENDER_VALUE;
-    OutgoingPushMessage message = new OutgoingPushMessage(type, 1, 0, body);
+    OutgoingPushMessage message = new OutgoingPushMessage(type, body);
     messages.add(message);
 
     return new OutgoingPushMessageList(publicKey, timestamp, messages, false);
