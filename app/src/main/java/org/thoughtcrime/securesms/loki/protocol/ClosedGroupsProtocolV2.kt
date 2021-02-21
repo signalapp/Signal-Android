@@ -509,7 +509,8 @@ object ClosedGroupsProtocolV2 {
         val updatedMemberList = members - senderPublicKey
         val userLeft = userPublicKey == senderPublicKey
 
-        if (didAdminLeave || userLeft) {
+        // if the admin left, we left, or we are the only remaining member: remove the group
+        if (didAdminLeave || userLeft || updatedMemberList.size == 1) {
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
         } else {
             val isCurrentUserAdmin = admins.contains(userPublicKey)
