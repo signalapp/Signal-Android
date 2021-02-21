@@ -46,10 +46,6 @@ public class SendMessageResult {
     return networkFailure;
   }
 
-  public boolean isUnregisteredFailure() {
-    return unregisteredFailure;
-  }
-
   public IdentityFailure getIdentityFailure() {
     return identityFailure;
   }

@@ -212,26 +212,6 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(quoteAuthor.serialize()), quoteBody, quoteAttachments));
   }
 
-  protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
-    Attachment stickerAttachment = Stream.of(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
-
-    if (stickerAttachment == null) {
-      return Optional.absent();
-    }
-
-    try {
-      byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
-      byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
-      int                     stickerId  = stickerAttachment.getSticker().getStickerId();
-      SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
-
-      return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, attachment));
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to decode sticker id/key", e);
-      return Optional.absent();
-    }
-  }
-
   List<SharedContact> getSharedContactsFor(OutgoingMediaMessage mediaMessage) {
     List<SharedContact> sharedContacts = new LinkedList<>();
 
@@ -257,10 +237,6 @@ public abstract class PushSendJob extends SendJob {
       SignalServiceAttachment attachment = lp.getThumbnail().isPresent() ? getAttachmentPointerFor(lp.getThumbnail().get()) : null;
       return new Preview(lp.getUrl(), lp.getTitle(), Optional.fromNullable(attachment));
     }).toList();
-  }
-
-  protected void rotateSenderCertificateIfNecessary() throws IOException {
-    // Loki - We don't need verification on sender certificates
   }
 
   protected abstract void onPushSend() throws Exception;

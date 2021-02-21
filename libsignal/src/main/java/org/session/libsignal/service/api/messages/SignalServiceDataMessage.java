@@ -276,11 +276,6 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder withAttachment(SignalServiceAttachment attachment) {
-      this.attachments.add(attachment);
-      return this;
-    }
-
     public Builder withAttachments(List<SignalServiceAttachment> attachments) {
       this.attachments.addAll(attachments);
       return this;
@@ -294,10 +289,6 @@ public class SignalServiceDataMessage {
     public Builder withSyncTarget(String syncTarget) {
       this.syncTarget = syncTarget;
       return this;
-    }
-
-    public Builder asExpirationUpdate() {
-      return asExpirationUpdate(true);
     }
 
     public Builder asExpirationUpdate(boolean expirationUpdate) {
@@ -317,11 +308,6 @@ public class SignalServiceDataMessage {
 
     public Builder withQuote(Quote quote) {
       this.quote = quote;
-      return this;
-    }
-
-    public Builder withSharedContact(SharedContact contact) {
-      this.sharedContacts.add(contact);
       return this;
     }
 
@@ -418,36 +404,6 @@ public class SignalServiceDataMessage {
 
     public Optional<SignalServiceAttachment> getImage() {
       return image;
-    }
-  }
-
-  public static class Sticker {
-    private final byte[]                  packId;
-    private final byte[]                  packKey;
-    private final int                     stickerId;
-    private final SignalServiceAttachment attachment;
-
-    public Sticker(byte[] packId, byte[] packKey, int stickerId, SignalServiceAttachment attachment) {
-      this.packId     = packId;
-      this.packKey    = packKey;
-      this.stickerId  = stickerId;
-      this.attachment = attachment;
-    }
-
-    public byte[] getPackId() {
-      return packId;
-    }
-
-    public byte[] getPackKey() {
-      return packKey;
-    }
-
-    public int getStickerId() {
-      return stickerId;
-    }
-
-    public SignalServiceAttachment getAttachment() {
-      return attachment;
     }
   }
 }
