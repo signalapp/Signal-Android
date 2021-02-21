@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.BitmapUtil;
-import org.session.libsignal.service.api.util.InvalidNumberException;
 import org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 
 import java.util.Collection;
@@ -137,7 +136,6 @@ public class GroupManager {
                                               @Nullable Bitmap         avatar,
                                               @Nullable String         name,
                                               @NonNull  Set<Recipient> admins)
-      throws InvalidNumberException
   {
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
     final Set<Address>  memberAddresses = getMemberAddresses(members);

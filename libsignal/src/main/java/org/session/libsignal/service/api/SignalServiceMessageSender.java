@@ -27,7 +27,6 @@ import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
-import org.session.libsignal.service.api.util.CredentialsProvider;
 import org.session.libsignal.service.internal.crypto.PaddingInputStream;
 import org.session.libsignal.service.internal.push.OutgoingPushMessage;
 import org.session.libsignal.service.internal.push.OutgoingPushMessageList;
@@ -44,7 +43,6 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos.TypingMes
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory;
 import org.session.libsignal.service.internal.push.http.OutputStreamFactory;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsignal.service.internal.util.StaticCredentialsProvider;
 import org.session.libsignal.service.internal.util.Util;
 import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsignal.service.loki.api.LokiDotNetAPI;
@@ -75,7 +73,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
@@ -91,8 +88,6 @@ public class SignalServiceMessageSender {
   private static final String TAG = SignalServiceMessageSender.class.getSimpleName();
 
   private final IdentityKeyStore                                    store;
-  private final SignalServiceAddress                                localAddress;
-
   // Loki
   private final String                                              userPublicKey;
   private final LokiAPIDatabaseProtocol                             apiDatabase;
@@ -103,29 +98,7 @@ public class SignalServiceMessageSender {
   private final LokiOpenGroupDatabaseProtocol                       openGroupDatabase;
   private final Broadcaster                                         broadcaster;
 
-  /**
-   * Construct a SignalServiceMessageSender.
-   *
-   * @param user The Signal Service username (eg phone number).
-   * @param password The Signal Service user password.
-   * @param store The SignalProtocolStore.
-   */
-  public SignalServiceMessageSender(String user, String password,
-                                    IdentityKeyStore store,
-                                    String userPublicKey,
-                                    LokiAPIDatabaseProtocol apiDatabase,
-                                    LokiThreadDatabaseProtocol threadDatabase,
-                                    LokiMessageDatabaseProtocol messageDatabase,
-                                    SessionProtocol sessionProtocolImpl,
-                                    LokiUserDatabaseProtocol userDatabase,
-                                    LokiOpenGroupDatabaseProtocol openGroupDatabase,
-                                    Broadcaster broadcaster)
-  {
-    this(new StaticCredentialsProvider(user, password, null), store, userPublicKey, apiDatabase, threadDatabase, messageDatabase, sessionProtocolImpl, userDatabase, openGroupDatabase, broadcaster);
-  }
-
-  public SignalServiceMessageSender(CredentialsProvider credentialsProvider,
-                                    IdentityKeyStore store,
+  public SignalServiceMessageSender(IdentityKeyStore store,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
@@ -136,7 +109,6 @@ public class SignalServiceMessageSender {
                                     Broadcaster broadcaster)
   {
     this.store                     = store;
-    this.localAddress              = new SignalServiceAddress(credentialsProvider.getUser());
     this.userPublicKey             = userPublicKey;
     this.apiDatabase               = apiDatabase;
     this.threadDatabase            = threadDatabase;
@@ -517,7 +489,6 @@ public class SignalServiceMessageSender {
       throws IOException
   {
     List<SendMessageResult>                results                    = new LinkedList<>();
-    SignalServiceAddress                   ownAddress                 = localAddress;
     Iterator<SignalServiceAddress>         recipientIterator          = recipients.iterator();
     Iterator<Optional<UnidentifiedAccess>> unidentifiedAccessIterator = unidentifiedAccess.iterator();
 
