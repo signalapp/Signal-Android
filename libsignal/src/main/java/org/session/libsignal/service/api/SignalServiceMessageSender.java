@@ -93,9 +93,6 @@ public class SignalServiceMessageSender {
   private final IdentityKeyStore                                    store;
   private final SignalServiceAddress                                localAddress;
 
-  private final AtomicReference<Optional<SignalServiceMessagePipe>> pipe;
-  private final AtomicReference<Optional<SignalServiceMessagePipe>> unidentifiedPipe;
-
   // Loki
   private final String                                              userPublicKey;
   private final LokiAPIDatabaseProtocol                             apiDatabase;
@@ -115,8 +112,6 @@ public class SignalServiceMessageSender {
    */
   public SignalServiceMessageSender(String user, String password,
                                     IdentityKeyStore store,
-                                    Optional<SignalServiceMessagePipe> pipe,
-                                    Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
@@ -126,13 +121,11 @@ public class SignalServiceMessageSender {
                                     LokiOpenGroupDatabaseProtocol openGroupDatabase,
                                     Broadcaster broadcaster)
   {
-    this(new StaticCredentialsProvider(user, password, null), store, pipe, unidentifiedPipe, userPublicKey, apiDatabase, threadDatabase, messageDatabase, sessionProtocolImpl, userDatabase, openGroupDatabase, broadcaster);
+    this(new StaticCredentialsProvider(user, password, null), store, userPublicKey, apiDatabase, threadDatabase, messageDatabase, sessionProtocolImpl, userDatabase, openGroupDatabase, broadcaster);
   }
 
   public SignalServiceMessageSender(CredentialsProvider credentialsProvider,
                                     IdentityKeyStore store,
-                                    Optional<SignalServiceMessagePipe> pipe,
-                                    Optional<SignalServiceMessagePipe> unidentifiedPipe,
                                     String userPublicKey,
                                     LokiAPIDatabaseProtocol apiDatabase,
                                     LokiThreadDatabaseProtocol threadDatabase,
@@ -144,8 +137,6 @@ public class SignalServiceMessageSender {
   {
     this.store                     = store;
     this.localAddress              = new SignalServiceAddress(credentialsProvider.getUser());
-    this.pipe                      = new AtomicReference<>(pipe);
-    this.unidentifiedPipe          = new AtomicReference<>(unidentifiedPipe);
     this.userPublicKey             = userPublicKey;
     this.apiDatabase               = apiDatabase;
     this.threadDatabase            = threadDatabase;
@@ -221,11 +212,6 @@ public class SignalServiceMessageSender {
     boolean                 isClosedGroup      = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
 
     return sendMessage(messageID, recipients, unidentifiedAccess, timestamp, content, false, message.getTTL(), isClosedGroup, message.hasVisibleContent());
-  }
-
-  public void setMessagePipe(SignalServiceMessagePipe pipe, SignalServiceMessagePipe unidentifiedPipe) {
-    this.pipe.set(Optional.fromNullable(pipe));
-    this.unidentifiedPipe.set(Optional.fromNullable(unidentifiedPipe));
   }
 
   public SignalServiceAttachmentPointer uploadAttachment(SignalServiceAttachmentStream attachment, boolean usePadding, @Nullable SignalServiceAddress recipient)

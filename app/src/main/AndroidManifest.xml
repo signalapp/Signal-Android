@@ -383,9 +383,6 @@
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name="org.thoughtcrime.securesms.service.IncomingMessageObserver$ForegroundService"
-            android:enabled="true" />
-        <service
             android:name="org.thoughtcrime.securesms.service.DirectShareService"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>

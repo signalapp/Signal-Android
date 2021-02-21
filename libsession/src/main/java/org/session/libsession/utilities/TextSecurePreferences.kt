@@ -108,8 +108,6 @@ object TextSecurePreferences {
     private const val NOTIFICATION_CHANNEL_VERSION = "pref_notification_channel_version"
     private const val NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version"
 
-    private const val NEEDS_MESSAGE_PULL = "pref_needs_message_pull"
-
     const val UNIVERSAL_UNIDENTIFIED_ACCESS = "pref_universal_unidentified_access"
 
     const val TYPING_INDICATORS = "pref_typing_indicators"
@@ -764,16 +762,6 @@ object TextSecurePreferences {
     @JvmStatic
     fun setNotificationMessagesChannelVersion(context: Context, version: Int) {
         setIntegerPrefrence(context, NOTIFICATION_MESSAGES_CHANNEL_VERSION, version)
-    }
-
-    @JvmStatic
-    fun getNeedsMessagePull(context: Context): Boolean {
-        return getBooleanPreference(context, NEEDS_MESSAGE_PULL, false)
-    }
-
-    @JvmStatic
-    fun setNeedsMessagePull(context: Context, needsMessagePull: Boolean) {
-        setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull)
     }
 
     @JvmStatic

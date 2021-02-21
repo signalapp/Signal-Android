@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
@@ -32,9 +31,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
-import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
@@ -48,8 +45,6 @@ import network.loki.messenger.BuildConfig;
                                      PushTextSendJob.class,
                                      PushMediaSendJob.class,
                                      AttachmentDownloadJob.class,
-                                     IncomingMessageObserver.class,
-                                     PushNotificationReceiveJob.class,
                                      RequestGroupInfoJob.class,
                                      PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
@@ -71,15 +66,12 @@ public class SignalCommunicationModule {
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();
 
   private final Context                      context;
-  private final SignalServiceNetworkAccess   networkAccess;
 
   private SignalServiceMessageSender   messageSender;
   private SignalServiceMessageReceiver messageReceiver;
 
-  public SignalCommunicationModule(Context context, SignalServiceNetworkAccess networkAccess) {
+  public SignalCommunicationModule(Context context) {
     this.context       = context;
-    this.networkAccess = networkAccess;
-
   }
 
   @Provides
@@ -87,8 +79,6 @@ public class SignalCommunicationModule {
     if (this.messageSender == null) {
       this.messageSender = new SignalServiceMessageSender(new DynamicCredentialsProvider(context),
                                                           new SignalProtocolStoreImpl(context),
-                                                          Optional.fromNullable(IncomingMessageObserver.getPipe()),
-                                                          Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
@@ -97,8 +87,6 @@ public class SignalCommunicationModule {
                                                           DatabaseFactory.getLokiUserDatabase(context),
                                                           DatabaseFactory.getGroupDatabase(context),
                                                           ((ApplicationContext)context.getApplicationContext()).broadcaster);
-    } else {
-      this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
     }
 
     return this.messageSender;
@@ -109,19 +97,13 @@ public class SignalCommunicationModule {
     if (this.messageReceiver == null) {
       SleepTimer sleepTimer =  TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context) : new UptimeSleepTimer();
 
-      this.messageReceiver = new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
-                                                              new DynamicCredentialsProvider(context),
+      this.messageReceiver = new SignalServiceMessageReceiver(new DynamicCredentialsProvider(context),
                                                               BuildConfig.USER_AGENT,
                                                               new PipeConnectivityListener(),
                                                               sleepTimer);
     }
 
     return this.messageReceiver;
-  }
-
-  @Provides
-  synchronized SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
-    return networkAccess;
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

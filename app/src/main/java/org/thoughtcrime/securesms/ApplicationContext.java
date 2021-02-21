@@ -84,7 +84,6 @@ import org.thoughtcrime.securesms.notifications.OptimizedMessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
@@ -206,7 +205,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeProfileManager();
     initializePeriodicTasks();
     initializeWebRtc();
-    initializePendingMessages();
     initializeBlobProvider();
     SSKEnvironment.Companion.configure(getTypingStatusRepository(), getReadReceiptManager(), getProfileManager(), messageNotifier, getExpiringMessageManager());
   }
@@ -340,7 +338,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void initializeDependencyInjection() {
-    communicationModule = new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this));
+    communicationModule = new SignalCommunicationModule(this);
     this.objectGraph = ObjectGraph.create(communicationModule);
   }
 
@@ -406,14 +404,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
-    }
-  }
-
-  private void initializePendingMessages() {
-    if (TextSecurePreferences.getNeedsMessagePull(this)) {
-      Log.i(TAG, "Scheduling a message fetch.");
-      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
-      TextSecurePreferences.setNeedsMessagePull(this, false);
     }
   }
 
