@@ -616,10 +616,12 @@ object ClosedGroupsProtocolV2 {
         val userKeyPair = apiDB.getUserX25519KeyPair()
         // Unwrap the message
         val groupDB = DatabaseFactory.getGroupDatabase(context)
-        val groupID = if (groupPublicKey.isEmpty() && !closedGroupUpdate.publicKey.isEmpty) {
-            doubleEncodeGroupID(closedGroupUpdate.publicKey.toStringUtf8())
-        } else {
-            doubleEncodeGroupID(groupPublicKey)
+        val groupID = when {
+            groupPublicKey.isNotEmpty() -> groupPublicKey
+            !closedGroupUpdate.publicKey.isEmpty -> closedGroupUpdate.publicKey.toStringUtf8()
+            else -> ""
+        }.let {
+            doubleEncodeGroupID(it)
         }
         val group = groupDB.getGroup(groupID).orNull()
         if (group == null) {
