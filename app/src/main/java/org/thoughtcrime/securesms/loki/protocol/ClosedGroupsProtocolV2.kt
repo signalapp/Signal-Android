@@ -103,9 +103,6 @@ object ClosedGroupsProtocolV2 {
             val groupDB = DatabaseFactory.getGroupDatabase(context)
             val groupID = doubleEncodeGroupID(groupPublicKey)
             val group = groupDB.getGroup(groupID).orNull()
-            val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
-            val admins = group.admins.map { it.serialize() }
-            val name = group.title
             val sentTime = System.currentTimeMillis()
             if (group == null) {
                 Log.d("Loki", "Can't leave nonexistent closed group.")
@@ -117,9 +114,6 @@ object ClosedGroupsProtocolV2 {
             job.setContext(context)
             job.onRun() // Run the job immediately
             // Notify the user
-            val infoType = GroupContext.Type.QUIT
-            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             // Remove the group private key and unsubscribe from PNs
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
@@ -622,7 +616,11 @@ object ClosedGroupsProtocolV2 {
         val userKeyPair = apiDB.getUserX25519KeyPair()
         // Unwrap the message
         val groupDB = DatabaseFactory.getGroupDatabase(context)
-        val groupID = doubleEncodeGroupID(groupPublicKey)
+        val groupID = if (groupPublicKey.isEmpty() && !closedGroupUpdate.publicKey.isEmpty) {
+            doubleEncodeGroupID(closedGroupUpdate.publicKey.toStringUtf8())
+        } else {
+            doubleEncodeGroupID(groupPublicKey)
+        }
         val group = groupDB.getGroup(groupID).orNull()
         if (group == null) {
             Log.d("Loki", "Ignoring closed group encryption key pair message for nonexistent group.")

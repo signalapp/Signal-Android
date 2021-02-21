@@ -204,7 +204,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR
                 closedGroupUpdate.addAllWrappers(kind.wrappers.map { it.toProto() })
                 if (kind.targetUser != null) {
-                    closedGroupUpdate.publicKey = ByteString.copyFrom(kind.targetUser.toByteArray())
+                    closedGroupUpdate.publicKey = ByteString.copyFrom(destination.toByteArray())
                 }
             }
             Kind.Leave -> {
@@ -240,7 +240,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                     sentTime, serializedContentMessage, false, ttl, false,
                     true, false, false, Optional.absent())
         } catch (e: Exception) {
-            Log.d("Loki", "Failed to send closed group update message to: $destination due to error: $e.")
+            Log.d("Loki", "Failed to send closed group update message to: $sendDestination due to error: $e.")
         }
     }
 
