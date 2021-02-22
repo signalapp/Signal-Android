@@ -49,7 +49,6 @@ import android.widget.Toast;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -71,17 +70,12 @@ import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
@@ -1114,21 +1108,13 @@ public class ConversationItem extends LinearLayout
     @Override
     public void onClick(View v, final List<Slide> slides) {
       Log.i(TAG, "onClick() for attachment download");
-      if (messageRecord.isMmsNotification()) {
-        Log.i(TAG, "Scheduling MMS attachment download");
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsDownloadJob(messageRecord.getId(),
-                                                  messageRecord.getThreadId(), false));
-      } else {
-        Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
+      Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
-        for (Slide slide : slides) {
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                           ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
-        }
+      for (Slide slide : slides) {
+        ApplicationContext.getInstance(context)
+                .getJobManager()
+                .add(new AttachmentDownloadJob(messageRecord.getId(),
+                        ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
       }
     }
   }
@@ -1224,58 +1210,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread && messageRecord.isPush());
         intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
         context.startActivity(intent);
-      } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
-//        handleApproveIdentity();
-      } else if (messageRecord.isPendingInsecureSmsFallback()) {
-        handleMessageApproval();
       }
     }
-  }
-
-  private void handleMessageApproval() {
-    final int title;
-    final int message;
-
-    if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
-    else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
-
-    message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(title);
-
-    if (message > -1) builder.setMessage(message);
-
-    builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-      if (messageRecord.isMms()) {
-        MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
-
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsSendJob(messageRecord.getId()));
-      } else {
-        SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
-
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new SmsSendJob(context, messageRecord.getId(),
-                                              messageRecord.getIndividualRecipient().getAddress().serialize()));
-      }
-    });
-
-    builder.setNegativeButton(R.string.no, (dialogInterface, i) -> {
-      if (messageRecord.isMms()) {
-        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
-      } else {
-        DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
-      }
-    });
-    builder.show();
   }
 }

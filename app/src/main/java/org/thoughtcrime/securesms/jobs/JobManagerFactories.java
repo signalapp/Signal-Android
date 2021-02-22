@@ -37,9 +37,6 @@ public final class JobManagerFactories {
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(ClosedGroupUpdateMessageSendJobV2.KEY,     new ClosedGroupUpdateMessageSendJobV2.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
-      put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
-      put(MmsReceiveJob.KEY,                         new MmsReceiveJob.Factory());
-      put(MmsSendJob.KEY,                            new MmsSendJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
@@ -50,9 +47,6 @@ public final class JobManagerFactories {
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
-      put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());
-      put(SmsSendJob.KEY,                            new SmsSendJob.Factory());
-      put(SmsSentJob.KEY,                            new SmsSentJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());

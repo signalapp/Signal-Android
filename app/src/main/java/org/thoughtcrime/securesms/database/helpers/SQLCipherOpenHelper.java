@@ -244,7 +244,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "ClosedGroupUpdateMessageSendJob",
                 "NullMessageSendJob",
                 "StickerDownloadJob",
-                "StickerPackDownloadJob");
+                "StickerPackDownloadJob",
+                "MmsSendJob",
+                "MmsReceiveJob",
+                "MmsDownloadJob",
+                "SmsSendJob",
+                "SmsSentJob",
+                "SmsReceiveJob");
       }
 
       db.setTransactionSuccessful();

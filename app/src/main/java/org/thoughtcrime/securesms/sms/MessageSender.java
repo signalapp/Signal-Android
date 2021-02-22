@@ -33,11 +33,9 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -142,60 +140,16 @@ public class MessageSender {
   private static void sendTextPush(Context context, Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
-//    MultiDeviceProtocol.sendTextPush(context, recipient, messageId);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
-//    MultiDeviceProtocol.sendMediaPush(context, recipient, messageId);
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
     PushGroupSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), filterAddress);
-  }
-
-  private static void sendSms(Context context, Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new SmsSendJob(context, messageId, recipient.getName()));
-  }
-
-  private static void sendMms(Context context, long messageId) {
-    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new MmsSendJob(messageId));
-  }
-
-  private static boolean isPushTextSend(Context context, Recipient recipient, boolean keyExchange) {
-    return true;
-    // Loki - Original code
-    // ========
-//    if (!TextSecurePreferences.isPushRegistered(context)) {
-//      return false;
-//    }
-//
-//    if (keyExchange) {
-//      return false;
-//    }
-//
-//    return isPushDestination(context, recipient);
-    // ========
-  }
-
-  private static boolean isPushMediaSend(Context context, Recipient recipient) {
-    return true;
-    // Loki - Original code
-    // ========
-//    if (!TextSecurePreferences.isPushRegistered(context)) {
-//      return false;
-//    }
-//
-//    if (recipient.isGroupRecipient()) {
-//      return false;
-//    }
-//
-//    return isPushDestination(context, recipient);
-    // ========
   }
 
   private static boolean isGroupPushSend(Recipient recipient) {

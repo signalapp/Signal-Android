@@ -25,7 +25,6 @@ import android.os.Build.VERSION_CODES;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 
 import network.loki.messenger.BuildConfig;
 
@@ -70,6 +69,6 @@ public class Util {
 
   @TargetApi(VERSION_CODES.LOLLIPOP)
   public static boolean isMmsCapable(Context context) {
-    return (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) || OutgoingLegacyMmsConnection.isConnectionPossible(context);
+    return VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP;
   }
 }
