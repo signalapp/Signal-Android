@@ -264,7 +264,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ImageButton                 attachButton;
   private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
-  private   TextView                    charactersLeft;
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
@@ -284,7 +283,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AudioRecorder          audioRecorder;
   private   Handler                audioHandler;
   private   Runnable               stopRecordingTask;
-  private   BroadcastReceiver      securityUpdateReceiver;
   private   Stub<MediaKeyboard>    emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
   protected HidingLinearLayout     inlineAttachmentToggle;
@@ -296,9 +294,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private Recipient  recipient;
   private long       threadId;
   private int        distributionType;
-  private boolean    archived;
   private boolean    isDefaultSms            = false;
-  private boolean    isMmsEnabled            = false;
   private boolean    isSecurityInitialized   = false;
   private int        expandedKeyboardHeight  = 0;
   private int        collapsedKeyboardHeight = Integer.MAX_VALUE;
@@ -476,7 +472,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     EventBus.getDefault().register(this);
     initializeEnabledCheck();
-    initializeMmsEnabledCheck();
     composeText.setTransport();
 
     updateTitleTextView(recipient);
@@ -533,7 +528,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onDestroy() {
     saveDraft();
     if (recipient != null)               recipient.removeListener(this);
-    if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
     for (BroadcastReceiver broadcastReceiver : broadcastReceivers) {
       LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
@@ -1145,16 +1139,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled) {
-      if (attachmentTypeSelector == null) {
-        attachmentTypeSelector = new AttachmentTypeSelector(
-                this,
-                LoaderManager.getInstance(this),
-                new AttachmentTypeListener(),
-                keyboardHeight);
-      }
-      attachmentTypeSelector.show(this, attachButton);
+    if (attachmentTypeSelector == null) {
+      attachmentTypeSelector = new AttachmentTypeSelector(
+              this,
+              LoaderManager.getInstance(this),
+              new AttachmentTypeListener(),
+              keyboardHeight);
     }
+    attachmentTypeSelector.show(this, attachButton);
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
@@ -1340,20 +1332,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void initializeMmsEnabledCheck() {
-    new AsyncTask<Void, Void, Boolean>() {
-      @Override
-      protected Boolean doInBackground(Void... params) {
-        return org.thoughtcrime.securesms.util.Util.isMmsCapable(ConversationActivity.this);
-      }
-
-      @Override
-      protected void onPostExecute(Boolean isMmsEnabled) {
-        ConversationActivity.this.isMmsEnabled = isMmsEnabled;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-  }
-
   private void initializeViews() {
     profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
@@ -1361,7 +1339,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton                             = ViewUtil.findById(this, R.id.send_button);
     attachButton                           = ViewUtil.findById(this, R.id.attach_button);
     composeText                            = ViewUtil.findById(this, R.id.embedded_text_editor);
-    charactersLeft                         = ViewUtil.findById(this, R.id.space_left);
     emojiDrawerStub                        = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
@@ -1402,10 +1379,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
 
-    /*
-    titleView.setOnClickListener(v -> handleConversationSettings());
-    titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
-     */
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
 
@@ -1447,7 +1420,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (address == null) { finish(); return; }
     recipient        = Recipient.from(this, address, true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 

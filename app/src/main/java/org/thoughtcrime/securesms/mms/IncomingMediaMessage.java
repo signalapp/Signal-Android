@@ -36,30 +36,6 @@ public class IncomingMediaMessage {
   private final List<LinkPreview> linkPreviews   = new LinkedList<>();
 
   public IncomingMediaMessage(Address from,
-                              Optional<Address> groupId,
-                              String body,
-                              long sentTimeMillis,
-                              List<Attachment> attachments,
-                              int subscriptionId,
-                              long expiresIn,
-                              boolean expirationUpdate,
-                              boolean unidentified)
-  {
-    this.from             = from;
-    this.groupId          = groupId.orNull();
-    this.sentTimeMillis   = sentTimeMillis;
-    this.body             = body;
-    this.push             = false;
-    this.subscriptionId   = subscriptionId;
-    this.expiresIn        = expiresIn;
-    this.expirationUpdate = expirationUpdate;
-    this.quote            = null;
-    this.unidentified     = unidentified;
-
-    this.attachments.addAll(attachments);
-  }
-
-  public IncomingMediaMessage(Address from,
                               long sentTimeMillis,
                               int subscriptionId,
                               long expiresIn,

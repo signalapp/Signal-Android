@@ -66,9 +66,4 @@ public class Util {
       throw new AssertionError(e);
     }
   }
-
-  @TargetApi(VERSION_CODES.LOLLIPOP)
-  public static boolean isMmsCapable(Context context) {
-    return VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP;
-  }
 }
