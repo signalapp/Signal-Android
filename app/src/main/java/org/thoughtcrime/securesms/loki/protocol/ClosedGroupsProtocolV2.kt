@@ -94,8 +94,8 @@ object ClosedGroupsProtocolV2 {
         return deferred.promise
     }
 
-    @JvmStatic
-    fun explicitLeave(context: Context, groupPublicKey: String): Promise<Unit, Exception> {
+    @JvmStatic @JvmOverloads
+    fun explicitLeave(context: Context, groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         ThreadUtils.queue {
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -119,7 +119,9 @@ object ClosedGroupsProtocolV2 {
             // Notify the user
             val infoType = GroupContext.Type.QUIT
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            if (notifyUser) {
+                insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            }
             // Remove the group private key and unsubscribe from PNs
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
