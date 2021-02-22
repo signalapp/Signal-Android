@@ -47,41 +47,6 @@ public class GroupManager {
     return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
   }
 
-  public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
-                                                       @NonNull  Set<Recipient> members,
-                                                       @Nullable Bitmap         avatar,
-                                                       @Nullable String         name,
-                                                       @NonNull  Set<Recipient> admins)
-  {
-    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    String id = GroupUtil.getEncodedClosedGroupID(database.allocateGroupId()); // TODO: The group id is double encoded here 1
-    return createGroup(id, context, members, avatar, name, admins);
-  }
-
-  public static @NonNull GroupActionResult createGroup(@NonNull  String         id,
-                                                       @NonNull  Context        context,
-                                                       @NonNull  Set<Recipient> members,
-                                                       @Nullable Bitmap         avatar,
-                                                       @Nullable String         name,
-                                                       @NonNull  Set<Recipient> admins)
-  {
-    final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
-    final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
-    final String        groupId         = GroupUtil.getEncodedClosedGroupID(id.getBytes()); // TODO: The group id is double encoded here 2
-    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
-    final Set<Address>  memberAddresses = getMemberAddresses(members);
-    final Set<Address>  adminAddresses  = getMemberAddresses(admins);
-
-    String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-
-    memberAddresses.add(Address.fromSerialized(userPublicKey));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses), System.currentTimeMillis());
-
-    groupDatabase.updateProfilePicture(groupId, avatarBytes);
-    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
-    return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
-  }
-
   public static @NonNull GroupActionResult createOpenGroup(@NonNull  String  id,
                                                            @NonNull  Context context,
                                                            @Nullable Bitmap  avatar,

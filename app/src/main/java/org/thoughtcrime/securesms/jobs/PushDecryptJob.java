@@ -49,7 +49,6 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -229,9 +228,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (message.getClosedGroupControlMessage().isPresent()) {
           ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupControlMessage().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
         }
-        if (message.isGroupUpdate()) {
-          handleGroupMessage(content, message, smsMessageId);
-        } else if (message.isExpirationUpdate()) {
+        if (message.isExpirationUpdate()) {
           handleExpirationUpdate(content, message, smsMessageId);
         } else if (isMediaMessage) {
           handleMediaMessage(content, message, smsMessageId, Optional.absent());
@@ -276,50 +273,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
     } catch (InvalidMetadataMessageException e) {
       Log.w(TAG, e);
-    }
-  }
-
-  private void handleEndSessionMessage(@NonNull SignalServiceContent content,
-                                       @NonNull Optional<Long>       smsMessageId)
-  {
-    SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
-                                                                      content.getSenderDevice(),
-                                                                      content.getTimestamp(),
-                                                                      "", Optional.absent(), 0,
-                                                                      content.isNeedsReceipt());
-
-    Long threadId;
-
-    if (!smsMessageId.isPresent()) {
-      IncomingEndSessionMessage incomingEndSessionMessage = new IncomingEndSessionMessage(incomingTextMessage);
-      Optional<InsertResult>    insertResult              = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
-
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
-    } else {
-      smsDatabase.markAsEndSession(smsMessageId.get());
-      threadId = smsDatabase.getThreadIdForMessage(smsMessageId.get());
-    }
-
-    if (threadId != null) {
-      messageNotifier.updateNotification(context, threadId);
-    }
-  }
-
-  private void handleGroupMessage(@NonNull SignalServiceContent content,
-                                  @NonNull SignalServiceDataMessage message,
-                                  @NonNull Optional<Long> smsMessageId)
-      throws StorageFailedException
-  {
-    GroupMessageProcessor.process(context, content, message, false);
-
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getMessageDestination(content, message).getExpireMessages()) {
-      handleExpirationUpdate(content, message, Optional.absent());
-    }
-
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
   }
 
