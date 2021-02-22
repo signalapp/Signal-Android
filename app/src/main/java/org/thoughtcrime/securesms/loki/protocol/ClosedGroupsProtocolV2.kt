@@ -103,6 +103,9 @@ object ClosedGroupsProtocolV2 {
             val groupDB = DatabaseFactory.getGroupDatabase(context)
             val groupID = doubleEncodeGroupID(groupPublicKey)
             val group = groupDB.getGroup(groupID).orNull()
+            val updatedMembers = group.members.map { it.serialize() }.toSet() - userPublicKey
+            val admins = group.admins.map { it.serialize() }
+            val name = group.title
             val sentTime = System.currentTimeMillis()
             if (group == null) {
                 Log.d("Loki", "Can't leave nonexistent closed group.")
@@ -114,6 +117,9 @@ object ClosedGroupsProtocolV2 {
             job.setContext(context)
             job.onRun() // Run the job immediately
             // Notify the user
+            val infoType = GroupContext.Type.QUIT
+            val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
+            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
             // Remove the group private key and unsubscribe from PNs
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
@@ -453,7 +459,7 @@ object ClosedGroupsProtocolV2 {
                 Log.d("Loki", "Couldn't get encryption key pair for closed group.")
             } else {
                 for (user in updateMembers) {
-                    sendEncryptionKeyPair(context, groupPublicKey, encryptionKeyPair, newMembers, targetUser = user, force = false)
+                    sendEncryptionKeyPair(context, groupPublicKey, encryptionKeyPair, setOf(user), targetUser = user, force = false)
                 }
             }
         }
@@ -619,7 +625,7 @@ object ClosedGroupsProtocolV2 {
         val groupDB = DatabaseFactory.getGroupDatabase(context)
         val groupID = when {
             groupPublicKey.isNotEmpty() -> groupPublicKey
-            !closedGroupUpdate.publicKey.isEmpty -> closedGroupUpdate.publicKey.toStringUtf8()
+            !closedGroupUpdate.publicKey.isEmpty -> closedGroupUpdate.publicKey.toByteArray().toHexString()
             else -> ""
         }.let {
             doubleEncodeGroupID(it)

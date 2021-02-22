@@ -204,7 +204,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
                 closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.ENCRYPTION_KEY_PAIR
                 closedGroupUpdate.addAllWrappers(kind.wrappers.map { it.toProto() })
                 if (kind.targetUser != null) {
-                    closedGroupUpdate.publicKey = ByteString.copyFrom(destination.toByteArray())
+                    closedGroupUpdate.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(destination))
                 }
             }
             Kind.Leave -> {
