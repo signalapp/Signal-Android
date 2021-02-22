@@ -127,7 +127,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(source), false)),
-                              message);
+                              message, false);
   }
 
   @Override

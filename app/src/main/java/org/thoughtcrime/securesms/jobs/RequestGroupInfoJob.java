@@ -83,7 +83,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromExternal(context, source), false)),
-                              message);
+                              message, false);
   }
 
   @Override
