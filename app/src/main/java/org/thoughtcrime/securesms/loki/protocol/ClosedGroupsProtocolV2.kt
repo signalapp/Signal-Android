@@ -145,9 +145,7 @@ object ClosedGroupsProtocolV2 {
         val admins = group.admins.map { it.serialize() }
         val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
         val sentTime = System.currentTimeMillis()
-        val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
-            Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
-        }.orNull()
+        val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull() ?: Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)).orNull()
         if (encryptionKeyPair == null) {
             Log.d("Loki", "Couldn't get encryption key pair for closed group.")
             throw Error.NoKeyPair
