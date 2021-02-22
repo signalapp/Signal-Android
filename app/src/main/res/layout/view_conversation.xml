@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/conversation_view_background"
     android:gravity="center_vertical"
     android:orientation="horizontal">
@@ -50,7 +51,7 @@
                     android:textSize="@dimen/medium_font_size"
                     android:textStyle="bold"
                     android:textColor="@color/text"
-                    android:text="I'm a very long display name. What are you going to do about it?" />
+                    tools:text="I'm a very long display name. What are you going to do about it?" />
 
                 <TextView
                     android:id="@+id/timestampTextView"
@@ -94,7 +95,7 @@
                         android:ellipsize="end"
                         android:textSize="@dimen/medium_font_size"
                         android:textColor="@color/text"
-                        android:text="Sorry, gotta go fight crime again" />
+                        tools:text="Sorry, gotta go fight crime again" />
 
                     <org.thoughtcrime.securesms.components.TypingIndicatorView
                         android:id="@+id/typingIndicatorView"
