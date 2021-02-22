@@ -623,13 +623,12 @@ object ClosedGroupsProtocolV2 {
         val userKeyPair = apiDB.getUserX25519KeyPair()
         // Unwrap the message
         val groupDB = DatabaseFactory.getGroupDatabase(context)
-        val groupID = when {
+        val correctGroupPublicKey = when {
             groupPublicKey.isNotEmpty() -> groupPublicKey
             !closedGroupUpdate.publicKey.isEmpty -> closedGroupUpdate.publicKey.toByteArray().toHexString()
             else -> ""
-        }.let {
-            doubleEncodeGroupID(it)
         }
+        val groupID = doubleEncodeGroupID(correctGroupPublicKey)
         val group = groupDB.getGroup(groupID).orNull()
         if (group == null) {
             Log.d("Loki", "Ignoring closed group encryption key pair message for nonexistent group.")
@@ -647,7 +646,7 @@ object ClosedGroupsProtocolV2 {
         val proto = SignalServiceProtos.KeyPair.parseFrom(plaintext)
         val keyPair = ECKeyPair(DjbECPublicKey(proto.publicKey.toByteArray().removing05PrefixIfNeeded()), DjbECPrivateKey(proto.privateKey.toByteArray()))
         // Store it
-        apiDB.addClosedGroupEncryptionKeyPair(keyPair, groupPublicKey)
+        apiDB.addClosedGroupEncryptionKeyPair(keyPair, correctGroupPublicKey)
         Log.d("Loki", "Received a new closed group encryption key pair")
     }
 
