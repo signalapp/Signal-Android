@@ -94,6 +94,10 @@ object ClosedGroupsProtocolV2 {
         return deferred.promise
     }
 
+    /**
+     * @param notifyUser Inserts an outgoing info message for the user's leave message, useful to set `false` if
+     * you are exiting asynchronously and deleting the thread from [HomeActivity][org.thoughtcrime.securesms.loki.activities.HomeActivity.deleteConversation]
+     */
     @JvmStatic @JvmOverloads
     fun explicitLeave(context: Context, groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
