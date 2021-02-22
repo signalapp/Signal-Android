@@ -493,7 +493,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
 
-    inputPanel.setHint("Message");
+    inputPanel.setHint(getResources().getString(R.string.ConversationActivity_message));
 
     updateSessionRestoreBanner();
 
@@ -2500,8 +2500,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (recipient == null) {
       titleTextView.setText("Compose");
-    } else if (recipient.getAddress().toString().toLowerCase() == userPublicKey) {
-      titleTextView.setText("Note to Self");
+    } else if (recipient.getAddress().toString().toLowerCase().equals(userPublicKey)) {
+      titleTextView.setText(getResources().getString(R.string.note_to_self));
     } else {
       boolean hasName = (recipient.getName() != null && !recipient.getName().isEmpty());
       titleTextView.setText(hasName ? recipient.getName() : recipient.getAddress().toString());

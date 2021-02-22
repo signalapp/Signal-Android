@@ -133,6 +133,8 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Адрес получателя не является ни номером телефона, ни адресом электронной почты.</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Пустое сообщение!</string>
   <string name="ConversationActivity_group_members">Участники группы</string>
+  <string name="ConversationActivity_note_to_self">Заметка для себя</string>
+  <string name="ConversationActivity_message">Соощение</string>
   <string name="ConversationActivity_invalid_recipient">Неверный получатель!</string>
   <string name="ConversationActivity_added_to_home_screen">Добавлено на главный экран</string>
   <string name="ConversationActivity_calls_not_supported">Звонки не поддерживаются</string>

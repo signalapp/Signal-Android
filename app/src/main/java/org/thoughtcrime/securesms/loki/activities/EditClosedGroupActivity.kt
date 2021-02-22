@@ -280,18 +280,15 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey!!)
             } else {
                 task {
-                    val name =
-                            if (hasNameChanged) ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity,groupPublicKey!!,name)
-                            else Promise.of(Unit)
-                    name.get()
+                    if (hasNameChanged) {
+                        ClosedGroupsProtocolV2.explicitNameChange(this@EditClosedGroupActivity, groupPublicKey!!, name)
+                    }
                     members.filterNot { it in originalMembers }.let { adds ->
                         if (adds.isNotEmpty()) ClosedGroupsProtocolV2.explicitAddMembers(this@EditClosedGroupActivity, groupPublicKey!!, adds.map { it.address.serialize() })
-                        else Promise.of(Unit)
-                    }.get()
+                    }
                     originalMembers.filterNot { it in members }.let { removes ->
                         if (removes.isNotEmpty()) ClosedGroupsProtocolV2.explicitRemoveMembers(this@EditClosedGroupActivity, groupPublicKey!!, removes.map { it.address.serialize() })
-                        else Promise.of(Unit)
-                    }.get()
+                    }
                 }
             }
             promise.successUi {
