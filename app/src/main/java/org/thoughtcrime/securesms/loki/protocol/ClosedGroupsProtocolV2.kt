@@ -94,8 +94,12 @@ object ClosedGroupsProtocolV2 {
         return deferred.promise
     }
 
-    @JvmStatic
-    fun explicitLeave(context: Context, groupPublicKey: String): Promise<Unit, Exception> {
+    /**
+     * @param notifyUser Inserts an outgoing info message for the user's leave message, useful to set `false` if
+     * you are exiting asynchronously and deleting the thread from [HomeActivity][org.thoughtcrime.securesms.loki.activities.HomeActivity.deleteConversation]
+     */
+    @JvmStatic @JvmOverloads
+    fun explicitLeave(context: Context, groupPublicKey: String, notifyUser: Boolean = true): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         ThreadUtils.queue {
             val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -119,7 +123,9 @@ object ClosedGroupsProtocolV2 {
             // Notify the user
             val infoType = GroupContext.Type.QUIT
             val threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(Recipient.from(context, Address.fromSerialized(groupID), false))
-            insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            if (notifyUser) {
+                insertOutgoingInfoMessage(context, groupID, infoType, name, updatedMembers, admins, threadID, sentTime)
+            }
             // Remove the group private key and unsubscribe from PNs
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
             deferred.resolve(Unit)
@@ -143,9 +149,7 @@ object ClosedGroupsProtocolV2 {
         val admins = group.admins.map { it.serialize() }
         val adminsAsData = admins.map { Hex.fromStringCondensed(it) }
         val sentTime = System.currentTimeMillis()
-        val encryptionKeyPair = pendingKeyPair.getOrElse(groupPublicKey) {
-            Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey))
-        }.orNull()
+        val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull() ?: Optional.fromNullable(apiDB.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)).orNull()
         if (encryptionKeyPair == null) {
             Log.d("Loki", "Couldn't get encryption key pair for closed group.")
             throw Error.NoKeyPair
@@ -516,7 +520,7 @@ object ClosedGroupsProtocolV2 {
         val userLeft = userPublicKey == senderPublicKey
 
         // if the admin left, we left, or we are the only remaining member: remove the group
-        if (didAdminLeave || userLeft || updatedMemberList.size == 1) {
+        if (didAdminLeave || userLeft) {
             disableLocalGroupAndUnsubscribe(context, apiDB, groupPublicKey, groupDB, groupID, userPublicKey)
         } else {
             val isCurrentUserAdmin = admins.contains(userPublicKey)
