@@ -32,7 +32,6 @@ import androidx.multidex.MultiDexApplication;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.conscrypt.Conscrypt;
-import org.jetbrains.annotations.NotNull;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.utilities.SSKEnvironment;
@@ -49,7 +48,6 @@ import org.thoughtcrime.securesms.sskenvironment.ReadReceiptManager;
 import org.thoughtcrime.securesms.sskenvironment.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -126,6 +124,8 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  * @author Moxie Marlinspike
  */
 public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
+
+  public static final String PREFERENCES_NAME = "SecureSMS-Preferences";
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
@@ -535,7 +535,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       TextSecurePreferences.setIsUsingFCM(this, isUsingFCM);
       TextSecurePreferences.setProfileName(this, displayName);
     }
-    MasterSecretUtil.clear(this);
+    getSharedPreferences(PREFERENCES_NAME, 0).edit().clear().commit();
     if (!deleteDatabase("signal.db")) {
       Log.d("Loki", "Failed to delete database.");
     }

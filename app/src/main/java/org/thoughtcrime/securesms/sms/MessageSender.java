@@ -103,11 +103,6 @@ public class MessageSender {
     }
   }
 
-  public static void resendGroupMessage(Context context, MessageRecord messageRecord, Address filterAddress) {
-    if (!messageRecord.isMms()) throw new AssertionError("Not Group");
-    sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterAddress);
-  }
-
   public static void resend(Context context, MessageRecord messageRecord) {
     long       messageId   = messageRecord.getId();
     boolean    forceSms    = messageRecord.isForcedSms();

@@ -117,7 +117,6 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
@@ -345,7 +344,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     broadcastReceivers.add(broadcastReceiver);
     LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("clockOutOfSync"));
 
-    initializeReceivers();
     initializeActionBar();
     initializeViews();
     initializeResources();
@@ -1532,19 +1530,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             publicChat.getServer().equals(event.getUrl())) {
       this.updateSubtitleTextView();
     }
-  }
-
-  private void initializeReceivers() {
-    securityUpdateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        initializeSecurity(true, isDefaultSms);
-      }
-    };
-
-    registerReceiver(securityUpdateReceiver,
-                     new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
-                     KeyCachingService.KEY_PERMISSION, null);
   }
 
   //////// Helper Methods
