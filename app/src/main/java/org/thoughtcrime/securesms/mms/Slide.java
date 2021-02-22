@@ -127,10 +127,6 @@ public abstract class Slide {
     return false;
   }
 
-  public boolean hasLocation() {
-    return false;
-  }
-
   public @NonNull String getContentDescription() { return ""; }
 
   public @NonNull Attachment asAttachment() {

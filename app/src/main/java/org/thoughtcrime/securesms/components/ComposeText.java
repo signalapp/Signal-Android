@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -104,21 +103,8 @@ public class ComposeText extends EmojiEditText {
     }
   }
 
-  public void appendInvite(String invite) {
-    if (!TextUtils.isEmpty(getText()) && !getText().toString().equals(" ")) {
-      append(" ");
-    }
-
-    append(invite);
-    setSelection(getText().length());
-  }
-
   public void setCursorPositionChangedListener(@Nullable CursorPositionChangedListener listener) {
     this.cursorPositionChangedListener = listener;
-  }
-
-  private boolean isLandscape() {
-    return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
   }
 
   public void setTransport() {
@@ -140,12 +126,6 @@ public class ComposeText extends EmojiEditText {
     } else {
       setImeOptions(imeOptions);
     }
-    /*
-    setHint(transport.getComposeHint(),
-            transport.getSimName().isPresent()
-                ? getContext().getString(R.string.conversation_activity__from_sim_name, transport.getSimName().get())
-                : null);
-     */
   }
 
   @Override

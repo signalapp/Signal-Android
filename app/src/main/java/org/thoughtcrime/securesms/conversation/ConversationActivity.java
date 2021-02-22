@@ -110,11 +110,9 @@ import org.thoughtcrime.securesms.components.HidingLinearLayout;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.InputPanel;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
-import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -158,7 +156,6 @@ import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -1277,32 +1274,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         };
 
         for (Draft draft : drafts) {
-          try {
-            switch (draft.getType()) {
-              case Draft.TEXT:
-                composeText.setText(draft.getValue());
-                listener.onSuccess(true);
-                break;
-              case Draft.LOCATION:
-                attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), MediaConstraints.getPushMediaConstraints()).addListener(listener);
-                break;
-              case Draft.IMAGE:
-                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
-                break;
-              case Draft.AUDIO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
-                break;
-              case Draft.VIDEO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
-                break;
-              case Draft.QUOTE:
-                SettableFuture<Boolean> quoteResult = new SettableFuture<>();
-                new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
-                quoteResult.addListener(listener);
-                break;
-            }
-          } catch (IOException e) {
-            Log.w(TAG, e);
+          switch (draft.getType()) {
+            case Draft.TEXT:
+              composeText.setText(draft.getValue());
+              listener.onSuccess(true);
+              break;
+            case Draft.IMAGE:
+              setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
+              break;
+            case Draft.AUDIO:
+              setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
+              break;
+            case Draft.VIDEO:
+              setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
+              break;
+            case Draft.QUOTE:
+              SettableFuture<Boolean> quoteResult = new SettableFuture<>();
+              new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
+              quoteResult.addListener(listener);
+              break;
           }
         }
 
@@ -1659,7 +1649,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
       if      (slide.hasAudio() && slide.getUri() != null)    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
       else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
       else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
     }
 

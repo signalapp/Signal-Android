@@ -23,7 +23,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -38,15 +37,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-
-import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.loki.views.MessageAudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.RemovableEditableMediaView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.components.location.SignalMapView;
-import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.session.libsignal.utilities.externalstorage.NoExternalStorageException;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.session.libsignal.utilities.logging.Log;
@@ -54,7 +49,6 @@ import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
-import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsignal.utilities.externalstorage.ExternalStorageUtil;
 import org.thoughtcrime.securesms.util.FileProviderUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -65,8 +59,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.ThemeUtil;
 import org.session.libsession.utilities.ViewUtil;
 import org.session.libsession.utilities.views.Stub;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
 import org.session.libsignal.utilities.concurrent.ListenableFuture;
 import org.session.libsignal.utilities.concurrent.ListenableFuture.Listener;
 import org.session.libsignal.utilities.concurrent.SettableFuture;
@@ -95,7 +87,6 @@ public class AttachmentManager {
   private ThumbnailView              thumbnail;
   private MessageAudioView audioView;
   private DocumentView               documentView;
-  private SignalMapView              mapView;
 
   private @NonNull  List<Uri>       garbage = new LinkedList<>();
   private @NonNull  Optional<Slide> slide   = Optional.absent();
@@ -114,7 +105,6 @@ public class AttachmentManager {
       this.thumbnail          = ViewUtil.findById(root, R.id.attachment_thumbnail);
       this.audioView          = ViewUtil.findById(root, R.id.attachment_audio);
       this.documentView       = ViewUtil.findById(root, R.id.attachment_document);
-      this.mapView            = ViewUtil.findById(root, R.id.attachment_location);
       this.removableMediaView = ViewUtil.findById(root, R.id.removable_media_view);
 
       removableMediaView.setRemoveClickListener(new RemoveButtonListener());
@@ -194,38 +184,6 @@ public class AttachmentManager {
     }
 
     this.slide = Optional.of(slide);
-  }
-
-  public ListenableFuture<Boolean> setLocation(@NonNull final SignalPlace place,
-                                               @NonNull final MediaConstraints constraints)
-  {
-    inflateStub();
-
-    SettableFuture<Boolean>  returnResult = new SettableFuture<>();
-    ListenableFuture<Bitmap> future       = mapView.display(place);
-
-    attachmentViewStub.get().setVisibility(View.VISIBLE);
-    removableMediaView.display(mapView, false);
-
-    future.addListener(new AssertedSuccessListener<Bitmap>() {
-      @Override
-      public void onSuccess(@NonNull Bitmap result) {
-        byte[]        blob          = BitmapUtil.toByteArray(result);
-        Uri           uri           = BlobProvider.getInstance()
-                                                  .forData(blob)
-                                                  .withMimeType(MediaTypes.IMAGE_JPEG)
-                                                  .createForSingleSessionInMemory();
-        LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
-
-        Util.runOnMain(() -> {
-          setSlide(locationSlide);
-          attachmentListener.onAttachmentChanged();
-          returnResult.set(true);
-        });
-      }
-    });
-
-    return returnResult;
   }
 
   @SuppressLint("StaticFieldLeak")
