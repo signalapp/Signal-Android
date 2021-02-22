@@ -41,11 +41,11 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.session.libsession.messaging.avatars.AvatarHelper
+import org.session.libsession.utilities.SSKEnvironment.ProfileManagerProtocol
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
 import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.api.crypto.ProfileCipher
 import org.session.libsignal.service.api.util.StreamDetails
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
 import java.io.ByteArrayInputStream
@@ -225,7 +225,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             Toast.makeText(this, R.string.activity_settings_display_name_missing_error, Toast.LENGTH_SHORT).show()
             return false
         }
-        if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
+        if (displayName.toByteArray().size > ProfileManagerProtocol.Companion.NAME_PADDED_LENGTH) {
             Toast.makeText(this, R.string.activity_settings_display_name_too_long_error, Toast.LENGTH_SHORT).show()
             return false
         }

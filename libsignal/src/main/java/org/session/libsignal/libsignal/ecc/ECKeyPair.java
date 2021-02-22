@@ -5,9 +5,6 @@
  */
 package org.session.libsignal.libsignal.ecc;
 
-import org.session.libsignal.libsignal.ecc.ECPrivateKey;
-import org.session.libsignal.libsignal.ecc.ECPublicKey;
-
 public class ECKeyPair {
 
   private final ECPublicKey publicKey;

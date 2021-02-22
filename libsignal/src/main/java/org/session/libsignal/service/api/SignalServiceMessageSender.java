@@ -26,7 +26,6 @@ import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
-import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
 import org.session.libsignal.service.internal.crypto.PaddingInputStream;
 import org.session.libsignal.service.internal.push.OutgoingPushMessage;
 import org.session.libsignal.service.internal.push.OutgoingPushMessageList;
@@ -486,7 +485,6 @@ public class SignalServiceMessageSender {
                                               int                                ttl,
                                               boolean                            isClosedGroup,
                                               boolean                            notifyPNServer)
-      throws IOException
   {
     List<SendMessageResult>                results                    = new LinkedList<>();
     Iterator<SignalServiceAddress>         recipientIterator          = recipients.iterator();
@@ -494,17 +492,8 @@ public class SignalServiceMessageSender {
 
     while (recipientIterator.hasNext()) {
       SignalServiceAddress recipient = recipientIterator.next();
-
-      try {
-        SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, true, isClosedGroup, notifyPNServer, Optional.absent());
-        results.add(result);
-      } catch (UnregisteredUserException e) {
-        Log.w(TAG, e);
-        results.add(SendMessageResult.unregisteredFailure(recipient));
-      } catch (PushNetworkException e) {
-        Log.w(TAG, e);
-        results.add(SendMessageResult.networkFailure(recipient));
-      }
+      SendMessageResult result = sendMessage(messageID, recipient, unidentifiedAccessIterator.next(), timestamp, content, online, ttl, true, isClosedGroup, notifyPNServer, Optional.absent());
+      results.add(result);
     }
 
     return results;
@@ -534,7 +523,6 @@ public class SignalServiceMessageSender {
                                        boolean isClosedGroup,
                                        boolean notifyPNServer,
                                        Optional<String> syncTarget)
-      throws IOException
   {
     boolean isSelfSend = syncTarget.isPresent() && !syncTarget.get().isEmpty();
     long threadID;
@@ -544,16 +532,10 @@ public class SignalServiceMessageSender {
       threadID = threadDatabase.getThreadID(recipient.getNumber());
     }
     PublicChat publicChat = threadDatabase.getPublicChat(threadID);
-    try {
-      if (publicChat != null) {
-        return sendMessageToPublicChat(messageID, recipient, timestamp, content, publicChat);
-      } else {
-        return sendMessageToPrivateChat(messageID, recipient, unidentifiedAccess, timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer, syncTarget);
-      }
-    } catch (PushNetworkException e) {
-      return SendMessageResult.networkFailure(recipient);
-    } catch (UntrustedIdentityException e) {
-      return SendMessageResult.identityFailure(recipient, e.getIdentityKey());
+    if (publicChat != null) {
+      return sendMessageToPublicChat(messageID, recipient, timestamp, content, publicChat);
+    } else {
+      return sendMessageToPrivateChat(messageID, recipient, unidentifiedAccess, timestamp, content, online, ttl, useFallbackEncryption, isClosedGroup, notifyPNServer, syncTarget);
     }
   }
 
@@ -659,7 +641,6 @@ public class SignalServiceMessageSender {
                                                      boolean                      isClosedGroup,
                                                      final boolean                notifyPNServer,
                                                      Optional<String>             syncTarget)
-      throws IOException, UntrustedIdentityException
   {
     final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
     OutgoingPushMessageList messages = getSessionProtocolEncryptedMessage(recipient, timestamp, content);
@@ -839,10 +820,5 @@ public class SignalServiceMessageSender {
     messages.add(message);
 
     return new OutgoingPushMessageList(publicKey, timestamp, messages, false);
-  }
-
-  public static interface EventListener {
-
-    public void onSecurityEvent(SignalServiceAddress address);
   }
 }

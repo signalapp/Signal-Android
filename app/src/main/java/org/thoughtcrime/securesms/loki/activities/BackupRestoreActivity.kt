@@ -191,7 +191,6 @@ class BackupRestoreViewModel(application: Application): AndroidViewModel(applica
                 TextSecurePreferences.setHasSeenWelcomeScreen(context, true)
                 val application = ApplicationContext.getInstance(context)
                 application.setUpStorageAPIIfNeeded()
-                application.setUpP2PAPIIfNeeded()
 
                 BackupRestoreResult.SUCCESS
             } catch (e: DatabaseDowngradeException) {

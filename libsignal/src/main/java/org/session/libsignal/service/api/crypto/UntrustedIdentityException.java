@@ -19,10 +19,6 @@ public class UntrustedIdentityException extends Exception {
     this.identityKey = identityKey;
   }
 
-  public UntrustedIdentityException(UntrustedIdentityException e) {
-    this(e.getMessage(), e.getE164Number(), e.getIdentityKey());
-  }
-
   public IdentityKey getIdentityKey() {
     return identityKey;
   }

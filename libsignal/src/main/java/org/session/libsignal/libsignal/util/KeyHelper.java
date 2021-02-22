@@ -5,12 +5,6 @@
  */
 package org.session.libsignal.libsignal.util;
 
-import org.session.libsignal.libsignal.IdentityKey;
-import org.session.libsignal.libsignal.IdentityKeyPair;
-import org.session.libsignal.libsignal.InvalidKeyException;
-import org.session.libsignal.libsignal.ecc.Curve;
-import org.session.libsignal.libsignal.ecc.ECKeyPair;
-
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 

@@ -99,8 +99,6 @@ import org.session.libsignal.service.loki.api.SnodeAPI;
 import org.session.libsignal.service.loki.api.SwarmAPI;
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
-import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPI;
-import org.session.libsignal.service.loki.api.shelved.p2p.LokiP2PAPIDelegate;
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol;
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 
@@ -127,7 +125,7 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
+public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
@@ -183,7 +181,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
       MentionsManager.Companion.configureIfNeeded(userPublicKey, threadDB, userDB);
     }
-    setUpP2PAPIIfNeeded();
     PushNotificationAPI.Companion.configureIfNeeded(BuildConfig.DEBUG);
     setUpStorageAPIIfNeeded();
     resubmitProfilePictureIfNeeded();
@@ -423,20 +420,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public boolean setUpStorageAPIIfNeeded() {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userPublicKey == null || !IdentityKeyUtil.hasIdentityKey(this)) { return false; }
-    boolean isDebugMode = BuildConfig.DEBUG;
     byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
     LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
     return true;
-  }
-
-  public void setUpP2PAPIIfNeeded() {
-    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    if (hexEncodedPublicKey == null) { return; }
-    LokiP2PAPI.Companion.configure(hexEncodedPublicKey, (isOnline, contactPublicKey) -> {
-      // TODO: Implement
-      return null;
-    }, this);
   }
 
   public void registerForFCMIfNeeded(Boolean force) {
@@ -455,11 +442,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         LokiPushNotificationManager.unregister(token, context);
       }
     });
-  }
-
-  @Override
-  public void ping(@NotNull String s) {
-    // TODO: Implement
   }
 
   private void setUpPollingIfNeeded() {

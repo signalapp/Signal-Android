@@ -8,11 +8,9 @@ package org.session.libsignal.service.api.crypto;
 
 import org.session.libsignal.libsignal.InvalidMacException;
 import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.kdf.HKDFv3;
 import org.session.libsignal.service.internal.util.ContentLengthInputStream;
 import org.session.libsignal.service.internal.util.Util;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilterInputStream;
@@ -77,32 +75,6 @@ public class AttachmentCipherInputStream extends FilterInputStream {
       }
 
       return inputStream;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (InvalidMacException e) {
-      throw new InvalidMessageException(e);
-    }
-  }
-
-  public static InputStream createForStickerData(byte[] data, byte[] packKey)
-      throws InvalidMessageException, IOException
-  {
-    try {
-      byte[]   combinedKeyMaterial = new HKDFv3().deriveSecrets(packKey, "Sticker Pack".getBytes(), 64);
-      byte[][] parts               = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE);
-      Mac      mac                 = Mac.getInstance("HmacSHA256");
-      mac.init(new SecretKeySpec(parts[1], "HmacSHA256"));
-
-      if (data.length <= BLOCK_SIZE + mac.getMacLength()) {
-        throw new InvalidMessageException("Message shorter than crypto overhead!");
-      }
-
-      InputStream inputStream = new ByteArrayInputStream(data);
-      verifyMac(inputStream, data.length, mac, null);
-
-      return new AttachmentCipherInputStream(new ByteArrayInputStream(data), parts[0], data.length - BLOCK_SIZE - mac.getMacLength());
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     } catch (InvalidKeyException e) {
