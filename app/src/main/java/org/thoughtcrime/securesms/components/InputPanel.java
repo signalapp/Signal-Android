@@ -22,12 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -322,7 +319,6 @@ public class InputPanel extends LinearLayout
     void onRecorderPermissionRequired();
     void onEmojiToggle();
     void onLinkPreviewCanceled();
-    void onStickerSuggestionSelected(@NonNull StickerRecord sticker);
   }
 
   private static class SlideToCancel {

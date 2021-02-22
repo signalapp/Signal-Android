@@ -127,7 +127,6 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -2145,11 +2144,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onStickerSuggestionSelected(@NonNull StickerRecord sticker) {
-    sendSticker(sticker, true);
-  }
-
-  @Override
   public void onMediaSelected(@NonNull Uri uri, String contentType) {
     if (!TextUtils.isEmpty(contentType) && contentType.trim().equals("image/gif")) {
       setMedia(uri, MediaType.GIF);
@@ -2165,10 +2159,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onCursorPositionChanged(int start, int end) {
     linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), start, end);
-  }
-
-  private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
-    sendSticker(new StickerLocator(stickerRecord.getPackId(), stickerRecord.getPackKey(), stickerRecord.getStickerId()), stickerRecord.getUri(), stickerRecord.getSize(), clearCompose);
   }
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
