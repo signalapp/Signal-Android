@@ -104,17 +104,6 @@ public class RecipientDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Cursor getBlocked() {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-
-    return database.query(TABLE_NAME, new String[] {ID, ADDRESS}, BLOCK + " = 1",
-                          null, null, null, null, null);
-  }
-
-  public RecipientReader readerForBlocked(Cursor cursor) {
-    return new RecipientReader(context, cursor);
-  }
-
   public RecipientReader getRecipientsWithNotificationChannels() {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     Cursor         cursor   = database.query(TABLE_NAME, new String[] {ID, ADDRESS}, NOTIFICATION_CHANNEL  + " NOT NULL",
@@ -195,21 +184,6 @@ public class RecipientDatabase extends Database {
                                              forceSmsSelection));
   }
 
-  public BulkOperationsHandle resetAllSystemContactInfo() {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.beginTransaction();
-
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(SYSTEM_DISPLAY_NAME, (String)null);
-    contentValues.put(SYSTEM_PHOTO_URI, (String)null);
-    contentValues.put(SYSTEM_PHONE_LABEL, (String)null);
-    contentValues.put(SYSTEM_CONTACT_URI, (String)null);
-
-    database.update(TABLE_NAME, contentValues, null, null);
-
-    return new BulkOperationsHandle(database);
-  }
-
   public void setColor(@NonNull Recipient recipient, @NonNull MaterialColor color) {
     ContentValues values = new ContentValues();
     values.put(COLOR, color.serialize());
@@ -236,34 +210,6 @@ public class RecipientDatabase extends Database {
     values.put(BLOCK, blocked ? 1 : 0);
     updateOrInsert(recipient.getAddress(), values);
     recipient.resolve().setBlocked(blocked);
-  }
-
-  public void setMessageRingtone(@NonNull Recipient recipient, @Nullable Uri notification) {
-    ContentValues values = new ContentValues();
-    values.put(NOTIFICATION, notification == null ? null : notification.toString());
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setMessageRingtone(notification);
-  }
-
-  public void setCallRingtone(@NonNull Recipient recipient, @Nullable Uri ringtone) {
-    ContentValues values = new ContentValues();
-    values.put(CALL_RINGTONE, ringtone == null ? null : ringtone.toString());
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setCallRingtone(ringtone);
-  }
-
-  public void setMessageVibrate(@NonNull Recipient recipient, @NonNull VibrateState enabled) {
-    ContentValues values = new ContentValues();
-    values.put(VIBRATE, enabled.getId());
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setMessageVibrate(enabled);
-  }
-
-  public void setCallVibrate(@NonNull Recipient recipient, @NonNull VibrateState enabled) {
-    ContentValues values = new ContentValues();
-    values.put(CALL_VIBRATE, enabled.getId());
-    updateOrInsert(recipient.getAddress(), values);
-    recipient.resolve().setCallVibrate(enabled);
   }
 
   public void setMuted(@NonNull Recipient recipient, long until) {
@@ -296,13 +242,6 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setProfileKey(profileKey);
   }
 
-  public void setProfileName(@NonNull Recipient recipient, @Nullable String profileName) {
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(SIGNAL_PROFILE_NAME, profileName);
-    updateOrInsert(recipient.getAddress(), contentValues);
-    recipient.resolve().setProfileName(profileName);
-  }
-
   public void setProfileAvatar(@NonNull Recipient recipient, @Nullable String profileAvatar) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(SIGNAL_PROFILE_AVATAR, profileAvatar);
@@ -324,109 +263,11 @@ public class RecipientDatabase extends Database {
     recipient.setNotificationChannel(notificationChannel);
   }
 
-  public Set<Address> getAllAddresses() {
-    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    Set<Address>   results = new HashSet<>();
-
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, null, null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromExternal(context, cursor.getString(0)));
-      }
-    }
-
-    return results;
-  }
-
   public void setRegistered(@NonNull Recipient recipient, RegisteredState registeredState) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(REGISTERED, registeredState.getId());
     updateOrInsert(recipient.getAddress(), contentValues);
     recipient.setRegistered(registeredState);
-  }
-
-  public void setRegistered(@NonNull List<Address> activeAddresses,
-                            @NonNull List<Address> inactiveAddresses)
-  {
-    for (Address activeAddress : activeAddresses) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
-
-      updateOrInsert(activeAddress, contentValues);
-      Recipient.applyCached(activeAddress, recipient -> recipient.setRegistered(RegisteredState.REGISTERED));
-    }
-
-    for (Address inactiveAddress : inactiveAddresses) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
-
-      updateOrInsert(inactiveAddress, contentValues);
-      Recipient.applyCached(inactiveAddress, recipient -> recipient.setRegistered(RegisteredState.NOT_REGISTERED));
-    }
-  }
-
-  public List<Address> getRegistered() {
-    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    List<Address>  results = new LinkedList<>();
-
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, REGISTERED + " = ?", new String[] {"1"}, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromSerialized(cursor.getString(0)));
-      }
-    }
-
-    return results;
-  }
-
-  public List<Address> getSystemContacts() {
-    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    List<Address>  results = new LinkedList<>();
-
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(Address.fromSerialized(cursor.getString(0)));
-      }
-    }
-
-    return results;
-  }
-
-  public void updateSystemContactColors(@NonNull ColorUpdater updater) {
-    SQLiteDatabase              db      = databaseHelper.getReadableDatabase();
-    Map<Address, MaterialColor> updates = new HashMap<>();
-
-    db.beginTransaction();
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {ADDRESS, COLOR, SYSTEM_DISPLAY_NAME}, SYSTEM_DISPLAY_NAME + " IS NOT NULL AND " + SYSTEM_DISPLAY_NAME + " != \"\"", null, null, null, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        Address address = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
-        MaterialColor newColor = updater.update(cursor.getString(cursor.getColumnIndexOrThrow(SYSTEM_DISPLAY_NAME)),
-                                                cursor.getString(cursor.getColumnIndexOrThrow(COLOR)));
-
-        ContentValues contentValues = new ContentValues(1);
-        contentValues.put(COLOR, newColor.serialize());
-        db.update(TABLE_NAME, contentValues, ADDRESS + " = ?", new String[]{address.serialize()});
-
-        updates.put(address, newColor);
-      }
-    } finally {
-      db.setTransactionSuccessful();
-      db.endTransaction();
-
-      Stream.of(updates.entrySet()).forEach(entry -> {
-        Recipient.applyCached(entry.getKey(), recipient -> {
-          recipient.setColor(entry.getValue());
-        });
-      });
-    }
-  }
-
-  // XXX This shouldn't be here, and is just a temporary workaround
-  public RegisteredState isRegistered(@NonNull Address address) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-
-    try (Cursor cursor = db.query(TABLE_NAME, new String[] {REGISTERED}, ADDRESS + " = ?", new String[] {address.serialize()}, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) return RegisteredState.fromId(cursor.getInt(0));
-      else                                        return RegisteredState.UNKNOWN;
-    }
   }
 
   private void updateOrInsert(Address address, ContentValues contentValues) {
@@ -444,45 +285,6 @@ public class RecipientDatabase extends Database {
 
     database.setTransactionSuccessful();
     database.endTransaction();
-  }
-
-  public class BulkOperationsHandle {
-
-    private final SQLiteDatabase database;
-
-    private final Map<Address, PendingContactInfo> pendingContactInfoMap = new HashMap<>();
-
-    BulkOperationsHandle(SQLiteDatabase database) {
-      this.database = database;
-    }
-
-    public void setSystemContactInfo(@NonNull Address address, @Nullable String displayName, @Nullable String photoUri, @Nullable String systemPhoneLabel, @Nullable String systemContactUri) {
-      ContentValues contentValues = new ContentValues(1);
-      contentValues.put(SYSTEM_DISPLAY_NAME, displayName);
-      contentValues.put(SYSTEM_PHOTO_URI, photoUri);
-      contentValues.put(SYSTEM_PHONE_LABEL, systemPhoneLabel);
-      contentValues.put(SYSTEM_CONTACT_URI, systemContactUri);
-
-      updateOrInsert(address, contentValues);
-      pendingContactInfoMap.put(address, new PendingContactInfo(displayName, photoUri, systemPhoneLabel, systemContactUri));
-    }
-
-    public void finish() {
-      database.setTransactionSuccessful();
-      database.endTransaction();
-
-      Stream.of(pendingContactInfoMap.entrySet())
-            .forEach(entry -> Recipient.applyCached(entry.getKey(), recipient -> {
-              recipient.setName(entry.getValue().displayName);
-              recipient.setSystemContactPhoto(Util.uri(entry.getValue().photoUri));
-              recipient.setCustomLabel(entry.getValue().phoneLabel);
-              recipient.setContactUri(Util.uri(entry.getValue().contactUri));
-            }));
-    }
-  }
-
-  public interface ColorUpdater {
-    MaterialColor update(@NonNull String name, @Nullable String color);
   }
 
   public static class RecipientReader implements Closeable {
@@ -512,20 +314,4 @@ public class RecipientDatabase extends Database {
       cursor.close();
     }
   }
-
-  private static class PendingContactInfo {
-
-    private final String displayName;
-    private final String photoUri;
-    private final String phoneLabel;
-    private final String contactUri;
-
-    private PendingContactInfo(String displayName, String photoUri, String phoneLabel, String contactUri) {
-      this.displayName = displayName;
-      this.photoUri    = photoUri;
-      this.phoneLabel  = phoneLabel;
-      this.contactUri  = contactUri;
-    }
-  }
-
 }

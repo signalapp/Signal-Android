@@ -265,25 +265,6 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public List<MarkedMessageInfo> setAllThreadsRead() {
-    SQLiteDatabase db           = databaseHelper.getWritableDatabase();
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(READ, 1);
-    contentValues.put(UNREAD_COUNT, 0);
-
-    db.update(TABLE_NAME, contentValues, null, null);
-
-    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
-    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
-
-    notifyConversationListListeners();
-
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
-  }
-
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);
@@ -401,43 +382,6 @@ public class ThreadDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
-  public int getArchivedConversationListCount() {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = null;
-
-    try {
-      cursor = db.query(TABLE_NAME, new String[] {"COUNT(*)"}, ARCHIVED + " = ?",
-                        new String[] {"1"}, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0);
-      }
-
-    } finally {
-      if (cursor != null) cursor.close();
-    }
-
-    return 0;
-  }
-
-  public void archiveConversation(long threadId) {
-    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
-    ContentValues  contentValues = new ContentValues(1);
-    contentValues.put(ARCHIVED, 1);
-
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
-    notifyConversationListListeners();
-  }
-
-  public void unarchiveConversation(long threadId) {
-    SQLiteDatabase db            = databaseHelper.getWritableDatabase();
-    ContentValues  contentValues = new ContentValues(1);
-    contentValues.put(ARCHIVED, 0);
-
-    db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId + ""});
-    notifyConversationListListeners();
-  }
-
   public void setLastSeen(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     ContentValues contentValues = new ContentValues(1);
@@ -469,22 +413,6 @@ public class ThreadDatabase extends Database {
     deleteThread(threadId);
     notifyConversationListeners(threadId);
     notifyConversationListListeners();
-  }
-
-  public void deleteConversations(Set<Long> selectedConversations) {
-    DatabaseFactory.getSmsDatabase(context).deleteThreads(selectedConversations);
-    DatabaseFactory.getMmsDatabase(context).deleteThreads(selectedConversations);
-    DatabaseFactory.getDraftDatabase(context).clearDrafts(selectedConversations);
-    deleteThreads(selectedConversations);
-    notifyConversationListeners(selectedConversations);
-    notifyConversationListListeners();
-  }
-
-  public void deleteAllConversations() {
-    DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
-    DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
-    DatabaseFactory.getDraftDatabase(context).clearAllDrafts();
-    deleteAllThreads();
   }
 
   public boolean hasThread(long threadId) {
@@ -578,19 +506,6 @@ public class ThreadDatabase extends Database {
     notifyConversationListeners(threadId);
   }
 
-  void updateReadState(long threadId) {
-    int unreadCount = DatabaseFactory.getMmsSmsDatabase(context).getUnreadCount(threadId);
-
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(READ, unreadCount == 0);
-    contentValues.put(UNREAD_COUNT, unreadCount);
-
-    databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,ID_WHERE,
-                                                new String[] {String.valueOf(threadId)});
-
-    notifyConversationListListeners();
-  }
-
   public boolean update(long threadId, boolean unarchive) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
@@ -622,34 +537,6 @@ public class ThreadDatabase extends Database {
       if (reader != null)
         reader.close();
     }
-  }
-
-  /**
-   * A lightweight utility method to retrieve the complete list of non-archived threads coupled with their recipient address.
-   * @return a tuple with non-null values: thread id, recipient address.
-   */
-  public @NonNull List<Tuple2<Long, String>> getConversationListQuick() {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-
-    ArrayList<Tuple2<Long, String>> result = new ArrayList<>();
-
-    try (Cursor cursor = db.query(
-            TABLE_NAME,
-            new String[]{ID, ADDRESS},
-            ARCHIVED + " = 0 AND " + MESSAGE_COUNT + " != 0 AND " + ADDRESS + " IS NOT NULL",
-            null,
-            null,
-            null,
-            null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        result.add(new Tuple2<>(
-                cursor.getLong(cursor.getColumnIndexOrThrow(ID)),
-                cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS))
-        ));
-      }
-    }
-
-    return result;
   }
 
   private @NonNull String getFormattedBodyFor(@NonNull MessageRecord messageRecord) {

@@ -136,16 +136,6 @@ public class MmsSmsDatabase extends Database {
     return getConversation(threadId, 0, 0);
   }
 
-  public Cursor getIdentityConflictMessagesForThread(long threadId) {
-    String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection       = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.MISMATCHED_IDENTITIES + " IS NOT NULL";
-
-    Cursor cursor = queryTables(PROJECTION, selection, order, null);
-    setNotifyConverationListeners(cursor, threadId);
-
-    return cursor;
-  }
-
   public Cursor getConversationSnippet(long threadId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
@@ -223,26 +213,6 @@ public class MmsSmsDatabase extends Database {
         if (timestampMatches && (addressMatches || isOwnNumber)) {
           return cursor.getPosition();
         }
-      }
-    }
-    return -1;
-  }
-
-  /**
-   * Retrieves the position of the message with the provided timestamp in the query results you'd
-   * get from calling {@link #getConversation(long)}.
-   *
-   * Note: This could give back incorrect results in the situation where multiple messages have the
-   * same received timestamp. However, because this was designed to determine where to scroll to,
-   * you'll still wind up in about the right spot.
-   */
-  public int getMessagePositionInConversation(long threadId, long receivedTimestamp) {
-    String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " > " + receivedTimestamp;
-
-    try (Cursor cursor = queryTables(new String[]{ "COUNT(*)" }, selection, order, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getInt(0);
       }
     }
     return -1;

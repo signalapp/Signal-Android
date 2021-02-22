@@ -376,9 +376,6 @@
             </intent-filter>
         </service>
         <service
-            android:name="org.thoughtcrime.securesms.service.ApplicationMigrationService"
-            android:enabled="true" />
-        <service
             android:name="org.thoughtcrime.securesms.service.KeyCachingService"
             android:enabled="true"
             android:exported="false" />

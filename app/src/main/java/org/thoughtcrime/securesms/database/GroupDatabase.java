@@ -177,24 +177,6 @@ public class GroupDatabase extends Database implements LokiOpenGroupDatabaseProt
     return recipients;
   }
 
-  public boolean isClosedGroupMember(String hexEncodedPublicKey) {
-    try {
-      Address address = Address.fromSerialized(hexEncodedPublicKey);
-      Reader reader = DatabaseFactory.getGroupDatabase(context).getGroups();
-
-      GroupRecord record;
-      while ((record = reader.getNext()) != null) {
-        if (record.isClosedGroup() && record.getMembers().contains(address)) {
-          return true;
-        }
-      }
-
-      return false;
-    } catch (Exception e) {
-      return false;
-    }
-  }
-
   public long create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
                      @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay, @Nullable List<Address> admins, @NonNull Long formationTimestamp)
   {
