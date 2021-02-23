@@ -90,6 +90,7 @@ object MultiDeviceProtocol {
             if (allOpenGroups.contains(openGroup)) continue
             OpenGroupUtilities.addGroup(context, openGroup, 1)
         }
+        // TODO: handle new configuration message fields or handle in new pipeline
         TextSecurePreferences.setConfigurationMessageSynced(context, true)
     }
 }
