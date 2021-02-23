@@ -4,6 +4,8 @@ import android.content.Context
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
@@ -15,7 +17,6 @@ import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.loki.utilities.recipient
 import java.util.*
 
 object MultiDeviceProtocol {
@@ -31,7 +32,7 @@ object MultiDeviceProtocol {
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
-        val recipient = recipient(context, userPublicKey)
+        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
             messageSender.sendMessage(0, address, udAccess,
@@ -50,7 +51,7 @@ object MultiDeviceProtocol {
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
-        val recipient = recipient(context, userPublicKey)
+        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
             messageSender.sendMessage(0, address, udAccess,

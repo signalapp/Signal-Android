@@ -6,6 +6,8 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.session.libsession.messaging.jobs.Data
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -22,7 +24,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.loki.utilities.recipient
 import org.session.libsignal.utilities.Hex
 
 import java.util.concurrent.TimeUnit
@@ -228,7 +229,7 @@ class ClosedGroupUpdateMessageSendJobV2 private constructor(parameters: Paramete
         val serializedContentMessage = contentMessage.build().toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(sendDestination)
-        val recipient = recipient(context, sendDestination)
+        val recipient = Recipient.from(context, Address.fromSerialized(sendDestination), false)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         val ttl = when (kind) {
             is Kind.EncryptionKeyPair -> 4 * 24 * 60 * 60 * 1000

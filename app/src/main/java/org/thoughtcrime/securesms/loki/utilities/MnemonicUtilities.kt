@@ -16,9 +16,4 @@ object MnemonicUtilities {
       inputStream.close()
       return String(buffer)
   }
-
-  @JvmStatic
-  public fun getFirst3Words(codec: MnemonicCodec, hexEncodedPublicKey: String): String {
-      return codec.encode(hexEncodedPublicKey.removing05PrefixIfNeeded()).split(" ").slice(0 until 3).joinToString(" ")
-  }
 }
