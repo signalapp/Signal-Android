@@ -55,7 +55,6 @@ public class MessageSender {
   {
     SmsDatabase database    = DatabaseFactory.getSmsDatabase(context);
     Recipient   recipient   = message.getRecipient();
-    boolean     keyExchange = message.isKeyExchange();
 
     long allocatedThreadId;
 
@@ -67,7 +66,7 @@ public class MessageSender {
 
     long messageId = database.insertMessageOutbox(allocatedThreadId, message, forceSms, System.currentTimeMillis(), insertListener);
 
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
+    sendTextMessage(context, recipient, forceSms, messageId);
 
     return allocatedThreadId;
   }
@@ -104,14 +103,13 @@ public class MessageSender {
   public static void resend(Context context, MessageRecord messageRecord) {
     long       messageId   = messageRecord.getId();
     boolean    forceSms    = messageRecord.isForcedSms();
-    boolean    keyExchange = messageRecord.isKeyExchange();
     long       expiresIn   = messageRecord.getExpiresIn();
     Recipient  recipient   = messageRecord.getRecipient();
 
     if (messageRecord.isMms()) {
       sendMediaMessage(context, recipient, forceSms, messageId, expiresIn);
     } else {
-      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
+      sendTextMessage(context, recipient, forceSms, messageId);
     }
   }
 
@@ -127,8 +125,7 @@ public class MessageSender {
   }
 
   private static void sendTextMessage(Context context, Recipient recipient,
-                                      boolean forceSms, boolean keyExchange,
-                                      long messageId)
+                                      boolean forceSms, long messageId)
   {
     if (isLocalSelfSend(context, recipient, forceSms)) {
       sendLocalTextSelf(context, messageId);

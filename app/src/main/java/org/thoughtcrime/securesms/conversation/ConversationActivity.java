@@ -170,7 +170,6 @@ import org.session.libsession.messaging.threads.recipients.RecipientModifiedList
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
@@ -891,36 +890,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Intent intent = new Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT);
     intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, getPackageName());
     startActivityForResult(intent, SMS_DEFAULT);
-  }
-
-  private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
-    builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
-    builder.setPositiveButton(R.string.ConversationActivity_reset, (dialog, which) -> {
-      if (isSingleConversation()) {
-        final Context context = getApplicationContext();
-
-        OutgoingEndSessionMessage endSessionMessage =
-            new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
-
-        new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
-          @Override
-          protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-            return MessageSender.send(context, messages[0], threadId, false, null);
-          }
-
-          @Override
-          protected void onPostExecute(Long result) {
-            sendComplete(result);
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
-      }
-    });
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
   }
 
   private void handleBlock() {

@@ -48,7 +48,6 @@ public interface MmsSmsColumns {
                                                             OUTGOING_CALL_TYPE};
 
     // Message attributes
-    protected static final long MESSAGE_ATTRIBUTE_MASK = 0xE0;
     protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
 
     // Key Exchange Information

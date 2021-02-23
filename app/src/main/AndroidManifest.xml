@@ -470,16 +470,6 @@
                 <action android:name="network.loki.securesms.DELETE_NOTIFICATION" />
             </intent-filter>
         </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity$AppUpgradeReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="network.loki.securesms.ExperienceUpgradeActivity.DISMISS_ACTION" />
-            </intent-filter>
-        </receiver>
         <receiver
             android:name="org.thoughtcrime.securesms.service.PanicResponderListener"
             android:exported="true">

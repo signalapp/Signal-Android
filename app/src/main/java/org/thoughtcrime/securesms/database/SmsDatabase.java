@@ -167,20 +167,8 @@ public class SmsDatabase extends MessagingDatabase {
     return 0;
   }
 
-  public void markAsEndSession(long id) {
-    updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.END_SESSION_BIT);
-  }
-
-  public void markAsPush(long id) {
-    updateTypeBitmask(id, 0, Types.PUSH_MESSAGE_BIT);
-  }
-
   public void markAsDecryptFailed(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
-  }
-
-  public void markAsPendingInsecureSmsFallback(long id) {
-    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK);
   }
 
   @Override
@@ -358,27 +346,15 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   protected Optional<InsertResult> insertMessageInbox(IncomingTextMessage message, long type, long serverTimestamp) {
-    if (message.isJoined()) {
-      type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
-    } else if (message.isPreKeyBundle()) {
-      type |= Types.KEY_EXCHANGE_BIT | Types.KEY_EXCHANGE_BUNDLE_BIT;
-    } else if (message.isSecureMessage()) {
+    if (message.isSecureMessage()) {
       type |= Types.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
       type |= Types.SECURE_MESSAGE_BIT;
       if      (((IncomingGroupMessage)message).isUpdate()) type |= Types.GROUP_UPDATE_BIT;
       else if (((IncomingGroupMessage)message).isQuit())   type |= Types.GROUP_QUIT_BIT;
-    } else if (message.isEndSession()) {
-      type |= Types.SECURE_MESSAGE_BIT;
-      type |= Types.END_SESSION_BIT;
     }
 
     if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
-    if (message.isIdentityUpdate())      type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
-    if (message.isContentPreKeyBundle()) type |= Types.KEY_EXCHANGE_CONTENT_FORMAT;
-
-    if      (message.isIdentityVerified())    type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    else if (message.isIdentityDefault())     type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
     Recipient recipient = Recipient.from(context, message.getSender(), true);
 
@@ -391,8 +367,7 @@ public class SmsDatabase extends MessagingDatabase {
     }
 
     boolean    unread     = (Util.isDefaultSmsProvider(context) ||
-                            message.isSecureMessage() || message.isGroup() || message.isPreKeyBundle()) &&
-                            !message.isIdentityUpdate() && !message.isIdentityDefault() && !message.isIdentityVerified();
+                            message.isSecureMessage() || message.isGroup());
 
     long       threadId;
 
@@ -433,9 +408,7 @@ public class SmsDatabase extends MessagingDatabase {
         DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
       }
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
-        DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-      }
+      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
 
       if (message.getSubscriptionId() != -1) {
         DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient, message.getSubscriptionId());
@@ -443,9 +416,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       notifyConversationListeners(threadId);
 
-      if (!message.isIdentityUpdate() && !message.isIdentityVerified() && !message.isIdentityDefault()) {
-        ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
-      }
+      ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
       return Optional.of(new InsertResult(messageId, threadId));
     }
@@ -476,13 +447,8 @@ public class SmsDatabase extends MessagingDatabase {
   {
     long type = Types.BASE_SENDING_TYPE;
 
-    if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
-    else if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
+    if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
     if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
-
-    if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
     Address            address               = message.getRecipient().getAddress();
     Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);
@@ -507,18 +473,14 @@ public class SmsDatabase extends MessagingDatabase {
       insertListener.onComplete();
     }
 
-    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      DatabaseFactory.getThreadDatabase(context).update(threadId, true);
-      DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
-    }
+    DatabaseFactory.getThreadDatabase(context).update(threadId, true);
+    DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
 
     DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
 
     notifyConversationListeners(threadId);
 
-    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
-    }
+    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
 
     return messageId;
   }
