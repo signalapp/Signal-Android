@@ -163,7 +163,6 @@ import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
@@ -262,7 +261,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
   private   InputAwareLayout            container;
-  private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
   private   MentionTextWatcher          mentionTextWatcher;
   private   ConversationSearchBottomBar searchNav;
@@ -458,7 +456,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateProfilePicture();
     updateSubtitleTextView();
     updateInputUI(recipient);
-    setGroupShareProfileReminder(recipient);
 
     ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
@@ -1294,7 +1291,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
     container                              = ViewUtil.findById(this, R.id.layout_container);
-    groupShareProfileView                  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
     quickAttachmentToggle                  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle                 = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel                             = ViewUtil.findById(this, R.id.bottom_panel);
@@ -1432,9 +1428,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateTitleTextView(recipient);
       updateProfilePicture();
       updateSubtitleTextView();
-//      titleView.setVerified(identityRecords.isVerified());
       updateInputUI(recipient);
-      setGroupShareProfileReminder(recipient);
       initializeSecurity(true, isDefaultSms);
 
       if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
@@ -1619,27 +1613,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       unblockButton.setVisibility(View.VISIBLE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-//    } else if (!isSecureText && isPushGroupConversation()) {
-//      unblockButton.setVisibility(View.GONE);
-//      inputPanel.setVisibility(View.GONE);
-//      makeDefaultSmsButton.setVisibility(View.GONE);
-//    } else if (!isSecureText && !isDefaultSms) {
-//      unblockButton.setVisibility(View.GONE);
-//      inputPanel.setVisibility(View.GONE);
-//      makeDefaultSmsButton.setVisibility(View.GONE);
     } else {
       inputPanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-    }
-  }
-
-  private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isOpenGroup()) {
-      groupShareProfileView.get().setRecipient(recipient);
-      groupShareProfileView.get().setVisibility(View.GONE); // Loki - Always hide for now
-    } else if (groupShareProfileView.resolved()) {
-      groupShareProfileView.get().setVisibility(View.GONE);
     }
   }
 

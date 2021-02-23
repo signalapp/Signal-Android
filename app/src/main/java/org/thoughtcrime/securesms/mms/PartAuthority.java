@@ -11,7 +11,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.BlobProvider;
-import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
 
 import java.io.IOException;
@@ -39,8 +38,6 @@ public class PartAuthority {
     uriMatcher.addURI("network.loki.provider.securesms", "part/*/#", PART_ROW);
     uriMatcher.addURI("network.loki.provider.securesms", "thumb/*/#", THUMB_ROW);
     uriMatcher.addURI("network.loki.provider.securesms", "sticker/#", STICKER_ROW);
-    uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
-    uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
     uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);
   }
 
@@ -52,7 +49,6 @@ public class PartAuthority {
       switch (match) {
       case PART_ROW:       return DatabaseFactory.getAttachmentDatabase(context).getAttachmentStream(new PartUriParser(uri).getPartId(), 0);
       case THUMB_ROW:      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
-      case PERSISTENT_ROW: return DeprecatedPersistentBlobProvider.getInstance(context).getStream(context, ContentUris.parseId(uri));
       case BLOB_ROW:       return BlobProvider.getInstance().getStream(context, uri);
       default:             return context.getContentResolver().openInputStream(uri);
       }
@@ -71,8 +67,6 @@ public class PartAuthority {
 
       if (attachment != null) return attachment.getFileName();
       else                    return null;
-    case PERSISTENT_ROW:
-      return DeprecatedPersistentBlobProvider.getFileName(context, uri);
     case BLOB_ROW:
       return BlobProvider.getFileName(uri);
     default:
@@ -90,8 +84,6 @@ public class PartAuthority {
 
         if (attachment != null) return attachment.getSize();
         else                    return null;
-      case PERSISTENT_ROW:
-        return DeprecatedPersistentBlobProvider.getFileSize(context, uri);
       case BLOB_ROW:
         return BlobProvider.getFileSize(uri);
       default:
@@ -109,8 +101,6 @@ public class PartAuthority {
 
         if (attachment != null) return attachment.getContentType();
         else                    return null;
-      case PERSISTENT_ROW:
-        return DeprecatedPersistentBlobProvider.getMimeType(context, uri);
       case BLOB_ROW:
         return BlobProvider.getMimeType(uri);
       default:
@@ -131,10 +121,6 @@ public class PartAuthority {
   public static Uri getAttachmentThumbnailUri(AttachmentId attachmentId) {
     Uri uri = Uri.withAppendedPath(THUMB_CONTENT_URI, String.valueOf(attachmentId.getUniqueId()));
     return ContentUris.withAppendedId(uri, attachmentId.getRowId());
-  }
-
-  public static Uri getStickerUri(long id) {
-    return ContentUris.withAppendedId(STICKER_CONTENT_URI, id);
   }
 
   public static boolean isLocalUri(final @NonNull Uri uri) {

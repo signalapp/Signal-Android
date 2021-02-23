@@ -81,7 +81,6 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -144,7 +143,6 @@ public class ConversationFragment extends Fragment
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
-  private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
@@ -253,7 +251,6 @@ public class ConversationFragment extends Fragment
     this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     this.startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
     this.firstLoad         = true;
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient, threadId);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);

@@ -134,13 +134,6 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <ViewStub
-                android:id="@+id/group_share_profile_view_stub"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inflatedId="@+id/group_share_profile_view"
-                android:layout="@layout/conversation_activity_group_share_profile_stub" />
-
             <FrameLayout
                 android:id="@+id/fragment_content"
                 android:layout_width="match_parent"

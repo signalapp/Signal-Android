@@ -122,15 +122,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
         TextSecurePreferences.removeNotificationRingtone(getContext());
       } else {
         uri = uri == null ? Uri.EMPTY : uri;
-        NotificationChannels.updateMessageRingtone(getContext(), uri );
+        NotificationChannels.updateMessageRingtone(getContext(), uri);
         TextSecurePreferences.setNotificationRingtone(getContext(), uri.toString());
       }
 
       initializeRingtoneSummary(findPreference(TextSecurePreferences.RINGTONE_PREF));
-    } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-      Uri uri = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
-
-//      initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     }
   }
 

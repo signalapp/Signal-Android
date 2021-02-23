@@ -415,11 +415,6 @@
             android:exported="false"
             android:grantUriPermissions="true" />
         <provider
-            android:name="org.thoughtcrime.securesms.providers.MmsBodyProvider"
-            android:authorities="network.loki.provider.securesms.mms"
-            android:exported="false"
-            android:grantUriPermissions="true" />
-        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="network.loki.securesms.fileprovider"
             android:exported="false"
