@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
 
-import android.os.Build;
 import android.os.MemoryFile;
 import android.os.ParcelFileDescriptor;
 

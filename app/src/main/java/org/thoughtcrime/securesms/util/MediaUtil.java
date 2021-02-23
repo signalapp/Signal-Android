@@ -188,10 +188,6 @@ public class MediaUtil {
     return isVideoType(attachment.getContentType());
   }
 
-  public static boolean isVideo(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
-  }
-
   public static boolean isVcard(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(MediaTypes.VCARD);
   }
@@ -206,10 +202,6 @@ public class MediaUtil {
 
   public static boolean isFile(Attachment attachment) {
     return !isGif(attachment) && !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
-  }
-
-  public static boolean isTextType(String contentType) {
-    return (null != contentType) && contentType.startsWith("text/");
   }
 
   public static boolean isImageType(String contentType) {
