@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
@@ -78,7 +77,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException {
     Log.d("Loki", "Sending delivery receipt.");
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,

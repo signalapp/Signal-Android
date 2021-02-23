@@ -89,19 +89,6 @@ public abstract class PushSendJob extends SendJob {
     return new SignalServiceAddress(address.toString(), Optional.fromNullable(relay));
   }
 
-  protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
-    List<SignalServiceAttachment> attachments = new LinkedList<>();
-
-    for (final Attachment attachment : parts) {
-      SignalServiceAttachment converted = getAttachmentFor(attachment);
-      if (converted != null) {
-        attachments.add(converted);
-      }
-    }
-
-    return attachments;
-  }
-
   protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");

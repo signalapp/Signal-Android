@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
@@ -140,19 +139,6 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Sent message: " + templateMessageId + (hasSameDestination ? "" : "to a linked device."));
 
-    } catch (InsecureFallbackApprovalException e) {
-      warn(TAG, "Couldn't send message due to error: ", e);
-      if (messageId >= 0) {
-        database.markAsPendingInsecureSmsFallback(record.getId());
-        ApplicationContext.getInstance(context).messageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
-      }
-    } catch (UntrustedIdentityException e) {
-      warn(TAG, "Couldn't send message due to error: ", e);
-      if (messageId >= 0) {
-        database.addMismatchedIdentity(record.getId(), Address.fromSerialized(e.getE164Number()), e.getIdentityKey());
-        database.markAsSentFailed(record.getId());
-        database.markAsPush(record.getId());
-      }
     } catch (SnodeAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId >= 0) {
@@ -183,8 +169,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  private boolean deliver(SmsMessageRecord message)
-      throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException, SnodeAPI.Error
+  private boolean deliver(SmsMessageRecord message) throws RetryLaterException, SnodeAPI.Error
   {
     try {
       String                           userPublicKey      = TextSecurePreferences.getLocalNumber(context);

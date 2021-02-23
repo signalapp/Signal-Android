@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
-import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
@@ -33,7 +32,6 @@ import dagger.Provides;
                                      PushMediaSendJob.class,
                                      AttachmentDownloadJob.class,
                                      RequestGroupInfoJob.class,
-                                     PushGroupUpdateJob.class,
                                      AvatarDownloadJob.class,
                                      RetrieveProfileAvatarJob.class,
                                      SendReadReceiptJob.class,

@@ -24,10 +24,8 @@ import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPrevie
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
-import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
@@ -57,7 +55,6 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
@@ -67,7 +64,6 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.session.libsignal.libsignal.util.guava.Optional;
@@ -259,10 +255,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
 
       resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
-
-//      if (envelope.isPreKeySignalMessage()) {
-//        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-//      }
     } catch (ProtocolInvalidMessageException e) {
       Log.w(TAG, e);
       if (!isPushNotification) { // This can be triggered if a PN encrypted with an old session comes in after the user performed a session reset
@@ -678,12 +670,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       return;
     }
-
-    Recipient author = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
-
     long threadId;
 
-    author = getMessageMasterDestination(content.getSender());
+    Recipient author = getMessageMasterDestination(content.getSender());
     threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(author);
 
     if (threadId <= 0) {

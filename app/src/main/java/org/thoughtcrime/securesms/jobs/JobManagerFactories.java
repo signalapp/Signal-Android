@@ -40,7 +40,6 @@ public final class JobManagerFactories {
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
-      put(PushGroupUpdateJob.KEY,                    new PushGroupUpdateJob.Factory());
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());

@@ -66,10 +66,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   private long templateMessageId;
   private Address destination;
 
-  public PushMediaSendJob(long messageId, Address destination) {
-    this(messageId, messageId, destination);
-  }
-
   public PushMediaSendJob(long templateMessageId, long messageId, Address destination) {
     this(constructParameters(destination), templateMessageId, messageId, destination);
   }
@@ -197,12 +193,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Sent message: " + messageId);
 
-    } catch (InsecureFallbackApprovalException ifae) {
-      warn(TAG, "Failure", ifae);
-      if (messageId >= 0) {
-        database.markAsPendingInsecureSmsFallback(messageId);
-        notifyMediaMessageDeliveryFailed(context, messageId);
-      }
     } catch (SnodeAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId >= 0) {
@@ -228,7 +218,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   private boolean deliver(OutgoingMediaMessage message)
-      throws RetryLaterException, InsecureFallbackApprovalException, UndeliverableMessageException, SnodeAPI.Error
+      throws RetryLaterException, UndeliverableMessageException, SnodeAPI.Error
   {
     try {
       Recipient                                  recipient          = Recipient.from(context, destination, false);

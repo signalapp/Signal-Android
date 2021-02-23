@@ -15,9 +15,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 
-import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
-import org.session.libsignal.service.internal.push.SignalServiceProtos;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -35,10 +33,8 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
@@ -138,15 +134,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onPushSend()
-      throws IOException, MmsException, NoSuchMessageException, RetryLaterException
+      throws MmsException, NoSuchMessageException
   {
     MmsDatabase               database                   = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
     List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
-
-    String                    userPublicKey              = TextSecurePreferences.getLocalNumber(context);
-    SignalServiceAddress      localAddress               = new SignalServiceAddress(userPublicKey);
 
     if (database.isSent(messageId)) {
       log(TAG, "Message " + messageId + " was already sent. Ignoring.");
@@ -231,7 +224,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<Address> destinations)
-      throws IOException, UntrustedIdentityException, UndeliverableMessageException {
+      throws IOException {
 
     Address address = message.getRecipient().getAddress();
 
@@ -267,7 +260,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) throws IOException {
+  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) {
 
     SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
 

@@ -13,7 +13,6 @@ import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
@@ -84,7 +83,7 @@ public class SendReadReceiptJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException {
     if (!TextSecurePreferences.isReadReceiptsEnabled(context) || messageIds.isEmpty()) return;
 
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);

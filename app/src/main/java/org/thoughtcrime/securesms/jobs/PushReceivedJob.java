@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
