@@ -18,7 +18,7 @@ import org.session.libsession.utilities.Util;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.session.libsession.utilities.preferences.ProfileKeyUtil;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.PartProgressEvent;

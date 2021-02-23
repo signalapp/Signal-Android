@@ -27,7 +27,7 @@ import nl.komponents.kovenant.ui.alwaysUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
