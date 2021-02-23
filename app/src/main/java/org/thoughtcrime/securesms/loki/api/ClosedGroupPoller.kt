@@ -22,7 +22,7 @@ class ClosedGroupPoller private constructor(private val context: Context) {
 
         override fun run() {
             poll()
-            handler.postDelayed(this, ClosedGroupPoller.pollInterval)
+            handler.postDelayed(this, pollInterval)
         }
     }
 
@@ -40,24 +40,24 @@ class ClosedGroupPoller private constructor(private val context: Context) {
     // endregion
 
     // region Error
-    public class InsufficientSnodesException() : Exception("No snodes left to poll.")
-    public class PollingCanceledException() : Exception("Polling canceled.")
+    class InsufficientSnodesException() : Exception("No snodes left to poll.")
+    class PollingCanceledException() : Exception("Polling canceled.")
     // endregion
 
     // region Public API
-    public fun startIfNeeded() {
+    fun startIfNeeded() {
         if (isPolling) { return }
         isPolling = true
         task.run()
     }
 
-    public fun pollOnce(): List<Promise<Unit, Exception>> {
+    fun pollOnce(): List<Promise<Unit, Exception>> {
         if (isPolling) { return listOf() }
         isPolling = true
         return poll()
     }
 
-    public fun stopIfNeeded() {
+    fun stopIfNeeded() {
         isPolling = false
         handler.removeCallbacks(task)
     }

@@ -19,7 +19,6 @@ import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
-    var delegate: LokiThreadDatabaseDelegate? = null
 
     companion object {
         private val sessionResetTable = "loki_thread_session_reset_database"
@@ -82,25 +81,5 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     override fun removePublicChat(threadID: Long) {
         databaseHelper.writableDatabase.delete(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
-    }
-
-    fun addSessionRestoreDevice(threadID: Long, publicKey: String) {
-        val devices = getSessionRestoreDevices(threadID).toMutableSet()
-        if (devices.add(publicKey)) {
-            TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", devices.joinToString(","))
-            delegate?.handleSessionRestoreDevicesChanged(threadID)
-        }
-    }
-
-    fun getSessionRestoreDevices(threadID: Long): Set<String> {
-        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")!!
-            .split(",")
-            .filter { PublicKeyValidation.isValid(it) }
-            .toSet()
-    }
-
-    fun removeAllSessionRestoreDevices(threadID: Long) {
-        TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", "")
-        delegate?.handleSessionRestoreDevicesChanged(threadID)
     }
 }

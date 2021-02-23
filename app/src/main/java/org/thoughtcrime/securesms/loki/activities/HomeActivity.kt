@@ -28,11 +28,9 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -40,8 +38,6 @@ import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
-import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
 import org.session.libsession.utilities.Util
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.utilities.ThreadUtils

@@ -136,7 +136,6 @@ import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
@@ -144,7 +143,6 @@ import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
-import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -228,8 +226,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.Listener,
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
-               ConversationSearchBottomBar.EventListener,
-               LokiThreadDatabaseDelegate
+               ConversationSearchBottomBar.EventListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -311,9 +308,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ArrayList<Mention>            mentions                               = new ArrayList<>();
   private String                        oldText                                = "";
 
-  // Restoration
-  protected SessionRestoreBannerView sessionRestoreBannerView;
-
   private final PushCharacterCalculator characterCalculator = new PushCharacterCalculator();
 
   @Override
@@ -381,17 +375,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
         });
       }
-    });
-
-    sessionRestoreBannerView.setOnRestore(() -> {
-      updateSessionRestoreBanner();
-      return Unit.INSTANCE;
-    });
-    sessionRestoreBannerView.setOnDismiss(() -> {
-      // TODO: Maybe silence for x minutes?
-      DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this).removeAllSessionRestoreDevices(threadId);
-      updateSessionRestoreBanner();
-      return Unit.INSTANCE;
     });
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
@@ -483,11 +466,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
-    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
-
     inputPanel.setHint(getResources().getString(R.string.ConversationActivity_message));
-
-    updateSessionRestoreBanner();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
@@ -553,13 +532,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case PICK_AUDIO:
       setMedia(data.getData(), MediaType.AUDIO);
       break;
-//    case PICK_CONTACT:
-//      if (isSecureText && !isSmsForced()) {
-////        openContactShareEditor(data.getData());
-//      } else {
-//        addAttachmentContactInfo(data.getData());
-//      }
-//      break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
         setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
@@ -1322,16 +1294,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return future;
   }
 
-  private void updateSessionRestoreBanner() {
-    Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
-    if (devices.size() > 0) {
-      sessionRestoreBannerView.update(recipient);
-      sessionRestoreBannerView.show();
-    } else {
-      sessionRestoreBannerView.hide();
-    }
-  }
-
   private void initializeViews() {
     profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
@@ -1350,7 +1312,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     searchNav                              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionViewContainer = ViewUtil.findById(this, R.id.mentionCandidateSelectionViewContainer);
     mentionCandidateSelectionView          = ViewUtil.findById(this, R.id.userSelectionView);
-    sessionRestoreBannerView               = ViewUtil.findById(this, R.id.sessionRestoreBannerView);
     messageStatusProgressBar               = ViewUtil.findById(this, R.id.messageStatusProgressBar);
     muteIndicatorImageView                 = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     subtitleTextView                       = ViewUtil.findById(this, R.id.subtitleTextView);
@@ -1823,13 +1784,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentManager.cleanup();
 
     updateLinkPreviewState();
-  }
-
-  @Override
-  public void handleSessionRestoreDevicesChanged(long threadID) {
-    if (threadID == this.threadId) {
-      runOnUiThread(this::updateSessionRestoreBanner);
-    }
   }
 
   private void sendMessage() {

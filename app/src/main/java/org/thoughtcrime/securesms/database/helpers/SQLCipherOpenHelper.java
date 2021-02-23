@@ -251,7 +251,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "SmsSendJob",
                 "SmsSentJob",
                 "SmsReceiveJob",
-                "PushGroupUpdateJob");
+                "PushGroupUpdateJob",
+                "ResetThreadSessionJob");
       }
 
       db.setTransactionSuccessful();

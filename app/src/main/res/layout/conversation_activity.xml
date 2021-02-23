@@ -134,11 +134,6 @@
                 android:background="?android:dividerHorizontal"
                 android:elevation="1dp" />
 
-            <org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView
-                android:id="@+id/sessionRestoreBannerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <ViewStub
                 android:id="@+id/group_share_profile_view_stub"
                 android:layout_width="match_parent"
