@@ -482,8 +482,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     markLastSeen();
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
-
-    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(null);
   }
 
   @Override
