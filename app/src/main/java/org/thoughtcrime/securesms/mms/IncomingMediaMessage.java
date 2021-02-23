@@ -7,12 +7,10 @@ import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
-import org.thoughtcrime.securesms.ApplicationContext;
 
 import java.util.Collections;
 import java.util.LinkedList;

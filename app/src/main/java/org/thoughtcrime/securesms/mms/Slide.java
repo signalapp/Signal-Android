@@ -29,7 +29,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.utilities.Util;
 
 import java.security.SecureRandom;
@@ -113,8 +112,6 @@ public abstract class Slide {
     return false;
   }
 
-  public boolean hasSticker() { return false; }
-
   public boolean hasVideo() {
     return false;
   }
@@ -167,7 +164,6 @@ public abstract class Slide {
                                                                    boolean        hasThumbnail,
                                                          @Nullable String         fileName,
                                                          @Nullable String         caption,
-                                                         @Nullable StickerLocator stickerLocator,
                                                                    boolean        voiceNote,
                                                                    boolean        quote)
   {
@@ -184,8 +180,7 @@ public abstract class Slide {
                              fastPreflightId,
                              voiceNote,
                              quote,
-                             caption,
-                             stickerLocator);
+                             caption);
   }
 
   @Override

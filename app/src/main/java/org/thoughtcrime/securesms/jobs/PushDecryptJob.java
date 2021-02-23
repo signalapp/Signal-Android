@@ -375,10 +375,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (insertResult.isPresent()) {
           List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
-          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-          List<DatabaseAttachment> dbAttachments      = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-          forceStickerDownloadIfNecessary(stickerAttachments);
+          List<DatabaseAttachment> dbAttachments      = Stream.of(allAttachments).toList();
 
           for (DatabaseAttachment attachment : dbAttachments) {
             ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
@@ -419,10 +416,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (insertResult.isPresent()) {
           List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
-          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-          List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-          forceStickerDownloadIfNecessary(stickerAttachments);
+          List<DatabaseAttachment> attachments        = Stream.of(allAttachments).toList();
 
           for (DatabaseAttachment attachment : attachments) {
             ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
@@ -863,25 +857,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void resetRecipientToPush(@NonNull Recipient recipient) {
     if (recipient.isForceSmsSelection()) {
       DatabaseFactory.getRecipientDatabase(context).setForceSmsSelection(recipient, false);
-    }
-  }
-
-  private void forceStickerDownloadIfNecessary(List<DatabaseAttachment> stickerAttachments) {
-    if (stickerAttachments.isEmpty()) return;
-
-    DatabaseAttachment stickerAttachment = stickerAttachments.get(0);
-
-    if (stickerAttachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-      AttachmentDownloadJob downloadJob = new AttachmentDownloadJob(messageId, stickerAttachment.getAttachmentId(), true);
-
-      try {
-        ApplicationContext.getInstance(context).injectDependencies(downloadJob);
-        downloadJob.setContext(context);
-        downloadJob.doWork();
-      } catch (Exception e) {
-        Log.w(TAG, "Failed to download sticker inline. Scheduling.");
-        ApplicationContext.getInstance(context).getJobManager().add(downloadJob);
-      }
     }
   }
 

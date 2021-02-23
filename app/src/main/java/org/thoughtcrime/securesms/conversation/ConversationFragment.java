@@ -94,7 +94,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
@@ -384,8 +383,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
                                                                   messageRecord.isMms()                                       &&
                                                                   !messageRecord.isMmsNotification()                          &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
+                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
@@ -653,8 +651,7 @@ public class ConversationFragment extends Fragment
         boolean          isAlbum      = mediaMessage.containsMediaSlide()                      &&
                                         mediaMessage.getSlideDeck().getSlides().size() > 1     &&
                                         mediaMessage.getSlideDeck().getAudioSlide() == null    &&
-                                        mediaMessage.getSlideDeck().getDocumentSlide() == null &&
-                                        mediaMessage.getSlideDeck().getStickerSlide() == null;
+                                        mediaMessage.getSlideDeck().getDocumentSlide() == null;
 
         if (isAlbum) {
           ArrayList<Media> mediaList   = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
@@ -685,10 +682,6 @@ public class ConversationFragment extends Fragment
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
           composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
           composeIntent.setType(slide.getContentType());
-
-          if (slide.hasSticker()) {
-            composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
-          }
         }
 
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {

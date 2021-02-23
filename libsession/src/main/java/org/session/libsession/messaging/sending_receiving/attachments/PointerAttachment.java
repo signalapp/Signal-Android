@@ -20,9 +20,9 @@ public class PointerAttachment extends Attachment {
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                            int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator, String url)
+                            int width, int height, @Nullable String caption, String url)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator, url);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, url);
   }
 
   @Nullable
@@ -87,14 +87,10 @@ public class PointerAttachment extends Attachment {
   }
 
   public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer) {
-    return forPointer(pointer, null, null);
+    return forPointer(pointer, null);
   }
 
-  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable StickerLocator stickerLocator) {
-    return forPointer(pointer, stickerLocator, null);
-  }
-
-  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable StickerLocator stickerLocator, @Nullable String fastPreflightId) {
+  public static Optional<Attachment> forPointer(Optional<SignalServiceAttachment> pointer, @Nullable String fastPreflightId) {
     if (!pointer.isPresent() || !pointer.get().isPointer()) return Optional.absent();
 
     String encodedKey = null;
@@ -115,7 +111,6 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getWidth(),
                                       pointer.get().asPointer().getHeight(),
                                       pointer.get().asPointer().getCaption().orNull(),
-                                      stickerLocator,
                                       pointer.get().asPointer().getUrl()));
 
   }
@@ -134,7 +129,6 @@ public class PointerAttachment extends Attachment {
             pointer.getWidth(),
             pointer.getHeight(),
             pointer.getCaption(),
-            null,
             pointer.getUrl()));
   }
 
@@ -154,7 +148,6 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null ? thumbnail.getWidth() : 0,
                                              thumbnail != null ? thumbnail.getHeight() : 0,
                                              thumbnail != null ? thumbnail.getCaption() : null,
-                                             null,
                                              thumbnail != null ? thumbnail.getUrl() : ""));
   }
 
@@ -174,7 +167,6 @@ public class PointerAttachment extends Attachment {
             thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
             thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
             thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
-            null,
             thumbnail != null ? thumbnail.asPointer().getUrl() : ""));
   }
 }

@@ -26,10 +26,6 @@ public abstract class MediaConstraints {
     return new PushMediaConstraints();
   }
 
-  public static MediaConstraints getMmsMediaConstraints(int subscriptionId) {
-    return new MmsMediaConstraints(subscriptionId);
-  }
-
   public abstract int getImageMaxWidth(Context context);
   public abstract int getImageMaxHeight(Context context);
   public abstract int getImageMaxSize(Context context);

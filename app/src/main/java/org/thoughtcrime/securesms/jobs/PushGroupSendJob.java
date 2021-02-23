@@ -238,7 +238,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     if (message.isGroup() && address.isClosedGroup()) {
       SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
       String                                     groupId            = address.toGroupString();
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
       List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
       // Loki - Only send GroupUpdate or GroupQuit messages to closed groups
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
@@ -269,7 +269,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     Optional<Quote>                            quote              = getQuoteFor(message);
     List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
     List<Preview>                              previews           = getPreviewsFor(message);
-    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
     List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
 
     SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupId), groupType);

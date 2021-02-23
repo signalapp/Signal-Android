@@ -159,7 +159,6 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
@@ -170,7 +169,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
@@ -185,7 +183,6 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.views.Stub;
@@ -1157,12 +1154,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Uri            draftMedia     = getIntent().getData();
     final MediaType      draftMediaType = MediaType.from(getIntent().getType());
     final List<Media>    mediaList      = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
-    final StickerLocator stickerLocator = getIntent().getParcelableExtra(STICKER_EXTRA);
-
-    if (stickerLocator != null && draftMedia != null) {
-      sendSticker(stickerLocator, draftMedia, 0, true);
-      return new SettableFuture<>(false);
-    }
 
     if (!Util.isEmpty(mediaList)) {
       Intent sendIntent = MediaSendActivity.buildEditorIntent(this, mediaList, recipient, draftText);
@@ -2083,19 +2074,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onCursorPositionChanged(int start, int end) {
     linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), start, end);
-  }
-
-  private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
-    long            expiresIn      = recipient.getExpireMessages() * 1000L;
-    int             subscriptionId = -1;
-    boolean         initiating     = threadId == -1;
-    SlideDeck       slideDeck      = new SlideDeck();
-    Slide           stickerSlide   = new StickerSlide(this, uri, size, stickerLocator);
-
-    slideDeck.addSlide(stickerSlide);
-
-    sendMediaMessage(false, "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), expiresIn, subscriptionId, initiating, clearCompose);
-
   }
 
   private void silentlySetComposeText(String text) {

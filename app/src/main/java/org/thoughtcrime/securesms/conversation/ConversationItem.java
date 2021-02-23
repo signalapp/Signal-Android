@@ -398,15 +398,10 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
 
-  private boolean hasSticker(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() != null;
-  }
-
   private boolean hasOnlyThumbnail(MessageRecord messageRecord) {
     return hasThumbnail(messageRecord)      &&
            !hasAudio(messageRecord)         &&
-           !hasDocument(messageRecord)      &&
-           !hasSticker(messageRecord);
+           !hasDocument(messageRecord);
   }
 
   private boolean hasOnlyDocument(MessageRecord messageRecord) {
@@ -414,7 +409,6 @@ public class ConversationItem extends LinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            hasDocument(messageRecord)            &&
-           !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
 
@@ -423,7 +417,6 @@ public class ConversationItem extends LinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            !hasDocument(messageRecord)           &&
-           !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
 
@@ -592,26 +585,6 @@ public class ConversationItem extends LinearLayout
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
-
-      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-      footer.setVisibility(VISIBLE);
-    } else if (hasSticker(messageRecord) && isCaptionlessMms(messageRecord)) {
-      bodyBubble.setBackgroundColor(Color.TRANSPARENT);
-
-      stickerStub.get().setVisibility(View.VISIBLE);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
-      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
-      if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
-
-      //noinspection ConstantConditions
-      stickerStub.get().setSticker(glideRequests, ((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide());
-      stickerStub.get().setThumbnailClickListener(new StickerClickListener());
-      stickerStub.get().setDownloadClickListener(downloadClickListener);
-      stickerStub.get().setOnLongClickListener(passthroughClickListener);
-      stickerStub.get().setOnClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -870,9 +843,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
-    if (hasSticker(messageRecord)) {
-      return stickerFooter;
-    } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+    if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
     } else {
       return footer;
@@ -916,13 +887,8 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord) {
-    if (hasSticker(messageRecord)) {
-      groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-    } else {
-      groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-    }
+    groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
+    groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
   }
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {

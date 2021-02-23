@@ -225,7 +225,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       String                                     userPublicKey      = TextSecurePreferences.getLocalNumber(context);
       SignalServiceAddress                       address            = getPushAddress(recipient.getAddress());
       SignalServiceAddress                       localAddress       = new SignalServiceAddress(userPublicKey);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
       Optional<SignalServiceDataMessage.Quote>   quote              = getQuoteFor(message);

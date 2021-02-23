@@ -94,8 +94,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
         MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
         Attachment scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
         SignalServiceAttachment localAttachment = getAttachmentFor(scaledAttachment);
-        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
-        attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), false, new SignalServiceAddress(destination.serialize()));
+        attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), databaseAttachment.getFastPreflightId()).get();
       } catch (Exception e) {
         // On any error make sure we mark the related DB record's transfer state as failed.
         database.updateAttachmentAfterUploadFailed(databaseAttachment.getAttachmentId());

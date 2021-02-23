@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;

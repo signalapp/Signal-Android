@@ -200,7 +200,6 @@ public class LinkPreviewRepository implements InjectableType {
             null,
             false,
             false,
-            null,
             null));
 
   }
