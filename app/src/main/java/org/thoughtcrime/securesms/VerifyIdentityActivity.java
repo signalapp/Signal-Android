@@ -60,6 +60,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.camera.CameraView;
@@ -79,7 +80,6 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -617,36 +617,35 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, final boolean isChecked) {
-      new AsyncTask<Recipient, Void, Void>() {
-        @Override
-        protected Void doInBackground(Recipient... params) {
-          try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
-            if (isChecked) {
-              Log.i(TAG, "Saving identity: " + params[0].getId());
-              DatabaseFactory.getIdentityDatabase(getActivity())
-                             .saveIdentity(params[0].getId(),
-                                           remoteIdentity,
-                                           VerifiedStatus.VERIFIED, false,
-                                           System.currentTimeMillis(), true);
-            } else {
-              DatabaseFactory.getIdentityDatabase(getActivity())
-                             .setVerified(params[0].getId(),
-                                          remoteIdentity,
-                                          VerifiedStatus.DEFAULT);
-            }
+      final Recipient   recipient   = this.recipient.get();
+      final RecipientId recipientId = recipient.getId();
 
-            ApplicationDependencies.getJobManager()
-                                   .add(new MultiDeviceVerifiedUpdateJob(recipient.getId(),
-                                                                         remoteIdentity,
-                                                                         isChecked ? VerifiedStatus.VERIFIED :
-                                                                                     VerifiedStatus.DEFAULT));
-            StorageSyncHelper.scheduleSyncForDataChange();
-
-            IdentityUtil.markIdentityVerified(getActivity(), recipient.get(), isChecked, false);
+      SignalExecutors.BOUNDED.execute(() -> {
+        try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+          if (isChecked) {
+            Log.i(TAG, "Saving identity: " + recipientId);
+            DatabaseFactory.getIdentityDatabase(getActivity())
+                           .saveIdentity(recipientId,
+                                         remoteIdentity,
+                                         VerifiedStatus.VERIFIED, false,
+                                         System.currentTimeMillis(), true);
+          } else {
+            DatabaseFactory.getIdentityDatabase(getActivity())
+                           .setVerified(recipientId,
+                                        remoteIdentity,
+                                        VerifiedStatus.DEFAULT);
           }
-          return null;
+
+          ApplicationDependencies.getJobManager()
+                                 .add(new MultiDeviceVerifiedUpdateJob(recipientId,
+                                                                       remoteIdentity,
+                                                                       isChecked ? VerifiedStatus.VERIFIED
+                                                                                 : VerifiedStatus.DEFAULT));
+          StorageSyncHelper.scheduleSyncForDataChange();
+
+          IdentityUtil.markIdentityVerified(getActivity(), recipient, isChecked, false);
         }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient.get());
+      });
     }
   }
 
