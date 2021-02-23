@@ -21,6 +21,19 @@ message SignalServiceContentProto {
   }
 }
 
+message SignalServiceEnvelopeProto {
+  optional int32  type                     = 1;
+  optional string sourceUuid               = 2;
+  optional string sourceE164               = 3;
+  optional int32  deviceId                 = 4;
+  optional bytes  legacyMessage            = 5;
+  optional bytes  content                  = 6;
+  optional int64  timestamp                = 7;
+  optional int64  serverReceivedTimestamp  = 8;
+  optional int64  serverDeliveredTimestamp = 9;
+  optional string serverGuid               = 10;
+}
+
 message MetadataProto {
   optional AddressProto address                  = 1;
   optional int32        senderDevice             = 2;

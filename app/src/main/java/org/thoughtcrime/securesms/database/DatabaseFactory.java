@@ -107,6 +107,12 @@ public class DatabaseFactory {
     return getInstance(context).draftDatabase;
   }
 
+  /**
+   * @deprecated You probably shouldn't be using this anymore. It used to store encrypted envelopes,
+   *             but now it's skipped over in favor of other mechanisms. It's only accessible to
+   *             support old migrations and stuff.
+   */
+  @Deprecated
   public static PushDatabase getPushDatabase(Context context) {
     return getInstance(context).pushDatabase;
   }

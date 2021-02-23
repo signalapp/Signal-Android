@@ -277,15 +277,11 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
     boolean isReminder  = reminderCount > 0;
     Cursor  telcoCursor = null;
-    Cursor  pushCursor  = null;
 
     try {
       telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
-      pushCursor  = DatabaseFactory.getPushDatabase(context).getPending();
 
-      if ((telcoCursor == null || telcoCursor.isAfterLast()) &&
-          (pushCursor == null || pushCursor.isAfterLast()))
-      {
+      if (telcoCursor == null || telcoCursor.isAfterLast()) {
         NotificationCancellationHelper.cancelAllMessageNotifications(context);
         updateBadge(context, 0);
         clearReminder(context);
@@ -347,7 +343,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
       }
     } finally {
       if (telcoCursor != null) telcoCursor.close();
-      if (pushCursor != null)  pushCursor.close();
     }
   }
 

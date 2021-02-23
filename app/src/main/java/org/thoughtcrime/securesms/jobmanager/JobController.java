@@ -316,6 +316,10 @@ class JobController {
     return info.toString();
   }
 
+  synchronized boolean areQueuesEmpty(@NonNull Set<String> queueKeys) {
+    return jobStorage.areQueuesEmpty(queueKeys);
+  }
+
   @WorkerThread
   private boolean chainExceedsMaximumInstances(@NonNull List<List<Job>> chain) {
     if (chain.size() == 1 && chain.get(0).size() == 1) {

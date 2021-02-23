@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public interface JobStorage {
 
@@ -31,6 +33,9 @@ public interface JobStorage {
 
   @WorkerThread
   int getJobCountForFactoryAndQueue(@NonNull String factoryKey, @NonNull String queueKey);
+
+  @WorkerThread
+  boolean areQueuesEmpty(@NonNull Set<String> queueKeys);
 
   @WorkerThread
   void updateJobRunningState(@NonNull String id, boolean isRunning);

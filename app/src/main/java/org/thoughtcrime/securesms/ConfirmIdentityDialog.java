@@ -136,7 +136,6 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
         private void processIncomingMessageRecord(MessageRecord messageRecord) {
           try {
-            PushDatabase    pushDatabase = DatabaseFactory.getPushDatabase(getContext());
             MessageDatabase smsDatabase  = DatabaseFactory.getSmsDatabase(getContext());
 
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
@@ -155,9 +154,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
                                                                        0,
                                                                        null);
 
-            long pushId = pushDatabase.insert(envelope);
-
-            ApplicationDependencies.getJobManager().add(new PushDecryptMessageJob(getContext(), pushId, messageRecord.getId()));
+            ApplicationDependencies.getJobManager().add(new PushDecryptMessageJob(getContext(), envelope, messageRecord.getId()));
           } catch (IOException e) {
             throw new AssertionError(e);
           }

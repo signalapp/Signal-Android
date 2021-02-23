@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -172,6 +173,12 @@ public class FastJobStorage implements JobStorage {
                        .filter(j -> factoryKey.equals(j.getFactoryKey()) &&
                                     queueKey.equals(j.getQueueKey()))
                        .count();
+  }
+
+  @Override
+  public boolean areQueuesEmpty(@NonNull Set<String> queueKeys) {
+    return Stream.of(jobs)
+                 .noneMatch(j -> j.getQueueKey() != null && queueKeys.contains(j.getQueueKey()));
   }
 
   @Override

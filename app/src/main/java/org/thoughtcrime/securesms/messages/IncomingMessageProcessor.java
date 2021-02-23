@@ -7,17 +7,35 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.crypto.DatabaseSessionLock;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.groups.BadGroupIdException;
+import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
+import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
+import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.SetUtil;
+import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.SignalSessionLock;
+import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -52,13 +70,11 @@ public class IncomingMessageProcessor {
   public class Processor implements Closeable {
 
     private final Context           context;
-    private final PushDatabase      pushDatabase;
     private final MmsSmsDatabase    mmsSmsDatabase;
     private final JobManager        jobManager;
 
     private Processor(@NonNull Context context) {
       this.context           = context;
-      this.pushDatabase      = DatabaseFactory.getPushDatabase(context);
       this.mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
       this.jobManager        = ApplicationDependencies.getJobManager();
     }
@@ -84,26 +100,99 @@ public class IncomingMessageProcessor {
     }
 
     private @Nullable String processMessage(@NonNull SignalServiceEnvelope envelope) {
-      Log.i(TAG, "Received message " + envelope.getTimestamp() + ". Inserting in PushDatabase.");
+      Log.i(TAG, "Received message " + envelope.getTimestamp() + ".");
 
-      long id  = pushDatabase.insert(envelope);
+      Stopwatch stopwatch = new Stopwatch("message");
 
-      if (id > 0) {
-        PushDecryptMessageJob job = new PushDecryptMessageJob(context, id);
-
+      if (needsToEnqueueDecryption()) {
+        Log.d(TAG, "Need to enqueue decryption.");
+        PushDecryptMessageJob job = new PushDecryptMessageJob(context, envelope);
         jobManager.add(job);
-
         return job.getId();
-      } else {
-        Log.w(TAG, "The envelope was already present in the PushDatabase.");
-        return null;
       }
+
+      stopwatch.split("queue-check");
+
+      try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+        DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
+        stopwatch.split("decrypt");
+
+        for (Job job : result.getJobs()) {
+          jobManager.add(job);
+        }
+
+        stopwatch.split("jobs");
+
+        if (needsToEnqueueProcessing(result)) {
+          Log.d(TAG, "Need to enqueue processing.");
+          jobManager.add(new PushProcessMessageJob(result.getState(), result.getContent(), result.getException(), -1, envelope.getTimestamp()));
+          return null;
+        }
+
+        stopwatch.split("group-check");
+
+        try {
+          MessageContentProcessor processor = new MessageContentProcessor(context);
+          processor.process(result.getState(), result.getContent(), result.getException(), envelope.getTimestamp(), -1);
+          return null;
+        } catch (IOException | GroupChangeBusyException e) {
+          Log.w(TAG, "Exception during message processing.", e);
+          jobManager.add(new PushProcessMessageJob(result.getState(), result.getContent(), result.getException(), -1, envelope.getTimestamp()));
+        }
+      } finally {
+        stopwatch.split("process");
+        stopwatch.stop(TAG);
+      }
+
+      return null;
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, "Received server receipt for " + envelope.getTimestamp());
       mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.externalHighTrustPush(context, envelope.getSourceAddress()).getId(), envelope.getTimestamp()),
                                                    System.currentTimeMillis());
+    }
+
+    private boolean needsToEnqueueDecryption() {
+      return !jobManager.areQueuesEmpty(SetUtil.newHashSet(Job.Parameters.MIGRATION_QUEUE_KEY, PushDecryptMessageJob.QUEUE)) ||
+             !IdentityKeyUtil.hasIdentityKey(context)                                                                        ||
+             TextSecurePreferences.getNeedsSqlCipherMigration(context);
+    }
+
+    private boolean needsToEnqueueProcessing(@NonNull DecryptionResult result) {
+      SignalServiceGroupContext groupContext = GroupUtil.getGroupContextIfPresent(result.getContent());
+
+      if (groupContext != null) {
+        try {
+          GroupId groupId = GroupUtil.idFromGroupContext(groupContext);
+
+          if (groupId.isV2()) {
+            String        queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(context, groupId).getId());
+            GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+
+            return !jobManager.isQueueEmpty(queueName)                                                                   ||
+                   groupContext.getGroupV2().get().getRevision() > groupDatabase.getGroupV2Revision(groupId.requireV2()) ||
+                   groupDatabase.getGroupV1ByExpectedV2(groupId.requireV2()).isPresent();
+          } else {
+            return false;
+          }
+        } catch (BadGroupIdException e) {
+          Log.w(TAG, "Bad group ID!");
+          return false;
+        }
+      } else if (result.getContent() != null) {
+        RecipientId recipientId = RecipientId.fromHighTrust(result.getContent().getSender());
+        String      queueKey    = PushProcessMessageJob.getQueueName(recipientId);
+
+        return !jobManager.isQueueEmpty(queueKey);
+      } else if (result.getException() != null) {
+        RecipientId recipientId = Recipient.external(context, result.getException().getSender()).getId();
+        String      queueKey    = PushProcessMessageJob.getQueueName(recipientId);
+
+        return !jobManager.isQueueEmpty(queueKey);
+      } else {
+        return false;
+      }
     }
 
     @Override

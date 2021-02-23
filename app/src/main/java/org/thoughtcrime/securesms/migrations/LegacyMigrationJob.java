@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.File;
 import java.util.List;
@@ -290,10 +291,10 @@ public class LegacyMigrationJob extends MigrationJob {
     PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(context);
     JobManager   jobManager   = ApplicationDependencies.getJobManager();
 
-    try (Cursor pushReader = pushDatabase.getPending()) {
-      while (pushReader != null && pushReader.moveToNext()) {
-        jobManager.add(new PushDecryptMessageJob(context,
-                                                 pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+    try (PushDatabase.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
+      SignalServiceEnvelope envelope;
+      while ((envelope = pushReader.getNext()) != null) {
+        jobManager.add(new PushDecryptMessageJob(context, envelope));
       }
     }
   }

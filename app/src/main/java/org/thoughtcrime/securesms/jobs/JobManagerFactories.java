@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.migrations.PushDecryptMessageJobEnvelopeMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.PushProcessMessageQueueJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
@@ -212,6 +213,7 @@ public final class JobManagerFactories {
                          new RecipientIdFollowUpJobMigration2(),
                          new SendReadReceiptsJobMigration(DatabaseFactory.getMmsSmsDatabase(application)),
                          new PushProcessMessageQueueJobMigration(application),
-                         new RetrieveProfileJobMigration());
+                         new RetrieveProfileJobMigration(),
+                         new PushDecryptMessageJobEnvelopeMigration(application));
   }
 }

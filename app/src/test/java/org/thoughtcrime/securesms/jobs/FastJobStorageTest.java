@@ -26,6 +26,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.thoughtcrime.securesms.testutil.TestHelpers.setOf;
 
 public class FastJobStorageTest {
 
@@ -555,6 +556,35 @@ public class FastJobStorageTest {
     assertEquals(1, subject.getJobCountForFactoryAndQueue("f1", "q1"));
     assertEquals(0, subject.getJobCountForFactoryAndQueue("f2", "q1"));
     assertEquals(0, subject.getJobCountForFactoryAndQueue("f1", "does-not-exist"));
+  }
+
+  @Test
+  public void areQueuesEmpty_allNonEmpty() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    assertFalse(subject.areQueuesEmpty(setOf("q1")));
+    assertFalse(subject.areQueuesEmpty(setOf("q1", "q2")));
+  }
+
+  @Test
+  public void areQueuesEmpty_mixedEmpty() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    assertFalse(subject.areQueuesEmpty(setOf("q1", "q5")));
+  }
+
+  @Test
+  public void areQueuesEmpty_queueDoesNotExist() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    assertTrue(subject.areQueuesEmpty(setOf("q4")));
+    assertTrue(subject.areQueuesEmpty(setOf("q4", "q5")));
   }
 
   private JobDatabase noopDatabase() {
