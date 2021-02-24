@@ -49,6 +49,14 @@ subprojects {
             }
         }
     }
+
+    if (project.name != "Signal-Android" && project.name != "libsignal-service" && project.name != "lintchecks" && !project.name.endsWith("-app")) {
+        task qa {
+            group 'Verification'
+            description 'Quality Assurance. Run before pushing'
+            dependsOn 'testReleaseUnitTest', 'lintRelease'
+        }
+    }
 }
 
 task qa {

@@ -426,7 +426,7 @@ public class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      RecipientId conversationRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndex(SearchDatabase.CONVERSATION_RECIPIENT)));
+      RecipientId conversationRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, SearchDatabase.CONVERSATION_RECIPIENT));
       RecipientId messageRecipientId      = RecipientId.from(CursorUtil.requireLong(cursor, SearchDatabase.MESSAGE_RECIPIENT));
       Recipient   conversationRecipient   = Recipient.live(conversationRecipientId).get();
       Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();

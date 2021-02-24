@@ -322,10 +322,10 @@ public class AttachmentDatabase extends Database {
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        deleteAttachmentOnDisk(cursor.getString(cursor.getColumnIndex(DATA)),
-                               cursor.getString(cursor.getColumnIndex(CONTENT_TYPE)),
-                               new AttachmentId(cursor.getLong(cursor.getColumnIndex(ROW_ID)),
-                                                cursor.getLong(cursor.getColumnIndex(UNIQUE_ID))));
+        deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
+                               CursorUtil.requireString(cursor, CONTENT_TYPE),
+                               new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
+                                                CursorUtil.requireLong(cursor, UNIQUE_ID)));
       }
     } finally {
       if (cursor != null)
@@ -374,10 +374,10 @@ public class AttachmentDatabase extends Database {
           new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        deleteAttachmentOnDisk(cursor.getString(cursor.getColumnIndex(DATA)),
-                               cursor.getString(cursor.getColumnIndex(CONTENT_TYPE)),
-                               new AttachmentId(cursor.getLong(cursor.getColumnIndex(ROW_ID)),
-                                                cursor.getLong(cursor.getColumnIndex(UNIQUE_ID))));
+        deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
+                               CursorUtil.requireString(cursor, CONTENT_TYPE),
+                               new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
+                                                CursorUtil.requireLong(cursor, UNIQUE_ID)));
       }
     } finally {
       if (cursor != null)
@@ -423,8 +423,8 @@ public class AttachmentDatabase extends Database {
         Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
         return;
       }
-      String data        = cursor.getString(cursor.getColumnIndex(DATA));
-      String contentType = cursor.getString(cursor.getColumnIndex(CONTENT_TYPE));
+      String data        = CursorUtil.requireString(cursor, DATA);
+      String contentType = CursorUtil.requireString(cursor, CONTENT_TYPE);
 
       database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
       deleteAttachmentOnDisk(data, contentType, id);
@@ -1083,9 +1083,9 @@ public class AttachmentDatabase extends Database {
       if (cursor == null || !cursor.moveToFirst()) return Optional.absent();
 
       if (cursor.getCount() > 0) {
-        DataInfo dataInfo = new DataInfo(new File(cursor.getString(cursor.getColumnIndex(DATA))),
-                                         cursor.getLong(cursor.getColumnIndex(SIZE)),
-                                         cursor.getBlob(cursor.getColumnIndex(DATA_RANDOM)),
+        DataInfo dataInfo = new DataInfo(new File(CursorUtil.requireString(cursor, DATA)),
+                                         CursorUtil.requireLong(cursor, SIZE),
+                                         CursorUtil.requireBlob(cursor, DATA_RANDOM),
                                          hash);
         return Optional.of(dataInfo);
       } else {

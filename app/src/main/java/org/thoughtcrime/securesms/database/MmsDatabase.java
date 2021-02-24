@@ -397,8 +397,8 @@ public class MmsDatabase extends MessageDatabase {
 
       List<MarkedMessageInfo> results = new ArrayList<>(cursor.getCount());
       while (cursor.moveToNext()) {
-        RecipientId    recipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
-        long           dateSent      = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+        RecipientId    recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+        long           dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId  syncMessageId = new SyncMessageId(recipientId, dateSent);
 
         results.add(new MarkedMessageInfo(threadId, syncMessageId, null));
@@ -423,9 +423,9 @@ public class MmsDatabase extends MessageDatabase {
 
       long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
       if (Types.isSecureType(type) && Types.isInboxType(type)) {
-        long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
-        RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
-        long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+        long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
+        RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+        long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
 
         MarkedMessageInfo result = new MarkedMessageInfo(threadId, syncMessageId, null);
@@ -559,7 +559,7 @@ public class MmsDatabase extends MessageDatabase {
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, orderBy, limit)) {
       if (cursor.moveToFirst()) {
-        return cursor.getLong(cursor.getColumnIndex(DATE_SENT));
+        return CursorUtil.requireLong(cursor, DATE_SENT);
       }
     }
 
@@ -929,12 +929,12 @@ public class MmsDatabase extends MessageDatabase {
 
       while(cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
-          long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
-          RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
-          long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
-          long           messageId      = cursor.getLong(cursor.getColumnIndex(ID));
-          long           expiresIn      = cursor.getLong(cursor.getColumnIndex(EXPIRES_IN));
-          long           expireStarted  = cursor.getLong(cursor.getColumnIndex(EXPIRE_STARTED));
+          long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
+          RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+          long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
+          long           messageId      = CursorUtil.requireLong(cursor, ID);
+          long           expiresIn      = CursorUtil.requireLong(cursor, EXPIRES_IN);
+          long           expireStarted  = CursorUtil.requireLong(cursor, EXPIRE_STARTED);
           SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
           ExpirationInfo expirationInfo = new ExpirationInfo(messageId, expiresIn, expireStarted, true);
 

@@ -202,7 +202,7 @@ public class SmsDatabase extends MessageDatabase {
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, limit)) {
       if (cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
+        return RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
       }
     }
 
@@ -594,12 +594,12 @@ public class SmsDatabase extends MessageDatabase {
 
       while (cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(CursorUtil.requireLong(cursor, TYPE))) {
-          long           threadId       = cursor.getLong(cursor.getColumnIndex(THREAD_ID));
-          RecipientId    recipientId    = RecipientId.from(cursor.getLong(cursor.getColumnIndex(RECIPIENT_ID)));
-          long           dateSent       = cursor.getLong(cursor.getColumnIndex(DATE_SENT));
-          long           messageId      = cursor.getLong(cursor.getColumnIndex(ID));
-          long           expiresIn      = cursor.getLong(cursor.getColumnIndex(EXPIRES_IN));
-          long           expireStarted  = cursor.getLong(cursor.getColumnIndex(EXPIRE_STARTED));
+          long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
+          RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
+          long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
+          long           messageId      = CursorUtil.requireLong(cursor, ID);
+          long           expiresIn      = CursorUtil.requireLong(cursor, EXPIRES_IN);
+          long           expireStarted  = CursorUtil.requireLong(cursor, EXPIRE_STARTED);
           SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
           ExpirationInfo expirationInfo = new ExpirationInfo(messageId, expiresIn, expireStarted, false);
 
