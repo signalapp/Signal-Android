@@ -16,11 +16,6 @@ object SessionMetaProtocol {
 
     private val timestamps = mutableSetOf<Long>()
 
-    @JvmStatic
-    fun dropFromTimestampCacheIfNeeded(timestamp: Long) {
-        timestamps.remove(timestamp)
-    }
-
     fun getTimestamps(): Set<Long> {
         return timestamps
     }
@@ -73,9 +68,6 @@ object SessionMetaProtocol {
         }
     }
 
-    /**
-     * Should be invoked for the recipient's master device.
-     */
     @JvmStatic
     fun canUserReplyToNotification(recipient: Recipient): Boolean {
         // TODO return !recipient.address.isRSSFeed
@@ -91,17 +83,11 @@ object SessionMetaProtocol {
         return hasBody || hasAttachment || hasLinkPreview
     }
 
-    /**
-     * Should be invoked for the recipient's master device.
-     */
     @JvmStatic
     fun shouldSendReadReceipt(address: Address): Boolean {
         return !address.isGroup
     }
 
-    /**
-     * Should be invoked for the recipient's master device.
-     */
     @JvmStatic
     fun shouldSendTypingIndicator(address: Address): Boolean {
         return !address.isGroup

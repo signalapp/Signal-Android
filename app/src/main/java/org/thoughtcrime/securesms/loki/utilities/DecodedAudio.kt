@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.utilities.audio
+package org.thoughtcrime.securesms.loki.utilities
 
 import android.media.AudioFormat
 import android.media.MediaCodec

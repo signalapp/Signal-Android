@@ -12,7 +12,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.loki.utilities.audio.DecodedAudio
+import org.thoughtcrime.securesms.loki.utilities.DecodedAudio
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.InputStream
 import java.lang.IllegalStateException
