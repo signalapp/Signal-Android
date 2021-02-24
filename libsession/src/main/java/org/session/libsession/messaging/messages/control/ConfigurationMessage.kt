@@ -102,7 +102,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         configurationProto.addAllClosedGroups(closedGroups.mapNotNull { it.toProto() })
         configurationProto.addAllOpenGroups(openGroups)
         configurationProto.displayName = displayName
-        configurationProto.profilePicture = profilePicture
+        configurationProto.profilePicture = profilePicture.orEmpty()
         configurationProto.profileKey = ByteString.copyFrom(profileKey)
         val contentProto = SignalServiceProtos.Content.newBuilder()
         contentProto.configurationMessage = configurationProto.build()
