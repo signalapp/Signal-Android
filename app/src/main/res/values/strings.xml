@@ -968,8 +968,10 @@
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
     <string name="NotificationBarManager__establishing_signal_call">Establishing Signal call</string>
     <string name="NotificationBarManager__incoming_signal_call">Incoming Signal call</string>
+    <string name="NotificationBarManager__incoming_signal_call_mobile_signal_calls_disabled">Mobile Signal calls disabled</string>
     <string name="NotificationBarManager__deny_call">Deny call</string>
     <string name="NotificationBarManager__answer_call">Answer call</string>
+    <string name="NotificationBarManager__preferences">Preferences</string>
     <string name="NotificationBarManager__end_call">End call</string>
     <string name="NotificationBarManager__cancel_call">Cancel call</string>
 
@@ -1414,6 +1416,10 @@
     <string name="ProxyBottomSheetFragment_use_proxy">Use proxy</string>
     <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Successfully connected to proxy.</string>
 
+    <!-- MobileCallNotAllowedDialog -->
+    <string name="MobileCallNotAllowedDialog_title">Cannot start call</string>
+    <string name="MobileCallNotAllowedDialog_message">Cannot start call on a mobile data connection. Allow calls to use mobile data in the preferences or connect to WiFi.</string>
+    <string name="MobileCallNotAllowedDialog_positive_button">Preferences</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
@@ -2304,6 +2310,8 @@
     <string name="preferences_data_and_storage__never">Never</string>
     <string name="preferences_data_and_storage__wifi_and_cellular">WiFi and Cellular</string>
     <string name="preferences_data_and_storage__cellular_only">Cellular only</string>
+    <string name="preferences_data_and_storage__mobile_data">Mobile data</string>
+    <string name="preferences_data_and_storage__allow_calls_to_use_mobile_data">Allow calls to use mobile data</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>

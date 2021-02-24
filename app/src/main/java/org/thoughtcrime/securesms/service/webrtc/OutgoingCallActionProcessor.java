@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata;
 import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata;
+import org.thoughtcrime.securesms.service.webrtc.state.CallSetupState;
 import org.thoughtcrime.securesms.service.webrtc.state.VideoState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceStateBuilder;
@@ -110,6 +111,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       VideoState      videoState      = currentState.getVideoState();
       RemotePeer      activePeer      = currentState.getCallInfoState().requireActivePeer();
       CallParticipant callParticipant = Objects.requireNonNull(currentState.getCallInfoState().getRemoteCallParticipant(activePeer.getRecipient()));
+      CallSetupState  callSetupState  = currentState.getCallSetupState();
 
       webRtcInteractor.getCallManager().proceed(activePeer.getCallId(),
                                                 context,
@@ -120,7 +122,8 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
                                                 iceServers,
                                                 isAlwaysTurn,
                                                 NetworkUtil.getCallingBandwidthMode(context),
-                                                currentState.getCallSetupState().isEnableVideoOnCreate());
+                                                callSetupState.isEnableVideoOnCreate(),
+                                                callSetupState.isMobileDataAllowed());
     } catch (CallException e) {
       return callFailure(currentState, "Unable to proceed with call: ", e);
     }

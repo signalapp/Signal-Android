@@ -10,20 +10,22 @@ public final class CallSetupState {
   boolean isRemoteVideoOffer;
   boolean acceptWithVideo;
   boolean sentJoinedMessage;
+  boolean mobileDataAllowed;
 
   public CallSetupState() {
-    this(false, false, false, false);
+    this(false, false, false, false, false);
   }
 
   public CallSetupState(@NonNull CallSetupState toCopy) {
-    this(toCopy.enableVideoOnCreate, toCopy.isRemoteVideoOffer, toCopy.acceptWithVideo, toCopy.sentJoinedMessage);
+    this(toCopy.enableVideoOnCreate, toCopy.isRemoteVideoOffer, toCopy.acceptWithVideo, toCopy.sentJoinedMessage, toCopy.mobileDataAllowed);
   }
 
-  public CallSetupState(boolean enableVideoOnCreate, boolean isRemoteVideoOffer, boolean acceptWithVideo, boolean sentJoinedMessage) {
+  public CallSetupState(boolean enableVideoOnCreate, boolean isRemoteVideoOffer, boolean acceptWithVideo, boolean sentJoinedMessage, boolean mobileDataAllowed) {
     this.enableVideoOnCreate = enableVideoOnCreate;
     this.isRemoteVideoOffer  = isRemoteVideoOffer;
     this.acceptWithVideo     = acceptWithVideo;
     this.sentJoinedMessage   = sentJoinedMessage;
+    this.mobileDataAllowed   = mobileDataAllowed;
   }
 
   public boolean isEnableVideoOnCreate() {
@@ -40,5 +42,9 @@ public final class CallSetupState {
 
   public boolean hasSentJoinedMessage() {
     return sentJoinedMessage;
+  }
+
+  public boolean isMobileDataAllowed() {
+    return mobileDataAllowed;
   }
 }

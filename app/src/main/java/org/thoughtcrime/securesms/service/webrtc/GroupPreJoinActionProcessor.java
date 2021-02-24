@@ -48,7 +48,8 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
     GroupCall groupCall = webRtcInteractor.getCallManager().createGroupCall(groupId,
                                                                             BuildConfig.SIGNAL_SFU_URL,
                                                                             currentState.getVideoState().requireEglBase(),
-                                                                            webRtcInteractor.getGroupCallObserver());
+                                                                            webRtcInteractor.getGroupCallObserver(),
+                                                                            currentState.getCallSetupState().isMobileDataAllowed());
 
     try {
       groupCall.setOutgoingAudioMuted(true);

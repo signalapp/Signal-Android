@@ -15,9 +15,12 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.components.webrtc.MobileCallNotAllowedDialog;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.NetworkUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 /**
  * Manages the state of the WebRtc items in the Android notification bar.
@@ -52,9 +55,14 @@ public class CallNotificationBuilder {
       builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);
     } else if (type == TYPE_INCOMING_RINGING) {
-      builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
+      if (!TextSecurePreferences.isCallMobileDataAllowed(context) && NetworkUtil.isConnectedMobile(context)) {
+        builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call_mobile_signal_calls_disabled));
+        builder.addAction(getPreferencesNotificationAction(context));
+      } else {
+        builder.setContentText(context.getString(R.string.NotificationBarManager__incoming_signal_call));
+        builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
+      }
       builder.addAction(getServiceNotificationAction(context, WebRtcCallService.ACTION_DENY_CALL, R.drawable.ic_close_grey600_32dp,   R.string.NotificationBarManager__deny_call));
-      builder.addAction(getActivityNotificationAction(context, WebRtcCallActivity.ANSWER_ACTION, R.drawable.ic_phone_grey600_32dp, R.string.NotificationBarManager__answer_call));
 
       if (callActivityRestricted()) {
         builder.setFullScreenIntent(pendingIntent, true);
@@ -115,5 +123,12 @@ public class CallNotificationBuilder {
 
   private static boolean callActivityRestricted() {
     return Build.VERSION.SDK_INT >= 29 && !ApplicationDependencies.getAppForegroundObserver().isForegrounded();
+  }
+
+  private static NotificationCompat.Action getPreferencesNotificationAction(@NonNull Context context) {
+    Intent intent = MobileCallNotAllowedDialog.getCallPreferencesIntent(context);
+    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+    return new NotificationCompat.Action(R.drawable.ic_alert, context.getString(R.string.NotificationBarManager__preferences), pendingIntent);
   }
 }

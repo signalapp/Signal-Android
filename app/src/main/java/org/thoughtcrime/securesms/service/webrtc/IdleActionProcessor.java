@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.webrtc.CapturerObserver;
 import org.webrtc.VideoFrame;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -32,6 +33,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     Log.i(TAG, "handleStartIncomingCall():");
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
+    currentState = initializeMobileDataAllowed(currentState);
     return beginCallDelegate.handleStartIncomingCall(currentState, remotePeer);
   }
 
@@ -43,6 +45,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
     Log.i(TAG, "handleOutgoingCall():");
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
+    currentState = initializeMobileDataAllowed(currentState);
     return beginCallDelegate.handleOutgoingCall(currentState, remotePeer, offerType);
   }
 
@@ -65,5 +68,14 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
 
     return isGroupCall ? currentState.getActionProcessor().handlePreJoinCall(currentState, remotePeer)
                        : currentState;
+  }
+
+  private @NonNull WebRtcServiceState initializeMobileDataAllowed(@NonNull WebRtcServiceState currentState) {
+    boolean isMobileDataAllowed = TextSecurePreferences.isCallMobileDataAllowed(context);
+    return currentState.builder()
+                       .changeCallSetupState()
+                       .mobileDataAllowed(isMobileDataAllowed)
+                       .commit()
+                       .build();
   }
 }

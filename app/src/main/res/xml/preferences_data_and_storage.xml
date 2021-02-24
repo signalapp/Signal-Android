@@ -34,6 +34,11 @@
     <PreferenceCategory android:layout="@layout/preference_divider"/>
 
     <PreferenceCategory android:title="@string/preferences_data_and_storage__calls">
+        <org.thoughtcrime.securesms.components.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="pref_data_call_mobile_data_allowed"
+            android:title="@string/preferences_data_and_storage__mobile_data"
+            android:summary="@string/preferences_data_and_storage__allow_calls_to_use_mobile_data"/>
         <ListPreference
             android:title="@string/preferences_data_and_storage__use_less_data_for_calls"
             android:key="pref_data_call_bandwidth"

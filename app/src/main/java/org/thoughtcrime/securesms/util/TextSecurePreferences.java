@@ -113,6 +113,7 @@ public class TextSecurePreferences {
   public  static final String MEDIA_DOWNLOAD_ROAMING_PREF      = "pref_media_download_roaming";
 
   public  static final String CALL_BANDWIDTH_PREF              = "pref_data_call_bandwidth";
+  public  static final String CALL_MOBILE_DATA_ALLOWED_PREF    = "pref_data_call_mobile_data_allowed";
 
   public  static final String SYSTEM_EMOJI_PREF                = "pref_system_emoji";
   private static final String MULTI_DEVICE_PROVISIONED_PREF    = "pref_multi_device";
@@ -899,6 +900,10 @@ public class TextSecurePreferences {
 
   public static boolean isInterceptAllSmsEnabled(Context context) {
     return getBooleanPreference(context, ALL_SMS_PREF, true);
+  }
+
+  public static boolean isCallMobileDataAllowed(Context context) {
+    return getBooleanPreference(context, CALL_MOBILE_DATA_ALLOWED_PREF, true);
   }
 
   public static boolean isNotificationsEnabled(Context context) {
