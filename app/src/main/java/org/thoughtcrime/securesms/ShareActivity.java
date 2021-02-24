@@ -47,7 +47,6 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsession.utilities.ViewUtil;
 
@@ -229,11 +228,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
     final Intent           intent       = new Intent(this, target);
     final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
     final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
-    final StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
 
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
     intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
-    intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
 
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 
@@ -250,7 +247,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onContactSelected(String number) {
-    Recipient recipient = Recipient.from(this, Address.Companion.fromExternal(this, number), true);
+    Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
     long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
     createConversation(existingThread, recipient.getAddress(), ThreadDatabase.DistributionTypes.DEFAULT);
   }

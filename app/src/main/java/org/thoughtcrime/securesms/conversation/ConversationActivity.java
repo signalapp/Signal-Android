@@ -85,14 +85,13 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
-import org.session.libsignal.service.loki.protocol.mentions.Mention;
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
+import org.session.libsignal.service.loki.utilities.mentions.Mention;
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.service.loki.utilities.HexEncodingKt;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -111,16 +110,13 @@ import org.thoughtcrime.securesms.components.HidingLinearLayout;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.InputPanel;
 import org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout.OnKeyboardShownListener;
-import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
@@ -131,7 +127,6 @@ import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
@@ -141,17 +136,13 @@ import org.thoughtcrime.securesms.loki.activities.EditClosedGroupActivity;
 import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
-import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
 import org.thoughtcrime.securesms.loki.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.views.ProfilePictureView;
-import org.thoughtcrime.securesms.loki.views.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -161,7 +152,6 @@ import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.LocationSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -169,26 +159,18 @@ import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.GroupShareProfileView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
-import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
-import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
-import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -199,7 +181,6 @@ import org.session.libsession.utilities.Util;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.GroupRecord;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.views.Stub;
@@ -208,7 +189,6 @@ import org.session.libsession.utilities.concurrent.AssertedSuccessListener;
 import org.session.libsignal.utilities.concurrent.ListenableFuture;
 import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.TextSecurePreferences.MediaKeyboardMode;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -241,9 +221,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                InputPanel.Listener,
                InputPanel.MediaListener,
                ComposeText.CursorPositionChangedListener,
-               ConversationSearchBottomBar.EventListener,
-               StickerKeyboardProvider.StickerEventListener,
-               LokiThreadDatabaseDelegate
+               ConversationSearchBottomBar.EventListener
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -278,12 +256,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ImageButton                 attachButton;
   private   ProfilePictureView          profilePictureView;
   private   TextView                    titleTextView;
-  private   TextView                    charactersLeft;
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
   private   Button                      makeDefaultSmsButton;
   private   InputAwareLayout            container;
-  private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
   private   MentionTextWatcher          mentionTextWatcher;
   private   ConversationSearchBottomBar searchNav;
@@ -298,7 +274,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AudioRecorder          audioRecorder;
   private   Handler                audioHandler;
   private   Runnable               stopRecordingTask;
-  private   BroadcastReceiver      securityUpdateReceiver;
   private   Stub<MediaKeyboard>    emojiDrawerStub;
   protected HidingLinearLayout     quickAttachmentToggle;
   protected HidingLinearLayout     inlineAttachmentToggle;
@@ -306,14 +281,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
-  private ConversationStickerViewModel stickerViewModel;
 
   private Recipient  recipient;
   private long       threadId;
   private int        distributionType;
-  private boolean    archived;
   private boolean    isDefaultSms            = false;
-  private boolean    isMmsEnabled            = false;
   private boolean    isSecurityInitialized   = false;
   private int        expandedKeyboardHeight  = 0;
   private int        collapsedKeyboardHeight = Integer.MAX_VALUE;
@@ -329,9 +301,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int                           currentMentionStartIndex               = -1;
   private ArrayList<Mention>            mentions                               = new ArrayList<>();
   private String                        oldText                                = "";
-
-  // Restoration
-  protected SessionRestoreBannerView sessionRestoreBannerView;
 
   private final PushCharacterCalculator characterCalculator = new PushCharacterCalculator();
 
@@ -358,13 +327,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     broadcastReceivers.add(broadcastReceiver);
     LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter("clockOutOfSync"));
 
-    initializeReceivers();
     initializeActionBar();
     initializeViews();
     initializeResources();
     initializeLinkPreviewObserver();
     initializeSearchObserver();
-    initializeStickerObserver();
     initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
@@ -402,18 +369,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
         });
       }
-    });
-
-    sessionRestoreBannerView.setOnRestore(() -> {
-      SessionManagementProtocol.startSessionReset(this, recipient.getAddress().serialize());
-      updateSessionRestoreBanner();
-      return Unit.INSTANCE;
-    });
-    sessionRestoreBannerView.setOnDismiss(() -> {
-      // TODO: Maybe silence for x minutes?
-      DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this).removeAllSessionRestoreDevices(threadId);
-      updateSessionRestoreBanner();
-      return Unit.INSTANCE;
     });
 
     MentionManagerUtilities.INSTANCE.populateUserPublicKeyCacheIfNeeded(threadId, this);
@@ -494,23 +449,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     EventBus.getDefault().register(this);
     initializeEnabledCheck();
-    initializeMmsEnabledCheck();
     composeText.setTransport();
 
     updateTitleTextView(recipient);
     updateProfilePicture();
     updateSubtitleTextView();
     updateInputUI(recipient);
-    setGroupShareProfileReminder(recipient);
 
     ApplicationContext.getInstance(this).messageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
 
-    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
-
     inputPanel.setHint(getResources().getString(R.string.ConversationActivity_message));
-
-    updateSessionRestoreBanner();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
@@ -526,8 +475,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     markLastSeen();
     AudioSlidePlayer.stopAll();
     EventBus.getDefault().unregister(this);
-
-    DatabaseFactory.getLokiThreadDatabase(this).setDelegate(null);
   }
 
   @Override
@@ -551,7 +498,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onDestroy() {
     saveDraft();
     if (recipient != null)               recipient.removeListener(this);
-    if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
     for (BroadcastReceiver broadcastReceiver : broadcastReceivers) {
       LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
     }
@@ -577,13 +523,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case PICK_AUDIO:
       setMedia(data.getData(), MediaType.AUDIO);
       break;
-//    case PICK_CONTACT:
-//      if (isSecureText && !isSmsForced()) {
-////        openContactShareEditor(data.getData());
-//      } else {
-//        addAttachmentContactInfo(data.getData());
-//      }
-//      break;
     case TAKE_PHOTO:
       if (attachmentManager.getCaptureUri() != null) {
         setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
@@ -953,36 +892,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     startActivityForResult(intent, SMS_DEFAULT);
   }
 
-  private void handleResetSecureSession() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle(R.string.ConversationActivity_reset_secure_session_question);
-    builder.setIconAttribute(R.attr.dialog_alert_icon);
-    builder.setCancelable(true);
-    builder.setMessage(R.string.ConversationActivity_this_may_help_if_youre_having_encryption_problems);
-    builder.setPositiveButton(R.string.ConversationActivity_reset, (dialog, which) -> {
-      if (isSingleConversation()) {
-        final Context context = getApplicationContext();
-
-        OutgoingEndSessionMessage endSessionMessage =
-            new OutgoingEndSessionMessage(new OutgoingTextMessage(getRecipient(), "TERMINATE", 0, -1));
-
-        new AsyncTask<OutgoingEndSessionMessage, Void, Long>() {
-          @Override
-          protected Long doInBackground(OutgoingEndSessionMessage... messages) {
-            return MessageSender.send(context, messages[0], threadId, false, null);
-          }
-
-          @Override
-          protected void onPostExecute(Long result) {
-            sendComplete(result);
-          }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, endSessionMessage);
-      }
-    });
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.show();
-  }
-
   private void handleBlock() {
     int titleRes = R.string.RecipientPreferenceActivity_block_this_contact_question;
     int bodyRes  = R.string.RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact;
@@ -1099,19 +1008,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     builder.setPositiveButton(R.string.yes, (dialog, which) -> {
       Recipient groupRecipient = getRecipient();
       String groupPublicKey;
-      boolean isSSKBasedClosedGroup;
+      boolean isClosedGroup;
       try {
-        groupPublicKey = HexEncodingKt.toHexString(ClosedGroupsProtocol.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
-        isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey);
+        groupPublicKey = HexEncodingKt.toHexString(GroupUtil.doubleDecodeGroupID(groupRecipient.getAddress().toString()));
+        isClosedGroup = DatabaseFactory.getLokiAPIDatabase(this).isClosedGroup(groupPublicKey);
       } catch (IOException e) {
         groupPublicKey = null;
-        isSSKBasedClosedGroup = false;
+        isClosedGroup = false;
       }
       try {
-        if (isSSKBasedClosedGroup) {
+        if (isClosedGroup) {
           ClosedGroupsProtocolV2.explicitLeave(this, groupPublicKey);
-          initializeEnabledCheck();
-        } else if (ClosedGroupsProtocol.leaveLegacyGroup(this, groupRecipient)) {
           initializeEnabledCheck();
         } else {
           Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
@@ -1165,16 +1072,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddAttachment() {
-    if (this.isMmsEnabled) {
-      if (attachmentTypeSelector == null) {
-        attachmentTypeSelector = new AttachmentTypeSelector(
-                this,
-                LoaderManager.getInstance(this),
-                new AttachmentTypeListener(),
-                keyboardHeight);
-      }
-      attachmentTypeSelector.show(this, attachButton);
+    if (attachmentTypeSelector == null) {
+      attachmentTypeSelector = new AttachmentTypeSelector(
+              this,
+              LoaderManager.getInstance(this),
+              new AttachmentTypeListener(),
+              keyboardHeight);
     }
+    attachmentTypeSelector.show(this, attachButton);
   }
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
@@ -1215,12 +1120,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final Uri            draftMedia     = getIntent().getData();
     final MediaType      draftMediaType = MediaType.from(getIntent().getType());
     final List<Media>    mediaList      = getIntent().getParcelableArrayListExtra(MEDIA_EXTRA);
-    final StickerLocator stickerLocator = getIntent().getParcelableExtra(STICKER_EXTRA);
-
-    if (stickerLocator != null && draftMedia != null) {
-      sendSticker(stickerLocator, draftMedia, 0, true);
-      return new SettableFuture<>(false);
-    }
 
     if (!Util.isEmpty(mediaList)) {
       Intent sendIntent = MediaSendActivity.buildEditorIntent(this, mediaList, recipient, draftText);
@@ -1291,32 +1190,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         };
 
         for (Draft draft : drafts) {
-          try {
-            switch (draft.getType()) {
-              case Draft.TEXT:
-                composeText.setText(draft.getValue());
-                listener.onSuccess(true);
-                break;
-              case Draft.LOCATION:
-                attachmentManager.setLocation(SignalPlace.deserialize(draft.getValue()), MediaConstraints.getPushMediaConstraints()).addListener(listener);
-                break;
-              case Draft.IMAGE:
-                setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
-                break;
-              case Draft.AUDIO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
-                break;
-              case Draft.VIDEO:
-                setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
-                break;
-              case Draft.QUOTE:
-                SettableFuture<Boolean> quoteResult = new SettableFuture<>();
-                new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
-                quoteResult.addListener(listener);
-                break;
-            }
-          } catch (IOException e) {
-            Log.w(TAG, e);
+          switch (draft.getType()) {
+            case Draft.TEXT:
+              composeText.setText(draft.getValue());
+              listener.onSuccess(true);
+              break;
+            case Draft.IMAGE:
+              setMedia(Uri.parse(draft.getValue()), MediaType.IMAGE).addListener(listener);
+              break;
+            case Draft.AUDIO:
+              setMedia(Uri.parse(draft.getValue()), MediaType.AUDIO).addListener(listener);
+              break;
+            case Draft.VIDEO:
+              setMedia(Uri.parse(draft.getValue()), MediaType.VIDEO).addListener(listener);
+              break;
+            case Draft.QUOTE:
+              SettableFuture<Boolean> quoteResult = new SettableFuture<>();
+              new QuoteRestorationTask(draft.getValue(), quoteResult).execute();
+              quoteResult.addListener(listener);
+              break;
           }
         }
 
@@ -1357,30 +1249,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return future;
   }
 
-  private void updateSessionRestoreBanner() {
-    Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
-    if (devices.size() > 0) {
-      sessionRestoreBannerView.update(recipient);
-      sessionRestoreBannerView.show();
-    } else {
-      sessionRestoreBannerView.hide();
-    }
-  }
-
-  private void initializeMmsEnabledCheck() {
-    new AsyncTask<Void, Void, Boolean>() {
-      @Override
-      protected Boolean doInBackground(Void... params) {
-        return org.thoughtcrime.securesms.util.Util.isMmsCapable(ConversationActivity.this);
-      }
-
-      @Override
-      protected void onPostExecute(Boolean isMmsEnabled) {
-        ConversationActivity.this.isMmsEnabled = isMmsEnabled;
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-  }
-
   private void initializeViews() {
     profilePictureView                     = findViewById(R.id.profilePictureView);
     titleTextView                          = findViewById(R.id.titleTextView);
@@ -1388,19 +1256,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton                             = ViewUtil.findById(this, R.id.send_button);
     attachButton                           = ViewUtil.findById(this, R.id.attach_button);
     composeText                            = ViewUtil.findById(this, R.id.embedded_text_editor);
-    charactersLeft                         = ViewUtil.findById(this, R.id.space_left);
     emojiDrawerStub                        = ViewUtil.findStubById(this, R.id.emoji_drawer_stub);
     unblockButton                          = ViewUtil.findById(this, R.id.unblock_button);
     makeDefaultSmsButton                   = ViewUtil.findById(this, R.id.make_default_sms_button);
     container                              = ViewUtil.findById(this, R.id.layout_container);
-    groupShareProfileView                  = ViewUtil.findStubById(this, R.id.group_share_profile_view_stub);
     quickAttachmentToggle                  = ViewUtil.findById(this, R.id.quick_attachment_toggle);
     inlineAttachmentToggle                 = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel                             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav                              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionViewContainer = ViewUtil.findById(this, R.id.mentionCandidateSelectionViewContainer);
     mentionCandidateSelectionView          = ViewUtil.findById(this, R.id.userSelectionView);
-    sessionRestoreBannerView               = ViewUtil.findById(this, R.id.sessionRestoreBannerView);
     messageStatusProgressBar               = ViewUtil.findById(this, R.id.messageStatusProgressBar);
     muteIndicatorImageView                 = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     subtitleTextView                       = ViewUtil.findById(this, R.id.subtitleTextView);
@@ -1429,10 +1294,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     sendButton.setOnClickListener(sendButtonListener);
     sendButton.setEnabled(true);
 
-    /*
-    titleView.setOnClickListener(v -> handleConversationSettings());
-    titleView.setOnLongClickListener(v -> handleDisplayQuickContact());
-     */
     unblockButton.setOnClickListener(v -> handleUnblock());
     makeDefaultSmsButton.setOnClickListener(v -> handleMakeDefaultSms());
 
@@ -1474,7 +1335,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (address == null) { finish(); return; }
     recipient        = Recipient.from(this, address, true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
     distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 
@@ -1519,52 +1379,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
   }
 
-  private void initializeStickerObserver() {
-    StickerSearchRepository repository = new StickerSearchRepository(this);
-
-    stickerViewModel = ViewModelProviders.of(this, new ConversationStickerViewModel.Factory(getApplication(), repository))
-                                         .get(ConversationStickerViewModel.class);
-
-    stickerViewModel.getStickerResults().observe(this, stickers -> {
-      if (stickers == null) return;
-
-      inputPanel.setStickerSuggestions(stickers);
-    });
-
-    stickerViewModel.getStickersAvailability().observe(this, stickersAvailable -> {
-      if (stickersAvailable == null) return;
-
-      boolean           isSystemEmojiPreferred = TextSecurePreferences.isSystemEmojiPreferred(this);
-      MediaKeyboardMode keyboardMode           = TextSecurePreferences.getMediaKeyboardMode(this);
-      boolean           stickerIntro           = !TextSecurePreferences.hasSeenStickerIntroTooltip(this);
-
-      if (stickersAvailable) {
-        inputPanel.showMediaKeyboardToggle(true);
-        inputPanel.setMediaKeyboardToggleMode(isSystemEmojiPreferred || keyboardMode == MediaKeyboardMode.STICKER);
-        if (stickerIntro) showStickerIntroductionTooltip();
-      }
-
-      if (emojiDrawerStub.resolved()) {
-        initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable);
-      }
-    });
-  }
-
-  private void showStickerIntroductionTooltip() {
-    TextSecurePreferences.setMediaKeyboardMode(this, MediaKeyboardMode.STICKER);
-    inputPanel.setMediaKeyboardToggleMode(true);
-
-    TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setBackgroundTint(getResources().getColor(R.color.core_blue))
-                .setTextColor(getResources().getColor(R.color.core_white))
-                .setText(R.string.ConversationActivity_new_say_it_with_stickers)
-                .setOnDismissListener(() -> {
-                  TextSecurePreferences.setHasSeenStickerIntroTooltip(this, true);
-                  EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent.class);
-                })
-                .show(TooltipPopup.POSITION_ABOVE);
-  }
-
   @Override
   public void onSearchMoveUpPressed() {
     searchViewModel.onMoveUp();
@@ -1583,26 +1397,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       updateTitleTextView(recipient);
       updateProfilePicture();
       updateSubtitleTextView();
-//      titleView.setVerified(identityRecords.isVerified());
       updateInputUI(recipient);
-      setGroupShareProfileReminder(recipient);
       initializeSecurity(true, isDefaultSms);
 
       if (searchViewItem == null || !searchViewItem.isActionViewExpanded()) {
         invalidateOptionsMenu();
       }
     });
-  }
-
-  @Subscribe(threadMode =  ThreadMode.MAIN, sticky = true)
-  public void onStickerPackInstalled(final StickerPackInstallEvent event) {
-    if (!TextSecurePreferences.hasSeenStickerIntroTooltip(this)) return;
-
-    EventBus.getDefault().removeStickyEvent(event);
-    TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setText(R.string.ConversationActivity_sticker_pack_installed)
-                .setIconGlideModel(event.getIconGlideModel())
-                .show(TooltipPopup.POSITION_ABOVE);
   }
 
   @Subscribe(threadMode = ThreadMode.MAIN)
@@ -1613,19 +1414,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             publicChat.getServer().equals(event.getUrl())) {
       this.updateSubtitleTextView();
     }
-  }
-
-  private void initializeReceivers() {
-    securityUpdateReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        initializeSecurity(true, isDefaultSms);
-      }
-    };
-
-    registerReceiver(securityUpdateReceiver,
-                     new IntentFilter(SecurityEvent.SECURITY_UPDATE_EVENT),
-                     KeyCachingService.KEY_PERMISSION, null);
   }
 
   //////// Helper Methods
@@ -1730,7 +1518,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     for (Slide slide : attachmentManager.buildSlideDeck().getSlides()) {
       if      (slide.hasAudio() && slide.getUri() != null)    drafts.add(new Draft(Draft.AUDIO, slide.getUri().toString()));
       else if (slide.hasVideo() && slide.getUri() != null)    drafts.add(new Draft(Draft.VIDEO, slide.getUri().toString()));
-      else if (slide.hasLocation())                           drafts.add(new Draft(Draft.LOCATION, ((LocationSlide)slide).getPlace().serialize()));
       else if (slide.hasImage() && slide.getUri() != null)    drafts.add(new Draft(Draft.IMAGE, slide.getUri().toString()));
     }
 
@@ -1795,14 +1582,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       unblockButton.setVisibility(View.VISIBLE);
       inputPanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
-//    } else if (!isSecureText && isPushGroupConversation()) {
-//      unblockButton.setVisibility(View.GONE);
-//      inputPanel.setVisibility(View.GONE);
-//      makeDefaultSmsButton.setVisibility(View.GONE);
-//    } else if (!isSecureText && !isDefaultSms) {
-//      unblockButton.setVisibility(View.GONE);
-//      inputPanel.setVisibility(View.GONE);
-//      makeDefaultSmsButton.setVisibility(View.GONE);
     } else {
       inputPanel.setVisibility(View.VISIBLE);
       unblockButton.setVisibility(View.GONE);
@@ -1810,30 +1589,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (recipient.isPushGroupRecipient() && !recipient.isProfileSharing() && !recipient.getAddress().isOpenGroup()) {
-      groupShareProfileView.get().setRecipient(recipient);
-      groupShareProfileView.get().setVisibility(View.GONE); // Loki - Always hide for now
-    } else if (groupShareProfileView.resolved()) {
-      groupShareProfileView.get().setVisibility(View.GONE);
-    }
-  }
-
-  private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard, boolean stickersAvailable) {
+  private void initializeMediaKeyboardProviders(@NonNull MediaKeyboard mediaKeyboard) {
     boolean isSystemEmojiPreferred   = TextSecurePreferences.isSystemEmojiPreferred(this);
-
-    if (stickersAvailable) {
-      if (isSystemEmojiPreferred) {
-        mediaKeyboard.setProviders(0, new StickerKeyboardProvider(this, this));
-      } else {
-        MediaKeyboardMode keyboardMode = TextSecurePreferences.getMediaKeyboardMode(this);
-        int               index        = keyboardMode == MediaKeyboardMode.STICKER ? 1 : 0;
-
-        mediaKeyboard.setProviders(index,
-                                   new EmojiKeyboardProvider(this, inputPanel),
-                                   new StickerKeyboardProvider(this, this));
-      }
-    } else if (!isSystemEmojiPreferred) {
+    if (!isSystemEmojiPreferred) {
       mediaKeyboard.setProviders(0, new EmojiKeyboardProvider(this, inputPanel));
     }
   }
@@ -1963,13 +1721,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateLinkPreviewState();
   }
 
-  @Override
-  public void handleSessionRestoreDevicesChanged(long threadID) {
-    if (threadID == this.threadId) {
-      runOnUiThread(this::updateSessionRestoreBanner);
-    }
-  }
-
   private void sendMessage() {
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();
@@ -2006,7 +1757,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.w(TAG, ex);
     }
 
-    if (messageStatus == null && !isGroupConversation() && !SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize())) {
+    if (messageStatus == null && !isGroupConversation() && !(TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize()))) {
       messageStatus = "calculatingPoW";
       updateSubtitleTextView();
       updateMessageStatusProgressBar();
@@ -2063,10 +1814,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
 
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
-
     sendComplete(result);
     future.set(null);
 
@@ -2092,10 +1839,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     long result = MessageSender.send(context, message, threadId, false, () -> fragment.releaseOutgoingMessage(id));
-
-    if (!recipient.isGroupRecipient()) {
-      ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(recipient.getAddress().serialize());
-    }
 
     sendComplete(result);
   }
@@ -2244,9 +1987,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onEmojiToggle() {
     if (!emojiDrawerStub.resolved()) {
-      Boolean stickersAvailable = stickerViewModel.getStickersAvailability().getValue();
-
-      initializeMediaKeyboardProviders(emojiDrawerStub.get(), stickersAvailable == null ? false : stickersAvailable);
+      initializeMediaKeyboardProviders(emojiDrawerStub.get());
 
       inputPanel.setMediaKeyboard(emojiDrawerStub.get());
     }
@@ -2261,11 +2002,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onLinkPreviewCanceled() {
     linkPreviewViewModel.onUserCancel();
-  }
-
-  @Override
-  public void onStickerSuggestionSelected(@NonNull StickerRecord sticker) {
-    sendSticker(sticker, true);
   }
 
   @Override
@@ -2284,38 +2020,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void onCursorPositionChanged(int start, int end) {
     linkPreviewViewModel.onTextChanged(this, composeText.getTextTrimmed(), start, end);
-  }
-
-  @Override
-  public void onStickerSelected(@NonNull StickerRecord stickerRecord) {
-    sendSticker(stickerRecord, false);
-  }
-
-  @Override
-  public void onStickerManagementClicked() {
-    startActivity(StickerManagementActivity.getIntent(this));
-    container.hideAttachedInput(true);
-  }
-
-  private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
-    sendSticker(new StickerLocator(stickerRecord.getPackId(), stickerRecord.getPackKey(), stickerRecord.getStickerId()), stickerRecord.getUri(), stickerRecord.getSize(), clearCompose);
-
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
-      DatabaseFactory.getStickerDatabase(this).updateStickerLastUsedTime(stickerRecord.getRowId(), System.currentTimeMillis());
-    });
-  }
-
-  private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull Uri uri, long size, boolean clearCompose) {
-    long            expiresIn      = recipient.getExpireMessages() * 1000L;
-    int             subscriptionId = -1;
-    boolean         initiating     = threadId == -1;
-    SlideDeck       slideDeck      = new SlideDeck();
-    Slide           stickerSlide   = new StickerSlide(this, uri, size, stickerLocator);
-
-    slideDeck.addSlide(stickerSlide);
-
-    sendMediaMessage(false, "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), expiresIn, subscriptionId, initiating, clearCompose);
-
   }
 
   private void silentlySetComposeText(String text) {
@@ -2418,12 +2122,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void afterTextChanged(Editable s) {
-
       if (composeText.getTextTrimmed().length() == 0 || beforeLength == 0) {
         composeText.postDelayed(ConversationActivity.this::updateToggleButtonState, 50);
       }
-
-      stickerViewModel.onInputTextUpdated(s.toString());
     }
 
     @Override
@@ -2518,7 +2219,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Recipient author;
 
     if (messageRecord.isOutgoing()) {
-      author = Recipient.from(this, Address.Companion.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
+      author = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), true);
     } else {
       author = messageRecord.getIndividualRecipient();
     }
@@ -2620,10 +2321,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   private void updateTitleTextView(Recipient recipient) {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
-    Set<String> allUserDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
     if (recipient == null) {
       titleTextView.setText("Compose");
-    } else if (allUserDevices.contains(recipient.getAddress().toString().toLowerCase())) {
+    } else if (recipient.getAddress().toString().toLowerCase().equals(userPublicKey)) {
       titleTextView.setText(getResources().getString(R.string.note_to_self));
     } else {
       boolean hasName = (recipient.getName() != null && !recipient.getName().isEmpty());
@@ -2692,7 +2392,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleMessageStatusChanged(String newMessageStatus, long timestamp) {
-    if (timestamp == 0 || SessionMetaProtocol.shared.isNoteToSelf(recipient.getAddress().serialize()) ) { return; }
+    if (timestamp == 0 || (TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize())) ) { return; }
     updateForNewMessageStatusIfNeeded(newMessageStatus, timestamp);
     if (newMessageStatus.equals("messageFailed") || newMessageStatus.equals("messageSent")) {
       new Handler().postDelayed(() -> clearMessageStatusIfNeeded(timestamp), 1000);

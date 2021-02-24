@@ -417,9 +417,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun isClosedGroup(publicKey: String): Boolean {
-        val isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(publicKey)
+        val isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(publicKey)
         val address = Address.fromSerialized(publicKey)
-        return address.isClosedGroup || isSSKBasedClosedGroup
+        return address.isClosedGroup || isClosedGroup
     }
 
     override fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): MutableList<ECKeyPair> {
@@ -431,7 +431,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getAllClosedGroupPublicKeys(): Set<String> {
-        return DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        return DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
     }
 
     override fun addClosedGroupPublicKey(groupPublicKey: String) {

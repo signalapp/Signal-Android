@@ -12,7 +12,7 @@ import org.session.libsession.snode.SnodeAPI
 import org.session.libsession.messaging.fileserver.FileServerAPI
 
 import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.libsignal.loki.DiffieHellman
+import org.session.libsignal.utilities.DiffieHellman
 import org.session.libsignal.service.api.crypto.ProfileCipherOutputStream
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.push.exceptions.NonSuccessfulResponseCodeException

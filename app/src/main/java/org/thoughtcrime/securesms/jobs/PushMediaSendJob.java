@@ -13,6 +13,7 @@ import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAt
 import org.session.libsession.messaging.threads.recipients.Recipient.UnidentifiedAccessMode;
 import org.session.libsession.utilities.TextSecurePreferences;
 
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -28,23 +29,17 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.api.push.exceptions.UnregisteredUserException;
 import org.session.libsignal.service.loki.api.SnodeAPI;
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -69,10 +64,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   private long messageId;
   private long templateMessageId;
   private Address destination;
-
-  public PushMediaSendJob(long messageId, Address destination) {
-    this(messageId, messageId, destination);
-  }
 
   public PushMediaSendJob(long templateMessageId, long messageId, Address destination) {
     this(constructParameters(destination), templateMessageId, messageId, destination);
@@ -183,17 +174,15 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
       }
 
-      if (TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-        if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
-          log(TAG, "Marking recipient as UD-unrestricted following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
-        } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
-          log(TAG, "Marking recipient as UD-enabled following a UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
-        } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
-          log(TAG, "Marking recipient as UD-disabled following a non-UD send.");
-          DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
-        }
+      if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {
+        log(TAG, "Marking recipient as UD-unrestricted following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.UNRESTRICTED);
+      } else if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN) {
+        log(TAG, "Marking recipient as UD-enabled following a UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.ENABLED);
+      } else if (!unidentified && accessMode != UnidentifiedAccessMode.DISABLED) {
+        log(TAG, "Marking recipient as UD-disabled following a non-UD send.");
+        DatabaseFactory.getRecipientDatabase(context).setUnidentifiedAccessMode(recipient, UnidentifiedAccessMode.DISABLED);
       }
 
       if (messageId > 0 && message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
@@ -203,18 +192,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
       log(TAG, "Sent message: " + messageId);
 
-    } catch (InsecureFallbackApprovalException ifae) {
-      warn(TAG, "Failure", ifae);
-      if (messageId >= 0) {
-        database.markAsPendingInsecureSmsFallback(messageId);
-        notifyMediaMessageDeliveryFailed(context, messageId);
-      }
-    } catch (UntrustedIdentityException uie) {
-      warn(TAG, "Failure", uie);
-      if (messageId >= 0) {
-        database.addMismatchedIdentity(messageId, Address.Companion.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
-        database.markAsSentFailed(messageId);
-      }
     } catch (SnodeAPI.Error e) {
       Log.d("Loki", "Couldn't send message due to error: " + e.getDescription());
       if (messageId >= 0) {
@@ -240,23 +217,21 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   }
 
   private boolean deliver(OutgoingMediaMessage message)
-      throws RetryLaterException, InsecureFallbackApprovalException, UntrustedIdentityException,
-             UndeliverableMessageException, SnodeAPI.Error
+      throws RetryLaterException, UndeliverableMessageException, SnodeAPI.Error
   {
     try {
       Recipient                                  recipient          = Recipient.from(context, destination, false);
       String                                     userPublicKey      = TextSecurePreferences.getLocalNumber(context);
       SignalServiceAddress                       address            = getPushAddress(recipient.getAddress());
       SignalServiceAddress                       localAddress       = new SignalServiceAddress(userPublicKey);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
       Optional<SignalServiceDataMessage.Quote>   quote              = getQuoteFor(message);
-      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<Preview>                              previews           = getPreviewsFor(message);
 
-      Optional<UnidentifiedAccessPair> unidentifiedAccessPair = UnidentifiedAccessUtil.getAccessFor(context, recipient);
+      Optional<UnidentifiedAccess>               unidentifiedAccessPair = UnidentifiedAccessUtil.getAccessFor(context, recipient);
 
       SignalServiceDataMessage mediaMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withBody(message.getBody())
@@ -265,7 +240,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())
-                                                                      .withSticker(sticker.orNull())
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
@@ -279,13 +253,12 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
               .withExpiration((int)(message.getExpiresIn() / 1000))
               .withProfileKey(profileKey.orNull())
               .withQuote(quote.orNull())
-              .withSticker(sticker.orNull())
               .withSharedContacts(sharedContacts)
               .withPreviews(previews)
               .asExpirationUpdate(message.isExpirationUpdate())
               .build();
 
-      if (SessionMetaProtocol.shared.isNoteToSelf(address.getNumber())) {
+      if (userPublicKey == address.getNumber()) {
         // Loki - Device link messages don't go through here
         SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage, true);
         if (result.getLokiAPIError() != null) {
@@ -302,7 +275,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
           try {
             // send to ourselves to sync multi-device
-            Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
+            Optional<UnidentifiedAccess> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
             SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, mediaSelfSendMessage, true);
             if (selfSendResult.getLokiAPIError() != null) {
               throw selfSendResult.getLokiAPIError();
@@ -314,9 +287,6 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
           return isUnidentified;
         }
       }
-    } catch (UnregisteredUserException e) {
-      warn(TAG, e);
-      throw new InsecureFallbackApprovalException(e);
     } catch (FileNotFoundException e) {
       warn(TAG, e);
       throw new UndeliverableMessageException(e);
@@ -331,7 +301,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     public @NonNull PushMediaSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long templateMessageID = data.getLong(KEY_TEMPLATE_MESSAGE_ID);
       long messageID = data.getLong(KEY_MESSAGE_ID);
-      Address destination = Address.Companion.fromSerialized(data.getString(KEY_DESTINATION));
+      Address destination = Address.fromSerialized(data.getString(KEY_DESTINATION));
       return new PushMediaSendJob(parameters, templateMessageID, messageID, destination);
     }
   }

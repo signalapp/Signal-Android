@@ -1,8 +1,6 @@
 package org.session.libsignal.service.api.crypto;
 
 
-import org.session.libsignal.metadata.certificate.InvalidCertificateException;
-import org.session.libsignal.metadata.certificate.SenderCertificate;
 import org.session.libsignal.libsignal.util.ByteUtil;
 
 import java.security.InvalidAlgorithmParameterException;
@@ -19,21 +17,14 @@ import javax.crypto.spec.SecretKeySpec;
 public class UnidentifiedAccess {
 
   private final byte[]            unidentifiedAccessKey;
-  private final SenderCertificate unidentifiedCertificate;
 
-  public UnidentifiedAccess(byte[] unidentifiedAccessKey, byte[] unidentifiedCertificate)
-      throws InvalidCertificateException
+  public UnidentifiedAccess(byte[] unidentifiedAccessKey)
   {
     this.unidentifiedAccessKey   = unidentifiedAccessKey;
-    this.unidentifiedCertificate = new SenderCertificate(unidentifiedCertificate);
   }
 
   public byte[] getUnidentifiedAccessKey() {
     return unidentifiedAccessKey;
-  }
-
-  public SenderCertificate getUnidentifiedCertificate() {
-    return unidentifiedCertificate;
   }
 
   public static byte[] deriveAccessKeyFrom(byte[] profileKey) {
@@ -47,17 +38,7 @@ public class UnidentifiedAccess {
       byte[] ciphertext = cipher.doFinal(input);
 
       return ByteUtil.trim(ciphertext, 16);
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
-    } catch (NoSuchPaddingException e) {
-      throw new AssertionError(e);
-    } catch (InvalidAlgorithmParameterException e) {
-      throw new AssertionError(e);
-    } catch (BadPaddingException e) {
-      throw new AssertionError(e);
-    } catch (IllegalBlockSizeException e) {
+    } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | InvalidAlgorithmParameterException | BadPaddingException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     }
   }

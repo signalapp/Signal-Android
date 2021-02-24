@@ -7,12 +7,10 @@ import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
-import org.thoughtcrime.securesms.ApplicationContext;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -36,30 +34,6 @@ public class IncomingMediaMessage {
   private final List<LinkPreview> linkPreviews   = new LinkedList<>();
 
   public IncomingMediaMessage(Address from,
-                              Optional<Address> groupId,
-                              String body,
-                              long sentTimeMillis,
-                              List<Attachment> attachments,
-                              int subscriptionId,
-                              long expiresIn,
-                              boolean expirationUpdate,
-                              boolean unidentified)
-  {
-    this.from             = from;
-    this.groupId          = groupId.orNull();
-    this.sentTimeMillis   = sentTimeMillis;
-    this.body             = body;
-    this.push             = false;
-    this.subscriptionId   = subscriptionId;
-    this.expiresIn        = expiresIn;
-    this.expirationUpdate = expirationUpdate;
-    this.quote            = null;
-    this.unidentified     = unidentified;
-
-    this.attachments.addAll(attachments);
-  }
-
-  public IncomingMediaMessage(Address from,
                               long sentTimeMillis,
                               int subscriptionId,
                               long expiresIn,
@@ -70,8 +44,7 @@ public class IncomingMediaMessage {
                               Optional<List<SignalServiceAttachment>> attachments,
                               Optional<QuoteModel> quote,
                               Optional<List<Contact>> sharedContacts,
-                              Optional<List<LinkPreview>> linkPreviews,
-                              Optional<Attachment> sticker)
+                              Optional<List<LinkPreview>> linkPreviews)
   {
     this.push             = true;
     this.from             = from;
@@ -83,16 +56,12 @@ public class IncomingMediaMessage {
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
-    if (group.isPresent()) this.groupId = Address.Companion.fromSerialized(GroupUtil.INSTANCE.getEncodedId(group.get()));
+    if (group.isPresent()) this.groupId = Address.fromSerialized(GroupUtil.INSTANCE.getEncodedId(group.get()));
     else                   this.groupId = null;
 
     this.attachments.addAll(PointerAttachment.forPointers(attachments));
     this.sharedContacts.addAll(sharedContacts.or(Collections.emptyList()));
     this.linkPreviews.addAll(linkPreviews.or(Collections.emptyList()));
-
-    if (sticker.isPresent()) {
-      this.attachments.add(sticker.get());
-    }
   }
 
   public static IncomingMediaMessage from(VisibleMessage message,
@@ -104,7 +73,7 @@ public class IncomingMediaMessage {
                                           Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getReceivedTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews, Optional.absent());
+            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews);
   }
 
   public int getSubscriptionId() {

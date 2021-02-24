@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms.loki.utilities
 
-import android.content.Context
 import android.content.res.Resources
 import android.os.Build
 import androidx.annotation.ColorRes
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import kotlin.math.roundToInt
 
 fun Resources.getColorWithID(@ColorRes id: Int, theme: Resources.Theme?): Int {

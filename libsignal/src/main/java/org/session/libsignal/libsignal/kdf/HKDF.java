@@ -6,9 +6,6 @@
 
 package org.session.libsignal.libsignal.kdf;
 
-import org.session.libsignal.libsignal.kdf.HKDFv2;
-import org.session.libsignal.libsignal.kdf.HKDFv3;
-
 import java.io.ByteArrayOutputStream;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +19,6 @@ public abstract class HKDF {
 
   public static HKDF createFor(int messageVersion) {
     switch (messageVersion) {
-      case 2:  return new HKDFv2();
       case 3:  return new HKDFv3();
       default: throw new AssertionError("Unknown version: " + messageVersion);
     }

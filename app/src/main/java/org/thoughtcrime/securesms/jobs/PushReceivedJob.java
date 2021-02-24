@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
@@ -25,7 +23,7 @@ public abstract class PushReceivedJob extends BaseJob {
     synchronized (RECEIVE_LOCK) {
       try {
         if (envelope.hasSource()) {
-          Address source = Address.Companion.fromExternal(context, envelope.getSource());
+          Address source = Address.fromExternal(context, envelope.getSource());
           Recipient recipient = Recipient.from(context, source, false);
 
           if (!isActiveNumber(recipient)) {
@@ -33,10 +31,7 @@ public abstract class PushReceivedJob extends BaseJob {
           }
         }
 
-        if (envelope.isReceipt()) {
-          handleReceipt(envelope);
-        } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage()
-            || envelope.isUnidentifiedSender() || envelope.isFallbackMessage() || envelope.isClosedGroupCiphertext()) {
+        if (envelope.isUnidentifiedSender() || envelope.isClosedGroupCiphertext()) {
           handleMessage(envelope, isPushNotification);
         } else {
           Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
@@ -49,13 +44,6 @@ public abstract class PushReceivedJob extends BaseJob {
 
   private void handleMessage(SignalServiceEnvelope envelope, boolean isPushNotification) {
     new PushDecryptJob(context).processMessage(envelope, isPushNotification);
-  }
-
-  @SuppressLint("DefaultLocale")
-  private void handleReceipt(SignalServiceEnvelope envelope) {
-    Log.i(TAG, String.format("Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-    DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(new SyncMessageId(Address.Companion.fromExternal(context, envelope.getSource()),
-                                                                                               envelope.getTimestamp()), System.currentTimeMillis());
   }
 
   private boolean isActiveNumber(@NonNull Recipient recipient) {

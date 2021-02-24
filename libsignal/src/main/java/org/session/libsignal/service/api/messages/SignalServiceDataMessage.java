@@ -6,14 +6,11 @@
 
 package org.session.libsignal.service.api.messages;
 
-import org.session.libsignal.libsignal.state.PreKeyBundle;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdateV2;
-import org.session.libsignal.service.internal.push.SignalServiceProtos.ClosedGroupUpdate;
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink;
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage.ClosedGroupControlMessage;
+import org.session.libsignal.service.loki.utilities.TTLUtilities;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,20 +24,13 @@ public class SignalServiceDataMessage {
   private final Optional<String>                        body;
   public  final Optional<SignalServiceGroup>            group;
   private final Optional<byte[]>                        profileKey;
-  private final boolean                                 endSession;
   private final boolean                                 expirationUpdate;
   private final int                                     expiresInSeconds;
-  private final boolean                                 profileKeyUpdate;
   private final Optional<Quote>                         quote;
   public  final Optional<List<SharedContact>>           contacts;
   private final Optional<List<Preview>>                 previews;
-  private final Optional<Sticker>                       sticker;
   // Loki
-  private final Optional<PreKeyBundle>                  preKeyBundle;
-  private final Optional<DeviceLink>                    deviceLink;
-  private final Optional<ClosedGroupUpdate>             closedGroupUpdate;
-  private final Optional<ClosedGroupUpdateV2>           closedGroupUpdateV2;
-  private final boolean                                 isDeviceUnlinkingRequest;
+  private final Optional<ClosedGroupControlMessage>     closedGroupControlMessage;
   private final Optional<String>                        syncTarget;
 
   /**
@@ -115,7 +105,7 @@ public class SignalServiceDataMessage {
    * @param expiresInSeconds The number of seconds in which a message should disappear after having been seen.
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group, List<SignalServiceAttachment> attachments, String body, int expiresInSeconds) {
-    this(timestamp, group, attachments, body, false, expiresInSeconds, false, null, false, null, null, null, null);
+    this(timestamp, group, attachments, body, expiresInSeconds, false, null, null, null, null);
   }
 
   /**
@@ -125,17 +115,15 @@ public class SignalServiceDataMessage {
    * @param group The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
-   * @param endSession Flag indicating whether this message should close a session.
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group,
                                   List<SignalServiceAttachment> attachments,
-                                  String body, boolean endSession, int expiresInSeconds,
-                                  boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
-                                  Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker)
+                                  String body, int expiresInSeconds,
+                                  boolean expirationUpdate, byte[] profileKey,
+                                  Quote quote, List<SharedContact> sharedContacts, List<Preview> previews)
   {
-    this(timestamp, group, attachments, body, endSession, expiresInSeconds, expirationUpdate, profileKey, profileKeyUpdate, quote, sharedContacts, previews, sticker, null, null, null, null, false, null);
+    this(timestamp, group, attachments, body, expiresInSeconds, expirationUpdate, profileKey, quote, sharedContacts, previews, null, null);
   }
 
   /**
@@ -145,34 +133,24 @@ public class SignalServiceDataMessage {
    * @param group The group information (or null if none).
    * @param attachments The attachments (or null if none).
    * @param body The message contents.
-   * @param endSession Flag indicating whether this message should close a session.
    * @param expiresInSeconds Number of seconds in which the message should disappear after being seen.
-   * @param preKeyBundle The pre key bundle to attach to this message (or null if none).
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group,
                                   List<SignalServiceAttachment> attachments,
-                                  String body, boolean endSession, int expiresInSeconds,
-                                  boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
+                                  String body, int expiresInSeconds,
+                                  boolean expirationUpdate, byte[] profileKey,
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker, PreKeyBundle preKeyBundle, DeviceLink deviceLink,
-                                  ClosedGroupUpdate closedGroupUpdate, ClosedGroupUpdateV2 closedGroupUpdateV2,
-                                  boolean isDeviceUnlinkingRequest, String syncTarget)
+                                  ClosedGroupControlMessage closedGroupControlMessage,
+                                  String syncTarget)
   {
     this.timestamp                   = timestamp;
     this.body                        = Optional.fromNullable(body);
     this.group                       = Optional.fromNullable(group);
-    this.endSession                  = endSession;
     this.expiresInSeconds            = expiresInSeconds;
     this.expirationUpdate            = expirationUpdate;
     this.profileKey                  = Optional.fromNullable(profileKey);
-    this.profileKeyUpdate            = profileKeyUpdate;
     this.quote                       = Optional.fromNullable(quote);
-    this.sticker                     = Optional.fromNullable(sticker);
-    this.preKeyBundle                = Optional.fromNullable(preKeyBundle);
-    this.deviceLink                  = Optional.fromNullable(deviceLink);
-    this.closedGroupUpdate           = Optional.fromNullable(closedGroupUpdate);
-    this.closedGroupUpdateV2         = Optional.fromNullable(closedGroupUpdateV2);
-    this.isDeviceUnlinkingRequest    = isDeviceUnlinkingRequest;
+    this.closedGroupControlMessage   = Optional.fromNullable(closedGroupControlMessage);
     this.syncTarget                  = Optional.fromNullable(syncTarget);
 
     if (attachments != null && !attachments.isEmpty()) {
@@ -226,16 +204,8 @@ public class SignalServiceDataMessage {
     return group;
   }
 
-  public boolean isEndSession() {
-    return endSession;
-  }
-
   public boolean isExpirationUpdate() {
     return expirationUpdate;
-  }
-
-  public boolean isProfileKeyUpdate() {
-    return profileKeyUpdate;
   }
 
   public boolean isGroupMessage() {
@@ -268,22 +238,8 @@ public class SignalServiceDataMessage {
     return previews;
   }
 
-  public Optional<Sticker> getSticker() {
-    return sticker;
-  }
-
   // Loki
-  public boolean isDeviceUnlinkingRequest() {
-    return isDeviceUnlinkingRequest;
-  }
-
-  public Optional<ClosedGroupUpdate> getClosedGroupUpdate() { return closedGroupUpdate; }
-
-  public Optional<ClosedGroupUpdateV2> getClosedGroupUpdateV2() { return closedGroupUpdateV2; }
-
-  public Optional<PreKeyBundle> getPreKeyBundle() { return preKeyBundle; }
-
-  public Optional<DeviceLink> getDeviceLink() { return deviceLink; }
+  public Optional<ClosedGroupControlMessage> getClosedGroupControlMessage() { return closedGroupControlMessage; }
 
   public boolean hasVisibleContent() {
     return (body.isPresent() && !body.get().isEmpty())
@@ -291,8 +247,6 @@ public class SignalServiceDataMessage {
   }
 
   public int getTTL() {
-    if (deviceLink.isPresent()) { return TTLUtilities.getTTL(TTLUtilities.MessageType.DeviceLink); }
-    else if (isDeviceUnlinkingRequest) { return TTLUtilities.getTTL(TTLUtilities.MessageType.DeviceUnlinkingRequest); }
     return TTLUtilities.getTTL(TTLUtilities.MessageType.Regular);
   }
 
@@ -304,17 +258,11 @@ public class SignalServiceDataMessage {
     private long                 timestamp;
     private SignalServiceGroup   group;
     private String               body;
-    private boolean              endSession;
     private int                  expiresInSeconds;
     private boolean              expirationUpdate;
     private byte[]               profileKey;
-    private boolean              profileKeyUpdate;
     private Quote                quote;
-    private Sticker              sticker;
-    private PreKeyBundle         preKeyBundle;
-    private DeviceLink           deviceLink;
     private String               syncTarget;
-    private boolean              isDeviceUnlinkingRequest;
 
     private Builder() {}
 
@@ -325,11 +273,6 @@ public class SignalServiceDataMessage {
 
     public Builder asGroupMessage(SignalServiceGroup group) {
       this.group = group;
-      return this;
-    }
-
-    public Builder withAttachment(SignalServiceAttachment attachment) {
-      this.attachments.add(attachment);
       return this;
     }
 
@@ -348,19 +291,6 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder asEndSessionMessage() {
-      return asEndSessionMessage(true);
-    }
-
-    public Builder asEndSessionMessage(boolean endSession) {
-      this.endSession = endSession;
-      return this;
-    }
-
-    public Builder asExpirationUpdate() {
-      return asExpirationUpdate(true);
-    }
-
     public Builder asExpirationUpdate(boolean expirationUpdate) {
       this.expirationUpdate = expirationUpdate;
       return this;
@@ -376,18 +306,8 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder asProfileKeyUpdate(boolean profileKeyUpdate) {
-      this.profileKeyUpdate = profileKeyUpdate;
-      return this;
-    }
-
     public Builder withQuote(Quote quote) {
       this.quote = quote;
-      return this;
-    }
-
-    public Builder withSharedContact(SharedContact contact) {
-      this.sharedContacts.add(contact);
       return this;
     }
 
@@ -401,35 +321,11 @@ public class SignalServiceDataMessage {
       return this;
     }
 
-    public Builder withSticker(Sticker sticker) {
-      this.sticker = sticker;
-      return this;
-    }
-
-    public Builder withPreKeyBundle(PreKeyBundle preKeyBundle) {
-      this.preKeyBundle = preKeyBundle;
-      return this;
-    }
-
-    public Builder withDeviceLink(DeviceLink deviceLink) {
-      this.deviceLink = deviceLink;
-      return this;
-    }
-
-    public Builder asDeviceUnlinkingRequest(boolean isDeviceUnlinkingRequest) {
-      this.isDeviceUnlinkingRequest = isDeviceUnlinkingRequest;
-      return this;
-    }
-
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       // closedGroupUpdate is always null because we don't use SignalServiceDataMessage to send them (we use ClosedGroupUpdateMessageSendJob)
-      return new SignalServiceDataMessage(timestamp, group, attachments, body, endSession,
-                                          expiresInSeconds, expirationUpdate, profileKey,
-                                          profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, preKeyBundle, deviceLink,
-                        null, null,
-                                          isDeviceUnlinkingRequest, syncTarget);
+      return new SignalServiceDataMessage(timestamp, group, attachments, body, expiresInSeconds, expirationUpdate, profileKey, quote, sharedContacts, previews,
+                                          null, syncTarget);
     }
   }
 
@@ -508,36 +404,6 @@ public class SignalServiceDataMessage {
 
     public Optional<SignalServiceAttachment> getImage() {
       return image;
-    }
-  }
-
-  public static class Sticker {
-    private final byte[]                  packId;
-    private final byte[]                  packKey;
-    private final int                     stickerId;
-    private final SignalServiceAttachment attachment;
-
-    public Sticker(byte[] packId, byte[] packKey, int stickerId, SignalServiceAttachment attachment) {
-      this.packId     = packId;
-      this.packKey    = packKey;
-      this.stickerId  = stickerId;
-      this.attachment = attachment;
-    }
-
-    public byte[] getPackId() {
-      return packId;
-    }
-
-    public byte[] getPackKey() {
-      return packKey;
-    }
-
-    public int getStickerId() {
-      return stickerId;
-    }
-
-    public SignalServiceAttachment getAttachment() {
-      return attachment;
     }
   }
 }

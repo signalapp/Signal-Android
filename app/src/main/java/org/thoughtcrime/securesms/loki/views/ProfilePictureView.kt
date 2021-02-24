@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
 
@@ -75,10 +75,6 @@ class ProfilePictureView : RelativeLayout {
         if (recipient.isGroupRecipient && !isOpenGroupWithProfilePicture(recipient)) {
             val users = MentionsManager.shared.userPublicKeyCache[threadID]?.toMutableList() ?: mutableListOf()
             users.remove(TextSecurePreferences.getLocalNumber(context))
-            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-            if (masterPublicKey != null) {
-                users.remove(masterPublicKey)
-            }
             val randomUsers = users.sorted().toMutableList() // Sort to provide a level of stability
             if (users.count() == 1) {
                 val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
@@ -159,13 +155,11 @@ class ProfilePictureView : RelativeLayout {
                 imagesCached.add(publicKey)
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
-                val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-                val hepk = if (recipient.isLocalNumber && masterPublicKey != null) masterPublicKey else publicKey
                 glide.clear(imageView)
                 glide.load(AvatarPlaceholderGenerator.generate(
                         context,
                         sizeInPX,
-                        hepk,
+                        publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 imagesCached.add(publicKey)

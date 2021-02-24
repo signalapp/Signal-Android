@@ -24,6 +24,10 @@ class SSKEnvironment(
     }
 
     interface ProfileManagerProtocol {
+        companion object {
+            const val NAME_PADDED_LENGTH = 26
+        }
+
         fun setDisplayName(context: Context, recipient: Recipient, displayName: String)
         fun setProfilePictureURL(context: Context, recipient: Recipient, profilePictureURL: String)
         fun setProfileKey(context: Context, recipient: Recipient, profileKey: ByteArray)

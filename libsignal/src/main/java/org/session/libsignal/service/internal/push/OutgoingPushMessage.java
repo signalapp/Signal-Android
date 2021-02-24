@@ -14,20 +14,11 @@ public class OutgoingPushMessage {
   @JsonProperty
   public int    type;
   @JsonProperty
-  private int    destinationDeviceId;
-  @JsonProperty
-  private int    destinationRegistrationId;
-  @JsonProperty
   public String content;
 
-  public OutgoingPushMessage(int type,
-                             int destinationDeviceId,
-                             int destinationRegistrationId,
-                             String content)
+  public OutgoingPushMessage(int type, String content)
   {
     this.type                      = type;
-    this.destinationDeviceId       = destinationDeviceId;
-    this.destinationRegistrationId = destinationRegistrationId;
     this.content                   = content;
   }
 }

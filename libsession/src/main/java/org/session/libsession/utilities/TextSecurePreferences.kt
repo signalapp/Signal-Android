@@ -77,7 +77,6 @@ object TextSecurePreferences {
     const val MEDIA_DOWNLOAD_ROAMING_PREF = "pref_media_download_roaming"
 
     const val SYSTEM_EMOJI_PREF = "pref_system_emoji"
-    private const val MULTI_DEVICE_PROVISIONED_PREF = "pref_multi_device"
     const val DIRECT_CAPTURE_CAMERA_ID = "pref_direct_capture_camera_id"
     const val PROFILE_KEY_PREF = "pref_profile_key"
     const val PROFILE_NAME_PREF = "pref_profile_name"
@@ -109,8 +108,6 @@ object TextSecurePreferences {
     private const val NOTIFICATION_CHANNEL_VERSION = "pref_notification_channel_version"
     private const val NOTIFICATION_MESSAGES_CHANNEL_VERSION = "pref_notification_messages_channel_version"
 
-    private const val NEEDS_MESSAGE_PULL = "pref_needs_message_pull"
-
     const val UNIVERSAL_UNIDENTIFIED_ACCESS = "pref_universal_unidentified_access"
 
     const val TYPING_INDICATORS = "pref_typing_indicators"
@@ -119,29 +116,14 @@ object TextSecurePreferences {
 
     private const val GIF_GRID_LAYOUT = "pref_gif_grid_layout"
 
-    private const val SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip"
-
-    private const val MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode"
-
     // region FCM
     const val IS_USING_FCM = "pref_is_using_fcm"
     private const val FCM_TOKEN = "pref_fcm_token"
     private const val LAST_FCM_TOKEN_UPLOAD_TIME = "pref_last_fcm_token_upload_time_2"
 
     // region Multi Device
-    private const val IS_USING_MULTI_DEVICE = "pref_is_using_multi_device"
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
     private const val CONFIGURATION_SYNCED = "pref_configuration_synced"
-
-    @JvmStatic
-    fun isUsingMultiDevice(context: Context): Boolean {
-        return getBooleanPreference(context, IS_USING_MULTI_DEVICE, false)
-    }
-
-    @JvmStatic
-    fun setIsUsingMultiDevice(context: Context, value: Boolean) {
-        setBooleanPreference(context, IS_USING_MULTI_DEVICE, value)
-    }
 
     @JvmStatic
     fun getLastConfigurationSyncTime(context: Context): Long {
@@ -418,11 +400,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun isMultiDevice(context: Context): Boolean {
-        return getBooleanPreference(context, MULTI_DEVICE_PROVISIONED_PREF, false)
-    }
-
-    @JvmStatic
     fun getNotificationPrivacy(context: Context): NotificationPrivacyPreference {
         return NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"))
     }
@@ -463,13 +440,6 @@ object TextSecurePreferences {
     @JvmStatic
     fun isUniversalUnidentifiedAccess(context: Context): Boolean {
         return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false)
-    }
-
-    @JvmStatic
-    fun isUnidentifiedDeliveryEnabled(context: Context): Boolean {
-        // Loki - Always enable unidentified sender
-        return true
-        // return getBooleanPreference(context, UNIDENTIFIED_DELIVERY_ENABLED, true);
     }
 
     @JvmStatic
@@ -791,37 +761,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun getNeedsMessagePull(context: Context): Boolean {
-        return getBooleanPreference(context, NEEDS_MESSAGE_PULL, false)
-    }
-
-    @JvmStatic
-    fun setNeedsMessagePull(context: Context, needsMessagePull: Boolean) {
-        setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull)
-    }
-
-    @JvmStatic
-    fun hasSeenStickerIntroTooltip(context: Context): Boolean {
-        return getBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, false)
-    }
-
-    @JvmStatic
-    fun setHasSeenStickerIntroTooltip(context: Context, seenStickerTooltip: Boolean) {
-        setBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, seenStickerTooltip)
-    }
-
-    @JvmStatic
-    fun setMediaKeyboardMode(context: Context, mode: MediaKeyboardMode) {
-        setStringPreference(context, MEDIA_KEYBOARD_MODE, mode.name)
-    }
-
-    @JvmStatic
-    fun getMediaKeyboardMode(context: Context): MediaKeyboardMode {
-        val name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name)!!
-        return MediaKeyboardMode.valueOf(name)
-    }
-
-    @JvmStatic
     fun setBooleanPreference(context: Context, key: String?, value: Boolean) {
         getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply()
     }
@@ -876,13 +815,6 @@ object TextSecurePreferences {
 
     // region Loki
     @JvmStatic
-    fun getMasterHexEncodedPublicKey(context: Context): String? {
-        return getStringPreference(context, "master_hex_encoded_public_key", null)
-    }
-
-    fun setMasterHexEncodedPublicKey(context: Context, masterHexEncodedPublicKey: String) {
-        setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase())
-    }
 
     fun getHasViewedSeed(context: Context): Boolean {
         return getBooleanPreference(context, "has_viewed_seed", false)
@@ -890,23 +822,6 @@ object TextSecurePreferences {
 
     fun setHasViewedSeed(context: Context, hasViewedSeed: Boolean) {
         setBooleanPreference(context, "has_viewed_seed", hasViewedSeed)
-    }
-
-    fun setWasUnlinked(context: Context, value: Boolean) {
-        // We do it this way so that it gets persisted in storage straight away
-        getDefaultSharedPreferences(context).edit().putBoolean("database_reset_unpair", value).commit()
-    }
-
-    fun getWasUnlinked(context: Context): Boolean {
-        return getBooleanPreference(context, "database_reset_unpair", false)
-    }
-
-    fun setNeedsIsRevokedSlaveDeviceCheck(context: Context, value: Boolean) {
-        setBooleanPreference(context, "needs_revocation", value)
-    }
-
-    fun getNeedsIsRevokedSlaveDeviceCheck(context: Context): Boolean {
-        return getBooleanPreference(context, "needs_revocation", false)
     }
 
     fun setRestorationTime(context: Context, time: Long) {

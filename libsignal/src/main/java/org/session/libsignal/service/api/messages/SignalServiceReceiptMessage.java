@@ -1,7 +1,7 @@
 package org.session.libsignal.service.api.messages;
 
 
-import org.session.libsignal.service.loki.protocol.meta.TTLUtilities;
+import org.session.libsignal.service.loki.utilities.TTLUtilities;
 
 import java.util.List;
 

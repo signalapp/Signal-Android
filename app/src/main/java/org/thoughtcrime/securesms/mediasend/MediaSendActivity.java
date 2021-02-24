@@ -125,7 +125,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     cameraButton    = findViewById(R.id.mediasend_camera_button);
 
     viewModel = new ViewModelProvider(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
-    recipient = Recipient.from(this, Address.Companion.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
+    recipient = Recipient.from(this, Address.fromSerialized(getIntent().getStringExtra(KEY_ADDRESS)), true);
 
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 

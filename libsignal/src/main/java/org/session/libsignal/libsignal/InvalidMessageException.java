@@ -5,8 +5,6 @@
  */
 package org.session.libsignal.libsignal;
 
-import java.util.List;
-
 public class InvalidMessageException extends Exception {
 
   public InvalidMessageException() {}
@@ -21,9 +19,5 @@ public class InvalidMessageException extends Exception {
 
   public InvalidMessageException(String detailMessage, Throwable throwable) {
     super(detailMessage, throwable);
-  }
-
-  public InvalidMessageException(String detailMessage, List<Exception> exceptions) {
-    super(detailMessage, exceptions.get(0));
   }
 }

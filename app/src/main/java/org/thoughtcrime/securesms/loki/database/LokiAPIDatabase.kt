@@ -11,12 +11,12 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.session.libsignal.utilities.Hex
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 import java.util.*
 
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
@@ -455,52 +455,15 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }.toSet()
     }
 
+    override fun isClosedGroup(groupPublicKey: String): Boolean {
+        if (!PublicKeyValidation.isValid(groupPublicKey)) { return false }
+        return getAllClosedGroupPublicKeys().contains(groupPublicKey)
+    }
+
     fun removeClosedGroupPublicKey(groupPublicKey: String) {
         val database = databaseHelper.writableDatabase
         database.delete(closedGroupPublicKeysTable, "${Companion.groupPublicKey} = ?", wrap(groupPublicKey))
     }
-
-    // region Deprecated
-    override fun getDeviceLinks(publicKey: String): Set<DeviceLink> {
-        return setOf()
-        /*
-        val database = databaseHelper.readableDatabase
-        return database.getAll(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey )) { cursor ->
-            val masterHexEncodedPublicKey = cursor.getString(masterPublicKey)
-            val slaveHexEncodedPublicKey = cursor.getString(slavePublicKey)
-            val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
-            val authorizationSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(authorizationSignature))) null else cursor.getBase64EncodedData(authorizationSignature)
-            DeviceLink(masterHexEncodedPublicKey, slaveHexEncodedPublicKey, requestSignature, authorizationSignature)
-        }.toSet()
-         */
-    }
-
-    override fun clearDeviceLinks(publicKey: String) {
-        /*
-        val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( publicKey, publicKey ))
-         */
-    }
-
-    override fun addDeviceLink(deviceLink: DeviceLink) {
-        /*
-        val database = databaseHelper.writableDatabase
-        val values = ContentValues()
-        values.put(masterPublicKey, deviceLink.masterPublicKey)
-        values.put(slavePublicKey, deviceLink.slavePublicKey)
-        if (deviceLink.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(deviceLink.requestSignature)) }
-        if (deviceLink.authorizationSignature != null) { values.put(authorizationSignature, Base64.encodeBytes(deviceLink.authorizationSignature)) }
-        database.insertOrUpdate(deviceLinkCache, values, "$masterPublicKey = ? AND $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
-         */
-    }
-
-    override fun removeDeviceLink(deviceLink: DeviceLink) {
-        /*
-        val database = databaseHelper.writableDatabase
-        database.delete(deviceLinkCache, "$masterPublicKey = ? OR $slavePublicKey = ?", arrayOf( deviceLink.masterPublicKey, deviceLink.slavePublicKey ))
-         */
-    }
-    // endregion
 }
 
 // region Convenience

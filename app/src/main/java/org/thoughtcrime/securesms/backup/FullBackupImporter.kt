@@ -67,7 +67,6 @@ object FullBackupImporter {
                         frame.hasStatement() -> processStatement(db, frame.statement)
                         frame.hasPreference() -> processPreference(context, frame.preference)
                         frame.hasAttachment() -> processAttachment(context, attachmentSecret, db, frame.attachment, inputStream)
-                        frame.hasSticker() -> processSticker(context, attachmentSecret, db, frame.sticker, inputStream)
                         frame.hasAvatar() -> processAvatar(context, frame.avatar, inputStream)
                     }
                 }
@@ -130,21 +129,6 @@ object FullBackupImporter {
         db.update(AttachmentDatabase.TABLE_NAME, contentValues,
                 "${AttachmentDatabase.ROW_ID} = ? AND ${AttachmentDatabase.UNIQUE_ID} = ?",
                 arrayOf(attachment.rowId.toString(), attachment.attachmentId.toString()))
-    }
-
-    @Throws(IOException::class)
-    private fun processSticker(context: Context, attachmentSecret: AttachmentSecret,
-                               db: SQLiteDatabase, sticker: Sticker,
-                               inputStream: BackupRecordInputStream) {
-        val stickerDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE)
-        val dataFile = File.createTempFile("sticker", ".mms", stickerDirectory)
-        val output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false)
-        inputStream.readAttachmentTo(output.second, sticker.length)
-        val contentValues = ContentValues()
-        contentValues.put(StickerDatabase.FILE_PATH, dataFile.absolutePath)
-        contentValues.put(StickerDatabase.FILE_RANDOM, output.first)
-        db.update(StickerDatabase.TABLE_NAME, contentValues,
-                StickerDatabase._ID + " = ?", arrayOf(sticker.rowId.toString()))
     }
 
     @Throws(IOException::class)

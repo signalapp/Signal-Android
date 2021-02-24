@@ -81,11 +81,9 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -95,7 +93,6 @@ import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
@@ -146,7 +143,6 @@ public class ConversationFragment extends Fragment
   private ViewSwitcher                topLoadMoreView;
   private ViewSwitcher                bottomLoadMoreView;
   private ConversationTypingView      typingView;
-  private UnknownSenderView           unknownSenderView;
   private View                        composeDivider;
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
@@ -255,7 +251,6 @@ public class ConversationFragment extends Fragment
     this.lastSeen          = this.getActivity().getIntent().getLongExtra(ConversationActivity.LAST_SEEN_EXTRA, -1);
     this.startingPosition  = this.getActivity().getIntent().getIntExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1);
     this.firstLoad         = true;
-    this.unknownSenderView = new UnknownSenderView(getActivity(), recipient, threadId);
 
     OnScrollListener scrollListener = new ConversationScrollListener(getActivity());
     list.addOnScrollListener(scrollListener);
@@ -385,8 +380,7 @@ public class ConversationFragment extends Fragment
       menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
                                                                   messageRecord.isMms()                                       &&
                                                                   !messageRecord.isMmsNotification()                          &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
-                                                                  ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
+                                                                  ((MediaMmsMessageRecord)messageRecord).containsMediaSlide());
 
       menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
                                                         !messageRecord.isPending() &&
@@ -654,8 +648,7 @@ public class ConversationFragment extends Fragment
         boolean          isAlbum      = mediaMessage.containsMediaSlide()                      &&
                                         mediaMessage.getSlideDeck().getSlides().size() > 1     &&
                                         mediaMessage.getSlideDeck().getAudioSlide() == null    &&
-                                        mediaMessage.getSlideDeck().getDocumentSlide() == null &&
-                                        mediaMessage.getSlideDeck().getStickerSlide() == null;
+                                        mediaMessage.getSlideDeck().getDocumentSlide() == null;
 
         if (isAlbum) {
           ArrayList<Media> mediaList   = new ArrayList<>(mediaMessage.getSlideDeck().getSlides().size());
@@ -686,10 +679,6 @@ public class ConversationFragment extends Fragment
           Slide slide = mediaMessage.getSlideDeck().getSlides().get(0);
           composeIntent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
           composeIntent.setType(slide.getContentType());
-
-          if (slide.hasSticker()) {
-            composeIntent.putExtra(ConversationActivity.STICKER_EXTRA, slide.asAttachment().getSticker());
-          }
         }
 
         if (mediaMessage.getSlideDeck().getTextSlide() != null && mediaMessage.getSlideDeck().getTextSlide().getUri() != null) {
@@ -1082,13 +1071,6 @@ public class ConversationFragment extends Fragment
     public void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms) {
       if (getContext() != null && getActivity() != null) {
         startActivity(LongMessageActivity.getIntent(getContext(), conversationAddress, messageId, isMms));
-      }
-    }
-
-    @Override
-    public void onStickerClicked(@NonNull StickerLocator sticker) {
-      if (getContext() != null && getActivity() != null) {
-        startActivity(StickerPackPreviewActivity.getIntent(sticker.getPackId(), sticker.getPackKey()));
       }
     }
   }

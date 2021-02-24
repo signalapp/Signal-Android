@@ -76,8 +76,7 @@ class BackgroundPollWorker(val context: Context, params: WorkerParameters) : Wor
             promises.add(privateChatsPromise)
 
             // Closed groups
-            val sskDatabase = DatabaseFactory.getSSKDatabase(context)
-            ClosedGroupPoller.configureIfNeeded(context, sskDatabase)
+            ClosedGroupPoller.configureIfNeeded(context)
             promises.addAll(ClosedGroupPoller.shared.pollOnce())
 
             // Open Groups

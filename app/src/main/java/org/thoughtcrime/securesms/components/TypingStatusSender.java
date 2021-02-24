@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.Util;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,12 +86,8 @@ public class TypingStatusSender {
     if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
     // Loki - Take into account multi device
     if (recipient == null) { return; }
-    Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(recipient.getAddress().serialize());
-    for (String device : linkedDevices) {
-      Recipient deviceAsRecipient = Recipient.from(context, Address.Companion.fromSerialized(device), false);
-      long deviceThreadID = threadDatabase.getOrCreateThreadIdFor(deviceAsRecipient);
-      ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
-    }
+    long threadID = threadDatabase.getOrCreateThreadIdFor(recipient);
+    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadID, typingStarted));
   }
 
   private class StartRunnable implements Runnable {

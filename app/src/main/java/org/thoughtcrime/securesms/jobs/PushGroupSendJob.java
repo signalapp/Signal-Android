@@ -15,7 +15,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 
-import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.service.api.crypto.UnidentifiedAccess;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -28,16 +28,13 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.session.libsignal.utilities.logging.Log;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
+import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SendMessageResult;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
@@ -137,15 +134,12 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   @Override
   public void onPushSend()
-      throws IOException, MmsException, NoSuchMessageException, RetryLaterException
+      throws MmsException, NoSuchMessageException
   {
     MmsDatabase               database                   = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage      message                    = database.getOutgoingMessage(messageId);
     List<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     List<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
-
-    String                    userPublicKey              = TextSecurePreferences.getLocalNumber(context);
-    SignalServiceAddress      localAddress               = new SignalServiceAddress(userPublicKey);
 
     if (database.isSent(messageId)) {
       log(TAG, "Message " + messageId + " was already sent. Ignoring.");
@@ -157,14 +151,14 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
       List<Address> targets;
 
-      if      (filterAddress != null)              targets = Collections.singletonList(Address.Companion.fromSerialized(filterAddress));
+      if      (filterAddress != null)              targets = Collections.singletonList(Address.fromSerialized(filterAddress));
       else if (!existingNetworkFailures.isEmpty()) targets = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
-      else                                         targets = ClosedGroupsProtocol.getMessageDestinations(context, message.getRecipient().getAddress().toGroupString());
+      else                                         targets = ClosedGroupsProtocolV2.getMessageDestinations(context, message.getRecipient().getAddress().toGroupString());
 
       List<SendMessageResult>   results                  = deliver(message, targets);
-      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.Companion.fromSerialized(result.getAddress().getNumber()))).toList();
-      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.Companion.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
-      Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.Companion.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());
+      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
+      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
+      Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());
       List<NetworkFailure>      resolvedNetworkFailures  = Stream.of(existingNetworkFailures).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
       List<IdentityKeyMismatch> resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
       List<SendMessageResult>   successes                = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
@@ -188,7 +182,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       }
 
       for (SendMessageResult success : successes) {
-        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Address.Companion.fromSerialized(success.getAddress().getNumber()),
+        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Address.fromSerialized(success.getAddress().getNumber()),
                                                                          messageId,
                                                                          success.getSuccess().isUnidentified());
       }
@@ -230,21 +224,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<Address> destinations)
-      throws IOException, UntrustedIdentityException, UndeliverableMessageException {
+      throws IOException {
 
-    // Loki - The user shouldn't be able to message RSS feeds
     Address address = message.getRecipient().getAddress();
-//    if (address.isRSSFeed()) {
-//      List<SendMessageResult> results = new ArrayList<>();
-//      for (Address destination : destinations) {
-//        results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
-//      }
-//      return results;
-//    }
 
     List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
-    List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
-                                                                      .map(a -> Address.Companion.fromSerialized(a.getNumber()))
+    List<Optional<UnidentifiedAccess>>         unidentifiedAccess = Stream.of(addresses)
+                                                                      .map(a -> Address.fromSerialized(a.getNumber()))
                                                                       .map(a -> Recipient.from(context, a, false))
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
@@ -252,7 +238,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     if (message.isGroup() && address.isClosedGroup()) {
       SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
       String                                     groupId            = address.toGroupString();
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
       List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
       // Loki - Only send GroupUpdate or GroupQuit messages to closed groups
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
@@ -274,17 +260,16 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) throws IOException {
+  public SignalServiceDataMessage.Builder getDataMessage(Address address, OutgoingMediaMessage message) {
 
     SignalServiceGroup.GroupType groupType = address.isOpenGroup() ? SignalServiceGroup.GroupType.PUBLIC_CHAT : SignalServiceGroup.GroupType.SIGNAL;
 
     String                                     groupId            = address.toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
     Optional<Quote>                            quote              = getQuoteFor(message);
-    Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
     List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
     List<Preview>                              previews           = getPreviewsFor(message);
-    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+    List<Attachment>                           attachments        = Stream.of(message.getAttachments()).toList();
     List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
 
     SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedGroupIDAsData(groupId), groupType);
@@ -297,7 +282,6 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
             .asExpirationUpdate(message.isExpirationUpdate())
             .withProfileKey(profileKey.orNull())
             .withQuote(quote.orNull())
-            .withSticker(sticker.orNull())
             .withSharedContacts(sharedContacts)
             .withPreviews(previews);
   }
@@ -306,7 +290,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     @Override
     public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       String  address = data.getString(KEY_FILTER_ADDRESS);
-      Address filter  = address != null ? Address.Companion.fromSerialized(data.getString(KEY_FILTER_ADDRESS)) : null;
+      Address filter  = address != null ? Address.fromSerialized(data.getString(KEY_FILTER_ADDRESS)) : null;
 
       return new PushGroupSendJob(parameters, data.getLong(KEY_MESSAGE_ID), filter);
     }

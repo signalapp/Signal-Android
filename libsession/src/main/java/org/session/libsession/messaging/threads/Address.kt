@@ -152,15 +152,18 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
         val UNKNOWN = Address("Unknown")
         private val TAG = Address::class.java.simpleName
         private val cachedFormatter = AtomicReference<Pair<String, ExternalAddressFormatter>>()
+
         @JvmStatic
         fun fromSerialized(serialized: String): Address {
             return Address(serialized)
         }
 
+        @JvmStatic
         fun fromExternal(context: Context, external: String?): Address {
             return fromSerialized(external!!)
         }
 
+        @JvmStatic
         fun fromSerializedList(serialized: String, delimiter: Char): List<Address> {
             val escapedAddresses = DelimiterUtil.split(serialized, delimiter)
             val addresses: MutableList<Address> = LinkedList()
@@ -170,6 +173,7 @@ class Address private constructor(address: String) : Parcelable, Comparable<Addr
             return addresses
         }
 
+        @JvmStatic
         fun toSerializedList(addresses: List<Address>, delimiter: Char): String {
             Collections.sort(addresses)
             val escapedAddresses: MutableList<String> = LinkedList()

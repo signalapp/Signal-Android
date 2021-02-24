@@ -17,7 +17,7 @@ class Profile() {
             val profileProto = proto.profile ?: return null
             val displayName = profileProto.displayName ?: return null
             val profileKey = proto.profileKey
-            val profilePictureURL = profileProto.profilePictureURL
+            val profilePictureURL = profileProto.profilePicture
             profileKey?.let {
                 profilePictureURL?.let {
                     return Profile(displayName = displayName, profileKey = profileKey.toByteArray(), profilePictureURL = profilePictureURL)
@@ -41,12 +41,12 @@ class Profile() {
             return null
         }
         val dataMessageProto = SignalServiceProtos.DataMessage.newBuilder()
-        val profileProto = SignalServiceProtos.LokiUserProfile.newBuilder()
+        val profileProto = SignalServiceProtos.DataMessage.LokiProfile.newBuilder()
         profileProto.displayName = displayName
         val profileKey = profileKey
         profileKey?.let { dataMessageProto.profileKey = ByteString.copyFrom(profileKey) }
         val profilePictureURL = profilePictureURL
-        profilePictureURL?.let { profileProto.profilePictureURL = profilePictureURL }
+        profilePictureURL?.let { profileProto.profilePicture = profilePictureURL }
         // Build
         try {
             dataMessageProto.profile = profileProto.build()

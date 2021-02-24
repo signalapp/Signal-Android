@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 
 public class DatabaseFactory {
 
@@ -54,12 +53,8 @@ public class DatabaseFactory {
   private final GroupDatabase         groupDatabase;
   private final RecipientDatabase     recipientDatabase;
   private final GroupReceiptDatabase  groupReceiptDatabase;
-  private final OneTimePreKeyDatabase preKeyDatabase;
-  private final SignedPreKeyDatabase  signedPreKeyDatabase;
-  private final SessionDatabase       sessionDatabase;
   private final SearchDatabase        searchDatabase;
   private final JobDatabase           jobDatabase;
-  private final StickerDatabase       stickerDatabase;
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
@@ -67,7 +62,6 @@ public class DatabaseFactory {
   private final LokiThreadDatabase lokiThreadDatabase;
   private final LokiUserDatabase lokiUserDatabase;
   private final LokiBackupFilesDatabase lokiBackupFilesDatabase;
-  private final SharedSenderKeysDatabase sskDatabase;
   private final SessionJobDatabase sessionJobDatabase;
 
   // Refactor
@@ -127,28 +121,12 @@ public class DatabaseFactory {
     return getInstance(context).groupReceiptDatabase;
   }
 
-  public static OneTimePreKeyDatabase getPreKeyDatabase(Context context) {
-    return getInstance(context).preKeyDatabase;
-  }
-
-  public static SignedPreKeyDatabase getSignedPreKeyDatabase(Context context) {
-    return getInstance(context).signedPreKeyDatabase;
-  }
-
-  public static SessionDatabase getSessionDatabase(Context context) {
-    return getInstance(context).sessionDatabase;
-  }
-
   public static SearchDatabase getSearchDatabase(Context context) {
     return getInstance(context).searchDatabase;
   }
 
   public static JobDatabase getJobDatabase(Context context) {
     return getInstance(context).jobDatabase;
-  }
-
-  public static StickerDatabase getStickerDatabase(Context context) {
-    return getInstance(context).stickerDatabase;
   }
 
   public static SQLiteDatabase getBackupDatabase(Context context) {
@@ -174,10 +152,6 @@ public class DatabaseFactory {
 
   public static LokiBackupFilesDatabase getLokiBackupFilesDatabase(Context context) {
     return getInstance(context).lokiBackupFilesDatabase;
-  }
-
-  public static SharedSenderKeysDatabase getSSKDatabase(Context context) {
-    return getInstance(context).sskDatabase;
   }
 
   public static SessionJobDatabase getSessionJobDatabase(Context context) {
@@ -218,18 +192,13 @@ public class DatabaseFactory {
     this.groupDatabase             = new GroupDatabase(context, databaseHelper);
     this.recipientDatabase         = new RecipientDatabase(context, databaseHelper);
     this.groupReceiptDatabase      = new GroupReceiptDatabase(context, databaseHelper);
-    this.preKeyDatabase            = new OneTimePreKeyDatabase(context, databaseHelper);
-    this.signedPreKeyDatabase      = new SignedPreKeyDatabase(context, databaseHelper);
-    this.sessionDatabase           = new SessionDatabase(context, databaseHelper);
     this.searchDatabase            = new SearchDatabase(context, databaseHelper);
     this.jobDatabase               = new JobDatabase(context, databaseHelper);
-    this.stickerDatabase           = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase           = new LokiAPIDatabase(context, databaseHelper);
     this.lokiMessageDatabase       = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase        = new LokiThreadDatabase(context, databaseHelper);
     this.lokiUserDatabase          = new LokiUserDatabase(context, databaseHelper);
     this.lokiBackupFilesDatabase   = new LokiBackupFilesDatabase(context, databaseHelper);
-    this.sskDatabase               = new SharedSenderKeysDatabase(context, databaseHelper);
     this.storage                   = new Storage(context, databaseHelper);
     this.attachmentProvider        = new DatabaseAttachmentProvider(context, databaseHelper);
     this.sessionJobDatabase        = new SessionJobDatabase(context, databaseHelper);

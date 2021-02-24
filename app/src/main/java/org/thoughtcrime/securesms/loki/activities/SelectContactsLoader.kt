@@ -9,9 +9,9 @@ class SelectContactsLoader(context: Context, val usersToExclude: Set<String>) : 
     override fun loadInBackground(): List<String> {
         val contacts = ContactUtilities.getAllContacts(context)
         return contacts.filter { contact ->
-            !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave && !usersToExclude.contains(contact.recipient.address.toString())
+            !contact.isGroupRecipient && !usersToExclude.contains(contact.address.toString())
         }.map {
-            it.recipient.address.toString()
+            it.address.toString()
         }
     }
 }

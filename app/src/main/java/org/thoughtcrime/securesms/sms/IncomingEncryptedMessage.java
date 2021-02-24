@@ -6,7 +6,7 @@ public class IncomingEncryptedMessage extends IncomingTextMessage {
     super(base, newBody);
   }
 
-    @Override
+  @Override
   public boolean isSecureMessage() {
     return true;
   }

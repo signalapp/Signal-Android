@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MmsSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
-import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
@@ -42,9 +41,7 @@ public class MediaUtil {
 
   public static Slide getSlideForAttachment(Context context, Attachment attachment) {
     Slide slide = null;
-    if (attachment.isSticker()) {
-      slide = new StickerSlide(context, attachment);
-    } else if (isGif(attachment.getContentType())) {
+    if (isGif(attachment.getContentType())) {
       slide = new GifSlide(context, attachment);
     } else if (isImageType(attachment.getContentType())) {
       slide = new ImageSlide(context, attachment);
@@ -191,10 +188,6 @@ public class MediaUtil {
     return isVideoType(attachment.getContentType());
   }
 
-  public static boolean isVideo(String contentType) {
-    return !TextUtils.isEmpty(contentType) && contentType.trim().startsWith("video/");
-  }
-
   public static boolean isVcard(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(MediaTypes.VCARD);
   }
@@ -209,10 +202,6 @@ public class MediaUtil {
 
   public static boolean isFile(Attachment attachment) {
     return !isGif(attachment) && !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
-  }
-
-  public static boolean isTextType(String contentType) {
-    return (null != contentType) && contentType.startsWith("text/");
   }
 
   public static boolean isImageType(String contentType) {

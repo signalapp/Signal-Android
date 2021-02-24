@@ -51,7 +51,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachmentAudioExtras;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 
 import org.session.libsignal.utilities.JsonUtil;
 import org.session.libsession.utilities.Util;
@@ -504,7 +503,6 @@ public class AttachmentDatabase extends Database {
                                   mediaStream.getHeight(),
                                   databaseAttachment.isQuote(),
                                   databaseAttachment.getCaption(),
-                                  databaseAttachment.getSticker(),
                                   databaseAttachment.getUrl());
   }
 
@@ -546,18 +544,6 @@ public class AttachmentDatabase extends Database {
     values.put(TRANSFER_STATE, transferState);
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-  }
-
-  /**
-   * Returns (pack_id, pack_key) pairs that are referenced in attachments but not in the stickers
-   * database.
-   */
-  public @Nullable Cursor getUnavailableStickerPacks() {
-    String query = "SELECT DISTINCT " + STICKER_PACK_ID + ", " + STICKER_PACK_KEY + " FROM " + TABLE_NAME + " WHERE " + STICKER_PACK_ID + " NOT IN (" +
-                     "SELECT DISTINCT " + StickerDatabase.PACK_ID + " FROM " + StickerDatabase.TABLE_NAME +
-                   ")";
-
-    return databaseHelper.getReadableDatabase().rawQuery(query, null);
   }
 
   public boolean hasStickerAttachments() {
@@ -701,11 +687,7 @@ public class AttachmentDatabase extends Database {
                                               object.getInt(HEIGHT),
                                               object.getInt(QUOTE) == 1,
                                               object.getString(CAPTION),
-                                              object.getInt(STICKER_ID) >= 0
-                                                  ? new StickerLocator(object.getString(STICKER_PACK_ID),
-                                                                       object.getString(STICKER_PACK_KEY),
-                                                                       object.getInt(STICKER_ID))
-                                                  : null, "")); // TODO: Not sure if this will break something
+                                              "")); // TODO: Not sure if this will break something
           }
         }
 
@@ -731,11 +713,6 @@ public class AttachmentDatabase extends Database {
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(HEIGHT)),
                                                                 cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE)) == 1,
                                                                 cursor.getString(cursor.getColumnIndexOrThrow(CAPTION)),
-                                                                cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)) >= 0
-                                                                    ? new StickerLocator(cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_ID)),
-                                                                                         cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_KEY)),
-                                                                                         cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
-                                                                    : null,
                                                                 urlIndex > 0 ? cursor.getString(urlIndex) : ""));
       }
     } catch (JSONException e) {
@@ -777,19 +754,12 @@ public class AttachmentDatabase extends Database {
     contentValues.put(CAPTION, attachment.getCaption());
     contentValues.put(URL, attachment.getUrl());
 
-    if (attachment.isSticker()) {
-      contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());
-      contentValues.put(STICKER_PACK_KEY, attachment.getSticker().getPackKey());
-      contentValues.put(STICKER_ID, attachment.getSticker().getStickerId());
-    }
-
     if (dataInfo != null) {
       contentValues.put(DATA, dataInfo.file.getAbsolutePath());
       contentValues.put(SIZE, dataInfo.length);
       contentValues.put(DATA_RANDOM, dataInfo.random);
     }
 
-    boolean      notifyPacks  = attachment.isSticker() && !hasStickerAttachments();
     long         rowId        = database.insert(TABLE_NAME, null, contentValues);
     AttachmentId attachmentId = new AttachmentId(rowId, uniqueId);
     Uri          thumbnailUri = attachment.getThumbnailUri();
@@ -827,10 +797,6 @@ public class AttachmentDatabase extends Database {
         Log.i(TAG, "Submitting thumbnail generation job...");
         thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
       }
-    }
-
-    if (notifyPacks) {
-      notifyStickerPackListeners();
     }
 
     return attachmentId;

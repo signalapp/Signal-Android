@@ -4,17 +4,19 @@ import android.content.Context
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.loki.utilities.recipient
 import java.util.*
 
 object MultiDeviceProtocol {
@@ -30,11 +32,11 @@ object MultiDeviceProtocol {
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
-        val recipient = recipient(context, userPublicKey)
+        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
-            messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
-                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
+            messageSender.sendMessage(0, address, udAccess,
+                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
                     true, false, false, Optional.absent())
             TextSecurePreferences.setLastConfigurationSyncTime(context, now)
         } catch (e: Exception) {
@@ -49,11 +51,11 @@ object MultiDeviceProtocol {
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
-        val recipient = recipient(context, userPublicKey)
+        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
         val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
         try {
-            messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
-                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
+            messageSender.sendMessage(0, address, udAccess,
+                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
                     true, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
@@ -72,8 +74,8 @@ object MultiDeviceProtocol {
         for (closedGroup in configurationMessage.closedGroups) {
             if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
 
-            val closedGroupUpdate = SignalServiceProtos.ClosedGroupUpdateV2.newBuilder()
-            closedGroupUpdate.type = SignalServiceProtos.ClosedGroupUpdateV2.Type.NEW
+            val closedGroupUpdate = DataMessage.ClosedGroupControlMessage.newBuilder()
+            closedGroupUpdate.type = DataMessage.ClosedGroupControlMessage.Type.NEW
             closedGroupUpdate.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(closedGroup.publicKey))
             closedGroupUpdate.name = closedGroup.name
             val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()

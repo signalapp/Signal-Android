@@ -16,12 +16,9 @@
 
 package org.session.libsignal.libsignal.util.guava;
 
-import org.session.libsignal.libsignal.util.guava.Supplier;
-
 import static org.session.libsignal.libsignal.util.guava.Preconditions.checkNotNull;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Set;
 
 

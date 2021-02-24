@@ -53,7 +53,7 @@ object LokiPushNotificationManager {
             }
         }
         // Unsubscribe from all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)!!
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(context, ClosedGroupOperation.Unsubscribe, closedGroup, userPublicKey)
@@ -84,7 +84,7 @@ object LokiPushNotificationManager {
             }
         }
         // Subscribe to all closed groups
-        val allClosedGroupPublicKeys = DatabaseFactory.getSSKDatabase(context).getAllClosedGroupPublicKeys()
+        val allClosedGroupPublicKeys = DatabaseFactory.getLokiAPIDatabase(context).getAllClosedGroupPublicKeys()
         allClosedGroupPublicKeys.forEach { closedGroup ->
             performOperation(context, ClosedGroupOperation.Subscribe, closedGroup, publicKey)
         }

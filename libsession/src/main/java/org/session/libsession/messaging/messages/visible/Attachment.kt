@@ -69,6 +69,6 @@ class Attachment {
     fun toDatabaseAttachment(): org.session.libsession.messaging.sending_receiving.attachments.Attachment {
         return DatabaseAttachment(null, 0, true, true, contentType, 0,
                 sizeInBytes?.toLong() ?: 0, fileName, null, key.toString(), null, digest, null, kind == Kind.VOICE_MESSAGE,
-                size?.width ?: 0, size?.height ?: 0, false, caption, null, url)
+                size?.width ?: 0, size?.height ?: 0, false, caption, url)
     }
 }

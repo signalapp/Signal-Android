@@ -47,9 +47,8 @@ object SessionMetaProtocol {
         val displayName = content.senderDisplayName.orNull() ?: return
         if (displayName.isBlank()) { return }
         val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
         val sender = content.sender.toLowerCase()
-        if (userMasterPublicKey == sender) {
+        if (userPublicKey == sender) {
             // Update the user's local name if the message came from their master device
             TextSecurePreferences.setProfileName(context, displayName)
         }
@@ -67,8 +66,8 @@ object SessionMetaProtocol {
             database.setUnidentifiedAccessMode(recipient, Recipient.UnidentifiedAccessMode.UNKNOWN)
             val url = content.senderProfilePictureURL.or("")
             ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(recipient, url))
-            val userMasterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-            if (userMasterPublicKey == content.sender) {
+            val userPublicKey = TextSecurePreferences.getLocalNumber(context)
+            if (userPublicKey == content.sender) {
                 ApplicationContext.getInstance(context).updateOpenGroupProfilePicturesIfNeeded()
             }
         }

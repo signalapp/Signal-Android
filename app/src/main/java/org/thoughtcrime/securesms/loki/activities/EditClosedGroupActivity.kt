@@ -19,20 +19,20 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
-import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.ThemeUtil
+import org.session.libsignal.service.loki.utilities.toHexString
 import java.io.IOException
 
 class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
@@ -246,21 +246,21 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
 
         val admins = members.toSet() //TODO For now, consider all the users to be admins.
 
-        var isSSKBasedClosedGroup: Boolean
+        var isClosedGroup: Boolean
         var groupPublicKey: String?
         try {
-            groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(groupID).toHexString()
-            isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(this).isSSKBasedClosedGroup(groupPublicKey)
+            groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString()
+            isClosedGroup = DatabaseFactory.getLokiAPIDatabase(this).isClosedGroup(groupPublicKey)
         } catch (e: IOException) {
             groupPublicKey = null
-            isSSKBasedClosedGroup = false
+            isClosedGroup = false
         }
 
         if (members.isEmpty()) {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val maxGroupMembers = if (isSSKBasedClosedGroup) ClosedGroupsProtocolV2.groupSizeLimit else legacyGroupSizeLimit
+        val maxGroupMembers = if (isClosedGroup) ClosedGroupsProtocolV2.groupSizeLimit else legacyGroupSizeLimit
         if (members.size >= maxGroupMembers) {
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
@@ -273,7 +273,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
         }
 
-        if (isSSKBasedClosedGroup) {
+        if (isClosedGroup) {
             isLoading = true
             loaderContainer.fadeIn()
             val promise: Promise<Any, Exception> = if (!members.contains(Recipient.from(this, Address.fromSerialized(userPublicKey), false))) {
@@ -296,7 +296,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 isLoading = false
                 finish()
             }.failUi { exception ->
-                val message = if (exception is ClosedGroupsProtocol.Error) exception.description else "An error occurred"
+                val message = if (exception is ClosedGroupsProtocolV2.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
                 loaderContainer.fadeOut()
                 isLoading = false

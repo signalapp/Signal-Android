@@ -23,15 +23,6 @@ public abstract class CharacterCalculator {
 
   public abstract CharacterState calculateCharacters(String messageBody);
 
-  public static CharacterCalculator readFromParcel(@NonNull Parcel in) {
-    switch (in.readInt()) {
-      case 1:  return new SmsCharacterCalculator();
-      case 2:  return new MmsCharacterCalculator();
-      case 3:  return new PushCharacterCalculator();
-      default: throw new IllegalArgumentException("Read an unsupported value for a calculator.");
-    }
-  }
-
   public static void writeToParcel(@NonNull Parcel dest, @NonNull CharacterCalculator calculator) {
     if (calculator instanceof SmsCharacterCalculator) {
       dest.writeInt(1);

@@ -66,14 +66,6 @@ public abstract class Database {
     cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.ConversationList.CONTENT_URI);
   }
 
-  protected void setNotifyStickerListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.Sticker.CONTENT_URI);
-  }
-
-  protected void setNotifyStickerPackListeners(Cursor cursor) {
-    cursor.setNotificationUri(context.getContentResolver(), DatabaseContentProviders.StickerPack.CONTENT_URI);
-  }
-
   protected void registerAttachmentListeners(@NonNull ContentObserver observer) {
     context.getContentResolver().registerContentObserver(DatabaseContentProviders.Attachment.CONTENT_URI,
                                                          true,

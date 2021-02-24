@@ -162,11 +162,11 @@ class OpenGroupPoller(private val openGroup: OpenGroup) {
                 }
                 val messageServerID = message.serverID
                 // Profile
-                val profileProto = LokiUserProfile.newBuilder()
+                val profileProto = DataMessage.LokiProfile.newBuilder()
                 profileProto.setDisplayName(message.displayName)
                 val profilePicture = message.profilePicture
                 if (profilePicture != null) {
-                    profileProto.setProfilePictureURL(profilePicture.url)
+                    profileProto.setProfilePicture(profilePicture.url)
                     dataMessageProto.setProfileKey(ByteString.copyFrom(profilePicture.profileKey))
                 }
                 dataMessageProto.setProfile(profileProto.build())

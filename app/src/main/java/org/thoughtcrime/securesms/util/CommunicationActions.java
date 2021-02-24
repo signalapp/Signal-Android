@@ -20,10 +20,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public class CommunicationActions {
 
-  public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
-    startConversation(context, recipient, text, null);
-  }
-
   public static void startConversation(@NonNull  Context          context,
                                        @NonNull  Recipient        recipient,
                                        @Nullable String           text,
@@ -54,14 +50,6 @@ public class CommunicationActions {
         }
       }
     }.execute();
-  }
-
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Address address, @Nullable String text) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + address.serialize()));
-    if (text != null) {
-      intent.putExtra("sms_body", text);
-    }
-    context.startActivity(intent);
   }
 
   public static void openBrowserLink(@NonNull Context context, @NonNull String link) {

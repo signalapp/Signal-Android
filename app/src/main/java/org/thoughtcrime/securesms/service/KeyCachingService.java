@@ -60,12 +60,10 @@ public class KeyCachingService extends Service {
   public static final int SERVICE_RUNNING_ID = 4141;
 
   public  static final String KEY_PERMISSION           = "network.loki.messenger.ACCESS_SESSION_SECRETS";
-//  public  static final String NEW_KEY_EVENT            = "org.thoughtcrime.securesms.service.action.NEW_KEY_EVENT";
   public  static final String CLEAR_KEY_EVENT          = "org.thoughtcrime.securesms.service.action.CLEAR_KEY_EVENT";
   public  static final String LOCK_TOGGLED_EVENT       = "org.thoughtcrime.securesms.service.action.LOCK_ENABLED_EVENT";
   private static final String PASSPHRASE_EXPIRED_EVENT = "org.thoughtcrime.securesms.service.action.PASSPHRASE_EXPIRED_EVENT";
   public  static final String CLEAR_KEY_ACTION         = "org.thoughtcrime.securesms.service.action.CLEAR_KEY";
-//  public  static final String DISABLE_ACTION           = "org.thoughtcrime.securesms.service.action.DISABLE";
 
   private final IBinder binder  = new KeySetBinder();
 
@@ -111,14 +109,6 @@ public class KeyCachingService extends Service {
   }
 
   public static synchronized @Nullable Object getMasterSecret(Context context) {
-//    if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
-//      try {
-//        return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-//      } catch (InvalidPassphraseException e) {
-//        Log.w("KeyCachingService", e);
-//      }
-//    }
-
     return masterSecret;
   }
 
@@ -128,7 +118,6 @@ public class KeyCachingService extends Service {
       KeyCachingService.masterSecret = masterSecret;
 
       foregroundService();
-//      broadcastNewSecret();
       startTimeoutIfAppropriate(this);
       
       new AsyncTask<Void, Void, Void>() {
@@ -152,7 +141,6 @@ public class KeyCachingService extends Service {
       switch (intent.getAction()) {
         case CLEAR_KEY_ACTION:         handleClearKey();        break;
         case PASSPHRASE_EXPIRED_EVENT: handleClearKey();        break;
-//        case DISABLE_ACTION:           handleDisableService();  break;
         case LOCK_TOGGLED_EVENT:       handleLockToggled();     break;
       }
     }
@@ -166,12 +154,7 @@ public class KeyCachingService extends Service {
     super.onCreate();
 
     if (TextSecurePreferences.isPasswordDisabled(this) && !TextSecurePreferences.isScreenLockEnabled(this)) {
-//      try {
-//        MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
         setMasterSecret(new Object());
-//      } catch (InvalidPassphraseException e) {
-//        Log.w("KeyCachingService", e);
-//      }
     }
   }
 
@@ -215,21 +198,7 @@ public class KeyCachingService extends Service {
 
   private void handleLockToggled() {
     stopForeground(true);
-
-//    try {
-//      MasterSecret masterSecret = MasterSecretUtil.getMasterSecret(this, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
-      setMasterSecret(masterSecret);
-//    } catch (InvalidPassphraseException e) {
-//      Log.w(TAG, e);
-//    }
-  }
-
-  private void handleDisableService() {
-    if (TextSecurePreferences.isPasswordDisabled(this) &&
-        !TextSecurePreferences.isScreenLockEnabled(this))
-    {
-      stopForeground(true);
-    }
+    setMasterSecret(masterSecret);
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
@@ -282,15 +251,6 @@ public class KeyCachingService extends Service {
     stopForeground(true);
     startForeground(SERVICE_RUNNING_ID, builder.build());
   }
-
-//  private void broadcastNewSecret() {
-//    Log.i(TAG, "Broadcasting new secret...");
-//
-//    Intent intent = new Intent(NEW_KEY_EVENT);
-//    intent.setPackage(getApplicationContext().getPackageName());
-//
-//    sendBroadcast(intent, KEY_PERMISSION);
-//  }
 
   private PendingIntent buildLockIntent() {
     Intent intent = new Intent(this, KeyCachingService.class);

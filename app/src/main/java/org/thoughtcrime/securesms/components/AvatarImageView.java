@@ -113,7 +113,7 @@ public class AvatarImageView extends AppCompatImageView {
   }
 
   public void update(String hexEncodedPublicKey) {
-    Address address = Address.Companion.fromSerialized(hexEncodedPublicKey);
+    Address address = Address.fromSerialized(hexEncodedPublicKey);
     Recipient recipient = Recipient.from(getContext(), address, false);
     updateAvatar(recipient);
   }

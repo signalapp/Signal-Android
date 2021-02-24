@@ -105,10 +105,6 @@ public class SignalServiceGroup {
     return admins;
   }
 
-  public static Builder newUpdateBuilder() {
-    return new Builder(Type.UPDATE);
-  }
-
   public static Builder newBuilder(Type type) {
     return new Builder(type);
   }

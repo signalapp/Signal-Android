@@ -12,7 +12,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.Attachment
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.utilities.Base64;
-import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,13 +33,10 @@ import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.session.libsignal.utilities.Hex;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.crypto.UnidentifiedAccessPair;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
-import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.SignalServiceSyncMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 
@@ -55,7 +51,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class PushSendJob extends SendJob {
 
   private static final String TAG                           = PushSendJob.class.getSimpleName();
-  private static final long   CERTIFICATE_EXPIRATION_BUFFER = TimeUnit.DAYS.toMillis(1);
 
   protected PushSendJob(Job.Parameters parameters) {
     super(parameters);
@@ -72,14 +67,6 @@ public abstract class PushSendJob extends SendJob {
 
   @Override
   protected final void onSend() throws Exception {
-//    if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
-//      ApplicationContext.getInstance(context)
-//                        .getJobManager()
-//                        .add(new RotateSignedPreKeyJob());
-//
-//      throw new TextSecureExpiredException("Too many signed prekey rotation failures");
-//    }
-
     onPushSend();
   }
 
@@ -100,19 +87,6 @@ public abstract class PushSendJob extends SendJob {
   protected SignalServiceAddress getPushAddress(Address address) {
     String relay = null;
     return new SignalServiceAddress(address.toString(), Optional.fromNullable(relay));
-  }
-
-  protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
-    List<SignalServiceAttachment> attachments = new LinkedList<>();
-
-    for (final Attachment attachment : parts) {
-      SignalServiceAttachment converted = getAttachmentFor(attachment);
-      if (converted != null) {
-        attachments.add(converted);
-      }
-    }
-
-    return attachments;
   }
 
   protected SignalServiceAttachment getAttachmentFor(Attachment attachment) {
@@ -225,26 +199,6 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(quoteAuthor.serialize()), quoteBody, quoteAttachments));
   }
 
-  protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
-    Attachment stickerAttachment = Stream.of(message.getAttachments()).filter(Attachment::isSticker).findFirst().orElse(null);
-
-    if (stickerAttachment == null) {
-      return Optional.absent();
-    }
-
-    try {
-      byte[]                  packId     = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackId());
-      byte[]                  packKey    = Hex.fromStringCondensed(stickerAttachment.getSticker().getPackKey());
-      int                     stickerId  = stickerAttachment.getSticker().getStickerId();
-      SignalServiceAttachment attachment = getAttachmentPointerFor(stickerAttachment);
-
-      return Optional.of(new SignalServiceDataMessage.Sticker(packId, packKey, stickerId, attachment));
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to decode sticker id/key", e);
-      return Optional.absent();
-    }
-  }
-
   List<SharedContact> getSharedContactsFor(OutgoingMediaMessage mediaMessage) {
     List<SharedContact> sharedContacts = new LinkedList<>();
 
@@ -271,22 +225,6 @@ public abstract class PushSendJob extends SendJob {
       return new Preview(lp.getUrl(), lp.getTitle(), Optional.fromNullable(attachment));
     }).toList();
   }
-
-  protected void rotateSenderCertificateIfNecessary() throws IOException {
-    // Loki - We don't need verification on sender certificates
-  }
-
-  protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                masterPublicKeyOrNull = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String                masterPublicKey       = masterPublicKeyOrNull != null ? masterPublicKeyOrNull : TextSecurePreferences.getLocalNumber(context);
-    SentTranscriptMessage transcript            = new SentTranscriptMessage(masterPublicKey,
-                                                                            message.getTimestamp(),
-                                                                            message,
-                                                                            message.getExpiresInSeconds(),
-                                                                            Collections.singletonMap(masterPublicKey, syncAccess.isPresent()));
-    return SignalServiceSyncMessage.forSentTranscript(transcript);
-  }
-
 
   protected abstract void onPushSend() throws Exception;
 }

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -85,13 +84,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
       // Loki - Check whether we want to send a read receipt to this user
       if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
       // Loki - Take into account multi device
-      Set<String> linkedDevices = MultiDeviceProtocol.shared.getAllLinkedDevices(address.serialize());
-      for (String device : linkedDevices) {
-        Address deviceAsAddress = Address.Companion.fromExternal(context, device);
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new SendReadReceiptJob(deviceAsAddress, timestamps));
-      }
+      ApplicationContext.getInstance(context)
+              .getJobManager()
+              .add(new SendReadReceiptJob(address, timestamps));
     }
   }
 

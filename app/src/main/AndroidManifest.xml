@@ -308,16 +308,6 @@
             android:theme="@style/Theme.TextSecure.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="org.thoughtcrime.securesms.stickers.StickerManagementActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="stateUnchanged" />
-        <activity
-            android:name="org.thoughtcrime.securesms.LogSubmitActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="@string/AndroidManifest__log_submit"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name="org.thoughtcrime.securesms.MediaPreviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__media_preview"
@@ -352,17 +342,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat" />
         <activity
-            android:name="org.thoughtcrime.securesms.ClearProfileAvatarActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:icon="@drawable/clear_profile_avatar"
-            android:label="@string/AndroidManifest_remove_photo"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert">
-            <intent-filter>
-                <action android:name="network.loki.securesms.action.CLEAR_PROFILE_PHOTO" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="org.thoughtcrime.securesms.ShortcutLauncherActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="true"
@@ -376,15 +355,9 @@
             </intent-filter>
         </service>
         <service
-            android:name="org.thoughtcrime.securesms.service.ApplicationMigrationService"
-            android:enabled="true" />
-        <service
             android:name="org.thoughtcrime.securesms.service.KeyCachingService"
             android:enabled="true"
             android:exported="false" />
-        <service
-            android:name="org.thoughtcrime.securesms.service.IncomingMessageObserver$ForegroundService"
-            android:enabled="true" />
         <service
             android:name="org.thoughtcrime.securesms.service.DirectShareService"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
@@ -428,11 +401,6 @@
         <provider
             android:name="org.thoughtcrime.securesms.providers.PartProvider"
             android:authorities="network.loki.provider.securesms"
-            android:exported="false"
-            android:grantUriPermissions="true" />
-        <provider
-            android:name="org.thoughtcrime.securesms.providers.MmsBodyProvider"
-            android:authorities="network.loki.provider.securesms.mms"
             android:exported="false"
             android:grantUriPermissions="true" />
         <provider
@@ -489,16 +457,6 @@
         <receiver android:name="org.thoughtcrime.securesms.notifications.DeleteNotificationReceiver">
             <intent-filter>
                 <action android:name="network.loki.securesms.DELETE_NOTIFICATION" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name="org.thoughtcrime.securesms.ExperienceUpgradeActivity$AppUpgradeReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="network.loki.securesms.ExperienceUpgradeActivity.DISMISS_ACTION" />
             </intent-filter>
         </receiver>
         <receiver

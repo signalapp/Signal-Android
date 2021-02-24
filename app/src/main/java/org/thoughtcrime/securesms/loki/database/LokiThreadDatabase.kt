@@ -14,13 +14,11 @@ import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 
-import org.session.libsignal.libsignal.loki.SessionResetStatus
 import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.database.LokiThreadDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
-    var delegate: LokiThreadDatabaseDelegate? = null
 
     companion object {
         private val sessionResetTable = "loki_thread_session_reset_database"
@@ -37,34 +35,6 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
         return DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient)
-    }
-
-    fun getThreadID(messageID: Long): Long {
-        return DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID)
-    }
-
-    fun getSessionResetStatus(hexEncodedPublicKey: String): SessionResetStatus {
-        val threadID = getThreadID(hexEncodedPublicKey)
-        val database = databaseHelper.readableDatabase
-        val result = database.get(sessionResetTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
-            cursor.getInt(sessionResetStatus)
-        }
-        return if (result != null) {
-            SessionResetStatus.values().first { it.rawValue == result }
-        } else {
-            SessionResetStatus.NONE
-        }
-    }
-
-    fun setSessionResetStatus(hexEncodedPublicKey: String, sessionResetStatus: SessionResetStatus) {
-        val threadID = getThreadID(hexEncodedPublicKey)
-        val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
-        contentValues.put(Companion.threadID, threadID)
-        contentValues.put(Companion.sessionResetStatus, sessionResetStatus.rawValue)
-        database.insertOrUpdate(sessionResetTable, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
-        notifyConversationListListeners()
-        notifyConversationListeners(threadID)
     }
 
     fun getAllPublicChats(): Map<Long, PublicChat> {
@@ -111,25 +81,5 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     override fun removePublicChat(threadID: Long) {
         databaseHelper.writableDatabase.delete(publicChatTable, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
-    }
-
-    fun addSessionRestoreDevice(threadID: Long, publicKey: String) {
-        val devices = getSessionRestoreDevices(threadID).toMutableSet()
-        if (devices.add(publicKey)) {
-            TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", devices.joinToString(","))
-            delegate?.handleSessionRestoreDevicesChanged(threadID)
-        }
-    }
-
-    fun getSessionRestoreDevices(threadID: Long): Set<String> {
-        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")!!
-            .split(",")
-            .filter { PublicKeyValidation.isValid(it) }
-            .toSet()
-    }
-
-    fun removeAllSessionRestoreDevices(threadID: Long) {
-        TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", "")
-        delegate?.handleSessionRestoreDevicesChanged(threadID)
     }
 }

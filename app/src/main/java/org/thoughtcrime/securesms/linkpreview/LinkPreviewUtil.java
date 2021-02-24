@@ -12,13 +12,11 @@ import android.text.util.Linkify;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
 import org.session.libsession.utilities.Util;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +60,6 @@ public final class LinkPreviewUtil {
    */
   public static boolean isValidLinkUrl(@Nullable String linkUrl) {
     if (linkUrl == null)                      return false;
-    if (StickerUrl.isValidShareLink(linkUrl)) return true;
 
     HttpUrl url = HttpUrl.parse(linkUrl);
     return url != null                                   &&
@@ -170,17 +167,6 @@ public final class LinkPreviewUtil {
     return new OpenGraph(openGraphTags, htmlTitle, faviconUrl);
   }
 
-  private static @Nullable String parseTopLevelDomain(@NonNull String domain) {
-    int periodIndex = domain.lastIndexOf(".");
-
-    if (periodIndex >= 0 && periodIndex < domain.length() - 1) {
-      return domain.substring(periodIndex + 1);
-    } else {
-      return null;
-    }
-  }
-
-
   public static final class OpenGraph {
 
     private final Map<String, String> values;
@@ -220,11 +206,6 @@ public final class LinkPreviewUtil {
               .filter(time -> time > 0)
               .findFirst()
               .orElse(0L);
-    }
-
-    public @NonNull
-    Optional<String> getDescription() {
-      return Optional.of(values.get(KEY_DESCRIPTION_URL));
     }
   }
 

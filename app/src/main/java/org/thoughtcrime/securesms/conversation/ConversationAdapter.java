@@ -339,10 +339,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
       if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
         return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
       }
-
-      if (slideDeck.getStickerSlide() != null && slideDeck.getStickerSlide().getFastPreflightId() != null) {
-        return Long.valueOf(slideDeck.getStickerSlide().getFastPreflightId());
-      }
     }
 
     return record.getId();

@@ -15,30 +15,17 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.Data;
-import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
-import org.session.libsignal.metadata.InvalidMetadataVersionException;
-import org.session.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyException;
-import org.session.libsignal.metadata.ProtocolInvalidKeyIdException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
-import org.session.libsignal.metadata.ProtocolInvalidVersionException;
-import org.session.libsignal.metadata.ProtocolLegacyMessageException;
-import org.session.libsignal.metadata.ProtocolNoSessionException;
-import org.session.libsignal.metadata.ProtocolUntrustedIdentityException;
-import org.session.libsignal.metadata.SelfSendException;
-import org.session.libsignal.service.loki.api.crypto.SessionProtocol;
-import org.session.libsignal.utilities.PromiseUtilities;
+import org.session.libsignal.service.api.crypto.SignalServiceCipher;
 import org.thoughtcrime.securesms.ApplicationContext;
 
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
-import org.session.libsession.messaging.sending_receiving.attachments.UriAttachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
-import org.session.libsession.messaging.sending_receiving.attachments.StickerLocator;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
@@ -47,28 +34,20 @@ import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.session.libsignal.utilities.logging.Log;
@@ -76,31 +55,17 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2;
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionManagementProtocol;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
-import org.session.libsignal.utilities.Hex;
-import org.session.libsignal.libsignal.InvalidMessageException;
-import org.session.libsignal.libsignal.loki.SessionResetProtocol;
-import org.session.libsignal.libsignal.state.SignalProtocolStore;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.messages.SignalServiceContent;
@@ -110,22 +75,14 @@ import org.session.libsignal.service.api.messages.SignalServiceEnvelope;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.messages.SignalServiceTypingMessage;
-import org.session.libsignal.service.api.messages.multidevice.SentTranscriptMessage;
-import org.session.libsignal.service.api.messages.multidevice.StickerPackOperationMessage;
 import org.session.libsignal.service.api.messages.shared.SharedContact;
-import org.session.libsignal.service.api.push.SignalServiceAddress;
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI;
-import org.session.libsignal.service.loki.crypto.LokiServiceCipher;
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager;
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation;
 
-import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -246,11 +203,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId, boolean isPushNotification) {
     try {
       GroupDatabase        groupDatabase        = DatabaseFactory.getGroupDatabase(context);
-      SignalProtocolStore  axolotlStore         = new SignalProtocolStoreImpl(context);
-      SessionResetProtocol sessionResetProtocol = new SessionResetImplementation(context);
-      SignalServiceAddress localAddress         = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
       LokiAPIDatabase apiDB                     = DatabaseFactory.getLokiAPIDatabase(context);
-      LokiServiceCipher    cipher               = new LokiServiceCipher(localAddress, axolotlStore, DatabaseFactory.getSSKDatabase(context), new SessionProtocolImpl(context), sessionResetProtocol, apiDB, UnidentifiedAccessUtil.getCertificateValidator());
+      SignalServiceCipher cipher                = new SignalServiceCipher(new SessionProtocolImpl(context), apiDB);
 
       SignalServiceContent content = cipher.decrypt(envelope);
 
@@ -259,64 +213,36 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return;
       }
 
-      SessionManagementProtocol.handlePreKeyBundleMessageIfNeeded(context, content);
-
       SessionMetaProtocol.handleProfileUpdateIfNeeded(context, content);
 
       if (content.configurationMessageProto.isPresent()) {
         MultiDeviceProtocol.handleConfigurationMessage(context, content.configurationMessageProto.get(), content.getSender(), content.getTimestamp());
       } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
-        boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
+        boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent();
 
-        if (message.isDeviceUnlinkingRequest()) {
-          throw new UnsupportedOperationException("Device link operations are not supported!");
-        } else {
-
-          if (message.getClosedGroupUpdateV2().isPresent()) {
-            ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupUpdateV2().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
-          }
-          if (message.isEndSession()) {
-            handleEndSessionMessage(content, smsMessageId);
-          } else if (message.isGroupUpdate()) {
-            handleGroupMessage(content, message, smsMessageId);
-          } else if (message.isExpirationUpdate()) {
-            handleExpirationUpdate(content, message, smsMessageId);
-          } else if (isMediaMessage) {
-            handleMediaMessage(content, message, smsMessageId, Optional.absent());
-          } else if (message.getBody().isPresent()) {
-            handleTextMessage(content, message, smsMessageId, Optional.absent());
-          }
-
-          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
-            handleUnknownGroupMessage(content, message.getGroupInfo().get());
-          }
-
-          if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
-            SessionMetaProtocol.handleProfileKeyUpdate(context, content);
-          }
-
-          if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.Companion.fromSerialized(content.getSender()))) {
-            handleNeedsDeliveryReceipt(content, message);
-          }
+        if (message.getClosedGroupControlMessage().isPresent()) {
+          ClosedGroupsProtocolV2.handleMessage(context, message.getClosedGroupControlMessage().get(), message.getTimestamp(), envelope.getSource(), content.getSender());
         }
-      } else if (content.getSyncMessage().isPresent()) {
-        throw new UnsupportedOperationException("Device link operations are not supported!");
+        if (message.isExpirationUpdate()) {
+          handleExpirationUpdate(content, message, smsMessageId);
+        } else if (isMediaMessage) {
+          handleMediaMessage(content, message, smsMessageId, Optional.absent());
+        } else if (message.getBody().isPresent()) {
+          handleTextMessage(content, message, smsMessageId, Optional.absent());
+        }
 
-//        TextSecurePreferences.setMultiDevice(context, true);
-//
-//        SignalServiceSyncMessage syncMessage = content.getSyncMessage().get();
-//
-//        if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
-//        else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
-//        else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-//        else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
-//        else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
-//        else if (syncMessage.getContacts().isPresent())              SyncMessagesProtocol.handleContactSyncMessage(context, content, syncMessage.getContacts().get());
-//        else if (syncMessage.getGroups().isPresent())                SyncMessagesProtocol.handleClosedGroupSyncMessage(context, content, syncMessage.getGroups().get());
-//        else if (syncMessage.getOpenGroups().isPresent())            SyncMessagesProtocol.handleOpenGroupSyncMessage(context, content, syncMessage.getOpenGroups().get());
-//        else if (syncMessage.getBlockedList().isPresent())           SyncMessagesProtocol.handleBlockedContactsSyncMessage(context, content, syncMessage.getBlockedList().get());
-//        else                                                         Log.w(TAG, "Contains no known sync types...");
+        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
+          handleUnknownGroupMessage(content, message.getGroupInfo().get());
+        }
+
+        if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
+          SessionMetaProtocol.handleProfileKeyUpdate(context, content);
+        }
+
+        if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.fromSerialized(content.getSender()))) {
+          handleNeedsDeliveryReceipt(content, message);
+        }
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
 
@@ -328,87 +254,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.w(TAG, "Got unrecognized message...");
       }
 
-      resetRecipientToPush(Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false));
-
-//      if (envelope.isPreKeySignalMessage()) {
-//        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
-//      }
-    } catch (ProtocolInvalidVersionException e) {
-      Log.w(TAG, e);
-      handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
+      resetRecipientToPush(Recipient.from(context, Address.fromSerialized(content.getSender()), false));
     } catch (ProtocolInvalidMessageException e) {
       Log.w(TAG, e);
       if (!isPushNotification) { // This can be triggered if a PN encrypted with an old session comes in after the user performed a session reset
         handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
       }
-    } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
+    }catch (StorageFailedException e) {
       Log.w(TAG, e);
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
-    } catch (StorageFailedException e) {
+    } catch (InvalidMetadataMessageException e) {
       Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
-    } catch (ProtocolNoSessionException e) {
-      Log.w(TAG, e);
-      handleNoSessionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolLegacyMessageException e) {
-      Log.w(TAG, e);
-      handleLegacyMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolDuplicateMessageException e) {
-      Log.w(TAG, e);
-      handleDuplicateMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
-      Log.w(TAG, e);
-    } catch (SelfSendException e) {
-      Log.i(TAG, "Dropping UD message from self.");
-    } catch (IOException e) {
-      Log.i(TAG, "IOException during message decryption.");
-    } catch (SessionProtocol.Exception e) {
-      Log.i(TAG, "Couldn't handle message due to error: " + e.getDescription());
-    }
-  }
-
-  private void handleEndSessionMessage(@NonNull SignalServiceContent content,
-                                       @NonNull Optional<Long>       smsMessageId)
-  {
-    SmsDatabase         smsDatabase         = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.Companion.fromSerialized(content.getSender()),
-                                                                      content.getSenderDevice(),
-                                                                      content.getTimestamp(),
-                                                                      "", Optional.absent(), 0,
-                                                                      content.isNeedsReceipt());
-
-    Long threadId;
-
-    if (!smsMessageId.isPresent()) {
-      IncomingEndSessionMessage incomingEndSessionMessage = new IncomingEndSessionMessage(incomingTextMessage);
-      Optional<InsertResult>    insertResult              = smsDatabase.insertMessageInbox(incomingEndSessionMessage);
-
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
-    } else {
-      smsDatabase.markAsEndSession(smsMessageId.get());
-      threadId = smsDatabase.getThreadIdForMessage(smsMessageId.get());
-    }
-
-    if (threadId != null) {
-      SessionManagementProtocol.handleEndSessionMessageIfNeeded(context, content);
-      messageNotifier.updateNotification(context, threadId);
-    }
-  }
-
-  private void handleGroupMessage(@NonNull SignalServiceContent content,
-                                  @NonNull SignalServiceDataMessage message,
-                                  @NonNull Optional<Long> smsMessageId)
-      throws StorageFailedException
-  {
-    GroupMessageProcessor.process(context, content, message, false);
-
-    if (message.getExpiresInSeconds() != 0 && message.getExpiresInSeconds() != getMessageDestination(content, message).getExpireMessages()) {
-      handleExpirationUpdate(content, message, Optional.absent());
-    }
-
-    if (smsMessageId.isPresent()) {
-      DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
     }
   }
 
@@ -436,7 +292,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                    content.isNeedsReceipt(),
                                                                    Optional.absent(),
                                                                    message.getGroupInfo(),
-                                                                   Optional.absent(),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
                                                                    Optional.absent(),
@@ -470,7 +325,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<QuoteModel>         quote          = getValidatedQuote(message.getQuote());
     Optional<List<Contact>>      sharedContacts = getContacts(message.getSharedContacts());
     Optional<List<LinkPreview>>  linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
-    Optional<Attachment>         sticker        = getStickerAttachment(message.getSticker());
 
     Address masterAddress = masterRecipient.getAddress();
 
@@ -482,7 +336,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (syncTarget != null && !syncTarget.isEmpty() || TextSecurePreferences.getLocalNumber(context).equals(content.getSender())) {
       Address targetAddress = masterRecipient.getAddress();
       if (message.getGroupInfo().isPresent()) {
-        targetAddress = Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
+        targetAddress = Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
       } else if (syncTarget != null && !syncTarget.isEmpty()) {
         targetAddress = Address.fromSerialized(syncTarget);
       }
@@ -521,10 +375,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (insertResult.isPresent()) {
           List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
-          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-          List<DatabaseAttachment> dbAttachments      = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-          forceStickerDownloadIfNecessary(stickerAttachments);
+          List<DatabaseAttachment> dbAttachments      = Stream.of(allAttachments).toList();
 
           for (DatabaseAttachment attachment : dbAttachments) {
             ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
@@ -545,7 +396,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(masterAddress, message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
-              quote, sharedContacts, linkPreviews, sticker);
+              quote, sharedContacts, linkPreviews);
       MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
       database.beginTransaction();
 
@@ -565,10 +416,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (insertResult.isPresent()) {
           List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(insertResult.get().getMessageId());
-          List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-          List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-          forceStickerDownloadIfNecessary(stickerAttachments);
+          List<DatabaseAttachment> attachments        = Stream.of(allAttachments).toList();
 
           for (DatabaseAttachment attachment : attachments) {
             ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
@@ -616,110 +464,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
-    MmsDatabase database  = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient = getSyncMessageMasterDestination(message);
-
-    OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
-                                                                                                  message.getTimestamp(),
-                                                                                                  message.getMessage().getExpiresInSeconds() * 1000L);
-
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-    long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
-
-    database.markAsSent(messageId, true);
-
-    DatabaseFactory.getRecipientDatabase(context).setExpireMessages(recipient, message.getMessage().getExpiresInSeconds());
-
-    return threadId;
-  }
-
-  public long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
-      throws MmsException
-  {
-    if (SessionMetaProtocol.shouldIgnoreMessage(message.getTimestamp())) { return -1; }
-
-    MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
-    Recipient                   recipients      = getSyncMessageMasterDestination(message);
-    Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
-    Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
-    Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
-    Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""));
-    List<Attachment>            syncAttachments = PointerAttachment.forPointers(message.getMessage().getAttachments());
-
-    if (sticker.isPresent()) {
-      syncAttachments.add(sticker.get());
-    }
-
-    OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipients, message.getMessage().getBody().orNull(),
-                                                                 syncAttachments,
-                                                                 message.getTimestamp(), -1,
-                                                                 message.getMessage().getExpiresInSeconds() * 1000,
-                                                                 ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
-                                                                 sharedContacts.or(Collections.emptyList()),
-                                                                 previews.or(Collections.emptyList()),
-                                                                 Collections.emptyList(), Collections.emptyList());
-
-    mediaMessage = new OutgoingSecureMediaMessage(mediaMessage);
-
-    if (recipients.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
-      handleSynchronizeSentExpirationUpdate(message);
-    }
-
-    long threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipients);
-
-    database.beginTransaction();
-
-    try {
-      long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, null);
-      if (message.messageServerID >= 0) { DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageId, message.messageServerID); }
-
-      if (recipients.getAddress().isGroup()) {
-        GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-        List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipients.getAddress().toGroupString(), false);
-
-        for (Recipient member : members) {
-          receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
-        }
-      }
-
-      database.markAsSent(messageId, true);
-      database.markUnidentified(messageId, message.isUnidentified(recipients.getAddress().serialize()));
-
-      List<DatabaseAttachment> allAttachments     = DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageId);
-      List<DatabaseAttachment> stickerAttachments = Stream.of(allAttachments).filter(Attachment::isSticker).toList();
-      List<DatabaseAttachment> attachments        = Stream.of(allAttachments).filterNot(Attachment::isSticker).toList();
-
-      forceStickerDownloadIfNecessary(stickerAttachments);
-
-      for (DatabaseAttachment attachment : attachments) {
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new AttachmentDownloadJob(messageId, attachment.getAttachmentId(), false));
-      }
-
-      if (message.getMessage().getExpiresInSeconds() > 0) {
-        database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
-        ApplicationContext.getInstance(context)
-                          .getExpiringMessageManager()
-                          .scheduleDeletion(messageId, true,
-                                            message.getExpirationStartTimestamp(),
-                                            message.getMessage().getExpiresInSeconds() * 1000L);
-      }
-
-      if (recipients.isLocalNumber()) {
-        SyncMessageId id = new SyncMessageId(recipients.getAddress(), message.getTimestamp());
-        DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
-      }
-
-      database.setTransactionSuccessful();
-    } finally {
-      database.endTransaction();
-    }
-    return threadId;
-  }
-
   public void handleTextMessage(@NonNull SignalServiceContent content,
                                 @NonNull SignalServiceDataMessage message,
                                 @NonNull Optional<Long> smsMessageId,
@@ -743,7 +487,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else if (syncTarget != null && !syncTarget.isEmpty() || TextSecurePreferences.getLocalNumber(context).equals(content.getSender())) {
       Address targetAddress = masterRecipient.getAddress();
       if (message.getGroupInfo().isPresent()) {
-        targetAddress = Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
+        targetAddress = Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get()));
       } else if (syncTarget != null && !syncTarget.isEmpty()) {
         targetAddress = Address.fromSerialized(syncTarget);
       }
@@ -846,86 +590,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  public long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
-      throws MmsException
-  {
-    if (SessionMetaProtocol.shouldIgnoreMessage(message.getTimestamp())) { return -1; }
-
-    Recipient recipient       = getSyncMessageMasterDestination(message);
-    String    body            = message.getMessage().getBody().or("");
-    long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
-
-    // Ignore the message if it has no body
-    if (body.isEmpty()) { return -1; }
-
-    if (recipient.getExpireMessages() != message.getMessage().getExpiresInSeconds()) {
-      handleSynchronizeSentExpirationUpdate(message);
-    }
-
-    long    threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-    boolean isGroup   = recipient.getAddress().isGroup();
-
-    MessagingDatabase database;
-    long              messageId;
-
-    if (isGroup) {
-      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getMessage().getTimestamp(), -1, expiresInMillis, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList(), Collections.emptyList());
-      outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
-
-      messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, null,message.getTimestamp());
-      if (message.messageServerID >= 0) { DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageId, message.messageServerID); }
-
-      database  = DatabaseFactory.getMmsDatabase(context);
-
-      GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
-      List<Recipient>      members         = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-
-      for (Recipient member : members) {
-        receiptDatabase.setUnidentified(member.getAddress(), messageId, message.isUnidentified(member.getAddress().serialize()));
-      }
-    } else {
-      OutgoingTextMessage outgoingTextMessage = new OutgoingEncryptedMessage(recipient, body, expiresInMillis);
-
-      messageId = DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
-      database  = DatabaseFactory.getSmsDatabase(context);
-      database.markUnidentified(messageId, message.isUnidentified(recipient.getAddress().serialize()));
-    }
-
-    database.markAsSent(messageId, true);
-
-    if (expiresInMillis > 0) {
-      database.markExpireStarted(messageId, message.getExpirationStartTimestamp());
-      ApplicationContext.getInstance(context)
-                        .getExpiringMessageManager()
-                        .scheduleDeletion(messageId, isGroup, message.getExpirationStartTimestamp(), expiresInMillis);
-    }
-
-    if (recipient.isLocalNumber()) {
-      SyncMessageId id = new SyncMessageId(recipient.getAddress(), message.getTimestamp());
-      DatabaseFactory.getMmsSmsDatabase(context).incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-      DatabaseFactory.getMmsSmsDatabase(context).incrementReadReceiptCount(id, System.currentTimeMillis());
-    }
-
-    return threadId;
-  }
-
-  private void handleInvalidVersionMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                           @NonNull Optional<Long> smsMessageId)
-  {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-
-    if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsInvalidVersionKeyExchange(insertResult.get().getMessageId());
-        messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-      }
-    } else {
-      smsDatabase.markAsInvalidVersionKeyExchange(smsMessageId.get());
-    }
-  }
-
   private void handleCorruptMessage(@NonNull String sender, int senderDevice, long timestamp,
                                     @NonNull Optional<Long> smsMessageId, @NonNull Throwable e)
   {
@@ -942,85 +606,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsDecryptFailed(smsMessageId.get());
       }
     }
-
-    if (canRecoverAutomatically(e)) {
-      Recipient recipient = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
-      LokiThreadDatabase threadDB = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-      threadDB.addSessionRestoreDevice(threadID, sender);
-      SessionManagementProtocol.startSessionReset(context, sender);
-    } else {
-      SessionManagementProtocol.triggerSessionRestorationUI(context, sender, timestamp);
-    }
-  }
-
-  private boolean canRecoverAutomatically(Throwable e) {
-    // Corrupt message exception
-    if (e.getCause() != null) {
-      Throwable e2 = e.getCause();
-      if (e2.getCause() != null) {
-        Throwable e3 = e2.getCause();
-        if (e3 instanceof InvalidMessageException) {
-          String message = e3.getMessage();
-          return (message != null && message.startsWith("Bad Mac!"));
-        }
-      }
-    }
-    return false;
-  }
-
-  private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    if (!SessionMetaProtocol.shouldIgnoreDecryptionException(context, timestamp)) {
-      if (!smsMessageId.isPresent()) {
-        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-        if (insertResult.isPresent()) {
-          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-          messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-        }
-      } else {
-        smsDatabase.markAsNoSession(smsMessageId.get());
-      }
-    }
-
-    // Attempt to recover automatically
-    ApplicationContext.getInstance(context).sendSessionRequestIfNeeded(sender);
-  }
-
-  private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
-                                   @NonNull Optional<Long> smsMessageId)
-  {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-
-    if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
-
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsLegacyVersion(insertResult.get().getMessageId());
-        messageNotifier.updateNotification(context, insertResult.get().getThreadId());
-      }
-    } else {
-      smsDatabase.markAsLegacyVersion(smsMessageId.get());
-    }
-  }
-
-  @SuppressWarnings("unused")
-  private void handleDuplicateMessage(@NonNull String sender, int senderDeviceId, long timestamp,
-                                      @NonNull Optional<Long> smsMessageId)
-  {
-    // Let's start ignoring these now
-//    SmsDatabase smsDatabase = DatabaseFactory.getEncryptingSmsDatabase(context);
-//
-//    if (smsMessageId <= 0) {
-//      Pair<Long, Long> messageAndThreadId = insertPlaceholder(masterSecret, envelope);
-//      smsDatabase.markAsDecryptDuplicate(messageAndThreadId.first);
-//      MessageNotifier.updateNotification(context, masterSecret, messageAndThreadId.second);
-//    } else {
-//      smsDatabase.markAsDecryptDuplicate(smsMessageId);
-//    }
   }
 
   private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
@@ -1028,7 +613,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     ApplicationContext.getInstance(context)
                       .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.Companion.fromSerialized(content.getSender()), message.getTimestamp()));
+                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")
@@ -1036,7 +621,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                      @NonNull SignalServiceReceiptMessage message)
   {
     // Redirect message to master device conversation
-    Address masterAddress = Address.Companion.fromSerialized(content.getSender());
+    Address masterAddress = Address.fromSerialized(content.getSender());
 
     if (masterAddress.isContact()) {
       Recipient masterRecipient = getMessageMasterDestination(content.getSender());
@@ -1057,7 +642,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
 
       // Redirect message to master device conversation
-      Address masterAddress = Address.Companion.fromSerialized(content.getSender());
+      Address masterAddress = Address.fromSerialized(content.getSender());
 
       if (masterAddress.isContact()) {
         Recipient masterRecipient = getMessageMasterDestination(content.getSender());
@@ -1079,22 +664,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (!TextSecurePreferences.isTypingIndicatorsEnabled(context)) {
       return;
     }
-
-    Recipient author = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
-
     long threadId;
 
-    if (typingMessage.getGroupId().isPresent()) {
-      // Typing messages should only apply to closed groups, thus we use `getEncodedId`
-      Address   groupAddress   = Address.Companion.fromSerialized(GroupUtil.getEncodedClosedGroupID(typingMessage.getGroupId().get()));
-      Recipient groupRecipient = Recipient.from(context, groupAddress, false);
-
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
-    } else {
-      // See if we need to redirect the message
-      author = getMessageMasterDestination(content.getSender());
-      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(author);
-    }
+    Recipient author = getMessageMasterDestination(content.getSender());
+    threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(author);
 
     if (threadId <= 0) {
       Log.w(TAG, "Couldn't find a matching thread for a typing message.");
@@ -1123,7 +696,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Optional.absent();
     }
 
-    Address       author  = Address.Companion.fromSerialized(quote.get().getAuthor().getNumber());
+    Address       author  = Address.fromSerialized(quote.get().getAuthor().getNumber());
     MessageRecord message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quote.get().getId(), author);
 
     if (message != null) {
@@ -1151,42 +724,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                       quote.get().getText(),
                                       true,
                                       PointerAttachment.forPointersOfDataMessage(quote.get().getAttachments())));
-  }
-
-  private Optional<Attachment> getStickerAttachment(Optional<SignalServiceDataMessage.Sticker> sticker) {
-    if (!sticker.isPresent()) {
-      return Optional.absent();
-    }
-
-    if (sticker.get().getPackId() == null || sticker.get().getPackKey() == null || sticker.get().getAttachment() == null) {
-      Log.w(TAG, "Malformed sticker!");
-      return Optional.absent();
-    }
-
-    String          packId          = Hex.toStringCondensed(sticker.get().getPackId());
-    String          packKey         = Hex.toStringCondensed(sticker.get().getPackKey());
-    int             stickerId       = sticker.get().getStickerId();
-    StickerLocator  stickerLocator  = new StickerLocator(packId, packKey, stickerId);
-    StickerDatabase stickerDatabase = DatabaseFactory.getStickerDatabase(context);
-    StickerRecord   stickerRecord   = stickerDatabase.getSticker(stickerLocator.getPackId(), stickerLocator.getStickerId(), false);
-
-    if (stickerRecord != null) {
-      return Optional.of(new UriAttachment(stickerRecord.getUri(),
-                                           stickerRecord.getUri(),
-                                           MediaTypes.IMAGE_WEBP,
-                                           AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                           stickerRecord.getSize(),
-                                           StickerSlide.WIDTH,
-                                           StickerSlide.HEIGHT,
-                                           null,
-                                           String.valueOf(new SecureRandom().nextLong()),
-                                           false,
-                                           false,
-                                           null,
-                                           stickerLocator));
-    } else {
-      return Optional.of(PointerAttachment.forPointer(Optional.of(sticker.get().getAttachment()), stickerLocator).get());
-    }
   }
 
   private Optional<List<Contact>> getContacts(Optional<List<SharedContact>> sharedContacts) {
@@ -1236,73 +773,29 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     return database.insertMessageInbox(textMessage);
   }
 
-  private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
-    if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
-    } else {
-      return Recipient.from(context, Address.Companion.fromSerialized(message.getDestination().get()), false);
-    }
-  }
-
-  private Recipient getSyncMessageMasterDestination(SentTranscriptMessage message) {
-    if (message.getMessage().isGroupMessage()) {
-      return Recipient.from(context, Address.Companion.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
-    } else {
-      String publicKey = message.getDestination().get();
-      String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
-      } else {
-        try {
-          // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-          if (masterPublicKey == null) {
-            masterPublicKey = publicKey;
-          }
-          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
-        } catch (Exception e) {
-          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
-        }
-      }
-    }
-  }
-
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.Companion.fromExternal(context, GroupUtil.getEncodedClosedGroupID(message.getGroupInfo().get().getGroupId())), false);
+      return Recipient.from(context, Address.fromExternal(context, GroupUtil.getEncodedClosedGroupID(message.getGroupInfo().get().getGroupId())), false);
     } else {
-      return Recipient.from(context, Address.Companion.fromExternal(context, content.getSender()), false);
+      return Recipient.from(context, Address.fromExternal(context, content.getSender()), false);
     }
   }
 
   private Recipient getMessageMasterDestination(String publicKey) {
     if (!PublicKeyValidation.isValid(publicKey)) {
-      return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
+      return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } else {
       String userPublicKey = TextSecurePreferences.getLocalNumber(context);
-      Set<String> allUserDevices = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getAllLinkedDevices(userPublicKey);
-      if (allUserDevices.contains(publicKey)) {
-        return Recipient.from(context, Address.Companion.fromSerialized(userPublicKey), false);
+      if (publicKey.equals(userPublicKey)) {
+        return Recipient.from(context, Address.fromSerialized(userPublicKey), false);
       } else {
-        try {
-          // TODO: Burn this with fire when we can
-          PromiseUtilities.timeout(FileServerAPI.shared.getDeviceLinks(publicKey, false), 6000).get();
-          String masterPublicKey = org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol.shared.getMasterDevice(publicKey);
-          if (masterPublicKey == null) {
-            masterPublicKey = publicKey;
-          }
-          return Recipient.from(context, Address.Companion.fromSerialized(masterPublicKey), false);
-        } catch (Exception e) {
-          return Recipient.from(context, Address.Companion.fromSerialized(publicKey), false);
-        }
+        return Recipient.from(context, Address.fromSerialized(publicKey), false);
       }
     }
   }
 
   private void notifyTypingStoppedFromIncomingMessage(@NonNull Recipient conversationRecipient, @NonNull String sender, int device) {
-    Recipient author   = Recipient.from(context, Address.Companion.fromSerialized(sender), false);
+    Recipient author   = Recipient.from(context, Address.fromSerialized(sender), false);
     long      threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(conversationRecipient);
 
     if (threadId > 0) {
@@ -1328,11 +821,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return true;
     }
 
-    Recipient sender = Recipient.from(context, Address.Companion.fromSerialized(content.getSender()), false);
+    Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
-    if (content.getDeviceLink().isPresent()) {
-      return false;
-    } else if (content.getDataMessage().isPresent()) {
+    if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
       Recipient                conversation = getMessageDestination(content, message);
 
@@ -1354,44 +845,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         boolean isGroupActive    = groupId.isPresent() && groupDatabase.isActive(groupId.get());
         boolean isLeaveMessage   = message.getGroupInfo().isPresent() && message.getGroupInfo().get().getType() == SignalServiceGroup.Type.QUIT;
 
-        boolean shouldIgnoreContentMessage = ClosedGroupsProtocol.shouldIgnoreContentMessage(context, conversation.getAddress(), groupId.orNull(), content.getSender());
-        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage) || (isContentMessage && shouldIgnoreContentMessage);
+        return (isContentMessage && !isGroupActive) || (sender.isBlocked() && !isLeaveMessage);
       } else {
         return sender.isBlocked();
       }
-    } else if (content.getSyncMessage().isPresent()) {
-      throw new UnsupportedOperationException("Device link operations are not supported!");
     }
 
     return false;
   }
 
-  private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupMessage();
-  }
-
   private void resetRecipientToPush(@NonNull Recipient recipient) {
     if (recipient.isForceSmsSelection()) {
       DatabaseFactory.getRecipientDatabase(context).setForceSmsSelection(recipient, false);
-    }
-  }
-
-  private void forceStickerDownloadIfNecessary(List<DatabaseAttachment> stickerAttachments) {
-    if (stickerAttachments.isEmpty()) return;
-
-    DatabaseAttachment stickerAttachment = stickerAttachments.get(0);
-
-    if (stickerAttachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-      AttachmentDownloadJob downloadJob = new AttachmentDownloadJob(messageId, stickerAttachment.getAttachmentId(), true);
-
-      try {
-        ApplicationContext.getInstance(context).injectDependencies(downloadJob);
-        downloadJob.setContext(context);
-        downloadJob.doWork();
-      } catch (Exception e) {
-        Log.w(TAG, "Failed to download sticker inline. Scheduling.");
-        ApplicationContext.getInstance(context).getJobManager().add(downloadJob);
-      }
     }
   }
 

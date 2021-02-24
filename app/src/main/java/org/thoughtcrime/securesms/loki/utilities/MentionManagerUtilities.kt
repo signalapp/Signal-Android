@@ -4,7 +4,7 @@ import android.content.Context
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 
 object MentionManagerUtilities {
 

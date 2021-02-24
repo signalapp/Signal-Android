@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceReceiptMessage;
 import org.session.libsignal.service.api.push.SignalServiceAddress;
 import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
@@ -78,7 +77,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException {
     Log.d("Loki", "Sending delivery receipt.");
     SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,
@@ -86,7 +85,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
                                                                                  timestamp);
 
     messageSender.sendReceipt(remoteAddress,
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromSerialized(address), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
                               receiptMessage);
   }
 
@@ -105,7 +104,7 @@ public class SendDeliveryReceiptJob extends BaseJob implements InjectableType {
     @Override
     public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new SendDeliveryReceiptJob(parameters,
-                                        Address.Companion.fromSerialized(data.getString(KEY_ADDRESS)),
+                                        Address.fromSerialized(data.getString(KEY_ADDRESS)),
                                         data.getLong(KEY_MESSAGE_ID),
                                         data.getLong(KEY_TIMESTAMP));
     }

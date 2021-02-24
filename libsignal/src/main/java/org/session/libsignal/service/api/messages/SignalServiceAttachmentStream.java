@@ -25,10 +25,6 @@ public class SignalServiceAttachmentStream extends SignalServiceAttachment {
   private final int              height;
   private final Optional<String> caption;
 
-  public SignalServiceAttachmentStream(InputStream inputStream, String contentType, long length, Optional<String> fileName, boolean voiceNote, ProgressListener listener) {
-    this(inputStream, contentType, length, fileName, voiceNote, Optional.<byte[]>absent(), 0, 0, Optional.<String>absent(), listener);
-  }
-
   public SignalServiceAttachmentStream(InputStream inputStream, String contentType, long length, Optional<String> fileName, boolean voiceNote, Optional<byte[]> preview, int width, int height, Optional<String> caption, ProgressListener listener) {
     super(contentType);
     this.inputStream = inputStream;

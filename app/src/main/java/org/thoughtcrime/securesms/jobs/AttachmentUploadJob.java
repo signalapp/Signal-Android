@@ -94,8 +94,8 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
         MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
         Attachment scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
         SignalServiceAttachment localAttachment = getAttachmentFor(scaledAttachment);
-        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
-        attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+        SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), false, new SignalServiceAddress(destination.serialize()));
+        attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), databaseAttachment.getFastPreflightId()).get();
       } catch (Exception e) {
         // On any error make sure we mark the related DB record's transfer state as failed.
         database.updateAttachmentAfterUploadFailed(databaseAttachment.getAttachmentId());
@@ -163,7 +163,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {
     @Override
     public @NonNull AttachmentUploadJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.Companion.fromSerialized(data.getString(KEY_DESTINATION)));
+      return new AttachmentUploadJob(parameters, new AttachmentId(data.getLong(KEY_ROW_ID), data.getLong(KEY_UNIQUE_ID)), Address.fromSerialized(data.getString(KEY_DESTINATION)));
     }
   }
 }

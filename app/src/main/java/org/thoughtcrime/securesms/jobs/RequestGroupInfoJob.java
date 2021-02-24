@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
-import org.session.libsignal.service.api.crypto.UntrustedIdentityException;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
 import org.session.libsignal.service.api.messages.SignalServiceGroup.Type;
@@ -71,7 +70,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, UntrustedIdentityException {
+  public void onRun() throws IOException {
     SignalServiceGroup       group   = SignalServiceGroup.newBuilder(Type.REQUEST_INFO)
                                                          .withId(groupId, SignalServiceGroup.GroupType.SIGNAL)
                                                          .build();
@@ -82,7 +81,7 @@ public class RequestGroupInfoJob extends BaseJob implements InjectableType {
                                                                .build();
 
     messageSender.sendMessage(0, new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.Companion.fromExternal(context, source), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromExternal(context, source), false)),
                               message, false);
   }
 

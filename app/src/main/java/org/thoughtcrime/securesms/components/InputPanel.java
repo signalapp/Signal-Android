@@ -9,8 +9,6 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -24,16 +22,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
-import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
-import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
@@ -48,7 +41,6 @@ import org.session.libsignal.utilities.concurrent.ListenableFuture;
 import org.session.libsignal.utilities.concurrent.SettableFuture;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import network.loki.messenger.R;
@@ -56,15 +48,13 @@ import network.loki.messenger.R;
 public class InputPanel extends LinearLayout
     implements MicrophoneRecorderView.Listener,
                KeyboardAwareLinearLayout.OnKeyboardShownListener,
-               EmojiKeyboardProvider.EmojiEventListener,
-               ConversationStickerSuggestionAdapter.EventListener
+               EmojiKeyboardProvider.EmojiEventListener
 {
 
   private static final String TAG = InputPanel.class.getSimpleName();
 
   private static final int FADE_TIME = 150;
 
-  private RecyclerView    stickerSuggestion;
   private QuoteView       quoteView;
   private LinkPreviewView linkPreview;
   private EmojiToggle     mediaKeyboard;
@@ -81,8 +71,6 @@ public class InputPanel extends LinearLayout
 
   private @Nullable Listener listener;
   private           boolean  emojiVisible;
-
-  private ConversationStickerSuggestionAdapter stickerSuggestionAdapter;
 
   public InputPanel(Context context) {
     super(context);
@@ -103,7 +91,6 @@ public class InputPanel extends LinearLayout
 
     View quoteDismiss = findViewById(R.id.quote_dismiss);
 
-    this.stickerSuggestion      = findViewById(R.id.input_panel_sticker_suggestion);
     this.quoteView              = findViewById(R.id.quote_view);
     this.linkPreview            = findViewById(R.id.link_preview);
     this.mediaKeyboard          = findViewById(R.id.emoji_toggle);
@@ -139,11 +126,6 @@ public class InputPanel extends LinearLayout
         listener.onLinkPreviewCanceled();
       }
     });
-
-    stickerSuggestionAdapter = new ConversationStickerSuggestionAdapter(GlideApp.with(this), this);
-
-    stickerSuggestion.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-    stickerSuggestion.setAdapter(stickerSuggestionAdapter);
   }
 
   public void setListener(final @NonNull Listener listener) {
@@ -204,24 +186,6 @@ public class InputPanel extends LinearLayout
 
   public void setMediaKeyboard(@NonNull MediaKeyboard mediaKeyboard) {
     this.mediaKeyboard.attach(mediaKeyboard);
-  }
-
-  public void setStickerSuggestions(@NonNull List<StickerRecord> stickers) {
-    stickerSuggestion.setVisibility(stickers.isEmpty() ? View.GONE : View.VISIBLE);
-    stickerSuggestionAdapter.setStickers(stickers);
-  }
-
-  public void showMediaKeyboardToggle(boolean show) {
-    emojiVisible = show;
-    mediaKeyboard.setVisibility(show ? View.VISIBLE : GONE);
-  }
-
-  public void setMediaKeyboardToggleMode(boolean isSticker) {
-    mediaKeyboard.setStickerMode(isSticker);
-  }
-
-  public View getMediaKeyboardToggleAnchorView() {
-    return mediaKeyboard;
   }
 
   @Override
@@ -335,13 +299,6 @@ public class InputPanel extends LinearLayout
     composeText.insertEmoji(emoji);
   }
 
-  @Override
-  public void onStickerSuggestionClicked(@NonNull StickerRecord sticker) {
-    if (listener != null) {
-      listener.onStickerSuggestionSelected(sticker);
-    }
-  }
-
   private int readDimen(@DimenRes int dimenRes) {
     return getResources().getDimensionPixelSize(dimenRes);
   }
@@ -362,7 +319,6 @@ public class InputPanel extends LinearLayout
     void onRecorderPermissionRequired();
     void onEmojiToggle();
     void onLinkPreviewCanceled();
-    void onStickerSuggestionSelected(@NonNull StickerRecord sticker);
   }
 
   private static class SlideToCancel {

@@ -131,7 +131,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
         return insets.bottom;
       }
     } catch (NoSuchFieldException nsfe) {
-      Log.w(TAG, "field reflection error when measuring view inset", nsfe);
+      Log.w(TAG, "field reflection error when measuring view inset, NoSuchFieldException");
     } catch (IllegalAccessException iae) {
       Log.w(TAG, "access reflection error when measuring view inset", iae);
     }

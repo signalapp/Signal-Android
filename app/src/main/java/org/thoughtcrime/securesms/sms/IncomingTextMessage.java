@@ -45,22 +45,6 @@ public class IncomingTextMessage implements Parcelable {
   private final long    expiresInMillis;
   private final boolean unidentified;
 
-  public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
-    this.message              = message.getDisplayMessageBody();
-    this.sender               = Address.Companion.fromSerialized(message.getDisplayOriginatingAddress());
-    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    this.protocol             = message.getProtocolIdentifier();
-    this.serviceCenterAddress = message.getServiceCenterAddress();
-    this.replyPathPresent     = message.isReplyPathPresent();
-    this.pseudoSubject        = message.getPseudoSubject();
-    this.sentTimestampMillis  = message.getTimestampMillis();
-    this.subscriptionId       = subscriptionId;
-    this.expiresInMillis      = 0;
-    this.groupId              = null;
-    this.push                 = false;
-    this.unidentified         = false;
-  }
-
   public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
                              long expiresInMillis, boolean unidentified)
@@ -79,7 +63,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = unidentified;
 
     if (group.isPresent()) {
-      this.groupId = Address.Companion.fromSerialized(GroupUtil.getEncodedId(group.get()));
+      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get()));
     } else {
       this.groupId = null;
     }
@@ -115,45 +99,6 @@ public class IncomingTextMessage implements Parcelable {
     this.subscriptionId       = base.getSubscriptionId();
     this.expiresInMillis      = base.getExpiresIn();
     this.unidentified         = base.isUnidentified();
-  }
-
-  public IncomingTextMessage(List<IncomingTextMessage> fragments) {
-    StringBuilder body = new StringBuilder();
-
-    for (IncomingTextMessage message : fragments) {
-      body.append(message.getMessageBody());
-    }
-
-    this.message              = body.toString();
-    this.sender               = fragments.get(0).getSender();
-    this.senderDeviceId       = fragments.get(0).getSenderDeviceId();
-    this.protocol             = fragments.get(0).getProtocol();
-    this.serviceCenterAddress = fragments.get(0).getServiceCenterAddress();
-    this.replyPathPresent     = fragments.get(0).isReplyPathPresent();
-    this.pseudoSubject        = fragments.get(0).getPseudoSubject();
-    this.sentTimestampMillis  = fragments.get(0).getSentTimestampMillis();
-    this.groupId              = fragments.get(0).getGroupId();
-    this.push                 = fragments.get(0).isPush();
-    this.subscriptionId       = fragments.get(0).getSubscriptionId();
-    this.expiresInMillis      = fragments.get(0).getExpiresIn();
-    this.unidentified         = fragments.get(0).isUnidentified();
-  }
-
-  protected IncomingTextMessage(@NonNull Address sender, @Nullable Address groupId)
-  {
-    this.message              = "";
-    this.sender               = sender;
-    this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
-    this.protocol             = 31338;
-    this.serviceCenterAddress = "Outgoing";
-    this.replyPathPresent     = true;
-    this.pseudoSubject        = "";
-    this.sentTimestampMillis  = System.currentTimeMillis();
-    this.groupId              = groupId;
-    this.push                 = true;
-    this.subscriptionId       = -1;
-    this.expiresInMillis      = 0;
-    this.unidentified         = false;
   }
 
   public static IncomingTextMessage from(VisibleMessage message,
@@ -208,22 +153,6 @@ public class IncomingTextMessage implements Parcelable {
     return false;
   }
 
-  public boolean isPreKeyBundle() {
-    return isLegacyPreKeyBundle() || isContentPreKeyBundle();
-  }
-
-  public boolean isLegacyPreKeyBundle() {
-    return false;
-  }
-
-  public boolean isContentPreKeyBundle() {
-    return false;
-  }
-
-  public boolean isEndSession() {
-    return false;
-  }
-
   public boolean isPush() {
     return push;
   }
@@ -233,22 +162,6 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public boolean isGroup() {
-    return false;
-  }
-
-  public boolean isJoined() {
-    return false;
-  }
-
-  public boolean isIdentityUpdate() {
-    return false;
-  }
-
-  public boolean isIdentityVerified() {
-    return false;
-  }
-
-  public boolean isIdentityDefault() {
     return false;
   }
 

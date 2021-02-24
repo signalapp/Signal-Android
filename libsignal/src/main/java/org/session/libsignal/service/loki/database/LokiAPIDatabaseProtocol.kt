@@ -2,7 +2,6 @@ package org.session.libsignal.service.loki.database
 
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.service.loki.api.Snode
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.DeviceLink
 import java.util.*
 
 interface LokiAPIDatabaseProtocol {
@@ -38,11 +37,5 @@ interface LokiAPIDatabaseProtocol {
     fun getUserX25519KeyPair(): ECKeyPair
     fun getClosedGroupEncryptionKeyPairs(groupPublicKey: String): List<ECKeyPair>
     fun getLatestClosedGroupEncryptionKeyPair(groupPublicKey: String): ECKeyPair?
-
-    // region Deprecated
-    fun getDeviceLinks(publicKey: String): Set<DeviceLink>
-    fun clearDeviceLinks(publicKey: String)
-    fun addDeviceLink(deviceLink: DeviceLink)
-    fun removeDeviceLink(deviceLink: DeviceLink)
-    // endregion
+    fun isClosedGroup(groupPublicKey: String): Boolean
 }

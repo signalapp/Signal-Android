@@ -49,7 +49,6 @@ import android.widget.Toast;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.annimon.stream.Stream;
 
@@ -71,17 +70,12 @@ import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
-import org.thoughtcrime.securesms.jobs.MmsSendJob;
-import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
@@ -96,7 +90,6 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -405,15 +398,10 @@ public class ConversationItem extends LinearLayout
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getThumbnailSlide() != null;
   }
 
-  private boolean hasSticker(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() != null;
-  }
-
   private boolean hasOnlyThumbnail(MessageRecord messageRecord) {
     return hasThumbnail(messageRecord)      &&
            !hasAudio(messageRecord)         &&
-           !hasDocument(messageRecord)      &&
-           !hasSticker(messageRecord);
+           !hasDocument(messageRecord);
   }
 
   private boolean hasOnlyDocument(MessageRecord messageRecord) {
@@ -421,7 +409,6 @@ public class ConversationItem extends LinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            hasDocument(messageRecord)            &&
-           !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
 
@@ -430,7 +417,6 @@ public class ConversationItem extends LinearLayout
            !hasThumbnail(messageRecord)          &&
            !hasAudio(messageRecord)              &&
            !hasDocument(messageRecord)           &&
-           !hasSticker(messageRecord)            &&
            !hasQuote(messageRecord);
   }
 
@@ -460,8 +446,7 @@ public class ConversationItem extends LinearLayout
     int         minWidth    = getResources().getDimensionPixelSize(R.dimen.media_bubble_min_width);
 
     return linkPreview.getThumbnail().isPresent()                  &&
-           linkPreview.getThumbnail().get().getWidth() >= minWidth &&
-           !StickerUrl.isValidShareLink(linkPreview.getUrl());
+           linkPreview.getThumbnail().get().getWidth() >= minWidth;
   }
 
   private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery, boolean isGroupThread) {
@@ -600,26 +585,6 @@ public class ConversationItem extends LinearLayout
       documentViewStub.get().setDocumentClickListener(new ThumbnailClickListener());
       documentViewStub.get().setDownloadClickListener(singleDownloadClickListener);
       documentViewStub.get().setOnLongClickListener(passthroughClickListener);
-
-      ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-      ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-      footer.setVisibility(VISIBLE);
-    } else if (hasSticker(messageRecord) && isCaptionlessMms(messageRecord)) {
-      bodyBubble.setBackgroundColor(Color.TRANSPARENT);
-
-      stickerStub.get().setVisibility(View.VISIBLE);
-      if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
-      if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
-      if (documentViewStub.resolved())   documentViewStub.get().setVisibility(View.GONE);
-      if (linkPreviewStub.resolved())    linkPreviewStub.get().setVisibility(GONE);
-
-      //noinspection ConstantConditions
-      stickerStub.get().setSticker(glideRequests, ((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide());
-      stickerStub.get().setThumbnailClickListener(new StickerClickListener());
-      stickerStub.get().setDownloadClickListener(downloadClickListener);
-      stickerStub.get().setOnLongClickListener(passthroughClickListener);
-      stickerStub.get().setOnClickListener(passthroughClickListener);
 
       ViewUtil.updateLayoutParams(bodyText, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
       ViewUtil.updateLayoutParams(groupSenderHolder, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -878,9 +843,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
-    if (hasSticker(messageRecord)) {
-      return stickerFooter;
-    } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+    if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
       return mediaThumbnailStub.get().getFooter();
     } else {
       return footer;
@@ -924,13 +887,8 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord) {
-    if (hasSticker(messageRecord)) {
-      groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-    } else {
-      groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-    }
+    groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
+    groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
   }
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
@@ -1116,21 +1074,13 @@ public class ConversationItem extends LinearLayout
     @Override
     public void onClick(View v, final List<Slide> slides) {
       Log.i(TAG, "onClick() for attachment download");
-      if (messageRecord.isMmsNotification()) {
-        Log.i(TAG, "Scheduling MMS attachment download");
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsDownloadJob(messageRecord.getId(),
-                                                  messageRecord.getThreadId(), false));
-      } else {
-        Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
+      Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
-        for (Slide slide : slides) {
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                           ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
-        }
+      for (Slide slide : slides) {
+        ApplicationContext.getInstance(context)
+                .getJobManager()
+                .add(new AttachmentDownloadJob(messageRecord.getId(),
+                        ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
       }
     }
   }
@@ -1154,9 +1104,6 @@ public class ConversationItem extends LinearLayout
     public void onClick(View v, Slide slide) {
       if (shouldInterceptClicks(messageRecord) || !batchSelected.isEmpty()) {
         performClick();
-      } else if (eventListener != null && hasSticker(messageRecord)){
-        //noinspection ConstantConditions
-        eventListener.onStickerClicked(((MmsMessageRecord) messageRecord).getSlideDeck().getStickerSlide().asAttachment().getSticker());
       }
     }
   }
@@ -1229,58 +1176,7 @@ public class ConversationItem extends LinearLayout
         intent.putExtra(MessageDetailsActivity.IS_PUSH_GROUP_EXTRA, groupThread && messageRecord.isPush());
         intent.putExtra(MessageDetailsActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
         context.startActivity(intent);
-      } else if (!messageRecord.isOutgoing() && messageRecord.isIdentityMismatchFailure()) {
-//        handleApproveIdentity();
-      } else if (messageRecord.isPendingInsecureSmsFallback()) {
-        handleMessageApproval();
       }
     }
-  }
-
-  private void handleMessageApproval() {
-    final int title;
-    final int message;
-
-    if (messageRecord.isMms()) title = R.string.ConversationItem_click_to_approve_unencrypted_mms_dialog_title;
-    else                       title = R.string.ConversationItem_click_to_approve_unencrypted_sms_dialog_title;
-
-    message = R.string.ConversationItem_click_to_approve_unencrypted_dialog_message;
-
-    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-    builder.setTitle(title);
-
-    if (message > -1) builder.setMessage(message);
-
-    builder.setPositiveButton(R.string.yes, (dialogInterface, i) -> {
-      if (messageRecord.isMms()) {
-        MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
-
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsSendJob(messageRecord.getId()));
-      } else {
-        SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
-        database.markAsInsecure(messageRecord.getId());
-        database.markAsOutbox(messageRecord.getId());
-        database.markAsForcedSms(messageRecord.getId());
-
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new SmsSendJob(context, messageRecord.getId(),
-                                              messageRecord.getIndividualRecipient().getAddress().serialize()));
-      }
-    });
-
-    builder.setNegativeButton(R.string.no, (dialogInterface, i) -> {
-      if (messageRecord.isMms()) {
-        DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageRecord.getId());
-      } else {
-        DatabaseFactory.getSmsDatabase(context).markAsSentFailed(messageRecord.getId());
-      }
-    });
-    builder.show();
   }
 }

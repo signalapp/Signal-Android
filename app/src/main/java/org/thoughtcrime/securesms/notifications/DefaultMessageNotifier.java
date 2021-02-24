@@ -55,7 +55,6 @@ import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -87,6 +86,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
+  private static final  int   FOREGROUND_ID             = 313399;
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
@@ -168,7 +168,7 @@ public class DefaultMessageNotifier implements MessageNotifier {
 
           if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
               notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
-              notification.getId() != IncomingMessageObserver.FOREGROUND_ID         &&
+              notification.getId() != FOREGROUND_ID         &&
               notification.getId() != PENDING_MESSAGES_ID)
           {
             for (NotificationItem item : notificationState.getNotifications()) {
@@ -472,9 +472,6 @@ public class DefaultMessageNotifier implements MessageNotifier {
       } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
         Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
         body = ContactUtil.getStringSummary(context, contact);
-      } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
-        slideDeck = ((MmsMessageRecord) record).getSlideDeck();
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
         body = SpanUtil.italic(slideDeck.getBody());

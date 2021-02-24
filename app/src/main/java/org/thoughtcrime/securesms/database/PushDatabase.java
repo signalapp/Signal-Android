@@ -49,11 +49,11 @@ public class PushDatabase extends Database {
       values.put(TYPE, envelope.getType());
       values.put(SOURCE, envelope.getSource());
       values.put(DEVICE_ID, envelope.getSourceDevice());
-      values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
+      values.put(LEGACY_MSG, "");
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
       values.put(TIMESTAMP, envelope.getTimestamp());
       values.put(SERVER_TIMESTAMP, envelope.getServerTimestamp());
-      values.put(SERVER_GUID, envelope.getUuid());
+      values.put(SERVER_GUID, "");
 
       return databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, values);
     }
@@ -68,17 +68,14 @@ public class PushDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        String legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
         String content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
 
         return new SignalServiceEnvelope(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
                                          cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
-                                         Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
                                          Util.isEmpty(content) ? null : Base64.decode(content),
-                                         cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP)),
-                                         cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID)));
+                                         cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP)));
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -114,7 +111,7 @@ public class PushDatabase extends Database {
                               new String[] {String.valueOf(envelope.getType()),
                                             envelope.getSource(),
                                             String.valueOf(envelope.getSourceDevice()),
-                                            envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
+                                            "",
                                             envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
                                             String.valueOf(envelope.getTimestamp())},
                               null, null, null);
@@ -144,16 +141,13 @@ public class PushDatabase extends Database {
         int    type            = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
         String source          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
         int    deviceId        = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
-        String legacyMessage   = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
         String content         = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
         long   timestamp       = cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP));
         long   serverTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP));
-        String serverGuid      = cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID));
 
         return new SignalServiceEnvelope(type, source, deviceId, timestamp,
-                                         legacyMessage != null ? Base64.decode(legacyMessage) : null,
                                          content != null ? Base64.decode(content) : null,
-                                         serverTimestamp, serverGuid);
+                                         serverTimestamp);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

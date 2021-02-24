@@ -28,12 +28,9 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.session.libsession.messaging.threads.Address
+import org.session.libsession.utilities.GroupUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.api.ResetThreadSessionJob
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocol
-import org.thoughtcrime.securesms.loki.protocol.SessionResetImplementation
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -41,15 +38,8 @@ import org.thoughtcrime.securesms.loki.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.TextSecurePreferences.getBooleanPreference
-import org.session.libsession.utilities.TextSecurePreferences.setBooleanPreference
 import org.session.libsession.utilities.Util
-import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
-import org.session.libsignal.service.loki.protocol.mentions.MentionsManager
-import org.session.libsignal.service.loki.protocol.meta.SessionMetaProtocol
-import org.session.libsignal.service.loki.protocol.sessionmanagement.SessionManagementProtocol
-import org.session.libsignal.service.loki.protocol.shelved.multidevice.MultiDeviceProtocol
-import org.session.libsignal.service.loki.protocol.shelved.syncmessages.SyncMessagesProtocol
+import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
@@ -58,39 +48,12 @@ import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
 
-    companion object {
-        private const val PREF_RESET_ALL_SESSIONS_ON_START_UP = "pref_reset_all_sessions_on_start_up"
-
-        @JvmStatic
-        fun requestResetAllSessionsOnStartup(context: Context) {
-            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, true)
-        }
-
-        @JvmStatic
-        fun scheduleResetAllSessionsIfRequested(context: Context) {
-            if (!getBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)) return
-            setBooleanPreference(context, PREF_RESET_ALL_SESSIONS_ON_START_UP, false)
-
-            val jobManager = ApplicationContext.getInstance(context).jobManager
-
-            DatabaseFactory.getThreadDatabase(context).conversationListQuick.forEach { tuple ->
-                val threadId: Long = tuple.first
-                val recipientAddress: String = tuple.second
-                jobManager.add(ResetThreadSessionJob(
-                        Address.fromSerialized(recipientAddress),
-                        threadId))
-            }
-        }
-    }
-
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
 
     private val publicKey: String
         get() {
-            val masterPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-            val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
-            return masterPublicKey ?: userPublicKey
+            return TextSecurePreferences.getLocalNumber(this)!!
         }
 
     // region Lifecycle
@@ -115,9 +78,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
         // Set up seed reminder view
-        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
-        if (!hasViewedSeed && isMasterDevice) {
+        if (!hasViewedSeed) {
             val seedReminderViewTitle = SpannableString("You're almost finished! 80%") // Intentionally not yet translated
             seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             seedReminderView.title = seedReminderViewTitle
@@ -171,26 +133,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val apiDB = DatabaseFactory.getLokiAPIDatabase(this)
         val threadDB = DatabaseFactory.getLokiThreadDatabase(this)
         val userDB = DatabaseFactory.getLokiUserDatabase(this)
-        val sskDatabase = DatabaseFactory.getSSKDatabase(this)
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val sessionResetImpl = SessionResetImplementation(this)
         if (userPublicKey != null) {
             MentionsManager.configureIfNeeded(userPublicKey, threadDB, userDB)
-            SessionMetaProtocol.configureIfNeeded(apiDB, userPublicKey)
-            SyncMessagesProtocol.configureIfNeeded(apiDB, userPublicKey)
             application.publicChatManager.startPollersIfNeeded()
         }
-        SessionManagementProtocol.configureIfNeeded(sessionResetImpl, sskDatabase, application)
-        MultiDeviceProtocol.configureIfNeeded(apiDB)
         IP2Country.configureIfNeeded(this)
         application.registerForFCMIfNeeded(false)
-        // Preload device links to make message sending quicker
-        val publicKeys = ContactUtilities.getAllContacts(this).filter { contact ->
-            !contact.recipient.isGroupRecipient && !contact.isOurDevice && !contact.isSlave
-        }.map {
-            it.recipient.address.toString()
-        }.toSet()
-        FileServerAPI.shared.getDeviceLinks(publicKeys)
         // Observe blocked contacts changed events
         val broadcastReceiver = object : BroadcastReceiver() {
 
@@ -206,9 +155,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         super.onResume()
         if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
         profileButton.update()
-        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
-        if (hasViewedSeed || !isMasterDevice) {
+        if (hasViewedSeed) {
             seedReminderView.visibility = View.GONE
         }
         showKeyPairMigrationSheetIfNeeded()
@@ -329,7 +277,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         val threadID = thread.threadId
         val recipient = thread.recipient
         val threadDB = DatabaseFactory.getThreadDatabase(this)
-        val isClosedGroup = recipient.address.isClosedGroup
         val dialogMessage: String
         if (recipient.isGroupRecipient) {
             val group = DatabaseFactory.getGroupDatabase(this).getGroup(recipient.address.toString()).orNull()
@@ -347,19 +294,19 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             val context = this@HomeActivity as Context
 
             // Send a leave group message if this is an active closed group
-            if (isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
-                var isSSKBasedClosedGroup: Boolean
+            if (recipient.address.isClosedGroup && DatabaseFactory.getGroupDatabase(context).isActive(recipient.address.toGroupString())) {
+                var isClosedGroup: Boolean
                 var groupPublicKey: String?
                 try {
-                    groupPublicKey = ClosedGroupsProtocol.doubleDecodeGroupID(recipient.address.toString()).toHexString()
-                    isSSKBasedClosedGroup = DatabaseFactory.getSSKDatabase(context).isSSKBasedClosedGroup(groupPublicKey)
+                    groupPublicKey = GroupUtil.doubleDecodeGroupID(recipient.address.toString()).toHexString()
+                    isClosedGroup = DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)
                 } catch (e: IOException) {
                     groupPublicKey = null
-                    isSSKBasedClosedGroup = false
+                    isClosedGroup = false
                 }
-                if (isSSKBasedClosedGroup) {
-                    ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!, notifyUser = false)
-                } else if (!ClosedGroupsProtocol.leaveLegacyGroup(context, recipient)) {
+                if (isClosedGroup) {
+                    ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
+                } else {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch
                 }

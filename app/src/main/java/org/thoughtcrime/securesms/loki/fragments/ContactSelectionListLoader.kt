@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.loki.fragments
 
 import android.content.Context
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.loki.utilities.Contact
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.thoughtcrime.securesms.util.AsyncLoader
@@ -28,9 +27,9 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
     override fun loadInBackground(): List<ContactSelectionListItem> {
         val contacts = ContactUtilities.getAllContacts(context).filter {
             if (filter.isNullOrEmpty()) return@filter true
-            it.recipient.toShortString().contains(filter.trim(), true) || it.recipient.address.serialize().contains(filter.trim(), true)
+            it.toShortString().contains(filter.trim(), true) || it.address.serialize().contains(filter.trim(), true)
         }.sortedBy {
-            it.recipient.toShortString()
+            it.toShortString()
         }
         val list = mutableListOf<ContactSelectionListItem>()
         if (isFlagSet(DisplayMode.FLAG_CLOSED_GROUPS)) {
@@ -45,27 +44,27 @@ class ContactSelectionListLoader(context: Context, val mode: Int, val filter: St
         return list
     }
 
-    private fun getContacts(contacts: List<Contact>): List<ContactSelectionListItem> {
+    private fun getContacts(contacts: List<Recipient>): List<ContactSelectionListItem> {
         return getItems(contacts, context.getString(R.string.fragment_contact_selection_contacts_title)) {
-            !it.recipient.isGroupRecipient && !it.isOurDevice && !it.isSlave
+            !it.isGroupRecipient
         }
     }
 
-    private fun getClosedGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
+    private fun getClosedGroups(contacts: List<Recipient>): List<ContactSelectionListItem> {
         return getItems(contacts, context.getString(R.string.fragment_contact_selection_closed_groups_title)) {
-            it.recipient.address.isClosedGroup
+            it.address.isClosedGroup
         }
     }
 
-    private fun getOpenGroups(contacts: List<Contact>): List<ContactSelectionListItem> {
+    private fun getOpenGroups(contacts: List<Recipient>): List<ContactSelectionListItem> {
         return getItems(contacts, context.getString(R.string.fragment_contact_selection_open_groups_title)) {
-            it.recipient.address.isOpenGroup
+            it.address.isOpenGroup
         }
     }
 
-    private fun getItems(contacts: List<Contact>, title: String, contactFilter: (Contact) -> Boolean): List<ContactSelectionListItem> {
+    private fun getItems(contacts: List<Recipient>, title: String, contactFilter: (Recipient) -> Boolean): List<ContactSelectionListItem> {
         val items = contacts.filter(contactFilter).map {
-            ContactSelectionListItem.Contact(it.recipient)
+            ContactSelectionListItem.Contact(it)
         }
         if (items.isEmpty()) return listOf()
         val header = ContactSelectionListItem.Header(title)

@@ -13,23 +13,6 @@ public class WakeLockUtil {
   private static final String TAG = WakeLockUtil.class.getSimpleName();
 
   /**
-   * Run a runnable with a wake lock. Ensures that the lock is safely acquired and released.
-   *
-   * @param tag will be prefixed with "signal:" if it does not already start with it.
-   */
-  public static void runWithLock(@NonNull Context context, int lockType, long timeout, @NonNull String tag, @NonNull Runnable task) {
-    WakeLock wakeLock = null;
-    try {
-      wakeLock = acquire(context, lockType, timeout, tag);
-      task.run();
-    } finally {
-      if (wakeLock != null) {
-        release(wakeLock, tag);
-      }
-    }
-  }
-
-  /**
    * @param tag will be prefixed with "signal:" if it does not already start with it.
    */
   public static WakeLock acquire(@NonNull Context context, int lockType, long timeout, @NonNull String tag) {

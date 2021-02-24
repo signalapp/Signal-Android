@@ -17,14 +17,10 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
-import org.thoughtcrime.securesms.database.SessionDatabase;
-import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
@@ -32,7 +28,6 @@ import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.database.SharedSenderKeysDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -56,9 +51,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV18_CLEAR_BG_POLL_JOBS       = 39;
   private static final int lokiV19                          = 40;
   private static final int lokiV20                          = 41;
+  private static final int lokiV21                          = 42;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV20;
+  private static final int    DATABASE_VERSION = lokiV21;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -94,17 +90,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(GroupDatabase.CREATE_TABLE);
     db.execSQL(RecipientDatabase.CREATE_TABLE);
     db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
-    db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE);
-    db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
-    db.execSQL(SessionDatabase.CREATE_TABLE);
     for (String sql : SearchDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }
     for (String sql : JobDatabase.CREATE_TABLE) {
       db.execSQL(sql);
     }
-    db.execSQL(StickerDatabase.CREATE_TABLE);
-
     db.execSQL(LokiAPIDatabase.getCreateSnodePoolTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateOnionRequestPathTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateSwarmTableCommand());
@@ -130,9 +121,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
-    db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -141,7 +129,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     executeStatements(db, DraftDatabase.CREATE_INDEXS);
     executeStatements(db, GroupDatabase.CREATE_INDEXS);
     executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
-    executeStatements(db, StickerDatabase.CREATE_INDEXES);
   }
 
   @Override
@@ -185,8 +172,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV12) {
         db.execSQL(LokiAPIDatabase.getCreateLastMessageHashValueTable2Command());
-        db.execSQL(SharedSenderKeysDatabase.getCreateCurrentClosedGroupRatchetTableCommand());
-        db.execSQL(SharedSenderKeysDatabase.getCreateClosedGroupPrivateKeyTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateCurrentClosedGroupRatchetTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateClosedGroupPrivateKeyTableCommand());
       }
 
       if (oldVersion < lokiV13) {
@@ -198,7 +185,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV15) {
-        db.execSQL(SharedSenderKeysDatabase.getCreateOldClosedGroupRatchetTableCommand());
+        db.execSQL(ClosedGroupsMigration.getCreateOldClosedGroupRatchetTableCommand());
       }
       
       if (oldVersion < lokiV16) {
@@ -250,6 +237,22 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "ServiceOutageDetectionJob",
                 "SessionRequestMessageSendJob"
         );
+      }
+
+      if (oldVersion < lokiV21) {
+        deleteJobRecords(db,
+                "ClosedGroupUpdateMessageSendJob",
+                "NullMessageSendJob",
+                "StickerDownloadJob",
+                "StickerPackDownloadJob",
+                "MmsSendJob",
+                "MmsReceiveJob",
+                "MmsDownloadJob",
+                "SmsSendJob",
+                "SmsSentJob",
+                "SmsReceiveJob",
+                "PushGroupUpdateJob",
+                "ResetThreadSessionJob");
       }
 
       db.setTransactionSuccessful();

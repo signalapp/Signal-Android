@@ -16,13 +16,7 @@
 
 package org.session.libsignal.libsignal.util.guava;
 
-import org.session.libsignal.libsignal.util.guava.Function;
-import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.libsignal.util.guava.Supplier;
-
 import static org.session.libsignal.libsignal.util.guava.Preconditions.checkNotNull;
-
-
 
 import java.util.Collections;
 import java.util.Set;

@@ -53,10 +53,7 @@ class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperF
 
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.invalid_session_id, Toast.LENGTH_SHORT).show() }
-        val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val targetHexEncodedPublicKey = if (hexEncodedPublicKey == masterHexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
-        val recipient = Recipient.from(this, Address.fromSerialized(targetHexEncodedPublicKey!!), false)
+        val recipient = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), false)
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
@@ -105,9 +102,7 @@ class ViewMyQRCodeFragment : Fragment() {
 
     private val hexEncodedPublicKey: String
         get() {
-            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(requireContext())
-            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(requireContext())!!
-            return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
+            return TextSecurePreferences.getLocalNumber(requireContext())!!
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

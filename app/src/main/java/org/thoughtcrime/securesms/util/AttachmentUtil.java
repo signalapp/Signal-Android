@@ -41,8 +41,7 @@ public class AttachmentUtil {
 
     if (attachment.isVoiceNote()                                                       ||
         (MediaUtil.isAudio(attachment) && TextUtils.isEmpty(attachment.getFileName())) ||
-        MediaUtil.isLongTextType(attachment.getContentType())                          ||
-        attachment.isSticker())
+        MediaUtil.isLongTextType(attachment.getContentType()))
     {
       return true;
     } else if (isNonDocumentType(contentType)) {

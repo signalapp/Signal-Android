@@ -43,7 +43,7 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
       return;
     }
 
-    Address          address   = Address.Companion.fromSerialized(serializedAddress);
+    Address          address   = Address.fromSerialized(serializedAddress);
     Recipient        recipient = Recipient.from(this, address, true);
     TaskStackBuilder backStack = TaskStackBuilder.create(this)
                                                  .addNextIntent(new Intent(this, HomeActivity.class));

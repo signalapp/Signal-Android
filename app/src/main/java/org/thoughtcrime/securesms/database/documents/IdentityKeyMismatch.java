@@ -41,7 +41,7 @@ public class IdentityKeyMismatch {
 
   @JsonIgnore
   public Address getAddress() {
-    return Address.Companion.fromSerialized(address);
+    return Address.fromSerialized(address);
   }
 
   public IdentityKey getIdentityKey() {

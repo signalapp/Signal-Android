@@ -128,7 +128,7 @@ public class SearchRepository {
 
   private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
     List<String>  numbers   = contactAccessor.getNumbersForThreadSearchFilter(context, query);
-    List<Address> addresses = Stream.of(numbers).map(number -> Address.Companion.fromExternal(context, number)).toList();
+    List<Address> addresses = Stream.of(numbers).map(number -> Address.fromExternal(context, number)).toList();
 
     Cursor conversations = threadDatabase.getFilteredConversationList(addresses);
     return conversations != null ? new CursorList<>(conversations, new ThreadModelBuilder(threadDatabase))
@@ -179,7 +179,7 @@ public class SearchRepository {
 
     @Override
     public Recipient build(@NonNull Cursor cursor) {
-      Address address = Address.Companion.fromExternal(context, cursor.getString(1));
+      Address address = Address.fromExternal(context, cursor.getString(1));
       return Recipient.from(context, address, false);
     }
   }
@@ -208,8 +208,8 @@ public class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      Address   conversationAddress   = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
-      Address   messageAddress        = Address.Companion.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
+      Address   conversationAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
+      Address   messageAddress        = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
       Recipient conversationRecipient = Recipient.from(context, conversationAddress, false);
       Recipient messageRecipient      = Recipient.from(context, messageAddress, false);
       String    body                  = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));
