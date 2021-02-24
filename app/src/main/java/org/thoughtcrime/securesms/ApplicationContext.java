@@ -145,6 +145,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                                 Conscrypt.setUseEngineSocketByDefault(true);
                               }
                             })
+                            .addBlocking("blob-provider", this::initializeBlobProvider)
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializeGcmCheck)
                             .addNonBlocking(this::initializeSignedPreKeyCheck)
@@ -158,7 +159,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
                             .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
                             .addPostRender(this::initializeExpiringMessageManager)
-                            .addPostRender(this::initializeBlobProvider)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -387,7 +387,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @WorkerThread
   private void initializeBlobProvider() {
-    BlobProvider.getInstance().onSessionStart(this);
+    BlobProvider.getInstance().initialize(this);
   }
 
   @WorkerThread

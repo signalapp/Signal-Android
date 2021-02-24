@@ -6,6 +6,7 @@ import android.content.UriMatcher;
 import android.media.MediaDataSource;
 import android.net.Uri;
 
+import androidx.annotation.AnyThread;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.util.IOFunction;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
@@ -64,6 +66,8 @@ public class BlobProvider {
 
   private final Map<Uri, byte[]> memoryBlobs = new HashMap<>();
 
+  private volatile boolean initialized = false;
+
 
   public static BlobProvider getInstance() {
     return INSTANCE;
@@ -88,6 +92,7 @@ public class BlobProvider {
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    waitUntilInitialized();
     return getStream(context, uri, 0L);
   }
 
@@ -96,6 +101,7 @@ public class BlobProvider {
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri, long position) throws IOException {
+    waitUntilInitialized();
     return getBlobRepresentation(context,
                                  uri,
                                  bytes -> {
@@ -112,6 +118,7 @@ public class BlobProvider {
 
   @RequiresApi(23)
   public synchronized @NonNull MediaDataSource getMediaDataSource(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    waitUntilInitialized();
     return getBlobRepresentation(context,
                                  uri,
                                  ByteArrayMediaDataSource::new,
@@ -158,6 +165,8 @@ public class BlobProvider {
    * Delete the content with the specified URI.
    */
   public synchronized void delete(@NonNull Context context, @NonNull Uri uri) {
+    waitUntilInitialized();
+
     if (!isAuthority(uri)) {
       Log.d(TAG, "Can't delete. Not the authority for uri: " + uri);
       return;
@@ -187,17 +196,30 @@ public class BlobProvider {
   }
 
   /**
-   * Indicates a new app session has started, allowing old single-session blobs to be deleted.
+   * Allows the class to be initialized. Part of this initialization is deleting any leftover
+   * single-session blobs from the previous session. However, this class defers that work to a
+   * background thread, so callers don't have to worry about it.
    */
-  public synchronized void onSessionStart(@NonNull Context context) {
-    File directory = getOrCreateDirectory(context, SINGLE_SESSION_DIRECTORY);
-    for (File file : directory.listFiles()) {
-      if (file.delete()) {
-        Log.d(TAG, "Deleted single-session file: " + file.getName());
+  @AnyThread
+  public synchronized void initialize(@NonNull Context context) {
+    SignalExecutors.BOUNDED.execute(() -> {
+      File   directory = getOrCreateDirectory(context, SINGLE_SESSION_DIRECTORY);
+      File[] files     = directory.listFiles();
+
+      if (files != null) {
+        for (File file : files) {
+          if (file.delete()) {
+            Log.d(TAG, "Deleted single-session file: " + file.getName());
+          } else {
+            Log.w(TAG, "Failed to delete single-session file! " + file.getName());
+          }
+        }
       } else {
-        Log.w(TAG, "Failed to delete single-session file! " + file.getName());
+        Log.w(TAG, "Null directory listing!");
       }
-    }
+
+      initialized = true;
+    });
   }
 
   public static @Nullable String getMimeType(@NonNull Uri uri) {
@@ -249,7 +271,10 @@ public class BlobProvider {
   {
     CountDownLatch               latch     = new CountDownLatch(1);
     AtomicReference<IOException> exception = new AtomicReference<>(null);
-    Uri                          uri       = writeBlobSpecToDiskAsync(context, blobSpec, latch::countDown, exception::set);
+    Uri                          uri       = writeBlobSpecToDiskAsync(context, blobSpec, latch::countDown, e -> {
+                                               exception.set(e);
+                                               latch.countDown();
+                                             });
 
     try {
       latch.await();
@@ -285,6 +310,7 @@ public class BlobProvider {
           successListener.onSuccess();
         }
       } catch (IOException e) {
+        Log.w(TAG, "Error during write!", e);
         if (errorListener != null) {
           errorListener.onError(e);
         }
@@ -398,6 +424,18 @@ public class BlobProvider {
         throws IOException
     {
       return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK), successListener, errorListener);
+    }
+  }
+
+  private synchronized void waitUntilInitialized() {
+    if (!initialized) {
+      Log.i(TAG, "Waiting for initialization...");
+      synchronized (this) {
+        while (!initialized) {
+          Util.wait(this, 0);
+        }
+        Log.i(TAG, "Initialization complete.");
+      }
     }
   }
 
