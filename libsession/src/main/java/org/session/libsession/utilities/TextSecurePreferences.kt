@@ -19,19 +19,8 @@ object TextSecurePreferences {
     const val DISABLE_PASSPHRASE_PREF = "pref_disable_passphrase"
     const val THEME_PREF = "pref_theme"
     const val LANGUAGE_PREF = "pref_language"
-    private const val MMSC_CUSTOM_HOST_PREF = "pref_apn_mmsc_custom_host"
-    const val MMSC_HOST_PREF = "pref_apn_mmsc_host"
-    private const val MMSC_CUSTOM_PROXY_PREF = "pref_apn_mms_custom_proxy"
-    const val MMSC_PROXY_HOST_PREF = "pref_apn_mms_proxy"
-    private const val MMSC_CUSTOM_PROXY_PORT_PREF = "pref_apn_mms_custom_proxy_port"
-    const val MMSC_PROXY_PORT_PREF = "pref_apn_mms_proxy_port"
-    private const val MMSC_CUSTOM_USERNAME_PREF = "pref_apn_mmsc_custom_username"
-    const val MMSC_USERNAME_PREF = "pref_apn_mmsc_username"
-    private const val MMSC_CUSTOM_PASSWORD_PREF = "pref_apn_mmsc_custom_password"
-    const val MMSC_PASSWORD_PREF = "pref_apn_mmsc_password"
     const val THREAD_TRIM_LENGTH = "pref_trim_length"
     const val THREAD_TRIM_NOW = "pref_trim_now"
-    const val ENABLE_MANUAL_MMS_PREF = "pref_enable_manual_mms"
 
     private const val LAST_VERSION_CODE_PREF = "last_version_code"
     private const val LAST_EXPERIENCE_VERSION_PREF = "last_experience_version_code"
@@ -45,16 +34,10 @@ object TextSecurePreferences {
     const val PASSPHRASE_TIMEOUT_PREF = "pref_timeout_passphrase"
     const val SCREEN_SECURITY_PREF = "pref_screen_security"
     private const val ENTER_SENDS_PREF = "pref_enter_sends"
-    private const val SMS_DELIVERY_REPORT_PREF = "pref_delivery_report_sms"
-    const val MMS_USER_AGENT = "pref_mms_user_agent"
-    private const val MMS_CUSTOM_USER_AGENT = "pref_custom_mms_user_agent"
     private const val THREAD_TRIM_ENABLED = "pref_trim_threads"
     const val LOCAL_NUMBER_PREF = "pref_local_number"
-    private const val VERIFYING_STATE_PREF = "pref_verifying"
     const val REGISTERED_GCM_PREF = "pref_gcm_registered"
-    private const val GCM_PASSWORD_PREF = "pref_gcm_password"
     private const val SEEN_WELCOME_SCREEN_PREF = "pref_seen_welcome_screen"
-    private const val SIGNALING_KEY_PREF = "pref_signaling_key"
     private const val UPDATE_APK_REFRESH_TIME_PREF = "pref_update_apk_refresh_time"
     private const val UPDATE_APK_DOWNLOAD_ID = "pref_update_apk_download_id"
     private const val UPDATE_APK_DIGEST = "pref_update_apk_digest"
@@ -63,10 +46,6 @@ object TextSecurePreferences {
     const val MESSAGE_BODY_TEXT_SIZE_PREF = "pref_message_body_text_size"
 
     const val LOCAL_REGISTRATION_ID_PREF = "pref_local_registration_id"
-    private const val WIFI_SMS_PREF = "pref_wifi_sms"
-
-    private const val GCM_DISABLED_PREF = "pref_gcm_disabled"
-    private const val WEBSOCKET_REGISTERED_PREF = "pref_websocket_registered"
 
     const val REPEAT_ALERTS_PREF = "pref_repeat_alerts"
     const val NOTIFICATION_PRIVACY_PREF = "pref_notification_privacy"
@@ -84,7 +63,6 @@ object TextSecurePreferences {
     const val PROFILE_AVATAR_URL_PREF = "pref_profile_avatar_url"
     const val READ_RECEIPTS_PREF = "pref_read_receipts"
     const val INCOGNITO_KEYBORAD_PREF = "pref_incognito_keyboard"
-    private const val UNAUTHORIZED_RECEIVED = "pref_unauthorized_received"
 
     private const val DATABASE_ENCRYPTED_SECRET = "pref_database_encrypted_secret"
     private const val DATABASE_UNENCRYPTED_SECRET = "pref_database_unencrypted_secret"
@@ -287,11 +265,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun setUnauthorizedReceived(context: Context, value: Boolean) {
-        setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value)
-    }
-
-    @JvmStatic
     fun isIncognitoKeyboardEnabled(context: Context): Boolean {
         return getBooleanPreference(context, INCOGNITO_KEYBORAD_PREF, true)
     }
@@ -385,11 +358,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun isFcmDisabled(context: Context): Boolean {
-        return getBooleanPreference(context, GCM_DISABLED_PREF, false)
-    }
-
-    @JvmStatic
     fun setDirectCaptureCameraId(context: Context, value: Int) {
         setIntegerPrefrence(context, DIRECT_CAPTURE_CAMERA_ID, value)
     }
@@ -402,16 +370,6 @@ object TextSecurePreferences {
     @JvmStatic
     fun getNotificationPrivacy(context: Context): NotificationPrivacyPreference {
         return NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"))
-    }
-
-    @JvmStatic
-    fun isWebsocketRegistered(context: Context): Boolean {
-        return getBooleanPreference(context, WEBSOCKET_REGISTERED_PREF, false)
-    }
-
-    @JvmStatic
-    fun isWifiSmsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, WIFI_SMS_PREF, false)
     }
 
     @JvmStatic
@@ -486,16 +444,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun getPushServerPassword(context: Context): String? {
-        return getStringPreference(context, GCM_PASSWORD_PREF, null)
-    }
-
-    @JvmStatic
-    fun getSignalingKey(context: Context): String? {
-        return getStringPreference(context, SIGNALING_KEY_PREF, null)
-    }
-
-    @JvmStatic
     fun isEnterSendsEnabled(context: Context): Boolean {
         return getBooleanPreference(context, ENTER_SENDS_PREF, false)
     }
@@ -510,73 +458,8 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun getUseCustomMmsc(context: Context): Boolean {
-        val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
-        return getBooleanPreference(context, MMSC_CUSTOM_HOST_PREF, legacy)
-    }
-
-    @JvmStatic
-    fun getMmscUrl(context: Context): String? {
-        return getStringPreference(context, MMSC_HOST_PREF, "")
-    }
-
-    @JvmStatic
-    fun getUseCustomMmscProxy(context: Context): Boolean {
-        val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
-        return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PREF, legacy)
-    }
-
-    @JvmStatic
-    fun getMmscProxy(context: Context): String? {
-        return getStringPreference(context, MMSC_PROXY_HOST_PREF, "")
-    }
-
-    @JvmStatic
-    fun getUseCustomMmscProxyPort(context: Context): Boolean {
-        val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
-        return getBooleanPreference(context, MMSC_CUSTOM_PROXY_PORT_PREF, legacy)
-    }
-
-    @JvmStatic
-    fun getMmscProxyPort(context: Context): String? {
-        return getStringPreference(context, MMSC_PROXY_PORT_PREF, "")
-    }
-
-    @JvmStatic
-    fun getUseCustomMmscUsername(context: Context): Boolean {
-        val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
-        return getBooleanPreference(context, MMSC_CUSTOM_USERNAME_PREF, legacy)
-    }
-
-    @JvmStatic
-    fun getMmscUsername(context: Context): String? {
-        return getStringPreference(context, MMSC_USERNAME_PREF, "")
-    }
-
-    @JvmStatic
-    fun getUseCustomMmscPassword(context: Context): Boolean {
-        val legacy: Boolean = isLegacyUseLocalApnsEnabled(context)
-        return getBooleanPreference(context, MMSC_CUSTOM_PASSWORD_PREF, legacy)
-    }
-
-    @JvmStatic
-    fun getMmscPassword(context: Context): String? {
-        return getStringPreference(context, MMSC_PASSWORD_PREF, "")
-    }
-
-    @JvmStatic
-    fun getMmsUserAgent(context: Context, defaultUserAgent: String): String {
-        val useCustom: Boolean = getBooleanPreference(context, MMS_CUSTOM_USER_AGENT, false)
-        return if (useCustom) getStringPreference(context, MMS_USER_AGENT, defaultUserAgent)!! else defaultUserAgent
-    }
-
-    @JvmStatic
     fun isScreenSecurityEnabled(context: Context): Boolean {
         return getBooleanPreference(context, SCREEN_SECURITY_PREF, true)
-    }
-
-    fun isLegacyUseLocalApnsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, ENABLE_MANUAL_MMS_PREF, false)
     }
 
     fun getLastVersionCode(context: Context): Int {
@@ -599,11 +482,6 @@ object TextSecurePreferences {
     }
 
     @JvmStatic
-    fun isVerifying(context: Context): Boolean {
-        return getBooleanPreference(context, VERIFYING_STATE_PREF, false)
-    }
-
-    @JvmStatic
     fun isPushRegistered(context: Context): Boolean {
         return getBooleanPreference(context, REGISTERED_GCM_PREF, false)
     }
@@ -621,11 +499,6 @@ object TextSecurePreferences {
     @JvmStatic
     fun getLanguage(context: Context): String? {
         return getStringPreference(context, LANGUAGE_PREF, "zz")
-    }
-
-    @JvmStatic
-    fun isSmsDeliveryReportsEnabled(context: Context): Boolean {
-        return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false)
     }
 
     @JvmStatic
@@ -874,10 +747,4 @@ object TextSecurePreferences {
         setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
     }
     // endregion
-
-
-    // NEVER rename these -- they're persisted by name
-    enum class MediaKeyboardMode {
-        EMOJI, STICKER
-    }
 }
