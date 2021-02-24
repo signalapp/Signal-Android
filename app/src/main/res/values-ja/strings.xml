@@ -67,14 +67,14 @@
   <!--BackgroundMessageRetriever-->
   <string name="BackgroundMessageRetriever_checking_for_messages">メッセージを確認しています…</string>
   <!--BlockedUsersActivity-->
-  <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザ</string>
-  <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザを追加する</string>
-  <string name="BlockedUsersActivity__blocked_users_will">ブロックされたユーザは、あなたにメッセージや通話の発信ができなくなります。</string>
-  <string name="BlockedUsersActivity__no_blocked_users">ブロック中のユーザはいません</string>
-  <string name="BlockedUsersActivity__block_user">ユーザをブロックしますか？</string>
+  <string name="BlockedUsersActivity__blocked_users">ブロック中のユーザー</string>
+  <string name="BlockedUsersActivity__add_blocked_user">ブロックするユーザーを追加する</string>
+  <string name="BlockedUsersActivity__blocked_users_will">ブロックされたユーザーは、あなたにメッセージや通話の発信ができなくなります。</string>
+  <string name="BlockedUsersActivity__no_blocked_users">ブロック中のユーザーはいません</string>
+  <string name="BlockedUsersActivity__block_user">ユーザーをブロックしますか？</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」は、あなたにメッセージや通話の発信ができなくなります。</string>
   <string name="BlockedUsersActivity__block">ブロックする</string>
-  <string name="BlockedUsersActivity__unblock_user">ユーザのブロックを解除しますか？</string>
+  <string name="BlockedUsersActivity__unblock_user">ユーザーのブロックを解除しますか？</string>
   <string name="BlockedUsersActivity__do_you_want_to_unblock_s">「%1$s」のブロックを解除しますか？</string>
   <string name="BlockedUsersActivity__unblock">ブロックを解除する</string>
   <!--BlockUnblockDialog-->
@@ -142,7 +142,7 @@
   <string name="ContactsCursorLoader_contacts">連絡先</string>
   <string name="ContactsCursorLoader_groups">グループ</string>
   <string name="ContactsCursorLoader_phone_number_search">電話番号検索</string>
-  <string name="ContactsCursorLoader_username_search">ユーザ名検索</string>
+  <string name="ContactsCursorLoader_username_search">ユーザー名検索</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s にメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signal通話 %s</string>
@@ -314,7 +314,7 @@
   <string name="CreateProfileActivity_set_avatar_description">アバターを設定</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">バックアップから復元しますか？</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元してください。いま復元しなければ、あとでできなくなります。</string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">ローカルバックアップからメッセージやメディアを復元します。いま復元しないと、あとから復元することはできません。</string>
   <string name="ChooseBackupFragment__icon_content_description">バックアップアイコンから復元</string>
   <string name="ChooseBackupFragment__choose_backup">バックアップを選択する</string>
   <string name="ChooseBackupFragment__learn_more">詳しく見る</string>
@@ -374,7 +374,7 @@
   <string name="DocumentView_unnamed_file">無名のファイル</string>
   <!--DonateMegaphone-->
   <string name="DonateMegaphone_donate_to_signal">Signalへの寄付</string>
-  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはユーザの皆様によって支えられています。Signalを支援してください！</string>
+  <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Signalはユーザーの皆様によって支えられています。Signalを支援してください！</string>
   <string name="DonateMegaphone_donate">寄付する</string>
   <string name="DonateMegaphone_no_thanks">しない</string>
   <!--GroupCallingMegaphone-->
@@ -425,8 +425,8 @@
   <plurals name="GroupManagement_invitation_sent">
     <item quantity="other">%d件の招待を送信済み</item>
   </plurals>
-  <string name="GroupManagement_invite_single_user">「%1$s」を自動的にこのグループに追加することはできません。\n\nユーザは招待を受け入れるまで、グループメッセージを閲覧できません。</string>
-  <string name="GroupManagement_invite_multiple_users">これらのユーザをを自動的にこのグループに追加することはできません。\n\nユーザは招待を受け入れるまで、グループメッセージを閲覧できません。</string>
+  <string name="GroupManagement_invite_single_user">「%1$s」を自動的にこのグループに追加することはできません。\n\nユーザーは招待を受け入れるまで、グループメッセージを閲覧できません。</string>
+  <string name="GroupManagement_invite_multiple_users">これらのユーザーをを自動的にこのグループに追加することはできません。\n\nユーザーは招待を受け入れるまで、グループメッセージを閲覧できません。</string>
   <!--GroupsV1MigrationLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationLearnMore_what_are_new_groups">新しいグループとは？</string>
   <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">新しいグループには、@メンションやグループ管理者機能などがあります。将来、新しい機能も追加されます。</string>
@@ -506,7 +506,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">保留中の招待はありません。</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">他のグループメンバーによる招待</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">他のグループメンバーによる保留中の招待はありません。</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">他のグループメンバーが招待したユーザの詳細は表示されません。招待されたユーザが参加を選択した時点で、グループ内で共有されます。招待されたユーザは、参加するまでグループ内のメッセージを閲覧できません。</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">他のグループメンバーが招待したユーザーの詳細は表示されません。招待されたユーザーが参加を選択した時点で、グループ内で共有されます。招待されたユーザーは、参加するまでグループ内のメッセージを閲覧できません。</string>
   <string name="PendingMembersActivity_revoke_invite">招待を取り消す</string>
   <string name="PendingMembersActivity_revoke_invites">招待を取り消す</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -551,7 +551,7 @@
     <item quantity="other">新しいグループをサポートしないメンバーが%d人いるため、このグループを作成できません。</item>
   </plurals>
   <!--NonGv2MemberDialog-->
-  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">「%1$s」が古いバージョンのSignalを使用しているため、レガシーグループが作成されます。当該ユーザのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</string>
+  <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">「%1$s」が古いバージョンのSignalを使用しているため、レガシーグループが作成されます。当該ユーザーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
     <item quantity="other">古いバージョンのSignalを使用しているメンバーが%1$d人いるため、レガシーグループが作成されます。当該メンバーのSignalをアップデートするか対象から外せば、新しいバージョンのグループを作成できます。</item>
   </plurals>
@@ -605,15 +605,15 @@
   <string name="GroupMentionSettingDialog_dont_notify_me">通知を受け取らない</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">プロフィール名</string>
-  <string name="ManageProfileFragment_username">ユーザ名</string>
+  <string name="ManageProfileFragment_username">ユーザー名</string>
   <string name="ManageProfileFragment_about">自己紹介</string>
   <string name="ManageProfileFragment_write_a_few_words_about_yourself">簡単な自己紹介を記入してください</string>
   <string name="ManageProfileFragment_your_name">あなたの名前</string>
-  <string name="ManageProfileFragment_your_username">あなたのユーザ名</string>
+  <string name="ManageProfileFragment_your_username">あなたのユーザー名</string>
   <string name="ManageProfileFragment_failed_to_set_avatar">アバターの設定に失敗しました</string>
   <!--ManageRecipientActivity-->
   <string name="ManageRecipientActivity_add_to_system_contacts">システムの連絡先に追加</string>
-  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザは連絡先に入っています</string>
+  <string name="ManageRecipientActivity_this_person_is_in_your_contacts">このユーザーは連絡先に入っています</string>
   <string name="ManageRecipientActivity_disappearing_messages">消えるメッセージ</string>
   <string name="ManageRecipientActivity_chat_color">チャットの色</string>
   <string name="ManageRecipientActivity_chat_wallpaper">チャットの壁紙</string>
@@ -914,12 +914,12 @@
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s がグループアイコンを変更しました。</string>
   <string name="MessageRecord_the_group_group_avatar_has_been_changed">グループアイコンが変更されました。</string>
   <!--GV2 attribute access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザを「%1$s」に変更しました。</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
-  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">グループ情報を編集できるユーザが「%1$s」に変更されました。</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">グループ情報を編集できるユーザーを「%1$s」に変更しました。</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s がグループ情報を編集できるユーザーを「%2$s」に変更しました。</string>
+  <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 membership access level change-->
-  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">グループ情報を編集できるユーザを「%1$s」に変更しました。</string>
-  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s がグループ情報を編集できるユーザを「%2$s」に変更しました。</string>
+  <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">グループ情報を編集できるユーザーを「%1$s」に変更しました。</string>
+  <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s がグループ情報を編集できるユーザーを「%2$s」に変更しました。</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">グループ情報を編集できるユーザーが「%1$s」に変更されました。</string>
   <!--GV2 group link invite access level change-->
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">管理者承認の不要なグループリンクを有効にしました。</string>
@@ -1306,18 +1306,18 @@
   <string name="UnverifiedSendDialog_send_message">メッセージを送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信する</string>
   <!--UsernameEditFragment-->
-  <string name="UsernameEditFragment_username">ユーザ名</string>
+  <string name="UsernameEditFragment_username">ユーザー名</string>
   <string name="UsernameEditFragment_delete">削除する</string>
-  <string name="UsernameEditFragment_successfully_set_username">ユーザ名を設定しました。</string>
-  <string name="UsernameEditFragment_successfully_removed_username">ユーザ名を削除しました。</string>
+  <string name="UsernameEditFragment_successfully_set_username">ユーザー名を設定しました。</string>
+  <string name="UsernameEditFragment_successfully_removed_username">ユーザー名を削除しました。</string>
   <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
-  <string name="UsernameEditFragment_this_username_is_taken">このユーザ名は既に使用されています。</string>
-  <string name="UsernameEditFragment_this_username_is_available">このユーザ名は利用可能です。</string>
-  <string name="UsernameEditFragment_usernames_can_only_include">ユーザ名には半角の英数字とアンダーバーのみ使用できます。</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザ名の先頭に数字は使用できません。</string>
-  <string name="UsernameEditFragment_username_is_invalid">無効なユーザ名です。</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザ名は%1$dから%2$d文字にしてください。</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signalのユーザ名設定は任意です。ユーザ名を作成すると、他のSignalユーザはあなたの電話番号を知らなくても、このユーザ名であなたを検索して連絡できるようになります。</string>
+  <string name="UsernameEditFragment_this_username_is_taken">このユーザー名は既に使用されています。</string>
+  <string name="UsernameEditFragment_this_username_is_available">このユーザー名は利用可能です。</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ユーザー名には半角の英数字とアンダーバーのみ使用できます。</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザー名の先頭に数字は使用できません。</string>
+  <string name="UsernameEditFragment_username_is_invalid">無効なユーザー名です。</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザー名は%1$dから%2$d文字にしてください。</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Signalのユーザー名設定は任意です。ユーザー名を作成すると、他のSignalユーザーはあなたの電話番号を知らなくても、このユーザー名であなたを検索して連絡できるようになります。</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="other">%d件の連絡先がSignalを使用しています！</item>
   </plurals>
@@ -1465,8 +1465,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">連絡先を表示するには、Signalに連絡先へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「連絡先」を有効にしてください。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得中にエラーが発生しました。ネットワーク接続を確認してください。</string>
-  <string name="ContactSelectionListFragment_username_not_found">ユーザ名が見つかりませんでした</string>
-  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザではありません。ユーザ名を確認してもう一度試してください。</string>
+  <string name="ContactSelectionListFragment_username_not_found">ユーザー名が見つかりませんでした</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">「%1$s」はSignalユーザーではありません。ユーザー名を確認してもう一度試してください。</string>
   <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">自分自身をグループに追加する必要はありません</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">グループのサイズが最大値に達しました</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signalグループは最大%1$d名まで参加できます。</string>
@@ -1622,8 +1622,8 @@
   <string name="CreateProfileActivity_first_name_required">名 (必須)</string>
   <string name="CreateProfileActivity_last_name_optional">姓 (任意)</string>
   <string name="CreateProfileActivity_next">次へ</string>
-  <string name="CreateProfileActivity__username">ユーザ名</string>
-  <string name="CreateProfileActivity__create_a_username">ユーザ名の作成</string>
+  <string name="CreateProfileActivity__username">ユーザー名</string>
+  <string name="CreateProfileActivity__create_a_username">ユーザー名の作成</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMSグループの名前とアイコンはあなただけに表示されます。</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">自己紹介</string>
@@ -1689,7 +1689,7 @@
   <string name="AndroidManifest_remove_photo">写真を消去</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">メッセージ申請</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ユーザが新しいチャットを受け入れるかどうかを選択できるようになりました。プロフィール名でメッセージの送信者を示します。</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ユーザーが新しいチャットを受け入れるかどうかを選択できるようになりました。プロフィール名でメッセージの送信者を示します。</string>
   <string name="MessageRequestsMegaphone__add_profile_name">プロフィール名を追加</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">よくある質問を読まれましたか？</string>
@@ -1797,12 +1797,12 @@
   <string name="preferences__advanced">詳細設定</string>
   <string name="preferences__donate_to_signal">Signalへの寄付</string>
   <string name="preferences__privacy">プライバシー</string>
-  <string name="preferences__mms_user_agent">MMSユーザエージェント</string>
+  <string name="preferences__mms_user_agent">MMSユーザーエージェント</string>
   <string name="preferences__advanced_mms_access_point_names">手動MMS設定</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMSプロキシホスト</string>
   <string name="preferences__mms_proxy_port">MMSプロキシポート</string>
-  <string name="preferences__mmsc_username">MMSCユーザ名</string>
+  <string name="preferences__mmsc_username">MMSCユーザー名</string>
   <string name="preferences__mmsc_password">MMSCパスワード</string>
   <string name="preferences__sms_delivery_reports">SMS配信レポート</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">送信するすべてのSMSで配信レポートを要求します</string>
@@ -1825,7 +1825,7 @@
   <string name="preferences__language">言語</string>
   <string name="preferences__signal_messages_and_calls">Signalメッセージと通話</string>
   <string name="preferences__advanced_pin_settings">PINの詳細設定</string>
-  <string name="preferences__free_private_messages_and_calls">Signalユーザにプライベートメッセージと通話の自由を</string>
+  <string name="preferences__free_private_messages_and_calls">Signalユーザーにプライベートメッセージと通話の自由を</string>
   <string name="preferences__submit_debug_log">デバッグログの提出</string>
   <string name="preferences__delete_account">アカウントの削除</string>
   <string name="preferences__support_wifi_calling">Wi-Fi通話互換モード</string>
@@ -1836,7 +1836,7 @@
   <string name="preferences__typing_indicators">入力中アイコン</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">入力中アイコンが無効の場合、相手の入力中アイコンも表示されません。</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">キーボードに個別自動学習の停止を要求します。この設定はキーボードに無視される可能性があり、保証されません。</string>
-  <string name="preferences_app_protection__blocked_users">ブロック中のユーザ</string>
+  <string name="preferences_app_protection__blocked_users">ブロック中のユーザー</string>
   <string name="preferences_chats__when_using_mobile_data">モバイルデータ通信利用時</string>
   <string name="preferences_chats__when_using_wifi">Wi-Fi利用時</string>
   <string name="preferences_chats__when_roaming">ローミング時</string>
@@ -1893,9 +1893,9 @@
   <string name="preferences_communication__sealed_sender_display_indicators">アイコンを表示する</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">送信者の秘匿化を用いて届けられたメッセージで「メッセージの詳細」を選択した際に、ステータスアイコンを表示します。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">詳しく見る</string>
-  <string name="preferences_setup_a_username">ユーザ名の設定</string>
+  <string name="preferences_setup_a_username">ユーザー名の設定</string>
   <string name="preferences_proxy">プロキシ</string>
   <string name="preferences_use_proxy">プロキシの使用</string>
   <string name="preferences_off">オフ</string>
@@ -1919,7 +1919,7 @@
   <!--****************************************-->
   <!--contact_selection_list-->
   <string name="contact_selection_list__unknown_contact">新規メッセージ…</string>
-  <string name="contact_selection_list__unknown_contact_block">ユーザをブロックする</string>
+  <string name="contact_selection_list__unknown_contact_block">ユーザーをブロックする</string>
   <string name="contact_selection_list__unknown_contact_add_to_group">グループに追加</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">通話</string>
@@ -2016,7 +2016,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signalプロトコルは過去%2$d日間の送信メッセージの%1$d%%を自動的に保護しました。Signalユーザ間のチャットは常にエンドツーエンドで暗号化されます。</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signalプロトコルは過去%2$d日間の送信メッセージの%1$d%%を自動的に保護しました。Signalユーザー間のチャットは常にエンドツーエンドで暗号化されます。</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signalブースト</string>
   <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは、過去%1$d日間に消えたり削除されていない送信メッセージに基づいて算出されます。</string>
@@ -2121,7 +2121,7 @@
   <string name="ResearchMegaphone_learn_more">詳しく見る</string>
   <string name="ResearchMegaphone_dismiss">キャンセル</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signalリサーチ</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>私たちはプライバシーを尊重しています。</b></p><p>Signalはあなたのデータを収集したり追跡することはありません。Signalをより良いものにするために、ユーザーの皆様からのフィードバックを<b>お待ちしています。</b></p><p>私たちは、あなたのSignalの使用方法についてアンケート調査を行っています。この調査では、あなたを特定するデータを収集することはありません。追加のフィードバックを共有されたい場合は、連絡先情報を提供することもできます。</p><p>お時間とご意見をお持ちの方は、ぜひご連絡ください。</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">アンケートに参加する</string>
   <string name="ResearchMegaphoneDialog_no_thanks">参加しない</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">このアンケートは、Alchemerが安全なドメイン (surveys.signalusers.org) でホストしています。</string>
@@ -2325,7 +2325,7 @@
   <string name="ShareActivity__s_comma">%1$s,</string>
   <string name="ShareActivity__sharing_to_multiple_chats_is">複数チャットの共有は、Signalメッセージでのみサポートしています。</string>
   <!--MultiShareDialogs-->
-  <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザへの送信に失敗しました</string>
+  <string name="MultiShareDialogs__failed_to_send_to_some_users">数名のユーザーへの送信に失敗しました</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to">共有できるチャットは%1$d件までです</string>
   <!--ShareInterstitialActivity-->
   <string name="ShareInterstitialActivity__forward_message">メッセージの転送</string>

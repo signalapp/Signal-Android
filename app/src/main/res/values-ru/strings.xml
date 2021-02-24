@@ -68,7 +68,7 @@
   <string name="AttachmentUploadJob_uploading_media">Загружаем медиафайл…</string>
   <string name="AttachmentUploadJob_compressing_video_start">Сжимаем видео…</string>
   <!--BackgroundMessageRetriever-->
-  <string name="BackgroundMessageRetriever_checking_for_messages">Проверка наличия новых сообщений…</string>
+  <string name="BackgroundMessageRetriever_checking_for_messages">Проверяем наличие новых сообщений…</string>
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Заблокированные пользователи</string>
   <string name="BlockedUsersActivity__add_blocked_user">Добавить заблокированного пользователя</string>
@@ -298,10 +298,10 @@
   <string name="ConversationFragment__review_requests_carefully">Внимательно проверяйте запросы</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal нашёл другой контакт с тем же именем.</string>
   <string name="ConversationFragment_contact_us">Связаться с нами</string>
-  <string name="ConversationFragment_verify">Подтверждение</string>
+  <string name="ConversationFragment_verify">Подтвердить</string>
   <string name="ConversationFragment_not_now">Не сейчас</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безопасности с %s изменился</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтверждение», чтобы проверить новый код безопасности. Это необязательно.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтвердить», чтобы проверить новый код безопасности. Это необязательно.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Удалить выбранный разговор?</item>
     <item quantity="few">Удалить выбранные разговоры?</item>
@@ -389,7 +389,7 @@
   <string name="DateUtils_yesterday">Вчера</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">Сессия чата обновлена</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal использует сквозное шифрование, и ему иногда может быть необходимо обновить сессию вашего чата. Это не затрагивает безопасность чата, но вы могли пропустить сообщение от этого собеседника. Вы можете попросить его отправить сообщение заново.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal использует сквозное шифрование, и ему иногда бывает нужно обновить сессию вашего чата. Это не затрагивает безопасность чата, но вы могли пропустить сообщение от этого собеседника. Вы можете попросить его отправить сообщение заново.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">Отвязать «%s»?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">После отвязки это устройство больше не сможет отправлять или получать сообщения.</string>

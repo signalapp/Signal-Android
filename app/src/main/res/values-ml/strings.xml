@@ -1536,7 +1536,7 @@
   <string name="ContactSelectionListFragment_maximum_group_size_reached">പരമാവധി ഗ്രൂപ്പ് വലുപ്പം എത്തി</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">Signal ഗ്രൂപ്പുകൾക്ക് പരമാവധി %1$d അംഗങ്ങൾ വരെ ആകാം</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">ശുപാർശ ചെയ്യുന്ന അംഗ പരിധി എത്തി</string>
-  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">സിഗ്നൽ ഗ്രൂപ്പുകൾ %1$d അംഗങ്ങളോ അതിൽ കുറവോ ഉപയോഗിച്ച് മികച്ച രീതിയിൽ പ്രവർത്തിക്കുന്നു. കൂടുതൽ അംഗങ്ങളെ ചേർക്കുന്നത് സന്ദേശങ്ങൾ അയയ്‌ക്കുന്നതിനും സ്വീകരിക്കുന്നതിനും കാലതാമസമുണ്ടാക്കും.</string>
+  <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal ഗ്രൂപ്പുകൾ %1$d അംഗങ്ങളോ അതിൽ കുറവോ ഉപയോഗിച്ച് മികച്ച രീതിയിൽ പ്രവർത്തിക്കുന്നു. കൂടുതൽ അംഗങ്ങളെ ചേർക്കുന്നത് സന്ദേശങ്ങൾ അയയ്‌ക്കുന്നതിനും സ്വീകരിക്കുന്നതിനും കാലതാമസമുണ്ടാക്കും.</string>
   <plurals name="ContactSelectionListFragment_d_members">
     <item quantity="one">%1$d അംഗം</item>
     <item quantity="other">%1$d അംഗങ്ങൾ</item>

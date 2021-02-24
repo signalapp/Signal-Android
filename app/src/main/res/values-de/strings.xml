@@ -1370,7 +1370,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_delete">Löschen</string>
   <string name="UsernameEditFragment_successfully_set_username">Nutzername erfolgreich festgelegt.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Nutzername erfolgreich entfernt.</string>
-  <string name="UsernameEditFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Dieser Nutzername ist vergeben.</string>
   <string name="UsernameEditFragment_this_username_is_available">Dieser Nutzername ist verfügbar.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Nutzernamen dürfen nur a–Z, 0–9 und Unterstriche beinhalten.</string>
@@ -1535,8 +1535,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Empfohlene Mitgliederanzahl erreicht</string>
   <string name="ContactSelectionListFragment_signal_groups_perform_best_with_d_members_or_fewer">Signal-Gruppen funktionieren am besten mit %1$d oder weniger Mitgliedern. Das Hinzufügen weiterer Mitglieder führt zu Verzögerungen beim Senden und Empfangen von Nachrichten.</string>
   <plurals name="ContactSelectionListFragment_d_members">
-    <item quantity="one">%1$d Mitglied</item>
-    <item quantity="other">%1$d Mitglieder</item>
+    <item quantity="one">%1$d Mitglied</item>
+    <item quantity="other">%1$d Mitglieder</item>
   </plurals>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
@@ -2035,7 +2035,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
   <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Unterhaltungen.\nLeg los und schreib einem Freund.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Unterhaltungen.\nLeg los und schreib einer Freundin oder einem Freund.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Sichere Sitzung zurücksetzen</string>
   <!--conversation_muted-->
@@ -2173,8 +2173,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">Zugunsten deiner Privatsphäre und Sicherheit kann deine PIN nicht wiederhergestellt werden. Falls du sie vergisst, kannst du dich nach %1$d Tagen ohne Aktivität mittels SMS erneut verifizieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
-    <item quantity="one">Falsche PIN. %1$d verbleibender Versuch.</item>
-    <item quantity="other">Falsche PIN. %1$d verbleibende Versuche.</item>
+    <item quantity="one">Falsche PIN. %1$d verbleibender Versuch.</item>
+    <item quantity="other">Falsche PIN. %1$d verbleibende Versuche.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
     <item quantity="one">Falls du alle Versuche aufbrauchst, wird dein Konto für %1$d Tag gesperrt. Nach %1$d Tag ohne Aktivität kannst du dich ohne deine PIN erneut registrieren. Dein Konto wird dabei zurückgesetzt und alle Inhalte werden gelöscht.</item>
@@ -2185,8 +2185,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
     <item quantity="other">Du hast noch %1$d Versuche.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__d_attempts_remaining">
-    <item quantity="one">%1$d verbleibender Versuch.</item>
-    <item quantity="other">%1$d verbleibende Versuche.</item>
+    <item quantity="one">%1$d verbleibender Versuch.</item>
+    <item quantity="other">%1$d verbleibende Versuche.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s wird von dir eine Unterhaltungsanfrage erhalten. Du kannst anrufen, sobald diese angenommen wurde.</string>

@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">注销 Signal 消息和呼叫…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">禁用 Signal 消息和呼叫？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">从服务器注销将禁用 Signal 消息和呼叫。如果以后想要使用这些功能，那么需使用手机号码重新注册。</string>
-  <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器错误！</string>
+  <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务出错！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">已启用短信</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">点击修改默认短信应用</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">已禁用短信</string>
@@ -261,8 +261,8 @@
   <string name="ConversationFragment_sms">短信</string>
   <string name="ConversationFragment_deleting">删除中</string>
   <string name="ConversationFragment_deleting_messages">正在删除消息…</string>
-  <string name="ConversationFragment_delete_for_me">只对我删除</string>
-  <string name="ConversationFragment_delete_for_everyone">对所有人删除</string>
+  <string name="ConversationFragment_delete_for_me">对我删除</string>
+  <string name="ConversationFragment_delete_for_everyone">对每个人删除</string>
   <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">将对所有使用较新版本 Signal 的群组用户永久删除此消息，群成员将看到您删除了一条消息。</string>
   <string name="ConversationFragment_quoted_message_not_found">未找到原始消息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始消息已不存在</string>
@@ -418,7 +418,7 @@
   <string name="GroupMembersDialog_you">您</string>
   <!--GV2 access levels-->
   <string name="GroupManagement_access_level_anyone">任何人</string>
-  <string name="GroupManagement_access_level_all_members">所有群成员</string>
+  <string name="GroupManagement_access_level_all_members">全部成员</string>
   <string name="GroupManagement_access_level_only_admins">仅限管理员</string>
   <string name="GroupManagement_access_level_no_one">无人</string>
   <!--GV2 invites sent-->
@@ -576,7 +576,7 @@
   <string name="ManageGroupActivity_until_s">直到 %1$s</string>
   <string name="ManageGroupActivity_off">关</string>
   <string name="ManageGroupActivity_on">开</string>
-  <string name="ManageGroupActivity_view_all_members">查看全体群成员</string>
+  <string name="ManageGroupActivity_view_all_members">查看全部成员</string>
   <string name="ManageGroupActivity_see_all">查看全部</string>
   <plurals name="ManageGroupActivity_added">
     <item quantity="other">已添加%d位成员。</item>
@@ -602,7 +602,7 @@
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">提到我时通知我</string>
   <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">静音群聊中被别人@时，是否接收提醒？</string>
   <string name="GroupMentionSettingDialog_always_notify_me">总是通知我</string>
-  <string name="GroupMentionSettingDialog_dont_notify_me">总是不通知我</string>
+  <string name="GroupMentionSettingDialog_dont_notify_me">不通知我</string>
   <!--ManageProfileFragment-->
   <string name="ManageProfileFragment_profile_name">个人资料名称</string>
   <string name="ManageProfileFragment_username">用户名</string>
@@ -778,7 +778,7 @@
   <string name="Megaphones_introducing_reactions">新推出“回应”功能</string>
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">长按任何消息，即刻分享感受。</string>
   <string name="Megaphones_remind_me_later">稍后提醒</string>
-  <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 密码</string>
+  <string name="Megaphones_verify_your_signal_pin">验证 Signal PIN 码</string>
   <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">为了方便记住 PIN 密码，将偶尔提示验证。</string>
   <string name="Megaphones_verify_pin">验证 PIN</string>
   <string name="Megaphones_get_started">开始使用</string>
@@ -906,7 +906,7 @@
   <string name="MessageRecord_you_added_invited_member_s">您添加了受邀用户 %1$s。</string>
   <string name="MessageRecord_s_added_invited_member_s">%1$s 添加了受邀用户 %2$s。</string>
   <!--GV2 title change-->
-  <string name="MessageRecord_you_changed_the_group_name_to_s">您更改了群名称为%1$s”。</string>
+  <string name="MessageRecord_you_changed_the_group_name_to_s">您更改了群组名字为“%1$s”。</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s 更改了群名称为 “%2$s”。</string>
   <string name="MessageRecord_the_group_name_has_changed_to_s">群组名称更改为“%1$s”。</string>
   <!--GV2 avatar change-->
@@ -1063,8 +1063,8 @@
   <string name="PinRestoreEntryFragment_need_help">需要协助？</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">PIN 码是您创建的%1$d位及以上的密码，可以是纯数字或数字字母混合。如果忘了 PIN 码，您可以注册一个新账户，但您会丢失所有保存过的设置，比如您的个人介绍。</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">如果忘记你的 PIN，可再新建一个。你可以注册并使用你的账号，但某些已保存设置，如个人资料信息，将丢失。</string>
-  <string name="PinRestoreEntryFragment_create_new_pin">创建新 PIN</string>
-  <string name="PinRestoreEntryFragment_contact_support">联系支持团队</string>
+  <string name="PinRestoreEntryFragment_create_new_pin">新建 PIN 码</string>
+  <string name="PinRestoreEntryFragment_contact_support">联系支持</string>
   <string name="PinRestoreEntryFragment_cancel">取消</string>
   <string name="PinRestoreEntryFragment_skip">跳过</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
@@ -1076,7 +1076,7 @@
   <!--PinRestoreLockedFragment-->
   <string name="PinRestoreLockedFragment_create_your_pin">创建 PIN</string>
   <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">你的 PIN 码错误次数达到上限，但你还是可以通过创建新的 PIN 码以进入你的 Signal 账户。出于对你的隐私和安全考虑，你的账户会在不保存任何个人资料或设置下被还原。</string>
-  <string name="PinRestoreLockedFragment_create_new_pin">新建 PIN</string>
+  <string name="PinRestoreLockedFragment_create_new_pin">新建 PIN 码</string>
   <!--PinOptOutDialog-->
   <string name="PinOptOutDialog_warning">警告</string>
   <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">如果禁用 PIN，重新注册 Signal 时全部数据将丢失，除非使用手动备份并恢复。PIN 禁用时，无法启用注册锁定。</string>
@@ -1191,8 +1191,8 @@
   <string name="RegistrationActivity_country_code_description">国家代码</string>
   <string name="RegistrationActivity_call">呼叫</string>
   <!--RegistrationLockV2Dialog-->
-  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">启用注册锁？</string>
-  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">关闭注册锁？</string>
+  <string name="RegistrationLockV2Dialog_turn_on_registration_lock">开启注册锁定？</string>
+  <string name="RegistrationLockV2Dialog_turn_off_registration_lock">关闭注册锁定？</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN，将在 7 天内无法使用你的帐户。</string>
   <string name="RegistrationLockV2Dialog_turn_on">启用</string>
   <string name="RegistrationLockV2Dialog_turn_off">关闭</string>
@@ -1771,8 +1771,8 @@
   <string name="preferences__choose_identity">选择联系人</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">从联系人列表选择联系人条目。</string>
   <string name="preferences__change_passphrase">修改密码</string>
-  <string name="preferences__change_your_passphrase"> 修改你的密码</string>
-  <string name="preferences__enable_passphrase">启用屏幕密码锁</string>
+  <string name="preferences__change_your_passphrase">修改您的密码</string>
+  <string name="preferences__enable_passphrase">启用屏幕锁定密码</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密码锁定屏幕和通知</string>
   <string name="preferences__screen_security">屏幕安全</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">屏蔽最近使用应用和 Signal 截屏</string>
@@ -1840,7 +1840,7 @@
   <string name="preferences__submit_debug_log">提交调试日志</string>
   <string name="preferences__delete_account">删除帐户</string>
   <string name="preferences__support_wifi_calling">“WiFi 呼叫”兼容模式</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">当你的设备通过 WiFi 发送短信或彩信时，请启用（仅在设备启用“WiFi 通话”时启用该选项）</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">当设备通过 WiFi 发送短信或彩信时，请启用（仅当设备启用“WiFi 呼叫”时，启用该选项）</string>
   <string name="preferences__incognito_keyboard">隐身键盘</string>
   <string name="preferences__read_receipts">已读回执</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">禁用已读回执之后，将无法查看来其他用户的已读回执。</string>
@@ -2050,7 +2050,7 @@
   <!--BaseKbsPinFragment-->
   <string name="BaseKbsPinFragment__next">下一步</string>
   <string name="BaseKbsPinFragment__create_alphanumeric_pin">创建字母数字 PIN</string>
-  <string name="BaseKbsPinFragment__create_numeric_pin">时间数字 PIN</string>
+  <string name="BaseKbsPinFragment__create_numeric_pin">创建数字 PIN 码</string>
   <!--CreateKbsPinFragment-->
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
     <item quantity="other">PIN 必须不少于 %1$d 个字符</item>
@@ -2058,16 +2058,16 @@
   <plurals name="CreateKbsPinFragment__pin_must_be_at_least_digits">
     <item quantity="other">PIN 必须不少于 %1$d 数字</item>
   </plurals>
-  <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN</string>
+  <string name="CreateKbsPinFragment__create_a_new_pin">新建 PIN 码</string>
   <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只有该设备已注册，你可以更改你的 PIN。</string>
-  <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 密码</string>
-  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，只有您可以访问。借此可在您重装后恢复个人资料、设置和联系人。打开 Signal 无需使用 PIN。</string>
-  <string name="CreateKbsPinFragment__choose_a_stronger_pin">选择更安全 PIN</string>
+  <string name="CreateKbsPinFragment__create_your_pin">创建 PIN 码</string>
+  <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN 码用于加密 Signal 存储的信息，只有您可以访问。借此可在您重装后还原个人资料、设置和联系人。打开 Signal 无需使用 PIN 码。</string>
+  <string name="CreateKbsPinFragment__choose_a_stronger_pin">选择更安全 PIN 码</string>
   <!--ConfirmKbsPinFragment-->
-  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 不匹配，请重试。</string>
-  <string name="ConfirmKbsPinFragment__confirm_your_pin">确认你的 PIN。</string>
-  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 创建失败</string>
-  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN 没有保存。我们将稍后提示您创建 PIN。</string>
+  <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 码不匹配，请重试。</string>
+  <string name="ConfirmKbsPinFragment__confirm_your_pin">确认 PIN 码。</string>
+  <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 码创建失败</string>
+  <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN 码没有保存。我们将稍后提示您创建 PIN 码。</string>
   <string name="ConfirmKbsPinFragment__pin_created">PIN 已创建。</string>
   <string name="ConfirmKbsPinFragment__re_enter_your_pin">重新入您的 PIN</string>
   <string name="ConfirmKbsPinFragment__creating_pin">正在创建 PIN…</string>
@@ -2078,15 +2078,15 @@
   <string name="KbsSplashFragment__registration_lock_equals_pin">注册锁定 = PIN</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">注册锁定现在改名为 PIN，功能更强大，马上更新。</string>
   <string name="KbsSplashFragment__update_pin">更新 PIN</string>
-  <string name="KbsSplashFragment__create_your_pin">创建 PIN</string>
-  <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 的信息</string>
-  <string name="KbsSplashFragment__disable_pin">禁用 PIN</string>
+  <string name="KbsSplashFragment__create_your_pin">创建 PIN 码</string>
+  <string name="KbsSplashFragment__learn_more_about_pins">了解更多关于 PIN 码的信息</string>
+  <string name="KbsSplashFragment__disable_pin">禁用 PIN 码</string>
   <!--KBS Reminder Dialog-->
-  <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal 的 PIN 密码</string>
-  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN，我们将定期提示输入该密码。提示次数将逐渐减少。</string>
+  <string name="KbsReminderDialog__enter_your_signal_pin">请输入 Signal PIN 码</string>
+  <string name="KbsReminderDialog__to_help_you_memorize_your_pin">为了便于记住 PIN 码，我们将定期提示输入该密码。提示次数将逐渐减少。</string>
   <string name="KbsReminderDialog__skip">跳过</string>
   <string name="KbsReminderDialog__submit">提交</string>
-  <string name="KbsReminderDialog__forgot_pin">忘记 PIN？</string>
+  <string name="KbsReminderDialog__forgot_pin">忘记 PIN 码？</string>
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">帐户已锁定</string>
@@ -2094,8 +2094,8 @@
   <string name="AccountLockedFragment__next">下一步</string>
   <string name="AccountLockedFragment__learn_more">了解更多</string>
   <!--KbsLockFragment-->
-  <string name="RegistrationLockFragment__enter_your_pin">请输入 PIN</string>
-  <string name="RegistrationLockFragment__enter_the_pin_you_created">输入帐户的 PIN 密码。该密码不是短信验证码。</string>
+  <string name="RegistrationLockFragment__enter_your_pin">请输入 PIN 码</string>
+  <string name="RegistrationLockFragment__enter_the_pin_you_created">输入帐户的 PIN 码。该密码不是短信验证码。</string>
   <string name="RegistrationLockFragment__enter_alphanumeric_pin">输入字母数字 PIN</string>
   <string name="RegistrationLockFragment__enter_numeric_pin">输入数字 PIN</string>
   <string name="RegistrationLockFragment__incorrect_pin_try_again">PIN 错误，请重试。</string>
@@ -2123,9 +2123,9 @@
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
   <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s 将收到您的消息请求，对发接受邀请后您即可向其发起通话。</string>
   <!--KBS Megaphone-->
-  <string name="KbsMegaphone__create_a_pin">创建你的密码</string>
+  <string name="KbsMegaphone__create_a_pin">创建 PIN 码</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Signal 储存的信息使用你的 PIN 码来加密。</string>
-  <string name="KbsMegaphone__create_pin">创建密码</string>
+  <string name="KbsMegaphone__create_pin">创建 PIN 码</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">发表您的 Signal 的感想</string>
   <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">您的意见将成为 Signal 称霸即时通信界的基础，我们期待您的反馈！</string>
@@ -2201,19 +2201,19 @@
   <string name="PhoneNumberPrivacy_nobody">没有人</string>
   <string name="PhoneNumberPrivacy_everyone_see_description">您的电话号码将对所有对话者和群组成员可见。</string>
   <string name="PhoneNumberPrivacy_everyone_find_description">电话簿里存有您电话号码的用户会在 Signal 联系人列表里看到您。其它知晓您电话号码的用户将能在搜索界面找到您。</string>
-  <string name="preferences_app_protection__screen_lock">锁屏</string>
+  <string name="preferences_app_protection__screen_lock">屏幕锁定</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">使用 Android 锁屏或者指纹锁定 Signal</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">不活跃锁屏逾时</string>
-  <string name="preferences_app_protection__signal_pin">Signal PIN 密码</string>
-  <string name="preferences_app_protection__create_a_pin">创建你的密码</string>
-  <string name="preferences_app_protection__change_your_pin">更改 PIN</string>
-  <string name="preferences_app_protection__pin_reminders">PIN 提醒</string>
+  <string name="preferences_app_protection__signal_pin">Signal PIN 码</string>
+  <string name="preferences_app_protection__create_a_pin">创建 PIN 码</string>
+  <string name="preferences_app_protection__change_your_pin">更改 PIN 码</string>
+  <string name="preferences_app_protection__pin_reminders">PIN 码提醒</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 用于加密 Signal 存储的信息，这样只有你可以访问。重装 Signal 之后，可恢复你的个人资料、设置和联系人。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">再次使用电话号码注册 Signal 时，要求输入 PIN，这样提供了更多安全性。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PIN 无法恢复，提醒有助于记住它。提醒频率将逐渐降低。</string>
   <string name="preferences_app_protection__turn_off">关闭</string>
   <string name="preferences_app_protection__confirm_pin">确认 PIN</string>
-  <string name="preferences_app_protection__confirm_your_signal_pin">请验证你的 Signal 安全码</string>
+  <string name="preferences_app_protection__confirm_your_signal_pin">请确认您的 Signal PIN 码</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">请确保你能牢记或安全保存好你的 PIN 码，因为它不能被找回。如果你忘记了 PIN 码，你可能会在重新注册 Signal 账号时丢失一些数据。</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">PIN 错误，请重试。</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">无法启用注册锁。</string>
@@ -2225,7 +2225,7 @@
   <string name="RegistrationActivity_too_many_attempts">尝试次数过多</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">注册锁定 PIN 输入错误过多，请一天后重试。</string>
   <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">您的尝试次数过多，请稍候再试。</string>
-  <string name="RegistrationActivity_error_connecting_to_service">连接至服务时出错</string>
+  <string name="RegistrationActivity_error_connecting_to_service">连接服务出错</string>
   <string name="preferences_chats__backups">备份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已锁定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">点击解锁</string>

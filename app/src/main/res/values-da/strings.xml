@@ -100,7 +100,7 @@
   <string name="BucketedThreadMedia_Small">Lille</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Tap for billede, tap og hold for video</string>
-  <string name="CameraXFragment_capture_description">Tag billed</string>
+  <string name="CameraXFragment_capture_description">Tag billede</string>
   <string name="CameraXFragment_change_camera_description">Skift kamera</string>
   <string name="CameraXFragment_open_gallery_description">Åbn billeder</string>
   <!--CameraContacts-->
@@ -355,8 +355,8 @@
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--AvatarSelectionBottomSheetDialogFragment-->
-  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vælg billed</string>
-  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Tag billed</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vælg billede</string>
+  <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Tag billede</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vælg fra billeder</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Fjern billede</string>
   <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Det kræver kameratilladelse for at tage et foto</string>
@@ -1347,7 +1347,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_missed_video_call">Mistet videoopkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
-  <string name="ThreadRecord_view_once_photo">Se billed én gang</string>
+  <string name="ThreadRecord_view_once_photo">Se billede én gang</string>
   <string name="ThreadRecord_view_once_video">Se video én gang</string>
   <string name="ThreadRecord_view_once_media">Se medie én gang</string>
   <string name="ThreadRecord_this_message_was_deleted">Beskeden blev slettet.</string>
@@ -1361,7 +1361,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_you_marked_unverified">Markerét som ubekræftet</string>
   <string name="ThreadRecord_message_could_not_be_processed">Besked kunne ikke håndteres</string>
   <string name="ThreadRecord_message_request">Besked forespørgsel</string>
-  <string name="ThreadRecord_photo">Billed</string>
+  <string name="ThreadRecord_photo">Billede</string>
   <string name="ThreadRecord_gif">GIF</string>
   <string name="ThreadRecord_voice_message">Talebesked</string>
   <string name="ThreadRecord_file">Fil</string>
@@ -1443,7 +1443,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="MessageNotifier_mark_all_as_read">Markér alle som læst</string>
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_turn_off_these_notifications">Deaktiver disse notifikationer</string>
-  <string name="MessageNotifier_view_once_photo">Se billed én gang</string>
+  <string name="MessageNotifier_view_once_photo">Se billede én gang</string>
   <string name="MessageNotifier_view_once_video">Se video én gang</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
@@ -1598,7 +1598,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
-  <string name="QuoteView_photo">Billed</string>
+  <string name="QuoteView_photo">Billede</string>
   <string name="QuoteView_view_once_media">Se medie én gang</string>
   <string name="QuoteView_sticker">Klistermærke</string>
   <string name="QuoteView_you">Dig</string>

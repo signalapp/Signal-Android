@@ -221,8 +221,8 @@
   <string name="ConversationActivity_no">No</string>
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Sin resultados</string>
-  <string name="ConversationActivity_sticker_pack_installed">Paquete de cromos instalado</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">¡Novedad!: Dilo con cromos (stickers)</string>
+  <string name="ConversationActivity_sticker_pack_installed">Paquete de stickers instalado</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">¡Novedad!: Dilo con stickers</string>
   <string name="ConversationActivity_cancel">Cancelar</string>
   <string name="ConversationActivity_delete_conversation">¿Eliminar el chat?</string>
   <string name="ConversationActivity_delete_and_leave_group">¿Eliminar y abandonar grupo?</string>
@@ -413,7 +413,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fallo al obtener el GIF a resolución completa</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">Cromos</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">Stickers</string>
   <!--AddToGroupActivity-->
   <string name="AddToGroupActivity_add_member">¿Añadir participante?</string>
   <string name="AddToGroupActivity_add_s_to_s">¿Añadir a %1$s a «%2$s»?</string>
@@ -713,7 +713,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Fallo en la conexión de red.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Este enlace al grupo no está disponible</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">No ha sido posible recuperar los detalles del grupo, por favor inténtalo más tarde</string>
-  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes?</string>
+  <string name="GroupJoinBottomSheetDialogFragment_direct_join">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes?</string>
   <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Un(a) admin de este grupo debe aprobar tu solicitud de acceso para unirte al grupo. Al solicitar unirte, tu nombre y foto se compartirán con sus participantes.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupo · %1$d participante</item>
@@ -822,7 +822,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Mantén pulsado un mensaje para mostrar cómo te sientes.</string>
   <string name="Megaphones_remind_me_later">Recordar más tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Verifica tu PIN de Signal</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente para verificar tu PIN y que así lo puedas recordar.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente para verificar tu PIN para que así lo puedas recordar.</string>
   <string name="Megaphones_verify_pin">Verificar PIN</string>
   <string name="Megaphones_get_started">Comenzar</string>
   <string name="Megaphones_new_group">Nuevo grupo</string>
@@ -1042,13 +1042,13 @@
   <string name="MessageRequestBottomView_delete">Eliminar</string>
   <string name="MessageRequestBottomView_block">Bloquear</string>
   <string name="MessageRequestBottomView_unblock">Desbloquear</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y así compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Deseas chatear con este grupo y así compartir tu nombre y foto con sus participantes?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">¿Deseas que %1$s te envíe mensajes y compartir tu nombre y foto? Esta persona no sabrá que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">¿Deseas chatear con este grupo y compartir tu nombre y foto con sus participantes?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Actualiza este grupo para activar funciones como @menciones y admins. L@s participantes que no comparten su nombre o foto de perfil con este grupo recibirán una invitación para unirse.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Este grupo antiguo no es válido porque es demasiado grande. El tamaño máximo de grupo es de %1$d participantes.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas chatear con %1$s y así compartir tu nombre y foto con esta persona?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y así compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">¿Deseas chatear con %1$s y compartir tu nombre y foto con esta persona?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo y compartir tu nombre y foto con sus participantes? No sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">¿Deseas unirte a este grupo? Sus participantes no sabrán que has visto sus mensajes hasta que aceptes.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">¿Desbloquear este grupo y compartir tu nombre y foto con sus participantes? No recibirás ningún mensaje del grupo hasta que lo desbloquees.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Participa en %1$s</string>
@@ -1286,7 +1286,7 @@ número de teléfono
   <string name="SignalPinReminders_well_remind_you_again_in_a_month">Te lo recordaremos de nuevo en un mes.</string>
   <!--Slide-->
   <string name="Slide_image">Imagen</string>
-  <string name="Slide_sticker">Cromo</string>
+  <string name="Slide_sticker">Sticker</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Vídeo</string>
   <!--SmsMessageRecord-->
@@ -1303,13 +1303,13 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Fallo al procesar el mensaje, ya que ha sido enviado con una versión más actual de Signal. Puedes pedir a la persona que vuelva a enviar el mensaje tras haber actualizado tu versión de Signal.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Fallo al procesar el mensaje recibido.</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">Cromos</string>
+  <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">Cromos instalados </string>
-  <string name="StickerManagementAdapter_stickers_you_received">Cromos recibidos</string>
+  <string name="StickerManagementAdapter_installed_stickers">Stickers instalados </string>
+  <string name="StickerManagementAdapter_stickers_you_received">Stickers recibidos</string>
   <string name="StickerManagementAdapter_signal_artist_series">Paquetes de Artistas de Signal</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún cromo instalado </string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los cromos recibidos en mensajes aparecerán aquí</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún sticker instalado </string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los stickers recibidos en mensajes aparecerán aquí</string>
   <string name="StickerManagementAdapter_untitled">Sin nombre</string>
   <string name="StickerManagementAdapter_unknown">Desconocido</string>
   <!--StickerPackPreviewActivity-->
@@ -1317,8 +1317,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StickerPackPreviewActivity_unknown">Desconocido</string>
   <string name="StickerPackPreviewActivity_install">Instalar</string>
   <string name="StickerPackPreviewActivity_remove">Eliminar</string>
-  <string name="StickerPackPreviewActivity_stickers">Cromos (stickers)</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fallo al cargar el paquete de cromos</string>
+  <string name="StickerPackPreviewActivity_stickers">Stickers</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Fallo al cargar el paquete de stickers</string>
   <!--SubmitDebugLogActivity-->
   <string name="SubmitDebugLogActivity_edit">Editar</string>
   <string name="SubmitDebugLogActivity_done">Hecho</string>
@@ -1346,7 +1346,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_missed_audio_call">Llamada perdida</string>
   <string name="ThreadRecord_missed_video_call">Vídeollamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
-  <string name="ThreadRecord_sticker">Cromo</string>
+  <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_view_once_photo">Foto para ver una vez</string>
   <string name="ThreadRecord_view_once_video">Vídeo para ver una vez</string>
   <string name="ThreadRecord_view_once_media">Adjunto para ver una vez</string>
@@ -1458,7 +1458,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_reacted_s_to_your_file">Reacción a tu fichero: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reacción a tu audio: %1$s.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacción a tu adjunto para ver una vez: %1$s.</string>
-  <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu cromo: %1$s.</string>
+  <string name="MessageNotifier_reacted_s_to_your_sticker">Reacción a tu sticker: %1$s.</string>
   <string name="MessageNotifier_this_message_was_deleted">Mensaje eliminado.</string>
   <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">¿Desactivar las notificaciones cuando una persona comience a usar Signal? Puedes volver a activarlas en los ajustes de Signal &gt; Notificaciones.</string>
   <!--Notification Channels-->
@@ -1600,7 +1600,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
   <string name="QuoteView_view_once_media">Adjunto para ver una vez</string>
-  <string name="QuoteView_sticker">Cromo</string>
+  <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_you">Tú</string>
   <string name="QuoteView_original_missing">No se encuentra el mensaje original </string>
   <!--conversation_fragment-->
@@ -1669,7 +1669,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">%d otros</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y cromos</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Buscar GIFs y stickers</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">No se encontró nada</string>
   <!--log_submit_activity-->

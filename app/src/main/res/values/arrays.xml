@@ -33,6 +33,7 @@
 <!-- hi --><item>Hindi हिंदी</item>
 <!-- hr --><item>Hrvatski</item>
 <!-- id/in --><item>Indonesia</item>
+<!-- is --><item>Íslenska</item>
 <!-- it --><item>Italiano</item>
 <!-- ja --><item>Japanese 日本語</item>
 <!-- kn --><item>Kannada ಕನ್ನಡ</item>
@@ -109,6 +110,7 @@
       <item>hi</item>
       <item>hr</item>
       <item>in</item>
+      <item>is</item>
       <item>it</item>
       <item>ja</item>
       <item>kn</item>

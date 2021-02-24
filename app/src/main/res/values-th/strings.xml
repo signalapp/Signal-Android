@@ -997,11 +997,14 @@
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">การโทรเสียง Signal…</string>
   <string name="WebRtcCallView__signal_video_call">การโทรเห็นหน้า Signal…</string>
+  <string name="WebRtcCallView__start_call">เริ่มโทร</string>
   <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
+  <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
   <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
   <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
   <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
   <string name="WebRtcCallView__disconnected">เลิกการเชื่อมต่อแล้ว</string>
+  <string name="WebRtcCallView__no_one_else_is_here">ไม่มีใครที่นี่</string>
   <!--CallParticipantsListDialog-->
   <!--CallParticipantView-->
   <string name="CallParticipantView__more_info">ข้อมูลเพิ่มเติม</string>
@@ -1333,7 +1336,7 @@
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description"> ล็อกการอัดแฟ้มแนบแบบเสียง</string>
   <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Signal สำหรับ SMS</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">สไลด์เพื่อยกเลิก</string>
+  <string name="conversation_input_panel__slide_to_cancel">เลื่อนเพื่อยกเลิก</string>
   <string name="conversation_input_panel__cancel">ยกเลิก</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">ข้อความสื่อ</string>
@@ -1348,6 +1351,7 @@
   <!--ConversationUpdateItem-->
   <string name="ConversationUpdateItem_loading">กำลังโหลด</string>
   <string name="ConversationUpdateItem_learn_more">เรียนรู้เพิ่มเติม</string>
+  <string name="ConversationUpdateItem_call_is_full">ห้องเต็ม</string>
   <string name="ConversationUpdateItem_invite_friends">เชิญเพื่อน</string>
   <!--audio_view-->
   <string name="audio_view__play_pause_accessibility_description">เล่น … หยุด</string>
@@ -1445,18 +1449,20 @@
   <!--profile_create_activity-->
   <string name="CreateProfileActivity_first_name_required">ชื่อ (ต้องมี)</string>
   <string name="CreateProfileActivity_last_name_optional">นามสกุล (ไม่จำเป็น)</string>
-  <string name="CreateProfileActivity_next">ต่อไป</string>
+  <string name="CreateProfileActivity_next">ถัดไป</string>
   <string name="CreateProfileActivity__username">ชื่อผู้ใช้</string>
   <string name="CreateProfileActivity__create_a_username">สร้างชื่อผู้ใช้</string>
   <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS ตั้งเอง</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">เกี่ยวกับ</string>
+  <string name="EditAboutFragment_count">%1$d/%2$d</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">แก้ไขชื่อและรูปของกลุ่ม</string>
   <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">ชื่อของคุณ</string>
-  <string name="EditProfileNameFragment_last_name_optional">นามสกุล (ไม่จำเป็น)</string>
+  <string name="EditProfileNameFragment_first_name">ชื่อตัว</string>
+  <string name="EditProfileNameFragment_last_name_optional">ชื่อสกุล (ไม่จำเป็น)</string>
   <string name="EditProfileNameFragment_save">บันทึก</string>
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
@@ -1480,6 +1486,11 @@
   <string name="message_details_header__via">ผ่าน</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">อยู่ระหว่างดำเนินการ</string>
+  <string name="message_details_recipient_header__sent_to">ส่งถึง</string>
+  <string name="message_details_recipient_header__sent_from">ส่งจาก</string>
+  <string name="message_details_recipient_header__delivered_to">ส่งถึงแล้วที่</string>
+  <string name="message_details_recipient_header__read_by">อ่านโดย</string>
+  <string name="message_details_recipient_header__not_sent">ไม่ได้ส่ง</string>
   <!--message_Details_recipient-->
   <string name="message_details_recipient__failed_to_send">การส่งล้มเหลว</string>
   <string name="message_details_recipient__new_safety_number">หมายเลขความปลอดภัยใหม่</string>
@@ -1560,7 +1571,7 @@
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">ใช้ Signal รับข้อความขาเข้าทั้งหมด</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
   <string name="preferences__pref_enter_sends_title">ใส่คีย์เพื่อส่ง</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">เมื่อกดปุ่ม Enter จะส่งข้อความตัวอักษร</string>
   <string name="preferences__choose_identity">เลือกตัวตน</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
   <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
@@ -1610,8 +1621,11 @@
   <string name="preferences__mmsc_password">รหัสผ่าน MMSC</string>
   <string name="preferences__sms_delivery_reports">รายงานการส่ง SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">ร้องขอรายงานสำหรับแต่ละข้อความ SMS ที่คุณส่ง</string>
+  <string name="preferences__data_and_storage">ข้อมูลและที่เก็บ</string>
   <string name="preferences__storage">พื้นที่จัดเก็บ</string>
   <string name="preferences__conversation_length_limit">ขีดจำกัดความยาวของการสนทนา</string>
+  <string name="preferences__keep_messages">เก็บข้อความ</string>
+  <string name="preferences__clear_message_history">ล้างประวัติข้อความ</string>
   <string name="preferences__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
   <string name="preferences__light_theme">สว่าง</string>
   <string name="preferences__dark_theme">มืด</string>
@@ -1715,6 +1729,7 @@
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ตั้งค่าปุ่มลัด</string>
   <string name="conversation_list_search_description">ค้นหา</string>
+  <string name="conversation_list__pinned">ปักหมุด</string>
   <string name="conversation_list__chats">การพูดคุย</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">รูปภาพของผู้ติดต่อ</string>

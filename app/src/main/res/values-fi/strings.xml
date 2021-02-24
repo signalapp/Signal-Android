@@ -283,7 +283,7 @@
   <string name="ConversationFragment__tap_to_review">Tarkista napauttamalla</string>
   <string name="ConversationFragment__review_requests_carefully">Tarkista pyynnöt huolellisesti</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Signal löysi toisen yhteystiedon samalla nimellä.</string>
-  <string name="ConversationFragment_contact_us">Ota meihin yhteyttä</string>
+  <string name="ConversationFragment_contact_us">Ota yhteyttä</string>
   <string name="ConversationFragment_verify">Varmenna</string>
   <string name="ConversationFragment_not_now">Ei nyt</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Turvanumerosi yhteystiedon %s kanssa on vaihtunut</string>
@@ -338,7 +338,7 @@
   <string name="BackupsPreferenceFragment__chat_backups">Keskustelujen varmuuskopiot</string>
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Varmuuskopiot salataan tunnuslauseella ja tallennetaan laitteellesi.</string>
   <string name="BackupsPreferenceFragment__create_backup">Luo varmuuskopio</string>
-  <string name="BackupsPreferenceFragment__last_backup">Viimeksi varmuuskopioitu: %1$s</string>
+  <string name="BackupsPreferenceFragment__last_backup">Varmuuskopioitu viimeksi: %1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">Varmuuskopiokansio</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Varmenna varmuuskopion salalause</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Tarkista varmuuskopiosi salalause ja varmista että se täsmää</string>
@@ -1770,7 +1770,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Oletko tutustunut usein kysyttyihin kysymyksiin?</string>
   <string name="HelpFragment__next">Seuraava</string>
-  <string name="HelpFragment__contact_us">Ota meihin yhteyttä</string>
+  <string name="HelpFragment__contact_us">Ota yhteyttä</string>
   <string name="HelpFragment__tell_us_whats_going_on">Kerro asiasi</string>
   <string name="HelpFragment__include_debug_log">Liitä virheenkorjausloki.</string>
   <string name="HelpFragment__whats_this">Mikä tämä on?</string>
@@ -2127,7 +2127,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
     <item quantity="other">Tunnusluvussa on oltava vähintään %1$d numeroa</item>
   </plurals>
   <string name="CreateKbsPinFragment__create_a_new_pin">Luo uusi tunnusluku</string>
-  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Voit vaihtaa tunnusluvun tämän laitteen ollessa rekisteröity.</string>
+  <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Tunnusluvun voi vaihtaa vain laitteella, joka on rekisteröity.</string>
   <string name="CreateKbsPinFragment__create_your_pin">Valitse tunnusluku</string>
   <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
   <string name="CreateKbsPinFragment__choose_a_stronger_pin">Valitse vahvempi tunnusluku</string>

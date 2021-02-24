@@ -2336,24 +2336,24 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ChatWallpaperActivity-->
   <string name="ChatWallpaperActivity__chat_wallpaper">Ảnh nền cuộc trò chuyện</string>
   <!--ChatWallpaperFragment-->
-  <string name="ChatWallpaperFragment__set_wallpaper">Cài ảnh nền</string>
+  <string name="ChatWallpaperFragment__set_wallpaper">Chọn ảnh nền</string>
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">Chế độ tối làm tối ảnh nền</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">Xoá ảnh nền</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Xoá ảnh nền cho cuộc trò chuyện?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Xoá ảnh nền? Việc này sẽ không xoá các ảnh nền tuỳ chọn đã cài cho các cuộc trò chuyện của bạn.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Cài lại tất cả các ảnh nền</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Cài lại tất cả ảnh nền, bao gồm ảnh nền tuỳ chọn mà bạn đã cài cho tất cả các cuộc trò chuyện?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Xoá ảnh nền cuộc trò chuyện này?</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Xoá ảnh nền? Thao tác này sẽ không xoá các ảnh nền đã cài cho các cuộc trò chuyện khác của bạn.</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Đặt lại tất cả ảnh nền</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Đặt lại tất cả ảnh nền, bao gồm ảnh nền tuỳ chọn mà bạn đã cài cho các cuộc trò chuyện?</string>
   <string name="ChatWallpaperFragment__contact_name">Tên liên hệ</string>
   <string name="ChatWallpaperFragment__reset">Đặt lại</string>
   <string name="ChatWallpaperFragment__clear">Xoá</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Xem trước ảnh nền</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Chọn từ ảnh</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Chọn từ bộ sưu tập</string>
   <string name="ChatWallpaperSelectionFragment__presets">Bộ cài sẵn</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Xem trước</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Cài ảnh nền</string>
-  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Kéo trượt để xem trước thêm ảnh nền</string>
+  <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Vuốt để xem trước thêm ảnh nền</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Cài ảnh nền cho %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Cần quyền truy cập bộ nhớ để xem bộ sưu tập.</string>
@@ -2363,7 +2363,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Dùng hai ngón để phóng to, kéo để tuỳ chỉnh.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Cài ảnh nền cho tất cả cuộc trò chuyện.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">Cài ảnh nền cho %s.</string>
-  <string name="WallpaperCropActivity__error_setting_wallpaper">Lỗi cài đặt ảnh nền.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Lỗi cài ảnh nền.</string>
   <string name="WallpaperCropActivity__blur_photo">Mờ ảnh</string>
   <!--EOF-->
 </resources>
