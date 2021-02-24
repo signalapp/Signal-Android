@@ -223,11 +223,19 @@ message ConfigurationMessage {
     repeated bytes   admins            = 5;
   }
 
+  message Contact {
+    required bytes  publicKey         = 1;
+    required string name              = 2;
+    optional string profilePicture    = 3;
+    optional bytes  profileKey        = 4;
+  }
+
   repeated ClosedGroup closedGroups   = 1;
   repeated string      openGroups     = 2;
   optional string      displayName    = 3;
   optional string      profilePicture = 4;
   optional bytes       profileKey     = 5;
+  repeated Contact     contacts       = 6;
 }
 
 message ReceiptMessage {
