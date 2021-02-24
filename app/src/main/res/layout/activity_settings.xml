@@ -250,22 +250,26 @@
 
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/loader"
+    <FrameLayout
+        android:animateLayoutChanges="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#A4000000"
-        android:visibility="gone"
-        android:alpha="0">
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#A4000000"
+            android:visibility="gone">
 
-        <com.github.ybq.android.spinkit.SpinKitView
-            style="@style/SpinKitView.Large.ThreeBounce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_centerInParent="true"
-            app:SpinKit_Color="@android:color/white" />
+            <com.github.ybq.android.spinkit.SpinKitView
+                style="@style/SpinKitView.Large.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_centerInParent="true"
+                app:SpinKit_Color="@android:color/white" />
 
-    </RelativeLayout>
+        </RelativeLayout>
 
+    </FrameLayout>
 </RelativeLayout>

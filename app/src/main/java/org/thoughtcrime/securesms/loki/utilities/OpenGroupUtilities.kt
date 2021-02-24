@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.greenrobot.eventbus.EventBus
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.session.libsession.utilities.GroupUtil

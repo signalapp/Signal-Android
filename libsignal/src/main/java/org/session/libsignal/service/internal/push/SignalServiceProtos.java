@@ -31599,6 +31599,46 @@ public final class SignalServiceProtos {
      */
     com.google.protobuf.ByteString
         getOpenGroupsBytes(int index);
+
+    // optional string displayName = 3;
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    boolean hasDisplayName();
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    java.lang.String getDisplayName();
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getDisplayNameBytes();
+
+    // optional string profilePicture = 4;
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    boolean hasProfilePicture();
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    java.lang.String getProfilePicture();
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getProfilePictureBytes();
+
+    // optional bytes profileKey = 5;
+    /**
+     * <code>optional bytes profileKey = 5;</code>
+     */
+    boolean hasProfileKey();
+    /**
+     * <code>optional bytes profileKey = 5;</code>
+     */
+    com.google.protobuf.ByteString getProfileKey();
   }
   /**
    * Protobuf type {@code signalservice.ConfigurationMessage}
@@ -31665,6 +31705,21 @@ public final class SignalServiceProtos {
                 mutable_bitField0_ |= 0x00000002;
               }
               openGroups_.add(input.readBytes());
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000001;
+              displayName_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000002;
+              profilePicture_ = input.readBytes();
+              break;
+            }
+            case 42: {
+              bitField0_ |= 0x00000004;
+              profileKey_ = input.readBytes();
               break;
             }
           }
@@ -32771,6 +32826,7 @@ public final class SignalServiceProtos {
       // @@protoc_insertion_point(class_scope:signalservice.ConfigurationMessage.ClosedGroup)
     }
 
+    private int bitField0_;
     // repeated .signalservice.ConfigurationMessage.ClosedGroup closedGroups = 1;
     public static final int CLOSEDGROUPS_FIELD_NUMBER = 1;
     private java.util.List<org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessage.ClosedGroup> closedGroups_;
@@ -32837,9 +32893,114 @@ public final class SignalServiceProtos {
       return openGroups_.getByteString(index);
     }
 
+    // optional string displayName = 3;
+    public static final int DISPLAYNAME_FIELD_NUMBER = 3;
+    private java.lang.Object displayName_;
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    public boolean hasDisplayName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    public java.lang.String getDisplayName() {
+      java.lang.Object ref = displayName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          displayName_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string displayName = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDisplayNameBytes() {
+      java.lang.Object ref = displayName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        displayName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string profilePicture = 4;
+    public static final int PROFILEPICTURE_FIELD_NUMBER = 4;
+    private java.lang.Object profilePicture_;
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    public boolean hasProfilePicture() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    public java.lang.String getProfilePicture() {
+      java.lang.Object ref = profilePicture_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          profilePicture_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string profilePicture = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getProfilePictureBytes() {
+      java.lang.Object ref = profilePicture_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        profilePicture_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional bytes profileKey = 5;
+    public static final int PROFILEKEY_FIELD_NUMBER = 5;
+    private com.google.protobuf.ByteString profileKey_;
+    /**
+     * <code>optional bytes profileKey = 5;</code>
+     */
+    public boolean hasProfileKey() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bytes profileKey = 5;</code>
+     */
+    public com.google.protobuf.ByteString getProfileKey() {
+      return profileKey_;
+    }
+
     private void initFields() {
       closedGroups_ = java.util.Collections.emptyList();
       openGroups_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      displayName_ = "";
+      profilePicture_ = "";
+      profileKey_ = com.google.protobuf.ByteString.EMPTY;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -32865,6 +33026,15 @@ public final class SignalServiceProtos {
       for (int i = 0; i < openGroups_.size(); i++) {
         output.writeBytes(2, openGroups_.getByteString(i));
       }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(3, getDisplayNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(4, getProfilePictureBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(5, profileKey_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -32886,6 +33056,18 @@ public final class SignalServiceProtos {
         }
         size += dataSize;
         size += 1 * getOpenGroupsList().size();
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getDisplayNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getProfilePictureBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(5, profileKey_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -33012,6 +33194,12 @@ public final class SignalServiceProtos {
         }
         openGroups_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
+        displayName_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        profilePicture_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        profileKey_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
 
@@ -33039,6 +33227,7 @@ public final class SignalServiceProtos {
       public org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessage buildPartial() {
         org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessage result = new org.session.libsignal.service.internal.push.SignalServiceProtos.ConfigurationMessage(this);
         int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
         if (closedGroupsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001)) {
             closedGroups_ = java.util.Collections.unmodifiableList(closedGroups_);
@@ -33054,6 +33243,19 @@ public final class SignalServiceProtos {
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.openGroups_ = openGroups_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.displayName_ = displayName_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.profilePicture_ = profilePicture_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.profileKey_ = profileKey_;
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -33104,6 +33306,19 @@ public final class SignalServiceProtos {
             openGroups_.addAll(other.openGroups_);
           }
           onChanged();
+        }
+        if (other.hasDisplayName()) {
+          bitField0_ |= 0x00000004;
+          displayName_ = other.displayName_;
+          onChanged();
+        }
+        if (other.hasProfilePicture()) {
+          bitField0_ |= 0x00000008;
+          profilePicture_ = other.profilePicture_;
+          onChanged();
+        }
+        if (other.hasProfileKey()) {
+          setProfileKey(other.getProfileKey());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -33467,6 +33682,190 @@ public final class SignalServiceProtos {
   }
   ensureOpenGroupsIsMutable();
         openGroups_.add(value);
+        onChanged();
+        return this;
+      }
+
+      // optional string displayName = 3;
+      private java.lang.Object displayName_ = "";
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public boolean hasDisplayName() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public java.lang.String getDisplayName() {
+        java.lang.Object ref = displayName_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          displayName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDisplayNameBytes() {
+        java.lang.Object ref = displayName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          displayName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public Builder setDisplayName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        displayName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public Builder clearDisplayName() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        displayName_ = getDefaultInstance().getDisplayName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string displayName = 3;</code>
+       */
+      public Builder setDisplayNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        displayName_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string profilePicture = 4;
+      private java.lang.Object profilePicture_ = "";
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public boolean hasProfilePicture() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public java.lang.String getProfilePicture() {
+        java.lang.Object ref = profilePicture_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          profilePicture_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getProfilePictureBytes() {
+        java.lang.Object ref = profilePicture_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          profilePicture_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public Builder setProfilePicture(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        profilePicture_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public Builder clearProfilePicture() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        profilePicture_ = getDefaultInstance().getProfilePicture();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string profilePicture = 4;</code>
+       */
+      public Builder setProfilePictureBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        profilePicture_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes profileKey = 5;
+      private com.google.protobuf.ByteString profileKey_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes profileKey = 5;</code>
+       */
+      public boolean hasProfileKey() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional bytes profileKey = 5;</code>
+       */
+      public com.google.protobuf.ByteString getProfileKey() {
+        return profileKey_;
+      }
+      /**
+       * <code>optional bytes profileKey = 5;</code>
+       */
+      public Builder setProfileKey(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+        profileKey_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes profileKey = 5;</code>
+       */
+      public Builder clearProfileKey() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        profileKey_ = getDefaultInstance().getProfileKey();
         onChanged();
         return this;
       }
@@ -51805,87 +52204,88 @@ public final class SignalServiceProtos {
       "\"\214\001\n\rTypingMessage\022\021\n\ttimestamp\030\001 \001(\004\0223\n" +
       "\006action\030\002 \001(\0162#.signalservice.TypingMess",
       "age.Action\022\017\n\007groupId\030\003 \001(\014\"\"\n\006Action\022\013\n" +
-      "\007STARTED\020\000\022\013\n\007STOPPED\020\001\"\366\001\n\024Configuratio" +
+      "\007STARTED\020\000\022\013\n\007STOPPED\020\001\"\267\002\n\024Configuratio" +
       "nMessage\022E\n\014closedGroups\030\001 \003(\0132/.signals" +
       "ervice.ConfigurationMessage.ClosedGroup\022" +
-      "\022\n\nopenGroups\030\002 \003(\t\032\202\001\n\013ClosedGroup\022\021\n\tp" +
-      "ublicKey\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\0221\n\021encrypti" +
-      "onKeyPair\030\003 \001(\0132\026.signalservice.KeyPair\022" +
-      "\017\n\007members\030\004 \003(\014\022\016\n\006admins\030\005 \003(\014\"\253\001\n\010Ver" +
-      "ified\022\023\n\013destination\030\001 \001(\t\022\023\n\013identityKe" +
-      "y\030\002 \001(\014\022,\n\005state\030\003 \001(\0162\035.signalservice.V",
-      "erified.State\022\023\n\013nullMessage\030\004 \001(\014\"2\n\005St" +
-      "ate\022\013\n\007DEFAULT\020\000\022\014\n\010VERIFIED\020\001\022\016\n\nUNVERI" +
-      "FIED\020\002\"\325\014\n\013SyncMessage\022-\n\004sent\030\001 \001(\0132\037.s" +
-      "ignalservice.SyncMessage.Sent\0225\n\010contact" +
-      "s\030\002 \001(\0132#.signalservice.SyncMessage.Cont" +
-      "acts\0221\n\006groups\030\003 \001(\0132!.signalservice.Syn" +
-      "cMessage.Groups\0223\n\007request\030\004 \001(\0132\".signa" +
-      "lservice.SyncMessage.Request\022-\n\004read\030\005 \003" +
-      "(\0132\037.signalservice.SyncMessage.Read\0223\n\007b" +
-      "locked\030\006 \001(\0132\".signalservice.SyncMessage",
-      ".Blocked\022)\n\010verified\030\007 \001(\0132\027.signalservi" +
-      "ce.Verified\022?\n\rconfiguration\030\t \001(\0132(.sig" +
-      "nalservice.SyncMessage.Configuration\022\017\n\007" +
-      "padding\030\010 \001(\014\022M\n\024stickerPackOperation\030\n " +
-      "\003(\0132/.signalservice.SyncMessage.StickerP" +
-      "ackOperation\022?\n\nopenGroups\030d \003(\0132+.signa" +
-      "lservice.SyncMessage.OpenGroupDetails\032\236\002" +
-      "\n\004Sent\022\023\n\013destination\030\001 \001(\t\022\021\n\ttimestamp" +
-      "\030\002 \001(\004\022+\n\007message\030\003 \001(\0132\032.signalservice." +
-      "DataMessage\022 \n\030expirationStartTimestamp\030",
-      "\004 \001(\004\022V\n\022unidentifiedStatus\030\005 \003(\0132:.sign" +
-      "alservice.SyncMessage.Sent.UnidentifiedD" +
-      "eliveryStatus\032G\n\032UnidentifiedDeliverySta" +
-      "tus\022\023\n\013destination\030\001 \001(\t\022\024\n\014unidentified" +
-      "\030\002 \001(\010\032a\n\010Contacts\022.\n\004blob\030\001 \001(\0132 .signa" +
-      "lservice.AttachmentPointer\022\027\n\010complete\030\002" +
-      " \001(\010:\005false\022\014\n\004data\030e \001(\014\032F\n\006Groups\022.\n\004b" +
-      "lob\030\001 \001(\0132 .signalservice.AttachmentPoin" +
-      "ter\022\014\n\004data\030e \001(\014\032,\n\007Blocked\022\017\n\007numbers\030" +
-      "\001 \003(\t\022\020\n\010groupIds\030\002 \003(\014\032\217\001\n\007Request\0225\n\004t",
-      "ype\030\001 \001(\0162\'.signalservice.SyncMessage.Re" +
-      "quest.Type\"M\n\004Type\022\013\n\007UNKNOWN\020\000\022\014\n\010CONTA" +
-      "CTS\020\001\022\n\n\006GROUPS\020\002\022\013\n\007BLOCKED\020\003\022\021\n\rCONFIG" +
-      "URATION\020\004\032)\n\004Read\022\016\n\006sender\030\001 \001(\t\022\021\n\ttim" +
-      "estamp\030\002 \001(\004\032}\n\rConfiguration\022\024\n\014readRec" +
-      "eipts\030\001 \001(\010\022&\n\036unidentifiedDeliveryIndic" +
-      "ators\030\002 \001(\010\022\030\n\020typingIndicators\030\003 \001(\010\022\024\n" +
-      "\014linkPreviews\030\004 \001(\010\032\234\001\n\024StickerPackOpera" +
-      "tion\022\016\n\006packId\030\001 \001(\014\022\017\n\007packKey\030\002 \001(\014\022B\n" +
-      "\004type\030\003 \001(\01624.signalservice.SyncMessage.",
-      "StickerPackOperation.Type\"\037\n\004Type\022\013\n\007INS" +
-      "TALL\020\000\022\n\n\006REMOVE\020\001\0322\n\020OpenGroupDetails\022\013" +
-      "\n\003url\030\001 \001(\t\022\021\n\tchannelID\030\002 \001(\r\"\354\001\n\021Attac" +
-      "hmentPointer\022\n\n\002id\030\001 \001(\006\022\023\n\013contentType\030" +
-      "\002 \001(\t\022\013\n\003key\030\003 \001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthum" +
-      "bnail\030\005 \001(\014\022\016\n\006digest\030\006 \001(\014\022\020\n\010fileName\030" +
-      "\007 \001(\t\022\r\n\005flags\030\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006h" +
-      "eight\030\n \001(\r\022\017\n\007caption\030\013 \001(\t\022\013\n\003url\030e \001(" +
-      "\t\"\032\n\005Flags\022\021\n\rVOICE_MESSAGE\020\001\"\243\002\n\014GroupC" +
-      "ontext\022\n\n\002id\030\001 \001(\014\022.\n\004type\030\002 \001(\0162 .signa",
-      "lservice.GroupContext.Type\022\014\n\004name\030\003 \001(\t" +
-      "\022\017\n\007members\030\004 \003(\t\0220\n\006avatar\030\005 \001(\0132 .sign" +
-      "alservice.AttachmentPointer\022\016\n\006admins\030\006 " +
-      "\003(\t\022\023\n\nnewMembers\030\346\007 \003(\t\022\027\n\016removedMembe" +
-      "rs\030\347\007 \003(\t\"H\n\004Type\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE" +
-      "\020\001\022\013\n\007DELIVER\020\002\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INF" +
-      "O\020\004\"\231\002\n\016ContactDetails\022\016\n\006number\030\001 \001(\t\022\014" +
-      "\n\004name\030\002 \001(\t\0224\n\006avatar\030\003 \001(\0132$.signalser" +
-      "vice.ContactDetails.Avatar\022\r\n\005color\030\004 \001(" +
-      "\t\022)\n\010verified\030\005 \001(\0132\027.signalservice.Veri",
-      "fied\022\022\n\nprofileKey\030\006 \001(\014\022\017\n\007blocked\030\007 \001(" +
-      "\010\022\023\n\013expireTimer\030\010 \001(\r\022\020\n\010nickname\030e \001(\t" +
-      "\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006lengt" +
-      "h\030\002 \001(\r\"\367\001\n\014GroupDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004" +
-      "name\030\002 \001(\t\022\017\n\007members\030\003 \003(\t\0222\n\006avatar\030\004 " +
-      "\001(\0132\".signalservice.GroupDetails.Avatar\022" +
-      "\024\n\006active\030\005 \001(\010:\004true\022\023\n\013expireTimer\030\006 \001" +
-      "(\r\022\r\n\005color\030\007 \001(\t\022\017\n\007blocked\030\010 \001(\010\022\016\n\006ad" +
-      "mins\030\t \003(\t\032-\n\006Avatar\022\023\n\013contentType\030\001 \001(" +
-      "\t\022\016\n\006length\030\002 \001(\rBB\n+org.session.libsign",
-      "al.service.internal.pushB\023SignalServiceP" +
-      "rotos"
+      "\022\n\nopenGroups\030\002 \003(\t\022\023\n\013displayName\030\003 \001(\t" +
+      "\022\026\n\016profilePicture\030\004 \001(\t\022\022\n\nprofileKey\030\005" +
+      " \001(\014\032\202\001\n\013ClosedGroup\022\021\n\tpublicKey\030\001 \001(\014\022" +
+      "\014\n\004name\030\002 \001(\t\0221\n\021encryptionKeyPair\030\003 \001(\013" +
+      "2\026.signalservice.KeyPair\022\017\n\007members\030\004 \003(" +
+      "\014\022\016\n\006admins\030\005 \003(\014\"\253\001\n\010Verified\022\023\n\013destin",
+      "ation\030\001 \001(\t\022\023\n\013identityKey\030\002 \001(\014\022,\n\005stat" +
+      "e\030\003 \001(\0162\035.signalservice.Verified.State\022\023" +
+      "\n\013nullMessage\030\004 \001(\014\"2\n\005State\022\013\n\007DEFAULT\020" +
+      "\000\022\014\n\010VERIFIED\020\001\022\016\n\nUNVERIFIED\020\002\"\325\014\n\013Sync" +
+      "Message\022-\n\004sent\030\001 \001(\0132\037.signalservice.Sy" +
+      "ncMessage.Sent\0225\n\010contacts\030\002 \001(\0132#.signa" +
+      "lservice.SyncMessage.Contacts\0221\n\006groups\030" +
+      "\003 \001(\0132!.signalservice.SyncMessage.Groups" +
+      "\0223\n\007request\030\004 \001(\0132\".signalservice.SyncMe" +
+      "ssage.Request\022-\n\004read\030\005 \003(\0132\037.signalserv",
+      "ice.SyncMessage.Read\0223\n\007blocked\030\006 \001(\0132\"." +
+      "signalservice.SyncMessage.Blocked\022)\n\010ver" +
+      "ified\030\007 \001(\0132\027.signalservice.Verified\022?\n\r" +
+      "configuration\030\t \001(\0132(.signalservice.Sync" +
+      "Message.Configuration\022\017\n\007padding\030\010 \001(\014\022M" +
+      "\n\024stickerPackOperation\030\n \003(\0132/.signalser" +
+      "vice.SyncMessage.StickerPackOperation\022?\n" +
+      "\nopenGroups\030d \003(\0132+.signalservice.SyncMe" +
+      "ssage.OpenGroupDetails\032\236\002\n\004Sent\022\023\n\013desti" +
+      "nation\030\001 \001(\t\022\021\n\ttimestamp\030\002 \001(\004\022+\n\007messa",
+      "ge\030\003 \001(\0132\032.signalservice.DataMessage\022 \n\030" +
+      "expirationStartTimestamp\030\004 \001(\004\022V\n\022uniden" +
+      "tifiedStatus\030\005 \003(\0132:.signalservice.SyncM" +
+      "essage.Sent.UnidentifiedDeliveryStatus\032G" +
+      "\n\032UnidentifiedDeliveryStatus\022\023\n\013destinat" +
+      "ion\030\001 \001(\t\022\024\n\014unidentified\030\002 \001(\010\032a\n\010Conta" +
+      "cts\022.\n\004blob\030\001 \001(\0132 .signalservice.Attach" +
+      "mentPointer\022\027\n\010complete\030\002 \001(\010:\005false\022\014\n\004" +
+      "data\030e \001(\014\032F\n\006Groups\022.\n\004blob\030\001 \001(\0132 .sig" +
+      "nalservice.AttachmentPointer\022\014\n\004data\030e \001",
+      "(\014\032,\n\007Blocked\022\017\n\007numbers\030\001 \003(\t\022\020\n\010groupI" +
+      "ds\030\002 \003(\014\032\217\001\n\007Request\0225\n\004type\030\001 \001(\0162\'.sig" +
+      "nalservice.SyncMessage.Request.Type\"M\n\004T" +
+      "ype\022\013\n\007UNKNOWN\020\000\022\014\n\010CONTACTS\020\001\022\n\n\006GROUPS" +
+      "\020\002\022\013\n\007BLOCKED\020\003\022\021\n\rCONFIGURATION\020\004\032)\n\004Re" +
+      "ad\022\016\n\006sender\030\001 \001(\t\022\021\n\ttimestamp\030\002 \001(\004\032}\n" +
+      "\rConfiguration\022\024\n\014readReceipts\030\001 \001(\010\022&\n\036" +
+      "unidentifiedDeliveryIndicators\030\002 \001(\010\022\030\n\020" +
+      "typingIndicators\030\003 \001(\010\022\024\n\014linkPreviews\030\004" +
+      " \001(\010\032\234\001\n\024StickerPackOperation\022\016\n\006packId\030",
+      "\001 \001(\014\022\017\n\007packKey\030\002 \001(\014\022B\n\004type\030\003 \001(\01624.s" +
+      "ignalservice.SyncMessage.StickerPackOper" +
+      "ation.Type\"\037\n\004Type\022\013\n\007INSTALL\020\000\022\n\n\006REMOV" +
+      "E\020\001\0322\n\020OpenGroupDetails\022\013\n\003url\030\001 \001(\t\022\021\n\t" +
+      "channelID\030\002 \001(\r\"\354\001\n\021AttachmentPointer\022\n\n" +
+      "\002id\030\001 \001(\006\022\023\n\013contentType\030\002 \001(\t\022\013\n\003key\030\003 " +
+      "\001(\014\022\014\n\004size\030\004 \001(\r\022\021\n\tthumbnail\030\005 \001(\014\022\016\n\006" +
+      "digest\030\006 \001(\014\022\020\n\010fileName\030\007 \001(\t\022\r\n\005flags\030" +
+      "\010 \001(\r\022\r\n\005width\030\t \001(\r\022\016\n\006height\030\n \001(\r\022\017\n\007" +
+      "caption\030\013 \001(\t\022\013\n\003url\030e \001(\t\"\032\n\005Flags\022\021\n\rV",
+      "OICE_MESSAGE\020\001\"\243\002\n\014GroupContext\022\n\n\002id\030\001 " +
+      "\001(\014\022.\n\004type\030\002 \001(\0162 .signalservice.GroupC" +
+      "ontext.Type\022\014\n\004name\030\003 \001(\t\022\017\n\007members\030\004 \003" +
+      "(\t\0220\n\006avatar\030\005 \001(\0132 .signalservice.Attac" +
+      "hmentPointer\022\016\n\006admins\030\006 \003(\t\022\023\n\nnewMembe" +
+      "rs\030\346\007 \003(\t\022\027\n\016removedMembers\030\347\007 \003(\t\"H\n\004Ty" +
+      "pe\022\013\n\007UNKNOWN\020\000\022\n\n\006UPDATE\020\001\022\013\n\007DELIVER\020\002" +
+      "\022\010\n\004QUIT\020\003\022\020\n\014REQUEST_INFO\020\004\"\231\002\n\016Contact" +
+      "Details\022\016\n\006number\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\0224\n" +
+      "\006avatar\030\003 \001(\0132$.signalservice.ContactDet",
+      "ails.Avatar\022\r\n\005color\030\004 \001(\t\022)\n\010verified\030\005" +
+      " \001(\0132\027.signalservice.Verified\022\022\n\nprofile" +
+      "Key\030\006 \001(\014\022\017\n\007blocked\030\007 \001(\010\022\023\n\013expireTime" +
+      "r\030\010 \001(\r\022\020\n\010nickname\030e \001(\t\032-\n\006Avatar\022\023\n\013c" +
+      "ontentType\030\001 \001(\t\022\016\n\006length\030\002 \001(\r\"\367\001\n\014Gro" +
+      "upDetails\022\n\n\002id\030\001 \001(\014\022\014\n\004name\030\002 \001(\t\022\017\n\007m" +
+      "embers\030\003 \003(\t\0222\n\006avatar\030\004 \001(\0132\".signalser" +
+      "vice.GroupDetails.Avatar\022\024\n\006active\030\005 \001(\010" +
+      ":\004true\022\023\n\013expireTimer\030\006 \001(\r\022\r\n\005color\030\007 \001" +
+      "(\t\022\017\n\007blocked\030\010 \001(\010\022\016\n\006admins\030\t \003(\t\032-\n\006A",
+      "vatar\022\023\n\013contentType\030\001 \001(\t\022\016\n\006length\030\002 \001" +
+      "(\rBB\n+org.session.libsignal.service.inte" +
+      "rnal.pushB\023SignalServiceProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -52083,7 +52483,7 @@ public final class SignalServiceProtos {
           internal_static_signalservice_ConfigurationMessage_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signalservice_ConfigurationMessage_descriptor,
-              new java.lang.String[] { "ClosedGroups", "OpenGroups", });
+              new java.lang.String[] { "ClosedGroups", "OpenGroups", "DisplayName", "ProfilePicture", "ProfileKey", });
           internal_static_signalservice_ConfigurationMessage_ClosedGroup_descriptor =
             internal_static_signalservice_ConfigurationMessage_descriptor.getNestedTypes().get(0);
           internal_static_signalservice_ConfigurationMessage_ClosedGroup_fieldAccessorTable = new

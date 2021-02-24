@@ -4,6 +4,8 @@ import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
@@ -12,7 +14,7 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>): ControlMessage() {
+class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>, val displayName: String, val profilePicture: String?, val profileKey: ByteArray): ControlMessage() {
 
     class ClosedGroup(val publicKey: String, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<String>, val admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
@@ -57,7 +59,12 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         fun getCurrent(): ConfigurationMessage {
             val closedGroups = mutableListOf<ClosedGroup>()
             val openGroups = mutableListOf<String>()
-            val storage = MessagingConfiguration.shared.storage
+            val sharedConfig = MessagingConfiguration.shared
+            val storage = sharedConfig.storage
+            val context = sharedConfig.context
+            val displayName = TextSecurePreferences.getProfileName(context)!!
+            val profilePicture = TextSecurePreferences.getProfilePictureURL(context)
+            val profileKey = ProfileKeyUtil.getProfileKey(context)
             val groups = storage.getAllGroups()
             for (groupRecord in groups) {
                 if (groupRecord.isClosedGroup) {
@@ -74,7 +81,8 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
                     openGroups.add(openGroup.server)
                 }
             }
-            return ConfigurationMessage(closedGroups, openGroups)
+
+            return ConfigurationMessage(closedGroups, openGroups, displayName, profilePicture, profileKey)
         }
 
         fun fromProto(proto: SignalServiceProtos.Content): ConfigurationMessage? {
@@ -82,7 +90,10 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             val configurationProto = proto.configurationMessage
             val closedGroups = configurationProto.closedGroupsList.mapNotNull { ClosedGroup.fromProto(it) }
             val openGroups = configurationProto.openGroupsList
-            return ConfigurationMessage(closedGroups, openGroups)
+            val displayName = configurationProto.displayName
+            val profilePicture = configurationProto.profilePicture
+            val profileKey = configurationProto.profileKey
+            return ConfigurationMessage(closedGroups, openGroups, displayName, profilePicture, profileKey.toByteArray())
         }
     }
 
@@ -90,6 +101,9 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         val configurationProto = SignalServiceProtos.ConfigurationMessage.newBuilder()
         configurationProto.addAllClosedGroups(closedGroups.mapNotNull { it.toProto() })
         configurationProto.addAllOpenGroups(openGroups)
+        configurationProto.displayName = displayName
+        configurationProto.profilePicture = profilePicture
+        configurationProto.profileKey = ByteString.copyFrom(profileKey)
         val contentProto = SignalServiceProtos.Content.newBuilder()
         contentProto.configurationMessage = configurationProto.build()
         return contentProto.build()
@@ -100,6 +114,9 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             ConfigurationMessage(
                 closedGroups: ${(closedGroups)}
                 openGroups: ${(openGroups)}
+                displayName: $displayName
+                profilePicture: $profilePicture
+                profileKey: $profileKey
             )
         """.trimIndent()
     }
