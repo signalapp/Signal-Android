@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.crypto;
+package org.session.libsession.utilities.preferences;
 
 
 import android.content.Context;

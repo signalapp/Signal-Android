@@ -152,14 +152,15 @@ public class SignalServiceMessageSender {
    */
   public SendMessageResult sendMessage(long                             messageID,
                                        SignalServiceAddress             recipient,
-                                       Optional<UnidentifiedAccess> unidentifiedAccess,
-                                       SignalServiceDataMessage         message)
+                                       Optional<UnidentifiedAccess>     unidentifiedAccess,
+                                       SignalServiceDataMessage         message,
+                                       boolean                          isSelfSend)
       throws IOException
   {
     byte[]            content               = createMessageContent(message, recipient);
     long              timestamp             = message.getTimestamp();
     boolean           isClosedGroup         = message.group.isPresent() && message.group.get().getGroupType() == SignalServiceGroup.GroupType.SIGNAL;
-    SendMessageResult result                = sendMessage(messageID, recipient, unidentifiedAccess, timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent(), message.getSyncTarget());
+    SendMessageResult result                = sendMessage(messageID, recipient, unidentifiedAccess, timestamp, content, false, message.getTTL(), true, isClosedGroup, message.hasVisibleContent() && !isSelfSend, message.getSyncTarget());
 
     return result;
   }

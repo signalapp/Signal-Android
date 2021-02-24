@@ -17,25 +17,26 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.BuildConfig
 import network.loki.messenger.R
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.deferred
+import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.alwaysUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
-import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.dialogs.ChangeUiModeDialog
 import org.thoughtcrime.securesms.loki.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities
-import org.thoughtcrime.securesms.loki.utilities.fadeIn
-import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -48,6 +49,7 @@ import org.thoughtcrime.securesms.util.BitmapUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.api.util.StreamDetails
 import org.session.libsignal.service.loki.api.fileserver.FileServerAPI
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import java.io.ByteArrayInputStream
 import java.io.File
 import java.security.SecureRandom
@@ -169,7 +171,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun updateProfile(isUpdatingProfilePicture: Boolean) {
-        loader.fadeIn()
+        loader.isVisible = true
         val promises = mutableListOf<Promise<*, Exception>>()
         val displayName = displayNameToBeUploaded
         if (displayName != null) {
@@ -196,7 +198,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             }
             promises.add(deferred.promise)
         }
-        all(promises).alwaysUi {
+
+        all(promises).bind {
+            // updating the profile name or picture
+            if (profilePicture != null || displayName != null) {
+                task {
+                    MultiDeviceProtocol.forceSyncConfigurationNowIfNeeded(this@SettingsActivity)
+                }
+            } else {
+                Promise.of(Unit)
+            }
+        }.alwaysUi {
             if (displayName != null) {
                 btnGroupNameDisplay.text = displayName
             }
@@ -209,7 +221,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 profilePictureView.update()
             }
             profilePictureToBeUploaded = null
-            loader.fadeOut()
+            loader.isVisible = false
         }
     }
     // endregion

@@ -117,6 +117,7 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
         if (allOpenGroups.contains(openGroup)) continue
         storage.addOpenGroup(openGroup, 1)
     }
+    // TODO: in future handle the latest in config messages
     TextSecurePreferences.setConfigurationMessageSynced(context, true)
 }
 

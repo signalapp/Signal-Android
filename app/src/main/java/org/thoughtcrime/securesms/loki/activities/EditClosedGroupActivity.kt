@@ -298,7 +298,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             }.failUi { exception ->
                 val message = if (exception is ClosedGroupsProtocolV2.Error) exception.description else "An error occurred"
                 Toast.makeText(this@EditClosedGroupActivity, message, Toast.LENGTH_LONG).show()
-                loader.fadeOut()
+                loaderContainer.fadeOut()
                 isLoading = false
             }
         } else {

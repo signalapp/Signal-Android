@@ -260,14 +260,14 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
       if (userPublicKey == address.getNumber()) {
         // Loki - Device link messages don't go through here
-        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage, true);
         if (result.getLokiAPIError() != null) {
           throw result.getLokiAPIError();
         } else {
           return result.getSuccess().isUnidentified();
         }
       } else {
-        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage);
+        SendMessageResult result = messageSender.sendMessage(messageId, address, unidentifiedAccessPair, mediaMessage, false);
         if (result.getLokiAPIError() != null) {
           throw result.getLokiAPIError();
         } else {
@@ -276,7 +276,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
           try {
             // send to ourselves to sync multi-device
             Optional<UnidentifiedAccess> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
-            SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, mediaSelfSendMessage);
+            SendMessageResult selfSendResult = messageSender.sendMessage(messageId, localAddress, syncAccess, mediaSelfSendMessage, true);
             if (selfSendResult.getLokiAPIError() != null) {
               throw selfSendResult.getLokiAPIError();
             }
