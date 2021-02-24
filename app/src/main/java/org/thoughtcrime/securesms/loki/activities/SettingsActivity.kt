@@ -218,6 +218,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
                 TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
                 ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
                 ApplicationContext.getInstance(this).updateOpenGroupProfilePicturesIfNeeded()
+                profilePictureView.recycle() // clear cached image before update tje profilePictureView
                 profilePictureView.update()
             }
             profilePictureToBeUploaded = null

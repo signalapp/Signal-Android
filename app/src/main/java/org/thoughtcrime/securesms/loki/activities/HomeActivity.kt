@@ -154,6 +154,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     override fun onResume() {
         super.onResume()
         if (TextSecurePreferences.getLocalNumber(this) == null) { return; } // This can be the case after a secondary device is auto-cleared
+        profileButton.recycle() // clear cached image before update tje profilePictureView
         profileButton.update()
         val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
         if (hasViewedSeed) {
