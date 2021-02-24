@@ -240,35 +240,6 @@ public class ThreadDatabase extends Database {
     notifyConversationListListeners();
   }
 
-  private void deleteThread(long threadId) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId + ""});
-    notifyConversationListListeners();
-    ConversationUtil.clearShortcuts(context, Collections.singleton(threadId));
-  }
-
-  private void deleteThreads(Set<Long> threadIds) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    String where      = "";
-
-    for (long threadId : threadIds) {
-      where += ID + " = '" + threadId + "' OR ";
-    }
-
-    where = where.substring(0, where.length() - 4);
-
-    db.delete(TABLE_NAME, where, null);
-    notifyConversationListListeners();
-    ConversationUtil.clearShortcuts(context, threadIds);
-  }
-
-  private void deleteAllThreads() {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.delete(TABLE_NAME, null, null);
-    notifyConversationListListeners();
-    ConversationUtil.clearAllShortcuts(context);
-  }
-
   public void trimAllThreads(int length, long trimBeforeDate) {
     if (length == NO_TRIM_MESSAGE_COUNT_SET && trimBeforeDate == NO_TRIM_BEFORE_DATE_SET) {
       return;
@@ -978,28 +949,74 @@ public class ThreadDatabase extends Database {
   }
 
   public void deleteConversation(long threadId) {
-    DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
-    DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
-    DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
-    deleteThread(threadId);
-    notifyConversationListeners(threadId);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      DatabaseFactory.getSmsDatabase(context).deleteThread(threadId);
+      DatabaseFactory.getMmsDatabase(context).deleteThread(threadId);
+      DatabaseFactory.getDraftDatabase(context).clearDrafts(threadId);
+
+      db.delete(TABLE_NAME, ID_WHERE, new String[]{threadId + ""});
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
     notifyConversationListListeners();
+    notifyConversationListeners(threadId);
+    ConversationUtil.clearShortcuts(context, Collections.singleton(threadId));
   }
 
   public void deleteConversations(Set<Long> selectedConversations) {
-    DatabaseFactory.getSmsDatabase(context).deleteThreads(selectedConversations);
-    DatabaseFactory.getMmsDatabase(context).deleteThreads(selectedConversations);
-    DatabaseFactory.getDraftDatabase(context).clearDrafts(selectedConversations);
-    deleteThreads(selectedConversations);
-    notifyConversationListeners(selectedConversations);
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      DatabaseFactory.getSmsDatabase(context).deleteThreads(selectedConversations);
+      DatabaseFactory.getMmsDatabase(context).deleteThreads(selectedConversations);
+      DatabaseFactory.getDraftDatabase(context).clearDrafts(selectedConversations);
+
+      StringBuilder where = new StringBuilder();
+
+      for (long threadId : selectedConversations) {
+        if (where.length() > 0) {
+          where.append(" OR ");
+        }
+        where.append(ID + " = '").append(threadId).append("'");
+      }
+
+      db.delete(TABLE_NAME, where.toString(), null);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
     notifyConversationListListeners();
+    notifyConversationListeners(selectedConversations);
+    ConversationUtil.clearShortcuts(context, selectedConversations);
   }
 
   public void deleteAllConversations() {
-    DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
-    DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
-    DatabaseFactory.getDraftDatabase(context).clearAllDrafts();
-    deleteAllThreads();
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      DatabaseFactory.getSmsDatabase(context).deleteAllThreads();
+      DatabaseFactory.getMmsDatabase(context).deleteAllThreads();
+      DatabaseFactory.getDraftDatabase(context).clearAllDrafts();
+
+      db.delete(TABLE_NAME, null, null);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListListeners();
+    ConversationUtil.clearAllShortcuts(context);
   }
 
   public long getThreadIdIfExistsFor(@NonNull RecipientId recipientId) {
@@ -1229,8 +1246,7 @@ public class ThreadDatabase extends Database {
 
     if (count == 0) {
       if (allowDeletion) {
-        deleteThread(threadId);
-        notifyConversationListListeners();
+        deleteConversation(threadId);
       }
       return true;
     }
@@ -1249,8 +1265,7 @@ public class ThreadDatabase extends Database {
         notifyConversationListListeners();
         return false;
       } else {
-        deleteThread(threadId);
-        notifyConversationListListeners();
+        deleteConversation(threadId);
         return true;
       }
     } finally {
