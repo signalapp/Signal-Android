@@ -69,7 +69,7 @@ public class KeyCachingService extends Service {
 
   // AC: This is a temporal drop off replacement for the refactoring time being.
   // This field only indicates if the app was unlocked or not (null means locked).
-  private static Object masterSecret = new Object();
+  private static Object masterSecret = null;
 
   /**
    * A temporal utility method to quickly call {@link KeyCachingService#setMasterSecret(Object)}
@@ -97,7 +97,8 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    return getMasterSecret(context) == null;
+    boolean enabled = !TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context);
+    return getMasterSecret(context) == null && enabled;
   }
 
   public static void onAppForegrounded(@NonNull Context context) {
