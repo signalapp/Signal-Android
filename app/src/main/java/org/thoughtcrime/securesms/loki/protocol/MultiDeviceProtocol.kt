@@ -35,7 +35,7 @@ object MultiDeviceProtocol {
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
-                    true, false, true, Optional.absent())
+                    true, false, false, Optional.absent())
             TextSecurePreferences.setLastConfigurationSyncTime(context, now)
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
@@ -54,7 +54,7 @@ object MultiDeviceProtocol {
         try {
             messageSender.sendMessage(0, address, udAccess.get().targetUnidentifiedAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(), false,
-                    true, false, true, Optional.absent())
+                    true, false, false, Optional.absent())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
         }
