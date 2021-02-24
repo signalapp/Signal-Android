@@ -224,7 +224,9 @@ message ConfigurationMessage {
   }
 
   message Contact {
+    // @required
     required bytes  publicKey         = 1;
+    // @required
     required string name              = 2;
     optional string profilePicture    = 3;
     optional bytes  profileKey        = 4;
