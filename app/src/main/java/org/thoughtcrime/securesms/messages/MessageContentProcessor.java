@@ -170,14 +170,16 @@ public final class MessageContentProcessor {
     if (messageState == MessageState.DECRYPTED_OK) {
       handleMessage(content, timestamp, optionalSmsMessageId);
 
-      Optional<List<SignalServiceContent>> earlyContent = ApplicationDependencies.getEarlyMessageCache()
-                                                                                 .retrieve(Recipient.externalPush(context, content.getSender()).getId(),
-                                                                                           content.getTimestamp());
-      if (earlyContent.isPresent()) {
-        log(TAG, String.valueOf(content.getTimestamp()), "Found " + earlyContent.get().size() + " dependent item(s) that were retrieved earlier. Processing.");
+      if (content != null) {
+        Optional<List<SignalServiceContent>> earlyContent = ApplicationDependencies.getEarlyMessageCache()
+                                                                                   .retrieve(Recipient.externalPush(context, content.getSender()).getId(),
+                                                                                             content.getTimestamp());
+        if (earlyContent.isPresent()) {
+          log(TAG, String.valueOf(content.getTimestamp()), "Found " + earlyContent.get().size() + " dependent item(s) that were retrieved earlier. Processing.");
 
-        for (SignalServiceContent earlyItem : earlyContent.get()) {
-          handleMessage(earlyItem, timestamp, Optional.absent());
+          for (SignalServiceContent earlyItem : earlyContent.get()) {
+            handleMessage(earlyItem, timestamp, Optional.absent());
+          }
         }
       }
     } else if (exceptionMetadata != null) {
