@@ -245,8 +245,15 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     RecipientId recipientId = getIntent().getParcelableExtra(KEY_RECIPIENT);
     if (recipientId != null) {
+      Log.i(TAG, "Preparing for " + recipientId);
       recipient = Recipient.live(recipientId);
     }
+
+    List<RecipientId> recipientIds = getIntent().getParcelableArrayListExtra(KEY_RECIPIENTS);
+    if (recipientIds != null && recipientIds.size() > 0) {
+      Log.i(TAG, "Preparing for " + recipientIds);
+    }
+
 
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
@@ -348,7 +355,6 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     revealButton.setOnClickListener(v -> viewModel.onRevealButtonToggled());
 
-    List<RecipientId> recipientIds = getIntent().getParcelableArrayListExtra(KEY_RECIPIENTS);
     continueButton.setOnClickListener(v -> {
       continueButton.setEnabled(false);
       if (recipientIds == null || recipientIds.isEmpty()) {
@@ -595,7 +601,11 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
     viewModel.onSendClicked(buildModelsToTransform(fragment), recipients, composeText.getMentions())
              .observe(this, result -> {
                dialog.dismiss();
-               setActivityResultAndFinish(result);
+               if (recipients.size() > 1) {
+                 finishWithoutSettingResults();
+               } else {
+                 setActivityResultAndFinish(result);
+               }
              });
   }
 
@@ -975,6 +985,14 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
   private @Nullable MediaSendFragment getMediaSendFragment() {
     return (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+  }
+
+  private void finishWithoutSettingResults() {
+    Intent intent = new Intent();
+    setResult(RESULT_OK, intent);
+
+    finish();
+    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
   }
 
   private void setActivityResultAndFinish(@NonNull MediaSendActivityResult result) {

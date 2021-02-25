@@ -677,6 +677,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
       break;
     case MEDIA_SENDER:
       MediaSendActivityResult result = data.getParcelableExtra(MediaSendActivity.EXTRA_RESULT);
+
+      if (!Objects.equals(result.getRecipientId(), recipient.getId())) {
+        Log.w(TAG, "Result's recipientId did not match ours! Result: " + result.getRecipientId() + ", Activity: " + recipient.getId());
+        Toast.makeText(this, R.string.ConversationActivity_error_sending_media, Toast.LENGTH_SHORT).show();
+        return;
+      }
+
       sendButton.setTransport(result.getTransport());
 
       if (result.isPushPreUpload()) {
@@ -705,7 +712,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       final Context context = ConversationActivity.this.getApplicationContext();
 
-      sendMediaMessage(result.getTransport().isSms(),
+      sendMediaMessage(result.getRecipientId(),
+                       result.getTransport().isSms(),
                        result.getBody(),
                        slideDeck,
                        quote,
@@ -2425,7 +2433,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
     long       expiresIn      = recipient.get().getExpireMessages() * 1000L;
     boolean    initiating     = threadId == -1;
 
-    sendMediaMessage(isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false);
+    sendMediaMessage(recipient.getId(), isSmsForced(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, false);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -2751,7 +2759,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
-    sendMediaMessage(forceSms,
+    sendMediaMessage(recipient.getId(),
+                     forceSms,
                      getMessage(),
                      attachmentManager.buildSlideDeck(),
                      inputPanel.getQuote().orNull(),
@@ -2765,7 +2774,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
                      true);
   }
 
-  private ListenableFuture<Void> sendMediaMessage(final boolean forceSms,
+  private ListenableFuture<Void> sendMediaMessage(@NonNull RecipientId recipientId,
+                                                  final boolean forceSms,
                                                   @NonNull String body,
                                                   SlideDeck slideDeck,
                                                   QuoteModel quote,
@@ -2794,7 +2804,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient.get(), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, quote, contacts, previews, mentions);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, viewOnce, distributionType, quote, contacts, previews, mentions);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
@@ -2985,7 +2995,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
         SlideDeck  slideDeck      = new SlideDeck();
         slideDeck.addSlide(audioSlide);
 
-        ListenableFuture<Void> sendResult = sendMediaMessage(forceSms,
+        ListenableFuture<Void> sendResult = sendMediaMessage(recipient.getId(),
+                                                             forceSms,
                                                              "",
                                                              slideDeck,
                                                              inputPanel.getQuote().orNull(),
@@ -3128,7 +3139,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose);
+    sendMediaMessage(recipient.getId(), transport.isSms(), "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, subscriptionId, initiating, clearCompose);
   }
 
   private void silentlySetComposeText(String text) {
@@ -3600,7 +3611,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
       throw new AssertionError("Only images are supported!");
     }
 
-    sendMediaMessage(isSmsForced(),
+    sendMediaMessage(recipient.getId(),
+                     isSmsForced(),
                      "",
                      slideDeck,
                      null,

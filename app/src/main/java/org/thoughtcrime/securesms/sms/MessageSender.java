@@ -100,6 +100,7 @@ public class MessageSender {
                           final boolean forceSms,
                           final SmsDatabase.InsertListener insertListener)
   {
+    Log.i(TAG, "Sending text message to " + message.getRecipient().getId() + ", thread: " + threadId);
     MessageDatabase database    = DatabaseFactory.getSmsDatabase(context);
     Recipient       recipient   = message.getRecipient();
     boolean         keyExchange = message.isKeyExchange();
@@ -119,6 +120,7 @@ public class MessageSender {
                           final boolean forceSms,
                           final SmsDatabase.InsertListener insertListener)
   {
+    Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
     try {
       ThreadDatabase  threadDatabase = DatabaseFactory.getThreadDatabase(context);
       MessageDatabase database       = DatabaseFactory.getMmsDatabase(context);
@@ -144,6 +146,7 @@ public class MessageSender {
                                                   final long threadId,
                                                   final SmsDatabase.InsertListener insertListener)
   {
+    Log.i(TAG, "Sending media message with pre-uploads to " + message.getRecipient().getId() + ", thread: " + threadId);
     Preconditions.checkArgument(message.getAttachments().isEmpty(), "If the media is pre-uploaded, there should be no attachments on the message.");
 
     try {
@@ -178,6 +181,7 @@ public class MessageSender {
   }
 
   public static void sendMediaBroadcast(@NonNull Context context, @NonNull List<OutgoingSecureMediaMessage> messages, @NonNull Collection<PreUploadResult> preUploadResults) {
+    Log.i(TAG, "Sending media broadcast to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
@@ -260,9 +264,10 @@ public class MessageSender {
    *         be enqueued (like in the case of a local self-send).
    */
   public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient) {
-    if (recipient != null && isLocalSelfSend(context, recipient, false)) {
+    if (isLocalSelfSend(context, recipient, false)) {
       return null;
     }
+    Log.i(TAG, "Pre-uploading attachment for " + (recipient != null ? recipient.getId() : "null"));
 
     try {
       AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);

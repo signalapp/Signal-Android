@@ -475,7 +475,7 @@ class MediaSendViewModel extends ViewModel {
 
       if (isSms || MessageSender.isLocalSelfSend(application, recipient, isSms)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.");
-        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce(), trimmedMentions));
+        result.postValue(MediaSendActivityResult.forTraditionalSend(recipient.getId(), updatedMedia, trimmedBody, transport, isViewOnce(), trimmedMentions));
         return;
       }
 
@@ -494,9 +494,10 @@ class MediaSendViewModel extends ViewModel {
         if (recipients.size() > 0) {
           sendMessages(recipients, splitBody, uploadResults, trimmedMentions);
           uploadRepository.deleteAbandonedAttachments();
+          result.postValue(null);
+        } else {
+          result.postValue(MediaSendActivityResult.forPreUpload(recipient.getId(), uploadResults, splitBody, transport, isViewOnce(), trimmedMentions));
         }
-
-        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce(), trimmedMentions));
       });
     });
 
