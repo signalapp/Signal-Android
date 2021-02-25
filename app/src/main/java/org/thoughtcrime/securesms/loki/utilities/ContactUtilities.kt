@@ -12,12 +12,12 @@ object ContactUtilities {
         val cursor = threadDatabase.conversationList
         val result = mutableSetOf<Recipient>()
         threadDatabase.readerFor(cursor).use { reader ->
-        while (reader.next != null) {
-            val thread = reader.current
-            val recipient = thread.recipient
-            result.add(recipient)
+            while (reader.next != null) {
+                val thread = reader.current
+                val recipient = thread.recipient
+                result.add(recipient)
+            }
         }
+        return result
     }
-    return result
-  }
 }
