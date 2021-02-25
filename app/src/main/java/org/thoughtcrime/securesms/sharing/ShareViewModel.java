@@ -103,7 +103,7 @@ public class ShareViewModel extends ViewModel {
     externalShare = false;
   }
 
-  public void onSuccessulShare() {
+  public void onSuccessfulShare() {
     mediaUsed = true;
   }
 

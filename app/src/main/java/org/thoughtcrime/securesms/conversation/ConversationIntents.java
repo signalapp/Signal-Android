@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public class ConversationIntents {
@@ -162,15 +163,15 @@ public class ConversationIntents {
     private final RecipientId                           recipientId;
     private final long                                  threadId;
 
-    private String           draftText;
-    private ArrayList<Media> media;
-    private StickerLocator   stickerLocator;
-    private boolean          isBorderless;
-    private int              distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
-    private int              startingPosition = -1;
-    private Uri              dataUri;
-    private String           dataType;
-    private boolean          firstTimeInSelfCreatedGroup;
+    private String         draftText;
+    private List<Media>    media;
+    private StickerLocator stickerLocator;
+    private boolean        isBorderless;
+    private int            distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
+    private int            startingPosition = -1;
+    private Uri            dataUri;
+    private String         dataType;
+    private boolean        firstTimeInSelfCreatedGroup;
 
     private Builder(@NonNull Context context,
                     @NonNull RecipientId recipientId,
@@ -265,7 +266,7 @@ public class ConversationIntents {
       }
 
       if (media != null) {
-        intent.putParcelableArrayListExtra(EXTRA_MEDIA, media);
+        intent.putParcelableArrayListExtra(EXTRA_MEDIA, new ArrayList<>(media));
       }
 
       if (stickerLocator != null) {

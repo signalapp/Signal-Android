@@ -217,7 +217,7 @@ final class ManageGroupRepository {
       return selectionLimits.getHardLimit() - members.size();
     }
 
-    public @NonNull ArrayList<RecipientId> getMembersWithoutSelf() {
+    public @NonNull List<RecipientId> getMembersWithoutSelf() {
       ArrayList<RecipientId> recipientIds = new ArrayList<>(members.size());
       RecipientId            selfId       = Recipient.self().getId();
 

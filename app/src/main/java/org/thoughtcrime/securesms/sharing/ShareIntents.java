@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public final class ShareIntents {
 
@@ -68,9 +69,9 @@ public final class ShareIntents {
 
     private final Context context;
 
-    private String           extraText;
-    private ArrayList<Media> extraMedia;
-    private Slide            slide;
+    private String      extraText;
+    private List<Media> extraMedia;
+    private Slide       slide;
 
     public Builder(@NonNull Context context) {
       this.context = context;
@@ -101,7 +102,7 @@ public final class ShareIntents {
       intent.putExtra(Intent.EXTRA_TEXT, extraText);
 
       if (extraMedia != null) {
-        intent.putParcelableArrayListExtra(EXTRA_MEDIA, extraMedia);
+        intent.putParcelableArrayListExtra(EXTRA_MEDIA, new ArrayList<>(extraMedia));
       } else if (slide != null) {
         intent.putExtra(Intent.EXTRA_STREAM, slide.getUri());
         intent.putExtra(EXTRA_BORDERLESS, slide.isBorderless());

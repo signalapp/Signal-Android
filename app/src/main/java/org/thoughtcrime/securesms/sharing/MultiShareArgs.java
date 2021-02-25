@@ -18,14 +18,14 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public final class MultiShareArgs implements Parcelable {
 
-  private static final String ARGS = "ShareInterstitialArgs";
-
   private final Set<ShareContactAndThread> shareContactAndThreads;
-  private final ArrayList<Media>           media;
+  private final List<Media>                media;
   private final String                     draftText;
   private final StickerLocator             stickerLocator;
   private final boolean                    borderless;
@@ -36,7 +36,7 @@ public final class MultiShareArgs implements Parcelable {
 
   private MultiShareArgs(@NonNull Builder builder) {
     shareContactAndThreads = builder.shareContactAndThreads;
-    media                  = builder.media == null ? new ArrayList<>() : builder.media;
+    media                  = builder.media == null ? new ArrayList<>() : new ArrayList<>(builder.media);
     draftText              = builder.draftText;
     stickerLocator         = builder.stickerLocator;
     borderless             = builder.borderless;
@@ -47,7 +47,7 @@ public final class MultiShareArgs implements Parcelable {
   }
 
   protected MultiShareArgs(Parcel in) {
-    shareContactAndThreads = new HashSet<>(in.createTypedArrayList(ShareContactAndThread.CREATOR));
+    shareContactAndThreads = new HashSet<>(Objects.requireNonNull(in.createTypedArrayList(ShareContactAndThread.CREATOR)));
     media                  = in.createTypedArrayList(Media.CREATOR);
     draftText              = in.readString();
     stickerLocator         = in.readParcelable(StickerLocator.class.getClassLoader());
@@ -56,9 +56,10 @@ public final class MultiShareArgs implements Parcelable {
     dataType               = in.readString();
     viewOnce               = in.readByte() != 0;
 
+    String      linkedPreviewString = in.readString();
     LinkPreview preview;
     try {
-      preview = LinkPreview.deserialize(in.readString());
+      preview = linkedPreviewString != null ? LinkPreview.deserialize(linkedPreviewString) : null;
     } catch (IOException e) {
       preview = null;
     }
@@ -70,7 +71,7 @@ public final class MultiShareArgs implements Parcelable {
     return shareContactAndThreads;
   }
 
-  public ArrayList<Media> getMedia() {
+  public @NonNull List<Media> getMedia() {
     return media;
   }
 
@@ -176,21 +177,21 @@ public final class MultiShareArgs implements Parcelable {
 
     private final Set<ShareContactAndThread> shareContactAndThreads;
 
-    private ArrayList<Media> media;
-    private String           draftText;
-    private StickerLocator   stickerLocator;
-    private boolean          borderless;
-    private Uri              dataUri;
-    private String           dataType;
-    private LinkPreview      linkPreview;
-    private boolean          viewOnce;
+    private List<Media>    media;
+    private String         draftText;
+    private StickerLocator stickerLocator;
+    private boolean        borderless;
+    private Uri            dataUri;
+    private String         dataType;
+    private LinkPreview    linkPreview;
+    private boolean        viewOnce;
 
     public Builder(@NonNull Set<ShareContactAndThread> shareContactAndThreads) {
       this.shareContactAndThreads = shareContactAndThreads;
     }
 
-    public @NonNull Builder withMedia(@Nullable ArrayList<Media> media) {
-      this.media = media;
+    public @NonNull Builder withMedia(@Nullable List<Media> media) {
+      this.media = media != null ? new ArrayList<>(media) : null;
       return this;
     }
 

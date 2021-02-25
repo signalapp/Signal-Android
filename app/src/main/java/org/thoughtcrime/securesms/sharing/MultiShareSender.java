@@ -97,7 +97,7 @@ public final class MultiShareSender {
     return new MultiShareSendResultCollection(results);
   }
 
-  public static @NonNull TransportOption getWorseTransportOption(@NonNull Context context, @NonNull Set<ShareContactAndThread> shareContactAndThreads) {
+  public static @NonNull TransportOption getWorstTransportOption(@NonNull Context context, @NonNull Set<ShareContactAndThread> shareContactAndThreads) {
     for (ShareContactAndThread shareContactAndThread : shareContactAndThreads) {
       TransportOption option = resolveTransportOption(context, shareContactAndThread.isForceSms());
       if (option.isSms()) {
