@@ -54,7 +54,7 @@ object MultiDeviceProtocol {
     fun forceSyncConfigurationNowIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
-            !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
+            !recipient.isGroupRecipient && !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
         }.map { recipient ->
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
