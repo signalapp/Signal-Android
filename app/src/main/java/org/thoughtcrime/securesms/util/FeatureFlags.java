@@ -63,7 +63,6 @@ public final class FeatureFlags {
   public  static final String DONATE_MEGAPHONE                  = "android.donate";
   private static final String VIEWED_RECEIPTS                   = "android.viewed.receipts";
   private static final String GROUP_CALLING                     = "android.groupsv2.calling.2";
-  private static final String GV1_MANUAL_MIGRATE                = "android.groupsV1Migration.manual";
   private static final String GV1_FORCED_MIGRATE                = "android.groupsV1Migration.forced";
   private static final String GV1_MIGRATION_JOB                 = "android.groupsV1Migration.job";
   private static final String SEND_VIEWED_RECEIPTS              = "android.sendViewedReceipts";
@@ -95,7 +94,6 @@ public final class FeatureFlags {
       DONATE_MEGAPHONE,
       VIEWED_RECEIPTS,
       GV1_MIGRATION_JOB,
-      GV1_MANUAL_MIGRATE,
       GV1_FORCED_MIGRATE,
       GROUP_CALLING,
       SEND_VIEWED_RECEIPTS,
@@ -285,14 +283,9 @@ public final class FeatureFlags {
     return getBoolean(GV1_MIGRATION_JOB, false);
   }
 
-  /** Whether or not manual migration from GV1->GV2 is enabled. */
-  public static boolean groupsV1ManualMigration() {
-    return getBoolean(GV1_MANUAL_MIGRATE, false);
-  }
-
   /** Whether or not forced migration from GV1->GV2 is enabled. */
   public static boolean groupsV1ForcedMigration() {
-    return getBoolean(GV1_FORCED_MIGRATE, false) && groupsV1ManualMigration();
+    return getBoolean(GV1_FORCED_MIGRATE, false);
   }
 
   /** Whether or not to send viewed receipts. */

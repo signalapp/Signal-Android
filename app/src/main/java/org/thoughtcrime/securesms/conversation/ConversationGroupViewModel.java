@@ -193,7 +193,6 @@ final class ConversationGroupViewModel extends ViewModel {
     if (record == null                                                                      ||
         !record.isV1Group()                                                                 ||
         !record.isActive()                                                                  ||
-        !FeatureFlags.groupsV1ManualMigration()                                             ||
         FeatureFlags.groupsV1ForcedMigration()                                              ||
         Recipient.self().getGroupsV1MigrationCapability() != Recipient.Capability.SUPPORTED ||
         !Recipient.resolved(record.getRecipientId()).isProfileSharing())

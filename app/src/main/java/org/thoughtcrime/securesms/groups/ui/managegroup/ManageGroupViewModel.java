@@ -129,12 +129,10 @@ public class ManageGroupViewModel extends ViewModel {
                                                          recipient -> {
                                                            boolean showLegacyInfo = recipient.requireGroupId().isV1();
 
-                                                           if (showLegacyInfo && FeatureFlags.groupsV1ManualMigration() && recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
+                                                           if (showLegacyInfo && recipient.getParticipants().size() > FeatureFlags.groupLimits().getHardLimit()) {
                                                              return GroupInfoMessage.LEGACY_GROUP_TOO_LARGE;
-                                                           } else if (showLegacyInfo && FeatureFlags.groupsV1ManualMigration()) {
-                                                             return GroupInfoMessage.LEGACY_GROUP_UPGRADE;
                                                            } else if (showLegacyInfo) {
-                                                             return GroupInfoMessage.LEGACY_GROUP_LEARN_MORE;
+                                                             return GroupInfoMessage.LEGACY_GROUP_UPGRADE;
                                                            } else if (groupId.isMms()) {
                                                              return GroupInfoMessage.MMS_WARNING;
                                                            } else {
