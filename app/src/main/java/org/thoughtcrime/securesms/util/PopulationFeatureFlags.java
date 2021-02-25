@@ -29,7 +29,7 @@ public final class PopulationFeatureFlags {
    * In research megaphone group for given country code
    */
   public static boolean isInResearchMegaphone() {
-    return isEnabled(FeatureFlags.RESEARCH_MEGAPHONE_1, FeatureFlags.researchMegaphone());
+    return false;
   }
 
   /**
