@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
-import org.signal.core.util.EnglishResourceUtil;
+import org.signal.core.util.ResourceUtil;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -37,7 +37,7 @@ public final class SupportEmailUtil {
   }
 
   private static @NonNull String buildSystemInfo(@NonNull Context context, @StringRes int subject) {
-    Resources englishResources = EnglishResourceUtil.getEnglishResources(context);
+    Resources englishResources = ResourceUtil.getEnglishResources(context);
 
     return "--- " + context.getString(R.string.HelpFragment__support_info) + " ---" +
            "\n" +

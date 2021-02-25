@@ -12,16 +12,20 @@ import java.util.Locale;
 /**
  * Gives access to English strings.
  */
-public final class EnglishResourceUtil {
+public final class ResourceUtil {
 
-  private EnglishResourceUtil() {
+  private ResourceUtil() {
   }
 
   public static Resources getEnglishResources(@NonNull Context context) {
+    return getResources(context, Locale.ENGLISH);
+  }
+
+  public static Resources getResources(@NonNull Context context, @NonNull Locale locale) {
     Configuration configurationLocal = context.getResources().getConfiguration();
 
     Configuration configurationEn = new Configuration(configurationLocal);
-    configurationEn.setLocale(Locale.ENGLISH);
+    configurationEn.setLocale(locale);
 
     return context.createConfigurationContext(configurationEn)
                   .getResources();

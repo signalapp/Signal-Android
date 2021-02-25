@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
@@ -31,9 +32,11 @@ import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.PopulationFeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
+import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -325,9 +328,21 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
-    return !TextSecurePreferences.isNotificationsEnabled(context) ||
-           !NotificationChannels.isMessageChannelEnabled(context) ||
-           !NotificationChannels.areNotificationsEnabled(context);
+    boolean shouldShow = !TextSecurePreferences.isNotificationsEnabled(context) ||
+                         !NotificationChannels.isMessageChannelEnabled(context) ||
+                         !NotificationChannels.areNotificationsEnabled(context);
+    if (shouldShow) {
+      Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
+      if (!new TranslationDetection(context, locale)
+               .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
+                                          R.string.NotificationsMegaphone_never_miss_a_message,
+                                          R.string.NotificationsMegaphone_turn_on,
+                                          R.string.NotificationsMegaphone_not_now)) {
+        Log.i(TAG, "Would show NotificationsMegaphone but is not yet translated in " + locale);
+        return false;
+      }
+    }
+    return shouldShow;
   }
 
   public enum Event {
