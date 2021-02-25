@@ -973,6 +973,12 @@
     <string name="NotificationBarManager__end_call">End call</string>
     <string name="NotificationBarManager__cancel_call">Cancel call</string>
 
+    <!-- NotificationsMegaphone -->
+    <string name="NotificationsMegaphone_turn_on_notifications">Turn on Notifications?</string>
+    <string name="NotificationsMegaphone_never_miss_a_message">Never miss a message from your contacts and groups.</string>
+    <string name="NotificationsMegaphone_turn_on">Turn on</string>
+    <string name="NotificationsMegaphone_not_now">Not now</string>
+
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
     <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloading MMS message</string>

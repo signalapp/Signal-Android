@@ -66,9 +66,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener
 {
-  public static final String LAUNCH_TO_BACKUPS_FRAGMENT = "launch.to.backups.fragment";
-  public static final String LAUNCH_TO_HELP_FRAGMENT    = "launch.to.help.fragment";
-  public static final String LAUNCH_TO_PROXY_FRAGMENT   = "launch.to.proxy.fragment";
+  public static final String LAUNCH_TO_BACKUPS_FRAGMENT       = "launch.to.backups.fragment";
+  public static final String LAUNCH_TO_HELP_FRAGMENT          = "launch.to.help.fragment";
+  public static final String LAUNCH_TO_PROXY_FRAGMENT         = "launch.to.proxy.fragment";
+  public static final String LAUNCH_TO_NOTIFICATIONS_FRAGMENT = "launch.to.notifications.fragment";
 
   @SuppressWarnings("unused")
   private static final String TAG = ApplicationPreferencesActivity.class.getSimpleName();
@@ -112,6 +113,8 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActivity
       initFragment(android.R.id.content, new HelpFragment());
     } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_PROXY_FRAGMENT, false)) {
       initFragment(android.R.id.content, EditProxyFragment.newInstance());
+    } else if (getIntent() != null && getIntent().getBooleanExtra(LAUNCH_TO_NOTIFICATIONS_FRAGMENT, false)) {
+      initFragment(android.R.id.content, new NotificationsPreferenceFragment());
     } else if (icicle == null) {
       initFragment(android.R.id.content, new ApplicationPreferenceFragment());
     } else {

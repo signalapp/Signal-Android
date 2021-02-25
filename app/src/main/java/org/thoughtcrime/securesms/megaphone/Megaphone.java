@@ -24,6 +24,7 @@ public class Megaphone {
   private final boolean                canSnooze;
   private final int                    titleRes;
   private final int                    bodyRes;
+  private final int                    imageRes;
   private final GlideRequest<Drawable> imageRequest;
   private final int                    buttonTextRes;
   private final EventListener          buttonListener;
@@ -39,6 +40,7 @@ public class Megaphone {
     this.canSnooze               = builder.canSnooze;
     this.titleRes                = builder.titleRes;
     this.bodyRes                 = builder.bodyRes;
+    this.imageRes                = builder.imageRes;
     this.imageRequest            = builder.imageRequest;
     this.buttonTextRes           = builder.buttonTextRes;
     this.buttonListener          = builder.buttonListener;
@@ -70,6 +72,10 @@ public class Megaphone {
 
   public @StringRes int getBody() {
     return bodyRes;
+  }
+
+  public @DrawableRes int getImageRes() {
+    return imageRes;
   }
 
   public @Nullable GlideRequest<Drawable> getImageRequest() {
@@ -117,6 +123,7 @@ public class Megaphone {
     private boolean                canSnooze;
     private int                    titleRes;
     private int                    bodyRes;
+    private int                    imageRes;
     private GlideRequest<Drawable> imageRequest;
     private int                    buttonTextRes;
     private EventListener          buttonListener;
@@ -163,7 +170,8 @@ public class Megaphone {
     }
 
     public @NonNull Builder setImage(@DrawableRes int imageRes) {
-      return setImageRequest(GlideApp.with(ApplicationDependencies.getApplication()).load(imageRes));
+      this.imageRes = imageRes;
+      return this;
     }
 
     public @NonNull Builder setImageRequest(@Nullable GlideRequest<Drawable> imageRequest) {

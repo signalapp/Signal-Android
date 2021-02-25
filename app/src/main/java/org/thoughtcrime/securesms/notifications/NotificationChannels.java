@@ -377,6 +377,36 @@ public class NotificationChannels {
   }
 
   /**
+   * Whether or not the default messages notification channel is enabled. Note that "enabled" just
+   * means receiving notifications in some capacity -- a user could have it enabled, but set it to a
+   * lower importance.
+   *
+   * This could also return true if the specific channnel is enabled, but notifications *overall*
+   * are disabled. Check {@link #areNotificationsEnabled(Context)} to be safe.
+   */
+  public static synchronized boolean isMessageChannelEnabled(@NonNull Context context) {
+    if (!supported()) {
+      return true;
+    }
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationChannel channel             = notificationManager.getNotificationChannel(getMessagesChannel(context));
+
+    return channel != null && channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
+  }
+
+  /**
+   * Whether or not notifications for the entire app are enabled.
+   */
+  public static synchronized boolean areNotificationsEnabled(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT >= 24) {
+      return ServiceUtil.getNotificationManager(context).areNotificationsEnabled();
+    } else {
+      return true;
+    }
+  }
+
+  /**
    * Updates the name of an existing channel to match the recipient's current name. Will have no
    * effect if the recipient doesn't have an existing valid channel.
    */
