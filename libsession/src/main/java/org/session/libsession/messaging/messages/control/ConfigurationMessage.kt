@@ -14,7 +14,7 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>, val displayName: String, val profilePicture: String?, val profileKey: ByteArray): ControlMessage() {
+class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>, val contacts: List<Contact>, val displayName: String, val profilePicture: String?, val profileKey: ByteArray): ControlMessage() {
 
     class ClosedGroup(val publicKey: String, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<String>, val admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
@@ -51,12 +51,39 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         }
     }
 
+    class Contact(val publicKey: String, val name: String, val profilePicture: String?, val profileKey: ByteArray?) {
+        companion object {
+            fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
+                if (!proto.hasName() || !proto.hasProfileKey()) return null
+                val publicKey = proto.publicKey.toByteArray().toHexString()
+                val name = proto.name
+                val profilePicture = if (proto.hasProfilePicture()) proto.profilePicture else null
+                val profileKey = if (proto.hasProfileKey()) proto.profileKey.toByteArray() else null
+
+                return Contact(publicKey,name,profilePicture,profileKey)
+            }
+        }
+
+        fun toProto(): SignalServiceProtos.ConfigurationMessage.Contact? {
+            val result = SignalServiceProtos.ConfigurationMessage.Contact.newBuilder()
+            result.name = this.name
+            result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
+            if (!this.profilePicture.isNullOrEmpty()) {
+                result.profilePicture = this.profilePicture
+            }
+            if (this.profileKey != null) {
+                result.profileKey = ByteString.copyFrom(this.profileKey)
+            }
+            return result.build()
+        }
+    }
+
     override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
 
     companion object {
 
-        fun getCurrent(): ConfigurationMessage {
+        fun getCurrent(contacts: List<Contact>): ConfigurationMessage {
             val closedGroups = mutableListOf<ClosedGroup>()
             val openGroups = mutableListOf<String>()
             val sharedConfig = MessagingConfiguration.shared
@@ -69,8 +96,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             for (groupRecord in groups) {
                 if (groupRecord.isClosedGroup) {
                     if (!groupRecord.members.contains(Address.fromSerialized(storage.getUserPublicKey()!!))) continue
-                    val groupPublicKey = GroupUtil.getDecodedGroupIDAsData(groupRecord.encodedId).toHexString()
-                    if (!storage.isClosedGroup(groupPublicKey)) continue
+                    val groupPublicKey = GroupUtil.doubleDecodeGroupID(groupRecord.encodedId).toHexString()
                     val encryptionKeyPair = storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: continue
                     val closedGroup = ClosedGroup(groupPublicKey, groupRecord.title, encryptionKeyPair, groupRecord.members.map { it.serialize() }, groupRecord.admins.map { it.serialize() })
                     closedGroups.add(closedGroup)
@@ -82,7 +108,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
                 }
             }
 
-            return ConfigurationMessage(closedGroups, openGroups, displayName, profilePicture, profileKey)
+            return ConfigurationMessage(closedGroups, openGroups, contacts, displayName, profilePicture, profileKey)
         }
 
         fun fromProto(proto: SignalServiceProtos.Content): ConfigurationMessage? {
@@ -93,7 +119,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             val displayName = configurationProto.displayName
             val profilePicture = configurationProto.profilePicture
             val profileKey = configurationProto.profileKey
-            return ConfigurationMessage(closedGroups, openGroups, displayName, profilePicture, profileKey.toByteArray())
+            return ConfigurationMessage(closedGroups, openGroups, listOf(), displayName, profilePicture, profileKey.toByteArray())
         }
     }
 
@@ -101,8 +127,11 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         val configurationProto = SignalServiceProtos.ConfigurationMessage.newBuilder()
         configurationProto.addAllClosedGroups(closedGroups.mapNotNull { it.toProto() })
         configurationProto.addAllOpenGroups(openGroups)
+        configurationProto.addAllContacts(this.contacts.mapNotNull { it.toProto() })
         configurationProto.displayName = displayName
-        configurationProto.profilePicture = profilePicture.orEmpty()
+        if (!profilePicture.isNullOrEmpty()) {
+            configurationProto.profilePicture = profilePicture
+        }
         configurationProto.profileKey = ByteString.copyFrom(profileKey)
         val contentProto = SignalServiceProtos.Content.newBuilder()
         contentProto.configurationMessage = configurationProto.build()

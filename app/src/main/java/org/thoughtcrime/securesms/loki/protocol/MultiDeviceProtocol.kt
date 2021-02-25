@@ -16,6 +16,7 @@ import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
+import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
 import java.util.*
 
@@ -28,7 +29,12 @@ object MultiDeviceProtocol {
         val lastSyncTime = TextSecurePreferences.getLastConfigurationSyncTime(context)
         val now = System.currentTimeMillis()
         if (now - lastSyncTime < 2 * 24 * 60 * 60 * 1000) return
-        val configurationMessage = ConfigurationMessage.getCurrent()
+        val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
+            !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
+        }.map { recipient ->
+            ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
+        }
+        val configurationMessage = ConfigurationMessage.getCurrent(contacts)
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
@@ -47,7 +53,12 @@ object MultiDeviceProtocol {
     // TODO: refactor this to use new message sending job
     fun forceSyncConfigurationNowIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
-        val configurationMessage = ConfigurationMessage.getCurrent()
+        val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
+            !recipient.isGroupRecipient && !recipient.isBlocked && !recipient.name.isNullOrEmpty() && !recipient.isLocalNumber && recipient.address.serialize().isNotEmpty()
+        }.map { recipient ->
+            ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
+        }
+        val configurationMessage = ConfigurationMessage.getCurrent(contacts)
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
