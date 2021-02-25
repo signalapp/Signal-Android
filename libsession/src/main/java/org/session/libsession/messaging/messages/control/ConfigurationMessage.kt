@@ -51,12 +51,39 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         }
     }
 
+    class Contact(val publicKey: String, val name: String, val profilePicture: String?, val profileKey: ByteArray?) {
+        companion object {
+            fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
+                if (!proto.hasName() || !proto.hasProfileKey()) return null
+                val publicKey = proto.publicKey.toByteArray().toHexString()
+                val name = proto.name
+                val profilePicture = if (proto.hasProfilePicture()) proto.profilePicture else null
+                val profileKey = if (proto.hasProfileKey()) proto.profileKey.toByteArray() else null
+
+                return Contact(publicKey,name,profilePicture,profileKey)
+            }
+        }
+
+        fun toProto(): SignalServiceProtos.ConfigurationMessage.Contact? {
+            val result = SignalServiceProtos.ConfigurationMessage.Contact.newBuilder()
+            result.name = this.name
+            result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
+            if (!this.profilePicture.isNullOrEmpty()) {
+                result.profilePicture = this.profilePicture
+            }
+            if (this.profileKey != null) {
+                result.profileKey = ByteString.copyFrom(this.profileKey)
+            }
+            return result.build()
+        }
+    }
+
     override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
 
     companion object {
 
-        fun getCurrent(): ConfigurationMessage {
+        fun getCurrent(contacts: List<Contact>): ConfigurationMessage {
             val closedGroups = mutableListOf<ClosedGroup>()
             val openGroups = mutableListOf<String>()
             val sharedConfig = MessagingConfiguration.shared
