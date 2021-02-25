@@ -175,6 +175,10 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   public long getItemId(int position) {
     Conversation item = getItem(position);
 
+    if (item == null) {
+      return 0;
+    }
+
     switch (item.getType()) {
       case THREAD:          return item.getThreadRecord().getThreadId();
       case PINNED_HEADER:   return -1;
