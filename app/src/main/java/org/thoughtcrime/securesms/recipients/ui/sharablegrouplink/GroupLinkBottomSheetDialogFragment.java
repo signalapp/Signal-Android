@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,10 +55,11 @@ public final class GroupLinkBottomSheetDialogFragment extends BottomSheetDialogF
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.group_link_share_bottom_sheet, container, false);
 
-    View shareViaSignalButton = view.findViewById(R.id.group_link_bottom_sheet_share_via_signal_button);
-    View copyButton           = view.findViewById(R.id.group_link_bottom_sheet_copy_button);
-    View viewQrButton         = view.findViewById(R.id.group_link_bottom_sheet_qr_code_button);
-    View shareBySystemButton  = view.findViewById(R.id.group_link_bottom_sheet_share_via_system_button);
+    View     shareViaSignalButton = view.findViewById(R.id.group_link_bottom_sheet_share_via_signal_button);
+    View     copyButton           = view.findViewById(R.id.group_link_bottom_sheet_copy_button);
+    View     viewQrButton         = view.findViewById(R.id.group_link_bottom_sheet_qr_code_button);
+    View     shareBySystemButton  = view.findViewById(R.id.group_link_bottom_sheet_share_via_system_button);
+    TextView hint                 = view.findViewById(R.id.group_link_bottom_sheet_hint);
 
     GroupId.V2 groupId = GroupId.parseOrThrow(Objects.requireNonNull(requireArguments().getString(ARG_GROUP_ID))).requireV2();
 
@@ -69,6 +71,10 @@ public final class GroupLinkBottomSheetDialogFragment extends BottomSheetDialogF
         dismiss();
         return;
       }
+
+      hint.setText(groupLink.isRequiresApproval() ? R.string.GroupLinkBottomSheet_share_hint_requiring_approval
+                                                  : R.string.GroupLinkBottomSheet_share_hint_not_requiring_approval);
+      hint.setVisibility(View.VISIBLE);
 
       shareViaSignalButton.setOnClickListener(v -> {
         Context context = requireContext();
