@@ -165,6 +165,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Sending mistókst, ýttu fyrir óörugga varaleið</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Nota ódulritað SMS til vara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Nota ódulritað MMS til vara?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Þessi skilaboð verða <b>ekki</b> dulrituð því viðtakandinn er ekki lengur að nota Signal.\n\nSenda óörugg skilaboð?</string>
   <string name="ConversationItem_unable_to_open_media">Finn ekki smáforrit sem getur opnað þetta efni.</string>
   <string name="ConversationItem_copied_text">Afritaði %s</string>
   <string name="ConversationItem_from_s">úr %s</string>
@@ -180,6 +181,7 @@
   <string name="ConversationActivity_add_attachment">Bæta við viðhengi</string>
   <string name="ConversationActivity_select_contact_info">Velja upplýsingar um tengilið</string>
   <string name="ConversationActivity_compose_message">Semja skilaboð</string>
+  <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Því miður, það kom upp villa við að setja viðhengið þitt.</string>
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Viðtakandinn er ekki leyfilegt SMS-númer eða tölvupóstfang!</string>
   <string name="ConversationActivity_message_is_empty_exclamation">Skilaboð eru tóm!</string>
   <string name="ConversationActivity_group_members">Meðlimir hóps</string>
@@ -194,6 +196,7 @@
   <string name="ConversationActivity_lets_switch_to_signal">Skiptum yfir í Signal %1$s</string>
   <string name="ConversationActivity_specify_recipient">Veldu tengilið</string>
   <string name="ConversationActivity_unblock">Opna á</string>
+  <string name="ConversationActivity_attachment_exceeds_size_limits">Stærð viðhengis er meiri en leyfilegt er fyrir þá gerð skilaboða sem þú ert að senda.</string>
   <string name="ConversationActivity_unable_to_record_audio">Get ekki tekið upp hljóð!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Þú getur ekki sent skilaboð á þennan hóp því þú ert ekki lengur meðlimur.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Ekkert forrit sem getur meðhöndlað þennan tengil er tiltækt á tækinu þínu.</string>
@@ -960,9 +963,11 @@
   <string name="MessageRequestBottomView_delete">Eyða</string>
   <string name="MessageRequestBottomView_block">Útiloka</string>
   <string name="MessageRequestBottomView_unblock">Opna á</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Viltu leyfa %1$s að senda þér skilaboð og deila nafninu þínu og mynd með viðkomandi notanda? Hann mun ekki vita hvort þú hafir séð skilaboðin hans fyrr en þú opnar á hann.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Viltu halda áfram samtalinu við þennan hóp og deila nafninu þínu og mynd með meðlimum hans?</string>
   <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Uppfærðu þennan hóp til að virkja nýja eiginleika á borð við @mentions og hópstjóra. Meðlimir sem ekki hafa deilt nafninu sínu eða mynd í hópnum fá boð um að taka þátt.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Þennan hóp af eldri gerð er ekki hægt að nota því hann er of stór. Hámarksstærð hópa er %1$d.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Viltu halda áfram samtalinu við %1$s og deila nafninu þínu og mynd með viðkomandi?</string>
   <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þeir munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Viltu ganga í þennan hóp? Meðlimir hópsins munu ekki vita hvort þú hafir séð skilaboðin þeirra fyrr en þú samþykkir þetta.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Viltu opna á þennan hóp og deila nafninu þínu og mynd með meðlimum hans? Þú munt ekki fá nein skilaboð fyrr en þú aflæsir þessu.</string>
@@ -1008,6 +1013,7 @@
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Sjálfeyðandi skilaboð</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Skilaboðin þín munu ekki renna út.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Send og móttekin skilaboð í þessu samtali hverfa %s eftir að þau hafa verið skoðuð.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">Uppfæra núna</string>
   <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Þessi útgáfa Signal rennur út í dag. Uppfærðu í nýjustu útgáfuna.</string>
@@ -1286,6 +1292,8 @@
     <item quantity="other">%d tengiliðir nota Signal!</item>
   </plurals>
   <!--VerifyIdentityActivity-->
+  <string name="VerifyIdentityActivity_share_safety_number_via">Deila öryggisnúmeri með…</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Signal-öryggisnúmerið okkar:</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal þarf heimild til að nota myndavélina til að geta skannað QR-kóða, en því hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\", og virkjaðu \"Myndavél\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Get ekki skannað QR-kóða án heimildar til að nota myndavélina</string>
   <!--ViewOnceMessageActivity-->
@@ -1295,11 +1303,18 @@
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Þagga tilkynningar</string>
   <!--ApplicationMigrationService-->
+  <string name="ApplicationMigrationService_import_in_progress">Innflutningur í vinnslu</string>
   <string name="ApplicationMigrationService_importing_text_messages">Flyt inn textaskilaboð</string>
+  <string name="ApplicationMigrationService_import_complete">Innflutningi lokið</string>
+  <string name="ApplicationMigrationService_system_database_import_is_complete">Innflutningi kerfisgagnagrunns er lokið.</string>
   <!--KeyCachingService-->
+  <string name="KeyCachingService_signal_passphrase_cached">Snertu til að opna.</string>
+  <string name="KeyCachingService_passphrase_cached">Signal er ólæst</string>
+  <string name="KeyCachingService_lock">Læsa Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Þú</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Óstudd gerð myndefnis</string>
+  <string name="MediaPreviewActivity_draft">Drög</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal þarf heimild til að nota geymslurými til að geta skrifað í ytra minni, en því hefur verið varanlega neitað. Farðu í kjörstillingar forritsins, veldu \"Heimildir\" og ýttu á \"Geymslurými\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Get ekki vistað í ytra minni án heimildar til að nota geymslurými</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eyða skilaboðum?</string>
@@ -1309,17 +1324,21 @@
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Finn ekki smáforrit til að deila þessu efni.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d ný skilaboð í %2$d samtölum</string>
+  <string name="MessageNotifier_most_recent_from_s">Nýjast frá: %1$s</string>
   <string name="MessageNotifier_locked_message">Læst skilaboð</string>
   <string name="MessageNotifier_message_delivery_failed">Afhending skilaboða mistókst.</string>
   <string name="MessageNotifier_failed_to_deliver_message">Mistókst að afhenda skilaboð.</string>
   <string name="MessageNotifier_error_delivering_message">Villa við að að afhenda skilaboð.</string>
   <string name="MessageNotifier_mark_all_as_read">Merkja allt sem lesið</string>
   <string name="MessageNotifier_mark_read">Merkja lesið</string>
+  <string name="MessageNotifier_turn_off_these_notifications">Slökkva á þessum tilkynningum</string>
   <string name="MessageNotifier_view_once_photo">Skoða-einu-sinni ljósmynd</string>
   <string name="MessageNotifier_view_once_video">Skoða-einu-sinni myndskeið</string>
+  <string name="MessageNotifier_reply">Svara</string>
   <string name="MessageNotifier_signal_message">Signal-skilaboð</string>
   <string name="MessageNotifier_unsecured_sms">Óöruggt SMS</string>
   <string name="MessageNotifier_you_may_have_new_messages">Þú gætir átt ný skilaboð</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Opnaðu Signal til að athuga með nýlegar tilkynningar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Tengiliður</string>
   <string name="MessageNotifier_reacted_s_to_your_sticker">Brást %1$s við límmerkinu þínu.</string>
@@ -1327,25 +1346,32 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Sjálfgefið</string>
   <string name="NotificationChannel_calls">Símtöl</string>
+  <string name="NotificationChannel_failures">Bilanir</string>
   <string name="NotificationChannel_backups">Öryggisafrit</string>
+  <string name="NotificationChannel_locked_status">Staða læsingar</string>
+  <string name="NotificationChannel_app_updates">Uppfærslur forrits</string>
   <string name="NotificationChannel_other">Annað</string>
   <string name="NotificationChannel_group_messages">Skilaboð</string>
   <string name="NotificationChannel_missing_display_name">Óþekkt</string>
   <string name="NotificationChannel_voice_notes">Tal-minnispuntar</string>
   <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Flýtsvar ekki tiltækt á meðan Signal er læst!</string>
   <string name="QuickResponseService_problem_sending_message">Vandamál við að senda skilaboð!</string>
   <!--SaveAttachmentTask-->
+  <string name="SaveAttachmentTask_saved_to">Vistað í %s</string>
   <string name="SaveAttachmentTask_saved">Vistað</string>
   <!--SearchToolbar-->
   <string name="SearchToolbar_search">Leita</string>
   <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Leita að samtölum, tengiliðum og skilaboðum</string>
   <!--ShortcutLauncherActivity-->
+  <string name="ShortcutLauncherActivity_invalid_shortcut">Ógild flýtileið</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ný skilaboð</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Spila myndskeið</string>
+  <string name="ThumbnailView_Has_a_caption_description">Er með skýringartexta</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d atriði</item>

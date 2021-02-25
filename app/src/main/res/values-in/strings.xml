@@ -436,7 +436,7 @@
     <item quantity="other">Anggota ini harus menerima undangan bergabung ke grup ini lagi dan tidak akan menerima pesan grup sampai mereka menerimanya:</item>
   </plurals>
   <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
-    <item quantity="other">Anggota ini harus telah dikeluarkan dari grup dan tidak dapat bergabung kembali sampai mereka melakukan pembaruan:</item>
+    <item quantity="other">Anggota ini telah dikeluarkan dari grup dan tidak dapat bergabung kembali sampai mereka melakukan pembaruan:</item>
   </plurals>
   <!--GroupsV1MigrationInitiationBottomSheetDialogFragment-->
   <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Perbarui ke Grup Baru</string>
@@ -553,7 +553,7 @@
   <!--NonGv2MemberDialog-->
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable">Sebuah Grup Lama dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable">
-    <item quantity="other">Sebuah Grup Lama dibuat karena %1$d menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</item>
+    <item quantity="other">Sebuah Grup Lama dibuat karena %1$d anggota menggunakan versi Signal yang lama. Anda dapat membuat Grup Gaya Baru dengan mereka setelah mereka memperbarui Signal, atau mengeluarkannya sebelum membuat grup.</item>
   </plurals>
   <string name="NonGv2MemberDialog_single_users_are_non_gv2_capable_forced_migration">Grup ini tidak dapat dibuat karena \"%1$s\" menggunakan versi Signal yang lama. Anda harus mengeluarkan mereka sebelum membuat grup.</string>
   <plurals name="NonGv2MemberDialog_d_users_are_non_gv2_capable_forced_migration">
@@ -592,8 +592,8 @@
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Gagal memperbarui grup karena galat jaringan, mohon coba lagi nanti</string>
   <string name="ManageGroupActivity_edit_name_and_picture">Sunting nama dan gambar</string>
   <string name="ManageGroupActivity_legacy_group">Grup Lama</string>
-  <string name="ManageGroupActivity_legacy_group_learn_more">Ini adalah Grup Lama. Fitur-fitur seperti admin grup hana tersedia untuk Grup Baru.</string>
-  <string name="ManageGroupActivity_legacy_group_upgrade">Ini Grup Lama. Untuk mengakses fitur-firue baru seperti @mention dan admin,</string>
+  <string name="ManageGroupActivity_legacy_group_learn_more">Ini adalah Grup Lama. Fitur-fitur seperti admin grup hanya tersedia untuk Grup Baru.</string>
+  <string name="ManageGroupActivity_legacy_group_upgrade">Ini adalah Grup Lama. Untuk mengakses fitur-fitur baru seperti @mention dan admin,</string>
   <string name="ManageGroupActivity_legacy_group_too_large">Grup lama ini tidak bisa ditingkatkan menjadi grup yang baru karena terlalu besar. Ukuran maksimum grup adalah %1$d.</string>
   <string name="ManageGroupActivity_upgrade_this_group">perbarui grup ini.</string>
   <string name="ManageGroupActivity_this_is_an_insecure_mms_group">Ini adalah Grup MMS yang tidak aman. Untuk mengobrol secara privat, undang kontak Anda ke Signal.</string>

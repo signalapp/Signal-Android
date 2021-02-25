@@ -367,7 +367,7 @@
   <string name="DateUtils_yesterday">நேற்று</string>
   <!--DecryptionFailedDialog-->
   <string name="DecryptionFailedDialog_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
-  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal E2EE - இருமுனை குறியாக்கத்தைப்  பயன்படுத்துகிறது, மேலும் இது சில நேரங்களில் உங்கள் அரட்டை அமர்வை புதுப்பிக்க வேண்டியிருக்கும். இது உங்கள் அரட்டையின் பாதுகாப்பைப் பாதிக்காது, ஆனால் இந்த தொடர்பிலிருந்து நீங்கள் ஒரு செய்தியைத் தவறவிட்டிருக்கலாம், மேலும் அதை மீண்டும் அனுப்புமாறு அவர்களிடம் கேட்கலாம்.</string>
+  <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal E2EE - இருமுனை குறியாக்கத்தைப்  பயன்படுத்துகிறது, மேலும் இது சில நேரங்களில் உங்கள் உரையாடல் அமர்வை புதுப்பிக்க வேண்டியிருக்கும். இது உங்கள் அரட்டையின் பாதுகாப்பைப் பாதிக்காது, ஆனால் இந்த தொடர்பிலிருந்து நீங்கள் ஒரு செய்தியைத் தவறவிட்டிருக்கலாம், மேலும் அதை மீண்டும் அனுப்புமாறு அவர்களிடம் கேட்கலாம்.</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' துண்டி?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">இந்த சாதனத்தை துண்டிப்பதின்  மூலம், இது இனி செய்திகளை அனுப்பவோ பெறவோ முடியாது.</string>
@@ -633,7 +633,7 @@
   <string name="ManageGroupActivity_invite_now">இப்போது அழைக்கவும்</string>
   <!--GroupMentionSettingDialog-->
   <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
-  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ஒலியடக்கிய அரட்டைகளில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
+  <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">ஒலியடக்கிய உரையாடல்களில் மற்றவர்களால் நீங்கள் குறிப்பிடப்படும்போது அறிவிப்புகள் பெறலாமா?</string>
   <string name="GroupMentionSettingDialog_always_notify_me">எப்போதும் எனக்கு அறிவிக்கவும்</string>
   <string name="GroupMentionSettingDialog_dont_notify_me">எனக்கு அறிவிக்க வேண்டாம்</string>
   <!--ManageProfileFragment-->
@@ -764,7 +764,7 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">%1$s: நாம் Signalக்கு மாறுவோம்</string>
   <string name="InviteActivity_no_app_to_share_to">உங்களிடம் பகிர எந்த பயன்பாடுகளும் இல்லை என்று தெரிகிறது.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">நண்பர்களே மற்ற நண்பர்களை மறையாக்கப்படாத அரட்டை செய்யவிடாதீர்கள்.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">நண்பர்களே, மற்ற நண்பர்களை மறையாக்கப்படாத உரையாடல்கள் செய்யவிடாதீர்கள்.</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">மேலும் அறிக</string>
   <!--LongMessageActivity-->
@@ -880,7 +880,7 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">காணாமல் போகக்கூடிய செய்தி டைமர் %1$s நேரத்தில் அமைக்கப்பட்டுள்ளது .</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">இந்த குழு புதிய குழுவாக புதுப்பிக்கப்பட்டது.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">நீங்கள் புதிய குழுவில் சேர்க்கப்படவில்லை. நீங்கள் இந்தக் குழுவில் சேருவதற்கு அழைக்கப்பட்டுள்ளீர்கள்</string>
-  <string name="MessageRecord_chat_session_refreshed">அரட்டை அமர்வு புதுப்பிக்கப்பட்டது</string>
+  <string name="MessageRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">புதிய குழுவில் ஒரு உறுப்பினரை சேர்க்க முடியவில்லை. அவர் குழுவில் சேர அழைக்கப்பட்டுள்ளார்.</item>
     <item quantity="other">புதிய குழுவில் %1$s உறுப்பினர்களை சேர்க்க முடியவில்லை. அவர்கள் குழுவில் சேர அழைக்கப்பட்டுள்ளனர்.</item>
@@ -1363,7 +1363,7 @@
   <string name="ThreadRecord_voice_message">குரல் செய்தி</string>
   <string name="ThreadRecord_file">கோப்பு</string>
   <string name="ThreadRecord_video">காணொளி</string>
-  <string name="ThreadRecord_chat_session_refreshed">அரட்டை அமர்வு புதுப்பிக்கப்பட்டது</string>
+  <string name="ThreadRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal புதுப்பிப்பு</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal புதிய பதிப்பு கிடைக்கும், புதுப்பிக்க தட்டவும்</string>
@@ -2038,14 +2038,14 @@
   <string name="conversation_list__pinned">முக்கியமானவை</string>
   <string name="conversation_list__chats">உரையாடல்கள்
  </string>
-  <string name="conversation_list__you_can_only_pin_up_to_d_chats">நீங்கள் %1$d அரட்டைகளை மட்டுமே பின் செய்ய முடியும்</string>
+  <string name="conversation_list__you_can_only_pin_up_to_d_chats">நீங்கள் %1$d உரையாடல்களை மட்டுமே முக்கியமானதாகக் குறிக்க முடியும்</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">தொடர்பின் புகைப்படம்</string>
   <string name="conversation_list_item_view__archived">பெட்டகப்படுத்தப்பட்டது</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">புதிய உரையாடல்</string>
   <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இன்னும் அரட்டைகள் இல்லை.\n நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இதுவரை உரையாடல்கள் எதுவும் இல்லை. நண்பருக்கு செய்தி அனுப்புவதன் மூலம் தொடங்கவும்.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">பாதுகாப்பான அமர்வை மீட்டமைக்கவும்</string>
   <!--conversation_muted-->
@@ -2414,7 +2414,7 @@
   <string name="ShareActivity__share">பகிர்</string>
   <string name="ShareActivity__send">அனுப்புக</string>
   <string name="ShareActivity__s_comma">%1$s,</string>
-  <string name="ShareActivity__sharing_to_multiple_chats_is">பல அரட்டைகளிலும் பகிர்வது Signal செய்திகளில் மட்டுமே சாத்தியம்.</string>
+  <string name="ShareActivity__sharing_to_multiple_chats_is">பல உரையாடல்களிலும் பகிர்வது Signal செய்திகளில் மட்டுமே சாத்தியம்.</string>
   <!--MultiShareDialogs-->
   <string name="MultiShareDialogs__failed_to_send_to_some_users">சில பயனர்களுக்கு அனுப்புவதில் தோல்வி</string>
   <string name="MultiShareDialogs__you_can_only_share_with_up_to"> நீங்கள் அரட்டைகள் %1$d வரை மட்டுமே பகிர முடியும்</string>
@@ -2427,9 +2427,9 @@
   <string name="ChatWallpaperFragment__dark_theme_dims_wallpaper">இருண்ட கருப்பொருள் பின்னணிப்படத்தை மங்கச் செய்கிறது</string>
   <string name="ChatWallpaperFragment__clear_wallpaper">பின்னணிப்படம் நீக்கவும்</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">இந்த அரட்டைக்கு பின்னணிப்படத்தை நீக்கவா?</string>
-  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">பின்னணிப்படத்தை நீக்கவா? இது அரட்டைகளுக்காக நீங்கள் அமைத்துள்ள தனி பின்னணிப்படங்களை நீக்காது.</string>
+  <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">பின்னணிப்படத்தை நீக்கவா? இது உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனி பின்னணிப்படங்களை நீக்காது.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவும்</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">உங்கள் அரட்டைகளுக்காக நீங்கள் அமைத்துள்ள தனிப்பட்ட பின்னணிப்படங்கள் உட்பட அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">உங்கள் உரையாடல்களுக்காக நீங்கள் அமைத்துள்ள தனிப்பட்ட பின்னணிப்படங்கள் உட்பட அனைத்து பின்னணிப்படங்களையும் மீட்டமைக்கவா?</string>
   <string name="ChatWallpaperFragment__contact_name">தொடர்பு பெயர்</string>
   <string name="ChatWallpaperFragment__reset">மீட்டமைக்க</string>
   <string name="ChatWallpaperFragment__clear">அழி</string>
@@ -2441,14 +2441,14 @@
   <string name="ChatWallpaperPreviewActivity__preview">முன்னோட்டம்</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">பின்னணிப்படம் அமைக்கவும்</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">மேலும் பின்னணிப்படங்களை முன்னோட்டமிட ஸ்வைப் செய்யவும்</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">எல்லா அரட்டைகளுக்கும் பின்னணிப்படத்தை அமைக்கவும்</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">எல்லா உரையாடல்களுக்கும் பின்னணிப்படத்தை அமைக்கவும்</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">%1$sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">உங்கள் கேலரியைப் பார்க்க சேமிப்பு அனுமதி தேவை.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">பின்னணிப்படத்தைத் தேர்வுசெய்யவும்</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">பெரிதாக்க கிள்ளவும், சரிசெய்ய இழுக்கவும்.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">எல்லா அரட்டைகளுக்கும் பின்னணிப்படத்தை அமைக்கவும்.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">எல்லா உரையாடல்களுக்கும் பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">%sக்கு பின்னணிப்படத்தை அமைக்கவும்.</string>
   <string name="WallpaperCropActivity__error_setting_wallpaper">பின்னணிப்படம் அமைப்பதில் பிழை.</string>
   <string name="WallpaperCropActivity__blur_photo">புகைப்படத்தை மங்கச் செய்ய</string>

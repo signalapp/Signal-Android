@@ -1533,7 +1533,7 @@
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">A carregar contactos…</string>
   <!--single_contact_selection_activity-->
-  <string name="SingleContactSelectionActivity_contact_photo">Foto de contacto</string>
+  <string name="SingleContactSelectionActivity_contact_photo">Fotografia de contacto</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">O Signal requer permissão de acesso aos contactos para visualizar os seus contactos, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações do telemóvel, seleccione a aplicação Signal e nas \"Permissões\" ative os \"Contactos\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Problema a obter os contactos, verifique a sua ligação à rede</string>
@@ -1565,7 +1565,7 @@
   <string name="conversation_activity__send">Enviar</string>
   <string name="conversation_activity__compose_description">Composição da mensagem</string>
   <string name="conversation_activity__emoji_toggle_description">Teclado de emojis</string>
-  <string name="conversation_activity__attachment_thumbnail">Antevisão de anexo</string>
+  <string name="conversation_activity__attachment_thumbnail">Miniatura de anexo</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutar a câmara rápida da gaveta de anexos</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Gravar e enviar anexo de áudio</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Bloquear a gravação de um anexo de áudio</string>
@@ -1619,7 +1619,7 @@
   <string name="country_selection_fragment__search">Pesquisar</string>
   <string name="country_selection_fragment__no_matching_countries">Sem países correspondentes</string>
   <!--device_add_fragment-->
-  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Leia o código QR apresentado no dispositivo para o associar</string>
+  <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Leia o código QR apresentado no dispositivo no qual deseja associar</string>
   <!--device_link_fragment-->
   <string name="device_link_fragment__link_device">Associar dispositivo</string>
   <!--device_list_fragment-->
@@ -1658,8 +1658,8 @@
   <string name="IdentityUtil_unverified_banner_two">Os seus números de segurança com %1$s e %2$s foram alterados e já não se encontram verificados</string>
   <string name="IdentityUtil_unverified_banner_many">Os seus números de segurança com %1$s, %2$s e %3$s já não se encontram verificados</string>
   <string name="IdentityUtil_unverified_dialog_one">O seu número de segurança com %1$s foi alterado e deixou de estar verificado. Isto poderá significar que alguém está a tentar intercetar esta comunicação ou simplesmente que %1$s reinstalou o Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Os seus números de segurança com %1$s e %2$s foram alterados. Isto pode significar que alguém está a tentar intercetar esta comunicação ou simplesmente que alguém reinstalou o Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Os seus números de segurança com %1$s, %2$s e %3$sdeixaram de estar verificados. Isto pode significar que alguém está a tentar intercetar esta comunicação ou simplesmente que alguém reinstalou o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Os seus números de segurança com %1$s e %2$s foram alterados. Isto poderá significar que alguém está a tentar intercetar esta comunicação ou simplesmente que alguém reinstalou o Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Os seus números de segurança com %1$s, %2$s e %3$sdeixaram de estar verificados. Isto poderá significar que alguém está a tentar intercetar esta comunicação ou simplesmente que alguém reinstalou o Signal.</string>
   <string name="IdentityUtil_untrusted_dialog_one">O seu número de segurança com %s foi alterado.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Os seus números de segurança com %1$s e %2$s foram alterados.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Os seus números de segurança com %1$s, %2$s e %3$s foram alterados.</string>
@@ -1672,7 +1672,7 @@
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Não foi encontrado nada</string>
   <!--log_submit_activity-->
-  <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores possam ver. Pode examinar o registo e editá-lo antes de o submeter.</string>
+  <string name="log_submit_activity__this_log_will_be_posted_online">Este registo será publicado on-line para que outros contribuidores o possam ver. Poderá examinar o registo e editá-lo antes de o submeter.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Gostaria de importar as suas mensagens de texto existentes para a base de dados encriptada do Signal?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">A base de dados padrão do sistema não será modificada ou alterada de nenhuma forma.</string>
@@ -1744,7 +1744,7 @@
   <string name="message_details_header__issues_need_your_attention">Alguns problemas requerem a sua atenção.</string>
   <string name="message_details_header__sent">Enviada</string>
   <string name="message_details_header__received">Recebida</string>
-  <string name="message_details_header__disappears">Desaparece</string>
+  <string name="message_details_header__disappears">Desaparece em</string>
   <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Pendente</string>
@@ -1770,7 +1770,7 @@
   <string name="AndroidManifest_remove_photo">Remover fotografia</string>
   <!--Message Requests Megaphone-->
   <string name="MessageRequestsMegaphone__message_requests">Pedidos de mensagem</string>
-  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Os utilizadores podem agora escolher para aceitar uma nova conversa. Os nomes de perfil permitem que as pessoas saibam com quem estão a conversar.</string>
+  <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Os utilizadores agora podem escolher para aceitar uma nova conversa. Os nomes de perfil permitem que as pessoas saibam com quem estão a conversar.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Adicionar nome de perfil</string>
   <!--HelpFragment-->
   <string name="HelpFragment__have_you_read_our_faq_yet">Ainda não leu o nosso FAQ?</string>
@@ -1788,7 +1788,7 @@
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Esta mensagem</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Recentemente utilizados</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys e Pessoas</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys e pessoas</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__nature">Natureza</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__food">Comida</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__activities">Atividades</string>
@@ -1836,9 +1836,9 @@
   <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
   <string name="preferences__pref_use_address_book_photos">Utilizar fotografias do livro de endereços</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Exibir se disponíveis as fotografias de contactos a partir do seu livro de endereços</string>
-  <string name="preferences__generate_link_previews">Gerar pré-visualizações de hiperligações</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupere ligações de pré-visualizações diretamente a partir de websites para as mensagens que enviar.</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Exibir (se disponíveis) as fotografias de contactos a partir do seu livro de endereços</string>
+  <string name="preferences__generate_link_previews">Gerar pré-visualizações de links</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupere pré-visualizações de links diretamente a partir de websites para as mensagens que enviar.</string>
   <string name="preferences__choose_identity">Escolher identidade</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha a sua entrada de contacto da lista de contactos.</string>
   <string name="preferences__change_passphrase">Alterar frase-chave</string>
@@ -1863,7 +1863,7 @@
   <string name="preferences__three_times">Três vezes</string>
   <string name="preferences__five_times">Cinco vezes</string>
   <string name="preferences__ten_times">Dez vezes</string>
-  <string name="preferences__vibrate">Vibração</string>
+  <string name="preferences__vibrate">Vibrar</string>
   <string name="preferences__green">Verde</string>
   <string name="preferences__red">Vermelho</string>
   <string name="preferences__blue">Azul</string>
@@ -1871,7 +1871,7 @@
   <string name="preferences__cyan">Cíano</string>
   <string name="preferences__magenta">Magenta</string>
   <string name="preferences__white">Branco</string>
-  <string name="preferences__none">Nenhum</string>
+  <string name="preferences__none">Nenhuma</string>
   <string name="preferences__fast">Rápido</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Lento</string>
@@ -2409,7 +2409,7 @@
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Pesquisar países</string>
   <!--CreateGroupActivity-->
-  <string name="CreateGroupActivity__skip">Ignorar</string>
+  <string name="CreateGroupActivity__skip">Saltar</string>
   <!--ShareActivity-->
   <string name="ShareActivity__share">Partilhar</string>
   <string name="ShareActivity__send">Enviar</string>
