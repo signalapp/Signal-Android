@@ -113,7 +113,14 @@ public class IncomingMessageProcessor {
 
       stopwatch.split("queue-check");
 
+      long ownerThreadId = DatabaseSessionLock.INSTANCE.getLikeyOwnerThreadId();
+      if (ownerThreadId != DatabaseSessionLock.NO_OWNER && ownerThreadId != Thread.currentThread().getId()) {
+        Log.i(TAG, "It is likely that some other thread has this lock. Owner: " + ownerThreadId + ", Us: " + Thread.currentThread().getId());
+      }
+
       try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+        Log.i(TAG, "Acquired lock while processing message " + envelope.getTimestamp() + ".");
+
         DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
         stopwatch.split("decrypt");
 
