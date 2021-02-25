@@ -67,7 +67,11 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
         fun toProto(): SignalServiceProtos.ConfigurationMessage.Contact? {
             val result = SignalServiceProtos.ConfigurationMessage.Contact.newBuilder()
             result.name = this.name
-            result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
+            try {
+                result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
+            } catch (e: Exception) {
+                return null
+            }
             if (!this.profilePicture.isNullOrEmpty()) {
                 result.profilePicture = this.profilePicture
             }
@@ -83,13 +87,13 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
 
     companion object {
 
-        fun getCurrent(contacts: List<Contact>): ConfigurationMessage {
+        fun getCurrent(contacts: List<Contact>): ConfigurationMessage? {
             val closedGroups = mutableListOf<ClosedGroup>()
             val openGroups = mutableListOf<String>()
             val sharedConfig = MessagingConfiguration.shared
             val storage = sharedConfig.storage
             val context = sharedConfig.context
-            val displayName = TextSecurePreferences.getProfileName(context)!!
+            val displayName = TextSecurePreferences.getProfileName(context) ?: return null
             val profilePicture = TextSecurePreferences.getProfilePictureURL(context)
             val profileKey = ProfileKeyUtil.getProfileKey(context)
             val groups = storage.getAllGroups()
