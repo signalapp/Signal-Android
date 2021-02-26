@@ -1407,7 +1407,7 @@
   <string name="dialog_link_device_master_mode_title_1">端末待ち</string>
   <string name="dialog_link_device_master_mode_title_2">リンクリクエストを受け取りました</string>
   <string name="dialog_link_device_master_mode_title_3">端末リンクの認証</string>
-  <string name="dialog_link_device_master_mode_explanation_1">他の端末でセッションをダウンロードし、ランディング画面の下部にある「既存のアカウントにリンク」をタップします。他の端末に既存のアカウントがある場合は、最初にそのアカウントを削除する必要があります。</string>
+  <string name="dialog_link_device_master_mode_explanation_1">他の端末でSessionをダウンロードし、ランディング画面の下部にある「既存のアカウントにリンク」をタップします。他の端末に既存のアカウントがある場合は、最初にそのアカウントを削除する必要があります。</string>
   <string name="dialog_link_device_master_mode_explanation_2">以下の単語が、他の端末に表示されている単語と一致することを確認してください。</string>
   <string name="dialog_link_device_master_mode_explanation_3">端末のリンクが作成されるまでお待ちください。これには 1 分ほどかかる場合があります。</string>
   <string name="dialog_link_device_master_mode_authorize_button_title">承認する</string>
