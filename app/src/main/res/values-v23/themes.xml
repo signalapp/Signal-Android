@@ -3,7 +3,7 @@
     <style name="TextSecure.LightTheme" parent="TextSecure.BaseLightTheme">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/white</item>
-        <item name="anndroid:navigationBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="TextSecure.BaseDarkTheme">
