@@ -36,7 +36,7 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
     Intent intent = new Intent(context, RegistrationNavigationActivity.class);
     intent.putExtra(RE_REGISTRATION_EXTRA, false);
 
-    if (intent != null) {
+    if (originalIntent != null) {
       intent.setData(originalIntent.getData());
     }
 
