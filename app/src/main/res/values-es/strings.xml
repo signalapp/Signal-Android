@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Ahora con más opciones en «Ajustes del grupo»</string>
   <string name="ConversationActivity_join">Unirse</string>
   <string name="ConversationActivity_full">Completa</string>
+  <string name="ConversationActivity_error_sending_media">Fallo al enviar adjunto</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensaje no leído</item>
@@ -822,7 +823,7 @@
   <string name="Megaphones_tap_and_hold_any_message_to_quicky_share_how_you_feel">Mantén pulsado un mensaje para mostrar cómo te sientes.</string>
   <string name="Megaphones_remind_me_later">Recordar más tarde</string>
   <string name="Megaphones_verify_your_signal_pin">Verifica tu PIN de Signal</string>
-  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente para verificar tu PIN para que así lo puedas recordar.</string>
+  <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">Te preguntaremos ocasionalmente verificar tu PIN para que así lo puedas recordar.</string>
   <string name="Megaphones_verify_pin">Verificar PIN</string>
   <string name="Megaphones_get_started">Comenzar</string>
   <string name="Megaphones_new_group">Nuevo grupo</string>
@@ -836,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">Atender llamada</string>
   <string name="NotificationBarManager__end_call">Finalizar llamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar llamada</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">¿Activar notificaciones?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">No te pierdas ni un mensaje de tus contactos o grupos.</string>
+  <string name="NotificationsMegaphone_turn_on">Activar</string>
+  <string name="NotificationsMegaphone_not_now">Ahora no</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensaje multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Descargando mensaje MMS</string>
@@ -1245,6 +1251,7 @@ número de teléfono
   <string name="RegistrationActivity_continue">Adelante</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Lleva la privacidad contigo.\nSé tú mism@ en todos tus mensajes.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Introduce tu número de teléfono</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asegúrate que tu teléfono tiene cobertura para recibir SMS o llamadas</string>
@@ -2164,7 +2171,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="KbsReminderDialog__incorrect_pin_try_again">PIN incorrecto. Inténtalo de nuevo.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">Cuenta bloqueada</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tu cuenta ha sido bloqueada para proteger tu privacidad y seguridad. Después de %1$d días con tu cuenta inactiva, podrás volver a registrar tu cuenta sin necesidad de tu PIN. Previamente se eliminará tu perfil, contactos, grupos y personas bloqueadas.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tu cuenta ha sido bloqueada para proteger tu privacidad y seguridad. Después de %1$d días con tu cuenta inactiva, podrás volver a registrar tu cuenta con un nuevo PIN. Previamente se eliminará tu perfil, contactos, grupos y personas bloqueadas.</string>
   <string name="AccountLockedFragment__next">Siguiente</string>
   <string name="AccountLockedFragment__learn_more">Saber más</string>
   <!--KbsLockFragment-->
@@ -2188,8 +2195,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
     <item quantity="other">PIN incorrecto. Te quedan %1$d intentos.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__if_you_run_out_of_attempts_your_account_will_be_locked_for_d_days">
-    <item quantity="one">Si superas el número de intentos, tu cuenta quedará bloqueada por %1$d día. Después de %1$d día con tu cuenta inactiva, podrás volver a registrarte sin tu PIN. Previamente, tu cuenta se eliminará junto con tu perfil, alias, grupos y personas bloqueadas.</item>
-    <item quantity="other">Si superas el número de intentos, tu cuenta quedará bloqueada por %1$d días. Después de %1$d días con tu cuenta inactiva, podrás volver a registrarte sin tu PIN. Previamente, tu cuenta se eliminará junto con tu perfil, contactos, grupos y personas bloqueadas.</item>
+    <item quantity="one">Si superas el número de intentos, tu cuenta quedará bloqueada por %1$d día. Después de %1$d día con tu cuenta inactiva, podrás volver a registrarte con un nuevo PIN. Previamente, tu cuenta se eliminará junto con tu perfil, alias, grupos y personas bloqueadas.</item>
+    <item quantity="other">Si superas el número de intentos, tu cuenta quedará bloqueada por %1$d días. Después de %1$d días con tu cuenta inactiva, podrás volver a registrarte con un nuevo PIN. Previamente, tu cuenta se eliminará junto con tu perfil, contactos, grupos y personas bloqueadas.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__you_have_d_attempts_remaining">
     <item quantity="one">Te queda %1$d intento.</item>

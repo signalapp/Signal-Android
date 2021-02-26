@@ -706,6 +706,11 @@
   <string name="NotificationBarManager__answer_call">ਕਾਲ ਦਾ ਜਵਾਬ ਦਿਓ</string>
   <string name="NotificationBarManager__end_call">ਕਾਲ ਦਾ ਅੰਤ</string>
   <string name="NotificationBarManager__cancel_call">ਕਾਲ ਰੱਦ ਕਰੋ</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">ਨੋਟੀਫਿਕੇਸ਼ਨ ਚਾਲੂ ਕਰਨੇ ਹਨ?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">ਆਪਣੇ ਸੰਪਰਕਾਂ ਤੇ ਗਰੁੱਪਾਂ ਤੋਂ ਸੁਨੇਹਾ ਕਦੇ ਨਾ ਖੁੰਝਾਓ।</string>
+  <string name="NotificationsMegaphone_turn_on">ਚਾਲੂ ਕਰੋ</string>
+  <string name="NotificationsMegaphone_not_now">ਹਾਲੇ ਨਹੀਂ</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ਮਲਟੀਮੀਡੀਆ ਸੁਨੇਹਾ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ਐਮਐਮਐਸ ਸੰਦੇਸ਼ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
@@ -967,6 +972,7 @@
   <string name="RegistrationActivity_continue">ਜਾਰੀ ਰੱਖੋ</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ਪਰਦੇਦਾਰੀ ਆਪਣੇ ਤੱਕ ਰੱਖੋ। \nਆਪਣੇ ਸੁਨੇਹੇ ਨੂੰ ਬੇਝਿਜਕ ਲਿਖੋ।</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣਾ ਫ਼ੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>
+  <string name="RegistrationActivity_enter_your_phone_number">ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ਤੁਹਾਨੂੰ ਇੱਕ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ ਮਿਲੇਗਾ. ਕੈਰੀਅਰ ਦਰ ਲਾਗੂ ਹੋ ਸਕਦੀ ਹੈ</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ਨੂੰ ਭੇਜਿਆ ਗਿਆ  ਕੋਡ ਦਰਜ ਕਰੋ </string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡੇ ਫੋਨ ਵਿੱਚ ਤੁਹਾਡਾ SMS ਜਾਂ ਕਾਲ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਸੈਲੁਲਰ ਸਿਗਨਲ ਹੈ</string>

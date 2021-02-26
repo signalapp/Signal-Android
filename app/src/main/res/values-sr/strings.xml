@@ -879,6 +879,11 @@
   <string name="NotificationBarManager__answer_call">Одговори на позив</string>
   <string name="NotificationBarManager__end_call">Окончај позив</string>
   <string name="NotificationBarManager__cancel_call">Откажи позив</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Укључите обавештења?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Никада не пропустите поруке од ваших контаката и група.</string>
+  <string name="NotificationsMegaphone_turn_on">Укључи</string>
+  <string name="NotificationsMegaphone_not_now">Не сада</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедијална порука</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Преузимам ММС поруку</string>
@@ -1306,6 +1311,7 @@
   <string name="RegistrationActivity_continue">Настави</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Обезбедите приватност где год се налазите.\nБудите својствени у свакој поруци.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">За почетак, унесите ваш број телефона</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Унесите ваш број телефона</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Примићете верификациони кôд. Могућа је наплата SMS-а.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Унесите кôд послат на %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Проверите да ли је телефонска мрежа доступна и да ли имате могућност примања SMS порука и позива</string>

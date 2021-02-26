@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">עוד אפשרויות עכשיו ב\"הגדרות קבוצה\"</string>
   <string name="ConversationActivity_join">הצטרף</string>
   <string name="ConversationActivity_full">מלאה</string>
+  <string name="ConversationActivity_error_sending_media">שגיאה בשליחת מדיה</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">הודעה %d לא נקראה</item>
@@ -922,6 +923,11 @@
   <string name="NotificationBarManager__answer_call">ענה לשיחה</string>
   <string name="NotificationBarManager__end_call">סיים שיחה</string>
   <string name="NotificationBarManager__cancel_call">בטל שיחה</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">להפעיל התראות?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">לעולם לא תפספס הודעה מאנשי הקשר והקבוצות שלך.</string>
+  <string name="NotificationsMegaphone_turn_on">הפעל</string>
+  <string name="NotificationsMegaphone_not_now">לא עכשיו</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">הודעת מולטימדיה</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">מוריד הודעת MMS</string>
@@ -1367,6 +1373,7 @@
   <string name="RegistrationActivity_continue">המשך</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
+  <string name="RegistrationActivity_enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">וודא שלטלפון שלך יש אות סלולרי לקבל מסרון או שיחה</string>

@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Teraz więcej opcji w \"Ustawienia grupy\"</string>
   <string name="ConversationActivity_join">Dołącz</string>
   <string name="ConversationActivity_full">Pełne</string>
+  <string name="ConversationActivity_error_sending_media">Błąd przy wysyłaniu multimediów</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nieprzeczytana wiadomość</item>
@@ -922,6 +923,11 @@
   <string name="NotificationBarManager__answer_call">Odbierz</string>
   <string name="NotificationBarManager__end_call">Zakończ</string>
   <string name="NotificationBarManager__cancel_call">Anuluj</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Włączyć powiadomienia?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nie przegap wiadomości od kontaktów i grup.</string>
+  <string name="NotificationsMegaphone_turn_on">Włącz</string>
+  <string name="NotificationsMegaphone_not_now">Nie teraz</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Wiadomość multimedialna</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Pobieranie wiadomości MMS</string>
@@ -1362,6 +1368,7 @@
   <string name="RegistrationActivity_continue">Kontynuuj</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Weź prywatność w swoje ręce.\nBądź sobą w każdej wiadomości.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Podaj swój numer telefonu</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Upewnij się, że Twój telefon ma połączenie z siecią komórkową, aby otrzymać wiadomość SMS lub połączenie</string>

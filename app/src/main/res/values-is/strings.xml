@@ -768,6 +768,9 @@
   <string name="NotificationBarManager__answer_call">Svara símtali</string>
   <string name="NotificationBarManager__end_call">Ljúka símtali</string>
   <string name="NotificationBarManager__cancel_call">Hætta við símtal</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on">Kveikja</string>
+  <string name="NotificationsMegaphone_not_now">Ekki núna</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Margmiðlunarskilaboð</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Sæki MMS-skilaboð</string>
@@ -1154,6 +1157,7 @@
   <string name="RegistrationActivity_continue">Áfram</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Hafðu gagnaleyndina með þér.\nLáttu öll skilaboðin þín vera frá þér.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Settu inn símanúmerið þitt til að komast í gang</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Settu inn símanúmerið þitt</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Þú munt fá sendan sannvottunarkóða. Gjöld vegna farsímanotkunar gætu fallið til.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Settu inn kóðann sem við sendum á %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Gakktu úr skugga um að síminn þinn nái farsímamerki til að geta fengið SMS eða símhringingu</string>

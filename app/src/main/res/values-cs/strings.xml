@@ -922,6 +922,11 @@
   <string name="NotificationBarManager__answer_call">Přijmout hovor</string>
   <string name="NotificationBarManager__end_call">Ukončit hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušit hovor</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Zapnout Notifikace?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nezmeškejte žádnou zprávu od svých kontaktů a skupin.</string>
+  <string name="NotificationsMegaphone_turn_on">Zapnout</string>
+  <string name="NotificationsMegaphone_not_now">Teď ne</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediální zpráva</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Stahuji MMS zprávu</string>
@@ -1366,6 +1371,7 @@ telefonní číslo
   <string name="RegistrationActivity_continue">Pokračovat</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Noste soukromí s sebou.\nBuďte sami sebou v každé zprávě.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Začněte zadáním telefonního čísla</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Zadejte vaše tel. číslo</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Bude vám zaslán ověřovací kód. Zaslání může být zpoplatněno.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadejte kód, který jsme vám zaslali %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pro příjem SMS a hovorů se ujistěte, že váš telefon má mobilní signál </string>

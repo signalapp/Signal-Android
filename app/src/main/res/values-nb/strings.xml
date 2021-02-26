@@ -836,6 +836,11 @@
   <string name="NotificationBarManager__answer_call">Svar på anrop</string>
   <string name="NotificationBarManager__end_call">Avslutt samtale</string>
   <string name="NotificationBarManager__cancel_call">Avbryt samtale</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Skru på Varsler?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Gå aldri glipp av en melding fra kontaktene og gruppene dine.</string>
+  <string name="NotificationsMegaphone_turn_on">Slå på</string>
+  <string name="NotificationsMegaphone_not_now">Ikke nå</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediamelding</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laster ned MMS-melding</string>
@@ -1241,6 +1246,7 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_continue">Fortsett</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ta personvernet med deg.\nVær deg selv i hver melding.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Skriv inn ditt telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pass på at din telefon har dekning for å kunne motta SMS eller samtaler.</string>

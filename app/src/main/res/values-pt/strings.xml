@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Agora mais opções nas \"Definições de grupo\"</string>
   <string name="ConversationActivity_join">Entrar</string>
   <string name="ConversationActivity_full">Cheio(a)</string>
+  <string name="ConversationActivity_error_sending_media">Erro ao enviar multimédia</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -836,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">Atender chamada</string>
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Ativar notificações?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nunca perca uma mensagem dos seus contactos e grupos.</string>
+  <string name="NotificationsMegaphone_turn_on">Ativar</string>
+  <string name="NotificationsMegaphone_not_now">Agora não</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimédia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">A descarregar MMS</string>
@@ -1244,6 +1250,7 @@
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\Seja você mesmo em todas as mensagens.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Para começar introduza o seu número de telefone</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Introduza o sue número de telefone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Irá receber um código de verificação. Poderão existir custos por parte da sua operadora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduza o código que enviamos para %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Confirme que o seu telemóvel tem sinal de rede para receber SMS ou chamadas</string>
@@ -1911,12 +1918,12 @@
   <string name="preferences__submit_debug_log">Submeter registo de depuração</string>
   <string name="preferences__delete_account">Eliminar conta</string>
   <string name="preferences__support_wifi_calling">Modo de compatibilidade \"Chamada Wi-Fi\"</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ative caso o seu dispositivo utiliza a entrega de SMS/MMS através do Wi-Fi (ative apenas caso a \'Chamada Wi-Fi\' esteja ativa neste dispositivo)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Ative caso o seu dispositivo utiliza a entrega de SMS/MMS através do Wi-Fi (ative apenas caso a \'Chamada Wi-Fi\' esteja ativada neste dispositivo)</string>
   <string name="preferences__incognito_keyboard">Teclado anónimo</string>
   <string name="preferences__read_receipts">Recibos de leitura</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não poderá ver os recibos enviados por outros.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Se os recibos de leitura forem desativados, não poderá ver os recibos de leitura relativos às mensagens enviadas.</string>
   <string name="preferences__typing_indicators">Indicadores de escrita</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita de outros utilizadores.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita relativos a outros utilizadores.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Solicitar ao teclado para desativar a aprendizagem personalizada. Esta configuração não está garantida e o seu teclado poderá ignorá-la.</string>
   <string name="preferences_app_protection__blocked_users">Utilizadores bloqueados</string>
   <string name="preferences_chats__when_using_mobile_data">Ao utilizar os dados móveis</string>
@@ -1942,7 +1949,7 @@
   <string name="preferences_storage__one_year">1 ano</string>
   <string name="preferences_storage__six_months">6 meses</string>
   <string name="preferences_storage__thirty_days">30 dias</string>
-  <string name="preferences_storage__none">Nenhum(a)</string>
+  <string name="preferences_storage__none">Ilimitado</string>
   <string name="preferences_storage__s_messages">%1$s mensagens</string>
   <string name="preferences_storage__custom">Personalizado</string>
   <string name="preferences_advanced__use_system_emoji">Utilizar os emojis do sistema</string>
@@ -2040,7 +2047,7 @@
   <string name="conversation_list__chats">Conversas</string>
   <string name="conversation_list__you_can_only_pin_up_to_d_chats">Apenas pode afixar até %1$d conversas</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">Foto de contacto</string>
+  <string name="conversation_list_item_view__contact_photo_image">Fotografia de contacto</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nova conversa</string>
@@ -2085,14 +2092,14 @@
   <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
   <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
-  <string name="media_preview__save_title">Gravar</string>
+  <string name="media_preview__save_title">Guardar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
   <string name="media_preview__share_title">Partilhar</string>
   <string name="media_preview__all_media_title">Toda a multimédia</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de multimédia</string>
   <!--new_conversation_activity-->
-  <string name="new_conversation_activity__refresh">Recarregar</string>
+  <string name="new_conversation_activity__refresh">Atualizar</string>
   <!--redphone_audio_popup_menu-->
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -2175,9 +2182,9 @@
   <string name="RegistrationLockFragment__forgot_pin">Esqueceu-se do PIN?</string>
   <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu-se do seu PIN?</string>
-  <string name="RegistrationLockFragment__not_many_tries_left">Restam poucas tentativas!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registo Signal - Necessita de Ajuda com o PIN para Android (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registo Signal - Necessita de Ajuda com o PIN para Android (v2 PIN)</string>
+  <string name="RegistrationLockFragment__not_many_tries_left">Restam-lhe poucas tentativas!</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registo Signal - Necessita de ajuda com o PIN para Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registo Signal - Necessita de ajuda com o PIN para Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dia de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>
     <item quantity="other">Para sua segurança e privacidade, não existe forma de recuperar o seu PIN. Se não se consegue recordar do seu PIN, pode reverificá-lo através de SMS após %1$d dias de inatividade. Neste caso, a sua conta será limpa e todo o conteúdo eliminado.</item>
@@ -2321,7 +2328,7 @@
   <string name="RecipientBottomSheet_message_description">Mensagem</string>
   <string name="RecipientBottomSheet_voice_call_description">Chamada de voz</string>
   <string name="RecipientBottomSheet_insecure_voice_call_description">Chamada de voz insegura</string>
-  <string name="RecipientBottomSheet_video_call_description">Vídeochamada</string>
+  <string name="RecipientBottomSheet_video_call_description">Videochamada</string>
   <string name="RecipientBottomSheet_remove_s_as_group_admin">Remover %1$s de administrador de grupo?</string>
   <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">\"%1$s\" será capaz de editar este grupo e os seus membros.</string>
   <string name="RecipientBottomSheet_remove_s_from_the_group">Remover %1$s deste grupo?</string>
@@ -2428,12 +2435,12 @@
   <string name="ChatWallpaperFragment__clear_wallpaper">Limpar fundo de ecrã</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Limpar fundo de ecrã para esta conversa?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Limpar fundo de ecrã? Isto não irá limpar fundos de ecrã personalizados que tenha definido para as suas conversas.</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers">Repor todos os fundos</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers">Repor todos os fundos de ecrã</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Repor todos os fundos de ecrã, incluindo os fundos de ecrã personalizados que definiu para as suas conversas?</string>
   <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
   <string name="ChatWallpaperFragment__reset">Reiniciar</string>
   <string name="ChatWallpaperFragment__clear">Limpar</string>
-  <string name="ChatWallpaperFragment__wallpaper_preview_description">Pré-visualização de fundo</string>
+  <string name="ChatWallpaperFragment__wallpaper_preview_description">Pré-visualização de fundo de ecrã</string>
   <!--ChatWallpaperSelectionFragment-->
   <string name="ChatWallpaperSelectionFragment__choose_from_photos">Escolher das fotografias</string>
   <string name="ChatWallpaperSelectionFragment__presets">Predefinições</string>
@@ -2441,16 +2448,16 @@
   <string name="ChatWallpaperPreviewActivity__preview">Pré-visualização</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Definir fundo de ecrã</string>
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Deslize para pré-visualizar mais fundos de ecrã</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir fundo para  todas as conversas</string>
-  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir fundo para %1$s</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Definir fundo de ecrã para  todas as conversas</string>
+  <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Definir fundo de ecrã para %1$s</string>
   <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ver a sua galeria exige ter permissão de armazenamento.</string>
   <!--WallpaperImageSelectionActivity-->
-  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolha a imagem do fundo</string>
+  <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolha a imagem do fundo de ecrã</string>
   <!--WallpaperCropActivity-->
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince para ampliar, arraste para ajustar</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir fundo para todas as conversas.</string>
-  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir fundo para %s.</string>
-  <string name="WallpaperCropActivity__error_setting_wallpaper">Ocorreu um erro ao tentar definir o fundo.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Definir fundo de ecrã para todas as conversas.</string>
+  <string name="WallpaperCropActivity__set_wallpaper_for_s">Definir fundo de ecrã para %s.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">Ocorreu um erro ao tentar definir o fundo de ecrã.</string>
   <string name="WallpaperCropActivity__blur_photo">Desfocar fotografia</string>
   <!--EOF-->
 </resources>

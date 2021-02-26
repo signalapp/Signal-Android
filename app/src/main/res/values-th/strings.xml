@@ -776,6 +776,10 @@
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
   <string name="NotificationBarManager__cancel_call">ยกเลิกการโทร</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">เปิดการแจ้งเตือน?</string>
+  <string name="NotificationsMegaphone_turn_on">เปิด</string>
+  <string name="NotificationsMegaphone_not_now">ไม่ใช่ตอนนี้</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ข้อความมัลติมีเดีย</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">กำลังดาวน์โหลดข้อความ MMS</string>

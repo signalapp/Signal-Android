@@ -924,6 +924,11 @@ Send neges heb ei ddiogelu?</string>
   <string name="NotificationBarManager__answer_call">Ateb galwad</string>
   <string name="NotificationBarManager__end_call">Gorffen galwad</string>
   <string name="NotificationBarManager__cancel_call">Diffodd galwad</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Galluogi Hysbysiadau?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Peidiwch byth â methu neges gan eich cysylltiadau a\'ch grwpiau.</string>
+  <string name="NotificationsMegaphone_turn_on">Troi ymlaen</string>
+  <string name="NotificationsMegaphone_not_now">Nid nawr</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Neges amlgyfrwng</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Llwytho i lawr neges MMS</string>
@@ -1369,6 +1374,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_continue">Parhau</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Cymrwch breifatrwydd gyda chi.\nByddwch chi eich hun ymhob neges.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Rhowch eich rhif ffôn i gychwyn arni</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Rhowch eich rhif ffôn</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Gwnewch yn siŵr fod gan eich ffôn signal cellol er mwyn derbyn eich SMS neu alwad</string>

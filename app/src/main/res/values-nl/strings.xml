@@ -235,6 +235,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Er zijn vanaf nu meer opties in de ‘Groepsinstellingen’</string>
   <string name="ConversationActivity_join">Deelnemen</string>
   <string name="ConversationActivity_full">Vol</string>
+  <string name="ConversationActivity_error_sending_media">Fout bij het verzenden van media</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ongelezen bericht</item>
@@ -838,6 +839,11 @@
   <string name="NotificationBarManager__answer_call">Oproep beantwoorden</string>
   <string name="NotificationBarManager__end_call">Oproep beëindigen</string>
   <string name="NotificationBarManager__cancel_call">Oproep annuleren</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Meldingen inschakelen?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Mis nooit een melding van je contactpersonen en groepen.</string>
+  <string name="NotificationsMegaphone_turn_on">Inschakelen</string>
+  <string name="NotificationsMegaphone_not_now">Niet nu</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediabericht</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Mms-bericht aan het downloaden</string>
@@ -1249,6 +1255,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="RegistrationActivity_continue">Doorgaan</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem je privacy met je mee.\nWees jezelf in elk bericht.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>

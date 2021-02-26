@@ -181,7 +181,7 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищенный сеанс?</string>
+  <string name="ConversationActivity_reset_secure_session_question">Сбросить защищённый сеанс?</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">Это может помочь, если у вас возникли проблемы с шифрованием в этом разговоре. Ваши сообщения будут сохранены.</string>
   <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">В «Настройках группы» стало больше опций</string>
   <string name="ConversationActivity_join">Войти</string>
   <string name="ConversationActivity_full">Заполнен</string>
+  <string name="ConversationActivity_error_sending_media">Ошибка при отправке медиафайла</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитанное сообщение</item>
@@ -300,8 +301,8 @@
   <string name="ConversationFragment_contact_us">Связаться с нами</string>
   <string name="ConversationFragment_verify">Подтвердить</string>
   <string name="ConversationFragment_not_now">Не сейчас</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безопасности с %s изменился</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтвердить», чтобы проверить новый код безопасности. Это необязательно.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш с %s код безопасности изменился</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш с %s код безопасности изменился — скорее всего потому, что этот собеседник переустановил Signal или сменил устройство. Нажмите «Подтвердить», чтобы проверить новый код безопасности. Это необязательно.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Удалить выбранный разговор?</item>
     <item quantity="few">Удалить выбранные разговоры?</item>
@@ -922,6 +923,11 @@
   <string name="NotificationBarManager__answer_call">Ответить</string>
   <string name="NotificationBarManager__end_call">Завершить</string>
   <string name="NotificationBarManager__cancel_call">Отменить</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Включить уведомления?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Чтобы не пропускать сообщения от ваших контактов и групп.</string>
+  <string name="NotificationsMegaphone_turn_on">Включить</string>
+  <string name="NotificationsMegaphone_not_now">Не сейчас</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">MMS-сообщение</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Скачивание MMS-сообщения</string>
@@ -1061,7 +1067,7 @@
   <!--GV2 title change-->
   <string name="MessageRecord_you_changed_the_group_name_to_s">Вы изменили имя группы на «%1$s».</string>
   <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s изменил(-а) имя группы на «%2$s».</string>
-  <string name="MessageRecord_the_group_name_has_changed_to_s">Имя группы было изменено на «%1$s».</string>
+  <string name="MessageRecord_the_group_name_has_changed_to_s">Имя группы изменилось на «%1$s».</string>
   <!--GV2 avatar change-->
   <string name="MessageRecord_you_changed_the_group_avatar">Вы изменили аватар группы.</string>
   <string name="MessageRecord_s_changed_the_group_avatar">%1$s изменил(-а) аватар группы.</string>
@@ -1078,11 +1084,11 @@
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Вы включили ссылку на группу с отключённым одобрением администратора.</string>
   <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Вы включили ссылку на группу с включённым одобрением администратора.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Вы отключили ссылку на группу.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s включил(-а) ссылку на группу с отключённым одобрением администратора.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s включил(-а) ссылку на группу со включённым одобрением администратора.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s включил(-а) ссылку на группу (одобрение администратором отключено).</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s включил(-а) ссылку на группу (одобрение администратором включено).</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s отключил(-а) ссылку на группу.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Ссылка на группу была включена с отключённым одобрением администратора.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Ссылка на группу была включена со включённым одобрением администратора.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Была включена ссылка на группу (одобрение администратором отключено).</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Была включена ссылка на группу (одобрение администратором включено).</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Ссылка на группу была отключена.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Вы отключили одобрение администратора для ссылки на группу.</string>
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s отключил(-а) одобрение администратора для ссылки на группу.</string>
@@ -1099,7 +1105,7 @@
   <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s присоединился(-лась) к группе по ссылке на группу.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">Вы отправили запрос на присоединение к группе.</string>
-  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s запросил(-а) присоединиться по ссылке на группу.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s запросил(-а) присоединение к группе по ссылке.</string>
   <!--GV2 group link approvals-->
   <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s принял(-а) ваш запрос на присоединение к группе.</string>
   <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s принял(-а) запрос на присоединение к группе от %2$s.</string>
@@ -1148,15 +1154,15 @@
   <string name="MessageRequestBottomView_delete">Удалить</string>
   <string name="MessageRequestBottomView_block">Заблокировать</string>
   <string name="MessageRequestBottomView_unblock">Разблокировать</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Он не узнает, что вы видели его сообщение, пока вы не примете.</string>
-  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и поделиться своими именем и фото с этим человеком? Вы не получите никаких сообщений, пока не разблокируете его.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и поделиться своими именем и фото с её участниками?</string>
-  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не поделились своими именем или фото с этой группой, будут приглашены присоединиться.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Он не узнает, что вы видели его сообщение, пока вы не примете запрос.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Разрешить %1$s отправлять вам сообщения и открыть ваше имя и фото этому человеку? Вы не получите никаких сообщений, пока не разблокируете его.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Продолжить ваш разговор с этой группой и открыть ваше имя и фото её участникам?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Обновите эту группу, чтобы активировать такие новые функции, как @упоминания и администраторы групп. Участники, которые ещё не открыли свои имена или фото этой группе получат приглашение присоединиться.</string>
   <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Эта Старая группа больше не может быть использована, потому что она слишком большая. Максимальный размер группы — %1$d.</string>
-  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш разговор с %1$s и поделиться своими именем и фото с этим человеком?</string>
-  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и поделиться своими именем и фото с её участниками? Они не узнают, что вы видели их сообщения, пока вы не примете.</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Продолжить ваш разговор с %1$s и открыть ваше имя и фото этому человеку?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе и открыть ваше имя и фото её участникам? Они не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Присоединиться к этой группе? Её участники не узнают, что вы видели их сообщения, пока вы не примете запрос.</string>
-  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и поделиться своими именем и фото с её участниками? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
+  <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Разблокировать эту группу и открыть ваше имя и фото её участникам? Вы не будете получать сообщений, пока не разблокируете эту группу.</string>
   <string name="MessageRequestProfileView_member_of_one_group">Состоит в %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Состоит в %1$s и %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Состоит в %1$s, %2$s и %3$s</string>
@@ -1167,10 +1173,10 @@
     <item quantity="other">%1$d участников</item>
   </plurals>
   <plurals name="MessageRequestProfileView_members_and_invited">
-    <item quantity="one">%1$d участник (+%2$d приглашен(-о))</item>
-    <item quantity="few">%1$d участника (+%2$d приглашен(-о))</item>
-    <item quantity="many">%1$d участников (+%2$d приглашен(-о))</item>
-    <item quantity="other">%1$d участников (+%2$d приглашен(-о))</item>
+    <item quantity="one">%1$d участник (+%2$d приглашён))</item>
+    <item quantity="few">%1$d участника (+%2$d приглашено)</item>
+    <item quantity="many">%1$d участников (+%2$d приглашено)</item>
+    <item quantity="other">%1$d участников (+%2$d приглашено)</item>
   </plurals>
   <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
     <item quantity="one">ещё %d группы</item>
@@ -1299,7 +1305,7 @@
   <string name="WebRtcCallView__your_video_is_off">Ваше видео отключено</string>
   <string name="WebRtcCallView__reconnecting">Переподключаемся…</string>
   <string name="WebRtcCallView__joining">Присоединяемся…</string>
-  <string name="WebRtcCallView__disconnected">Отключён</string>
+  <string name="WebRtcCallView__disconnected">Отключено</string>
   <string name="WebRtcCallView__no_one_else_is_here">Здесь нет никого, кроме вас</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s в этом звонке</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s и %2$s в этом звонке</string>
@@ -1322,7 +1328,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Вы не будете получать аудио и видео этого участника, и он не будет получать ваши.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Невозможно получать аудио и видео от %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Невозможно получать аудио и видео от %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Причина может заключаться в том, что этот участник не проверил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Возможно, это из-за того, что этот участник не подтвердил изменение вашего кода безопасности, что есть какая-то проблема с его устройством или что он вас заблокировал.</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Прокси-сервер</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Адрес прокси</string>
@@ -1336,8 +1342,8 @@
   <string name="RegistrationActivity_invalid_number">Неверный номер</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Указанный вами номер (%s) недействителен.</string>
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">Код подтверждения будет отправлен на:</string>
-  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Вы получите звонок, чтобы проверить этот номер.</string>
-  <string name="RegistrationActivity_is_your_phone_number_above_correct">Правильный ли ваш номер телефона выше?</string>
+  <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">Вы получите звонок, чтобы подтвердить этот номер.</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">Правильно ли указан ваш номер телефона выше?</string>
   <string name="RegistrationActivity_edit_number">Изменить номер</string>
   <string name="RegistrationActivity_missing_google_play_services">Отсутствуют Службы Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">На устройстве отсутствуют Службы Google Play. Вы можете продолжить использование Signal, но надёжность или производительность могут снизиться.\n\nЕсли вы не продвинутый пользователь, не используете стороннюю прошивку Android или считаете, что видите это сообщение по ошибке, обратитесь в службу поддержки по адресу support@signal.org для помощи с устранением неполадок.</string>
@@ -1346,7 +1352,7 @@
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Службы Google Play обновляются или временно недоступны. Пожалуйста, попробуйте еще раз.</string>
   <string name="RegistrationActivity_terms_and_privacy">Условия и Политика конфиденциальности</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам и медиафайлам, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам для того, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal необходим доступ к вашим контактам, чтобы вы могли связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
   <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -1360,6 +1366,7 @@
   <string name="RegistrationActivity_continue">Продолжить</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Возьмите\nконфиденциальность\nс собой.\nБудьте собой в каждом сообщении.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введите свой номер телефона, чтобы начать</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Введите свой номер телефона</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Вы получите код подтверждения. Вашим оператором может взиматься плата за входящее SMS.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Введите код, который мы отправили на %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Убедитесь, что ваш телефон находится в зоне действия сети и сможет принять SMS или звонок</string>
@@ -1503,7 +1510,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Имена пользователей не могут начинаться с цифр.</string>
   <string name="UsernameEditFragment_username_is_invalid">Имя пользователя недействительно.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Имена пользователей должны содержать от %1$d до %2$d символов.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Имена пользователей в Signal необязательны. Если вы решите создать имя пользователя, другие пользователи Signal смогут найти вас по этому имени пользователя и связаться с вами, не зная вашего номера телефона.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">Имена пользователей в Signal необязательны. Если вы решите создать имя пользователя, другие пользователи Signal смогут найти вас по нему и связаться с вами, не зная вашего номера телефона.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d ваш контакт уже в Signal!</item>
     <item quantity="few">%d ваших контакта уже в Signal!</item>
@@ -1548,7 +1555,7 @@
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
-  <string name="MediaPreviewActivity_media_no_longer_available">Медиа больше не доступно.</string>
+  <string name="MediaPreviewActivity_media_no_longer_available">Медиафайл больше не доступен.</string>
   <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не найдено приложение, в котором можно поделиться этим медиафайлом.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
@@ -1632,8 +1639,8 @@
   <string name="WebRtcCallScreen__answer_without_video">Ответить без видео</string>
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Аудиовыход</string>
-  <string name="WebRtcAudioOutputToggle__phone_earpiece">Наушник телефона</string>
-  <string name="WebRtcAudioOutputToggle__speaker">Динамик</string>
+  <string name="WebRtcAudioOutputToggle__phone_earpiece">Динамик телефона</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Громкая связь</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <string name="WebRtcCallControls_answer_call_description">Ответить на звонок</string>
   <string name="WebRtcCallControls_reject_call_description">Отклонить звонок</string>
@@ -1659,7 +1666,7 @@
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Ошибка при получении контактов, проверьте подключение к сети</string>
   <string name="ContactSelectionListFragment_username_not_found">Имя пользователя не найдено</string>
   <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» — не пользователь Signal. Пожалуйста, проверьте имя пользователя и попробуйте ещё раз.</string>
-  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Вам не нужно добавлять самого себя в группу</string>
+  <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">Вам не нужно добавлять себя в группу</string>
   <string name="ContactSelectionListFragment_maximum_group_size_reached">Достигнут максимальный размер группы</string>
   <string name="ContactSelectionListFragment_signal_groups_can_have_a_maximum_of_d_members">В группах Signal могут находиться максимум %1$d участников.</string>
   <string name="ContactSelectionListFragment_recommended_member_limit_reached">Достигнут рекомендуемый предел участников</string>
@@ -1843,7 +1850,7 @@
   <string name="CreateProfileActivity_next">Далее</string>
   <string name="CreateProfileActivity__username">Имя пользователя</string>
   <string name="CreateProfileActivity__create_a_username">Создать имя пользователя</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Пользовательские имена и фото групп MMS будут видны только вам.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Имена и фото групп MMS будут видны только вам.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Обо мне</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Напишите несколько слов о себе…</string>
@@ -1934,7 +1941,7 @@
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__objects">Предметы</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Символы</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Флаги</string>
-  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Текстовые смайлики</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Смайлики</string>
   <!--arrays.xml-->
   <string name="arrays__use_default">Использовать настройку по умолчанию</string>
   <string name="arrays__use_custom">Использовать пользовательскую настройку</string>
@@ -2041,7 +2048,7 @@
   <string name="preferences__chat_wallpaper">Обои чата</string>
   <string name="preferences__disable_pin">Отключить PIN-код</string>
   <string name="preferences__enable_pin">Включить PIN-код</string>
-  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вы не создадите и восстановите резервную копию вручную). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
+  <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Если вы отключите PIN-код, то потеряете все данные, когда переустановите Signal (если вручную не создадите и не восстановите резервную копию). Вы не можете включить блокировку регистрации, когда PIN-код отключён.</string>
   <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, чтобы только вы могли иметь в ней к ней доступ. Если вы переустановите Signal, ваши профиль, настройки и контакты будут восстановлены. Чтобы открыть приложение, PIN-код не понадобится.</string>
   <string name="preferences__system_default">По умолчанию</string>
   <string name="preferences__language">Язык (Language)</string>
@@ -2074,10 +2081,10 @@
   <string name="preferences_storage__clear_message_history">Очистить историю сообщений?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Все сообщения и медиа, которые старее, чем %1$s, будут безвозвратно удалены с вашего устройства.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Все разговоры будут безвозвратно обрезаны до %1$s самых новых сообщений.</string>
-  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиа будут безвозвратно удалены с вашего устройства.</string>
+  <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Все сообщения и медиафайлы будут безвозвратно удалены с вашего устройства.</string>
   <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Вы действительно хотите удалить всю историю сообщений?</string>
-  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие не может быть отменено.</string>
-  <string name="preferences_storage__delete_all_now">Удалить все сейчас</string>
+  <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Вся история сообщений будет безвозвратно удалена. Это действие невозможно отменено.</string>
+  <string name="preferences_storage__delete_all_now">Удалить всё сейчас</string>
   <string name="preferences_storage__forever">Бессрочно</string>
   <string name="preferences_storage__one_year">1 год</string>
   <string name="preferences_storage__six_months">6 месяцев</string>
@@ -2095,11 +2102,11 @@
   <string name="preferences_chats__chats">Чаты</string>
   <string name="preferences_data_and_storage__manage_storage">Управлять хранилищем</string>
   <string name="preferences_data_and_storage__calls">Звонки</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Использовать меньше данных для звонков</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Экономить трафик для звонков</string>
   <string name="preferences_data_and_storage__never">Никогда</string>
   <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильный интернет</string>
   <string name="preferences_data_and_storage__cellular_only">Только мобильный интернет</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Использование меньшего количества данных может улучшить звонки при плохой связи</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Экономия трафика может улучшить звонки при плохой связи</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки внутри чата</string>
@@ -2117,24 +2124,24 @@
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
-  <string name="preferences_setup_a_username">Настройте имя пользователя</string>
+  <string name="preferences_setup_a_username">Создать имя пользователя</string>
   <string name="preferences_proxy">Прокси</string>
   <string name="preferences_use_proxy">Использовать прокси</string>
   <string name="preferences_off">Отключено</string>
   <string name="preferences_on">Включено</string>
   <string name="preferences_proxy_address">Адрес прокси</string>
-  <string name="preferences_only_use_a_proxy_if">Используйте прокси, только если вы не можете подключиться к Signal через мобильный интернет или Wi-Fi.</string>
+  <string name="preferences_only_use_a_proxy_if">Используйте прокси только если вы не можете подключиться к Signal через мобильный интернет или Wi-Fi.</string>
   <string name="preferences_share">Поделиться</string>
   <string name="preferences_save">Сохранить</string>
-  <string name="preferences_connecting_to_proxy">Подключение к прокси…</string>
-  <string name="preferences_connected_to_proxy">Signal подключён к прокси</string>
+  <string name="preferences_connecting_to_proxy">Подключаемся к прокси…</string>
+  <string name="preferences_connected_to_proxy">Подключено к прокси</string>
   <string name="preferences_connection_failed">Подключение не удалось</string>
   <string name="preferences_couldnt_connect_to_the_proxy">Не удалось подключиться к прокси. Проверьте адрес прокси и попробуйте ещё раз.</string>
-  <string name="preferences_you_are_connected_to_the_proxy">Signal подключён к прокси. Вы можете отключить прокси в любое время в настройках.</string>
+  <string name="preferences_you_are_connected_to_the_proxy">Вы подключены к прокси. Вы можете отключить прокси в любое время в настройках.</string>
   <string name="preferences_success">Успех</string>
   <string name="preferences_failed_to_connect">Не удалось подключиться</string>
   <string name="preferences_enter_proxy_address">Введите адрес прокси</string>
-  <string name="configurable_single_select__customize_option">Изменить опцию</string>
+  <string name="configurable_single_select__customize_option">Настроить опцию</string>
   <!--Internal only preferences-->
   <!--****************************************-->
   <!--menus-->
@@ -2290,7 +2297,7 @@
   <string name="ConfirmKbsPinFragment__creating_pin">Создание PIN-кода…</string>
   <!--KbsSplashFragment-->
   <string name="KbsSplashFragment__introducing_pins">Представляем PIN-коды</string>
-  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен для открытия приложения.</string>
+  <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN-коды шифруют информацию, хранящуюся в сервисе Signal, так что только вы можете получить к ней доступ. Ваши профиль, настройки и контакты будут восстановлены, если вы переустановите Signal. Ваш PIN-код не нужен, чтобы открыть приложение.</string>
   <string name="KbsSplashFragment__learn_more">Узнать больше</string>
   <string name="KbsSplashFragment__registration_lock_equals_pin">Блокировка регистрации = PIN-код</string>
   <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">«Блокировка регистрации» теперь называется «PIN-код» и умеет больше. Обновите его прямо сейчас.</string>
@@ -2353,18 +2360,18 @@
     <item quantity="other">Осталось %1$d попыток.</item>
   </plurals>
   <!--CalleeMustAcceptMessageRequestDialogFragment-->
-  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s получит от вас запрос на общение. Вы сможете звонить после того, как ваш запрос на общение будет принят.</string>
+  <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s получит от вас запрос на общение. Вы сможете позвонить после того, как ваш запрос будет принят.</string>
   <!--KBS Megaphone-->
   <string name="KbsMegaphone__create_a_pin">Создать PIN-код</string>
   <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-коды шифруют информацию, хранящуюся в сервисе Signal.</string>
   <string name="KbsMegaphone__create_pin">Создать PIN-код</string>
   <!--Research Megaphone-->
   <string name="ResearchMegaphone_tell_signal_what_you_think">Расскажите Signal, что вы думаете</string>
-  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Чтобы сделать Signal лучшим приложением для обмена сообщениями на планете, мы были бы рады услышать вашу обратную связь.</string>
+  <string name="ResearchMegaphone_to_make_signal_the_best_messaging_app_on_the_planet">Чтобы сделать Signal лучшим мессенджером на свете, мы были бы рады услышать ваши комментарии.</string>
   <string name="ResearchMegaphone_learn_more">Узнать больше</string>
   <string name="ResearchMegaphone_dismiss">Закрыть</string>
   <string name="ResearchMegaphoneDialog_signal_research">Исследование Signal</string>
-  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Мы верим в конфиденциальность.</b></p><p>Signal не следит за вами и не собирает ваши данные. Чтобы улучшать Signal для всех, мы полагаемся на обратную связь от пользователей, <b>и мы были бы рады услышать вашу.</b></p><p>Мы проводим опрос, чтобы понять, как вы используете Signal. Наш опрос не собирает никакой информации, которая идентифицирует вас. Если вам интересно поделиться дополнительной обратной связью, у вас будет опция предоставить контактную информацию.</p><p>Если у вас есть несколько минут и обратная связь, которой вы хотите поделиться, мы были бы рады услышать от вас.</p>]]></string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>Мы верим в конфиденциальность.</b></p><p>Signal не следит за вами и не собирает ваши данные. Чтобы улучшать Signal для всех, мы полагаемся на обратную связь от пользователей, <b>и были бы рады услышать ваши комментарии.</b></p><p>Мы проводим опрос, чтобы понять, как вы используете Signal. Наш опрос не собирает никакой информации, которая идентифицирует вас. Если вам интересно поделиться дополнительными комментариями, вы сможете оставить свою контактную информацию.</p><p>Если у вас есть несколько минут и комментарии, которыми вы хотите поделиться, мы были бы рады вас услышать.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">Пройти опрос</string>
   <string name="ResearchMegaphoneDialog_no_thanks">Нет, спасибо</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">Опрос размещён Alchemer на безопасном домене surveys.signalusers.org</string>
@@ -2382,7 +2389,7 @@
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Разблокируйте для просмотра ожидающих сообщений</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Парольная фраза резервной копии</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Резервные копии будут сохранены во внешнем хранилище и зашифрованы с помощью приведённой ниже парольной фразы. У вас должна быть эта фраза, чтобы восстановить резервную копию.</string>
-  <string name="backup_enable_dialog__you_must_have_this_passphrase">У вас должна быть эта парольная фраза, чтобы восстановить резервную копию.</string>
+  <string name="backup_enable_dialog__you_must_have_this_passphrase">Вам понадобится эта парольная фраза, чтобы восстановить резервную копию.</string>
   <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал(-а) эту парольную фразу. Без неё я не смогу восстановить резервную копию.</string>
   <string name="registration_activity__restore_backup">Восстановить резервную копию</string>
@@ -2405,7 +2412,7 @@
   <string name="BackupDialog_delete_backups">Удалить резервные копии?</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Отключить и удалить все локальные резервные копии?</string>
   <string name="BackupDialog_delete_backups_statement">Удалить резервные копии</string>
-  <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом месте.</string>
+  <string name="BackupDialog_to_enable_backups_choose_a_folder">Чтобы включить резервное копирование, выберите папку. Резервные копии будут сохраняться в этом расположении.</string>
   <string name="BackupDialog_choose_folder">Выбрать папку</string>
   <string name="BackupDialog_copied_to_clipboard">Скопировано в буфер обмена</string>
   <string name="BackupDialog_no_file_picker_available">Нет приложения для выбора файлов.</string>
@@ -2442,11 +2449,11 @@
   <string name="preferences_app_protection__pin_reminders">Напоминания PIN-кода</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN-коды хранят информацию в сервисе Signal зашифрованной, так что только вы можете получить к ней доступ. Ваши настройки, контакты и профиль будут восстановлены, если вы переустановите Signal.</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Улучшите безопасность, потребовав вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Напоминания помогают вам запомнить свой PIN-код, так как он не может быть восстановлен. Напоминания будут появляться реже с течением времени.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Напоминания помогают вам запомнить свой PIN-код, так как восстановить его невозможно. Напоминания будут появляться реже со временем.</string>
   <string name="preferences_app_protection__turn_off">Отключить</string>
-  <string name="preferences_app_protection__confirm_pin">Подтвердите PIN-код</string>
+  <string name="preferences_app_protection__confirm_pin">Подтвердить PIN-код</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Подтвердите свой PIN-код Signal</string>
-  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Убедитесь, что вы запомнили или безопасно сохранили свой PIN-код, так как он не может быть восстановлен. Если вы забудете свой PIN-код, вы можете потерять данные при повторной регистрации своей учётной записи Signal.</string>
+  <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">Убедитесь, что вы запомнили или надёжно сохранили свой PIN-код, так как восстановить его невозможно. Если вы забудете свой PIN-код, вы можете потерять данные при повторной регистрации своей учётной записи Signal.</string>
   <string name="preferences_app_protection__incorrect_pin_try_again">Неверный PIN-код. Попробуйте ещё раз.</string>
   <string name="preferences_app_protection__failed_to_enable_registration_lock">Не удалось включить блокировку регистрации.</string>
   <string name="preferences_app_protection__failed_to_disable_registration_lock">Не удалось отключить блокировку регистрации.</string>
@@ -2510,7 +2517,7 @@
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Проверьте участников</string>
   <string name="ReviewCardDialogFragment__review_request">Проверьте запрос</string>
-  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя. Просмотрите участников ниже и, если это необходимо, примите меры.</string>
+  <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d участников группы имеют одинаковое имя. Просмотрите участников ниже и, если необходимо, примите меры.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Если вы не уверены, от кого этот запрос, просмотрите участников ниже и примите меры.</string>
   <string name="ReviewCardDialogFragment__no_other_groups_in_common">Нет других общих групп.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Нет общих групп.</string>
@@ -2542,11 +2549,11 @@
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s присоединился(-лась)</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s и %2$s присоединились</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_joined">%1$s, %2$s и %3$s присоединились</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s и ещё %3$d человек(-а) присоединились</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_joined">%1$s, %2$s и ещё %3$d присоединились</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_left">%1$s покинул(-а) звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_left">%1$s и %2$s покинули звонок</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_s_and_s_left">%1$s, %2$s и %3$s покинули звонок</string>
-  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d человек(-а) покинули звонок</string>
+  <string name="CallParticipantsListUpdatePopupWindow__s_s_and_d_others_left">%1$s, %2$s и ещё %3$d покинули звонок</string>
   <string name="CallParticipant__you">Вы</string>
   <string name="CallParticipant__you_on_another_device">Вы (на другом устройстве)</string>
   <string name="CallParticipant__s_on_another_device">%1$s (на другом устройстве)</string>
@@ -2561,9 +2568,9 @@
   <string name="DeleteAccountFragment__the_phone_number">Номер телефона, который вы ввели, не совпадает с номером телефона вашей учётной записи.</string>
   <string name="DeleteAccountFragment__are_you_sure">Вы действительно хотите удалить свою учётную запись?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Ваша учётная запись Signal будет удалена, и приложение будет сброшено. Приложение закроется после завершения этого процесса.</string>
-  <string name="DeleteAccountFragment__failed_to_delete_account">Не удалось удалить учётную запись. Есть ли у вас подключение к сети?</string>
+  <string name="DeleteAccountFragment__failed_to_delete_account">Не удалось удалить учётную запись. Вы подключены к интернету?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не удалось удалить локальные данные. Вы можете удалить их вручную в системных настройках приложения.</string>
-  <string name="DeleteAccountFragment__launch_app_settings">Запустить настройки приложения</string>
+  <string name="DeleteAccountFragment__launch_app_settings">Открыть настройки приложения</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
   <!--CreateGroupActivity-->

@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Viac nových možností v sekcii \"Nastavenia skupiny\"</string>
   <string name="ConversationActivity_join">Pridať sa</string>
   <string name="ConversationActivity_full">Plný</string>
+  <string name="ConversationActivity_error_sending_media">Chyba pri odosielaní médií</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neprečítaná správa</item>
@@ -922,6 +923,11 @@
   <string name="NotificationBarManager__answer_call">Prijať hovor</string>
   <string name="NotificationBarManager__end_call">Ukončiť hovor</string>
   <string name="NotificationBarManager__cancel_call">Zrušiť hovor</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Zapnúť hlásenia?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nikdy nezmeškajte správu od vašich kontaktov a skupín.</string>
+  <string name="NotificationsMegaphone_turn_on">Zapnúť</string>
+  <string name="NotificationsMegaphone_not_now">Teraz nie</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediálna správa</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Preberanie MMS správy</string>
@@ -1366,6 +1372,7 @@ telefónne číslo
   <string name="RegistrationActivity_continue">Pokračovať</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vezmite si súkromie so sebou.\nBuďte sami sebou v každej správe.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby ste mohli začať, zadajte svoje telefónne číslo</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Zadajte svoje telefónne číslo</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Obdržíte overovací kód. Váš mobilný operátor si môže účtovať poplatky.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Uistite sa, že váš telefón má mobilný signál pre prijatie SMS alebo hovoru</string>

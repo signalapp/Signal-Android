@@ -836,6 +836,11 @@
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
   <string name="NotificationBarManager__end_call">Lopeta puhelu</string>
   <string name="NotificationBarManager__cancel_call">Peru puhelu</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Otetaanko Ilmoitukset käyttöön?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Älä koskaan jää vaille viestiä yhteystiedoilta tai ryhmiltä.</string>
+  <string name="NotificationsMegaphone_turn_on">Ota käyttöön</string>
+  <string name="NotificationsMegaphone_not_now">Ei nyt</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimediaviesti</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Ladataan multimediaviestiä</string>
@@ -1241,6 +1246,7 @@ puhelinnumero</string>
   <string name="RegistrationActivity_continue">Jatka</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ota yksityisyys mukaasi.\nOle itsesi jokaisessa viestissä.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aloita syöttämällä puhelinnumerosi</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Syötä puhelinnumerosi</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Varmista että puhelimellasi on verkkoa tekstarisi tai puhelusi vastaanottamiseen</string>

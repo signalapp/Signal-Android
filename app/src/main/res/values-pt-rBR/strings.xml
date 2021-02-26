@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Mais opções agora em \"Configurações de grupo\"</string>
   <string name="ConversationActivity_join">Entrar</string>
   <string name="ConversationActivity_full">Lotada</string>
+  <string name="ConversationActivity_error_sending_media">Erro ao enviar a mídia</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -836,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">Atender chamada</string>
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Habilitar Notificações?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nunca perder mensagens de seus contatos e grupos.</string>
+  <string name="NotificationsMegaphone_turn_on">Ativar</string>
+  <string name="NotificationsMegaphone_not_now">Agora não</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mensagem multimídia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Baixando mensagem de MMS</string>
@@ -1245,6 +1251,7 @@
   <string name="RegistrationActivity_continue">Continuar</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade com você.\nSeja você em cada mensagem.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insira o seu número de telefone para começar</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Digite o seu número de telefone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verifique se o seu telefone está captando sinal de rede para receber SMS ou chamadas</string>

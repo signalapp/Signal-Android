@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Dabar, daugiau parinkčių „Grupės nustatymuose“</string>
   <string name="ConversationActivity_join">Prisijungti</string>
   <string name="ConversationActivity_full">Pilnas</string>
+  <string name="ConversationActivity_error_sending_media">Klaida siunčiant mediją</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neskaityta žinutė</item>
@@ -922,6 +923,11 @@
   <string name="NotificationBarManager__answer_call">Atsiliepti į skambutį</string>
   <string name="NotificationBarManager__end_call">Baigti skambutį</string>
   <string name="NotificationBarManager__cancel_call">Atsisakyti skambučio</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Įjungti pranešimus?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Niekada nepraleiskite žinučių nuo savo adresatų bei grupių.</string>
+  <string name="NotificationsMegaphone_turn_on">Įjungti</string>
+  <string name="NotificationsMegaphone_not_now">Ne dabar</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijos žinutė</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Atsiunčiama MMS žinutė</string>
@@ -1367,6 +1373,7 @@
   <string name="RegistrationActivity_continue">Tęsti</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pasiimkite privatumą kartu su savimi.\nBūkite savimi kiekvienoje žinutėje.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Norėdami pradėti, įveskite savo telefono numerį</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Įveskite savo telefono numerį</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Įsitikinkite, kad jūsų telefone yra mobiliojo ryšio signalas, kad gautumėte SMS ar sulauktumėte skambučio</string>

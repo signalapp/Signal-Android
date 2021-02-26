@@ -836,6 +836,11 @@
   <string name="NotificationBarManager__answer_call">Err ɣef usiwel</string>
   <string name="NotificationBarManager__end_call">Fakk asiwel</string>
   <string name="NotificationBarManager__cancel_call">Sefsex asiwel</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Rmed ilɣa?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Ur sṛuḥu ula d yiwen yizen seg yinermisen d yigrawen ine·inem.</string>
+  <string name="NotificationsMegaphone_turn_on">Rmed</string>
+  <string name="NotificationsMegaphone_not_now">Mačči tura</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Izen n wallalen n umidyat</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Asadar n yizen MMS</string>
@@ -1242,6 +1247,7 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="RegistrationActivity_continue">Kemmel</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Awi tabaḍnit-ik·im yid-k·m. \nIli-k·kem d kečč·kemm deg yal izen.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Sekcem uṭṭun-inek.inem n tilifun akken ad tebduḍ</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Sekcem uṭṭun n tiliɣri</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ad d-tremseḍ tangalt n usenqed. Yezmer ad ttuwagent sswami n usiweḍ.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sekcem tangalt i d-nuzen ɣer %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Senqed d akken tilifun-ik.im yesεa tuqqna akken ad d-teṭṭfeḍ SMS neɣ asiwel</string>

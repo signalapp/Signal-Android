@@ -235,6 +235,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Više opcija je sada u \"Postavke grupe\"</string>
   <string name="ConversationActivity_join">Pridruži se</string>
   <string name="ConversationActivity_full">Puno</string>
+  <string name="ConversationActivity_error_sending_media">Pogreška prilikom slanja medijskog sadržaja</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepročitana poruka</item>
@@ -879,6 +880,11 @@
   <string name="NotificationBarManager__answer_call">Prihvati poziv</string>
   <string name="NotificationBarManager__end_call">Završi poziv</string>
   <string name="NotificationBarManager__cancel_call">Otkaži poziv</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Uključiti obavijesti?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nikad ne propustite poruku kontakata i grupa.</string>
+  <string name="NotificationsMegaphone_turn_on">Uključi</string>
+  <string name="NotificationsMegaphone_not_now">Ne sada</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedijska poruka</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Preuzimanje MMS poruke</string>
@@ -1303,6 +1309,7 @@ broj telefona</string>
   <string name="RegistrationActivity_continue">Nastavi</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ponesite privatnost sa sobom.\nBudite svoji u svakoj poruci.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Unesite broj telefona za početak</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Unesite vaš broj telefona</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Primiti će te potvrdni kôd. Mogu se primijeniti naknade operatera.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kôd koji smo poslali na %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Provjerite ima li vaš telefon uspostavljenu mobilnu vezu za primanje SMS-a ili poziva</string>

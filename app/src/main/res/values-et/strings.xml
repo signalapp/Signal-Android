@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">\"Grupi seadetes\" on nüüd rohkem valikuid</string>
   <string name="ConversationActivity_join">Liitu</string>
   <string name="ConversationActivity_full">Täis</string>
+  <string name="ConversationActivity_error_sending_media">Meedia saatmisel tekkis tõrge</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d lugemata sõnum</item>
@@ -836,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">Vasta kõnele</string>
   <string name="NotificationBarManager__end_call">Lõpeta kõne</string>
   <string name="NotificationBarManager__cancel_call">Tühista kõne</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Kas lubada teavitused?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Ükski kontaktidelt või gruppidelt saadud sõnum ei jää märkamata.</string>
+  <string name="NotificationsMegaphone_turn_on">Lülita sisse</string>
+  <string name="NotificationsMegaphone_not_now">Mitte praegu</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimeediasõnum</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Laadin alla MMS-sõnumit</string>
@@ -1245,6 +1251,7 @@
   <string name="RegistrationActivity_continue">Jätka</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Võta privaatsus endaga kaasa.\nJää iga sõnumiga iseendaks.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Sisesta alustamiseks oma telefoninumber</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Sisesta enda telefoninumber</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mille saatsime numbrile %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Kontrolli, et su telefon oleks SMS-i või kõne saamiseks levis.</string>

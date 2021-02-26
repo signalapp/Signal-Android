@@ -829,6 +829,11 @@
   <string name="NotificationBarManager__answer_call">कॉल का उत्तर दें</string>
   <string name="NotificationBarManager__end_call">कॉल बंद</string>
   <string name="NotificationBarManager__cancel_call">कॉल रद्द करें</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">सूचनाओं को चालू करना है?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">अपने संपर्कों और ग्रुप्स से कभी भी कोई मेसेज न छूट पाएँ।</string>
+  <string name="NotificationsMegaphone_turn_on">शुरु करें</string>
+  <string name="NotificationsMegaphone_not_now">अभी नहीं</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">मल्टीमीडिया मेसेज</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS मेसेज डाउनलोड किया जा रहा है</string>
@@ -1226,6 +1231,7 @@
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">अपनी गुप्तता बानाये रखें।
 वास्तविक बने रहें|</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">आरंभ करने के लिए अपना फोन नंबर दर्ज करें</string>
+  <string name="RegistrationActivity_enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">आपको एक सत्यापन कोड प्राप्त होगा। कैरियर दरें लागू हो सकती हैं।</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s को भेजे गए सत्यापन कोड दर्ज करें</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">सुनिश्चित करें कि आपके फ़ोन में आपका SMS या कॉल प्राप्त करने के लिए सेल्यूलर सिग्नल है</string>

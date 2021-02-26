@@ -837,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">کال کا جواب دیں</string>
   <string name="NotificationBarManager__end_call">کال ختم کریں</string>
   <string name="NotificationBarManager__cancel_call">کال منسوخ کریں</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">اطلاعات آن کریں؟</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">اپنے رابطوں اور گروپس کا پیغام کبھی بھی مت چھوڑیں۔</string>
+  <string name="NotificationsMegaphone_turn_on">آن کر دو</string>
+  <string name="NotificationsMegaphone_not_now">ابھی نہیں</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ملٹی میڈیا پیغامات</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ایم ایم ایس پیغام ڈاؤن لوڈ کریں</string>
@@ -1239,6 +1244,7 @@
   <string name="RegistrationActivity_continue">جاری رکھیں</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">اپنے ساتھ رازداری اختیار کریں۔/n ہر پیغام میں اپنے آپ کو سمجھیں۔</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">شروع کرنے کے لیے اپنا فون نمبر داخل کریں</string>
+  <string name="RegistrationActivity_enter_your_phone_number">اپنا فون نمبر درج کریں</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">آپ کو تصدیقی کوڈ وصول ہوگا۔ کیریئر کی درجہ بندی لاگو ہو گی۔</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ہم نے جو کوڈ بھیجا ہے%sداخل کریں</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">اس بات کو یقینی بنائیں کہ آپ کے فون میں آپ کے ایس ایم ایس یا کال موصول کرنے کے لئے سیلولر Signal موجود ہے</string>

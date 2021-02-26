@@ -238,6 +238,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">ثمة خيارات إضافية الآن في \"إعدادات المجموعة\"</string>
   <string name="ConversationActivity_join">انضم</string>
   <string name="ConversationActivity_full">ممتليء</string>
+  <string name="ConversationActivity_error_sending_media">خَطَأُ في إرسال الوَسط</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="zero">%d رسالة غير مقروءة</item>
@@ -1009,6 +1010,11 @@
   <string name="NotificationBarManager__answer_call">الرد على المكالمة</string>
   <string name="NotificationBarManager__end_call">إنهاء المكالمة</string>
   <string name="NotificationBarManager__cancel_call">إلغاء المكالمة</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">تفعيل الإشعارات؟</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">عدم تفويت أي رسالة من جهات الاتصال والمجموعات الخاصة بك.</string>
+  <string name="NotificationsMegaphone_turn_on">شغّل</string>
+  <string name="NotificationsMegaphone_not_now">ليس الآن</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">رسالة وسائط متعددة</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">تنزيل رسالة متعددة الوسائط </string>
@@ -1489,6 +1495,7 @@
 
 كن على طبيعتك في كل رسالة.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء</string>
+  <string name="RegistrationActivity_enter_your_phone_number">يُرجى إدخال رقم هاتفك</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تحقّق. قد تنطبّق تكلفة من مزوّد الخدمة.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">يُرجى التأكد من أن هاتفك يلتقط الإشارة الخلوية لتلقي الرسائل القصيرة أو المكالمات</string>

@@ -837,6 +837,11 @@
   <string name="NotificationBarManager__answer_call">Hívás felvétele</string>
   <string name="NotificationBarManager__end_call">Hívás befejezése</string>
   <string name="NotificationBarManager__cancel_call">Hívás megszakítása</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Értesítések bekapcsolása?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Ne maradj le kontakjaid és csoportjaid értesítéseiről.</string>
+  <string name="NotificationsMegaphone_turn_on">Bekapcsolás</string>
+  <string name="NotificationsMegaphone_not_now">Később</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimédia üzenet</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS üzenet letöltése</string>
@@ -1247,6 +1252,7 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_continue">Folytatás</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vidd magaddal az adatvédelmet.\nLégy önmagad minden üzenetben.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Add meg telefonszámodat a kezdéshez</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Add meg telefonszámodat</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Gondoskodj róla, hogy a telefonod elérhető legyen a mobilhálózaton SMS vagy hívás fogadása érdekében.</string>

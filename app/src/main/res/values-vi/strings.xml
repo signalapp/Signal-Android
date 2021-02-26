@@ -793,6 +793,11 @@
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Kết thúc cuộc gọi.</string>
   <string name="NotificationBarManager__cancel_call">Huỷ cuộc gọi</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Bận lên Thông báo?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Không bao giờ bỏ lỡ tin nhắn từ liên hệ và nhóm của bạn.</string>
+  <string name="NotificationsMegaphone_turn_on">Bật</string>
+  <string name="NotificationsMegaphone_not_now">Để sau</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Tin nhắn đa phương tiện</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Đang tải xuống tin nhắn MMS</string>
@@ -1180,6 +1185,7 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_continue">Tiếp tục</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mang quyền riêng tư luôn bên bạn.\nHãy là chính mình trong từng tin nhắn.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Điền số điện thoại của bạn để bắt đầu</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Nhập số điện thoại của bạn</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh. Có thể mất phí nhà mạng.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Đảm bảo là điện thoại của bạn có tín hiệu di động để nhận tin nhắn SMS hoặc cuộc gọi</string>

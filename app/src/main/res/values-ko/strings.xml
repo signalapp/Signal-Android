@@ -793,6 +793,11 @@
   <string name="NotificationBarManager__answer_call">전화 수락</string>
   <string name="NotificationBarManager__end_call">전화 종료</string>
   <string name="NotificationBarManager__cancel_call">전화 취소</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">알림을 켜시겠습니까?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">내 연락처와 그룹의 메시지를 놓치지 마세요.</string>
+  <string name="NotificationsMegaphone_turn_on">켜기</string>
+  <string name="NotificationsMegaphone_not_now">나중에</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">멀티미디어 메시지</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS 메시지 다운로드 중</string>
@@ -1184,6 +1189,7 @@
   <string name="RegistrationActivity_continue">확인</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인 정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">시작하려면 휴대 전화 번호를 입력하세요.</string>
+  <string name="RegistrationActivity_enter_your_phone_number">전화번호를 입력하세요.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s 번호로 보낸 코드를 입력해 주세요.</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS 또는 전화를 수신하려면 휴대전화에서 데이터 네트워크가 켜져 있어야 합니다.</string>

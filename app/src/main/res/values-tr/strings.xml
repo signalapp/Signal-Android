@@ -836,6 +836,11 @@
   <string name="NotificationBarManager__answer_call">Cevapla</string>
   <string name="NotificationBarManager__end_call">Aramayı sonlandır</string>
   <string name="NotificationBarManager__cancel_call">Aramayı iptal et</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Bildirimler açılsın mı?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Kişilerinizden ve gruplarınızdan asla herhangi bir ileti kaçırmayın.</string>
+  <string name="NotificationsMegaphone_turn_on">Aç</string>
+  <string name="NotificationsMegaphone_not_now">Şimdi değil</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Çoğulortam iletisi</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS iletisi indiriliyor</string>
@@ -1245,6 +1250,7 @@
   <string name="RegistrationActivity_continue">Devam Et</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Gizliliğinizi koruyun.\nHer iletide kendiniz olun.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Başlamak için telefon numaranızı giriniz</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Telefon numaranızı girin</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Doğrulama kodu alacaksınız. Tarife ücreti uygulanabilir. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s numarasına gönderdiğimiz kodu girin</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS ve çağrıları alabilmek için telefonununuz hücresel ağa bağlı olduğundan emin olunuz</string>

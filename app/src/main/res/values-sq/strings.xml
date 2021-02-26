@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Tanimë më tepër mundësi te “Rregullime grupi”</string>
   <string name="ConversationActivity_join">Merrni pjesë</string>
   <string name="ConversationActivity_full">Plot</string>
+  <string name="ConversationActivity_error_sending_media">Gabim në dërgim mediash</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mesazh i palexuar</item>
@@ -840,6 +841,11 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>
   <string name="NotificationBarManager__cancel_call">Anuloje thirrjen</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Të aktivizohen Njoftimet?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Mos humbni kurrë një mesazh nga kontakte dhe grupe tuajt.</string>
+  <string name="NotificationsMegaphone_turn_on">Aktivizoje</string>
+  <string name="NotificationsMegaphone_not_now">Jo tani</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesazh multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Po shkarkohet mesazh MMS</string>
@@ -1247,6 +1253,7 @@ të përditësojnë Signal-in, ose t’i hiqni para krijimit të grupit.</item>
   <string name="RegistrationActivity_continue">Vazhdo</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t\’ia filloni, jepni numrin tuaj të telefonit</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sigurohuni se telefoni juaj ka sinjal celulari për të marrë SMS-në ose thirrjen tuaj</string>

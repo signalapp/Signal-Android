@@ -793,6 +793,11 @@
   <string name="NotificationBarManager__answer_call">Terima panggilan</string>
   <string name="NotificationBarManager__end_call">Akhiri panggilan</string>
   <string name="NotificationBarManager__cancel_call">Batalkan panggilan</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Nyalakan Pemberitahuan?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Jangan pernah lewatkan pesan dari kontak dan grup Anda.</string>
+  <string name="NotificationsMegaphone_turn_on">Nyalakan</string>
+  <string name="NotificationsMegaphone_not_now">Nanti saja</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Pesan multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Mengunduh pesan MMS.</string>
@@ -1184,6 +1189,7 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_continue">Lanjutkan</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Jaga privasimu.\nJadilah dirimu sendiri pada setiap pesan.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Masukkan nomor telepon untuk memulai</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Masukkan nomor telepon Anda</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan mendapakan kode verifikasi. Tarif operator mungkin berlaku.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Masukkan kode yang kami kirimkan ke %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pastikan ponsel Anda dapat menerima SMS atau panggilan</string>

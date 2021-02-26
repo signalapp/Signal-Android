@@ -235,6 +235,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Nu flere funktioner under \"Gruppe indstillinger\"</string>
   <string name="ConversationActivity_join">Deltag</string>
   <string name="ConversationActivity_full">Fuld</string>
+  <string name="ConversationActivity_error_sending_media">Fejl ved afsendelse af medier</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulæst besked</item>
@@ -837,6 +838,11 @@
   <string name="NotificationBarManager__answer_call">Svar opkald</string>
   <string name="NotificationBarManager__end_call">Afslut opkald</string>
   <string name="NotificationBarManager__cancel_call">Afbryd opkald</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Slå meddelelser til?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Gå aldrig glip af en besked fra dine kontaktpersoner og grupper.</string>
+  <string name="NotificationsMegaphone_turn_on">Aktivér</string>
+  <string name="NotificationsMegaphone_not_now">Ikke nu</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Multimedie besked</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Downloader MMS…</string>
@@ -1245,6 +1251,7 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Indtast dit telefonnummer for at komme i gang</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Indtast dit telefonnummer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra din udbyder kan blive pålagt.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sørg for, at din telefon har et mobilsignal til at modtage SMS eller opkald</string>

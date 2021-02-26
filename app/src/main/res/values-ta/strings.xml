@@ -836,6 +836,11 @@
   <string name="NotificationBarManager__answer_call">அழைப்பை எடு</string>
   <string name="NotificationBarManager__end_call">அழைப்பைத் துண்டி</string>
   <string name="NotificationBarManager__cancel_call">அழைப்பு ரத்து</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">அறிவிப்புகளை இயக்கவா?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">உங்கள் தொடர்புகள் மற்றும் குழுக்களிடமிருந்து எந்த ஒரு செய்தியை ஒருபோதும் தவறவிடாதீர்கள்.</string>
+  <string name="NotificationsMegaphone_turn_on">இயக்கவும்</string>
+  <string name="NotificationsMegaphone_not_now">இப்போது இல்லை</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">மல்டிமீடியா செய்தி</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS செய்தியைப் பதிவிறக்குகிறது</string>
@@ -1244,6 +1249,7 @@
   <string name="RegistrationActivity_continue">தொடர்</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்க உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்</string>
+  <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %s க்கு உள்ளிடவும்</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>

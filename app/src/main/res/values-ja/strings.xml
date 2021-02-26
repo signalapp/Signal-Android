@@ -233,6 +233,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">「グループ設定」のオプションが増えました</string>
   <string name="ConversationActivity_join">参加する</string>
   <string name="ConversationActivity_full">満席</string>
+  <string name="ConversationActivity_error_sending_media">メディアの送信エラー</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d件の未読メッセージ</item>
@@ -793,6 +794,11 @@
   <string name="NotificationBarManager__answer_call">通話を開始</string>
   <string name="NotificationBarManager__end_call">通話を終了</string>
   <string name="NotificationBarManager__cancel_call">通話をキャンセル</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">通知を有効にしますか？</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">連絡先やグループからのメッセージを見逃しません。</string>
+  <string name="NotificationsMegaphone_turn_on">有効にする</string>
+  <string name="NotificationsMegaphone_not_now">今はしない</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">マルチメディアメッセージ</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMSメッセージをダウンロードしています</string>
@@ -1177,6 +1183,7 @@
   <string name="RegistrationActivity_continue">続行</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">あなたにプライバシーを。\nすべてのメッセージで自分らしく。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
+  <string name="RegistrationActivity_enter_your_phone_number">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金が発生する場合があります。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s に届いたコードを入力してください</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">携帯電話が圏内にあり、SMSや通話が可能か確認してください。</string>
@@ -1370,7 +1377,7 @@
   <string name="MessageNotifier_error_delivering_message">メッセージの配信中にエラーが発生しました。</string>
   <string name="MessageNotifier_mark_all_as_read">すべて既読にする</string>
   <string name="MessageNotifier_mark_read">既読にする</string>
-  <string name="MessageNotifier_turn_off_these_notifications">これらの通知をオフにする</string>
+  <string name="MessageNotifier_turn_off_these_notifications">これらの通知を無効にする</string>
   <string name="MessageNotifier_view_once_photo">使い捨て写真</string>
   <string name="MessageNotifier_view_once_video">使い捨て動画</string>
   <string name="MessageNotifier_reply">返信</string>
@@ -2200,7 +2207,7 @@
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal内に保存された情報は、PINにより暗号化を保持されるため、あなたのみアクセスできます。PINを使うことで、Signalの再インストール時にあなたのプロフィール、設定および連絡先が復元されます。</string>
   <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">電話番号を再度Signalに登録する際にSignal PINを要求することで、さらにセキュリティを強化します。</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">PINは復元できないため、リマインダーがPINを覚える手助けをします。頻度は徐々に減ります。</string>
-  <string name="preferences_app_protection__turn_off">オフにする</string>
+  <string name="preferences_app_protection__turn_off">無効にする</string>
   <string name="preferences_app_protection__confirm_pin">PINを再入力</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">Signal PINの確認</string>
   <string name="preferences_app_protection__make_sure_you_memorize_or_securely_store_your_pin">PINは忘れないようにするか、安全に保管してください。復元はできませんので。PINを忘れると、Signalに再登録しても、データは失われる可能性があります。</string>

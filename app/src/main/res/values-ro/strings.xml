@@ -879,6 +879,11 @@
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
   <string name="NotificationBarManager__cancel_call">Anulați apelul</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">Activaţi notificările?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nu rata niciodată un mesaj de la contactele și grupurile tale.</string>
+  <string name="NotificationsMegaphone_turn_on">Activare</string>
+  <string name="NotificationsMegaphone_not_now">Nu acum</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesaj multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Se descarcă mesajul MMS</string>
@@ -1303,6 +1308,7 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_continue">Continuați</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ia-ți intimitatea cu tine.\nFii tu însuți în fiecare mesaj.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduceți numărul dvs. de telefon pentru a putea începe</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Introduceți numărul dvs. de telefon</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Asigurați-vă că telefonul dvs. are semnal celular pentru a putea primi SMS-ul sau apelul</string>

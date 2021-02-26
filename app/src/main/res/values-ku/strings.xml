@@ -790,6 +790,9 @@
   <string name="NotificationBarManager__answer_call">Bibersivîne</string>
   <string name="NotificationBarManager__end_call">Gerînê bi dawî bike</string>
   <string name="NotificationBarManager__cancel_call">Gerînê betal bike</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on">Veke</string>
+  <string name="NotificationsMegaphone_not_now">Ne niha</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Peyama multîmedyayê</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Peyama MMS\'ê tê daxistin</string>
@@ -1157,6 +1160,7 @@
   <string name="RegistrationActivity_continue">Bidomîne</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nihêniya xwe biparêze.\nDi her peyamê de bi xwe be.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ji bo destpêkirinê, nimreya telefona xwe bikevê</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Nimreya telefona xwe bikevê</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Tu yê koda piştrastkirinê bistînî. Dibe ku pereyê ekstra ji te bê kuştin.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Koda ku me ji %s re şandiye, bikevê</string>
   <string name="RegistrationActivity_phone_number_description">Nimreya telefonê</string>

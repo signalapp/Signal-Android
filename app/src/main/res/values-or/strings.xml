@@ -836,6 +836,9 @@
   <string name="NotificationBarManager__answer_call">ଉତ୍ତର ଦିଅନ୍ତୁ</string>
   <string name="NotificationBarManager__end_call">ସମାପ୍ତ କରନ୍ତୁ</string>
   <string name="NotificationBarManager__cancel_call">ବାତିଲ୍ କରନ୍ତୁ</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on">ଚାଲୁ କରନ୍ତୁ</string>
+  <string name="NotificationsMegaphone_not_now">ଏବେ ନୁହେଁ</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">ମଲ୍ଟିମିଡ଼ିଆ ବାର୍ତ୍ତା</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">ଏମ୍ଏମ୍ଏସ୍ ବାର୍ତ୍ତା ଡାଉନଲୋଡ଼୍ କରାଯାଉଛି</string>
@@ -1242,6 +1245,7 @@
   <string name="RegistrationActivity_continue">ଜାରି ରଖନ୍ତୁ</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ଆପଣଙ୍କ ସହିତ ଗୋପନୀୟତା ନିଅନ୍ତୁ। \n ପ୍ରତ୍ୟେକ ବାର୍ତ୍ତାରେ ନିଜକୁ ରଖନ୍ତୁ</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ଆରମ୍ଭ କରିବାକୁ ଆପଣଙ୍କର ଫୋନ୍ ନମ୍ବର ପ୍ରବେଶ କରନ୍ତୁ</string>
+  <string name="RegistrationActivity_enter_your_phone_number">ଆପଣଙ୍କର ଫୋନ୍ ନମ୍ବର ପ୍ରବେଶ କରନ୍ତୁ</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ଆପଣ ଏକ ଯାଞ୍ଚ କୋଡ୍ ପାଇବେ | ବାହକ ହାର ଲାଗୁ ହୋଇପାରେ</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ଆମେ %s କୁ ପଠାଇଥିବା କୋଡ୍ ପ୍ରବେଶ କର</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ନିଶ୍ଚିତ କରନ୍ତୁ ଯେ ଆପଣଙ୍କର ଫୋନରେ ଆପଣଙ୍କର SMS କିମ୍ବା କଲ୍ ଗ୍ରହଣ କରିବାକୁ ଏକ ଫୋନ୍ ସିଗ୍ନାଲ୍ ଅଛି</string>

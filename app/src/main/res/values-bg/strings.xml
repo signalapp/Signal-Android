@@ -836,6 +836,9 @@
   <string name="NotificationBarManager__answer_call">Приеми обаждането</string>
   <string name="NotificationBarManager__end_call">Прекрати обаждането</string>
   <string name="NotificationBarManager__cancel_call">Прекратяване на обаждането</string>
+  <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on">Включи</string>
+  <string name="NotificationsMegaphone_not_now">Не сега</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Мултимедийно съобщение</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Изтегляне на MMS съобщение</string>
@@ -1242,6 +1245,7 @@
   <string name="RegistrationActivity_continue">Продължи</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Носете поверителността със себе си.\nБъдете себе си във всяко съобщение.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Въведете телефонния си номер, за да започнете</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Въведете телефонния си номер</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ще получите код за потвърждение. Може да се начислят такси от оператора.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Уверете се, че телефонът ви има обхват, за да можете да получите SMS или обаждане</string>
