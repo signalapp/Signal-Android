@@ -9,7 +9,9 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_create_private_chat.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
 import network.loki.messenger.R
 import org.session.libsignal.service.loki.crypto.MnemonicCodec
@@ -57,6 +59,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     }
 
     private fun continueWithSeed(seed: ByteArray) {
+        loader.isVisible = true
         // TODO: Implement
     }
     // endregion
