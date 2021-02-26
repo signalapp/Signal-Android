@@ -172,7 +172,7 @@ public class BlobProvider {
       return;
     }
 
-    Log.d(TAG, "Deleting " + uri);
+    Log.d(TAG, "Deleting " + getId(uri));
 
     try {
       StorageType storageType = StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT));
@@ -185,13 +185,13 @@ public class BlobProvider {
         File   file      = new File(getOrCreateDirectory(context, directory), buildFileName(id));
 
         if (file.delete()) {
-          Log.d(TAG, "Successfully deleted " + uri);
+          Log.d(TAG, "Successfully deleted " + getId(uri));
         } else {
           throw new IOException("File wasn't deleted.");
         }
       }
     } catch (IOException e) {
-      Log.w(TAG, "Failed to delete uri: " + uri, e);
+      Log.w(TAG, "Failed to delete uri: " + getId(uri), e);
     }
   }
 
@@ -203,22 +203,26 @@ public class BlobProvider {
   @AnyThread
   public synchronized void initialize(@NonNull Context context) {
     SignalExecutors.BOUNDED.execute(() -> {
-      File   directory = getOrCreateDirectory(context, SINGLE_SESSION_DIRECTORY);
-      File[] files     = directory.listFiles();
+      synchronized (this) {
+        File   directory = getOrCreateDirectory(context, SINGLE_SESSION_DIRECTORY);
+        File[] files     = directory.listFiles();
 
-      if (files != null) {
-        for (File file : files) {
-          if (file.delete()) {
-            Log.d(TAG, "Deleted single-session file: " + file.getName());
-          } else {
-            Log.w(TAG, "Failed to delete single-session file! " + file.getName());
+        if (files != null) {
+          for (File file : files) {
+            if (file.delete()) {
+              Log.d(TAG, "Deleted single-session file: " + file.getName());
+            } else {
+              Log.w(TAG, "Failed to delete single-session file! " + file.getName());
+            }
           }
+        } else {
+          Log.w(TAG, "Null directory listing!");
         }
-      } else {
-        Log.w(TAG, "Null directory listing!");
-      }
 
-      initialized = true;
+        Log.i(TAG, "Initialized.");
+        initialized = true;
+        notifyAll();
+      }
     });
   }
 
@@ -247,6 +251,13 @@ public class BlobProvider {
     return null;
   }
 
+  private static @Nullable String getId(@NonNull Uri uri) {
+    if (isAuthority(uri)) {
+      return uri.getPathSegments().get(ID_PATH_SEGMENT);
+    }
+    return null;
+  }
+
   @WorkerThread
   public long calculateFileSize(@NonNull Context context, @NonNull Uri uri) {
     if (!isAuthority(uri)) {
@@ -269,6 +280,8 @@ public class BlobProvider {
   private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec)
       throws IOException
   {
+    waitUntilInitialized();
+
     CountDownLatch               latch     = new CountDownLatch(1);
     AtomicReference<IOException> exception = new AtomicReference<>(null);
     Uri                          uri       = writeBlobSpecToDiskAsync(context, blobSpec, latch::countDown, e -> {
