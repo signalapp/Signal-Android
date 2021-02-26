@@ -116,19 +116,16 @@ public final class PushDecryptMessageJob extends BaseJob {
       throw new RetryLaterException();
     }
 
-    List<Job> jobs = new LinkedList<>();
+    List<Job>        jobs = new LinkedList<>();
+    DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
 
-    try (DatabaseSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
-      DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
-
-      if (result.getContent() != null) {
-        jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
-      } else if (result.getException() != null && result.getState() != MessageState.NOOP) {
-        jobs.add(new PushProcessMessageJob(result.getState(), result.getException(), smsMessageId, envelope.getTimestamp()));
-      }
-
-      jobs.addAll(result.getJobs());
+    if (result.getContent() != null) {
+      jobs.add(new PushProcessMessageJob(result.getContent(), smsMessageId, envelope.getTimestamp()));
+    } else if (result.getException() != null && result.getState() != MessageState.NOOP) {
+      jobs.add(new PushProcessMessageJob(result.getState(), result.getException(), smsMessageId, envelope.getTimestamp()));
     }
+
+    jobs.addAll(result.getJobs());
 
     for (Job job: jobs) {
       ApplicationDependencies.getJobManager().add(job);

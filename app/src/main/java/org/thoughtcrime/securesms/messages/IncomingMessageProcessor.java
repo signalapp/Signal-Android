@@ -25,12 +25,12 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalSessionLock;
-import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupContext;
 
@@ -100,6 +100,20 @@ public class IncomingMessageProcessor {
     }
 
     private @Nullable String processMessage(@NonNull SignalServiceEnvelope envelope) {
+      if (FeatureFlags.internalUser()) {
+        return processMessageInline(envelope);
+      } else {
+        return processMessageDeferred(envelope);
+      }
+    }
+
+    private @Nullable String processMessageDeferred(@NonNull SignalServiceEnvelope envelope) {
+      Job job = new PushDecryptMessageJob(context, envelope);
+      jobManager.add(job);
+      return job.getId();
+    }
+
+    private @Nullable String processMessageInline(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, "Received message " + envelope.getTimestamp() + ".");
 
       Stopwatch stopwatch = new Stopwatch("message");
@@ -122,6 +136,7 @@ public class IncomingMessageProcessor {
         Log.i(TAG, "Acquired lock while processing message " + envelope.getTimestamp() + ".");
 
         DecryptionResult result = MessageDecryptionUtil.decrypt(context, envelope);
+        Log.d(TAG, "Decryption finished for " + envelope.getTimestamp());
         stopwatch.split("decrypt");
 
         for (Job job : result.getJobs()) {
