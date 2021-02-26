@@ -97,7 +97,7 @@
   <string name="ContactShareEditActivity_type_mobile">携帯</string>
   <string name="ContactShareEditActivity_type_work">職場</string>
   <string name="ContactShareEditActivity_type_missing">その他</string>
-  <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は無効です</string>
+  <string name="ContactShareEditActivity_invalid_contact">選択された連絡先は不正です</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">送信失敗、タップして詳細を見る</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">鍵交換のメッセージを受信しました。タップして手続きを行ってください。</string>
@@ -124,7 +124,7 @@
   <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">受信先のSMS又はEメールアドレスが有効ではありません。</string>
   <string name="ConversationActivity_message_is_empty_exclamation">メッセージが空です。</string>
   <string name="ConversationActivity_group_members">グループメンバー</string>
-  <string name="ConversationActivity_invalid_recipient">受信先が無効です。</string>
+  <string name="ConversationActivity_invalid_recipient">受信先が不正です。</string>
   <string name="ConversationActivity_added_to_home_screen">ホーム画面に追加しました</string>
   <string name="ConversationActivity_calls_not_supported">通話には対応していません</string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">お使いの端末は、ダイヤル機能に対応していないようです。</string>
@@ -442,7 +442,7 @@
   <string name="PassphrasePromptActivity_enter_passphrase">パスフレーズを入力してください</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Sessionアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不正なパスフレーズです！</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
   <!--RatingManager-->
@@ -486,7 +486,7 @@
   <string name="RegistrationActivity_select_your_country">国を選択</string>
   <string name="RegistrationActivity_you_must_specify_your_country_code">国番号を入力して下さい</string>
   <string name="RegistrationActivity_you_must_specify_your_phone_number">電話番号を入力して下さい</string>
-  <string name="RegistrationActivity_invalid_number">無効な番号</string>
+  <string name="RegistrationActivity_invalid_number">不正な番号</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">指定された番号(%s)はお使いできません。</string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play開発者サービスがありません</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">この端末にはGoogle Play開発者サービスがありません。Sessionは使用できますが、信頼性や性能は下がる可能性があります。\n\n上級者でない方や、メーカー公式のAndroidをご利用の方、何かの間違いだと思う方などは support@signal.org まで連絡してください。</string>
@@ -533,8 +533,8 @@
   <string name="Slide_audio">音声</string>
   <string name="Slide_video">動画</string>
   <!--SmsMessageRecord-->
-  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">無効な鍵交換メッセージを受信しました</string>
-  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが無効です</string>
+  <string name="SmsMessageRecord_received_corrupted_key_exchange_message">不正な鍵交換メッセージを受信しました</string>
+  <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">受信した鍵交換メッセージのプロトコルバージョンが不正です</string>
   <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">新しい安全番号が付いたメッセージを受け取りました。処理や表示を行うにはタップしてください。</string>
   <string name="SmsMessageRecord_secure_session_reset">セキュアセッションを設定し直しました</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
@@ -1266,12 +1266,12 @@
   <!-- Session -->
   <string name="continue_2">続行する</string>
   <string name="copy">コピーする</string>
-  <string name="invalid_url">URL が無効です</string>
+  <string name="invalid_url">URL が不正です</string>
   <string name="copied_to_clipboard">クリップボードにコピーされました</string>
   <string name="device_linking_failed">端末をリンクできませんでした。</string>
   <string name="next">次</string>
   <string name="share">共有する</string>
-  <string name="invalid_session_id">Session ID が無効です</string>
+  <string name="invalid_session_id">Session ID が不正です</string>
   <string name="cancel">取り消す</string>
   <string name="your_session_id">あなたの Session ID</string>
 
@@ -1358,7 +1358,7 @@
   <string name="activity_create_closed_group_group_name_too_long_error">短いグループ名を入力してください</string>
   <string name="activity_create_closed_group_not_enough_group_members_error">グループメンバーを少なくとも 2 人選択してください</string>
   <string name="activity_create_closed_group_too_many_group_members_error">非公開グループは 100 人を超えるメンバーを抱えることはできません</string>
-  <string name="activity_create_closed_group_invalid_session_id_error">グループのメンバーの 1 人の Session ID が無効です</string>
+  <string name="activity_create_closed_group_invalid_session_id_error">グループのメンバーの 1 人の Session ID が不正です</string>
 
   <string name="activity_join_public_chat_title">公開グループに参加する</string>
   <string name="activity_join_public_chat_error">グループに参加できませんでした</string>
