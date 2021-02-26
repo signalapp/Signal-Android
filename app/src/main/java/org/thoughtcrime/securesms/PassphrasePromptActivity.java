@@ -76,6 +76,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private static final int    ALLOWED_AUTHENTICATORS    = BIOMETRIC_AUTHENTICATORS | Authenticators.DEVICE_CREDENTIAL;
   private static final short  AUTHENTICATE_REQUEST_CODE = 1007;
   private static final String BUNDLE_ALREADY_SHOWN      = "bundle_already_shown";
+  public static final  String FROM_FOREGROUND           = "from_foreground";
 
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
@@ -109,7 +110,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     setContentView(R.layout.prompt_passphrase_activity);
     initializeResources();
 
-    alreadyShown = savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_ALREADY_SHOWN);
+    alreadyShown = (savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_ALREADY_SHOWN)) ||
+                   getIntent().getBooleanExtra(FROM_FOREGROUND, false);
   }
 
   @Override
@@ -286,17 +288,21 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       return;
     }
 
-    if (biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
+    if (Build.VERSION.SDK_INT != 29 && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS) {
       if (force) {
         Log.i(TAG, "Listening for biometric authentication...");
         biometricPrompt.authenticate(biometricPromptInfo);
       } else {
         Log.i(TAG, "Skipping show system biometric dialog unless forced");
       }
-    } else if (Build.VERSION.SDK_INT >= 21){
-      Log.i(TAG, "firing intent...");
-      Intent intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
-      startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE);
+    } else if (Build.VERSION.SDK_INT >= 21) {
+      if (force) {
+        Log.i(TAG, "firing intent...");
+        Intent intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
+        startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE);
+      } else {
+        Log.i(TAG, "Skipping firing intent unless forced");
+      }
     } else {
       Log.w(TAG, "Not compatible...");
       handleAuthenticated();

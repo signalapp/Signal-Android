@@ -183,7 +183,9 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   }
 
   private Intent getPromptPassphraseIntent() {
-    return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
+    Intent intent = getRoutedIntent(PassphrasePromptActivity.class, getIntent());
+    intent.putExtra(PassphrasePromptActivity.FROM_FOREGROUND, ApplicationDependencies.getAppForegroundObserver().isForegrounded());
+    return intent;
   }
 
   private Intent getUiBlockingUpgradeIntent() {
