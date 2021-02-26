@@ -493,7 +493,7 @@
   <string name="RegistrationActivity_i_understand">分かりました</string>
   <string name="RegistrationActivity_play_services_error">Google Play開発者サービスのエラー</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play開発者サービスは更新中か一時的に使用不能です。再度試してください。</string>
-  <string name="RegistrationActivity_terms_and_privacy">使用条件とプライバシーポリシー</string>
+  <string name="RegistrationActivity_terms_and_privacy">利用規約とプライバシーポリシー</string>
   <string name="RegistrationActivity_no_browser">このリンクは開けません。ウェブブラウザが見つかりません。</string>
   <string name="RegistrationActivity_more_information">詳細</string>
   <string name="RegistrationActivity_less_information">詳細を隠す</string>
