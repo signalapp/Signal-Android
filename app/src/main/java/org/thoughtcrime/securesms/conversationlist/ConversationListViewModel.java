@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.net.PipeConnectivityListener;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
 
@@ -141,7 +141,7 @@ class ConversationListViewModel extends ViewModel {
   void updateQuery(String query) {
     lastQuery = query;
     searchDebouncer.publish(() -> searchRepository.query(query, result -> {
-      Util.runOnMain(() -> {
+      ThreadUtil.runOnMain(() -> {
         if (query.equals(lastQuery)) {
           searchResult.setValue(result);
         }

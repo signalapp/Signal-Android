@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageModel;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
@@ -39,7 +40,7 @@ public class EmojiPageBitmap {
 
   @SuppressLint("StaticFieldLeak")
   public ListenableFutureTask<Bitmap> get() {
-    Util.assertMainThread();
+    ThreadUtil.assertMainThread();
 
     if (bitmapReference != null && bitmapReference.get() != null) {
       return new ListenableFutureTask<>(bitmapReference.get());

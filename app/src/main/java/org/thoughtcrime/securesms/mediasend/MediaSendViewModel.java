@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -144,7 +145,7 @@ class MediaSendViewModel extends ViewModel {
     }
 
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
-      Util.runOnMain(() -> {
+      ThreadUtil.runOnMain(() -> {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
         if (filteredMedia.size() != newMedia.size()) {
@@ -196,7 +197,7 @@ class MediaSendViewModel extends ViewModel {
     selectedMedia.setValue(Collections.singletonList(media));
 
     repository.getPopulatedMedia(context, Collections.singletonList(media), populatedMedia -> {
-      Util.runOnMain(() -> {
+      ThreadUtil.runOnMain(() -> {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
         if (filteredMedia.isEmpty()) {
@@ -654,7 +655,7 @@ class MediaSendViewModel extends ViewModel {
 
       // XXX We must do this to avoid sending out messages to the same recipient with the same
       //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
-      Util.sleep(5);
+      ThreadUtil.sleep(5);
     }
 
     MessageSender.sendMediaBroadcast(application, messages, preUploadResults);

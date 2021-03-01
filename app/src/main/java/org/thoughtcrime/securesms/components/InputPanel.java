@@ -22,10 +22,10 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -501,7 +500,7 @@ public class InputPanel extends LinearLayout
       this.startTime = System.currentTimeMillis();
       this.recordTimeView.setText(DateUtils.formatElapsedTime(0));
       ViewUtil.fadeIn(this.recordTimeView, FADE_TIME);
-      Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
+      ThreadUtil.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
       microphone.setVisibility(View.VISIBLE);
       microphone.startAnimation(pulseAnimation());
     }
@@ -527,7 +526,7 @@ public class InputPanel extends LinearLayout
           onLimitHit.run();
         } else {
           recordTimeView.setText(DateUtils.formatElapsedTime(elapsedSeconds));
-          Util.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
+          ThreadUtil.runOnMainDelayed(this, TimeUnit.SECONDS.toMillis(1));
         }
       }
     }

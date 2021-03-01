@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.ThreadUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
 import static org.thoughtcrime.securesms.testutil.MainThreadUtil.setMainThread;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Util.class)
+@PrepareForTest(ThreadUtil.class)
 public final class UpdateDescriptionTest {
 
   @Before

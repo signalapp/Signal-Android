@@ -7,11 +7,11 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
@@ -101,7 +101,7 @@ public class ConversationSearchViewModel extends AndroidViewModel {
       firstSearch = false;
 
       searchRepository.query(query, threadId, messages -> {
-        Util.runOnMain(() -> {
+        ThreadUtil.runOnMain(() -> {
           if (searchOpen && query.equals(activeQuery)) {
             result.setValue(new SearchResult(messages, 0));
           }

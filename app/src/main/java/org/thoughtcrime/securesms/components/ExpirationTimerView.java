@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +67,7 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
       else          stopped = false;
     }
 
-    Util.runOnMainDelayed(new AnimationUpdateRunnable(this), calculateAnimationDelay(this.startedAt, this.expiresIn));
+    ThreadUtil.runOnMainDelayed(new AnimationUpdateRunnable(this), calculateAnimationDelay(this.startedAt, this.expiresIn));
   }
 
   public void stopAnimation() {
@@ -116,7 +116,7 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
         }
       }
 
-      Util.runOnMainDelayed(this, timerView.calculateAnimationDelay(timerView.startedAt, timerView.expiresIn));
+      ThreadUtil.runOnMainDelayed(this, timerView.calculateAnimationDelay(timerView.startedAt, timerView.expiresIn));
     }
   }
 

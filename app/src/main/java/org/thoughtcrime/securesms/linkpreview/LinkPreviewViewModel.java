@@ -11,10 +11,10 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -99,7 +99,7 @@ public class LinkPreviewViewModel extends ViewModel {
       activeRequest = repository.getLinkPreview(context, link.get().getUrl(), new LinkPreviewRepository.Callback() {
           @Override
           public void onSuccess(@NonNull LinkPreview linkPreview) {
-            Util.runOnMain(() -> {
+            ThreadUtil.runOnMain(() -> {
               if (!userCanceled) {
                 if (activeUrl != null && activeUrl.equals(linkPreview.getUrl())) {
                   linkPreviewState.setValue(LinkPreviewState.forPreview(linkPreview));
@@ -113,7 +113,7 @@ public class LinkPreviewViewModel extends ViewModel {
 
         @Override
         public void onError(@NonNull LinkPreviewRepository.Error error) {
-          Util.runOnMain(() -> {
+          ThreadUtil.runOnMain(() -> {
             if (!userCanceled) {
               linkPreviewState.setValue(LinkPreviewState.forLinksWithNoPreview(error));
             }

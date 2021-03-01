@@ -17,6 +17,7 @@ import androidx.core.widget.ImageViewCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -29,7 +30,6 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
@@ -154,7 +154,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private boolean isMissingMediaKeys(@NonNull CallParticipant participant) {
     if (missingMediaKeysUpdater != null) {
-      Util.cancelRunnableOnMain(missingMediaKeysUpdater);
+      ThreadUtil.cancelRunnableOnMain(missingMediaKeysUpdater);
       missingMediaKeysUpdater = null;
     }
 
@@ -168,7 +168,7 @@ public class CallParticipantView extends ConstraintLayout {
             setCallParticipant(participant);
           }
         };
-        Util.runOnMainDelayed(missingMediaKeysUpdater, DELAY_SHOWING_MISSING_MEDIA_KEYS - time);
+        ThreadUtil.runOnMainDelayed(missingMediaKeysUpdater, DELAY_SHOWING_MISSING_MEDIA_KEYS - time);
       }
     }
     return false;

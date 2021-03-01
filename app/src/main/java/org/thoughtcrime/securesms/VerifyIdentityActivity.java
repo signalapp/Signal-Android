@@ -60,6 +60,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -185,7 +186,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity implement
 
   @Override
   public void onQrDataFound(final String data) {
-    Util.runOnMain(() -> {
+    ThreadUtil.runOnMain(() -> {
       ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(50);
 
       getSupportFragmentManager().popBackStack();

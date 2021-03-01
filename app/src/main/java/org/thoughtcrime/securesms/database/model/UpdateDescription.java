@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.util.Util;
+import org.signal.core.util.ThreadUtil;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Collection;
@@ -110,7 +110,7 @@ public final class UpdateDescription {
       return staticString;
     }
 
-    Util.assertNotMainThread();
+    ThreadUtil.assertNotMainThread();
 
     //noinspection ConstantConditions
     return stringFactory.create();

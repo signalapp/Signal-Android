@@ -5,6 +5,7 @@ import android.os.ResultReceiver;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
@@ -15,7 +16,6 @@ import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.IceCandidateParcel;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.webrtc.audio.OutgoingRinger;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
@@ -196,7 +196,7 @@ public class ActiveCallActionProcessorDelegate extends WebRtcActionProcessor {
 
       OutgoingRinger ringer = new OutgoingRinger(context);
       ringer.start(OutgoingRinger.Type.BUSY);
-      Util.runOnMainDelayed(ringer::stop, BUSY_TONE_LENGTH);
+      ThreadUtil.runOnMainDelayed(ringer::stop, BUSY_TONE_LENGTH);
     } else if (action.equals(ACTION_ENDED_REMOTE_GLARE) && incomingBeforeAccept) {
       webRtcInteractor.insertMissedCall(remotePeer, true, remotePeer.getCallStartTimestamp(), currentState.getCallSetupState().isRemoteVideoOffer());
     }

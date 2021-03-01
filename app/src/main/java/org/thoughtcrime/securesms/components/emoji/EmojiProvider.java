@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiDrawInfo;
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.components.emoji.parsing.EmojiPageBitmap;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiTree;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.List;
@@ -118,7 +118,7 @@ class EmojiProvider {
     final EmojiDrawable drawable = new EmojiDrawable(drawInfo, decodeScale);
     drawInfo.getPage().get().addListener(new FutureTaskListener<Bitmap>() {
       @Override public void onSuccess(final Bitmap result) {
-        Util.runOnMain(() -> drawable.setBitmap(result));
+        ThreadUtil.runOnMain(() -> drawable.setBitmap(result));
       }
 
       @Override public void onFailure(ExecutionException error) {
@@ -170,7 +170,7 @@ class EmojiProvider {
 
     @TargetApi(VERSION_CODES.HONEYCOMB_MR1)
     public void setBitmap(Bitmap bitmap) {
-      Util.assertMainThread();
+      ThreadUtil.assertMainThread();
       if (VERSION.SDK_INT < VERSION_CODES.HONEYCOMB_MR1 || bmp == null || !bmp.sameAs(bitmap)) {
         bmp = bitmap;
         invalidateSelf();

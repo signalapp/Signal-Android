@@ -20,6 +20,7 @@ import androidx.exifinterface.media.ExifInterface;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
@@ -410,7 +411,7 @@ public class BitmapUtil {
       }
     };
 
-    Util.runOnMain(runnable);
+    ThreadUtil.runOnMain(runnable);
 
     synchronized (result) {
       while (!created.get()) Util.wait(result, 0);

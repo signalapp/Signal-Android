@@ -9,16 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
 import org.signal.core.util.ShakeDetector;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.sharing.ShareIntents;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.lang.ref.WeakReference;
@@ -96,7 +95,7 @@ public final class ShakeToReport implements ShakeDetector.Listener {
       repo.submitLog(lines, Tracer.getInstance().serialize(), url -> {
         Log.i(TAG, "Logs uploaded!");
 
-        Util.runOnMain(() -> {
+        ThreadUtil.runOnMain(() -> {
           spinner.dismiss();
 
           if (url.isPresent()) {

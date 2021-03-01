@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
@@ -124,7 +125,7 @@ public class CachedInflater {
         }
 
         AsyncLayoutInflater.OnInflateFinishedListener onInflateFinishedListener = (view, resId, p) -> {
-          Util.assertMainThread();
+          ThreadUtil.assertMainThread();
           if (enqueueTime < lastClearTime) {
             Log.d(TAG, "Prefetch is no longer valid. Ignoring.");
             return;

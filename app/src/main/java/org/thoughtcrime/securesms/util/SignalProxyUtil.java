@@ -6,6 +6,7 @@ import androidx.annotation.WorkerThread;
 import androidx.lifecycle.Observer;
 
 import org.conscrypt.Conscrypt;
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -16,10 +17,6 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -97,14 +94,14 @@ public final class SignalProxyUtil {
       }
     };
 
-    Util.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().observeForever(observer));
+    ThreadUtil.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().observeForever(observer));
 
     try {
       latch.await(timeout, TimeUnit.MILLISECONDS);
     } catch (InterruptedException e) {
       Log.w(TAG, "Interrupted!", e);
     } finally {
-      Util.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().removeObserver(observer));
+      ThreadUtil.runOnMainSync(() -> ApplicationDependencies.getPipeListener().getState().removeObserver(observer));
     }
 
     return success.get();
