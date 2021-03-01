@@ -2345,6 +2345,8 @@
   <string name="GroupsLearnMore_paragraph_2">OS \'Grupos legados\' não podem ser convertidos em \'Grupos novos\', mas você pode criar um \'Grupo novo\' com os mesmos membros caso eles tenham a última versão do Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">O Signal irá oferecer futuramente uma forma de atualizar os \'Grupos legados\'.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Qualquer pessoa com este link pode ver o nome e a fotografia do grupo e solicitar adesão. Partilhe-o com pessoas em quem você confia.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Qualquer pessoa com este link pode ver o nome e a fotografia do grupo e solicitar adesão. Partilhe-o com pessoas em quem você confia.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Partilhar através do Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>
   <string name="GroupLinkBottomSheet_qr_code">Código QR</string>

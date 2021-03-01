@@ -2506,6 +2506,8 @@
   <string name="GroupsLearnMore_paragraph_2">קבוצות מיושנות אינן יכולות להשתדרג עדין אל קבוצות חדשות, אבל אתה יכול ליצור קבוצה חדשה עם אותם חברי קבוצה אם יש להם את הגרסה האחרונה של Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal יציע דרך לשדרג קבוצות מיושנות בעתיד.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">כל אחד עם קישור זה יכול לראות את השם והתמונה של הקבוצה ולבקש להצטרף. שתף אותו עם אנשים שאתה בוטח בהם.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">כל אחד עם קישור זה יכול לראות את השם והתמונה של הקבוצה ולהצטרף אל הקבוצה. שתף אותו עם אנשים שאתה בוטח בהם.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">שתף באמצעות Signal</string>
   <string name="GroupLinkBottomSheet_copy">העתק</string>
   <string name="GroupLinkBottomSheet_qr_code">קוד QR:</string>

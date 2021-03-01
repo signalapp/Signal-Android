@@ -2340,6 +2340,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="GroupsLearnMore_paragraph_2">Äldre grupper kan ännu inte uppgraderas till Nya grupper, men du kan skapa en Ny grupp med samma medlemmar om de använder den senaste versionen av Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal kommer att erbjuda ett sätt att uppgradera Äldre grupper i framtiden.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Alla med denna länk kan se gruppens namn och foto och begära att gå med. Dela det med personer du litar på.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Alla som har denna länk kan se gruppens namn och foto och gå med i gruppen. Dela det med personer du litar på.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Dela via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiera</string>
   <string name="GroupLinkBottomSheet_qr_code">QR Kod</string>

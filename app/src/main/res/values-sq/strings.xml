@@ -2350,6 +2350,8 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="GroupsLearnMore_paragraph_2">Grupet e Dikurshme s’mund të përmirësohen në Grupe të Rinj, por mundeni të krijoni një Grup të Ri me të njëjtët anëtarë, nëse gjenden nën versionin më të ri të Signal-it.</string>
   <string name="GroupsLearnMore_paragraph_3">Në të ardhmen, Signal-i do të ofrojë një rrugë për përmirësim Grupesh të Dikurshëm.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Cilido me këtë lidhje mund të shohë emrin dhe foton e këtij grupi dhe mund të kërkojë të bëhet pjesë e tij. Jepuani njerëzve të cilëve u besoni.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Cilido me këtë lidhje mund të shohë emrin dhe foton e këtij grupi dhe mund të bëhet pjesë e tij. Jepuani njerëzve të cilëve u besoni.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Ndajeni përmes Signal-i</string>
   <string name="GroupLinkBottomSheet_copy">Kopjoje</string>
   <string name="GroupLinkBottomSheet_qr_code">Kod QR</string>

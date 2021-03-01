@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم‌اکنون در «تنظیمات گروه»</string>
   <string name="ConversationActivity_join">پیوستن</string>
   <string name="ConversationActivity_full">پر شده</string>
+  <string name="ConversationActivity_error_sending_media">خطا در ارسال رسانه</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام خوانده نشده</item>
@@ -539,8 +540,8 @@
     <item quantity="other">لغو %1$d دعوت</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="one">اشکال در لغو دعوت</item>
-    <item quantity="other">اشکال در لغو دعوت‌ها</item>
+    <item quantity="one">خطا در لغو دعوت</item>
+    <item quantity="other">خطا در لغو دعوت‌ها</item>
   </plurals>
   <!--RequestingMembersFragment-->
   <string name="RequestingMembersFragment_pending_member_requests">درخواست‌‌های عضویت در حال انتظار</string>
@@ -622,7 +623,7 @@
   <string name="ManageGroupActivity_failed_to_update_the_group">به‌روزرسانی گروه ناموفق بود.</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">شما عضو گروه نیستید</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">به‌روزرسانی گروه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
-  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">به‌روزرسانی گروه به علت اشکال شبکه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
+  <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">به‌روزرسانی گروه به علت خطای شبکه موفق نبود، لطفاً بعداً دوباره امتحان کنید</string>
   <string name="ManageGroupActivity_edit_name_and_picture">ویرایش نام و عکس</string>
   <string name="ManageGroupActivity_legacy_group">گروه موروثی</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">این یک گروه قدیمی است. قابلیت‌هایی نظیر مدیران گروه فقط در گروه‌های جدید موجود هستند.</string>
@@ -1305,7 +1306,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s نشست امن را بازنشانی کرد.</string>
   <string name="SmsMessageRecord_duplicate_message">پیام تکراری.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">این پیام قابل پردازش نیست چون از یک نسخهٔ جدیدتر سیگنال ارسال شده است. می‌توانید از مخاطب خود بخواهید تا این پیام را دوباره بعد از به‌روزرسانی برای شما ارسال کند.</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">خطا هنگام پردازش پیام ورودی.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">خطا در پردازش پیام ورودی.</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">استیکرها</string>
   <!--StickerManagementAdapter-->
@@ -2455,7 +2456,7 @@
   <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">دو انگشت برای بزرگ‌نمایی و کشیدن برای جابه‌جایی و تنظیم</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">تنظیم کاغذدیواری برای تمامی گفتگوها.</string>
   <string name="WallpaperCropActivity__set_wallpaper_for_s">تنظیم کاغذدیواری برای %s.</string>
-  <string name="WallpaperCropActivity__error_setting_wallpaper">اشکال در تنظیم کاغذدیواری.</string>
+  <string name="WallpaperCropActivity__error_setting_wallpaper">خطا در تنظیم کاغذدیواری.</string>
   <string name="WallpaperCropActivity__blur_photo">مات کردن عکس</string>
   <!--EOF-->
 </resources>

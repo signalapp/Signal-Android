@@ -2341,6 +2341,8 @@
   <string name="GroupsLearnMore_paragraph_2">Οι ομάδες παλαιού τύπου δεν μπορούν ακόμα να αναβαθμιστούν σε νέου τύπου, αλλά μπορείς να δημιουργήσεις μια καινούργια ομάδα νέου τύπου, με τα ίδια μέλη, εφ\' όσον έχουν την πιο πρόσφατη έκδοση του Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Το Signal θα προσφέρει τη δυνατότητα αναβάθμισης των ομάδων παλαιού τύπου στο μέλλον.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Με αυτό τον σύνδεσμο, οποιοσδήποτε μπορεί να δεί το όνομα και τη φωτογραφία της ομάδας, και να ζητήσει να μπει σε αυτήν. Μοιράσου τον μόνο με άτομα που εμπιστεύεσαι.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Με αυτό τον σύνδεσμο, οποιοσδήποτε μπορεί να δεί το όνομα και τη φωτογραφία της ομάδας, και να μπει σε αυτήν. Μοιράσου τον μόνο με άτομα που εμπιστεύεσαι.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Μοιράσου μέσω Signal</string>
   <string name="GroupLinkBottomSheet_copy">Αντιγραφή</string>
   <string name="GroupLinkBottomSheet_qr_code">Κωδικός QR</string>

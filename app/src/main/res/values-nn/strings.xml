@@ -2352,6 +2352,8 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="GroupsLearnMore_paragraph_2">Eldre grupper kan ikkje enno oppgraderast til Nye grupper, men du kan laga ei Ny gruppe med same medlemmar viss dei alle har den seinaste Signal-utgåva.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal vil etter kvart få støtte for å oppgradera Eldre grupper.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Alle som har denne lenka kan sjå gruppenamnet og -bildet, og be om å bli med. Del lenka med dei du stoler på.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Alle som har denne lenka kan sjå gruppenamnet og -bildet, og bli med i gruppa. Del lenka med dei du stoler på.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Del med Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>

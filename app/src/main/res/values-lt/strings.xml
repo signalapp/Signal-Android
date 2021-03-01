@@ -2506,6 +2506,8 @@
   <string name="GroupsLearnMore_paragraph_2">Pasenusios grupės negali būti naujintos į naująsias grupes, bet galite sukurti naująją grupę su tais pačiais nariais, jeigu jie naudoja naujausią Signal versiją.</string>
   <string name="GroupsLearnMore_paragraph_3">Ateityje Signal pateiks būdą kaip naujinti pasenusias grupes į naująsias.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Kiekvienas, turintis šią nuorodą, gali peržiūrėti grupės pavadinimą ir nuotrauką bei gali prašyti prisijungti prie grupės. Bendrinkite nuorodą su žmonėmis, kuriais pasitikite.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Kiekvienas, turintis šią nuorodą, gali peržiūrėti grupės pavadinimą ir nuotrauką bei gali prisijungti prie grupės. Bendrinkite nuorodą su žmonėmis, kuriais pasitikite.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Bendrinti per Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopijuoti</string>
   <string name="GroupLinkBottomSheet_qr_code">QR kodas</string>

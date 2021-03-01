@@ -2346,6 +2346,8 @@
   <string name="GroupsLearnMore_paragraph_2">Os Grupos Clásicos aínda non poden actualizarse a Grupos Novos, mais podes crear un Grupo Novo cos mesmos membros se están usando a última versión de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal fornecerá próximamente un xeito de actualizar os Grupos Clásicos.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Calquera que con esta ligazón pode ver o nome e foto do grupo e solicitar unirse. Compártea coas persoas da túa confianza.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Calquera con esta ligazón pode ver o nome e foto do grupo e unirse a el. Compártea con persoas da túa confianza.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Compartir vía Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>
   <string name="GroupLinkBottomSheet_qr_code">Código QR</string>

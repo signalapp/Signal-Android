@@ -323,7 +323,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen met wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen van wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
@@ -883,9 +883,9 @@
   <string name="MessageRecord_s_joined_signal">%s is vanaf nu bereikbaar via Signal.</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Je hebt verlopende berichten uitgeschakeld.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s heeft verlopende berichten uitgeschakeld.</string>
-  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de timer voor verlopende berichten op %1$s ingesteld.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de timer voor verlopende berichten op %2$s ingesteld.</string>
-  <string name="MessageRecord_disappearing_message_time_set_to_s">De timer voor verlopende berichten is op %1$s ingesteld.</string>
+  <string name="MessageRecord_you_set_disappearing_message_time_to_s">Je hebt de tijdsspanne voor verlopende berichten op %1$s ingesteld.</string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de tijdsspanne voor verlopende berichten op %2$s ingesteld.</string>
+  <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe groep.</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden tot de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
   <string name="MessageRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
@@ -1933,7 +1933,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
   <string name="preferences_chats__when_using_mobile_data">Bij mobielegegevensoverdracht</string>
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
-  <string name="preferences_chats__when_roaming">Bij roaming</string>
+  <string name="preferences_chats__when_roaming">Bij roamen</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_history">Gespreksgeschiedenis</string>
   <string name="preferences_storage__storage_usage">Opslaggebruik</string>
@@ -1987,7 +1987,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van niet-contactpersonen voor wie je ook je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Sta toe dat je berichten met een verzegelde afzender ontvangt welke afkomstig zijn van personen naar wie je nog nooit een bericht hebt verzonden en ook nooit mee in het zelfde groepsgesprek zat. Hierdoor kunnen Signal\'s servers nog iets minder zien, maar dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren hierover</string>
   <string name="preferences_setup_a_username">Gebruikersnaam aanmaken</string>
   <string name="preferences_proxy">Proxy</string>
@@ -2350,6 +2350,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder wie over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze verwijzing alleen met personen wie je vertrouwt.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder wie over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze verwijzing alleen met personen wie je vertrouwt.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-code</string>

@@ -2345,6 +2345,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="GroupsLearnMore_paragraph_2">Malnovtipaj grupoj ankoraŭ ne konverteblas al novtipaj grupoj, sed vi povas krei novtipan grupon kun la samaj anoj, se ili havas la lastan version de Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal permesos novtipigi malnovtipajn grupojn estonte.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Per tiu ligilo, ĉiu ajn povas vidi la nomon kaj la foton de la grupo, kaj peti aniĝon. Kunhavigu la ligilon kun homoj, kiujn vi fidas.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Per tiu ligilo, ĉiu ajn povas vidi la nomon kaj la foton de la grupo, kaj  povas aniĝi. Kunhavigu la ligilon kun homoj, kiujn vi fidas.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Kunhavi per Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopii</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kodo</string>

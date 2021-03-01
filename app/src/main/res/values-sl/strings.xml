@@ -2497,6 +2497,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="GroupsLearnMore_paragraph_2">Stare skupine zaenkrat ne morejo biti pretvorjene v Nove, lahko pa ustvarite Novo skupino z identičnim članstvom, če vaši sogovorniki uporabljajo najnovejšo različico aplikacije Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">V prihodnosti bo ponujena tudi možnost nadgradnje Starih v Nove skupine Signal.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Kdorkoli s to povezavo lahko vidi ime in profilno sliko skupine ter zaprosi za pridružitev.  Delite povezavo z ljudmi, ki jim zaupate.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Kdorkoli s to povezavo lahko vidi ime in profilno sliko skupine ter se ji pridruži.  Delite povezavo z ljudmi, ki jim zaupate.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Deli preko Signala</string>
   <string name="GroupLinkBottomSheet_copy">Kopiraj</string>
   <string name="GroupLinkBottomSheet_qr_code">Koda QR</string>

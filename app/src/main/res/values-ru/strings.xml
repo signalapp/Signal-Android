@@ -2104,8 +2104,8 @@
   <string name="preferences_data_and_storage__calls">Звонки</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Экономить трафик для звонков</string>
   <string name="preferences_data_and_storage__never">Никогда</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильный интернет</string>
-  <string name="preferences_data_and_storage__cellular_only">Только мобильный интернет</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Wi-Fi и мобильные данные</string>
+  <string name="preferences_data_and_storage__cellular_only">Только мобильные данные</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Экономия трафика может улучшить звонки при плохой связи</string>
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
@@ -2130,7 +2130,7 @@
   <string name="preferences_off">Отключено</string>
   <string name="preferences_on">Включено</string>
   <string name="preferences_proxy_address">Адрес прокси</string>
-  <string name="preferences_only_use_a_proxy_if">Используйте прокси только если вы не можете подключиться к Signal через мобильный интернет или Wi-Fi.</string>
+  <string name="preferences_only_use_a_proxy_if">Используйте прокси только если вы не можете подключиться к Signal через мобильные данные или Wi-Fi.</string>
   <string name="preferences_share">Поделиться</string>
   <string name="preferences_save">Сохранить</string>
   <string name="preferences_connecting_to_proxy">Подключаемся к прокси…</string>
@@ -2499,6 +2499,8 @@
   <string name="GroupsLearnMore_paragraph_2">Старые группы пока не могут быть обновлены до Новых групп, но вы можете создать Новую группу с теми же участниками, если они используют новейшую версию Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal предоставит возможность обновить Старые группы в будущем.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Любой, у кого есть эта ссылка, может просмотреть имя и фото этой группы и отправить запрос на присоединение. Делитесь ей с людьми, которым вы доверяете.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Любой, у кого есть эта ссылка, может просмотреть имя и фото этой группы и присоединиться к ней. Делитесь ей с людьми, которым вы доверяете.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Поделиться через Signal</string>
   <string name="GroupLinkBottomSheet_copy">Копировать</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-код</string>

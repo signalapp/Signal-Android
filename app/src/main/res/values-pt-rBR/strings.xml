@@ -838,8 +838,8 @@
   <string name="NotificationBarManager__end_call">Terminar chamada</string>
   <string name="NotificationBarManager__cancel_call">Cancelar chamada</string>
   <!--NotificationsMegaphone-->
-  <string name="NotificationsMegaphone_turn_on_notifications">Habilitar Notificações?</string>
-  <string name="NotificationsMegaphone_never_miss_a_message">Nunca perder mensagens de seus contatos e grupos.</string>
+  <string name="NotificationsMegaphone_turn_on_notifications">Habilitar notificações?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Nunca perca mensagens de seus contatos e grupos.</string>
   <string name="NotificationsMegaphone_turn_on">Ativar</string>
   <string name="NotificationsMegaphone_not_now">Agora não</string>
   <!--NotificationMmsMessageRecord-->
@@ -2346,6 +2346,8 @@
   <string name="GroupsLearnMore_paragraph_2">Os Grupos Legados ainda não podem ser atualizados para Novos Grupos, mas você pode criar um Novo Grupo com os mesmos membros se eles estiverem usando a última versão do Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">O Signal oferecerá uma forma de atualizar os Grupos Legados no futuro.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Qualquer pessoa com este link pode ver o nome e a foto do grupo e pedir para participar. Compartilhe o link com pessoas que você confia.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Qualquer pessoa com este link pode ver o nome, a foto do grupo e entrar nele. Compartilhe o link com pessoas que você confia.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Compartilhar via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copiar</string>
   <string name="GroupLinkBottomSheet_qr_code">Código QR</string>

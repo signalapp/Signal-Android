@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Повеќе опции во „Групни поставувања“</string>
   <string name="ConversationActivity_join">Приклучи сѐ</string>
   <string name="ConversationActivity_full">Полно е</string>
+  <string name="ConversationActivity_error_sending_media">Грешка при испраќање на медија</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d непрочитана порака</item>
@@ -837,8 +838,8 @@
   <string name="NotificationBarManager__end_call">Заврши го повикот</string>
   <string name="NotificationBarManager__cancel_call">Откажи повик</string>
   <!--NotificationsMegaphone-->
-  <string name="NotificationsMegaphone_turn_on_notifications">Исклучи Известувања?</string>
-  <string name="NotificationsMegaphone_never_miss_a_message">Никогаш не пропуштајте порака од вашите контакти и групи.</string>
+  <string name="NotificationsMegaphone_turn_on_notifications">Да вклучам известувања?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Никогаш не пропуштајте порака од Вашите контакти и групи.</string>
   <string name="NotificationsMegaphone_turn_on">Вклучи</string>
   <string name="NotificationsMegaphone_not_now">Не сега</string>
   <!--NotificationMmsMessageRecord-->
@@ -1248,7 +1249,7 @@
   <string name="RegistrationActivity_continue">Продолжи</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Понесете ја приватноста со Вас.\nБидете свои во секоја порака. </string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Внесете го Вашиот телефонски број за да започнете</string>
-  <string name="RegistrationActivity_enter_your_phone_number">Внесете го вашиот телефонски број</string>
+  <string name="RegistrationActivity_enter_your_phone_number">Внесете го Вашиот телефонски број</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ќе добиете код за проверка. Можно е да важат цените од операторот.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Внесете го кодот што Ви го испративме на %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Осигурајте се дека Вашиот телефон има мобилен сигнал за да ја примите вашата SMS порака или повик</string>
@@ -2341,6 +2342,8 @@
   <string name="GroupsLearnMore_paragraph_2">Застарените групи сѐ уште не можат да бидат надградени во нови групи, но затоа можете да создадете нова група со истите членови се доколку сите ја користат најновата верзија на Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal ќе нуди начин за надградба од застарени групи во иднина.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата како и да побара да се приклучи. Споделете го линкот само со луѓе на кои што им верувате.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Секој кој што го има линкот може да ги види името и сликата на групата, како и да побара да се приклучи. Споделете го линкот само со луѓе на кои што им верувате.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Сподели преку Signal</string>
   <string name="GroupLinkBottomSheet_copy">Копирај</string>
   <string name="GroupLinkBottomSheet_qr_code">QR код</string>

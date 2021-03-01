@@ -2498,6 +2498,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="GroupsLearnMore_paragraph_2">Stare grupy nie mogą jeszcze zostać zaktualizowane do Nowych grup, ale możesz stworzyć Nową grupę z tymi samymi członkami, jeśli korzystają oni z najnowszej wersji Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">W przyszłości Signal zaoferuje możliwość zaktualizowania Starych grup</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Każdy, kto ma dostęp do tego linku, może zobaczyć nazwę i zdjęcie grupy, i poprosić o przyjęcie. Udostępniaj go zaufanym osobom.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Każdy, kto ma dostęp do tego linku, może zobaczyć nazwę i zdjęcie grupy, i do niej dołączyć. Udostępniaj go zaufanym osobom.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Udostępnij przez Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiuj</string>
   <string name="GroupLinkBottomSheet_qr_code">Kod QR</string>

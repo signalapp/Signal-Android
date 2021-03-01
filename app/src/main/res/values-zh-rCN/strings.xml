@@ -233,6 +233,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">“群组设置”现增加了更多选项</string>
   <string name="ConversationActivity_join">加入</string>
   <string name="ConversationActivity_full">已满</string>
+  <string name="ConversationActivity_error_sending_media">媒体发送失败</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">%d 条未读消息</item>
@@ -331,7 +332,7 @@
   <string name="BackupsPreferenceFragment__backup_folder">备份文件夹</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">验证备份密码</string>
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">测试备份密码并验证是否匹配</string>
-  <string name="BackupsPreferenceFragment__turn_on">启用</string>
+  <string name="BackupsPreferenceFragment__turn_on">开启</string>
   <string name="BackupsPreferenceFragment__turn_off">关闭</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">如需恢复备份，请重新安装 Signal，然后打开该应用并点击“恢复备份”，接着打开备份文件。%1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">了解更多</string>
@@ -534,13 +535,13 @@
   <string name="AddGroupDetailsFragment__create">创建</string>
   <string name="AddGroupDetailsFragment__members">成员</string>
   <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">您可以在创建此群组后添加或邀请朋友。</string>
-  <string name="AddGroupDetailsFragment__group_name_required">群名称（必填）</string>
+  <string name="AddGroupDetailsFragment__group_name_required">群组名称（必填）</string>
   <string name="AddGroupDetailsFragment__group_name_optional">群组名称（可选）</string>
   <string name="AddGroupDetailsFragment__this_field_is_required">必须填写此项。</string>
   <string name="AddGroupDetailsFragment__group_creation_failed">群组创建失败。</string>
   <string name="AddGroupDetailsFragment__try_again_later">稍候再试。</string>
   <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">您所选择的联系人并不支持 Signal 群组，所以此组将以彩信形式存在。</string>
-  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定义MMS群组名称和图片将仅对你可见。</string>
+  <string name="AddGroupDetailsFragment_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自定义彩信群组名称和图片将仅对你可见。</string>
   <string name="AddGroupDetailsFragment__remove">删除</string>
   <string name="AddGroupDetailsFragment__sms_contact">短信联系人</string>
   <string name="AddGroupDetailsFragment__remove_s_from_this_group">将 %1$s 从群组移除？</string>
@@ -582,7 +583,7 @@
     <item quantity="other">已添加%d位成员。</item>
   </plurals>
   <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有管理员才能启用或禁用群组链接。</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理员才能启用或禁用新成员审核开关。</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理员才能启用或禁用新成员批准开关。</string>
   <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理员才能重置群组链接。</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您没有此操作的权限</string>
   <string name="ManageGroupActivity_not_capable">您添加的部分用户无法使用新版群组，这些用户需要升级 Signal。</string>
@@ -657,7 +658,7 @@
   <string name="ShareableGroupLinkDialogFragment__share">分享</string>
   <string name="ShareableGroupLinkDialogFragment__reset_link">重置链接</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">成员请求</string>
-  <string name="ShareableGroupLinkDialogFragment__approve_new_members">审核新成员</string>
+  <string name="ShareableGroupLinkDialogFragment__approve_new_members">批准新成员</string>
   <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">通过群组链接的新成员需要经过管理员同意才能入群。</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">确定要重置群组链接吗？重置后他人将无法通过原来的链接加入群组。</string>
   <!--GroupLinkShareQrDialogFragment-->
@@ -794,9 +795,9 @@
   <string name="NotificationBarManager__end_call">结束呼叫</string>
   <string name="NotificationBarManager__cancel_call">取消呼叫</string>
   <!--NotificationsMegaphone-->
-  <string name="NotificationsMegaphone_turn_on_notifications">是否启用通知？</string>
+  <string name="NotificationsMegaphone_turn_on_notifications">是否开启通知？</string>
   <string name="NotificationsMegaphone_never_miss_a_message">不错过任何消息。</string>
-  <string name="NotificationsMegaphone_turn_on">启用</string>
+  <string name="NotificationsMegaphone_turn_on">开启</string>
   <string name="NotificationsMegaphone_not_now">稍后再说</string>
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">多媒体消息</string>
@@ -1200,7 +1201,7 @@
   <string name="RegistrationLockV2Dialog_turn_on_registration_lock">开启注册锁定？</string>
   <string name="RegistrationLockV2Dialog_turn_off_registration_lock">关闭注册锁定？</string>
   <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">再次注册 Signal 时，如果忘记 Signal PIN，将在 7 天内无法使用你的帐户。</string>
-  <string name="RegistrationLockV2Dialog_turn_on">启用</string>
+  <string name="RegistrationLockV2Dialog_turn_on">开启</string>
   <string name="RegistrationLockV2Dialog_turn_off">关闭</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">查看图片</string>
@@ -1988,7 +1989,7 @@
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">静音通知</string>
   <!--conversation-->
-  <string name="conversation__menu_group_settings">组群设置</string>
+  <string name="conversation__menu_group_settings">群组设置</string>
   <string name="conversation__menu_leave_group">离开群组</string>
   <string name="conversation__menu_view_all_media">全部媒体</string>
   <string name="conversation__menu_conversation_settings">对话设置</string>
@@ -2031,26 +2032,26 @@
   <!--redphone_audio_popup_menu-->
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">深入了解</string>
-  <string name="InsightsDashboardFragment__title">深入了解</string>
+  <string name="Insights__title">见解</string>
+  <string name="InsightsDashboardFragment__title">见解</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">在过去 %2$d 天，Signal Protocol 自动保护 %1$d%% 的传出消息。Signal 用户之间的对话一直为端对端加密。</string>
   <string name="InsightsDashboardFragment__boost_your_signal">提升 Signal 得分</string>
   <string name="InsightsDashboardFragment__not_enough_data">数据不足</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">深入了解中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">您的“见解”中计算得到的百分比，来自过去 %1$d 天内未消失或删除的传出消息。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">开始聊天</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">邀请更多好友加入 Signal，可使用更多新功能，不受非加密短信的限制，开启安全沟通新旅程。</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">该统计信息为本地生成，仅对您自己可见，不会发布至其他地方。</string>
   <string name="InsightsDashboardFragment__encrypted_messages">加密消息</string>
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">发送</string>
-  <string name="InsightsModalFragment__title">新推出“深入了解”功能</string>
+  <string name="InsightsModalFragment__title">新推出“见解”功能</string>
   <string name="InsightsModalFragment__description">查看多少传出消息安全发送，并可快速邀请好友一起使用 Signal，提高你的百分比。</string>
-  <string name="InsightsModalFragment__view_insights">查看“深入了解”</string>
+  <string name="InsightsModalFragment__view_insights">查看“见解”</string>
   <string name="FirstInviteReminder__title">邀请加入 Signal</string>
   <string name="FirstInviteReminder__description">可增加发送的加密消息数量：%1$d%%</string>
   <string name="SecondInviteReminder__title">提升 Signal 得分</string>
   <string name="SecondInviteReminder__description">邀请 %1$s</string>
-  <string name="InsightsReminder__view_insights">查看深入了解</string>
+  <string name="InsightsReminder__view_insights">查看“见解”</string>
   <string name="InsightsReminder__invite">邀请</string>
   <!--Edit KBS Pin-->
   <!--BaseKbsPinFragment-->
@@ -2256,7 +2257,7 @@
   <string name="RecipientBottomSheet_remove">移除</string>
   <string name="RecipientBottomSheet_copied_to_clipboard">已复制到剪切板</string>
   <string name="GroupRecipientListItem_admin">管理员</string>
-  <string name="GroupRecipientListItem_approve_description">同意</string>
+  <string name="GroupRecipientListItem_approve_description">批准</string>
   <string name="GroupRecipientListItem_deny_description">拒绝</string>
   <!--GroupsLearnMoreBottomSheetDialogFragment-->
   <string name="GroupsLearnMore_legacy_vs_new_groups">新旧版群组对比</string>
@@ -2266,6 +2267,8 @@
   <string name="GroupsLearnMore_paragraph_2">旧版群组暂时无法升级为新版群组，但若群成员都已升级到最新版 Signal，您可以创建一个包含相同成员的新版群组。</string>
   <string name="GroupsLearnMore_paragraph_3">Signal 将在未来提供升级旧版群组的渠道。</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">任何人都能凭此链接查看群组名称和头像，并提交入群申请。请仅分享给您信任的人。</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">任何人都能凭此链接查看群组名称和头像，并加入群组。请仅分享给您信任的人。</string>
   <string name="GroupLinkBottomSheet_share_via_signal">通过 Signal 分享</string>
   <string name="GroupLinkBottomSheet_copy">复制</string>
   <string name="GroupLinkBottomSheet_qr_code">QR 代码</string>

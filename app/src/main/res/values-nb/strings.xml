@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Flere valg er nå tilgjengelig i \"Gruppeinnstillinger\".</string>
   <string name="ConversationActivity_join">Bli med</string>
   <string name="ConversationActivity_full">Full</string>
+  <string name="ConversationActivity_error_sending_media">Kunne ikke sende media</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ulest melding</item>
@@ -2339,6 +2340,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="GroupsLearnMore_paragraph_2">\"Legacy\"-grupper kan ikke bli oppgradert til nye grupper enda, men du kan kan lage en ny gruppe med de samme medlemmene om de bruker den nyeste utgaven av Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal vil tilby en måter å oppgradere \"Legacy\"-grupper i fremtiden.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Alle med denne lenken kan se gruppens navn og bilde, og be om å få bli med. Del den med folk du stoler på.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Alle med denne lenken kan se gruppens navn og bilde, og delta i gruppen. Del den med folk du stoler på.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Del via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopier</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kode</string>

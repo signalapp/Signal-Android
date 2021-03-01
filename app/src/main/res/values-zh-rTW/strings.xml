@@ -2262,6 +2262,8 @@
   <string name="GroupsLearnMore_paragraph_2">舊版群組尚不能升級到新群組，但是如果最新版本的Signal上有相同的成員，則可以創建一個新群組。</string>
   <string name="GroupsLearnMore_paragraph_3">Signal將來將提供一種升級舊版群組的方法。</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">知道此連結的任何人都可以查看群組的名稱和圖片，並請求加入。 與你信任的人分享。</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">知道此連結的任何人都可以查看該群組的名稱和圖片，然後加入該群組。 與你信任的人分享。</string>
   <string name="GroupLinkBottomSheet_share_via_signal">透過 Signal 分享</string>
   <string name="GroupLinkBottomSheet_copy">複製</string>
   <string name="GroupLinkBottomSheet_qr_code">QR 碼</string>

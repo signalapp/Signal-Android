@@ -13,8 +13,8 @@
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal അപ്ഡേറ്റ് ചെയ്യുന്നു…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ഇപ്പോൾ:%s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">താങ്കൾ ഒരു രഹസ്യവാക്ക് ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാക്ക് പ്രവർത്തനരഹിതമാക്കണോ?</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">നിങ്ങൾ ഒരു രഹസ്യവാചകം ഇതു വരെ ക്രമീകരിച്ചിട്ടില്ല!</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">രഹസ്യവാചകം പ്രവർത്തനരഹിതമാക്കണോ?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ഇത്  Signal സന്ദേശ അറിയിപ്പുകളെ എന്നന്നേയ്ക്കുമായി അൺലോക്കുചെയ്യും.</string>
   <string name="ApplicationPreferencesActivity_disable">പ്രവർത്തനരഹിതമാക്കുക</string>
   <string name="ApplicationPreferencesActivity_unregistering">അൺരെജിസ്റ്റർ ചെയ്യുന്നു</string>
@@ -168,7 +168,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">അയയ്ക്കാൻ പറ്റിയില്ല, ഭദ്രമല്ലാത്ത ഇതരരീതിക്കായി തൊടുക</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത SMS പകരം ഉപയോഗിക്കട്ടെ?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">എൻ‌ക്രിപ്റ്റ് ചെയ്യാത്ത MMS പകരം ഉപയോഗിക്കട്ടെ?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. പകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">സ്വീകർത്താവ് ഇപ്പോൾ  ഒരു Signal ഉപയോക്താവല്ലാത്തതിനാൽ ഈ സന്ദേശം എൻ‌ക്രിപ്റ്റ് <b>ചെയ്യില്ല</b>. \n\nപകരം, സുരക്ഷിതമല്ലാത്ത സന്ദേശം അയയ്‌ക്കണോ?</string>
   <string name="ConversationItem_unable_to_open_media">ഈ മീഡിയ തുറക്കാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
   <string name="ConversationItem_copied_text">%s പകർത്തി</string>
   <string name="ConversationItem_from_s">%s മുതൽ</string>
@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">കൂടുതൽ ഓപ്ഷനുകൾ ഇപ്പോൾ \"ഗ്രൂപ്പ് ക്രമീകരണങ്ങളിൽ\"</string>
   <string name="ConversationActivity_join">ചേരുക</string>
   <string name="ConversationActivity_full">പൂർണ്ണമായി</string>
+  <string name="ConversationActivity_error_sending_media">മീഡിയ അയയ്‌ക്കുന്നതിൽ പിശക്</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d വായിക്കാത്ത സന്ദേശം</item>
@@ -247,7 +248,7 @@
   <string name="ConversationFragment_save_to_sd_card">സ്റ്റോറേജിലേക്ക് സംരക്ഷിക്കണോ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">ഈ മീഡിയയെ സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതെങ്കിലും അപ്ലിക്കേഷനുകളിലേക്ക് ഇത് ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
-    <item quantity="other">എല്ലാ %1$d മീഡിയയും സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതൊരു അപ്ലിക്കേഷനുകളിലേക്കും അവ ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരുക?</item>
+    <item quantity="other">എല്ലാ %1$d മീഡിയയും സ്റ്റോറേജിലെക് സേവ് ചെയുന്നത് നിങ്ങളുടെ ഉപകരണത്തിലെ മറ്റേതൊരു അപ്ലിക്കേഷനുകളിലേക്കും അവ ആക്‌സസ് ചെയ്യാൻ അനുവദിക്കും.\n\nതുടരണോ?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">സ്റ്റോറേജിലേക്ക് അറ്റാച്ചുമെന്റ് സംരക്ഷിക്കുമ്പോൾ പിശക്!</item>
@@ -276,7 +277,7 @@
   <string name="ConversationFragment_failed_to_open_message">സന്ദേശം തുറക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">വേഗത്തിൽ മറുപടി നൽകുന്നതിന് ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് വലത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">വേഗത്തിൽ മറുപടി നൽകാൻ ഏത് സന്ദേശത്തിലും നിങ്ങൾക്ക് ഇടത്തേക്ക് സ്വൈപ്പുചെയ്യാനാകും</string>
-  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">അയയ്ക്കുന്ന താൽക്കാലിക മീഡിയ ഫയലുകൾ അയച്ചതിനുശേഷം അവ സ്വയമേവ നീക്കംചെയ്യപ്പെടും</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">അയയ്ക്കുന്ന താൽക്കാലിക മീഡിയ ഫയലുകൾ അയച്ചതിനുശേഷം സ്വയമേവ നീക്കംചെയ്യപ്പെടും</string>
   <string name="ConversationFragment_you_already_viewed_this_message">നിങ്ങൾ ഇതിനകം ഈ സന്ദേശം കണ്ടു</string>
   <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">ഈ സംഭാഷണത്തിൽ‌ നിങ്ങൾ‌ക്കായി കുറിപ്പുകൾ‌ ചേർ‌ക്കാൻ‌ കഴിയും.\nനിങ്ങളുടെ അക്കൗണ്ടിൽ ലിങ്കുചെയ്‌ത ഉപകരണങ്ങളുണ്ടെങ്കിൽ, പുതിയ കുറിപ്പുകൾ സമന്വയിപ്പിക്കും.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ഗ്രൂപ്പ് അംഗങ്ങൾക്ക് ഒരേ പേരാണ്.</string>
@@ -287,7 +288,7 @@
   <string name="ConversationFragment_verify">ഉറപ്പാക്കു</string>
   <string name="ConversationFragment_not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%s-മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി.</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവണമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%s -മായുള്ള നിങ്ങളുടെ സുരക്ഷാ നമ്പർ മാറി. അവർ Signal വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്തതുകൊണ്ടോ ഡിവൈസ് മാറിയതുകൊണ്ടോ ആവാമിത്. പുതിയ സുരക്ഷാ നമ്പർ ഉറപ്പുവരുത്താൻ \'ഉറപ്പാക്കു\' ടാപ് ചെയ്യുക. ഇത് ഓപ്ഷണൽ ആണ്.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
     <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -321,7 +322,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">പ്രൊഫൈൽ ഫോട്ടോ ക്രമീകരിക്കുന്നതിൽ പിശക്</string>
   <string name="CreateProfileActivity_problem_setting_profile">പ്രൊഫൈൽ ക്രമീകരിക്കുന്നതിൽ പ്രശ്‌നമുണ്ട്</string>
   <string name="CreateProfileActivity_set_up_your_profile">നിങ്ങളുടെ പ്രൊഫൈൽ സജ്ജമാക്കുക</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ഏൻഡ് ടു ഏൻഡ് എൻക്രിപ്റ്റഡാണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">നിങ്ങളുടെ പ്രൊഫൈൽ  ആദ്യാവസാന എൻക്രിപ്റ്റഡാണ്. നിങ്ങൾ പുതിയ സംഭാഷണങ്ങൾ ആരംഭിക്കുമ്പോഴോ സ്വീകരിക്കുമ്പോഴോ പുതിയ ഗ്രൂപ്പുകളിൽ ചേരുമ്പോഴോ നിങ്ങളുടെ പ്രൊഫൈലും അതിലെ മാറ്റങ്ങളും നിങ്ങളുടെ കോൺടാക്റ്റുകൾക്ക് ദൃശ്യമാകും.</string>
   <string name="CreateProfileActivity_set_avatar_description">അവതാർ സജ്ജമാക്കുക</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">ബാക്കപ്പിൽ വീണ്ടെടുക്കണോ?</string>
@@ -340,15 +341,15 @@
   <string name="BackupsPreferenceFragment__create_backup">ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
   <string name="BackupsPreferenceFragment__last_backup">അവസാന ബാക്കപ്പ്:%1$s</string>
   <string name="BackupsPreferenceFragment__backup_folder">ബാക്കപ്പ് ഫോൾഡർ</string>
-  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിക്കുക</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
+  <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം ഉറപ്പാക്കുക</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് രഹസ്യവാക്യം പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
   <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
   <string name="BackupsPreferenceFragment__turn_off">ഓഫ് ആക്കുക</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">ഒരു ബാക്കപ്പ് റീസ്റ്റോര്‍ ചെയ്യാന്‍, Signal-ന്റെ ഒരു പുതിയ പകർപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക. അപ്ലിക്കേഷൻ തുറന്ന്  \"റിസ്റ്റോർ ചെയ്യുക\" ടാപ്പുചെയ്യുക, തുടർന്ന് ഒരു ബാക്കപ്പ് ഫയൽ കണ്ടെത്തുക. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">കൂടുതൽ അറിയുക</string>
   <string name="BackupsPreferenceFragment__in_progress">പുരോഗതിയിൽ…</string>
   <string name="BackupsPreferenceFragment__d_so_far">%1$d ഇതുവരെ….</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിലേക്കു പോയി , \\"അനുമതികൾ\\" തിരഞ്ഞെടുത്ത് \\"സ്റ്റോറജ്\\" ഉപയോഗാനുമതി നൽകുക .</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ബാക്കപ്പുകൾ സൃഷ്ടിക്കുന്നതിന് Signal-ന് ബാഹ്യ സ്റ്റോറജ് ​​അനുമതി ആവശ്യമാണ്, പക്ഷേ ഇത് ശാശ്വതമായി നിരസിക്കപ്പെട്ടു. അപ്ലിക്കേഷൻ ക്രമീകരണങ്ങളിലേക്കു പോയി , \"അനുമതികൾ\" തിരഞ്ഞെടുത്ത് \"സ്റ്റോറജ്\" ഉപയോഗാനുമതി നൽകുക .</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Custom ഉപയോഗിക്കുന്നു: %s</string>
   <string name="CustomDefaultPreference_using_default">Default ഉപയോഗിക്കുന്നു: %s</string>
@@ -838,6 +839,7 @@
   <string name="NotificationBarManager__cancel_call">കോൾ റദ്ദാക്കുക</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">അറിയിപ്പുകൾ ഓണാക്കണോ?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകളിൽ‌ നിന്നും ഗ്രൂപ്പുകളിൽ‌ നിന്നും ഒരു സന്ദേശം ഒരിക്കലും നഷ്‌ടപ്പെടുത്തരുത്.</string>
   <string name="NotificationsMegaphone_turn_on">ഓൺ ചെയ്യുക</string>
   <string name="NotificationsMegaphone_not_now">ഇപ്പോൾ വേണ്ട</string>
   <!--NotificationMmsMessageRecord-->
@@ -1071,9 +1073,9 @@
     <item quantity="other">%d അധിക ഗ്രൂപ്പുകൾ</item>
   </plurals>
   <!--PassphraseChangeActivity-->
-  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">പാസ്‌ഫ്രെയ്‌സുകൾ പൊരുത്തപ്പെടുന്നില്ല!</string>
-  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">തെറ്റായ പഴയ പാസ്‌ഫ്രെയ്‌സ്!</string>
-  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">പുതിയ പാസ്‌ഫ്രെയ്‌സ് നൽകുക!</string>
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">രഹസ്യവാചകങ്ങൾ പൊരുത്തപ്പെടുന്നില്ല!</string>
+  <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">തെറ്റായ പഴയ രഹസ്യവാചകം!</string>
+  <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">പുതിയ രഹസ്യവാചകം നൽകുക!</string>
   <!--DeviceProvisioningActivity-->
   <string name="DeviceProvisioningActivity_link_this_device">ഈ ഉപകരണം ലിങ്കുചെയ്യണോ?</string>
   <string name="DeviceProvisioningActivity_continue">തുടരുക</string>
@@ -1105,10 +1107,10 @@
     <item quantity="other">Signal - ന്റെ ഈ പതിപ്പ് %d  ദിവസങ്ങൾക്കുള്ളിൽ കാലഹരണപ്പെടും. ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റുചെയ്യുക.</item>
   </plurals>
   <!--PassphrasePromptActivity-->
-  <string name="PassphrasePromptActivity_enter_passphrase">പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
+  <string name="PassphrasePromptActivity_enter_passphrase">രഹസ്യവാചകം നൽകുക</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ഐക്കൺ</string>
-  <string name="PassphrasePromptActivity_ok_button_content_description">പാസ്‌ഫ്രെയ്‌സ് സമർപ്പിക്കുക</string>
-  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">പാസ്‌ഫ്രെയ്‌സ് അസാധുവാണ്!</string>
+  <string name="PassphrasePromptActivity_ok_button_content_description">രഹസ്യവാചകം സമർപ്പിക്കുക</string>
+  <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">രഹസ്യവാചകം അസാധുവാണ്!</string>
   <string name="PassphrasePromptActivity_unlock_signal">Signal തുറക്കൂ</string>
   <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - ലോക്ക് സ്‌ക്രീൻ</string>
   <!--PlacePickerActivity-->
@@ -1449,7 +1451,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">സമീപകാല അറിയിപ്പുകൾക്കായി Signal തുറക്കുക.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">കോൺ‌ടാക്റ്റ്</string>
-  <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" നോട് %1$sപ്രതികരിച്ചു</string>
+  <string name="MessageNotifier_reacted_s_to_s">\"%2$s\"- നോട് %1$s പ്രതികരിച്ചു</string>
   <string name="MessageNotifier_reacted_s_to_your_video">നിങ്ങളുടെ വീഡിയോയോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">നിങ്ങളുടെ ചിത്രത്തോട് %1$s പ്രതികരിച്ചു.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">നിങ്ങളുടെ ഫയലിനോട് %1$s പ്രതികരിച്ചു.</string>
@@ -1516,9 +1518,9 @@
   <string name="WebRtcCallControls_answer_call_description">കോൾ സ്വീകരിക്കുക</string>
   <string name="WebRtcCallControls_reject_call_description">കോൾ നിരസിക്കുക</string>
   <!--change_passphrase_activity-->
-  <string name="change_passphrase_activity__old_passphrase">പഴയ പാസ്‌ഫ്രെയ്‌സ്</string>
-  <string name="change_passphrase_activity__new_passphrase">പുതിയ പാസ്‌ഫ്രെയ്‌സ്</string>
-  <string name="change_passphrase_activity__repeat_new_passphrase">പുതിയ പാസ്‌ഫ്രെയ്‌സ് ആവർത്തിക്കുക</string>
+  <string name="change_passphrase_activity__old_passphrase">പഴയ രഹസ്യവാചകം</string>
+  <string name="change_passphrase_activity__new_passphrase">പുതിയ രഹസ്യവാചകം</string>
+  <string name="change_passphrase_activity__repeat_new_passphrase">പുതിയ രഹസ്യവാചകം ആവർത്തിക്കുക</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">പേരോ നമ്പറോ നൽകുക</string>
   <string name="contact_selection_activity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
@@ -1721,7 +1723,7 @@
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">നിങ്ങളുടെ പേര്</string>
   <string name="EditProfileNameFragment_first_name">പേരിന്റെ ആദ്യഭാഗം</string>
-  <string name="EditProfileNameFragment_last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (ഓപ്ഷണൽ)</string>
+  <string name="EditProfileNameFragment_last_name_optional">പേരിൻ്റെ അവസാന ഭാഗം (നിർബന്ധമല്ല)</string>
   <string name="EditProfileNameFragment_save">സംരക്ഷിക്കൂ</string>
   <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">നെറ്റ്‌വർക്ക് പ്രശ്‌നങ്ങൾ കാരണം സംരക്ഷിക്കുന്നതിൽ പരാജയം. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
   <!--recipient_preferences_activity-->
@@ -1742,7 +1744,7 @@
   <string name="message_details_header__issues_need_your_attention">ചില പ്രശ്‌നങ്ങൾക്ക് നിങ്ങളുടെ ശ്രദ്ധ ആവശ്യമാണ്.</string>
   <string name="message_details_header__sent">അയച്ചു</string>
   <string name="message_details_header__received">ലഭിച്ചു</string>
-  <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്നു</string>
+  <string name="message_details_header__disappears">അപ്രത്യക്ഷമാകുന്ന</string>
   <string name="message_details_header__via">വഴി</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">ശേഷിക്കുന്നു</string>
@@ -1755,9 +1757,9 @@
   <string name="message_details_recipient__failed_to_send">അയയ്‌ക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
   <string name="message_details_recipient__new_safety_number">പുതിയ സുരക്ഷാ നമ്പർ </string>
   <!--AndroidManifest.xml-->
-  <string name="AndroidManifest__create_passphrase">പാസ്‌ഫ്രെയ്‌സ് സൃഷ്‌ടിക്കുക</string>
+  <string name="AndroidManifest__create_passphrase">രഹസ്യവാചകം സൃഷ്‌ടിക്കുക</string>
   <string name="AndroidManifest__select_contacts">കോൺടാക്റ്റുകൾ തിരഞ്ഞെടുക്കുക</string>
-  <string name="AndroidManifest__change_passphrase">പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
+  <string name="AndroidManifest__change_passphrase">രഹസ്യവാചകം മാറ്റുക</string>
   <string name="AndroidManifest__verify_safety_number">സുരക്ഷാ നമ്പർ ഉറപ്പാക്കു</string>
   <string name="AndroidManifest__log_submit">ഡീബഗ് ലോഗ് സമർപ്പിക്കുക</string>
   <string name="AndroidManifest__media_preview">മീഡിയ പ്രിവ്യൂ</string>
@@ -1771,7 +1773,7 @@
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">ഉപയോക്താക്കൾക്ക് ഇപ്പോൾ ഒരു പുതിയ സംഭാഷണം സ്വീകരിക്കാൻ തിരഞ്ഞെടുക്കാം. ആരാണ് സന്ദേശമയയ്ക്കുന്നതെന്ന് പ്രൊഫൈൽ പേരുകൾ ആളുകളെ അറിയിക്കുന്നു.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">പ്രൊഫൈൽ പേര് ചേർക്കുക</string>
   <!--HelpFragment-->
-  <string name="HelpFragment__have_you_read_our_faq_yet">പതിവുചോദ്യങ്ങൾ വായിച്ചുനോക്കിയോ?</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">FAQ വായിച്ചുനോക്കിയോ?</string>
   <string name="HelpFragment__next">അടുത്തത്</string>
   <string name="HelpFragment__contact_us">ഞങ്ങളെ സമീപിക്കുക</string>
   <string name="HelpFragment__tell_us_whats_going_on">എന്താണ് സംഭവിക്കുന്നതെന്ന് ഞങ്ങളോട് പറയുക</string>
@@ -1839,8 +1841,8 @@
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">നിങ്ങൾ അയയ്‌ക്കുന്ന സന്ദേശങ്ങൾക്കായി വെബ്‌സൈറ്റുകളിൽ നിന്ന് ലിങ്ക് പ്രിവ്യൂകൾ നേരിട്ട് വീണ്ടെടുക്കുക.</string>
   <string name="preferences__choose_identity">ഐഡന്റിറ്റി തിരഞ്ഞെടുക്കുക</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">കോൺ‌ടാക്റ്റ് പട്ടികയിൽ‌ നിന്നും നിങ്ങളുടെ കോൺ‌ടാക്റ്റ് എൻ‌ട്രി തിരഞ്ഞെടുക്കുക.</string>
-  <string name="preferences__change_passphrase">പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
-  <string name="preferences__change_your_passphrase">നിങ്ങളുടെ പാസ്‌ഫ്രെയ്‌സ് മാറ്റുക</string>
+  <string name="preferences__change_passphrase">രഹസ്യവാചകം മാറ്റുക</string>
+  <string name="preferences__change_your_passphrase">നിങ്ങളുടെ രഹസ്യവാചകം മാറ്റുക</string>
   <string name="preferences__enable_passphrase">പാസ്‌ഫ്രെയ്‌സ് സ്‌ക്രീൻ ലോക്ക് പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ഒരു പാസ്‌ഫ്രെയ്‌സ് ഉപയോഗിച്ച് സ്‌ക്രീനും അറിയിപ്പുകളും ലോക്കുചെയ്യുക</string>
   <string name="preferences__screen_security">സ്‌ക്രീൻ സുരക്ഷ</string>
@@ -2223,7 +2225,7 @@
   <string name="Permissions_not_now">ഇപ്പോൾ വേണ്ട</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL സന്ദേശങ്ങൾ പ്രവർത്തനക്ഷമമാക്കുക</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal ഡാറ്റാബേസ് മൈഗ്രേറ്റുചെയ്യുന്നു</string>
-  <string name="PushDecryptJob_new_locked_message">ലോക്കുചെയ്‌ത പുതിയ സന്ദേശം</string>
+  <string name="PushDecryptJob_new_locked_message">പൂട്ടിയിരിക്കുന്ന പുതിയ സന്ദേശം</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">തീർ‌ച്ചപ്പെടുത്തിയിട്ടില്ലാത്ത സന്ദേശങ്ങൾ‌ കാണുന്നതിന് തുറക്കൂ</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">പാസ്‌ഫ്രേസ് ബാക്കപ്പ് ചെയ്യുക</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">ബാക്കപ്പുകൾ ബാഹ്യ സ്റ്റോറേജിലെക് സംരക്ഷിക്കുകയും ചുവടെയുള്ള പാസ്‌ഫ്രെയ്‌സ് ഉപയോഗിച്ച് എൻ‌ക്രിപ്റ്റ് ചെയ്യുകയും ചെയ്യും. ഒരു ബാക്കപ്പ് പുന റിസ്റ്റോർ ചെയ്യാൻ നിങ്ങൾക്ക് ഈ പാസ്‌ഫ്രേസ് ഉണ്ടായിരിക്കണം.</string>
@@ -2234,10 +2236,10 @@
   <string name="registration_activity__skip">ഒഴിവാക്കുക</string>
   <string name="preferences_chats__chat_backups">ചാറ്റ് ബാക്കപ്പുകൾ</string>
   <string name="preferences_chats__backup_chats_to_external_storage">ബാഹ്യ സ്റ്റോറേജിലെക് ചാറ്റുകൾ ബാക്കപ്പ്  ചെയ്യുക</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം നൽകുക</string>
   <string name="RegistrationActivity_restore">വീണ്ടെടുക്കൂ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal-ന്റെ പുതിയ പതിപ്പുകളിൽ നിന്ന് ബാക്കപ്പുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിയില്ല</string>
-  <string name="RegistrationActivity_incorrect_backup_passphrase">തെറ്റായ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ്</string>
+  <string name="RegistrationActivity_incorrect_backup_passphrase">ബാക്കപ്പ് രഹസ്യവാചകം തെറ്റാണ്</string>
   <string name="RegistrationActivity_checking">പരിശോധിക്കുന്നു…</string>
   <string name="RegistrationActivity_d_messages_so_far">ഇതുവരെ %d സന്ദേശങ്ങൾ…</string>
   <string name="RegistrationActivity_restore_from_backup">ബാക്കപ്പിൽ നിന്ന് വീണ്ടെടുക്കണോ?</string>
@@ -2256,8 +2258,8 @@
   <string name="BackupDialog_no_file_picker_available">ഫയൽ പിക്കറൊന്നും ലഭ്യമല്ല.</string>
   <string name="BackupDialog_enter_backup_passphrase_to_verify">ഉറപ്പാക്കുന്നതിന് നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് നൽകുക</string>
   <string name="BackupDialog_verify">പരിശോധിക്കുക</string>
-  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് പാസ്‌ഫ്രെയ്‌സ് വിജയകരമായി നൽകി</string>
-  <string name="BackupDialog_passphrase_was_not_correct">പാസ്‌ഫ്രെയ്‌സ് ശരിയായിരുന്നില്ല</string>
+  <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">നിങ്ങൾ ബാക്കപ്പിന്റെ രഹസ്യവാചകം വിജയകരമായി നൽകി</string>
+  <string name="BackupDialog_passphrase_was_not_correct">രഹസ്യവാചകം ശരിയായിരുന്നില്ല</string>
   <string name="LocalBackupJob_creating_backup"> ബാക്കപ്പ് സൃഷ്‌ടിക്കുന്നു…</string>
   <string name="LocalBackupJobApi29_backup_failed">ബാക്കപ്പ്  പരാജയപ്പെട്ടു </string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">നിങ്ങളുടെ ബാക്കപ്പ് ഡയറക്ടറി ഇല്ലാതാക്കി അല്ലെങ്കിൽ നീക്കി.</string>
@@ -2337,6 +2339,8 @@
   <string name="GroupsLearnMore_paragraph_2">ലെഗസി  (പഴയ) ഗ്രൂപ്പുകളെ ഇതുവരെ പുതിയ ഗ്രൂപ്പുകളിലേക്ക് അപ്ഗ്രേഡ് ചെയ്യാൻ കഴിയില്ല, എന്നാൽ അതേ അംഗങ്ങൾ Signal-ഇന്റെ (സിഗ്നലിന്റെ) ഏറ്റവും പുതിയ വേർഷനിലുണ്ടെങ്കിൽ (പതിപ്പിലാണെങ്കിൽ) നിങ്ങൾക്ക് അവരുമായി ഒരു പുതിയ ഗ്രൂപ്പ് സൃഷ്ടിക്കാൻ കഴിയും.</string>
   <string name="GroupsLearnMore_paragraph_3">ഭാവിയിൽ ലെഗസി ഗ്രൂപ്പുകളെ നവീകരിക്കുന്നതിനുള്ള ഒരു വഴി സിഗ്നൽ വാഗ്ദാനം ചെയ്യും.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ഈ ലിങ്കുള്ള ആർക്കും ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും കാണാനും ഗ്രൂപ്പിൽ ചേരാനും കഴിയും. നിങ്ങൾ വിശ്വസിക്കുന്ന ആളുകളുമായി ഇത് പങ്കിടുക.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ഈ ലിങ്കുള്ള ആർക്കും ഗ്രൂപ്പിന്റെ പേരും ഫോട്ടോയും കാണാനും ഗ്രൂപ്പിൽ ചേരാനും കഴിയും. നിങ്ങൾ വിശ്വസിക്കുന്ന ആളുകളുമായി ഇത് പങ്കിടുക.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal വഴി പങ്കിടുക</string>
   <string name="GroupLinkBottomSheet_copy">പകർത്തുക</string>
   <string name="GroupLinkBottomSheet_qr_code">QR കോഡ്</string>
