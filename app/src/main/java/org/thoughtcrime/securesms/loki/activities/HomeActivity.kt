@@ -22,9 +22,11 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
@@ -46,7 +48,10 @@ import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.io.IOException
 
-class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
+class HomeActivity : PassphraseRequiredActionBarActivity,
+        ConversationClickListener,
+        SeedReminderViewDelegate,
+        NewConversationButtonSetViewDelegate {
 
     private lateinit var glide: GlideRequests
     private var broadcastReceiver: BroadcastReceiver? = null
@@ -71,9 +76,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        profileButton.publicKey = publicKey
-        profileButton.displayName = TextSecurePreferences.getProfileName(this)
-        profileButton.update()
+        updateProfileButton()
         profileButton.setOnClickListener { openSettings() }
         pathStatusViewContainer.disableClipping()
         pathStatusViewContainer.setOnClickListener { showPath() }
@@ -149,6 +152,12 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
         this.broadcastReceiver = broadcastReceiver
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, IntentFilter("blockedContactsChanged"))
+        lifecycleScope.launchWhenResumed {
+            // update things based on TextSecurePrefs (profile info etc)
+            TextSecurePreferences.events.filter { it == TextSecurePreferences.PROFILE_NAME_PREF }.collect {
+                updateProfileButton()
+            }
+        }
     }
 
     override fun onResume() {
@@ -197,6 +206,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     private fun updateEmptyState() {
         val threadCount = (recyclerView.adapter as HomeAdapter).itemCount
         emptyStateContainer.visibility = if (threadCount == 0) View.VISIBLE else View.GONE
+    }
+
+    private fun updateProfileButton() {
+        profileButton.publicKey = publicKey
+        profileButton.displayName = TextSecurePreferences.getProfileName(this)
+        profileButton.recycle()
+        profileButton.update()
     }
     // endregion
 
@@ -356,7 +372,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
-        show(intent)
+        show(intent, isForResult = true)
     }
 
     private fun showPath() {

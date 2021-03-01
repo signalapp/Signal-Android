@@ -506,6 +506,10 @@ public class ThreadDatabase extends Database {
     notifyConversationListeners(threadId);
   }
 
+  public void notifyUpdatedFromConfig() {
+    notifyConversationListListeners();
+  }
+
   public boolean update(long threadId, boolean unarchive) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);

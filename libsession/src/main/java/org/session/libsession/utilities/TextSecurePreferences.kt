@@ -7,6 +7,9 @@ import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.provider.Settings
 import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import org.session.libsession.R
 import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
 import org.session.libsignal.utilities.logging.Log
@@ -15,6 +18,9 @@ import java.util.*
 
 object TextSecurePreferences {
     private val TAG = TextSecurePreferences::class.simpleName
+
+    private val _events = MutableSharedFlow<String>(0, 64, BufferOverflow.DROP_OLDEST)
+    val events get() = _events.asSharedFlow()
 
     const val DISABLE_PASSPHRASE_PREF = "pref_disable_passphrase"
     const val THEME_PREF = "pref_theme"
@@ -321,6 +327,7 @@ object TextSecurePreferences {
     @JvmStatic
     fun setProfileName(context: Context, name: String?) {
         setStringPreference(context, PROFILE_NAME_PREF, name)
+        _events.tryEmit(PROFILE_NAME_PREF)
     }
 
     @JvmStatic

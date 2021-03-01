@@ -68,6 +68,10 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             return TextSecurePreferences.getLocalNumber(this)!!
         }
 
+    companion object {
+        const val updatedProfileResultCode = 1234
+    }
+
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)

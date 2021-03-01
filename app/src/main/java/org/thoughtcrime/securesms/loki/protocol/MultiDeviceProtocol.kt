@@ -12,12 +12,18 @@ import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
+import org.thoughtcrime.securesms.sskenvironment.ProfileManager
 import java.util.*
 
 object MultiDeviceProtocol {
@@ -76,7 +82,7 @@ object MultiDeviceProtocol {
     // TODO: remove this after we migrate to new message receiving pipeline
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
-        if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
+//        if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
         val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         if (senderPublicKey != userPublicKey) return
@@ -102,6 +108,37 @@ object MultiDeviceProtocol {
         for (openGroup in configurationMessage.openGroups) {
             if (allOpenGroups.contains(openGroup)) continue
             OpenGroupUtilities.addGroup(context, openGroup, 1)
+        }
+        if (configurationMessage.profileKey.isNotEmpty()) {
+            val profileKey = Base64.encodeBytes(configurationMessage.profileKey)
+            TextSecurePreferences.setProfileKey(context, profileKey)
+        }
+        if (!configurationMessage.profilePicture.isNullOrEmpty()) {
+            TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
+        }
+        if (configurationMessage.displayName.isNotEmpty()) {
+            TextSecurePreferences.setProfileName(context, configurationMessage.displayName)
+        }
+        val threadDatabase = DatabaseFactory.getThreadDatabase(context)
+        val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+        for (contact in configurationMessage.contacts) {
+            val address = Address.fromSerialized(contact.publicKey)
+            val recipient = Recipient.from(context, address, true)
+            if (!contact.profilePicture.isNullOrEmpty()) {
+                recipientDatabase.setProfileAvatar(recipient, contact.profilePicture)
+            }
+            if (contact.profileKey?.isNotEmpty() == true) {
+                recipientDatabase.setProfileKey(recipient, contact.profileKey)
+            }
+            if (contact.name.isNotEmpty()) {
+                recipientDatabase.setProfileName(recipient, contact.name)
+            }
+            recipientDatabase.setProfileSharing(recipient, true)
+            // create Thread if needed
+            threadDatabase.getOrCreateThreadIdFor(recipient)
+        }
+        if (configurationMessage.contacts.isNotEmpty()) {
+            threadDatabase.notifyUpdatedFromConfig()
         }
         // TODO: handle new configuration message fields or handle in new pipeline
         TextSecurePreferences.setConfigurationMessageSynced(context, true)
