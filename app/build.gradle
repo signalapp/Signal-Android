@@ -17,12 +17,6 @@ repositories {
         }
     }
     maven {
-        url "https://raw.github.com/signalapp/maven/master/shortcutbadger/releases/"
-        content {
-            includeGroupByRegex "me\\.leolin.*"
-        }
-    }
-    maven {
         url "https://raw.github.com/signalapp/maven/master/circular-progress-button/releases/"
         content {
             includeGroupByRegex "com\\.github\\.dmytrodanylyk\\.circular-progress-button\\.*"
@@ -342,7 +336,7 @@ dependencies {
 
     implementation 'org.signal:ringrtc-android:2.9.2'
 
-    implementation "me.leolin:ShortcutBadger:1.1.16"
+    implementation "me.leolin:ShortcutBadger:1.1.22"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'com.jpardogo.materialtabstrip:library:1.0.9'
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
