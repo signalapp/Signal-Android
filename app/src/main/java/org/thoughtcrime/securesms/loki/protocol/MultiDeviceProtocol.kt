@@ -34,7 +34,7 @@ object MultiDeviceProtocol {
         }.map { recipient ->
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
-        val configurationMessage = ConfigurationMessage.getCurrent(contacts)
+        val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
@@ -58,7 +58,7 @@ object MultiDeviceProtocol {
         }.map { recipient ->
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
-        val configurationMessage = ConfigurationMessage.getCurrent(contacts)
+        val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return
         val serializedMessage = configurationMessage.toProto()!!.toByteArray()
         val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
         val address = SignalServiceAddress(userPublicKey)
