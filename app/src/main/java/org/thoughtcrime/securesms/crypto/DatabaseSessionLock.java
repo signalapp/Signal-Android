@@ -4,7 +4,10 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalSessionLock;
+
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * An implementation of {@link SignalSessionLock} that effectively re-uses our database lock.
@@ -15,25 +18,32 @@ public enum DatabaseSessionLock implements SignalSessionLock {
 
   public static final long NO_OWNER = -1;
 
+  private static final ReentrantLock LEGACY_LOCK = new ReentrantLock();
+
   private volatile long ownerThreadId = NO_OWNER;
 
   @Override
   public Lock acquire() {
-    SQLiteDatabase db = DatabaseFactory.getInstance(ApplicationDependencies.getApplication()).getRawDatabase();
+    if (FeatureFlags.internalUser()) {
+      SQLiteDatabase db = DatabaseFactory.getInstance(ApplicationDependencies.getApplication()).getRawDatabase();
 
-    if (db.isDbLockedByCurrentThread()) {
-      return () -> {};
+      if (db.isDbLockedByCurrentThread()) {
+        return () -> {};
+      }
+
+      db.beginTransaction();
+
+      ownerThreadId = Thread.currentThread().getId();
+
+      return () -> {
+        ownerThreadId = -1;
+        db.setTransactionSuccessful();
+        db.endTransaction();
+      };
+    } else {
+      LEGACY_LOCK.lock();
+      return LEGACY_LOCK::unlock;
     }
-
-    db.beginTransaction();
-
-    ownerThreadId = Thread.currentThread().getId();
-
-    return () -> {
-      ownerThreadId = -1;
-      db.setTransactionSuccessful();
-      db.endTransaction();
-    };
   }
 
   /**
