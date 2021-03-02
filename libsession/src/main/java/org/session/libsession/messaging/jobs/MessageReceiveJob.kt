@@ -15,8 +15,8 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     // Settings
     override val maxFailureCount: Int = 10
     companion object {
-        val TAG = MessageReceiveJob::class.qualifiedName
-        val KEY: String = "AttachmentUploadJob"
+        val TAG = MessageReceiveJob::class.simpleName
+        val KEY: String = "MessageReceiveJob"
 
         //keys used for database storage purpose
         private val KEY_DATA = "data"

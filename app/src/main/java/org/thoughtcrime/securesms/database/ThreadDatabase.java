@@ -29,6 +29,7 @@ import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -594,14 +595,6 @@ public class ThreadDatabase extends Database {
 
   public Reader readerFor(Cursor cursor) {
     return new Reader(cursor);
-  }
-
-  public static class DistributionTypes {
-    public static final int DEFAULT      = 2;
-    public static final int BROADCAST    = 1;
-    public static final int CONVERSATION = 2;
-    public static final int ARCHIVE      = 3;
-    public static final int INBOX_ZERO   = 4;
   }
 
   public class Reader implements Closeable {

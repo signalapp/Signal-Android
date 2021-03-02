@@ -57,6 +57,8 @@ import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.visible.Quote;
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -82,8 +84,9 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
@@ -92,7 +95,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.loki.api.opengroups.PublicChat;
 import org.session.libsignal.service.loki.api.opengroups.PublicChatAPI;
 
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.ViewUtil;
@@ -696,11 +698,32 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleResendMessage(final MessageRecord message) {
-    final Context context = getActivity().getApplicationContext();
     new AsyncTask<MessageRecord, Void, Void>() {
       @Override
       protected Void doInBackground(MessageRecord... messageRecords) {
-        MessageSender.resend(context, messageRecords[0]);
+        MessageRecord messageRecord = messageRecords[0];
+        Recipient recipient = messageRecord.getRecipient();
+        VisibleMessage message = new VisibleMessage();
+        message.setId(messageRecord.getId());
+        message.setText(messageRecord.getBody());
+        message.setSentTimestamp(messageRecord.getTimestamp());
+        if (recipient.isGroupRecipient()) {
+          message.setGroupPublicKey(recipient.getAddress().toGroupString());
+        } else {
+          message.setRecipient(messageRecord.getRecipient().getAddress().serialize());
+        }
+        message.setThreadID(messageRecord.getThreadId());
+        if (messageRecord.isMms()) {
+          MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+          if (!mmsMessageRecord.getLinkPreviews().isEmpty()) {
+            message.setLinkPreview(org.session.libsession.messaging.messages.visible.LinkPreview.Companion.from(mmsMessageRecord.getLinkPreviews().get(0)));
+          }
+          if (mmsMessageRecord.getQuote() != null) {
+            message.setQuote(Quote.Companion.from(mmsMessageRecord.getQuote().getQuoteModel()));
+          }
+          message.addSignalAttachments(mmsMessageRecord.getSlideDeck().asAttachments());
+        }
+        MessageSender.send(message, recipient.getAddress());
         return null;
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);

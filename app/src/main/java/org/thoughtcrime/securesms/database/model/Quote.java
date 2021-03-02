@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.database.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
@@ -41,5 +42,9 @@ public class Quote {
 
   public @NonNull SlideDeck getAttachment() {
     return attachment;
+  }
+
+  public QuoteModel getQuoteModel() {
+    return new QuoteModel(id, author, text, missing, attachment.asAttachments());
   }
 }

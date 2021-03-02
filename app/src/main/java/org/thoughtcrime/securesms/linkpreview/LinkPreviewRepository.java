@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.common.util.IOUtils;
 
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.utilities.MediaTypes;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -192,7 +193,7 @@ public class LinkPreviewRepository implements InjectableType {
     return  Optional.of(new UriAttachment(uri,
             uri,
             contentType,
-            AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+            AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED,
             bytes.length,
             bitmap.getWidth(),
             bitmap.getHeight(),

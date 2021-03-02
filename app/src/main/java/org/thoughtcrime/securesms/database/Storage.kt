@@ -13,7 +13,6 @@ import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
-import org.session.libsession.messaging.sending_receiving.attachments.SessionServiceAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
@@ -41,9 +40,9 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage
+import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -125,7 +124,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 }.mapNotNull {
                     PointerAttachment.forPointer(Optional.of(it)).orNull()
                 }
-                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull())
+                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
@@ -331,9 +330,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
     }
 
-    override fun markAsSent(messageID: Long) {
+    override fun markAsSent(timestamp: Long, author: String) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
-        val messageRecord = database.getMessageFor(messageID)!!
+        val messageRecord = database.getMessageFor(timestamp, author) ?: return
         if (messageRecord.isMms) {
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             mmsDatabase.markAsSent(messageRecord.getId(), true)
@@ -343,9 +342,9 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
     }
 
-    override fun markUnidentified(messageID: Long) {
+    override fun markUnidentified(timestamp: Long, author: String) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
-        val messageRecord = database.getMessageFor(messageID)!!
+        val messageRecord = database.getMessageFor(timestamp, author) ?: return
         if (messageRecord.isMms) {
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             mmsDatabase.markUnidentified(messageRecord.getId(), true)

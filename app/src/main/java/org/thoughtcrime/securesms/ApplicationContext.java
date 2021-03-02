@@ -34,6 +34,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.snode.SnodeConfiguration;
 import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -176,6 +177,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                 DatabaseFactory.getStorage(this),
                                                 DatabaseFactory.getAttachmentProvider(this),
                                                 new SessionProtocolImpl(this));
+    SnodeConfiguration.Companion.configure(apiDB, broadcaster);
     if (userPublicKey != null) {
       SwarmAPI.Companion.configureIfNeeded(apiDB);
       SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);

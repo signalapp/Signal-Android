@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.loki.utilities.*
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
-        private val sessionJobTable = "loki_thread_session_reset_database"
+        private val sessionJobTable = "session_job_database"
         val jobID = "job_id"
         val jobType = "job_type"
         val failureCount = "failure_count"

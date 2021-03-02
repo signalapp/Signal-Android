@@ -16,15 +16,14 @@ import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.DistributionTypes
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -128,7 +127,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
 private fun openConversationActivity(context: Context, threadId: Long, recipient: Recipient) {
     val intent = Intent(context, ConversationActivity::class.java)
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId)
-    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT)
     intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.address)
     context.startActivity(intent)
 }

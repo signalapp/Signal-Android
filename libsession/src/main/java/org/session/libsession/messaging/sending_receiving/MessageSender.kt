@@ -5,27 +5,31 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.jobs.JobQueue
+import org.session.libsession.messaging.jobs.MessageSendJob
 import org.session.libsession.messaging.jobs.NotifyPNServerJob
 import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
-import org.session.libsession.messaging.messages.visible.Attachment
-import org.session.libsession.messaging.messages.visible.Profile
-import org.session.libsession.messaging.messages.visible.VisibleMessage
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
+import org.session.libsession.messaging.messages.visible.*
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
+import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.MessageWrapper
 import org.session.libsession.snode.RawResponsePromise
 import org.session.libsession.snode.SnodeAPI
+import org.session.libsession.snode.SnodeConfiguration
 import org.session.libsession.snode.SnodeMessage
 import org.session.libsession.utilities.SSKEnvironment
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
-import org.session.libsignal.utilities.Base64
 import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
 
 
 object MessageSender {
@@ -56,25 +60,22 @@ object MessageSender {
     }
 
     // Preparation
-    fun prep(signalAttachments: List<SignalServiceAttachment>, message: VisibleMessage) {
-        // TODO: Deal with SignalServiceAttachmentStream
+    fun prep(signalAttachments: List<SignalAttachment>, message: VisibleMessage) {
         val attachments = mutableListOf<Attachment>()
         for (signalAttachment in signalAttachments) {
             val attachment = Attachment()
-            if (signalAttachment.isPointer) {
-                val signalAttachmentPointer = signalAttachment.asPointer()
-                attachment.fileName = signalAttachmentPointer.fileName.orNull()
-                attachment.caption = signalAttachmentPointer.caption.orNull()
-                attachment.contentType = signalAttachmentPointer.contentType
-                attachment.digest = signalAttachmentPointer.digest.orNull()
-                attachment.key = signalAttachmentPointer.key
-                attachment.sizeInBytes = signalAttachmentPointer.size.orNull()
-                attachment.url = signalAttachmentPointer.url
-                attachment.size = Size(signalAttachmentPointer.width, signalAttachmentPointer.height)
-                attachments.add(attachment)
-            }
+            attachment.fileName = signalAttachment.fileName
+            attachment.caption = signalAttachment.caption
+            attachment.contentType = signalAttachment.contentType
+            attachment.digest = signalAttachment.digest
+            attachment.key = Base64.decode(signalAttachment.key)
+            attachment.sizeInBytes = signalAttachment.size.toInt()
+            attachment.url = signalAttachment.url
+            attachment.size = Size(signalAttachment.width, signalAttachment.height)
+            attachments.add(attachment)
         }
-        val attachmentIDs = MessagingConfiguration.shared.storage.persistAttachments(message.id ?: 0, attachments)
+        val attachmentIDs = MessagingConfiguration.shared.storage.persistAttachments(message.id
+                ?: 0, attachments)
         message.attachmentIDs.addAll(attachmentIDs)
     }
 
@@ -170,7 +171,7 @@ object MessageSender {
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                //TODO Notify user for proof of work calculating
+                SnodeConfiguration.shared.broadcaster.broadcast("calculatingPoW", message.sentTimestamp!!)
             }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
@@ -178,6 +179,9 @@ object MessageSender {
             val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
             snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
+                SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
+            }
             SnodeAPI.sendMessage(snodeMessage).success { promises: Set<RawResponsePromise> ->
                 var isSuccess = false
                 val promiseCount = promises.size
@@ -187,7 +191,7 @@ object MessageSender {
                         if (isSuccess) { return@success } // Succeed as soon as the first promise succeeds
                         isSuccess = true
                         if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                            //TODO Notify user for message sent
+                            SnodeConfiguration.shared.broadcaster.broadcast("messageSent", message.sentTimestamp!!)
                         }
                         handleSuccessfulMessageSend(message, destination, isSyncMessage)
                         var shouldNotify = (message is VisibleMessage && !isSyncMessage)
@@ -199,7 +203,6 @@ object MessageSender {
                             JobQueue.shared.add(notifyPNServerJob)
                             deferred.resolve(Unit)
                         }
-
                     }
                     promise.fail {
                         errorCount += 1
@@ -277,17 +280,19 @@ object MessageSender {
             storage.setOpenGroupServerMessageID(messageId, message.openGroupServerMessageID!!)
         }
         // Mark the message as sent
-        storage.markAsSent(messageId)
-        storage.markUnidentified(messageId)
+        storage.markAsSent(message.sentTimestamp!!, message.sender!!)
+        storage.markUnidentified(message.sentTimestamp!!, message.sender!!)
         // Start the disappearing messages timer if needed
-        SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(messageId)
+        SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender!!)
         // Sync the message if:
         // • it's a visible message
         // • the destination was a contact
         // • we didn't sync it already
         val userPublicKey = storage.getUserPublicKey()!!
-        if (destination is Destination.Contact && !isSyncMessage && message is VisibleMessage) {
-            sendToSnodeDestination(Destination.Contact(userPublicKey), message, true).get()
+        if (destination is Destination.Contact && !isSyncMessage) {
+            if (message is VisibleMessage) { message.syncTarget = destination.publicKey }
+            if (message is ExpirationTimerUpdate) { message.syncTarget = destination.publicKey }
+            sendToSnodeDestination(Destination.Contact(userPublicKey), message, true)
         }
     }
 
@@ -295,5 +300,36 @@ object MessageSender {
         val storage = MessagingConfiguration.shared.storage
         val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
         storage.setErrorMessage(messageId, error)
+        SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
+    }
+
+    // Convenience
+    @JvmStatic
+    fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
+        prep(attachments, message)
+        message.quote = Quote.from(quote)
+        message.linkPreview = LinkPreview.from(linkPreview)
+        send(message, address)
+    }
+
+    @JvmStatic
+    fun send(message: Message, address: Address) {
+        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        message.threadID = threadID
+        val destination = Destination.from(address)
+        val job = MessageSendJob(message, destination)
+        JobQueue.shared.add(job)
+    }
+
+    fun sendNonDurably(message: VisibleMessage, attachments: List<SignalAttachment>, address: Address): Promise<Unit, Exception> {
+        prep(attachments, message)
+        return sendNonDurably(message, address)
+    }
+
+    fun sendNonDurably(message: Message, address: Address): Promise<Unit, Exception> {
+        val threadID = MessagingConfiguration.shared.storage.getOrCreateThreadIdFor(address)
+        message.threadID = threadID
+        val destination = Destination.from(address)
+        return send(message, destination)
     }
 }

@@ -32,7 +32,7 @@ class Attachment {
             result.contentType = proto.contentType ?: inferContentType()
             result.key = proto.key.toByteArray()
             result.digest = proto.digest.toByteArray()
-            val kind: Kind = if (proto.hasFlags() && (proto.flags and SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) { //TODO validate that 'and' operator = swift '&'
+            val kind: Kind = if (proto.hasFlags() && proto.flags.and(SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE) > 0) {
                 Kind.VOICE_MESSAGE
             } else {
                 Kind.GENERIC
@@ -42,7 +42,7 @@ class Attachment {
             val size: Size = if (proto.hasWidth() && proto.width > 0 && proto.hasHeight() && proto.height > 0) {
                 Size(proto.width, proto.height)
             } else {
-                Size(0,0) //TODO check that it's equivalent to swift: CGSize.zero
+                Size(0,0)
             }
             result.size = size
             result.sizeInBytes = if (proto.size > 0) proto.size else null

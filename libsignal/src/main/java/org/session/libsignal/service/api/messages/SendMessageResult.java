@@ -26,14 +26,6 @@ public class SendMessageResult {
     return new SendMessageResult(address, null, true, false, null, null);
   }
 
-  public static SendMessageResult unregisteredFailure(SignalServiceAddress address) {
-    return new SendMessageResult(address, null, false, true, null, null);
-  }
-
-  public static SendMessageResult identityFailure(SignalServiceAddress address, IdentityKey identityKey) {
-    return new SendMessageResult(address, null, false, false, new IdentityFailure(identityKey), null);
-  }
-
   public SignalServiceAddress getAddress() {
     return address;
   }

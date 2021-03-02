@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -105,17 +106,17 @@ public class TransferControlView extends FrameLayout {
     }
     
     for (Slide slide : slides) {
-      if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      if (slide.asAttachment().getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE) {
         downloadProgress.put(slide.asAttachment(), 1f);
       }
     }
 
     switch (getTransferState(slides)) {
-      case AttachmentDatabase.TRANSFER_PROGRESS_STARTED:
+      case AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED:
         showProgressSpinner(calculateProgress(downloadProgress));
         break;
-      case AttachmentDatabase.TRANSFER_PROGRESS_PENDING:
-      case AttachmentDatabase.TRANSFER_PROGRESS_FAILED:
+      case AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING:
+      case AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED:
         downloadDetailsText.setText(getDownloadText(this.slides));
         display(downloadDetails);
         break;
@@ -174,9 +175,9 @@ public class TransferControlView extends FrameLayout {
   }
 
   private int getTransferState(@NonNull List<Slide> slides) {
-    int transferState = AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+    int transferState = AttachmentTransferProgress.TRANSFER_PROGRESS_DONE;
     for (Slide slide : slides) {
-      if (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING && transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+      if (slide.getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING && transferState == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE) {
         transferState = slide.getTransferState();
       } else {
         transferState = Math.max(transferState, slide.getTransferState());
@@ -189,7 +190,7 @@ public class TransferControlView extends FrameLayout {
     if (slides.size() == 1) {
       return slides.get(0).getContentDescription();
     } else {
-      int downloadCount = Stream.of(slides).reduce(0, (count, slide) -> slide.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE ? count + 1 : count);
+      int downloadCount = Stream.of(slides).reduce(0, (count, slide) -> slide.getTransferState() != AttachmentTransferProgress.TRANSFER_PROGRESS_DONE ? count + 1 : count);
       return getContext().getResources().getQuantityString(R.plurals.TransferControlView_n_items, downloadCount, downloadCount);
     }
   }

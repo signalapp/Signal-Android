@@ -301,8 +301,6 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
                 loaderContainer.fadeOut()
                 isLoading = false
             }
-        } else {
-            GroupManager.updateGroup(this, groupID, members, null, name, admins)
         }
     }
 }

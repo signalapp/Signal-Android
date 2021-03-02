@@ -26,8 +26,8 @@ import org.thoughtcrime.securesms.loki.api.LokiPushNotificationManager.ClosedGro
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage
-import org.thoughtcrime.securesms.sms.IncomingTextMessage
+import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsignal.utilities.Hex
 
 import org.session.libsession.messaging.threads.Address

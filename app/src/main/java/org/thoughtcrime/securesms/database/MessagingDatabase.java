@@ -7,9 +7,9 @@ import android.text.TextUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.database.documents.Document;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+import org.session.libsession.database.documents.Document;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.session.libsignal.utilities.logging.Log;
 import org.session.libsignal.libsignal.IdentityKey;
@@ -37,27 +37,6 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
 
   public abstract void markAsSent(long messageId, boolean secure);
   public abstract void markUnidentified(long messageId, boolean unidentified);
-
-  public void setMismatchedIdentity(long messageId, final Address address, final IdentityKey identityKey) {
-    List<IdentityKeyMismatch> items = new ArrayList<IdentityKeyMismatch>() {{
-      add(new IdentityKeyMismatch(address, identityKey));
-    }};
-
-    IdentityKeyMismatchList document = new IdentityKeyMismatchList(items);
-
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.beginTransaction();
-
-    try {
-      setDocument(database, messageId, MISMATCHED_IDENTITIES, document);
-
-      database.setTransactionSuccessful();
-    } catch (IOException ioe) {
-      Log.w(TAG, ioe);
-    } finally {
-      database.endTransaction();
-    }
-  }
 
   public void addMismatchedIdentity(long messageId, Address address, IdentityKey identityKey) {
     try {

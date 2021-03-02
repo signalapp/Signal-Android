@@ -1,6 +1,6 @@
 package org.session.libsession.snode
 
-public class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
+class Snode(val address: String, val port: Int, val publicKeySet: KeySet?) {
 
     val ip: String get() = address.removePrefix("https://")
 

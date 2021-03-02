@@ -37,7 +37,11 @@ import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
 
 
-
+import org.session.libsession.messaging.messages.visible.LinkPreview;
+import org.session.libsession.messaging.messages.visible.Quote;
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.session.libsession.utilities.color.MaterialColor;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
@@ -50,12 +54,12 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.loaders.MessageDetailsLoader;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.session.libsignal.utilities.logging.Log;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.session.libsession.utilities.ExpirationUtil;
 import org.session.libsession.utilities.Util;
@@ -441,7 +445,28 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void onResendClicked(View v) {
-      MessageSender.resend(MessageDetailsActivity.this, messageRecord);
+      Recipient recipient = messageRecord.getRecipient();
+      VisibleMessage message = new VisibleMessage();
+      message.setId(messageRecord.getId());
+      message.setText(messageRecord.getBody());
+      message.setSentTimestamp(messageRecord.getTimestamp());
+      if (recipient.isGroupRecipient()) {
+        message.setGroupPublicKey(recipient.getAddress().toGroupString());
+      } else {
+        message.setRecipient(messageRecord.getRecipient().getAddress().serialize());
+      }
+      message.setThreadID(messageRecord.getThreadId());
+      if (messageRecord.isMms()) {
+        MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
+        if (!mmsMessageRecord.getLinkPreviews().isEmpty()) {
+          message.setLinkPreview(LinkPreview.Companion.from(mmsMessageRecord.getLinkPreviews().get(0)));
+        }
+        if (mmsMessageRecord.getQuote() != null) {
+          message.setQuote(Quote.Companion.from(mmsMessageRecord.getQuote().getQuoteModel()));
+        }
+        message.addSignalAttachments(mmsMessageRecord.getSlideDeck().asAttachments());
+      }
+      MessageSender.send(message, recipient.getAddress());
       resendButton.setVisibility(View.GONE);
     }
   }

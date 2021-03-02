@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.session.libsession.messaging.threads.Address;
@@ -249,7 +250,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   public void onContactSelected(String number) {
     Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
     long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
-    createConversation(existingThread, recipient.getAddress(), ThreadDatabase.DistributionTypes.DEFAULT);
+    createConversation(existingThread, recipient.getAddress(), DistributionTypes.DEFAULT);
   }
 
   @Override

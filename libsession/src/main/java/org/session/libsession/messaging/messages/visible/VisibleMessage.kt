@@ -4,6 +4,8 @@ import com.goterl.lazycode.lazysodium.BuildConfig
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -44,6 +46,14 @@ class VisibleMessage : Message()  {
             profile?.let { result.profile = profile }
             return  result
         }
+    }
+
+    fun addSignalAttachments(signalAttachments: List<SignalAttachment>) {
+        val attachmentIDs = signalAttachments.map {
+            val databaseAttachment = it as DatabaseAttachment
+            databaseAttachment.attachmentId.rowId
+        }
+        this.attachmentIDs = attachmentIDs as ArrayList<Long>
     }
 
     fun isMediaMessage(): Boolean {

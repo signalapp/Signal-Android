@@ -2,6 +2,8 @@ package org.session.libsession.messaging.messages.visible
 
 import com.goterl.lazycode.lazysodium.BuildConfig
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
@@ -20,6 +22,15 @@ class Quote() {
             val publicKey = proto.author
             val text = proto.text
             return Quote(timestamp, publicKey, text, null)
+        }
+
+        fun from(signalQuote: SignalQuote?): Quote? {
+            return if (signalQuote == null) {
+                null
+            } else {
+                val attachmentID = (signalQuote.attachments?.firstOrNull() as? DatabaseAttachment)?.attachmentId?.rowId
+                Quote(signalQuote.id, signalQuote.author.serialize(), signalQuote.text, attachmentID)
+            }
         }
     }
 

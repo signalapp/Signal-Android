@@ -38,6 +38,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.utilities.logging.Log;
 
@@ -118,11 +119,6 @@ public class AttachmentDatabase extends Database {
   // "audio/*" mime type only related columns.
           static final String AUDIO_VISUAL_SAMPLES   = "audio_visual_samples";  // Small amount of audio byte samples to visualise the content (e.g. draw waveform).
           static final String AUDIO_DURATION         = "audio_duration";        // Duration of the audio track in milliseconds.
-
-  public static final int TRANSFER_PROGRESS_DONE    = 0;
-  public static final int TRANSFER_PROGRESS_STARTED = 1;
-  public static final int TRANSFER_PROGRESS_PENDING = 2;
-  public static final int TRANSFER_PROGRESS_FAILED  = 3;
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
   private static final String PART_AUDIO_ONLY_WHERE = CONTENT_TYPE + " LIKE \"audio/%\"";
@@ -213,7 +209,7 @@ public class AttachmentDatabase extends Database {
   {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
+    values.put(TRANSFER_STATE, AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED);
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
@@ -268,7 +264,7 @@ public class AttachmentDatabase extends Database {
 
     Cursor cursor = null;
     try {
-      cursor = database.query(TABLE_NAME, PROJECTION, TRANSFER_STATE + " = ?", new String[] {String.valueOf(TRANSFER_PROGRESS_STARTED)}, null, null, null);
+      cursor = database.query(TABLE_NAME, PROJECTION, TRANSFER_STATE + " = ?", new String[] {String.valueOf(AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED)}, null, null, null);
       while (cursor != null && cursor.moveToNext()) {
         attachments.addAll(getAttachment(cursor));
       }
@@ -372,7 +368,7 @@ public class AttachmentDatabase extends Database {
       values.put(DATA_RANDOM, dataInfo.random);
     }
 
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(TRANSFER_STATE, AttachmentTransferProgress.TRANSFER_PROGRESS_DONE);
     values.put(CONTENT_LOCATION, (String)null);
     values.put(CONTENT_DISPOSITION, (String)null);
     values.put(DIGEST, (byte[])null);
@@ -395,7 +391,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
 
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(TRANSFER_STATE, AttachmentTransferProgress.TRANSFER_PROGRESS_DONE);
     values.put(CONTENT_LOCATION, attachment.getLocation());
     values.put(DIGEST, attachment.getDigest());
     values.put(CONTENT_DISPOSITION, attachment.getKey());
@@ -411,7 +407,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
 
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_FAILED);
+    values.put(TRANSFER_STATE, AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED);
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
@@ -506,35 +502,15 @@ public class AttachmentDatabase extends Database {
                                   databaseAttachment.getUrl());
   }
 
-
-  public void updateAttachmentFileName(@NonNull AttachmentId attachmentId,
-                                       @Nullable String fileName)
-  {
-    SQLiteDatabase database = databaseHelper.getWritableDatabase();
-
-    ContentValues contentValues = new ContentValues(1);
-    contentValues.put(FILE_NAME, ExternalStorageUtil.getCleanFileName(fileName));
-
-    database.update(TABLE_NAME, contentValues, PART_ID_WHERE, attachmentId.toStrings());
-  }
-
   public void markAttachmentUploaded(long messageId, Attachment attachment) {
     ContentValues  values   = new ContentValues(1);
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(TRANSFER_STATE, AttachmentTransferProgress.TRANSFER_PROGRESS_DONE);
     database.update(TABLE_NAME, values, PART_ID_WHERE, ((DatabaseAttachment)attachment).getAttachmentId().toStrings());
 
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
     ((DatabaseAttachment) attachment).setUploaded(true);
-  }
-
-  public void setTransferState(long messageId, @NonNull Attachment attachment, int transferState) {
-    if (!(attachment instanceof DatabaseAttachment)) {
-      throw new AssertionError("Attempt to update attachment that doesn't belong to DB!");
-    }
-
-    setTransferState(messageId, ((DatabaseAttachment) attachment).getAttachmentId(), transferState);
   }
 
   public void setTransferState(long messageId, @NonNull AttachmentId attachmentId, int transferState) {
@@ -544,14 +520,6 @@ public class AttachmentDatabase extends Database {
     values.put(TRANSFER_STATE, transferState);
     database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
     notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(messageId));
-  }
-
-  public boolean hasStickerAttachments() {
-    String selection = STICKER_PACK_ID + " NOT NULL";
-
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, null, null, null, null, "1")) {
-      return cursor != null && cursor.moveToFirst();
-    }
   }
 
   @SuppressWarnings("WeakerAccess")

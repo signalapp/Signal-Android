@@ -85,6 +85,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
+import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate;
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsession.utilities.MediaTypes;
 import org.session.libsignal.libsignal.InvalidMessageException;
@@ -124,6 +128,7 @@ import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
 import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
+import org.thoughtcrime.securesms.database.Storage;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -153,7 +158,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
@@ -168,9 +173,8 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.messaging.threads.recipients.RecipientFormattingException;
 import org.session.libsession.messaging.threads.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -197,7 +201,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -571,16 +574,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       final Context context = ConversationActivity.this.getApplicationContext();
 
-      sendMediaMessage(false,
-                       message,
+      sendMediaMessage(message,
                        slideDeck,
                        inputPanel.getQuote().orNull(),
-                       Collections.emptyList(),
-                       Collections.emptyList(),
-                       expiresIn,
-                       subscriptionId,
-                       initiating,
-                       true).addListener(new AssertedSuccessListener<Void>() {
+                       Optional.absent(),
+                       initiating).addListener(new AssertedSuccessListener<Void>() {
         @Override
         public void onSuccess(Void result) {
           AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
@@ -648,7 +646,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);
-        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+        if (distributionType == DistributionTypes.BROADCAST) {
           menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
@@ -808,8 +806,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
-          MessageSender.send(ConversationActivity.this, outgoingMessage, threadId, false, null);
+          ExpirationTimerUpdate message = new ExpirationTimerUpdate();
+          message.setDuration(expirationTime * 1000);
+          MessageSender.send(message, recipient.getAddress());
 
           return null;
         }
@@ -1040,7 +1039,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
-    distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
+    distributionType = DistributionTypes.BROADCAST;
     item.setChecked(true);
 
     if (threadId != -1) {
@@ -1048,7 +1047,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this)
-                         .setDistributionType(threadId, ThreadDatabase.DistributionTypes.BROADCAST);
+                         .setDistributionType(threadId, DistributionTypes.BROADCAST);
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1056,7 +1055,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleDistributionConversationEnabled(MenuItem item) {
-    distributionType = ThreadDatabase.DistributionTypes.CONVERSATION;
+    distributionType = DistributionTypes.CONVERSATION;
     item.setChecked(true);
 
     if (threadId != -1) {
@@ -1064,7 +1063,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getThreadDatabase(ConversationActivity.this)
-                         .setDistributionType(threadId, ThreadDatabase.DistributionTypes.CONVERSATION);
+                         .setDistributionType(threadId, DistributionTypes.CONVERSATION);
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1335,7 +1334,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (address == null) { finish(); return; }
     recipient        = Recipient.from(this, address, true);
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
-    distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
+    distributionType = getIntent().getIntExtra(DISTRIBUTION_TYPE_EXTRA, DistributionTypes.DEFAULT);
     glideRequests    = GlideApp.with(this);
 
     recipient.addListener(this);
@@ -1481,14 +1480,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if      (contactData.numbers.size() == 1) composeText.append(contactData.numbers.get(0).number);
     else if (contactData.numbers.size() > 1)  selectContactInfo(contactData);
-  }
-
-  private void sendSharedContact(List<Contact> contacts) {
-    int        subscriptionId = -1;
-    long       expiresIn      = recipient.getExpireMessages() * 1000L;
-    boolean    initiating     = threadId == -1;
-
-    sendMediaMessage(false, "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), expiresIn, subscriptionId, initiating, false);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -1735,8 +1726,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       String          message        = getMessage();
-      int             subscriptionId = -1;
-      long            expiresIn      = recipient.getExpireMessages() * 1000L;
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = message.length() > characterCalculator.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
@@ -1747,9 +1736,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                        needsSplit;
 
       if (isMediaMessage) {
-        sendMediaMessage(expiresIn, subscriptionId, initiating);
+        sendMediaMessage(initiating);
       } else {
-        sendTextMessage(expiresIn, subscriptionId, initiating);
+        sendTextMessage(initiating);
       }
     } catch (RecipientFormattingException ex) {
       Log.w(TAG, ex);
@@ -1764,23 +1753,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  private void sendMediaMessage(final long expiresIn, final int subscriptionId, boolean initiating)
+  private void sendMediaMessage(boolean initiating)
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
-    sendMediaMessage(false, getMessage(), attachmentManager.buildSlideDeck(), inputPanel.getQuote().orNull(), Collections.emptyList(), linkPreviewViewModel.getActiveLinkPreviews(), expiresIn, subscriptionId, initiating, true);
+    sendMediaMessage(getMessage(), attachmentManager.buildSlideDeck(), inputPanel.getQuote().orNull(), linkPreviewViewModel.getActiveLinkPreview(), initiating);
   }
 
-  private ListenableFuture<Void> sendMediaMessage(final boolean forceSms,
-                                                  String body,
+  private ListenableFuture<Void> sendMediaMessage(String body,
                                                   SlideDeck slideDeck,
                                                   QuoteModel quote,
-                                                  List<Contact> contacts,
-                                                  List<LinkPreview> previews,
-                                                  final long expiresIn,
-                                                  final int subscriptionId,
-                                                  final boolean initiating,
-                                                  final boolean clearComposeBox)
+                                                  Optional<LinkPreview> linkPreview,
+                                                  final boolean initiating)
   {
 
     Pair<String, Optional<Slide>> splitMessage = getSplitMessage(body, characterCalculator.calculateCharacters(body).maxPrimaryMessageSize);
@@ -1790,7 +1774,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       slideDeck.addSlide(splitMessage.second.get());
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, quote, contacts, previews);
+    List<Attachment> attachments = slideDeck.asAttachments();
+
+    VisibleMessage message = new VisibleMessage();
+    message.setSentTimestamp(System.currentTimeMillis());
+    message.setText(body);
+    OutgoingMediaMessage outgoingMessageCandidate = OutgoingMediaMessage.from(message, recipient, attachments, quote, linkPreview.orNull());
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
@@ -1800,11 +1789,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
     ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
 
-    if (clearComposeBox) {
-      inputPanel.clearQuote();
-      attachmentManager.clear(glideRequests, false);
-      silentlySetComposeText("");
-    }
+    inputPanel.clearQuote();
+    attachmentManager.clear(glideRequests, false);
+    silentlySetComposeText("");
 
     final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
@@ -1812,43 +1799,54 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
     }
 
-    long result = MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
-
-    sendComplete(result);
+    try {
+      long allocatedThreadId;
+      if (threadId == -1) {
+        allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+      } else {
+        allocatedThreadId = threadId;
+      }
+      DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMessage, allocatedThreadId, false, ()->fragment.releaseOutgoingMessage(id));
+      MessageSender.send(message, recipient.getAddress(), attachments, quote, linkPreview.orNull());
+      sendComplete(allocatedThreadId);
+    } catch (MmsException e) {
+      Log.w(TAG, e);
+      sendComplete(threadId);
+    }
     future.set(null);
 
     return future;
   }
 
-  private void sendTextMessage(final long expiresIn, final int subscriptionId, final boolean initiatingConversation)
+  private void sendTextMessage(final boolean initiating)
       throws InvalidMessageException
   {
     final Context context     = getApplicationContext();
     final String  messageBody = getMessage();
 
-    OutgoingTextMessage message;
-
-    message = new OutgoingEncryptedMessage(recipient, messageBody, expiresIn);
+    VisibleMessage message = new VisibleMessage();
+    message.setSentTimestamp(System.currentTimeMillis());
+    message.setText(messageBody);
+    OutgoingTextMessage outgoingTextMessage = OutgoingTextMessage.from(message, recipient);
     ApplicationContext.getInstance(context).getTypingStatusSender().onTypingStopped(threadId);
 
     silentlySetComposeText("");
-    final long id = fragment.stageOutgoingMessage(message);
+    final long id = fragment.stageOutgoingMessage(outgoingTextMessage);
 
-    if (initiatingConversation) {
+    if (initiating) {
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
     }
 
-    long result = MessageSender.send(context, message, threadId, false, () -> fragment.releaseOutgoingMessage(id));
+    long allocatedThreadId;
+    if (threadId == -1) {
+      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    } else {
+      allocatedThreadId = threadId;
+    }
+    DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(allocatedThreadId, outgoingTextMessage, false, message.getSentTimestamp(), ()->fragment.releaseOutgoingMessage(id));
+    MessageSender.send(message, recipient.getAddress());
 
-    sendComplete(result);
-  }
-
-  private void showDefaultSmsPrompt() {
-    new AlertDialog.Builder(this)
-                   .setMessage(R.string.ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app)
-                   .setNegativeButton(R.string.ConversationActivity_no, (dialog, which) -> dialog.dismiss())
-                   .setPositiveButton(R.string.ConversationActivity_yes, (dialog, which) -> handleMakeDefaultSms())
-                   .show();
+    sendComplete(allocatedThreadId);
   }
 
   private void updateToggleButtonState() {
@@ -1934,7 +1932,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         SlideDeck  slideDeck      = new SlideDeck();
         slideDeck.addSlide(audioSlide);
 
-        sendMediaMessage(false, "", slideDeck, inputPanel.getQuote().orNull(), Collections.emptyList(), Collections.emptyList(), expiresIn, subscriptionId, initiating, true).addListener(new AssertedSuccessListener<Void>() {
+        sendMediaMessage("", slideDeck, inputPanel.getQuote().orNull(), Optional.absent(), initiating).addListener(new AssertedSuccessListener<Void>() {
           @Override
           public void onSuccess(Void nothing) {
             new AsyncTask<Void, Void, Void>() {

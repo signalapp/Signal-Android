@@ -79,7 +79,8 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {
         val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-        return smsDatabase.isOutgoingMessage(timestamp)
+        val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
+        return smsDatabase.isOutgoingMessage(timestamp) || mmsDatabase.isOutgoingMessage(timestamp)
     }
 
     override fun getMessageID(serverID: Long): Long? {

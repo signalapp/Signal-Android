@@ -5,9 +5,9 @@ import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -17,6 +17,7 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class OutgoingMediaMessage {
 
@@ -66,7 +67,7 @@ public class OutgoingMediaMessage {
                               @NonNull List<LinkPreview> linkPreviews)
   {
     this(recipient,
-         buildMessage(slideDeck, message),
+         buildMessage(message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
          expiresIn, distributionType, outgoingQuote,
@@ -93,11 +94,15 @@ public class OutgoingMediaMessage {
                                           Recipient recipient,
                                           List<Attachment> attachments,
                                           @Nullable QuoteModel outgoingQuote,
-                                          @NonNull List<LinkPreview> linkPreviews)
+                                          @Nullable LinkPreview linkPreview)
   {
+    List<LinkPreview> previews = Collections.emptyList();
+    if (linkPreview != null) {
+      previews = Collections.singletonList(linkPreview);
+    }
     return new OutgoingMediaMessage(recipient, message.getText(), attachments, message.getSentTimestamp(), -1,
-            recipient.getExpireMessages() * 1000, ThreadDatabase.DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
-            linkPreviews, Collections.emptyList(), Collections.emptyList());
+            recipient.getExpireMessages() * 1000, DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
+            previews, Collections.emptyList(), Collections.emptyList());
   }
 
   public Recipient getRecipient() {
@@ -160,7 +165,7 @@ public class OutgoingMediaMessage {
     return identityKeyMismatches;
   }
 
-  private static String buildMessage(SlideDeck slideDeck, String message) {
+  private static String buildMessage(String message) {
     if (!TextUtils.isEmpty(message)) {
       return message;
     }

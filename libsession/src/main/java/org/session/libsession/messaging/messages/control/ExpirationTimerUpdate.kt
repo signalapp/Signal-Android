@@ -5,6 +5,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ExpirationTimerUpdate() : ControlMessage() {
 
+    var syncTarget: String? = null
     var duration: Int? = 0
 
     companion object {
@@ -12,7 +13,7 @@ class ExpirationTimerUpdate() : ControlMessage() {
 
         fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
             val dataMessageProto = proto.dataMessage ?: return null
-            val isExpirationTimerUpdate = (dataMessageProto.flags and SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0 //TODO validate that 'and' operator equivalent to Swift '&'
+            val isExpirationTimerUpdate = dataMessageProto.flags.and(SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0
             if (!isExpirationTimerUpdate) return null
             val duration = dataMessageProto.expireTimer
             return ExpirationTimerUpdate(duration)

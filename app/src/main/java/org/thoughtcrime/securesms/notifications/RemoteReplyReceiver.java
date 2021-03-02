@@ -25,17 +25,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -68,21 +69,24 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          long threadId;
-
           Recipient recipient = Recipient.from(context, address, false);
-          int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-          long expiresIn      = recipient.getExpireMessages() * 1000L;
+          long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+          VisibleMessage message = new VisibleMessage();
+          message.setText(responseText.toString());
 
           switch (replyMethod) {
             case GroupMessage: {
-              OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-              threadId = MessageSender.send(context, reply, -1, false, null);
+              OutgoingMediaMessage reply = OutgoingMediaMessage.from(message, recipient, Collections.emptyList(), null, null);
+              try {
+                DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(reply, threadId, false, null);
+              } catch (MmsException e) {
+                Log.w(TAG, e);
+              }
               break;
             }
             case SecureMessage: {
-              OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-              threadId = MessageSender.send(context, reply, -1, false, null);
+              OutgoingTextMessage reply = OutgoingTextMessage.from(message, recipient);
+              DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, reply, false, System.currentTimeMillis(), null);
               break;
             }
             default:

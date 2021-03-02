@@ -103,17 +103,18 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   }
 
   @Override
-  public void startAnyExpiration(long messageID) {
-    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(messageID);
+  public void startAnyExpiration(long timestamp, @NotNull String author) {
+    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
     if (messageRecord != null) {
       boolean mms = messageRecord.isMms();
       Recipient recipient = messageRecord.getRecipient();
+      if (recipient.getExpireMessages() <= 0) return;
       if (mms) {
-        mmsDatabase.markExpireStarted(messageID);
+        mmsDatabase.markExpireStarted(messageRecord.getId());
       } else {
-        smsDatabase.markExpireStarted(messageID);
+        smsDatabase.markExpireStarted(messageRecord.getId());
       }
-      scheduleDeletion(messageID, mms, recipient.getExpireMessages());
+      scheduleDeletion(messageRecord.getId(), mms, recipient.getExpireMessages());
     }
   }
 

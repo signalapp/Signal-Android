@@ -19,7 +19,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     // Settings
     override val maxFailureCount: Int = 10
     companion object {
-        val TAG = MessageSendJob::class.qualifiedName
+        val TAG = MessageSendJob::class.simpleName
         val KEY: String = "MessageSendJob"
 
         //keys used for database storage purpose

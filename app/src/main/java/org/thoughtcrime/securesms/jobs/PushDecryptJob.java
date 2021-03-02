@@ -15,6 +15,7 @@ import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.session.libsession.messaging.jobs.Data;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsignal.metadata.InvalidMetadataMessageException;
 import org.session.libsignal.metadata.ProtocolInvalidMessageException;
 import org.session.libsignal.service.api.crypto.SignalServiceCipher;
@@ -34,7 +35,6 @@ import org.session.libsession.utilities.TextSecurePreferences;
 
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -63,9 +63,9 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage;
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.messages.SignalServiceContent;
@@ -346,7 +346,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               attachments,
               message.getTimestamp(), -1,
               message.getExpiresInSeconds() * 1000,
-              ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
+              DistributionTypes.DEFAULT, quote.orNull(),
               sharedContacts.or(Collections.emptyList()),
               linkPreviews.or(Collections.emptyList()),
               Collections.emptyList(), Collections.emptyList());

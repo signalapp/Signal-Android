@@ -25,18 +25,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
+import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.utilities.logging.Log;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -72,17 +73,29 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
 
           long replyThreadId;
 
-          int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-          long expiresIn      = recipient.getExpireMessages() * 1000L;
+          if (threadId == -1) {
+            replyThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+          } else {
+            replyThreadId = threadId;
+          }
+
+          VisibleMessage message = new VisibleMessage();
+          message.setText(responseText.toString());
+          message.setSentTimestamp(System.currentTimeMillis());
+          MessageSender.send(message, recipient.getAddress());
 
           if (recipient.isGroupRecipient()) {
             Log.w("AndroidAutoReplyReceiver", "GroupRecipient, Sending media message");
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient, responseText.toString(), new LinkedList<>(), System.currentTimeMillis(), subscriptionId, expiresIn, 0, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-            replyThreadId = MessageSender.send(context, reply, threadId, false, null);
+            OutgoingMediaMessage reply = OutgoingMediaMessage.from(message, recipient, Collections.emptyList(), null, null);
+            try {
+              DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(reply, replyThreadId, false, null);
+            } catch (MmsException e) {
+              Log.w(TAG, e);
+            }
           } else {
             Log.w("AndroidAutoReplyReceiver", "Sending regular message ");
-            OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-            replyThreadId = MessageSender.send(context, reply, threadId, false, null);
+            OutgoingTextMessage reply = OutgoingTextMessage.from(message, recipient);
+            DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(replyThreadId, reply, false, System.currentTimeMillis(), null);
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId, true);

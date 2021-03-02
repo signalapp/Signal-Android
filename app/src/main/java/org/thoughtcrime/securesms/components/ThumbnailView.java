@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import android.util.AttributeSet;
 
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.session.libsignal.utilities.logging.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -248,7 +249,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (slide.getThumbnailUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
+        (slide.getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE || isPreview))
     {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
@@ -402,7 +403,7 @@ public class ThumbnailView extends FrameLayout {
       if (thumbnailClickListener            != null &&
           slide                             != null &&
           slide.asAttachment().getDataUri() != null &&
-          slide.getTransferState()          == AttachmentDatabase.TRANSFER_PROGRESS_DONE)
+          slide.getTransferState()          == AttachmentTransferProgress.TRANSFER_PROGRESS_DONE)
       {
         thumbnailClickListener.onClick(view, slide);
       } else if (parentClickListener != null) {
