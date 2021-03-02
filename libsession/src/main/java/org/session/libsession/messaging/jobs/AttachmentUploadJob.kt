@@ -58,7 +58,8 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
 
             val attachmentData = PushAttachmentData(attachmentStream.contentType, attachmentStream.inputStream, ciphertextLength, outputStreamFactory, attachmentStream.listener)
 
-            FileServerAPI.shared.uploadAttachment(server, attachmentData)
+            val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
+            handleSuccess(uploadResult)
 
         } catch (e: java.lang.Exception) {
             if (e is Error && e == Error.NoAttachment) {
@@ -71,11 +72,11 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
         }
     }
 
-    private fun handleSuccess() {
+    private fun handleSuccess(uploadResult: DotNetAPI.UploadResult) {
         Log.w(TAG, "Attachment uploaded successfully.")
         delegate?.handleJobSucceeded(this)
+        //TODO: handle success in database
         MessagingConfiguration.shared.storage.resumeMessageSendJobIfNeeded(messageSendJobID)
-        //TODO interaction stuff, not sure how to deal with that
     }
 
     private fun handlePermanentFailure(e: Exception) {

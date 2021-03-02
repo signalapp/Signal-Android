@@ -2,8 +2,9 @@ package org.session.libsession.messaging.messages.visible
 
 import android.util.Size
 import android.webkit.MimeTypeMap
-import org.session.libsession.database.MessageDataProvider
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
 
@@ -66,8 +67,9 @@ class Attachment {
         TODO("Not implemented")
     }
 
-    fun toDatabaseAttachment(): org.session.libsession.messaging.sending_receiving.attachments.Attachment {
-        return DatabaseAttachment(null, 0, true, true, contentType, 0,
+    fun toSignalAttachment(): SignalAttachment? {
+        if (!isValid()) return null
+        return DatabaseAttachment(null, 0, false, false, contentType, 0,
                 sizeInBytes?.toLong() ?: 0, fileName, null, key.toString(), null, digest, null, kind == Kind.VOICE_MESSAGE,
                 size?.width ?: 0, size?.height ?: 0, false, caption, url)
     }

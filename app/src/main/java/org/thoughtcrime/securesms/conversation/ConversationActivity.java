@@ -1806,7 +1806,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else {
         allocatedThreadId = threadId;
       }
-      DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMessage, allocatedThreadId, false, ()->fragment.releaseOutgoingMessage(id));
+      message.setId(DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMessage, allocatedThreadId, false, ()->fragment.releaseOutgoingMessage(id)));
       MessageSender.send(message, recipient.getAddress(), attachments, quote, linkPreview.orNull());
       sendComplete(allocatedThreadId);
     } catch (MmsException e) {
@@ -1843,7 +1843,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       allocatedThreadId = threadId;
     }
-    DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(allocatedThreadId, outgoingTextMessage, false, message.getSentTimestamp(), ()->fragment.releaseOutgoingMessage(id));
+    message.setId(DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(allocatedThreadId, outgoingTextMessage, false, message.getSentTimestamp(), ()->fragment.releaseOutgoingMessage(id)));
     MessageSender.send(message, recipient.getAddress());
 
     sendComplete(allocatedThreadId);

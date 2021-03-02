@@ -32,13 +32,13 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val message = message as? VisibleMessage
         message?.let {
             if(!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
-            val attachments = message.attachmentIDs.map { messageDataProvider.getAttachmentStream(it) }.filterNotNull()
-            val attachmentsToUpload = attachments.filter { !it.isUploaded }
+            val attachments = message.attachmentIDs.map { messageDataProvider.getDatabaseAttachment(it) }.filterNotNull()
+            val attachmentsToUpload = attachments.filter { it.url.isNullOrEmpty() }
             attachmentsToUpload.forEach {
-                if(MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId) != null) {
+                if (MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
                     // Wait for it to finish
                 } else {
-                    val job = AttachmentUploadJob(it.attachmentId, message.threadID!!.toString(), message, id!!)
+                    val job = AttachmentUploadJob(it.attachmentId.rowId, message.threadID!!.toString(), message, id!!)
                     JobQueue.shared.add(job)
                 }
             }

@@ -6,6 +6,7 @@ import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
@@ -51,12 +52,6 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         attachmentDatabase.setTransferState(messageID, AttachmentId(attachmentId, 0), attachmentState.value)
     }
 
-    @Throws(Exception::class)
-    override fun uploadAttachment(attachmentId: Long) {
-        val attachmentUploadJob = AttachmentUploadJob(AttachmentId(attachmentId, 0), null)
-        attachmentUploadJob.onRun()
-    }
-
     override fun getMessageForQuote(timestamp: Long, author: Address): Long? {
         val messagingDatabase = DatabaseFactory.getMmsSmsDatabase(context)
         return messagingDatabase.getMessageFor(timestamp, author)?.id
@@ -72,6 +67,12 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return messagingDatabase.getMessage(messageID).body
     }
 
+    override fun getAttachmentIDsFor(messageID: Long): List<Long> {
+        return DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageID).map {
+            it.attachmentId.rowId
+        }
+    }
+
     override fun insertAttachment(messageId: Long, attachmentId: Long, stream: InputStream) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         attachmentDatabase.insertAttachmentsForPlaceholder(messageId, AttachmentId(attachmentId, 0), stream)
@@ -83,6 +84,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return smsDatabase.isOutgoingMessage(timestamp) || mmsDatabase.isOutgoingMessage(timestamp)
     }
 
+    override fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, uploadResult: DotNetAPI.UploadResult) {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateAttachmentAfterUploadFailed(attachmentId: Long) {
+        TODO("Not yet implemented")
+    }
+
     override fun getMessageID(serverID: Long): Long? {
         val openGroupMessagingDatabase = DatabaseFactory.getLokiMessageDatabase(context)
         return openGroupMessagingDatabase.getMessageID(serverID)
@@ -91,6 +100,11 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     override fun deleteMessage(messageID: Long) {
         val messagingDatabase = DatabaseFactory.getSmsDatabase(context)
         messagingDatabase.deleteMessage(messageID)
+    }
+
+    override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {
+        val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
+        return attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0))
     }
 
 }

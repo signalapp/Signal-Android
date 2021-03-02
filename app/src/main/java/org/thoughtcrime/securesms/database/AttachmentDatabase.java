@@ -121,6 +121,7 @@ public class AttachmentDatabase extends Database {
           static final String AUDIO_DURATION         = "audio_duration";        // Duration of the audio track in milliseconds.
 
   private static final String PART_ID_WHERE = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
+  private static final String ROW_ID_WHERE = ROW_ID + " = ?";
   private static final String PART_AUDIO_ONLY_WHERE = CONTENT_TYPE + " LIKE \"audio/%\"";
 
   private static final String[] PROJECTION = new String[] {ROW_ID,
@@ -221,7 +222,7 @@ public class AttachmentDatabase extends Database {
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, PROJECTION, PART_ID_WHERE, attachmentId.toStrings(), null, null, null);
+      cursor = database.query(TABLE_NAME, PROJECTION, ROW_ID_WHERE, new String[]{String.valueOf(attachmentId.getRowId())}, null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
         List<DatabaseAttachment> list = getAttachment(cursor);

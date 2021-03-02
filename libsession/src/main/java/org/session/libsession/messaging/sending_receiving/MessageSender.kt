@@ -74,8 +74,7 @@ object MessageSender {
             attachment.size = Size(signalAttachment.width, signalAttachment.height)
             attachments.add(attachment)
         }
-        val attachmentIDs = MessagingConfiguration.shared.storage.persistAttachments(message.id
-                ?: 0, attachments)
+        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
         message.attachmentIDs.addAll(attachmentIDs)
     }
 
@@ -94,7 +93,6 @@ object MessageSender {
         val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
         val preconditionFailure = Exception("Destination should not be open groups!")
-        var snodeMessage: SnodeMessage? = null
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = userPublicKey
@@ -109,7 +107,7 @@ object MessageSender {
             fun handleFailure(error: Exception) {
                 handleFailedMessageSend(message, error)
                 if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                    //TODO Notify user for send failure
+                    SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
                 }
                 deferred.reject(error)
             }
@@ -142,9 +140,6 @@ object MessageSender {
             // Serialize the protobuf
             val plaintext = proto.toByteArray()
             // Encrypt the serialized protobuf
-            if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
-                //TODO Notify user for encrypting message
-            }
             val ciphertext: ByteArray
             when (destination) {
                 is Destination.Contact -> ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, destination.publicKey)
@@ -178,7 +173,7 @@ object MessageSender {
             val timestamp = System.currentTimeMillis()
             val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
@@ -299,7 +294,6 @@ object MessageSender {
     fun handleFailedMessageSend(message: Message, error: Exception) {
         val storage = MessagingConfiguration.shared.storage
         storage.setErrorMessage(message.sentTimestamp!!, message.sender!!, error)
-        SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
     }
 
     // Convenience

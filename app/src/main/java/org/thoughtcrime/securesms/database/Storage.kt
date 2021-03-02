@@ -89,7 +89,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long> {
         val database = DatabaseFactory.getAttachmentDatabase(context)
-        val databaseAttachments = attachments.map { it.toDatabaseAttachment() }
+        val databaseAttachments = attachments.mapNotNull { it.toSignalAttachment() }
         return database.insertAttachments(messageId, databaseAttachments)
     }
 
