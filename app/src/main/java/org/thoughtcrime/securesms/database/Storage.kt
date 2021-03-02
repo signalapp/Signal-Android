@@ -354,15 +354,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         }
     }
 
-    override fun setErrorMessage(messageID: Long, error: Exception) {
+    override fun setErrorMessage(timestamp: Long, author: String, error: Exception) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
-        val messageRecord = database.getMessageFor(messageID) ?: return
+        val messageRecord = database.getMessageFor(timestamp, author) ?: return
         if (messageRecord.isMms) {
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-            mmsDatabase.markAsSentFailed(messageID)
+            mmsDatabase.markAsSentFailed(messageRecord.getId())
         } else {
             val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-            smsDatabase.markAsSentFailed(messageID)
+            smsDatabase.markAsSentFailed(messageRecord.getId())
         }
     }
 

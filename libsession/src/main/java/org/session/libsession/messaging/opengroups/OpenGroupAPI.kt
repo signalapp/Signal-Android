@@ -209,8 +209,7 @@ object OpenGroupAPI: DotNetAPI() {
                             format.timeZone = TimeZone.getTimeZone("GMT")
                             val dateAsString = data["created_at"] as String
                             val timestamp = format.parse(dateAsString).time
-                            @Suppress("NAME_SHADOWING") val message = OpenGroupMessage(serverID, userKeyPair.first, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
-                            message
+                            OpenGroupMessage(serverID, userKeyPair.first, userDisplayName, text, timestamp, openGroupMessageType, message.quote, message.attachments, null, signedMessage.signature, timestamp)
                         } catch (exception: Exception) {
                             Log.d("Loki", "Couldn't parse message for open group with ID: $channel on server: $server.")
                             throw exception

@@ -97,7 +97,7 @@ interface StorageProtocol {
     fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun markAsSent(timestamp: Long, author: String)
     fun markUnidentified(timestamp: Long, author: String)
-    fun setErrorMessage(messageID: Long, error: Exception)
+    fun setErrorMessage(timestamp: Long, author: String, error: Exception)
 
     // Closed Groups
     fun getGroup(groupID: String): GroupRecord?

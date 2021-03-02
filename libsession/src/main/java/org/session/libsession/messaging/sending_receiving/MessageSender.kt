@@ -68,7 +68,7 @@ object MessageSender {
             attachment.caption = signalAttachment.caption
             attachment.contentType = signalAttachment.contentType
             attachment.digest = signalAttachment.digest
-            attachment.key = Base64.decode(signalAttachment.key)
+            attachment.key = Base64.decode(signalAttachment.key ?: "")
             attachment.sizeInBytes = signalAttachment.size.toInt()
             attachment.url = signalAttachment.url
             attachment.size = Size(signalAttachment.width, signalAttachment.height)
@@ -298,8 +298,7 @@ object MessageSender {
 
     fun handleFailedMessageSend(message: Message, error: Exception) {
         val storage = MessagingConfiguration.shared.storage
-        val messageId = storage.getMessageIdInDatabase(message.sentTimestamp!!, message.sender!!) ?: return
-        storage.setErrorMessage(messageId, error)
+        storage.setErrorMessage(message.sentTimestamp!!, message.sender!!, error)
         SnodeConfiguration.shared.broadcaster.broadcast("messageFailed", message.sentTimestamp!!)
     }
 

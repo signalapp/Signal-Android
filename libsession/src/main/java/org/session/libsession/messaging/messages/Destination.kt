@@ -19,7 +19,8 @@ sealed class Destination {
                 val groupPublicKey = GroupUtil.getDecodedGroupID(groupID)
                 return ClosedGroup(groupPublicKey)
             } else if (address.isOpenGroup) {
-                val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(address.contactIdentifier())!!
+                val threadID = MessagingConfiguration.shared.storage.getThreadID(address.contactIdentifier())!!
+                val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)!!
                 return OpenGroup(openGroup.channel, openGroup.server)
             } else {
                 throw Exception("TODO: Handle legacy closed groups.")

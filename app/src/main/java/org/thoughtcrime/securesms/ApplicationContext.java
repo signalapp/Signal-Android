@@ -425,6 +425,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
     LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
     FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
+    org.session.libsession.messaging.fileserver.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
     return true;
   }
 
