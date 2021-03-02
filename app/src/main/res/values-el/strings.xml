@@ -1776,7 +1776,7 @@
   <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Οι χρήστες μπορούν πλέον να επιλέξουν να αποδεχθούν μία νέα συνομιλία. Τα ονόματα προφίλ επιτρέπουν στους χρήστες να γνωρίζουν ποιος τους στέλνει μηνύματα.</string>
   <string name="MessageRequestsMegaphone__add_profile_name">Προσθήκη ονόματος προφίλ</string>
   <!--HelpFragment-->
-  <string name="HelpFragment__have_you_read_our_faq_yet">Έχεις διαβάσει τις Συχνές ερωτήσεις μας;</string>
+  <string name="HelpFragment__have_you_read_our_faq_yet">Έχεις διαβάσει τις Συχνές ερωτήσεις;</string>
   <string name="HelpFragment__next">Επόμενο</string>
   <string name="HelpFragment__contact_us">Επικοινώνησε μαζί μας</string>
   <string name="HelpFragment__tell_us_whats_going_on">Πες μας τι συμβαίνει</string>

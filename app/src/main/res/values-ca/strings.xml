@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Ara hi ha més opcions a la configuració del grup.</string>
   <string name="ConversationActivity_join">Afegeix-m\'hi</string>
   <string name="ConversationActivity_full">Ple</string>
+  <string name="ConversationActivity_error_sending_media">Error en enviar contingut</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d missatge sense llegir</item>
@@ -2339,6 +2340,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="GroupsLearnMore_paragraph_2">Els grups de llegat no es poden actualitzar a grups nous, però podeu crear un grup nou amb els mateixos membres sempre que tinguin la darrera versió del Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">El Signal oferirà una manera d\'actualitzar els grups de llegat més endavant.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Qualsevol persona amb aquest enllaç pot veure el nom i la fotografia del grup i sol·licitar afegir-s\'hi. Compartiu-lo amb gent en qui confieu.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Qualsevol persona amb aquest enllaç pot veure el nom i la fotografia del grup i sol·licitar afegir-s\'hi. Compartiu-lo amb gent en qui confieu.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Comparteix per Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copia</string>
   <string name="GroupLinkBottomSheet_qr_code">Codi QR</string>

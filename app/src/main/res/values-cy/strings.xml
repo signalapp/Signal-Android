@@ -238,6 +238,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity__more_options_now_in_group_settings">Rhagor o ddewisiadau yn \"Gosodiadau Grŵp\"</string>
   <string name="ConversationActivity_join">Ymuno</string>
   <string name="ConversationActivity_full">Llawn</string>
+  <string name="ConversationActivity_error_sending_media">Gwall wrth anfon cyfryngau</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d neges heb ei ddarllen</item>
@@ -2507,6 +2508,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupsLearnMore_paragraph_2">Nid oes modd uwchraddio Hen Grwpiau i Grwpiau Newydd eto, ond gallwch greu Grŵp Newydd gyda\'r un aelodau os ydyn nhw ar y fersiwn ddiweddaraf o Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Bydd Signal yn cynnig ffordd i uwchraddio Hen Etifeddiaeth yn y dyfodol.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Gall unrhyw un sydd â\'r ddolen hon weld enw a llun o\'r grŵp a gofyn i ymuno. Rhannwch hi gyda phobl rydych yn ymddiried ynddyn nhw.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Gall unrhyw un sydd â\'r ddolen hon weld enw a llun o\'r grŵp a gofyn i ymuno. Rhannwch hi gyda phobl rydych yn ymddiried ynddyn nhw.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Rhannu trwy Signal</string>
   <string name="GroupLinkBottomSheet_copy">Copïo</string>
   <string name="GroupLinkBottomSheet_qr_code">Cod QR</string>

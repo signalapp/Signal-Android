@@ -2346,6 +2346,8 @@
   <string name="GroupsLearnMore_paragraph_2">Vanu gruppe ei saa veel uuteks gruppideks uuendada, aga sa saad luua samade liikmetega uue grupi, kui need liikmed kasutavad uusimat Signali versiooni.</string>
   <string name="GroupsLearnMore_paragraph_3">Tulevikus pakub Signal võimalust vanu gruppe uuteks uuendada.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Igaüks saab selle lingi kaudu näha grupi nime ja fotot ning saata taotluse liitumiseks. Jaga seda isikutega, keda usaldad.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Igaüks saab selle lingi kaudu näha grupi nime ja fotot ning liituda grupiga. Jaga seda isikutega, keda usaldad.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Jaga Signali kaudu</string>
   <string name="GroupLinkBottomSheet_copy">Kopeeri</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-kood</string>

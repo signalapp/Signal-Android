@@ -236,6 +236,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">Více možností nyní v \"Nastavení skupiny\"</string>
   <string name="ConversationActivity_join">Připojit</string>
   <string name="ConversationActivity_full">Plno</string>
+  <string name="ConversationActivity_error_sending_media">Chyba při odesílání médií</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d nepřečtená zpráva</item>
@@ -2504,6 +2505,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="GroupsLearnMore_paragraph_2">Starší skupiny zatím nelze aktualizovat na nové skupiny, ale můžete vytvořit novou skupinu se stejnými členy, pokud používají poslední verzi Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal nabídne možnost aktualizovat starší skupiny v budoucnosti.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Kdokoli, kdo má tento odkaz, může vidět jméno skupiny a fotografii a může požádat o připojení ke skupině. Sdílejte pouze s lidmi, kterým důvěřujete.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Kdokoli, kdo má tento odkaz, může vidět jméno skupiny a fotografii a může se připojit ke skupině. Sdílejte pouze s lidmi, kterým důvěřujete.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Sdílet přes Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopírovat</string>
   <string name="GroupLinkBottomSheet_qr_code">QR kód</string>
