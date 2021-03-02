@@ -3,6 +3,7 @@ package org.session.libsession.messaging.messages
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.utilities.GroupUtil
+import org.session.libsignal.service.loki.utilities.toHexString
 
 sealed class Destination {
 
@@ -15,8 +16,8 @@ sealed class Destination {
             if (address.isContact) {
                 return Contact(address.contactIdentifier())
             } else if (address.isClosedGroup) {
-                val groupID = address.contactIdentifier()
-                val groupPublicKey = GroupUtil.getDecodedGroupID(groupID)
+                val groupID = address.toGroupString()
+                val groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString()
                 return ClosedGroup(groupPublicKey)
             } else if (address.isOpenGroup) {
                 val threadID = MessagingConfiguration.shared.storage.getThreadID(address.contactIdentifier())!!
