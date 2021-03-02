@@ -382,7 +382,9 @@ public class NotificationChannels {
    * lower importance.
    *
    * This could also return true if the specific channnel is enabled, but notifications *overall*
-   * are disabled. Check {@link #areNotificationsEnabled(Context)} to be safe.
+   * are disabled, or the messages category is disabled. Check
+   * {@link #areNotificationsEnabled(Context)} and {@link #isMessagesChannelGroupEnabled(Context)}
+   * to be safe.
    */
   public static synchronized boolean isMessageChannelEnabled(@NonNull Context context) {
     if (!supported()) {
@@ -394,6 +396,23 @@ public class NotificationChannels {
 
     return channel != null && channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
   }
+
+  /**
+   * Whether or not the notification category for messages is enabled. Note that even if it is,
+   * a user could have blocked the specific channel, or notifications overall, and it'd still be
+   * true. See {@link #isMessageChannelEnabled(Context)} and {@link #areNotificationsEnabled(Context)}.
+   */
+  public static synchronized boolean isMessagesChannelGroupEnabled(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT < 28) {
+      return true;
+    }
+
+    NotificationManager      notificationManager = ServiceUtil.getNotificationManager(context);
+    NotificationChannelGroup group               = notificationManager.getNotificationChannelGroup(CATEGORY_MESSAGES);
+
+    return group != null && !group.isBlocked();
+  }
+
 
   /**
    * Whether or not notifications for the entire app are enabled.
