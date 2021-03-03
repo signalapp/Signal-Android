@@ -1,29 +1,48 @@
 package org.thoughtcrime.securesms.loki.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentPagerAdapter
 import android.text.InputType
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_create_private_chat.*
+import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
+import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
+import kotlinx.android.synthetic.main.activity_link_device.*
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.activity_settings.loader
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Hex
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
+import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 
 class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = LinkDeviceActivityAdapter(this)
+    private var restoreJob: Job? = null
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +78,45 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     }
 
     private fun continueWithSeed(seed: ByteArray) {
-        loader.isVisible = true
-        // TODO: Implement
+        restoreJob?.cancel()
+        restoreJob = lifecycleScope.launch {
+            // RestoreActivity handles seed this way
+            val keyPairGenerationResult = KeyPairUtilities.generate(seed)
+            val x25519KeyPair = keyPairGenerationResult.x25519KeyPair
+            KeyPairUtilities.store(this@LinkDeviceActivity, seed, keyPairGenerationResult.ed25519KeyPair, x25519KeyPair)
+            val userHexEncodedPublicKey = x25519KeyPair.hexEncodedPublicKey
+            val registrationID = KeyHelper.generateRegistrationId(false)
+            TextSecurePreferences.setLocalRegistrationId(this@LinkDeviceActivity, registrationID)
+            TextSecurePreferences.setLocalNumber(this@LinkDeviceActivity, userHexEncodedPublicKey)
+            TextSecurePreferences.setRestorationTime(this@LinkDeviceActivity, System.currentTimeMillis())
+            TextSecurePreferences.setHasViewedSeed(this@LinkDeviceActivity, true)
+
+            loader.isVisible = true
+            val snackBar = Snackbar.make(containerLayout, R.string.activity_link_device_skip_prompt,Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.registration_activity__skip) { register() }
+
+            val skipJob = launch {
+                delay(30_000L)
+                snackBar.show()
+                // show a dialog or something saying do you want to skip this bit?
+            }
+            // start polling and wait for updated message
+            ApplicationContext.getInstance(this@LinkDeviceActivity).startPollingIfNeeded()
+            TextSecurePreferences.events.filter { it == TextSecurePreferences.CONFIGURATION_SYNCED }.collect {
+                // handle we've synced
+                snackBar.dismiss()
+                skipJob.cancel()
+                register()
+            }
+
+            loader.isVisible = false
+        }
+    }
+
+    private fun register() {
+        restoreJob?.cancel()
+        val intent = Intent(this@LinkDeviceActivity, PNModeActivity::class.java)
+        push(intent)
     }
     // endregion
 }
@@ -86,7 +142,7 @@ private class LinkDeviceActivityAdapter(private val activity: LinkDeviceActivity
         }
     }
 
-    override fun getPageTitle(index: Int): CharSequence? {
+    override fun getPageTitle(index: Int): CharSequence {
         return when (index) {
             0 -> "Recovery Phrase"
             1 -> "Scan QR Code"

@@ -107,7 +107,8 @@ object TextSecurePreferences {
 
     // region Multi Device
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
-    private const val CONFIGURATION_SYNCED = "pref_configuration_synced"
+    const val CONFIGURATION_SYNCED = "pref_configuration_synced"
+    private const val LAST_PROFILE_UPDATE_TIME = "pref_last_profile_update_time"
 
     @JvmStatic
     fun getLastConfigurationSyncTime(context: Context): Long {
@@ -127,6 +128,7 @@ object TextSecurePreferences {
     @JvmStatic
     fun setConfigurationMessageSynced(context: Context, value: Boolean) {
         setBooleanPreference(context, CONFIGURATION_SYNCED, value)
+        _events.tryEmit(CONFIGURATION_SYNCED)
     }
 
     @JvmStatic
@@ -753,5 +755,14 @@ object TextSecurePreferences {
     fun setIsMigratingKeyPair(context: Context?, newValue: Boolean) {
         setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
     }
+
+    @JvmStatic
+    fun setLastProfileUpdateTime(context: Context, profileUpdateTime: Long) {
+        setLongPreference(context, LAST_PROFILE_UPDATE_TIME, profileUpdateTime)
+    }
+
+    @JvmStatic
+    fun shouldUpdateProfile(context: Context, profileUpdateTime: Long) =
+            profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
     // endregion
 }

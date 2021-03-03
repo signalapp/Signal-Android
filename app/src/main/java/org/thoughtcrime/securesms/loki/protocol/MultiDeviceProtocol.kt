@@ -7,6 +7,7 @@ import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
@@ -18,12 +19,10 @@ import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import org.thoughtcrime.securesms.sskenvironment.ProfileManager
+import java.security.SecureRandom
 import java.util.*
 
 object MultiDeviceProtocol {
@@ -82,12 +81,18 @@ object MultiDeviceProtocol {
     // TODO: remove this after we migrate to new message receiving pipeline
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
-//        if (TextSecurePreferences.getConfigurationMessageSynced(context)) return
+        if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, timestamp)) return
         val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         if (senderPublicKey != userPublicKey) return
         val storage = MessagingConfiguration.shared.storage
         val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
+
+        val threadDatabase = DatabaseFactory.getThreadDatabase(context)
+        val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+
+        val ourRecipient = Recipient.from(context, Address.fromSerialized(userPublicKey),false)
+
         for (closedGroup in configurationMessage.closedGroups) {
             if (allClosedGroupPublicKeys.contains(closedGroup.publicKey)) continue
 
@@ -109,18 +114,20 @@ object MultiDeviceProtocol {
             if (allOpenGroups.contains(openGroup)) continue
             OpenGroupUtilities.addGroup(context, openGroup, 1)
         }
-        if (configurationMessage.profileKey.isNotEmpty()) {
-            val profileKey = Base64.encodeBytes(configurationMessage.profileKey)
-            TextSecurePreferences.setProfileKey(context, profileKey)
-        }
-        if (!configurationMessage.profilePicture.isNullOrEmpty()) {
-            TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
-        }
         if (configurationMessage.displayName.isNotEmpty()) {
             TextSecurePreferences.setProfileName(context, configurationMessage.displayName)
+            recipientDatabase.setProfileName(ourRecipient, configurationMessage.displayName)
         }
-        val threadDatabase = DatabaseFactory.getThreadDatabase(context)
-        val recipientDatabase = DatabaseFactory.getRecipientDatabase(context)
+        if (configurationMessage.profileKey.isNotEmpty()) {
+            val profileKey = Base64.encodeBytes(configurationMessage.profileKey)
+            ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
+            recipientDatabase.setProfileKey(ourRecipient, configurationMessage.profileKey)
+            if (!configurationMessage.profilePicture.isNullOrEmpty()) {
+                TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
+                TextSecurePreferences.setProfileAvatarId(context, SecureRandom().nextInt())
+                ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, configurationMessage.profilePicture))
+            }
+        }
         for (contact in configurationMessage.contacts) {
             val address = Address.fromSerialized(contact.publicKey)
             val recipient = Recipient.from(context, address, true)
@@ -142,5 +149,6 @@ object MultiDeviceProtocol {
         }
         // TODO: handle new configuration message fields or handle in new pipeline
         TextSecurePreferences.setConfigurationMessageSynced(context, true)
+        TextSecurePreferences.setLastProfileUpdateTime(context, timestamp)
     }
 }
