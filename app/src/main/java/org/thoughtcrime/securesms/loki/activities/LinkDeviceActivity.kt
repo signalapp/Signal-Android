@@ -93,7 +93,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
 
             loader.isVisible = true
             val snackBar = Snackbar.make(containerLayout, R.string.activity_link_device_skip_prompt,Snackbar.LENGTH_INDEFINITE)
-                    .setAction(R.string.registration_activity__skip) { register() }
+                    .setAction(R.string.registration_activity__skip) { register(true) }
 
             val skipJob = launch {
                 delay(30_000L)
@@ -106,16 +106,16 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
                 // handle we've synced
                 snackBar.dismiss()
                 skipJob.cancel()
-                register()
+                register(false)
             }
 
             loader.isVisible = false
         }
     }
 
-    private fun register() {
+    private fun register(skipped: Boolean) {
         restoreJob?.cancel()
-        val intent = Intent(this@LinkDeviceActivity, PNModeActivity::class.java)
+        val intent = Intent(this@LinkDeviceActivity, if (skipped) DisplayNameActivity::class.java else PNModeActivity::class.java)
         push(intent)
     }
     // endregion
