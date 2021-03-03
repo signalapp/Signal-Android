@@ -22,7 +22,7 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun persistJob(job: Job) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues()
+        val contentValues = ContentValues(4)
         contentValues.put(jobID, job.id)
         contentValues.put(jobType, job.getFactoryKey())
         contentValues.put(failureCount, job.failureCount)

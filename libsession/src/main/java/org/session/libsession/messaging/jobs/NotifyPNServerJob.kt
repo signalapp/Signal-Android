@@ -76,7 +76,7 @@ class NotifyPNServerJob(val message: SnodeMessage) : Job {
     }
 
     override fun getFactoryKey(): String {
-        return AttachmentDownloadJob.KEY
+        return KEY
     }
 
     class Factory: Job.Factory<NotifyPNServerJob> {

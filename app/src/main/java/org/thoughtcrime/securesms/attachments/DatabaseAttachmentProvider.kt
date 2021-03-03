@@ -7,17 +7,22 @@ import org.session.libsession.database.MessageDataProvider
 import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
+import org.session.libsession.utilities.Util
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
+import org.session.libsignal.utilities.logging.Log
+import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.events.PartProgressEvent
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
+import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException
 import org.thoughtcrime.securesms.util.MediaUtil
+import java.io.IOException
 import java.io.InputStream
 
 
@@ -39,6 +44,14 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         val databaseAttachment = attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
         return databaseAttachment.toSignalAttachmentStream(context)
+    }
+
+    override fun getScaledSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream? {
+        val database = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachment = database.getAttachment(AttachmentId(attachmentId, 0)) ?: return null
+        val mediaConstraints = MediaConstraints.getPushMediaConstraints()
+        val scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment) ?: return null
+        return getAttachmentFor(scaledAttachment)
     }
 
     override fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer? {
@@ -84,12 +97,28 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return smsDatabase.isOutgoingMessage(timestamp) || mmsDatabase.isOutgoingMessage(timestamp)
     }
 
-    override fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, uploadResult: DotNetAPI.UploadResult) {
-        TODO("Not yet implemented")
+    override fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult) {
+        val database = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachment = getDatabaseAttachment(attachmentId) ?: return
+        val attachmentPointer = SignalServiceAttachmentPointer(uploadResult.id,
+                attachmentStream.contentType,
+                attachmentKey,
+                Optional.of(Util.toIntExact(attachmentStream.length)),
+                attachmentStream.preview,
+                attachmentStream.width, attachmentStream.height,
+                Optional.fromNullable(uploadResult.digest),
+                attachmentStream.fileName,
+                attachmentStream.voiceNote,
+                attachmentStream.caption,
+                uploadResult.url);
+        val attachment = PointerAttachment.forPointer(Optional.of(attachmentPointer), databaseAttachment.fastPreflightId).get()
+        database.updateAttachmentAfterUploadSucceeded(databaseAttachment.attachmentId, attachment)
     }
 
     override fun updateAttachmentAfterUploadFailed(attachmentId: Long) {
-        TODO("Not yet implemented")
+        val database = DatabaseFactory.getAttachmentDatabase(context)
+        val databaseAttachment = getDatabaseAttachment(attachmentId) ?: return
+        database.updateAttachmentAfterUploadFailed(databaseAttachment.attachmentId)
     }
 
     override fun getMessageID(serverID: Long): Long? {
@@ -105,6 +134,47 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     override fun getDatabaseAttachment(attachmentId: Long): DatabaseAttachment? {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
         return attachmentDatabase.getAttachment(AttachmentId(attachmentId, 0))
+    }
+
+    private fun scaleAndStripExif(attachmentDatabase: AttachmentDatabase, constraints: MediaConstraints, attachment: Attachment): Attachment? {
+        return try {
+            if (constraints.isSatisfied(context, attachment)) {
+                if (MediaUtil.isJpeg(attachment)) {
+                    val stripped = constraints.getResizedMedia(context, attachment)
+                    attachmentDatabase.updateAttachmentData(attachment, stripped)
+                } else {
+                    attachment
+                }
+            } else if (constraints.canResize(attachment)) {
+                val resized = constraints.getResizedMedia(context, attachment)
+                attachmentDatabase.updateAttachmentData(attachment, resized)
+            } else {
+                throw UndeliverableMessageException("Size constraints could not be met!")
+            }
+        } catch (e: Exception) {
+            return null
+        }
+    }
+
+    private fun getAttachmentFor(attachment: Attachment): SignalServiceAttachmentStream? {
+        try {
+            if (attachment.dataUri == null || attachment.size == 0L) throw IOException("Assertion failed, outgoing attachment has no data!")
+            val `is` = PartAuthority.getAttachmentStream(context, attachment.dataUri!!)
+            return SignalServiceAttachment.newStreamBuilder()
+                    .withStream(`is`)
+                    .withContentType(attachment.contentType)
+                    .withLength(attachment.size)
+                    .withFileName(attachment.fileName)
+                    .withVoiceNote(attachment.isVoiceNote)
+                    .withWidth(attachment.width)
+                    .withHeight(attachment.height)
+                    .withCaption(attachment.caption)
+                    .withListener { total: Long, progress: Long -> EventBus.getDefault().postSticky(PartProgressEvent(attachment, total, progress)) }
+                    .build()
+        } catch (ioe: IOException) {
+            Log.w("Loki", "Couldn't open attachment", ioe)
+        }
+        return null
     }
 
 }

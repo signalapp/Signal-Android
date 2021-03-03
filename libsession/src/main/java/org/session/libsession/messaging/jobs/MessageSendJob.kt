@@ -32,7 +32,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val message = message as? VisibleMessage
         message?.let {
             if(!messageDataProvider.isOutgoingMessage(message.sentTimestamp!!)) return // The message has been deleted
-            val attachments = message.attachmentIDs.map { messageDataProvider.getDatabaseAttachment(it) }.filterNotNull()
+            val attachments = message.attachmentIDs.mapNotNull { messageDataProvider.getDatabaseAttachment(it) }
             val attachmentsToUpload = attachments.filter { it.url.isNullOrEmpty() }
             attachmentsToUpload.forEach {
                 if (MessagingConfiguration.shared.storage.getAttachmentUploadJob(it.attachmentId.rowId) != null) {
@@ -82,10 +82,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
         val serializedMessage = ByteArray(4096)
         val serializedDestination = ByteArray(4096)
         var output = Output(serializedMessage)
-        kryo.writeObject(output, message)
+        kryo.writeClassAndObject(output, message)
         output.close()
         output = Output(serializedDestination)
-        kryo.writeObject(output, destination)
+        kryo.writeClassAndObject(output, destination)
         output.close()
         return Data.Builder().putByteArray(KEY_MESSAGE, serializedMessage)
                 .putByteArray(KEY_DESTINATION, serializedDestination)
@@ -93,7 +93,7 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
     }
 
     override fun getFactoryKey(): String {
-        return AttachmentDownloadJob.KEY
+        return KEY
     }
 
     class Factory: Job.Factory<MessageSendJob> {
@@ -103,10 +103,10 @@ class MessageSendJob(val message: Message, val destination: Destination) : Job {
             //deserialize Message and Destination properties
             val kryo = Kryo()
             var input = Input(serializedMessage)
-            val message: Message = kryo.readObject(input, Message::class.java)
+            val message = kryo.readClassAndObject(input) as Message
             input.close()
             input = Input(serializedDestination)
-            val destination: Destination = kryo.readObject(input, Destination::class.java)
+            val destination = kryo.readClassAndObject(input) as Destination
             input.close()
             return MessageSendJob(message, destination)
         }

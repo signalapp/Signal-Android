@@ -18,6 +18,7 @@ interface MessageDataProvider {
     fun getAttachmentPointer(attachmentId: Long): SessionServiceAttachmentPointer?
 
     fun getSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream?
+    fun getScaledSignalAttachmentStream(attachmentId: Long): SignalServiceAttachmentStream?
     fun getSignalAttachmentPointer(attachmentId: Long): SignalServiceAttachmentPointer?
 
     fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
@@ -26,7 +27,7 @@ interface MessageDataProvider {
 
     fun isOutgoingMessage(timestamp: Long): Boolean
 
-    fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, uploadResult: DotNetAPI.UploadResult)
+    fun updateAttachmentAfterUploadSucceeded(attachmentId: Long, attachmentStream: SignalServiceAttachmentStream, attachmentKey: ByteArray, uploadResult: DotNetAPI.UploadResult)
     fun updateAttachmentAfterUploadFailed(attachmentId: Long)
 
     // Quotes

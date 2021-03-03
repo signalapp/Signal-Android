@@ -1,14 +1,15 @@
 package org.session.libsession.messaging.messages.visible
 
+import com.google.protobuf.ByteString
 import com.goterl.lazycode.lazysodium.BuildConfig
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
-
-import org.session.libsignal.utilities.logging.Log
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.service.internal.push.SignalServiceProtos.AttachmentPointer
+import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
 class VisibleMessage : Message()  {
 
@@ -108,15 +109,15 @@ class VisibleMessage : Message()  {
             }
         }
         //Attachments
-        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getAttachmentStream(it) }
-        if (!attachments.all { it.isUploaded }) {
+        val attachments = attachmentIDs.mapNotNull { MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) }
+        if (!attachments.all { !it.url.isNullOrEmpty() }) {
             if (BuildConfig.DEBUG) {
                 //TODO equivalent to iOS's preconditionFailure
-                Log.d(TAG,"Sending a message before all associated attachments have been uploaded.")
+                Log.d(TAG, "Sending a message before all associated attachments have been uploaded.")
             }
         }
-        val attachmentProtos = attachments.mapNotNull { it.toProto() }
-        dataMessage.addAllAttachments(attachmentProtos)
+        val attachmentPointers = attachments.mapNotNull { createAttachmentPointer(it) }
+        dataMessage.addAllAttachments(attachmentPointers)
         // Sync target
         if (syncTarget != null) {
             dataMessage.syncTarget = syncTarget
@@ -130,5 +131,34 @@ class VisibleMessage : Message()  {
             Log.w(TAG, "Couldn't construct visible message proto from: $this")
             return null
         }
+    }
+
+    private fun createAttachmentPointer(attachment: SignalServiceAttachmentPointer): AttachmentPointer? {
+        val builder = AttachmentPointer.newBuilder()
+                .setContentType(attachment.contentType)
+                .setId(attachment.id)
+                .setKey(ByteString.copyFrom(attachment.key))
+                .setDigest(ByteString.copyFrom(attachment.digest.get()))
+                .setSize(attachment.size.get())
+                .setUrl(attachment.url)
+        if (attachment.fileName.isPresent) {
+            builder.fileName = attachment.fileName.get()
+        }
+        if (attachment.preview.isPresent) {
+            builder.thumbnail = ByteString.copyFrom(attachment.preview.get())
+        }
+        if (attachment.width > 0) {
+            builder.width = attachment.width
+        }
+        if (attachment.height > 0) {
+            builder.height = attachment.height
+        }
+        if (attachment.voiceNote) {
+            builder.flags = AttachmentPointer.Flags.VOICE_MESSAGE_VALUE
+        }
+        if (attachment.caption.isPresent) {
+            builder.caption = attachment.caption.get()
+        }
+        return builder.build()
     }
 }
