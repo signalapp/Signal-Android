@@ -70,18 +70,18 @@ data class OpenGroupMessage(
             }
             // Attachments
             val attachments = message.attachmentIDs.mapNotNull {
-                val attachment = MessagingConfiguration.shared.messageDataProvider.getAttachmentPointer(it) ?: return@mapNotNull null
+                val attachment = MessagingConfiguration.shared.messageDataProvider.getSignalAttachmentPointer(it) ?: return@mapNotNull null
                 return@mapNotNull Attachment(
                         Attachment.Kind.Attachment,
                         server,
                         attachment.id,
                         attachment.contentType!!,
-                        attachment.size.get(),
-                        attachment.fileName.get(),
+                        attachment.size.orNull(),
+                        attachment.fileName.orNull(),
                         0,
                         attachment.width,
                         attachment.height,
-                        attachment.caption.get(),
+                        attachment.caption.orNull(),
                         attachment.url,
                         null,
                         null)
@@ -121,7 +121,7 @@ data class OpenGroupMessage(
             val serverID: Long,
             val contentType: String,
             val size: Int,
-            val fileName: String,
+            val fileName: String?,
             val flags: Int,
             val width: Int,
             val height: Int,
