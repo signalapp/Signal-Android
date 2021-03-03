@@ -7,15 +7,16 @@ import android.content.Intent
 import android.graphics.drawable.TransitionDrawable
 import android.net.Uri
 import android.os.Bundle
-import androidx.annotation.DrawableRes
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import kotlinx.android.synthetic.main.activity_display_name.registerButton
 import kotlinx.android.synthetic.main.activity_pn_mode.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.disableClipping
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.loki.utilities.show
 import org.thoughtcrime.securesms.loki.views.GlowViewUtilities
 import org.thoughtcrime.securesms.loki.views.PNModeView
-import org.session.libsession.utilities.TextSecurePreferences
 
 class PNModeActivity : BaseActionBarActivity() {
     private var selectedOptionView: PNModeView? = null
@@ -154,6 +154,7 @@ class PNModeActivity : BaseActionBarActivity() {
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()
+        application.registerForFCMIfNeeded(true)
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         show(intent)
