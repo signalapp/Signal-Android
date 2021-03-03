@@ -87,4 +87,10 @@ public final class ThreadUtil {
       throw new AssertionError(e);
     }
   }
+
+  public static void interruptableSleep(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException ignored) { }
+  }
 }

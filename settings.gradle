@@ -5,10 +5,15 @@ include ':paging'
 include ':paging-app'
 include ':core-util'
 include ':video'
+include ':device-transfer'
+include ':device-transfer-app'
 
 project(':app').name = 'Signal-Android'
 project(':paging').projectDir = file('paging/lib')
 project(':paging-app').projectDir = file('paging/app')
+
+project(':device-transfer').projectDir = file('device-transfer/lib')
+project(':device-transfer-app').projectDir = file('device-transfer/app')
 
 project(':libsignal-service').projectDir = file('libsignal/service')
 
