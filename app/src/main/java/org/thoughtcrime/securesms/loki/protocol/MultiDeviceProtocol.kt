@@ -122,7 +122,7 @@ object MultiDeviceProtocol {
             val profileKey = Base64.encodeBytes(configurationMessage.profileKey)
             ProfileKeyUtil.setEncodedProfileKey(context, profileKey)
             recipientDatabase.setProfileKey(ourRecipient, configurationMessage.profileKey)
-            if (!configurationMessage.profilePicture.isNullOrEmpty()) {
+            if (!configurationMessage.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != configurationMessage.profilePicture) {
                 TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
                 TextSecurePreferences.setProfileAvatarId(context, SecureRandom().nextInt())
                 ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, configurationMessage.profilePicture))
