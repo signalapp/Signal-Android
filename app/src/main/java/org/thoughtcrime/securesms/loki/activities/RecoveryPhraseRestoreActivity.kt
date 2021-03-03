@@ -13,16 +13,16 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.Hex
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.session.libsignal.utilities.Hex
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.KeyHelper
-import org.session.libsignal.service.loki.crypto.MnemonicCodec
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
 class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
 
@@ -70,6 +70,8 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
             TextSecurePreferences.setLocalRegistrationId(this, registrationID)
             TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
             TextSecurePreferences.setRestorationTime(this, System.currentTimeMillis())
+            TextSecurePreferences.setLastProfileUpdateTime(this, System.currentTimeMillis())
+            TextSecurePreferences.setConfigurationMessageSynced(this, true)
             TextSecurePreferences.setHasViewedSeed(this, true)
             val intent = Intent(this, DisplayNameActivity::class.java)
             push(intent)
