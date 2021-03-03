@@ -447,7 +447,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
 
     public void registerForFCMIfNeeded(final Boolean force) {
-        if (firebaseInstanceIdJob != null && firebaseInstanceIdJob.isActive()) return;
+        if (firebaseInstanceIdJob != null && firebaseInstanceIdJob.isActive() && !force) return;
+        if (force && firebaseInstanceIdJob != null) {
+            firebaseInstanceIdJob.cancel(null);
+        }
         firebaseInstanceIdJob = FcmUtils.getFcmInstanceId(task->{
             if (!task.isSuccessful()) {
                 Log.w("Loki", "FirebaseInstanceId.getInstance().getInstanceId() failed." + task.getException());
