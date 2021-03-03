@@ -136,7 +136,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Set<RecipientId>                          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
 
       out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                  Optional.fromNullable(recipient.getName(context)),
+                                  Optional.fromNullable(recipient.isGroup() || recipient.isSystemContact() ? recipient.getDisplayName(context) : null),
                                   getAvatar(recipient.getId(), recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
                                   verifiedMessage,
@@ -191,7 +191,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       for (Recipient recipient : recipients) {
         Optional<IdentityDatabase.IdentityRecord> identity      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId());
         Optional<VerifiedMessage>                 verified      = getVerifiedMessage(recipient, identity);
-        Optional<String>                          name          = Optional.fromNullable(recipient.getName(context));
+        Optional<String>                          name          = Optional.fromNullable(recipient.isSystemContact() ? recipient.getDisplayName(context) : recipient.getGroupName(context));
         Optional<String>                          color         = Optional.of(recipient.getColor().serialize());
         Optional<ProfileKey>                      profileKey    = ProfileKeyUtil.profileKeyOptional(recipient.getProfileKey());
         boolean                                   blocked       = recipient.isBlocked();

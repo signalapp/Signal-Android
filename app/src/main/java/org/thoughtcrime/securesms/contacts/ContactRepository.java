@@ -57,7 +57,7 @@ public class ContactRepository {
     add(new Pair<>(ID_COLUMN, cursor -> CursorUtil.requireLong(cursor, RecipientDatabase.ID)));
 
     add(new Pair<>(NAME_COLUMN, cursor -> {
-      String system  = CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_DISPLAY_NAME);
+      String system  = CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_JOINED_NAME);
       String profile = CursorUtil.requireString(cursor, RecipientDatabase.SEARCH_PROFILE_NAME);
 
       return Util.getFirstNonEmpty(system, profile);

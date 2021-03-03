@@ -7,7 +7,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -43,6 +42,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
+import org.thoughtcrime.securesms.util.CursorUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -63,6 +63,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -320,27 +321,63 @@ public class DirectoryHelper {
       contactsDatabase.removeDeletedRawContacts(account.getAccount());
       contactsDatabase.setRegisteredUsers(account.getAccount(), activeAddresses, removeMissing);
 
-      Cursor               cursor = ContactAccessor.getInstance().getAllSystemContacts(context);
-      BulkOperationsHandle handle = recipientDatabase.beginBulkSystemContactUpdate();
+      BulkOperationsHandle  handle = recipientDatabase.beginBulkSystemContactUpdate();
 
-      try {
+      ContactHolder old = null;
+      try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
         while (cursor != null && cursor.moveToNext()) {
-          String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+          String        lookupKey     = getLookupKey(cursor);
+          String        mimeType      = getMimeType(cursor);
+          ContactHolder contactHolder = new ContactHolder(lookupKey);
 
-          if (isValidContactNumber(number)) {
-            String      formattedNumber = PhoneNumberFormatter.get(context).format(number);
-            String      realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
-            RecipientId recipientId     = Recipient.externalContact(context, realNumber).getId();
-            String      displayName     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String      contactPhotoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-            String      contactLabel    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
-            int         phoneType       = cursor.getInt(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.TYPE));
-            Uri         contactUri      = ContactsContract.Contacts.getLookupUri(cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone._ID)),
-                                                                                 cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
-
-            handle.setSystemContactInfo(recipientId, displayName, contactPhotoUri, contactLabel, phoneType, contactUri.toString());
+          if (!isPhoneMimeType(mimeType)) {
+            Log.w(TAG, "Ignoring unexpected mime type: " + mimeType);
           }
+
+          while (getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
+            String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
+
+            if (isValidContactNumber(number)) {
+              String formattedNumber = PhoneNumberFormatter.get(context).format(number);
+              String realNumber      = Util.getFirstNonEmpty(rewrites.get(formattedNumber), formattedNumber);
+
+              PhoneNumberRecord.Builder builder = new PhoneNumberRecord.Builder();
+
+              builder.withRecipientId(Recipient.externalContact(context, realNumber).getId());
+              builder.withDisplayName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+              builder.withContactPhotoUri(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+              builder.withContactLabel(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LABEL));
+              builder.withPhoneType(CursorUtil.requireInt(cursor, ContactsContract.CommonDataKinds.Phone.TYPE));
+              builder.withContactUri(ContactsContract.Contacts.getLookupUri(CursorUtil.requireLong(cursor, ContactsContract.CommonDataKinds.Phone._ID),
+                                                                            CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
+
+              contactHolder.addPhoneNumberRecord(builder.build());
+            } else {
+              Log.w(TAG, "Skipping phone entry with invalid number");
+            }
+
+            cursor.moveToNext();
+          }
+
+          if (getLookupKey(cursor).equals(lookupKey)) {
+            if (isStructuredNameMimeType(getMimeType(cursor))) {
+              StructuredNameRecord.Builder builder = new StructuredNameRecord.Builder();
+
+              builder.withGivenName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.GIVEN_NAME));
+              builder.withFamilyName(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+
+              contactHolder.setStructuredNameRecord(builder.build());
+            } else {
+              Log.i(TAG, "Skipping invalid mimeType " + mimeType);
+            }
+          } else {
+            Log.i(TAG, "No structured name for user, rolling back cursor.");
+            cursor.moveToPrevious();
+          }
+
+          contactHolder.commit(handle);
         }
+
       } finally {
         handle.finish();
       }
@@ -358,8 +395,24 @@ public class DirectoryHelper {
     }
   }
 
+  private static boolean isPhoneMimeType(@NonNull String mimeType) {
+    return ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE.equals(mimeType);
+  }
+
+  private static boolean isStructuredNameMimeType(@NonNull String mimeType) {
+    return ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE.equals(mimeType);
+  }
+
   private static boolean isValidContactNumber(@Nullable String number) {
     return !TextUtils.isEmpty(number) && !UuidUtil.isUuid(number);
+  }
+
+  private static @NonNull String getLookupKey(@NonNull Cursor cursor) {
+    return Objects.requireNonNull(CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY));
+  }
+
+  private static @NonNull String getMimeType(@NonNull Cursor cursor) {
+    return CursorUtil.requireString(cursor, ContactsContract.Data.MIMETYPE);
   }
 
   private static @Nullable AccountHolder getOrCreateSystemAccount(Context context) {

@@ -66,7 +66,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   public void getUserAvatar(@NonNull Consumer<InsightsUserAvatar> avatarConsumer) {
     SimpleTask.run(() -> {
       Recipient     self          = Recipient.self().resolve();
-      String        name          = Optional.fromNullable(self.getName(context)).or("");
+      String        name          = Optional.fromNullable(self.getDisplayName(context)).or("");
       MaterialColor fallbackColor = self.getColor();
 
       if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {

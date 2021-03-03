@@ -74,7 +74,7 @@ class EditGroupProfileRepository implements EditProfileRepository {
                               String title = groupRecord.getTitle();
                               return title == null ? "" : title;
                             })
-                            .or(() -> recipient.getName(context));
+                            .or(() -> recipient.getGroupName(context));
     }, nameConsumer::accept);
   }
 

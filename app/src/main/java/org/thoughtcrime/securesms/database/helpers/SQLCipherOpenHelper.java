@@ -171,8 +171,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int LAST_RESET_SESSION_TIME          = 87;
   private static final int WALLPAPER                        = 88;
   private static final int ABOUT                            = 89;
+  private static final int SPLIT_SYSTEM_NAMES               = 90;
 
-  private static final int    DATABASE_VERSION = 89;
+  private static final int    DATABASE_VERSION = 90;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -1256,6 +1257,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
       if (oldVersion < ABOUT) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN about TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient ADD COLUMN about_emoji TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < SPLIT_SYSTEM_NAMES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN system_family_name TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN system_given_name TEXT DEFAULT NULL");
+        db.execSQL("UPDATE recipient SET system_given_name = system_display_name");
       }
 
       db.setTransactionSuccessful();
