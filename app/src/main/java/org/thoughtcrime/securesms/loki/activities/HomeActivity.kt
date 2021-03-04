@@ -25,6 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
@@ -43,7 +44,6 @@ import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import java.io.IOException
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate, NewConversationButtonSetViewDelegate {
@@ -306,7 +306,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     isClosedGroup = false
                 }
                 if (isClosedGroup) {
-                    ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
+                    MessageSender.explicitLeave(groupPublicKey!!)
                 } else {
                     Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                     return@launch

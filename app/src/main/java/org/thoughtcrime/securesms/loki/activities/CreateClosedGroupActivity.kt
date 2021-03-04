@@ -13,6 +13,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
+import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
@@ -23,7 +24,6 @@ import org.thoughtcrime.securesms.loki.utilities.fadeOut
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 
 //TODO Refactor to avoid using kotlinx.android.synthetic
 class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderManager.LoaderCallbacks<List<String>> {
@@ -103,13 +103,13 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
-        if (selectedMembers.count() >= ClosedGroupsProtocolV2.groupSizeLimit) { // Minus one because we're going to include self later
+        if (selectedMembers.count() >= MessageSender.groupSizeLimit) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!
         isLoading = true
         loaderContainer.fadeIn()
-        ClosedGroupsProtocolV2.createClosedGroup(this, name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
+        MessageSender.createClosedGroup(name.toString(), selectedMembers + setOf( userPublicKey )).successUi { groupID ->
             loaderContainer.fadeOut()
             isLoading = false
             val threadID = DatabaseFactory.getThreadDatabase(this).getOrCreateThreadIdFor(Recipient.from(this, Address.fromSerialized(groupID), false))

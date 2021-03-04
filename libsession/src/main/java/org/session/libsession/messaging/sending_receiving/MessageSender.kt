@@ -1,6 +1,5 @@
 package org.session.libsession.messaging.sending_receiving
 
-import android.util.Size
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import org.session.libsession.messaging.MessagingConfiguration
@@ -33,9 +32,10 @@ import org.session.libsignal.utilities.logging.Log
 
 
 object MessageSender {
+    const val groupSizeLimit = 100
 
     // Error
-    internal sealed class Error(val description: String) : Exception() {
+    sealed class Error(val description: String) : Exception() {
         object InvalidMessage : Error("Invalid message.")
         object ProtoConversionFailed : Error("Couldn't convert message to proto.")
         object ProofOfWorkCalculationFailed : Error("Proof of work calculation failed.")
@@ -307,5 +307,27 @@ object MessageSender {
         message.threadID = threadID
         val destination = Destination.from(address)
         return send(message, destination)
+    }
+
+    // Closed groups
+    fun createClosedGroup(name: String, members: Collection<String>): Promise<String, Exception> {
+        return create(name, members)
+    }
+
+    fun explicitNameChange(groupPublicKey: String, newName: String) {
+        return setName(groupPublicKey, newName)
+    }
+
+    fun explicitAddMembers(groupPublicKey: String, membersToAdd: List<String>) {
+        return addMembers(groupPublicKey, membersToAdd)
+    }
+
+    fun explicitRemoveMembers(groupPublicKey: String, membersToRemove: List<String>) {
+        return removeMembers(groupPublicKey, membersToRemove)
+    }
+
+    @JvmStatic
+    fun explicitLeave(groupPublicKey: String): Promise<Unit, Exception> {
+        return leave(groupPublicKey)
     }
 }
