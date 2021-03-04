@@ -176,7 +176,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         showKeyPairMigrationSheetIfNeeded()
         showKeyPairMigrationSuccessSheetIfNeeded()
         if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
-            MultiDeviceProtocol.syncConfigurationIfNeeded(this)
+            lifecycleScope.launch(Dispatchers.IO) {
+                MultiDeviceProtocol.syncConfigurationIfNeeded(this@HomeActivity)
+            }
         }
     }
 
