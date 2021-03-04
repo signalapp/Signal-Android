@@ -157,6 +157,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
@@ -804,10 +805,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         @Override
         protected Void doInBackground(Void... params) {
           DatabaseFactory.getRecipientDatabase(ConversationActivity.this).setExpireMessages(recipient, expirationTime);
-          ExpirationTimerUpdate message = new ExpirationTimerUpdate();
-          message.setDuration(expirationTime * 1000);
-          MessageSender.send(message, recipient.getAddress());
-
+          ExpirationTimerUpdate message = new ExpirationTimerUpdate(expirationTime);
+          message.setSentTimestamp(System.currentTimeMillis());
+          OutgoingExpirationUpdateMessage outgoingMessage = OutgoingExpirationUpdateMessage.from(message, recipient);
+          try {
+            message.setId(DatabaseFactory.getMmsDatabase(ConversationActivity.this).insertMessageOutbox(outgoingMessage, getAllocatedThreadId(ConversationActivity.this), false, null));
+            MessageSender.send(message, recipient.getAddress());
+          } catch (MmsException e) {
+            Log.w(TAG, e);
+          }
           return null;
         }
 
@@ -834,17 +840,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
-  }
-
-  private void handleConversationSettings() {
-    /*
-    Intent intent = new Intent(ConversationActivity.this, RecipientPreferenceActivity.class);
-    intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
-    intent.putExtra(RecipientPreferenceActivity.CAN_HAVE_SAFETY_NUMBER_EXTRA,
-                    isSecureText && !isSelfConversation());
-
-    startActivitySceneTransition(intent, titleView.findViewById(R.id.contact_photo_image), "avatar");
-     */
   }
 
   private void handleUnmuteNotifications() {
@@ -1798,12 +1793,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     try {
-      long allocatedThreadId;
-      if (threadId == -1) {
-        allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-      } else {
-        allocatedThreadId = threadId;
-      }
+      long allocatedThreadId = getAllocatedThreadId(context);
       message.setId(DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMessage, allocatedThreadId, false, ()->fragment.releaseOutgoingMessage(id)));
       MessageSender.send(message, recipient.getAddress(), attachments, quote, linkPreview.orNull());
       sendComplete(allocatedThreadId);
@@ -1835,12 +1825,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
     }
 
-    long allocatedThreadId;
-    if (threadId == -1) {
-      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
-    } else {
-      allocatedThreadId = threadId;
-    }
+    long allocatedThreadId = getAllocatedThreadId(context);
     message.setId(DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(allocatedThreadId, outgoingTextMessage, false, message.getSentTimestamp(), ()->fragment.releaseOutgoingMessage(id)));
     MessageSender.send(message, recipient.getAddress());
 
@@ -2315,6 +2300,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   // region Loki
+  private long getAllocatedThreadId(Context context) {
+    long allocatedThreadId;
+    if (threadId == -1) {
+      allocatedThreadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
+    } else {
+      allocatedThreadId = threadId;
+    }
+    return allocatedThreadId;
+  }
+
   private void updateTitleTextView(Recipient recipient) {
     String userPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (recipient == null) {

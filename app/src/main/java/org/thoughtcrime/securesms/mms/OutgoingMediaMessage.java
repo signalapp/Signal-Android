@@ -17,7 +17,6 @@ import org.session.libsession.messaging.threads.recipients.Recipient;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Optional;
 
 public class OutgoingMediaMessage {
 
@@ -122,7 +121,7 @@ public class OutgoingMediaMessage {
   }
 
   public boolean isSecure() {
-    return false;
+    return true;
   }
 
   public boolean isGroup() {
