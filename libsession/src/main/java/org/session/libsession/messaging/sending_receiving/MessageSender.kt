@@ -259,7 +259,7 @@ object MessageSender {
         storage.markAsSent(message.sentTimestamp!!, message.sender!!)
         storage.markUnidentified(message.sentTimestamp!!, message.sender!!)
         // Start the disappearing messages timer if needed
-        if (message is VisibleMessage) {
+        if (message is VisibleMessage && !isSyncMessage) {
             SSKEnvironment.shared.messageExpirationManager.startAnyExpiration(message.sentTimestamp!!, message.sender!!)
         }
         // Sync the message if:
