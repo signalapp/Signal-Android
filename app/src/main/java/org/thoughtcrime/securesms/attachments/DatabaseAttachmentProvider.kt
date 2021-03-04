@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.attachments
 
 import android.content.Context
+import android.text.TextUtils
 import com.google.protobuf.ByteString
 import org.greenrobot.eventbus.EventBus
 import org.session.libsession.database.MessageDataProvider
@@ -8,16 +9,19 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.Util
+import org.session.libsession.utilities.Util.toIntExact
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentStream
+import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.events.PartProgressEvent
+import org.thoughtcrime.securesms.jobs.PushSendJob
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException
@@ -202,8 +206,28 @@ fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttac
     return attachmentStream
 }
 
-fun DatabaseAttachment.toSignalAttachmentPointer(): SignalServiceAttachmentPointer {
-    return SignalServiceAttachmentPointer(attachmentId.rowId, contentType, key?.toByteArray(), Optional.fromNullable(size.toInt()), Optional.absent(), width, height, Optional.fromNullable(digest), Optional.fromNullable(fileName), isVoiceNote, Optional.fromNullable(caption), url)
+fun DatabaseAttachment.toSignalAttachmentPointer(): SignalServiceAttachmentPointer? {
+    if (TextUtils.isEmpty(location)) { return null }
+    if (TextUtils.isEmpty(key)) { return null }
+
+    return try {
+        val id: Long = location!!.toLong()
+        val key: ByteArray = Base64.decode(key!!)
+        SignalServiceAttachmentPointer(id,
+                contentType,
+                key,
+                Optional.of(toIntExact(size)),
+                Optional.absent(),
+                width,
+                height,
+                Optional.fromNullable(digest),
+                Optional.fromNullable(fileName),
+                isVoiceNote,
+                Optional.fromNullable(caption),
+                url)
+    } catch (e: Exception) {
+        null
+    }
 }
 
 fun DatabaseAttachment.toSignalAttachmentStream(context: Context): SignalServiceAttachmentStream {

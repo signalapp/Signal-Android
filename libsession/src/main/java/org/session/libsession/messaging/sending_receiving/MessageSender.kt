@@ -59,25 +59,6 @@ object MessageSender {
         }
     }
 
-    // Preparation
-    fun prep(signalAttachments: List<SignalAttachment>, message: VisibleMessage) {
-        val attachments = mutableListOf<Attachment>()
-        for (signalAttachment in signalAttachments) {
-            val attachment = Attachment()
-            attachment.fileName = signalAttachment.fileName
-            attachment.caption = signalAttachment.caption
-            attachment.contentType = signalAttachment.contentType
-            attachment.digest = signalAttachment.digest
-            attachment.key = Base64.decode(signalAttachment.key ?: "")
-            attachment.sizeInBytes = signalAttachment.size.toInt()
-            attachment.url = signalAttachment.url
-            attachment.size = Size(signalAttachment.width, signalAttachment.height)
-            attachments.add(attachment)
-        }
-        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
-        message.attachmentIDs.addAll(attachmentIDs)
-    }
-
     // Convenience
     fun send(message: Message, destination: Destination): Promise<Unit, Exception> {
         if (destination is Destination.OpenGroup) {
@@ -299,7 +280,8 @@ object MessageSender {
     // Convenience
     @JvmStatic
     fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
-        prep(attachments, message)
+        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
+        message.attachmentIDs.addAll(attachmentIDs)
         message.quote = Quote.from(quote)
         message.linkPreview = LinkPreview.from(linkPreview)
         send(message, address)
@@ -315,7 +297,8 @@ object MessageSender {
     }
 
     fun sendNonDurably(message: VisibleMessage, attachments: List<SignalAttachment>, address: Address): Promise<Unit, Exception> {
-        prep(attachments, message)
+        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
+        message.attachmentIDs.addAll(attachmentIDs)
         return sendNonDurably(message, address)
     }
 
