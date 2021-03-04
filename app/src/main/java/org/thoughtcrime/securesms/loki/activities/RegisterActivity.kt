@@ -18,14 +18,15 @@ import android.widget.Toast
 import com.goterl.lazycode.lazysodium.utils.KeyPair
 import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
-import org.thoughtcrime.securesms.loki.utilities.push
-import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
+import org.thoughtcrime.securesms.loki.utilities.push
+import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
+import java.util.*
 
 class RegisterActivity : BaseActionBarActivity() {
     private var seed: ByteArray? = null
@@ -38,6 +39,14 @@ class RegisterActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         setUpActionBarSessionLogo()
+        // Set the registration sync variables
+        TextSecurePreferences.apply {
+            setHasViewedSeed(this@RegisterActivity, false)
+            setConfigurationMessageSynced(this@RegisterActivity, true)
+            setRestorationTime(this@RegisterActivity, 0)
+            setLastConfigurationSyncTime(this@RegisterActivity, System.currentTimeMillis())
+        }
+        // registration variables are synced
         registerButton.setOnClickListener { register() }
         copyButton.setOnClickListener { copyPublicKey() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms of Service and Privacy Policy")

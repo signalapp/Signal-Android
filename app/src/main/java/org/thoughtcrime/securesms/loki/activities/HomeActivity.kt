@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.dialogs.*
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
+import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
 import org.thoughtcrime.securesms.loki.views.NewConversationButtonSetViewDelegate
@@ -174,6 +175,9 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
         }
         showKeyPairMigrationSheetIfNeeded()
         showKeyPairMigrationSuccessSheetIfNeeded()
+        if (TextSecurePreferences.getConfigurationMessageSynced(this)) {
+            MultiDeviceProtocol.syncConfigurationIfNeeded(this)
+        }
     }
 
     private fun showKeyPairMigrationSheetIfNeeded() {

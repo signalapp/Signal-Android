@@ -77,7 +77,6 @@ import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.loki.database.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol;
 import org.thoughtcrime.securesms.loki.utilities.Broadcaster;
 import org.thoughtcrime.securesms.loki.utilities.FcmUtils;
 import org.thoughtcrime.securesms.loki.utilities.UiModeUtilities;
@@ -216,7 +215,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         startPollingIfNeeded();
         publicChatManager.markAllAsNotCaughtUp();
         publicChatManager.startPollersIfNeeded();
-        MultiDeviceProtocol.syncConfigurationIfNeeded(this);
     }
 
     @Override

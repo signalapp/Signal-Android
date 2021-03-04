@@ -48,6 +48,14 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
+        // Set the registration sync variables
+        TextSecurePreferences.apply {
+            setHasViewedSeed(this@LinkDeviceActivity, true)
+            setConfigurationMessageSynced(this@LinkDeviceActivity, false)
+            setRestorationTime(this@LinkDeviceActivity, System.currentTimeMillis())
+            setLastConfigurationSyncTime(this@LinkDeviceActivity, 0)
+        }
+        // registration variables are synced
         setContentView(R.layout.activity_link_device)
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)

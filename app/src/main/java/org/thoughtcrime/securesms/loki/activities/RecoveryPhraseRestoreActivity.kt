@@ -30,6 +30,14 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
+        // Set the registration sync variables
+        TextSecurePreferences.apply {
+            setHasViewedSeed(this@RecoveryPhraseRestoreActivity, true)
+            setConfigurationMessageSynced(this@RecoveryPhraseRestoreActivity, false)
+            setRestorationTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
+            setLastConfigurationSyncTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
+        }
+        // registration variables are synced
         setContentView(R.layout.activity_recovery_phrase_restore)
         mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
         restoreButton.setOnClickListener { restore() }
@@ -69,10 +77,6 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
             val registrationID = KeyHelper.generateRegistrationId(false)
             TextSecurePreferences.setLocalRegistrationId(this, registrationID)
             TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
-            TextSecurePreferences.setRestorationTime(this, System.currentTimeMillis())
-            TextSecurePreferences.setLastProfileUpdateTime(this, System.currentTimeMillis())
-            TextSecurePreferences.setConfigurationMessageSynced(this, true)
-            TextSecurePreferences.setHasViewedSeed(this, true)
             val intent = Intent(this, DisplayNameActivity::class.java)
             push(intent)
         } catch (e: Exception) {
