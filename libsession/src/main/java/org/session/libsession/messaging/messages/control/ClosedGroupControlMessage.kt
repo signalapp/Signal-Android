@@ -35,8 +35,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
         class NameChange(val name: String) : Kind()
         class MembersAdded(val members: List<ByteString>) : Kind()
         class MembersRemoved( val members: List<ByteString>) : Kind()
-        object MemberLeft : Kind()
-        object EncryptionKeyPairRequest: Kind()
+        class MemberLeft : Kind()
+        class EncryptionKeyPairRequest: Kind()
 
         val description: String = run {
             when(this) {
@@ -46,8 +46,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 is NameChange -> "nameChange"
                 is MembersAdded -> "membersAdded"
                 is MembersRemoved -> "membersRemoved"
-                MemberLeft -> "memberLeft"
-                EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
+                is MemberLeft -> "memberLeft"
+                is EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
             }
         }
     }
@@ -92,10 +92,10 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     kind = Kind.MembersRemoved(closedGroupControlMessageProto.membersList)
                 }
                 DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT -> {
-                    kind = Kind.MemberLeft
+                    kind = Kind.MemberLeft()
                 }
                 DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR_REQUEST -> {
-                    kind = Kind.EncryptionKeyPairRequest
+                    kind = Kind.EncryptionKeyPairRequest()
                 }
             }
             return ClosedGroupControlMessage(kind)

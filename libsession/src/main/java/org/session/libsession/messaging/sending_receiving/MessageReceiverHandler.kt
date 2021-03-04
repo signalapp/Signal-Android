@@ -212,8 +212,8 @@ private fun MessageReceiver.handleClosedGroupControlMessage(message: ClosedGroup
         is ClosedGroupControlMessage.Kind.NameChange -> handleClosedGroupNameChanged(message)
         is ClosedGroupControlMessage.Kind.MembersAdded -> handleClosedGroupMembersAdded(message)
         is ClosedGroupControlMessage.Kind.MembersRemoved -> handleClosedGroupMembersRemoved(message)
-        ClosedGroupControlMessage.Kind.MemberLeft -> handleClosedGroupMemberLeft(message)
-        ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest -> handleClosedGroupEncryptionKeyPairRequest(message)
+        is ClosedGroupControlMessage.Kind.MemberLeft -> handleClosedGroupMemberLeft(message)
+        is ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest -> handleClosedGroupEncryptionKeyPairRequest(message)
     }
 }
 

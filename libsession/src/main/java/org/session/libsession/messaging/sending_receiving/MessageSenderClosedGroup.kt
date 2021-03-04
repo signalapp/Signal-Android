@@ -50,9 +50,11 @@ fun MessageSender.create(name: String, members: Collection<String>): Promise<Str
         storage.setProfileSharing(Address.fromSerialized(groupID), true)
         // Send a closed group update message to all members individually
         val closedGroupUpdateKind = ClosedGroupControlMessage.Kind.New(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), name, encryptionKeyPair, membersAsData, adminsAsData)
+        val sentTime = System.currentTimeMillis()
         for (member in members) {
             val closedGroupControlMessage = ClosedGroupControlMessage(closedGroupUpdateKind)
-            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).get()
+            closedGroupControlMessage.sentTimestamp = sentTime
+            sendNonDurably(closedGroupControlMessage, Address.fromSerialized(member)).get()
         }
         // Add the group to the user's set of public keys to poll for
         storage.addClosedGroupPublicKey(groupPublicKey)
@@ -199,7 +201,7 @@ fun MessageSender.leave(groupPublicKey: String, notifyUser: Boolean = true): Pro
         val admins = group.admins.map { it.serialize() }
         val name = group.title
         // Send the update to the group
-        val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft)
+        val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.MemberLeft())
         closedGroupControlMessage.sentTimestamp = System.currentTimeMillis()
         sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
             // Notify the user
@@ -265,7 +267,7 @@ fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
     val members = group.members.map { it.serialize() }.toSet()
     if (!members.contains(storage.getUserPublicKey()!!)) return
     // Send the request to the group
-    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest)
+    val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest())
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
 }
 
