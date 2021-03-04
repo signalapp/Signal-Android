@@ -53,7 +53,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
             setHasViewedSeed(this@LinkDeviceActivity, true)
             setConfigurationMessageSynced(this@LinkDeviceActivity, false)
             setRestorationTime(this@LinkDeviceActivity, System.currentTimeMillis())
-            setLastConfigurationSyncTime(this@LinkDeviceActivity, 0)
+            setLastProfileUpdateTime(this@LinkDeviceActivity, 0)
         }
         // registration variables are synced
         setContentView(R.layout.activity_link_device)

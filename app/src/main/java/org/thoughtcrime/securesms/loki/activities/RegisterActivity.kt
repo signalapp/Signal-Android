@@ -44,7 +44,7 @@ class RegisterActivity : BaseActionBarActivity() {
             setHasViewedSeed(this@RegisterActivity, false)
             setConfigurationMessageSynced(this@RegisterActivity, true)
             setRestorationTime(this@RegisterActivity, 0)
-            setLastConfigurationSyncTime(this@RegisterActivity, System.currentTimeMillis())
+            setLastProfileUpdateTime(this@RegisterActivity, System.currentTimeMillis())
         }
         // registration variables are synced
         registerButton.setOnClickListener { register() }

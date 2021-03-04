@@ -35,7 +35,7 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
             setHasViewedSeed(this@RecoveryPhraseRestoreActivity, true)
             setConfigurationMessageSynced(this@RecoveryPhraseRestoreActivity, false)
             setRestorationTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
-            setLastConfigurationSyncTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
+            setLastProfileUpdateTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
         }
         // registration variables are synced
         setContentView(R.layout.activity_recovery_phrase_restore)
