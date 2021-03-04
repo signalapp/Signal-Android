@@ -14,11 +14,9 @@ import org.session.libsignal.service.internal.crypto.PaddingInputStream
 import org.session.libsignal.service.internal.push.PushAttachmentData
 import org.session.libsignal.service.internal.push.http.AttachmentCipherOutputStreamFactory
 import org.session.libsignal.service.internal.util.Util
-import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.service.loki.utilities.PlaintextOutputStreamFactory
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.logging.Log
-import java.io.InputStream
 
 class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val message: Message, val messageSendJobID: String) : Job {
 
@@ -52,8 +50,9 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 val attachment = MessagingConfiguration.shared.messageDataProvider.getScaledSignalAttachmentStream(attachmentID)
                         ?: return@queue handleFailure(Error.NoAttachment)
 
-                var server = FileServerAPI.server
+                var server = FileServerAPI.shared.server
                 var shouldEncrypt = true
+                val usePadding = false
                 val openGroup = MessagingConfiguration.shared.storage.getOpenGroup(threadID)
                 openGroup?.let {
                     server = it.server
@@ -61,10 +60,12 @@ class AttachmentUploadJob(val attachmentID: Long, val threadID: String, val mess
                 }
 
                 val attachmentKey = Util.getSecretBytes(64)
-                val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(attachment.length) else attachment.length
+                val paddedLength = if (usePadding) PaddingInputStream.getPaddedSize(attachment.length) else attachment.length
+                val dataStream = if (usePadding) PaddingInputStream(attachment.inputStream, attachment.length) else attachment.inputStream
+                val ciphertextLength = if (shouldEncrypt) AttachmentCipherOutputStream.getCiphertextLength(paddedLength) else attachment.length
 
                 val outputStreamFactory = if (shouldEncrypt) AttachmentCipherOutputStreamFactory(attachmentKey) else PlaintextOutputStreamFactory()
-                val attachmentData = PushAttachmentData(attachment.contentType, attachment.inputStream, ciphertextLength, outputStreamFactory, attachment.listener)
+                val attachmentData = PushAttachmentData(attachment.contentType, dataStream, ciphertextLength, outputStreamFactory, attachment.listener)
 
                 val uploadResult = FileServerAPI.shared.uploadAttachment(server, attachmentData)
                 handleSuccess(attachment, attachmentKey, uploadResult)
