@@ -33,6 +33,7 @@ class PNModeActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
+        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         setContentView(R.layout.activity_pn_mode)
         contentView.disableClipping()
         fcmOptionView.setOnClickListener { toggleFCM() }
@@ -150,7 +151,6 @@ class PNModeActivity : BaseActionBarActivity() {
             dialog.create().show()
             return
         }
-        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setIsUsingFCM(this, (selectedOptionView == fcmOptionView))
         val application = ApplicationContext.getInstance(this)
         application.setUpStorageAPIIfNeeded()

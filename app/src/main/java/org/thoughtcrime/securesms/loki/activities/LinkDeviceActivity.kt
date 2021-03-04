@@ -115,7 +115,10 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
 
     private fun register(skipped: Boolean) {
         restoreJob?.cancel()
+        loader.isVisible = false
+        ApplicationContext.getInstance(this).stopPolling()
         val intent = Intent(this@LinkDeviceActivity, if (skipped) DisplayNameActivity::class.java else PNModeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         push(intent)
     }
     // endregion
