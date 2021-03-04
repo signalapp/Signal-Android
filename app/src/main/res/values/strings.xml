@@ -707,6 +707,7 @@
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
     <string name="ThreadRecord_you_marked_verified">You marked verified</string>
     <string name="ThreadRecord_you_marked_unverified">You marked unverified</string>
+    <string name="ThreadRecord_empty_message">This conversation is empty</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Session update</string>

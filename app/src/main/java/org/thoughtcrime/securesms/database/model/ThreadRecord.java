@@ -27,10 +27,10 @@ import android.text.style.StyleSpan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.ExpirationUtil;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 
 import network.loki.messenger.R;
 
@@ -116,6 +116,8 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
     } else if (SmsDatabase.Types.isIdentityDefault(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_unverified));
+    } else if (getCount() == 0) {
+      return new SpannableString(context.getString(R.string.ThreadRecord_empty_message));
     } else {
       if (TextUtils.isEmpty(getBody())) {
         return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
