@@ -50,7 +50,7 @@ fun MessageReceiver.handle(message: Message, proto: SignalServiceProtos.Content,
 
 private fun MessageReceiver.handleReadReceipt(message: ReadReceipt) {
     val context = MessagingConfiguration.shared.context
-    SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!.asList(), message.receivedTimestamp!!)
+    SSKEnvironment.shared.readReceiptManager.processReadReceipts(context, message.sender!!, message.timestamps!!, message.receivedTimestamp!!)
 }
 
 private fun MessageReceiver.handleTypingIndicator(message: TypingIndicator) {

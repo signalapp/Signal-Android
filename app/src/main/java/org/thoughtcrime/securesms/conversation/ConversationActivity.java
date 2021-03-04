@@ -141,6 +141,7 @@ import org.thoughtcrime.securesms.loki.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.api.PublicChatInfoUpdateWorker;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.utilities.MentionManagerUtilities;
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities;
@@ -1661,7 +1662,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
-        if (!org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol.shouldSendReadReceipt(recipient.getAddress())) {
+        if (!SessionMetaProtocol.shouldSendReadReceipt(recipient.getAddress())) {
           for (MarkedMessageInfo messageInfo : messageIds) {
             MarkReadReceiver.scheduleDeletion(context, messageInfo.getExpirationInfo());
           }
