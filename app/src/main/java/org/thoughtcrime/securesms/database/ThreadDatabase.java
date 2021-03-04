@@ -363,8 +363,9 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(String archived) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String         query  = createQuery(ARCHIVED + " = ?", 0);
-    Cursor         cursor = db.rawQuery(query, new String[]{archived});
+    String localNumber = TextSecurePreferences.getLocalNumber(context);
+    String         query  = createQuery(ARCHIVED + " = ? AND ("+TABLE_NAME+"."+ADDRESS+" != ? OR "+MESSAGE_COUNT+" != 0)", 0);
+    Cursor         cursor = db.rawQuery(query, new String[]{archived, localNumber});
 
     setNotifyConverationListListeners(cursor);
 
