@@ -68,7 +68,7 @@ object MessageSender {
     }
 
     // One-on-One Chats & Closed Groups
-    fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
+    private fun sendToSnodeDestination(destination: Destination, message: Message, isSyncMessage: Boolean = false): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
@@ -198,7 +198,7 @@ object MessageSender {
     }
 
     // Open Groups
-    fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
+    private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val storage = MessagingConfiguration.shared.storage
         val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
