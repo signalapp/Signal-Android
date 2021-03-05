@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -64,8 +65,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
     }
 
     override fun getUserProfileKey(): ByteArray? {
-        val profileKey = TextSecurePreferences.getProfileKey(context) ?: return null
-        return profileKey.toByteArray()
+        return ProfileKeyUtil.getProfileKey(context)
     }
 
     override fun getUserProfilePictureURL(): String? {
