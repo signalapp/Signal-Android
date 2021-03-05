@@ -265,7 +265,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "PushMediaSendJob",
                 "PushTextSendJob",
                 "SendReadReceiptJob",
-                "TypingSendJob");
+                "TypingSendJob",
+                "AttachmentUploadJob");
       }
 
       db.setTransactionSuccessful();

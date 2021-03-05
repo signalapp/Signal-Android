@@ -8,7 +8,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
@@ -28,7 +27,6 @@ import dagger.Provides;
                                      RetrieveProfileAvatarJob.class,
                                      AppProtectionPreferenceFragment.class,
                                      SendDeliveryReceiptJob.class,
-                                     AttachmentUploadJob.class,
                                      PushDecryptJob.class,
                                      LinkPreviewRepository.class})
 
