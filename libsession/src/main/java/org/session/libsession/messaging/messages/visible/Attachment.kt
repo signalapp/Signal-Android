@@ -2,8 +2,10 @@ package org.session.libsession.messaging.messages.visible
 
 import android.util.Size
 import android.webkit.MimeTypeMap
+import com.google.protobuf.ByteString
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import java.io.File
@@ -49,6 +51,35 @@ class Attachment {
             result.sizeInBytes = if (proto.size > 0) proto.size else null
             result. url = proto.url
             return result
+        }
+
+        fun createAttachmentPointer(attachment: SignalServiceAttachmentPointer): SignalServiceProtos.AttachmentPointer? {
+            val builder = SignalServiceProtos.AttachmentPointer.newBuilder()
+                    .setContentType(attachment.contentType)
+                    .setId(attachment.id)
+                    .setKey(ByteString.copyFrom(attachment.key))
+                    .setDigest(ByteString.copyFrom(attachment.digest.get()))
+                    .setSize(attachment.size.get())
+                    .setUrl(attachment.url)
+            if (attachment.fileName.isPresent) {
+                builder.fileName = attachment.fileName.get()
+            }
+            if (attachment.preview.isPresent) {
+                builder.thumbnail = ByteString.copyFrom(attachment.preview.get())
+            }
+            if (attachment.width > 0) {
+                builder.width = attachment.width
+            }
+            if (attachment.height > 0) {
+                builder.height = attachment.height
+            }
+            if (attachment.voiceNote) {
+                builder.flags = SignalServiceProtos.AttachmentPointer.Flags.VOICE_MESSAGE_VALUE
+            }
+            if (attachment.caption.isPresent) {
+                builder.caption = attachment.caption.get()
+            }
+            return builder.build()
         }
     }
 

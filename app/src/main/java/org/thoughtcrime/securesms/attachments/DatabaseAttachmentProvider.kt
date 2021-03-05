@@ -84,7 +84,8 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
     }
 
     override fun getAttachmentIDsFor(messageID: Long): List<Long> {
-        return DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageID).map {
+        return DatabaseFactory.getAttachmentDatabase(context).getAttachmentsForMessage(messageID).mapNotNull {
+            if (it.isQuote) return@mapNotNull null
             it.attachmentId.rowId
         }
     }
