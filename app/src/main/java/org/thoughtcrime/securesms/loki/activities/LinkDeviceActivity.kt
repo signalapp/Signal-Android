@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
 import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
 import kotlinx.android.synthetic.main.activity_link_device.*
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.activity_settings.loader
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -86,6 +84,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     }
 
     private fun continueWithSeed(seed: ByteArray) {
+        viewPager.currentItem = 0 // reset view to the main one
         restoreJob?.cancel()
         restoreJob = lifecycleScope.launch {
             // RestoreActivity handles seed this way
