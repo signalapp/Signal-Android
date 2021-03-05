@@ -73,6 +73,7 @@ object MultiDeviceProtocol {
             messageSender.sendMessage(0, address, udAccess,
                     Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
                     true, false, false, Optional.absent())
+            TextSecurePreferences.setLastConfigurationSyncTime(context, System.currentTimeMillis())
         } catch (e: Exception) {
             Log.d("Loki", "Failed to send configuration message due to error: $e.")
         }
@@ -81,10 +82,16 @@ object MultiDeviceProtocol {
     // TODO: remove this after we migrate to new message receiving pipeline
     @JvmStatic
     fun handleConfigurationMessage(context: Context, content: SignalServiceProtos.Content, senderPublicKey: String, timestamp: Long) {
-        if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, timestamp)) return
-        val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
-        if (senderPublicKey != userPublicKey) return
+        synchronized(this) {
+            if (TextSecurePreferences.getConfigurationMessageSynced(context) && !TextSecurePreferences.shouldUpdateProfile(context, timestamp)) return
+            if (senderPublicKey != userPublicKey) return
+            TextSecurePreferences.setConfigurationMessageSynced(context, true)
+            TextSecurePreferences.setLastProfileUpdateTime(context, timestamp)
+        }
+
+        val configurationMessage = ConfigurationMessage.fromProto(content) ?: return
+
         val storage = MessagingConfiguration.shared.storage
         val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
 
@@ -149,7 +156,5 @@ object MultiDeviceProtocol {
             threadDatabase.notifyUpdatedFromConfig()
         }
         // TODO: handle new configuration message fields or handle in new pipeline
-        TextSecurePreferences.setConfigurationMessageSynced(context, true)
-        TextSecurePreferences.setLastProfileUpdateTime(context, timestamp)
     }
 }

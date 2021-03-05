@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.activity_create_private_chat.tabLayout
 import kotlinx.android.synthetic.main.activity_create_private_chat.viewPager
 import kotlinx.android.synthetic.main.activity_link_device.*
+import kotlinx.android.synthetic.main.conversation_activity.*
 import kotlinx.android.synthetic.main.fragment_recovery_phrase.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -41,6 +42,11 @@ import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = LinkDeviceActivityAdapter(this)
     private var restoreJob: Job? = null
+
+    override fun onBackPressed() {
+        if (restoreJob?.isActive == true) return // don't allow going back with pending job
+        super.onBackPressed()
+    }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,8 +90,10 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     }
 
     private fun continueWithSeed(seed: ByteArray) {
-        viewPager.currentItem = 0 // reset view to the main one
-        restoreJob?.cancel()
+
+        // only have one sync job running at a time (prevent QR from trying to spawn a new job)
+        if (restoreJob?.isActive == true) return
+
         restoreJob = lifecycleScope.launch {
             // RestoreActivity handles seed this way
             val keyPairGenerationResult = KeyPairUtilities.generate(seed)
@@ -123,7 +131,7 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
     private fun register(skipped: Boolean) {
         restoreJob?.cancel()
         loader.isVisible = false
-        ApplicationContext.getInstance(this).stopPolling()
+        TextSecurePreferences.setLastConfigurationSyncTime(this, System.currentTimeMillis())
         val intent = Intent(this@LinkDeviceActivity, if (skipped) DisplayNameActivity::class.java else PNModeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         push(intent)
