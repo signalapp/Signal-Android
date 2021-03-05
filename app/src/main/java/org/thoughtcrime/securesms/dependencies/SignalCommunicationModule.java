@@ -11,14 +11,9 @@ import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
-import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
-import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
-import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
@@ -27,17 +22,12 @@ import org.session.libsession.utilities.TextSecurePreferences;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(complete = false, injects = {PushGroupSendJob.class,
-                                     PushTextSendJob.class,
-                                     PushMediaSendJob.class,
-                                     AttachmentDownloadJob.class,
+@Module(complete = false, injects = {AttachmentDownloadJob.class,
                                      RequestGroupInfoJob.class,
                                      AvatarDownloadJob.class,
                                      RetrieveProfileAvatarJob.class,
-                                     SendReadReceiptJob.class,
                                      AppProtectionPreferenceFragment.class,
                                      SendDeliveryReceiptJob.class,
-                                     TypingSendJob.class,
                                      AttachmentUploadJob.class,
                                      PushDecryptJob.class,
                                      LinkPreviewRepository.class})

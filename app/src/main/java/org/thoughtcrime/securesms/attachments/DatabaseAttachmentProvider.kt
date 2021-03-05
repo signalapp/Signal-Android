@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.events.PartProgressEvent
-import org.thoughtcrime.securesms.jobs.PushSendJob
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException

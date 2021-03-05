@@ -37,15 +37,10 @@ public final class JobManagerFactories {
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
-      put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
-      put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
-      put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
-      put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
-      put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
       put(PrepareAttachmentAudioExtrasJob.KEY,       new PrepareAttachmentAudioExtrasJob.Factory());
     }};

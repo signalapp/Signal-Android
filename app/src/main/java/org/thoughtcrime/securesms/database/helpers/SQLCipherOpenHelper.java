@@ -260,6 +260,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV22) {
         db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
+        deleteJobRecords(db,
+                "PushGroupSendJob",
+                "PushMediaSendJob",
+                "PushTextSendJob",
+                "SendReadReceiptJob",
+                "TypingSendJob");
       }
 
       db.setTransactionSuccessful();
