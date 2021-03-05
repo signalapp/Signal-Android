@@ -10,6 +10,7 @@ import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -113,5 +114,23 @@ public final class SqlUtilTest {
   @Test(expected = IllegalArgumentException.class)
   public void buildCollectionQuery_none() {
     SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+  }
+
+  @Test
+  public void splitStatements_singleStatement() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo"), result);
+  }
+
+  @Test
+  public void splitStatements_twoStatements() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\nSELECT * FROM bar;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
+  }
+
+  @Test
+  public void splitStatements_twoStatementsSeparatedByNewLines() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n\nSELECT * FROM bar;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
   }
 }

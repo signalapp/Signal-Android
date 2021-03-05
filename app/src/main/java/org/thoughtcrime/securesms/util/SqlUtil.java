@@ -5,6 +5,8 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -13,18 +15,41 @@ import org.whispersystems.libsignal.util.guava.Preconditions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public final class SqlUtil {
-  private SqlUtil() {}
 
+  private SqlUtil() {}
 
   public static boolean tableExists(@NonNull SQLiteDatabase db, @NonNull String table) {
     try (Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type=? AND name=?", new String[] { "table", table })) {
       return cursor != null && cursor.moveToNext();
     }
+  }
+
+  public static @NonNull List<String> getAllTables(@NonNull SQLiteDatabase db) {
+    List<String> tables = new LinkedList<>();
+
+    try (Cursor cursor = db.rawQuery("SELECT name FROM sqlite_master WHERE type=?", new String[] { "table" })) {
+      while (cursor.moveToNext()) {
+        tables.add(cursor.getString(0));
+      }
+    }
+
+    return tables;
+  }
+
+  /**
+   * Splits a multi-statement SQL block into independent statements. It is assumed that there is
+   * only one statement per line, and that each statement is terminated by a semi-colon.
+   */
+  public static @NonNull List<String> splitStatements(@NonNull String sql) {
+    return Stream.of(Arrays.asList(sql.split(";\n")))
+                 .map(String::trim)
+                 .toList();
   }
 
   public static boolean isEmpty(@NonNull SQLiteDatabase db, @NonNull String table) {

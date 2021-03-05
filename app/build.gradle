@@ -202,6 +202,12 @@ android {
             debuggable false
             matchingFallbacks = ['debug']
         }
+        mock {
+            initWith debug
+            isDefault false
+            minifyEnabled false
+            matchingFallbacks = ['debug']
+        }
     }
 
     productFlavors {
@@ -222,6 +228,15 @@ android {
 
         internal {
             dimension 'distribution'
+            ext.websiteUpdateUrl = "null"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+        }
+
+        study {
+            dimension 'distribution'
+
+            applicationIdSuffix ".study"
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
@@ -263,6 +278,18 @@ android {
             if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
 
             output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
+        }
+    }
+
+    android.variantFilter { variant ->
+        def distribution = variant.getFlavors().get(0).name
+        def environment  = variant.getFlavors().get(1).name
+        def buildType    = variant.buildType.name
+
+        if (distribution == 'study' && buildType != 'perf' && buildType != 'mock') {
+            variant.setIgnore(true)
+        } else if (distribution != 'study' && buildType == 'mock') {
+            variant.setIgnore(true)
         }
     }
 

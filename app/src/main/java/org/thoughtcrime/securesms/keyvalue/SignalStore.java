@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.keyvalue;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.preference.PreferenceDataStore;
 
-import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.SignalUncaughtExceptionHandler;
 
@@ -68,6 +68,15 @@ public final class SignalStore {
     onboarding().onFirstEverAppLaunch();
     wallpaper().onFirstEverAppLaunch();
     proxy().onFirstEverAppLaunch();
+  }
+
+  /**
+   * Forces the store to re-fetch all of it's data from the database.
+   * Should only be used for testing!
+   */
+  @VisibleForTesting
+  public static void resetCache() {
+    INSTANCE.store.resetCache();
   }
 
   public static @NonNull KbsValues kbsValues() {
