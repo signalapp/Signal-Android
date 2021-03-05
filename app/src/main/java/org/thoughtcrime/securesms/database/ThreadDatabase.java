@@ -363,9 +363,8 @@ public class ThreadDatabase extends Database {
 
   private Cursor getConversationList(String archived) {
     SQLiteDatabase db     = databaseHelper.getReadableDatabase();
-    String localNumber = TextSecurePreferences.getLocalNumber(context);
-    String         query  = createQuery(ARCHIVED + " = ? AND ("+TABLE_NAME+"."+ADDRESS+" != ? OR "+MESSAGE_COUNT+" != 0)", 0);
-    Cursor         cursor = db.rawQuery(query, new String[]{archived, localNumber});
+    String         query  = createQuery(ARCHIVED + " = ? AND " + MESSAGE_COUNT + " != 0", 0);
+    Cursor         cursor = db.rawQuery(query, new String[]{archived});
 
     setNotifyConverationListListeners(cursor);
 
@@ -511,6 +510,14 @@ public class ThreadDatabase extends Database {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
 
+
+
+    if (count == 0) {
+      deleteThread(threadId);
+      notifyConversationListListeners();
+      return true;
+    }
+
     MmsSmsDatabase.Reader reader = null;
 
     try {
@@ -524,6 +531,7 @@ public class ThreadDatabase extends Database {
         notifyConversationListListeners();
         return false;
       } else {
+        deleteThread(threadId);
         notifyConversationListListeners();
         return true;
       }

@@ -141,6 +141,7 @@ object MultiDeviceProtocol {
                 recipientDatabase.setProfileName(recipient, contact.name)
             }
             recipientDatabase.setProfileSharing(recipient, true)
+            recipientDatabase.setRegistered(recipient, Recipient.RegisteredState.REGISTERED)
             // create Thread if needed
             threadDatabase.getOrCreateThreadIdFor(recipient)
         }
