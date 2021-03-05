@@ -23,8 +23,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/manage_profile_avatar_background"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/circle_tintable"
         android:tint="@color/core_grey_05"
@@ -58,10 +58,10 @@
 
     <ImageView
         android:id="@+id/manage_profile_camera_icon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="92dp"
         android:background="@drawable/circle_tintable_padded"
         android:cropToPadding="false"
         android:elevation="4dp"
