@@ -93,6 +93,7 @@ public class CachedInflater {
     private long  lastClearTime;
     private int   nightModeConfiguration;
     private float fontScale;
+    private int   layoutDirection;
 
     static ViewCache getInstance() {
       return INSTANCE;
@@ -103,11 +104,16 @@ public class CachedInflater {
       Configuration configuration                 = context.getResources().getConfiguration();
       int           currentNightModeConfiguration = ConfigurationUtil.getNightModeConfiguration(configuration);
       float         currentFontScale              = ConfigurationUtil.getFontScale(configuration);
+      int           currentLayoutDirection        = configuration.getLayoutDirection();
 
-      if (nightModeConfiguration != currentNightModeConfiguration || fontScale != currentFontScale) {
+      if (nightModeConfiguration != currentNightModeConfiguration ||
+          fontScale              != currentFontScale              ||
+          layoutDirection        != currentLayoutDirection)
+      {
         clear();
         nightModeConfiguration = currentNightModeConfiguration;
         fontScale              = currentFontScale;
+        layoutDirection        = currentLayoutDirection;
       }
 
       AsyncLayoutInflater inflater = new AsyncLayoutInflater(context);
@@ -147,7 +153,10 @@ public class CachedInflater {
 
     @MainThread
     @Nullable View pull(@LayoutRes int layoutRes, @NonNull Configuration configuration) {
-      if (this.nightModeConfiguration != ConfigurationUtil.getNightModeConfiguration(configuration) || this.fontScale != ConfigurationUtil.getFontScale(configuration)) {
+      if (this.nightModeConfiguration != ConfigurationUtil.getNightModeConfiguration(configuration) ||
+          this.fontScale              != ConfigurationUtil.getFontScale(configuration)              ||
+          this.layoutDirection        != configuration.getLayoutDirection())
+      {
         clear();
         return null;
       }
