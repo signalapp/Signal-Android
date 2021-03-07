@@ -220,6 +220,18 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    // update the timestamp strings of visible messages
+    LinearLayoutManager llm = (LinearLayoutManager) list.getLayoutManager();
+    int first = llm.findFirstVisibleItemPosition();
+    if (first != -1) {
+      int itemCount = llm.findLastVisibleItemPosition() - first + 1;
+      list.getAdapter().notifyItemRangeChanged(first, itemCount);
+    }
+  }
+
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     final View view = inflater.inflate(R.layout.conversation_fragment, container, false);
     list                    = view.findViewById(android.R.id.list);
