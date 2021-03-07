@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="@string/conversation__menu_view_all_media"
         android:id="@+id/menu_view_media" />
+
+    <item android:title="@string/SearchToolbar_search"
+        android:id="@+id/menu_search"
+        android:visible="false"
+        app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
+        app:showAsAction="collapseActionView"/>
 
 </menu>

@@ -823,9 +823,15 @@ public class ConversationActivity extends PassphraseRequiredActivity
 
       inflater.inflate(R.menu.conversation_message_requests, menu);
 
-      if (recipient != null && recipient.get().isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-      else                                                inflater.inflate(R.menu.conversation_unmuted, menu);
-
+      if (recipient != null && recipient.get().isBlocked()) {
+        MenuItem searchViewItem = menu.findItem(R.id.menu_search);
+        searchViewItem.setVisible(true);
+        configureSearchViewItem(menu, searchViewItem);
+      } else {
+        if (recipient != null && recipient.get().isMuted())
+          inflater.inflate(R.menu.conversation_muted, menu);
+        else inflater.inflate(R.menu.conversation_unmuted, menu);
+      }
       super.onCreateOptionsMenu(menu);
       return true;
     }
@@ -928,7 +934,13 @@ public class ConversationActivity extends PassphraseRequiredActivity
     });
 
     searchViewItem = menu.findItem(R.id.menu_search);
+    configureSearchViewItem(menu, searchViewItem);
 
+    super.onCreateOptionsMenu(menu);
+    return true;
+  }
+
+  private void configureSearchViewItem(Menu menu, MenuItem searchViewItem) {
     SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
     SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
       @Override
@@ -948,7 +960,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     };
 
-    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+        searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
       @Override
       public boolean onMenuItemActionExpand(MenuItem item) {
         searchView.setOnQueryTextListener(queryListener);
@@ -978,8 +990,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
       }
     });
 
-    super.onCreateOptionsMenu(menu);
-    return true;
+
   }
 
   @Override
