@@ -37,8 +37,9 @@ public final class LiveRecipientCache {
   private final Map<RecipientId, LiveRecipient> recipients;
   private final LiveRecipient                   unknown;
 
-  private RecipientId localRecipientId;
-  private boolean     warmedUp;
+  private volatile RecipientId localRecipientId;
+
+  private boolean warmedUp;
 
   @SuppressLint("UseSparseArrays")
   public LiveRecipientCache(@NonNull Context context) {
@@ -110,22 +111,20 @@ public final class LiveRecipientCache {
   }
 
   @NonNull Recipient getSelf() {
-    try (SignalSessionLock.Lock unused = DatabaseSessionLock.INSTANCE.acquire()) {
+    if (localRecipientId == null) {
+      UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
+      String localE164 = TextSecurePreferences.getLocalNumber(context);
+
+      if (localUuid != null) {
+        localRecipientId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
+      } else if (localE164 != null) {
+        localRecipientId = recipientDatabase.getByE164(localE164).orNull();
+      } else {
+        throw new IllegalStateException("Tried to call getSelf() before local data was set!");
+      }
+
       if (localRecipientId == null) {
-        UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
-        String localE164 = TextSecurePreferences.getLocalNumber(context);
-
-        if (localUuid != null) {
-          localRecipientId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
-        } else if (localE164 != null) {
-          localRecipientId = recipientDatabase.getByE164(localE164).orNull();
-        } else {
-          throw new IllegalStateException("Tried to call getSelf() before local data was set!");
-        }
-
-        if (localRecipientId == null) {
-          throw new MissingRecipientException(localRecipientId);
-        }
+        throw new MissingRecipientException(null);
       }
     }
 
