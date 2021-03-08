@@ -282,10 +282,19 @@ object MessageSender {
     // Convenience
     @JvmStatic
     fun send(message: VisibleMessage, address: Address, attachments: List<SignalAttachment>, quote: SignalQuote?, linkPreview: SignalLinkPreview?) {
-        val attachmentIDs = MessagingConfiguration.shared.messageDataProvider.getAttachmentIDsFor(message.id!!)
+        val dataProvider = MessagingConfiguration.shared.messageDataProvider
+        val attachmentIDs = dataProvider.getAttachmentIDsFor(message.id!!)
         message.attachmentIDs.addAll(attachmentIDs)
         message.quote = Quote.from(quote)
         message.linkPreview = LinkPreview.from(linkPreview)
+        message.linkPreview?.let {
+            if (it.attachmentID == null) {
+                dataProvider.getLinkPreviewAttachmentIDFor(message.id!!)?.let {
+                    message.linkPreview!!.attachmentID = it
+                    message.attachmentIDs.remove(it)
+                }
+            }
+        }
         send(message, address)
     }
 

@@ -69,7 +69,6 @@ class VisibleMessage : Message()  {
 
     override fun toProto(): SignalServiceProtos.Content? {
         val proto = SignalServiceProtos.Content.newBuilder()
-        val attachmentIDs = this.attachmentIDs
         val dataMessage: SignalServiceProtos.DataMessage.Builder
         // Profile
         val profile = profile

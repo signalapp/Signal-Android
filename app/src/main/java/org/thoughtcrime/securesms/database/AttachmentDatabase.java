@@ -196,15 +196,6 @@ public class AttachmentDatabase extends Database {
     }
   }
 
-  public boolean containsStickerPackId(@NonNull String stickerPackId) {
-    String   selection = STICKER_PACK_ID + " = ?";
-    String[] args      = new String[] { stickerPackId };
-
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
-      return cursor != null && cursor.moveToFirst();
-    }
-  }
-
   public void setTransferProgressFailed(AttachmentId attachmentId, long mmsId)
       throws MmsException
   {

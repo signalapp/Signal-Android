@@ -36,5 +36,6 @@ interface MessageDataProvider {
     fun getMessageBodyFor(messageID: Long): String
 
     fun getAttachmentIDsFor(messageID: Long): List<Long>
+    fun getLinkPreviewAttachmentIDFor(messageID: Long): Long?
 
 }

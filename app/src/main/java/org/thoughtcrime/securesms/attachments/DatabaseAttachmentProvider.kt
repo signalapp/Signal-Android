@@ -9,7 +9,6 @@ import org.session.libsession.messaging.sending_receiving.attachments.*
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsession.utilities.Util
-import org.session.libsession.utilities.Util.toIntExact
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
@@ -88,6 +87,11 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
             if (it.isQuote) return@mapNotNull null
             it.attachmentId.rowId
         }
+    }
+
+    override fun getLinkPreviewAttachmentIDFor(messageID: Long): Long? {
+        val message = DatabaseFactory.getMmsDatabase(context).getOutgoingMessage(messageID)
+        return message.linkPreviews.firstOrNull()?.attachmentId?.rowId
     }
 
     override fun insertAttachment(messageId: Long, attachmentId: Long, stream: InputStream) {
@@ -216,7 +220,7 @@ fun DatabaseAttachment.toSignalAttachmentPointer(): SignalServiceAttachmentPoint
         SignalServiceAttachmentPointer(id,
                 contentType,
                 key,
-                Optional.of(toIntExact(size)),
+                Optional.of(Util.toIntExact(size)),
                 Optional.absent(),
                 width,
                 height,
