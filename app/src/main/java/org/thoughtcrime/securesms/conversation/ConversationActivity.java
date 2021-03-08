@@ -2070,6 +2070,8 @@ public class ConversationActivity extends PassphraseRequiredActivity
     distributionType = args.getDistributionType();
     glideRequests    = GlideApp.with(this);
 
+    Log.i(TAG, "[initializeResources] Recipient: " + recipient.getId() + ", Thread: " + threadId);
+
     recipient.observe(this, this::onRecipientChanged);
   }
 
@@ -2706,8 +2708,7 @@ public class ConversationActivity extends PassphraseRequiredActivity
                                        linkPreviewViewModel.hasLinkPreview()   ||
                                        needsSplit;
 
-      Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
-      Log.i(TAG, "forceSms: " + forceSms);
+      Log.i(TAG, "[sendMessage] recipient: " + recipient.getId() + ", threadId: " + threadId + ",  forceSms: " + forceSms + ", isManual: " + sendButton.isManualSelection());
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
@@ -2874,18 +2875,9 @@ public class ConversationActivity extends PassphraseRequiredActivity
                  silentlySetComposeText("");
                  final long id = fragment.stageOutgoingMessage(message);
 
-                 new AsyncTask<OutgoingTextMessage, Void, Long>() {
-                   @Override
-                   protected Long doInBackground(OutgoingTextMessage... messages) {
-                     return MessageSender.send(context, messages[0], thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
-                   }
-
-                   @Override
-                   protected void onPostExecute(Long result) {
-                     sendComplete(result);
-                   }
-                 }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, message);
-
+                 SimpleTask.run(() -> {
+                   return MessageSender.send(context, message, thread, forceSms, () -> fragment.releaseOutgoingMessage(id));
+                 }, this::sendComplete);
                })
                .execute();
   }

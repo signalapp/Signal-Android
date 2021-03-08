@@ -115,7 +115,7 @@ class ConversationViewModel extends ViewModel {
 
   @MainThread
   void onConversationDataAvailable(@NonNull RecipientId recipientId, long threadId, int startingPosition) {
-    Log.d(TAG, "[onConversationDataAvailable] threadId: " + threadId + ", startingPosition: " + startingPosition);
+    Log.d(TAG, "[onConversationDataAvailable] recipientId: " + recipientId + ", threadId: " + threadId + ", startingPosition: " + startingPosition);
     this.jumpToPosition = startingPosition;
 
     this.threadId.setValue(threadId);

@@ -327,6 +327,8 @@ public class ConversationFragment extends LoggingFragment {
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
 
+    Log.d(TAG, "[onActivityCreated]");
+
     initializeScrollButtonAnimations();
     initializeResources();
     initializeMessageRequestViewModel();
@@ -377,6 +379,8 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   public void onNewIntent() {
+    Log.d(TAG, "[onNewIntent]");
+
     if (actionMode != null) {
       actionMode.finish();
     }
@@ -673,9 +677,12 @@ public class ConversationFragment extends LoggingFragment {
   }
 
   public void reload(Recipient recipient, long threadId) {
+    Log.d(TAG, "[reload] Recipient: " + recipient.getId() + ", ThreadId: " + threadId);
     this.recipient = recipient.live();
 
     if (this.threadId != threadId) {
+      Log.i(TAG, "ThreadId changed from " + this.threadId + " to " + threadId + ". Recipient was " + this.recipient.getId() + " and is now " + recipient.getId());
+
       this.threadId = threadId;
       messageRequestViewModel.setConversationInfo(recipient.getId(), threadId);
 

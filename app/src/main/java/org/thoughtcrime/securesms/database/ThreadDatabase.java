@@ -1053,7 +1053,13 @@ public class ThreadDatabase extends Database {
   public long getOrCreateValidThreadId(@NonNull Recipient recipient, long candidateId, int distributionType) {
     if (candidateId != -1) {
       Optional<Long> remapped = RemappedRecords.getInstance().getThread(context, candidateId);
-      return remapped.isPresent() ? remapped.get() : candidateId;
+
+      if (remapped.isPresent()) {
+        Log.i(TAG, "Using remapped threadId: " + candidateId + " -> " + remapped.get());
+        return remapped.get();
+      } else {
+        return candidateId;
+      }
     } else {
       return getThreadIdFor(recipient, distributionType);
     }
