@@ -32,7 +32,7 @@ class PNModeActivity : BaseActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setUpActionBarSessionLogo()
+        setUpActionBarSessionLogo(true)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         setContentView(R.layout.activity_pn_mode)
         contentView.disableClipping()
