@@ -5,23 +5,20 @@ package org.session.libsession.messaging.sending_receiving
 import com.google.protobuf.ByteString
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.control.ClosedGroupControlMessage
-import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
+import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.Hex
-
 import org.session.libsignal.libsignal.ecc.Curve
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.Hex
 import org.session.libsignal.utilities.ThreadUtils
 import org.session.libsignal.utilities.logging.Log
 import java.util.*
@@ -252,6 +249,7 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
     sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
         // Store it * after * having sent out the message to the group
         storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+    }.always {
         pendingKeyPair[groupPublicKey] = Optional.absent()
     }
 }

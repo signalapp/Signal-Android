@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
 
 class ReadReceipt() : ControlMessage() {
 
@@ -11,7 +11,7 @@ class ReadReceipt() : ControlMessage() {
         const val TAG = "ReadReceipt"
 
         fun fromProto(proto: SignalServiceProtos.Content): ReadReceipt? {
-            val receiptProto = proto.receiptMessage ?: return null
+            val receiptProto = if (proto.hasReceiptMessage()) proto.receiptMessage else return null
             if (receiptProto.type != SignalServiceProtos.ReceiptMessage.Type.READ) return null
             val timestamps = receiptProto.timestampList
             if (timestamps.isEmpty()) return null

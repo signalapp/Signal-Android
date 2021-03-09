@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
 
 class TypingIndicator() : ControlMessage() {
 
@@ -11,7 +11,7 @@ class TypingIndicator() : ControlMessage() {
         const val TAG = "TypingIndicator"
 
         fun fromProto(proto: SignalServiceProtos.Content): TypingIndicator? {
-            val typingIndicatorProto = proto.typingMessage ?: return null
+            val typingIndicatorProto = if (proto.hasTypingMessage()) proto.typingMessage else return null
             val kind = Kind.fromProto(typingIndicatorProto.action)
             return TypingIndicator(kind = kind)
         }

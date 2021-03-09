@@ -4,11 +4,11 @@ import com.google.protobuf.ByteString
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.logging.Log
 
 class ClosedGroupControlMessage() : ControlMessage() {
 
@@ -56,7 +56,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
         const val TAG = "ClosedGroupControlMessage"
 
         fun fromProto(proto: SignalServiceProtos.Content): ClosedGroupControlMessage? {
-            val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage ?: return null
+            if (!proto.hasDataMessage() || !proto.dataMessage.hasClosedGroupControlMessage()) return null
+            val closedGroupControlMessageProto = proto.dataMessage?.closedGroupControlMessage!!
             val kind: Kind
             when(closedGroupControlMessageProto.type) {
                 DataMessage.ClosedGroupControlMessage.Type.NEW -> {

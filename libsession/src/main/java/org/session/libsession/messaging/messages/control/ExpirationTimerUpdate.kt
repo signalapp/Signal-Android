@@ -1,7 +1,7 @@
 package org.session.libsession.messaging.messages.control
 
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.logging.Log
 
 class ExpirationTimerUpdate() : ControlMessage() {
 
@@ -12,7 +12,7 @@ class ExpirationTimerUpdate() : ControlMessage() {
         const val TAG = "ExpirationTimerUpdate"
 
         fun fromProto(proto: SignalServiceProtos.Content): ExpirationTimerUpdate? {
-            val dataMessageProto = proto.dataMessage ?: return null
+            val dataMessageProto = if (proto.hasDataMessage()) proto.dataMessage else return null
             val isExpirationTimerUpdate = dataMessageProto.flags.and(SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0
             if (!isExpirationTimerUpdate) return null
             val duration = dataMessageProto.expireTimer

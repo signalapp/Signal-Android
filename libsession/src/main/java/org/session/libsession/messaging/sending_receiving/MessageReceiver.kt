@@ -4,7 +4,7 @@ import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.Message
 import org.session.libsession.messaging.messages.control.*
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-
+import org.session.libsignal.service.internal.push.PushTransportDetails
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 object MessageReceiver {
@@ -94,20 +94,6 @@ object MessageReceiver {
                     }
                     groupPublicKey = envelope.source
                     decrypt()
-//                    try {
-//                        decrypt()
-//                    } catch(error: Exception) {
-//                        val now = System.currentTimeMillis()
-//                        var shouldRequestEncryptionKeyPair = true
-//                        lastEncryptionKeyPairRequest[groupPublicKey!!]?.let {
-//                            shouldRequestEncryptionKeyPair = now - it > 30 * 1000
-//                        }
-//                        if (shouldRequestEncryptionKeyPair) {
-//                            MessageSender.requestEncryptionKeyPair(groupPublicKey)
-//                            lastEncryptionKeyPairRequest[groupPublicKey] = now
-//                        }
-//                        throw error
-//                    }
                 }
                 else -> throw Error.UnknownEnvelopeType
             }
@@ -115,7 +101,7 @@ object MessageReceiver {
         // Don't process the envelope any further if the sender is blocked
         if (isBlock(sender!!)) throw Error.SenderBlocked
         // Parse the proto
-        val proto = SignalServiceProtos.Content.parseFrom(plaintext)
+        val proto = SignalServiceProtos.Content.parseFrom(PushTransportDetails.getStrippedPaddingMessageBody(plaintext))
         // Parse the message
         val message: Message = ReadReceipt.fromProto(proto) ?:
                                TypingIndicator.fromProto(proto) ?:

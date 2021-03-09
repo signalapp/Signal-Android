@@ -21,15 +21,14 @@ import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
-import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
+import org.session.libsignal.utilities.logging.Log
 import java.security.MessageDigest
 import java.util.*
-import kotlin.collections.ArrayList
 
 internal fun MessageReceiver.isBlock(publicKey: String): Boolean {
     val context = MessagingConfiguration.shared.context
@@ -134,8 +133,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     val attachmentIDs = storage.persistAttachments(message.id ?: 0, attachments)
-    message.attachmentIDs = attachmentIDs as ArrayList<Long>
-    var attachmentsToDownload = attachmentIDs
+    message.attachmentIDs = attachmentIDs.toMutableList()
     // Update profile if needed
     val newProfile = message.profile
     if (newProfile != null) {
@@ -194,7 +192,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
     val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID) ?: throw MessageReceiver.Error.NoThread
     message.threadID = threadID
     // Start attachment downloads if needed
-    attachmentsToDownload.forEach { attachmentID ->
+    attachmentIDs.forEach { attachmentID ->
         val downloadJob = AttachmentDownloadJob(attachmentID, messageID)
         JobQueue.shared.add(downloadJob)
     }
