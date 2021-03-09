@@ -84,8 +84,7 @@ class Quote() {
         }
         val quotedAttachmentProto = SignalServiceProtos.DataMessage.Quote.QuotedAttachment.newBuilder()
         quotedAttachmentProto.contentType = attachment.contentType
-        val fileName = attachment.fileName?.get()
-        fileName?.let { quotedAttachmentProto.fileName = fileName }
+        if (attachment.fileName.isPresent) quotedAttachmentProto.fileName = attachment.fileName.get()
         quotedAttachmentProto.thumbnail = Attachment.createAttachmentPointer(attachment)
         try {
             quoteProto.addAttachments(quotedAttachmentProto.build())

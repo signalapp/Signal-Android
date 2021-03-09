@@ -81,25 +81,13 @@ class VisibleMessage : Message()  {
         // Text
         text?.let { dataMessage.body = text }
         // Quote
-        val quotedAttachmentID = quote?.attachmentID
-        quotedAttachmentID?.let {
-            val index = attachmentIDs.indexOf(quotedAttachmentID)
-            if (index >= 0) { attachmentIDs.removeAt(index) }
-        }
-        val quote = quote
         quote?.let {
-            val quoteProto = quote.toProto()
+            val quoteProto = it.toProto()
             if (quoteProto != null) dataMessage.quote = quoteProto
         }
         //Link preview
-        val linkPreviewAttachmentID = linkPreview?.attachmentID
-        linkPreviewAttachmentID?.let {
-            val index = attachmentIDs.indexOf(quotedAttachmentID)
-            if (index >= 0) { attachmentIDs.removeAt(index) }
-        }
-        val linkPreview = linkPreview
         linkPreview?.let {
-            val linkPreviewProto = linkPreview.toProto()
+            val linkPreviewProto = it.toProto()
             linkPreviewProto?.let {
                 dataMessage.addAllPreview(listOf(linkPreviewProto))
             }
