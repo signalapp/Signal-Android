@@ -255,7 +255,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "SmsSentJob",
                 "SmsReceiveJob",
                 "PushGroupUpdateJob",
-                "ResetThreadSessionJob");
+                "ResetThreadSessionJob",
+                "SendDeliveryReceiptJob");
       }
 
       if (oldVersion < lokiV22) {
@@ -266,7 +267,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "PushTextSendJob",
                 "SendReadReceiptJob",
                 "TypingSendJob",
-                "AttachmentUploadJob");
+                "AttachmentUploadJob",
+                "RequestGroupInfoJob");
       }
 
       db.setTransactionSuccessful();

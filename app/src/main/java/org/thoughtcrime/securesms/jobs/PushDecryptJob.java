@@ -232,16 +232,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           handleTextMessage(content, message, smsMessageId, Optional.absent());
         }
 
-        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
-          handleUnknownGroupMessage(content, message.getGroupInfo().get());
-        }
-
         if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
           SessionMetaProtocol.handleProfileKeyUpdate(context, content);
-        }
-
-        if (SessionMetaProtocol.shouldSendDeliveryReceipt(message, Address.fromSerialized(content.getSender()))) {
-          handleNeedsDeliveryReceipt(content, message);
         }
       } else if (content.getReceiptMessage().isPresent()) {
         SignalServiceReceiptMessage message = content.getReceiptMessage().get();
@@ -265,16 +257,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId, e);
     } catch (InvalidMetadataMessageException e) {
       Log.w(TAG, e);
-    }
-  }
-
-  private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
-                                         @NonNull SignalServiceGroup group)
-  {
-    if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
-      ApplicationContext.getInstance(context)
-              .getJobManager()
-              .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
     }
   }
 
@@ -606,14 +588,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         smsDatabase.markAsDecryptFailed(smsMessageId.get());
       }
     }
-  }
-
-  private void handleNeedsDeliveryReceipt(@NonNull SignalServiceContent content,
-                                          @NonNull SignalServiceDataMessage message)
-  {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new SendDeliveryReceiptJob(Address.fromSerialized(content.getSender()), message.getTimestamp()));
   }
 
   @SuppressLint("DefaultLocale")

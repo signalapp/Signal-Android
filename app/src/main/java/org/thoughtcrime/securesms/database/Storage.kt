@@ -80,7 +80,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
 
     override fun getOrGenerateRegistrationID(): Int {
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
-        if (registrationID == null) {
+        if (registrationID == 0) {
             registrationID = KeyHelper.generateRegistrationId(false)
             TextSecurePreferences.setLocalRegistrationId(context, registrationID)
         }

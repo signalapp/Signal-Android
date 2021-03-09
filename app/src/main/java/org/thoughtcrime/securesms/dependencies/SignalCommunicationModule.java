@@ -10,9 +10,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
-import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
-import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.loki.api.SessionProtocolImpl;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
@@ -22,11 +20,9 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(complete = false, injects = {AttachmentDownloadJob.class,
-                                     RequestGroupInfoJob.class,
                                      AvatarDownloadJob.class,
                                      RetrieveProfileAvatarJob.class,
                                      AppProtectionPreferenceFragment.class,
-                                     SendDeliveryReceiptJob.class,
                                      PushDecryptJob.class,
                                      LinkPreviewRepository.class})
 
