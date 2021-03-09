@@ -123,7 +123,10 @@ class LinkDeviceActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDel
                 // show a dialog or something saying do you want to skip this bit?
             }
             // start polling and wait for updated message
-            ApplicationContext.getInstance(this@LinkDeviceActivity).startPollingIfNeeded()
+            ApplicationContext.getInstance(this@LinkDeviceActivity).apply {
+                setUpStorageAPIIfNeeded()
+                startPollingIfNeeded()
+            }
             TextSecurePreferences.events.filter { it == TextSecurePreferences.CONFIGURATION_SYNCED }.collect {
                 // handle we've synced
                 snackBar.dismiss()
