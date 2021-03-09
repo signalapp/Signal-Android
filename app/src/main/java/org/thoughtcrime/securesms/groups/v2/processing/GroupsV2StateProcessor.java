@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -406,8 +407,19 @@ public final class GroupsV2StateProcessor {
         if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmptyExceptForProfileKeyChanges(entry.getChange()) && !DecryptedGroupUtil.changeIsEmpty(entry.getChange())) {
           Log.d(TAG, "Skipping profile key changes only update message");
         } else {
-          storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, new GroupMutation(previousGroupState, entry.getChange(), entry.getGroup()), null), timestamp);
-          timestamp++;
+          boolean insert = true;
+          if (entry.getChange() != null && DecryptedGroupUtil.changeIsEmpty(entry.getChange())) {
+            if (FeatureFlags.internalUser()) {
+              Log.w(TAG, "Empty group update message seen. Inserting anyway.");
+            } else {
+              Log.w(TAG, "Empty group update message seen. Not inserting.");
+              insert = false;
+            }
+          }
+          if (insert) {
+            storeMessage(GroupProtoUtil.createDecryptedGroupV2Context(masterKey, new GroupMutation(previousGroupState, entry.getChange(), entry.getGroup()), null), timestamp);
+            timestamp++;
+          }
         }
         previousGroupState = entry.getGroup();
       }
