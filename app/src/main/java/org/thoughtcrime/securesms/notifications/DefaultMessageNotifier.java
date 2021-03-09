@@ -33,14 +33,20 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import android.text.TextUtils;
 
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.utilities.ServiceUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsignal.service.internal.util.Util;
+import org.session.libsignal.utilities.logging.Log;
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -50,16 +56,11 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.loki.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.session.libsession.utilities.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsignal.service.internal.util.Util;
 
 import java.util.HashSet;
 import java.util.List;
@@ -247,8 +248,8 @@ public class DefaultMessageNotifier implements MessageNotifier {
       telcoCursor = DatabaseFactory.getMmsSmsDatabase(context).getUnread();
       pushCursor  = DatabaseFactory.getPushDatabase(context).getPending();
 
-      if ((telcoCursor == null || telcoCursor.isAfterLast()) &&
-          (pushCursor == null || pushCursor.isAfterLast()))
+      if (((telcoCursor == null || telcoCursor.isAfterLast()) &&
+          (pushCursor == null || pushCursor.isAfterLast())) || !TextSecurePreferences.hasSeenWelcomeScreen(context))
       {
         cancelActiveNotifications(context);
         updateBadge(context, 0);
