@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import java.security.SecureRandom
 import java.util.*
 
 object MultiDeviceProtocol {
@@ -130,7 +129,6 @@ object MultiDeviceProtocol {
                 recipientDatabase.setProfileKey(ourRecipient, configurationMessage.profileKey)
                 if (!configurationMessage.profilePicture.isNullOrEmpty() && TextSecurePreferences.getProfilePictureURL(context) != configurationMessage.profilePicture) {
                     TextSecurePreferences.setProfilePictureURL(context, configurationMessage.profilePicture)
-                    TextSecurePreferences.setProfileAvatarId(context, SecureRandom().nextInt())
                     ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(ourRecipient, configurationMessage.profilePicture))
                 }
             }

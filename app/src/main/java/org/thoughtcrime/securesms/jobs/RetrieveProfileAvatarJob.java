@@ -2,29 +2,30 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.app.Application;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
+import org.session.libsession.messaging.avatars.AvatarHelper;
 import org.session.libsession.messaging.jobs.Data;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
-
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.session.libsignal.service.api.SignalServiceMessageReceiver;
+import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
 import org.session.libsignal.utilities.logging.Log;
-
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.push.exceptions.PushNetworkException;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -110,6 +111,9 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
       if (downloadDestination != null) downloadDestination.delete();
     }
 
+    if (recipient.isLocalNumber()) {
+      TextSecurePreferences.setProfileAvatarId(context, new SecureRandom().nextInt());
+    }
     database.setProfileAvatar(recipient, profileAvatar);
   }
 
