@@ -137,6 +137,7 @@ import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -200,6 +201,7 @@ public class ConversationFragment extends LoggingFragment {
   private int                         pulsePosition = -1;
   private VoiceNoteMediaController    voiceNoteMediaController;
   private View                        toolbarShadow;
+  private Stopwatch                   startupStopwatch;
 
   public static void prepare(@NonNull Context context) {
     FrameLayout parent = new FrameLayout(context);
@@ -217,6 +219,7 @@ public class ConversationFragment extends LoggingFragment {
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
     this.locale = (Locale) getArguments().getSerializable(PassphraseRequiredActivity.LOCALE_EXTRA);
+    startupStopwatch = new Stopwatch("conversation-open");
   }
 
   @Override
@@ -564,6 +567,18 @@ public class ConversationFragment extends LoggingFragment {
       setLastSeen(conversationViewModel.getLastSeen());
 
       emptyConversationBanner.setVisibility(View.GONE);
+
+      adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+        @Override
+        public void onItemRangeInserted(int positionStart, int itemCount) {
+          startupStopwatch.split("data-set");
+          adapter.unregisterAdapterDataObserver(this);
+          list.post(() -> {
+            startupStopwatch.split("first-render");
+            startupStopwatch.stop(TAG);
+          });
+        }
+      });
     } else if (threadId == -1) {
       emptyConversationBanner.setVisibility(View.VISIBLE);
       toolbarShadow.setVisibility(View.GONE);
