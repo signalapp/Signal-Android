@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -30,6 +31,17 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.threads.GroupRecord;
+import org.session.libsession.messaging.threads.recipients.Recipient;
+import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
+import org.session.libsession.utilities.DelimiterUtil;
+import org.session.libsession.utilities.TextSecurePreferences;
+import org.session.libsession.utilities.Util;
+import org.session.libsignal.libsignal.util.Pair;
+import org.session.libsignal.libsignal.util.guava.Optional;
+import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
@@ -37,31 +49,15 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
-import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.GroupRecord;
-import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.messaging.threads.recipients.Recipient;
-import org.session.libsession.messaging.threads.recipients.Recipient.RecipientSettings;
-import org.session.libsession.utilities.Util;
-import org.session.libsession.utilities.TextSecurePreferences;
-import org.session.libsession.utilities.DelimiterUtil;
-
-import org.session.libsignal.libsignal.util.Pair;
-import org.session.libsignal.libsignal.util.guava.Optional;
-
 import java.io.Closeable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import nl.komponents.kovenant.combine.Tuple2;
 
 public class ThreadDatabase extends Database {
 
@@ -507,9 +503,15 @@ public class ThreadDatabase extends Database {
     notifyConversationListeners(threadId);
   }
 
+  public void notifyUpdatedFromConfig() {
+    notifyConversationListListeners();
+  }
+
   public boolean update(long threadId, boolean unarchive) {
     MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
     long count                    = mmsSmsDatabase.getConversationCount(threadId);
+
+
 
     if (count == 0) {
       deleteThread(threadId);

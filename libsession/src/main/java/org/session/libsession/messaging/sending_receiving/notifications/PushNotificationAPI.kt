@@ -2,14 +2,17 @@ package org.session.libsession.messaging.sending_receiving.notifications
 
 import android.annotation.SuppressLint
 import nl.komponents.kovenant.functional.map
-import okhttp3.*
+import okhttp3.MediaType
+import okhttp3.Request
+import okhttp3.RequestBody
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.JsonUtil
 import org.session.libsignal.service.loki.api.onionrequests.OnionRequestAPI
 import org.session.libsignal.service.loki.utilities.retryIfNeeded
+import org.session.libsignal.utilities.JsonUtil
+import org.session.libsignal.utilities.logging.Log
 
+@SuppressLint("StaticFieldLeak")
 object PushNotificationAPI {
     val context = MessagingConfiguration.shared.context
     val server = "https://live.apns.getsession.org"

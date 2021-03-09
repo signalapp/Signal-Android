@@ -249,7 +249,14 @@ public class RecipientDatabase extends Database {
     recipient.resolve().setProfileAvatar(profileAvatar);
   }
 
-  public void setProfileSharing(@NonNull Recipient recipient, @SuppressWarnings("SameParameterValue") boolean enabled) {
+  public void setProfileName(@NonNull Recipient recipient, @Nullable String profileName) {
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(SYSTEM_DISPLAY_NAME, profileName);
+    updateOrInsert(recipient.getAddress(), contentValues);
+    recipient.resolve().setProfileName(profileName);
+  }
+
+  public void setProfileSharing(@NonNull Recipient recipient, boolean enabled) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(PROFILE_SHARING, enabled ? 1 : 0);
     updateOrInsert(recipient.getAddress(), contentValues);

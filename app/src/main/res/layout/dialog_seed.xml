@@ -67,14 +67,4 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_spacing"
-        android:text="@string/dialog_seed_disclaimer"
-        android:textColor="@color/text"
-        android:alpha="0.6"
-        android:textSize="10sp"
-        android:textAlignment="center" />
-
 </LinearLayout>

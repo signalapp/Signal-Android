@@ -123,7 +123,8 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             val displayName = configurationProto.displayName
             val profilePicture = configurationProto.profilePicture
             val profileKey = configurationProto.profileKey
-            return ConfigurationMessage(closedGroups, openGroups, listOf(), displayName, profilePicture, profileKey.toByteArray())
+            val contacts = configurationProto.contactsList.mapNotNull { Contact.fromProto(it) }
+            return ConfigurationMessage(closedGroups, openGroups, contacts, displayName, profilePicture, profileKey.toByteArray())
         }
     }
 
