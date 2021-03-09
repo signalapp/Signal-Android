@@ -7,6 +7,9 @@ import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.provider.Settings
 import androidx.annotation.ArrayRes
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import org.session.libsession.R
 import org.session.libsession.utilities.preferences.NotificationPrivacyPreference
 import org.session.libsignal.utilities.logging.Log
@@ -15,6 +18,9 @@ import java.util.*
 
 object TextSecurePreferences {
     private val TAG = TextSecurePreferences::class.simpleName
+
+    private val _events = MutableSharedFlow<String>(0, 64, BufferOverflow.DROP_OLDEST)
+    val events get() = _events.asSharedFlow()
 
     const val DISABLE_PASSPHRASE_PREF = "pref_disable_passphrase"
     const val THEME_PREF = "pref_theme"
@@ -101,7 +107,8 @@ object TextSecurePreferences {
 
     // region Multi Device
     private const val LAST_CONFIGURATION_SYNC_TIME = "pref_last_configuration_sync_time"
-    private const val CONFIGURATION_SYNCED = "pref_configuration_synced"
+    const val CONFIGURATION_SYNCED = "pref_configuration_synced"
+    private const val LAST_PROFILE_UPDATE_TIME = "pref_last_profile_update_time"
 
     @JvmStatic
     fun getLastConfigurationSyncTime(context: Context): Long {
@@ -121,6 +128,7 @@ object TextSecurePreferences {
     @JvmStatic
     fun setConfigurationMessageSynced(context: Context, value: Boolean) {
         setBooleanPreference(context, CONFIGURATION_SYNCED, value)
+        _events.tryEmit(CONFIGURATION_SYNCED)
     }
 
     @JvmStatic
@@ -321,6 +329,7 @@ object TextSecurePreferences {
     @JvmStatic
     fun setProfileName(context: Context, name: String?) {
         setStringPreference(context, PROFILE_NAME_PREF, name)
+        _events.tryEmit(PROFILE_NAME_PREF)
     }
 
     @JvmStatic
@@ -746,5 +755,14 @@ object TextSecurePreferences {
     fun setIsMigratingKeyPair(context: Context?, newValue: Boolean) {
         setBooleanPreference(context!!, "is_migrating_key_pair", newValue)
     }
+
+    @JvmStatic
+    fun setLastProfileUpdateTime(context: Context, profileUpdateTime: Long) {
+        setLongPreference(context, LAST_PROFILE_UPDATE_TIME, profileUpdateTime)
+    }
+
+    @JvmStatic
+    fun shouldUpdateProfile(context: Context, profileUpdateTime: Long) =
+            profileUpdateTime > getLongPreference(context, LAST_PROFILE_UPDATE_TIME, 0)
     // endregion
 }

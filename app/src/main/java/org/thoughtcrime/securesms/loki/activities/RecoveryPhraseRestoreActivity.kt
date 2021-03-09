@@ -13,16 +13,16 @@ import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_recovery_phrase_restore.*
 import network.loki.messenger.R
+import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsignal.libsignal.util.KeyHelper
+import org.session.libsignal.service.loki.crypto.MnemonicCodec
+import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
+import org.session.libsignal.utilities.Hex
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
-import org.session.libsignal.utilities.Hex
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsignal.libsignal.util.KeyHelper
-import org.session.libsignal.service.loki.crypto.MnemonicCodec
-import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 
 class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
 
@@ -30,6 +30,14 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
+        // Set the registration sync variables
+        TextSecurePreferences.apply {
+            setHasViewedSeed(this@RecoveryPhraseRestoreActivity, true)
+            setConfigurationMessageSynced(this@RecoveryPhraseRestoreActivity, false)
+            setRestorationTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
+            setLastProfileUpdateTime(this@RecoveryPhraseRestoreActivity, System.currentTimeMillis())
+        }
+        // registration variables are synced
         setContentView(R.layout.activity_recovery_phrase_restore)
         mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
         restoreButton.setOnClickListener { restore() }
@@ -69,8 +77,6 @@ class RecoveryPhraseRestoreActivity : BaseActionBarActivity() {
             val registrationID = KeyHelper.generateRegistrationId(false)
             TextSecurePreferences.setLocalRegistrationId(this, registrationID)
             TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
-            TextSecurePreferences.setRestorationTime(this, System.currentTimeMillis())
-            TextSecurePreferences.setHasViewedSeed(this, true)
             val intent = Intent(this, DisplayNameActivity::class.java)
             push(intent)
         } catch (e: Exception) {

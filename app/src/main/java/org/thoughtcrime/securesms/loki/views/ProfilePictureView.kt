@@ -12,12 +12,12 @@ import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 import org.session.libsession.messaging.avatars.ProfileContactPhoto
 import org.session.libsession.messaging.threads.Address
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
-import org.thoughtcrime.securesms.mms.GlideRequests
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
+import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.utilities.AvatarPlaceholderGenerator
+import org.thoughtcrime.securesms.mms.GlideRequests
 
 // TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
 
@@ -151,7 +151,7 @@ class ProfilePictureView : RelativeLayout {
             if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
                     && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                 glide.clear(imageView)
-                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
+                glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
                 imagesCached.add(publicKey)
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
