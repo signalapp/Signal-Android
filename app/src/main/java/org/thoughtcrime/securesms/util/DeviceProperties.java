@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 /**
  * Easy access to various properties of the device, typically to make performance-related decisions.
@@ -47,5 +48,11 @@ public final class DeviceProperties {
     activityManager.getMemoryInfo(info);
 
     return info;
+  }
+
+  @RequiresApi(28)
+  public static boolean isBackgroundRestricted(@NonNull Context context) {
+    ActivityManager activityManager = ServiceUtil.getActivityManager(context);
+    return activityManager.isBackgroundRestricted();
   }
 }
