@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.messages
 
+import com.google.protobuf.ByteString
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 abstract class Message {
@@ -28,5 +30,13 @@ abstract class Message {
     }
 
     abstract fun toProto(): SignalServiceProtos.Content?
+
+    fun setGroupContext(dataMessage: SignalServiceProtos.DataMessage.Builder) {
+        val groupProto = SignalServiceProtos.GroupContext.newBuilder()
+        val groupID = GroupUtil.doubleEncodeGroupID(recipient!!)
+        groupProto.id = ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID))
+        groupProto.type = SignalServiceProtos.GroupContext.Type.DELIVER
+        dataMessage.group = groupProto.build()
+    }
 
 }
