@@ -51,6 +51,10 @@ public class TypingStatusRepository implements SSKEnvironment.TypingIndicatorsPr
       return;
     }
 
+    if (Recipient.from(context, author, false).isBlocked()) {
+      return;
+    }
+
     Set<Typist> typists = Util.getOrDefault(typistMap, threadId, new LinkedHashSet<>());
     Typist      typist  = new Typist(Recipient.from(context, author, false), device, threadId);
 
@@ -73,6 +77,10 @@ public class TypingStatusRepository implements SSKEnvironment.TypingIndicatorsPr
   @Override
   public synchronized void didReceiveTypingStoppedMessage(@NotNull Context context, long threadId, @NotNull Address author, int device, boolean isReplacedByIncomingMessage) {
     if (author.serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+      return;
+    }
+
+    if (Recipient.from(context, author, false).isBlocked()) {
       return;
     }
 

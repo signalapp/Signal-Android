@@ -70,6 +70,9 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       Address              address      = Address.fromSerialized(senderPublicKey);
       Recipient            recipient    = Recipient.from(context, address, false);
+
+      if (recipient.isBlocked()) return;
+
       Optional<SignalServiceGroup> groupInfo = Optional.absent();
       if (content.getDataMessage().hasGroup()) {
         GroupContext groupContext = content.getDataMessage().getGroup();
