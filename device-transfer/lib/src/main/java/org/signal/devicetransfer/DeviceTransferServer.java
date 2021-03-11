@@ -12,13 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
+import org.signal.devicetransfer.SelfSignedIdentity.SelfSignedKeys;
 
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -33,46 +30,66 @@ import java.util.concurrent.TimeUnit;
  * Testing found that restarting the client worked better than restarting the server when having WiFi
  * Direct setup issues.
  */
-public final class DeviceTransferServer implements Handler.Callback {
+final class DeviceTransferServer implements Handler.Callback {
 
-  private static final String TAG                  = Log.tag(DeviceTransferServer.class);
-  private static final int    START_SERVER         = 0;
-  private static final int    START_NETWORK_SERVER = 1;
-  private static final int    NETWORK_DISCONNECTED = 2;
-  private static final int    START_IP_EXCHANGE    = 3;
-  private static final int    IP_EXCHANGE_SUCCESS  = 4;
+  private static final String TAG = Log.tag(DeviceTransferServer.class);
 
-  private       ServerThread                serverThread;
+  private static final int START_SERVER        = 0;
+  private static final int STOP_SERVER         = 1;
+  private static final int START_IP_EXCHANGE   = 2;
+  private static final int IP_EXCHANGE_SUCCESS = 3;
+  private static final int NETWORK_FAILURE     = 4;
+  private static final int SET_VERIFIED        = 5;
+
+  private       NetworkServerThread         serverThread;
   private       HandlerThread               commandAndControlThread;
   private final Handler                     handler;
   private       WifiDirect                  wifiDirect;
   private final Context                     context;
   private final ServerTask                  serverTask;
-  private final int                         port;
   private final ShutdownCallback            shutdownCallback;
   private       IpExchange.IpExchangeThread ipExchangeThread;
 
-  private static void update(@NonNull TransferMode transferMode) {
-    EventBus.getDefault().postSticky(transferMode);
+  private static void update(@NonNull TransferStatus transferStatus) {
+    Log.d(TAG, "transferStatus: " + transferStatus.getTransferMode().name());
+    EventBus.getDefault().postSticky(transferStatus);
   }
 
   @AnyThread
-  public DeviceTransferServer(@NonNull Context context, @NonNull ServerTask serverTask, int port, @Nullable ShutdownCallback shutdownCallback) {
+  public DeviceTransferServer(@NonNull Context context,
+                              @NonNull ServerTask serverTask,
+                              @Nullable ShutdownCallback shutdownCallback)
+  {
     this.context                 = context;
     this.serverTask              = serverTask;
-    this.port                    = port;
     this.shutdownCallback        = shutdownCallback;
     this.commandAndControlThread = SignalExecutors.getAndStartHandlerThread("server-cnc");
     this.handler                 = new Handler(commandAndControlThread.getLooper(), this);
   }
 
   @AnyThread
-  public void start() {
-    handler.sendMessage(handler.obtainMessage(START_SERVER));
+  public synchronized void start() {
+    if (commandAndControlThread != null) {
+      update(TransferStatus.ready());
+      handler.sendEmptyMessage(START_SERVER);
+    }
   }
 
   @AnyThread
-  public synchronized void shutdown() {
+  public synchronized void stop() {
+    if (commandAndControlThread != null) {
+      handler.sendEmptyMessage(STOP_SERVER);
+    }
+  }
+
+  @AnyThread
+  public synchronized void setVerified(boolean isVerified) {
+    if (commandAndControlThread != null) {
+      handler.sendMessage(handler.obtainMessage(SET_VERIFIED, isVerified));
+    }
+  }
+
+  private synchronized void shutdown() {
     stopIpExchange();
     stopServer();
     stopWifiDirect();
@@ -83,19 +100,26 @@ public final class DeviceTransferServer implements Handler.Callback {
       commandAndControlThread.interrupt();
       commandAndControlThread = null;
     }
+
+    update(TransferStatus.shutdown());
+  }
+
+  private void internalShutdown() {
+    shutdown();
+    if (shutdownCallback != null) {
+      shutdownCallback.shutdown();
+    }
   }
 
   @Override
   public boolean handleMessage(@NonNull Message message) {
+    Log.d(TAG, "Handle message: " + message.what);
     switch (message.what) {
       case START_SERVER:
-        startWifiDirect();
+        startNetworkServer();
         break;
-      case START_NETWORK_SERVER:
-        startServer();
-        break;
-      case NETWORK_DISCONNECTED:
-        stopServer();
+      case STOP_SERVER:
+        shutdown();
         break;
       case START_IP_EXCHANGE:
         startIpExchange((String) message.obj);
@@ -103,37 +127,69 @@ public final class DeviceTransferServer implements Handler.Callback {
       case IP_EXCHANGE_SUCCESS:
         ipExchangeSuccessful();
         break;
-      default:
-        shutdown();
-        if (shutdownCallback != null) {
-          shutdownCallback.shutdown();
+      case SET_VERIFIED:
+        if (serverThread != null) {
+          serverThread.setVerified((Boolean) message.obj);
         }
-        throw new AssertionError();
+        break;
+      case NetworkServerThread.NETWORK_SERVER_STARTED:
+        startWifiDirect(message.arg1);
+        break;
+      case NetworkServerThread.NETWORK_SERVER_STOPPED:
+        internalShutdown();
+        break;
+      case NetworkServerThread.NETWORK_CLIENT_CONNECTED:
+        stopDiscoveryService();
+        update(TransferStatus.serviceConnected());
+        break;
+      case NetworkServerThread.NETWORK_CLIENT_DISCONNECTED:
+        update(TransferStatus.networkConnected());
+        break;
+      case NetworkServerThread.NETWORK_CLIENT_SSL_ESTABLISHED:
+        update(TransferStatus.verificationRequired((Integer) message.obj));
+        break;
+      default:
+        internalShutdown();
+        throw new AssertionError("Unknown message: " + message.what);
     }
     return false;
   }
 
-  private void startWifiDirect() {
+  private void startWifiDirect(int port) {
     if (wifiDirect != null) {
       Log.e(TAG, "Server already started");
       return;
     }
 
-    update(TransferMode.STARTING_UP);
-
     try {
       wifiDirect = new WifiDirect(context);
       wifiDirect.initialize(new WifiDirectListener());
-      wifiDirect.startDiscoveryService();
+      wifiDirect.startDiscoveryService(String.valueOf(port));
       Log.i(TAG, "Started discovery service, waiting for connections...");
-      update(TransferMode.DISCOVERY);
+      update(TransferStatus.discovery());
     } catch (WifiDirectUnavailableException e) {
       Log.e(TAG, e);
-      shutdown();
-      update(TransferMode.FAILED);
-      if (shutdownCallback != null) {
-        shutdownCallback.shutdown();
+      internalShutdown();
+      if (e.getReason() == WifiDirectUnavailableException.Reason.CHANNEL_INITIALIZATION ||
+          e.getReason() == WifiDirectUnavailableException.Reason.WIFI_P2P_MANAGER) {
+        update(TransferStatus.unavailable());
+      } else {
+        update(TransferStatus.failed());
       }
+    }
+  }
+
+  private void stopDiscoveryService() {
+    if (wifiDirect == null) {
+      return;
+    }
+
+    try {
+      Log.i(TAG, "Stopping discovery service");
+      wifiDirect.stopDiscoveryService();
+    } catch (WifiDirectUnavailableException e) {
+      internalShutdown();
+      update(TransferStatus.failed());
     }
   }
 
@@ -142,149 +198,82 @@ public final class DeviceTransferServer implements Handler.Callback {
       Log.i(TAG, "Shutting down WiFi Direct");
       wifiDirect.shutdown();
       wifiDirect = null;
-      update(TransferMode.READY);
     }
   }
 
-  private void startServer() {
+  private void startNetworkServer() {
     if (serverThread != null) {
       Log.i(TAG, "Server already running");
       return;
     }
 
-    Log.i(TAG, "Connection established, spinning up network server.");
-    serverThread = new ServerThread(context, serverTask, port);
-    serverThread.start();
-
-    update(TransferMode.NETWORK_CONNECTED);
+    try {
+      update(TransferStatus.startingUp());
+      SelfSignedKeys keys = SelfSignedIdentity.create();
+      Log.i(TAG, "Spinning up network server.");
+      serverThread = new NetworkServerThread(context, serverTask, keys, handler);
+      serverThread.start();
+    } catch (KeyGenerationFailedException e) {
+      Log.w(TAG, "Error generating keys", e);
+      internalShutdown();
+      update(TransferStatus.failed());
+    }
   }
 
   private void stopServer() {
     if (serverThread != null) {
       Log.i(TAG, "Shutting down ServerThread");
       serverThread.shutdown();
+      try {
+        serverThread.join(TimeUnit.SECONDS.toMillis(1));
+      } catch (InterruptedException e) {
+        Log.i(TAG, "Server thread took too long to shutdown", e);
+      }
       serverThread = null;
     }
   }
 
   private void startIpExchange(@NonNull String groupOwnerHostAddress) {
-    ipExchangeThread = IpExchange.giveIp(groupOwnerHostAddress, port, handler, IP_EXCHANGE_SUCCESS);
+    ipExchangeThread = IpExchange.giveIp(groupOwnerHostAddress, serverThread.getLocalPort(), handler, IP_EXCHANGE_SUCCESS);
   }
 
   private void stopIpExchange() {
     if (ipExchangeThread != null) {
       ipExchangeThread.shutdown();
+      try {
+        ipExchangeThread.join(TimeUnit.SECONDS.toMillis(1));
+      } catch (InterruptedException e) {
+        Log.i(TAG, "IP Exchange thread took too long to shutdown", e);
+      }
       ipExchangeThread = null;
     }
   }
 
   private void ipExchangeSuccessful() {
     stopIpExchange();
-    handler.sendEmptyMessage(START_NETWORK_SERVER);
-  }
-
-  public static class ServerThread extends Thread {
-
-    private final    Context      context;
-    private final    ServerTask   serverTask;
-    private final    int          port;
-    private volatile ServerSocket serverSocket;
-    private volatile boolean      isRunning;
-
-    public ServerThread(@NonNull Context context, @NonNull ServerTask serverTask, int port) {
-      this.context    = context;
-      this.serverTask = serverTask;
-      this.port       = port;
-    }
-
-    @Override
-    public void run() {
-      Log.i(TAG, "Server thread running");
-      isRunning = true;
-
-      while (shouldKeepRunning()) {
-        Log.i(TAG, "Starting up server socket...");
-        try {
-          serverSocket = new ServerSocket(port);
-          while (shouldKeepRunning() && !serverSocket.isClosed()) {
-            Log.i(TAG, "Waiting for client socket accept...");
-            try {
-              handleClient(serverSocket.accept());
-            } catch (IOException e) {
-              if (isRunning) {
-                Log.i(TAG, "Error connecting with client or server socket closed.", e);
-              } else {
-                Log.i(TAG, "Server shutting down...");
-              }
-            } finally {
-              update(TransferMode.NETWORK_CONNECTED);
-            }
-          }
-        } catch (Exception e) {
-          Log.w(TAG, e);
-        } finally {
-          if (serverSocket != null && !serverSocket.isClosed()) {
-            try {
-              serverSocket.close();
-            } catch (IOException ignored) {}
-          }
-          update(TransferMode.NETWORK_CONNECTED);
-        }
-
-        if (shouldKeepRunning()) {
-          ThreadUtil.interruptableSleep(TimeUnit.SECONDS.toMillis(3));
-        }
-      }
-
-      Log.i(TAG, "Server exiting");
-    }
-
-    public void shutdown() {
-      isRunning = false;
-      try {
-        serverSocket.close();
-      } catch (IOException e) {
-        Log.w(TAG, "Error shutting down server socket", e);
-      }
-      interrupt();
-    }
-
-    private void handleClient(@NonNull Socket clientSocket) throws IOException {
-      update(TransferMode.SERVICE_CONNECTED);
-      serverTask.run(context, clientSocket.getInputStream());
-      clientSocket.close();
-    }
-
-    private boolean shouldKeepRunning() {
-      return !isInterrupted() && isRunning;
-    }
   }
 
   public class WifiDirectListener implements WifiDirect.WifiDirectConnectionListener {
 
     @Override
     public void onNetworkConnected(@NonNull WifiP2pInfo info) {
-      if (info.isGroupOwner) {
-        handler.sendEmptyMessage(START_NETWORK_SERVER);
-      } else {
+      if (!info.isGroupOwner) {
         handler.sendMessage(handler.obtainMessage(START_IP_EXCHANGE, info.groupOwnerAddress.getHostAddress()));
       }
     }
 
     @Override
-    public void onNetworkDisconnected() {
-      handler.sendEmptyMessage(NETWORK_DISCONNECTED);
-    }
+    public void onNetworkDisconnected() { }
 
     @Override
     public void onNetworkFailure() {
-      handler.sendEmptyMessage(NETWORK_DISCONNECTED);
+      handler.sendEmptyMessage(NETWORK_FAILURE);
     }
 
     @Override
     public void onLocalDeviceChanged(@NonNull WifiP2pDevice localDevice) { }
 
     @Override
-    public void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice) { }
+    public void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice, @NonNull String extraInfo) { }
   }
 }

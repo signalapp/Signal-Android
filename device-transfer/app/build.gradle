@@ -17,6 +17,25 @@ android {
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard/proguard.cfg'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard/proguard.cfg'
+        }
+    }
+
+    packagingOptions {
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages.properties'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages_de.properties'
+    }
 }
 
 dependencies {

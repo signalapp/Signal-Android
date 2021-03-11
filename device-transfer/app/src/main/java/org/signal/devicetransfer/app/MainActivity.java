@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -26,7 +27,7 @@ import org.signal.devicetransfer.ClientTask;
 import org.signal.devicetransfer.DeviceToDeviceTransferService;
 import org.signal.devicetransfer.DeviceToDeviceTransferService.TransferNotificationData;
 import org.signal.devicetransfer.ServerTask;
-import org.signal.devicetransfer.TransferMode;
+import org.signal.devicetransfer.TransferStatus;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
     findViewById(R.id.start_server).setOnClickListener(v -> {
       DeviceToDeviceTransferService.startServer(this,
-                                                8888,
                                                 new ServerReceiveRandomBytes(),
                                                 data,
                                                 PendingIntent.getActivity(this,
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
     findViewById(R.id.start_client).setOnClickListener(v -> {
       DeviceToDeviceTransferService.startClient(this,
-                                                8888,
                                                 new ClientSendRandomBytes(),
                                                 data,
                                                 PendingIntent.getActivity(this,
@@ -81,9 +80,7 @@ public class MainActivity extends AppCompatActivity {
       list.removeAllViews();
     });
 
-    findViewById(R.id.stop).setOnClickListener(v -> {
-      DeviceToDeviceTransferService.stop(this);
-    });
+    findViewById(R.id.stop).setOnClickListener(v -> DeviceToDeviceTransferService.stop(this));
 
     findViewById(R.id.enable_permission).setOnClickListener(v -> {
       if (Build.VERSION.SDK_INT >= 23 && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -95,19 +92,27 @@ public class MainActivity extends AppCompatActivity {
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventMainThread(@NonNull TransferMode event) {
+  public void onEventMainThread(@NonNull TransferStatus event) {
     TextView text = new TextView(this);
-    text.setText(event.toString());
+    text.setText(event.getTransferMode().toString());
     LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     text.setLayoutParams(params);
     list.addView(text);
+
+    if (event.getTransferMode() == TransferStatus.TransferMode.VERIFICATION_REQUIRED) {
+      new AlertDialog.Builder(this).setTitle("Verification Required")
+                                   .setMessage("Code: " + ((TransferStatus.VerificationTransferStatus) event).getAuthenticationCode())
+                                   .setPositiveButton("Yes, Same", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, true))
+                                   .setNegativeButton("No, different", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, false))
+                                   .setCancelable(false)
+                                   .show();
+    }
   }
 
   private static class ClientSendRandomBytes implements ClientTask {
 
-    private static final String TAG = "ClientSend";
-
-    private final int rounds = 1000;
+    private static final String TAG    = "ClientSend";
+    private static final int    ROUNDS = 131072 / 4; // Use 131072 to send 1GB
 
     @Override
     public void run(@NonNull Context context, @NonNull OutputStream outputStream) throws IOException {
@@ -116,13 +121,17 @@ public class MainActivity extends AppCompatActivity {
       r.nextBytes(data);
 
       long start = System.currentTimeMillis();
-      Log.i(TAG, "Sending " + ((data.length * rounds) / 1024 / 1024) + "MB of random data!!!");
-      for (int i = 0; i < rounds; i++) {
+      Log.i(TAG, "Sending " + ((data.length * ROUNDS) / 1024 / 1024) + "MB of random data!!!");
+      for (int i = 0; i < ROUNDS; i++) {
         outputStream.write(data);
         outputStream.flush();
       }
       long end = System.currentTimeMillis();
       Log.i(TAG, "Sending took: " + (end - start));
+    }
+
+    @Override
+    public void success() {
     }
   }
 

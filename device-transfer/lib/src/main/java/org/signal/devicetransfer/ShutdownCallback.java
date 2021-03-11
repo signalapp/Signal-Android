@@ -5,6 +5,6 @@ package org.signal.devicetransfer;
  * {@link DeviceToDeviceTransferService} that an internal issue caused a shutdown and the
  * service should stop as well.
  */
-public interface ShutdownCallback {
+interface ShutdownCallback {
   void shutdown();
 }

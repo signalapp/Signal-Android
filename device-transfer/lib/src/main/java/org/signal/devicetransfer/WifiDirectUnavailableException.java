@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 /**
  * Represents the various type of failure with creating a WiFi Direction connection.
  */
-public final class WifiDirectUnavailableException extends Exception {
+final class WifiDirectUnavailableException extends Exception {
 
   private final Reason reason;
 

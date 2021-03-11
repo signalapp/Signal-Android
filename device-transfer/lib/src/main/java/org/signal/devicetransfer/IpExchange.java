@@ -3,7 +3,6 @@ package org.signal.devicetransfer;
 import android.os.Handler;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  * When this occurs, {@link #giveIp(String, int, Handler, int)} and {@link #getIp(String, int, Handler, int)} allow
  * the two to connect briefly and use the connected socket to determine the host address of the other.
  */
-public final class IpExchange {
+final class IpExchange {
 
   private IpExchange() { }
 
@@ -66,7 +65,7 @@ public final class IpExchange {
       isRunning = true;
 
       while (shouldKeepRunning()) {
-        Log.i(TAG, "Attempting to connect to server...");
+        Log.i(TAG, "Attempting to startup networking...");
 
         try {
           if (needsIp) {

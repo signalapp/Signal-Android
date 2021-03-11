@@ -29,16 +29,15 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
   private static final String TAG = Log.tag(DeviceToDeviceTransferService.class);
 
-  private static final int INVALID_PORT = -1;
-
   private static final String ACTION_START_SERVER = "start";
   private static final String ACTION_START_CLIENT = "start_client";
+  private static final String ACTION_SET_VERIFIED = "set_verified";
   private static final String ACTION_STOP         = "stop";
 
   private static final String EXTRA_PENDING_INTENT = "extra_pending_intent";
   private static final String EXTRA_TASK           = "extra_task";
   private static final String EXTRA_NOTIFICATION   = "extra_notification_data";
-  private static final String EXTRA_PORT           = "extra_port";
+  private static final String EXTRA_IS_VERIFIED    = "is_verified";
 
   private TransferNotificationData notificationData;
   private PendingIntent            pendingIntent;
@@ -46,7 +45,6 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   private DeviceTransferClient     client;
 
   public static void startServer(@NonNull Context context,
-                                 int port,
                                  @NonNull ServerTask serverTask,
                                  @NonNull TransferNotificationData transferNotificationData,
                                  @Nullable PendingIntent pendingIntent)
@@ -54,7 +52,6 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     Intent intent = new Intent(context, DeviceToDeviceTransferService.class);
     intent.setAction(ACTION_START_SERVER)
           .putExtra(EXTRA_TASK, serverTask)
-          .putExtra(EXTRA_PORT, port)
           .putExtra(EXTRA_NOTIFICATION, transferNotificationData)
           .putExtra(EXTRA_PENDING_INTENT, pendingIntent);
 
@@ -62,7 +59,6 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   }
 
   public static void startClient(@NonNull Context context,
-                                 int port,
                                  @NonNull ClientTask clientTask,
                                  @NonNull TransferNotificationData transferNotificationData,
                                  @Nullable PendingIntent pendingIntent)
@@ -70,9 +66,16 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     Intent intent = new Intent(context, DeviceToDeviceTransferService.class);
     intent.setAction(ACTION_START_CLIENT)
           .putExtra(EXTRA_TASK, clientTask)
-          .putExtra(EXTRA_PORT, port)
           .putExtra(EXTRA_NOTIFICATION, transferNotificationData)
           .putExtra(EXTRA_PENDING_INTENT, pendingIntent);
+
+    context.startService(intent);
+  }
+
+  public static void setAuthenticationCodeVerified(@NonNull Context context, boolean verified) {
+    Intent intent = new Intent(context, DeviceToDeviceTransferService.class);
+    intent.setAction(ACTION_SET_VERIFIED)
+          .putExtra(EXTRA_IS_VERIFIED, verified);
 
     context.startService(intent);
   }
@@ -90,12 +93,8 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-  public void onEventMainThread(@NonNull TransferMode event) {
+  public void onEventMainThread(@NonNull TransferStatus event) {
     updateNotification(event);
-  }
-
-  private void update(@NonNull TransferMode transferMode) {
-    EventBus.getDefault().postSticky(transferMode);
   }
 
   @Override
@@ -105,12 +104,12 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     EventBus.getDefault().unregister(this);
 
     if (client != null) {
-      client.shutdown();
+      client.stop();
       client = null;
     }
 
     if (server != null) {
-      server.shutdown();
+      server.stop();
       server = null;
     }
 
@@ -130,45 +129,46 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
 
     final WifiDirect.AvailableStatus availability = WifiDirect.getAvailability(this);
     if (availability != WifiDirect.AvailableStatus.AVAILABLE) {
-      update(availability == WifiDirect.AvailableStatus.FINE_LOCATION_PERMISSION_NOT_GRANTED ? TransferMode.PERMISSIONS
-                                                                                             : TransferMode.UNAVAILABLE);
       shutdown();
       return START_NOT_STICKY;
     }
 
+    Log.d(TAG, "Action: " + action);
     switch (action) {
       case ACTION_START_SERVER: {
-        int port = intent.getIntExtra(EXTRA_PORT, INVALID_PORT);
-        if (server == null && port != -1) {
+        if (server == null) {
           notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
           pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
           server           = new DeviceTransferServer(getApplicationContext(),
                                                       (ServerTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
-                                                      port,
                                                       this);
-          updateNotification(TransferMode.READY);
           server.start();
         } else {
-          Log.i(TAG, "Can't start server. already_started: " + (server != null) + " port: " + port);
+          Log.i(TAG, "Can't start server, already started.");
         }
         break;
       }
       case ACTION_START_CLIENT: {
-        int port = intent.getIntExtra(EXTRA_PORT, INVALID_PORT);
-        if (client == null && port != -1) {
+        if (client == null) {
           notificationData = intent.getParcelableExtra(EXTRA_NOTIFICATION);
           pendingIntent    = intent.getParcelableExtra(EXTRA_PENDING_INTENT);
           client           = new DeviceTransferClient(getApplicationContext(),
                                                       (ClientTask) Objects.requireNonNull(intent.getSerializableExtra(EXTRA_TASK)),
-                                                      port,
                                                       this);
-          updateNotification(TransferMode.READY);
           client.start();
         } else {
-          Log.i(TAG, "Can't start client. already_started: " + (client != null) + " port: " + port);
+          Log.i(TAG, "Can't start client, client already started.");
         }
         break;
       }
+      case ACTION_SET_VERIFIED:
+        boolean isVerified = intent.getBooleanExtra(EXTRA_IS_VERIFIED, false);
+        if (server != null) {
+          server.setVerified(isVerified);
+        } else if (client != null) {
+          client.setVerified(isVerified);
+        }
+        break;
       case ACTION_STOP:
         shutdown();
         break;
@@ -186,20 +186,20 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
     });
   }
 
-  private void updateNotification(@NonNull TransferMode transferMode) {
+  private void updateNotification(@NonNull TransferStatus transferStatus) {
     if (notificationData != null && (client != null || server != null)) {
-      startForeground(notificationData.notificationId, createNotification(transferMode, notificationData));
+      startForeground(notificationData.notificationId, createNotification(transferStatus, notificationData));
     }
   }
 
-  private @NonNull Notification createNotification(@NonNull TransferMode transferMode, @NonNull TransferNotificationData notificationData) {
+  private @NonNull Notification createNotification(@NonNull TransferStatus transferStatus, @NonNull TransferNotificationData notificationData) {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this, notificationData.channelId);
 
     //TODO [cody] build notification to spec
     builder.setSmallIcon(notificationData.icon)
            .setOngoing(true)
            .setContentTitle("Device Transfer")
-           .setContentText("Status: " + transferMode.name())
+           .setContentText("Status: " + transferStatus.getTransferMode().name())
            .setContentIntent(pendingIntent);
 
     return builder.build();

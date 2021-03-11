@@ -18,9 +18,11 @@ import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceInfo;
 import android.net.wifi.p2p.nsd.WifiP2pDnsSdServiceRequest;
 import android.os.Build;
 import android.os.HandlerThread;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
@@ -32,12 +34,13 @@ import org.signal.devicetransfer.WifiDirectUnavailableException.Reason;
 import java.util.Collections;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Provide the ability to spin up a WiFi Direct network, advertise a network service,
  * discover a network service, and then connect two devices.
  */
-@SuppressLint("MissingPermission")
 public final class WifiDirect {
 
   private static final String TAG = Log.tag(WifiDirect.class);
@@ -49,8 +52,10 @@ public final class WifiDirect {
     addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
   }};
 
-  public static final String SERVICE_INSTANCE = "_devicetransfer._signal.org";
-  public static final String SERVICE_REG_TYPE = "_presence._tcp";
+  private static final String  EXTRA_INFO_PLACEHOLDER    = "%%EXTRA_INFO%%";
+  private static final String  SERVICE_INSTANCE_TEMPLATE = "_devicetransfer" + EXTRA_INFO_PLACEHOLDER + "._signal.org";
+  private static final Pattern SERVICE_INSTANCE_PATTERN  = Pattern.compile("_devicetransfer(\\._(.+))?\\._signal\\.org");
+  private static final String  SERVICE_REG_TYPE          = "_presence._tcp";
 
   private final Context                      context;
   private       WifiDirectConnectionListener connectionListener;
@@ -85,7 +90,7 @@ public final class WifiDirect {
                                                                        : AvailableStatus.WIFI_DIRECT_NOT_AVAILABLE;
   }
 
-  public WifiDirect(@NonNull Context context) {
+  WifiDirect(@NonNull Context context) {
     this.context                    = context.getApplicationContext();
     this.wifiDirectCallbacksHandler = SignalExecutors.getAndStartHandlerThread("wifi-direct-cb");
   }
@@ -95,7 +100,7 @@ public final class WifiDirect {
    * with the Android WiFi Direct APIs. This should have a matching call to {@link #shutdown()} to
    * release the various resources used to establish and maintain a WiFi Direct network.
    */
-  public synchronized void initialize(@NonNull WifiDirectConnectionListener connectionListener) throws WifiDirectUnavailableException {
+  synchronized void initialize(@NonNull WifiDirectConnectionListener connectionListener) throws WifiDirectUnavailableException {
     if (isInitialized()) {
       Log.w(TAG, "Already initialized, do not need to initialize twice");
       return;
@@ -128,7 +133,7 @@ public final class WifiDirect {
    * <i>Note: After this call, the instance is no longer usable and an entirely new one will need to
    * be created.</i>
    */
-  public synchronized void shutdown() {
+  synchronized void shutdown() {
     Log.d(TAG, "Shutting down");
 
     connectionListener = null;
@@ -158,12 +163,15 @@ public final class WifiDirect {
    * Start advertising a transfer service that other devices can search for and decide
    * to connect to. Call on an appropriate thread as this method synchronously calls WiFi Direct
    * methods.
+   *
+   * @param extraInfo Extra info to include in the service instance name (e.g., server port)
    */
   @WorkerThread
-  public synchronized void startDiscoveryService() throws WifiDirectUnavailableException {
+  @SuppressLint("MissingPermission")
+  synchronized void startDiscoveryService(@NonNull String extraInfo) throws WifiDirectUnavailableException {
     ensureInitialized();
 
-    WifiP2pDnsSdServiceInfo serviceInfo = WifiP2pDnsSdServiceInfo.newInstance(SERVICE_INSTANCE, SERVICE_REG_TYPE, Collections.emptyMap());
+    WifiP2pDnsSdServiceInfo serviceInfo = WifiP2pDnsSdServiceInfo.newInstance(buildServiceInstanceName(extraInfo), SERVICE_REG_TYPE, Collections.emptyMap());
 
     SyncActionListener addLocalServiceListener = new SyncActionListener("add local service");
     manager.addLocalService(channel, serviceInfo, addLocalServiceListener);
@@ -177,11 +185,22 @@ public final class WifiDirect {
   }
 
   /**
+   * Stop all peer discovery and advertising services.
+   */
+  synchronized void stopDiscoveryService() throws WifiDirectUnavailableException {
+    ensureInitialized();
+
+    retry(manager::stopPeerDiscovery, "stop peer discovery");
+    retry(manager::clearLocalServices, "clear local services");
+  }
+
+  /**
    * Start searching for a transfer service being advertised by another device. Call on an
    * appropriate thread as this method synchronously calls WiFi Direct methods.
    */
   @WorkerThread
-  public synchronized void discoverService() throws WifiDirectUnavailableException {
+  @SuppressLint("MissingPermission")
+  synchronized void discoverService() throws WifiDirectUnavailableException {
     ensureInitialized();
 
     if (serviceRequest != null) {
@@ -192,10 +211,11 @@ public final class WifiDirect {
     WifiP2pManager.DnsSdTxtRecordListener txtListener = (fullDomain, record, device) -> {};
 
     WifiP2pManager.DnsSdServiceResponseListener serviceListener = (instanceName, registrationType, sourceDevice) -> {
-      if (SERVICE_INSTANCE.equals(instanceName)) {
+      String extraInfo = isInstanceNameMatching(instanceName);
+      if (extraInfo != null) {
         Log.d(TAG, "Service found!");
         if (connectionListener != null) {
-          connectionListener.onServiceDiscovered(sourceDevice);
+          connectionListener.onServiceDiscovered(sourceDevice, extraInfo);
         }
       } else {
         Log.d(TAG, "Found unusable service, ignoring.");
@@ -220,17 +240,28 @@ public final class WifiDirect {
   }
 
   /**
+   * Stop searching for transfer services.
+   */
+  synchronized void stopServiceDiscovery() throws WifiDirectUnavailableException {
+    ensureInitialized();
+
+    retry(manager::clearServiceRequests, "clear service requests");
+  }
+
+  /**
    * Establish a WiFi Direct network by connecting to the given device address (MAC). An
    * address can be found by using {@link #discoverService()}.
    *
    * @param deviceAddress Device MAC address to establish a connection with
    */
-  public synchronized void connect(@NonNull String deviceAddress) throws WifiDirectUnavailableException {
+  @SuppressLint("MissingPermission")
+  synchronized void connect(@NonNull String deviceAddress) throws WifiDirectUnavailableException {
     ensureInitialized();
 
     WifiP2pConfig config = new WifiP2pConfig();
-    config.deviceAddress = deviceAddress;
-    config.wps.setup     = WpsInfo.PBC;
+    config.deviceAddress    = deviceAddress;
+    config.wps.setup        = WpsInfo.PBC;
+    config.groupOwnerIntent = 0;
 
     if (serviceRequest != null) {
       manager.removeServiceRequest(channel, serviceRequest, LoggingActionListener.message("Remote service request"));
@@ -273,6 +304,24 @@ public final class WifiDirect {
       Log.w(TAG, "WiFi Direct has not been initialized.");
       throw new WifiDirectUnavailableException(Reason.SERVICE_NOT_INITIALIZED);
     }
+  }
+
+  @VisibleForTesting
+  static @NonNull String buildServiceInstanceName(@Nullable String extraInfo) {
+    if (TextUtils.isEmpty(extraInfo)) {
+      return SERVICE_INSTANCE_TEMPLATE.replace(EXTRA_INFO_PLACEHOLDER, "");
+    }
+    return SERVICE_INSTANCE_TEMPLATE.replace(EXTRA_INFO_PLACEHOLDER, "._" + extraInfo);
+  }
+
+  @VisibleForTesting
+  static @Nullable String isInstanceNameMatching(@NonNull String serviceInstanceName) {
+    Matcher matcher = SERVICE_INSTANCE_PATTERN.matcher(serviceInstanceName);
+    if (matcher.matches()) {
+      String extraInfo = matcher.group(2);
+      return TextUtils.isEmpty(extraInfo) ? "" : extraInfo;
+    }
+    return null;
   }
 
   private interface ManagerRetry {
@@ -405,7 +454,7 @@ public final class WifiDirect {
   public interface WifiDirectConnectionListener {
     void onLocalDeviceChanged(@NonNull WifiP2pDevice localDevice);
 
-    void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice);
+    void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice, @NonNull String extraInfo);
 
     void onNetworkConnected(@NonNull WifiP2pInfo info);
 

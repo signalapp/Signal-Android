@@ -19,4 +19,9 @@ public interface ClientTask extends Serializable {
    * @param outputStream Output stream associated with socket connected to remote server.
    */
   void run(@NonNull Context context, @NonNull OutputStream outputStream) throws IOException;
+
+  /**
+   * Called after the output stream has been successfully flushed and closed.
+   */
+  void success();
 }
