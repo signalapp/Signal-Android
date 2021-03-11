@@ -315,7 +315,7 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPair(message: ClosedGr
         return
     }
     if (!group.members.map { it.toString() }.contains(senderPublicKey)) {
-        android.util.Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
+        Log.d("Loki", "Ignoring closed group encryption key pair from non-member.")
         return
     }
     // Find our wrapper and decrypt it if possible
@@ -362,6 +362,7 @@ private fun MessageReceiver.handleClosedGroupNameChanged(message: ClosedGroupCon
 private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupControlMessage) {
     val context = MessagingConfiguration.shared.context
     val storage = MessagingConfiguration.shared.storage
+    val userPublicKey = storage.getUserPublicKey()!!
     val senderPublicKey = message.sender ?: return
     val kind = message.kind!! as? ClosedGroupControlMessage.Kind.MembersAdded ?: return
     val groupPublicKey = message.groupPublicKey ?: return
@@ -370,9 +371,7 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
         Log.d("Loki", "Ignoring closed group info message for nonexistent group.")
         return
     }
-    if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) {
-        return
-    }
+    if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
     val name = group.title
     // Check common group update logic
     val members = group.members.map { it.serialize() }
@@ -381,11 +380,22 @@ private fun MessageReceiver.handleClosedGroupMembersAdded(message: ClosedGroupCo
     val updateMembers = kind.members.map { it.toByteArray().toHexString() }
     val newMembers = members + updateMembers
     storage.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
-    // Send the latest encryption key pair to the added members if the current user is the admin of the group
-    val isCurrentUserAdmin = admins.contains(storage.getUserPublicKey()!!)
-    if (isCurrentUserAdmin) {
-        for (member in updateMembers) {
-            MessageSender.sendLatestEncryptionKeyPair(member, groupPublicKey)
+    if (userPublicKey == senderPublicKey) {
+        val threadID = storage.getOrCreateThreadIdFor(Address.fromSerialized(groupID))
+        storage.insertOutgoingInfoMessage(context, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, name, members, admins, threadID, message.sentTimestamp!!)
+    } else {
+        storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
+    }
+    if (userPublicKey in admins) {
+        // send current encryption key to the latest added members
+        val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+                ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+        if (encryptionKeyPair == null) {
+            android.util.Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+        } else {
+            for (user in updateMembers) {
+                MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(user), targetUser = user, force = false)
+            }
         }
     }
     storage.insertIncomingInfoMessage(context, senderPublicKey, groupID, SignalServiceProtos.GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, message.sentTimestamp!!)
@@ -491,7 +501,13 @@ private fun MessageReceiver.handleClosedGroupEncryptionKeyPairRequest(message: C
         return
     }
     if (!isValidGroupUpdate(group, message.sentTimestamp!!, senderPublicKey)) { return }
-    MessageSender.sendLatestEncryptionKeyPair(senderPublicKey, groupPublicKey)
+    val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
+            ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey)
+    if (encryptionKeyPair == null) {
+        Log.d("Loki", "Couldn't get encryption key pair for closed group.")
+    } else {
+        MessageSender.sendEncryptionKeyPair(groupPublicKey, encryptionKeyPair, setOf(senderPublicKey), targetUser = senderPublicKey, force = false)
+    }
 }
 
 private fun isValidGroupUpdate(group: GroupRecord,

@@ -2,7 +2,9 @@
 
 package org.session.libsession.messaging.sending_receiving
 
+import android.content.Context
 import com.google.protobuf.ByteString
+import com.google.protobuf.Message
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 
@@ -27,7 +29,7 @@ import org.session.libsignal.utilities.logging.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
-private val pendingKeyPair = ConcurrentHashMap<String, Optional<ECKeyPair>>()
+val pendingKeyPair = ConcurrentHashMap<String, Optional<ECKeyPair>>()
 
 fun MessageSender.create(name: String, members: Collection<String>): Promise<String, Exception> {
     val deferred = deferred<String, Exception>()
@@ -247,6 +249,15 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
         // make sure we set the pendingKeyPair or wait until it is not null
     } while (!pendingKeyPair.replace(groupPublicKey,Optional.absent(),Optional.fromNullable(newKeyPair)))
     // Distribute it
+    sendEncryptionKeyPair(groupPublicKey, newKeyPair, targetMembers)?.success {
+        // Store it * after * having sent out the message to the group
+        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
+        pendingKeyPair[groupPublicKey] = Optional.absent()
+    }
+}
+
+fun MessageSender.sendEncryptionKeyPair(groupPublicKey: String, newKeyPair: ECKeyPair, targetMembers: Collection<String>, targetUser: String? = null, force: Boolean = true): Promise<Unit, Exception>? {
+    val destination = targetUser ?: GroupUtil.doubleEncodeGroupID(groupPublicKey)
     val proto = SignalServiceProtos.KeyPair.newBuilder()
     proto.publicKey = ByteString.copyFrom(newKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
     proto.privateKey = ByteString.copyFrom(newKeyPair.privateKey.serialize())
@@ -255,14 +266,15 @@ fun MessageSender.generateAndSendNewEncryptionKeyPair(groupPublicKey: String, ta
         val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
         ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
     }
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(null, wrappers)
+    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), wrappers)
     val sentTime = System.currentTimeMillis()
     val closedGroupControlMessage = ClosedGroupControlMessage(kind)
     closedGroupControlMessage.sentTimestamp = sentTime
-    sendNonDurably(closedGroupControlMessage, Address.fromSerialized(groupID)).success {
-        // Store it * after * having sent out the message to the group
-        storage.addClosedGroupEncryptionKeyPair(newKeyPair, groupPublicKey)
-        pendingKeyPair[groupPublicKey] = Optional.absent()
+    return if (force) {
+        MessageSender.sendNonDurably(closedGroupControlMessage, Address.fromSerialized(destination))
+    } else {
+        MessageSender.send(closedGroupControlMessage, Address.fromSerialized(destination))
+        null
     }
 }
 
@@ -281,34 +293,4 @@ fun MessageSender.requestEncryptionKeyPair(groupPublicKey: String) {
     val closedGroupControlMessage = ClosedGroupControlMessage(ClosedGroupControlMessage.Kind.EncryptionKeyPairRequest())
     closedGroupControlMessage.sentTimestamp = sentTime
     send(closedGroupControlMessage, Address.fromSerialized(groupID))
-}
-
-fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey: String) {
-    val storage = MessagingConfiguration.shared.storage
-    val groupID = GroupUtil.doubleEncodeGroupID(groupPublicKey)
-    val group = storage.getGroup(groupID) ?: run {
-        Log.d("Loki", "Can't send encryption key pair for nonexistent closed group.")
-        throw Error.NoThread
-    }
-    val members = group.members.map { it.serialize() }
-    if (!members.contains(publicKey)) {
-        Log.d("Loki", "Refusing to send latest encryption key pair to non-member.")
-        return
-    }
-    // Get the latest encryption key pair
-    val encryptionKeyPair = pendingKeyPair[groupPublicKey]?.orNull()
-            ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
-    // Send it
-    val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize())
-    proto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
-    val plaintext = proto.build().toByteArray()
-    val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
-    Log.d("Loki", "Sending latest encryption key pair to: $publicKey.")
-    val wrapper = ClosedGroupControlMessage.KeyPairWrapper(publicKey, ByteString.copyFrom(ciphertext))
-    val kind = ClosedGroupControlMessage.Kind.EncryptionKeyPair(ByteString.copyFrom(Hex.fromStringCondensed(groupPublicKey)), listOf(wrapper))
-    val sentTime = System.currentTimeMillis()
-    val closedGroupControlMessage = ClosedGroupControlMessage(kind)
-    closedGroupControlMessage.sentTimestamp = sentTime
-    MessageSender.send(closedGroupControlMessage, Address.fromSerialized(publicKey))
 }
