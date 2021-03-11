@@ -911,7 +911,9 @@ public class RecipientDatabase extends Database {
         RecipientId recipientId = getByStorageKeyOrThrow(update.getNew().getId().getRaw());
 
         if (StorageSyncHelper.profileKeyChanged(update)) {
-          clearProfileKeyCredential(recipientId);
+          ContentValues clearValues = new ContentValues(1);
+          clearValues.putNull(PROFILE_KEY_CREDENTIAL);
+          update(recipientId, clearValues);
         }
 
         try {
