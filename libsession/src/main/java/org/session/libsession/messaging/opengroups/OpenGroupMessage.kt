@@ -33,8 +33,8 @@ data class OpenGroupMessage(
                 val quote = message.quote
                 if (quote != null && quote.isValid()) {
                     val quotedMessageBody = quote.text ?: quote.timestamp!!.toString()
-                    // FIXME: For some reason the server always returns a 500 if quotedMessageServerID is set...
-                    Quote(quote.timestamp!!, quote.publicKey!!, quotedMessageBody, null)
+                    val serverID = storage.getQuoteServerID(quote.timestamp!!, quote.publicKey!!)
+                    Quote(quote.timestamp!!, quote.publicKey!!, quotedMessageBody, serverID)
                 } else {
                     null
                 }

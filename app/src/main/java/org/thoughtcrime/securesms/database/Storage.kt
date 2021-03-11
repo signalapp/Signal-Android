@@ -330,6 +330,10 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, serverID)
     }
 
+    override fun getQuoteServerID(quoteID: Long, publicKey: String): Long? {
+        return DatabaseFactory.getLokiMessageDatabase(context).getQuoteServerID(quoteID, publicKey)
+    }
+
     override fun markAsSent(timestamp: Long, author: String) {
         val database = DatabaseFactory.getMmsSmsDatabase(context)
         val messageRecord = database.getMessageFor(timestamp, author) ?: return

@@ -59,6 +59,8 @@ interface StorageProtocol {
     fun getThreadID(openGroupID: String): String?
     fun getAllOpenGroups(): Map<Long, PublicChat>
     fun addOpenGroup(server: String, channel: Long)
+    fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
+    fun getQuoteServerID(quoteID: Long, publicKey: String): Long?
 
     // Open Group Public Keys
     fun getOpenGroupPublicKey(server: String): String?
@@ -94,7 +96,6 @@ interface StorageProtocol {
     fun persistAttachments(messageId: Long, attachments: List<Attachment>): List<Long>
 
     fun getMessageIdInDatabase(timestamp: Long, author: String): Long?
-    fun setOpenGroupServerMessageID(messageID: Long, serverID: Long)
     fun markAsSent(timestamp: Long, author: String)
     fun markUnidentified(timestamp: Long, author: String)
     fun setErrorMessage(timestamp: Long, author: String, error: Exception)
