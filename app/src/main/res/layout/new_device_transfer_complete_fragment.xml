@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="32dp"
+        android:paddingTop="@dimen/transfer_top_padding"
+        android:paddingEnd="32dp"
+        android:paddingBottom="@dimen/transfer_top_padding">
+
+        <TextView
+            android:id="@+id/new_device_transfer_complete_fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/NewDeviceTransferComplete__transfer_successful"
+            android:textAppearance="@style/Signal.Text.Headline.Registration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/old_device_trasnfer_complete_fragment_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/transfer_item_spacing"
+            android:gravity="center"
+            android:text="@string/NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintBottom_toTopOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_device_transfer_complete_fragment_title"
+            app:layout_constraintVertical_bias="0" />
+
+        <org.thoughtcrime.securesms.components.SquareImageView
+            android:id="@+id/old_device_trasnfer_complete_fragment_success"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_tintable"
+            android:gravity="center_vertical"
+            android:src="@drawable/ic_check_white_48dp"
+            app:backgroundTint="@color/core_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/transfer_item_spacing"
+            android:text="@string/NewDeviceTransferComplete__transfer_complete"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintBottom_toTopOf="@+id/new_device_transfer_complete_fragment_continue_registration"
+            app:layout_constraintEnd_toEndOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintStart_toStartOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintTop_toBottomOf="@+id/old_device_trasnfer_complete_fragment_success"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/new_device_transfer_complete_fragment_continue_registration"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewDeviceTransferComplete__continue_registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

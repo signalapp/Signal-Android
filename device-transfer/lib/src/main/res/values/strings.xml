@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="DeviceToDeviceTransferService_content_title" type="string" />
+
+    <item name="DeviceToDeviceTransferService_status_ready" type="string" />
+    <item name="DeviceToDeviceTransferService_status_starting_up" type="string" />
+    <item name="DeviceToDeviceTransferService_status_discovery" type="string" />
+    <item name="DeviceToDeviceTransferService_status_network_connected" type="string" />
+    <item name="DeviceToDeviceTransferService_status_verification_required" type="string" />
+    <item name="DeviceToDeviceTransferService_status_service_connected" type="string" />
+</resources>

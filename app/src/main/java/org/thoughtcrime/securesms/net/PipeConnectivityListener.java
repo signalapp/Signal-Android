@@ -68,7 +68,7 @@ public class PipeConnectivityListener implements ConnectivityListener {
 
     if (SignalStore.proxy().isProxyEnabled()) {
       Log.w(TAG, "Encountered an error while we had a proxy set! Terminating the connection to prevent retry spam.");
-      ApplicationDependencies.closeConnectionsAfterProxyFailure();
+      ApplicationDependencies.closeConnections();
       return false;
     } else {
       return true;

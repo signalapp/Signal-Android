@@ -13,4 +13,7 @@
     <dimen name="insights_modal_percent_text_size">20sp</dimen>
     <dimen name="insights_modal_percent_sign_text_size">16sp</dimen>
 
+    <dimen name="transfer_top_padding">16dp</dimen>
+    <dimen name="transfer_split_top_padding">8dp</dimen>
+    <dimen name="transfer_item_spacing">16dp</dimen>
 </resources>

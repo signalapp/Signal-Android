@@ -15,13 +15,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.security.cert.X509Certificate;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
-
-import static org.signal.devicetransfer.DeviceTransferAuthentication.DIGEST_LENGTH;
 
 /**
  * Performs the networking setup/tear down for the client. This includes
@@ -101,11 +98,14 @@ final class NetworkClientThread extends Thread {
           handler.sendEmptyMessage(NETWORK_CLIENT_CONNECTED);
           clientTask.run(context, outputStream);
           outputStream.flush();
-          client.shutdownOutput();
 
           Log.d(TAG, "Waiting for server to tell us they got everything");
-          //noinspection ResultOfMethodCallIgnored
-          inputStream.read();
+          try {
+            //noinspection ResultOfMethodCallIgnored
+            inputStream.read();
+          } catch (IOException e) {
+            Log.w(TAG, "Something happened confirming with server, mostly like bad SSL shutdown state, assuming success", e);
+          }
           success   = true;
           isRunning = false;
         } catch (IOException e) {
@@ -117,6 +117,9 @@ final class NetworkClientThread extends Thread {
         Log.w(TAG, e);
         isRunning = false;
       } finally {
+        if (success) {
+          clientTask.success();
+        }
         StreamUtil.close(client);
         handler.sendEmptyMessage(NETWORK_CLIENT_DISCONNECTED);
       }
@@ -127,9 +130,6 @@ final class NetworkClientThread extends Thread {
     }
 
     Log.i(TAG, "Client exiting");
-    if (success) {
-      clientTask.success();
-    }
     handler.sendEmptyMessage(NETWORK_CLIENT_STOPPED);
   }
 

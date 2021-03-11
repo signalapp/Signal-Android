@@ -37,7 +37,7 @@ public final class SignalProxyUtil {
   public static void startListeningToWebsocket() {
     if (SignalStore.proxy().isProxyEnabled() && ApplicationDependencies.getPipeListener().getState().getValue() == PipeConnectivityListener.State.FAILURE) {
       Log.w(TAG, "Proxy is in a failed state. Restarting.");
-      ApplicationDependencies.closeConnectionsAfterProxyFailure();
+      ApplicationDependencies.closeConnections();
     }
 
     ApplicationDependencies.getIncomingMessageObserver();

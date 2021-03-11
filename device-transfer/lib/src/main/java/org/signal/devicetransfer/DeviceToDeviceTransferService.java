@@ -19,6 +19,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -195,11 +196,39 @@ public class DeviceToDeviceTransferService extends Service implements ShutdownCa
   private @NonNull Notification createNotification(@NonNull TransferStatus transferStatus, @NonNull TransferNotificationData notificationData) {
     NotificationCompat.Builder builder = new NotificationCompat.Builder(this, notificationData.channelId);
 
-    //TODO [cody] build notification to spec
+    String contentText = "";
+    switch (transferStatus.getTransferMode()) {
+      case READY:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_ready);
+        break;
+      case STARTING_UP:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_starting_up);
+        break;
+      case DISCOVERY:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_discovery);
+        break;
+      case NETWORK_CONNECTED:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_network_connected);
+        break;
+      case VERIFICATION_REQUIRED:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_verification_required);
+        break;
+      case SERVICE_CONNECTED:
+        contentText = getString(R.string.DeviceToDeviceTransferService_status_service_connected);
+        break;
+      case UNAVAILABLE:
+      case FAILED:
+      case SERVICE_DISCONNECTED:
+        Log.d(TAG, "Intentionally no notification text for: " + transferStatus.getTransferMode());
+        break;
+      default:
+        throw new AssertionError("No notification text for: " + transferStatus.getTransferMode());
+    }
+
     builder.setSmallIcon(notificationData.icon)
            .setOngoing(true)
-           .setContentTitle("Device Transfer")
-           .setContentText("Status: " + transferStatus.getTransferMode().name())
+           .setContentTitle(getString(R.string.DeviceToDeviceTransferService_content_title))
+           .setContentText(contentText)
            .setContentIntent(pendingIntent);
 
     return builder.build();

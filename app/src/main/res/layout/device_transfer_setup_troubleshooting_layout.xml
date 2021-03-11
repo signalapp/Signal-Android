@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/transfer_item_spacing"
+        android:gravity="center"
+        android:textAppearance="@style/Signal.Text.Headline.Registration"
+        tools:text="@string/DeviceTransferSetup__unable_to_discover_old_device" />
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_step1"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/transfer_item_spacing"
+        android:text="@string/DeviceTransferSetup__make_sure_the_following_permissions_are_enabled"
+        android:textAlignment="viewStart" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_location_permission"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/DeviceTransferSetup__location_permission" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_location_services"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/DeviceTransferSetup__location_services" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_wifi"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="46dp"
+        android:layout_marginBottom="16dp"
+        android:minWidth="0dp"
+        android:text="@string/DeviceTransferSetup__wifi" />
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_step2"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/transfer_item_spacing"
+        android:text="@string/DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_step3"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/transfer_item_spacing"
+        android:text="@string/DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_step4"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode"
+        android:textAlignment="viewStart" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_try_again"
+        style="@style/Signal.Widget.Button.Large.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/DeviceTransferSetup__try_again" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_troubleshooting_go_to_support"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DeviceTransferSetup__go_to_support_page" />
+
+</LinearLayout>

@@ -78,6 +78,7 @@ final class NetworkServerThread extends Thread {
           outputStream.write(0x43);
           outputStream.flush();
           serverTask.run(context, inputStream);
+
           outputStream.write(0x53);
           outputStream.flush();
         } catch (IOException e) {

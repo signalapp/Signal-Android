@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="32dp"
+        android:paddingTop="@dimen/transfer_top_padding"
+        android:paddingEnd="32dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/new_device_transfer_instructions_fragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/NewDeviceTransferInstructions__open_signal_on_your_old_android_phone"
+            android:textAppearance="@style/Signal.Text.Headline.Registration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/new_device_transfer_instructions_fragment_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:alignmentMode="alignBounds"
+            app:columnCount="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_device_transfer_instructions_fragment_title">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/NewDeviceTransferInstructions__first_bullet"
+                android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/transfer_item_spacing"
+                android:text="@string/NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                app:layout_columnWeight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NewDeviceTransferInstructions__second_bullet"
+                android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/transfer_item_spacing"
+                android:text="@string/NewDeviceTransferInstructions__tap_on_chats"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                app:layout_columnWeight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/NewDeviceTransferInstructions__third_bullet"
+                android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/TextAppearance.Signal.Body1"
+                app:layout_columnWeight="1" />
+
+        </androidx.gridlayout.widget.GridLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:importantForAccessibility="no"
+            android:scaleX="@integer/image_scale_flip"
+            app:layout_constraintBottom_toTopOf="@+id/new_device_transfer_instructions_fragment_continue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_device_transfer_instructions_fragment_instructions"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lottie_settings_android"
+            tools:background="@tools:sample/backgrounds/scenic" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/new_device_transfer_instructions_fragment_continue"
+            style="@style/Signal.Widget.Button.Large.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/NewDeviceTransferInstructions__continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     if (event.getTransferMode() == TransferStatus.TransferMode.VERIFICATION_REQUIRED) {
       new AlertDialog.Builder(this).setTitle("Verification Required")
-                                   .setMessage("Code: " + ((TransferStatus.VerificationTransferStatus) event).getAuthenticationCode())
+                                   .setMessage("Code: " + event.getAuthenticationCode())
                                    .setPositiveButton("Yes, Same", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, true))
                                    .setNegativeButton("No, different", (d, w) -> DeviceToDeviceTransferService.setAuthenticationCodeVerified(this, false))
                                    .setCancelable(false)

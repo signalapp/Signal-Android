@@ -11,10 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.devicetransfer.TransferStatus;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.v2.CreateKbsPinActivity;
@@ -45,6 +48,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
   private static final int STATE_ENTER_SIGNAL_PIN    = 5;
   private static final int STATE_CREATE_PROFILE_NAME = 6;
   private static final int STATE_CREATE_SIGNAL_PIN   = 7;
+  private static final int STATE_TRANSFER_ONGOING    = 8;
 
   private SignalServiceNetworkAccess networkAccess;
   private BroadcastReceiver          clearKeyReceiver;
@@ -146,6 +150,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       case STATE_ENTER_SIGNAL_PIN:    return getEnterSignalPinIntent();
       case STATE_CREATE_SIGNAL_PIN:   return getCreateSignalPinIntent();
       case STATE_CREATE_PROFILE_NAME: return getCreateProfileNameIntent();
+      case STATE_TRANSFER_ONGOING:    return getOldDeviceTransferIntent();
       default:                        return null;
     }
   }
@@ -165,6 +170,8 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
       return STATE_CREATE_PROFILE_NAME;
     } else if (userMustCreateSignalPin()) {
       return STATE_CREATE_SIGNAL_PIN;
+    } else if (EventBus.getDefault().getStickyEvent(TransferStatus.class) != null && getClass() != OldDeviceTransferActivity.class) {
+      return STATE_TRANSFER_ONGOING;
     } else {
       return STATE_NORMAL;
     }
@@ -217,6 +224,12 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private Intent getCreateProfileNameIntent() {
     return getRoutedIntent(EditProfileActivity.class, getIntent());
+  }
+
+  private Intent getOldDeviceTransferIntent() {
+    Intent intent = new Intent(this, OldDeviceTransferActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    return intent;
   }
 
   private Intent getRoutedIntent(Class<?> destination, @Nullable Intent nextIntent) {

@@ -37,7 +37,7 @@
         android:layout_marginBottom="24dp"
         android:text="@string/RegistrationActivity_terms_and_privacy"
         android:gravity="center"
-        android:textColor="@color/core_ultramarine"
+        android:textColor="@color/core_grey_60"
         app:layout_constraintBottom_toTopOf="@+id/welcome_continue_button"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
@@ -51,27 +51,22 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="17dp"
         app:cpb_textIdle="@string/RegistrationActivity_continue"
-        app:layout_constraintBottom_toTopOf="@id/welcome_restore_backup"
+        app:layout_constraintBottom_toTopOf="@id/welcome_transfer_or_restore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_goneMarginBottom="@dimen/registration_button_bottom_margin" />
 
-    <TextView
-        android:id="@+id/welcome_restore_backup"
-        style="@style/Signal.Text.Body.Registration"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/welcome_transfer_or_restore"
+        style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
-        android:gravity="center"
-        android:text="@string/registration_activity__restore_backup"
-        android:textColor="?attr/colorAccent"
-        android:textStyle="bold"
-        android:visibility="gone"
+        android:text="@string/registration_activity__transfer_or_restore_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
-        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,6 +155,8 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages.properties'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages_de.properties'
     }
 
     buildTypes {
@@ -355,6 +357,7 @@ dependencies {
     implementation project(':paging')
     implementation project(':core-util')
     implementation project(':video')
+    implementation project(':device-transfer')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
     implementation 'org.whispersystems:signal-client-android:0.1.7'

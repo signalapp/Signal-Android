@@ -1,6 +1,7 @@
 package org.signal.devicetransfer;
 
 import android.content.Context;
+import android.net.NetworkInfo;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pInfo;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.os.HandlerThread;
 import android.os.Message;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -16,6 +18,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Encapsulates the logic to find and establish a WiFi Direct connection with another
@@ -39,15 +42,16 @@ final class DeviceTransferClient implements Handler.Callback {
 
   private static final String TAG = Log.tag(DeviceTransferClient.class);
 
-  private static final int START_CLIENT         = 0;
-  private static final int STOP_CLIENT          = 1;
-  private static final int START_NETWORK_CLIENT = 2;
-  private static final int NETWORK_DISCONNECTED = 3;
-  private static final int CONNECT_TO_SERVICE   = 4;
-  private static final int RESTART_CLIENT       = 5;
-  private static final int START_IP_EXCHANGE    = 6;
-  private static final int IP_EXCHANGE_SUCCESS  = 7;
-  private static final int SET_VERIFIED         = 8;
+  private static final int START_CLIENT               = 0;
+  private static final int STOP_CLIENT                = 1;
+  private static final int START_NETWORK_CLIENT       = 2;
+  private static final int NETWORK_DISCONNECTED       = 3;
+  private static final int CONNECT_TO_SERVICE         = 4;
+  private static final int RESTART_CLIENT             = 5;
+  private static final int START_IP_EXCHANGE          = 6;
+  private static final int IP_EXCHANGE_SUCCESS        = 7;
+  private static final int SET_VERIFIED               = 8;
+  private static final int NETWORK_CONNECTION_CHANGED = 9;
 
   private final Context                     context;
   private       int                         remotePort;
@@ -59,6 +63,9 @@ final class DeviceTransferClient implements Handler.Callback {
   private       NetworkClientThread         clientThread;
   private final Runnable                    autoRestart;
   private       IpExchange.IpExchangeThread ipExchangeThread;
+
+  private final AtomicBoolean started = new AtomicBoolean(false);
+  private final AtomicBoolean stopped = new AtomicBoolean(false);
 
   private static void update(@NonNull TransferStatus transferStatus) {
     Log.d(TAG, "transferStatus: " + transferStatus.getTransferMode().name());
@@ -81,31 +88,31 @@ final class DeviceTransferClient implements Handler.Callback {
     };
   }
 
-  @AnyThread
-  public synchronized void start() {
-    if (commandAndControlThread != null) {
+  @MainThread
+  public void start() {
+    if (started.compareAndSet(false, true)) {
       update(TransferStatus.ready());
       handler.sendEmptyMessage(START_CLIENT);
     }
   }
 
-  @AnyThread
-  public synchronized void stop() {
-    if (commandAndControlThread != null) {
+  @MainThread
+  public void stop() {
+    if (stopped.compareAndSet(false, true)) {
       handler.sendEmptyMessage(STOP_CLIENT);
     }
   }
 
-  @AnyThread
-  public synchronized void setVerified(boolean isVerified) {
-    if (commandAndControlThread != null) {
+  @MainThread
+  public void setVerified(boolean isVerified) {
+    if (!stopped.get()) {
       handler.sendMessage(handler.obtainMessage(SET_VERIFIED, isVerified));
     }
   }
 
-  private synchronized void shutdown() {
+  private void shutdown() {
     stopIpExchange();
-    stopClient();
+    stopNetworkClient();
     stopWifiDirect();
 
     if (commandAndControlThread != null) {
@@ -115,7 +122,7 @@ final class DeviceTransferClient implements Handler.Callback {
       commandAndControlThread = null;
     }
 
-    update(TransferStatus.shutdown());
+    EventBus.getDefault().removeStickyEvent(TransferStatus.class);
   }
 
   private void internalShutdown() {
@@ -136,17 +143,17 @@ final class DeviceTransferClient implements Handler.Callback {
         shutdown();
         break;
       case START_NETWORK_CLIENT:
-        startClient((String) message.obj);
+        startNetworkClient((String) message.obj);
         break;
       case NETWORK_DISCONNECTED:
-        stopClient();
+        stopNetworkClient();
         break;
       case CONNECT_TO_SERVICE:
         stopServiceDiscovery();
         connectToService((String) message.obj, message.arg1);
         break;
       case RESTART_CLIENT:
-        stopClient();
+        stopNetworkClient();
         stopWifiDirect();
         startWifiDirect();
         break;
@@ -160,6 +167,9 @@ final class DeviceTransferClient implements Handler.Callback {
         if (clientThread != null) {
           clientThread.setVerified((Boolean) message.obj);
         }
+        break;
+      case NETWORK_CONNECTION_CHANGED:
+        requestNetworkInfo((Boolean) message.obj);
         break;
       case NetworkClientThread.NETWORK_CLIENT_SSL_ESTABLISHED:
         update(TransferStatus.verificationRequired((Integer) message.obj));
@@ -231,7 +241,7 @@ final class DeviceTransferClient implements Handler.Callback {
     }
   }
 
-  private void startClient(@NonNull String serverHostAddress) {
+  private void startNetworkClient(@NonNull String serverHostAddress) {
     if (clientThread != null) {
       Log.i(TAG, "Client already running");
       return;
@@ -246,14 +256,14 @@ final class DeviceTransferClient implements Handler.Callback {
     clientThread.start();
   }
 
-  private void stopClient() {
+  private void stopNetworkClient() {
     if (clientThread != null) {
       Log.i(TAG, "Shutting down ClientThread");
       clientThread.shutdown();
       try {
         clientThread.join(TimeUnit.SECONDS.toMillis(1));
       } catch (InterruptedException e) {
-        Log.i(TAG, "Server thread took too long to shutdown", e);
+        Log.i(TAG, "Client thread took too long to shutdown", e);
       }
       clientThread = null;
     }
@@ -262,6 +272,11 @@ final class DeviceTransferClient implements Handler.Callback {
   private void connectToService(@NonNull String deviceAddress, int port) {
     if (wifiDirect == null) {
       Log.w(TAG, "WifiDirect is not initialized, we shouldn't be here.");
+      return;
+    }
+
+    if (clientThread != null) {
+      Log.i(TAG, "Client is running we shouldn't be connecting again");
       return;
     }
 
@@ -288,6 +303,26 @@ final class DeviceTransferClient implements Handler.Callback {
     handler.sendMessage(handler.obtainMessage(RESTART_CLIENT));
   }
 
+  private void requestNetworkInfo(boolean isNetworkConnected) {
+    if (wifiDirect == null) {
+      return;
+    }
+
+    if (isNetworkConnected) {
+      Log.i(TAG, "Network connected, requesting network info");
+      try {
+        wifiDirect.requestNetworkInfo();
+      } catch (WifiDirectUnavailableException e) {
+        Log.e(TAG, e);
+        internalShutdown();
+        update(TransferStatus.failed());
+      }
+    } else {
+      Log.i(TAG, "Network disconnected");
+      handler.sendEmptyMessage(NETWORK_DISCONNECTED);
+    }
+  }
+
   private void startIpExchange(@NonNull String groupOwnerHostAddress) {
     ipExchangeThread = IpExchange.getIp(groupOwnerHostAddress, remotePort, handler, IP_EXCHANGE_SUCCESS);
   }
@@ -309,7 +344,7 @@ final class DeviceTransferClient implements Handler.Callback {
     handler.sendMessage(handler.obtainMessage(START_NETWORK_CLIENT, host));
   }
 
-  public class WifiDirectListener implements WifiDirect.WifiDirectConnectionListener {
+  final class WifiDirectListener implements WifiDirect.WifiDirectConnectionListener {
 
     @Override
     public void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice, @NonNull String extraInfo) {
@@ -326,16 +361,14 @@ final class DeviceTransferClient implements Handler.Callback {
     }
 
     @Override
-    public void onNetworkDisconnected() {
-      handler.sendEmptyMessage(NETWORK_DISCONNECTED);
-    }
-
-    @Override
     public void onNetworkFailure() {
       handler.sendEmptyMessage(NETWORK_DISCONNECTED);
     }
 
     @Override
-    public void onLocalDeviceChanged(@NonNull WifiP2pDevice localDevice) { }
+    public void onConnectionChanged(@NonNull NetworkInfo networkInfo) {
+      handler.sendMessage(handler.obtainMessage(NETWORK_CONNECTION_CHANGED, networkInfo.isConnected()));
+    }
+
   }
 }

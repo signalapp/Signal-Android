@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.preferences;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.preference.ListPreference;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
@@ -31,6 +33,11 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
     findPreference(TextSecurePreferences.BACKUP).setOnPreferenceClickListener(unused -> {
       goToBackupsPreferenceFragment();
+      return true;
+    });
+
+    findPreference(TextSecurePreferences.TRANSFER).setOnPreferenceClickListener(unused -> {
+      goToTransferAccount();
       return true;
     });
 
@@ -69,6 +76,10 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
 
   private void goToBackupsPreferenceFragment() {
     ((ApplicationPreferencesActivity) requireActivity()).pushFragment(new BackupsPreferenceFragment());
+  }
+
+  private void goToTransferAccount() {
+    requireContext().startActivity(new Intent(requireContext(), OldDeviceTransferActivity.class));
   }
 
   public static CharSequence getSummary(Context context) {

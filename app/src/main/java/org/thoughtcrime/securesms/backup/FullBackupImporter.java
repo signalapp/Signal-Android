@@ -66,9 +66,18 @@ public class FullBackupImporter extends FullBackupBase {
                                 @NonNull SQLiteDatabase db, @NonNull Uri uri, @NonNull String passphrase)
       throws IOException
   {
+    try (InputStream is = getInputStream(context, uri)) {
+      importFile(context, attachmentSecret, db, is, passphrase);
+    }
+  }
+
+  public static void importFile(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret,
+                                @NonNull SQLiteDatabase db, @NonNull InputStream is, @NonNull String passphrase)
+      throws IOException
+  {
     int count = 0;
 
-    try (InputStream is = getInputStream(context, uri)) {
+    try {
       BackupRecordInputStream inputStream = new BackupRecordInputStream(is, passphrase);
 
       db.beginTransaction();

@@ -15,6 +15,12 @@ public abstract class LoggingFragment extends Fragment {
 
   private static final String TAG = Log.tag(LoggingFragment.class);
 
+  public LoggingFragment() { }
+
+  public LoggingFragment(int contentLayoutId) {
+    super(contentLayoutId);
+  }
+
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     logEvent("onCreate()");

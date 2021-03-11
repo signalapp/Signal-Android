@@ -26,8 +26,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.JobDatabase;
-import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -85,7 +83,7 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = new FileOutputStream(output)) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase);
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true);
     }
   }
 
@@ -98,15 +96,26 @@ public class FullBackupExporter extends FullBackupBase {
       throws IOException
   {
     try (OutputStream outputStream = Objects.requireNonNull(context.getContentResolver().openOutputStream(output.getUri()))) {
-      internalExport(context, attachmentSecret, input, outputStream, passphrase);
+      internalExport(context, attachmentSecret, input, outputStream, passphrase, true);
     }
+  }
+
+  public static void transfer(@NonNull Context context,
+                              @NonNull AttachmentSecret attachmentSecret,
+                              @NonNull SQLiteDatabase input,
+                              @NonNull OutputStream outputStream,
+                              @NonNull String passphrase)
+      throws IOException
+  {
+    internalExport(context, attachmentSecret, input, outputStream, passphrase, false);
   }
 
   private static void internalExport(@NonNull Context context,
                                      @NonNull AttachmentSecret attachmentSecret,
                                      @NonNull SQLiteDatabase input,
                                      @NonNull OutputStream fileOutputStream,
-                                     @NonNull String passphrase)
+                                     @NonNull String passphrase,
+                                     boolean closeOutputStream)
       throws IOException
   {
     BackupFrameOutputStream outputStream = new BackupFrameOutputStream(fileOutputStream, passphrase);
@@ -155,7 +164,9 @@ public class FullBackupExporter extends FullBackupBase {
 
       outputStream.writeEnd();
     } finally {
-      outputStream.close();
+      if (closeOutputStream) {
+        outputStream.close();
+      }
       EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.FINISHED, ++count));
     }
   }

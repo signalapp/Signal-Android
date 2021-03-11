@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingTop="64dp"
+    android:paddingEnd="32dp"
+    android:paddingBottom="64dp">
+
+    <TextView
+        android:id="@+id/old_device_transfer_complete_fragment_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/OldDeviceTransferComplete__go_to_your_new_device"
+        android:textAppearance="@style/Signal.Text.Headline.Registration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/old_device_trasnfer_complete_fragment_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/transfer_item_spacing"
+        android:gravity="center"
+        android:text="@string/OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_title" />
+
+    <org.thoughtcrime.securesms.components.SquareImageView
+        android:id="@+id/old_device_trasnfer_complete_fragment_success"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:background="@drawable/circle_tintable"
+        android:gravity="center_vertical"
+        android:src="@drawable/ic_check_white_48dp"
+        app:backgroundTint="@color/core_green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/transfer_item_spacing"
+        android:text="@string/OldDeviceTransferComplete__transfer_complete"
+        android:textAppearance="@style/TextAppearance.Signal.Body1"
+        app:layout_constraintEnd_toEndOf="@+id/old_device_trasnfer_complete_fragment_success"
+        app:layout_constraintStart_toStartOf="@+id/old_device_trasnfer_complete_fragment_success"
+        app:layout_constraintTop_toBottomOf="@+id/old_device_trasnfer_complete_fragment_success" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/old_device_transfer_complete_fragment_close"
+        style="@style/Signal.Widget.Button.Large.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/OldDeviceTransferComplete__close"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

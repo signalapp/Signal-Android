@@ -42,17 +42,12 @@ public class ChooseBackupFragment extends BaseRegistrationFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    if (BackupUtil.isUserSelectionRequired(requireContext())) {
-      chooseBackupButton = view.findViewById(R.id.choose_backup_fragment_button);
-      chooseBackupButton.setOnClickListener(this::onChooseBackupSelected);
+    chooseBackupButton = view.findViewById(R.id.choose_backup_fragment_button);
+    chooseBackupButton.setOnClickListener(this::onChooseBackupSelected);
 
-      learnMore = view.findViewById(R.id.choose_backup_fragment_learn_more);
-      learnMore.setText(HtmlCompat.fromHtml(String.format("<a href=\"%s\">%s</a>", getString(R.string.backup_support_url), getString(R.string.ChooseBackupFragment__learn_more)), 0));
-      learnMore.setMovementMethod(LinkMovementMethod.getInstance());
-    } else {
-      Log.i(TAG, "User Selection is not required. Skipping.");
-      Navigation.findNavController(requireView()).navigate(ChooseBackupFragmentDirections.actionSkip());
-    }
+    learnMore = view.findViewById(R.id.choose_backup_fragment_learn_more);
+    learnMore.setText(HtmlCompat.fromHtml(String.format("<a href=\"%s\">%s</a>", getString(R.string.backup_support_url), getString(R.string.ChooseBackupFragment__learn_more)), 0));
+    learnMore.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
   @Override

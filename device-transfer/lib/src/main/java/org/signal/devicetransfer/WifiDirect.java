@@ -46,16 +46,16 @@ public final class WifiDirect {
   private static final String TAG = Log.tag(WifiDirect.class);
 
   private static final IntentFilter intentFilter = new IntentFilter() {{
-    addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-    addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
     addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-    addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
   }};
 
   private static final String  EXTRA_INFO_PLACEHOLDER    = "%%EXTRA_INFO%%";
   private static final String  SERVICE_INSTANCE_TEMPLATE = "_devicetransfer" + EXTRA_INFO_PLACEHOLDER + "._signal.org";
   private static final Pattern SERVICE_INSTANCE_PATTERN  = Pattern.compile("_devicetransfer(\\._(.+))?\\._signal\\.org");
   private static final String  SERVICE_REG_TYPE          = "_presence._tcp";
+
+  private static final long SAFE_FOR_LONG_AWAIT_TIMEOUT     = TimeUnit.SECONDS.toMillis(5);
+  private static final long NOT_SAFE_FOR_LONG_AWAIT_TIMEOUT = 50;
 
   private final Context                      context;
   private       WifiDirectConnectionListener connectionListener;
@@ -115,7 +115,7 @@ public final class WifiDirect {
       throw new WifiDirectUnavailableException(Reason.WIFI_P2P_MANAGER);
     }
 
-    wifiDirectCallbacks = new WifiDirectCallbacks();
+    wifiDirectCallbacks = new WifiDirectCallbacks(connectionListener);
     channel             = manager.initialize(context, wifiDirectCallbacksHandler.getLooper(), wifiDirectCallbacks);
     if (channel == null) {
       Log.i(TAG, "Unable to initialize channel");
@@ -139,18 +139,23 @@ public final class WifiDirect {
     connectionListener = null;
 
     if (manager != null) {
-      retry(manager::clearServiceRequests, "clear service requests");
-      retry(manager::stopPeerDiscovery, "stop peer discovery");
-      retry(manager::clearLocalServices, "clear local services");
+      retrySync(manager::clearServiceRequests, "clear service requests", SAFE_FOR_LONG_AWAIT_TIMEOUT);
+      retrySync(manager::stopPeerDiscovery, "stop peer discovery", SAFE_FOR_LONG_AWAIT_TIMEOUT);
+      retrySync(manager::clearLocalServices, "clear local services", SAFE_FOR_LONG_AWAIT_TIMEOUT);
+      if (Build.VERSION.SDK_INT < 27) {
+        retrySync(manager::removeGroup, "remove group", SAFE_FOR_LONG_AWAIT_TIMEOUT);
+        channel = null;
+      }
       manager = null;
     }
 
-    if (channel != null) {
+    if (channel != null && Build.VERSION.SDK_INT >= 27) {
       channel.close();
       channel = null;
     }
 
     if (wifiDirectCallbacks != null) {
+      wifiDirectCallbacks.clearConnectionListener();
       context.unregisterReceiver(wifiDirectCallbacks);
       wifiDirectCallbacks = null;
     }
@@ -173,10 +178,10 @@ public final class WifiDirect {
 
     WifiP2pDnsSdServiceInfo serviceInfo = WifiP2pDnsSdServiceInfo.newInstance(buildServiceInstanceName(extraInfo), SERVICE_REG_TYPE, Collections.emptyMap());
 
-    SyncActionListener addLocalServiceListener = new SyncActionListener("add local service");
+    SyncActionListener addLocalServiceListener = new SyncActionListener("add local service", SAFE_FOR_LONG_AWAIT_TIMEOUT);
     manager.addLocalService(channel, serviceInfo, addLocalServiceListener);
 
-    SyncActionListener discoverPeersListener = new SyncActionListener("discover peers");
+    SyncActionListener discoverPeersListener = new SyncActionListener("discover peers", SAFE_FOR_LONG_AWAIT_TIMEOUT);
     manager.discoverPeers(channel, discoverPeersListener);
 
     if (!addLocalServiceListener.successful() || !discoverPeersListener.successful()) {
@@ -190,8 +195,8 @@ public final class WifiDirect {
   synchronized void stopDiscoveryService() throws WifiDirectUnavailableException {
     ensureInitialized();
 
-    retry(manager::stopPeerDiscovery, "stop peer discovery");
-    retry(manager::clearLocalServices, "clear local services");
+    retryAsync(manager::stopPeerDiscovery, "stop peer discovery");
+    retryAsync(manager::clearLocalServices, "clear local services");
   }
 
   /**
@@ -214,8 +219,9 @@ public final class WifiDirect {
       String extraInfo = isInstanceNameMatching(instanceName);
       if (extraInfo != null) {
         Log.d(TAG, "Service found!");
-        if (connectionListener != null) {
-          connectionListener.onServiceDiscovered(sourceDevice, extraInfo);
+        WifiDirectConnectionListener listener = connectionListener;
+        if (listener != null) {
+          listener.onServiceDiscovered(sourceDevice, extraInfo);
         }
       } else {
         Log.d(TAG, "Found unusable service, ignoring.");
@@ -226,10 +232,10 @@ public final class WifiDirect {
 
     serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
 
-    SyncActionListener addServiceListener = new SyncActionListener("add service request");
+    SyncActionListener addServiceListener = new SyncActionListener("add service request", SAFE_FOR_LONG_AWAIT_TIMEOUT);
     manager.addServiceRequest(channel, serviceRequest, addServiceListener);
 
-    SyncActionListener startDiscovery = new SyncActionListener("discover services");
+    SyncActionListener startDiscovery = new SyncActionListener("discover services", SAFE_FOR_LONG_AWAIT_TIMEOUT);
     manager.discoverServices(channel, startDiscovery);
 
     if (!addServiceListener.successful() || !startDiscovery.successful()) {
@@ -245,7 +251,7 @@ public final class WifiDirect {
   synchronized void stopServiceDiscovery() throws WifiDirectUnavailableException {
     ensureInitialized();
 
-    retry(manager::clearServiceRequests, "clear service requests");
+    retryAsync(manager::clearServiceRequests, "clear service requests");
   }
 
   /**
@@ -268,7 +274,7 @@ public final class WifiDirect {
       serviceRequest = null;
     }
 
-    SyncActionListener listener = new SyncActionListener("service connect");
+    SyncActionListener listener = new SyncActionListener("service connect", SAFE_FOR_LONG_AWAIT_TIMEOUT);
     manager.connect(channel, config, listener);
 
     if (listener.successful()) {
@@ -278,17 +284,37 @@ public final class WifiDirect {
     }
   }
 
-  private synchronized void retry(@NonNull ManagerRetry retryFunction, @NonNull String message) {
+  public synchronized void requestNetworkInfo() throws WifiDirectUnavailableException {
+    ensureInitialized();
+
+    manager.requestConnectionInfo(channel, info -> {
+      Log.i(TAG, "Connection information available. group_formed: " + info.groupFormed + " group_owner: " + info.isGroupOwner);
+      WifiDirectConnectionListener listener = connectionListener;
+      if (listener != null) {
+        listener.onNetworkConnected(info);
+      }
+    });
+  }
+
+  private synchronized void retrySync(@NonNull ManagerRetry retryFunction, @NonNull String message, long awaitTimeout) {
     int tries = 3;
 
     while ((tries--) > 0) {
-      SyncActionListener listener = new SyncActionListener(message);
+      if (isNotInitialized()) {
+        return;
+      }
+
+      SyncActionListener listener = new SyncActionListener(message, awaitTimeout);
       retryFunction.call(channel, listener);
-      if (listener.successful()) {
+      if (listener.successful() || listener.failureReason == SyncActionListener.FAILURE_TIMEOUT) {
         return;
       }
       ThreadUtil.sleep(TimeUnit.SECONDS.toMillis(1));
     }
+  }
+
+  private void retryAsync(@NonNull ManagerRetry retryFunction, @NonNull String message) {
+    SignalExecutors.BOUNDED.execute(() -> retrySync(retryFunction, message, WifiDirect.NOT_SAFE_FOR_LONG_AWAIT_TIMEOUT));
   }
 
   private synchronized boolean isInitialized() {
@@ -328,57 +354,41 @@ public final class WifiDirect {
     void call(@NonNull WifiP2pManager.Channel a, @NonNull WifiP2pManager.ActionListener b);
   }
 
-  private class WifiDirectCallbacks extends BroadcastReceiver implements WifiP2pManager.ChannelListener, WifiP2pManager.ConnectionInfoListener {
+  private static class WifiDirectCallbacks extends BroadcastReceiver implements WifiP2pManager.ChannelListener {
+    private WifiDirectConnectionListener connectionListener;
+
+    public WifiDirectCallbacks(@NonNull WifiDirectConnectionListener connectionListener) {
+      this.connectionListener = connectionListener;
+    }
+
+    public void clearConnectionListener() {
+      connectionListener = null;
+    }
+
     @Override
     public void onReceive(@NonNull Context context, @NonNull Intent intent) {
       String action = intent.getAction();
       if (action != null) {
-        switch (action) {
-          case WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION:
-            WifiP2pDevice localDevice = intent.getParcelableExtra(WifiP2pManager.EXTRA_WIFI_P2P_DEVICE);
-            if (localDevice != null && connectionListener != null) {
-              connectionListener.onLocalDeviceChanged(localDevice);
-            }
-            break;
-          case WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION:
-            if (isNotInitialized()) {
-              Log.w(TAG, "WiFi P2P broadcast connection changed action without being initialized.");
-              return;
-            }
+        if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
+          WifiDirectConnectionListener listener    = connectionListener;
+          NetworkInfo                  networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
+          if (networkInfo == null) {
+            Log.w(TAG, "WiFi P2P broadcast connection changed action with null network info.");
+            return;
+          }
 
-            NetworkInfo networkInfo = intent.getParcelableExtra(WifiP2pManager.EXTRA_NETWORK_INFO);
-
-            if (networkInfo == null) {
-              Log.w(TAG, "WiFi P2P broadcast connection changed action with null network info.");
-              return;
-            }
-
-            if (networkInfo.isConnected()) {
-              Log.i(TAG, "Connected to P2P network, requesting connection information.");
-              manager.requestConnectionInfo(channel, this);
-            } else {
-              Log.i(TAG, "Disconnected from P2P network");
-              if (connectionListener != null) {
-                connectionListener.onNetworkDisconnected();
-              }
-            }
-            break;
+          if (listener != null) {
+            listener.onConnectionChanged(networkInfo);
+          }
         }
       }
     }
 
     @Override
-    public void onConnectionInfoAvailable(@NonNull WifiP2pInfo info) {
-      Log.i(TAG, "Connection information available. group_formed: " + info.groupFormed + " group_owner: " + info.isGroupOwner);
-      if (connectionListener != null) {
-        connectionListener.onNetworkConnected(info);
-      }
-    }
-
-    @Override
     public void onChannelDisconnected() {
-      if (connectionListener != null) {
-        connectionListener.onNetworkFailure();
+      WifiDirectConnectionListener listener = connectionListener;
+      if (listener != null) {
+        listener.onNetworkFailure();
       }
     }
   }
@@ -388,13 +398,16 @@ public final class WifiDirect {
    */
   private static class SyncActionListener extends LoggingActionListener {
 
-    private final CountDownLatch sync;
+    private static final int FAILURE_TIMEOUT = -2;
 
-    private volatile int failureReason = -1;
+    private final    CountDownLatch sync;
+    private final    long           awaitTimeout;
+    private volatile int            failureReason = -1;
 
-    public SyncActionListener(@NonNull String message) {
+    public SyncActionListener(@NonNull String message, long awaitTimeout) {
       super(message);
-      this.sync = new CountDownLatch(1);
+      this.awaitTimeout = awaitTimeout;
+      this.sync         = new CountDownLatch(1);
     }
 
     @Override
@@ -412,9 +425,14 @@ public final class WifiDirect {
 
     public boolean successful() {
       try {
-        sync.await();
+        boolean completed = sync.await(awaitTimeout, TimeUnit.MILLISECONDS);
+        if (!completed) {
+          Log.i(TAG, "SyncListener [" + message + "] timed out after " + awaitTimeout + "ms");
+          failureReason = FAILURE_TIMEOUT;
+          return false;
+        }
       } catch (InterruptedException ie) {
-        throw new AssertionError(ie);
+        Log.i(TAG, "SyncListener [" + message + "] interrupted");
       }
       return failureReason < 0;
     }
@@ -422,7 +440,7 @@ public final class WifiDirect {
 
   private static class LoggingActionListener implements WifiP2pManager.ActionListener {
 
-    private final String message;
+    protected final String message;
 
     public static @NonNull LoggingActionListener message(@Nullable String message) {
       return new LoggingActionListener(message);
@@ -452,14 +470,13 @@ public final class WifiDirect {
   }
 
   public interface WifiDirectConnectionListener {
-    void onLocalDeviceChanged(@NonNull WifiP2pDevice localDevice);
 
     void onServiceDiscovered(@NonNull WifiP2pDevice serviceDevice, @NonNull String extraInfo);
 
     void onNetworkConnected(@NonNull WifiP2pInfo info);
 
-    void onNetworkDisconnected();
-
     void onNetworkFailure();
+
+    void onConnectionChanged(@NonNull NetworkInfo networkInfo);
   }
 }

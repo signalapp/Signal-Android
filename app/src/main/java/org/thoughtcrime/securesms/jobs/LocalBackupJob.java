@@ -37,7 +37,7 @@ public final class LocalBackupJob extends BaseJob {
 
   private static final String TAG = Log.tag(LocalBackupJob.class);
 
-  private static final String QUEUE = "__LOCAL_BACKUP__";
+  public static final String QUEUE = "__LOCAL_BACKUP__";
 
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";

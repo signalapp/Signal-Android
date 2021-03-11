@@ -377,6 +377,16 @@
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
 
+        <activity android:name=".devicetransfer.olddevice.OldDeviceTransferActivity"
+            android:theme="@style/TextSecure.LightRegistrationTheme"
+            android:launchMode="singleTask"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+        <activity android:name=".devicetransfer.olddevice.OldDeviceExitActivity"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <activity android:name=".registration.RegistrationNavigationActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.LightRegistrationTheme"

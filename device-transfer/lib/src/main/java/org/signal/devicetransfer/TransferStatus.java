@@ -63,10 +63,6 @@ public class TransferStatus {
     return new TransferStatus(TransferMode.FAILED);
   }
 
-  public static @NonNull TransferStatus shutdown() {
-    return new TransferStatus(TransferMode.SHUTDOWN);
-  }
-
   public enum TransferMode {
     UNAVAILABLE,
     FAILED,
@@ -76,7 +72,6 @@ public class TransferStatus {
     NETWORK_CONNECTED,
     VERIFICATION_REQUIRED,
     SERVICE_CONNECTED,
-    SERVICE_DISCONNECTED,
-    SHUTDOWN,
+    SERVICE_DISCONNECTED
   }
 }
