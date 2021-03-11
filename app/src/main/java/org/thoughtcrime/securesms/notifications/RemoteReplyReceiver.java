@@ -27,6 +27,7 @@ import androidx.core.app.RemoteInput;
 
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.threads.Address;
@@ -72,6 +73,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
           Recipient recipient = Recipient.from(context, address, false);
           long threadId = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
           VisibleMessage message = new VisibleMessage();
+          message.setSentTimestamp(System.currentTimeMillis());
           message.setText(responseText.toString());
 
           switch (replyMethod) {
@@ -79,6 +81,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
               OutgoingMediaMessage reply = OutgoingMediaMessage.from(message, recipient, Collections.emptyList(), null, null);
               try {
                 DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(reply, threadId, false, null);
+                MessageSender.send(message, address);
               } catch (MmsException e) {
                 Log.w(TAG, e);
               }
@@ -87,6 +90,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             case SecureMessage: {
               OutgoingTextMessage reply = OutgoingTextMessage.from(message, recipient);
               DatabaseFactory.getSmsDatabase(context).insertMessageOutbox(threadId, reply, false, System.currentTimeMillis(), null);
+              MessageSender.send(message, address);
               break;
             }
             default:
