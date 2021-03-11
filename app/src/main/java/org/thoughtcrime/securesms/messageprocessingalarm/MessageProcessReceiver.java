@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Locale;
 
 /**
  * On received message, runs a job to poll for messages.
@@ -28,10 +28,6 @@ import java.util.concurrent.TimeUnit;
 public final class MessageProcessReceiver extends BroadcastReceiver {
 
   private static final String TAG = Log.tag(MessageProcessReceiver.class);
-
-  private static final long FIRST_RUN_DELAY  = TimeUnit.MINUTES.toMillis(3);
-  private static final long FOREGROUND_DELAY = 300;
-  private static final long JOB_TIMEOUT      = FOREGROUND_DELAY + 200;
 
   public static final String BROADCAST_ACTION = "org.thoughtcrime.securesms.action.PROCESS_MESSAGES";
 
@@ -44,15 +40,26 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
       Log.i(TAG, "Starting Alarm because of boot receiver");
       startOrUpdateAlarm(context);
     } else if (BROADCAST_ACTION.equals(intent.getAction())) {
+
+      if (ApplicationDependencies.getAppForegroundObserver().isForegrounded()) {
+        Log.i(TAG, "App is foregrounded");
+        return;
+      }
+
+      long foregroundDelayMs = FeatureFlags.getBackgroundMessageProcessForegroundDelay();
+      long jobTimeout        = foregroundDelayMs + 200;
+
+      Log.i(TAG, String.format(Locale.US, "Starting PushNotificationReceiveJob asynchronously with %d delay before foreground shown", foregroundDelayMs));
+
       PendingResult pendingResult = goAsync();
 
-      new Handler(Looper.getMainLooper()).postDelayed(pendingResult::finish, JOB_TIMEOUT);
+      new Handler(Looper.getMainLooper()).postDelayed(pendingResult::finish, jobTimeout);
 
       SignalExecutors.BOUNDED.submit(() -> {
         Log.i(TAG, "Running PushNotificationReceiveJob");
 
         Optional<JobTracker.JobState> jobState = ApplicationDependencies.getJobManager()
-                                                                        .runSynchronously(PushNotificationReceiveJob.withDelayedForegroundService(FOREGROUND_DELAY), JOB_TIMEOUT);
+                                                                        .runSynchronously(PushNotificationReceiveJob.withDelayedForegroundService(foregroundDelayMs), jobTimeout);
 
         Log.i(TAG, "PushNotificationReceiveJob ended: " + (jobState.isPresent() ? jobState.get().toString() : "Job did not complete"));
       });
@@ -67,14 +74,14 @@ public final class MessageProcessReceiver extends BroadcastReceiver {
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 123, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-    long interval = FeatureFlags.getBackgroundMessageProcessDelay();
+    long interval = FeatureFlags.getBackgroundMessageProcessInterval();
 
     if (interval < 0) {
       alarmManager.cancel(pendingIntent);
       Log.i(TAG, "Alarm cancelled");
     } else {
       alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                                SystemClock.elapsedRealtime() + FIRST_RUN_DELAY,
+                                SystemClock.elapsedRealtime() + interval,
                                 interval,
                                 pendingIntent);
       Log.i(TAG, "Alarm scheduled to repeat at interval " + interval);

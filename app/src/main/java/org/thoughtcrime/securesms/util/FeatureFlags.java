@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util;
 
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.TimeUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
@@ -75,6 +74,7 @@ public final class FeatureFlags {
   private static final String ANIMATED_STICKER_MIN_MEMORY       = "android.animatedStickerMinMemory";
   private static final String ANIMATED_STICKER_MIN_TOTAL_MEMORY = "android.animatedStickerMinTotalMemory";
   private static final String MESSAGE_PROCESSOR_ALARM_INTERVAL  = "android.messageProcessor.alarmIntervalMins";
+  private static final String MESSAGE_PROCESSOR_DELAY           = "android.messageProcessor.foregroundDelayMs";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -104,7 +104,8 @@ public final class FeatureFlags {
       SHARE_SELECTION_LIMIT,
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
-      MESSAGE_PROCESSOR_ALARM_INTERVAL
+      MESSAGE_PROCESSOR_ALARM_INTERVAL,
+      MESSAGE_PROCESSOR_DELAY
   );
 
   @VisibleForTesting
@@ -146,7 +147,8 @@ public final class FeatureFlags {
       SHARE_SELECTION_LIMIT,
       ANIMATED_STICKER_MIN_MEMORY,
       ANIMATED_STICKER_MIN_TOTAL_MEMORY,
-      MESSAGE_PROCESSOR_ALARM_INTERVAL
+      MESSAGE_PROCESSOR_ALARM_INTERVAL,
+      MESSAGE_PROCESSOR_DELAY
   );
 
   /**
@@ -463,9 +465,16 @@ public final class FeatureFlags {
     }
   }
 
-  public static long getBackgroundMessageProcessDelay() {
+  public static long getBackgroundMessageProcessInterval() {
     int delayMinutes = getInteger(MESSAGE_PROCESSOR_ALARM_INTERVAL, (int) TimeUnit.HOURS.toMinutes(6));
     return TimeUnit.MINUTES.toMillis(delayMinutes);
+  }
+
+  /**
+   * How long before a "Checking messages" foreground notification is shown to the user.
+   */
+  public static long getBackgroundMessageProcessForegroundDelay() {
+    return getInteger(MESSAGE_PROCESSOR_DELAY, 300);
   }
 
   private enum VersionFlag {
