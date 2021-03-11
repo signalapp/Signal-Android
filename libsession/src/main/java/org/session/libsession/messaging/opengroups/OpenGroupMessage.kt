@@ -74,7 +74,7 @@ data class OpenGroupMessage(
                         attachment.id,
                         attachment.contentType!!,
                         attachment.size.orNull(),
-                        attachment.fileName.orNull(),
+                        attachment.fileName.orNull() ?: "",
                         0,
                         attachment.width,
                         attachment.height,

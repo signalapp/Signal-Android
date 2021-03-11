@@ -113,7 +113,7 @@ object OpenGroupAPI: DotNetAPI() {
                                 val id = attachmentAsJSON["id"] as? Long ?: (attachmentAsJSON["id"] as? Int)?.toLong() ?: (attachmentAsJSON["id"] as String).toLong()
                                 val contentType = attachmentAsJSON["contentType"] as String
                                 val size = attachmentAsJSON["size"] as? Int ?: (attachmentAsJSON["size"] as? Long)?.toInt() ?: (attachmentAsJSON["size"] as String).toInt()
-                                val fileName = attachmentAsJSON["fileName"] as String
+                                val fileName = attachmentAsJSON["fileName"] as? String
                                 val flags = 0
                                 val url = attachmentAsJSON["url"] as String
                                 val caption = attachmentAsJSON["caption"] as? String
