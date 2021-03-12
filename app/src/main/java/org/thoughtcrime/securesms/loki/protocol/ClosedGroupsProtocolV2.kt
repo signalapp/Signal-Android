@@ -108,11 +108,11 @@ object ClosedGroupsProtocolV2 {
         apiDB.addClosedGroupEncryptionKeyPair(encryptionKeyPair, groupPublicKey)
         // Notify the user (if we didn't make the group)
         if (userPublicKey != senderPublicKey) {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         } else if (prevGroup == null) {
             // only notify if we created this group
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         }
         // Notify the PN server
         LokiPushNotificationManager.performOperation(context, ClosedGroupOperation.Subscribe, groupPublicKey, userPublicKey)
@@ -165,9 +165,9 @@ object ClosedGroupsProtocolV2 {
                 else GroupContext.Type.UPDATE to SignalServiceGroup.Type.UPDATE
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, contextType, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, contextType, signalType, name, members, admins, sentTimestamp)
         }
     }
 
@@ -195,9 +195,9 @@ object ClosedGroupsProtocolV2 {
         groupDB.updateMembers(groupID, newMembers.map { Address.fromSerialized(it) })
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         }
         if (userPublicKey in admins) {
             // send current encryption key to the latest added members
@@ -234,9 +234,9 @@ object ClosedGroupsProtocolV2 {
         // Notify the user
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.UPDATE, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.UPDATE, SignalServiceGroup.Type.UPDATE, name, members, admins, sentTimestamp)
         }
     }
 
@@ -276,9 +276,9 @@ object ClosedGroupsProtocolV2 {
         // Notify user
         if (userLeft) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, GroupContext.Type.QUIT, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, GroupContext.Type.QUIT, SignalServiceGroup.Type.QUIT, name, members, admins, sentTimestamp)
         }
     }
 
@@ -345,59 +345,6 @@ object ClosedGroupsProtocolV2 {
         Log.d("Loki", "Received a new closed group encryption key pair")
     }
 
-    private fun insertIncomingInfoMessage(context: Context, senderPublicKey: String, groupID: String, type0: GroupContext.Type, type1: SignalServiceGroup.Type,
-                                          name: String, members: Collection<String>, admins: Collection<String>, sentTimestamp: Long) {
-        val groupContextBuilder = GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
-                .setType(type0)
-                .setName(name)
-                .addAllMembers(members)
-                .addAllAdmins(admins)
-        val group = SignalServiceGroup(type1, GroupUtil.getDecodedGroupIDAsData(groupID), SignalServiceGroup.GroupType.SIGNAL, name, members.toList(), null, admins.toList())
-        val m = IncomingTextMessage(Address.fromSerialized(senderPublicKey), 1, sentTimestamp, "", Optional.of(group), 0, true)
-        val infoMessage = IncomingGroupMessage(m, groupContextBuilder.build(), "")
-        val smsDB = DatabaseFactory.getSmsDatabase(context)
-        smsDB.insertMessageInbox(infoMessage)
-    }
-
-    private fun insertOutgoingInfoMessage(context: Context, groupID: String, type: GroupContext.Type, name: String,
-                                          members: Collection<String>, admins: Collection<String>, threadID: Long,
-                                          sentTimestamp: Long) {
-        val userPublicKey = TextSecurePreferences.getLocalNumber(context)
-        val recipient = Recipient.from(context, Address.fromSerialized(groupID), false)
-        val groupContextBuilder = GroupContext.newBuilder()
-                .setId(ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID)))
-                .setType(type)
-                .setName(name)
-                .addAllMembers(members)
-                .addAllAdmins(admins)
-        val infoMessage = OutgoingGroupMediaMessage(recipient, groupContextBuilder.build(), null, sentTimestamp, 0, null, listOf(), listOf())
-        val mmsDB = DatabaseFactory.getMmsDatabase(context)
-        val mmsSmsDB = DatabaseFactory.getMmsSmsDatabase(context)
-        if (mmsSmsDB.getMessageFor(sentTimestamp,userPublicKey) != null) return
-        val infoMessageID = mmsDB.insertMessageOutbox(infoMessage, threadID, false, null, sentTimestamp)
-        mmsDB.markAsSent(infoMessageID, true)
-    }
-
-    @JvmStatic
-    fun getMessageDestinations(context: Context, groupID: String): List<Address> {
-        return if (GroupUtil.isOpenGroup(groupID)) {
-            listOf(Address.fromSerialized(groupID))
-        } else {
-            var groupPublicKey: String? = null
-            try {
-                groupPublicKey = GroupUtil.doubleDecodeGroupID(groupID).toHexString() // TODO: The toHexString() here might be unnecessary
-            } catch (exception: Exception) {
-                // Do nothing
-            }
-            if (groupPublicKey != null && DatabaseFactory.getLokiAPIDatabase(context).isClosedGroup(groupPublicKey)) {
-                listOf(Address.fromSerialized(groupPublicKey))
-            } else {
-                DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupID, false).map { it.address }
-            }
-        }
-    }
-
     // region Deprecated
     private fun handleClosedGroupUpdate(context: Context, closedGroupUpdate: DataMessage.ClosedGroupControlMessage, sentTimestamp: Long, groupPublicKey: String, senderPublicKey: String) {
         // Prepare
@@ -447,9 +394,9 @@ object ClosedGroupsProtocolV2 {
         val admins = group.admins.map { it.toString() }
         if (userPublicKey == senderPublicKey) {
             val threadID = DatabaseFactory.getLokiThreadDatabase(context).getThreadID(groupID)
-            insertOutgoingInfoMessage(context, groupID, type0, name, members, admins, threadID, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertOutgoingInfoMessage(context, groupID, type0, name, members, admins, threadID, sentTimestamp)
         } else {
-            insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, admins, sentTimestamp)
+            DatabaseFactory.getStorage(context).insertIncomingInfoMessage(context, senderPublicKey, groupID, type0, type1, name, members, admins, sentTimestamp)
         }
     }
     // endregion
