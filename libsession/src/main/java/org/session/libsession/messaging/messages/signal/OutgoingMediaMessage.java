@@ -1,8 +1,7 @@
-package org.thoughtcrime.securesms.mms;
+package org.session.libsession.messaging.messages.signal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.DistributionTypes;
@@ -59,20 +58,6 @@ public class OutgoingMediaMessage {
     this.identityKeyMismatches.addAll(identityKeyMismatches);
   }
 
-  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message,
-                              long sentTimeMillis, int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote,
-                              @NonNull List<Contact> contacts,
-                              @NonNull List<LinkPreview> linkPreviews)
-  {
-    this(recipient,
-         buildMessage(message),
-         slideDeck.asAttachments(),
-         sentTimeMillis, subscriptionId,
-         expiresIn, distributionType, outgoingQuote,
-         contacts, linkPreviews, new LinkedList<>(), new LinkedList<>());
-  }
-
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
     this.recipient           = that.getRecipient();
     this.body                = that.body;
@@ -116,10 +101,6 @@ public class OutgoingMediaMessage {
     return attachments;
   }
 
-  public int getDistributionType() {
-    return distributionType;
-  }
-
   public boolean isSecure() {
     return true;
   }
@@ -154,21 +135,6 @@ public class OutgoingMediaMessage {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
-  }
-
-  public @NonNull List<NetworkFailure> getNetworkFailures() {
-    return networkFailures;
-  }
-
-  public @NonNull List<IdentityKeyMismatch> getIdentityKeyMismatches() {
-    return identityKeyMismatches;
-  }
-
-  private static String buildMessage(String message) {
-    if (!TextUtils.isEmpty(message)) {
-      return message;
-    }
-    return "";
   }
 
 }

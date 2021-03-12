@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.mms;
+package org.session.libsession.messaging.messages.signal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
