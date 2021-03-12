@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.session.libsignal.service.api.SignalServiceMessageReceiver;
-import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -30,28 +29,10 @@ public class SignalCommunicationModule {
 
   private final Context                      context;
 
-  private SignalServiceMessageSender   messageSender;
   private SignalServiceMessageReceiver messageReceiver;
 
   public SignalCommunicationModule(Context context) {
     this.context       = context;
-  }
-
-  @Provides
-  public synchronized SignalServiceMessageSender provideSignalMessageSender() {
-    if (this.messageSender == null) {
-      this.messageSender = new SignalServiceMessageSender(new SignalProtocolStoreImpl(context),
-                                                          TextSecurePreferences.getLocalNumber(context),
-                                                          DatabaseFactory.getLokiAPIDatabase(context),
-                                                          DatabaseFactory.getLokiThreadDatabase(context),
-                                                          DatabaseFactory.getLokiMessageDatabase(context),
-                                                          new SessionProtocolImpl(context),
-                                                          DatabaseFactory.getLokiUserDatabase(context),
-                                                          DatabaseFactory.getGroupDatabase(context),
-                                                          ((ApplicationContext)context.getApplicationContext()).broadcaster);
-    }
-
-    return this.messageSender;
   }
 
   @Provides

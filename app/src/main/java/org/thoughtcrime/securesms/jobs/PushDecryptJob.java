@@ -67,7 +67,6 @@ import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 import org.session.libsignal.libsignal.util.guava.Optional;
-import org.session.libsignal.service.api.SignalServiceMessageSender;
 import org.session.libsignal.service.api.messages.SignalServiceContent;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage;
 import org.session.libsignal.service.api.messages.SignalServiceDataMessage.Preview;
@@ -84,8 +83,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -101,8 +98,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private long smsMessageId;
 
   private MessageNotifier messageNotifier;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public PushDecryptJob(Context context) {
     this(context, -1);
@@ -457,10 +452,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Recipient   originalRecipient = getMessageDestination(content, message);
     Recipient   masterRecipient   = getMessageMasterDestination(content.getSender());
     String      syncTarget        = message.getSyncTarget().orNull();
-
-    if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
-      handleExpirationUpdate(content, message, Optional.absent());
-    }
 
     Long threadId = null;
 

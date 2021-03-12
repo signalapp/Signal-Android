@@ -268,7 +268,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "SendReadReceiptJob",
                 "TypingSendJob",
                 "AttachmentUploadJob",
-                "RequestGroupInfoJob");
+                "RequestGroupInfoJob",
+                "ClosedGroupUpdateMessageSendJobV2");
       }
 
       db.setTransactionSuccessful();
