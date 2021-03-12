@@ -122,7 +122,7 @@ object MessageReceiver {
         message.openGroupServerMessageID = openGroupServerID
         // Validate
         var isValid = message.isValid()
-        if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount == 0) { isValid = true }
+        if (message is VisibleMessage && !isValid && proto.dataMessage.attachmentsCount != 0) { isValid = true }
         if (!isValid) { throw Error.InvalidMessage }
         // Return
         return Pair(message, proto)

@@ -12,7 +12,7 @@ class VisibleMessage : Message()  {
 
     var syncTarget: String? = null
     var text: String? = null
-    var attachmentIDs:List<Long> = mutableListOf()
+    val attachmentIDs: MutableList<Long> = mutableListOf()
     var quote: Quote? = null
     var linkPreview: LinkPreview? = null
     var contact: Contact? = null
@@ -51,7 +51,7 @@ class VisibleMessage : Message()  {
             val databaseAttachment = it as DatabaseAttachment
             databaseAttachment.attachmentId.rowId
         }
-        this.attachmentIDs = attachmentIDs as ArrayList<Long>
+        this.attachmentIDs.addAll(attachmentIDs)
     }
 
     fun isMediaMessage(): Boolean {

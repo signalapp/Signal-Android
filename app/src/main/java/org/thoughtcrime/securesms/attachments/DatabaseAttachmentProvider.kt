@@ -94,9 +94,9 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
         return message.linkPreviews.firstOrNull()?.attachmentId?.rowId
     }
 
-    override fun insertAttachment(messageId: Long, attachmentId: Long, stream: InputStream) {
+    override fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream: InputStream) {
         val attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context)
-        attachmentDatabase.insertAttachmentsForPlaceholder(messageId, AttachmentId(attachmentId, 0), stream)
+        attachmentDatabase.insertAttachmentsForPlaceholder(messageId, attachmentId, stream)
     }
 
     override fun isOutgoingMessage(timestamp: Long): Boolean {
@@ -189,6 +189,10 @@ class DatabaseAttachmentProvider(context: Context, helper: SQLCipherOpenHelper) 
 
 fun DatabaseAttachment.toAttachmentPointer(): SessionServiceAttachmentPointer {
     return SessionServiceAttachmentPointer(attachmentId.rowId, contentType, key?.toByteArray(), Optional.fromNullable(size.toInt()), Optional.absent(), width, height, Optional.fromNullable(digest), Optional.fromNullable(fileName), isVoiceNote, Optional.fromNullable(caption), url)
+}
+
+fun SessionServiceAttachmentPointer.toSignalPointer(): SignalServiceAttachmentPointer {
+    return SignalServiceAttachmentPointer(id,contentType,key?.toByteArray() ?: byteArrayOf(), size, preview, width, height, digest, fileName, voiceNote, caption, url)
 }
 
 fun DatabaseAttachment.toAttachmentStream(context: Context): SessionServiceAttachmentStream {

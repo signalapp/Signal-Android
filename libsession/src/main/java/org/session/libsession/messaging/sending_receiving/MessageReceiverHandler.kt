@@ -133,7 +133,7 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
         }
     }
     val attachmentIDs = storage.persistAttachments(message.id ?: 0, attachments)
-    message.attachmentIDs = attachmentIDs.toMutableList()
+    message.attachmentIDs.addAll(attachmentIDs.toMutableList())
     // Update profile if needed
     val newProfile = message.profile
     if (newProfile != null) {

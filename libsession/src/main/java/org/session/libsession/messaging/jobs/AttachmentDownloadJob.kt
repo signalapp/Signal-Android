@@ -5,6 +5,8 @@ import org.session.libsession.messaging.fileserver.FileServerAPI
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentState
 import org.session.libsession.messaging.utilities.DotNetAPI
 import org.session.libsignal.service.api.crypto.AttachmentCipherInputStream
+import org.session.libsignal.utilities.Base64
+import org.session.libsignal.utilities.logging.Log
 import java.io.File
 import java.io.FileInputStream
 
@@ -33,7 +35,8 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
 
     override fun execute() {
         val messageDataProvider = MessagingConfiguration.shared.messageDataProvider
-        val attachmentStream = messageDataProvider.getAttachmentStream(attachmentID) ?: return handleFailure(Error.NoAttachment)
+        messageDataProvider.getDatabaseAttachment(attachmentID)
+        val attachment = messageDataProvider.getDatabaseAttachment(attachmentID) ?: return handleFailure(Error.NoAttachment)
         messageDataProvider.setAttachmentState(AttachmentState.STARTED, attachmentID, this.databaseMessageID)
         val tempFile = createTempFile()
         val handleFailure: (java.lang.Exception) -> Unit = { exception ->
@@ -51,7 +54,7 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
             }
         }
         try {
-            FileServerAPI.shared.downloadFile(tempFile, attachmentStream.url, MAX_ATTACHMENT_SIZE, attachmentStream.listener)
+            FileServerAPI.shared.downloadFile(tempFile, attachment.url, MAX_ATTACHMENT_SIZE, null)
         } catch (e: Exception) {
             return handleFailure(e)
         }
@@ -59,16 +62,17 @@ class AttachmentDownloadJob(val attachmentID: Long, val databaseMessageID: Long)
         // DECRYPTION
 
         // Assume we're retrieving an attachment for an open group server if the digest is not set
-        var stream = if (!attachmentStream.digest.isPresent || attachmentStream.key == null) FileInputStream(tempFile)
-            else AttachmentCipherInputStream.createForAttachment(tempFile, attachmentStream.length.or(0).toLong(), attachmentStream.key?.toByteArray(), attachmentStream?.digest.get())
+        val stream = if (attachment.digest == null || attachment.key == null) FileInputStream(tempFile)
+            else AttachmentCipherInputStream.createForAttachment(tempFile, attachment.size, Base64.decode(attachment.key), attachment.digest)
 
-        messageDataProvider.insertAttachment(databaseMessageID, attachmentID, stream)
+        messageDataProvider.insertAttachment(databaseMessageID, attachment.attachmentId, stream)
 
         tempFile.delete()
-
+        handleSuccess()
     }
 
     private fun handleSuccess() {
+        Log.w(AttachmentUploadJob.TAG, "Attachment downloaded successfully.")
         delegate?.handleJobSucceeded(this)
     }
 

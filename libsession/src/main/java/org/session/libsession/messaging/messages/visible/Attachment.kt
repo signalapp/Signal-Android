@@ -3,12 +3,12 @@ package org.session.libsession.messaging.messages.visible
 import android.util.Size
 import android.webkit.MimeTypeMap
 import com.google.protobuf.ByteString
-import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 import org.session.libsignal.service.internal.push.SignalServiceProtos
+import org.session.libsignal.utilities.Base64
 import java.io.File
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
 
 class Attachment {
 
@@ -101,7 +101,7 @@ class Attachment {
     fun toSignalAttachment(): SignalAttachment? {
         if (!isValid()) return null
         return DatabaseAttachment(null, 0, false, false, contentType, 0,
-                sizeInBytes?.toLong() ?: 0, fileName, null, key.toString(), null, digest, null, kind == Kind.VOICE_MESSAGE,
+                sizeInBytes?.toLong() ?: 0, if (fileName.isNullOrEmpty()) null else fileName, null, Base64.encodeBytes(key), null, digest, null, kind == Kind.VOICE_MESSAGE,
                 size?.width ?: 0, size?.height ?: 0, false, caption, url)
     }
 }

@@ -2,9 +2,9 @@ package org.session.libsession.messaging.opengroups
 
 import org.session.libsession.messaging.MessagingConfiguration
 import org.session.libsession.messaging.messages.visible.VisibleMessage
-import org.session.libsignal.utilities.logging.Log
-import org.session.libsignal.utilities.Hex
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
+import org.session.libsignal.utilities.Hex
+import org.session.libsignal.utilities.logging.Log
 import org.whispersystems.curve25519.Curve25519
 
 data class OpenGroupMessage(
@@ -26,7 +26,7 @@ data class OpenGroupMessage(
         fun from(message: VisibleMessage, server: String): OpenGroupMessage? {
             val storage = MessagingConfiguration.shared.storage
             val userPublicKey = storage.getUserPublicKey() ?: return null
-            var attachmentIDs = message.attachmentIDs
+            val attachmentIDs = message.attachmentIDs
             // Validation
             if (!message.isValid()) { return null } // Should be valid at this point
             // Quote

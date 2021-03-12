@@ -38,13 +38,13 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
             this.handleSuccess()
             deferred.resolve(Unit)
         } catch (e: Exception) {
-            Log.d(TAG, "Couldn't receive message due to error: $e.")
+            Log.e(TAG, "Couldn't receive message due to error", e)
             val error = e as? MessageReceiver.Error
             if (error != null && !error.isRetryable) {
-                Log.d("Loki", "Message receive job permanently failed due to error: $error.")
+                Log.e("Loki", "Message receive job permanently failed due to error", e)
                 this.handlePermanentFailure(error)
             } else {
-                Log.d("Loki", "Couldn't receive message due to error: $e.")
+                Log.e("Loki", "Couldn't receive message due to error", e)
                 this.handleFailure(e)
             }
             deferred.resolve(Unit) // The promise is just used to keep track of when we're done

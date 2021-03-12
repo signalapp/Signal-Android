@@ -8,6 +8,9 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
 import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
@@ -20,6 +23,7 @@ import org.session.libsession.messaging.threads.GroupRecord
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
+import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
@@ -29,6 +33,7 @@ import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.logging.Log
+import org.thoughtcrime.securesms.attachments.toSignalPointer
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
@@ -40,10 +45,6 @@ import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
-import org.session.libsession.messaging.messages.signal.IncomingTextMessage
-import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
-import org.session.libsession.utilities.preferences.ProfileKeyUtil
 
 class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), StorageProtocol {
     override fun getUserPublicKey(): String? {
@@ -107,7 +108,6 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-            mmsDatabase.beginTransaction()
             val insertResult = if (message.sender == getUserPublicKey()) {
                 val targetAddress = if (message.syncTarget != null) {
                     Address.fromSerialized(message.syncTarget!!)
@@ -125,13 +125,15 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                     PointerAttachment.forPointer(Optional.of(it)).orNull()
                 }
                 val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
+                mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
                 val attachments: Optional<List<SignalServiceAttachment>> = Optional.of(message.attachmentIDs.mapNotNull {
-                    DatabaseFactory.getAttachmentProvider(context).getSignalAttachmentPointer(it)
+                    DatabaseFactory.getAttachmentProvider(context).getAttachmentPointer(it)?.toSignalPointer()
                 })
                 val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, attachments, quote, linkPreviews)
+                mmsDatabase.beginTransaction()
                 if (group.isPresent) {
                     mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
                 } else {

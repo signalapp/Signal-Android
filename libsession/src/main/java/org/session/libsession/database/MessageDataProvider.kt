@@ -23,7 +23,7 @@ interface MessageDataProvider {
 
     fun setAttachmentState(attachmentState: AttachmentState, attachmentId: Long, messageID: Long)
 
-    fun insertAttachment(messageId: Long, attachmentId: Long, stream : InputStream)
+    fun insertAttachment(messageId: Long, attachmentId: AttachmentId, stream : InputStream)
 
     fun isOutgoingMessage(timestamp: Long): Boolean
 

@@ -1,18 +1,38 @@
 package org.session.libsession.messaging.jobs
 
+import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
+import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsignal.utilities.logging.Log
+import java.util.*
+import java.util.concurrent.Executors
+import kotlin.concurrent.schedule
 import kotlin.math.min
 import kotlin.math.pow
-import java.util.Timer
-
-import org.session.libsession.messaging.MessagingConfiguration
-
-import org.session.libsignal.utilities.logging.Log
-import kotlin.concurrent.schedule
 import kotlin.math.roundToLong
 
 
 class JobQueue : JobDelegate {
     private var hasResumedPendingJobs = false // Just for debugging
+
+    private val dispatcher = Executors.newCachedThreadPool().asCoroutineDispatcher()
+    private val scope = GlobalScope + SupervisorJob()
+    private val queue = Channel<Job>(UNLIMITED)
+
+    init {
+        // process jobs
+        scope.launch {
+            while (isActive) {
+                queue.receive().let { job ->
+                    launch(dispatcher) {
+                        job.delegate = this@JobQueue
+                        job.execute()
+                    }
+                }
+            }
+        }
+    }
 
     companion object {
         val shared: JobQueue by lazy { JobQueue() }
@@ -20,13 +40,12 @@ class JobQueue : JobDelegate {
 
     fun add(job: Job) {
         addWithoutExecuting(job)
-        job.execute()
+        queue.offer(job) // offer always called on unlimited capacity
     }
 
     fun addWithoutExecuting(job: Job) {
         job.id = System.currentTimeMillis().toString()
         MessagingConfiguration.shared.storage.persistJob(job)
-        job.delegate = this
     }
 
     fun resumePendingJobs() {
@@ -40,8 +59,7 @@ class JobQueue : JobDelegate {
             val allPendingJobs = MessagingConfiguration.shared.storage.getAllPendingJobs(type)
             allPendingJobs.sortedBy { it.id }.forEach { job ->
                 Log.i("Jobs", "Resuming pending job of type: ${job::class.simpleName}.")
-                job.delegate = this
-                job.execute()
+                queue.offer(job) // offer always called on unlimited capacity
             }
         }
     }
