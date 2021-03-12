@@ -4,7 +4,7 @@
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
   <string name="please_wait">Molimo pričekajte…</string>
-  <string name="save">Spremi</string>
+  <string name="save">Pohrani</string>
   <string name="note_to_self">Podsjetnik</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
@@ -14,17 +14,17 @@
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">Onemogući lozinku?</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">Isključiti lozinku?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ovo će trajno otključati Signal i obavještenja o porukama.</string>
   <string name="ApplicationPreferencesActivity_disable">Onemogući</string>
   <string name="ApplicationPreferencesActivity_unregistering">Odjavljivanje</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Odjavljivanje iz Signal poruka i poziva …</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Onemogući Signal poruke i pozive?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Onemogućite Signal poruke i pozive tako što ćete se odjaviti sa servera. Morate ponovo da registrujete svoj broj telefona da biste ih ponovo koristili u budućnosti.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Onemogućiti Signal poruke i pozive?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Onemogućite Signal poruke i pozive tako što ćete se odjaviti sa servera. Morate ponovo registrovati svoj broj telefona da biste ih koristili u budućnosti.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Greška pri povezivanju sa serverom!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS omogućen</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktivan</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Pritisnite ovdje da biste promijenili svoju glavnu aplikaciju za slanje SMS poruka</string>
-  <string name="ApplicationPreferencesActivity_sms_disabled">SMS onemogućen</string>
+  <string name="ApplicationPreferencesActivity_sms_disabled">SMS neaktivan</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Pritisnite ovdje da Signal učinite svojom glavnom aplikacijom za slanje SMS poruka</string>
   <string name="ApplicationPreferencesActivity_on">uključeno</string>
   <string name="ApplicationPreferencesActivity_On">Uključeno</string>
@@ -390,7 +390,7 @@
   <string name="DeviceListActivity_network_failed">Greška u mreži!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Neimenovan uređaj</string>
-  <string name="DeviceListItem_linked_s">Povezan %s</string>
+  <string name="DeviceListItem_linked_s">Povezan: %s</string>
   <string name="DeviceListItem_last_active_s">Zadnji put aktivan: %s</string>
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
@@ -554,10 +554,10 @@
   <string name="PendingMembersActivity_requests">Zahtjevi</string>
   <string name="PendingMembersActivity_invites">Pozivnice</string>
   <string name="PendingMembersActivity_people_you_invited">Osobe koje ste pozvali</string>
-  <string name="PendingMembersActivity_you_have_no_pending_invites">Nemate aktivnih pozivnica.</string>
+  <string name="PendingMembersActivity_you_have_no_pending_invites">Nema aktivnih pozivnica.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Pozivnice drugih članova grupe</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nema aktivnih pozivnica drugih članova grupe.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Detalji o osobama koje su drugi članovi grupe pozvali nisu prikazani. Ako pozvane osobe odluče pristupiti grupi, informacije o njima bit će dostupni članovima grupe tek tada. Sve dok joj ne pristupe, te osobe neće vidjeti poruke iz grupe.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Nisu prikazani detalji o osobama koje su drugi članovi grupe pozvali. Ako pozvane osobe odluče pristupiti grupi, tek tada će informacije o njima biti dostupne članovima grupe. Sve dok joj ne pristupe, te osobe neće vidjeti poruke iz grupe.</string>
   <string name="PendingMembersActivity_revoke_invite">Povuci pozivnicu</string>
   <string name="PendingMembersActivity_revoke_invites">Povuci pozivnice</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -586,7 +586,7 @@
   </plurals>
   <string name="AddMembersActivity__add">Dodaj</string>
   <!--AddGroupDetailsFragment-->
-  <string name="AddGroupDetailsFragment__name_this_group">Dodijeli naziv grupi</string>
+  <string name="AddGroupDetailsFragment__name_this_group">Dodijelite naziv grupi</string>
   <string name="AddGroupDetailsFragment__create_group">Kreiraj grupu</string>
   <string name="AddGroupDetailsFragment__create">Kreiraj</string>
   <string name="AddGroupDetailsFragment__members">Članovi</string>
@@ -626,11 +626,11 @@
   </plurals>
   <!--ManageGroupActivity-->
   <string name="ManageGroupActivity_member_requests_and_invites">Zahtjevi za članstvo i pozivnice</string>
-  <string name="ManageGroupActivity_add_members">Dodajte članove</string>
-  <string name="ManageGroupActivity_edit_group_info">Izmijeni informacije o grupi</string>
+  <string name="ManageGroupActivity_add_members">Uvrštavanje članova</string>
+  <string name="ManageGroupActivity_edit_group_info">Izmjene informacija o grupi</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Ko može uvrstiti nove članove?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ko može mijenjati informacije o ovoj grupi?</string>
-  <string name="ManageGroupActivity_group_link">Link grupe</string>
+  <string name="ManageGroupActivity_group_link">Link za grupu</string>
   <string name="ManageGroupActivity_block_group">Blokiraj grupu</string>
   <string name="ManageGroupActivity_unblock_group">Prestani s blokiranjem grupe</string>
   <string name="ManageGroupActivity_leave_group">Napusti grupu</string>
@@ -648,16 +648,16 @@
     <item quantity="few">Dodana %d člana.</item>
     <item quantity="other">Dodano %d članova.</item>
   </plurals>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo administratori mogu aktivirati i deaktivirati mogućnost dijeljenja linka za grupu.</string>
-  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Samo administratori mogu aktivirati i deaktivirati opciju odobravanja novih članova.</string>
-  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo administratori mogu iznova kreirati link za pristup grupi.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Samo administratori mogu kreirati i deaktivirati link za pristupanje grupi.</string>
+  <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Samo administratori mogu aktivirati i deaktivirati opciju odobravanja pristupa novim članovima.</string>
+  <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Samo administratori mogu kreirati novi link za pristup grupi.</string>
   <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Niste ovlašteni za to</string>
   <string name="ManageGroupActivity_not_capable">Neko koga ste uvrstili ne podržava nove grupe i treba ažurirati verziju Signala</string>
   <string name="ManageGroupActivity_failed_to_update_the_group">Neuspjelo ažuriranje grupe</string>
   <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Niste član ove grupe</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Neuspjelo ažuriranje grupe, molimo, pokušajte kasnije</string>
   <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Neuspjelo ažuriranje grupe usljed greške u mreži, molimo, pokušajte kasnije</string>
-  <string name="ManageGroupActivity_edit_name_and_picture">Upišite ime i dodajte sliku</string>
+  <string name="ManageGroupActivity_edit_name_and_picture">Unesite naziv i dodajte sliku</string>
   <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
   <string name="ManageGroupActivity_legacy_group_learn_more">Ovo je stara grupa. Opcije poput grupnog administratora dostupne su samo za nove grupe.</string>
   <string name="ManageGroupActivity_legacy_group_upgrade">Ovo je stara grupa. Da biste mogli koristiti opcije poput @spomena i administracije grupe,</string>
@@ -722,18 +722,18 @@
   <string name="CustomNotificationsDialogFragment__disabled">Onemogućeno</string>
   <string name="CustomNotificationsDialogFragment__default">Standardno</string>
   <!--ShareableGroupLinkDialogFragment-->
-  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link grupe: za dijeljenje</string>
-  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Upravljaj i dijeli</string>
-  <string name="ShareableGroupLinkDialogFragment__group_link">Link grupe</string>
+  <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link za grupu</string>
+  <string name="ShareableGroupLinkDialogFragment__manage_and_share">Kreiranje i dijeljenje</string>
+  <string name="ShareableGroupLinkDialogFragment__group_link">Link za grupu</string>
   <string name="ShareableGroupLinkDialogFragment__share">Dijeli</string>
-  <string name="ShareableGroupLinkDialogFragment__reset_link">Ponovo kreiraj link</string>
+  <string name="ShareableGroupLinkDialogFragment__reset_link">Kreiraj novi link</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Zahtjevi za članstvo</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Prihvati nove članove</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Zahtjevaj da administrator odobri novim članovima pristupanje grupi putem linka.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Zahtijevaj da novim članovima administrator odobri pristupanje grupi putem linka.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Jeste li sigurni da želite iznova kreirati link za grupu? Novi članovi više neće moći pristupiti grupi putem trenutnog linka.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR kōd</string>
-  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osobe koje skeniraju ovaj kod moći će pristupiti Vašoj grupi. Administratori će i dalje trebati dati odobrenje za pristup novim članovima ako ste aktivirali tu opciju.</string>
+  <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osobe koje skeniraju ovaj kōd moći će pristupiti Vašoj grupi. Administratori će i dalje morati da odobre pristup novim članovima ako ste aktivirali tu opciju.</string>
   <string name="GroupLinkShareQrDialogFragment__share_code">Podijeli kōd</string>
   <!--GV2 Invite Revoke confirmation dialog-->
   <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Želite li povući pozivnicu koju ste poslali za %1$s?</string>
@@ -751,7 +751,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ovaj link za grupu nije aktivan</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Nije moguće preuzeti informacije o grupi, molimo pokušajte kasnije</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Želite li pristupiti ovoj grupi i dopustiti njenim članovima da vide Vaše ime i sliku?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator ove grupe mora odobriti Vaš zahtjev prije nego što budete mogli pristupiti grupi. Kad podnesete zahtjev, Vaše ime i slika bit će dostupni članovima grupe.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator ove grupe mora odobriti Vaš zahtjev da biste mogli pristupiti grupi. Kad podnesete zahtjev, Vaše ime i slika bit će dostupni članovima grupe.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Grupa · %1$d čan</item>
     <item quantity="few">Grupa · %1$d člana</item>
@@ -923,8 +923,8 @@
   <string name="MessageRecord_s_updated_group">%s je ažurirao/la grupu.</string>
   <string name="MessageRecord_s_called_you_date">%1$s Vas je zvao/la · %2$s</string>
   <string name="MessageRecord_s_joined_signal">%s je na Signalu!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">Onemogućili ste nestajuće poruke.</string>
-  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s je onemogućio/la nestajuće poruke.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">Isključili ste nestajuće poruke.</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s je isključio/la nestajuće poruke.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Vrijeme za nestajanje poruka postavili ste na %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s je postavio/la vrijeme za nestajanje poruka na %2$s.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">Vrijeme za nestajanje poruka podešeno je na %1$s.</string>
@@ -966,9 +966,9 @@
   <!--GV2 role change-->
   <string name="MessageRecord_you_made_s_an_admin">Odredili ste da %1$s bude administrator.</string>
   <string name="MessageRecord_s_made_s_an_admin">%1$s je odredio/la da %2$s bude administrator.</string>
-  <string name="MessageRecord_s_made_you_an_admin">%1$s Vas je odredio/la za administratora.</string>
+  <string name="MessageRecord_s_made_you_an_admin">%1$s odredio/la Vas je za administratora.</string>
   <string name="MessageRecord_you_revoked_admin_privileges_from_s">Opozvali ste administratorske privilegije za %1$s.</string>
-  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s opozvao/la je Vaše administratorske privilegije.\"</string>
+  <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s je opozvao/la Vaše administratorske privilegije.\"</string>
   <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s je opozvao/la administratorske privilegije za %2$s.</string>
   <string name="MessageRecord_s_is_now_an_admin">%1$s sada je administrator.</string>
   <string name="MessageRecord_you_are_now_an_admin">Sada ste administrator.</string>
@@ -1002,7 +1002,7 @@
   <string name="MessageRecord_someone_declined_an_invitation_to_the_group">Neko je odbio pozivnicu u grupu.</string>
   <string name="MessageRecord_you_declined_the_invitation_to_the_group">Odbili ste pozivnicu u grupu.</string>
   <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s je povukao/la Vašu pozivnicu u grupu.</string>
-  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administrator je povukao Vašu pozivnicu u grupu.</string>
+  <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">Administrator je povukao Vašu pozivnicu za pridruživanje grupi.</string>
   <plurals name="MessageRecord_d_invitations_were_revoked">
     <item quantity="one">Poništena je pozivnica u grupu.</item>
     <item quantity="few">Poništene su %1$d pozivnice u grupu.</item>
@@ -1030,23 +1030,23 @@
   <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s je promijenio/la ovlasti za upravljanje članstvom u grupi na \"%2$s\".</string>
   <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Ko može upravljati članstvom u grupi promijenjeno je u \"%1$s\".</string>
   <!--GV2 group link invite access level change-->
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivirali ste link za grupu bez administratorskog odobrenja.</string>
-  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivirali ste link za grupu sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">Aktivirali ste link za pristupanje grupi bez potrebe za administratorskim odobrenjem.</string>
+  <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">Aktivirali ste link za pristupanje grupi samo sa administratorskim odobrenjem.</string>
   <string name="MessageRecord_you_turned_off_the_group_link">Isključili ste link za grupu.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je aktivirao/la link za grupu bez administratorskog odobrenja.</string>
-  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je aktivirao/la link za grupu sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s je aktivirao/la link za pristupanje grupi bez potrebe za administratorskim odobrenjem.</string>
+  <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s je aktivirao/la link za pristupanje grupi samo sa administratorskim odobrenjem.</string>
   <string name="MessageRecord_s_turned_off_the_group_link">%1$s je isključio/la link za grupu.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Link za grupu aktiviran je bez administratorskog odobrenja.</string>
-  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Link za grupu aktiviran je sa administratorskim odobrenjem.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">Aktiviran je link za pristupanje grupi bez potrebe za administratorskim odobrenjem.</string>
+  <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">Aktiviran je link za pristupanje grupi samo sa administratorskim odobrenjem.</string>
   <string name="MessageRecord_the_group_link_has_been_turned_off">Link za grupu je isključen.</string>
-  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste administratorsko odobrenje linka za grupu.</string>
-  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la administratorsko odobrenje linka za grupu.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administratorsko odobrenje linka za grupu je isključeno.</string>
-  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Aktivirali ste administratorsko odobrenje linka za grupu.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je aktivirao/la administratorsko odobrenje linka za grupu.</string>
-  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratorsko odobrenje linka za grupu je aktivirano.</string>
+  <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">Isključili ste administratorsko odobrenje za pristupanje grupi putem linka.</string>
+  <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s je isključio/la administratorsko odobrenje za pristupanje grupi putem linka.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">Administratorsko odobrenje za pristupanje grupi putem linka je isključeno.</string>
+  <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Uključili ste administratorsko odobrenje za pristupanje grupi putem linka.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s je uključio/la administratorsko odobrenje za pristupanje grupi putem linka.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">Administratorsko odobrenje za pristupanje grupi putem linka je uključeno.</string>
   <!--GV2 group link reset-->
-  <string name="MessageRecord_you_reset_the_group_link">Kreirali ste iznova link za grupu.</string>
+  <string name="MessageRecord_you_reset_the_group_link">Kreirali ste novi link za grupu.</string>
   <string name="MessageRecord_s_reset_the_group_link">%1$s je iznova kreirao/la link za grupu.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">Link za grupu iznova je kreiran.</string>
   <!--GV2 group link joins-->
@@ -1421,7 +1421,7 @@
   <string name="ThreadRecord_this_message_was_deleted">Ova je poruka izbrisana.</string>
   <string name="ThreadRecord_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signalu!</string>
-  <string name="ThreadRecord_disappearing_messages_disabled">Onemogućene su nestajuće poruke</string>
+  <string name="ThreadRecord_disappearing_messages_disabled">Nestajuće poruke su isključene</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme za nestajanje poruka: %s</string>
   <string name="ThreadRecord_safety_number_changed">Sigurnosni broj promijenjen</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Vaš je sigurnosni broj sa %s promijenjen.</string>
@@ -1668,8 +1668,8 @@
   <string name="audio_view__play_pause_accessibility_description">Sviraj … Pauziraj</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
   <!--QuoteView-->
-  <string name="QuoteView_audio">Audio</string>
-  <string name="QuoteView_video">Video</string>
+  <string name="QuoteView_audio">Audiozapisi</string>
+  <string name="QuoteView_video">Videozapisi</string>
   <string name="QuoteView_photo">Fotografija</string>
   <string name="QuoteView_view_once_media">Jednokratni medij</string>
   <string name="QuoteView_sticker">Naljepnica</string>
@@ -1798,7 +1798,7 @@
   <string name="EditAboutFragment_taking_a_break">Na pauzi</string>
   <string name="EditAboutFragment_working_on_something_new">Radim na nečemu novom</string>
   <!--EditProfileFragment-->
-  <string name="EditProfileFragment__edit_group_name_and_photo">Upišite naziv grupe i dodajte sliku</string>
+  <string name="EditProfileFragment__edit_group_name_and_photo">Naziv i slika grupe</string>
   <string name="EditProfileFragment__group_name">Naziv grupe</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Vaše ime</string>
@@ -1811,7 +1811,7 @@
   <!--recipients_panel-->
   <string name="recipients_panel__to"><small>Unesite ime ili broj</small></string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ako želite provjeriti sigurnost šifriranja sa %s, uporedite gore navedeni broj sa brojem na uređaju sagovornika. Alternativno, možete skenirati kōd sa njegovog telefona ili ga zamoliti da on skenira Vaš kōd. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ako želite provjeriti sigurnost šifriranja između Vas i %s, uporedite gore navedeni broj sa brojem na uređaju sagovornika. Alternativno, možete skenirati kōd sa njegovog ili njenog telefona ili ih zamoliti da oni skeniraju Vaš kōd. <a href="https://signal.org/redirect/safety-numbers">Saznajte više.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Pritisnite da skenirate</string>
   <string name="verify_display_fragment__loading">Učitavanje…</string>
   <string name="verify_display_fragment__verified">Potvrđeno</string>
@@ -1898,7 +1898,7 @@
   <string name="arrays__small">Mala</string>
   <string name="arrays__normal">Obična</string>
   <string name="arrays__large">Velika</string>
-  <string name="arrays__extra_large">Veoma velika</string>
+  <string name="arrays__extra_large">Ogromna</string>
   <string name="arrays__default">Standardno</string>
   <string name="arrays__high">Visoki</string>
   <string name="arrays__max">Maksimalni</string>
@@ -1919,7 +1919,7 @@
   <string name="preferences__pref_use_address_book_photos">Koristi fotografije iz adresara</string>
   <string name="preferences__display_contact_photos_from_your_address_book_if_available">Prikaži fotografiju kontakta iz adresara, ako je dostupna</string>
   <string name="preferences__generate_link_previews">Kreiraj pregled linkova</string>
-  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Preuzmi pregled linkova do internet-stranica u porukama koje šaljete.</string>
+  <string name="preferences__retrieve_link_previews_from_websites_for_messages">Preuzeti pregled linkova do internet-stranica u porukama koje šaljete.</string>
   <string name="preferences__choose_identity">Odaberite identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Odaberite kontakt s popisa</string>
   <string name="preferences__change_passphrase">Promijeni lozinku</string>
@@ -1968,7 +1968,7 @@
   <string name="preferences__mmsc_username">MMSC korisničko ime</string>
   <string name="preferences__mmsc_password">MMSC lozinka</string>
   <string name="preferences__sms_delivery_reports">SMS izvještaj o isporučenju</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži izvještaj o isporučenju za svaku SMS poruku koju pošaljete</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Traži izvještaj o isporučenju za svaku poslanu SMS poruku</string>
   <string name="preferences__data_and_storage">Podaci i memorija</string>
   <string name="preferences__storage">Memorija</string>
   <string name="preferences__conversation_length_limit">Maksimalni broj poruka</string>
@@ -1995,9 +1995,9 @@
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivirajte ukoliko Vaš uređaj isporučuje SMS/MMS poruke preko WiFi-a (aktivirajte samo kad je na Vašem uređaju aktivno i \'WiFi pozivanje\')</string>
   <string name="preferences__incognito_keyboard">Inkognito tastatura</string>
   <string name="preferences__read_receipts">Potvrda čitanja</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja onemogućena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Ako je potvrda čitanja isključena, nećete moći vidjeti potvrdu čitanja od drugih.</string>
   <string name="preferences__typing_indicators">Indikatori kucanja</string>
-  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja onemogućen, nećete moći vidjeti indikator kucanja od drugih.</string>
+  <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ako je indikator kucanja isključen, nećete moći vidjeti indikator kucanja od drugih.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Tražite od tastature da onemogući personalizovano učenje. Ovo podešavanje ipak nije garancija i tastatura ga može ignorisati.</string>
   <string name="preferences_app_protection__blocked_users">Blokirani korisnici</string>
   <string name="preferences_chats__when_using_mobile_data">Prilikom korištenja mobilnog interneta</string>
@@ -2020,14 +2020,14 @@
   <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Cijela historija poruka bit će bespovratno uklonjena. Ova se akcija ne može opozvati.</string>
   <string name="preferences_storage__delete_all_now">Izbriši sve odmah</string>
   <string name="preferences_storage__forever">Zauvijek</string>
-  <string name="preferences_storage__one_year">1 godina</string>
+  <string name="preferences_storage__one_year">1 godinu</string>
   <string name="preferences_storage__six_months">6 mjeseci</string>
   <string name="preferences_storage__thirty_days">30 dana</string>
-  <string name="preferences_storage__none">Nijedno</string>
+  <string name="preferences_storage__none">Neograničeno</string>
   <string name="preferences_storage__s_messages">%1$s poruka</string>
-  <string name="preferences_storage__custom">Ostalo</string>
+  <string name="preferences_storage__custom">Drugo</string>
   <string name="preferences_advanced__use_system_emoji">Koristi sistemske emoji sličice</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući Signalovu ugrađenu podršku za emoji sličice</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Isključi Signalovu ugrađenu podršku za emoji sličice</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive na Signal server kako bi Vaša IP adresa bila skrivena od sagovornika. Aktiviranjem ove opcije smanjit će se kvalitet poziva.</string>
   <string name="preferences_advanced__always_relay_calls">Uvijek preusmjeri pozive</string>
   <string name="preferences_app_protection__who_can">Ko može…</string>
@@ -2337,7 +2337,7 @@
   <string name="BackupDialog_enable_backups">Aktiviraj</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Molimo potvrdite da ste razumjeli označivši kućicu za potvrdu.</string>
   <string name="BackupDialog_delete_backups">Obrisati rezervne kopije?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Onemogućiti i obrisati sve lokalne rezervne kopije?</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivirati i izbrisati sve lokalne rezervne kopije?</string>
   <string name="BackupDialog_delete_backups_statement">Obriši rezervne kopije</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Da biste aktivirali kreiranje rezervnih kopija, izaberite direktorij. Rezervne kopije bit će pohranjene na toj lokaciji.</string>
   <string name="BackupDialog_choose_folder">Odaberi direktorij</string>
@@ -2521,14 +2521,14 @@
   <string name="ChatWallpaperFragment__clear_wallpaper_for_this_chat">Ukloniti pozadinsku sliku za ovu konverzaciju?</string>
   <string name="ChatWallpaperFragment__clear_wallpaper_this_will_not">Ukloniti pozadinsku sliku? Ovo neće ukloniti ručno podešene pozadinske slike u Vašim konverzacijama.</string>
   <string name="ChatWallpaperFragment__reset_all_wallpapers">Poništi sve pozadinske slike</string>
-  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Poništiti pozadinske slike, uključujući i ručno podešene u svim Vašim konverzacijama?</string>
+  <string name="ChatWallpaperFragment__reset_all_wallpapers_including_custom">Poništiti pozadinske slike, uključujući i ručno podešene, u svim Vašim konverzacijama?</string>
   <string name="ChatWallpaperFragment__contact_name">Ime kontakta</string>
   <string name="ChatWallpaperFragment__reset">Poništi</string>
   <string name="ChatWallpaperFragment__clear">Ukloni</string>
   <string name="ChatWallpaperFragment__wallpaper_preview_description">Prikaz pozadinske slike</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Odaberi iz fotografija</string>
-  <string name="ChatWallpaperSelectionFragment__presets">Zadati</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Izaberi fotografiju</string>
+  <string name="ChatWallpaperSelectionFragment__presets">Predlošci</string>
   <!--ChatWallpaperPreviewActivity-->
   <string name="ChatWallpaperPreviewActivity__preview">Pregled</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper">Postavi pozadinsku sliku</string>

@@ -1889,7 +1889,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__keep_messages">Nachrichten behalten</string>
-  <string name="preferences__clear_message_history">Nachrichtenverlauf löschen</string>
+  <string name="preferences__clear_message_history">Nachrichtenverlauf leeren</string>
   <string name="preferences__linked_devices">Gekoppelte Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
@@ -1928,7 +1928,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Speicherinhalte überprüfen</string>
   <string name="preferences_storage__delete_older_messages">Ältere Nachrichten löschen?</string>
-  <string name="preferences_storage__clear_message_history">Nachrichtenverlauf löschen?</string>
+  <string name="preferences_storage__clear_message_history">Nachrichtenverlauf leeren?</string>
   <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Dies wird alle Nachrichtenverläufe und Medieninhalte, die älter sind als %1$s, unwiderruflich von deinem Gerät löschen.</string>
   <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Dies wird alle Nachrichten bis auf die letzten %1$s Nachrichten je Unterhaltung unwiderruflich löschen.</string>
   <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Dies wird alle Nachrichtenverläufe und Medieninhalte unwiderruflich von deinem Gerät löschen.</string>

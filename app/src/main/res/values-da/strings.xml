@@ -380,7 +380,7 @@
   <string name="DeviceListActivity_network_failed">Netværksfejl!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Unavngivet enhed</string>
-  <string name="DeviceListItem_linked_s">Tilkoblet %s</string>
+  <string name="DeviceListItem_linked_s">Forbundet %s</string>
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
@@ -391,7 +391,7 @@
   <string name="DonateMegaphone_donate">Doner</string>
   <string name="DonateMegaphone_no_thanks">Nej tak</string>
   <!--GroupCallingMegaphone-->
-  <string name="GroupCallingMegaphone__introducing_group_calls">Introducerer gruppesamtaler</string>
+  <string name="GroupCallingMegaphone__introducing_group_calls">Introducerer Gruppesamtaler</string>
   <string name="GroupCallingMegaphone__open_a_new_group_to_start">Åbn en ny gruppe for at starte en gratis krypteret gruppesamtale</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
@@ -840,7 +840,7 @@
   <string name="NotificationBarManager__cancel_call">Afbryd opkald</string>
   <!--NotificationsMegaphone-->
   <string name="NotificationsMegaphone_turn_on_notifications">Slå meddelelser til?</string>
-  <string name="NotificationsMegaphone_never_miss_a_message">Gå aldrig glip af en besked fra dine kontaktpersoner og grupper.</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">Gå aldrig glip af en besked fra dine kontakter og grupper.</string>
   <string name="NotificationsMegaphone_turn_on">Aktivér</string>
   <string name="NotificationsMegaphone_not_now">Ikke nu</string>
   <!--NotificationMmsMessageRecord-->
@@ -887,14 +887,14 @@
   <string name="MessageRecord_disappearing_message_time_set_to_s">Beskeder med tidsudløb blev tidsindstilet til %1$s</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Gruppen blev opdateret til en ny gruppe</string>
   <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Du kunne ikke føjes til den nye gruppe, og er blevet inviteret til at deltage.</string>
-  <string name="MessageRecord_chat_session_refreshed">Chatsession opdateret</string>
+  <string name="MessageRecord_chat_session_refreshed">Chatsession genopfrisket</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">En bruger kunne ikke blive tilføjet til den nye gruppe og er blevet inviteret til at deltage.</item>
-    <item quantity="other">%1$s medlemmer kunne ikke blive tilføjet til den nye gruppe og er blevet inviteret til at deltage.</item>
+    <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet inviteret til at deltage.</item>
   </plurals>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
     <item quantity="one">En bruger kunne ikke tilføjes til den nye gruppe og er blevet fjernet.</item>
-    <item quantity="other">%1$s brugere kunne ikke tilføjes til den nye gruppe og er blevet fjernet.</item>
+    <item quantity="other">%1$s medlemmer kunne ikke tilføjes den nye gruppe og er blevet fjernet.</item>
   </plurals>
   <!--Profile change updates-->
   <string name="MessageRecord_changed_their_profile_name_to">%1$s ændrede deres profilnavn til %2$s</string>
@@ -1025,23 +1025,23 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du har markeret dit sikkerhedsnummer med %s som ubekræftet fra en anden enhed</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startede en gruppesamtale · %2$s</string>
-  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s deltager i gruppesamtalen · %2$s</string>
-  <string name="MessageRecord_you_are_in_the_group_call_s1">Du er i gruppesamtalen · %1$s</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s og %2$s deltager i gruppesamtalen · %3$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er med i gruppesamtalen · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">I er med i gruppesamtalen · %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s og %2$s er med i gruppesamtalen · %3$s</string>
   <string name="MessageRecord_group_call_s">Gruppesamtale · %1$s</string>
   <string name="MessageRecord_s_started_a_group_call">%1$s startede en gruppesamtale</string>
-  <string name="MessageRecord_s_is_in_the_group_call">%1$s deltager i gruppesamtalen</string>
-  <string name="MessageRecord_you_are_in_the_group_call">Du er i gruppesamtalen</string>
-  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s og %2$s deltager i gruppesamtalen</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s er med i gruppesamtalen</string>
+  <string name="MessageRecord_you_are_in_the_group_call">I er med i gruppesamtalen</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s og %2$s er med i gruppesamtalen</string>
   <string name="MessageRecord_group_call">Gruppesamtale</string>
   <string name="MessageRecord_you">Dig</string>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
     <item quantity="one">%1$s, %2$s, og %3$d andre deltager i gruppesamtalen · %4$s</item>
-    <item quantity="other">%1$s, %2$s, og %3$d andre deltager i gruppesamtalen · %4$s</item>
+    <item quantity="other">%1$s, %2$s, og %3$d andre er med i gruppesamtalen · %4$s</item>
   </plurals>
   <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
     <item quantity="one">%1$s, %2$s, og %3$d andre deltager i gruppesamtalen</item>
-    <item quantity="other">%1$s, %2$s, og %3$d andre deltager i gruppesamtalen</item>
+    <item quantity="other">%1$s, %2$s, og %3$d andre er med i gruppesamtalen</item>
   </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">Godkend</string>
@@ -1210,7 +1210,7 @@
   <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Du vil ikke modtage deres lyd og billede og de vil ikke modtage dine.</string>
   <string name="CallParticipantView__cant_receive_audio_video_from_s">Der modtages ikke lyd &amp; video fra %1$s</string>
   <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Der modtages ikke lyd og video fra %1$s</string>
-  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes at de ikke har verificeret dit skifte af sikkerhedsnummer, det er et problem med deres enhed eller at de har blokeret dig.</string>
+  <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Dette kan skyldes, at de ikke har bekræftet dit sikkerhedsnummerændring, der er et problem med deres enhed, eller de har blokeret dig.</string>
   <!--ProxyBottomSheetFragment-->
   <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
   <string name="ProxyBottomSheetFragment_proxy_address">Proxy-adresse</string>
@@ -1373,7 +1373,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ThreadRecord_voice_message">Talebesked</string>
   <string name="ThreadRecord_file">Fil</string>
   <string name="ThreadRecord_video">Video</string>
-  <string name="ThreadRecord_chat_session_refreshed">Chatsession opdateret</string>
+  <string name="ThreadRecord_chat_session_refreshed">Chatsession genopfrisket</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Opdater Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
@@ -1511,7 +1511,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="WebRtcCallActivity__answered_on_a_linked_device">Besvaret på en forbundet enhed</string>
   <string name="WebRtcCallActivity__declined_on_a_linked_device">Afvist på en forbundet enhed</string>
   <string name="WebRtcCallActivity__busy_on_a_linked_device">Optaget på en forbundet enhed</string>
-  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Nogen har tilsluttet sig opkaldet med et ændret sikkerhedsnummer.</string>
+  <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">Nogen har deltaget i samtalen med et ændret sikkerhedsnummer.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_swipe_up_to_change_views">Stryg op for at skifte skærm</string>
   <!--WebRtcCallScreen V2-->
@@ -1596,7 +1596,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="ConversationUpdateItem_loading">Henter</string>
   <string name="ConversationUpdateItem_learn_more">Læs mere</string>
   <string name="ConversationUpdateItem_join_call">Deltag i samtalen</string>
-  <string name="ConversationUpdateItem_return_to_call">Tilbage til opkald</string>
+  <string name="ConversationUpdateItem_return_to_call">Tilbage til samtalen</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er fuld</string>
   <string name="ConversationUpdateItem_invite_friends">Invitér venner</string>
   <!--audio_view-->
@@ -1617,8 +1617,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="safety_number_change_dialog__send_anyway">Send alligevel</string>
   <string name="safety_number_change_dialog__call_anyway">Ring alligevel</string>
   <string name="safety_number_change_dialog__join_call">Deltag i samtalen</string>
-  <string name="safety_number_change_dialog__continue_call">Fortsæt samtale</string>
-  <string name="safety_number_change_dialog__leave_call">Forlad samtale</string>
+  <string name="safety_number_change_dialog__continue_call">Fortsæt samtalen</string>
+  <string name="safety_number_change_dialog__leave_call">Forlad samtalen</string>
   <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Følgende personer kan have geninstalleret eller skiftet enheder. Bekræft dit sikkerhedsnummer med dem for at sikre privatlivets fred</string>
   <string name="safety_number_change_dialog__view">Vis</string>
   <string name="safety_number_change_dialog__previous_verified">Tidligere bekræftet</string>
@@ -1713,7 +1713,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="CreateProfileActivity_next">Næste</string>
   <string name="CreateProfileActivity__username">Brugernavn</string>
   <string name="CreateProfileActivity__create_a_username">Opret et brugernavn</string>
-  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS gruppe navne og billeder vil kun være synlige for dig.</string>
+  <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Tilpassede MMS-gruppenavne og billeder vil kun være synlige for dig.</string>
   <!--EditAboutFragment-->
   <string name="EditAboutFragment_about">Om</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Skriv et par ord om dig selv…</string>
@@ -1724,14 +1724,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="EditAboutFragment_coffee_lover">Kaffeelsker</string>
   <string name="EditAboutFragment_free_to_chat">Gratis at chatte</string>
   <string name="EditAboutFragment_taking_a_break">Tager en pause</string>
-  <string name="EditAboutFragment_working_on_something_new">Arbejder med noget nyt</string>
+  <string name="EditAboutFragment_working_on_something_new">Arbejder på noget nyt</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group_name_and_photo">Rediger gruppenavn og foto</string>
   <string name="EditProfileFragment__group_name">Gruppenavn</string>
   <!--EditProfileNameFragment-->
   <string name="EditProfileNameFragment_your_name">Dit navn</string>
   <string name="EditProfileNameFragment_first_name">Fornavn</string>
-  <string name="EditProfileNameFragment_last_name_optional">Efternavn (frivilligt)</string>
+  <string name="EditProfileNameFragment_last_name_optional">Efternavn (valgfrit)</string>
   <string name="EditProfileNameFragment_save">Gem</string>
   <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Det lykkedes ikke at gemme pga. netværksproblemer. Prøv igen senere.</string>
   <!--recipient_preferences_activity-->
@@ -1843,8 +1843,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal til alle indgående MMS\'er</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
-  <string name="preferences__pref_use_address_book_photos">Brug fotos i adressebogen</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis de er tilgængelige</string>
+  <string name="preferences__pref_use_address_book_photos">Brug billeder i adressebogen</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Vis kontaktbilleder fra din adressebog, hvis tilgængelige</string>
   <string name="preferences__generate_link_previews">Generer eksempelvisning af link</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hent eksempelvisninger af links direkte fra websteder til beskeder, som du sender.</string>
   <string name="preferences__choose_identity">Vælg identitet</string>
@@ -1896,7 +1896,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences__mmsc_password">MMSC Kodeord</string>
   <string name="preferences__sms_delivery_reports">Leveringsrapporter for SMS</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Modtag leveringsrapporter for hver SMS besked du sender</string>
-  <string name="preferences__data_and_storage">Data og lagring</string>
+  <string name="preferences__data_and_storage">Data og lager</string>
   <string name="preferences__storage">Hukommelse</string>
   <string name="preferences__conversation_length_limit">Max. grænse for samtaler</string>
   <string name="preferences__keep_messages">Bevar beskeder</string>
@@ -1961,7 +1961,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="preferences_app_protection__app_access">App adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
   <string name="preferences_chats__chats">Chats</string>
-  <string name="preferences_data_and_storage__manage_storage">Håndtér lagring</string>
+  <string name="preferences_data_and_storage__manage_storage">Håndtér lager</string>
   <string name="preferences_data_and_storage__calls">Opkald</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Brug færre data til opkald</string>
   <string name="preferences_data_and_storage__never">Aldrig</string>
@@ -2053,7 +2053,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
   <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
-  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ingen chats endnu.\nKom i gang ved at sende en besked til en ven.</string>
+  <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ingen chats endnu.\nKom i gang - send en besked til en ven.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Gendan sikker forbindelse</string>
   <!--conversation_muted-->
@@ -2184,8 +2184,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="RegistrationLockFragment__incorrect_pin">Forkert PIN</string>
   <string name="RegistrationLockFragment__forgot_your_pin">Glemt din PIN?</string>
   <string name="RegistrationLockFragment__not_many_tries_left">Ikke mange forsøg tilbage!</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registrering af Signal - Brug for hjælp til PIN til Android (v1 PIN)</string>
-  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registrering af Signal - Brug for hjælp til PIN til Android (v2 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal-registrering - Brug for hjælp med PIN-kode til Android (v1 PIN)</string>
+  <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal-registrering - Brug for hjælp med PIN-kode til Android (v2 PIN)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
     <item quantity="one">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
     <item quantity="other">For dit privatliv og din sikkerheds skyld, er det ikke muligt at gendanne din PIN. Hvis du ikke kan huske din PIN, kan du verificere med SMS på ny efter %1$d dages inaktivitet. I sådant tilfælde, vil din konto blive fjernet og alt indhold slettet</item>
@@ -2410,7 +2410,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="DeleteAccountFragment__delete_all_your_messages">Slet alle dine beskeder</string>
   <string name="DeleteAccountFragment__no_country_code">Ingen landekode angivet</string>
   <string name="DeleteAccountFragment__no_number">Intet nummer angivet</string>
-  <string name="DeleteAccountFragment__the_phone_number">Det indtastede telefonnummer stemmer ikke overens med din kontos.</string>
+  <string name="DeleteAccountFragment__the_phone_number">Det indtastede telefonnummer matcher ikke med kontoen.</string>
   <string name="DeleteAccountFragment__are_you_sure">Er du sikker på, du vil slette din konto?</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Dette vil slette din Signal-konto og nulstille applikationen. Appen vil lukke når processen er færdig.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Kontoen kunne ikke slettes . Har du en internetforbindelse?</string>

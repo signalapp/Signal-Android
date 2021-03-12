@@ -327,7 +327,7 @@
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
   <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به انجام این کار نخواهید بود. </string>
-  <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق نگارک پشتیبان</string>
+  <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق آیکون پشتیبان</string>
   <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
   <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
   <!--RestoreBackupFragment-->
@@ -1109,7 +1109,7 @@
   </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">گذرواژه را وارد کنید</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">نگارک سیگنال</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">آیکون سیگنال</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ارسال گذرواژه</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">گذرواژه معتبر نیست!</string>
   <string name="PassphrasePromptActivity_unlock_signal">باز کردن قفل سیگنال</string>
@@ -1979,7 +1979,7 @@
   <string name="preferences_notifications__priority">اولویت</string>
   <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش نگارک وضعیت در حالتی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده بودند انتخاب می‌کنید.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش آیکون وضعیت هنگامی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند انتخاب می‌کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندۀ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
@@ -2221,7 +2221,7 @@
   <string name="ResearchMegaphoneDialog_no_thanks">نه ممنون</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">این نظرسنجی بوسیلهٔ Alchemer در دامنهٔ امن surveys.signalusers.org ‌میزبانی می‌شود.</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">نگارک انتقال</string>
+  <string name="transport_selection_list_item__transport_icon">آیکون انتقال</string>
   <string name="ConversationListFragment_loading">در حال بارگذاری…</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>

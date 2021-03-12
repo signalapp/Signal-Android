@@ -85,7 +85,7 @@
   <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">Je zult niet langer berichten of meldingen van deze groep ontvangen, en de leden kunnen je niet opnieuw aan de groep toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
-  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer kunnen bellen en berichten naar elkaar kunnen verzenden en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
+  <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen weer berichten naar elkaar kunnen verzenden, kunnen bellen, en je profielnaam, -foto en -omschrijving zullen voor hem of haar weer worden bijgewerkt.</string>
   <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_block">Blokkeren</string>
@@ -323,7 +323,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>
   <string name="CreateProfileActivity_problem_setting_profile">Probleem bij instellen van profiel</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen wie zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuwe gesprek initieert, personen van wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Je profielnaam, -foto en -omschrijving zijn alleen zichtbaar voor personen die zijn opgeslagen in jouw contactenlijst, personen naar wie je zelf een nieuw gesprek initieert, personen van wie je een gesprek aanvaardt en alle leden van een groep waarvan jij lid bent. Signal-profielen worden net als berichten eind-tot-eind-versleuteld uitgewisseld, daarom kunnen zelfs Signal\'s ontwikkelaars je profielnaam, -foto en -omschrijving nooit zien.</string>
   <string name="CreateProfileActivity_set_avatar_description">Profielfoto instellen</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">Back-up-gegevens terugzetten?</string>
@@ -533,7 +533,7 @@
   <string name="PendingMembersActivity_you_have_no_pending_invites">Er zijn geen door jou verzonden uitnodigingen in afwachting van een reactie.</string>
   <string name="PendingMembersActivity_invites_by_other_group_members">Personen die door andere leden voor de groep zijn uitgenodigd</string>
   <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Er zijn geen door andere groepsleden verzonden uitnodigingen in afwachting van een reactie.</string>
-  <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen wie door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam, -foto en -omschrijving zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
+  <string name="PendingMembersActivity_missing_detail_explanation">Profielinformatie van personen die door andere groepsleden zijn uitgenodigd wordt niet weergegeven. Pas als een genodigde er voor kiest de uitnodiging te aanvaarden, dan zullen op dat moment zijn of haar profielnaam, -foto en -omschrijving zichtbaar worden voor de groep. Zolang deze personen de uitnodiging niet aanvaard hebben zullen ze nog geen groepsberichten ontvangen.</string>
   <string name="PendingMembersActivity_revoke_invite">Uitnodiging intrekken</string>
   <string name="PendingMembersActivity_revoke_invites">Uitnodigingen intrekken</string>
   <plurals name="PendingMembersActivity_revoke_d_invites">
@@ -696,7 +696,7 @@
   <string name="ShareableGroupLinkDialogFragment__reset_link">Verwijzing vernieuwen</string>
   <string name="ShareableGroupLinkDialogFragment__member_requests">Lidmaatschapsverzoeken</string>
   <string name="ShareableGroupLinkDialogFragment__approve_new_members">Beheerderstoestemming vereisen</string>
-  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon wie via de groepsverwijzing lid wil worden eerst toestemming van een beheerder.</string>
+  <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vereis voor iedere persoon die via de groepsverwijzing lid wil worden eerst toestemming van een beheerder.</string>
   <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Weet je zeker dat je de groepsverwijzing wilt vernieuwen? Men zal dan niet langer lid van de groep kunnen worden via de huidige verwijzing.</string>
   <!--GroupLinkShareQrDialogFragment-->
   <string name="GroupLinkShareQrDialogFragment__qr_code">QR-code</string>
@@ -717,7 +717,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Deze groepsverwijzing is niet actief</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">Kan geen informatie over de groep opvragen, probeer het later nog eens</string>
   <string name="GroupJoinBottomSheetDialogFragment_direct_join">Wil je lid worden van deze groep en je naam en foto met de andere leden delen?</string>
-  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet je verzoek om lid te worden eerst goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
+  <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Een beheerder van deze groep moet eerst je verzoek om lid te worden goedkeuren voordat je lid kunt worden van deze groep. Wanneer je verzoekt om lid te worden zullen je profielnaam, -foto en -omschrijving direct zichtbaar zijn voor de groepsleden.</string>
   <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
     <item quantity="one">Groep · %1$d lid</item>
     <item quantity="other">Groep · %1$d leden</item>
@@ -887,7 +887,7 @@
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s heeft de tijdsspanne voor verlopende berichten op %2$s ingesteld.</string>
   <string name="MessageRecord_disappearing_message_time_set_to_s">De tijdsspanne voor verlopende berichten is op %1$s ingesteld.</string>
   <string name="MessageRecord_this_group_was_updated_to_a_new_group">Deze groep is omgezet in een nieuwe groep.</string>
-  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden tot de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
+  <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">Je kon niet toegevoegd worden aan de nieuwe groep en je hebt daarom een uitnodiging gekregen om opnieuw lid te worden.</string>
   <string name="MessageRecord_chat_session_refreshed">Gespreksessie vernieuwd</string>
   <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
     <item quantity="one">Een groepslid kon niet direct toegevoegd worden tot de nieuwe groep en heeft daarom een uitnodiging gekregen om toe te treden.</item>
@@ -994,7 +994,7 @@
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep uitgeschakeld.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep is uitgeschakeld.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">Je hebt de beheerderstoestemming-vereiste om via de groepsverwijzing lid te mogen worden van de groep ingeschakeld.</string>
-  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste voor personen wie lid willen worden via de groepsverwijzing ingeschakeld.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s heeft de beheerderstoestemming-vereiste voor personen die lid willen worden via de groepsverwijzing ingeschakeld.</string>
   <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">De beheerderstoestemming-vereiste om via de groepsverwijzing lid te worden van de groep is ingeschakeld.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">Je hebt de groepsverwijzing vernieuwd.</string>
@@ -1931,7 +1931,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld kunnen anderen niet zien of je aan het typen bent, maar je zult ook niet kunnen zien wanneer anderen aan het typen zijn.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Probeer gepersonaliseerd leren door het toetsenbord te voorkomen. Let op: we kunnen niet garanderen dat dit werkt op ieder apparaat, het kan dus zijn dat jouw toetsenbord toch gepersonaliseerd leert.</string>
   <string name="preferences_app_protection__blocked_users">Geblokkeerde personen</string>
-  <string name="preferences_chats__when_using_mobile_data">Bij mobielegegevensoverdracht</string>
+  <string name="preferences_chats__when_using_mobile_data">Bij mobiele-dataoverdracht</string>
   <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
   <string name="preferences_chats__when_roaming">Bij roamen</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
@@ -1959,7 +1959,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_storage__custom">Zelf ingesteld</string>
   <string name="preferences_advanced__use_system_emoji">Systeem-emoji gebruiken</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gebruik de systeem-emoji in plaats van de ingebouwde emoji-ondersteuning van Signal</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten wie wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen worden Signal-oproepen met niet-contactpersonen altijd al omgeleid via de Signal-servers. Door deze optie in te schakelen wordt dat ook gedaan voor Signal-oproepen met contacten die wel in je contactenlijst staan. Dit leidt echter tot een verminderde geluids- en videokwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen omleiden</string>
   <string name="preferences_app_protection__who_can">Wie mag …</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
@@ -1967,11 +1967,11 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_chats__chats">Gesprekken</string>
   <string name="preferences_data_and_storage__manage_storage">Opslag beheren</string>
   <string name="preferences_data_and_storage__calls">Oproepen</string>
-  <string name="preferences_data_and_storage__use_less_data_for_calls">Minder gegevensoverdracht bij oproepen</string>
+  <string name="preferences_data_and_storage__use_less_data_for_calls">Minder dataoverdracht bij oproepen</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
-  <string name="preferences_data_and_storage__wifi_and_cellular">Bij wifi en mobiele-gegevensoverdracht</string>
-  <string name="preferences_data_and_storage__cellular_only">Alleen bij mobiele-gegevensoverdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder gegevensoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
+  <string name="preferences_data_and_storage__wifi_and_cellular">Bij wifi en mobiele-dataoverdracht</string>
+  <string name="preferences_data_and_storage__cellular_only">Alleen bij mobiele-dataoverdracht</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruik maken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopened gesprek</string>
@@ -1982,7 +1982,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Signal zitten een suggestie om je gesprekspartner uit te nodigen op Signal</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
   <string name="preferences_events__contact_joined_signal">Nieuw persoon bereikbaar via Signal</string>
-  <string name="preferences_notifications__priority">Belangrijkheid</string>
+  <string name="preferences_notifications__priority">Dringendheid instellen</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictogram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender</string>
@@ -2299,7 +2299,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="preferences_app_protection__change_your_pin">Pincode wijzigen</string>
   <string name="preferences_app_protection__pin_reminders">Pincode-herinneringen</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Met een pincode wordt informatie versleuteld opgeslagen op Signal\'s servers zodat alleen jij er toegang toe hebt. Je kunt hierdoor je profielnaam, -foto en -omschrijving, instellingen en (geblokkeerde) contacten herstellen wanneer je Signal opnieuw installeert. Zelfs Signal\'s ontwikkelaars kunnen je informatie niet inzien.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is hetzelfde als twee-factor-authenticatie. Ieder wie jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Dit is hetzelfde als twee-factor-authenticatie. Ieder die jouw telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij de Signal app registreren en gebruiken met jouw telefoonnummer, zelfs niet als ze je SIM-kaart hebben.</string>
   <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="preferences_app_protection__turn_off">Uitschakelen</string>
   <string name="preferences_app_protection__confirm_pin">Bevestig je pincode</string>
@@ -2350,8 +2350,8 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="GroupsLearnMore_paragraph_2">Verouderde groepen kunnen niet worden omgezet in nieuwe groepen, maar je kunt wel een nieuwe groep aanmaken met dezelfde leden mits ze allemaal de meeste recente versie van Signal gebruiken.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal zal in de toekomst een manier aanbieden om verouderde groepen om te zetten in nieuwe groepen.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
-  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder wie over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze verwijzing alleen met personen wie je vertrouwt.</string>
-  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder wie over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze verwijzing alleen met personen wie je vertrouwt.</string>
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ieder die over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan ook een verzoek indienen om lid te mogen worden. Deel deze verwijzing alleen met personen die je vertrouwt.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ieder die over deze verwijzing beschikt kan de naam, afbeelding en het aantal leden van deze groep zien en kan direct lid worden. Deel deze verwijzing alleen met personen die je vertrouwt.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Verzenden via Signal</string>
   <string name="GroupLinkBottomSheet_copy">Kopiëren</string>
   <string name="GroupLinkBottomSheet_qr_code">QR-code</string>
@@ -2416,7 +2416,7 @@ Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-o
   <string name="DeleteAccountFragment__no_number">Er is geen telefoonnummer ingevuld</string>
   <string name="DeleteAccountFragment__the_phone_number">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
   <string name="DeleteAccountFragment__are_you_sure">Weet je zeker dat je je registratie wilt opzeggen en al je gegevens en gesprekken wilt wissen?</string>
-  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee wis je al je Signal-gegevens zowel van de servers als van je telefoon. De Signal-app zal zichzelf sluiten nadat je dit doet.</string>
+  <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hiermee wis je al je Signal-gegevens zowel van de servers als van je telefoon. De app zal zichzelf sluiten nadat je dit doet.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Het wissen van je gegevens is mislukt. Heb je een werkende netwerkverbinding?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>

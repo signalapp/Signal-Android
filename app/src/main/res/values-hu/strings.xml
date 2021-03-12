@@ -235,6 +235,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings">További opciók mostantól a \"Csoportbeállítások\" menüben</string>
   <string name="ConversationActivity_join">Csatlakozás</string>
   <string name="ConversationActivity_full">Tele</string>
+  <string name="ConversationActivity_error_sending_media">Hiba történt a médiafájl küldése során</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d olvasatlan üzenet</item>
@@ -2347,6 +2348,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="GroupsLearnMore_paragraph_2">A régi típusú csoportokat még nem lehet új típusúvá alakítani, viszont lehetőséged van egy új típusú csoport létrehozására a régivel megegyező csoporttagsággal, amennyiben a tagok rendelkeznek a Signal legújabb verziójával.</string>
   <string name="GroupsLearnMore_paragraph_3">A Signal a jövőben lehetővé fogja tenni a régi típusú csoportok átalakítását új típusúvá.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Ezzel a hivatkozással bárki megtekintheti a csoport nevét, a tagok listáját, valamint csatlakozási kérelmet nyújthat be. Csak olyan személyekkel oszd meg, akikben megbízol.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Ezzel a hivatkozással bárki megtekintheti a csoport nevét, a tagok listáját, valamint csatlakozhat a csoporthoz. Csak olyan személyekkel oszd meg, akikben megbízol.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Megosztás Signallal</string>
   <string name="GroupLinkBottomSheet_copy">Másolás</string>
   <string name="GroupLinkBottomSheet_qr_code">QR kód</string>

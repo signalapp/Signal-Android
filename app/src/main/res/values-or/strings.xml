@@ -234,6 +234,7 @@
   <string name="ConversationActivity__more_options_now_in_group_settings"> ଅଧିକ ବିକଳ୍ପ ବର୍ତ୍ତମାନ \"ଗୋଷ୍ଠୀ ସେଟିଂସମୂହ\" ରେ </string>
   <string name="ConversationActivity_join">ଯୋଗ ଦିଅନ୍ତୁ</string>
   <string name="ConversationActivity_full">ପୂର୍ଣ୍ଣ</string>
+  <string name="ConversationActivity_error_sending_media">ମିଡ଼ିଆ ପଠାଇବାରେ ତ୍ରୁଟି</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%dଟାଏ ଅପଠିତ ବାର୍ତ୍ତା </item>
@@ -837,6 +838,8 @@
   <string name="NotificationBarManager__end_call">ସମାପ୍ତ କରନ୍ତୁ</string>
   <string name="NotificationBarManager__cancel_call">ବାତିଲ୍ କରନ୍ତୁ</string>
   <!--NotificationsMegaphone-->
+  <string name="NotificationsMegaphone_turn_on_notifications">ବିଜ୍ଞପ୍ତି ଚାଲୁ କରନ୍ତୁ?</string>
+  <string name="NotificationsMegaphone_never_miss_a_message">ଆପଣଙ୍କର ଯୋଗାଯୋଗ ଏବଂ ଗୋଷ୍ଠୀରୁ କୌଣସି ସନ୍ଦେଶକୁ କେବେବି ଭୁଲନ୍ତୁ ନାହିଁ |</string>
   <string name="NotificationsMegaphone_turn_on">ଚାଲୁ କରନ୍ତୁ</string>
   <string name="NotificationsMegaphone_not_now">ଏବେ ନୁହେଁ</string>
   <!--NotificationMmsMessageRecord-->
@@ -2338,6 +2341,8 @@
   <string name="GroupsLearnMore_paragraph_2">ଉତ୍ତରାଧିକାରୀ ଗୋଷ୍ଠୀଗୁଡିକ ଏପର୍ଯ୍ୟନ୍ତ ନୂତନ ଗୋଷ୍ଠୀକୁ ନବୀକରଣ ହୋଇପାରିବ ନାହିଁ, କିନ୍ତୁ ଯଦି ସେମାନେ Signal ର ସର୍ବଶେଷ ସଂସ୍କରଣରେ ଅଛନ୍ତି ତେବେ ସମାନ ସଦସ୍ୟଙ୍କ ସହିତ ଆପଣ ଏକ ନୂତନ ଗୋଷ୍ଠୀ ସୃଷ୍ଟି କରିପାରିବେ</string>
   <string name="GroupsLearnMore_paragraph_3">ଭବିଷ୍ୟତରେ ଉତ୍ତରାଧିକାରୀ ଗୋଷ୍ଠୀ ଅଦ୍ୟତନ କରିବାକୁ Signal ଏକ ଉପାୟ ପ୍ରଦାନ କରିବ</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ଏହି ଲିଙ୍କ୍ ଥିବା ଯେକେହି ଲୋକ ଗୋଷ୍ଠୀର ନାମ ଏବଂ ଛବି ଦେଖିପାରିବେ ଏବଂ ଯୋଗଦେବାକୁ ଅନୁରୋଧ କରିପାରିବେ | ଆପଣ ବିଶ୍ୱାସ କରୁଥିବା ଲୋକଙ୍କ ସହିତ ଏହାକୁ ଅଂଶୀଦାର କରନ୍ତୁ |</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ଏହି ଲିଙ୍କ୍ ଥିବା ଯେକେହି ଲୋକ ଗୋଷ୍ଠୀର ନାମ ଏବଂ ଛବି ଦେଖିପାରିବେ ଏବଂ ଏଥିରେ ଯୋଗଦେଇ କରିପାରିବେ | ଆପଣ ବିଶ୍ୱାସ କରୁଥିବା ଲୋକଙ୍କ ସହିତ ଏହାକୁ ଅଂଶୀଦାର କରନ୍ତୁ |</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal ମାଧ୍ୟମରେ ଅଂଶୀଦାର କରନ୍ତୁ</string>
   <string name="GroupLinkBottomSheet_copy">ନକଲ ବନାନ୍ତୁ</string>
   <string name="GroupLinkBottomSheet_qr_code">କ୍ୟୁ.ଆର. କୋଡ୍</string>

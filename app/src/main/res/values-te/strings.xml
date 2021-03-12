@@ -124,7 +124,7 @@
   <string name="ClientDeprecatedActivity_update">నవీకరణ </string>
   <string name="ClientDeprecatedActivity_dont_update">నవీకరణ ఆపివేయుము</string>
   <string name="ClientDeprecatedActivity_warning">హెచ్చరిక</string>
-  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">మీ Signal సిగ్నల్ వెర్షన్ గడువు ముగిసింది. మీరు మీ  పూర్వపు సందేశ చరిత్రను చూడవచ్చు కాని మీరు నవీకరించే (అప్డేట్) వరకు కొత్త సందేశాలను పంపలేరు లేదా స్వీకరించలేరు.</string>
+  <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">మీ Signal వెర్షన్ గడువు ముగిసింది. మీరు మీ సందేశ చరిత్రను చూడవచ్చు కాని మీరు నవీకరించే వరకు సందేశాలను పంపలేరు లేదా స్వీకరించలేరు.</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">వెబ్ బ్రౌజర్ కనుగొనబడలేదు.</string>
   <string name="CommunicationActions_send_email">ఈ మెయిల్ పంపించండి</string>
@@ -292,7 +292,7 @@
   <string name="ConversationFragment_verify">నిర్ధారించబడిన</string>
   <string name="ConversationFragment_not_now">ఇప్పుడు కాదు</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">%sతో మీ భద్రతా సంఖ్య మార్చబడింది</string>
-  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%sతో మీ భద్రతా సంఖ్య మార్చబడింది, అది వారు Signal(సిగ్నల్)ను తిరిగి ఇన్‌స్టాల్ చేయటం లేదా పరికరాన్నీ మార్చడం వల్ల జరిగి ఉండవచ్చు. క్రొత్త భద్రతా సంఖ్యను నిర్ధారించడానికి ధృవీకరించు నొక్కండి. ఇది ఐచ్ఛికం.</string>
+  <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%sతో మీ భద్రతా సంఖ్య మార్చబడింది, అది వారు Signal ను తిరిగి ఇన్‌స్టాల్ చేయటం లేదా పరికరాన్నీ మార్చడం వల్ల జరిగి ఉండవచ్చు. క్రొత్త భద్రతా సంఖ్యను నిర్ధారించడానికి ధృవీకరించు నొక్కండి. ఇది ఐచ్ఛికం.</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">ఎంపిక చేసిన సందేశాలను తొలగించాలా?</item>
     <item quantity="other">ఎంపిక చేసిన సంభాషణలను తొలగించాలా ?</item>
@@ -349,6 +349,7 @@
   <string name="BackupsPreferenceFragment__test_your_backup_passphrase">మీ ప్రత్యామ్నాయము పాస్‌ఫ్రేజ్‌ని పరీక్షించండి మరియు అది సరిపోతుందో లేదో ధృవీకరించండి</string>
   <string name="BackupsPreferenceFragment__turn_on">ఆరంభించండి</string>
   <string name="BackupsPreferenceFragment__turn_off">తీసివేయు</string>
+  <string name="BackupsPreferenceFragment__to_restore_a_backup">ప్రత్యామ్నాయము‌ను పునరుద్ధరించడానికి, Signal యొక్క క్రొత్త కాపీని ఇన్‌స్టాల్ చేయండి. అనువర్తనాన్ని తెరిచి, \"ప్రత్యామ్నాయము పునరుద్ధరించు\" నొక్కండి, ఆపై బ్యాకప్ ఫైల్‌ను కనుగొనండి. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">ఇంకా నేర్చుకో</string>
   <string name="BackupsPreferenceFragment__in_progress">పురోగతిలో ఉన్నది…</string>
   <string name="BackupsPreferenceFragment__d_so_far">ఇప్పటి వరకు %1$d…</string>
@@ -996,19 +997,32 @@
   <string name="MessageRecord_the_group_link_has_been_turned_off">సమూహ లింక్ ఆపివేయబడింది.</string>
   <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">మీరు సమూహ లింక్ కోసం నిర్వాహక ఆమోదాన్ని ఆపివేశారు.</string>
   <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s గ్రూప్ లింక్ కోసం నిర్వాహక ఆమోదం ఆపివేయబడింది.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">సమూహ లింక్ కోసం నిర్వాహక ఆమోదం ఆపివేయబడింది.</string>
   <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">మీరు సమూహ లింక్ కోసం నిర్వాహక ఆమోదాన్ని ఆన్ చేసారు.</string>
+  <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">సమూహ లింక్ కోసం %1$s అడ్మిన్ ఆమోదం పొందారు.</string>
+  <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">సమూహ లింక్ కోసం నిర్వాహక ఆమోదం ప్రారంభించబడింది.</string>
   <!--GV2 group link reset-->
   <string name="MessageRecord_you_reset_the_group_link">మీరు సమూహ లింక్‌ను రీసెట్ చేస్తారు.</string>
+  <string name="MessageRecord_s_reset_the_group_link">%1$s సమూహ లింక్‌ను రీసెట్ చేయండి.</string>
   <string name="MessageRecord_the_group_link_has_been_reset">సమూహ లింక్ రీసెట్ చేయబడింది.</string>
   <!--GV2 group link joins-->
   <string name="MessageRecord_you_joined_the_group_via_the_group_link">మీరు సమూహ లింక్ ద్వారా సమూహంలో చేరారు.</string>
+  <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s గ్రూప్ లింక్ ద్వారా సమూహంలో చేరారు.</string>
   <!--GV2 group link requests-->
   <string name="MessageRecord_you_sent_a_request_to_join_the_group">మీరు గుంపులో చేరమని ఒక అభ్యర్థన పంపారు.</string>
+  <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$sగ్రూప్ లింక్ ద్వారా చేరాలని అభ్యర్థించారు.</string>
   <!--GV2 group link approvals-->
+  <string name="MessageRecord_s_approved_your_request_to_join_the_group">సమూహంలో చేరాలని మీ అభ్యర్థనను %1$s ఆమోదించారు.</string>
+  <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%2$s నుండి సమూహంలో చేరాలని చేసిన అభ్యర్థనను %1$s ఆమోదించారు.</string>
+  <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">%1$s నుండి సమూహంలో చేరాలని మీరు చేసిన అభ్యర్థనను ఆమోదించారు.</string>
   <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">సమూహంలో చేరడానికి మీ అభ్యర్థన ఆమోదించబడింది.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s నుండి సమూహంలో చేరాలని ఒక అభ్యర్థన ఆమోదించబడింది.</string>
   <!--GV2 group link deny-->
   <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">సమూహంలో చేరడానికి మీ అభ్యర్థనను నిర్వాహకుడు తిరస్కరించారు.</string>
+  <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%2$s నుండి సమూహంలో చేరమని%1$sమంది అభ్యర్థించారు.</string>
+  <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s నుండి సమూహంలో చేరాలని అభ్యర్థన తిరస్కరించబడింది.</string>
   <string name="MessageRecord_you_canceled_your_request_to_join_the_group">సమూహంలో చేరాలని మీరు చేసిన అభ్యర్థనను మీరు రద్దు చేసారు.</string>
+  <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s సమూహంలో చేరాలని వారి అభ్యర్థనను రద్దు చేసింది.</string>
   <!--End of GV2 specific update messages-->
   <string name="MessageRecord_your_safety_number_with_s_has_changed">%s తో మీ భద్రత సంఖ్య మార్చబడింది.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">మీరు మీ భద్రతా నంబర్ను%s ధృవీకరించినట్లు గుర్తు పెట్టారు</string>
@@ -1016,16 +1030,38 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">మీరు %s తో మీ భద్రతా నంబర్ను ధృవీకరించనిదిగా గుర్తించారు</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">మీరు %s తో మీ భద్రత సంఖ్యను మరొక పరికరం నుండి ధృవీకరించనిదిగా గుర్తు పెట్టారు</string>
   <!--Group Calling update messages-->
+  <string name="MessageRecord_s_started_a_group_call_s">%1$s సమూహ కాల్ ప్రారంభించారు. %2$s</string>
+  <string name="MessageRecord_s_is_in_the_group_call_s">%1$s సమూహ కాల్‌లో ఉన్నారు · %2$s</string>
+  <string name="MessageRecord_you_are_in_the_group_call_s1">మీరు గ్రూప్ కాల్‌లో ఉన్నారు. %1$s</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s మరియు %2$s గ్రూప్ కాల్‌లో ఉన్నారు · %3$s</string>
+  <string name="MessageRecord_group_call_s">సమూహ కాల్ · %1$s</string>
+  <string name="MessageRecord_s_started_a_group_call">%1$s సమూహ కాల్ ప్రారంభించారు</string>
+  <string name="MessageRecord_s_is_in_the_group_call">%1$s సమూహ కాల్‌లో ఉన్నారు</string>
   <string name="MessageRecord_you_are_in_the_group_call">మీరు గ్రూప్ కాల్‌లో ఉన్నారు</string>
+  <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s మరియు %2$s గ్రూప్ కాల్‌లో ఉన్నారు</string>
   <string name="MessageRecord_group_call">సమూహ కాల్</string>
   <string name="MessageRecord_you">మీరు</string>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call_s">
+    <item quantity="one">%1$s, %2$s మరియు %3$d ఇతర ఈ కాల్‌లో ఉన్నారు · %4$s</item>
+    <item quantity="other">%1$s, %2$s, మరియు %3$d ఇతరులు ఈ సమూహ కాల్‌లో ఉన్నారు · %4$s</item>
+  </plurals>
+  <plurals name="MessageRecord_s_s_and_d_others_are_in_the_group_call">
+    <item quantity="one">%1$s, %2$s మరియు %3$d ఇతర ఈ సమూహ కాల్‌లో ఉన్నారు</item>
+    <item quantity="other">%1$s, %2$s, మరియు %3$d ఇతరులు ఈ సమూహ కాల్‌లో ఉన్నారు</item>
+  </plurals>
   <!--MessageRequestBottomView-->
   <string name="MessageRequestBottomView_accept">అంగీకరించండి</string>
   <string name="MessageRequestBottomView_continue">కొనసాగించు</string>
   <string name="MessageRequestBottomView_delete">తొలగించండి</string>
   <string name="MessageRequestBottomView_block">నిరోధించు</string>
   <string name="MessageRequestBottomView_unblock">అనుమతించు</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s మీకు సందేశం ఇవ్వనివ్వండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకోవాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాన్ని చూశారని వారికి తెలియదు.</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">మీకు %1$s సందేశం పంపండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకోవాలా? మీరు వాటిని అన్‌బ్లాక్ చేసే వరకు మీకు సందేశాలు రావు.</string>
   <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">ఈ గ్రూపు తో మీ సంభాషణను కొనసాగించండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకోవాలా?</string>
+  <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">@ప్రస్తావనలు మరియు నిర్వాహకులు వంటి క్రొత్త లక్షణాలను చైతన్యవంతం చేయడానికి ఈ సమూహాన్ని అప్‌గ్రేడ్ చేయండి. ఈ గుంపులో తమ పేరు లేదా ఛాయాచిత్రంను పంచుకోని సభ్యులను చేరడానికి ఆహ్వానించబడతారు.</string>
+  <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">ఈ లెగసీ సమూహం ఇకపై ఉపయోగించబడదు ఎందుకంటే ఇది చాలా పెద్దది. గరిష్ట సమూహ పరిమాణం %1$d</string>
+  <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">ఈ సంభాషణను %1$s తో కొనసాగించండి మరియు మీ పేరు మరియు ఫోటోను వారితో పంచుకోవాలా?</string>
+  <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ గుంపులో చేరండి మరియు మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకోవాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
   <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">ఈ గుంపులో చేరాలా? మీరు అంగీకరించే వరకు మీరు వారి సందేశాలను చూశారని వారికి తెలియదు.</string>
   <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">ఈ గుంపును అన్‌బ్లాక్ చేసి, మీ పేరు మరియు ఫోటోను దాని సభ్యులతో పంచుకోవాలా? మీరు వాటిని అన్‌బ్లాక్ చేసే వరకు మీకు సందేశాలు రావు.</string>
   <string name="MessageRequestProfileView_member_of_one_group">సభ్యుడు %1$s</string>
@@ -1038,6 +1074,10 @@
   <plurals name="MessageRequestProfileView_members_and_invited">
     <item quantity="one"> %1$d సభ్యుడు (%2$d ఆహ్వానింపబడినవారు)</item>
     <item quantity="other">%1$d సభ్యులు (+%2$d ఆహ్వానింపబడినవారు)</item>
+  </plurals>
+  <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
+    <item quantity="one">%d అదనపు సమూహం</item>
+    <item quantity="other">%d అదనపు సమూహాలు</item>
   </plurals>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">సంకేతపదములను సరిపోలడం లేదు!</string>
@@ -1068,6 +1108,11 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">వారు చూసిన తరువాత ఈ సంభాషణ లో పంపిన మరియు అందుకున్న సందేశాలు %s కనిపించదు.</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
+  <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal యొక్క ఈ వెర్షన్ ఈ రోజుతో ముగుస్తుంది. ఇటీవలి సంస్కరణకు నవీకరించండి.</string>
+  <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
+    <item quantity="one">Signal యొక్క ఈ వెర్షన్ రేపు ముగుస్తుంది. ఇటీవలి సంస్కరణకు నవీకరించండి.</item>
+    <item quantity="other">Signal యొక్క ఈ వెర్షన్ %d రోజుల్లో ముగుస్తుంది. ఇటీవలి సంస్కరణకు నవీకరించండి.</item>
+  </plurals>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">సంకేతపదమును ప్రవేశపెట్టుము</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal చిహ్నం</string>
@@ -1138,8 +1183,8 @@
   <string name="RedPhone_got_it">దొరికింది</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">మీ వీడియోను ప్రారంభించడానికి ఇక్కడ నొక్కండి</string>
-  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s కి కాల్ చేయడానికి, Signalకు మీ కెమెరాకు ప్రాప్యత అవసరం</string>
-  <string name="WebRtcCallActivity__signal_s">Signal (సిగ్నల్) %1$s</string>
+  <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s కి కాల్ చేయడానికి, Signal కు మీ కెమెరాకు ప్రాప్యత అవసరం</string>
+  <string name="WebRtcCallActivity__signal_s">Signal  %1$s</string>
   <string name="WebRtcCallActivity__calling">కాలింగ్…</string>
   <!--WebRtcCallView-->
   <string name="WebRtcCallView__signal_voice_call">Signal వాయిస్ కాల్…</string>
@@ -1156,7 +1201,7 @@
   <string name="WebRtcCallView__disconnected">డిస్కనెక్ట్</string>
   <string name="WebRtcCallView__no_one_else_is_here">మరెవరూ ఇక్కడ లేరు</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s ఈ కాల్‌లో ఉన్నారు</string>
-  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s మరియు %2$s ఈ కాల్‌లో ఉన్నాయి</string>
+  <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s మరియు %2$s ఈ కాల్‌లో ఉన్నారు</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
     <item quantity="one">%1$s, %2$s మరియు %3$d ఇతర ఈ కాల్‌లో ఉన్నాయి</item>
     <item quantity="other">%1$s, %2$s, మరియు %3$d ఇతరులు ఈ కాల్‌లో ఉన్నారు</item>
@@ -2176,6 +2221,7 @@
   <string name="ResearchMegaphone_learn_more">ఇంకా నేర్చుకో</string>
   <string name="ResearchMegaphone_dismiss">రద్దుచేసే</string>
   <string name="ResearchMegaphoneDialog_signal_research">Signal రీసెర్చ్</string>
+  <string name="ResearchMegaphoneDialog_we_believe_in_privacy"><![CDATA[<p><b>మేము గోప్యతను నమ్ముతున్నాము.</b></p><p>Signal మిమ్మల్ని ట్రాక్ చేయదు లేదా మీ డేటాను సేకరించదు. ప్రతిఒక్కరికీ Signal మెరుగుపరచడానికి, మేము వినియోగదారు అభిప్రాయంపై ఆధారపడతాము, <b> మరియు మేము మీదే ఇష్టపడతాము.</b></p><p>మీరు Signal ‌ను ఎలా ఉపయోగిస్తారో అర్థం చేసుకోవడానికి మేము ఒక సర్వేను నడుపుతున్నాము. మా సర్వే మిమ్మల్ని గుర్తించే డేటాను సేకరించదు. మీకు అదనపు అభిప్రాయాన్ని పంచుకోవటానికి ఆసక్తి ఉంటే, సంప్రదింపు సమాచారాన్ని అందించే అవకాశం మీకు ఉంటుంది.</p><p>మీకు కొంచెం వ్యవధి మరియు అభిప్రాయాలు ఉంటే, మేము మీ నుండి వినడానికి ఇష్టపడతాము.</p>]]></string>
   <string name="ResearchMegaphoneDialog_take_the_survey">సర్వే తీసుకోండి</string>
   <string name="ResearchMegaphoneDialog_no_thanks">వద్దు ధన్యవాదాలు</string>
   <string name="ResearchMegaphoneDialog_the_survey_is_hosted_by_alchemer_at_the_secure_domain">ఈ సర్వేను Alchemer సురక్షిత డొమైన్ సsurveys.signalusers.org వద్ద హోస్ట్ చేసారు</string>
@@ -2303,6 +2349,8 @@
   <string name="GroupsLearnMore_paragraph_2">లెగసీ గుంపులు ఇంకా క్రొత్త గుంపులకు అప్‌గ్రేడ్ చేయబడవు, కాని Signal యొక్క తాజా వెర్షన్‌లో ఉంటే అదే సభ్యులతో మీరు క్రొత్త సమూహాన్ని సృష్టించవచ్చు.</string>
   <string name="GroupsLearnMore_paragraph_3">Signal భవిష్యత్తులో లెగసీ గ్రూపులను అప్‌గ్రేడ్ చేయడానికి ఒక మార్గాన్ని అందిస్తుంది.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">ఈ లింక్ ఉన్న ఎవరైనా సమూహం పేరు మరియు ఫోటోను చూడవచ్చు మరియు చేరమని అభ్యర్థించవచ్చు. మీరు విశ్వసించే వ్యక్తులతో ఈ లింక్ ను పంచుకోండి.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">ఈ లింక్ ఉన్న ఎవరైనా గుంపు పేరు మరియు ఫోటోను చూడవచ్చు మరియు గుంపులో చేరవచ్చు. మీరు విశ్వసించే వ్యక్తులతో ఈ లింక్ ను పంచుకోండి.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">Signal ద్వారా భాగస్వామ్యం చేయండి</string>
   <string name="GroupLinkBottomSheet_copy">నకలు</string>
   <string name="GroupLinkBottomSheet_qr_code">QR కోడ్</string>
@@ -2344,6 +2392,7 @@
   <string name="ReviewCard__update_contact">పరిచయాన్ని నవీకరించండి</string>
   <string name="ReviewCard__block">నిరోధించు</string>
   <string name="ReviewCard__delete">తొలగించండి</string>
+  <string name="ReviewCard__recently_changed">ఇటీవల వారి ప్రొఫైల్ పేరును %1$s నుండి %2$s గా మార్చారు</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s చేరారు</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s మరియు %2$s చేరారు</string>

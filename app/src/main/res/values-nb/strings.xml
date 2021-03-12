@@ -1122,7 +1122,7 @@
   <!--PinRestoreEntryFragment-->
   <string name="PinRestoreEntryFragment_incorrect_pin">Feil PIN-kode</string>
   <string name="PinRestoreEntryFragment_skip_pin_entry">Hopp over PIN-kode?</string>
-  <string name="PinRestoreEntryFragment_need_help">Trenger hjelp?</string>
+  <string name="PinRestoreEntryFragment_need_help">Ønsker du hjelp?</string>
   <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">Din PIN er en kode med %1$d+ siffer eller alfanumeriske tegn. Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Hvis du ikke kan huske PIN-koden din, kan du opprette en ny. Du kan registrere og bruke kontoen din, men du vil miste noen lagrede innstillinger som profilinformasjonen din.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Opprett ny PIN-kode</string>

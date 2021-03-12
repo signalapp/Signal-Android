@@ -1982,7 +1982,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__pref_enter_sends_title">Enter wysyła</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Wciśnięcie przycisku Enter spowoduje wysłanie wiadomości</string>
   <string name="preferences__pref_use_address_book_photos">Użyj zdjęć z kontaktów systemu</string>
-  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Wyświetl zdjęcia kontaktów z książki telefonicznej, jeśli dostępne</string>
+  <string name="preferences__display_contact_photos_from_your_address_book_if_available">Wyświetl zdjęcia kontaktów z książki telefonicznej, jeśli są dostępne</string>
   <string name="preferences__generate_link_previews">Twórz podglądy linków</string>
   <string name="preferences__retrieve_link_previews_from_websites_for_messages">Pobieraj podglądy linków we wiadomościach bezpośrednio ze stron internetowych.</string>
   <string name="preferences__choose_identity">Wybierz tożsamość</string>
@@ -2520,7 +2520,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ReviewCardDialogFragment__review_request">Przejrzyj prośby</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d członków grupy ma takie samo imię, przejrzyj poniższych członków i podejmij działania.</string>
   <string name="ReviewCardDialogFragment__if_youre_not_sure">Jeśli nie masz pewności, od kogo pochodzi ta prośba, przejrzyj poniższe kontakty i podejmij działania.</string>
-  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Brak innych wspólnych grup.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Brak innych, wspólnych grup.</string>
   <string name="ReviewCardDialogFragment__no_groups_in_common">Brak wspólnych grup.</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
     <item quantity="one">%d wspólna grupa</item>

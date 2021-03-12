@@ -2663,6 +2663,8 @@
   <string name="GroupsLearnMore_paragraph_2">المجموعات من الطراز القديم لا يمكن ترقيتها إلى مجموعة جديدة، ولكن يمكنك إنشاء مجموعة جديدة بنفس الأعضاء ولكن من الطراز الجديد، بشرط استخدام الجميع آخر إصدار لـ Signal.</string>
   <string name="GroupsLearnMore_paragraph_3">سيوفر Signal طريقة لترقية المجموعات من الطراز القديم  مستقبلا.</string>
   <!--GroupLinkBottomSheetDialogFragment-->
+  <string name="GroupLinkBottomSheet_share_hint_requiring_approval">يمكن لكل من لديه هذه الوصلة أن يعرض اسم المجموعة وصورتها وكذا طلب الانضمام إليها. يكفيك مشاركتها مع من لديك فيهم الثقة.</string>
+  <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">يمكن لأي شخص لديه هذه الوصلة أن يعرض اسم المجموعة وصورتها وكذا طلب الانضمام إليها. يكفيك مشاركتها مع من لديك فيهم الثقة.</string>
   <string name="GroupLinkBottomSheet_share_via_signal">المشاركة عبر Signal</string>
   <string name="GroupLinkBottomSheet_copy">نسخ</string>
   <string name="GroupLinkBottomSheet_qr_code">الرمز المربع</string>
