@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.crypto;
+package org.session.libsession.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -23,7 +23,6 @@ import android.content.SharedPreferences.Editor;
 import androidx.annotation.NonNull;
 
 import org.session.libsignal.libsignal.ecc.ECPublicKey;
-import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.session.libsignal.libsignal.IdentityKey;
 import org.session.libsignal.libsignal.IdentityKeyPair;
 import org.session.libsignal.libsignal.InvalidKeyException;
@@ -34,8 +33,6 @@ import org.session.libsignal.libsignal.ecc.ECPrivateKey;
 import org.session.libsignal.utilities.Base64;
 
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Utility class for working with identity keys.
@@ -93,45 +90,6 @@ public class IdentityKeyUtil {
     ECPrivateKey privateKey = keyPair.getPrivateKey();
     save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
     save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(privateKey.serialize()));
-  }
-
-  public static List<BackupProtos.SharedPreference> getBackupRecords(@NonNull Context context) {
-    final String prefName = MASTER_SECRET_UTIL_PREFERENCES_NAME;
-    SharedPreferences preferences = context.getSharedPreferences(prefName, 0);
-
-    LinkedList<BackupProtos.SharedPreference> prefList = new LinkedList<>();
-
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefName)
-            .setKey(IDENTITY_PUBLIC_KEY_PREF)
-            .setValue(preferences.getString(IDENTITY_PUBLIC_KEY_PREF, null))
-            .build());
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefName)
-            .setKey(IDENTITY_PRIVATE_KEY_PREF)
-            .setValue(preferences.getString(IDENTITY_PRIVATE_KEY_PREF, null))
-            .build());
-    if (preferences.contains(ED25519_PUBLIC_KEY)) {
-      prefList.add(BackupProtos.SharedPreference.newBuilder()
-              .setFile(prefName)
-              .setKey(ED25519_PUBLIC_KEY)
-              .setValue(preferences.getString(ED25519_PUBLIC_KEY, null))
-              .build());
-    }
-    if (preferences.contains(ED25519_SECRET_KEY)) {
-      prefList.add(BackupProtos.SharedPreference.newBuilder()
-              .setFile(prefName)
-              .setKey(ED25519_SECRET_KEY)
-              .setValue(preferences.getString(ED25519_SECRET_KEY, null))
-              .build());
-    }
-    prefList.add(BackupProtos.SharedPreference.newBuilder()
-            .setFile(prefName)
-            .setKey(LOKI_SEED)
-            .setValue(preferences.getString(LOKI_SEED, null))
-            .build());
-
-    return prefList;
   }
 
   public static String retrieve(Context context, String key) {

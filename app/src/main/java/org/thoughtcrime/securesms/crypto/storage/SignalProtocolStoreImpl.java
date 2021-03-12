@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.session.libsignal.libsignal.IdentityKeyPair;
 import org.session.libsignal.libsignal.state.IdentityKeyStore;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.session.libsession.utilities.IdentityKeyUtil;
 
 public class SignalProtocolStoreImpl implements IdentityKeyStore {
 
