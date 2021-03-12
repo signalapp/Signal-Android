@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_create_closed_group.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.session.libsession.messaging.threads.Address
@@ -103,7 +104,7 @@ class CreateClosedGroupActivity : PassphraseRequiredActionBarActivity(), LoaderM
         if (selectedMembers.count() < 1) {
             return Toast.makeText(this, R.string.activity_create_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
-        if (selectedMembers.count() >= MessageSender.groupSizeLimit) { // Minus one because we're going to include self later
+        if (selectedMembers.count() >= groupSizeLimit) { // Minus one because we're going to include self later
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }
         val userPublicKey = TextSecurePreferences.getLocalNumber(this)!!

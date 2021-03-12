@@ -20,10 +20,10 @@ import nl.komponents.kovenant.task
 import nl.komponents.kovenant.ui.failUi
 import nl.komponents.kovenant.ui.successUi
 import org.session.libsession.messaging.sending_receiving.MessageSender
+import org.session.libsession.messaging.sending_receiving.groupSizeLimit
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.session.libsession.messaging.threads.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.loki.dialogs.ClosedGroupEditingOptionsBottomSheet
 import org.thoughtcrime.securesms.loki.utilities.fadeIn
 import org.thoughtcrime.securesms.loki.utilities.fadeOut
@@ -260,7 +260,7 @@ class EditClosedGroupActivity : PassphraseRequiredActionBarActivity() {
             return Toast.makeText(this, R.string.activity_edit_closed_group_not_enough_group_members_error, Toast.LENGTH_LONG).show()
         }
 
-        val maxGroupMembers = if (isClosedGroup) MessageSender.groupSizeLimit else legacyGroupSizeLimit
+        val maxGroupMembers = if (isClosedGroup) groupSizeLimit else legacyGroupSizeLimit
         if (members.size >= maxGroupMembers) {
             return Toast.makeText(this, R.string.activity_create_closed_group_too_many_group_members_error, Toast.LENGTH_LONG).show()
         }

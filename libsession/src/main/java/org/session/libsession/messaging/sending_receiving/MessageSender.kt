@@ -32,7 +32,6 @@ import org.session.libsignal.utilities.logging.Log
 
 
 object MessageSender {
-    const val groupSizeLimit = 100
 
     // Error
     sealed class Error(val description: String) : Exception() {

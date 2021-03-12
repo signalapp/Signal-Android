@@ -2,9 +2,7 @@
 
 package org.session.libsession.messaging.sending_receiving
 
-import android.content.Context
 import com.google.protobuf.ByteString
-import com.google.protobuf.Message
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 
@@ -13,7 +11,6 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.sending_receiving.notifications.PushNotificationAPI
 import org.session.libsession.messaging.sending_receiving.MessageSender.Error
 import org.session.libsession.messaging.threads.Address
-import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.GroupUtil
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.utilities.Hex
@@ -29,6 +26,7 @@ import org.session.libsignal.utilities.logging.Log
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
+const val groupSizeLimit = 100
 val pendingKeyPair = ConcurrentHashMap<String, Optional<ECKeyPair>>()
 
 fun MessageSender.create(name: String, members: Collection<String>): Promise<String, Exception> {
