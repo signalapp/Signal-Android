@@ -109,12 +109,16 @@ public final class LocalBackupJobApi29 extends BaseJob {
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                   DatabaseFactory.getBackupDatabase(context),
                                   temporaryFile,
-                                  backupPassword);
+                                  backupPassword,
+                                  this::isCanceled);
 
         if (!temporaryFile.renameTo(fileName)) {
           Log.w(TAG, "Failed to rename temp file");
           throw new IOException("Renaming temporary backup file failed!");
         }
+      } catch (FullBackupExporter.BackupCanceledException e) {
+        Log.w(TAG, "Backup cancelled");
+        throw e;
       } catch (IOException e) {
         Log.w(TAG, "Error during backup!", e);
         BackupFileIOError.postNotificationForException(context, e, getRunAttempt());
