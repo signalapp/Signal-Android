@@ -1,14 +1,21 @@
 package org.thoughtcrime.securesms.contacts.sync;
 
-import androidx.annotation.NonNull;
+import android.net.Uri;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
 
 final class ContactHolder {
+
+  private static final String TAG = Log.tag(ContactHolder.class);
 
   private final String                  lookupKey;
   private final List<PhoneNumberRecord> phoneNumberRecords = new LinkedList<>();
@@ -38,16 +45,18 @@ final class ContactHolder {
                                   phoneNumberRecord.getContactPhotoUri(),
                                   phoneNumberRecord.getContactLabel(),
                                   phoneNumberRecord.getPhoneType(),
-                                  phoneNumberRecord.getContactUri().toString());
+                                  Optional.fromNullable(phoneNumberRecord.getContactUri()).transform(Uri::toString).orNull());
     }
   }
 
-  private @NonNull ProfileName getProfileName(@NonNull String displayName) {
-    if (structuredNameRecord.hasGivenName()) {
+  private @NonNull ProfileName getProfileName(@Nullable String displayName) {
+    if (structuredNameRecord != null && structuredNameRecord.hasGivenName()) {
       return structuredNameRecord.asProfileName();
-    } else {
+    } else if (displayName != null) {
       return ProfileName.asGiven(displayName);
+    } else {
+      Log.w(TAG, "Failed to find a suitable display name!");
+      return ProfileName.EMPTY;
     }
   }
-
 }
