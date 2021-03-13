@@ -2240,9 +2240,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="backup_enable_dialog__folder">Mappe</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at gendanne fra backup.</string>
   <string name="registration_activity__restore_backup">Gendan backup</string>
+  <string name="registration_activity__transfer_or_restore_account">Overfør eller gendan konto</string>
+  <string name="registration_activity__transfer_account">Overfør konto</string>
   <string name="registration_activity__skip">Spring over</string>
   <string name="preferences_chats__chat_backups">Backup chats</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Backup chats til ekstern placering</string>
+  <string name="preferences_chats__transfer_account">Overfør konto</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Overfør konto til en ny Android-enhed</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv kodeord for backup</string>
   <string name="RegistrationActivity_restore">Gendan</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backups fra nyere versioner af Signal</string>
@@ -2316,6 +2320,112 @@ Modtog en nøgle besked, for en ugyldig protokol-version
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAP FOR AT LÅSE OP</string>
   <string name="Recipient_unknown">Ukendt</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Overfør eller gendan konto</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Hvis du tidligere har registreret en Signal-konto, kan du overføre eller gendanne din konto og beskeder</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Overfør fra Android-enhed</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Overfør din konto og din beskedhistorik fra din gamle Android-enhed. Du skal have adgang til din gamle enhed.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du skal have adgang til din gamle enhed.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Gendan fra sikkerhedskopi</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Gendan dine beskeder og medier fra en lokal sikkerhedskopi. Hvis du ikke gendanner nu, kan du ikke gøre det senere.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Åbn Signal på din gamle Android-telefon.</string>
+  <string name="NewDeviceTransferInstructions__continue">Fortsæt</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tryk på dit profilbillede øverst til venstre for at åbne Indstillinger</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Tryk på \"Chats\"</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tryk på \"Overfør konto\" og derefter \"Fortsæt\" på begge enheder</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Forbereder forbindelse til den gamle Android-enhed…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Tager et øjeblik, vil snart være klar</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Venter på, at den gamle Android-enhed forbinder…</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Forbinder til den gamle Android-enhed…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal kræver placeringstilladelsen for at opspore og forbinde din gamle Android-enhed.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal kræver placeringstjenester aktiveret for at opspore og forbinde med din gamle Android-enhed.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal kræver Wi-Fi til for at opspore og forbinde med din gamle Android-enhed. Wi-Fi skal være tændt, men det behøver ikke at være forbundet til et Wi-Fi-netværk.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklager, denne enhed understøtter ikke Wi-Fi Direct. Signal bruger Wi-Fi Direct til at opspore og forbinde med din gamle Android-enhed. Du kan stadig gendanne en sikkerhedskopi for at gendanne din konto fra din gamle Android-enhed.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Gendan en sikkerhedskopi</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der opstod en uventet fejl under forbindelsesforsøg til din gamle Android-enhed.</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Søger efter din nye Android-enhed…</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Forbinder til den nye Android-enhed…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal kræver placeringstilladelsen for at opspore og forbinde med din nye Android-enhed.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal kræver placeringstjenester aktiveret for at opspore og forbinde med din nye Android-enhed.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal kræver Wi-Fi til for at opspore og forbinde med din nye Android-enhed. Wi-Fi skal være tændt, men det behøver ikke at være forbundet til et Wi-Fi-netværk.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Beklager, denne enhed understøtter ikke Wi-Fi Direct. Signal bruger Wi-Fi Direct til at opspore og forbinde med din nye Android-enhed. Du kan stadig gendanne en sikkerhedskopi for at gendanne din konto fra din nye Android-enhed.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Opret en sikkerhedskopi</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Der opstod en uventet fejl under forbindelsesforsøg til din nye Android-enhed.</string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi-indstillinger kan ikke åbnes. Slå Wi-Fi til manuelt.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Tildel placeringstilladelser</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Slå placeringstjenester til</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Placeringsindstillinger kan ikke åbnes.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Aktiver Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Forbindelsesfejl</string>
+  <string name="DeviceTransferSetup__retry">Prøv igen</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Indsend fejlfindingslogfiler</string>
+  <string name="DeviceTransferSetup__verify_code">Bekræft kode</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Bekræft, at nedenstående kode matcher på begge dine enheder. Tryk derefter på Fortsæt.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numrene stemmer ikke overens</string>
+  <string name="DeviceTransferSetup__continue">Fortsæt</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Nummeret er ikke det samme</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Hvis numrene på dine enheder ikke stemmer overens, er det muligt, at du er forbundet til den forkerte enhed. For at løse dette skal du stoppe overførslen og prøve igen, og holde begge dine enheder tætte.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Stop overførslen</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Den gamle enhed kan ikke opspores</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Den nye enhed kan ikke opspores</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Sørg for følgende tilladelser og tjenester er aktiveret:</string>
+  <string name="DeviceTransferSetup__location_permission">Placeringstilladelse</string>
+  <string name="DeviceTransferSetup__location_services">Placeringstjenester</string>
+  <string name="DeviceTransferSetup__wifi">Wi-fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">På WiFi Direct-skærmen skal du fjerne alle huskede grupper og fjerne linket til inviterede eller forbundne enheder.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct-skærm</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Prøv at slå Wi-Fi fra og til på begge enheder.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Sørg for begge enheder er i overførselstilstand.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Gå til supportsiden</string>
+  <string name="DeviceTransferSetup__try_again">Prøv igen</string>
+  <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Der kan ikke overføres fra en nyere version af Signal</string>
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Overfører data</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Hold begge enheder tæt ved hinanden. Sluk ikke for enhederne, og hold Signal åbent. Overførsler er end-to-end krypteret</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d beskeder indtil videre…</string>
+  <string name="DeviceTransfer__cancel">Annullér</string>
+  <string name="DeviceTransfer__try_again">Prøv igen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Stop overførslen?</string>
+  <string name="DeviceTransfer__stop_transfer">Stop overførslen</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Al overførselsfremgang vil gå tabt.</string>
+  <string name="DeviceTransfer__transfer_failed">Overførslen fejlede</string>
+  <string name="DeviceTransfer__unable_to_transfer">Der kan ikke overføres</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kan overføre din Signal konto ved opsætning af Signal på en ny Android-enhed. Før du fortsætter:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Hent Signal på din nye Android-enhed</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tryk på \"Overfør eller gendan konto\"</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Vælg \"Overfør fra Android-enhed\", hvis bedt om det, og derefter \"Fortsæt\". Hold begge enheder i nærheden.</string>
+  <string name="OldDeviceTransferInstructions__continue">Fortsæt</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Overførslen fuldført</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Gå til din nye enhed</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Dine Signal-data er blevet overført til din nye enhed. For at fuldføre overførslen, skal du fortsætte med registreringen på din nye enhed.</string>
+  <string name="OldDeviceTransferComplete__close">Luk</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Overførslen gennemført</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Overførslen fuldført</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">For at fuldføre overførslen, skal du fortsætte med registreringen.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Fortsæt registreringen</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Kontooverførsel</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Forbereder forbindelse til den anden Android-enhed…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Forbereder forbindelse til den anden Android-enhed…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Søger efter din anden Android-enhed…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Forbinder til den anden Android-enhed…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Bekræftelse er påkrævet</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Overfører kontoen…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokér</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokering</string>

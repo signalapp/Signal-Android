@@ -2478,6 +2478,27 @@ Send neges heb ei ddiogelu?</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Mae Signal wedi\'i gloi</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPIO I DDATGLOI</string>
   <string name="Recipient_unknown">Anhysbys</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Parhau</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Ailgynnig</string>
+  <string name="DeviceTransferSetup__continue">Parhau</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Ceisio eto</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Canslo</string>
+  <string name="DeviceTransfer__try_again">Ceisio eto</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Trosglwyddo Cyfrif</string>
+  <string name="OldDeviceTransferInstructions__continue">Parhau</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Cau</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Rhwystro</string>
   <string name="RecipientBottomSheet_unblock">Dadrwystro</string>

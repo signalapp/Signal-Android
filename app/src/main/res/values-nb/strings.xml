@@ -2310,6 +2310,27 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSE OPP</string>
   <string name="Recipient_unknown">Ukjent</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Fortsett</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Prøv på nytt</string>
+  <string name="DeviceTransferSetup__continue">Fortsett</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Avbryt</string>
+  <string name="DeviceTransfer__try_again">Prøv igjen</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Overfør konto</string>
+  <string name="OldDeviceTransferInstructions__continue">Fortsett</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Lukk</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>

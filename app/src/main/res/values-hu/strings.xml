@@ -2318,6 +2318,27 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="prompt_passphrase_activity__signal_is_locked">Signal zárolva</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ÉRINTS A FELOLDÁSHOZ</string>
   <string name="Recipient_unknown">Ismeretlen</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Folytatás</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Újra</string>
+  <string name="DeviceTransferSetup__continue">Folytatás</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Újra</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Mégsem</string>
+  <string name="DeviceTransfer__try_again">Újra</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Fiók átmozgatása</string>
+  <string name="OldDeviceTransferInstructions__continue">Folytatás</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Bezárás</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Letiltás</string>
   <string name="RecipientBottomSheet_unblock">Tiltás feloldása</string>

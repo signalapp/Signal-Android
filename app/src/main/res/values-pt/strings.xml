@@ -2239,9 +2239,13 @@
   <string name="backup_enable_dialog__folder">Pasta</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Eu anotei esta frase-chave. Sem ela, serei incapaz de restaurar uma cópia de segurança.</string>
   <string name="registration_activity__restore_backup">Restaurar cópia de segurança</string>
+  <string name="registration_activity__transfer_or_restore_account">Transferir ou restaurar conta</string>
+  <string name="registration_activity__transfer_account">Transferir conta</string>
   <string name="registration_activity__skip">Saltar</string>
   <string name="preferences_chats__chat_backups">Cópias de segurança de conversas</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Executar cópia de segurança para armazenamento externo</string>
+  <string name="preferences_chats__transfer_account">Transferir conta</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir conta para um dispositivo Android novo</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduza a frase-chave da cópia de segurança</string>
   <string name="RegistrationActivity_restore">Restaurar</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar cópias de segurança de novas versões do Signal</string>
@@ -2315,6 +2319,34 @@
   <string name="prompt_passphrase_activity__signal_is_locked">O Signal está bloqueado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESBLOQUEAR</string>
   <string name="Recipient_unknown">Desconhecido</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transferir ou restaurar conta</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se já registou uma conta Signal, você pode transferir ou restaurar a sua conta e mensagens </string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transferir de um dispositivo Android</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Transfira a sua conta e o histórico de mensagens a partir do seu dispositivo antigo Android. Você deverá ter acesso ao seu dispositivo antigo.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Você deverá ter acesso ao seu dispositivo antigo.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Restaurar a partir da cópia de segurança</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restore as suas mensagens e multimédia a partir de uma cópia de segurança local. Se não as restaurar agora, não será capaz de as restaurar mais tarde.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Continuar</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Tentar novamente</string>
+  <string name="DeviceTransferSetup__continue">Continuar</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Cancelar</string>
+  <string name="DeviceTransfer__try_again">Tentar novamente</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transferir conta</string>
+  <string name="OldDeviceTransferInstructions__continue">Continuar</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Fechar</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>

@@ -2310,6 +2310,27 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="prompt_passphrase_activity__signal_is_locked">El Signal està blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUEU PER DESBLOCAR-LO</string>
   <string name="Recipient_unknown">Desconegut</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Continua</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Troneu a provar-ho</string>
+  <string name="DeviceTransferSetup__continue">Continua</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Torna a provar-ho</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Cancel·la</string>
+  <string name="DeviceTransfer__try_again">Torna a provar-ho</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transfereix el compte</string>
+  <string name="OldDeviceTransferInstructions__continue">Continua</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Tanca</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloca</string>
   <string name="RecipientBottomSheet_unblock">Desbloca</string>

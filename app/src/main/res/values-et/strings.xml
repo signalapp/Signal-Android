@@ -2316,6 +2316,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukus</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
   <string name="Recipient_unknown">Tundmatu</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Jätka</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Proovi uuesti</string>
+  <string name="DeviceTransferSetup__continue">Jätka</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Proovi uuesti</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Loobu</string>
+  <string name="DeviceTransfer__try_again">Proovi uuesti</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Kanna konto üle</string>
+  <string name="OldDeviceTransferInstructions__continue">Jätka</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Sulge</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeeri</string>
   <string name="RecipientBottomSheet_unblock">Eemalda blokeering</string>

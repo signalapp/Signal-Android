@@ -1967,6 +1967,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ਲਾਕ ਹੈ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ਅਨਲੌਕ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">ਜਾਰੀ ਰੱਖੋ</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">ਮੁੜ-ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <string name="DeviceTransferSetup__continue">ਜਾਰੀ ਰੱਖੋ</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="DeviceTransfer__try_again">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">ਖਾਤਾ ਟ੍ਰਾਂਸਫਰ ਕਰੋ</string>
+  <string name="OldDeviceTransferInstructions__continue">ਜਾਰੀ ਰੱਖੋ</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">ਬੰਦ ਕਰੋ</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ਬਲਾਕ</string>
   <string name="RecipientBottomSheet_unblock">ਅਨਬਲੌਕ</string>

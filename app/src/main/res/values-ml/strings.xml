@@ -2309,6 +2309,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal പൂട്ടിയിരിക്കുന്നൂ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">തുറക്കാൻ തൊടുക</string>
   <string name="Recipient_unknown">അജ്ഞാതം</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">തുടരുക</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">വീണ്ടും ശ്രമിക്കുക</string>
+  <string name="DeviceTransferSetup__continue">തുടരുക</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">റദ്ദാക്കൂ</string>
+  <string name="DeviceTransfer__try_again">വീണ്ടും ശ്രമിക്കുക</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">അക്കൗണ്ട് കൈമാറ്റം ചെയ്യുക</string>
+  <string name="OldDeviceTransferInstructions__continue">തുടരുക</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">അടയ്ക്കുക</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">തടയുക</string>
   <string name="RecipientBottomSheet_unblock">തടഞ്ഞത് മാറ്റുക</string>

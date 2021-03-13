@@ -2322,6 +2322,24 @@ Kom i gang ved å senda ei melding til ein venn.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>
   <string name="Recipient_unknown">Ukjend</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Hald fram</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__continue">Hald fram</string>
+  <string name="DeviceTransferSetup__try_again">Prøv igjen</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Avbryt</string>
+  <string name="DeviceTransfer__try_again">Prøv igjen</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__continue">Hald fram</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Lukk</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Fjern blokkering</string>

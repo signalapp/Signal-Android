@@ -2239,9 +2239,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="backup_enable_dialog__folder">Dosierujo</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mi skribis tiun ĉi pasfrazon. Sen ĝi, mi ne povos restaŭri savkopion.</string>
   <string name="registration_activity__restore_backup">Restaŭri savkopion</string>
+  <string name="registration_activity__transfer_or_restore_account">Transigo aŭ restaŭro de la konto</string>
+  <string name="registration_activity__transfer_account">Transigi la konton</string>
   <string name="registration_activity__skip">Preterpasi</string>
   <string name="preferences_chats__chat_backups">Mesaĝaj savkopioj</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Savkopii mesaĝojn al ekstera konservejo</string>
+  <string name="preferences_chats__transfer_account">Transigi la konton</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Transigi la konton al nova Android-aparato</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Entajpu la savkopian pasfrazon</string>
   <string name="RegistrationActivity_restore">Restaŭri</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Ne eblas importi savkopiojn el pli novaj versioj de Signal</string>
@@ -2315,6 +2319,112 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="prompt_passphrase_activity__signal_is_locked">Signal estas ŝlosita</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TUŜETU POR MALŜLOSI</string>
   <string name="Recipient_unknown">Nekonata</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transigo aŭ restaŭro de konto</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Se vi antaŭe registris Signal-konton, vi povas transigi aŭ restaŭri vian konton kaj viaj mesaĝojn.</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Transigi el Android-aparato</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Elpreni vian konton kaj viajn mesaĝojn el via antaŭa Android-aparato. Vi devas havi vian antaŭan aparaton.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Vi devas havi vian aparaton.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Restaŭri el savkopio</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Malfermi Signal ĉe via antaŭa Android-aparato.</string>
+  <string name="NewDeviceTransferInstructions__continue">Daŭrigi</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tuŝetu vian profilfoton en la supra maldekstra angulo por malfermi la agordaĵojn</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Tuŝetu la linion „Interparoloj“</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tuŝetu „Transigi la konton“ kaj poste „Sekva“ ĉe ambaŭ aparatoj</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparado de la konekto al la antaŭa Android-aparato…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Atendu momenton, baldaŭ estos preta</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Atendo de la konekto el la antaŭa Android-aparato…</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Konektado al la antaŭa Android-aparato…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal bezonas la Pozicio-permeson por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal bezonas vifion por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Bedaŭrinde, ŝajne, ke tiu aparato ne subtenas „Wi-Fi Direct“ (senpera vifio). Signal uzas tion por malkovri vian antaŭan Android-aparaton kaj konekti al ĝi. Vi povas tamen restaŭri savkopion por restaŭri vian konton el via antaŭa Android-aparato.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Restaŭri savkopion</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Neatendita eraro okazis dum provo konekti al via antaŭa Android-aparato.</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Serĉo de via nova Android-aparato…</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Konektado al nova Android-aparato…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal bezonas la Pozicio-permeson por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal bezonas, ke la pozicio-servoj estas ŝaltitaj por malkovri vian novan Android-aparaton kaj konekti al ĝi.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal bezonas vifion por malkovri vian novan Android-aparaton kaj konekti al ĝi. Vifio devas esti ŝaltita, sed ĝi ne bezonas esti konektita al vifia reto.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Bedaŭrinde, ŝajne, ke tiu aparato ne subtenas „Wi-Fi Direct“ (senpera vifio). Signal uzas tion por malkovri vian novan Android-aparaton kaj konekti al ĝi. Vi povas tamen restaŭri savkopion por restaŭri vian konton al via nova Android-aparato.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Krei savkopion</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Neatendita eraro okazis dum provo konekti al via nova Android-aparato.</string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Malfermo de la vifia agordo malsukcesis. Ŝaltu la vifion permane.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Doni la pozicio-permeson</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Ŝalti la pozicio-servojn</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Malfermo de la vifia agordo malsukcesis.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Ŝalti la vifion</string>
+  <string name="DeviceTransferSetup__error_connecting">Eraro de konekto</string>
+  <string name="DeviceTransferSetup__retry">Reprovi</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Sendi sencimigan protokolon</string>
+  <string name="DeviceTransferSetup__verify_code">Kontroli la kodon</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Kontrolu, ke la ĉi-suba kodo estas la sama ĉe ambaŭ aparatoj. Poste, tuŝetu „Sekva“.</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">La kodoj ne kongruas</string>
+  <string name="DeviceTransferSetup__continue">Daŭrigi</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">La kodo ne estas la samaj</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Se la kodoj en viaj aparatoj ne kongruas, eble vi ne konektas al via aparato. Por korekti tion, haltigu la transigon kaj reprovu, kaj metu ambaŭ aparatojn apude.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Haltigi la transigon</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Malkovro de la antaŭa aparato malsukcesis</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Malkovro de la nova aparato malsukcesis</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Certigu, ke la jenaj permesoj kaj servoj estas ŝaltitaj:</string>
+  <string name="DeviceTransferSetup__location_permission">Pozicio-permeso</string>
+  <string name="DeviceTransferSetup__location_services">Pozicio-servoj</string>
+  <string name="DeviceTransferSetup__wifi">Vifio</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">En la ekrano pri „WI-Fi Direct“ (senpera vifio), forigu ĉiujn enmemorigitajn grupojn kaj malligu invititajn aŭ konektitajn aparatojn.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Ekrano pri „Wi-Fi Direct“</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Provu aktivigi kaj malaktivigi vifion ĉe ambaŭ aparatoj.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Certigu, ke ambaŭ aparatoj estas en transiga reĝimo.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Iri al helppaĝo</string>
+  <string name="DeviceTransferSetup__try_again">Provi denove</string>
+  <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ne eblas transigi el pli nova versio de Signal</string>
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Transigo de datumoj</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Tenu ambaŭ aparatojn apude. Ne malŝaltu la aparatojn, kaj lasu Signal-on malfermita. Transigo estas tutvoje ĉifrita.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d mesaĝoj ĝis nun…</string>
+  <string name="DeviceTransfer__cancel">Nuligi</string>
+  <string name="DeviceTransfer__try_again">Provi denove</string>
+  <string name="DeviceTransfer__stop_transfer_question">Ĉu haltigi la transigon?</string>
+  <string name="DeviceTransfer__stop_transfer">Haltigi la transigon</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">La transigo estos nuligita kaj neniu datumo estos transigita.</string>
+  <string name="DeviceTransfer__transfer_failed">La transigo malsukcesis</string>
+  <string name="DeviceTransfer__unable_to_transfer">La transigo ne eblis</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transigi la konton</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Vi povas transigi vian Signal-konton, kiam vi agordas Signal-on ĉe nova Android-aparato. Antaŭ ol plui:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Elŝutu Signal-on ĉe via nova Android-aparato</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tusêtu „Transigo aŭ restaŭro de konto“</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Tuŝetu „Transigi el Android-aparato“ kiam oni petas al vi, kaj poste „Sekva“. Tenu ambaŭ aparatojn apude.</string>
+  <string name="OldDeviceTransferInstructions__continue">Daŭrigi</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transigo plenumita</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Iru al via nova aparato</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Viaj Signal-datumoj transiĝis al via nova aparato. Por kompletigi la transigon, vi devas plu registriĝi ĉe via nova aparato. </string>
+  <string name="OldDeviceTransferComplete__close">Fermi</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Sukcesa transigo.</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transigo plenumita</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Por kompletigi la transigon, vi devas plu registriĝi. </string>
+  <string name="NewDeviceTransferComplete__continue_registration">Plu registriĝi</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Transigo de konto</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Preparado de la konekto al via alia Android-aparato…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Preparado de la konekto al via alia Android-aparato…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Serĉo de via alia Android-aparato…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Konektado al via alia Android-aparato…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Kontrolo bezonata</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Transigo de la konto…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloki</string>
   <string name="RecipientBottomSheet_unblock">Malbloki</string>

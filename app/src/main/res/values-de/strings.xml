@@ -2229,9 +2229,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="backup_enable_dialog__folder">Ordner</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie können keine Sicherungen wiederhergestellt werden.</string>
   <string name="registration_activity__restore_backup">Sicherung wiederherstellen</string>
+  <string name="registration_activity__transfer_or_restore_account">Konto übertragen oder wiederherstellen</string>
+  <string name="registration_activity__transfer_account">Konto übertragen</string>
   <string name="registration_activity__skip">Überspringen</string>
   <string name="preferences_chats__chat_backups">Unterhaltungen sichern</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Unterhaltungen im Gerätespeicher sichern</string>
+  <string name="preferences_chats__transfer_account">Konto übertragen</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Konto auf ein neues Android-Gerät übertragen</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Signal-Versionen können nicht importiert werden</string>
@@ -2305,6 +2309,112 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
   <string name="Recipient_unknown">Unbekannt</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Konto übertragen oder wiederherstellen</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Falls du zuvor ein Signal-Konto registriert hast, kannst du dieses und deine Nachrichten übertragen oder wiederherstellen </string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Von Android-Gerät übertragen</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Übertrage dein Konto und deinen Nachrichtenverlauf von deinem alten Android-Gerät. Du musst auf dein altes Gerät zugreifen können.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Du musst auf dein altes Gerät zugreifen können.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Aus Datensicherung wiederherstellen</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Öffne Signal auf deinem alten Android-Mobiltelefon</string>
+  <string name="NewDeviceTransferInstructions__continue">Fortfahren</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tippe auf dein Profilbild links oben, um die Einstellungen zu öffnen.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Tippe auf »Unterhaltungen«</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tippe auf »Konto übertragen« und dann »Fortfahren« auf beiden Geräten</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Verbindung zum alten Android-Gerät wird vorbereitet …</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Etwas Geduld bitte, sollte bald bereit sein</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Warten auf Verbindung mit altem Android-Gerät …</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Altes Android-Gerät wird verbunden …</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal benötigt die Berechtigung »Standort«, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal benötigt aktivierte Standortdienste, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal benötigt eingeschaltetes WLAN, um dein altes Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein altes Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen eine Datensicherung wiederherstellen, um das Konto deines alten Android-Geräts zu verwenden.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Eine Datensicherung wiederherstellen</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem alten Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten. </string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Nach deinem neuen Android-Gerät wird gesucht …</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Neues Android-Gerät wird verbunden …</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal benötigt die Berechtigung »Standort«, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal benötigt aktivierte Standortdienste, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal benötigt eingeschaltetes WLAN, um dein neues Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein neues Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen eine Datensicherung erstellen, um dein Konto auf deinem neuen Android-Gerät wiederherzustellen.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Eine Datensicherung erstellen</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem neuen Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten. </string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Die WLAN-Einstellungen können nicht geöffnet werden. Bitte schalte WLAN manuell ein.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Standortberechtigung gewähren</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Standortdienste einschalten</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Standort-Einstellungen können nicht geöffnet werden.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">WLAN einschalten</string>
+  <string name="DeviceTransferSetup__error_connecting">Fehler beim Verbinden</string>
+  <string name="DeviceTransferSetup__retry">Erneut versuchen</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Diagnoseprotokoll übermitteln</string>
+  <string name="DeviceTransferSetup__verify_code">Code bestätigen</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Bestätige, dass der folgende Code auf beiden Geräten übereinstimmt. Tippe anschließend auf »Fortfahren«. </string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Die Nummern stimmen nicht überein</string>
+  <string name="DeviceTransferSetup__continue">Fortfahren</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Nummer ist nicht identisch</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Falls die Nummern auf deinen Geräten nicht übereinstimmen, sind Letztere womöglich mit einem falschen Gerät verbunden. Beende in diesem Fall die Übertragung und versuche es erneut. Positioniere hierbei deine beiden Geräte nahe beieinander.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Übertragung abbrechen</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Altes Gerät wird nicht erkannt</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Neues Gerät wird nicht erkannt</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Stelle sicher, dass die folgenden Berechtigungen und Dienste aktiviert sind:</string>
+  <string name="DeviceTransferSetup__location_permission">Standortberechtigung</string>
+  <string name="DeviceTransferSetup__location_services">Standortdienste</string>
+  <string name="DeviceTransferSetup__wifi">WLAN</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">Entferne auf dem »Wi-Fi Direct«-Bildschirm alle gemerkten Gruppen und trenne jegliche eingeladenen oder verbundenen Geräte.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">»Wi-Fi Direct«-Bildschirm</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Versuche, WLAN bei beiden Geräten aus- und wieder einzuschalten.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Stelle sicher, dass beide Geräte im Übertragungsmodus sind.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Zur Support-Seite</string>
+  <string name="DeviceTransferSetup__try_again">Erneut versuchen</string>
+  <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Übertragung von neueren Signal-Versionen nicht möglich</string>
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Datenübertragung</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Positioniere beide Geräte nahe beieinander. Schalte keines davon aus und lass Signal geöffnet. Übertragungen sind Ende-zu-Ende-verschlüsselt.</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d Nachrichten bisher …</string>
+  <string name="DeviceTransfer__cancel">Abbrechen</string>
+  <string name="DeviceTransfer__try_again">Erneut versuchen</string>
+  <string name="DeviceTransfer__stop_transfer_question">Übertragung abbrechen?</string>
+  <string name="DeviceTransfer__stop_transfer">Übertragung abbrechen</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Alle Übertragungsfortschritte gehen verloren.</string>
+  <string name="DeviceTransfer__transfer_failed">Übertragung gescheitert</string>
+  <string name="DeviceTransfer__unable_to_transfer">Übertragung nicht möglich</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Konto übertragen</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Du kannst dein Signal-Konto übertragen, wenn du Signal auf einem neuen Android-Gerät einrichtest. Bevor du fortfährst:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Installiere Signal auf deinem neuen Android-Gerät</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tippe auf »Konto übertragen oder wiederherstellen«</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Tippe auf »Von Android-Gerät übertragen« und dann auf »Fortfahren«. Positioniere beide Geräte nahe beieinander.</string>
+  <string name="OldDeviceTransferInstructions__continue">Fortfahren</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Übertragung vollständig</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Wechsle zu deinem neuen Gerät</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Deine Signal-Daten wurden auf dein neues Gerät übertragen. Um den Übertragungsprozess abzuschließen, musst du die Registrierung auf deinem neuen Gerät fortsetzen.</string>
+  <string name="OldDeviceTransferComplete__close">Schließen</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Übertragung erfolgreich</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Übertragung vollständig</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Um den Übertragungsprozess abzuschließen, musst du die Registrierung fortsetzen.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Registrierung fortsetzen</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Kontoübertragung</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Verbindung zu deinem anderen Android-Gerät wird vorbereitet …</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Verbindung zu deinem anderen Android-Gerät wird vorbereitet …</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Nach deinem anderen Android-Gerät wird gesucht …</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Dein anderes Android-Gerät wird verbunden …</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Bestätigung erforderlich</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Konto wird übertragen …</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockieren</string>
   <string name="RecipientBottomSheet_unblock">Freigeben</string>

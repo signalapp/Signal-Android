@@ -2475,6 +2475,27 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zamčen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KLEPNUTÍM ODEMKNĚTE</string>
   <string name="Recipient_unknown">Neznámý</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Pokračovat</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Zkusit znovu</string>
+  <string name="DeviceTransferSetup__continue">Pokračovat</string>
+  <string name="DeviceTransferSetup__wifi">WiFi</string>
+  <string name="DeviceTransferSetup__try_again">Zkusit znovu</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Zrušit</string>
+  <string name="DeviceTransfer__try_again">Zkusit znovu</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Přenést účet</string>
+  <string name="OldDeviceTransferInstructions__continue">Pokračovat</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Zavřít</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Zablokovat</string>
   <string name="RecipientBottomSheet_unblock">Odblokovat</string>

@@ -2235,6 +2235,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal이 잠김</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">탭하여 잠금 해제</string>
   <string name="Recipient_unknown">알 수 없음</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">계속</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">재시도</string>
+  <string name="DeviceTransferSetup__continue">계속</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">다시 시도해 주세요.</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">취소</string>
+  <string name="DeviceTransfer__try_again">다시 시도해 주세요.</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">계정 이동</string>
+  <string name="OldDeviceTransferInstructions__continue">계속</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">닫기</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">차단</string>
   <string name="RecipientBottomSheet_unblock">차단 해제</string>

@@ -2314,6 +2314,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal பூட்டப்பட்டுள்ளது</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">திறக்க தட்டவும் </string>
   <string name="Recipient_unknown">தெரியாத</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">தொடர்ந்து செல் </string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">மீண்டும் முயற்சி செய்</string>
+  <string name="DeviceTransferSetup__continue">தொடர்ந்து செல் </string>
+  <string name="DeviceTransferSetup__wifi">அருகலை </string>
+  <string name="DeviceTransferSetup__try_again">மீண்டும் முயற்சிக்கவும்</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">ரத்து</string>
+  <string name="DeviceTransfer__try_again">மீண்டும் முயற்சிக்கவும்</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">இடமாற்றம் கணக்கு</string>
+  <string name="OldDeviceTransferInstructions__continue">தொடர்ந்து செல் </string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">நெருக்கமான</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">தடு </string>
   <string name="RecipientBottomSheet_unblock">தடைநீக்கு </string>

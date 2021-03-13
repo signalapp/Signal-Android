@@ -2311,6 +2311,23 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ରେ ତାଲା ପଡ଼ିଛି</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ତାଲା ଖୋଲିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
   <string name="Recipient_unknown">ଅଜଣା</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <string name="DeviceTransferSetup__try_again">ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">ବାତିଲ କରନ୍ତୁ</string>
+  <string name="DeviceTransfer__try_again">ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__continue">ଜାରି ରଖନ୍ତୁ</string>
+  <!--OldDeviceTransferComplete-->
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">ବ୍ଲକ୍ କରନ୍ତୁ</string>
   <string name="RecipientBottomSheet_unblock">ଅଣବ୍ଲକ୍ କରନ୍ତୁ</string>

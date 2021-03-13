@@ -2633,6 +2633,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal مُقفَل</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
   <string name="Recipient_unknown">مجهول</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">الاِستِمرار</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">إعادة المُحاولة</string>
+  <string name="DeviceTransferSetup__continue">الاِستِمرار</string>
+  <string name="DeviceTransferSetup__wifi">الـWi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">حاول مجدداً</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">إلغاء</string>
+  <string name="DeviceTransfer__try_again">حاول مجدداً</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">نقل الحساب</string>
+  <string name="OldDeviceTransferInstructions__continue">الاِستِمرار</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">إغلاق</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">حظر</string>
   <string name="RecipientBottomSheet_unblock">رفع الحظر</string>

@@ -2393,9 +2393,13 @@
   <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Я записал(-а) эту парольную фразу. Без неё я не смогу восстановить резервную копию.</string>
   <string name="registration_activity__restore_backup">Восстановить резервную копию</string>
+  <string name="registration_activity__transfer_or_restore_account">Перенести или восстановить учётную запись</string>
+  <string name="registration_activity__transfer_account">Перенести учётную запись</string>
   <string name="registration_activity__skip">Пропустить</string>
   <string name="preferences_chats__chat_backups">Резервные копии чатов</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Делать резервные копии чатов во внешнее хранилище</string>
+  <string name="preferences_chats__transfer_account">Перенести учётную запись</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Перенести учётную запись на новое Android-устройство</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Введите парольную фразу резервной копии</string>
   <string name="RegistrationActivity_restore">Восстановить</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Невозможно импортировать резервную копию из более новых версий Signal</string>
@@ -2469,6 +2473,112 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal заблокирован</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">РАЗБЛОКИРОВАТЬ</string>
   <string name="Recipient_unknown">Неизвестный</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Перенести или восстановить учётную запись</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Если вы уже регистрировали учётную запись Signal ранее, вы можете перенести или восстановить свои учётную запись и сообщения</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Перенести с Android-устройства</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Перенести учётную запись и историю сообщений с вашего старого Android-устройства. У вас должен быть доступ к своему старому устройству.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">У вас должен быть доступ к своему старому устройству.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Восстановить из резервной копии</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Восстановить сообщения и медиафайлы из локальной резервной копии. Если вы не сделаете этого сейчас, вы не сможете восстановить их позже.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Откройте Signal на своём старом Android-устройстве</string>
+  <string name="NewDeviceTransferInstructions__continue">Продолжить</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Нажмите на своё фото профиля в левом верхнем углу, чтобы открыть настройки</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">Нажмите на «Чаты»</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Нажмите «Перенести учётную запись», а затем «Продолжить» на обоих устройствах</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Подготовка к подключению к вашему старому Android-устройству…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Подождите, скоро будет готово</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Ожидание подключения старого Android-устройства…</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Подключение к старому Android-устройству…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal требуется разрешение на доступ к местоположению, чтобы обнаружить ваше старое Android-устройство и подключиться к нему.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Службы геолокации должны быть включены, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним.</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Wi-Fi должен быть включён, чтобы Signal смог обнаружить ваше старое Android-устройство и соединиться с ним. При этом подключаться к какой-либо сети Wi-Fi не обязательно.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, похоже, что это устройство не поддерживает Wi-Fi Direct. Signal использует Wi-Fi Direct, чтобы обнаружить ваше старое Android-устройство и соединиться с ним. Вы всё равно можете восстановить резервную копию, чтобы восстановить свою учётную запись со своего старого Android-устройства.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Восстановить резервную копию</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При попытке подключения к вашему старому Android-устройству произошла неожиданная ошибка.</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Поиск вашего нового Android-устройства…</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Подключение к новому Android-устройству…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal требуется разрешение на доступ к местоположению, чтобы обнаружить ваше новое Android-устройство и подключиться к нему.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Службы геолокации должны быть включены, чтобы Signal смог обнаружить ваше новое Android-устройство и соединиться с ним.</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Wi-Fi должен быть включён, чтобы Signal смог обнаружить ваше новое Android-устройство и соединиться с ним. При этом подключаться к какой-либо сети Wi-Fi не обязательно.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Извините, похоже, что это устройство не поддерживает Wi-Fi Direct. Signal использует Wi-Fi Direct, чтобы обнаружить ваше старое Android-устройство и соединиться с ним. Вы всё равно можете создать резервную копию, чтобы восстановить свою учётную запись на своём новом Android-устройстве.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Создать резервную копию</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">При попытке подключения к вашему новому Android-устройству произошла неожиданная ошибка.</string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Не удалось открыть настройки Wi-Fi. Пожалуйста, включите Wi-Fi вручную.</string>
+  <string name="DeviceTransferSetup__grant_location_permission">Предоставьте разрешение на доступ к местоположению</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">Включите службы геолокации</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">Не удалось открыть настройки местоположения.</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">Включите Wi-Fi</string>
+  <string name="DeviceTransferSetup__error_connecting">Ошибка соединения</string>
+  <string name="DeviceTransferSetup__retry">Повторить попытку</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Отправить журналы отладки</string>
+  <string name="DeviceTransferSetup__verify_code">Проверьте код</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Проверьте, что код ниже совпадает на ваших обоих устройствах. Затем нажмите «Продолжить».</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Цифры не совпадают</string>
+  <string name="DeviceTransferSetup__continue">Продолжить</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">Число не одинаковое</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Если цифры на ваших устройствах не совпадают, то возможно, что вы подключились не к тому устройству. Чтобы исправить это, остановите перенос и попробуйте ещё раз, держа оба ваших устройства близко друг к другу.</string>
+  <string name="DeviceTransferSetup__stop_transfer">Остановить перенос</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">Не удалось обнаружить старое устройство</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">Не удалось обнаружить новое устройство</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Убедитесь, что следующие разрешения и сервисы включены:</string>
+  <string name="DeviceTransferSetup__location_permission">Разрешение на доступ к местоположению</string>
+  <string name="DeviceTransferSetup__location_services">Службы геолокации</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">На экране Wi-Fi Direct удалите все запомненные группы и отвяжите все приглашённые или соединённые устройства.</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">Экран Wi-Fi Direct</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Попробуйте отключить и включить Wi-Fi на обоих устройствах.</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Убедитесь, что оба устройства находятся в режиме переноса.</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Перейти на страницу поддержки</string>
+  <string name="DeviceTransferSetup__try_again">Попробовать ещё раз</string>
+  <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Невозможно перенести с более новых версий Signal</string>
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Перенос данных</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">Держите оба устройства рядом друг с другом. Не выключайте устройства и оставьте Signal открытым. Переносы защищены сквозным шифрованием.</string>
+  <string name="DeviceTransfer__d_messages_so_far">Уже %1$d сообщений…</string>
+  <string name="DeviceTransfer__cancel">Отменить</string>
+  <string name="DeviceTransfer__try_again">Попробовать ещё раз</string>
+  <string name="DeviceTransfer__stop_transfer_question">Остановить перенос?</string>
+  <string name="DeviceTransfer__stop_transfer">Остановить перенос</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Весь прогресс переноса будет потерян.</string>
+  <string name="DeviceTransfer__transfer_failed">Ошибка переноса</string>
+  <string name="DeviceTransfer__unable_to_transfer">Не удалось перенести</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Перенос учётной записи</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Вы можете перенести свою учётную запись Signal во время настройки Signal на новом Android-устройстве. Перед тем, как продолжить:</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Скачайте Signal на своём новом Android-устройстве</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Нажмите на «Перенести или восстановить учётную запись»</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Выберите «Перенести с Android-устройства», а затем «Продолжить». Держите оба устройства рядом друг с другом.</string>
+  <string name="OldDeviceTransferInstructions__continue">Продолжить</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Перенос завершён</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Перейдите к вашему новому устройству</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Ваши данные Signal были перенесены на ваше новое устройство. Чтобы завершить процесс переноса, вам необходимо продолжить регистрацию на своём новом устройстве.</string>
+  <string name="OldDeviceTransferComplete__close">Закрыть</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Перенос успешно выполнен</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Перенос завершён</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Чтобы завершить процесс переноса, вам необходимо продолжить регистрацию.</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Продолжить регистрацию</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Перенос учётной записи</string>
+  <string name="DeviceToDeviceTransferService_status_ready">Подготовка к подключению к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">Подготовка к подключению к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">Поиск вашего другого Android-устройства…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">Подключение к вашему другому Android-устройству…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Необходима проверка</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Перенос учётной записи…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>

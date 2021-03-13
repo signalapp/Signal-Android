@@ -2316,6 +2316,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal está trancado</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESTRANCAR</string>
   <string name="Recipient_unknown">Desconhecido</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Continuar</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Tente novamente</string>
+  <string name="DeviceTransferSetup__continue">Continuar</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Tentar novamente</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Cancelar</string>
+  <string name="DeviceTransfer__try_again">Tentar novamente</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transferir conta</string>
+  <string name="OldDeviceTransferInstructions__continue">Continuar</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Fechar</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquear</string>
   <string name="RecipientBottomSheet_unblock">Desbloquear</string>

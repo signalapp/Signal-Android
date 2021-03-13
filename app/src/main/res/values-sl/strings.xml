@@ -2467,6 +2467,26 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaklenjen</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAPNITE ZA ODKLEPANJE</string>
   <string name="Recipient_unknown">Neznano</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Nadaljuj</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Ponovno</string>
+  <string name="DeviceTransferSetup__continue">Nadaljuj</string>
+  <string name="DeviceTransferSetup__try_again">Poskusi znova</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Prekliči</string>
+  <string name="DeviceTransfer__try_again">Poskusi znova</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Prenesi račun</string>
+  <string name="OldDeviceTransferInstructions__continue">Nadaljuj</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Zapri</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>

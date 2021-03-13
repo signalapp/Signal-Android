@@ -2156,9 +2156,13 @@
   <string name="backup_enable_dialog__folder">資料夾</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
   <string name="registration_activity__restore_backup">還原備份</string>
+  <string name="registration_activity__transfer_or_restore_account">移轉或還原帳號</string>
+  <string name="registration_activity__transfer_account">轉移賬號</string>
   <string name="registration_activity__skip">略過</string>
   <string name="preferences_chats__chat_backups">聊天備份</string>
   <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
+  <string name="preferences_chats__transfer_account">轉移賬號</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">將帳號轉移到新的Android裝置</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
   <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Signal 匯入備份檔</string>
@@ -2232,6 +2236,112 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">輕觸以解鎖</string>
   <string name="Recipient_unknown">未知</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">移轉或還原帳號</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">如果你以前註冊過Signal帳號，則可以轉移或還原你的帳號和訊息</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">從Android裝置轉移</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">從舊的Android裝置轉移你的帳號和訊息歷史記錄。你必須有權訪問舊裝置。</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">你必須有權使用舊裝置。</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">從備份還原</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">從本地備份還原你的訊息和媒體檔。 如果你現在不還原，則以後將無法還原。</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">在舊的Android手機上開啟Signal</string>
+  <string name="NewDeviceTransferInstructions__continue">繼續</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">點按左上角的個人資料照片以打開“設定”</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">點擊“聊天”</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">在兩個裝置上點擊“轉移帳號”，然後點擊“繼續”</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">正在準備連結到舊的Android裝置…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">稍等片刻，應快準備好了</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">正在等待舊的Android裝置連接…</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">正在連接到舊的Android裝置…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal需要位置權限才能發現並連接到舊的Android裝置。</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal需要啟用位置服務才能發現你的舊Android裝置並與之連接。</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal需要啟用Wi-Fi才能發現你的舊Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，該裝置似乎不支援Wi-Fi Direct。 Signal使用Wi-Fi Direct來發現你的舊Android裝置並與之連接。你仍然可以還原備份，以從舊的Android裝置還原帳號。</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">還原備份</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到舊的Android裝置時發生未預期的錯誤。</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">正在搜尋你的新Android裝置…</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">正在搜尋你的新Android裝置…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal需要位置權限才能發現並連接到新的Android裝置。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal須要開啟定位服務才能發現新的Android裝置並與之連接。</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal需要開啟Wi-Fi才能發現新的Android裝置並與之連接。 Wi-Fi需要開啟，但不必連接到Wi-Fi網路。</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">抱歉，該裝置似乎不支援Wi-Fi Direct。 Signal使用Wi-Fi Direct搜尋並連接新的Android裝置。你仍然可以建立備份以在新的Android裝置上還原帳號。</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">建立備份</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">嘗試連接到新的Android裝置時發生未預期的錯誤。</string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">無法開啟“ Wifi設定”。 請手動開啟Wifi。</string>
+  <string name="DeviceTransferSetup__grant_location_permission">給予位置權限</string>
+  <string name="DeviceTransferSetup__turn_on_location_services">開啟定位服務</string>
+  <string name="DeviceTransferSetup__unable_to_open_location_settings">無法打開啟定位設定。</string>
+  <string name="DeviceTransferSetup__turn_on_wifi">開啟Wifi</string>
+  <string name="DeviceTransferSetup__error_connecting">連接錯誤</string>
+  <string name="DeviceTransferSetup__retry">重試</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">提交偵錯日誌</string>
+  <string name="DeviceTransferSetup__verify_code">驗證碼</string>
+  <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">驗證以下代碼在兩個裝置上是否匹配。 然後點擊繼續。</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">號碼不匹配</string>
+  <string name="DeviceTransferSetup__continue">繼續</string>
+  <string name="DeviceTransferSetup__number_is_not_the_same">號碼不一樣</string>
+  <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">如果你的裝置上的號碼不匹配，則可能是你連接了錯誤的裝置。 要解決此問題，請停止傳輸，然後重試，並保持兩個裝置都處於關閉狀態。</string>
+  <string name="DeviceTransferSetup__stop_transfer">停止傳輸</string>
+  <string name="DeviceTransferSetup__unable_to_discover_old_device">無法發現舊裝置</string>
+  <string name="DeviceTransferSetup__unable_to_discover_new_device">無法發現新裝置</string>
+  <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">確保開啟以下權限和服務：</string>
+  <string name="DeviceTransferSetup__location_permission">定位權限</string>
+  <string name="DeviceTransferSetup__location_services">定位服務</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">在“ WiFi Direct”螢幕上，刪除所有已記住的群組並取消任何受邀或已連結的裝置。</string>
+  <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct螢幕</string>
+  <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">嘗試在兩個裝置上都關閉和開啟Wi-Fi。</string>
+  <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">確保兩個裝置都處於轉移模式。</string>
+  <string name="DeviceTransferSetup__go_to_support_page">轉到支援網頁</string>
+  <string name="DeviceTransferSetup__try_again">再試一次</string>
+  <!--NewDeviceTransferFragment-->
+  <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">無法從較新版本的Signal進行轉移</string>
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">轉移資料</string>
+  <string name="DeviceTransfer__keep_both_devices_near_each_other">使兩個裝置彼此靠近。 請勿關閉裝置並保持Signal開啟。 傳輸是點對點加密的。</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d 到目前為止的訊息…</string>
+  <string name="DeviceTransfer__cancel">取消</string>
+  <string name="DeviceTransfer__try_again">再試一次</string>
+  <string name="DeviceTransfer__stop_transfer_question">停止轉移?</string>
+  <string name="DeviceTransfer__stop_transfer">停止轉移</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">所有轉移進度都將遺失。</string>
+  <string name="DeviceTransfer__transfer_failed">移轉失敗</string>
+  <string name="DeviceTransfer__unable_to_transfer">無法轉移</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">轉移帳號</string>
+  <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">在新的Android裝置上設定Signal時，你可以轉移Signal帳號。 在繼續之前：</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">在新的Android裝置上下載Signal</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">點擊“轉移或還原帳號”</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">出現提示時，選擇“從Android裝置轉移”，然後選擇“繼續”。 將兩個裝置都放在附近。</string>
+  <string name="OldDeviceTransferInstructions__continue">繼續</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">轉移完成</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">轉到新裝置</string>
+  <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">你的Signal資料已轉移到新裝置。 要完成轉移過程，你必須繼續在新裝置上註冊。</string>
+  <string name="OldDeviceTransferComplete__close">關閉</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">轉移成功</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">轉移完成</string>
+  <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">要完成轉移過程，你必須繼續註冊。</string>
+  <string name="NewDeviceTransferComplete__continue_registration">繼續註冊</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">帳號轉移</string>
+  <string name="DeviceToDeviceTransferService_status_ready">正在準備連接到你的其他Android裝置…</string>
+  <string name="DeviceToDeviceTransferService_status_starting_up">正在準備連接到你的其他Android裝置…</string>
+  <string name="DeviceToDeviceTransferService_status_discovery">正在搜尋你的其他Android裝置…</string>
+  <string name="DeviceToDeviceTransferService_status_network_connected">正在連接到你的其他Android裝置…</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">需要驗證</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">正在轉移帳號…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">封鎖</string>
   <string name="RecipientBottomSheet_unblock">解除封鎖</string>

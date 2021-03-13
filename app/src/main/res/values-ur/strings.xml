@@ -2306,6 +2306,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal لاک ہے</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">لاک کھولنے کے لیے ٹیپ کریں</string>
   <string name="Recipient_unknown">نامعلوم</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">جاری رکھیں</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">دوبارہ کوشش کریں</string>
+  <string name="DeviceTransferSetup__continue">جاری رکھیں</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">دوبارہ کوشش کریں</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">منسوخ کریں</string>
+  <string name="DeviceTransfer__try_again">دوبارہ کوشش کریں</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">اکاؤنٹ کی منتقلی</string>
+  <string name="OldDeviceTransferInstructions__continue">جاری رکھیں</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">بند کریں</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">بلاک</string>
   <string name="RecipientBottomSheet_unblock">ان بلاک</string>

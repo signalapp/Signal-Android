@@ -2236,9 +2236,13 @@
   <string name="backup_enable_dialog__folder">Папка</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ја запишав оваа лозинка. Без неа нема да можам да ја вратам резервната копија.</string>
   <string name="registration_activity__restore_backup">Обнови последна копија</string>
+  <string name="registration_activity__transfer_or_restore_account">Префрли или поврати сметка</string>
+  <string name="registration_activity__transfer_account">Префрли сметка</string>
   <string name="registration_activity__skip">Прескокни</string>
   <string name="preferences_chats__chat_backups">Резервни копии на разговори</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Направи резервна копија на надворешен склад</string>
+  <string name="preferences_chats__transfer_account">Префрли сметка</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Префрли сметка на друг Android уред</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Внесете ја вашата резервна лозинка</string>
   <string name="RegistrationActivity_restore">Врати</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Не може да се внесат резервни копии од понови верзии на Signal</string>
@@ -2312,6 +2316,48 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal е заклучен</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ДОПРЕТЕ ЗА ДА ОТКЛУЧИТЕ</string>
   <string name="Recipient_unknown">Непознато</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Префрли или поврати сметка</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Префрли од Android уред</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Продолжи</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Обидете се повторно</string>
+  <string name="DeviceTransferSetup__continue">Продолжи</string>
+  <string name="DeviceTransferSetup__stop_transfer">Сопри трансфер</string>
+  <string name="DeviceTransferSetup__location_permission">Дозволи за локацијата</string>
+  <string name="DeviceTransferSetup__location_services">Локациски сервиси</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__go_to_support_page">Оди на страницата за поддршка</string>
+  <string name="DeviceTransferSetup__try_again">Обиди се повторно </string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Префрлување податоци</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d пораки досега…</string>
+  <string name="DeviceTransfer__cancel">Исклучи</string>
+  <string name="DeviceTransfer__try_again">Обиди се повторно </string>
+  <string name="DeviceTransfer__stop_transfer_question">Да го сопрам трансферот?</string>
+  <string name="DeviceTransfer__stop_transfer">Сопри трансфер</string>
+  <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Целиот прогрес направен при трансферот ќе биде изгубен.</string>
+  <string name="DeviceTransfer__transfer_failed">Трансферот е неуспешен</string>
+  <string name="DeviceTransfer__unable_to_transfer">Неуспешен трансфер</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Пренеси Сметка</string>
+  <string name="OldDeviceTransferInstructions__continue">Продолжи</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
+  <string name="OldDeviceTransferComplete__go_to_your_new_device">Одете на Вашиот нов уред</string>
+  <string name="OldDeviceTransferComplete__close">Затвори</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Трансферот е успешен</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Трансферот е завршен</string>
+  <string name="NewDeviceTransferComplete__continue_registration">Продолжи со регистрација</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_content_title">Трансфер на сметка</string>
+  <string name="DeviceToDeviceTransferService_status_verification_required">Потребна е проверка</string>
+  <string name="DeviceToDeviceTransferService_status_service_connected">Префрлување на сметката…</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>

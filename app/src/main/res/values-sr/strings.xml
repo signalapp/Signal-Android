@@ -2394,6 +2394,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal је закључан</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ТАПНИ ЗА ОТКЉУЧАВАЊЕ</string>
   <string name="Recipient_unknown">Непозната</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Настави</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Покушај поново</string>
+  <string name="DeviceTransferSetup__continue">Настави</string>
+  <string name="DeviceTransferSetup__wifi">Ви-фи</string>
+  <string name="DeviceTransferSetup__try_again">Покушај поново</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Поништи</string>
+  <string name="DeviceTransfer__try_again">Покушај поново</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Пренесите налог</string>
+  <string name="OldDeviceTransferInstructions__continue">Настави</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Затвори</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокирај</string>
   <string name="RecipientBottomSheet_unblock">Одблокирај</string>

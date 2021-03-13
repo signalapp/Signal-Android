@@ -2310,6 +2310,27 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal är låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYCK FÖR ATT LÅSA UPP</string>
   <string name="Recipient_unknown">Okänt</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Fortsätt</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Försök igen</string>
+  <string name="DeviceTransferSetup__continue">Fortsätt</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Försök igen</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Avbryt</string>
+  <string name="DeviceTransfer__try_again">Försök igen</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Överför konto</string>
+  <string name="OldDeviceTransferInstructions__continue">Fortsätt</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Stäng</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blockera</string>
   <string name="RecipientBottomSheet_unblock">Avblockera</string>

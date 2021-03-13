@@ -2177,6 +2177,26 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal kilîdkirî ye</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">JI BO VEKIRINÊ LÊ BITEPÎNE</string>
   <string name="Recipient_unknown">Nenas</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Bidomîne</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Dîsa biceribîne</string>
+  <string name="DeviceTransferSetup__continue">Bidomîne</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Dîsa biceribîne</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Betal bike</string>
+  <string name="DeviceTransfer__try_again">Dîsa biceribîne</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__continue">Bidomîne</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Bigire</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Asteng bike</string>
   <string name="RecipientBottomSheet_unblock">Astengê rake</string>

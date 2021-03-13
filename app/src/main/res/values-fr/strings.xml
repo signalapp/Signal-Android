@@ -2307,6 +2307,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal est verrouillée</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHEZ POUR DÉVERROUILLER</string>
   <string name="Recipient_unknown">Inconnu</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Poursuivre</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Réessayer</string>
+  <string name="DeviceTransferSetup__continue">Poursuivre</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Réessayer</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Annuler</string>
+  <string name="DeviceTransfer__try_again">Réessayer</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transférer le compte</string>
+  <string name="OldDeviceTransferInstructions__continue">Poursuivre</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Fermer</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bloquer</string>
   <string name="RecipientBottomSheet_unblock">Débloquer</string>

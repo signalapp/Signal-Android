@@ -2311,6 +2311,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal लॉक केले आहे</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करण्यासाठी टॅप करा</string>
   <string name="Recipient_unknown">अज्ञात</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">सुरू ठेवा</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">पुन्हा प्रयत्न करा</string>
+  <string name="DeviceTransferSetup__continue">सुरू ठेवा</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">पुन्हा प्रयत्न करा</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">रद्द करा</string>
+  <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">खाते स्थानांतरित करा</string>
+  <string name="OldDeviceTransferInstructions__continue">सुरू ठेवा</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">बंद करा</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">अवरोधित करा</string>
   <string name="RecipientBottomSheet_unblock">अनब्लॉक करा</string>

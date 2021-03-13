@@ -2238,9 +2238,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="backup_enable_dialog__folder">Dizin</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Bu parolayı kaydettim. Parola olmadan yedeği geri yükleyemem.</string>
   <string name="registration_activity__restore_backup">Yedeği geri yükle</string>
+  <string name="registration_activity__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
+  <string name="registration_activity__transfer_account">Hesabı aktar</string>
   <string name="registration_activity__skip">Atla</string>
   <string name="preferences_chats__chat_backups">Konuşma yedekleri</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Konuşmaları harici depolamaya yedekle</string>
+  <string name="preferences_chats__transfer_account">Hesabı aktar</string>
+  <string name="preferences_chats__transfer_account_to_a_new_android_device">Hesabı yeni bir Android cihaza aktar</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Yedek parolasını giriniz</string>
   <string name="RegistrationActivity_restore">Geri yükle</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal\'in daha yeni sürümlerinden yedek alınamaz</string>
@@ -2314,6 +2318,63 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal kilitli</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">AÇMAK İÇİN DOKUNUN</string>
   <string name="Recipient_unknown">Bilinmeyen</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Hesabı aktar veya geri yükle</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Eğer önceden Signal hesabı oluşturduysanız, hesabınızı ve iletilerinizi aktarabilir veya geri yükleyebilirsiniz</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">Android cihazdan aktar</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Eski Android cihazınızdan hesabınızı ve ileti geçmişinizi aktarın. Eski cihazınıza erişiminizin olması gereklidir.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">Eski cihazınıza erişiminizin olması gereklidir.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">Yedekten geri yükle</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">İletilerinizi ve içeriği yerel bir yedekten geri yükleyin. Eğer şimdi geri yüklemezseniz, ileride geri yükleyemezsiniz.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Eski Android cihazınızda Signal\'i açın</string>
+  <string name="NewDeviceTransferInstructions__continue">Devam Et</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Ayarları açmak için sol üstteki profil fotoğrafınıza dokunun</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">\"Konuşmalar\" seçeneğine dokunun</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Öncelikle \"Hesabı Aktar\" seçeneğine, ardından iki cihazda da \"Devam Et\" seçeneğine dokunun</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Eski Android cihaza bağlanmaya hazırlanılıyor…</string>
+  <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Biraz bekleyin, yakında hazır olacak</string>
+  <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Eski Android cihazın bağlanması bekleniyor…</string>
+  <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Eski Android cihaza bağlanılıyor…</string>
+  <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
+  <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
+  <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal eski Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
+  <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Üzgünüz, görünüşe göre bu cihaz Wi-Fi Direct desteklemiyor. Signal eski Android cihazınızı keşfetmek ve bağlamak için Wi-Fi Direct kullanır. Eski Android cihazınızdaki hesabınızı geri yüklemek için yedek kullanabilirsiniz.</string>
+  <string name="NewDeviceTransferSetup__restore_a_backup">Yedeği geri yükle</string>
+  <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Eski Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Yeni Android cihazınız aranıyor…</string>
+  <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Yeni Android cihaza bağlanılıyor…</string>
+  <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum erişimine ihtiyaç duyar</string>
+  <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için konum hizmetlerinin etkinleştirilmesine ihtiyaç duyar</string>
+  <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal yeni Android cihazınızı keşfetmek ve bağlamak için kablosuzun etkinleştirilmesine ihtiyaç duyar. Kablosuzun açık olması gereklidir fakat herhangi bir kablosuz ağa bağlı olması gerekli değildir.</string>
+  <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Üzgünüz, görünüşe göre bu cihaz Wi-Fi Direct desteklemiyor. Signal yeni Android cihazınızı keşfetmek ve bağlamak için Wi-Fi Direct kullanır. Yeni Android cihazınıza hesabınızı geri yüklemek için yedek kullanabilirsiniz.</string>
+  <string name="OldDeviceTransferSetup__create_a_backup">Yedek oluştur</string>
+  <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Yeni Android cihazınıza bağlanmaya çalışılırken beklenmedik bir hata oluştu.</string>
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Kablosuz ayarları açılamadı. Lütfen kablosuzu açın.</string>
+  <string name="DeviceTransferSetup__retry">Tekrar dene</string>
+  <string name="DeviceTransferSetup__continue">Devam Et</string>
+  <string name="DeviceTransferSetup__wifi">Kablosuz Ağ</string>
+  <string name="DeviceTransferSetup__try_again">Tekrar dene</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">İptal</string>
+  <string name="DeviceTransfer__try_again">Tekrar dene</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Hesabı Aktar</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__continue">Devam Et</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Kapat</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Engelle</string>
   <string name="RecipientBottomSheet_unblock">Engeli kaldır</string>

@@ -2311,6 +2311,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Το Signal είναι κλειδωμένο</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ΠΑΤΑ ΓΙΑ ΞΕΚΛΕΙΔΩΜΑ</string>
   <string name="Recipient_unknown">Άγνωστο</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Συνέχεια</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Ξαναδοκίμασε</string>
+  <string name="DeviceTransferSetup__continue">Συνέχεια</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Ξαναπροσπάθησε</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Ακύρωση</string>
+  <string name="DeviceTransfer__try_again">Ξαναπροσπάθησε</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Μεταφορά Λογαριασμού</string>
+  <string name="OldDeviceTransferInstructions__continue">Συνέχεια</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Κλείσιμο</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Φραγή</string>
   <string name="RecipientBottomSheet_unblock">Κατάργηση φραγής</string>

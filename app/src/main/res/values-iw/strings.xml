@@ -2476,6 +2476,27 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal נעול</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לשחרר נעילה</string>
   <string name="Recipient_unknown">בלתי ידוע</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">המשך</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">נסה שוב</string>
+  <string name="DeviceTransferSetup__continue">המשך</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">נסה שוב</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">בטל</string>
+  <string name="DeviceTransfer__try_again">נסה שוב</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">העבר חשבון</string>
+  <string name="OldDeviceTransferInstructions__continue">המשך</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">סגור</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">חסום</string>
   <string name="RecipientBottomSheet_unblock">שחרר חסימה</string>

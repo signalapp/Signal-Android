@@ -20,7 +20,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">لغو عضویت</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو عضویت از پیام‌‌ها و تماس‌‌های سیگنال…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">غیرفعال کردن تماس‌ها و پیام‌های سیگنال؟</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شمارهٔ موبایل خود ثبت‌نام کنید.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شمارهٔ همراه خود ثبت‌نام کنید.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">پیامک فعال شد</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">برای تغییر برنامهٔ پیش‌فرض پیامک خود لمس کنید</string>
@@ -326,7 +326,7 @@
   <string name="CreateProfileActivity_set_avatar_description">تنظیم چهرک</string>
   <!--ChooseBackupFragment-->
   <string name="ChooseBackupFragment__restore_from_backup">بازگردانی از پشتیبان؟</string>
-  <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به انجام این کار نخواهید بود. </string>
+  <string name="ChooseBackupFragment__restore_your_messages_and_media">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود. </string>
   <string name="ChooseBackupFragment__icon_content_description">بازگردانی از طریق آیکون پشتیبان</string>
   <string name="ChooseBackupFragment__choose_backup">پشتیبان را انتخاب کنید</string>
   <string name="ChooseBackupFragment__learn_more">بیشتر یاد بگیرید</string>
@@ -373,7 +373,7 @@
   <string name="DeviceListActivity_unlink_s">جدا کردن \'%s\'؟</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">با لغو پیوند این دستگاه، دیگر قادر به ارسال و دریافت پیام‌ نخواهد بود.</string>
   <string name="DeviceListActivity_network_connection_failed">اتصال شبکه ناموفق بود</string>
-  <string name="DeviceListActivity_try_again">دوباره تلاش کنید</string>
+  <string name="DeviceListActivity_try_again">دوباره امتحان کنید</string>
   <string name="DeviceListActivity_unlinking_device">در حال جدا کردن دستگاه…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">در حال جدا کردن دستگاه</string>
   <string name="DeviceListActivity_network_failed">خرابی شبکه!</string>
@@ -459,7 +459,7 @@
   <string name="GroupsV1MigrationInitiation_upgrade_this_group">ارتقا این گروه</string>
   <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">گروه‌های جدید دارای قابلیت‌هایی مانند @اشاره‌ها و مدیران گروه هستند و از قابلیت‌های بیشتری در آینده پشتیبانی خواهند کرد.</string>
   <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">تمام تاریخچهٔ پیام و رسانه از قبل از ارتقا حفظ خواهند شد.</string>
-  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">خطای شبکه رخ داد. دوباره تلاش کنید.</string>
+  <string name="GroupsV1MigrationInitiation_encountered_a_network_error">خطای شبکه رخ داد. بعداً دوباره امتحان کنید.</string>
   <string name="GroupsV1MigrationInitiation_failed_to_upgrade">ارتقا ناموفق بود.</string>
   <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
     <item quantity="one">این عضو نیاز خواهند داشت تا دعوتی را برای پیوستن دوباره به گروه بپذیرد و پیام‌های گروه را تا زمانی که نپذیرد دریافت نخواهد کرد:</item>
@@ -497,8 +497,8 @@
     <item quantity="other">افزودن اعضا</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-    <item quantity="one">افزودن عضو ناموفق بود. دوباره امتحان کنید.</item>
-    <item quantity="other">افزودن اعضا ناموفق بود. دوباره امتحان کنید.</item>
+    <item quantity="one">افزودن عضو ناموفق بود. بعداً دوباره امتحان کنید.</item>
+    <item quantity="other">افزودن اعضا ناموفق بود. بعداً دوباره امتحان کنید.</item>
   </plurals>
   <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
     <item quantity="one">قابلیت افزودن عضو وجود ندارد.</item>
@@ -710,7 +710,7 @@
   <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">شما از پیش عضو هستید</string>
   <string name="GroupJoinBottomSheetDialogFragment_join">پیوستن</string>
   <string name="GroupJoinBottomSheetDialogFragment_request_to_join">درخواست پیوستن</string>
-  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً‌ دوباره امتحان کنید</string>
+  <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">پیوستن به گروه ممکن نبود. لطفاً‌ بعداً دوباره امتحان کنید</string>
   <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
   <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">این پیوند گروه فعال نیست</string>
   <string name="GroupJoinBottomSheetDialogFragment_unable_to_get_group_information_please_try_again_later">دریافت اطلاعات گروه ممکن نبود. لطفاً‌ دوباره امتحان کنید</string>
@@ -1229,7 +1229,7 @@
 مشخص کرده‌اید (%s) معتبر نیست.</string>
   <string name="RegistrationActivity_a_verification_code_will_be_sent_to">یک کد تأیید ارسال خواهد شد به:</string>
   <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">شما تماسی برای تأیید این شماره دریافت خواهید کرد.</string>
-  <string name="RegistrationActivity_is_your_phone_number_above_correct">آیا شماره تلفن شما در بالا صحیح است؟</string>
+  <string name="RegistrationActivity_is_your_phone_number_above_correct">آیا شمارهٔ همراه شما در بالا صحیح است؟</string>
   <string name="RegistrationActivity_edit_number">ویرایش شماره</string>
   <string name="RegistrationActivity_missing_google_play_services">فاقد خدمات Google Play</string>
   <string name="RegistrationActivity_this_device_is_missing_google_play_services">این دستگاه فاقد خدمات Google Play است. شما می‌توانید به استفاده از سیگنال ادامه دهید، اما این پیکربندی می‌تواند باعث کاهش اطمینان‌پذیری یا عملکرد شود.\n\n اگر یک کاربر حرفه‌ای یا در حال اجرای یک ROM سفارشی اندروید نیستید یا فکر می‌کنید که این پیام به اشتباه به شما نشان داده شده است، برای دریافت کمک در فرآیند عیب‌یابی با support@signal.org تماس بگیرید.</string>
@@ -1250,7 +1250,7 @@
   <string name="RegistrationActivity_continue">ادامه</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حریم خصوصی را همراه داشته باشید.\nدر هر پیام خودتان باشید.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع شمارهٔ همراه خود را وارد کنید</string>
-  <string name="RegistrationActivity_enter_your_phone_number">شمارهٔ خود را وارد کنید</string>
+  <string name="RegistrationActivity_enter_your_phone_number">شمارهٔ همراه خود را وارد کنید</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد تأیید دریافت خواهید کرد. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">مطمئن شوید تلفن شما برای دریافت پیامک یا تماس آنتن‌دهی دارد</string>
@@ -1393,7 +1393,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
   <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید بین %1$d و %2$d کاراکتر باشند.</string>
-  <string name="UsernameEditFragment_usernames_on_signal_are_optional">نام‌های کاربری در سیگنال اختیاری هستند. اگر یک نام کاربری ایجاد کنید، دیگر کاربران سیگنال قادر خواهند بود تا شما را با این نام کاربری پیدا کنند و با شما بدون دانستن شمارهٔ تلفن‌ شما ارتباط برقرار کنند.</string>
+  <string name="UsernameEditFragment_usernames_on_signal_are_optional">نام‌های کاربری در سیگنال اختیاری هستند. اگر یک نام کاربری ایجاد کنید، دیگر کاربران سیگنال قادر خواهند بود تا شما را با این نام کاربری پیدا کنند و با شما بدون دانستن شمارهٔ همراه شما ارتباط برقرار کنند.</string>
   <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
     <item quantity="one">%d مخاطب در سیگنال هست!</item>
     <item quantity="other">%d مخاطب در سیگنال هستند!</item>
@@ -1502,7 +1502,7 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">این دستگاه دیگر ثبت شده نیست</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">این احتمالا به این خاطر است که شما شماره تلفن خود در سیگنال را روی یک دستگاه دیگر ثبت کرده‌اید. برای ثبت نام مجدد ضربه بزنید.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">این احتمالا به این خاطر است که شما شمارهٔ همراه خود را با یک دستگاه دیگر در سیگنال ثبت‌نام کردید. برای ثبت‌نام مجدد ضربه بزنید.</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">برای پاسخ به تماس %s، به سیگنال اجازهٔ دسترسی به میکروفون خود را بدهید.</string>
   <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">سیگنال برای برقراری و دریافت تماس نیاز مجوزهای میکروفون و دوربین دارد، اما دسترسی به آن‌ها به طور دائمی لغو شده است. لطفاً به تنظیمات برنامه رفته، در قسمت «مجوزها»، «میکروفون» و «دوربین» را فعال کنید.</string>
@@ -2169,7 +2169,7 @@
   <string name="KbsReminderDialog__incorrect_pin_try_again">پین نادرست. دوباره تلاش کنید.</string>
   <!--AccountLockedFragment-->
   <string name="AccountLockedFragment__account_locked">حساب کاربری قفل شد</string>
-  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می توانید دوباره با این شماره و بدون نیاز به پین ثبت‌نام کنید. تمامی محتویات حذف خواهند شد.</string>
+  <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می توانید دوباره با این شمارهٔ همراه و بدون نیاز به پین ثبت‌نام کنید. تمامی محتویات حذف خواهند شد.</string>
   <string name="AccountLockedFragment__next">بعدی</string>
   <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
   <!--KbsLockFragment-->
@@ -2185,8 +2185,8 @@
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۱)</string>
   <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۲)</string>
   <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
-    <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
-    <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، بعد از %1$d روز عدم فعالیت، می‌توانید از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما و محتویات آن حذف خواهند شد.</item>
+    <item quantity="one">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهند شد.</item>
+    <item quantity="other">به منظور حفظ حریم خصوصی و امنیت شما، هیچ راهی برای بازیابی پین وجود ندارد. اگر نمی‌توانید پین خود را بخاطر بیاورید، می‌توانید پس از %1$d روز عدم فعالیت، از طریق پیامک دوباره تأیید هویت کنید. در این صورت، حساب کاربری شما پاک و محتویات آن حذف خواهند شد.</item>
   </plurals>
   <plurals name="RegistrationLockFragment__incorrect_pin_d_attempts_remaining">
     <item quantity="one">پین نادرست. %1$d تلاش دیگر باقی مانده است.</item>
@@ -2238,9 +2238,12 @@
   <string name="backup_enable_dialog__folder">پوشه</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">من این گذرواژه را یادداشت کرده‌ام. بدون آن، قادر نخواهم بود پشتیبان خود را بازگردانی کنم.</string>
   <string name="registration_activity__restore_backup">بازگردانی پشتیبان</string>
+  <string name="registration_activity__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
+  <string name="registration_activity__transfer_account">انتقال حساب کاربری</string>
   <string name="registration_activity__skip">رد کردن</string>
   <string name="preferences_chats__chat_backups">پشتیبان‌های گفتگو</string>
   <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
+  <string name="preferences_chats__transfer_account">انتقال حساب کاربری</string>
   <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
   <string name="RegistrationActivity_restore">بازگردانی</string>
   <string name="RegistrationActivity_backup_failure_downgrade">عدم توانایی در وارد کردن پشتیبان‌ها از نسخه‌های جدیدتر سیگنال</string>
@@ -2278,13 +2281,13 @@
   <string name="RegistrationActivity_code_support_subject">ثبت‌نام سیگنال - کد تأیید برای اندروید</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
-  <string name="preferences_app_protection__see_my_phone_number">مشاهدهٔ شمارهٔ تلفن من</string>
-  <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ تلفن</string>
+  <string name="preferences_app_protection__see_my_phone_number">دیدن شمارهٔ همراه من</string>
+  <string name="preferences_app_protection__find_me_by_phone_number">پیدا کردن من با شمارهٔ همراه</string>
   <string name="PhoneNumberPrivacy_everyone">همه</string>
   <string name="PhoneNumberPrivacy_my_contacts">مخاطبین من</string>
   <string name="PhoneNumberPrivacy_nobody">هیچ کس</string>
-  <string name="PhoneNumberPrivacy_everyone_see_description">شماره‌ٔ تلفن شما برای همهٔ افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل رؤیت خواهد بود.</string>
-  <string name="PhoneNumberPrivacy_everyone_find_description">هرکسی که شمارهٔ تلفن شما را در مخاطبین خود داشته باشد شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند شما را در جستجو پیدا کنند.</string>
+  <string name="PhoneNumberPrivacy_everyone_see_description">شماره‌ٔ همراه شما برای همهٔ افراد و گروه‌هایی که به آن‌ها پیام می‌دهید قابل رؤیت خواهد بود.</string>
+  <string name="PhoneNumberPrivacy_everyone_find_description">هرکسی که شمارهٔ همراه شما را در مخاطبین خود داشته باشد، شما را به عنوان یک مخاطب در سیگنال خواهد دید. دیگران می‌توانند شما را در جستجو پیدا کنند.</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه‌نمایش</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">قفل کردن دسترسی به سیگنال با قفل صفحه‌نمایش اندروید یا اثر انگشت</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">قفل خودکار صفحه‌نمایش به دلیل عدم فعالیت</string>
@@ -2293,8 +2296,8 @@
   <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
   <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
   <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمز‌گذاری می‌کنند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
-  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">یک لایهٔ امنیتی بیشتر با درخواست پین سیگنال برای ثبت‌نام دوباره با شمارهٔ خود در سیگنال اضافه کنید.</string>
-  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به‌خاطرسپردن پین‌ کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. در طول زمان کمتر از شما پرسیده خواهد شد.</string>
+  <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با درخواست پین سیگنال برای ثبت‌نام دوباره با شمارهٔ همراه شما در سیگنال.</string>
+  <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به‌خاطرسپردن پین‌ کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
   <string name="preferences_app_protection__turn_off">خاموش</string>
   <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
   <string name="preferences_app_protection__confirm_your_signal_pin">رمز سیگنال خود را تائید کنید</string>
@@ -2308,12 +2311,51 @@
   <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">پین حداقل شامل %d رقم یا کاراکتر است</string>
   <string name="RegistrationActivity_too_many_attempts">تلاش‌های بیش از حد</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">شما چندین بار پین قفل ثبت‌نام را اشتباه وارد کردید. لطفاً یک روز دیگر دوباره تلاش کنید.</string>
-  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later"> تلاش‌های ناموفق بیش از حد زیاد بودند. لطفاً بعداً دوباره سعی کنید.</string>
+  <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later"> تلاش‌های ناموفق بیش از حد زیاد بودند. لطفاً بعداً دوباره امتحان کنید.</string>
   <string name="RegistrationActivity_error_connecting_to_service">خطا در برقراری ارتباط با سرویس</string>
   <string name="preferences_chats__backups">پشتیبان‌ها</string>
   <string name="prompt_passphrase_activity__signal_is_locked">سیگنال قفل است</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">برای باز کردن قفل ضربه بزنید</string>
   <string name="Recipient_unknown">ناشناخته</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">انتقال یا بازگردانی حساب کاربری</string>
+  <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">اگر از قبل یک حساب کاربری سیگنال باز کرده‌اید، می‌توانید حساب کاربری و پیام‌های خود را انتقال داده یا بازگردانی کنید</string>
+  <string name="TransferOrRestoreFragment__transfer_from_android_device">انتقال از دستگاه اندروید</string>
+  <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">حساب کاربری و تاریخچهٔ پیام خود را از دستگاه اندروید قدیمی‌تان انتقال دهید. شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string>
+  <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">شما باید به دستگاه قدیمی‌تان دسترسی داشته باشید.</string>
+  <string name="TransferOrRestoreFragment__restore_from_backup">بازگردانی از پشتیبان</string>
+  <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">پیام‌ها و رسانه‌های خود را از یک پشتیبان محلی بازگردانی کنید. اگر هم‌اکنون بازگردانی نکنید، بعداً قادر به بازگردانی نخواهید بود.</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">سیگنال را روی گوشی اندروید خود باز کنید</string>
+  <string name="NewDeviceTransferInstructions__continue">ادامه</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">۱.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">روی عکس پروفایل خود در بالا سمت راست برای باز کردن تنظیمات ضربه بزنید</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">۲.</string>
+  <string name="NewDeviceTransferInstructions__tap_on_chats">روی «گفتگوها» ضربه بزنید</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">۳.</string>
+  <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">روی «انتقال حساب کاربری» و سپس «ادامه» در هر دو دستگاه ضربه بزنید</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">آماده‌سازی برای اتصال به دستگاه اندروید قدیمی</string>
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">تلاش مجدد</string>
+  <string name="DeviceTransferSetup__continue">ادامه</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">دوباره امتحان کنید</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">لغو</string>
+  <string name="DeviceTransfer__try_again">دوباره امتحان کنید</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">انتقال حساب کاربری</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">۳.</string>
+  <string name="OldDeviceTransferInstructions__continue">ادامه</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">بستن</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">مسدود کردن</string>
   <string name="RecipientBottomSheet_unblock">رفع مسدودیت</string>
@@ -2402,13 +2444,13 @@
   <string name="CallParticipant__s_on_another_device">%1$s (روی دستگاه دیگر)</string>
   <!--DeleteAccountFragment-->
   <string name="DeleteAccountFragment__deleting_your_account_will">حذف حساب کاربری شما:</string>
-  <string name="DeleteAccountFragment__enter_your_phone_number">شمارهٔ خود را وارد کنید</string>
+  <string name="DeleteAccountFragment__enter_your_phone_number">شمارهٔ همراه خود را وارد کنید</string>
   <string name="DeleteAccountFragment__delete_account">حذف حساب کاربری</string>
   <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">اطلاعات حساب کاربری و عکس پروفایل خود را حذف کنید</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">تمام پیام‌های خود را حذف کنید</string>
   <string name="DeleteAccountFragment__no_country_code">هیچ کد کشوری وارد نشده است</string>
   <string name="DeleteAccountFragment__no_number">هیچ شماره‌ای وارد نشده است</string>
-  <string name="DeleteAccountFragment__the_phone_number">شمارهٔ تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
+  <string name="DeleteAccountFragment__the_phone_number">شمارهٔ همراهی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
   <string name="DeleteAccountFragment__are_you_sure">آیا از حذف حساب کاربری خود اطمینان دارید؟</string>
   <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری سیگنال شما را حذف کرده و برنامه را بازنشانی می‌کند.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>

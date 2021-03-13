@@ -2320,6 +2320,27 @@ spastrohet dhe krejt lënda do të fshihet.</item>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal-i është i kyçur</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
   <string name="Recipient_unknown">I panjohur</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Vazhdo</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Riprovo</string>
+  <string name="DeviceTransferSetup__continue">Vazhdo</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Riprovo</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Anuloje</string>
+  <string name="DeviceTransfer__try_again">Riprovo</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Shpërngul Llogari</string>
+  <string name="OldDeviceTransferInstructions__continue">Vazhdo</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Mbylle</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Bllokoje</string>
   <string name="RecipientBottomSheet_unblock">Zhbllokoje</string>

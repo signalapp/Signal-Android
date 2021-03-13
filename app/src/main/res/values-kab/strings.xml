@@ -2313,6 +2313,26 @@ i d-tefkiḍ (%s) ur yeɣti ara.</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal isekkeṛ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TEKKI AKKEN AD YELDI</string>
   <string name="Recipient_unknown">Arussin</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Kemmel</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Ɛreḍ tikelt nniḍen</string>
+  <string name="DeviceTransferSetup__continue">Kemmel</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Ɛreḍ tikkelt-nniḍen</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Annuler</string>
+  <string name="DeviceTransfer__try_again">Ɛreḍ tikkelt-nniḍen</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Azen Amiḍan</string>
+  <string name="OldDeviceTransferInstructions__continue">Kemmel</string>
+  <!--OldDeviceTransferComplete-->
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Sewḥel</string>
   <string name="RecipientBottomSheet_unblock">Serreḥ</string>

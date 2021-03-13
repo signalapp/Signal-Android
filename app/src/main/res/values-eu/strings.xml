@@ -2316,6 +2316,27 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="prompt_passphrase_activity__signal_is_locked">Signal blokeatuta dago</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">SAKATU DESBLOKEATZEKO</string>
   <string name="Recipient_unknown">Ezezaguna</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Jarraitu</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Berriro saiatu</string>
+  <string name="DeviceTransferSetup__continue">Jarraitu</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Saiatu berriro</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Utzi</string>
+  <string name="DeviceTransfer__try_again">Saiatu berriro</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Kontua Transferitu</string>
+  <string name="OldDeviceTransferInstructions__continue">Jarraitu</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Itxi</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokeatu</string>
   <string name="RecipientBottomSheet_unblock">Desblokeatu</string>

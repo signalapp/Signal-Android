@@ -2309,6 +2309,26 @@
   <string name="prompt_passphrase_activity__signal_is_locked">Signal е заключен</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНЕТЕ ЗА ОТКЛЮЧВАНЕ</string>
   <string name="Recipient_unknown">Непознат</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Продължи</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Опитай Отново</string>
+  <string name="DeviceTransferSetup__continue">Продължи</string>
+  <string name="DeviceTransferSetup__try_again">Опитай отново</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Отказ</string>
+  <string name="DeviceTransfer__try_again">Опитай отново</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Прехвърляне на акаунт</string>
+  <string name="OldDeviceTransferInstructions__continue">Продължи</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Затвори</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Блокиране</string>
   <string name="RecipientBottomSheet_unblock">Отблокиране</string>

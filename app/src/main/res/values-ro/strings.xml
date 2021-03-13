@@ -2317,9 +2317,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="backup_enable_dialog__folder">Dosar</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
   <string name="registration_activity__restore_backup">Restaurare backup</string>
+  <string name="registration_activity__transfer_or_restore_account">Transfer sau restabilire cont</string>
+  <string name="registration_activity__transfer_account">Transfer cont</string>
   <string name="registration_activity__skip">Omiteți</string>
   <string name="preferences_chats__chat_backups">Backup-uri pt. conversații</string>
   <string name="preferences_chats__backup_chats_to_external_storage">Salvează conversațiile pe stocarea externă</string>
+  <string name="preferences_chats__transfer_account">Transfer cont</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru backup</string>
   <string name="RegistrationActivity_restore">Restaurează</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Signal</string>
@@ -2393,6 +2396,46 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ATINGEȚI PENTRU DEBLOCARE</string>
   <string name="Recipient_unknown">Necunoscut</string>
+  <!--TransferOrRestoreFragment-->
+  <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer sau restabilire cont</string>
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Continuă</string>
+  <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__turn_on_wifi">Activare Wi-Fi</string>
+  <string name="DeviceTransferSetup__retry">Încearcă din nou</string>
+  <string name="DeviceTransferSetup__submit_debug_logs">Trimiteți jurnalul de depanare</string>
+  <string name="DeviceTransferSetup__verify_code">Verificare cod</string>
+  <string name="DeviceTransferSetup__the_numbers_do_not_match">Numerele nu se potrivesc</string>
+  <string name="DeviceTransferSetup__continue">Continuă</string>
+  <string name="DeviceTransferSetup__stop_transfer">Oprire transfer</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Încercați din nou</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__transferring_data">Se transmit datele</string>
+  <string name="DeviceTransfer__cancel">Anulare</string>
+  <string name="DeviceTransfer__try_again">Încercați din nou</string>
+  <string name="DeviceTransfer__stop_transfer">Oprire transfer</string>
+  <string name="DeviceTransfer__transfer_failed">Transfer eșuat</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Transfer cont</string>
+  <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+  <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+  <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+  <string name="OldDeviceTransferInstructions__continue">Continuă</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+  <string name="OldDeviceTransferComplete__close">Închide</string>
+  <!--NewDeviceTransferComplete-->
+  <string name="NewDeviceTransferComplete__transfer_successful">Transferul a fost făcut cu succes</string>
+  <string name="NewDeviceTransferComplete__transfer_complete">Transfer finalizat</string>
+  <!--DeviceToDeviceTransferService-->
+  <string name="DeviceToDeviceTransferService_status_verification_required">Este necesară o verificare</string>
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blochează</string>
   <string name="RecipientBottomSheet_unblock">Deblochează</string>

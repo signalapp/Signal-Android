@@ -2393,6 +2393,27 @@ broj telefona</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal je zaključan</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PRITISNITE ZA OTKLJUČAVANJE</string>
   <string name="Recipient_unknown">Nepoznato</string>
+  <!--TransferOrRestoreFragment-->
+  <!--NewDeviceTransferInstructionsFragment-->
+  <string name="NewDeviceTransferInstructions__continue">Nastavi</string>
+  <!--NewDeviceTransferSetupFragment-->
+  <!--OldDeviceTransferSetupFragment-->
+  <!--DeviceTransferSetupFragment-->
+  <string name="DeviceTransferSetup__retry">Pokušajte ponovno</string>
+  <string name="DeviceTransferSetup__continue">Nastavi</string>
+  <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+  <string name="DeviceTransferSetup__try_again">Pokušajte ponovo</string>
+  <!--NewDeviceTransferFragment-->
+  <!--DeviceTransferFragment-->
+  <string name="DeviceTransfer__cancel">Poništi</string>
+  <string name="DeviceTransfer__try_again">Pokušajte ponovo</string>
+  <!--OldDeviceTransferInstructionsFragment-->
+  <string name="OldDeviceTransferInstructions__transfer_account">Prenesi račun</string>
+  <string name="OldDeviceTransferInstructions__continue">Nastavi</string>
+  <!--OldDeviceTransferComplete-->
+  <string name="OldDeviceTransferComplete__close">Zatvori</string>
+  <!--NewDeviceTransferComplete-->
+  <!--DeviceToDeviceTransferService-->
   <!--RecipientBottomSheet-->
   <string name="RecipientBottomSheet_block">Blokiraj</string>
   <string name="RecipientBottomSheet_unblock">Odblokiraj</string>
