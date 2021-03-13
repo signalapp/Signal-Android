@@ -21,6 +21,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
   private static final int TYPE_MEDIA  = 1;
   private static final int TYPE_BUTTON = 2;
+  private static final int TYPE_CAMERA = 3;
 
   private final GlideRequests            glideRequests;
   private final List<Media>              media;
@@ -51,6 +52,8 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
         return new MediaViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mediarail_media_item, viewGroup, false));
       case TYPE_BUTTON:
         return new ButtonViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mediarail_button_item, viewGroup, false));
+      case TYPE_CAMERA:
+        return new ButtonViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.mediarail_camera_item, viewGroup, false));
       default:
         throw new UnsupportedOperationException("Unsupported view type: " + type);
     }
@@ -65,6 +68,9 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
       case TYPE_BUTTON:
         ((ButtonViewHolder) viewHolder).bind(addListener);
         break;
+      case TYPE_CAMERA:
+        ((ButtonViewHolder) viewHolder).bind(addListener, true);
+        break;
       default:
         throw new UnsupportedOperationException("Unsupported view type: " + getItemViewType(i));
     }
@@ -72,7 +78,9 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
   @Override
   public int getItemViewType(int position) {
-    if (editable && position == getItemCount() - 1) {
+    if (editable && position == getItemCount() - 2) {
+      return TYPE_CAMERA;
+    }else if (editable && position == getItemCount() - 1){
       return TYPE_BUTTON;
     } else {
       return TYPE_MEDIA;
@@ -86,7 +94,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
   @Override
   public int getItemCount() {
-    return editable ? media.size() + 1 : media.size();
+    return editable ? media.size() + 2 : media.size();
   }
 
   @Override
@@ -94,6 +102,8 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
     switch (getItemViewType(position)) {
       case TYPE_MEDIA:
         return stableIdGenerator.getId(media.get(position));
+      case TYPE_CAMERA:
+        return Long.MAX_VALUE-1;
       case TYPE_BUTTON:
         return Long.MAX_VALUE;
       default:
@@ -189,8 +199,12 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
     }
 
     void bind(@Nullable RailItemAddListener addListener) {
+      bind(addListener, false);
+    }
+
+    void bind(@Nullable RailItemAddListener addListener, boolean startCamera) {
       if (addListener != null) {
-        itemView.setOnClickListener(v -> addListener.onRailItemAddClicked());
+        itemView.setOnClickListener(v -> addListener.onRailItemAddClicked(startCamera));
       }
     }
 
@@ -206,6 +220,6 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   }
 
   public interface RailItemAddListener {
-    void onRailItemAddClicked();
+    void onRailItemAddClicked(boolean startCamera);
   }
 }

@@ -781,7 +781,12 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
     viewModel.getBucketId().observe(this, bucketId -> {
       if (bucketId == null) return;
-      mediaRailAdapter.setAddButtonListener(() -> onAddMediaClicked(bucketId));
+      mediaRailAdapter.setAddButtonListener((startCamera) -> {
+        onAddMediaClicked(bucketId);
+        if (startCamera) {
+          onCameraSelected();
+        }
+      });
     });
 
     viewModel.getError().observe(this, error -> {
