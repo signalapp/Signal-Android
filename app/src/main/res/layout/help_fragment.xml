@@ -54,48 +54,43 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/help_fragment_contact" />
 
-            <CheckBox
-                android:id="@+id/help_fragment_debug"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+            <TextView
+                android:id="@+id/help_fragment_category_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:checked="true"
-                android:text="@string/HelpFragment__include_debug_log"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/HelpFragment__tell_us_why_youre_reaching_out"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/signal_text_secondary"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/help_fragment_debug_info"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/help_fragment_debug_info" />
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_problem" />
 
-            <Button
-                android:id="@+id/help_fragment_debug_info"
-                style="@style/Button.Borderless"
+            <Spinner
+                android:id="@+id/help_fragment_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:background="@android:color/transparent"
-                android:text="@string/HelpFragment__whats_this"
-                android:textAllCaps="false"
-                android:textAppearance="@style/Signal.Text.Body"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/help_fragment_debug"
-                app:layout_constraintTop_toBottomOf="@id/help_fragment_problem" />
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_category_title"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/help_fragment_feelings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/HelpFragment__how_do_you_feel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/signal_text_secondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/help_fragment_debug_info" />
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_category" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiImageView
                 android:id="@+id/help_fragment_emoji_5"
@@ -169,6 +164,37 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/help_fragment_emoji_2"
                 app:layout_constraintTop_toTopOf="@id/help_fragment_emoji_2" />
+
+            <CheckBox
+                android:id="@+id/help_fragment_debug"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:checked="true"
+                android:text="@string/HelpFragment__include_debug_log"
+                android:textColor="@color/signal_text_secondary"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/help_fragment_debug_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/help_fragment_debug_info" />
+
+            <Button
+                android:id="@+id/help_fragment_debug_info"
+                style="@style/Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/transparent"
+                android:text="@string/HelpFragment__whats_this"
+                android:textAllCaps="false"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@id/help_fragment_debug"
+                app:layout_constraintTop_toBottomOf="@id/help_fragment_emoji_1" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

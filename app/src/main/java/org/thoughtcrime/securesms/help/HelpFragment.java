@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -32,14 +35,16 @@ import java.util.List;
 
 public class HelpFragment extends LoggingFragment {
 
-  private EditText               problem;
-  private CheckBox               includeDebugLogs;
-  private View                   debugLogInfo;
-  private View                   faq;
-  private CircularProgressButton next;
-  private View                   toaster;
-  private List<EmojiImageView>   emoji;
-  private HelpViewModel          helpViewModel;
+  private EditText                   problem;
+  private CheckBox                   includeDebugLogs;
+  private View                       debugLogInfo;
+  private View                       faq;
+  private CircularProgressButton     next;
+  private View                       toaster;
+  private List<EmojiImageView>       emoji;
+  private HelpViewModel              helpViewModel;
+  private Spinner                    categorySpinner;
+  private ArrayAdapter<CharSequence> categoryAdapter;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ public class HelpFragment extends LoggingFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__help);
+    ((ApplicationPreferencesActivity) requireActivity()).requireSupportActionBar().setTitle(R.string.preferences__help);
 
     cancelSpinning(next);
     problem.setEnabled(true);
@@ -74,6 +79,7 @@ public class HelpFragment extends LoggingFragment {
     faq              = view.findViewById(R.id.help_fragment_faq);
     next             = view.findViewById(R.id.help_fragment_next);
     toaster          = view.findViewById(R.id.help_fragment_next_toaster);
+    categorySpinner  = view.findViewById(R.id.help_fragment_category);
     emoji            = new ArrayList<>(Feeling.values().length);
 
     for (Feeling feeling : Feeling.values()) {
@@ -81,6 +87,11 @@ public class HelpFragment extends LoggingFragment {
       emojiView.setImageEmoji(feeling.getEmojiCode());
       emoji.add(view.findViewById(feeling.getViewId()));
     }
+
+    categoryAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.HelpFragment__categories, android.R.layout.simple_spinner_item);
+    categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+    categorySpinner.setAdapter(categoryAdapter);
   }
 
   private void initializeListeners() {
@@ -90,6 +101,16 @@ public class HelpFragment extends LoggingFragment {
     debugLogInfo.setOnClickListener(v -> launchDebugLogInfo());
     next.setOnClickListener(v -> submitForm());
     toaster.setOnClickListener(v -> Toast.makeText(requireContext(), R.string.HelpFragment__please_be_as_descriptive_as_possible, Toast.LENGTH_LONG).show());
+    categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      @Override
+      public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        helpViewModel.onCategorySelected(position);
+      }
+
+      @Override
+      public void onNothingSelected(AdapterView<?> parent) {
+      }
+    });
   }
 
   private void initializeObservers() {
@@ -144,6 +165,7 @@ public class HelpFragment extends LoggingFragment {
                             .map(view -> Feeling.getByViewId(view.getId()))
                             .findFirst().orElse(null);
 
+
     CommunicationActions.openEmail(requireContext(),
                                    SupportEmailUtil.getSupportEmailAddress(requireContext()),
                                    getEmailSubject(),
@@ -171,8 +193,11 @@ public class HelpFragment extends LoggingFragment {
       suffix.append(getString(feeling.getStringId()));
     }
 
+    String category = categoryAdapter.getItem(helpViewModel.getCategoryIndex()).toString();
+
     return SupportEmailUtil.generateSupportEmailBody(requireContext(),
                                                      R.string.HelpFragment__signal_android_support_request,
+                                                     " - " + category,
                                                      problem.getText().toString() + "\n\n",
                                                      suffix.toString());
   }

@@ -2109,6 +2109,7 @@
     <string name="HelpFragment__include_debug_log">Include debug log.</string>
     <string name="HelpFragment__whats_this">What\'s this?</string>
     <string name="HelpFragment__how_do_you_feel">How do you feel? (Optional)</string>
+    <string name="HelpFragment__tell_us_why_youre_reaching_out">Tell us why you\'re reaching out.</string>
     <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
     <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
     <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
@@ -2121,6 +2122,13 @@
     <string name="HelpFragment__debug_log">Debug Log:</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
+    <string-array name="HelpFragment__categories">
+        <item>Something\'s Not Working</item>
+        <item>Feature Request</item>
+        <item>Question</item>
+        <item>Feedback</item>
+        <item>Other</item>
+    </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">This Message</string>

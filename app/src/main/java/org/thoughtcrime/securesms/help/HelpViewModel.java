@@ -21,6 +21,7 @@ public class HelpViewModel extends ViewModel {
   private MutableLiveData<Boolean> problemMeetsLengthRequirements = new MutableLiveData<>();
   private MutableLiveData<Boolean> hasLines                       = new MutableLiveData<>(false);
   private LiveData<Boolean>        isFormValid                    = Transformations.map(new LiveDataPair<>(problemMeetsLengthRequirements, hasLines), this::transformValidationData);
+  private int                      categoryIndex                  = 0;
 
   private final SubmitDebugLogRepository submitDebugLogRepository;
 
@@ -41,6 +42,14 @@ public class HelpViewModel extends ViewModel {
 
   void onProblemChanged(@NonNull String problem) {
     problemMeetsLengthRequirements.setValue(problem.length() >= MINIMUM_PROBLEM_CHARS);
+  }
+
+  void onCategorySelected(int index) {
+    this.categoryIndex = index;
+  }
+
+  int getCategoryIndex() {
+    return this.categoryIndex;
   }
 
   LiveData<SubmitResult> onSubmitClicked(boolean includeDebugLogs) {
