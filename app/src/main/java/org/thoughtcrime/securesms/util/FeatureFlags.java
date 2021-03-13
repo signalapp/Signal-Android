@@ -322,7 +322,7 @@ public final class FeatureFlags {
 
   /** Whether or not to allow automatic retries from OkHttp */
   public static boolean okHttpAutomaticRetry() {
-    return getBoolean(OKHTTP_AUTOMATIC_RETRY, false);
+    return getBoolean(OKHTTP_AUTOMATIC_RETRY, true);
   }
 
   /** The minimum memory class required for rendering animated stickers in the keyboard and such */
