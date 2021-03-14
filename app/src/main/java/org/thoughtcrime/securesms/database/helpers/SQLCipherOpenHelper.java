@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.loki.database.LokiBackupFilesDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.database.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.database.SessionJobDatabase;
 import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsMigration;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
@@ -52,9 +53,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV19                          = 40;
   private static final int lokiV20                          = 41;
   private static final int lokiV21                          = 42;
+  private static final int lokiV22                          = 43;
 
   // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
-  private static final int    DATABASE_VERSION = lokiV21;
+  private static final int    DATABASE_VERSION = lokiV22;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -121,6 +123,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
     db.execSQL(LokiBackupFilesDatabase.getCreateTableCommand());
+    db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -252,7 +255,21 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                 "SmsSentJob",
                 "SmsReceiveJob",
                 "PushGroupUpdateJob",
-                "ResetThreadSessionJob");
+                "ResetThreadSessionJob",
+                "SendDeliveryReceiptJob");
+      }
+
+      if (oldVersion < lokiV22) {
+        db.execSQL(SessionJobDatabase.getCreateSessionJobTableCommand());
+        deleteJobRecords(db,
+                "PushGroupSendJob",
+                "PushMediaSendJob",
+                "PushTextSendJob",
+                "SendReadReceiptJob",
+                "TypingSendJob",
+                "AttachmentUploadJob",
+                "RequestGroupInfoJob",
+                "ClosedGroupUpdateMessageSendJobV2");
       }
 
       db.setTransactionSuccessful();

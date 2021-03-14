@@ -13,7 +13,7 @@ import org.session.libsignal.service.loki.api.Snode
 import org.session.libsignal.service.loki.database.LokiAPIDatabaseProtocol
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.session.libsignal.utilities.Hex
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsignal.service.loki.utilities.PublicKeyValidation

@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.loki.api.PrepareAttachmentAudioExtrasJob;
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupUpdateMessageSendJobV2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,21 +30,12 @@ public final class JobManagerFactories {
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     HashMap<String, Job.Factory> factoryHashMap = new HashMap<String, Job.Factory>() {{
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
-      put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
-      put(ClosedGroupUpdateMessageSendJobV2.KEY,     new ClosedGroupUpdateMessageSendJobV2.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
-      put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
-      put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
-      put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
-      put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
-      put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
-      put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
-      put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
       put(PrepareAttachmentAudioExtrasJob.KEY,       new PrepareAttachmentAudioExtrasJob.Factory());
     }};

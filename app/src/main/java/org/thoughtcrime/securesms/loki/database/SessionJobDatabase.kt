@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.loki.utilities.*
 class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
 
     companion object {
-        private val sessionJobTable = "loki_thread_session_reset_database"
+        private val sessionJobTable = "session_job_database"
         val jobID = "job_id"
         val jobType = "job_type"
         val failureCount = "failure_count"
@@ -22,12 +22,12 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun persistJob(job: Job) {
         val database = databaseHelper.writableDatabase
-        val contentValues = ContentValues(2)
+        val contentValues = ContentValues(4)
         contentValues.put(jobID, job.id)
         contentValues.put(jobType, job.getFactoryKey())
         contentValues.put(failureCount, job.failureCount)
         contentValues.put(serializedData, SessionJobHelper.dataSerializer.serialize(job.serialize()))
-        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf(jobID.toString()))
+        database.insertOrUpdate(sessionJobTable, contentValues, "$jobID = ?", arrayOf(jobID))
     }
 
     fun markJobAsSucceeded(job: Job) {
@@ -51,7 +51,7 @@ class SessionJobDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         database.getAll(sessionJobTable, "$jobType = ?", arrayOf(AttachmentUploadJob.KEY)) { cursor ->
             result.add(jobFromCursor(cursor) as AttachmentUploadJob)
         }
-        return result.first { job -> job.attachmentID == attachmentID }
+        return result.firstOrNull { job -> job.attachmentID == attachmentID }
     }
 
     fun getMessageSendJob(messageSendJobID: String): MessageSendJob? {

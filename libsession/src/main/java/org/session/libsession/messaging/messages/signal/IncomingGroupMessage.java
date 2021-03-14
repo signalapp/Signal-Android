@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.sms;
+package org.session.libsession.messaging.messages.signal;
 
 import static org.session.libsignal.service.internal.push.SignalServiceProtos.GroupContext;
 

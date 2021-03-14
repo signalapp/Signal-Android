@@ -12,10 +12,10 @@ import org.session.libsession.utilities.Util;
 public class AttachmentId implements Parcelable {
 
   @JsonProperty
-  private final long rowId;
+  private final long rowId; // This is the field id in the database
 
   @JsonProperty
-  private final long uniqueId;
+  private final long uniqueId; // This is the timestamp when the attachment is written into the database
 
   public AttachmentId(@JsonProperty("rowId") long rowId, @JsonProperty("uniqueId") long uniqueId) {
     this.rowId    = rowId;

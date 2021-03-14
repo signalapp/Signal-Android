@@ -23,7 +23,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 
@@ -135,8 +135,8 @@ public abstract class Slide {
   }
 
   public boolean isPendingDownload() {
-    return getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_FAILED ||
-           getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
+    return getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_FAILED ||
+           getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_PENDING;
   }
 
   public int getTransferState() {
@@ -172,7 +172,7 @@ public abstract class Slide {
     return new UriAttachment(uri,
                              hasThumbnail ? uri : null,
                              resolvedType,
-                             AttachmentDatabase.TRANSFER_PROGRESS_STARTED,
+                             AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED,
                              size,
                              width,
                              height,

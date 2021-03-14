@@ -43,13 +43,13 @@ public class LinkPreviewViewModel extends ViewModel {
     return linkPreviewState.getValue() != null && linkPreviewState.getValue().getLinkPreview().isPresent();
   }
 
-  public @NonNull List<LinkPreview> getActiveLinkPreviews() {
+  public Optional<LinkPreview> getActiveLinkPreview() {
     final LinkPreviewState state = linkPreviewState.getValue();
 
     if (state == null || !state.getLinkPreview().isPresent()) {
-      return Collections.emptyList();
+      return Optional.absent();
     } else {
-      return Collections.singletonList(state.getLinkPreview().get());
+      return state.getLinkPreview();
     }
   }
 

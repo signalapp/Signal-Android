@@ -14,35 +14,11 @@ import org.session.libsignal.service.loki.api.crypto.SessionProtocol
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
-import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
+import org.session.libsession.utilities.KeyPairUtilities
 
 class SessionProtocolImpl(private val context: Context) : SessionProtocol {
 
     private val sodium by lazy { LazySodiumAndroid(SodiumAndroid()) }
-
-    override fun encrypt(plaintext: ByteArray, recipientHexEncodedX25519PublicKey: String): ByteArray {
-        val userED25519KeyPair = KeyPairUtilities.getUserED25519KeyPair(context) ?: throw SessionProtocol.Exception.NoUserED25519KeyPair
-        val recipientX25519PublicKey = Hex.fromStringCondensed(recipientHexEncodedX25519PublicKey.removing05PrefixIfNeeded())
-
-        val verificationData = plaintext + userED25519KeyPair.publicKey.asBytes + recipientX25519PublicKey
-        val signature = ByteArray(Sign.BYTES)
-        try {
-            sodium.cryptoSignDetached(signature, verificationData, verificationData.size.toLong(), userED25519KeyPair.secretKey.asBytes)
-        } catch (exception: Exception) {
-            Log.d("Loki", "Couldn't sign message due to error: $exception.")
-            throw SessionProtocol.Exception.SigningFailed
-        }
-        val plaintextWithMetadata = plaintext + userED25519KeyPair.publicKey.asBytes + signature
-        val ciphertext = ByteArray(plaintextWithMetadata.size + Box.SEALBYTES)
-        try {
-            sodium.cryptoBoxSeal(ciphertext, plaintextWithMetadata, plaintextWithMetadata.size.toLong(), recipientX25519PublicKey)
-        } catch (exception: Exception) {
-            Log.d("Loki", "Couldn't encrypt message due to error: $exception.")
-            throw SessionProtocol.Exception.EncryptionFailed
-        }
-
-        return ciphertext
-    }
 
     override fun decrypt(ciphertext: ByteArray, x25519KeyPair: ECKeyPair): Pair<ByteArray, String> {
         val recipientX25519PrivateKey = x25519KeyPair.privateKey.serialize()

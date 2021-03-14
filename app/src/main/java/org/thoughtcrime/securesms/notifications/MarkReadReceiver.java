@@ -11,13 +11,15 @@ import androidx.core.app.NotificationManagerCompat;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.session.libsession.messaging.messages.control.ReadReceipt;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
+import org.session.libsession.utilities.TextSecurePreferences;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.session.libsession.messaging.threads.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -25,7 +27,6 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -68,8 +69,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
   public static void process(@NonNull Context context, @NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
-
-    List<SyncMessageId> syncMessageIds = new LinkedList<>();
+    if (!TextSecurePreferences.isReadReceiptsEnabled(context)) return;
 
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
@@ -83,10 +83,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
       // Loki - Check whether we want to send a read receipt to this user
       if (!SessionMetaProtocol.shouldSendReadReceipt(address)) { continue; }
-      // Loki - Take into account multi device
-      ApplicationContext.getInstance(context)
-              .getJobManager()
-              .add(new SendReadReceiptJob(address, timestamps));
+      ReadReceipt readReceipt = new ReadReceipt(timestamps);
+      readReceipt.setSentTimestamp(System.currentTimeMillis());
+      MessageSender.send(readReceipt, address);
     }
   }
 

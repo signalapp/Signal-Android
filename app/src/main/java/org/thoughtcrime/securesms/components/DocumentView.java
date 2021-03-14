@@ -20,6 +20,8 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import network.loki.messenger.R;
+
+import org.session.libsession.messaging.sending_receiving.attachments.AttachmentTransferProgress;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
@@ -94,7 +96,7 @@ public class DocumentView extends FrameLayout {
       controlToggle.displayQuick(downloadButton);
       downloadButton.setOnClickListener(new DownloadClickedListener(documentSlide));
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
-    } else if (showControls && documentSlide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
+    } else if (showControls && documentSlide.getTransferState() == AttachmentTransferProgress.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(downloadProgress);
       downloadProgress.spin();
     } else {

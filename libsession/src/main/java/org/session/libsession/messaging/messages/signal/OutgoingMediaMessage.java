@@ -1,13 +1,12 @@
-package org.thoughtcrime.securesms.mms;
+package org.session.libsession.messaging.messages.signal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.session.libsession.messaging.threads.DistributionTypes;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.NetworkFailure;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -59,20 +58,6 @@ public class OutgoingMediaMessage {
     this.identityKeyMismatches.addAll(identityKeyMismatches);
   }
 
-  public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message,
-                              long sentTimeMillis, int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote,
-                              @NonNull List<Contact> contacts,
-                              @NonNull List<LinkPreview> linkPreviews)
-  {
-    this(recipient,
-         buildMessage(slideDeck, message),
-         slideDeck.asAttachments(),
-         sentTimeMillis, subscriptionId,
-         expiresIn, distributionType, outgoingQuote,
-         contacts, linkPreviews, new LinkedList<>(), new LinkedList<>());
-  }
-
   public OutgoingMediaMessage(OutgoingMediaMessage that) {
     this.recipient           = that.getRecipient();
     this.body                = that.body;
@@ -93,11 +78,15 @@ public class OutgoingMediaMessage {
                                           Recipient recipient,
                                           List<Attachment> attachments,
                                           @Nullable QuoteModel outgoingQuote,
-                                          @NonNull List<LinkPreview> linkPreviews)
+                                          @Nullable LinkPreview linkPreview)
   {
+    List<LinkPreview> previews = Collections.emptyList();
+    if (linkPreview != null) {
+      previews = Collections.singletonList(linkPreview);
+    }
     return new OutgoingMediaMessage(recipient, message.getText(), attachments, message.getSentTimestamp(), -1,
-            recipient.getExpireMessages() * 1000, ThreadDatabase.DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
-            linkPreviews, Collections.emptyList(), Collections.emptyList());
+            recipient.getExpireMessages() * 1000, DistributionTypes.DEFAULT, outgoingQuote, Collections.emptyList(),
+            previews, Collections.emptyList(), Collections.emptyList());
   }
 
   public Recipient getRecipient() {
@@ -112,12 +101,8 @@ public class OutgoingMediaMessage {
     return attachments;
   }
 
-  public int getDistributionType() {
-    return distributionType;
-  }
-
   public boolean isSecure() {
-    return false;
+    return true;
   }
 
   public boolean isGroup() {
@@ -150,21 +135,6 @@ public class OutgoingMediaMessage {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
-  }
-
-  public @NonNull List<NetworkFailure> getNetworkFailures() {
-    return networkFailures;
-  }
-
-  public @NonNull List<IdentityKeyMismatch> getIdentityKeyMismatches() {
-    return identityKeyMismatches;
-  }
-
-  private static String buildMessage(SlideDeck slideDeck, String message) {
-    if (!TextUtils.isEmpty(message)) {
-      return message;
-    }
-    return "";
   }
 
 }

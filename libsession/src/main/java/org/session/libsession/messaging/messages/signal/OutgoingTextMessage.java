@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.sms;
+package org.session.libsession.messaging.messages.signal;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
 public class OutgoingTextMessage {
@@ -39,14 +38,6 @@ public class OutgoingTextMessage {
   }
 
   public boolean isSecureMessage() {
-    return false;
-  }
-
-  public static OutgoingTextMessage from(SmsMessageRecord record) {
-    if (record.isSecure()) {
-      return new OutgoingEncryptedMessage(record.getRecipient(), record.getBody(), record.getExpiresIn());
-    } else {
-      return new OutgoingTextMessage(record.getRecipient(), record.getBody(), record.getExpiresIn(), record.getSubscriptionId());
-    }
+    return true;
   }
 }

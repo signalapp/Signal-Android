@@ -1,9 +1,9 @@
-package org.thoughtcrime.securesms.mms;
+package org.session.libsession.messaging.messages.signal;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.session.libsession.messaging.threads.DistributionTypes;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
@@ -32,7 +32,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
       throws IOException
   {
     super(recipient, encodedGroupContext, avatar, sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expiresIn, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expiresIn, quote, contacts, previews);
 
     this.group = GroupContext.parseFrom(Base64.decode(encodedGroupContext));
   }
@@ -48,7 +48,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
             new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
             System.currentTimeMillis(),
-            ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
+            DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
 
     this.group = group;
   }
@@ -65,7 +65,7 @@ public class OutgoingGroupMediaMessage extends OutgoingSecureMediaMessage {
     super(recipient, Base64.encodeBytes(group.toByteArray()),
           new LinkedList<Attachment>() {{if (avatar != null) add(avatar);}},
           sentTime,
-          ThreadDatabase.DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
+          DistributionTypes.CONVERSATION, expireIn, quote, contacts, previews);
 
     this.group = group;
   }
