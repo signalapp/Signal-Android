@@ -110,7 +110,7 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
     val allClosedGroupPublicKeys = storage.getAllClosedGroupPublicKeys()
     for (closeGroup in message.closedGroups) {
         if (allClosedGroupPublicKeys.contains(closeGroup.publicKey)) continue
-        handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
+        handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, closeGroup.publicKey, closeGroup.name, closeGroup.encryptionKeyPair!!, closeGroup.members, closeGroup.admins, message.sentTimestamp!!)
     }
     val allOpenGroups = storage.getAllOpenGroups().map { it.value.server }
     for (openGroup in message.openGroups) {
@@ -222,7 +222,7 @@ private fun MessageReceiver.handleNewClosedGroup(message: ClosedGroupControlMess
     val groupPublicKey = kind.publicKey.toByteArray().toHexString()
     val members = kind.members.map { it.toByteArray().toHexString() }
     val admins = kind.admins.map { it.toByteArray().toHexString() }
-    handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, groupPublicKey, kind.name, kind.encryptionKeyPair, members, admins, message.sentTimestamp!!)
+    handleNewClosedGroup(message.sender!!, message.sentTimestamp!!, groupPublicKey, kind.name, kind.encryptionKeyPair!!, members, admins, message.sentTimestamp!!)
 }
 
 // Parameter @sender:String is just for inserting incoming info message

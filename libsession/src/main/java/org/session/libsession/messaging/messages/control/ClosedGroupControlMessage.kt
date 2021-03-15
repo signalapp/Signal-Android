@@ -30,18 +30,30 @@ class ClosedGroupControlMessage() : ControlMessage() {
 
     // Kind enum
     sealed class Kind {
-        class New(val publicKey: ByteString, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<ByteString>, val admins: List<ByteString>) : Kind()
+        class New(var publicKey: ByteString, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<ByteString>, var admins: List<ByteString>) : Kind() {
+            internal constructor(): this(ByteString.EMPTY, "", null, listOf(), listOf())
+        }
         /// - Note: Deprecated in favor of more explicit group updates.
-        class Update(val name: String, val members: List<ByteString>) : Kind()
+        class Update(var name: String, var members: List<ByteString>) : Kind() {
+            internal constructor(): this("", listOf())
+        }
         /// An encryption key pair encrypted for each member individually.
         ///
         /// - Note: `publicKey` is only set when an encryption key pair is sent in a one-to-one context (i.e. not in a group).
-        class EncryptionKeyPair(val publicKey: ByteString?, val wrappers: Collection<KeyPairWrapper>) : Kind()
-        class NameChange(val name: String) : Kind()
-        class MembersAdded(val members: List<ByteString>) : Kind()
-        class MembersRemoved( val members: List<ByteString>) : Kind()
-        class MemberLeft : Kind()
-        class EncryptionKeyPairRequest: Kind()
+        class EncryptionKeyPair(var publicKey: ByteString?, var wrappers: Collection<KeyPairWrapper>) : Kind() {
+            internal constructor(): this(null, listOf())
+        }
+        class NameChange(var name: String) : Kind() {
+            internal constructor(): this("")
+        }
+        class MembersAdded(var members: List<ByteString>) : Kind() {
+            internal constructor(): this(listOf())
+        }
+        class MembersRemoved(var members: List<ByteString>) : Kind() {
+            internal constructor(): this(listOf())
+        }
+        class MemberLeft() : Kind()
+        class EncryptionKeyPairRequest(): Kind()
 
         val description: String = run {
             when(this) {
@@ -118,8 +130,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
         val kind = kind ?: return false
         return when(kind) {
             is Kind.New -> {
-                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair.publicKey != null
-                        && kind.encryptionKeyPair.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
+                !kind.publicKey.isEmpty && kind.name.isNotEmpty() && kind.encryptionKeyPair!!.publicKey != null
+                        && kind.encryptionKeyPair!!.privateKey != null && kind.members.isNotEmpty() && kind.admins.isNotEmpty()
             }
             is Kind.Update -> kind.name.isNotEmpty()
             is Kind.EncryptionKeyPair -> true
@@ -145,8 +157,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupControlMessage.publicKey = kind.publicKey
                     closedGroupControlMessage.name = kind.name
                     val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
-                    encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
-                    encryptionKeyPair.privateKey = ByteString.copyFrom(kind.encryptionKeyPair.privateKey.serialize())
+                    encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+                    encryptionKeyPair.privateKey = ByteString.copyFrom(kind.encryptionKeyPair!!.privateKey.serialize())
                     closedGroupControlMessage.encryptionKeyPair =  encryptionKeyPair.build()
                     closedGroupControlMessage.addAllMembers(kind.members)
                     closedGroupControlMessage.addAllAdmins(kind.admins)

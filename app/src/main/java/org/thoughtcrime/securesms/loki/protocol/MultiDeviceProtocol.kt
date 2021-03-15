@@ -79,8 +79,8 @@ object MultiDeviceProtocol {
                 closedGroupUpdate.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(closedGroup.publicKey))
                 closedGroupUpdate.name = closedGroup.name
                 val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
-                encryptionKeyPair.publicKey = ByteString.copyFrom(closedGroup.encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
-                encryptionKeyPair.privateKey = ByteString.copyFrom(closedGroup.encryptionKeyPair.privateKey.serialize())
+                encryptionKeyPair.publicKey = ByteString.copyFrom(closedGroup.encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+                encryptionKeyPair.privateKey = ByteString.copyFrom(closedGroup.encryptionKeyPair!!.privateKey.serialize())
                 closedGroupUpdate.encryptionKeyPair =  encryptionKeyPair.build()
                 closedGroupUpdate.addAllMembers(closedGroup.members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
                 closedGroupUpdate.addAllAdmins(closedGroup.admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
