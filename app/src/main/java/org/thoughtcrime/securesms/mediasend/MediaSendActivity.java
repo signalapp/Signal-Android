@@ -637,21 +637,29 @@ public class MediaSendActivity extends PassphraseRequiredActivity implements Med
 
 
   private void onAddMediaClicked(@NonNull String bucketId) {
-    hud.hideCurrentInput(composeText);
+    Permissions.with(this)
+               .request(Manifest.permission.READ_EXTERNAL_STORAGE)
+               .ifNecessary()
+               .withPermanentDenialDialog(getString(R.string.AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos))
+               .onAllGranted(() -> {
+                 hud.hideCurrentInput(composeText);
 
-    // TODO: Get actual folder title somehow
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
-    MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
+                 // TODO: Get actual folder title somehow
+                 MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
+                 MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
 
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
-                               .addToBackStack(null)
-                               .commit();
+                 getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
+                                            .addToBackStack(null)
+                                            .commit();
 
-    getSupportFragmentManager().beginTransaction()
-                               .replace(R.id.mediasend_fragment_container, itemFragment, TAG_ITEM_PICKER)
-                               .addToBackStack(null)
-                               .commit();
+                 getSupportFragmentManager().beginTransaction()
+                                            .replace(R.id.mediasend_fragment_container, itemFragment, TAG_ITEM_PICKER)
+                                            .addToBackStack(null)
+                                            .commit();
+               })
+               .onAnyDenied(() -> Toast.makeText(MediaSendActivity.this, R.string.AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos, Toast.LENGTH_LONG).show())
+               .execute();
   }
 
   private void onNoMediaAvailable() {
