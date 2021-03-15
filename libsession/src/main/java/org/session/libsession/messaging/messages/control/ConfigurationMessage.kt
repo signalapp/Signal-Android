@@ -14,7 +14,7 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: List<String>, val contacts: List<Contact>, val displayName: String, val profilePicture: String?, val profileKey: ByteArray): ControlMessage() {
+class ConfigurationMessage(): ControlMessage() {
 
     class ClosedGroup(val publicKey: String, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<String>, val admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
@@ -30,7 +30,7 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
                 val name = proto.name
                 val encryptionKeyPairAsProto = proto.encryptionKeyPair
                 val encryptionKeyPair = ECKeyPair(DjbECPublicKey(encryptionKeyPairAsProto.publicKey.toByteArray().removing05PrefixIfNeeded()),
-                                                  DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
+                        DjbECPrivateKey(encryptionKeyPairAsProto.privateKey.toByteArray()))
                 val members = proto.membersList.map { it.toByteArray().toHexString() }
                 val admins = proto.adminsList.map { it.toByteArray().toHexString() }
                 return ClosedGroup(publicKey, name, encryptionKeyPair, members, admins)
@@ -85,6 +85,13 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
     override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
 
+    var closedGroups: List<ClosedGroup> = listOf()
+    var openGroups: List<String> = listOf()
+    var contacts: List<Contact> = listOf()
+    var displayName: String = ""
+    var profilePicture: String? = null
+    var profileKey: ByteArray = byteArrayOf()
+
     companion object {
 
         fun getCurrent(contacts: List<Contact>): ConfigurationMessage? {
@@ -126,6 +133,15 @@ class ConfigurationMessage(val closedGroups: List<ClosedGroup>, val openGroups: 
             val contacts = configurationProto.contactsList.mapNotNull { Contact.fromProto(it) }
             return ConfigurationMessage(closedGroups, openGroups, contacts, displayName, profilePicture, profileKey.toByteArray())
         }
+    }
+
+    internal constructor(closedGroups: List<ClosedGroup>, openGroups: List<String>, contacts: List<Contact>, displayName: String, profilePicture: String?, profileKey: ByteArray): this() {
+        this.closedGroups = closedGroups
+        this.openGroups = openGroups
+        this.contacts = contacts
+        this.displayName = displayName
+        this.profilePicture = profilePicture
+        this.profileKey = profileKey
     }
 
     override fun toProto(): SignalServiceProtos.Content? {
