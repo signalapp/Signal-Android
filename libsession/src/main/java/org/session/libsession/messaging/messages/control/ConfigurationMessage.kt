@@ -14,10 +14,12 @@ import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
-class ConfigurationMessage(): ControlMessage() {
+class ConfigurationMessage(var closedGroups: List<ClosedGroup>, var openGroups: List<String>, var contacts: List<Contact>, var displayName: String, var profilePicture: String?, var profileKey: ByteArray): ControlMessage() {
 
-    class ClosedGroup(val publicKey: String, val name: String, val encryptionKeyPair: ECKeyPair, val members: List<String>, val admins: List<String>) {
+    class ClosedGroup(var publicKey: String, var name: String, var encryptionKeyPair: ECKeyPair?, var members: List<String>, var admins: List<String>) {
         val isValid: Boolean get() = members.isNotEmpty() && admins.isNotEmpty()
+
+        internal constructor(): this("", "", null, listOf(), listOf())
 
         override fun toString(): String {
             return name
@@ -42,8 +44,8 @@ class ConfigurationMessage(): ControlMessage() {
             result.publicKey = ByteString.copyFrom(Hex.fromStringCondensed(publicKey))
             result.name = name
             val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
-            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
-            encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
+            encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(encryptionKeyPair!!.publicKey.serialize().removing05PrefixIfNeeded())
+            encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(encryptionKeyPair!!.privateKey.serialize())
             result.encryptionKeyPair = encryptionKeyPairAsProto.build()
             result.addAllMembers(members.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
             result.addAllAdmins(admins.map { ByteString.copyFrom(Hex.fromStringCondensed(it)) })
@@ -51,7 +53,10 @@ class ConfigurationMessage(): ControlMessage() {
         }
     }
 
-    class Contact(val publicKey: String, val name: String, val profilePicture: String?, val profileKey: ByteArray?) {
+    class Contact(var publicKey: String, var name: String, var profilePicture: String?, var profileKey: ByteArray?) {
+
+        internal constructor(): this("", "", null, null)
+
         companion object {
             fun fromProto(proto: SignalServiceProtos.ConfigurationMessage.Contact): Contact? {
                 if (!proto.hasName() || !proto.hasProfileKey()) return null
@@ -84,13 +89,6 @@ class ConfigurationMessage(): ControlMessage() {
 
     override val ttl: Long = 4 * 24 * 60 * 60 * 1000
     override val isSelfSendValid: Boolean = true
-
-    var closedGroups: List<ClosedGroup> = listOf()
-    var openGroups: List<String> = listOf()
-    var contacts: List<Contact> = listOf()
-    var displayName: String = ""
-    var profilePicture: String? = null
-    var profileKey: ByteArray = byteArrayOf()
 
     companion object {
 
@@ -135,14 +133,7 @@ class ConfigurationMessage(): ControlMessage() {
         }
     }
 
-    internal constructor(closedGroups: List<ClosedGroup>, openGroups: List<String>, contacts: List<Contact>, displayName: String, profilePicture: String?, profileKey: ByteArray): this() {
-        this.closedGroups = closedGroups
-        this.openGroups = openGroups
-        this.contacts = contacts
-        this.displayName = displayName
-        this.profilePicture = profilePicture
-        this.profileKey = profileKey
-    }
+    internal constructor(): this(listOf(), listOf(), listOf(), "", null, byteArrayOf())
 
     override fun toProto(): SignalServiceProtos.Content? {
         val configurationProto = SignalServiceProtos.ConfigurationMessage.newBuilder()
