@@ -52,8 +52,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
         class MembersRemoved(var members: List<ByteString>) : Kind() {
             internal constructor(): this(listOf())
         }
-        class MemberLeft : Kind()
-        class EncryptionKeyPairRequest: Kind()
+        class MemberLeft() : Kind()
+        class EncryptionKeyPairRequest(): Kind()
 
         val description: String = run {
             when(this) {
