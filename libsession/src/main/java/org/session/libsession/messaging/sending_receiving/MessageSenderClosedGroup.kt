@@ -286,7 +286,7 @@ fun MessageSender.sendLatestEncryptionKeyPair(publicKey: String, groupPublicKey:
             ?: storage.getLatestClosedGroupEncryptionKeyPair(groupPublicKey) ?: return
     // Send it
     val proto = SignalServiceProtos.KeyPair.newBuilder()
-    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize())
+    proto.publicKey = ByteString.copyFrom(encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
     proto.privateKey = ByteString.copyFrom(encryptionKeyPair.privateKey.serialize())
     val plaintext = proto.build().toByteArray()
     val ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, publicKey)
