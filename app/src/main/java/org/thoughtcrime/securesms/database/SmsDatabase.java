@@ -23,8 +23,6 @@ import android.database.Cursor;
 import android.text.TextUtils;
 import android.util.Pair;
 
-import androidx.annotation.NonNull;
-
 import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -32,15 +30,15 @@ import net.sqlcipher.database.SQLiteStatement;
 
 import org.session.libsignal.utilities.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
-import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
-import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.session.libsession.messaging.messages.signal.IncomingGroupMessage;
+import org.session.libsession.messaging.messages.signal.IncomingTextMessage;
+import org.session.libsession.messaging.messages.signal.OutgoingTextMessage;
 
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.threads.recipients.Recipient;
@@ -51,7 +49,6 @@ import org.session.libsignal.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;

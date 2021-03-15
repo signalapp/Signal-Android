@@ -1,20 +1,14 @@
-package org.thoughtcrime.securesms.sms;
+package org.session.libsession.messaging.messages.signal;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.telephony.SmsMessage;
 
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceGroup;
-import org.session.libsignal.service.api.push.SignalServiceAddress;
-
-import java.util.List;
 
 public class IncomingTextMessage implements Parcelable {
 

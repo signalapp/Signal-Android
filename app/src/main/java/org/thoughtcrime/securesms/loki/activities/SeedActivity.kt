@@ -12,7 +12,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.session.libsession.utilities.IdentityKeyUtil
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.getColorWithID
 import org.session.libsession.utilities.TextSecurePreferences

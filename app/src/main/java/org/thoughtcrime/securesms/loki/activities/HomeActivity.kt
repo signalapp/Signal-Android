@@ -26,13 +26,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import network.loki.messenger.R
+import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import org.session.libsession.utilities.GroupUtil
-import org.session.libsession.utilities.ProfilePictureModifiedEvent
-import org.session.libsession.utilities.TextSecurePreferences
-import org.session.libsession.utilities.Util
+import org.session.libsession.utilities.*
 import org.session.libsignal.service.loki.utilities.mentions.MentionsManager
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.ThreadUtils
@@ -42,7 +40,6 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.dialogs.*
-import org.thoughtcrime.securesms.loki.protocol.ClosedGroupsProtocolV2
 import org.thoughtcrime.securesms.loki.protocol.MultiDeviceProtocol
 import org.thoughtcrime.securesms.loki.utilities.*
 import org.thoughtcrime.securesms.loki.views.ConversationView
@@ -344,7 +341,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity(),
                         isClosedGroup = false
                     }
                     if (isClosedGroup) {
-                        ClosedGroupsProtocolV2.explicitLeave(context, groupPublicKey!!)
+                        MessageSender.explicitLeave(groupPublicKey!!)
                     } else {
                         Toast.makeText(context, R.string.activity_home_leaving_group_failed_message, Toast.LENGTH_LONG).show()
                         return@launch

@@ -1,12 +1,17 @@
 package org.session.libsession.messaging.messages.control
 
 import com.google.protobuf.ByteString
+import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.threads.Address
+import org.session.libsession.messaging.threads.recipients.Recipient
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.libsignal.ecc.DjbECPrivateKey
 import org.session.libsignal.libsignal.ecc.DjbECPublicKey
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.utilities.logging.Log
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
+import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.service.loki.utilities.toHexString
 import org.session.libsignal.utilities.Hex
 
@@ -35,8 +40,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
         class NameChange(val name: String) : Kind()
         class MembersAdded(val members: List<ByteString>) : Kind()
         class MembersRemoved( val members: List<ByteString>) : Kind()
-        object MemberLeft : Kind()
-        object EncryptionKeyPairRequest: Kind()
+        class MemberLeft : Kind()
+        class EncryptionKeyPairRequest: Kind()
 
         val description: String = run {
             when(this) {
@@ -46,8 +51,8 @@ class ClosedGroupControlMessage() : ControlMessage() {
                 is NameChange -> "nameChange"
                 is MembersAdded -> "membersAdded"
                 is MembersRemoved -> "membersRemoved"
-                MemberLeft -> "memberLeft"
-                EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
+                is MemberLeft -> "memberLeft"
+                is EncryptionKeyPairRequest -> "encryptionKeyPairRequest"
             }
         }
     }
@@ -92,10 +97,10 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     kind = Kind.MembersRemoved(closedGroupControlMessageProto.membersList)
                 }
                 DataMessage.ClosedGroupControlMessage.Type.MEMBER_LEFT -> {
-                    kind = Kind.MemberLeft
+                    kind = Kind.MemberLeft()
                 }
                 DataMessage.ClosedGroupControlMessage.Type.ENCRYPTION_KEY_PAIR_REQUEST -> {
-                    kind = Kind.EncryptionKeyPairRequest
+                    kind = Kind.EncryptionKeyPairRequest()
                 }
             }
             return ClosedGroupControlMessage(kind)
@@ -139,16 +144,10 @@ class ClosedGroupControlMessage() : ControlMessage() {
                     closedGroupControlMessage.type = DataMessage.ClosedGroupControlMessage.Type.NEW
                     closedGroupControlMessage.publicKey = kind.publicKey
                     closedGroupControlMessage.name = kind.name
-                    val encryptionKeyPairAsProto = SignalServiceProtos.KeyPair.newBuilder()
-                    encryptionKeyPairAsProto.publicKey = ByteString.copyFrom(kind.encryptionKeyPair.publicKey.serialize())
-                    encryptionKeyPairAsProto.privateKey = ByteString.copyFrom(kind.encryptionKeyPair.privateKey.serialize())
-
-                    try {
-                        closedGroupControlMessage.encryptionKeyPair = encryptionKeyPairAsProto.build()
-                    } catch (e: Exception) {
-                        Log.w(TAG, "Couldn't construct closed group update proto from: $this")
-                        return null
-                    }
+                    val encryptionKeyPair = SignalServiceProtos.KeyPair.newBuilder()
+                    encryptionKeyPair.publicKey = ByteString.copyFrom(kind.encryptionKeyPair.publicKey.serialize().removing05PrefixIfNeeded())
+                    encryptionKeyPair.privateKey = ByteString.copyFrom(kind.encryptionKeyPair.privateKey.serialize())
+                    closedGroupControlMessage.encryptionKeyPair =  encryptionKeyPair.build()
                     closedGroupControlMessage.addAllMembers(kind.members)
                     closedGroupControlMessage.addAllAdmins(kind.admins)
                 }
@@ -185,6 +184,11 @@ class ClosedGroupControlMessage() : ControlMessage() {
             val dataMessageProto = DataMessage.newBuilder()
             dataMessageProto.closedGroupControlMessage = closedGroupControlMessage.build()
             // Group context
+            setGroupContext(dataMessageProto)
+            // Expiration timer
+            // TODO: We * want * expiration timer updates to be explicit. But currently Android will disable the expiration timer for a conversation
+            // if it receives a message without the current expiration timer value attached to it...
+            dataMessageProto.expireTimer = Recipient.from(MessagingConfiguration.shared.context, Address.fromSerialized(GroupUtil.doubleEncodeGroupID(recipient!!)), false).expireMessages
             contentProto.dataMessage = dataMessageProto.build()
             return contentProto.build()
         } catch (e: Exception) {

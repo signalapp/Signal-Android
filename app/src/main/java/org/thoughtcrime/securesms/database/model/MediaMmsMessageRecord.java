@@ -26,8 +26,8 @@ import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase.Status;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
-import org.thoughtcrime.securesms.database.documents.NetworkFailure;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 

@@ -145,14 +145,14 @@ class ProfilePictureView : RelativeLayout {
 
     private fun setProfilePictureIfNeeded(imageView: ImageView, publicKey: String, displayName: String?, @DimenRes sizeResId: Int) {
         if (publicKey.isNotEmpty()) {
-            if (imagesCached.contains(publicKey)) return
             val recipient = Recipient.from(context, Address.fromSerialized(publicKey), false)
+            if (imagesCached.contains(recipient.profileAvatar.orEmpty())) return
             val signalProfilePicture = recipient.contactPhoto
             if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0"
                     && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "") {
                 glide.clear(imageView)
                 glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.AUTOMATIC).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                imagesCached.add(recipient.profileAvatar.orEmpty())
             } else {
                 val sizeInPX = resources.getDimensionPixelSize(sizeResId)
                 glide.clear(imageView)
@@ -162,7 +162,7 @@ class ProfilePictureView : RelativeLayout {
                         publicKey,
                         displayName
                 )).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
-                imagesCached.add(publicKey)
+                imagesCached.add(recipient.profileAvatar.orEmpty())
             }
         } else {
             imageView.setImageDrawable(null)

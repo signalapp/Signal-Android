@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
+import org.session.libsession.database.documents.IdentityKeyMismatch;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 
 import java.util.LinkedList;

@@ -19,7 +19,7 @@ import org.session.libsignal.service.loki.crypto.MnemonicCodec
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Hex
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
+import org.session.libsession.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.MnemonicUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo

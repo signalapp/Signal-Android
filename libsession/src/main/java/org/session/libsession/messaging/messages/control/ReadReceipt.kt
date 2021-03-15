@@ -5,7 +5,7 @@ import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 class ReadReceipt() : ControlMessage() {
 
-    var timestamps: LongArray? = null
+    var timestamps: List<Long>? = null
 
     companion object {
         const val TAG = "ReadReceipt"
@@ -15,12 +15,12 @@ class ReadReceipt() : ControlMessage() {
             if (receiptProto.type != SignalServiceProtos.ReceiptMessage.Type.READ) return null
             val timestamps = receiptProto.timestampList
             if (timestamps.isEmpty()) return null
-            return ReadReceipt(timestamps = timestamps.toLongArray())
+            return ReadReceipt(timestamps = timestamps)
         }
     }
 
     //constructor
-    internal constructor(timestamps: LongArray?) : this() {
+    internal constructor(timestamps: List<Long>?) : this() {
         this.timestamps = timestamps
     }
 

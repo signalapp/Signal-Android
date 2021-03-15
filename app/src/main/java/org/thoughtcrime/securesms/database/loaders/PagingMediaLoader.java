@@ -45,6 +45,7 @@ public class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> {
         return new Pair<>(cursor, leftIsRecent ? cursor.getPosition() : cursor.getCount() - 1 - cursor.getPosition());
       }
     }
+    cursor.close();
 
     return null;
   }

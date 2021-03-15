@@ -3,30 +3,26 @@ package org.thoughtcrime.securesms.loki.protocol
 import android.content.Context
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.MessagingConfiguration
+import org.session.libsession.messaging.messages.Destination
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
+import org.session.libsession.messaging.sending_receiving.MessageSender
 import org.session.libsession.messaging.threads.Address
 import org.session.libsession.messaging.threads.recipients.Recipient
 import org.session.libsession.utilities.TextSecurePreferences
 import org.session.libsession.utilities.preferences.ProfileKeyUtil
-import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.api.push.SignalServiceAddress
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.internal.push.SignalServiceProtos.DataMessage
 import org.session.libsignal.service.loki.utilities.removing05PrefixIfNeeded
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.Hex
-import org.session.libsignal.utilities.logging.Log
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.loki.utilities.ContactUtilities
 import org.thoughtcrime.securesms.loki.utilities.OpenGroupUtilities
-import java.util.*
 
 object MultiDeviceProtocol {
 
-    // TODO: refactor this to use new message sending job
     @JvmStatic
     fun syncConfigurationIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
@@ -39,22 +35,10 @@ object MultiDeviceProtocol {
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
         val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return
-        val serializedMessage = configurationMessage.toProto()!!.toByteArray()
-        val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
-        val address = SignalServiceAddress(userPublicKey)
-        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
-        val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
-        try {
-            messageSender.sendMessage(0, address, udAccess,
-                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
-                    true, false, false, Optional.absent())
-            TextSecurePreferences.setLastConfigurationSyncTime(context, now)
-        } catch (e: Exception) {
-            Log.d("Loki", "Failed to send configuration message due to error: $e.")
-        }
+        MessageSender.send(configurationMessage, Address.fromSerialized(userPublicKey))
+        TextSecurePreferences.setLastConfigurationSyncTime(context, now)
     }
 
-    // TODO: refactor this to use new message sending job
     fun forceSyncConfigurationNowIfNeeded(context: Context) {
         val userPublicKey = TextSecurePreferences.getLocalNumber(context) ?: return
         val contacts = ContactUtilities.getAllContacts(context).filter { recipient ->
@@ -63,19 +47,8 @@ object MultiDeviceProtocol {
             ConfigurationMessage.Contact(recipient.address.serialize(), recipient.name!!, recipient.profileAvatar, recipient.profileKey)
         }
         val configurationMessage = ConfigurationMessage.getCurrent(contacts) ?: return
-        val serializedMessage = configurationMessage.toProto()!!.toByteArray()
-        val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
-        val address = SignalServiceAddress(userPublicKey)
-        val recipient = Recipient.from(context, Address.fromSerialized(userPublicKey), false)
-        val udAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient)
-        try {
-            messageSender.sendMessage(0, address, udAccess,
-                    Date().time, serializedMessage, false, configurationMessage.ttl.toInt(),
-                    true, false, false, Optional.absent())
-            TextSecurePreferences.setLastConfigurationSyncTime(context, System.currentTimeMillis())
-        } catch (e: Exception) {
-            Log.d("Loki", "Failed to send configuration message due to error: $e.")
-        }
+        MessageSender.send(configurationMessage, Destination.from(Address.fromSerialized(userPublicKey)))
+        TextSecurePreferences.setLastConfigurationSyncTime(context, System.currentTimeMillis())
     }
 
     // TODO: remove this after we migrate to new message receiving pipeline

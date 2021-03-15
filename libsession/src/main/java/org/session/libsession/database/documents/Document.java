@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database.documents;
+package org.session.libsession.database.documents;
 
 import java.util.List;
 

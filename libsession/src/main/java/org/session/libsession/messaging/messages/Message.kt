@@ -1,5 +1,7 @@
 package org.session.libsession.messaging.messages
 
+import com.google.protobuf.ByteString
+import org.session.libsession.utilities.GroupUtil
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 
 abstract class Message {
@@ -18,11 +20,23 @@ abstract class Message {
 
     // validation
     open fun isValid(): Boolean {
-        sentTimestamp = if (sentTimestamp!! > 0) sentTimestamp else return false
-        receivedTimestamp = if (receivedTimestamp!! > 0) receivedTimestamp else return false
+        sentTimestamp?.let {
+            if (it <= 0) return false
+        }
+        receivedTimestamp?.let {
+            if (it <= 0) return false
+        }
         return sender != null && recipient != null
     }
 
     abstract fun toProto(): SignalServiceProtos.Content?
+
+    fun setGroupContext(dataMessage: SignalServiceProtos.DataMessage.Builder) {
+        val groupProto = SignalServiceProtos.GroupContext.newBuilder()
+        val groupID = GroupUtil.doubleEncodeGroupID(recipient!!)
+        groupProto.id = ByteString.copyFrom(GroupUtil.getDecodedGroupIDAsData(groupID))
+        groupProto.type = SignalServiceProtos.GroupContext.Type.DELIVER
+        dataMessage.group = groupProto.build()
+    }
 
 }

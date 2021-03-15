@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
-import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
+import org.session.libsession.messaging.messages.signal.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 
 import java.util.Comparator;
@@ -70,6 +70,9 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
       MmsDatabase          database     = DatabaseFactory.getMmsDatabase(context);
       Address              address      = Address.fromSerialized(senderPublicKey);
       Recipient            recipient    = Recipient.from(context, address, false);
+
+      if (recipient.isBlocked()) return;
+
       Optional<SignalServiceGroup> groupInfo = Optional.absent();
       if (content.getDataMessage().hasGroup()) {
         GroupContext groupContext = content.getDataMessage().getGroup();
@@ -103,17 +106,18 @@ public class ExpiringMessageManager implements SSKEnvironment.MessageExpirationM
   }
 
   @Override
-  public void startAnyExpiration(long messageID) {
-    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(messageID);
+  public void startAnyExpiration(long timestamp, @NotNull String author) {
+    MessageRecord messageRecord = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
     if (messageRecord != null) {
       boolean mms = messageRecord.isMms();
       Recipient recipient = messageRecord.getRecipient();
+      if (recipient.getExpireMessages() <= 0) return;
       if (mms) {
-        mmsDatabase.markExpireStarted(messageID);
+        mmsDatabase.markExpireStarted(messageRecord.getId());
       } else {
-        smsDatabase.markExpireStarted(messageID);
+        smsDatabase.markExpireStarted(messageRecord.getId());
       }
-      scheduleDeletion(messageID, mms, recipient.getExpireMessages());
+      scheduleDeletion(messageRecord.getId(), mms, recipient.getExpireMessages() * 1000);
     }
   }
 

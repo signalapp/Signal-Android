@@ -4,24 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.ApplicationContext;
-import org.session.libsession.messaging.threads.Address;
+import org.session.libsession.messaging.messages.control.TypingIndicator;
+import org.session.libsession.messaging.sending_receiving.MessageSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
-import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.loki.protocol.SessionMetaProtocol;
 import org.session.libsession.messaging.threads.recipients.Recipient;
 import org.session.libsession.utilities.Util;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @SuppressLint("UseSparseArrays")
 public class TypingStatusSender {
-
-  private static final String TAG = TypingStatusSender.class.getSimpleName();
 
   private static final long REFRESH_TYPING_TIMEOUT = TimeUnit.SECONDS.toMillis(10);
   private static final long PAUSE_TYPING_TIMEOUT   = TimeUnit.SECONDS.toMillis(3);
@@ -82,12 +78,16 @@ public class TypingStatusSender {
   private void sendTyping(long threadId, boolean typingStarted) {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
+    if (recipient == null) { return; }
     // Loki - Check whether we want to send a typing indicator to this user
     if (recipient != null && !SessionMetaProtocol.shouldSendTypingIndicator(recipient.getAddress())) { return; }
-    // Loki - Take into account multi device
-    if (recipient == null) { return; }
-    long threadID = threadDatabase.getOrCreateThreadIdFor(recipient);
-    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadID, typingStarted));
+    TypingIndicator typingIndicator;
+    if (typingStarted) {
+      typingIndicator = new TypingIndicator(TypingIndicator.Kind.STARTED);
+    } else {
+      typingIndicator = new TypingIndicator(TypingIndicator.Kind.STOPPED);
+    }
+    MessageSender.send(typingIndicator, recipient.getAddress());
   }
 
   private class StartRunnable implements Runnable {

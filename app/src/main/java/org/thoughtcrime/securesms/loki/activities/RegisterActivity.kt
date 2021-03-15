@@ -23,7 +23,7 @@ import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.loki.utilities.KeyPairUtilities
+import org.session.libsession.utilities.KeyPairUtilities
 import org.thoughtcrime.securesms.loki.utilities.push
 import org.thoughtcrime.securesms.loki.utilities.setUpActionBarSessionLogo
 import java.util.*

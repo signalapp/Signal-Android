@@ -75,7 +75,7 @@ class MessageReceiveJob(val data: ByteArray, val isBackgroundPoll: Boolean, val 
     }
 
     override fun getFactoryKey(): String {
-        return AttachmentDownloadJob.KEY
+        return KEY
     }
 
     class Factory: Job.Factory<MessageReceiveJob> {

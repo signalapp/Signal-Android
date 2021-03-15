@@ -32,9 +32,10 @@ import androidx.multidex.MultiDexApplication;
 import org.conscrypt.Conscrypt;
 import org.session.libsession.messaging.MessagingConfiguration;
 import org.session.libsession.messaging.avatars.AvatarHelper;
+import org.session.libsession.snode.SnodeConfiguration;
+import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.messaging.sending_receiving.notifications.MessageNotifier;
 import org.session.libsession.messaging.threads.Address;
-import org.session.libsession.utilities.SSKEnvironment;
 import org.session.libsession.utilities.TextSecurePreferences;
 import org.session.libsession.utilities.Util;
 import org.session.libsession.utilities.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -54,7 +55,7 @@ import org.session.libsignal.service.loki.utilities.mentions.MentionsManager;
 import org.session.libsignal.utilities.logging.Log;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.session.libsession.utilities.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -175,6 +176,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                 DatabaseFactory.getStorage(this),
                 DatabaseFactory.getAttachmentProvider(this),
                 new SessionProtocolImpl(this));
+        SnodeConfiguration.Companion.configure(apiDB, broadcaster);
         if (userPublicKey != null) {
             SwarmAPI.Companion.configureIfNeeded(apiDB);
             SnodeAPI.Companion.configureIfNeeded(userPublicKey, apiDB, broadcaster);
@@ -441,6 +443,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
         LokiAPIDatabaseProtocol apiDB = DatabaseFactory.getLokiAPIDatabase(this);
         FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
+        org.session.libsession.messaging.fileserver.FileServerAPI.Companion.configure(userPublicKey, userPrivateKey, apiDB);
         return true;
     }
 
