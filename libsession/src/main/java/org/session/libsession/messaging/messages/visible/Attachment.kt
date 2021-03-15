@@ -4,6 +4,7 @@ import android.util.Size
 import android.webkit.MimeTypeMap
 import com.google.protobuf.ByteString
 import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
+import org.session.libsignal.libsignal.util.guava.Optional
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.utilities.Base64
@@ -23,7 +24,7 @@ class Attachment {
     var url: String? = null
 
     companion object {
-        fun fromProto(proto: SignalServiceProtos.AttachmentPointer): Attachment? {
+        fun fromProto(proto: SignalServiceProtos.AttachmentPointer): Attachment {
             val result = Attachment()
             result.fileName = proto.fileName
             fun inferContentType(): String {
@@ -104,4 +105,12 @@ class Attachment {
                 sizeInBytes?.toLong() ?: 0, if (fileName.isNullOrEmpty()) null else fileName, null, Base64.encodeBytes(key), null, digest, null, kind == Kind.VOICE_MESSAGE,
                 size?.width ?: 0, size?.height ?: 0, false, caption, url)
     }
+
+    fun toSignalPointer(): SignalServiceAttachmentPointer? {
+        if (!isValid()) return null
+        return SignalServiceAttachmentPointer(0, contentType, key, Optional.fromNullable(sizeInBytes), null,
+                size?.width ?: 0, size?.height ?: 0, Optional.fromNullable(digest), Optional.fromNullable(fileName),
+                kind == Kind.VOICE_MESSAGE, Optional.fromNullable(caption), url)
+    }
+
 }

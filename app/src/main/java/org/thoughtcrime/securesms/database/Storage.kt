@@ -15,7 +15,7 @@ import org.session.libsession.messaging.messages.visible.Attachment
 import org.session.libsession.messaging.messages.visible.VisibleMessage
 import org.session.libsession.messaging.opengroups.OpenGroup
 import org.session.libsession.messaging.sending_receiving.attachments.AttachmentId
-import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment
+import org.session.libsession.messaging.sending_receiving.attachments.DatabaseAttachment
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel
 import org.session.libsession.messaging.threads.Address
@@ -27,13 +27,11 @@ import org.session.libsession.utilities.preferences.ProfileKeyUtil
 import org.session.libsignal.libsignal.ecc.ECKeyPair
 import org.session.libsignal.libsignal.util.KeyHelper
 import org.session.libsignal.libsignal.util.guava.Optional
-import org.session.libsignal.service.api.messages.SignalServiceAttachment
 import org.session.libsignal.service.api.messages.SignalServiceAttachmentPointer
 import org.session.libsignal.service.api.messages.SignalServiceGroup
 import org.session.libsignal.service.internal.push.SignalServiceProtos
 import org.session.libsignal.service.loki.api.opengroups.PublicChat
 import org.session.libsignal.utilities.logging.Log
-import org.thoughtcrime.securesms.attachments.toSignalPointer
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.loki.database.LokiThreadDatabase
@@ -94,17 +92,24 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
         return database.insertAttachments(messageId, databaseAttachments)
     }
 
-    override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?): Long? {
+    override fun getAttachmentsForMessage(messageId: Long): List<DatabaseAttachment> {
+        val database = DatabaseFactory.getAttachmentDatabase(context)
+        return database.getAttachmentsForMessage(messageId)
+    }
+
+    override fun persist(message: VisibleMessage, quotes: QuoteModel?, linkPreview: List<LinkPreview?>, groupPublicKey: String?, openGroupID: String?, attachments: List<Attachment>): Long? {
         var messageID: Long? = null
         val senderAddress = Address.fromSerialized(message.sender!!)
         val senderRecipient = Recipient.from(context, senderAddress, false)
-        var group: Optional<SignalServiceGroup> = Optional.absent()
-        if (openGroupID != null) {
-            group = Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
-        } else if (groupPublicKey != null) {
-            group = Optional.of(SignalServiceGroup(groupPublicKey.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
+        val group: Optional<SignalServiceGroup> = when {
+            openGroupID != null -> Optional.of(SignalServiceGroup(openGroupID.toByteArray(), SignalServiceGroup.GroupType.PUBLIC_CHAT))
+            groupPublicKey != null -> Optional.of(SignalServiceGroup(groupPublicKey.toByteArray(), SignalServiceGroup.GroupType.SIGNAL))
+            else -> Optional.absent()
         }
-        if (message.isMediaMessage()) {
+        val pointerAttachments = attachments.mapNotNull {
+            it.toSignalAttachment()
+        }
+        if (message.isMediaMessage() || attachments.isNotEmpty()) {
             val quote: Optional<QuoteModel> = if (quotes != null) Optional.of(quotes) else Optional.absent()
             val linkPreviews: Optional<List<LinkPreview>> = if (linkPreview.isEmpty()) Optional.absent() else Optional.of(linkPreview.mapNotNull { it!! })
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
@@ -119,20 +124,16 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                         return null
                     }
                 }
-                val attachments = message.attachmentIDs.mapNotNull {
-                    DatabaseFactory.getAttachmentProvider(context).getSignalAttachmentPointer(it)
-                }.mapNotNull {
-                    PointerAttachment.forPointer(Optional.of(it)).orNull()
-                }
-                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), attachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
+
+                val mediaMessage = OutgoingMediaMessage.from(message, Recipient.from(context, targetAddress, false), pointerAttachments, quote.orNull(), linkPreviews.orNull().firstOrNull())
                 mmsDatabase.beginTransaction()
                 mmsDatabase.insertSecureDecryptedMessageOutbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
             } else {
                 // It seems like we have replaced SignalServiceAttachment with SessionServiceAttachment
-                val attachments: Optional<List<SignalServiceAttachment>> = Optional.of(message.attachmentIDs.mapNotNull {
-                    DatabaseFactory.getAttachmentProvider(context).getAttachmentPointer(it)?.toSignalPointer()
-                })
-                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, attachments, quote, linkPreviews)
+                val signalServiceAttachments = attachments.mapNotNull {
+                    it.toSignalPointer()
+                }
+                val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
                 mmsDatabase.beginTransaction()
                 if (group.isPresent) {
                     mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)

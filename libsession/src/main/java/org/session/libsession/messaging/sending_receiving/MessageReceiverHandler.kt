@@ -123,17 +123,6 @@ private fun MessageReceiver.handleConfigurationMessage(message: ConfigurationMes
 fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalServiceProtos.Content, openGroupID: String?) {
     val storage = MessagingConfiguration.shared.storage
     val context = MessagingConfiguration.shared.context
-    // Parse & persist attachments
-    val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
-        val attachment = Attachment.fromProto(proto)
-        if (attachment == null || !attachment.isValid()) {
-            return@mapNotNull null
-        } else {
-            return@mapNotNull attachment
-        }
-    }
-    val attachmentIDs = storage.persistAttachments(message.id ?: 0, attachments)
-    message.attachmentIDs.addAll(attachmentIDs.toMutableList())
     // Update profile if needed
     val newProfile = message.profile
     if (newProfile != null) {
@@ -187,14 +176,25 @@ fun MessageReceiver.handleVisibleMessage(message: VisibleMessage, proto: SignalS
             }
         }
     }
+    val attachments = proto.dataMessage.attachmentsList.mapNotNull { proto ->
+        val attachment = Attachment.fromProto(proto)
+        if (!attachment.isValid()) {
+            return@mapNotNull null
+        } else {
+            return@mapNotNull attachment
+        }
+    }
     // Parse stickers if needed
     // Persist the message
-    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID) ?: throw MessageReceiver.Error.NoThread
+    val messageID = storage.persist(message, quoteModel, linkPreviews, message.groupPublicKey, openGroupID, attachments) ?: throw MessageReceiver.Error.NoThread
     message.threadID = threadID
+    // Parse & persist attachments
     // Start attachment downloads if needed
-    attachmentIDs.forEach { attachmentID ->
-        val downloadJob = AttachmentDownloadJob(attachmentID, messageID)
-        JobQueue.shared.add(downloadJob)
+    storage.getAttachmentsForMessage(messageID).forEach { attachment ->
+        attachment.attachmentId?.let { id ->
+            val downloadJob = AttachmentDownloadJob(id.rowId, messageID)
+            JobQueue.shared.add(downloadJob)
+        }
     }
     // Cancel any typing indicators if needed
     cancelTypingIndicatorsIfNeeded(message.sender!!)

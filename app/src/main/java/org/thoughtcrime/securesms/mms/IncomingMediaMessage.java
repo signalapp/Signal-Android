@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.mms;
 import org.session.libsession.messaging.messages.visible.VisibleMessage;
 import org.session.libsession.messaging.sending_receiving.attachments.Attachment;
 import org.session.libsession.messaging.sending_receiving.attachments.PointerAttachment;
-import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
-import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview;
 import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel;
+import org.session.libsession.messaging.sending_receiving.sharecontacts.Contact;
+import org.session.libsession.messaging.threads.Address;
 import org.session.libsession.utilities.GroupUtil;
 import org.session.libsignal.libsignal.util.guava.Optional;
 import org.session.libsignal.service.api.messages.SignalServiceAttachment;
@@ -68,12 +68,12 @@ public class IncomingMediaMessage {
                                           Address from,
                                           long expiresIn,
                                           Optional<SignalServiceGroup> group,
-                                          Optional<List<SignalServiceAttachment>> attachments,
+                                          List<SignalServiceAttachment> attachments,
                                           Optional<QuoteModel> quote,
                                           Optional<List<LinkPreview>> linkPreviews)
   {
     return new IncomingMediaMessage(from, message.getReceivedTimestamp(), -1, expiresIn, false,
-            false, Optional.fromNullable(message.getText()), group, attachments, quote, Optional.absent(), linkPreviews);
+            false, Optional.fromNullable(message.getText()), group, Optional.fromNullable(attachments), quote, Optional.absent(), linkPreviews);
   }
 
   public int getSubscriptionId() {
