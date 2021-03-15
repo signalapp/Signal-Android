@@ -8,6 +8,7 @@ import org.session.libsession.messaging.jobs.AttachmentUploadJob
 import org.session.libsession.messaging.jobs.Job
 import org.session.libsession.messaging.jobs.JobQueue
 import org.session.libsession.messaging.jobs.MessageSendJob
+import org.session.libsession.messaging.messages.signal.IncomingEncryptedMessage
 import org.session.libsession.messaging.messages.signal.IncomingGroupMessage
 import org.session.libsession.messaging.messages.signal.IncomingTextMessage
 import org.session.libsession.messaging.messages.signal.OutgoingTextMessage
@@ -135,11 +136,7 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 }
                 val mediaMessage = IncomingMediaMessage.from(message, senderAddress, senderRecipient.expireMessages * 1000L, group, signalServiceAttachments, quote, linkPreviews)
                 mmsDatabase.beginTransaction()
-                if (group.isPresent) {
-                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp!!)
-                } else {
-                    mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1)
-                }
+                mmsDatabase.insertSecureDecryptedMessageInbox(mediaMessage, message.threadID ?: -1, message.sentTimestamp ?: 0)
             }
             if (insertResult.isPresent) {
                 mmsDatabase.setTransactionSuccessful()
@@ -163,14 +160,11 @@ class Storage(context: Context, helper: SQLCipherOpenHelper) : Database(context,
                 smsDatabase.insertMessageOutbox(message.threadID ?: -1, textMessage, message.sentTimestamp!!)
             } else {
                 val textMessage = IncomingTextMessage.from(message, senderAddress, group, senderRecipient.expireMessages * 1000L)
-                if (group.isPresent) {
-                    smsDatabase.insertMessageInbox(textMessage, message.sentTimestamp!!)
-                } else {
-                    smsDatabase.insertMessageInbox(textMessage)
-                }
+                val encrypted = IncomingEncryptedMessage(textMessage, textMessage.messageBody)
+                smsDatabase.insertMessageInbox(encrypted, message.sentTimestamp ?: 0)
             }
-            if (insertResult.isPresent) {
-                messageID = insertResult.get().messageId
+            insertResult.orNull()?.let { result ->
+                messageID = result.messageId
             }
         }
         return messageID

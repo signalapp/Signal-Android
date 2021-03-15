@@ -12,9 +12,6 @@ import org.session.libsession.messaging.messages.control.ClosedGroupControlMessa
 import org.session.libsession.messaging.messages.control.ConfigurationMessage
 import org.session.libsession.messaging.messages.control.ExpirationTimerUpdate
 import org.session.libsession.messaging.messages.visible.*
-import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
-import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
-import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 import org.session.libsession.messaging.opengroups.OpenGroupAPI
 import org.session.libsession.messaging.opengroups.OpenGroupMessage
 import org.session.libsession.messaging.threads.Address
@@ -29,6 +26,9 @@ import org.session.libsignal.service.loki.api.crypto.ProofOfWork
 import org.session.libsignal.service.loki.utilities.hexEncodedPublicKey
 import org.session.libsignal.utilities.Base64
 import org.session.libsignal.utilities.logging.Log
+import org.session.libsession.messaging.sending_receiving.attachments.Attachment as SignalAttachment
+import org.session.libsession.messaging.sending_receiving.linkpreview.LinkPreview as SignalLinkPreview
+import org.session.libsession.messaging.sending_receiving.quotes.QuoteModel as SignalQuote
 
 
 object MessageSender {
@@ -151,10 +151,9 @@ object MessageSender {
             }
             val recipient = message.recipient!!
             val base64EncodedData = Base64.encodeBytes(wrappedMessage)
-            val timestamp = System.currentTimeMillis()
-            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, timestamp, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
+            val nonce = ProofOfWork.calculate(base64EncodedData, recipient, message.sentTimestamp!!, message.ttl.toInt()) ?: throw Error.ProofOfWorkCalculationFailed
             // Send the result
-            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, timestamp, nonce)
+            val snodeMessage = SnodeMessage(recipient, base64EncodedData, message.ttl, message.sentTimestamp!!, nonce)
             if (destination is Destination.Contact && message is VisibleMessage && !isSelfSend) {
                 SnodeConfiguration.shared.broadcaster.broadcast("sendingMessage", message.sentTimestamp!!)
             }
