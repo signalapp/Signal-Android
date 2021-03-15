@@ -80,7 +80,7 @@ class JobQueue : JobDelegate {
             Log.i("Jobs", "${job::class.simpleName} failed; scheduling retry (failure count is ${job.failureCount}).")
             Timer().schedule(delay = retryInterval) {
                 Log.i("Jobs", "Retrying ${job::class.simpleName}.")
-                job.execute()
+                queue.offer(job)
             }
         }
     }
