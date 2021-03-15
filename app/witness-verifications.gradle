@@ -348,6 +348,18 @@ dependencyVerification {
         ['com.klinkerapps:logger:1.0.3',
          '177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541'],
 
+        ['com.madgag.spongycastle:core:1.58.0.0',
+         '199617dd5698c5a9312b898c0a4cec7ce9dd8649d07f65d91629f58229d72728'],
+
+        ['com.madgag.spongycastle:pg:1.54.0.0',
+         '3f1011ec280c51434dd94396ec25c8d7876d861c0fb1fa9ae70824eddcda2f8f'],
+
+        ['com.madgag.spongycastle:pkix:1.54.0.0',
+         '721a302f5ce18bf6fff89d514ef224c37b5dd9ca67a16b56fafaea4b24a51482'],
+
+        ['com.madgag.spongycastle:prov:1.58.0.0',
+         '092fd09e7006b0814980513b013d4c2b3ffd24a49a635ab4b2d204bb51af1727'],
+
         ['com.makeramen:roundedimageview:2.1.0',
          '1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1'],
 
@@ -378,6 +390,9 @@ dependencyVerification {
         ['javax.inject:javax.inject:1',
          '91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff'],
 
+        ['junit:junit:4.12',
+         '59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a'],
+
         ['me.leolin:ShortcutBadger:1.1.22',
          'cd1610dc48c5699229502187fdc3b5c5433870d5aab159332121b1f8c1dad8c3'],
 
@@ -392,6 +407,9 @@ dependencyVerification {
 
         ['org.greenrobot:eventbus:3.0.0',
          '180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c'],
+
+        ['org.hamcrest:hamcrest-core:1.3',
+         '66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9'],
 
         ['org.jsoup:jsoup:1.8.3',
          'abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473'],
