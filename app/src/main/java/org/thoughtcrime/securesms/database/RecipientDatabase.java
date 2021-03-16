@@ -701,7 +701,7 @@ public class RecipientDatabase extends Database {
       } else {
         Optional<RecipientId> remapped = RemappedRecords.getInstance().getRecipient(context, id);
         if (remapped.isPresent()) {
-          Log.w(TAG, "Missing recipient, but found it in the remapped records.");
+          Log.w(TAG, "Missing recipient for " + id + ", but found it in the remapped records as " + remapped.get());
           return getRecipientSettings(remapped.get());
         } else {
           throw new MissingRecipientException(id);
