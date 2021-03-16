@@ -50,6 +50,9 @@ object MessageSender {
         object NoPrivateKey : Error("Couldn't find a private key associated with the given group public key.")
         object InvalidClosedGroupUpdate : Error("Invalid group update.")
 
+        // Precondition
+        class PreconditionFailure(val reason: String): Error(reason)
+
         internal val isRetryable: Boolean = when (this) {
             is InvalidMessage -> false
             is ProtoConversionFailed -> false
@@ -73,7 +76,6 @@ object MessageSender {
         val promise = deferred.promise
         val storage = MessagingConfiguration.shared.storage
         val userPublicKey = storage.getUserPublicKey()
-        val preconditionFailure = Exception("Destination should not be open groups!")
         // Set the timestamp, sender and recipient
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() } /* Visible messages will already have their sent timestamp set */
         message.sender = userPublicKey
@@ -90,7 +92,7 @@ object MessageSender {
             when (destination) {
                 is Destination.Contact -> message.recipient = destination.publicKey
                 is Destination.ClosedGroup -> message.recipient = destination.groupPublicKey
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Validate the message
             if (!message.isValid()) { throw Error.InvalidMessage }
@@ -128,7 +130,7 @@ object MessageSender {
                     val encryptionKeyPair = MessagingConfiguration.shared.storage.getLatestClosedGroupEncryptionKeyPair(destination.groupPublicKey)!!
                     ciphertext = MessageSenderEncryption.encryptWithSessionProtocol(plaintext, encryptionKeyPair.hexEncodedPublicKey)
                 }
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             // Wrap the result
             val kind: SignalServiceProtos.Envelope.Type
@@ -142,7 +144,7 @@ object MessageSender {
                     kind = SignalServiceProtos.Envelope.Type.CLOSED_GROUP_CIPHERTEXT
                     senderPublicKey = destination.groupPublicKey
                 }
-                is Destination.OpenGroup -> throw preconditionFailure
+                is Destination.OpenGroup -> throw Error.PreconditionFailure("Destination should not be open groups!")
             }
             val wrappedMessage = MessageWrapper.wrap(kind, message.sentTimestamp!!, senderPublicKey, ciphertext)
             // Calculate proof of work
@@ -200,7 +202,6 @@ object MessageSender {
     private fun sendToOpenGroupDestination(destination: Destination, message: Message): Promise<Unit, Exception> {
         val deferred = deferred<Unit, Exception>()
         val storage = MessagingConfiguration.shared.storage
-        val preconditionFailure = Exception("Destination should not be contacts or closed groups!")
         message.sentTimestamp ?: run { message.sentTimestamp = System.currentTimeMillis() }
         message.sender = storage.getUserPublicKey()
         // Set the failure handler (need it here already for precondition failure handling)
@@ -212,8 +213,8 @@ object MessageSender {
             val server: String
             val channel: Long
             when (destination) {
-                is Destination.Contact -> throw preconditionFailure
-                is Destination.ClosedGroup -> throw preconditionFailure
+                is Destination.Contact -> throw Error.PreconditionFailure("Destination should not be contacts!")
+                is Destination.ClosedGroup -> throw Error.PreconditionFailure("Destination should not be closed groups!")
                 is Destination.OpenGroup -> {
                     message.recipient = "${destination.server}.${destination.channel}"
                     server = destination.server
