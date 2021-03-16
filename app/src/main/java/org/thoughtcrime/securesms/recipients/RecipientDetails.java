@@ -32,7 +32,8 @@ public class RecipientDetails {
   final String                 e164;
   final String                 email;
   final GroupId                groupId;
-  final String groupName;
+  final String                 groupName;
+  final String                 systemContactName;
   final String                 customLabel;
   final Uri                    systemContactPhoto;
   final Uri                    contactUri;
@@ -71,6 +72,7 @@ public class RecipientDetails {
   final ProfileName            systemProfileName;
 
   public RecipientDetails(@Nullable String groupName,
+                          @Nullable String systemContactName,
                           @NonNull Optional<Long> groupAvatarId,
                           boolean systemContact,
                           boolean isSelf,
@@ -119,6 +121,7 @@ public class RecipientDetails {
     this.aboutEmoji                  = settings.getAboutEmoji();
     this.systemProfileName           = settings.getSystemProfileName();
     this.groupName                   = groupName;
+    this.systemContactName           = systemContactName;
   }
 
   /**
@@ -167,6 +170,7 @@ public class RecipientDetails {
     this.about                       = null;
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;
+    this.systemContactName           = null;
   }
 
   public static @NonNull RecipientDetails forIndividual(@NonNull Context context, @NonNull RecipientSettings settings) {
@@ -174,6 +178,6 @@ public class RecipientDetails {
     boolean isSelf        = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
                             (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
 
-    return new RecipientDetails(null, Optional.absent(), systemContact, isSelf, settings, null);
+    return new RecipientDetails(null, settings.getSystemDisplayName(), Optional.absent(), systemContact, isSelf, settings, null);
   }
 }

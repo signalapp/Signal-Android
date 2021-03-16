@@ -110,6 +110,7 @@ public class Recipient {
   private final String                 about;
   private final String                 aboutEmoji;
   private final ProfileName            systemProfileName;
+  private final String                 systemContactName;
 
 
   /**
@@ -347,6 +348,7 @@ public class Recipient {
     this.about                       = null;
     this.aboutEmoji                  = null;
     this.systemProfileName           = ProfileName.EMPTY;
+    this.systemContactName           = null;
   }
 
   public Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details, boolean resolved) {
@@ -393,6 +395,7 @@ public class Recipient {
     this.about                       = details.about;
     this.aboutEmoji                  = details.aboutEmoji;
     this.systemProfileName           = details.systemProfileName;
+    this.systemContactName           = details.systemContactName;
   }
 
   public @NonNull RecipientId getId() {
@@ -432,7 +435,7 @@ public class Recipient {
    */
   public boolean hasAUserSetDisplayName(@NonNull Context context) {
     return !TextUtils.isEmpty(getGroupName(context))             ||
-           !TextUtils.isEmpty(getSystemProfileName().toString()) ||
+           !TextUtils.isEmpty(systemContactName)                 ||
            !TextUtils.isEmpty(getProfileName().toString());
   }
 
@@ -440,7 +443,7 @@ public class Recipient {
     String name = getGroupName(context);
 
     if (Util.isEmpty(name)) {
-      name = getSystemProfileName().toString();
+      name = systemContactName;
     }
 
     if (Util.isEmpty(name)) {
@@ -466,7 +469,7 @@ public class Recipient {
     String name = getGroupName(context);
 
     if (Util.isEmpty(name)) {
-      name = getSystemProfileName().toString();
+      name = systemContactName;
     }
 
     if (Util.isEmpty(name)) {
@@ -497,7 +500,7 @@ public class Recipient {
     name = StringUtil.isolateBidi(name);
 
     if (Util.isEmpty(name)) {
-      name = isSelf ? getGroupName(context) : getSystemProfileName().toString();
+      name = isSelf ? getGroupName(context) : systemContactName;
       name = StringUtil.isolateBidi(name);
     }
 

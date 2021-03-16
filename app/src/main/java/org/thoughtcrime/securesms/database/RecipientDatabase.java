@@ -158,7 +158,7 @@ public class RecipientDatabase extends Database {
       ID, UUID, USERNAME, PHONE, EMAIL, GROUP_ID, GROUP_TYPE,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
       PROFILE_KEY, PROFILE_KEY_CREDENTIAL,
-      SYSTEM_GIVEN_NAME, SYSTEM_FAMILY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
+      SYSTEM_JOINED_NAME, SYSTEM_GIVEN_NAME, SYSTEM_FAMILY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       PROFILE_GIVEN_NAME, PROFILE_FAMILY_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, LAST_PROFILE_FETCH,
       NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
@@ -1271,6 +1271,7 @@ public class RecipientDatabase extends Database {
     String  profileKeyCredentialString = CursorUtil.requireString(cursor, PROFILE_KEY_CREDENTIAL);
     String  systemGivenName            = CursorUtil.requireString(cursor, SYSTEM_GIVEN_NAME);
     String  systemFamilyName           = CursorUtil.requireString(cursor, SYSTEM_FAMILY_NAME);
+    String  systemDisplayName          = CursorUtil.requireString(cursor, SYSTEM_JOINED_NAME);
     String  systemContactPhoto         = CursorUtil.requireString(cursor, SYSTEM_PHOTO_URI);
     String  systemPhoneLabel           = CursorUtil.requireString(cursor, SYSTEM_PHONE_LABEL);
     String  systemContactUri           = CursorUtil.requireString(cursor, SYSTEM_CONTACT_URI);
@@ -1357,6 +1358,7 @@ public class RecipientDatabase extends Database {
                                  profileKey,
                                  profileKeyCredential,
                                  ProfileName.fromParts(systemGivenName, systemFamilyName),
+                                 systemDisplayName,
                                  systemContactPhoto,
                                  systemPhoneLabel,
                                  systemContactUri,
@@ -2849,15 +2851,18 @@ public class RecipientDatabase extends Database {
 
     public void setSystemContactInfo(@NonNull RecipientId id,
                                      @NonNull ProfileName systemProfileName,
+                                     @Nullable String systemDisplayName,
                                      @Nullable String photoUri,
                                      @Nullable String systemPhoneLabel,
                                      int systemPhoneType,
                                      @Nullable String systemContactUri)
     {
       ContentValues dirtyQualifyingValues = new ContentValues();
+      String        joinedName            = Util.firstNonNull(systemDisplayName, systemProfileName.toString());
+
       dirtyQualifyingValues.put(SYSTEM_GIVEN_NAME, systemProfileName.getGivenName());
       dirtyQualifyingValues.put(SYSTEM_FAMILY_NAME, systemProfileName.getFamilyName());
-      dirtyQualifyingValues.put(SYSTEM_JOINED_NAME, systemProfileName.toString());
+      dirtyQualifyingValues.put(SYSTEM_JOINED_NAME, joinedName);
 
       if (update(id, dirtyQualifyingValues)) {
         markDirty(id, DirtyState.UPDATE);
@@ -2869,7 +2874,6 @@ public class RecipientDatabase extends Database {
       refreshQualifyingValues.put(SYSTEM_PHONE_TYPE, systemPhoneType);
       refreshQualifyingValues.put(SYSTEM_CONTACT_URI, systemContactUri);
 
-      String  joinedName    = systemProfileName.toString();
       boolean updatedValues = update(id, refreshQualifyingValues);
       boolean updatedColor  = !TextUtils.isEmpty(joinedName) && setColorIfNotSetInternal(id, ContactColors.generateFor(joinedName));
 
@@ -2953,6 +2957,7 @@ public class RecipientDatabase extends Database {
     private final byte[]                          profileKey;
     private final ProfileKeyCredential            profileKeyCredential;
     private final ProfileName                     systemProfileName;
+    private final String                          systemDisplayName;
     private final String                          systemContactPhoto;
     private final String                          systemPhoneLabel;
     private final String                          systemContactUri;
@@ -2995,6 +3000,7 @@ public class RecipientDatabase extends Database {
                       @Nullable byte[] profileKey,
                       @Nullable ProfileKeyCredential profileKeyCredential,
                       @NonNull ProfileName systemProfileName,
+                      @Nullable String systemDisplayName,
                       @Nullable String systemContactPhoto,
                       @Nullable String systemPhoneLabel,
                       @Nullable String systemContactUri,
@@ -3035,6 +3041,7 @@ public class RecipientDatabase extends Database {
       this.profileKey                  = profileKey;
       this.profileKeyCredential        = profileKeyCredential;
       this.systemProfileName           = systemProfileName;
+      this.systemDisplayName           = systemDisplayName;
       this.systemContactPhoto          = systemContactPhoto;
       this.systemPhoneLabel            = systemPhoneLabel;
       this.systemContactUri            = systemContactUri;
@@ -3140,6 +3147,10 @@ public class RecipientDatabase extends Database {
 
     public @NonNull ProfileName getSystemProfileName() {
       return systemProfileName;
+    }
+
+    public @NonNull String getSystemDisplayName() {
+      return systemDisplayName;
     }
 
     public @Nullable String getSystemContactPhotoUri() {

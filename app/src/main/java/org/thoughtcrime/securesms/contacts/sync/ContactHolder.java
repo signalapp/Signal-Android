@@ -42,6 +42,7 @@ final class ContactHolder {
     for (PhoneNumberRecord phoneNumberRecord : phoneNumberRecords) {
       handle.setSystemContactInfo(phoneNumberRecord.getRecipientId(),
                                   getProfileName(phoneNumberRecord.getDisplayName()),
+                                  phoneNumberRecord.getDisplayName(),
                                   phoneNumberRecord.getContactPhotoUri(),
                                   phoneNumberRecord.getContactLabel(),
                                   phoneNumberRecord.getPhoneType(),

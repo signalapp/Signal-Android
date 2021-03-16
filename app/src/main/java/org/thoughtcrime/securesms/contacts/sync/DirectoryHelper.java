@@ -323,16 +323,17 @@ public class DirectoryHelper {
 
       BulkOperationsHandle  handle = recipientDatabase.beginBulkSystemContactUpdate();
 
-      ContactHolder old = null;
       try (Cursor cursor = ContactAccessor.getInstance().getAllSystemContacts(context)) {
         while (cursor != null && cursor.moveToNext()) {
-          String        lookupKey     = getLookupKey(cursor);
-          String        mimeType      = getMimeType(cursor);
-          ContactHolder contactHolder = new ContactHolder(lookupKey);
+          String mimeType = getMimeType(cursor);
 
           if (!isPhoneMimeType(mimeType)) {
-            Log.w(TAG, "Ignoring unexpected mime type: " + mimeType);
+            Log.w(TAG, "Ignoring unwanted mime type: " + mimeType);
+            continue;
           }
+
+          String        lookupKey     = getLookupKey(cursor);
+          ContactHolder contactHolder = new ContactHolder(lookupKey);
 
           while (!cursor.isAfterLast() && getLookupKey(cursor).equals(lookupKey) && isPhoneMimeType(getMimeType(cursor))) {
             String number = CursorUtil.requireString(cursor, ContactsContract.CommonDataKinds.Phone.NUMBER);
