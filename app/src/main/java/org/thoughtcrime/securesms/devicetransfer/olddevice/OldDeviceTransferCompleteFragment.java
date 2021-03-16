@@ -36,6 +36,6 @@ public final class OldDeviceTransferCompleteFragment extends LoggingFragment {
   }
 
   private void close() {
-    OldDeviceExitActivity.exit(requireContext());
+    OldDeviceExitActivity.exit(requireActivity());
   }
 }

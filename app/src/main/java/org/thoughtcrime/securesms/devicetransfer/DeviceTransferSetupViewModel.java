@@ -59,6 +59,7 @@ public final class DeviceTransferSetupViewModel extends ViewModel {
       case SERVICE_CONNECTED:
         store.update(s -> s.updateStep(SetupStep.CONNECTED));
         break;
+      case SHUTDOWN:
       case FAILED:
         store.update(s -> s.updateStep(SetupStep.ERROR));
         break;
@@ -116,7 +117,7 @@ public final class DeviceTransferSetupViewModel extends ViewModel {
   }
 
   public void onVerified() {
-    store.update(s -> s.updateStep(SetupStep.CONNECTING));
+    store.update(s -> s.updateStep(SetupStep.WAITING_FOR_OTHER_TO_VERIFY));
   }
 
   public void onResume() {

@@ -18,7 +18,7 @@ public enum SetupStep {
   SETTING_UP(true, false),
   WAITING(true, false),
   VERIFY(false, false),
-  CONNECTING(true, false),
+  WAITING_FOR_OTHER_TO_VERIFY(false, false),
   CONNECTED(true, false),
   TROUBLESHOOTING(false, false),
   ERROR(false, true);

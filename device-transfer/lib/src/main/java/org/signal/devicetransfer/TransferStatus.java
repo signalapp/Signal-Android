@@ -59,6 +59,10 @@ public class TransferStatus {
     return new TransferStatus(TransferMode.UNAVAILABLE);
   }
 
+  public static @NonNull TransferStatus shutdown() {
+    return new TransferStatus(TransferMode.SHUTDOWN);
+  }
+
   public static @NonNull TransferStatus failed() {
     return new TransferStatus(TransferMode.FAILED);
   }
@@ -72,6 +76,7 @@ public class TransferStatus {
     NETWORK_CONNECTED,
     VERIFICATION_REQUIRED,
     SERVICE_CONNECTED,
-    SERVICE_DISCONNECTED
+    SERVICE_DISCONNECTED,
+    SHUTDOWN
   }
 }

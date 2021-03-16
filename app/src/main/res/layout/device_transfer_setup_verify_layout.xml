@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_verify_code_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/DeviceTransferSetup__verify_code"
+        android:textAppearance="@style/Signal.Text.Headline.Registration" />
+
+    <TextView
+        android:id="@+id/device_transfer_setup_fragment_verify_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices"
+        android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/device_transfer_setup_fragment_sas_verify_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:letterSpacing=".3"
+        android:lines="1"
+        android:minHeight="48dp"
+        app:autoSizeMaxTextSize="48sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        tools:ignore="UnusedAttribute"
+        tools:text="1234567" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_sas_verify_yes"
+        style="@style/Signal.Widget.Button.Large.Primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/DeviceTransferSetup__continue" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/device_transfer_setup_fragment_sas_verify_no"
+        style="@style/Signal.Widget.Button.Medium.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/DeviceTransferSetup__the_numbers_do_not_match"
+        android:textColor="@color/signal_alert_primary" />
+
+</LinearLayout>

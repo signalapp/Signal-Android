@@ -25,9 +25,12 @@ message SqlStatement {
 }
 
 message SharedPreference {
-    optional string file  = 1;
-    optional string key   = 2;
-    optional string value = 3;
+    optional string file             = 1;
+    optional string key              = 2;
+    optional string value            = 3;
+    optional bool   booleanValue     = 4;
+    repeated string stringSetValue   = 5;
+    optional bool   isStringSetValue = 6;
 }
 
 message Attachment {

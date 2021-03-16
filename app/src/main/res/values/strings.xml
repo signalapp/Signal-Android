@@ -2760,10 +2760,10 @@
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer or restore account</string>
     <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">If you have previously registered a Signal account, you can transfer or restore your account and messages</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Transfer from Android device</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device">Transfer your account and message history from your old Android device. You must have access to your old device.</string>
-    <string name="TransferOrRestoreFragment__you_must_have_access_to_your_old_device">You must have access to your old device.</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfer your account and messages from your old Android device. You need access to your old device.</string>
+    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">You need access to your old device.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Restore from backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup">Restore your messages and media from a local backup. If you don\'t restore now, you wouldn\'t be able to restore later.</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore your messages from a local backup. If you don’t restore now, you won\'t be able to restore later.</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
     <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal on your old Android phone</string>
@@ -2779,7 +2779,6 @@
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparing to connect to old Android device…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Taking a moment, should be ready soon</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Waiting for old Android device to connect…</string>
-    <string name="NewDeviceTransferSetup__connecting_to_old_android_device">Connecting to old Android device…</string>
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal needs the location permission to discover and connect to your old Android device.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal needs location services enabled to discover and connect with your old Android device.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal needs Wi-Fi on to discover and connect with your old Android device. Wi-Fi needs to be on but it does not have to be connected to a Wi-Fi network.</string>
@@ -2789,7 +2788,6 @@
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_your_new_android_device">Searching for your new Android device…</string>
-    <string name="OldDeviceTransferSetup__connecting_to_new_android_device">Connecting to new Android device…</string>
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal needs the location permission to discover and connect to your new Android device.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal needs location services enabled to discover and connect with your new Android device.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal needs Wi-Fi on to discover and connect with your new Android device. Wi-Fi needs to be on but it does not have to be connected to a Wi-Fi network.</string>
@@ -2825,6 +2823,9 @@
     <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Make sure both devices are in transfer mode.</string>
     <string name="DeviceTransferSetup__go_to_support_page">Go to support page</string>
     <string name="DeviceTransferSetup__try_again">Try again</string>
+    <string name="DeviceTransferSetup__waiting_for_other_device">Waiting for other device</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tap Continue on your other device to start the transfer.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tap Continue on your other device…</string>
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Cannot transfer from a newer versions of Signal</string>

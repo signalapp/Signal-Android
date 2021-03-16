@@ -73,7 +73,8 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     Group          progressGroup   = view.findViewById(R.id.device_transfer_setup_fragment_progress_group);
     Group          errorGroup      = view.findViewById(R.id.device_transfer_setup_fragment_error_group);
-    Group          verifyGroup     = view.findViewById(R.id.device_transfer_setup_fragment_verify_group);
+    View           verifyGroup     = view.findViewById(R.id.device_transfer_setup_fragment_verify);
+    View           waitingGroup    = view.findViewById(R.id.device_transfer_setup_fragment_waiting);
     View           troubleshooting = view.findViewById(R.id.device_transfer_setup_fragment_troubleshooting);
     TextView       status          = view.findViewById(R.id.device_transfer_setup_fragment_status);
     TextView       error           = view.findViewById(R.id.device_transfer_setup_fragment_error);
@@ -90,6 +91,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
       progressGroup.setVisibility(step.isProgress() ? View.VISIBLE : View.GONE);
       errorGroup.setVisibility(step.isError() ? View.VISIBLE : View.GONE);
       verifyGroup.setVisibility(step == SetupStep.VERIFY ? View.VISIBLE : View.GONE);
+      waitingGroup.setVisibility(step == SetupStep.WAITING_FOR_OTHER_TO_VERIFY ? View.VISIBLE : View.GONE);
       troubleshooting.setVisibility(step == SetupStep.TROUBLESHOOTING ? View.VISIBLE : View.GONE);
 
       Log.i(TAG, "Handling step: " + step.name());
@@ -166,8 +168,7 @@ public abstract class DeviceTransferSetupFragment extends LoggingFragment {
             viewModel.onVerified();
           });
           break;
-        case CONNECTING:
-          status.setText(getStatusTextForStep(step, false));
+        case WAITING_FOR_OTHER_TO_VERIFY:
           break;
         case CONNECTED:
           Log.d(TAG, "Connected! isNotShutdown: " + viewModel.isNotShutdown());

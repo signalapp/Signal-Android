@@ -181,6 +181,7 @@ final class DeviceTransferClient implements Handler.Callback {
         update(TransferStatus.networkConnected());
         break;
       case NetworkClientThread.NETWORK_CLIENT_STOPPED:
+        update(TransferStatus.shutdown());
         internalShutdown();
         break;
       default:

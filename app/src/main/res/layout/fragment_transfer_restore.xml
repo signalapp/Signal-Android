@@ -72,7 +72,7 @@
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@+id/transfer_or_restore_fragment_transfer_header"
                 app:layout_constraintTop_toBottomOf="@+id/transfer_or_restore_fragment_transfer_header"
-                tools:text="@string/TransferOrRestoreFragment__transfer_your_account_and_message_history_from_your_old_android_device" />
+                tools:text="@string/TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -112,7 +112,7 @@
                 android:id="@+id/transfer_or_restore_fragment_restore_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/TransferOrRestoreFragment__restore_your_messages_and_media_from_a_local_backup"
+                android:text="@string/TransferOrRestoreFragment__restore_your_messages_from_a_local_backup"
                 android:textColor="@color/signal_text_secondary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

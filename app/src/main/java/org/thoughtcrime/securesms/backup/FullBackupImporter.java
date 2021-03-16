@@ -45,6 +45,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -213,7 +214,14 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressLint("ApplySharedPref")
   private static void processPreference(@NonNull Context context, SharedPreference preference) {
     SharedPreferences preferences = context.getSharedPreferences(preference.getFile(), 0);
-    preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
+
+    if (preference.hasValue()) {
+      preferences.edit().putString(preference.getKey(), preference.getValue()).commit();
+    } else if (preference.hasBooleanValue()) {
+      preferences.edit().putBoolean(preference.getKey(), preference.getBooleanValue()).commit();
+    } else if (preference.hasIsStringSetValue() && preference.getIsStringSetValue()) {
+      preferences.edit().putStringSet(preference.getKey(), new HashSet<>(preference.getStringSetValueList())).commit();
+    }
   }
 
   private static void dropAllTables(@NonNull SQLiteDatabase db) {

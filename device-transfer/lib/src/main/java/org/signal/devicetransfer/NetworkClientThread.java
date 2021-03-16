@@ -92,8 +92,18 @@ final class NetworkClientThread extends Thread {
           Log.i(TAG, "Waiting for user to verify sas");
           awaitAuthenticationCodeVerification();
           Log.d(TAG, "Waiting for server to tell us they also verified");
-          //noinspection ResultOfMethodCallIgnored
-          inputStream.read();
+          outputStream.write(0x43);
+          outputStream.flush();
+          try {
+            int result = inputStream.read();
+            if (result == -1) {
+              Log.w(TAG, "Something happened waiting for server to verify");
+              throw new DeviceTransferAuthentication.DeviceTransferAuthenticationException("server disconnected while we waited");
+            }
+          } catch (IOException e) {
+            Log.w(TAG, "Something happened waiting for server to verify", e);
+            throw new DeviceTransferAuthentication.DeviceTransferAuthenticationException(e);
+          }
 
           handler.sendEmptyMessage(NETWORK_CLIENT_CONNECTED);
           clientTask.run(context, outputStream);

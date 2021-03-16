@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
@@ -150,6 +151,12 @@ public class FullBackupExporter extends FullBackupBase {
       }
 
       for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
+        throwIfCanceled(cancellationSignal);
+        EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
+        outputStream.write(preference);
+      }
+      
+      for (BackupProtos.SharedPreference preference : TextSecurePreferences.getPreferencesToSaveToBackup(context)) {
         throwIfCanceled(cancellationSignal);
         EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
         outputStream.write(preference);

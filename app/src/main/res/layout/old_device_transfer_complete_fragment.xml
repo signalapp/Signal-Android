@@ -21,14 +21,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/old_device_trasnfer_complete_fragment_subtitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/transfer_item_spacing"
-        android:gravity="center"
+        android:layout_marginBottom="8dp"
+        android:gravity="top|center"
         android:text="@string/OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device"
         android:textAppearance="@style/TextAppearance.Signal.Body1"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/old_device_trasnfer_complete_fragment_success"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/old_device_transfer_complete_fragment_title" />

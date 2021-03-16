@@ -67,8 +67,6 @@ public final class NewDeviceTransferSetupFragment extends DeviceTransferSetupFra
                                    : R.string.NewDeviceTransferSetup__preparing_to_connect_to_old_android_device;
       case WAITING:
         return R.string.NewDeviceTransferSetup__waiting_for_old_device_to_connect;
-      case CONNECTING:
-        return R.string.NewDeviceTransferSetup__connecting_to_old_android_device;
       case ERROR:
         return R.string.NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device;
       case TROUBLESHOOTING:

@@ -146,6 +146,7 @@ final class DeviceTransferServer implements Handler.Callback {
         startWifiDirect(message.arg1);
         break;
       case NetworkServerThread.NETWORK_SERVER_STOPPED:
+        update(TransferStatus.shutdown());
         internalShutdown();
         break;
       case NetworkServerThread.NETWORK_CLIENT_CONNECTED:
